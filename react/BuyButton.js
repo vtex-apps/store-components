@@ -2,8 +2,11 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { compose, graphql } from 'react-apollo'
 
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
+
 import Spinner from '@vtex/styleguide/lib/Spinner'
 import spinnerStyle from '@vtex/styleguide/lib/Spinner/style.css'
+import Button from '@vtex/styleguide/lib/Button'
 
 import productsQuery from './graphql/productsQuery.graphql'
 
@@ -36,6 +39,10 @@ const options = {
  * BuyButton Component. Adds a list of itens to the cart.
  */
 class BuyButton extends Component {
+  static contextTypes = {
+    culture: PropTypes.object,
+  }
+
   constructor(props) {
     super(props)
     this.state = { data: { loading: true } }
@@ -47,15 +54,16 @@ class BuyButton extends Component {
     console.log(data['error'] ? data['error'] : data.products)
 
     return (
-      <div className="ml7 mr7 pv4">
-        {data.loading && (
-          <div className="flex justify-around pa7">
-            <div className="w3">
-              <Spinner style={spinnerStyle} />
+      <Button primary>
+        <div className="flex">
+          {data.loading && (
+            <div style={{ width: '25px', paddingRight: '7px' }}>
+              <Spinner secondary style={spinnerStyle} />
             </div>
-          </div>
-        )}
-      </div>
+          )}
+          <FormattedMessage id="buy" />
+        </div>
+      </Button>
     )
   }
 }
@@ -71,6 +79,8 @@ BuyButton.propTypes = {
   salesChannel: PropTypes.string.isRequired,
   /** Should redirect or not */
   redirect: PropTypes.bool,
+  /** intl property to format data */
+  intl: intlShape.isRequired,
 }
 
-export default graphql(productsQuery, options)(BuyButton)
+export default injectIntl(graphql(productsQuery, options)(BuyButton))

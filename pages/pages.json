@@ -1,12 +1,12 @@
 {
   "pages": {
-    "buy-button": {
+    "test": {
       "path": "/",
       "theme": "theme"
     }
   },
   "extensions": {
-    "buy-button": {
+    "test": {
       "component": "BuyButton"
     }
   }
