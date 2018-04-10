@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vtex/styleguide": "^2.0.0-rc.34"
+    "@vtex/styleguide": "^2.0.0-rc.34",
+    "react-apollo": "^2.1.3"
   }
 }
