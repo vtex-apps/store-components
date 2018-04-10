@@ -1,0 +1,13 @@
+{
+  "pages": {
+    "buy-button": {
+      "path": "/",
+      "theme": "theme"
+    }
+  },
+  "extensions": {
+    "buy-button": {
+      "component": "BuyButton"
+    }
+  }
+}
