@@ -1,13 +1,13 @@
 {
   "pages": {
     "test": {
-      "path": "/",
+      "path": "/test",
       "theme": "theme"
     }
   },
   "extensions": {
     "test": {
-      "component": "BuyButton"
+      "component": "Test"
     }
   }
 }

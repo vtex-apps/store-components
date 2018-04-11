@@ -1,68 +1,46 @@
-import { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { compose, graphql } from 'react-apollo'
-
+import { graphql, compose } from 'react-apollo'
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 
-import Spinner from '@vtex/styleguide/lib/Spinner'
-import spinnerStyle from '@vtex/styleguide/lib/Spinner/style.css'
 import Button from '@vtex/styleguide/lib/Button'
 
-import productsQuery from './graphql/productsQuery.graphql'
-
-const options = {
-  options: ({
-    category = '',
-    specificationFilters = '',
-    priceRange = '',
-    collection = '',
-    orderBy = '',
-    from = 0,
-    to = 8,
-    salesChannel = '',
-  }) => ({
-    variables: {
-      category,
-      specificationFilters: specificationFilters ? [specificationFilters] : [],
-      priceRange,
-      collection,
-      orderBy,
-      from,
-      to: to - 1,
-      salesChannel,
-    },
-    ssr: false,
-  }),
-}
+import orderFormQuery from './mutations/orderFormQuery.gql'
+import addToCartMutation from './mutations/addToCartMutation.gql'
 
 /**
  * BuyButton Component. Adds a list of itens to the cart.
  */
-class BuyButton extends Component {
-  static contextTypes = {
-    culture: PropTypes.object,
-  }
-
+class BuyButton extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { data: { loading: true } }
+
+    this.handleAddToCart = this.handleAddToCart.bind(this)
+  }
+  handleAddToCart() {
+    const { mutate, quantity, seller, skuId, afterClick } = this.props
+
+    mutate({
+      variables: {
+        orderFormId: '6d500aae2a1c4a3e9a2fa8f5a718b982',
+        items: [
+          {
+            id: parseInt(skuId),
+            index: 1,
+            quantity: quantity,
+            seller: seller || 1,
+          },
+        ],
+      },
+      refetchQueries: [{ query: orderFormQuery }],
+    })
+    afterClick()
   }
 
   render() {
-    const { maxItems, data, titleColor, titleText } = this.props
-
-    console.log(data['error'] ? data['error'] : data.products)
-
     return (
-      <Button primary>
-        <div className="flex">
-          {data.loading && (
-            <div style={{ width: '25px', paddingRight: '7px' }}>
-              <Spinner secondary style={spinnerStyle} />
-            </div>
-          )}
-          <FormattedMessage id="buy" />
-        </div>
+      <Button primary onClick={this.handleAddToCart}>
+        <FormattedMessage id="buybutton.text" />
       </Button>
     )
   }
@@ -81,6 +59,17 @@ BuyButton.propTypes = {
   redirect: PropTypes.bool,
   /** intl property to format data */
   intl: intlShape.isRequired,
+  /** Graphql property to call a mutation */
+  mutate: PropTypes.func.isRequired,
+  afterClick: PropTypes.func.isRequired,
+  orderFormId: PropTypes.string.isRequired,
 }
 
-export default injectIntl(graphql(productsQuery, options)(BuyButton))
+export default injectIntl(
+  compose(
+    graphql(orderFormQuery, {
+      options: { ssr: false },
+    }),
+    graphql(addToCartMutation)
+  )(BuyButton)
+)

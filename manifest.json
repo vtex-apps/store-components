@@ -1,13 +1,11 @@
 {
-  "name": "shelf",
+  "name": "buy-button",
   "vendor": "vtex",
   "version": "0.9.0",
-  "title": "VTEX Shelf",
-  "description": "A shelf component",
+  "title": "VTEX Buy button",
+  "description": "A buy button component",
   "mustUpdateAt": "2019-04-03",
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "scripts": {
     "postreleasy": "vtex publish --public"
   },
