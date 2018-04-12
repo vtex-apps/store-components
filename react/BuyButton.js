@@ -18,11 +18,18 @@ class BuyButton extends React.Component {
     this.handleAddToCart = this.handleAddToCart.bind(this)
   }
   handleAddToCart() {
-    const { mutate, quantity, seller, skuId, afterClick } = this.props
+    const {
+      mutate,
+      quantity,
+      seller,
+      skuId,
+      afterClick,
+      orderFormId,
+    } = this.props
 
     mutate({
       variables: {
-        orderFormId: '6d500aae2a1c4a3e9a2fa8f5a718b982',
+        orderFormId: orderFormId || '6d500aae2a1c4a3e9a2fa8f5a718b982',
         items: [
           {
             id: parseInt(skuId),
@@ -32,7 +39,6 @@ class BuyButton extends React.Component {
           },
         ],
       },
-      refetchQueries: [{ query: orderFormQuery }],
     })
     afterClick()
   }
@@ -53,7 +59,7 @@ BuyButton.propTypes = {
   skuId: PropTypes.string.isRequired,
   /** Wich seller is being referenced by the button */
   seller: PropTypes.string.isRequired,
-  /**  */
+  /** ??? */
   salesChannel: PropTypes.string.isRequired,
   /** Should redirect or not */
   redirect: PropTypes.bool,
@@ -61,7 +67,9 @@ BuyButton.propTypes = {
   intl: intlShape.isRequired,
   /** Graphql property to call a mutation */
   mutate: PropTypes.func.isRequired,
+  /** Function that will be called after the mutation */
   afterClick: PropTypes.func.isRequired,
+  /** The users cart id */
   orderFormId: PropTypes.string.isRequired,
 }
 
