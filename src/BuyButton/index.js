@@ -27,7 +27,7 @@ class BuyButton extends React.Component {
 
     mutate({
       variables: {
-        orderFormId: orderFormId || '6d500aae2a1c4a3e9a2fa8f5a718b982',
+        orderFormId: orderFormId,
         items: [
           {
             id: parseInt(skuId),
