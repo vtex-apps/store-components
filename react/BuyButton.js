@@ -1,11 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql, compose } from 'react-apollo'
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
+import { graphql } from 'react-apollo'
 
 import Button from '@vtex/styleguide/lib/Button'
 
-import orderFormQuery from './mutations/orderFormQuery.gql'
 import addToCartMutation from './mutations/addToCartMutation.gql'
 
 /**
@@ -44,15 +42,19 @@ class BuyButton extends React.Component {
   }
 
   render() {
+    const { textMessage } = this.props
+
     return (
       <Button primary onClick={this.handleAddToCart}>
-        <FormattedMessage id="buybutton.text" />
+        {textMessage}
       </Button>
     )
   }
 }
 
 BuyButton.propTypes = {
+  /** Message that will be displayed inside of the button **/
+  textMessage: PropTypes.string.isRequired,
   /** The quantity of products to be added to the cart */
   quantity: PropTypes.number.isRequired,
   /** The specification of wich product will be added to the cart */
@@ -61,10 +63,6 @@ BuyButton.propTypes = {
   seller: PropTypes.string.isRequired,
   /** ??? */
   salesChannel: PropTypes.string.isRequired,
-  /** Should redirect or not */
-  redirect: PropTypes.bool,
-  /** intl property to format data */
-  intl: intlShape.isRequired,
   /** Graphql property to call a mutation */
   mutate: PropTypes.func.isRequired,
   /** Function that will be called after the mutation */
@@ -73,11 +71,4 @@ BuyButton.propTypes = {
   orderFormId: PropTypes.string.isRequired,
 }
 
-export default injectIntl(
-  compose(
-    graphql(orderFormQuery, {
-      options: { ssr: false },
-    }),
-    graphql(addToCartMutation)
-  )(BuyButton)
-)
+export default graphql(addToCartMutation)(BuyButton)
