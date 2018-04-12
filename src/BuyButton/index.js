@@ -42,11 +42,9 @@ class BuyButton extends React.Component {
   }
 
   render() {
-    const { textMessage } = this.props
-
     return (
       <Button primary onClick={this.handleAddToCart}>
-        {textMessage}
+        {this.props.children}
       </Button>
     )
   }
@@ -54,7 +52,7 @@ class BuyButton extends React.Component {
 
 BuyButton.propTypes = {
   /** Message that will be displayed inside of the button **/
-  textMessage: PropTypes.string.isRequired,
+  children: PropTypes.PropTypes.node.isRequired,
   /** The quantity of products to be added to the cart */
   quantity: PropTypes.number.isRequired,
   /** The specification of wich product will be added to the cart */
