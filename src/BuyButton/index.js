@@ -7,15 +7,10 @@ import Button from '@vtex/styleguide/lib/Button'
 import addToCartMutation from './mutations/addToCartMutation.gql'
 
 /**
- * BuyButton Component. Adds a list of itens to the cart.
+ * BuyButton Component. Adds a list of items to the cart.
  */
 class BuyButton extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.handleAddToCart = this.handleAddToCart.bind(this)
-  }
-  handleAddToCart() {
+  handleAddToCart = () => {
     const {
       mutate,
       quantity,
@@ -32,7 +27,7 @@ class BuyButton extends React.Component {
           {
             id: parseInt(skuId),
             index: 1,
-            quantity: quantity,
+            quantity,
             seller: seller || 1,
           },
         ],
@@ -55,9 +50,9 @@ BuyButton.propTypes = {
   children: PropTypes.PropTypes.node.isRequired,
   /** The quantity of products to be added to the cart */
   quantity: PropTypes.number.isRequired,
-  /** The specification of wich product will be added to the cart */
+  /** The specification of which product will be added to the cart */
   skuId: PropTypes.number.isRequired,
-  /** Wich seller is being referenced by the button */
+  /** Which seller is being referenced by the button */
   seller: PropTypes.string.isRequired,
   /** Channel */
   salesChannel: PropTypes.string.isRequired,
@@ -65,7 +60,7 @@ BuyButton.propTypes = {
   mutate: PropTypes.func.isRequired,
   /** Function that will be called after the mutation */
   afterClick: PropTypes.func.isRequired,
-  /** The users cart id */
+  /** The user's cart id */
   orderFormId: PropTypes.string.isRequired,
 }
 

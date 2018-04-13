@@ -1,7 +1,8 @@
 {
   "name": "vtex.buybutton",
   "version": "0.0.1",
-  "description": "Component used to call a mutation that adds one item to the cart",
+  "description":
+    "Component used to call a mutation that adds one item to the cart",
   "main": "build/index.js",
   "peerDependencies": {
     "react": "^15.5.4"
@@ -20,7 +21,7 @@
     "start": "webpack --watch",
     "build": "webpack"
   },
-  "author": "Vtex",
+  "author": "VTEX",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
