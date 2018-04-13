@@ -16,13 +16,13 @@ TODO
   - Type: Number
 
 /**
- * The specification of wich product will be added to the cart.
+ * The specification of which product will be added to the cart.
  */
 - skuId
   - Type: Number
 
 /**
- * Wich seller is being referenced by the button.
+ * Which seller is being referenced by the button.
  */
 - seller
   - Type: String
@@ -46,7 +46,7 @@ TODO
   - Type: Function
 
 /**
- * The users cart id
+ * The user's cart id
  */
 - orderFormId
   - Type: String
