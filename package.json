@@ -1,5 +1,5 @@
 {
-  "name": "vtex.buybutton",
+  "name": "@vtex/storecomponents/buy-button",
   "version": "0.0.2",
   "description":
     "Component used to call a mutation that adds one item to the cart",
@@ -9,7 +9,7 @@
   },
   "files": ["lib/"],
   "dependencies": {
-    "@vtex/styleguide": "^2.0.0-rc.34",
+    "@vtex/styleguide": "2.0.0-rc.34",
     "apollo-client": "^2.2.3",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",

@@ -37,4 +37,3 @@ npm-debug.log
 .build/
 lib
 build
-.eslintrc
