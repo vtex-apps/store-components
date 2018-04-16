@@ -1,5 +1,5 @@
 {
-  "name": "@vtex/storecomponents/buy-button",
+  "name": "@vtex/buy-button",
   "version": "0.0.2",
   "description":
     "Component used to call a mutation that adds one item to the cart",

@@ -7,7 +7,7 @@ Oie! These is our buy button component component.
 ## Install
 
 ```sh
-yarn add @vtex/storecomponents/buy-button
+yarn add @vtex/buy-button
 # or
-npm install @vtex/storecomponents/buy-button
+npm install @vtex/buy-button
 ```
