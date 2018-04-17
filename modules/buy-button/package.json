@@ -1,6 +1,6 @@
 {
   "name": "@vtex/buy-button",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Component used to call a mutation that adds one item to the cart",
   "main": "build/index.js",
   "peerDependencies": {
