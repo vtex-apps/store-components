@@ -1,0 +1,21 @@
+{
+  "name": "vtex-scripts",
+  "version": "0.1.0",
+  "description": "VTEX miscelaneous build scripts",
+  "bin": {
+    "vtex-scripts": "./bin/vtex-scripts.js"
+  },
+  "repository": "https://github.com/vtex-apps/npm-storecomponents",
+  "author": "VTEX",
+  "license": "ISC",
+  "dependencies": {
+    "babel-loader": "^7.1.4",
+    "chalk": "^2.4.0",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.8.0",
+    "webpack": "^4.5.0"
+  },
+  "devDependencies": {
+    "cross-spawn": "^6.0.5"
+  }
+}
