@@ -1,6 +1,6 @@
 {
   "name": "@vtex/buy-button",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Component used to call a mutation that adds one item to the cart",
   "main": "build/index.js",
   "peerDependencies": {
@@ -23,5 +23,9 @@
     "build": "webpack"
   },
   "author": "VTEX",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  }
 }
