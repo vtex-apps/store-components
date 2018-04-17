@@ -38,3 +38,4 @@ npm-debug.log
 lib
 build
 lerna-debug.log
+yarn-error.log
