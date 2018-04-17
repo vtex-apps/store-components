@@ -34,4 +34,5 @@ module.exports = {
   resolve: {
     modules: ['node_modules', path.resolve(__dirname, '..', 'node_modules')],
   },
+  mode: 'production',
 }

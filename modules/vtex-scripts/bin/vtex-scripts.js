@@ -2,7 +2,6 @@
 'use strict'
 
 const spawn = require('cross-spawn')
-const chalk = require('chalk')
 const args = process.argv.slice(2)
 
 if (args.length === 0) {
