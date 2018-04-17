@@ -1,0 +1,27 @@
+{
+  "name": "@vtex/buy-button",
+  "version": "0.0.2",
+  "description":
+    "Component used to call a mutation that adds one item to the cart",
+  "main": "build/index.js",
+  "peerDependencies": {
+    "react": "^15.5.4"
+  },
+  "files": ["lib/"],
+  "dependencies": {
+    "@vtex/styleguide": "2.0.0-rc.34",
+    "apollo-client": "^2.2.3",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.8.0",
+    "react": "^15.5.4",
+    "react-apollo": "^2.1.3",
+    "webpack": "^2.6.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch",
+    "build": "webpack"
+  },
+  "author": "VTEX",
+  "license": "ISC"
+}
