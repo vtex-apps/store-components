@@ -37,3 +37,4 @@ npm-debug.log
 .build/
 lib
 build
+lerna-debug.log
