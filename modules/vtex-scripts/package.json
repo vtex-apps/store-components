@@ -5,6 +5,7 @@
   "bin": {
     "vtex-scripts": "./bin/vtex-scripts.js"
   },
+  "files": ["bin", "config", "scripts", "utils", ".babelrc"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vtex-apps/npm-storecomponents.git"
