@@ -1,11 +1,14 @@
 {
-  "name": "vtex-scripts",
+  "name": "@vtex/vtex-scripts",
   "version": "0.1.0",
   "description": "VTEX miscelaneous build scripts",
   "bin": {
     "vtex-scripts": "./bin/vtex-scripts.js"
   },
-  "repository": "https://github.com/vtex-apps/npm-storecomponents",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vtex-apps/npm-storecomponents.git"
+  },
   "author": "VTEX",
   "license": "ISC",
   "dependencies": {
@@ -17,5 +20,14 @@
     "jest": "~22.4.3",
     "react-dev-utils": "~5.0.1",
     "webpack": "~4.5.0"
+  },
+  "bugs": {
+    "url": "https://github.com/vtex-apps/npm-storecomponents/issues"
+  },
+  "homepage": "https://github.com/vtex-apps/npm-storecomponents#readme",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
