@@ -51,11 +51,3 @@ TODO
 - orderFormId
   - Type: String
 ```
-
-## Troubleshooting
-
-You can check if others are experiencing similar issues [here](https://github.com/vtex-apps/buy-button/issues). Also feel free to [open issues](https://github.com/vtex-apps/buy-button/issues/new).
-
-## Contributing
-
-TODO
