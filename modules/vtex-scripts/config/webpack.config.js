@@ -35,5 +35,6 @@ module.exports = {
   externals: {
     react: 'commonjs2 react',
   },
+  target: 'web',
   mode: 'development',
 }
