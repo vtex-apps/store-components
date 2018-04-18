@@ -6,7 +6,7 @@ module.exports = {
   entry: paths.entryPath,
   output: {
     path: paths.distPath,
-    filename: `${paths.moduleName}.min.js`,
+    filename: 'index.js',
   },
   module: {
     rules: [
@@ -34,5 +34,5 @@ module.exports = {
   resolve: {
     modules: ['node_modules', path.resolve(__dirname, '..', 'node_modules')],
   },
-  mode: 'production',
+  mode: 'development',
 }
