@@ -24,7 +24,7 @@ function build() {
   return new Promise((res, rej) => {
     compiler.run((err, stat) => {
       if (err) {
-        rej(err)
+        return rej(err)
       }
 
       const messages = formatWebpackMessages(stat.toJson({}, true))
