@@ -1,22 +1,21 @@
 {
   "name": "@vtex/buy-button",
   "version": "0.0.6",
-  "description": "Component used to call a mutation that adds one item to the cart",
+  "description":
+    "Component used to call a mutation that adds one item to the cart",
   "main": "build/index.js",
   "peerDependencies": {
-    "react": "^15.5.4"
+    "react": "~15.5.4"
   },
-  "files": [
-    "lib/"
-  ],
+  "files": ["lib/"],
   "dependencies": {
     "@vtex/styleguide": "2.0.0-rc.34",
-    "apollo-client": "^2.2.3",
-    "graphql": "^0.13.2",
-    "graphql-tag": "^2.8.0",
-    "prop-types": "^15.6.1",
-    "react": "^15.5.4",
-    "react-apollo": "^2.1.3"
+    "apollo-client": "~2.2.3",
+    "graphql": "~0.13.2",
+    "graphql-tag": "~2.8.0",
+    "prop-types": "~15.6.1",
+    "react": "~15.5.4",
+    "react-apollo": "~2.1.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -30,6 +29,6 @@
     "lib": "lib"
   },
   "devDependencies": {
-    "vtex-scripts": "^0.1.0"
+    "vtex-scripts": "~0.1.0"
   }
 }
