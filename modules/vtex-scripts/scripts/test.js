@@ -18,7 +18,7 @@ function startTest(processArgs) {
 
   const config = createJestConfig(
     relativePath => path.resolve(__dirname, '..', relativePath),
-    path.resolve(paths.srcPath, '..'),
+    paths.srcPath,
     paths.srcDirs
   )
 
