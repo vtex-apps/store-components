@@ -16,32 +16,6 @@ const webpack = require('webpack')
 const paths = require('../utils/paths')
 const config = require('../config/webpack.config')
 
-new Promise(res => {
-  res(fs.emptyDir(paths.distPath))
-})
-  .then(() => build())
-  .then(
-    ({ warnings }) => {
-      if (warnings.length) {
-        console.log(chalk.yellow('Compiled with warnings'))
-        console.log(warnings.join('\n\n'))
-      } else {
-        console.log(chalk.green('Compiled successfully.'))
-      }
-    },
-    errors => {
-      console.log(chalk.red('Failed to compile.\n'))
-      printBuildError(errors)
-      process.exit(1)
-    }
-  )
-  .catch(err => {
-    if (err && err.message) {
-      console.log(err.message)
-    }
-    process.exit(1)
-  })
-
 function build() {
   console.log('Creating production build...\n')
 
@@ -69,3 +43,33 @@ function build() {
     })
   })
 }
+
+function startBuild() {
+  return new Promise(res => {
+    res(fs.emptyDir(paths.distPath))
+  })
+    .then(() => build())
+    .then(
+      ({ warnings }) => {
+        if (warnings.length) {
+          console.log(chalk.yellow('Compiled with warnings'))
+          console.log(warnings.join('\n\n'))
+        } else {
+          console.log(chalk.green('Compiled successfully.'))
+        }
+      },
+      errors => {
+        console.log(chalk.red('Failed to compile.\n'))
+        printBuildError(errors)
+        process.exit(1)
+      }
+    )
+    .catch(err => {
+      if (err && err.message) {
+        console.log(err.message)
+      }
+      process.exit(1)
+    })
+}
+
+module.exports = startBuild
