@@ -1,14 +1,13 @@
 {
   "name": "@vtex/buy-button",
   "version": "0.0.6",
-  "description": "Component used to call a mutation that adds one item to the cart",
+  "description":
+    "Component used to call a mutation that adds one item to the cart",
   "main": "build/index.js",
   "peerDependencies": {
     "react": "^15.5.4"
   },
-  "files": [
-    "lib/"
-  ],
+  "files": ["lib/"],
   "dependencies": {
     "@vtex/styleguide": "2.0.0-rc.34",
     "apollo-client": "^2.2.3",
@@ -19,7 +18,7 @@
     "react-apollo": "^2.1.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vtex-scripts test",
     "start": "webpack --watch",
     "build": "vtex-scripts build"
   },
