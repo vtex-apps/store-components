@@ -7,6 +7,7 @@ module.exports = {
   output: {
     path: paths.distPath,
     filename: 'index.js',
+    libraryTarget: 'commonjs2',
   },
   module: {
     rules: [
@@ -31,9 +32,9 @@ module.exports = {
     modules: ['node_modules', path.resolve(__dirname, '..', 'node_modules')],
   },
   externals: {
-    react: 'React',
-    'prop-types': 'PropTypes',
+    react: 'commonjs2 react',
+    'prop-types': 'commonjs2 prop-types',
   },
   target: 'web',
-  mode: 'development',
+  mode: 'production',
 }
