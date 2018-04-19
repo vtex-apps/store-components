@@ -1,10 +1,11 @@
 {
   "name": "@vtex/buy-button",
-  "version": "0.0.12",
-  "description":
-    "Component used to call a mutation that adds one item to the cart",
+  "version": "0.0.13",
+  "description": "Component used to call a mutation that adds one item to the cart",
   "main": "dist/index.js",
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "peerDependencies": {
     "prop-types": "~15.6.1",
     "react": "~15.5.4",
@@ -29,7 +30,7 @@
     "lib": "lib"
   },
   "devDependencies": {
-    "@vtex/vtex-scripts": "^0.3.2",
+    "@vtex/vtex-scripts": "^0.3.3",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.14"
   }
