@@ -1,9 +1,11 @@
 const path = require('path')
+const paths = require('../utils/paths')
 
 module.exports = {
-  entry: './src/BuyButton/index.js',
+  bail: true,
+  entry: paths.entryPath,
   output: {
-    path: path.resolve(__dirname, 'lib'),
+    path: paths.distPath,
     filename: 'index.js',
     libraryTarget: 'commonjs2',
   },
@@ -11,13 +13,12 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        include: path.resolve(__dirname, 'src'),
-        exclude: /(node_modules|bower_components|lib)/,
+        include: paths.srcPath,
+        exclude: /(node_modules|bower_components|dist|__tests__)/,
         use: {
           loader: 'babel-loader',
         },
       },
-
       {
         test: /\.(graphql|gql)$/,
         exclude: /node_modules/,
@@ -27,7 +28,13 @@ module.exports = {
       },
     ],
   },
-  externals: {
-    react: 'commonjs react',
+  resolve: {
+    modules: ['node_modules', path.resolve(__dirname, '..', 'node_modules')],
   },
+  externals: {
+    react: 'commonjs2 react',
+    'prop-types': 'commonjs2 prop-types',
+  },
+  target: 'web',
+  mode: 'production',
 }

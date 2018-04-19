@@ -1,0 +1,47 @@
+{
+  "name": "@vtex/vtex-scripts",
+  "version": "0.4.0",
+  "description": "VTEX miscelaneous build scripts",
+  "bin": {
+    "vtex-scripts": "./bin/vtex-scripts.js"
+  },
+  "files": [
+    "bin",
+    "config",
+    "scripts",
+    "utils",
+    ".babelrc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vtex-apps/npm-storecomponents.git"
+  },
+  "author": "VTEX",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "~6.23.0",
+    "babel-jest": "~22.4.3",
+    "babel-loader": "~7.1.4",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "chalk": "~2.4.0",
+    "enzyme": "~3.3.0",
+    "enzyme-adapter-react-16": "~1.1.1",
+    "enzyme-to-json": "~3.3.3",
+    "fs-extra": "~5.0.0",
+    "graphql": "~0.13.2",
+    "graphql-tag": "~2.8.0",
+    "jest": "~22.4.3",
+    "jest-transform-graphql": "~2.1.0",
+    "react": "^16.3.2",
+    "react-dev-utils": "~5.0.1",
+    "react-dom": "^16.3.2",
+    "webpack": "~4.5.0"
+  },
+  "bugs": {
+    "url": "https://github.com/vtex-apps/npm-storecomponents/issues"
+  },
+  "homepage": "https://github.com/vtex-apps/npm-storecomponents#readme"
+}
