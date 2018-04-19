@@ -20,7 +20,7 @@ module.exports = {
 }
 
 if (vtexScriptsOverride) {
-  const srcPath = vtexScriptsOverride.appPath || 'src'
+  const srcPath = vtexScriptsOverride.srcPath || 'src'
   const distPath = vtexScriptsOverride.distPath || 'dist'
   const setupTestsFilename =
     vtexScriptsOverride.setupTestsFilename || 'setupTests.js'
