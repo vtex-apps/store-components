@@ -1,16 +1,15 @@
 {
   "name": "@vtex/buy-button",
   "version": "0.0.12",
-  "description": "Component used to call a mutation that adds one item to the cart",
+  "description":
+    "Component used to call a mutation that adds one item to the cart",
   "main": "dist/index.js",
+  "files": ["dist/"],
   "peerDependencies": {
     "prop-types": "~15.6.1",
     "react": "~15.5.4",
     "react-dom": "~15.5.4"
   },
-  "files": [
-    "dist/"
-  ],
   "dependencies": {
     "@vtex/styleguide": "2.0.0-rc.34",
     "apollo-client": "~2.2.3",

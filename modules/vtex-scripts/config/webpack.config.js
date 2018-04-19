@@ -7,7 +7,6 @@ module.exports = {
   output: {
     path: paths.distPath,
     filename: 'index.js',
-    libraryTarget: 'commonjs2',
   },
   module: {
     rules: [
@@ -19,7 +18,6 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
-
       {
         test: /\.(graphql|gql)$/,
         exclude: /node_modules/,
@@ -33,7 +31,8 @@ module.exports = {
     modules: ['node_modules', path.resolve(__dirname, '..', 'node_modules')],
   },
   externals: {
-    react: 'commonjs2 react',
+    react: 'React',
+    'prop-types': 'PropTypes',
   },
   target: 'web',
   mode: 'development',
