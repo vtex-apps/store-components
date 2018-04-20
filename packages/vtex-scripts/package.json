@@ -1,11 +1,17 @@
 {
   "name": "@vtex/vtex-scripts",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "VTEX miscelaneous build scripts",
   "bin": {
     "vtex-scripts": "./bin/vtex-scripts.js"
   },
-  "files": ["bin", "config", "scripts", "utils", ".babelrc"],
+  "files": [
+    "bin",
+    "config",
+    "scripts",
+    "utils",
+    ".babelrc"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vtex-apps/npm-storecomponents.git"
