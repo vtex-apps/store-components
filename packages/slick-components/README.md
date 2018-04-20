@@ -1,10 +1,6 @@
-# BuyButton
+# Slick components
 
-BuyButton is a canonical component that any VTEX store can install.
-
-## Usage
-
-TODO
+Components used to create others components for the VTEX stores.
 
 ## Configuration
 
