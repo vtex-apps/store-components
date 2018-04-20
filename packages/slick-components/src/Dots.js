@@ -7,10 +7,10 @@ import PropTypes from 'prop-types'
  */
 export class Dots extends Component {
   render() {
-    const { className, style, dots } = this.props
+    const { className, style, dots, dotsClass } = this.props
 
     return (
-      <div className={`${className} vtex-dots`}>
+      <div className={`${className} ${dotsClass}`}>
         <ul className="ma0 pa0" style={{ ...style }}>
           {dots}
         </ul>
@@ -20,10 +20,12 @@ export class Dots extends Component {
 }
 
 Dots.propTypes = {
-  /** Css class of the element. */
+  /** (react-slick prop) Css class of the element. */
   className: PropTypes.string,
-  /** Custom style of the element. */
+  /** (react-slick prop) Custom style of the element. */
   style: PropTypes.object,
-  /** Dots that will be displayed */
+  /** (react-slick prop) Dots that will be displayed */
   dots: PropTypes.node.isRequired,
+  /** Specifies wich css class the dots will receive. */
+  dotsClass: PropTypes.string.isRequired,
 }
