@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.1.1] - 2018-19-04
+## [1.0.2] - 2018-20-04
 
 ### Added
 
-* **Node Module** First version of the buy component that calls the mutation that will add an item to the cart .
+* **Node Module** Receiving css class name as prop of the component.
+
+## [1.0.0] - 2018-20-04
+
+### Added
+
+* **Node Module** First version of the slick-components module.
