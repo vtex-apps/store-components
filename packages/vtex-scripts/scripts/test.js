@@ -13,7 +13,7 @@ const path = require('path')
 const paths = require('../utils/paths')
 const createJestConfig = require('../config/createJestConfig')
 
-function startTest(processArgs) {
+function startTest(...processArgs) {
   const args = processArgs ? processArgs.slice(0) : []
 
   const config = createJestConfig(
