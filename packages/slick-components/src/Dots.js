@@ -7,10 +7,10 @@ import PropTypes from 'prop-types'
  */
 export class Dots extends Component {
   render() {
-    const { className, style, dots, dotsClass } = this.props
+    const { className, style, dots, cssClass } = this.props
 
     return (
-      <div className={`${className} ${dotsClass}`}>
+      <div className={`${className} ${cssClass}`}>
         <ul className="ma0 pa0" style={{ ...style }}>
           {dots}
         </ul>
@@ -27,5 +27,5 @@ Dots.propTypes = {
   /** (react-slick prop) Dots that will be displayed */
   dots: PropTypes.node.isRequired,
   /** Specifies wich css class the dots will receive. */
-  dotsClass: PropTypes.string.isRequired,
+  cssClass: PropTypes.string.isRequired,
 }
