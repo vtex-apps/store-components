@@ -1,16 +1,33 @@
 import React from 'react'
 import { shallow } from 'enzyme'
+import { MockedProvider } from 'react-apollo/test-utils'
 
 import BuyButton from '../index'
 
+import addToCartMutation from '../mutations/addToCartMutation.gql'
+
 describe('<BuyButton />', () => {
-  it('should pass', () => {
-    expect(1).toBe(1)
+  const mocks = [
+    {
+      request: {
+        operationName: 'addToCartMutation',
+        query: addToCartMutation,
+        variables: { _id: '123' },
+      },
+    },
+  ]
+
+  const wrapper = shallow(
+    <MockedProvider mocks={mocks}>
+      <BuyButton />
+    </MockedProvider>
+  )
+
+  it('should match snapshot', () => {
+    expect(wrapper.container).toMatchSnapshot()
   })
 
   it('should be rendered', () => {
-    const wrapper = shallow(<BuyButton />)
-
     expect(wrapper).toBeDefined()
   })
 })
