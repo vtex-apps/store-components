@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
  * Arrow component. It's an overriden component of react-slick that controls
  * the slide transition.
  */
-class Arrow extends Component {
+export class Arrow extends Component {
   render() {
     const { className, style, onClick, isLeftArrow } = this.props
 

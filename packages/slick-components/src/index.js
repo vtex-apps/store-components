@@ -1,2 +1,2 @@
-export Arrow from './Arrow'
-export Dots from './Dots'
+export * from './Arrow'
+export * from './Dots'
