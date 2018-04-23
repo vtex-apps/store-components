@@ -4,7 +4,7 @@
 
 Npm-storecomponents is a collection of components that can be used to create/extend others vtex components. This repo used `lerna` to manage the npm packages. More info: https://lernajs.io/
 
-## Set up
+## Setup
 
 ```sh
 npm i -g lerna
@@ -16,7 +16,7 @@ cd npm-storecomponents
 yarn i
 ```
 
-Now you are ready to start writing some code. You can either implement a new module or extend a existing one.
+Now you are ready to start writing some code. You can either implement a new module or extend an existing one.
 
 ## Creating a new module
 
