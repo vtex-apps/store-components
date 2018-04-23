@@ -1,7 +1,8 @@
 {
-  "name": "@vtex/product-price",
-  "version": "0.0.0",
-  "description": "The Price component. Shows the prices information of the Product Summary.",
+  "name": "@vtex/product-details",
+  "version": "1.0.0",
+  "description":
+    "A bundle of components that together can be used to build the Product Summary.",
   "main": "dist/index.js",
   "repository": "https://github.com/vtex-apps/npm-storecomponents",
   "author": "VTEX",

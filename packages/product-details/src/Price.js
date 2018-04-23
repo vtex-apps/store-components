@@ -20,7 +20,7 @@ addLocaleData([
 /**
  * The Price component. Shows the prices information of the Product Summary.
  */
-class Price extends Component {
+class SimplePrice extends Component {
   static contextTypes = {
     culture: PropTypes.object,
   }
@@ -100,7 +100,7 @@ class Price extends Component {
   }
 }
 
-Price.propTypes = {
+SimplePrice.propTypes = {
   /** Product selling price */
   sellingPrice: PropTypes.number.isRequired,
   /** Product list price */
@@ -119,10 +119,10 @@ Price.propTypes = {
   intl: intlShape.isRequired,
 }
 
-Price.defaultProps = {
+SimplePrice.defaultProps = {
   showListPrice: true,
   showLabels: true,
   showInstallments: false,
 }
 
-export default injectIntl(Price)
+export const Price = injectIntl(SimplePrice)
