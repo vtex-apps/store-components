@@ -26,6 +26,6 @@ Dots.propTypes = {
   style: PropTypes.object,
   /** (react-slick prop) Dots that will be displayed */
   dots: PropTypes.node.isRequired,
-  /** Specifies wich css class the dots will receive. */
+  /** Specifies wich css the dots will receive. */
   cssClass: PropTypes.string.isRequired,
 }
