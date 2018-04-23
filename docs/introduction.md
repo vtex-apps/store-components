@@ -12,8 +12,6 @@ git clone git@github.com:vtex-apps/npm-storecomponents.git
 cd npm-storecomponents
 
 yarn i
-
-lerna bootstrap
 ```
 
 Now you are ready to start writing some code. You can either implement a new module or extend a existing one.
@@ -101,8 +99,7 @@ npm login --scope=@vtex
 
 Once you get that out of the way you that are two basic cases that you should pay attention:
 
-* If it is a new package: you should go to the package folder and publish it with access set to public. Like:
-
+* If it is a new package, you should go to the package folder and publish it with access set to public. Like:
 
 ```sh
    ## on root folder of your package: npm-storecomponents/packages/<your-npm-module>
@@ -110,7 +107,6 @@ Once you get that out of the way you that are two basic cases that you should pa
 ```
 
 * If it is an existent package:
-
 
 ```sh
    ## any where on: npm-storecomponents
@@ -122,7 +118,6 @@ Once you get that out of the way you that are two basic cases that you should pa
 To test your package you should use npm link. More info: https://docs.npmjs.com/cli/link
 
 * First you should build your package
-
 
 ```sh
    ## on root folder of your package: npm-storecomponents/packages/<your-npm-module>
