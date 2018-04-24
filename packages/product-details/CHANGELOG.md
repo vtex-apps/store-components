@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.1.0] - 2018-04-24
+
+### Added
+
+* Add the product name by @lucasecdb.
+* Add the quantity selector by @vitoriaHeliane.
+
 ## [1.0.0] - 2018-04-20
 
 ### Added
 
-* Initial version by @estacioneto.
+* Add the product price by @estacioneto.
 * Added to the NPM registry.

@@ -1,6 +1,6 @@
 {
   "name": "@vtex/slick-components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Custom Arrow and Dots to be used in react-click",
   "main": "dist/index.js",
   "files": [
