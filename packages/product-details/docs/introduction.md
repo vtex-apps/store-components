@@ -15,5 +15,5 @@ $ npm install @vtex/product-details
 And to import it in your code
 
 ```js
-import Price from '@vtex/product-details'
+import { Price, ProductName, QuantitySelector } from '@vtex/product-details'
 ```
