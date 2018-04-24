@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 /**
  * Quantity selector component.
  */
-export class QuantitySelector extends Component {
+class QuantitySelector extends Component {
   handleChange = event => {
     const { maxQuantity, onQuantityChange, onMaxReached } = this.props
     const value = event.target.value
@@ -42,3 +42,5 @@ QuantitySelector.propTypes = {
   /** Define if can buy more items than the maximum limit */
   onMaxReached: PropTypes.func.isRequired,
 }
+
+export default QuantitySelector

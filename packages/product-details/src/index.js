@@ -1,3 +1,3 @@
-export * from './Price'
-export * from './ProductName'
-export * from './QuantitySelector'
+export { default as Price } from './Price'
+export { default as ProductName } from './ProductName'
+export { default as QuantitySelector } from './QuantitySelector'

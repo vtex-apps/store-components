@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
  */
-export class ProductName extends Component {
+class ProductName extends Component {
   render() {
     const { name, referenceCode, skuName, brandName } = this.props
 
@@ -26,3 +26,5 @@ ProductName.propTypes = {
   /** Reference code of the product */
   referenceCode: PropTypes.string,
 }
+
+export default ProductName
