@@ -4,6 +4,12 @@
 
 Npm-storecomponents is a collection of components that can be used to create/extend others vtex components. This repo used `lerna` to manage the npm packages. More info: https://lernajs.io/
 
+## Continuous Integrations
+
+### Travis CI
+
+[![Build Status](https://travis-ci.org/vtex-apps/npm-storecomponents.svg?branch=master)](https://travis-ci.org/vtex-apps/npm-storecomponents)
+
 ## Table of Contents
 
 * [Setup](#setup)
