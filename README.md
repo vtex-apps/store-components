@@ -105,7 +105,7 @@ export { default as Price } from './Price'
 
 ## Publishing to npm
 
-To publish a package is simple. First of, you should configure your npm with your own account info and set the scope to vtex, because we are working with scoped packages. More info: https://docs.npmjs.com/misc/scope
+To publish a package is simple. First off, you should configure your npm with your own account info and set the scope to vtex, because we are working with scoped packages. More info: https://docs.npmjs.com/misc/scope
 
 ```sh
 $ npm login --scope=@vtex
