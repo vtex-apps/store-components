@@ -31,11 +31,12 @@ class Price extends Component {
       listPrice,
       installments,
       installmentPrice,
-      showListPrice,
-      showInstallments: showInstallmentsProp,
+      showInstallments,
       showLabels,
       intl: { formatNumber },
     } = this.props
+
+    const showListPrice = this.props.showListPrice && sellingPrice !== listPrice
 
     const currencyOptions = {
       style: 'currency',
@@ -49,47 +50,45 @@ class Price extends Component {
       currencyOptions
     )
 
-    const showInstallments =
-      showInstallmentsProp && installments && installmentPrice
-
     return (
-      <div className="tc b fabriga">
+      <div className="vtex-price tc fabriga">
         {showListPrice && (
-          <div className="pv1">
+          <div className="pv1 f7 normal">
             {showLabels && (
-              <div className="dib">
+              <div className="vtex-price-list__label dib">
                 <FormattedMessage id="pricing.from" />
               </div>
             )}
-            <div className="dib strike ph2">
+            <div className="vtex-price-list dib strike ph2">
               {formatNumber(listPrice, currencyOptions)}
             </div>
           </div>
         )}
-        <div className="pv1">
+        <div className="pv1 b f5">
           {showLabels && (
-            <div className="dib">
+            <div className="vtex-price-selling__label dib">
               <FormattedMessage id="pricing.to" />
             </div>
           )}
-          <div className="dib ph2">
+          <div className="vtex-price-selling dib ph2">
             {formatNumber(sellingPrice, currencyOptions)}
           </div>
         </div>
         {showInstallments && (
-          <div>
-            <div className="dib">
+          <div className="f6">
+            <div className="vtex-price-installments dib">
               {showLabels ? (
                 <FormattedMessage
                   id="pricing.installment-display"
                   values={{
                     installments,
                     installmentPrice: formattedInstallmentPrice,
+                    times: <span>&times;</span>,
                   }}
                 />
               ) : (
                 <span>
-                  {installments}X {formattedInstallmentPrice}
+                  {installments} &times; {formattedInstallmentPrice}
                 </span>
               )}
             </div>
