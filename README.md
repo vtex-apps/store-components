@@ -4,16 +4,24 @@
 
 Npm-storecomponents is a collection of components that can be used to create/extend others vtex components. This repo used `lerna` to manage the npm packages. More info: https://lernajs.io/
 
+## Table of Contents
+
+* [Setup](#setup)
+* [Creating a new module](#creating-a-new-module)
+  * [Working on your `src/index.js`](#working-on-your-srcindexjs)
+* [Publishing to NPM](#publishing-to-npm)
+* [Testing your package without publishing it](#testing-your-package-without-publishing-it)
+
 ## Setup
 
 ```sh
-npm i -g lerna
-
-git clone git@github.com:vtex-apps/npm-storecomponents.git
-
-cd npm-storecomponents
-
-yarn i
+$ npm i -g lerna
+$
+$ git clone git@github.com:vtex-apps/npm-storecomponents.git
+$
+$ cd npm-storecomponents
+$
+$ yarn i
 ```
 
 Now you are ready to start writing some code. You can either implement a new module or extend an existing one.
@@ -23,14 +31,13 @@ Now you are ready to start writing some code. You can either implement a new mod
 To create a new module you should create a npm package inside the folder `packages`. You can start by:
 
 ```sh
-## on root folder: npm-storecomponents
-
-mkdir packages/<your-npm-module>
-cd packages/<your-npm-module>
-npm init
-mkdir src  ## your source code should go in here
-mkdir docs ## this is not required but we strongly recommend you write your own docs.
-vim src/index.js ## this is the entry point of your module
+$ # on root folder: npm-storecomponents
+$ mkdir packages/<your-npm-module>
+$ cd packages/<your-npm-module>
+$ npm init
+$ mkdir src  # your source code should go in here
+$ mkdir docs # this is not required but we strongly recommend you to write your own docs.
+$ vim src/index.js # this is the entry point of your module
 ```
 
 Next, you need to work on your module´s `package.json`
@@ -83,12 +90,11 @@ export * from './Arrow'
 export * from './Dots'
 ```
 
-In this case we exported two components, but you can go on as you please. On the components that are being exported you shouldn't use `export default`, instead you should use named exports like:
+In this case we exported two components, but you can go on as you please. On the components that are being exported using `export default` instead of a named export, you need to do the following on your `src/index.js`:
 
 ```javascript
-// packages/slick-components/src/Dots.js
-
-export class Dots extends Component {}
+// packages/product-details/src/index.js
+export { default as Price } from './Price'
 ```
 
 ## Publishing to npm
@@ -96,7 +102,7 @@ export class Dots extends Component {}
 To publish a package is simple. First of, you should configure your npm with your own account info and set the scope to vtex, because we are working with scoped packages. More info: https://docs.npmjs.com/misc/scope
 
 ```sh
-npm login --scope=@vtex
+$ npm login --scope=@vtex
 ```
 
 Once you get that out of the way you that are two primary cases that you should pay attention:
@@ -104,15 +110,15 @@ Once you get that out of the way you that are two primary cases that you should 
 * If it is a new package, you should go to the package folder and publish it with access set to public. Like:
 
 ```sh
-   ## on root folder of your package: npm-storecomponents/packages/<your-npm-module>
-   npm publish --access=public
+$ # on root folder of your package: npm-storecomponents/packages/<your-npm-module>
+$ npm publish --access=public
 ```
 
 * If it is an existent package:
 
 ```sh
-   ## any where on: npm-storecomponents
-   lerna publish
+$ # anywhere on: npm-storecomponents
+$ lerna publish
 ```
 
 ## Testing your package without publishing it
@@ -122,8 +128,8 @@ To test your package you should use npm link. More info: https://docs.npmjs.com/
 * First you should build your package
 
 ```sh
-   ## on root folder of your package: npm-storecomponents/packages/<your-npm-module>
-   npm run build
+$ # on root folder of your package: npm-storecomponents/packages/<your-npm-module>
+$ npm run build
 ```
 
 * After that you can link and use your package locally using npm install.
