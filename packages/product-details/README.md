@@ -1,7 +1,19 @@
-# Product Price
+# Product details
 
-This component is used to represent the product price in various contexts.
+Oie! These are our product detail components.
 
-## Usage
+## Installation
 
-Please, refer to our [docs](docs/introduction.md).
+To install this module, you need to run the bellow in your terminal
+
+```sh
+$ yarn add @vtex/product-details
+$ # or
+$ npm install @vtex/product-details
+```
+
+And to import it in your code
+
+```js
+import { Price, ProductName, QuantitySelector } from '@vtex/product-details'
+```
