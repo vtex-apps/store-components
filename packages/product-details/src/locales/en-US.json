@@ -1,6 +1,5 @@
 {
-  "pricing.installment-display":
-    "or up to {installments}X of {installmentPrice}",
+  "pricing.installment-display": "or up to {installments} {times} of {installmentPrice}",
   "pricing.from": "from:",
   "pricing.to": "to:",
   "loading": "Loading…"

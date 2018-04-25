@@ -1,6 +1,5 @@
 {
-  "pricing.installment-display":
-    "o hasta {installments}X de {installmentPrice}",
+  "pricing.installment-display": "o hasta {installments} {times} de {installmentPrice}",
   "pricing.from": "de:",
   "pricing.to": "por:",
   "loading": "Cargando…"
