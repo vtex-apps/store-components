@@ -22,7 +22,7 @@ class QuantitySelector extends Component {
     const { currentQuantity } = this.props
     return (
       <input
-        className="f4 dark-gray br2-l o-100"
+        className="vtex-quantity-selector f4 dark-gray br2-l o-100"
         type="number"
         name="quantity"
         value={currentQuantity}
