@@ -7,7 +7,6 @@
     "dist/"
   ],
   "scripts": {
-    "test": "vtex-scripts test",
     "start": "webpack --watch",
     "build": "vtex-scripts build"
   },
