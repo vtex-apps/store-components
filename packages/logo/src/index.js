@@ -19,20 +19,4 @@ Logo.propTypes = {
   title: PropTypes.string.isRequired,
 }
 
-Logo.schema = {
-  title: 'Logo',
-  description: 'Logo of the store',
-  type: 'object',
-  properties: {
-    url: {
-      title: 'Logo URL',
-      type: 'string',
-    },
-    title: {
-      title: 'Title text',
-      type: 'string',
-    },
-  },
-}
-
 export default Logo
