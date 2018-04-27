@@ -10,7 +10,7 @@ class ProductName extends Component {
 
     return (
       <div className="vtex-product-name overflow-hidden">
-        <div className="f5 truncate">
+        <div className="vtex-product-name__brand f5 truncate">
           {name} {brandName && `(${brandName})`}
         </div>
         <div className="f6 truncate">{skuName}</div>
