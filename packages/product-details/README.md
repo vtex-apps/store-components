@@ -4,7 +4,7 @@ Oie! These are our product detail components.
 
 ## Installation
 
-To install this module, you need to run the bellow in your terminal
+To install this module, you need to run the instructions bellow in your terminal
 
 ```sh
 $ yarn add @vtex/product-details
