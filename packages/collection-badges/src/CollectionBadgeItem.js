@@ -3,6 +3,10 @@ import PropTypes from 'prop-types'
 
 import VTEXClasses from './CustomClasses'
 
+/** 
+ * Collection Badge Item.
+ * Displays a text which identifies the collection item.
+ */
 export class CollectionBadgeItem extends Component {
   render() {
     return (

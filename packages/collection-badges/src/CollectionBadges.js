@@ -6,6 +6,10 @@ import VTEXClasses from './CustomClasses'
 
 import './collection-badges.css'
 
+/** 
+ * Collection Badges component.
+ * Encapsulates and displays a responsive list of Collection Badges. 
+ */
 export class CollectionBadges extends Component {
   render() {
     return (
