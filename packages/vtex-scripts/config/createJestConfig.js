@@ -37,6 +37,10 @@ module.exports = (resolve, rootDir, srcDirs) => {
       path.join(__dirname, '..', 'node_modules'),
     ],
     transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$'],
+    testPathIgnorePatterns: [
+      '[/\\\\]node_modules[/\\\\]',
+      '(.*)[/\\\\]helpers[/\\\\](.*)',
+    ],
     snapshotSerializers: [require.resolve('enzyme-to-json/serializer')],
   }
 

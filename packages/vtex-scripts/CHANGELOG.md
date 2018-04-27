@@ -7,20 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.1.5] - 2018-26-04
+## [0.4.5] - 2018-26-04
 
 ### Bugfix
 
-* **Node Module** Retrieve the version 0.1.1.
+* **Node Module** Retrieve the version 0.4.2.
 
-## [0.1.2] - 2018-20-04
+## [0.4.4] - 2018-26-04
 
 ### Deprecated
 
-* **Node Module** published a wrong version of the module.
+## [0.4.3] - 2018-26-04
 
-## [0.1.1] - 2018-19-04
+### Deprecated
+
+## [0.4.2] - 2018-20-04
 
 ### Added
 
-* **Node Module** First version of the buy component that calls the mutation that will add an item to the cart .
+* **Node Module** First usable version of vtex-scripts.
