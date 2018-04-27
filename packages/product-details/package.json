@@ -1,0 +1,29 @@
+{
+  "name": "@vtex/product-details",
+  "version": "1.1.1",
+  "description": "A bundle of components that together can be used to build the Product Summary.",
+  "main": "dist/index.js",
+  "repository": "https://github.com/vtex-apps/npm-storecomponents",
+  "author": "VTEX",
+  "license": "ISC",
+  "directories": {
+    "doc": "docs",
+    "dist": "dist"
+  },
+  "scripts": {
+    "build": "vtex-scripts build",
+    "test": "vtex-scripts test"
+  },
+  "devDependencies": {
+    "@vtex/vtex-scripts": "^0.4.5",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-react-intl": "^2.0.0",
+    "jsdom": "^11.9.0"
+  },
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-intl": "^2.4.0"
+  }
+}

@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.6] - 2018-26-04
+
+### Bugfix
+
+* **Node Module** Retrieve the version 1.0.3.
+
+## [1.0.5] - 2018-26-04
+
+### Deprecated
+
+## [1.0.5] - 2018-26-04
+
+### Deprecated
+
+## [1.0.4] - 2018-26-04
+
+### Deprecated
+
+* **Css** Changing css name convention.
+
 ## [1.0.2] - 2018-20-04
 
 ### Added
