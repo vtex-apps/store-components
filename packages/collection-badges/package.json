@@ -1,0 +1,26 @@
+{
+  "name": "@vtex/collection-badges",
+  "version": "1.0.0",
+  "description": "Collection Badges of a Product",
+  "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "start": "webpack --watch",
+    "build": "vtex-scripts build"
+  },
+  "author": "VTEX",
+  "license": "ISC",
+  "directories": {
+    "doc": "docs",
+    "dist": "dist"
+  },
+  "devDependencies": {
+    "@vtex/vtex-scripts": "^0.4.5",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.14"
+  }
+}
