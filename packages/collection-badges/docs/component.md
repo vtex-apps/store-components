@@ -1,1 +1,1 @@
-These is our colleciton badge component.
+These is our collection badge component.
