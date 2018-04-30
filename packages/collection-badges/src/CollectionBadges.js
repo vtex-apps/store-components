@@ -16,8 +16,8 @@ export class CollectionBadges extends Component {
       <div className={`${VTEXClasses.COLLECTION_BADGES} relative dib`}>
         <div className="inline-flex absolute w-100 bottom-0">
           {
-            this.props.collectionBadges.map((collectionBadge, index) => (
-              <CollectionBadgeItem key={index} {...collectionBadge} />
+            this.props.collectionBadgesText.map((collectionBadgeText, index) => (
+              <CollectionBadgeItem key={index} text={collectionBadgeText} />
             ))
           }
         </div>
@@ -28,15 +28,12 @@ export class CollectionBadges extends Component {
 }
 
 CollectionBadges.propTypes = {
-  /** Array of collection badges */
-  collectionBadges: PropTypes.arrayOf(PropTypes.shape({
-    /** Text of the collection badge */
-    text: PropTypes.string.isRequired,
-  })).isRequired,
+  /** Array of collection badges text */
+  collectionBadgesText: PropTypes.array.isRequired,
   /** Children component */
   children: PropTypes.node.isRequired,
 }
 
 CollectionBadges.defaultProps = {
-  collectionBadges: [],
+  collectionBadgesText: [],
 }
