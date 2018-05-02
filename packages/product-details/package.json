@@ -1,8 +1,7 @@
 {
   "name": "@vtex/product-details",
-  "version": "1.2.0",
-  "description":
-    "A bundle of components that together can be used to build the Product Summary.",
+  "version": "1.2.1",
+  "description": "A bundle of components that together can be used to build the Product Summary.",
   "main": "dist/index.js",
   "repository": "https://github.com/vtex-apps/npm-storecomponents",
   "author": "VTEX",
