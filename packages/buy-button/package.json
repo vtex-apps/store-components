@@ -1,6 +1,6 @@
 {
   "name": "@vtex/buy-button",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Component used to call a mutation that adds one item to the cart",
   "main": "dist/index.js",
   "files": [
@@ -30,7 +30,7 @@
     "lib": "lib"
   },
   "devDependencies": {
-    "@vtex/vtex-scripts": "^0.4.5",
+    "@vtex/vtex-scripts": "^0.4.6",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "webpack": "^4.6.0",
