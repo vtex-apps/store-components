@@ -1,6 +1,6 @@
 {
   "name": "@vtex/logo",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Logo of the store",
   "main": "dist/index.js",
   "scripts": {
