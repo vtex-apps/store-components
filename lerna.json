@@ -3,10 +3,14 @@
   "packages": [
     "packages/*"
   ],
-  "ignoreChanges": [
-    "**/__tests__/**",
-    "**/*.md"
-  ],
+  "commands": {
+    "publish": {
+      "ignoreChanges": [
+        "__tests__/**",
+        "*.md"
+      ]
+    }
+  },
   "version": "independent",
   "npmClient": "yarn"
 }
