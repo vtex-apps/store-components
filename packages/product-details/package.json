@@ -13,6 +13,7 @@
   },
   "scripts": {
     "build": "vtex-scripts build",
+    "prepublish": "yarn run build",
     "test": "vtex-scripts test"
   },
   "devDependencies": {
