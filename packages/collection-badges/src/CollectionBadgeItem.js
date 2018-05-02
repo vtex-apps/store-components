@@ -1,27 +1,27 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 import VTEXClasses from './CustomClasses'
 
 /** 
  * Collection Badge Item.
- * Displays a text which identifies the collection item.
+ * Displays a collection badge item.
  */
-export class CollectionBadgeItem extends Component {
+export class CollectionBadgeItem extends PureComponent {
   render() {
     return (
       <div className={`${VTEXClasses.COLLECTION_BADGE_ITEM} w-50 fl ml1 mr1 pa2 bg-blue white fabriga tc`}>
-        { this.props.text }
+        { this.props.children }
       </div>
     )
   }
 }
 
 CollectionBadgeItem.propTypes = {
-  /* Text to be displayed into the collection badge item */
-  text: PropTypes.string.isRequired,
+  /** Children component that should be render inside the collection badge item */
+  children: PropTypes.node.isRequired,
 }
 
 CollectionBadgeItem.defaultProps = {
-  text: '',
+  children: {},
 }
