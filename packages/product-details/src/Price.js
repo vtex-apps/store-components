@@ -53,7 +53,7 @@ class Price extends Component {
     return (
       <div className="vtex-price tc fabriga">
         {showListPrice && (
-          <div className="pv1 f7 normal">
+          <div className="pv1 f6-ns f7-s normal">
             {showLabels && (
               <div className="vtex-price-list__label dib">
                 <FormattedMessage id="pricing.from" />
@@ -64,7 +64,7 @@ class Price extends Component {
             </div>
           </div>
         )}
-        <div className="pv1 b f5">
+        <div className="pv1 b f4-ns f5-s">
           {showLabels && (
             <div className="vtex-selling-price__label dib">
               <FormattedMessage id="pricing.to" />
@@ -74,8 +74,10 @@ class Price extends Component {
             {formatNumber(sellingPrice, currencyOptions)}
           </div>
         </div>
-        {showInstallments && (
-          <div className="f6">
+        {showInstallments &&
+          installments &&
+          installmentPrice && (
+          <div className="f6-ns f7-s">
             <div className="vtex-price-installments dib">
               {showLabels ? (
                 <FormattedMessage
