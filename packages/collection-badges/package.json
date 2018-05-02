@@ -1,6 +1,6 @@
 {
   "name": "@vtex/collection-badges",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Collection Badges of a Product",
   "main": "dist/index.js",
   "files": [
