@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.2.0] - 2018-05-02
+
+### Changed
+
+* Update Price and ProductName components.
+
 ## [1.1.1] - 2018-04-26
 
 ### Added
