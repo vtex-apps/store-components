@@ -6,9 +6,6 @@ import { BuyButton } from '../index'
 describe('<BuyButton />', () => {
   let wrapper
 
-  let val = 2
-  const valExpected = 3
-
   const props = {
     quantity: 1,
     skuId: 1,
@@ -16,9 +13,7 @@ describe('<BuyButton />', () => {
     salesChannel: '1',
     orderFormId: '12321',
     mutate: jest.fn(),
-    afterClick: function() {
-      val += 1
-    },
+    afterClick: jest.fn(),
   }
 
   beforeEach(() => {
@@ -34,7 +29,8 @@ describe('<BuyButton />', () => {
   })
 
   it('should call afterClick', () => {
+    expect(props.afterClick.mock.calls.length).toBe(0)
     wrapper.find('Button').simulate('click')
-    expect(val).toBe(valExpected)
+    expect(props.afterClick.mock.calls.length).toBe(1)
   })
 })
