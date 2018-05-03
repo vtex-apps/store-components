@@ -1,7 +1,7 @@
 {
-  "name": "@vtex/slick-components",
-  "version": "1.0.7",
-  "description": "Custom Arrow and Dots to be used in react-click",
+  "name": "@vtex/collection-badges",
+  "version": "1.0.6",
+  "description": "Collection Badges of a Product",
   "main": "dist/index.js",
   "files": [
     "dist/"
@@ -12,11 +12,6 @@
   },
   "author": "VTEX",
   "license": "ISC",
-  "peerDependencies": {
-    "prop-types": "~15.6.1",
-    "react": "~15.5.4",
-    "react-dom": "~15.5.4"
-  },
   "directories": {
     "doc": "docs",
     "dist": "dist"
