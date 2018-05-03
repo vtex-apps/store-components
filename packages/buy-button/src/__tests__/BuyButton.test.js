@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import { BuyButton } from '../index'
+import BuyButton from '../index'
 
 describe('<BuyButton />', () => {
   let wrapper
@@ -26,11 +26,5 @@ describe('<BuyButton />', () => {
 
   it('should be rendered', () => {
     expect(wrapper).toBeDefined()
-  })
-
-  it('should call afterClick', () => {
-    expect(props.afterClick.mock.calls.length).toBe(0)
-    wrapper.find('Button').simulate('click')
-    expect(props.afterClick.mock.calls.length).toBe(1)
   })
 })
