@@ -1,3 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<BuyButton /> should match snapshot 1`] = `undefined`;
+exports[`<BuyButton /> should match snapshot 1`] = `
+<Button
+  autoFocus={false}
+  block={false}
+  disabled={false}
+  icon={false}
+  onClick={[Function]}
+  primary={true}
+  secondary={false}
+  size="regular"
+  type="button"
+>
+   teste 
+</Button>
+`;

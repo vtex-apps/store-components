@@ -26,7 +26,7 @@ describe('<BuyButton />', () => {
   })
 
   it('should match snapshot', () => {
-    expect(wrapper.container).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('should be rendered', () => {
@@ -34,7 +34,7 @@ describe('<BuyButton />', () => {
   })
 
   it('should call afterClick', () => {
-    wrapper.find('button').simulate('click')
+    wrapper.find('Button').simulate('click')
     expect(val).toBe(valExpected)
   })
 })
