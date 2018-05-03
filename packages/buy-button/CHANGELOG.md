@@ -7,23 +7,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.1.8] - 2018-26-04
+## [0.1.8] - 2018-05-03
 
-* **Added** prepublish to package.json and tests.
+### Added
 
-## [0.1.5] - 2018-26-04
+* **Package Config** Prepublish to package.json.
+* **Tests** Component Tests
+
+## [0.1.5] - 2018-04-26
 
 ### Bugfix
 
 * **Node Module** Retrieve the version 0.1.1.
 
-## [0.1.2] - 2018-20-04
+## [0.1.2] - 2018-04-20
 
 ### Deprecated
 
 * **Node Module** published a wrong version of the module.
 
-## [0.1.1] - 2018-19-04
+## [0.1.1] - 2018-04-19
 
 ### Added
 
