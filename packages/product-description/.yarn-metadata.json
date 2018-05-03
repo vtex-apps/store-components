@@ -1,0 +1,47 @@
+{
+  "manifest": {
+    "name": "@vtex/product-description",
+    "version": "1.0.0",
+    "description": "React component that provides the description of a product",
+    "main": "dist/index.js",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/vtex-apps/npm-storecomponents"
+    },
+    "files": [
+      "dist/"
+    ],
+    "scripts": {
+      "build": "vtex-scripts build",
+      "prepublish": "yarn run build",
+      "test": "vtex-scripts test"
+    },
+    "author": {
+      "name": "VTEX"
+    },
+    "license": "ISC",
+    "devDependencies": {
+      "@vtex/vtex-scripts": "^0.4.2",
+      "enzyme": "^3.3.0",
+      "enzyme-adapter-react-16": "^1.1.1",
+      "webpack": "^4.6.0",
+      "webpack-cli": "^2.0.14"
+    },
+    "dependencies": {
+      "react": "~15.5.4",
+      "react-dom": "~15.5.4",
+      "react-intl": "^2.4.0"
+    },
+    "_registry": "npm",
+    "_loc": "/home/vtex/.cache/yarn/v1/npm-@vtex/product-description-1.0.0-30b84106-322f-474e-927f-f6744d9f2291-1525368152126/package.json"
+  },
+  "artifacts": [],
+  "remote": {
+    "type": "copy",
+    "registry": "npm",
+    "hash": "30b84106-322f-474e-927f-f6744d9f2291-1525368152126",
+    "reference": "/usr/lib/node_modules/@vtex/product-description"
+  },
+  "registry": "npm",
+  "hash": "30b84106-322f-474e-927f-f6744d9f2291-1525368152126"
+}
