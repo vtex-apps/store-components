@@ -1,6 +1,17 @@
 {
   "lerna": "2.10.1",
-  "packages": ["packages/*"],
+  "packages": [
+    "packages/*"
+  ],
+  "commands": {
+    "publish": {
+      "ignoreChanges": [
+        "yarn.lock",
+        "__tests__/**",
+        "*.md"
+      ]
+    }
+  },
   "version": "independent",
   "npmClient": "yarn"
 }
