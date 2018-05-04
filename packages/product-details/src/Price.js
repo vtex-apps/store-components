@@ -1,21 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  FormattedMessage,
-  injectIntl,
-  intlShape,
-  addLocaleData,
-} from 'react-intl'
-
-import enLocale from './locales/en-US.json'
-import ptLocale from './locales/pt-BR.json'
-import esLocale from './locales/es-AR.json'
-
-addLocaleData([
-  { ...enLocale, locale: 'en-US' },
-  { ...ptLocale, locale: 'pt-BR' },
-  { ...esLocale, locale: 'es-AR' },
-])
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 
 /**
  * The Price component. Shows the prices information of the Product Summary.

@@ -23,8 +23,12 @@
     "jsdom": "^11.9.0"
   },
   "dependencies": {
+    "@vtex/slick-components": "^1.0.7",
+    "identity-obj-proxy": "^3.0.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-intl": "^2.4.0"
+    "react-intl": "^2.4.0",
+    "react-slick": "^0.23.1",
+    "slick-carousel": "^1.8.1"
   }
 }
