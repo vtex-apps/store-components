@@ -17,4 +17,3 @@ And import in your code
 ```js
 import Footer from '@vtex/footer'
 ```
-
