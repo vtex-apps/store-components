@@ -9,7 +9,7 @@ import addToCartMutation from './mutations/addToCartMutation.gql'
 /**
  * BuyButton Component. Adds a list of items to the cart.
  */
-class BuyButton extends Component {
+export class BuyButton extends Component {
   handleAddToCart = () => {
     const {
       mutate,
