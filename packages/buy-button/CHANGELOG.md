@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.1.5] - 2018-04-26
 
-### Bugfix
+### Fixed
 
 * **Node Module** Retrieve the version 0.1.1.
 
