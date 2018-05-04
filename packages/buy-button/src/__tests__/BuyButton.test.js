@@ -28,9 +28,11 @@ describe('<BuyButton />', () => {
     expect(wrapper).toBeDefined()
   })
 
-  it('should call afterClick', () => {
+  it('should call afterClick and mutate', () => {
     expect(props.afterClick.mock.calls.length).toBe(0)
+    expect(props.mutate.mock.calls.length).toBe(0)
     wrapper.find('Button').simulate('click')
     expect(props.afterClick.mock.calls.length).toBe(1)
+    expect(props.mutate.mock.calls.length).toBe(1)
   })
 })
