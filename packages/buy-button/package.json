@@ -1,6 +1,6 @@
 {
   "name": "@vtex/buy-button",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "description": "Component used to call a mutation that adds one item to the cart",
   "main": "dist/index.js",
   "files": [
@@ -21,7 +21,8 @@
   "scripts": {
     "test": "vtex-scripts test",
     "start": "webpack --watch",
-    "build": "vtex-scripts build"
+    "build": "vtex-scripts build",
+    "prepublish": "yarn run build"
   },
   "author": "VTEX",
   "license": "ISC",

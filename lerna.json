@@ -6,6 +6,7 @@
   "commands": {
     "publish": {
       "ignoreChanges": [
+        "yarn.lock",
         "__tests__/**",
         "*.md"
       ]
