@@ -14,8 +14,7 @@
   },
   "scripts": {
     "prepublish": "yarn run build",
-    "build": "vtex-scripts build",
-    "test": "vtex-scripts test"
+    "build": "vtex-scripts build"
   },
   "dependencies": {
     "classnames": "^2.2.5",
