@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "start": "webpack --watch",
-    "build": "vtex-scripts build"
+    "build": "vtex-scripts build",
+    "prepublish": "yarn run build"
   },
   "author": "VTEX",
   "license": "ISC",
