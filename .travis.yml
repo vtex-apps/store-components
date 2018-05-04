@@ -9,4 +9,5 @@ before_install:
 install: 
   - yarn install
 script: 
+  - lerna run build
   - lerna run test
