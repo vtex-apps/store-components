@@ -9,10 +9,10 @@ function getDisplayName(Component) {
 
 export default function footerList(WrappedComponent) {
   class FooterList extends Component {
-    static displayName = `FooterList(${getDisplayName(WrappedComponent)}`
+    static displayName = `FooterList(${getDisplayName(WrappedComponent)})`
 
     static propTypes = {
-      titleId: PropTypes.string.isRequired,
+      titleId: PropTypes.string,
       list: PropTypes.array,
       intl: intlShape.isRequired,
       alignRight: PropTypes.bool,
@@ -48,9 +48,9 @@ export default function footerList(WrappedComponent) {
 
       return (
         <div className={listContainerClasses}>
-          <h4 className="vtex-footer__list-title">
+          {titleId && <h4 className="vtex-footer__list-title">
             {this.formatMessage(titleId)}
-          </h4>
+          </h4>}
           <ul className={listClasses}>
             {list.map((item, index) => (
               <li key={index} className={listItemClasses}>

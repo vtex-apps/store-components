@@ -1,88 +1,17 @@
-const objectLikeArrayWithValidator = validate => (
-  props,
-  propName,
-  componentName,
-  location
-) => {
-  // eslint-disable-next-line
-  for (const [key] of Object.entries(props[propName])) {
-    const error = validate(props[propName], key, componentName, location)
+import PropTypes from 'prop-types'
 
-    if (error !== null) return error
-  }
+export const objectLikeLinkArray = PropTypes.objectOf(PropTypes.shape({
+  url: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+}))
 
-  return null
-}
+export const objectLikeBadgeArray = PropTypes.objectOf(PropTypes.shape({
+  image: PropTypes.string.isRequired,
+}))
 
-const validateRequiredString = (
-  obj,
-  propName,
-  property,
-  componentName,
-  location
-) => {
-  if (obj[property] === undefined || obj[property] === null) {
-    return new Error(
-      `The ${location} \`${propName}.${property}\` is marked as required (in \`${componentName}\`, but its value is \`${
-        obj[property]
-      }\`)`
-    )
-  }
+export const objectLikePaymentFormArray = PropTypes.objectOf(PropTypes.shape({
+  paymentType: PropTypes.oneOf([
+    'MasterCard', 'Visa', 'American Express', 'Diners', 'Elo', 'Boleto'
+  ])
+}))
 
-  if (typeof obj[property] !== 'string') {
-    return new Error(
-      `Invalid ${location} \`${propName}.${property}\` of type \`${typeof obj[
-        property
-      ]}\` supplied to \`${componentName}\`, expected \`string\`.`
-    )
-  }
-
-  return null
-}
-
-export const objectLikeLinkArray = objectLikeArrayWithValidator(
-  (obj, propName, componentName, location) => {
-    let error = null
-
-    error = validateRequiredString(
-      obj,
-      propName,
-      'url',
-      componentName,
-      location
-    )
-    error = validateRequiredString(
-      obj,
-      propName,
-      'title',
-      componentName,
-      location
-    )
-
-    return error
-  }
-)
-
-export const objectLikeBadgeArray = objectLikeArrayWithValidator(
-  (obj, propName, componentName, location) => {
-    return validateRequiredString(
-      obj,
-      propName,
-      'image',
-      componentName,
-      location
-    )
-  }
-)
-
-export const objectLikePaymentFormArray = objectLikeArrayWithValidator(
-  (obj, propName, componentName, location) => {
-    return validateRequiredString(
-      obj,
-      propName,
-      'paymentType',
-      componentName,
-      location
-    )
-  }
-)

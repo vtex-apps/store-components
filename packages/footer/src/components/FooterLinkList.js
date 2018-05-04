@@ -9,6 +9,8 @@ const FooterLinkItem = ({ url, title }) => (
   </a>
 )
 
+FooterLinkItem.displayName = 'FooterLinkItem'
+
 FooterLinkItem.propTypes = {
   url: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
