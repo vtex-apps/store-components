@@ -1,7 +1,19 @@
 import React, { Component } from 'react'
 import { indexBy, prop, map, range, values } from 'ramda'
+import { addLocaleData } from 'react-intl'
+
+import enLocale from './locales/en-US.json'
+import ptLocale from './locales/pt-BR.json'
+import esLocale from './locales/es-AR.json'
+
+addLocaleData([
+  { ...enLocale, locale: 'en-US' },
+  { ...ptLocale, locale: 'pt-BR' },
+  { ...esLocale, locale: 'es-AR' },
+])
 
 import FooterLinkList from './components/FooterLinkList'
+import FooterBadgeList from './components/FooterBadgeList'
 import FooterPaymentFormList from './components/FooterPaymentFormList'
 import {
   objectLikeLinkArray,
@@ -55,7 +67,13 @@ const paymentFormSchema = {
   },
 }
 
+/**
+ * Footer component that appears in the bottom of every page.
+ * Can be configured by the pages editor.
+ */
 export default class Footer extends Component {
+  static displayName = 'Footer'
+
   static propTypes = {
     socialNetworkLinks: objectLikeLinkArray,
     sectionLinks: objectLikeLinkArray,
@@ -184,7 +202,7 @@ export default class Footer extends Component {
     const sectionLinks = values(this.props.sectionLinks)
     const paymentForms = values(this.props.paymentForms)
     // const moreInformationLinks = values(this.props.moreInformationLinks)
-    // const badges = values(this.props.badges)
+    const badges = values(this.props.badges)
 
     return (
       <footer className="vtex-footer">
@@ -205,6 +223,7 @@ export default class Footer extends Component {
           />
         </div>
         <div className="vtex-footer__container vtex-footer__container--compact">
+          <FooterBadgeList list={badges} />
           <div className="vtex-footer__badge-list">
             <span className="vtex-footer__badge">Logo</span>
             <span className="vtex-footer__badge">Powered by VTEX&copy;</span>
