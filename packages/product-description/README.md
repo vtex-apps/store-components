@@ -6,7 +6,7 @@ React component that render a the description of a product.
 
 # Installation
 
-Into the folder that contains your `package.json` file, run the following command on terminal:
+Into this folder, run the following command on terminal:
 
 ```sh
 $ npm install @vtex/product-description
