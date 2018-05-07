@@ -50,7 +50,7 @@
     react-responsive-modal "^2.0.1"
     vtex-tachyons "^2.3.0"
 
-"@vtex/vtex-scripts@^0.4.6":
+"@vtex/vtex-scripts@^0.4.7":
   version "0.4.6"
   resolved "https://registry.yarnpkg.com/@vtex/vtex-scripts/-/vtex-scripts-0.4.6.tgz#ad2bc59d2b065da57b614227fc6a8403b2736085"
   dependencies:
