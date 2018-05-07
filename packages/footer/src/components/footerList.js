@@ -31,6 +31,8 @@ export default function footerList(WrappedComponent) {
     render() {
       const { list, titleId, alignRight, horizontal, ...otherProps } = this.props
 
+      if (!list || list.length === 0) return null
+
       const listContainerClasses = classNames('vtex-footer__list-container', {
         'vtex-footer__list-container--right-aligned': alignRight,
         'vtex-footer__list-container--horizontal': horizontal,
@@ -43,8 +45,6 @@ export default function footerList(WrappedComponent) {
       const listItemClasses = classNames('vtex-footer__list-item', {
         'vtex-footer__list-item--horizontal': horizontal,
       })
-
-      if (!list || list.length === 0) return null
 
       return (
         <div className={listContainerClasses}>
