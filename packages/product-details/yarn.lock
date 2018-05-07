@@ -20,11 +20,11 @@
   version "10.0.3"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.0.3.tgz#1f89840c7aac2406cc43a2ecad98fc02a8e130e4"
 
-"@vtex/slick-components@^1.0.7":
+"@vtex/slick-components@^1.0.8":
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/@vtex/slick-components/-/slick-components-1.0.7.tgz#5bf5e58bc2ae12572f2614bd6121b9f61f1c63ff"
 
-"@vtex/vtex-scripts@^0.4.6":
+"@vtex/vtex-scripts@^0.4.7":
   version "0.4.6"
   resolved "https://registry.yarnpkg.com/@vtex/vtex-scripts/-/vtex-scripts-0.4.6.tgz#ad2bc59d2b065da57b614227fc6a8403b2736085"
   dependencies:
