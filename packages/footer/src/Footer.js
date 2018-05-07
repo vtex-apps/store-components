@@ -206,7 +206,6 @@ export default class Footer extends Component {
     const socialNetworkLinks = values(this.props.socialNetworkLinks)
     const sectionLinks = values(this.props.sectionLinks)
     const paymentForms = values(this.props.paymentForms)
-    // const moreInformationLinks = values(this.props.moreInformationLinks)
     const badges = values(this.props.badges)
     const { showPaymentFormsInColor, logo } = this.props
 
