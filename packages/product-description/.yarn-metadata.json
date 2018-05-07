@@ -39,9 +39,9 @@
   "remote": {
     "type": "copy",
     "registry": "npm",
-    "hash": "30b84106-322f-474e-927f-f6744d9f2291-1525368152126",
+    "hash": "35cd4682-55b4-4190-b5cf-9316458590b0-1525457676694",
     "reference": "/usr/lib/node_modules/@vtex/product-description"
   },
   "registry": "npm",
-  "hash": "30b84106-322f-474e-927f-f6744d9f2291-1525368152126"
+  "hash": "35cd4682-55b4-4190-b5cf-9316458590b0-1525457676694"
 }
