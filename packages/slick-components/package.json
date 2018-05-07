@@ -1,9 +1,11 @@
 {
   "name": "@vtex/slick-components",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Custom Arrow and Dots to be used in react-click",
   "main": "dist/index.js",
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "start": "webpack --watch",
     "build": "vtex-scripts build",
