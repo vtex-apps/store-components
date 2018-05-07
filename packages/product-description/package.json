@@ -8,8 +8,8 @@
     "dist/"
   ],
   "scripts": {
-    "build": "vtex-scripts build",
-    "test": "vtex-scripts test"
+    "start": "webpack --watch",
+    "build": "vtex-scripts build"
   },
   "author": "VTEX",
   "license": "ISC",
