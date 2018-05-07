@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.4.7] - 2018-07-05
+
+### Added
+
+* Import support for CSS files
+
+## [0.4.6] - 2018-30-04
+
 ## [0.4.5] - 2018-26-04
 
 ### Bugfix
