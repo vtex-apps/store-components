@@ -1,15 +1,13 @@
 {
   "name": "@vtex/logo",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Logo of the store",
   "main": "dist/index.js",
   "scripts": {
     "build": "vtex-scripts build",
     "prepublish": "yarn run build"
   },
-  "files": [
-    "dist/"
-  ],
+  "files": ["dist/"],
   "repository": "https://github.com/vtex-apps/npm-storecomponents",
   "author": "VTEX",
   "license": "ISC",
