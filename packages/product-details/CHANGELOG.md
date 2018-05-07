@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * Add the _ProductImage_ Component.
 
+## [1.2.2] - 2018-05-07
+
 ## [1.2.1] - 2018-05-02
 
 ### Fixed
