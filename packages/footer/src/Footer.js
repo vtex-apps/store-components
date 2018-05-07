@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { indexBy, prop, map, range, values } from 'ramda'
 import { addLocaleData } from 'react-intl'
 
@@ -58,10 +59,7 @@ const paymentFormSchema = {
       enum: [
         'MasterCard',
         'Visa',
-        'American Express',
         'Diners',
-        'Elo',
-        'Boleto',
       ],
     },
   },
@@ -80,6 +78,8 @@ export default class Footer extends Component {
     moreInformationLinks: objectLikeLinkArray,
     badges: objectLikeBadgeArray,
     paymentForms: objectLikePaymentFormArray,
+    showPaymentFormsInColor: PropTypes.bool.isRequired,
+    logo: PropTypes.string.isRequired,
   }
 
   static getSchema = ({
@@ -188,6 +188,11 @@ export default class Footer extends Component {
           title: 'Number of payment forms available',
           minimum: 0,
         },
+        showPaymentFormsInColor: {
+          type: 'boolean',
+          title: 'Show the payment forms icons in color',
+          default: false,
+        },
         ...socialNetworksSchema,
         ...sectionLinksSchema,
         ...moreInformationLinksSchema,
@@ -203,6 +208,7 @@ export default class Footer extends Component {
     const paymentForms = values(this.props.paymentForms)
     // const moreInformationLinks = values(this.props.moreInformationLinks)
     const badges = values(this.props.badges)
+    const { showPaymentFormsInColor, logo } = this.props
 
     return (
       <footer className="vtex-footer">
@@ -220,12 +226,13 @@ export default class Footer extends Component {
             titleId="payment-form"
             list={paymentForms}
             horizontal
+            showInColor={showPaymentFormsInColor}
           />
         </div>
         <div className="vtex-footer__container vtex-footer__container--compact">
           <FooterBadgeList list={badges} />
-          <div className="vtex-footer__badge-list">
-            <span className="vtex-footer__badge">Logo</span>
+          <div className="vtex-footer__badge-list vtex-footer__list-container--right-aligned">
+            <span className="vtex-footer__badge"><img className="vtex-footer__logo-image" src={logo} /></span>
             <span className="vtex-footer__badge">Powered by VTEX&copy;</span>
           </div>
         </div>

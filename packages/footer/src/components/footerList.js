@@ -29,7 +29,7 @@ export default function footerList(WrappedComponent) {
     }
 
     render() {
-      const { list, titleId, alignRight, horizontal } = this.props
+      const { list, titleId, alignRight, horizontal, ...otherProps } = this.props
 
       const listContainerClasses = classNames('vtex-footer__list-container', {
         'vtex-footer__list-container--right-aligned': alignRight,
@@ -54,7 +54,7 @@ export default function footerList(WrappedComponent) {
           <ul className={listClasses}>
             {list.map((item, index) => (
               <li key={index} className={listItemClasses}>
-                <WrappedComponent {...item} />
+                <WrappedComponent {...otherProps} {...item} />
               </li>
             ))}
           </ul>
