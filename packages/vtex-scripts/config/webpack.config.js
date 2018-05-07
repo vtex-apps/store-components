@@ -26,10 +26,25 @@ module.exports = {
           loader: 'graphql-tag/loader',
         },
       },
+      {
+        test: /\.(s?css)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: require.resolve('style-loader'),
+          },
+          {
+            loader: require.resolve('css-loader'),
+          },
+          {
+            loader: require.resolve('sass-loader'),
+          },
+        ],
+      },
     ],
   },
   resolve: {
-    modules: ['node_modules', path.resolve(__dirname, '..', 'node_modules')],
+    modules: ['node_modules', path.resolve(paths.distPath, '..', 'node_modules')],
   },
   externals: {
     react: 'commonjs2 react',
@@ -38,3 +53,4 @@ module.exports = {
   target: 'web',
   mode: 'production',
 }
+
