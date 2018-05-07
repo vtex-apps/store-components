@@ -1,6 +1,6 @@
 {
   "name": "@vtex/collection-badges",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Collection Badges of a Product",
   "main": "dist/index.js",
   "files": [
@@ -18,7 +18,7 @@
     "dist": "dist"
   },
   "devDependencies": {
-    "@vtex/vtex-scripts": "^0.4.7",
+    "@vtex/vtex-scripts": "^0.4.8",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "webpack": "^4.6.0",
