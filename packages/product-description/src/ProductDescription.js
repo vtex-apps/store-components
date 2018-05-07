@@ -14,6 +14,10 @@ addLocaleData([
   { ...esLocale, locale: 'es-AR' },
 ])
 
+/**
+ * Product Description Component.
+ * Render the description of a product.
+ */
 class ProductDescription extends PureComponent {
   render() {
     return (
