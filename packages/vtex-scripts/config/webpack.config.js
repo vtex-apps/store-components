@@ -50,6 +50,9 @@ module.exports = {
     react: 'commonjs2 react',
     'prop-types': 'commonjs2 prop-types',
   },
+  performance: {
+    hints: false,
+  },
   target: 'web',
   mode: 'production',
 }
