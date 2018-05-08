@@ -28,7 +28,6 @@ module.exports = {
       },
       {
         test: /\.(s?css)$/,
-        exclude: /node_modules/,
         use: [
           {
             loader: require.resolve('style-loader'),
@@ -40,6 +39,16 @@ module.exports = {
             loader: require.resolve('sass-loader'),
           },
         ],
+      },
+      {
+        test: /\.(gif|png|jpeg|jpg|woff|woff2|eot|ttf)$/,
+        loader: require.resolve('url-loader'),
+      },
+      {
+        test: /\.(svg)$/,
+        use: {
+          loader: require.resolve('svg-inline-loader'),
+        },
       },
     ],
   },

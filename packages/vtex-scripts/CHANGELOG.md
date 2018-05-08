@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.4.13] - 2018-05-08
+
+### Added
+
+* Import support for font, png, gif, svg and jpeg files.
+
 ## [0.4.12] - 2018-05-08
 
 ### Removed
@@ -19,7 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-* Import support for CSS files
+* Import support for CSS files.
 
 ## [0.4.6] - 2018-04-30
 
