@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'react-apollo'
+import { graphql, compose } from 'react-apollo'
 
 import Button from '@vtex/styleguide/lib/Button'
 
 import addToCartMutation from './mutations/addToCartMutation.gql'
+import orderFormQuery from './queries/orderFormQuery.gql'
 
 /**
  * BuyButton Component. Adds a list of items to the cart.
@@ -12,6 +13,7 @@ import addToCartMutation from './mutations/addToCartMutation.gql'
 export class BuyButton extends Component {
   handleAddToCart = () => {
     const {
+      data: { orderForm: { orderFormId } },
       mutate,
       quantity,
       seller,
@@ -22,7 +24,7 @@ export class BuyButton extends Component {
 
     mutate({
       variables: {
-        orderFormId: orderFormId,
+        orderFormId,
         items: [
           {
             id: parseInt(skuId),
@@ -32,6 +34,7 @@ export class BuyButton extends Component {
           },
         ],
       },
+      refetchQueries: [{ query: orderFormQuery }],
     })
     afterClick()
   }
@@ -63,5 +66,9 @@ BuyButton.propTypes = {
   /** The user's cart id */
   orderFormId: PropTypes.string.isRequired,
 }
-
-export default graphql(addToCartMutation)(BuyButton)
+export default compose(
+  graphql(orderFormQuery, {
+    options: { ssr: false },
+  }),
+  graphql(addToCartMutation)
+)(BuyButton)
