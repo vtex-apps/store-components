@@ -13,15 +13,6 @@ function getImageUrl(image) {
   return (image.match(/http:(.*?)"/g) || [''])[0]
 }
 
-function getLinkText(href, criteria) {
-  if (criteria) {
-    const url = href.split('/')
-    return `${url[url.length - 2]}/${url[url.length - 1]}/s`
-  }
-
-  return (href.match(/http:(.*?)"/g) || [''])[0]
-}
-
 class ResultsList extends Component {
   render() {
     const { getItemProps, data } = this.props
@@ -42,9 +33,7 @@ class ResultsList extends Component {
             className="clear-link"
             page={el.criteria ? 'store/search' : 'store/product'}
             params={
-              el.criteria
-                ? { term: el.slug ? `${el.slug}/s` : getLinkText(el.href) }
-                : { slug: el.slug ? `${el.slug}/p` : getLinkText(el.href) }
+              el.criteria ? { term: `${el.slug}/s` } : { slug: `${el.slug}/p` }
             }
             key={el.name + index}
             {...getItemProps({

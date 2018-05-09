@@ -12,7 +12,7 @@ export default class SearchBar extends Component {
 
     return (
       <div className="vtex-searchbar">
-        <Downshift onChange={item => console.log(item)}>
+        <Downshift>
           {({
             getInputProps,
             getItemProps,
