@@ -2,9 +2,17 @@
 
 BuyButton is a canonical component that any VTEX store can install.
 
-## Usage
+## Disclaimer
 
-TODO
+This component still under construction. Everything may - and will - break. Use with caution, and avoid for now its use in Production projects.
+
+## Install
+
+```sh
+yarn add @vtex/buy-button
+# or
+npm install @vtex/buy-button
+```
 
 ## Configuration
 
