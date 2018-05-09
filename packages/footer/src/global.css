@@ -1,0 +1,89 @@
+.vtex-footer__container {
+  background-color: #3d3d3d;
+  color: #f2f2f2;
+  display: flex;
+  justify-content: space-between;
+  padding: 42px 320px;
+}
+
+.vtex-footer__container--white {
+  background-color: #f2f2f2;
+  color: #333333;
+}
+
+.vtex-footer__container--compact {
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+
+.vtex-footer__badge-list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.vtex-footer__badge {
+  padding: 0.35rem;
+}
+
+.vtex-footer__list-container {
+  width: 225px;
+  padding: 0 0.35rem;
+  height: 100%;
+}
+
+.vtex-footer__list-container--right-aligned {
+  margin-left: auto;
+}
+
+.vtex-footer__list-container--horizontal {
+  width: auto;
+}
+
+.vtex-footer__list-title {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.vtex-footer__list {
+  display: flex;
+  flex-flow: column wrap;
+  max-height: 150px;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.vtex-footer__list--horizontal {
+  flex-flow: row nowrap;
+}
+
+.vtex-footer__list-item {
+  width: 100%;
+  margin-right: 100px;
+}
+
+.vtex-footer__payment-form-item svg {
+  height: 64px;
+}
+
+.vtex-footer__list-item--horizontal {
+  width: auto;
+  margin-right: 15px;
+}
+
+.vtex-footer__list-link {
+  display: inline-block;
+  text-decoration: none;
+  margin: 0.15rem 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.vtex-footer__list-link:hover {
+  text-decoration: underline;
+}
+
+.vtex-footer__logo-image {
+  height: 64px;
+}
+

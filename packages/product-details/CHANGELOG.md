@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.2.10] - 2018-05-08
+
+### Changed
+
+* Add import for slick css.
+
+## [1.2.9] - 2018-05-04
+
+### Added
+
+* Add the _ProductImage_ Component.
+
 ## [1.2.2] - 2018-05-07
 
 ## [1.2.1] - 2018-05-02

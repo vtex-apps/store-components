@@ -28,7 +28,6 @@ module.exports = {
       },
       {
         test: /\.(s?css)$/,
-        exclude: /node_modules/,
         use: [
           {
             loader: require.resolve('style-loader'),
@@ -41,6 +40,16 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(gif|png|jpeg|jpg|woff|woff2|eot|ttf)$/,
+        loader: require.resolve('url-loader'),
+      },
+      {
+        test: /\.(svg)$/,
+        use: {
+          loader: require.resolve('svg-inline-loader'),
+        },
+      },
     ],
   },
   resolve: {
@@ -49,6 +58,9 @@ module.exports = {
   externals: {
     react: 'commonjs2 react',
     'prop-types': 'commonjs2 prop-types',
+  },
+  performance: {
+    hints: false,
   },
   target: 'web',
   mode: 'production',
