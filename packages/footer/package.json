@@ -1,7 +1,7 @@
 {
   "name": "@vtex/footer",
   "description": "Footer that appears in the bottom of every page",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "files": [
     "dist/"
