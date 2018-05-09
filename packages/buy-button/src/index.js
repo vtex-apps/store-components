@@ -19,7 +19,6 @@ export class BuyButton extends Component {
       seller,
       skuId,
       afterClick,
-      orderFormId,
     } = this.props
 
     mutate({
@@ -63,8 +62,12 @@ BuyButton.propTypes = {
   mutate: PropTypes.func.isRequired,
   /** Function that will be called after the mutation */
   afterClick: PropTypes.func.isRequired,
-  /** The user's cart id */
-  orderFormId: PropTypes.string.isRequired,
+  // orderFormId: PropTypes.string.isRequired,
+  /** Order form used in the buy button */
+  orderForm: PropTypes.shape({
+    /** User's cart id */
+    orderFormId: PropTypes.string.isRequired,
+  }),
 }
 export default compose(
   graphql(orderFormQuery, {
