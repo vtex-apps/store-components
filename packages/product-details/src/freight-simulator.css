@@ -1,0 +1,36 @@
+.vtex-freight-simulator {
+  height: 26px;
+  display: flex;
+  align-items: center;
+  color: #828282;
+  font-size: 12px;
+}
+
+.vtex-freight-simulator__input {
+  height: 100%;
+  margin-left: 10px;
+  padding: 2px 5px;
+  font-size: 12px;
+  color: #4f4f4f;
+
+  border: 1px solid #bdbdbd;
+  border-radius: 2px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.vtex-freight-simulator__cta {
+  height: 100%;
+  width: 26px;
+  background-color: #e0e0e0;
+  padding: 6px 2px;
+  color: inherit;
+  font-size: inherit;
+
+  border: 1px solid #bdbdbd;
+  border-left: none;
+  border-radius: 2px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
