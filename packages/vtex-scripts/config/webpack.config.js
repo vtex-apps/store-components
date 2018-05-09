@@ -53,7 +53,11 @@ module.exports = {
     ],
   },
   resolve: {
-    modules: ['node_modules', path.resolve(paths.distPath, '..', 'node_modules')],
+    modules: [
+      'node_modules',
+      path.resolve(paths.appPath, 'node_modules'),
+      path.resolve(paths.srcPath, 'node_modules'),
+    ],
   },
   externals: {
     react: 'commonjs2 react',

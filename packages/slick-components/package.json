@@ -1,6 +1,6 @@
 {
   "name": "@vtex/slick-components",
-  "version": "1.0.14",
+  "version": "1.0.8",
   "description": "Custom Arrow and Dots to be used in react-click",
   "main": "dist/index.js",
   "files": [
@@ -14,19 +14,27 @@
   "author": "VTEX",
   "license": "ISC",
   "peerDependencies": {
-    "prop-types": "~15.6.1",
-    "react": "~15.5.4",
-    "react-dom": "~15.5.4"
+    "prop-types": "~16.3.0",
+    "react": "~16.3.0",
+    "react-dom": "~16.3.0"
   },
   "directories": {
     "doc": "docs",
     "dist": "dist"
   },
   "devDependencies": {
-    "@vtex/vtex-scripts": "^0.4.13",
+    "@vtex/vtex-scripts": "^0.4.7",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.14"
+  },
+  "dependencies": {
+    "node-sass": "^4.9.0",
+    "react": "~16.3.0",
+    "react-dom": "~16.3.0",
+    "react-slick": "^0.23.1",
+    "sass-loader": "^7.0.1",
+    "slick-carousel": "^1.8.1"
   }
 }
