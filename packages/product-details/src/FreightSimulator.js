@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
+
+import FreightTable from './components/FreightTable'
 
 import './freight-simulator.css'
 
@@ -15,6 +17,7 @@ class FreightSimulator extends Component {
 
   state = {
     zipcodeValue: '',
+    freightOptionList: [],
   }
 
   handleChange = e => {
@@ -39,6 +42,28 @@ class FreightSimulator extends Component {
     e.preventDefault()
 
     // TODO: call graphql
+    this.setState({
+      freightOptionList: [
+        {
+          name: 'Super Expressa',
+          value: 65.99,
+          eta: 4,
+        },
+        {
+          name: 'Expressa',
+          value: 45,
+          eta: 7,
+        },
+        {
+          name: 'Econômica',
+          value: 0,
+          eta: 20,
+        },
+        {
+          name: 'Retirada Rápida',
+        },
+      ],
+    })
   }
 
   formatMessage = id => {
@@ -46,18 +71,30 @@ class FreightSimulator extends Component {
   }
 
   render() {
+    const { freightOptionList, zipcodeValue } = this.state
+
     return (
-      <label className="vtex-freight-simulator">
-        {this.formatMessage('freight.label')}
-        <input
-          className="vtex-freight-simulator__input"
-          name="zipcode"
-          type="text"
-          onChange={this.handleChange}
-          value={this.state.zipcodeValue}
-        />
-        <button className="vtex-freight-simulator__cta" onClick={this.handleClick}>OK</button>
-      </label>
+      <Fragment>
+        <label className="vtex-freight-simulator">
+          {this.formatMessage('freight.label')}
+          <input
+            className="vtex-freight-simulator__input"
+            name="zipcode"
+            type="text"
+            onChange={this.handleChange}
+            value={zipcodeValue}
+          />
+          <button
+            className="vtex-freight-simulator__cta"
+            onClick={this.handleClick}
+            disabled={zipcodeValue.length < 9}
+          >
+            OK
+          </button>
+        </label>
+
+        <FreightTable freightOptionList={freightOptionList} />
+      </Fragment>
     )
   }
 }
