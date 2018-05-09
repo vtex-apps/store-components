@@ -62,10 +62,13 @@ BuyButton.propTypes = {
   mutate: PropTypes.func.isRequired,
   /** Function that will be called after the mutation */
   afterClick: PropTypes.func.isRequired,
-  /** Order form used in the buy button */
-  orderForm: PropTypes.shape({
-    /** User's cart id */
-    orderFormId: PropTypes.string.isRequired,
+  /** Property that contains OrderForm response */
+  data: PropTypes.shape({
+    /** Order form used in the buy button */
+    orderForm: PropTypes.shape({
+      /** User's cart id */
+      orderFormId: PropTypes.string.isRequired,
+    }),
   }),
 }
 export default compose(
