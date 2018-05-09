@@ -14,7 +14,6 @@ class BuyButton extends Component {
   static defaultProps = {
     quantity: 1,
     seller: 1,
-    salesChannel: '1',
   }
   handleAddToCart = event => {
     const {
@@ -24,7 +23,6 @@ class BuyButton extends Component {
       mutate,
       quantity,
       seller,
-      salesChannel,
       skuId,
       afterClick,
     } = this.props
@@ -36,7 +34,6 @@ class BuyButton extends Component {
           {
             id: parseInt(skuId),
             index: 1,
-            salesChannel,
             quantity,
             seller,
           },
@@ -65,8 +62,6 @@ BuyButton.propTypes = {
   skuId: PropTypes.string.isRequired,
   /** Which seller is being referenced by the button */
   seller: PropTypes.number,
-  /** Sales channel */
-  salesChannel: PropTypes.string,
   /** Graphql property to call a mutation */
   mutate: PropTypes.func.isRequired,
   /** Function that will be called after the mutation */
