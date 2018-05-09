@@ -1,0 +1,35 @@
+{
+  "name": "@vtex/footer",
+  "description": "Footer that appears in the bottom of every page",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
+  "author": "VTEX",
+  "license": "ICS",
+  "directories": {
+    "doc": "docs",
+    "dist": "dist"
+  },
+  "scripts": {
+    "prepublish": "yarn run build",
+    "build": "vtex-scripts build"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "ramda": "^0.25.0",
+    "react-intl": "^2.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@vtex/vtex-scripts": "^0.4.5"
+  },
+  "peerDependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  }
+}
