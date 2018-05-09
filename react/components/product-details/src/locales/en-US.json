@@ -2,5 +2,6 @@
   "pricing.installment-display": "or up to {installments} {times} of {installmentPrice}",
   "pricing.from": "from:",
   "pricing.to": "to:",
-  "loading": "Loading…"
+  "loading": "Loading…",
+  "freight.label": "Calculate freight"
 }
