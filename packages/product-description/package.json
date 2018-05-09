@@ -1,0 +1,32 @@
+{
+  "name": "@vtex/product-description",
+  "version": "1.0.1",
+  "description": "React component that provides the description of a product",
+  "main": "dist/index.js",
+  "repository": "https://github.com/vtex-apps/npm-storecomponents",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "start": "webpack --watch",
+    "build": "vtex-scripts build"
+  },
+  "author": "VTEX",
+  "license": "ISC",
+  "directories": {
+    "doc": "docs",
+    "dist": "dist"
+  },
+  "devDependencies": {
+    "@vtex/vtex-scripts": "^0.4.13",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.14"
+  },
+  "dependencies": {
+    "react": "~15.5.4",
+    "react-dom": "~15.5.4",
+    "react-intl": "^2.4.0"
+  }
+}

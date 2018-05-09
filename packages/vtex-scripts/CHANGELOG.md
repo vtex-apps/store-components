@@ -7,22 +7,40 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.4.5] - 2018-26-04
-
-### Bugfix
-
-* **Node Module** Retrieve the version 0.4.2.
-
-## [0.4.4] - 2018-26-04
-
-### Deprecated
-
-## [0.4.3] - 2018-26-04
-
-### Deprecated
-
-## [0.4.2] - 2018-20-04
+## [0.4.13] - 2018-05-08
 
 ### Added
 
-* **Node Module** First usable version of vtex-scripts.
+* Import support for font, png, gif, svg and jpeg files.
+
+## [0.4.12] - 2018-05-08
+
+### Removed
+
+* Build performance hint messages.
+
+## [0.4.8] - 2018-05-07
+
+## [0.4.7] - 2018-05-07
+
+### Added
+
+* Import support for CSS files.
+
+## [0.4.6] - 2018-04-30
+
+## [0.4.5] - 2018-04-26
+
+### Bugfix
+
+* Retrieve the version 0.4.2.
+
+## [0.4.4] - 2018-04-26
+
+## [0.4.3] - 2018-04-26
+
+## [0.4.2] - 2018-04-20
+
+### Added
+
+* First usable version of vtex-scripts.

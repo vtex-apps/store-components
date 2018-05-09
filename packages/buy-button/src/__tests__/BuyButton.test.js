@@ -11,7 +11,7 @@ describe('<BuyButton />', () => {
     skuId: 1,
     seller: '1',
     salesChannel: '1',
-    orderFormId: '12321',
+    data: { orderForm: { orderFormId: '12321' } },
     mutate: jest.fn(),
     afterClick: jest.fn(),
   }
