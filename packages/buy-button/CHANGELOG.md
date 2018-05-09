@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.17] - 2018-05-07
+### Changed 
+- Add default props on component 
+
 ## [0.1.16] - 2018-05-07
 ### Fixed 
 - Fix buy-button to get orderFormId 
