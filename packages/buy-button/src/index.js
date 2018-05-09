@@ -10,13 +10,19 @@ import orderFormQuery from './queries/orderFormQuery.gql'
 /**
  * BuyButton Component. Adds a list of items to the cart.
  */
-export class BuyButton extends Component {
-  handleAddToCart = () => {
+class BuyButton extends Component {
+  static defaultProps = {
+    quantity: 1,
+    seller: 1,
+    salesChannel: '1',
+  }
+  handleAddToCart = event => {
     const {
       data: { orderForm: { orderFormId } },
       mutate,
       quantity,
       seller,
+      salesChannel,
       skuId,
       afterClick,
     } = this.props
@@ -28,14 +34,15 @@ export class BuyButton extends Component {
           {
             id: parseInt(skuId),
             index: 1,
+            salesChannel,
             quantity,
-            seller: seller || 1,
+            seller,
           },
         ],
       },
       refetchQueries: [{ query: orderFormQuery }],
     })
-    afterClick()
+    afterClick(event)
   }
 
   render() {
@@ -51,13 +58,13 @@ BuyButton.propTypes = {
   /** Message that will be displayed inside of the button **/
   children: PropTypes.PropTypes.node.isRequired,
   /** The quantity of products to be added to the cart */
-  quantity: PropTypes.number.isRequired,
+  quantity: PropTypes.number,
   /** The specification of which product will be added to the cart */
-  skuId: PropTypes.number.isRequired,
+  skuId: PropTypes.string.isRequired,
   /** Which seller is being referenced by the button */
-  seller: PropTypes.string.isRequired,
-  /** Channel */
-  salesChannel: PropTypes.string.isRequired,
+  seller: PropTypes.number,
+  /** Sales channel */
+  salesChannel: PropTypes.string,
   /** Graphql property to call a mutation */
   mutate: PropTypes.func.isRequired,
   /** Function that will be called after the mutation */
