@@ -1,6 +1,7 @@
 {
   "name": "@vtex/footer",
   "description": "Footer that appears in the bottom of every page",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "files": [
     "dist/"
@@ -30,8 +31,5 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }
