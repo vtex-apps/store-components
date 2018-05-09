@@ -14,7 +14,7 @@ export class BuyButton extends Component {
   static defaultProps = {
     quantity: 1,
     seller: 1,
-    salesChannel: 1,
+    salesChannel: '1',
   }
   handleAddToCart = () => {
     const {
@@ -62,7 +62,7 @@ BuyButton.propTypes = {
   /** The specification of which product will be added to the cart */
   skuId: PropTypes.number.isRequired,
   /** Which seller is being referenced by the button */
-  seller: PropTypes.string.isRequired,
+  seller: PropTypes.number.isRequired,
   /** Sales channel */
   salesChannel: PropTypes.string.isRequired,
   /** Graphql property to call a mutation */
