@@ -26,15 +26,43 @@ module.exports = {
           loader: 'graphql-tag/loader',
         },
       },
+      {
+        test: /\.(s?css)$/,
+        use: [
+          {
+            loader: require.resolve('style-loader'),
+          },
+          {
+            loader: require.resolve('css-loader'),
+          },
+          {
+            loader: require.resolve('sass-loader'),
+          },
+        ],
+      },
+      {
+        test: /\.(gif|png|jpeg|jpg|woff|woff2|eot|ttf)$/,
+        loader: require.resolve('url-loader'),
+      },
+      {
+        test: /\.(svg)$/,
+        use: {
+          loader: require.resolve('svg-inline-loader'),
+        },
+      },
     ],
   },
   resolve: {
-    modules: ['node_modules', path.resolve(__dirname, '..', 'node_modules')],
+    modules: ['node_modules', path.resolve(paths.distPath, '..', 'node_modules')],
   },
   externals: {
     react: 'commonjs2 react',
     'prop-types': 'commonjs2 prop-types',
   },
+  performance: {
+    hints: false,
+  },
   target: 'web',
   mode: 'production',
 }
+
