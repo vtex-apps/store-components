@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchBar /> should match snapshot 1`] = `
+<div
+  className="vtex-searchbar"
+>
+  <Downshift
+    breakingChanges={Object {}}
+    defaultHighlightedIndex={null}
+    defaultInputValue=""
+    defaultIsOpen={false}
+    defaultSelectedItem={null}
+    environment={Object {}}
+    getA11yStatusMessage={[Function]}
+    itemToString={[Function]}
+    onChange={[Function]}
+    onInputValueChange={[Function]}
+    onOuterClick={[Function]}
+    onSelect={[Function]}
+    onStateChange={[Function]}
+    onUserAction={[Function]}
+    selectedItemChanged={[Function]}
+    stateReducer={[Function]}
+  />
+</div>
+`;
