@@ -3,16 +3,19 @@ function getSlideListWidth(slick) {
 }
 
 function getItemWidth(slick) {
-  if (slick) {
-    const nodes = slick.innerSlider.list.childNodes[0].childNodes
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = 0; j < nodes[i].attributes.length; j++) {
-        const attr = nodes[i].attributes[j]
-        if (attr.nodeName === 'data-index' && attr.nodeValue === '0' && nodes[i].childNodes[0]) {
-          return nodes[i].childNodes[0].clientWidth
+  const { innerSlider: { list: { childNodes: [{ childNodes }] } } } = slick
+  if (childNodes) {
+    const slideNodes = Array.from(childNodes)
+    let firstItem = null
+    slideNodes.map(node => {
+      const attrs = Array.from(node.attributes)
+      attrs.map(attr => {
+        if (attr.nodeName === 'data-index' && attr.nodeValue === '0') {
+          firstItem = node
         }
-      }
-    }
+      })
+    })
+    return firstItem && firstItem.childNodes && firstItem.childNodes[0].clientWidth
   }
   return null
 }
@@ -20,7 +23,7 @@ function getItemWidth(slick) {
 /**
  * Returns the correct number of items to be inside the slider without reduce the width of item.
  */
-export function getCorrectItemsPerPage(slick, defaultItemWidth, actualItemsPerPage) {
+export default function getItemsPerPage(slick, defaultItemWidth, actualItemsPerPage) {
   const slideListWidth = getSlideListWidth(slick)
   if (slideListWidth) {
     const shelfItemWidth = getItemWidth(slick) || defaultItemWidth

@@ -5,7 +5,7 @@ import Slider from 'react-slick'
 import { Dots } from './Dots'
 import { Arrow } from './Arrow'
 
-import { getCorrectItemsPerPage } from './Utils'
+import getItemsPerPage from './getItemsPerPage'
 
 import './global.css'
 
@@ -32,7 +32,7 @@ export class SlickSlider extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
+    this._timeout = setTimeout(() => {
       this.forceUpdate()
     }, 50)
     if (this.props.adaptToScreen) {
@@ -41,6 +41,7 @@ export class SlickSlider extends Component {
   }
 
   componentWillUnmount() {
+    clearTimeout(this._timeout)
     if (this.props.adaptToScreen) {
       window.removeEventListener('resize', this.resizeListener)
     }
@@ -48,7 +49,7 @@ export class SlickSlider extends Component {
 
   render() {
     const { sliderSettings, adaptToScreen, scrollByPage, defaultItemWidth, children } = this.props
-    const itemsPerPage = getCorrectItemsPerPage(this._slick, defaultItemWidth, sliderSettings.slidesToShow)
+    const itemsPerPage = getItemsPerPage(this._slick, defaultItemWidth, sliderSettings.slidesToShow)
     const settings = { ...sliderSettings }
     const numItems = children.length
     settings.nextArrow = <Arrow cssClass={VTEXClasses.ARROW_RIGHT_CLASS} />
@@ -59,7 +60,9 @@ export class SlickSlider extends Component {
     sliderSettings.infinite = sliderSettings.infinite !== undefined
       ? sliderSettings.infinite : itemsPerPage < numItems
     return (
-      <Slider {...settings} ref={function(c) { this._slick = c }.bind(this)}>
+      <Slider {...settings} ref={(c) => {
+        this._slick = c
+      }}>
         {children}
       </Slider>
     )
