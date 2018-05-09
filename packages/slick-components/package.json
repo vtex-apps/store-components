@@ -14,9 +14,9 @@
   "author": "VTEX",
   "license": "ISC",
   "peerDependencies": {
-    "prop-types": "~15.6.1",
-    "react": "~15.5.4",
-    "react-dom": "~15.5.4"
+    "prop-types": "~16.3.0",
+    "react": "~16.3.0",
+    "react-dom": "~16.3.0"
   },
   "directories": {
     "doc": "docs",
