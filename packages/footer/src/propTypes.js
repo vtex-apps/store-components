@@ -11,7 +11,7 @@ export const objectLikeBadgeArray = PropTypes.objectOf(PropTypes.shape({
 
 export const objectLikePaymentFormArray = PropTypes.objectOf(PropTypes.shape({
   paymentType: PropTypes.oneOf([
-    'MasterCard', 'Visa', 'American Express', 'Diners', 'Elo', 'Boleto'
-  ])
+    'MasterCard', 'Visa', 'American Express', 'Diners', 'Elo', 'Boleto',
+  ]),
 }))
 

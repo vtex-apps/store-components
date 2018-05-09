@@ -203,11 +203,11 @@ export default class Footer extends Component {
   }
 
   render() {
+    const { showPaymentFormsInColor, logo } = this.props
     const socialNetworkLinks = values(this.props.socialNetworkLinks)
     const sectionLinks = values(this.props.sectionLinks)
     const paymentForms = values(this.props.paymentForms)
     const badges = values(this.props.badges)
-    const { showPaymentFormsInColor, logo } = this.props
 
     return (
       <footer className="vtex-footer">
