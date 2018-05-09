@@ -16,7 +16,7 @@ export class BuyButton extends Component {
     seller: 1,
     salesChannel: '1',
   }
-  handleAddToCart = () => {
+  handleAddToCart = event => {
     const {
       data: {
         orderForm: { orderFormId },
