@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+<<<<<<< HEAD
 ## [0.1.19] - 2018-05-09
 ### Fixed
 - Fix `afterClick` to receive a event.
@@ -20,6 +21,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add default props on component.
 
 ## [0.1.16] - 2018-05-09
+=======
+## [0.1.17] - 2018-05-07
+### Changed 
+- Add default props on component 
+
+## [0.1.16] - 2018-05-07
+>>>>>>> Add default props on buy-button component
 ### Fixed 
 - Fix buy-button to get orderFormId.
 

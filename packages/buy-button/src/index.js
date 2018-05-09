@@ -10,17 +10,21 @@ import orderFormQuery from './queries/orderFormQuery.gql'
 /**
  * BuyButton Component. Adds a list of items to the cart.
  */
-class BuyButton extends Component {
+export class BuyButton extends Component {
   static defaultProps = {
     quantity: 1,
     seller: 1,
+    salesChannel: 1,
   }
-  handleAddToCart = event => {
+  handleAddToCart = () => {
     const {
-      data: { orderForm: { orderFormId } },
+      data: {
+        orderForm: { orderFormId },
+      },
       mutate,
       quantity,
       seller,
+      salesChannel,
       skuId,
       afterClick,
     } = this.props
@@ -32,6 +36,7 @@ class BuyButton extends Component {
           {
             id: parseInt(skuId),
             index: 1,
+            salesChannel,
             quantity,
             seller,
           },
@@ -59,7 +64,9 @@ BuyButton.propTypes = {
   /** The specification of which product will be added to the cart */
   skuId: PropTypes.string.isRequired,
   /** Which seller is being referenced by the button */
-  seller: PropTypes.number,
+  seller: PropTypes.string.isRequired,
+  /** Sales channel */
+  salesChannel: PropTypes.string.isRequired,
   /** Graphql property to call a mutation */
   mutate: PropTypes.func.isRequired,
   /** Function that will be called after the mutation */
@@ -77,5 +84,5 @@ export default compose(
   graphql(orderFormQuery, {
     options: { ssr: false },
   }),
-  graphql(addToCartMutation)
+  graphql(addToCartMutation),
 )(BuyButton)
