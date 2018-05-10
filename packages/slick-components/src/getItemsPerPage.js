@@ -6,18 +6,19 @@ function getSlideListWidth(slick) {
 
 function getItemWidth(slick) {
   const slidesNodeList = get(slick, 'innerSlider.list.childNodes[0].childNodes')
+  let itemWidth = null
   if (slidesNodeList) {
     const slidesArray = Array.from(slidesNodeList)
     slidesArray.map(slide => {
       const attributes = Array.from(slide.attributes)
       attributes.map(attr => {
         if (attr.nodeName === 'data-index' && attr.nodeValue === '0') {
-          return get(slide, 'childNodes[0].clientWidth')
+          itemWidth = get(slide, 'childNodes[0].clientWidth')
         }
       })
     })
   }
-  return null
+  return itemWidth
 }
 
 /**
