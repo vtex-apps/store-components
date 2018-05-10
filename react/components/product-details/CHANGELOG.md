@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-* Initial version of the freight simulator.
+* Initial version of the shipping simulator.
 
 ## [1.2.10] - 2018-05-08
 
