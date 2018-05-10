@@ -3,5 +3,7 @@
   "pricing.from": "from:",
   "pricing.to": "to:",
   "loading": "Loading…",
-  "shipping.label": "Calculate shipping"
+  "shipping.label": "Calculate shipping",
+  "shipping.eta": "up to {eta} days",
+  "shipping.free": "Free"
 }
