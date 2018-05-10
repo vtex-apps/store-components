@@ -57,9 +57,9 @@ BuyButton.propTypes = {
   /** The quantity of products to be added to the cart */
   quantity: PropTypes.number,
   /** The specification of which product will be added to the cart */
-  skuId: PropTypes.number.isRequired,
+  skuId: PropTypes.string.isRequired,
   /** Which seller is being referenced by the button */
-  seller: PropTypes.string,
+  seller: PropTypes.number,
   /** Graphql property to call a mutation */
   mutate: PropTypes.func.isRequired,
   /** Function that will be called after the mutation */
