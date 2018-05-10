@@ -1,5 +1,5 @@
 {
-    "name": "vtex.styleguide",
+    "name": "vtex.storecomponents",
     "dependencies": {
         "react-responsive-modal": "^2.0.1",
         "vtex-tachyons": "^2.3.0",
@@ -11,7 +11,13 @@
         "classnames": "^2.2.5",
         "ramda": "^0.25.0",
         "react-intl": "^2.4.0",
-        "react": "~15.5.4",
-        "react-dom": "~15.5.4"
+        "react": "^16.3.2",
+        "react-dom": "^16.3.2",
+        "downshift": "^1.31.14",
+        "render": "^0.1.4"
+    },
+    "devDependencies": {
+        "enzyme": "^3.3.0",
+        "enzyme-adapter-react-16": "^1.1.1"
     }
 }
