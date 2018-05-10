@@ -26,6 +26,14 @@ class ResultsList extends Component {
       )
     }
 
+    if (items.length === 0) {
+      return (
+        <div className={listClassNames}>
+          <div className={listItemClassNames}>{emptyPlaceholder}</div>
+        </div>
+      )
+    }
+
     return (
       <div className={listClassNames}>
         {items.map((el, index) => (
@@ -50,11 +58,6 @@ class ResultsList extends Component {
             </div>
           </Link>
         ))}
-        {items.length === 0 && (
-          <div className={listClassNames}>
-            <div className="flex items-center">{emptyPlaceholder}</div>
-          </div>
-        )}
       </div>
     )
   }
