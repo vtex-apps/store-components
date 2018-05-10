@@ -1,3 +1,3 @@
-import CollectionBadges from './components/collection-badges/src/index'
+import CollectionBadges from './components/collection-badges/index'
 
 export default CollectionBadges
