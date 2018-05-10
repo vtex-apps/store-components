@@ -43,7 +43,6 @@ export class BuyButton extends Component {
   }
 
   render() {
-    console.log(">>>>>>>>>>>>>>>>>> render")
     return (
       <Button primary onClick={this.handleAddToCart}>
         {this.props.children}
