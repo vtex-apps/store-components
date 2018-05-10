@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "storecomponents",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "title": "VTEX Storecomponents",
   "defaultLocale": "pt-BR",
   "description": "The VTEX store components for that render apps can use",
@@ -16,5 +16,8 @@
   "settingsSchema": {},
   "scripts": {
     "postreleasy": "vtex publish --public"
+  },
+  "dependencies": {
+    "vtex.store-graphql": "2.x"
   }
 }
