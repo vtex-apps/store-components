@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import ResultsLits from './components/ResultsList'
 import AutocompleteInput from './components/AutocompleteInput'
 
+import './search-bar.css'
+
 import Downshift from 'downshift'
 
 export default class SearchBar extends Component {
