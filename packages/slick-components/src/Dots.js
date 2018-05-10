@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
  * Dots component. It's an overriden component of react-slick that controls
  * the slide transition;
  */
-export class Dots extends Component {
+export default class Dots extends Component {
   render() {
     const { className, style, dots, cssClass } = this.props
 
