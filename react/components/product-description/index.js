@@ -25,7 +25,7 @@ class ProductDescription extends PureComponent {
         <div className="f4 b ttu mb3">
           <FormattedMessage id="product-description.title" />
         </div>
-        { this.props.children }
+        {this.props.children}
       </div>
     )
   }
