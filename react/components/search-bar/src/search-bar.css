@@ -2,6 +2,11 @@
   width: 50px;
 }
 
+.vtex-searchbar .vtex-results__list div {
+  max-height: 20px !important;
+  z-index: 1000 !important;
+}
+
 .vtex-searchbar .vtex-results__list :link {
   text-decoration: none;
 }
