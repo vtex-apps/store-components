@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- **SlickSlider** Add SlickSlider Component
+
 ## [1.0.8] - 2018-07-05
 
 ## [1.0.7] - 2018-30-04
