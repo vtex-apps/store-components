@@ -10,7 +10,7 @@ import orderFormQuery from './queries/orderFormQuery.gql'
 /**
  * BuyButton Component. Adds a list of items to the cart.
  */
-class BuyButton extends Component {
+export class BuyButton extends Component {
   static defaultProps = {
     quantity: 1,
     seller: 1,
@@ -43,6 +43,7 @@ class BuyButton extends Component {
   }
 
   render() {
+    console.log(">>>>>>>>>>>>>>>>>> render")
     return (
       <Button primary onClick={this.handleAddToCart}>
         {this.props.children}
@@ -57,9 +58,9 @@ BuyButton.propTypes = {
   /** The quantity of products to be added to the cart */
   quantity: PropTypes.number,
   /** The specification of which product will be added to the cart */
-  skuId: PropTypes.string.isRequired,
+  skuId: PropTypes.number.isRequired,
   /** Which seller is being referenced by the button */
-  seller: PropTypes.number,
+  seller: PropTypes.string,
   /** Graphql property to call a mutation */
   mutate: PropTypes.func.isRequired,
   /** Function that will be called after the mutation */
