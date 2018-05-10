@@ -1,3 +1,3 @@
-import BuyButton from './components/buy-button/src/index'
+import BuyButton from './components/buy-button/index'
 
 export default BuyButton

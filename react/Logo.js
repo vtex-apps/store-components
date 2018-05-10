@@ -1,3 +1,3 @@
-import Logo from './components/logo/src/index'
+import Logo from './components/Logo/index'
 
 export default Logo
