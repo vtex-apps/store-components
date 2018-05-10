@@ -6,10 +6,10 @@ import AutocompleteInput from './components/AutocompleteInput'
 
 import Downshift from 'downshift'
 
+/** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
 export default class SearchBar extends Component {
   render() {
     const { placeholder, emptyPlaceholder } = this.props
-
     return (
       <div className="vtex-searchbar">
         <Downshift>

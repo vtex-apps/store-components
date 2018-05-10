@@ -13,6 +13,7 @@ function getImageUrl(image) {
   return (image.match(/http:(.*?)"/g) || [''])[0]
 }
 
+/** List of search results to be displayed*/
 class ResultsList extends Component {
   render() {
     const { getItemProps, data, emptyPlaceholder } = this.props
@@ -64,10 +65,15 @@ class ResultsList extends Component {
 }
 
 const itemProps = PropTypes.shape({
+  /** Image of the product*/
   thumb: PropTypes.string,
+  /** Name of the product*/
   name: PropTypes.string,
+  /** Link to the product*/
   href: PropTypes.string,
+  /** Slug of the product*/
   slug: PropTypes.string,
+  /** Criteria of the product*/
   criteria: PropTypes.string,
 })
 
@@ -79,8 +85,11 @@ ResultsList.propTypes = {
     }),
     loading: PropTypes.bool.isRequired,
   }),
+  /** Downshift specific function */
   getItemProps: PropTypes.func.isRequired,
+  /** Message that will be displayed when there is no result ot be shown */
   emptyPlaceholder: PropTypes.string.isRequired,
+  /** Downshift specific prop*/
   highlightedIndex: PropTypes.number,
 }
 
