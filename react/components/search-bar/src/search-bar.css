@@ -1,0 +1,11 @@
+.vtex-searchbar .vtex-results__list img {
+  width: 50px;
+}
+
+.vtex-searchbar .vtex-results__list :link {
+  text-decoration: none;
+}
+
+.vtex-searchbar .vtex-results__list :hover {
+  background-color: grey;
+}
