@@ -3,5 +3,5 @@
   "pricing.from": "de:",
   "pricing.to": "por:",
   "loading": "Carregando…",
-  "freight.label": "Calcular o frete"
+  "shipping.label": "Calcular o frete"
 }

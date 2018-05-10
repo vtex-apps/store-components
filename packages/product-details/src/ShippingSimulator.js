@@ -1,23 +1,23 @@
 import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 
-import FreightTable from './components/FreightTable'
+import ShippingTable from './components/ShippingTable'
 
-import './freight-simulator.css'
+import './shipping-simulator.css'
 
 /**
- * Freight simulator component
+ * Shipping simulator component
  *
  * Display an input for the zipcode
  */
-class FreightSimulator extends Component {
+class ShippingSimulator extends Component {
   static propTypes = {
     intl: intlShape.isRequired,
   }
 
   state = {
     zipcodeValue: '',
-    freightOptionList: [],
+    shippingOptionList: [],
   }
 
   handleChange = e => {
@@ -43,7 +43,7 @@ class FreightSimulator extends Component {
 
     // TODO: call graphql
     this.setState({
-      freightOptionList: [
+      shippingOptionList: [
         {
           name: 'Super Expressa',
           value: 65.99,
@@ -71,21 +71,21 @@ class FreightSimulator extends Component {
   }
 
   render() {
-    const { freightOptionList, zipcodeValue } = this.state
+    const { shippingOptionList, zipcodeValue } = this.state
 
     return (
       <Fragment>
-        <label className="vtex-freight-simulator">
-          {this.formatMessage('freight.label')}
+        <label className="vtex-shipping-simulator">
+          {this.formatMessage('shipping.label')}
           <input
-            className="vtex-freight-simulator__input"
+            className="vtex-shipping-simulator__input"
             name="zipcode"
             type="text"
             onChange={this.handleChange}
             value={zipcodeValue}
           />
           <button
-            className="vtex-freight-simulator__cta"
+            className="vtex-shipping-simulator__cta"
             onClick={this.handleClick}
             disabled={zipcodeValue.length < 9}
           >
@@ -93,11 +93,11 @@ class FreightSimulator extends Component {
           </button>
         </label>
 
-        <FreightTable freightOptionList={freightOptionList} />
+        <ShippingTable shippingOptionList={shippingOptionList} />
       </Fragment>
     )
   }
 }
 
-export default injectIntl(FreightSimulator)
+export default injectIntl(ShippingSimulator)
 
