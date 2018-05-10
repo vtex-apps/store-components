@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import { CollectionBadgeItem } from './CollectionBadgeItem'
 import VTEXClasses from './CustomClasses'
 
-/** 
+/**
  * Collection Badges component.
- * Encapsulates and displays a responsive list of Collection Badges. 
+ * Encapsulates and displays a responsive list of Collection Badges.
  */
-export class CollectionBadges extends Component {
+export default class CollectionBadges extends Component {
   render() {
     return (
       <div className={`${VTEXClasses.COLLECTION_BADGES} relative dib`}>
@@ -16,12 +16,12 @@ export class CollectionBadges extends Component {
           {
             this.props.collectionBadgesText.map(collectionBadgeText => (
               <CollectionBadgeItem key={collectionBadgeText}>
-                { collectionBadgeText }
+                {collectionBadgeText}
               </CollectionBadgeItem>
             ))
           }
         </div>
-        { this.props.children }
+        {this.props.children}
       </div>
     )
   }
