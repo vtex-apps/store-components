@@ -10,7 +10,7 @@ import orderFormQuery from './queries/orderFormQuery.gql'
 /**
  * BuyButton Component. Adds a list of items to the cart.
  */
-class BuyButton extends Component {
+export class BuyButton extends Component {
   static defaultProps = {
     quantity: 1,
     seller: 1,
