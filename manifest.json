@@ -3,14 +3,18 @@
   "name": "storecomponents",
   "version": "0.0.2",
   "title": "VTEX Storecomponents",
+  "defaultLocale": "pt-BR",
   "description": "The VTEX store components for that render apps can use",
   "builders": {
     "react": "2.x"
   },
-  "mustUpdateAt": "2018-09-05",
+  "mustUpdateAt": "2019-04-02",
   "categories": [],
   "registries": [
     "smartcheckout"
   ],
-  "settingsSchema": {}
+  "settingsSchema": {},
+  "scripts": {
+    "postreleasy": "vtex publish --public"
+  }
 }
