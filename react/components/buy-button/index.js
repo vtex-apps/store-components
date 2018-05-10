@@ -17,7 +17,9 @@ export class BuyButton extends Component {
   }
   handleAddToCart = event => {
     const {
-      data: { orderForm: { orderFormId } },
+      data: {
+        orderForm: { orderFormId },
+      },
       mutate,
       quantity,
       seller,
@@ -77,5 +79,5 @@ export default compose(
   graphql(orderFormQuery, {
     options: { ssr: false },
   }),
-  graphql(addToCartMutation)
+  graphql(addToCartMutation),
 )(BuyButton)

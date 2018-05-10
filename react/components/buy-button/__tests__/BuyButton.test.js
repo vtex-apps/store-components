@@ -8,8 +8,8 @@ describe('<BuyButton />', () => {
 
   const props = {
     quantity: 1,
-    skuId: 1,
-    seller: '1',
+    skuId: '1',
+    seller: 1,
     salesChannel: '1',
     data: { orderForm: { orderFormId: '12321' } },
     mutate: jest.fn(),

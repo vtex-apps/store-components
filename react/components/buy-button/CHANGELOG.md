@@ -8,20 +8,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ## [0.1.19] - 2018-05-09
+
 ### Fixed
-- Fix `afterClick` to receive a event.
+
+* Fix `afterClick` to receive a event.
 
 ## [0.1.18] - 2018-05-09
+
 ### Fixed
-- Fix skuId to receive `string` instead `number`.
+
+* Fix skuId to receive `string` instead `number`.
 
 ## [0.1.17] - 2018-05-09
-### Changed 
-- Add default props on component.
+
+### Changed
+
+* Add default props on component.
 
 ## [0.1.16] - 2018-05-09
-### Fixed 
-- Fix buy-button to get orderFormId.
+
+### Fixed
+
+* Fix buy-button to get orderFormId.
 
 ## [0.1.9] - 2018-05-07
 
