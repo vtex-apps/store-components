@@ -1,15 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { intlShape, injectIntl } from 'react-intl'
 import classNames from 'classnames'
 
-const ShippingTableRow = ({ name, eta, value }) => {
+const ShippingTableRow = ({ name, eta, value, intl }) => {
   const etaClassName = classNames('vtex-shipping-table__cell', {
     'vtex-shipping-table__cell--center': eta === undefined,
   })
 
   const valueClassName = classNames('vtex-shipping-table__cell', {
-    'vtex-shipping-table__cell--center': value === undefined || value === 0,
+    'vtex-shipping-table__cell--center': value === undefined,
   })
+
+  let etaText, valueText
+
+  if (eta === undefined) {
+    etaText = '-'
+  } else {
+    etaText = intl.formatMessage({ id: 'shipping.eta' }, { eta })
+  }
+
+  if (value === undefined) {
+    valueText = '-'
+  } else if (value === 0) {
+    valueText = intl.formatMessage({ id: 'shipping.free' })
+  } else {
+    valueText = intl.formatNumber(value, { style: 'currency', currency: 'BRL' })
+  }
 
   return (
     <tr key={name}>
@@ -26,10 +43,10 @@ const ShippingTableRow = ({ name, eta, value }) => {
         </label>
       </td>
       <td className={etaClassName}>
-        {eta !== undefined ? `até ${eta} dias` : '-'}
+        {etaText}
       </td>
       <td className={valueClassName}>
-        {value !== undefined ? (value === 0 ? 'Grátis' : `R$ ${value}`) : '-'}
+        {valueText}
       </td>
     </tr>
   )
@@ -39,7 +56,8 @@ ShippingTableRow.propTypes = {
   name: PropTypes.string,
   eta: PropTypes.number,
   value: PropTypes.number,
+  intl: intlShape.isRequired,
 }
 
-export default ShippingTableRow
+export default injectIntl(ShippingTableRow)
 
