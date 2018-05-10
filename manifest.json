@@ -16,5 +16,8 @@
   "settingsSchema": {},
   "scripts": {
     "postreleasy": "vtex publish --public"
+  },
+  "dependencies": {
+    "vtex.store-graphql": "2.x"
   }
 }
