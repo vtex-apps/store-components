@@ -15,7 +15,7 @@ function getImageUrl(image) {
 
 class ResultsList extends Component {
   render() {
-    const { getItemProps, data } = this.props
+    const { getItemProps, data, emptyPlaceholder } = this.props
     const items = data.autocomplete ? data.autocomplete.itemsReturned : []
 
     if (data.loading) {
@@ -50,6 +50,11 @@ class ResultsList extends Component {
             </div>
           </Link>
         ))}
+        {items.length === 0 && (
+          <div className={listClassNames}>
+            <div className="flex items-center">{emptyPlaceholder}</div>
+          </div>
+        )}
       </div>
     )
   }
@@ -72,6 +77,7 @@ ResultsList.propTypes = {
     loading: PropTypes.bool.isRequired,
   }),
   getItemProps: PropTypes.func.isRequired,
+  emptyPlaceholder: PropTypes.string.isRequired,
   highlightedIndex: PropTypes.number,
 }
 
