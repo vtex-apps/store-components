@@ -42,7 +42,9 @@ class ResultsList extends Component {
             <Link
               page={el.criteria ? 'store/search' : 'store/product'}
               params={
-                el.criteria ? { term: `${el.slug}` } : { slug: `${el.slug}` }
+                el.criteria
+                  ? { term: `${el.slug.replace('/', '%20')}` }
+                  : { slug: `${el.slug}` }
               }
               {...getItemProps({
                 item: el.name,
