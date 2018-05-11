@@ -5,6 +5,7 @@ import { indexBy, prop, map, range, values } from 'ramda'
 import FooterLinkList from './components/FooterLinkList'
 import FooterBadgeList from './components/FooterBadgeList'
 import FooterPaymentFormList from './components/FooterPaymentFormList'
+import FooterSocialNetworkList from './components/FooterSocialNetworkList'
 import {
   objectLikeLinkArray,
   objectLikeBadgeArray,
@@ -33,6 +34,28 @@ const badgeSchema = {
     image: {
       type: 'string',
       title: 'Badge Image URL',
+    },
+  },
+}
+
+const socialNetworkSchema = {
+  type: 'object',
+  title: 'Social Network',
+  properties: {
+    url: {
+      type: 'string',
+      title: 'Social Network URL',
+    },
+    socialNetwork: {
+      title: 'Social Network',
+      type: 'string',
+      default: 'Facebook',
+      enum: [
+        'Facebook',
+        'Twitter',
+        'Instagram',
+        'Youtube',
+      ],
     },
   },
 }
@@ -68,6 +91,7 @@ export default class Footer extends Component {
     badges: objectLikeBadgeArray,
     paymentForms: objectLikePaymentFormArray,
     showPaymentFormsInColor: PropTypes.bool.isRequired,
+    showSocialNetworksInColor: PropTypes.bool.isRequired,
     logo: PropTypes.string.isRequired,
   }
 
@@ -106,7 +130,7 @@ export default class Footer extends Component {
       }
 
     const socialNetworksSchema = generateDynamicSchema(
-      linkSchema,
+      socialNetworkSchema,
       numberOfSocialNetworks,
       'socialNetworkLinks',
       'socialNetworks',
@@ -182,6 +206,11 @@ export default class Footer extends Component {
           title: 'Show the payment forms icons in color',
           default: false,
         },
+        showSocialNetworksInColor: {
+          type: 'boolean',
+          title: 'Show the social networks icons in color',
+          default: false,
+        },
         ...socialNetworksSchema,
         ...sectionLinksSchema,
         ...moreInformationLinksSchema,
@@ -192,7 +221,7 @@ export default class Footer extends Component {
   }
 
   render() {
-    const { showPaymentFormsInColor, logo } = this.props
+    const { showPaymentFormsInColor, showSocialNetworksInColor, logo } = this.props
     const socialNetworkLinks = values(this.props.socialNetworkLinks)
     const sectionLinks = values(this.props.sectionLinks)
     const paymentForms = values(this.props.paymentForms)
@@ -202,11 +231,12 @@ export default class Footer extends Component {
       <footer className="vtex-footer">
         <div className="vtex-footer__container">
           <FooterLinkList titleId="section-links" list={sectionLinks} />
-          <FooterLinkList
+          <FooterSocialNetworkList
             titleId="social-networks"
             list={socialNetworkLinks}
             horizontal
             alignRight
+            showInColor={showSocialNetworksInColor}
           />
         </div>
         <div className="vtex-footer__container vtex-footer__container--white vtex-footer__container--compact">
