@@ -1,18 +1,8 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape, addLocaleData, FormattedMessage } from 'react-intl'
+import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 
 import VTEXClasses from './CustomClasses'
-
-import enLocale from './locales/en-US.json'
-import ptLocale from './locales/pt-BR.json'
-import esLocale from './locales/es-AR.json'
-
-addLocaleData([
-  { ...enLocale, locale: 'en-US' },
-  { ...ptLocale, locale: 'pt-BR' },
-  { ...esLocale, locale: 'es-AR' },
-])
 
 /**
  * Product Description Component.
