@@ -24,6 +24,7 @@ class FooterPaymentFormItem extends Component {
     return <img className="vtex-footer__payment-form-item" src={image} />
   }
 }
+
 FooterPaymentFormItem.displayName = 'FooterPaymentFormItem'
 
 FooterPaymentFormItem.propTypes = {
