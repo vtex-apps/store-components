@@ -21,7 +21,7 @@ class FooterPaymentFormItem extends Component {
       return null
     }
 
-    return <span className="vtex-footer__payment-form-item" dangerouslySetInnerHTML={{ __html: image }} />
+    return <img className="vtex-footer__payment-form-item" src={image} />
   }
 }
 FooterPaymentFormItem.displayName = 'FooterPaymentFormItem'
