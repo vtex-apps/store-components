@@ -3,7 +3,6 @@
   color: #f2f2f2;
   display: flex;
   justify-content: space-between;
-  padding: 42px 320px;
 }
 
 .vtex-footer__container--white {
@@ -27,13 +26,8 @@
 }
 
 .vtex-footer__list-container {
-  width: 225px;
   padding: 0 0.35rem;
   height: 100%;
-}
-
-.vtex-footer__list-container--right-aligned {
-  margin-left: auto;
 }
 
 .vtex-footer__list-container--horizontal {
@@ -48,28 +42,31 @@
 .vtex-footer__list {
   display: flex;
   flex-flow: column wrap;
-  max-height: 150px;
   list-style: none;
   padding: 0;
   margin-bottom: 0;
 }
 
 .vtex-footer__list--horizontal {
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
 }
 
 .vtex-footer__list-item {
   width: 100%;
-  margin-right: 100px;
 }
 
 .vtex-footer__payment-form-item {
   height: 64px;
+  width: 64px;
+}
+
+.vtex-footer__social-network-item {
+  height: 32px;
+  width: 32px;
 }
 
 .vtex-footer__list-item--horizontal {
   width: auto;
-  margin-right: 15px;
 }
 
 .vtex-footer__list-link {
@@ -85,5 +82,65 @@
 
 .vtex-footer__logo-image {
   height: 64px;
+}
+
+@media screen and (min-width: 10em) {
+  .vtex-footer__container {
+    flex-direction: column;
+    padding: 22px 10px;
+  }
+
+  .vtex-footer__list-container {
+    width: 100%;
+    margin-top: 22px;
+  }
+
+  .vtex-footer__list-container:first-child {
+    margin-top: 0;
+  }
+
+  .vtex-footer__list-container--right-aligned {
+    margin-left: 0;
+  }
+
+  .vtex-footer__list-item {
+    margin-right: 0;
+  }
+
+  .vtex-footer__list-item--horizontal {
+    margin-right: 10px;
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .vtex-footer__list {
+    max-height: 150px;
+  }
+
+  .vtex-footer__list-container {
+    width: 225px;
+  }
+}
+
+@media screen and (min-width: 64em) {
+  .vtex-footer__container {
+    padding: 42px 320px;
+  }
+
+  .vtex-footer__list-container--right-aligned {
+    margin-left: auto;
+  }
+
+  .vtex-footer__list-item {
+    margin-right: 100px;
+  }
+
+  .vtex-footer__list-item--horizontal {
+    margin-right: 15px;
+  }
+
+  .vtex-footer__list--horizontal {
+    flex-flow: row nowrap;
+  }
 }
 
