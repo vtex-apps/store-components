@@ -1,17 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { indexBy, prop, map, range, values } from 'ramda'
-import { addLocaleData } from 'react-intl'
-
-import enLocale from './locales/en-US.json'
-import ptLocale from './locales/pt-BR.json'
-import esLocale from './locales/es-AR.json'
-
-addLocaleData([
-  { ...enLocale, locale: 'en-US' },
-  { ...ptLocale, locale: 'pt-BR' },
-  { ...esLocale, locale: 'es-AR' },
-])
 
 import FooterLinkList from './components/FooterLinkList'
 import FooterBadgeList from './components/FooterBadgeList'
