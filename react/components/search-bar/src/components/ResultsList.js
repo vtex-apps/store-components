@@ -16,7 +16,7 @@ function getImageUrl(image) {
 /** List of search results to be displayed*/
 class ResultsList extends Component {
   render() {
-    const { getItemProps, data, emptyPlaceholder } = this.props
+    const { getItemProps, data, emptyPlaceholder, inputValue } = this.props
     const items = data.autocomplete ? data.autocomplete.itemsReturned : []
 
     if (data.loading) {
@@ -37,12 +37,22 @@ class ResultsList extends Component {
 
     return (
       <ol className={listClassNames}>
+        <li className={listItemClassNames}>
+          <Link
+            page="store/search"
+            params={{ term: `${encodeURI(inputValue)}` }}
+          >
+            <div className="flex justify-center items-center">{inputValue}</div>
+          </Link>
+        </li>
         {items.map((el, index) => (
           <li key={el.name + index} className={listItemClassNames}>
             <Link
               page={el.criteria ? 'store/search' : 'store/product'}
               params={
-                el.criteria ? { term: `${el.slug}` } : { slug: `${el.slug}` }
+                el.criteria
+                  ? { term: `${encodeURI(el.slug).replace('/', '%20')}` }
+                  : { slug: `${encodeURI(el.slug)}` }
               }
               {...getItemProps({
                 item: el.name,
@@ -94,6 +104,8 @@ ResultsList.propTypes = {
   emptyPlaceholder: PropTypes.string.isRequired,
   /** Downshift specific prop*/
   highlightedIndex: PropTypes.number,
+  /** Search query*/
+  inputValue: PropTypes.string.isRequired,
 }
 
 const ResultsListWithData = graphql(autocomplete)(ResultsList)
