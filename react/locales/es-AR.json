@@ -3,5 +3,13 @@
   "social-networks": "Redes Sociales",
   "section-links": "Enlaces",
   "more-information-links": "Mas informaciones",
-  "payment-form": "Formas de Pago"
+  "payment-form": "Formas de Pago",
+  "pricing.installment-display":
+    "O hasta {installments} {times} de {installmentPrice}",
+  "pricing.from": "De:",
+  "pricing.to": "Por:",
+  "loading": "Cargando…",
+  "shipping.label": "Calcular el flete",
+  "shipping.eta": "hasta {eta} días",
+  "shipping.free": "Gratis"
 }

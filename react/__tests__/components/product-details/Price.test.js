@@ -1,12 +1,12 @@
 import React from 'react'
 import { mountWithIntl, loadTranslationObject } from 'enzyme-react-intl'
 
-import { getIntlContextInfo, getIntlInstance } from './helpers/intlHelper'
-import Price from '../Price'
+import { getIntlContextInfo, getIntlInstance } from '../../helpers/intlHelper'
+import Price from '../../../Price'
 
-import enLocale from '../locales/en-US.json'
-import esLocale from '../locales/es-AR.json'
-import ptLocale from '../locales/pt-BR.json'
+import enLocale from '../../../locales/en-US.json'
+import esLocale from '../../../locales/es-AR.json'
+import ptLocale from '../../../locales/pt-BR.json'
 
 const locales = {
   'pt-BR': ptLocale,
