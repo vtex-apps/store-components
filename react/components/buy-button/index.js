@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, compose } from 'react-apollo'
+import find from 'lodash/find'
+import emitter from 'emitter'
 
 import Button from '@vtex/styleguide/lib/Button'
 
@@ -11,11 +13,16 @@ import orderFormQuery from './queries/orderFormQuery.gql'
  * BuyButton Component. Adds a list of items to the cart.
  */
 export class BuyButton extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { isLoading: false }
+  }
   static defaultProps = {
     quantity: 1,
     seller: 1,
   }
-  handleAddToCart = event => {
+  handleAddToCart = () => {
+    this.setState({ isLoading: !this.state.isLoading })
     const {
       data: {
         orderForm: { orderFormId },
@@ -24,9 +31,7 @@ export class BuyButton extends Component {
       quantity,
       seller,
       skuId,
-      afterClick,
     } = this.props
-
     mutate({
       variables: {
         orderFormId,
@@ -40,15 +45,36 @@ export class BuyButton extends Component {
         ],
       },
       refetchQueries: [{ query: orderFormQuery }],
+    }).then(res => {
+      const { items } = res.data.addItem
+      if (find(items, { id: skuId })) {
+        emitter.emit('event:buy')
+        this.setState({ isLoading: !this.state.isLoading })
+      }
+    }, (err) => {
+      if (err) {
+        emitter.emit('event:error', err)
+        this.setState({ isLoading: !this.state.isLoading })
+      }
     })
-    afterClick(event)
   }
 
   render() {
+    const { isLoading } = this.state
     return (
-      <Button primary onClick={this.handleAddToCart}>
-        {this.props.children}
-      </Button>
+      <div>
+        {
+          (isLoading) ? (
+            <Button primary onClick={this.handleAddToCart}>
+              {this.props.children}
+            </Button>
+          ) : (
+            <Button disabled isLoading={isLoading}>
+              {this.props.children}
+            </Button>
+          )
+        }
+      </div>
     )
   }
 }
@@ -64,8 +90,6 @@ BuyButton.propTypes = {
   seller: PropTypes.number,
   /** Graphql property to call a mutation */
   mutate: PropTypes.func.isRequired,
-  /** Function that will be called after the mutation */
-  afterClick: PropTypes.func.isRequired,
   /** Property that contains OrderForm response */
   data: PropTypes.shape({
     /** Order form used in the buy button */
