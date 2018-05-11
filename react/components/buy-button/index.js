@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, compose } from 'react-apollo'
 import find from 'lodash/find'
-import emitter from 'emitter'
+import emitter from 'component-emitter'
 
 import Button from '@vtex/styleguide/lib/Button'
 
