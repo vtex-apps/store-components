@@ -8,4 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Changed
-- Transform `npm-storecomponents` in a app that can be used in a VTEX store.
+
+* Transform `npm-storecomponents` in a app that can be used in a VTEX store.
+
+### Fixed
+
+* Fix locales directory to work with linked Apps.
