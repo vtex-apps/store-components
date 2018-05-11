@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+* Add all `product-details` components to Apps.
+
 ### Changed
 
 * Transform `npm-storecomponents` in a app that can be used in a VTEX store.

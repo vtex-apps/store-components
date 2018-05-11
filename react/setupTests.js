@@ -2,7 +2,7 @@ import { configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import { JSDOM } from 'jsdom'
 
-import loadLocales from './loadLocales'
+import loadLocales from './__tests__/helpers/loadLocales'
 loadLocales()
 
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>')

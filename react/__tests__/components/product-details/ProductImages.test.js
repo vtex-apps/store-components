@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 
-import ProductImages from '../ProductImages'
+import ProductImages from '../../../ProductImages'
 
 describe('<ProductImages /> component', () => {
   const ProductImagesPropsMock = {}

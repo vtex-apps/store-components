@@ -15,7 +15,7 @@ class ProductName extends Component {
     /** Brand name */
     brandName: PropTypes.string,
     /** Display large font */
-    large: PropTypes.boolean,
+    large: PropTypes.bool,
   }
 
   static defaultProps = {
