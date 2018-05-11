@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Slider from 'react-slick'
-import { Arrow, Dots } from '@vtex/slick-components'
+import Dots from '../../../slider/Dots'
+import Arrow from '../../../slider/Arrow'
 
 import ThumbnailItem from './ThumbnailItem'
 
