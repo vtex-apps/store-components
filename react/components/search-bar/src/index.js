@@ -6,6 +6,8 @@ import AutocompleteInput from './components/AutocompleteInput'
 
 import Downshift from 'downshift'
 
+import './global.css'
+
 /** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
 export default class SearchBar extends Component {
   render() {
@@ -21,7 +23,7 @@ export default class SearchBar extends Component {
             highlightedIndex,
             isOpen,
           }) => (
-            <div>
+            <div className="relative">
               <AutocompleteInput {...getInputProps({ placeholder })} />
               {isOpen && inputValue !== '' ? (
                 <ResultsLits
