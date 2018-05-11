@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, compose } from 'react-apollo'
 import find from 'lodash/find'
-
 import Button from '@vtex/styleguide/lib/Button'
 
 import addToCartMutation from './mutations/addToCartMutation.gql'
@@ -47,10 +46,12 @@ export class BuyButton extends Component {
     }).then(res => {
       const { items } = res.data.addItem
       if (find(items, { id: skuId })) {
+        document.dispatchEvent(new Event('item:add'))
         this.setState({ isLoading: !this.state.isLoading })
       }
     }, (err) => {
       if (err) {
+        document.dispatchEvent(new Event('item:fail'))
         this.setState({ isLoading: !this.state.isLoading })
       }
     })
