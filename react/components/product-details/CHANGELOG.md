@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+* Initial version of the shipping simulator.
+
+### Changed
+
+* Add large prop to ProductName component.
+
 ## [1.2.10] - 2018-05-08
 
 ### Changed

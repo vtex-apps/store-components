@@ -2,5 +2,8 @@
   "pricing.installment-display": "ou até {installments} {times} de {installmentPrice}",
   "pricing.from": "de:",
   "pricing.to": "por:",
-  "loading": "Carregando…"
+  "loading": "Carregando…",
+  "shipping.label": "Calcular o frete",
+  "shipping.eta": "até {eta} dias",
+  "shipping.free": "Grátis"
 }

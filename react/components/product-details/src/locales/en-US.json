@@ -2,5 +2,8 @@
   "pricing.installment-display": "or up to {installments} {times} of {installmentPrice}",
   "pricing.from": "from:",
   "pricing.to": "to:",
-  "loading": "Loading…"
+  "loading": "Loading…",
+  "shipping.label": "Calculate shipping",
+  "shipping.eta": "up to {eta} days",
+  "shipping.free": "Free"
 }
