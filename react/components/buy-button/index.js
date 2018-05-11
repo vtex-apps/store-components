@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, compose } from 'react-apollo'
 import find from 'lodash/find'
+import emitter from 'emitter'
 
 import Button from '@vtex/styleguide/lib/Button'
 
@@ -47,6 +48,12 @@ export class BuyButton extends Component {
     }).then(res => {
       const { items } = res.data.addItem
       if (find(items, { id: skuId })) {
+        emitter.emit('event:buy')
+        this.setState({ isAddToCart: !this.state.isAddToCart })
+      }
+    }, (err) => {
+      if (err) {
+        emitter.emit('event:error', err)
         this.setState({ isAddToCart: !this.state.isAddToCart })
       }
     })
