@@ -5,9 +5,9 @@ import { Link } from 'render'
 import autocomplete from '../queries/autocomplete.gql'
 
 const listClassNames =
-  'vtex-results__list w-100 mt3 border-box bw1 br2 b--solid outline-0 near-black b--light-gray bg-white f5 pv4 ph6'
+  'vtex-results__list z-max absolute w-100 mt3 border-box bw1 br2 b--solid outline-0 near-black b--light-gray bg-white f5 pv4 ph6'
 const listItemClassNames =
-  'vtex-results__item w-95 mt1 pa1 bw1 br2 flex outline-0 near-black b--light-gray  bg-white f5 pv4 ph6 hover-b--silver '
+  'vtex-results__item dim pointer w-95 mt1 pa1 near-black f5 pv4 ph6'
 
 function getImageUrl(image) {
   return (image.match(/http:(.*?)"/g) || [''])[0]
@@ -21,45 +21,46 @@ class ResultsList extends Component {
 
     if (data.loading) {
       return (
-        <div className={listClassNames}>
-          <div className={listItemClassNames}>Loading...</div>
-        </div>
+        <ol className={listClassNames} style={{ listStyleType: 'none' }}>
+          <li className={listItemClassNames}>Loading...</li>
+        </ol>
       )
     }
 
     if (items.length === 0) {
       return (
-        <div className={listClassNames}>
-          <div className={listItemClassNames}>{emptyPlaceholder}</div>
-        </div>
+        <ol className={listClassNames} style={{ listStyleType: 'none' }}>
+          <li className={listItemClassNames}>{emptyPlaceholder}</li>
+        </ol>
       )
     }
 
     return (
-      <div className={listClassNames}>
+      <ol className={listClassNames} style={{ listStyleType: 'none' }}>
         {items.map((el, index) => (
-          <Link
-            page={el.criteria ? 'store/search' : 'store/product'}
-            params={
-              el.criteria ? { term: `${el.slug}` } : { slug: `${el.slug}` }
-            }
-            key={el.name + index}
-            {...getItemProps({
-              item: el.name,
-              index,
-            })}
-          >
-            <div className={listItemClassNames}>
+          <li key={el.name + index} className={listItemClassNames}>
+            <Link
+              page={el.criteria ? 'store/search' : 'store/product'}
+              params={
+                el.criteria ? { term: `${el.slug}` } : { slug: `${el.slug}` }
+              }
+              {...getItemProps({
+                item: el.name,
+                index,
+              })}
+              className="flex"
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
               {el.thumb && (
                 <div className="mr4">
-                  <img src={getImageUrl(el.thumb)} />
+                  <img src={getImageUrl(el.thumb)} style={{ width: '50px' }} />
                 </div>
               )}
               <div className="flex justify-center items-center">{el.name}</div>
-            </div>
-          </Link>
+            </Link>
+          </li>
         ))}
-      </div>
+      </ol>
     )
   }
 }

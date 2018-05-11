@@ -1,16 +1,19 @@
-.vtex-searchbar .vtex-results__list img {
+.vtex-searchbar .vtex-results__list .vtex-results__item img {
   width: 50px;
 }
 
-.vtex-searchbar .vtex-results__list div {
-  max-height: 20px !important;
-  z-index: 1000 !important;
+.vtex-results__list {
+  list-style-type: none;
 }
 
-.vtex-searchbar .vtex-results__list :link {
+.vtex-results__item a:link {
   text-decoration: none;
 }
 
-.vtex-searchbar .vtex-results__list :hover {
-  background-color: grey;
+.vtex-searchbar .vtex-results__list.vtex-results__item :hover {
+  background-color: gold;
+}
+
+.vtex-searchbar .vtex-results__list {
+  top: 100%;
 }
