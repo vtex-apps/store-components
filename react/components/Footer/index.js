@@ -48,7 +48,7 @@ const paymentFormSchema = {
       enum: [
         'MasterCard',
         'Visa',
-        'Diners',
+        'Diners Club',
       ],
     },
   },
