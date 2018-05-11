@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql, compose } from 'react-apollo'
 import find from 'lodash/find'
-import emitter from 'component-emitter'
 
 import Button from '@vtex/styleguide/lib/Button'
 
@@ -48,12 +47,10 @@ export class BuyButton extends Component {
     }).then(res => {
       const { items } = res.data.addItem
       if (find(items, { id: skuId })) {
-        emitter.emit('event:buy')
         this.setState({ isLoading: !this.state.isLoading })
       }
     }, (err) => {
       if (err) {
-        emitter.emit('event:error', err)
         this.setState({ isLoading: !this.state.isLoading })
       }
     })
@@ -65,11 +62,11 @@ export class BuyButton extends Component {
       <div>
         {
           (isLoading) ? (
-            <Button primary onClick={this.handleAddToCart}>
+            <Button disabled isLoading={isLoading}>
               {this.props.children}
             </Button>
           ) : (
-            <Button disabled isLoading={isLoading}>
+            <Button primary onClick={this.handleAddToCart}>
               {this.props.children}
             </Button>
           )
