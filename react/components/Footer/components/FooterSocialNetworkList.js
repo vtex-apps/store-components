@@ -23,7 +23,7 @@ class FooterSocialNetworkItem extends Component {
     }
 
     return (
-      <a href={this.props.url}>
+      <a href={this.props.url} target="_blank">
         <img className="vtex-footer__social-network-item" src={image} />
       </a>
     )
