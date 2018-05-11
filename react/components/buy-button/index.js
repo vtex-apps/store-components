@@ -46,12 +46,12 @@ export class BuyButton extends Component {
     }).then(res => {
       const { items } = res.data.addItem
       if (find(items, { id: skuId })) {
-        document.dispatchEvent(new Event('item:adicionado'))
+        document.dispatchEvent(new Event('item:add'))
         this.setState({ isLoading: !this.state.isLoading })
       }
     }, (err) => {
       if (err) {
-        document.dispatchEvent(new Event('item:falha'))
+        document.dispatchEvent(new Event('item:fail'))
         this.setState({ isLoading: !this.state.isLoading })
       }
     })
