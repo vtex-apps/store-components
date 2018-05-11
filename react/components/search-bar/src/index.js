@@ -6,7 +6,7 @@ import AutocompleteInput from './components/AutocompleteInput'
 
 import Downshift from 'downshift'
 
-import './search-bar.css'
+import './global.css'
 
 /** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
 export default class SearchBar extends Component {

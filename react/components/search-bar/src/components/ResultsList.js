@@ -21,7 +21,7 @@ class ResultsList extends Component {
 
     if (data.loading) {
       return (
-        <ol className={listClassNames} style={{ listStyleType: 'none' }}>
+        <ol className={listClassNames}>
           <li className={listItemClassNames}>Loading...</li>
         </ol>
       )
@@ -29,14 +29,14 @@ class ResultsList extends Component {
 
     if (items.length === 0) {
       return (
-        <ol className={listClassNames} style={{ listStyleType: 'none' }}>
+        <ol className={listClassNames}>
           <li className={listItemClassNames}>{emptyPlaceholder}</li>
         </ol>
       )
     }
 
     return (
-      <ol className={listClassNames} style={{ listStyleType: 'none' }}>
+      <ol className={listClassNames}>
         {items.map((el, index) => (
           <li key={el.name + index} className={listItemClassNames}>
             <Link
@@ -49,11 +49,13 @@ class ResultsList extends Component {
                 index,
               })}
               className="flex"
-              style={{ textDecoration: 'none', color: 'inherit' }}
             >
               {el.thumb && (
                 <div className="mr4">
-                  <img src={getImageUrl(el.thumb)} style={{ width: '50px' }} />
+                  <img
+                    className="vtex-results__item-image"
+                    src={getImageUrl(el.thumb)}
+                  />
                 </div>
               )}
               <div className="flex justify-center items-center">{el.name}</div>
