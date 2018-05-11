@@ -1,4 +1,4 @@
-import { get } from 'lodash.get'
+import get from 'lodash.get'
 
 function getSlideListWidth(slick) {
   return slick && slick.innerSlider && slick.innerSlider.list.clientWidth

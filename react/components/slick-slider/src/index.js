@@ -10,9 +10,9 @@ import getItemsPerPage from './getItemsPerPage'
 import './global.css'
 
 const VTEXClasses = {
-  ARROW_RIGHT_CLASS: 'vtex-arrow-right',
-  ARROW_LEFT_CLASS: 'vtex-arrow-left',
-  DOTS_CLASS: 'vtex-dots',
+  ARROW_RIGHT_CLASS: 'vtex-slick-slider__arrow-right',
+  ARROW_LEFT_CLASS: 'vtex-slick-slider__arrow-left',
+  DOTS_CLASS: 'vtex-slick-slider__dots',
 }
 
 /**

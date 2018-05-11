@@ -40,3 +40,4 @@ dist
 build
 lerna-debug.log
 yarn-error.log
+yarn.lock
