@@ -15,14 +15,14 @@ import orderFormQuery from './queries/orderFormQuery.gql'
 export class BuyButton extends Component {
   constructor(props) {
     super(props)
-    this.state = { isAddToCart: false }
+    this.state = { isLoading: false }
   }
   static defaultProps = {
     quantity: 1,
     seller: 1,
   }
   handleAddToCart = () => {
-    this.setState({ isAddToCart: !this.state.isAddToCart })
+    this.setState({ isLoading: !this.state.isLoading })
     const {
       data: {
         orderForm: { orderFormId },
@@ -49,31 +49,30 @@ export class BuyButton extends Component {
       const { items } = res.data.addItem
       if (find(items, { id: skuId })) {
         emitter.emit('event:buy')
-        this.setState({ isAddToCart: !this.state.isAddToCart })
+        this.setState({ isLoading: !this.state.isLoading })
       }
     }, (err) => {
       if (err) {
         emitter.emit('event:error', err)
-        this.setState({ isAddToCart: !this.state.isAddToCart })
+        this.setState({ isLoading: !this.state.isLoading })
       }
     })
   }
 
   render() {
-    const { isAddToCart } = this.state
+    const { isLoading } = this.state
     return (
       <div>
         {
-          (!isAddToCart) &&
-          <Button primary onClick={this.handleAddToCart}>
-            {this.props.children}
-          </Button>
-        }
-        {
-          (isAddToCart) &&
-          <Button disabled isLoading={isAddToCart}>
-            {this.props.children}
-          </Button>
+          (isLoading) ? (
+            <Button primary onClick={this.handleAddToCart}>
+              {this.props.children}
+            </Button>
+          ) : (
+            <Button disabled isLoading={isLoading}>
+              {this.props.children}
+            </Button>
+          )
         }
       </div>
     )
