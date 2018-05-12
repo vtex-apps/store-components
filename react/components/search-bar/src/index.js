@@ -10,6 +10,14 @@ import './global.css'
 
 /** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
 export default class SearchBar extends Component {
+  // TODO: This redirect should be changed to react navigation
+  // frameworks, like React Router or another approach.
+  handlerEnterPress(event) {
+    if (event.key === 'Enter') {
+      window.location = `${event.target.value}/s`
+    }
+  }
+
   render() {
     const { placeholder, emptyPlaceholder } = this.props
     return (
@@ -24,7 +32,7 @@ export default class SearchBar extends Component {
             isOpen,
           }) => (
             <div className="relative">
-              <AutocompleteInput {...getInputProps({ placeholder })} />
+              <AutocompleteInput {...getInputProps({ placeholder })} onKeyDown={this.handlerEnterPress} />
               {isOpen && inputValue !== '' ? (
                 <ResultsLits
                   {...{
