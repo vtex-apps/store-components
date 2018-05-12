@@ -19,3 +19,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 * Fix locales directory to work with linked Apps.
+* Fix `search bar` when click on category result.
