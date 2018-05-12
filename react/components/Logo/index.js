@@ -11,7 +11,10 @@ export default class Logo extends Component {
     /** Title to be displayed as alt text */
     title: PropTypes.string.isRequired,
   }
-
+  static defaultProps = {
+    url: 'http://',
+    title: 'VTEX logo',
+  }
   render() {
     const { url, title } = this.props
 
