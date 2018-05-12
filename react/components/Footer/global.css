@@ -42,6 +42,10 @@
   width: 100%;
 }
 
+.vtex-footer__list-item--horizontal {
+  width: auto;
+}
+
 .vtex-footer__payment-form-item {
   height: 64px;
   width: 64px;
@@ -86,6 +90,10 @@
     margin-left: 0;
   }
 
+  .vtex-footer__list--horizontal {
+    flex-flow: row wrap;
+  }
+
   .vtex-footer__list-item {
     margin-right: 0;
   }
@@ -96,22 +104,37 @@
 }
 
 @media screen and (min-width: 40em) {
+  .vtex-footer__container {
+    flex-flow: row wrap;
+    padding: 20px;
+  }
+
   .vtex-footer__list {
     max-height: 150px;
   }
 
   .vtex-footer__list-container {
+    margin-top: 0;
     width: 225px;
+  }
+
+  .vtex-footer__list-container--horizontal {
+    width: auto;
+  }
+
+  .vtex-footer__list--horizontal {
+    flex-flow: row wrap;
   }
 }
 
 @media screen and (min-width: 64em) {
   .vtex-footer__container {
-    flex-direction: row;
+    padding: 42px 70px;
   }
 
-  .vtex-footer__list-container--horizontal {
-    width: auto;
+  .vtex-footer__container--compact {
+    padding-top: 22px;
+    padding-bottom: 22px;
   }
 
   .vtex-footer__list-container--right-aligned {
@@ -125,28 +148,27 @@
   .vtex-footer__list-item--horizontal {
     margin-right: 15px;
   }
-
-  .vtex-footer__list--horizontal {
-    flex-flow: row nowrap;
-  }
 }
 
 @media screen and (min-width: 80em) {
   .vtex-footer__container {
-    padding: 42px 320px;
-  }
-
-  .vtex-footer__container--compact {
-    padding-top: 22px;
-    padding-bottom: 22px;
+    padding: 42px 140px;
   }
 
   .vtex-footer__badge {
     padding: 0.35rem;
   }
+}
 
-  .vtex-footer__list-item--horizontal {
-    width: auto;
+@media screen and (min-width: 100em) {
+  .vtex-footer__container {
+    padding: 42px 250px;
+  }
+}
+
+@media screen and (min-width: 120em) {
+  .vtex-footer__container {
+    padding: 42px 320px;
   }
 }
 
