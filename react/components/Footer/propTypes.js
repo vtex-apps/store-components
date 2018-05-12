@@ -6,7 +6,7 @@ export const objectLikeLinkArray = PropTypes.objectOf(PropTypes.shape({
 }))
 
 export const objectLikeBadgeArray = PropTypes.objectOf(PropTypes.shape({
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
 }))
 
 export const objectLikePaymentFormArray = PropTypes.objectOf(PropTypes.shape({

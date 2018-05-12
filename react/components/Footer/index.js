@@ -90,8 +90,8 @@ export default class Footer extends Component {
     moreInformationLinks: objectLikeLinkArray,
     badges: objectLikeBadgeArray,
     paymentForms: objectLikePaymentFormArray,
-    showPaymentFormsInColor: PropTypes.bool.isRequired,
-    showSocialNetworksInColor: PropTypes.bool.isRequired,
+    showPaymentFormsInColor: PropTypes.bool,
+    showSocialNetworksInColor: PropTypes.bool,
     logo: PropTypes.string,
   }
 
