@@ -122,6 +122,10 @@
     width: auto;
   }
 
+  .vtex-footer__list-container--right-aligned {
+    margin-left: auto;
+  }
+
   .vtex-footer__list--horizontal {
     flex-flow: row wrap;
   }
@@ -135,10 +139,6 @@
   .vtex-footer__container--compact {
     padding-top: 22px;
     padding-bottom: 22px;
-  }
-
-  .vtex-footer__list-container--right-aligned {
-    margin-left: auto;
   }
 
   .vtex-footer__list-item {
