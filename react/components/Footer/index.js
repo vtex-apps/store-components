@@ -92,7 +92,12 @@ export default class Footer extends Component {
     paymentForms: objectLikePaymentFormArray,
     showPaymentFormsInColor: PropTypes.bool.isRequired,
     showSocialNetworksInColor: PropTypes.bool.isRequired,
-    logo: PropTypes.string.isRequired,
+    logo: PropTypes.string,
+  }
+
+  static defaultProps = {
+    showPaymentFormsInColor: false,
+    showSocialNetworksInColor: false,
   }
 
   static getSchema = ({

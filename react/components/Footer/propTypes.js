@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 
 export const objectLikeLinkArray = PropTypes.objectOf(PropTypes.shape({
-  url: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  url: PropTypes.string,
+  title: PropTypes.string,
 }))
 
 export const objectLikeBadgeArray = PropTypes.objectOf(PropTypes.shape({
