@@ -10,28 +10,15 @@
   color: #333333;
 }
 
-.vtex-footer__container--compact {
-  padding-top: 22px;
-  padding-bottom: 22px;
-}
-
 .vtex-footer__badge-list {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.vtex-footer__badge {
-  padding: 0.35rem;
-}
-
 .vtex-footer__list-container {
   padding: 0 0.35rem;
   height: 100%;
-}
-
-.vtex-footer__list-container--horizontal {
-  width: auto;
 }
 
 .vtex-footer__list-title {
@@ -63,10 +50,6 @@
 .vtex-footer__social-network-item {
   height: 32px;
   width: 32px;
-}
-
-.vtex-footer__list-item--horizontal {
-  width: auto;
 }
 
 .vtex-footer__list-link {
@@ -124,7 +107,11 @@
 
 @media screen and (min-width: 64em) {
   .vtex-footer__container {
-    padding: 42px 320px;
+    flex-direction: row;
+  }
+
+  .vtex-footer__list-container--horizontal {
+    width: auto;
   }
 
   .vtex-footer__list-container--right-aligned {
@@ -141,6 +128,25 @@
 
   .vtex-footer__list--horizontal {
     flex-flow: row nowrap;
+  }
+}
+
+@media screen and (min-width: 80em) {
+  .vtex-footer__container {
+    padding: 42px 320px;
+  }
+
+  .vtex-footer__container--compact {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
+  .vtex-footer__badge {
+    padding: 0.35rem;
+  }
+
+  .vtex-footer__list-item--horizontal {
+    width: auto;
   }
 }
 
