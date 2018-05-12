@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 * Add all `product-details` components to Apps.
-* Enter key press to the `search bar`
+* Add `Enter key` press to the `search bar`
 
 ### Changed
 
