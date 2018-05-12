@@ -42,7 +42,7 @@ class ResultsList extends Component {
             page="store/search"
             params={{ term: `${encodeURI(inputValue)}` }}
           >
-            <div className="flex justify-center items-center">{inputValue}</div>
+            {inputValue}
           </Link>
         </li>
         {items.map((el, index) => (
