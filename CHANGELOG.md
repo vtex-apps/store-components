@@ -8,16 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-
-* Add `uiSchema` to the Footer component.
-* Add all `product-details` components to Apps.
-* Add `Enter key` press to the `search bar`
+- Add `uiSchema` to the Footer component.
+- Add all `product-details` components to Apps.
+- Add `Enter key` press to the `search bar`.
 
 ### Changed
-
-* Transform `npm-storecomponents` in a app that can be used in a VTEX store.
+- Transform `npm-storecomponents` in a app that can be used in a VTEX store.
 
 ### Fixed
-
-* Fix locales directory to work with linked Apps.
-* Fix `search bar` when click on category result.
+- Fix locales directory to work with linked Apps.
+- Fix `search bar` when click on category result.
