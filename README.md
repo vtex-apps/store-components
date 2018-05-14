@@ -25,23 +25,22 @@ To start your development, create a new folder on react/components. Thats where 
 
 ```js
 
-import SearchBar from './components/search-bar/src/index'
+import SearchBar from './components/search-bar/index'
 
 export default SearchBar
 
 ``` 
 Inside your react/components/<component_name> you should have:
 
-- src/
---index.js
---components/ [Optional]
---queries/    [Optional]
---mutations/  [Optional]
---global.css <- optional if you don't need css
---CHANGELOG.md
---README.md
+-index.js
+-components/ [Optional]
+-queries/    [Optional]
+-mutations/  [Optional]
+-global.css <- optional if you don't need css
+-CHANGELOG.md
+-README.md
 
-### Working on your src/index.js
+### Working on your index.js
 
 All the css needed and used on the component should be inside of a global.css and it should be imported by the index.js file like:
 
@@ -49,7 +48,7 @@ All the css needed and used on the component should be inside of a global.css an
 import './global.css'
 ```
 
-All dependecies needed should be inserted inside the reac/package.json
+All dependencies needed should be inserted inside the react/package.json
 
 ## Testing
 
