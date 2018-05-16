@@ -62,8 +62,8 @@ export default class SlickSlider extends Component {
     settings.appendDots = dots => <Dots dots={dots} cssClass={VTEXClasses.DOTS_CLASS} />
     settings.slidesToShow = adaptToScreen ? itemsPerPage : settings.slidesToShow
     settings.slidesToScroll = scrollByPage ? settings.slidesToShow : settings.slidesToScroll
-    sliderSettings.infinite = sliderSettings.infinite !== undefined
-      ? sliderSettings.infinite : itemsPerPage < numItems
+    settings.infinite = settings.infinite !== undefined
+      ? settings.infinite : itemsPerPage < numItems
     return (
       <Slider {...settings} ref={(c) => {
         this._slick = c
