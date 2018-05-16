@@ -18,10 +18,12 @@ class Price extends Component {
       installmentPrice,
       showInstallments,
       showLabels,
+      showSavings,
       intl: { formatNumber },
     } = this.props
 
-    const showListPrice = this.props.showListPrice && sellingPrice !== listPrice
+    const differentPrices =
+      this.props.showListPrice && sellingPrice !== listPrice
 
     const currencyOptions = {
       style: 'currency',
@@ -35,49 +37,76 @@ class Price extends Component {
       currencyOptions
     )
 
+    const [installmentsElement, installmentPriceElement, timesElement] = [
+      installments,
+      formattedInstallmentPrice,
+      <span key="times">&times;</span>,
+    ].map((element, index) => (
+      <span className="vtex-price-installments__value ph1" key={index}>
+        {element}
+      </span>
+    ))
+
     return (
-      <div className="vtex-price tc fabriga">
-        {showListPrice && (
-          <div className="pv1 f6-ns f7-s normal">
+      <div className="vtex-price flex flex-column justify-around">
+        {differentPrices && (
+          <div className="vtex-price-list__container pv1 normal">
             {showLabels && (
-              <div className="vtex-price-list__label dib">
+              <div className="vtex-price-list__label dib strike">
                 <FormattedMessage id="pricing.from" />
               </div>
             )}
-            <div className="vtex-price-list dib strike ph2">
+            <div className="vtex-price-list dib ph2 strike">
               {formatNumber(listPrice, currencyOptions)}
             </div>
           </div>
         )}
-        <div className="pv1 b f4-ns f5-s">
+        <div className="vtex-price-selling__container pv1 b">
           {showLabels && (
-            <div className="vtex-selling-price__label dib">
+            <div className="vtex-price-selling__label dib">
               <FormattedMessage id="pricing.to" />
             </div>
           )}
-          <div className="vtex-selling-price dib ph2">
+          <div className="vtex-price-selling dib ph2">
             {formatNumber(sellingPrice, currencyOptions)}
           </div>
         </div>
         {showInstallments &&
           installments &&
           installmentPrice && (
-          <div className="f6-ns f7-s">
+          <div className="vtex-price-installments__container">
             <div className="vtex-price-installments dib">
               {showLabels ? (
                 <FormattedMessage
                   id="pricing.installment-display"
                   values={{
-                    installments,
-                    installmentPrice: formattedInstallmentPrice,
-                    times: <span>&times;</span>,
+                    installments: installmentsElement,
+                    installmentPrice: installmentPriceElement,
+                    times: timesElement,
                   }}
                 />
               ) : (
                 <span>
-                  {installments} &times; {formattedInstallmentPrice}
+                  {installmentsElement} {timesElement}{' '}
+                  {installmentPriceElement}
                 </span>
               )}
+            </div>
+          </div>
+        )}
+        {differentPrices &&
+          showSavings && (
+          <div className="vtex-price-savings__container">
+            <div className="vtex-price-savings dib">
+              <FormattedMessage
+                id="pricing.savings"
+                values={{
+                  savings: formatNumber(
+                    listPrice - sellingPrice,
+                    currencyOptions
+                  ),
+                }}
+              />
             </div>
           </div>
         )}
@@ -101,6 +130,8 @@ Price.propTypes = {
   installments: PropTypes.number,
   /** Single installment price */
   installmentPrice: PropTypes.number,
+  /** Determines if the savings information is shown */
+  showSavings: PropTypes.bool,
   /** intl property to format data */
   intl: intlShape.isRequired,
 }
