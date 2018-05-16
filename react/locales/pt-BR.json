@@ -11,5 +11,8 @@
   "loading": "Carregando…",
   "shipping.label": "Calcular o frete",
   "shipping.eta": "até {eta} dias",
-  "shipping.free": "Grátis"
+  "shipping.free": "Grátis",
+  "buybutton.add-success": "Item adicionado ao seu carrinho!",
+  "buybutton.add-failure":
+    "Algo deu errado e o item não pode ser adicionado ao seu carrinho!"
 }
