@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 - **slider** Fix infinite attribute of Slider settings
+* Fix Slider classNames
 
 ### Added
 
