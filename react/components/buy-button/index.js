@@ -26,7 +26,7 @@ export class BuyButton extends Component {
 
   translateMessage = id => this.props.intl.formatMessage({ id: id })
 
-  toastMessage = success => {
+  toastMessage = (success, err) => {
     const event = new Event(EVENT_TOAST)
 
     event.detail = {
@@ -34,6 +34,7 @@ export class BuyButton extends Component {
       message: this.translateMessage(
         success ? 'buybutton.add-success' : 'buybutton.add-failure'
       ),
+      err,
     }
 
     document.dispatchEvent(event)
@@ -69,8 +70,8 @@ export class BuyButton extends Component {
 
         this.setState({ isLoading: false })
       },
-      () => {
-        this.toastMessage(false)
+      err => {
+        this.toastMessage(false, err)
         this.setState({ isLoading: false })
       }
     )
