@@ -29,21 +29,17 @@ export class BuyButton extends Component {
 
   toastMessage = (success, err) => {
     const event = new Event(success ? EVENT_SUCCESS : EVENT_ERROR)
-
     event.detail = {
       success,
-      message: this.translateMessage('buybutton.add-failure'),
+      message: success ? '' : this.translateMessage('buybutton.add-failure'),
       err,
     }
-
     document.dispatchEvent(event)
   }
 
   handleAddToCart = () => {
     this.setState({ isLoading: true })
-
     const { addToCart, quantity, seller, skuId, getOrderForm } = this.props
-
     const orderFormId =
       getOrderForm.error || getOrderForm.loading
         ? ''
@@ -64,9 +60,7 @@ export class BuyButton extends Component {
     }).then(
       res => {
         const { items } = res.data.addItem
-
         this.toastMessage(find(items, { id: skuId }))
-
         this.setState({ isLoading: false })
       },
       err => {
@@ -116,6 +110,7 @@ BuyButton.propTypes = {
   /* Internationalization */
   intl: intlShape.isRequired,
 }
+
 export default injectIntl(
   compose(
     graphql(orderFormQuery, {
