@@ -1,3 +1,3 @@
-import Price from './components/Price/index'
+import ProductPrice from './components/Price/index'
 
-export default Price
+export default ProductPrice

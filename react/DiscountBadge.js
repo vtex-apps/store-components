@@ -1,3 +1,3 @@
-import DiscountBadge from './components/product-details/src/DiscountBadge'
+import DiscountBadge from './components/DiscountBadge/index'
 
 export default DiscountBadge

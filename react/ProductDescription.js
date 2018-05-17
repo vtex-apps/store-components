@@ -1,3 +1,3 @@
-import ProductDescription from './components/product-description/index'
+import ProductDescription from './components/ProductDescription/index'
 
 export default ProductDescription
