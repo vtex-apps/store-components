@@ -49,7 +49,6 @@ const socialNetworkSchema = {
     socialNetwork: {
       title: 'Social Network',
       type: 'string',
-      default: 'Facebook',
       enum: [
         'Facebook',
         'Twitter',
@@ -67,7 +66,6 @@ const paymentFormSchema = {
     paymentType: {
       title: 'Payment Type',
       type: 'string',
-      default: 'MasterCard',
       enum: [
         'MasterCard',
         'Visa',
@@ -187,8 +185,8 @@ export default class Footer extends Component {
           default: 1,
           minimum: 0,
           widget: {
-            'ui:widget': 'range'
-          }
+            'ui:widget': 'range',
+          },
         },
         numberOfSectionLinks: {
           type: 'number',
@@ -196,8 +194,8 @@ export default class Footer extends Component {
           minimum: 0,
           default: 1,
           widget: {
-            'ui:widget': 'range'
-          }
+            'ui:widget': 'range',
+          },
         },
         numberOfMoreInformationLinks: {
           type: 'number',
@@ -205,8 +203,8 @@ export default class Footer extends Component {
           minimum: 0,
           default: 1,
           widget: {
-            'ui:widget': 'range'
-          }
+            'ui:widget': 'range',
+          },
         },
         numberOfBadges: {
           type: 'number',
@@ -214,8 +212,8 @@ export default class Footer extends Component {
           minimum: 0,
           default: 1,
           widget: {
-            'ui:widget': 'range'
-          }
+            'ui:widget': 'range',
+          },
         },
         numberOfPaymentForms: {
           type: 'number',
@@ -223,8 +221,8 @@ export default class Footer extends Component {
           minimum: 0,
           default: 1,
           widget: {
-            'ui:widget': 'range'
-          }
+            'ui:widget': 'range',
+          },
         },
         showPaymentFormsInColor: {
           type: 'boolean',
