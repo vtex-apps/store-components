@@ -52,7 +52,7 @@ export default class SlickSlider extends Component {
     }
   }
 
-  configureSettings() {
+  getSettings() {
     const { sliderSettings, adaptToScreen, scrollByPage, defaultItemWidth, children } = this.props
     const itemsPerPage = getItemsPerPage(this._slick, defaultItemWidth, sliderSettings.slidesToShow)
     const settings = { ...sliderSettings }
@@ -73,14 +73,9 @@ export default class SlickSlider extends Component {
   }
 
   render() {
-    const { children } = this.props
-    const settings = this.configureSettings()
-
     return (
-      <Slider {...settings} ref={(c) => {
-        this._slick = c
-      }}>
-        {children}
+      <Slider {...this.getSettings()} ref={c => { this._slick = c }}>
+        {this.props.children}
       </Slider>
     )
   }
