@@ -1,14 +1,14 @@
-# NPM store components
+# Store Components
 
 ## Description
 
-Npm-storecomponents is a collection of components that can be used to create/extend others vtex components.
+storecomponents is a collection of components that can be used to create/extend others vtex components.
 
 ## Continuous Integrations
 
 ### Travis CI
 
-[![Build Status](https://travis-ci.org/vtex-apps/npm-storecomponents.svg?branch=master)](https://travis-ci.org/vtex-apps/npm-storecomponents)
+[![Build Status](https://travis-ci.org/vtex-apps/storecomponents.svg?branch=master)](https://travis-ci.org/vtex-apps/storecomponents)
 
 ## Table of Contents
 
@@ -24,27 +24,26 @@ To start your development, create a new folder on react/components. Thats where 
 #Search bar example:
 
 ```js
-
 import SearchBar from './components/search-bar/index'
 
 export default SearchBar
-
 ``` 
-Inside your react/components/<component_name> you should have:
 
--index.js
--components/ [Optional]
--queries/    [Optional]
--mutations/  [Optional]
--global.css <- optional if you don't need css
--CHANGELOG.md
--README.md
+Inside your `react/components/<component_name>` you should have:
+
+- index.js
+- components/ [Optional]
+- queries/    [Optional]
+- mutations/  [Optional]
+- global.css <- optional if you don't need css
+- CHANGELOG.md
+- README.md
 
 ### Working on your index.js
 
 All the css needed and used on the component should be inside of a global.css and it should be imported by the index.js file like:
 
-```javascript
+```js
 import './global.css'
 ```
 
@@ -58,10 +57,9 @@ To test your code you should run on your workspace:
 vtex link
 ```
 
-And add your new component on the manifest.js dependencies section of the other app, like:
+And add your new component on the manifest.json dependencies section of the other app, like:
 
-```js
-
+```json
 "dependencies": {
     "vtex.carousel": "1.x",
     "vtex.shelf": "0.x",
@@ -73,7 +71,5 @@ And add your new component on the manifest.js dependencies section of the other 
     "vtex.gallery": "0.x",
     "vtex.category-menu": "0.x"
 }
-
 ```
-
 
