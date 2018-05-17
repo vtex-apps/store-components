@@ -1,0 +1,11 @@
+query Autocomplete($maxRows: Int, $inputValue: String) {
+  autocomplete(maxRows: $maxRows, searchTerm: $inputValue) {
+    itemsReturned {
+      thumb
+      name
+      href
+      criteria
+      slug
+    }
+  }
+}
