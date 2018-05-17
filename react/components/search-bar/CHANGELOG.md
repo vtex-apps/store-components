@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Added
+### Changed
+- **SSR** Added SSR compliancy to the searchbar.
 
-* **Node Module** First version of the search component that calls the mutation that display the products options.
+### Added
+- **Node Module** First version of the search component that calls the mutation that display the products options.
