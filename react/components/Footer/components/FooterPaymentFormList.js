@@ -1,29 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
+
 import footerList from './footerList'
+import ImageLoader from './ImageLoader'
 
-class FooterPaymentFormItem extends Component {
-  state = {}
+const FooterPaymentFormItem = ({ paymentType, showInColor }) => (
+  <ImageLoader imageName={`${paymentType}${showInColor ? '' : '-BW'}.svg`}>
+    {(image, loading) => {
+      if (loading) {
+        return null
+      }
 
-  componentDidMount() {
-    const { paymentType, showInColor } = this.props
-
-    import(`../images/${paymentType}${showInColor ? '' : '-BW'}.svg`)
-      .then(image => {
-        this.setState({ image })
-      })
-  }
-
-  render() {
-    const { image } = this.state
-
-    if (!image) {
-      return null
-    }
-
-    return <img className="vtex-footer__payment-form-item" src={image} />
-  }
-}
+      return <img className="vtex-footer__payment-form-item" src={image} />
+    }}
+  </ImageLoader>
+)
 
 FooterPaymentFormItem.displayName = 'FooterPaymentFormItem'
 

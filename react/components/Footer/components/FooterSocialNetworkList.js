@@ -1,34 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import footerList from './footerList'
+import ImageLoader from './ImageLoader'
 
-class FooterSocialNetworkItem extends Component {
-  state = {}
+const FooterSocialNetworkItem = ({ socialNetwork, showInColor, url }) => (
+  <ImageLoader imageName={`${socialNetwork}${showInColor ? '' : '-BW'}.svg`}>
+    {(image, loading) => {
+      if (loading) {
+        return null
+      }
 
-  componentDidMount() {
-    const { socialNetwork, showInColor } = this.props
-
-    import(`../images/${socialNetwork}${showInColor ? '' : '-BW'}.svg`)
-      .then(image => {
-        this.setState({ image })
-      })
-  }
-
-  render() {
-    const { image } = this.state
-
-    if (!image) {
-      return null
-    }
-
-    return (
-      <a href={this.props.url} target="_blank">
-        <img className="vtex-footer__social-network-item" src={image} />
-      </a>
-    )
-  }
-}
+      return (
+        <a href={url} target="_blank">
+          <img className="vtex-footer__social-network-item" src={image} />
+        </a>
+      )
+    }}
+  </ImageLoader>
+)
 
 FooterSocialNetworkItem.displayName = 'FooterSocialNetworkItem'
 
