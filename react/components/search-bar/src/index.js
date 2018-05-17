@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { NoSSR } from 'render'
 
 import ResultsLits from './components/ResultsList'
 import AutocompleteInput from './components/AutocompleteInput'
@@ -12,7 +13,7 @@ import './global.css'
 export default class SearchBar extends Component {
   // TODO: This redirect should be changed to react navigation
   // frameworks, like React Router or another approach.
-  handlerEnterPress(event) {
+  handleEnterPress(event) {
     if (event.key === 'Enter') {
       window.location = `${event.target.value}/s`
     }
@@ -20,33 +21,41 @@ export default class SearchBar extends Component {
 
   render() {
     const { placeholder, emptyPlaceholder } = this.props
+
+    const fallback = <AutocompleteInput placeholder={placeholder} />
+
     return (
       <div className="vtex-searchbar">
-        <Downshift>
-          {({
-            getInputProps,
-            getItemProps,
-            inputValue,
-            selectedItem,
-            highlightedIndex,
-            isOpen,
-          }) => (
-            <div className="relative">
-              <AutocompleteInput {...getInputProps({ placeholder })} onKeyDown={this.handlerEnterPress} />
-              {isOpen && inputValue !== '' ? (
-                <ResultsLits
-                  {...{
-                    inputValue,
-                    selectedItem,
-                    highlightedIndex,
-                    getItemProps,
-                    emptyPlaceholder,
-                  }}
+        <NoSSR onSSR={fallback}>
+          <Downshift>
+            {({
+              getInputProps,
+              getItemProps,
+              inputValue,
+              selectedItem,
+              highlightedIndex,
+              isOpen,
+            }) => (
+              <div className="relative">
+                <AutocompleteInput
+                  {...getInputProps({ placeholder })}
+                  onKeyDown={this.handleEnterPress}
                 />
-              ) : null}
-            </div>
-          )}
-        </Downshift>
+                {isOpen && inputValue !== '' ? (
+                  <ResultsLits
+                    {...{
+                      inputValue,
+                      selectedItem,
+                      highlightedIndex,
+                      getItemProps,
+                      emptyPlaceholder,
+                    }}
+                  />
+                ) : null}
+              </div>
+            )}
+          </Downshift>
+        </NoSSR>
       </div>
     )
   }
