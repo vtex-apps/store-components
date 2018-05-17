@@ -32,6 +32,8 @@ Inside your `react/components/<component_name>` you should have:
 
 - index.js
 - components/ [Optional]
+- constants/  [Optional]
+- utils/      [Optional]
 - queries/    [Optional]
 - mutations/  [Optional]
 - global.css <- optional if you don't need css

@@ -5,7 +5,7 @@ import Slider from 'react-slick'
 import Dots from './components/Dots'
 import Arrow from './components/Arrow'
 
-import getItemsPerPage from './components/ItemsPerPage'
+import getItemsPerPage from './utils/ItemsPerPage'
 
 import './global.css'
 
