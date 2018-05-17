@@ -29,16 +29,11 @@ export class BuyButton extends Component {
   toastMessage = success => {
     const event = new Event(EVENT_TOAST)
 
-    if (success) {
-      event.detail = {
-        success: true,
-        message: this.translateMessage('buybutton.add-success'),
-      }
-    } else {
-      event.detail = {
-        success: false,
-        message: this.translateMessage('buybutton.add-failure'),
-      }
+    event.detail = {
+      success,
+      message: this.translateMessage(
+        success ? 'buybutton.add-success' : 'buybutton.add-failure'
+      ),
     }
 
     document.dispatchEvent(event)
@@ -70,11 +65,7 @@ export class BuyButton extends Component {
       res => {
         const { items } = res.data.addItem
 
-        if (find(items, { id: skuId })) {
-          this.toastMessage(true)
-        } else {
-          this.toastMessage(false)
-        }
+        this.toastMessage(find(items, { id: skuId }))
 
         this.setState({ isLoading: false })
       },
