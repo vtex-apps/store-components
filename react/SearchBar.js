@@ -1,3 +1,3 @@
-import SearchBar from './components/search-bar/src/index'
+import SearchBar from './components/SearchBar/index'
 
 export default SearchBar

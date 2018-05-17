@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Slider from 'react-slick'
 
-import Dots from './Dots'
-import Arrow from './Arrow'
+import Dots from './components/Dots'
+import Arrow from './components/Arrow'
 
-import getItemsPerPage from './getItemsPerPage'
+import getItemsPerPage from './components/ItemsPerPage'
 
 import './global.css'
 
