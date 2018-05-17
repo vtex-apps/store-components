@@ -19,3 +19,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix `search bar` when click on category result.
 - **slider** Fix infinite attribute of Slider settings
 - Fix Slider classNames
+- Fix Slider settings (slidesToScroll, slidesToShow)
