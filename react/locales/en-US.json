@@ -12,7 +12,6 @@
   "shipping.label": "Calculate shipping",
   "shipping.eta": "up to {eta} days",
   "shipping.free": "Free",
-  "buybutton.add-success": "Item added to your cart!",
   "buybutton.add-failure":
     "Something went wrong and the item wasn't added to your cart!"
 }

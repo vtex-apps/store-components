@@ -8,7 +8,8 @@ import { injectIntl, intlShape } from 'react-intl'
 import addToCartMutation from './mutations/addToCartMutation.gql'
 import orderFormQuery from './queries/orderFormQuery.gql'
 
-const EVENT_TOAST = 'toast:message'
+const EVENT_SUCCESS = 'item:add'
+const EVENT_ERROR = 'message:error'
 
 /**
  * BuyButton Component. Adds a list of items to the cart.
@@ -27,13 +28,11 @@ export class BuyButton extends Component {
   translateMessage = id => this.props.intl.formatMessage({ id: id })
 
   toastMessage = (success, err) => {
-    const event = new Event(EVENT_TOAST)
+    const event = new Event(success ? EVENT_SUCCESS : EVENT_ERROR)
 
     event.detail = {
       success,
-      message: this.translateMessage(
-        success ? 'buybutton.add-success' : 'buybutton.add-failure'
-      ),
+      message: this.translateMessage('buybutton.add-failure'),
       err,
     }
 

@@ -12,7 +12,6 @@
   "shipping.label": "Calcular el flete",
   "shipping.eta": "hasta {eta} días",
   "shipping.free": "Gratis",
-  "buybutton.add-success": "¡Artículo añadido a tu carrito!",
   "buybutton.add-failure":
     "¡Algo salió mal y el artículo no se agregó a tu carrito!"
 }
