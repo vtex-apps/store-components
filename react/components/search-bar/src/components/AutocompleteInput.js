@@ -14,17 +14,17 @@ export default class AutocompleteInput extends Component {
 
 AutocompleteInput.propTypes = {
   /** Downshift prop to be passed to the input*/
-  autoComplete: PropTypes.string.isRequired,
+  autoComplete: PropTypes.string,
   /** Input ID*/
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   /** Downshift prop to be passed to the input*/
-  onBlur: PropTypes.func.isRequired,
+  onBlur: PropTypes.func,
   /** Downshift prop to be passed to the input*/
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   /** Downshift prop to be passed to the input*/
-  onKeyDown: PropTypes.func.isRequired,
+  onKeyDown: PropTypes.func,
   /** Downshift prop to be passed to the input*/
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   /** Placeholder to be used on the input */
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
 }
