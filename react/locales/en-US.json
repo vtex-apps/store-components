@@ -4,11 +4,14 @@
   "section-links": "Links",
   "more-information-links": "More Information",
   "payment-form": "Payment Forms",
-  "pricing.installment-display": "Or up to {installments} {times} of {installmentPrice}",
+  "pricing.installment-display":
+    "Or up to {installments} {times} of {installmentPrice}",
   "pricing.from": "From:",
   "pricing.to": "To:",
   "loading": "Loading…",
   "shipping.label": "Calculate shipping",
   "shipping.eta": "up to {eta} days",
-  "shipping.free": "Free"
+  "shipping.free": "Free",
+  "buybutton.add-failure":
+    "Something went wrong and the item wasn't added to your cart!"
 }
