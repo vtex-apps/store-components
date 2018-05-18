@@ -40,10 +40,9 @@ export class BuyButton extends Component {
   handleAddToCart = () => {
     this.setState({ isLoading: true })
     const { addToCart, quantity, seller, skuId, getOrderForm } = this.props
-    const orderFormId =
-      getOrderForm.error || getOrderForm.loading
-        ? ''
-        : getOrderForm.orderForm.orderFormId
+    const orderFormId = getOrderForm.error
+      ? ''
+      : getOrderForm.orderForm.orderFormId
 
     addToCart({
       variables: {
