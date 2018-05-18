@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Add error treatment on BuyButton component
+- Add error treatment on _BuyButton_ Component.
+- Update _ProductImages_ Component.
 
 ## [1.0.0] - 2018-05-18
 ### Added
