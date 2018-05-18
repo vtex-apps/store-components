@@ -1,3 +1,3 @@
-import Slider from './components/slider/index'
+import Slider from './components/Slider/index'
 
 export default Slider

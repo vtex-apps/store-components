@@ -1,3 +1,3 @@
-import ShippingSimulator from './components/product-details/src/ShippingSimulator'
+import ShippingSimulator from './components/ShippingSimulator/index'
 
 export default ShippingSimulator

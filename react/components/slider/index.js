@@ -2,17 +2,17 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Slider from 'react-slick'
 
-import Dots from './Dots'
-import Arrow from './Arrow'
+import Dots from './components/Dots'
+import Arrow from './components/Arrow'
 
-import getItemsPerPage from './getItemsPerPage'
+import getItemsPerPage from './utils/ItemsPerPage'
 
 import './global.css'
 
 const VTEXClasses = {
-  ARROW_RIGHT_CLASS: 'vtex-slick-slider__arrow-right',
-  ARROW_LEFT_CLASS: 'vtex-slick-slider__arrow-left',
-  DOTS_CLASS: 'vtex-slick-slider__dots',
+  ARROW_RIGHT_CLASS: 'vtex-slider__arrow-right',
+  ARROW_LEFT_CLASS: 'vtex-slider__arrow-left',
+  DOTS_CLASS: 'vtex-slider__dots',
 }
 
 /**
@@ -52,7 +52,7 @@ export default class SlickSlider extends Component {
     }
   }
 
-  render() {
+  getSettings() {
     const { sliderSettings, adaptToScreen, scrollByPage, defaultItemWidth, children } = this.props
     const itemsPerPage = getItemsPerPage(this._slick, defaultItemWidth, sliderSettings.slidesToShow)
     const settings = { ...sliderSettings }
@@ -60,15 +60,22 @@ export default class SlickSlider extends Component {
     settings.nextArrow = <Arrow cssClass={VTEXClasses.ARROW_RIGHT_CLASS} />
     settings.prevArrow = <Arrow cssClass={VTEXClasses.ARROW_LEFT_CLASS} />
     settings.appendDots = dots => <Dots dots={dots} cssClass={VTEXClasses.DOTS_CLASS} />
-    settings.slidesToShow = adaptToScreen ? itemsPerPage : settings.slidesToShow
-    settings.slidesToScroll = scrollByPage ? settings.slidesToShow : settings.slidesToScroll
-    sliderSettings.infinite = sliderSettings.infinite !== undefined
-      ? sliderSettings.infinite : itemsPerPage < numItems
+    if (adaptToScreen) {
+      settings.slidesToShow = itemsPerPage
+    }
+    if (scrollByPage) {
+      settings.slidesToScroll = settings.slidesToShow
+    }
+    if (settings.infinite !== undefined) {
+      settings.infinite = settings.slidesToScroll < numItems
+    }
+    return settings
+  }
+
+  render() {
     return (
-      <Slider {...settings} ref={(c) => {
-        this._slick = c
-      }}>
-        {children}
+      <Slider {...this.getSettings()} ref={c => { this._slick = c }}>
+        {this.props.children}
       </Slider>
     )
   }

@@ -1,3 +1,3 @@
-import ProductName from './components/product-details/src/ProductName'
+import ProductName from './components/ProductName/index'
 
 export default ProductName
