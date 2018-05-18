@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Slider from 'react-slick'
-import Dots from '../../Slider/components/Dots'
-import Arrow from '../../Slider/components/Arrow'
 
 import ThumbnailItem from './ThumbnailItem'
+import Slider from '../../../Slider'
 
 import VTEXClasses from '../constants/productImagesClasses'
 import { HORIZONTAL, VERTICAL } from '../constants/orientation'
@@ -33,28 +31,10 @@ class ThumbnailSlider extends Component {
     )
 
     return {
-      dots: false,
       speed: 500,
       infinite: false,
+      dots: false,
       arrows: true,
-      prevArrow: (
-        <Arrow
-          cssClass={
-            sliderVertical
-              ? VTEXClasses.VERTICAL_ARROW_PREV
-              : VTEXClasses.HORIZONTAL_ARROW_PREV
-          }
-        />
-      ),
-      nextArrow: (
-        <Arrow
-          cssClass={
-            sliderVertical
-              ? VTEXClasses.VERTICAL_ARROW_NEXT
-              : VTEXClasses.HORIZONTAL_ARROW_NEXT
-          }
-        />
-      ),
       slidesToShow: numOfVisibleItems,
       vertical: sliderVertical,
       verticalSwiping: sliderVertical,
@@ -64,11 +44,8 @@ class ThumbnailSlider extends Component {
         {
           breakpoint: 600,
           settings: {
-            arrows: false,
             dots: true,
-            appendDots: dots => (
-              <Dots dots={dots} cssClass={VTEXClasses.DOTS_CLASS} />
-            ),
+            arrows: false,
             slidesToShow: 1,
             vertical: false,
             verticalSwiping: false,
@@ -83,7 +60,6 @@ class ThumbnailSlider extends Component {
 
     const sliderVertical = orientation === VERTICAL
     const sliderSettings = this.configureSliderSettings()
-
     return (
       <div
         className={
@@ -92,14 +68,14 @@ class ThumbnailSlider extends Component {
             : VTEXClasses.HORIZONTAL_THUMBNAIL_SLIDER
         }>
         {
-          <Slider {...sliderSettings}>
-            {images.map(image => {
-              return (
-                <div key={image.imageUrl}>
-                  <ThumbnailItem image={image} onClick={onThumbnailClick} />
-                </div>
-              )
-            })}
+          <Slider sliderSettings={sliderSettings}>
+            {images.map(image => (
+              <ThumbnailItem
+                key={image.imageUrl}
+                image={image}
+                onClick={onThumbnailClick}
+              />
+            ))}
           </Slider>
         }
       </div>
