@@ -78,11 +78,9 @@ export class BuyButton extends Component {
               mutationRes => {
                 const { items } = mutationRes.data.addItem
                 this.toastMessage(find(items, { id: skuId }))
-                this.setState({ isLoading: false })
               },
               mutationErr => {
                 this.toastMessage(false, mutationErr)
-                this.setState({ isLoading: false })
               }
             )
         },
