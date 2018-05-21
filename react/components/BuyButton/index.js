@@ -35,6 +35,8 @@ export class BuyButton extends Component {
       err,
     }
     document.dispatchEvent(event)
+
+    this.setState({ isLoading: false })
   }
 
   handleAddToCart = client => {
@@ -86,7 +88,6 @@ export class BuyButton extends Component {
         },
         queryErr => {
           this.toastMessage(false, queryErr)
-          this.setState({ isLoading: false })
         }
       )
   }
