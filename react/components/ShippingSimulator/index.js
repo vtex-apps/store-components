@@ -3,7 +3,7 @@ import { injectIntl, intlShape } from 'react-intl'
 
 import ShippingTable from './components/ShippingTable'
 
-import './shipping-simulator.css'
+import './global.css'
 
 /**
  * Shipping simulator component
@@ -87,8 +87,7 @@ class ShippingSimulator extends Component {
           <button
             className="vtex-shipping-simulator__cta"
             onClick={this.handleClick}
-            disabled={zipcodeValue.length < 9}
-          >
+            disabled={zipcodeValue.length < 9}>
             OK
           </button>
         </label>
@@ -100,4 +99,3 @@ class ShippingSimulator extends Component {
 }
 
 export default injectIntl(ShippingSimulator)
-

@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update _ProductImages_ Component.
 - Update max visible slide items on thumbnail slider
 
+### Fixed
+- Fix _ShippingSimulator_ Component CSS.
+
 ## [1.0.0] - 2018-05-18
 ### Added
 - Add all `product-details` components to Apps.
