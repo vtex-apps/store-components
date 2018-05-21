@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add error treatment on _BuyButton_ Component.
 - Update _ProductImages_ Component.
 - Update max visible slide items on thumbnail slider
+- Add arrow icons from Nucleo to the Slider
 
 ### Fixed
 - Fix _ShippingSimulator_ Component CSS.
