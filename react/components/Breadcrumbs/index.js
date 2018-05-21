@@ -30,7 +30,7 @@ export class Breadcrumb extends Component {
             page="store/product"
             params={{ slug: `${encodeURI(slug)}` }}
           >
-            {search}
+            {slug}
           </Link>
         )}
       </div>
