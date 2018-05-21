@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { graphql, compose } from 'react-apollo'
+import { ApolloConsumer } from 'react-apollo'
 import find from 'lodash/find'
 import Button from '@vtex/styleguide/lib/Button'
 import { injectIntl, intlShape } from 'react-intl'
 
-import addToCartMutation from './mutations/addToCartMutation.gql'
-import orderFormQuery from './queries/orderFormQuery.gql'
+import ADD_TO_CART_MUTATION from './mutations/addToCartMutation.gql'
+import ORDER_FORM_QUERY from './queries/orderFormQuery.gql'
 
 const EVENT_SUCCESS = 'item:add'
 const EVENT_ERROR = 'message:error'
@@ -35,54 +35,80 @@ export class BuyButton extends Component {
       err,
     }
     document.dispatchEvent(event)
+
+    this.setState({ isLoading: false })
   }
 
-  handleAddToCart = () => {
-    this.setState({ isLoading: true })
-    const { addToCart, quantity, seller, skuId, getOrderForm } = this.props
-    const orderFormId = getOrderForm.error
-      ? ''
-      : getOrderForm.orderForm.orderFormId
+  handleAddToCart = client => {
+    const { quantity, seller, skuId } = this.props
 
-    addToCart({
-      variables: {
-        orderFormId,
-        items: [
-          {
-            id: parseInt(skuId),
-            index: 1,
-            quantity,
-            seller,
-          },
-        ],
-      },
-    }).then(
-      res => {
-        const { items } = res.data.addItem
-        this.toastMessage(find(items, { id: skuId }))
-        this.setState({ isLoading: false })
-      },
-      err => {
-        this.toastMessage(false, err)
-        this.setState({ isLoading: false })
-      }
-    )
+    const variables = {
+      items: [
+        {
+          id: parseInt(skuId),
+          index: 1,
+          quantity,
+          seller,
+        },
+      ],
+    }
+
+    this.setState({ isLoading: true })
+
+    client
+      .query({
+        query: ORDER_FORM_QUERY,
+      })
+      .then(
+        queryRes => {
+          const {
+            data: {
+              orderForm: { orderFormId },
+            },
+          } = queryRes
+
+          variables.orderFormId = orderFormId
+
+          client
+            .mutate({
+              mutation: ADD_TO_CART_MUTATION,
+              variables,
+            })
+            .then(
+              mutationRes => {
+                const { items } = mutationRes.data.addItem
+                this.toastMessage(find(items, { id: skuId }))
+              },
+              mutationErr => {
+                this.toastMessage(false, mutationErr)
+              }
+            )
+        },
+        queryErr => {
+          this.toastMessage(false, queryErr)
+        }
+      )
   }
 
   render() {
     const { isLoading } = this.state
+
     return (
-      <div>
-        {isLoading ? (
-          <Button disabled isLoading={isLoading}>
-            {this.props.children}
-          </Button>
-        ) : (
-          <Button primary onClick={this.handleAddToCart}>
-            {this.props.children}
-          </Button>
+      <ApolloConsumer>
+        {client => (
+          <div>
+            {isLoading ? (
+              <Button disabled isLoading={isLoading}>
+                {this.props.children}
+              </Button>
+            ) : (
+              <Button primary onClick={() => this.handleAddToCart(client)}>
+                {this.props.children}
+              </Button>
+            )}
+          </div>
         )}
-      </div>
+      </ApolloConsumer>
     )
   }
 }
@@ -96,28 +122,8 @@ BuyButton.propTypes = {
   skuId: PropTypes.string.isRequired,
   /** Which seller is being referenced by the button */
   seller: PropTypes.number,
-  /** Graphql call to retrieve orderFormId */
-  getOrderForm: PropTypes.shape({
-    error: PropTypes.object,
-    orderForm: PropTypes.shape({
-      orderFormId: PropTypes.string,
-    }),
-    loading: PropTypes.bool,
-  }),
-  /** Graphql property to call a mutation */
-  addToCart: PropTypes.func.isRequired,
   /* Internationalization */
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(
-  compose(
-    graphql(orderFormQuery, {
-      name: 'getOrderForm',
-      options: { ssr: false },
-    }),
-    graphql(addToCartMutation, {
-      name: 'addToCart',
-    })
-  )(BuyButton)
-)
+export default injectIntl(BuyButton)
