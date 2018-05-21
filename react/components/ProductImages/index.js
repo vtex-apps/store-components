@@ -7,7 +7,7 @@ import SelectedImage from './components/SelectedImage'
 import VTEXClasses from './constants/productImagesClasses'
 import { VERTICAL, HORIZONTAL } from './constants/orientation'
 
-import './product-image.css'
+import './global.css'
 
 const DEFAULT_SELECTED_IMAGE = 0
 
@@ -16,10 +16,13 @@ const DEFAULT_SELECTED_IMAGE = 0
  *  Display a list of thumbnail images in a slider and a main image of a product.
  */
 class ProductImages extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      selectedImage: this.props.images[DEFAULT_SELECTED_IMAGE],
+  state = {
+    selectedImage: this.props.images[DEFAULT_SELECTED_IMAGE],
+  }
+
+  static getDerivedStateFromProps(nextProps) {
+    return {
+      selectedImage: nextProps.images[DEFAULT_SELECTED_IMAGE],
     }
   }
 
@@ -46,7 +49,9 @@ class ProductImages extends Component {
       maxVisibleItems: thumbnailMaxVisibleItems,
     }
 
-    let className = `${VTEXClasses.MAIN_CLASS} flex inline-flex-ns`
+    let className = `${
+      VTEXClasses.MAIN_CLASS
+    } mb7 mb0-ns w-100 flex inline-flex-ns`
     if (thumbnailSliderOrientation === VERTICAL) {
       className += ` ${VTEXClasses.VERTICAL_COMPONENT} `
     } else {
@@ -55,7 +60,7 @@ class ProductImages extends Component {
 
     return (
       <div className={className}>
-        {images.length > 1 && <ThumbnailSlider {...thumbnailProps} />}
+        <ThumbnailSlider {...thumbnailProps} />
         <SelectedImage image={this.state.selectedImage} />
       </div>
     )
