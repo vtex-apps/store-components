@@ -26,17 +26,22 @@ class SKUSelector extends Component {
     this.setState({
       selectedSKUIndex: skuIndex,
     })
-    this.props.onSKUSelected(skuIndex)
+    if (this.props.onSKUSelected) {
+      this.props.onSKUSelected(skuIndex)
+    }
   }
 
   render() {
+    const skuItems = this.props.skuItems
+    const selectedSKUIndex = this.state.selectedSKUIndex
     return (
       <div className={`${VTEXClasses.SKU_SELECTOR} flex flex-column`}>
         <Selector 
-          title="SKU" 
+          title={this.props.title} 
           onItemClick={this.handleSKUSelected}>
           {
-            this.props.skuItems.map(skuItem => (
+            skuItems.map(skuItem => (
+              skuItem.images.length > FIRST_INDEX &&
               <SelectorItem key={skuItem.images[FIRST_INDEX].imageUrl}>
                 <img
                   src={skuItem.images[FIRST_INDEX].imageUrl} 
@@ -47,7 +52,9 @@ class SKUSelector extends Component {
           }
         </Selector>
         {
-          this.props.skuItems[this.state.selectedSKUIndex].specs.map(spec => (
+          skuItems.length > selectedSKUIndex &&
+          skuItems[selectedSKUIndex].specs &&
+          skuItems[selectedSKUIndex].specs.map(spec => (
             <Selector
               key={spec.name}
               title={spec.name}>
@@ -94,7 +101,12 @@ SKUSelector.propTypes = {
     })),
   })).isRequired,
   /** Function that is called when a SKU item is clicked */
-  onSKUSelected: PropTypes.func.isRequired,
+  onSKUSelected: PropTypes.func,
+}
+
+SKUSelector.defaultProps = {
+  title: '',
+  skuItems: [],
 }
 
 export default SKUSelector

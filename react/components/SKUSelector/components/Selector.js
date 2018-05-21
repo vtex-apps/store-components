@@ -56,6 +56,12 @@ Selector.propTypes = {
   title: PropTypes.string.isRequired,
   /** Function that is called when an item of the Selector is clicked. */
   onItemClick: PropTypes.func,
+  /** Children component */
+  children: PropTypes.node,
+}
+
+Selector.defaultProps = {
+  children: {},
 }
 
 export default Selector
