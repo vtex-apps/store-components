@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Delayed queries on _BuyButton_ Component.
 - Add error treatment on _BuyButton_ Component.
 - Update _ProductImages_ Component.
+- Update max visible slide items on thumbnail slider
 
 ## [1.0.0] - 2018-05-18
 ### Added
