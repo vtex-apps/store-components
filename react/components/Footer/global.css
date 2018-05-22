@@ -31,6 +31,7 @@
   flex-flow: column wrap;
   list-style: none;
   padding: 0;
+  margin-top: 10px;
   margin-bottom: 0;
 }
 
@@ -83,7 +84,7 @@
 
   .vtex-footer__list-container {
     width: 100%;
-    margin-top: 22px;
+    margin-top: 10px;
   }
 
   .vtex-footer__list-container:first-child {
@@ -104,6 +105,10 @@
 
   .vtex-footer__list-item--horizontal {
     margin-right: 10px;
+  }
+
+  .vtex-footer__badge {
+    padding: 0.35rem;
   }
 }
 
@@ -137,12 +142,15 @@
 
 @media screen and (min-width: 64em) {
   .vtex-footer__container {
-    padding: 42px 70px;
+    padding: 20px 70px 20px;
   }
 
-  .vtex-footer__container--compact {
-    padding-top: 22px;
-    padding-bottom: 22px;
+  .vtex-footer__container:first-of-type {
+    padding-top: 25px;
+  }
+
+  .vtex-footer__container:last-of-type {
+    padding-bottom: 25px;
   }
 
   .vtex-footer__list-item {
@@ -156,23 +164,22 @@
 
 @media screen and (min-width: 80em) {
   .vtex-footer__container {
-    padding: 42px 140px;
-  }
-
-  .vtex-footer__badge {
-    padding: 0.35rem;
+    padding-left: 140px;
+    padding-right: 140px;
   }
 }
 
 @media screen and (min-width: 100em) {
   .vtex-footer__container {
-    padding: 42px 250px;
+    padding-left: 250px;
+    padding-right: 250px;
   }
 }
 
 @media screen and (min-width: 120em) {
   .vtex-footer__container {
-    padding: 42px 320px;
+    padding-left: 320px;
+    padding-right: 320px;
   }
 }
 
