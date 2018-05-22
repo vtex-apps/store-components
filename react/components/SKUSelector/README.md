@@ -1,26 +1,27 @@
 # Product details
 
-SKU Selector component.
+This is our SKU Selector component.
 
 ## Installation
 
-To install this component, you have two ways. Follow the instructions bellow. 
+To install this component follow the instructions below. 
 
-You can install in your workspace and promote to master. 
+You need to add into the dependencies of your `manifest.json` and use it like a npm module. 
 
-`vtex install vtex.storecomponents`
+```json 
+"dependencies": {
+    "vtex.storecomponents": "1.x"
+}
+```
 
-Or you can add into the dependencies of your `manifest.json` and use like a npm module. 
-
-And to import it in your code: 
-
+And to import it into your code: 
 ```js
-import SKUSelector from 'vtex.storecomponents/SKUSelector'
+import ProductPrice from 'vtex.storecomponents/ProductPrice'
 ```
 
 ## Usage
 
-You can use in your code like a React component with the jsx tag: `<SKUSelector />`. 
+You can use it into your code like a React component with the jsx tag: `<SKUSelector />`. 
 
 ```js
 <SKUSelector
@@ -45,7 +46,7 @@ You can use in your code like a React component with the jsx tag: `<SKUSelector 
   ]}
 />
 ```
-## Props
+### Props
 
 | Prop name          | Type       | Description                                                                 |
 | ------------------ | ---------- | --------------------------------------------------------------------------- |
