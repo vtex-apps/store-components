@@ -1,10 +1,10 @@
 # Product Price
 
-Oie! These are our product price component.
+This is our product price component.
 
 ## Installation
 
-To install this component, you have two ways. Follow the instructions bellow. 
+To install this component follow the instructions below. 
 
 You need add into the dependencies of your `manifest.json` and use like a npm module. 
 ```json 
@@ -13,7 +13,7 @@ You need add into the dependencies of your `manifest.json` and use like a npm mo
   }
 ```
 
-And to import it in your code: 
+And to import it into your code: 
 
 ```js
 import ProductPrice from 'vtex.storecomponents/ProductPrice'
@@ -21,7 +21,7 @@ import ProductPrice from 'vtex.storecomponents/ProductPrice'
 
 ## Usage
 
-You can use in your code like a React component with the jsx tag: `<ProductPrice />`. 
+You can use it in your code like a React component with the jsx tag: `<ProductPrice />`. 
 
 ```js
 <ProductPrice
