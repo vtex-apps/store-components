@@ -14,7 +14,6 @@ You need to add into the dependencies of your `manifest.json` and use it like a 
 ```
 
 And to import it into your code: 
-
 ```js
 import ProductPrice from 'vtex.storecomponents/ProductPrice'
 ```
@@ -22,7 +21,6 @@ import ProductPrice from 'vtex.storecomponents/ProductPrice'
 ## Usage
 
 You can use it in your code like a React component with the jsx tag: `<ProductPrice />`. 
-
 ```js
 <ProductPrice
     listPrice={commertialOffer.ListPrice}
