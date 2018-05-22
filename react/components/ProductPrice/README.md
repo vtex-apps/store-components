@@ -6,7 +6,7 @@ This is our product price component.
 
 To install this component follow the instructions below. 
 
-You need add into the dependencies of your `manifest.json` and use like a npm module. 
+You need to add into the dependencies of your `manifest.json` and use it like a npm module. 
 ```json 
 "dependencies": {
     "vtex.storecomponents": "1.x"
