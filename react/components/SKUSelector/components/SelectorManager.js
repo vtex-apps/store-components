@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Children, Component } from 'react'
 import PropTypes from 'prop-types'
 
 import SelectorItem from './SelectorItem'
@@ -8,7 +8,7 @@ import VTEXClasses from '../constants/CustomClasses'
 /**
  * Display a list of items and provides the management of the current selected item.
  */
-class Selector extends Component {
+class SelectorManager extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -27,23 +27,21 @@ class Selector extends Component {
 
   render() {
     return (
-      <div className={`${VTEXClasses.SELECTOR} ma1`}>
+      <div className={`${VTEXClasses.SELECTOR_MANAGER} ma1`}>
         <div className="b fabriga overflow-hidden">
           { this.props.title }
         </div>
         <div className="inline-flex flex-wrap"> 
           {
-            React.Children.map(this.props.children, (child, index) => {
-              if (child.type !== SelectorItem) {
-                return child
-              } else {
-                return React.cloneElement(child, {
-                  index: index,
+            Children.map(this.props.children, (child, index) => {
+              return child.type !== SelectorItem ? child : 
+                React.cloneElement(child, {
+                  index,
                   isSelected: index === this.state.selectedIndex,
                   onClick: this.handleItemClick,
                 })
               }
-            })
+            )
           }
         </div>
       </div>
@@ -51,17 +49,17 @@ class Selector extends Component {
   }
 }
 
-Selector.propTypes = {
+SelectorManager.propTypes = {
   /** Title of the Selector component. */
   title: PropTypes.string.isRequired,
-  /** Function that is called when an item of the Selector is clicked. */
+  /** Function that is called when an item of the Selector Manager is clicked. */
   onItemClick: PropTypes.func,
   /** Children component */
   children: PropTypes.node,
 }
 
-Selector.defaultProps = {
+SelectorManager.defaultProps = {
   children: {},
 }
 
-export default Selector
+export default SelectorManager

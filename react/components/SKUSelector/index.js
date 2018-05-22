@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Selector from './components/Selector'
+import SelectorManager from './components/SelectorManager'
 import SelectorItem from './components/SelectorItem'
 
 import VTEXClasses from './constants/CustomClasses'
@@ -35,7 +35,7 @@ class SKUSelector extends Component {
     const selectedSKUIndex = this.state.selectedSKUIndex
     return (
       <div className={`${VTEXClasses.SKU_SELECTOR} flex flex-column`}>
-        <Selector 
+        <SelectorManager 
           title={this.props.title} 
           onItemClick={this.handleSKUSelected}>
           {
@@ -49,12 +49,12 @@ class SKUSelector extends Component {
               </SelectorItem>
             ))
           }
-        </Selector>
+        </SelectorManager>
         {
           skuItems.length > selectedSKUIndex &&
           skuItems[selectedSKUIndex].specs &&
           skuItems[selectedSKUIndex].specs.map(spec => (
-            <Selector
+            <SelectorManager
               key={spec.name}
               title={spec.name}>
               {
@@ -66,7 +66,7 @@ class SKUSelector extends Component {
                   </SelectorItem>
                 ))
               }
-            </Selector>
+            </SelectorManager>
           ))
         }
       </div>
