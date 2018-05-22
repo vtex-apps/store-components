@@ -1,6 +1,6 @@
-# Product details
+# Product Price
 
-Oie! These are our product detail components.
+Oie! These are our product price component.
 
 ## Installation
 
@@ -15,12 +15,24 @@ Or you can add into the dependencies of your `manifest.json` and use like a npm 
 And to import it in your code: 
 
 ```js
-import Price from 'vtex.storecomponents/Price'
+import ProductPrice from 'vtex.storecomponents/ProductPrice'
 ```
 
 ## Usage
 
-You can use in your code like a React component with the jsx tag: `<ProductPrice />`. See an example at [Product Summary](https://github.com/vtex-apps/product-summary/blob/master/react/ProductSummary.js#L84) app
+You can use in your code like a React component with the jsx tag: `<ProductPrice />`. 
+
+```js
+<ProductPrice
+    listPrice={commertialOffer.ListPrice}
+    sellingPrice={commertialOffer.Price}
+    installments={commertialOffer.Installments}
+    installmentPrice={commertialOffer.InstallmentPrice}
+    showListPrice={showListPrice}
+    showLabels={showLabels}
+    showInstallments={showInstallments}
+/>
+```
 
 | Prop name          | Type      | Description                                                                 |
 | ------------------ | --------- | --------------------------------------------------------------------------- |
@@ -32,3 +44,4 @@ You can use in your code like a React component with the jsx tag: `<ProductPrice
 | `installments`     | `Number`  | Available number of installments                                            |
 | `installmentPrice` | `Number`  | Single installment price                                                    |
 
+See an example at [Product Summary](https://github.com/vtex-apps/product-summary/blob/master/react/ProductSummary.js#L84) app
