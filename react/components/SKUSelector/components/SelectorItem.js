@@ -3,10 +3,15 @@ import PropTypes from 'prop-types'
 
 import VTEXClasses from '../constants/CustomClasses'
 
+/**
+ * Inherits the components that should be displayed inside the Selector component.
+ */
 class SelectorItem extends PureComponent {
   handleClick = event => {
     event.preventDefault()
-    this.props.onClick(this.props.index)
+    if (this.props.onClick) {
+      this.props.onClick(this.props.index)
+    }
   }
 
   render() {
@@ -23,6 +28,8 @@ SelectorItem.propTypes = {
   index: PropTypes.number,
   /** Children components */
   children: PropTypes.node,
+  /** Function that is called when the item is clicked */
+  onClick: PropTypes.func,
 }
 
 SelectorItem.defaultProps = {

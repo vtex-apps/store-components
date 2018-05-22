@@ -11,8 +11,7 @@ import './global.css'
 const FIRST_INDEX = 0
 
 /**
- * SKUSelector component.
- * Display a list of SKU Items and a list of SKU Specifications.
+ * Display a list of SKU items of a problem and its specifications.
  */
 class SKUSelector extends Component {
   constructor(props) {
@@ -78,7 +77,7 @@ class SKUSelector extends Component {
 SKUSelector.propTypes = {
   /** Title which describes the SKU Selector Type */
   title: PropTypes.string.isRequired,
-  /** List of SKU Selector Items */
+  /** List of SKU Items */
   skuItems: PropTypes.arrayOf(PropTypes.shape({
     /** Name of the SKU Item */
     name: PropTypes.string.isRequired,

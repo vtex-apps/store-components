@@ -29,7 +29,7 @@ class Selector extends Component {
     return (
       <div className={`${VTEXClasses.SELECTOR} ma1`}>
         <div className="b fabriga overflow-hidden">
-          { `${this.props.title}:` }
+          { this.props.title }
         </div>
         <div className="inline-flex flex-wrap"> 
           {
