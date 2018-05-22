@@ -13,5 +13,6 @@
   "shipping.eta": "até {eta} dias",
   "shipping.free": "Grátis",
   "buybutton.add-failure":
-    "Algo deu errado e o item não pode ser adicionado ao seu carrinho!"
+    "Algo deu errado e o item não pode ser adicionado ao seu carrinho!",
+  "technicalspecifications.title": "Especificações Técnicas"
 }

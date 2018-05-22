@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "storecomponents",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "title": "VTEX Storecomponents",
   "defaultLocale": "pt-BR",
   "description": "The VTEX store components for that render apps can use",
