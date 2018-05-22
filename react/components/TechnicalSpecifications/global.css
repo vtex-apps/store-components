@@ -6,36 +6,44 @@
   font-size: 1.25rem;
   font-weight: bold;
   text-transform: uppercase;
-  margin-bottom: .5rem;
+  margin-bottom: 25px;
 }
 
 .vtex-product-specifications__table {
   margin: 0 auto;
   width: 100%;
-  max-width: 1150px;
+  border-collapse: collapse;
 }
 
-.vtex-product-specifications__table-row:nth-child(even) {
+.vtex-product-specifications__table-row:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.05)
 }
 
 .vtex-product-specifications__specification-name {
   text-align: right;
-  padding: 15px;
+  padding: 5px 25px;
   text-transform: uppercase;
-  width: 50%;
+  font-weight: normal;
+  width: 25%;
+  border-right: 1px solid rgba(0, 0, 0, 0.15)
 }
 
 .vtex-product-specifications__specification-values {
-  padding: 15px;
+  padding: 5px 25px;
+  color: #828282;
 }
 
 @media screen and (max-width: 568px) {
+  .vtex-product-specifications__title {
+    margin-bottom: 15px;
+  }
+
   .vtex-product-specifications__specification-name {
     display: block;
     text-align: left;
     padding-bottom: 0;
     width: auto;
+    border: none;
   }
 
   .vtex-product-specifications__specification-values {
