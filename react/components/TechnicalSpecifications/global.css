@@ -1,0 +1,45 @@
+.vtex-product-specifications {
+  margin-top: 20px;
+}
+
+.vtex-product-specifications__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+
+.vtex-product-specifications__table {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1150px;
+}
+
+.vtex-product-specifications__table-row:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.05)
+}
+
+.vtex-product-specifications__specification-name {
+  text-align: right;
+  padding: 15px;
+  text-transform: uppercase;
+  width: 50%;
+}
+
+.vtex-product-specifications__specification-values {
+  padding: 15px;
+}
+
+@media screen and (max-width: 568px) {
+  .vtex-product-specifications__specification-name {
+    display: block;
+    text-align: left;
+    padding-bottom: 0;
+    width: auto;
+  }
+
+  .vtex-product-specifications__specification-values {
+    display: block;
+  }
+}
+
