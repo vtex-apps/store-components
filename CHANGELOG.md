@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Fix bug in the url when search something in the product page and click enter.
+- Footer component padding
 
 ### Added
 - `TechnicalSpecifications` component.
