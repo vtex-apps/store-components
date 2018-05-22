@@ -1,0 +1,15 @@
+.vtex-selector__item {
+  font-size: 90%;
+  width: 40px;
+  height: 40px;
+  margin-right: 2px;
+}
+
+.vtex-selector__item:hover {
+  border-color: black;
+}
+
+.vtex-selector__item p {
+  margin: 0;
+  padding-top: 10px;
+}
