@@ -6,11 +6,12 @@ Oie! These are our product price component.
 
 To install this component, you have two ways. Follow the instructions bellow. 
 
-You can install in your workspace and promote to master. 
-
-`vtex install vtex.storecomponents`
-
-Or you can add into the dependencies of your `manifest.json` and use like a npm module. 
+You need add into the dependencies of your `manifest.json` and use like a npm module. 
+```json 
+"dependencies": {
+    "vtex.storecomponents": "1.x"
+  }
+```
 
 And to import it in your code: 
 
@@ -34,14 +35,15 @@ You can use in your code like a React component with the jsx tag: `<ProductPrice
 />
 ```
 
-| Prop name          | Type      | Description                                                                 |
-| ------------------ | --------- | --------------------------------------------------------------------------- |
-| `sellingPrice`     | `Number!` | Product selling price                                                       |
-| `listPrice`        | `Number!` | Product list price                                                          |
-| `showListPrice`    | `Boolean` | Determines if the list price is shown or not                                |
-| `showLabels`       | `Boolean` | Determines if the labels are shown. If false, only the values will be shown |
-| `showInstallments` | `Boolean` | Determines if the installments are shown                                    |
-| `installments`     | `Number`  | Available number of installments                                            |
-| `installmentPrice` | `Number`  | Single installment price                                                    |
+| Prop name          | Type       | Description                                                                 |
+| ------------------ | ---------- | --------------------------------------------------------------------------- |
+| `sellingPrice`     | `Number!`  | Product selling price                                                       |
+| `listPrice`        | `Number!`  | Product list price                                                          |
+| `showListPrice`    | `Boolean!` | Set visibility of list price                                                |
+| `showLabels`       | `Boolean!` | Set visibility of labels                                                    |
+| `showInstallments` | `Boolean!` | Set visibility of installments                                              |
+| `showSavings`      | `Boolean`  | Set visibility of savings                                                   |
+| `installments`     | `Number`   | Available number of installments                                            |
+| `installmentPrice` | `Number`   | Single installment price                                                    |
 
 See an example at [Product Summary](https://github.com/vtex-apps/product-summary/blob/master/react/ProductSummary.js#L84) app
