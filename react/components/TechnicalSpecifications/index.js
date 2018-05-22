@@ -4,12 +4,17 @@ import { FormattedMessage } from 'react-intl'
 
 import './global.css'
 
+/**
+ * Technical specifications component that appears on the product details page.
+ */
 export default class TechnicalSpecifications extends Component {
   static propTypes = {
+    /** Specifications of the product */
     specifications: arrayOf(shape({
       name: string.isRequired,
       values: arrayOf(string).isRequired,
     })),
+    /** Name of the current SKU */
     skuName: string,
   }
 
