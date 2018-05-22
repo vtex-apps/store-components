@@ -13,5 +13,6 @@
   "shipping.eta": "up to {eta} days",
   "shipping.free": "Free",
   "buybutton.add-failure":
-    "Something went wrong and the item wasn't added to your cart!"
+    "Something went wrong and the item wasn't added to your cart!",
+  "technicalspecifications.title": "Technical Specifications"
 }
