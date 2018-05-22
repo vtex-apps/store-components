@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Fix bug in the url when search something in the product page and click enter.
 
+### Added
+- `TechnicalSpecifications` component.
+
 ## [1.1.0] - 2018-05-21
 ### Changed
 - Delayed queries on _BuyButton_ Component.
