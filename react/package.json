@@ -17,6 +17,7 @@
     "react-dom": "^16.3.2",
     "react-intl": "^2.4.0",
     "react-responsive-modal": "^2.0.1",
+    "react-share": "^2.1.1",
     "react-slick": "^0.23.1",
     "render": "^0.1.4",
     "slick-carousel": "^1.8.1",
