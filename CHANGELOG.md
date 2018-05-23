@@ -6,12 +6,30 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Added - 2018-05-22
+- Initial version of SKU selector component.
+
+### Fixed
+- Fix bug on Slider when has just one element.
+- Fix bug in the url when search something in the product page and click enter.
+- Footer component padding
+
+### Added
+- `TechnicalSpecifications` component.
+
+## [1.1.0] - 2018-05-21
+
 ### Changed
 - Fix searchbar link when a category is clicked
 - Delayed queries on _BuyButton_ Component.
 - Add error treatment on _BuyButton_ Component.
 - Update _ProductImages_ Component.
 - Update max visible slide items on thumbnail slider
+- Add arrow icons from Nucleo to the Slider
+
+### Fixed
+- Fix _ShippingSimulator_ Component CSS.
 
 ## [1.0.0] - 2018-05-18
 ### Added

@@ -114,12 +114,12 @@ export class BuyButton extends Component {
 }
 
 BuyButton.propTypes = {
-  /** Message that will be displayed inside of the button **/
-  children: PropTypes.PropTypes.node.isRequired,
-  /** The quantity of products to be added to the cart */
-  quantity: PropTypes.number,
-  /** The specification of which product will be added to the cart */
+  /** Specification of which product will be added to the cart */
   skuId: PropTypes.string.isRequired,
+  /** Component children that will be displayed inside of the button **/
+  children: PropTypes.PropTypes.node.isRequired,
+  /** Quantity of the product sku to be added to the cart */
+  quantity: PropTypes.number,
   /** Which seller is being referenced by the button */
   seller: PropTypes.number,
   /* Internationalization */

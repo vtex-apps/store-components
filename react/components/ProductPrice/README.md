@@ -1,34 +1,47 @@
-# Product details
+# Product Price
 
-Oie! These are our product detail components.
+This is our product price component.
 
 ## Installation
 
-To install this component, you have two ways. Follow the instructions bellow. 
+To install this component follow the instructions below. 
 
-You can install in your workspace and promote to master. 
+You need to add into the dependencies of your `manifest.json` and use it like a npm module. 
+```json 
+"dependencies": {
+    "vtex.storecomponents": "1.x"
+  }
+```
 
-`vtex install vtex.storecomponents`
-
-Or you can add into the dependencies of your `manifest.json` and use like a npm module. 
-
-And to import it in your code: 
-
+And to import it into your code: 
 ```js
-import Price from 'vtex.storecomponents/Price'
+import ProductPrice from 'vtex.storecomponents/ProductPrice'
 ```
 
 ## Usage
 
-You can use in your code like a React component with the jsx tag: `<ProductPrice />`. See an example at [Product Summary](https://github.com/vtex-apps/product-summary/blob/master/react/ProductSummary.js#L84) app
+You can use it in your code like a React component with the jsx tag: `<ProductPrice />`. 
+```js
+<ProductPrice
+    listPrice={commertialOffer.ListPrice}
+    sellingPrice={commertialOffer.Price}
+    installments={commertialOffer.Installments}
+    installmentPrice={commertialOffer.InstallmentPrice}
+    showListPrice={showListPrice}
+    showLabels={showLabels}
+    showInstallments={showInstallments}
+/>
+```
 
-| Prop name          | Type      | Description                                                                 |
-| ------------------ | --------- | --------------------------------------------------------------------------- |
-| `sellingPrice`     | `Number!` | Product selling price                                                       |
-| `listPrice`        | `Number!` | Product list price                                                          |
-| `showListPrice`    | `Boolean` | Determines if the list price is shown or not                                |
-| `showLabels`       | `Boolean` | Determines if the labels are shown. If false, only the values will be shown |
-| `showInstallments` | `Boolean` | Determines if the installments are shown                                    |
-| `installments`     | `Number`  | Available number of installments                                            |
-| `installmentPrice` | `Number`  | Single installment price                                                    |
+| Prop name          | Type       | Description                                                                 |
+| ------------------ | ---------- | --------------------------------------------------------------------------- |
+| `sellingPrice`     | `Number!`  | Product selling price                                                       |
+| `listPrice`        | `Number!`  | Product list price                                                          |
+| `showListPrice`    | `Boolean!` | Set visibility of list price                                                |
+| `showLabels`       | `Boolean!` | Set visibility of labels                                                    |
+| `showInstallments` | `Boolean!` | Set visibility of installments                                              |
+| `showSavings`      | `Boolean`  | Set visibility of savings                                                   |
+| `installments`     | `Number`   | Available number of installments                                            |
+| `installmentPrice` | `Number`   | Single installment price                                                    |
 
+See an example at [Product Summary](https://github.com/vtex-apps/product-summary/blob/master/react/ProductSummary.js#L84) app

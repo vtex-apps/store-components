@@ -13,5 +13,6 @@
   "shipping.eta": "hasta {eta} días",
   "shipping.free": "Gratis",
   "buybutton.add-failure":
-    "¡Algo salió mal y el artículo no se agregó a tu carrito!"
+    "¡Algo salió mal y el artículo no se agregó a tu carrito!",
+  "technicalspecifications.title": "Especificaciones Tecnicas"
 }

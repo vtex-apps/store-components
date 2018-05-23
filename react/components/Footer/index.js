@@ -12,6 +12,8 @@ import {
   objectLikePaymentFormArray,
 } from './propTypes'
 
+import VTEXIcon from './images/VTEX-BW.svg'
+
 import './global.css'
 
 const linkSchema = {
@@ -244,7 +246,7 @@ export default class Footer extends Component {
             showInColor={showSocialNetworksInColor}
           />
         </div>
-        <div className="vtex-footer__container vtex-footer__container--white vtex-footer__container--compact">
+        <div className="vtex-footer__container vtex-footer__container--white">
           <FooterPaymentFormList
             titleId="payment-form"
             list={paymentForms}
@@ -252,11 +254,11 @@ export default class Footer extends Component {
             showInColor={showPaymentFormsInColor}
           />
         </div>
-        <div className="vtex-footer__container vtex-footer__container--compact">
+        <div className="vtex-footer__container">
           <FooterBadgeList list={badges} />
           <div className="vtex-footer__badge-list vtex-footer__list-container--right-aligned">
             <span className="vtex-footer__badge"><img className="vtex-footer__logo-image" src={logo} /></span>
-            <span className="vtex-footer__badge">Powered by VTEX&copy;</span>
+            <span className="vtex-footer__badge"><img className="vtex-footer__vtexlogo-form-item" src={VTEXIcon} /></span>
           </div>
         </div>
       </footer>

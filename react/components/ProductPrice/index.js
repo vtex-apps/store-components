@@ -120,18 +120,18 @@ Price.propTypes = {
   sellingPrice: PropTypes.number.isRequired,
   /** Product list price */
   listPrice: PropTypes.number.isRequired,
-  /** Determines if the list price is shown or not */
+  /** Set visibility of list price */
   showListPrice: PropTypes.bool.isRequired,
-  /** Determines if the labels are shown. If false, only the values will be shown */
+  /** Set visibility of labels */
   showLabels: PropTypes.bool.isRequired,
-  /** Determines if the installments are shown */
+  /** Set visibility of installments */
   showInstallments: PropTypes.bool.isRequired,
+  /** Set visibility of savings */
+  showSavings: PropTypes.bool,
   /** Available number of installments */
   installments: PropTypes.number,
   /** Single installment price */
   installmentPrice: PropTypes.number,
-  /** Determines if the savings information is shown */
-  showSavings: PropTypes.bool,
   /** intl property to format data */
   intl: intlShape.isRequired,
 }
