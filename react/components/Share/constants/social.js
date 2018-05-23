@@ -1,9 +1,9 @@
 export const SOCIAL_ENUM = [
   'Facebook',
+  'WhatsApp',
   'Twitter',
   'Telegram',
   'Google+',
-  'WhatsApp',
   'E-mail',
 ]
 
