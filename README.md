@@ -1,43 +1,78 @@
 # Store Components
 
 ## Description
-
-Storecomponents is a collection of components that can be used to create/extend others vtex components.
-
-## Continuous Integrations
+Storecomponents is a collection of components that can be used to create/extend others VTEX apps.
 
 ### Travis CI
 
 [![Build Status](https://travis-ci.org/vtex-apps/storecomponents.svg?branch=master)](https://travis-ci.org/vtex-apps/storecomponents)
 
 ## Table of Contents
-
+* [Usage](#usage)
+* [Components Specs](#components-specs)
 * [Creating a new component](#creating-a-new-component)
+  * [Project structure](#project-structure)
   * [Working on your `src/index.js`](#working-on-your-srcindexjs)
 * [Testing](#testing)
 
-## Creating a new component
+## Components Specs
 
+Above we have a README to each component of this project that explains how to use them. 
+
+- [Buy Button](https://github.com/vtex-apps/storecomponents/blob/master/react/components/BuyButton/README.md)
+- [Collection Badges](https://github.com/vtex-apps/storecomponents/blob/master/react/components/CollectionBadges/README.md)
+- [Discount Badge](https://github.com/vtex-apps/storecomponents/blob/master/react/components/DiscountBadge/README.md)
+- [Footer](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Footer/README.md)
+- [Logo](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Logo/README.md)
+- [Product Description](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductDescription/README.md)
+- [Product Images](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductImages/README.md)
+- [Product Name](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductName/README.md)
+- [Product Price](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductPrice/README.md)
+- [Quantity Selector](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductPrice/README.md)
+- [Search Bar](https://github.com/vtex-apps/storecomponents/blob/master/react/components/QuantitySelector/README.md)
+- [Shipping Simulator](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ShippingSimulator/README.md)
+- [SKU Selector](https://github.com/vtex-apps/storecomponents/blob/master/react/components/SKUSelector/README.md)
+- [Slider](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Slider/README.md)
+- [Technical Specifications](https://github.com/vtex-apps/storecomponents/blob/master/react/components/TechnicalSpecifications/README.md)
+
+## Usage
+To import a component of this project follow the instructions below. 
+
+You need to add into the dependencies of your `manifest.json` and use it like a npm module. 
+```json 
+"dependencies": {
+    "vtex.storecomponents": "1.x"
+  }
+```
+
+And to import it into your code, for example: 
+```js
+import ProductPrice from 'vtex.storecomponents/ProductPrice'
+```
+
+## Creating a new component
 To start your development, create a new folder on react/components. Thats where your source code will be stored. Also create a new js file on /react, this file should be used to expose your component, like:
 
-# Search bar example:
 
-```js
-import SearchBar from './components/SearchBar/index'
-
-export default SearchBar
-``` 
-
+### Project structure 
 Inside your `react/components/<component_name>` you should have:
 
 - index.js
+- README.md
 - components/ [Optional]
 - constants/  [Optional]
 - utils/      [Optional]
 - queries/    [Optional]
 - mutations/  [Optional]
-- global.css <- optional if you don't need css
-- README.md
+- global.css  [Optional]
+
+Next, inside of `react/` folder you need to export your component, such as: 
+
+```js
+import ProductPrice from './components/ProductPrice/index'
+
+export default ProductPrice
+```
 
 ### Working on your index.js
 
@@ -55,20 +90,4 @@ To test your code you should run on your workspace:
 
 ```sh
 vtex link
-```
-
-And add your new component on the manifest.json dependencies section of the other app, like:
-
-```json
-"dependencies": {
-    "vtex.carousel": "1.x",
-    "vtex.shelf": "0.x",
-    "vtex.product-summary": "0.x",
-    "vtex.menu": "0.x",
-    "vtex.minicart": "0.x",
-    "vtex.product-details": "0.x",
-    "vtex.storecomponents": "0.x",
-    "vtex.gallery": "0.x",
-    "vtex.category-menu": "0.x"
-}
 ```
