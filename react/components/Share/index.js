@@ -55,11 +55,13 @@ class Share extends Component {
     } = this.props
 
     return (
-      <div className="vtex-share flex">
+      <div className="vtex-share flex flex-row">
         {Object.keys(social).map(
           (socialNetwork, index) =>
             social[socialNetwork] && (
-              <div className="ph1" key={index}>
+              <div
+                className={`vtex-share__${socialNetwork}-button ph1`}
+                key={index}>
                 <SocialButton
                   url={window.location && window.location.href}
                   socialEnum={socialNetwork}
