@@ -66,7 +66,7 @@ export default class SlickSlider extends Component {
     if (scrollByPage) {
       settings.slidesToScroll = settings.slidesToShow
     }
-    if (settings.infinite !== undefined) {
+    if (settings.infinite === undefined) {
       settings.infinite = settings.slidesToScroll < numItems
     }
     return settings
