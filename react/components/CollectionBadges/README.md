@@ -16,11 +16,10 @@ You can use it in your code like a React component with the jsx tag: `<Collectio
 
 And it will render an image with the list of collection badges located at the bottom.
 
-| Prop name          | Type       | Description                                                                 |
-| ------------------ | ---------- | --------------------------------------------------------------------------- |
-| `skuId`            | `String!`  | Specification of which product will be added to the cart                    |
-| `message`          | `Node!`    | Component children that will be displayed inside of the button              |
-| `quantity`         | `Number`   | Quantity of the product sku to be added to the cart                         |
-| `seller`           | `Number`   | Which seller is being referenced by the button                              |
+| Prop name              | Type       | Description                                                                 |
+| ---------------------- | ---------- | --------------------------------------------------------------------------- |
+| `collectionBadgesText` | `Array!`   | Array of collection badges text                                             |
+| `label`                | `Node!`    | Children component that should be render inside the collection badge item   |
 
-See an example at [Product Summary](https://github.com/vtex-apps/product-summary/blob/master/react/ProductSummary.js#L104) app
+_TODO - Add some sample when an app use this component @brunojdo - 2018/05/23_
+See an example at ... app

@@ -30,7 +30,7 @@ export default class CollectionBadges extends Component {
 CollectionBadges.propTypes = {
   /** Array of collection badges text */
   collectionBadgesText: PropTypes.array.isRequired,
-  /** Children component */
+  /** Children component that should be render inside the collection badge item */
   children: PropTypes.node.isRequired,
 }
 

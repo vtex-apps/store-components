@@ -8,16 +8,16 @@ Storecomponents is a collection of components that can be used to create/extend 
 [![Build Status](https://travis-ci.org/vtex-apps/storecomponents.svg?branch=master)](https://travis-ci.org/vtex-apps/storecomponents)
 
 ## Table of Contents
-* [Usage](#usage)
-* [Components Specs](#components-specs)
-* [Creating a new component](#creating-a-new-component)
-  * [Project structure](#project-structure)
-  * [Working on your `src/index.js`](#working-on-your-srcindexjs)
-* [Testing](#testing)
+- [Usage](#usage)
+- [Components Specs](#components-specs)
+- [Creating a new component](#creating-a-new-component)
+  - [Project structure](#project-structure)
+  - [Working on your `src/index.js`](#working-on-your-srcindexjs)
+- [Testing](#testing)
 
 ## Components Specs
 
-Above we have a README to each component of this project that explains how to use them. 
+Above we have a README for each component of this project that explains how to use them. 
 
 - [Buy Button](https://github.com/vtex-apps/storecomponents/blob/master/react/components/BuyButton/README.md)
 - [Collection Badges](https://github.com/vtex-apps/storecomponents/blob/master/react/components/CollectionBadges/README.md)
