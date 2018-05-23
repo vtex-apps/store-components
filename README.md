@@ -30,6 +30,7 @@ Below we have a README for each component of this project that explains how to u
 - [Product Price](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductPrice/README.md)
 - [Quantity Selector](https://github.com/vtex-apps/storecomponents/blob/master/react/components/QuantitySelector/README.md)
 - [Search Bar](https://github.com/vtex-apps/storecomponents/blob/master/react/components/SearchBar/README.md)
+- [Share](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Share/README.md)
 - [Shipping Simulator](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ShippingSimulator/README.md)
 - [SKU Selector](https://github.com/vtex-apps/storecomponents/blob/master/react/components/SKUSelector/README.md)
 - [Slider](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Slider/README.md)
