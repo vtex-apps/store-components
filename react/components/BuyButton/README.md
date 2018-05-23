@@ -1,61 +1,25 @@
 # BuyButton
+BuyButton is a canonical component that any VTEX app can import.
 
-BuyButton is a canonical component that any VTEX store can install.
-
-## Disclaimer
-
-This component still under construction. Everything may - and will - break. Use with caution, and avoid for now its use in Production projects.
-
-## Install
-
-```sh
-yarn add @vtex/buy-button
-# or
-npm install @vtex/buy-button
+And to import it into your code: 
+```js
+import BuyButton from 'vtex.storecomponents/BuyButton'
 ```
 
-## Configuration
-
-```javascript
-/**
- * The quantity of products to be added to the cart
- */
-- quantity
-  - Type: Number
-
-/**
- * The specification of which product will be added to the cart.
- */
-- skuId
-  - Type: Number
-
-/**
- * Which seller is being referenced by the button.
- */
-- seller
-  - Type: String
-
-/**
- * Sales channel.
- */
-- salesChannel
-  - Type: String
-
-/**
- * Graphql property to call a mutation.
- */
-- mutate
-  - Type: Function
-
-/**
- * Function that will be called after the mutation.
- */
-- afterClick
-  - Type: Function
-
-/**
- * The user's cart id
- */
-- orderFormId
-  - Type: String
+## Usage
+You can use it in your code like a React component with the jsx tag: `<BuyButton />`. 
+```html
+<BuyButton skuId={product.sku.id}> 
+  Buy!
+</BuyButton>
 ```
+
+| Prop name          | Type       | Description                                                                 |
+| ------------------ | ---------- | --------------------------------------------------------------------------- |
+| `skuId`            | `String!`  | Specification of which product will be added to the cart                    |
+| `message`          | `Node!`    | Component children that will be displayed inside of the button              |
+| `quantity`         | `Number`   | Quantity of the product sku to be added to the cart                         |
+| `seller`           | `Number`   | Which seller is being referenced by the button                              |
+
+See an example at [Product Summary](https://github.com/vtex-apps/product-summary/blob/master/react/ProductSummary.js#L104) app
+
