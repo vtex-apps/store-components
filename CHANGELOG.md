@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Initial version of SKU selector component.
 
 ### Fixed
+- Fix searchbar link when a category is clicked
 - Fix bug on Slider when has just one element.
 - Fix bug in the url when search something in the product page and click enter.
 - Footer component padding
@@ -21,7 +22,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.1.0] - 2018-05-21
 
 ### Changed
-- Fix searchbar link when a category is clicked
 - Delayed queries on _BuyButton_ Component.
 - Add error treatment on _BuyButton_ Component.
 - Update _ProductImages_ Component.
