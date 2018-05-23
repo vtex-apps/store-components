@@ -51,7 +51,7 @@ class ResultsList extends Component {
               page={el.criteria ? 'store/search' : 'store/product'}
               params={
                 el.criteria
-                  ? { term: `${encodeURI(el.slug).replace('/', '%2F')}` }
+                  ? { term: `${encodeURI(el.slug).replace('/', '-')}` }
                   : { slug: `${encodeURI(el.slug)}` }
               }
               {...getItemProps({

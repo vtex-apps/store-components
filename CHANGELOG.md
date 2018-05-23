@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
+- Fix searchbar link when a category is clicked
 - Delayed queries on _BuyButton_ Component.
 - Add error treatment on _BuyButton_ Component.
 - Update _ProductImages_ Component.
