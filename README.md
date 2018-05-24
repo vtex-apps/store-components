@@ -17,7 +17,7 @@ Storecomponents is a collection of components that can be used to create/extend 
 
 ## Components Specs
 
-Above we have a README for each component of this project that explains how to use them. 
+Below we have a README for each component of this project that explains how to use them. 
 
 - [Buy Button](https://github.com/vtex-apps/storecomponents/blob/master/react/components/BuyButton/README.md)
 - [Collection Badges](https://github.com/vtex-apps/storecomponents/blob/master/react/components/CollectionBadges/README.md)
@@ -28,12 +28,11 @@ Above we have a README for each component of this project that explains how to u
 - [Product Images](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductImages/README.md)
 - [Product Name](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductName/README.md)
 - [Product Price](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductPrice/README.md)
-- [Quantity Selector](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductPrice/README.md)
-- [Search Bar](https://github.com/vtex-apps/storecomponents/blob/master/react/components/QuantitySelector/README.md)
+- [Quantity Selector](https://github.com/vtex-apps/storecomponents/blob/master/react/components/QuantitySelector/README.md)
+- [Search Bar](https://github.com/vtex-apps/storecomponents/blob/master/react/components/SearchBar/README.md)
 - [Shipping Simulator](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ShippingSimulator/README.md)
 - [SKU Selector](https://github.com/vtex-apps/storecomponents/blob/master/react/components/SKUSelector/README.md)
 - [Slider](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Slider/README.md)
-- [Technical Specifications](https://github.com/vtex-apps/storecomponents/blob/master/react/components/TechnicalSpecifications/README.md)
 
 ## Usage
 To import a component of this project follow the instructions below. 
@@ -41,13 +40,13 @@ To import a component of this project follow the instructions below.
 You need to add into the dependencies of your `manifest.json` and use it like a npm module. 
 ```json 
 "dependencies": {
-    "vtex.storecomponents": "1.x"
+    "vtex.store-components": "1.x"
   }
 ```
 
 And to import it into your code, for example: 
 ```js
-import ProductPrice from 'vtex.storecomponents/ProductPrice'
+import ProductPrice from 'vtex.store-components/ProductPrice'
 ```
 
 ## Creating a new component

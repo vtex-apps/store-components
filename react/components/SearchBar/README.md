@@ -1,19 +1,24 @@
-# SearchBar
+# Search Bar
+Search Bar is a canonical component that any VTEX app can import.
 
-SearchBar is a canonical component that any VTEX store can install.
-
-## Installation
-
-To install this module, you need to run the instructions bellow in your terminal
-
-```sh
-$ yarn add @vtex/search-bar
-$ # or
-$ npm i @vtex/search-bar
-```
-
-And import it in your code
-
+To import it into your code: 
 ```js
-import SearchBar from '@vtex/search-bar'
+import SearchBar from 'vtex.store-components/SearchBar'
 ```
+
+## Usage
+You can use it in your code like a React component with the jsx tag: `<SearchBar />`. 
+```html
+<SearchBar
+    placeholder={"Search.. "}
+    emptyPlaceholder={"No result"}
+/>
+```
+
+| Prop name          | Type      | Description                                                          |
+| ------------------ | --------- | -------------------------------------------------------------------- |
+| `placeholder`      | `String`  | Displays a placeholder on the search bar                             |
+| `emptyPlaceholder` | `String`  | Shows a placeholder when the ResultList hasn't results to displayed  |
+
+_TODO - Add when an app use it. @brunojdo_ 
+See an example at ... app

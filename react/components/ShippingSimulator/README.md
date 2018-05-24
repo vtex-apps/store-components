@@ -1,19 +1,19 @@
-# Product details
+# Shipping Simulator
+Shipping Simulator is a canonical component that any VTEX app can import.
 
-Oie! These are our product detail components.
-
-## Installation
-
-To install this module, you need to run the instructions bellow in your terminal
-
-```sh
-$ yarn add @vtex/product-details
-$ # or
-$ npm install @vtex/product-details
-```
-
-And to import it in your code
-
+To import it into your code: 
 ```js
-import { Price, ProductName, QuantitySelector } from '@vtex/product-details'
+import ShippingSimulator from 'vtex.store-components/ShippingSimulator'
 ```
+
+## Usage
+You can use it in your code like a React component with the jsx tag: `<ShippingSimulator />`. 
+```html
+<ShippingSimulator />
+```
+
+| Prop name          | Type      | Description                                                          |
+| ------------------ | --------- | -------------------------------------------------------------------- |
+| `label`            | `Object`  | Shows input title of component                                       |
+
+See an example at [Product Details](https://github.com/vtex-apps/product-details/blob/master/react/ProductDetails.js#L71) app

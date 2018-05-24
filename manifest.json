@@ -1,8 +1,8 @@
 {
   "vendor": "vtex",
-  "name": "storecomponents",
+  "name": "store-components",
   "version": "1.1.0",
-  "title": "VTEX Storecomponents",
+  "title": "VTEX Store Components",
   "defaultLocale": "pt-BR",
   "description": "The VTEX store components for that render apps can use",
   "builders": {
@@ -17,15 +17,6 @@
   "scripts": {
     "postreleasy": "vtex publish --public"
   },
-  "policies": [
-    {
-      "name": "outbound-access",
-      "attrs": {
-        "host": "{{account}}.vtexcommercestable.com.br",
-        "path": "/buscaautocomplete/*"
-      }
-    }
-  ],
   "dependencies": {
     "vtex.store-graphql": "2.x"
   }
