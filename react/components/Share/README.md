@@ -5,7 +5,7 @@ Share is a Component that will allow you to configure share (social media and em
 And to import it into your code:
 
 ```js
-import Share from 'vtex.storecomponents/Share'
+import Share from 'vtex.store-components/Share'
 ```
 
 ## Usage
