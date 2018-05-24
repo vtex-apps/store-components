@@ -1,6 +1,6 @@
 {
   "vendor": "vtex",
-  "name": "storecomponents",
+  "name": "store-components",
   "version": "1.1.0",
   "title": "VTEX Storecomponents",
   "defaultLocale": "pt-BR",

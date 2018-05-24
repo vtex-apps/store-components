@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Added - 2018-05-22
+## [1.2.0] - 2018-05-24
+### Added
+- `TechnicalSpecifications` component.
 - Initial version of SKU selector component.
 
 ### Fixed
@@ -15,11 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix bug in the url when search something in the product page and click enter.
 - Footer component padding
 
-### Added
-- `TechnicalSpecifications` component.
-
 ## [1.1.0] - 2018-05-21
-
 ### Changed
 - Delayed queries on _BuyButton_ Component.
 - Add error treatment on _BuyButton_ Component.
