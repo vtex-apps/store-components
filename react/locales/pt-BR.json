@@ -14,5 +14,11 @@
   "shipping.free": "Grátis",
   "buybutton.add-failure":
     "Algo deu errado e o item não pode ser adicionado ao seu carrinho!",
-  "technicalspecifications.title": "Especificações Técnicas"
+  "technicalspecifications.title": "Especificações Técnicas",
+  "availability-subscriber.title": "Este produto não está disponível no momento",
+  "availability-subscriber.subscribe-label": "Avise-me quando estiver disponível",
+  "availability-subscriber.email-placeholder": "E-mail",
+  "availability-subscriber.name-placeholder": "Nome",
+  "availability-subscriber.send-label": "Enviar",
+  "availability-subscriber.invalid-email": "E-mail inválido"
 }

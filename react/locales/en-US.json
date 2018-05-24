@@ -14,5 +14,11 @@
   "shipping.free": "Free",
   "buybutton.add-failure":
     "Something went wrong and the item wasn't added to your cart!",
-  "technicalspecifications.title": "Technical Specifications"
+  "technicalspecifications.title": "Technical Specifications",
+  "availability-subscriber.title": "This product isn't available right now",
+  "availability-subscriber.subscribe-label": "Let me know when this product is available again",
+  "availability-subscriber.email-placeholder": "Email",
+  "availability-subscriber.name-placeholder": "Name",
+  "availability-subscriber.send-label": "Send",
+  "availability-subscriber.invalid-email": "Invalid email"
 }

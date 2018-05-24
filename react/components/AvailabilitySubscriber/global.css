@@ -1,0 +1,38 @@
+.vtex-availability-subscriber__title {
+  font-size: 16px;
+}
+
+.vtex-availability-subscriber__subscribe-label {
+  font-size: 14px;
+  color: #828282;
+  margin: 10px 0;
+}
+
+.vtex-availability-subscriber
+.vtex-input {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 10em) {
+  .vtex-availability-subscriber
+  .vtex-input {
+    display: flex;
+    padding-bottom: 15px;
+  }
+
+  .vtex-availability-subscriber
+  .vtex-input
+  input {
+    max-width: 300px;
+  }
+}
+
+@media screen and (min-width: 70em) {
+  .vtex-availability-subscriber
+  .vtex-input {
+    display: inline-flex;
+    padding-bottom: 0; 
+    margin-right: 15px;
+  }
+}
