@@ -32,12 +32,10 @@ class AvailabilitySubscriber extends Component {
     }
 
     if (error !== emailError) {
-      return {
+      this.setState({
         emailError: error,
-      }
+      })
     }
-
-    return null
   }
 
   handleEmailBlur = () => {
@@ -55,7 +53,7 @@ class AvailabilitySubscriber extends Component {
       [e.target.name]: e.target.value,
     })
 
-    if (e.targer.name === 'email') {
+    if (e.target.name === 'email') {
       this.validateEmail()
     }
   }
@@ -76,7 +74,7 @@ class AvailabilitySubscriber extends Component {
   render() {
     const { name, email, emailError, hasBlurredEmail } = this.state
 
-    const isFormDisabled = name.length !== '' || email.length !== '' || emailError !== ''
+    const isFormDisabled = name === '' || email === '' || emailError !== ''
 
     let emailErrorMessage = ''
 
@@ -103,7 +101,7 @@ class AvailabilitySubscriber extends Component {
           />
           <Input
             name="email"
-            type="email"
+            type="text"
             placeholder={this.translate('availability-subscriber.email-placeholder')}
             value={email}
             onChange={this.handleInputChange}
