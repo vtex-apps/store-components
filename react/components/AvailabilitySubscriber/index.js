@@ -20,8 +20,8 @@ class AvailabilitySubscriber extends Component {
     intl: intlShape.isRequired,
   }
 
-  validateEmail = () => {
-    const { email, emailError } = this.state
+  validateEmail = (email) => {
+    const { emailError } = this.state
 
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
@@ -54,7 +54,7 @@ class AvailabilitySubscriber extends Component {
     })
 
     if (e.target.name === 'email') {
-      this.validateEmail()
+      this.validateEmail(e.target.value)
     }
   }
 
