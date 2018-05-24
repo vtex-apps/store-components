@@ -4,7 +4,7 @@ SKU Selector is a canonical component that any VTEX app can import.
 
 To import it into your code: 
 ```js
-import ProductPrice from 'vtex.store-components/ProductPrice'
+import SKUSelector from 'vtex.store-components/SKUSelector'
 ```
 
 ## Usage
