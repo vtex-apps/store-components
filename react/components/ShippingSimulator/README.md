@@ -1,24 +1,19 @@
-# Search Bar
-Search Bar is a canonical component that any VTEX app can import.
+# Shipping Simulator
+Shipping Simulator is a canonical component that any VTEX app can import.
 
-And to import it into your code: 
+To import it into your code: 
 ```js
-import SearchBar from 'vtex.storecomponents/SearchBar'
+import ShippingSimulator from 'vtex.store-components/ShippingSimulator'
 ```
 
 ## Usage
-You can use it in your code like a React component with the jsx tag: `<SearchBar />`. 
+You can use it in your code like a React component with the jsx tag: `<ShippingSimulator />`. 
 ```html
-<SearchBar
-    placeholder={"Search.. "}
-    emptyPlaceholder={"No result"}
-/>
+<ShippingSimulator />
 ```
 
 | Prop name          | Type      | Description                                                          |
 | ------------------ | --------- | -------------------------------------------------------------------- |
-| `placeholder`      | `String`  | Displays a placeholder on the search bar                             |
-| `emptyPlaceholder` | `String`  | Shows a placeholder when the ResultList hasn't results to displayed  |
+| `label`            | `Object`  | Shows input title of component                                       |
 
-_TODO - Add when an app use it. @brunojdo_ 
-See an example at ... app
+See an example at [Product Details](https://github.com/vtex-apps/product-details/blob/master/react/ProductDetails.js#L71) app

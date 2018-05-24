@@ -1,9 +1,9 @@
 # Product Description
 Product Description is a canonical component that any VTEX app can import.
 
-And to import it into your code: 
+To import it into your code: 
 ```js
-import ProductDescription from 'vtex.storecomponents/ProductDescription'
+import ProductDescription from 'vtex.store-components/ProductDescription'
 ```
 
 ## Usage

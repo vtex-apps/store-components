@@ -1,9 +1,9 @@
 ## Discount Badge
 Discount Badge is a canonical component that any VTEX app can import.
 
-And to import it into your code: 
+To import it into your code: 
 ```js
-import DiscountBadge from 'vtex.storecomponents/DiscountBadge'
+import DiscountBadge from 'vtex.store-components/DiscountBadge'
 ```
 
 ## Usage

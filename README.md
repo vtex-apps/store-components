@@ -41,13 +41,13 @@ To import a component of this project follow the instructions below.
 You need to add into the dependencies of your `manifest.json` and use it like a npm module. 
 ```json 
 "dependencies": {
-    "vtex.storecomponents": "1.x"
+    "vtex.store-components": "1.x"
   }
 ```
 
 And to import it into your code, for example: 
 ```js
-import ProductPrice from 'vtex.storecomponents/ProductPrice'
+import ProductPrice from 'vtex.store-components/ProductPrice'
 ```
 
 ## Creating a new component

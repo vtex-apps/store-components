@@ -1,9 +1,9 @@
 # Quantity Selector
 Quantity Selector is a canonical component that any VTEX app can import.
 
-And to import it into your code: 
+To import it into your code: 
 ```js
-import QuantitySelector from 'vtex.storecomponents/QuantitySelector'
+import QuantitySelector from 'vtex.store-components/QuantitySelector'
 ```
 
 ## Usage

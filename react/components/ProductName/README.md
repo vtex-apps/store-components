@@ -1,9 +1,9 @@
 # Product Name
 Product Name is a canonical component that any VTEX app can import.
 
-And to import it into your code: 
+To import it into your code: 
 ```js
-import ProductName from 'vtex.storecomponents/ProductName'
+import ProductName from 'vtex.store-components/ProductName'
 ```
 
 ## Usage

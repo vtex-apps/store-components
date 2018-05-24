@@ -1,5 +1,5 @@
 {
-  "name": "vtex.storecomponents",
+  "name": "vtex.store-components",
   "scripts": {
     "test": "vtex-scripts test"
   },

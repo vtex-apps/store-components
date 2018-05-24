@@ -1,9 +1,9 @@
 ## Collection Badges
 Collection Badges is a canonical component that any VTEX app can import.
 
-And to import it into your code: 
+To import it into your code: 
 ```js
-import CollectionBadges from 'vtex.storecomponents/CollectionBadges'
+import CollectionBadges from 'vtex.store-components/CollectionBadges'
 ```
 
 ## Usage

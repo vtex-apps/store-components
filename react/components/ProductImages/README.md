@@ -1,9 +1,9 @@
 # Product Images
 Product Images is a canonical component that any VTEX app can import.
 
-And to import it into your code: 
+To import it into your code: 
 ```js
-import ProductImages from 'vtex.storecomponents/ProductImages'
+import ProductImages from 'vtex.store-components/ProductImages'
 ```
 
 ## Usage

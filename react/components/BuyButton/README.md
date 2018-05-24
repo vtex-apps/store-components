@@ -1,9 +1,9 @@
 # BuyButton
 BuyButton is a canonical component that any VTEX app can import.
 
-And to import it into your code: 
+To import it into your code: 
 ```js
-import BuyButton from 'vtex.storecomponents/BuyButton'
+import BuyButton from 'vtex.store-components/BuyButton'
 ```
 
 ## Usage

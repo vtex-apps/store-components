@@ -1,9 +1,9 @@
 # Product Price
 Product Price is a canonical component that any VTEX app can import.
 
-And to import it into your code: 
+To import it into your code: 
 ```js
-import ProductPrice from 'vtex.storecomponents/ProductPrice'
+import ProductPrice from 'vtex.store-components/ProductPrice'
 ```
 
 ## Usage
