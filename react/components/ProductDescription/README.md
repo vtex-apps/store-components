@@ -1,32 +1,21 @@
 # Product Description
+Product Description is a canonical component that any VTEX app can import.
 
-# Description
-
-React component that render a the description of a product.
-
-# Installation
-
-Into this folder, run the following command on terminal:
-
-```sh
-$ npm install @vtex/product-description
+And to import it into your code: 
+```js
+import ProductDescription from 'vtex.storecomponents/ProductDescription'
 ```
 
-# Usage
-
-```javascript
-import React from 'react'
-import { ProductDescription } from '@vtex/product-description'
-
-class SampleUsage extends React.Component {
-  render() {
-    return (
-      <ProductDescription>
-        Lorem Ipsum Dolum.
-      </ProductDescription>
-    )
-  }
-}
+## Usage
+You can use it in your code like a React component with the jsx tag: `<ProductDescription />`. 
+```html
+<ProductDescription> 
+   <span>{product.description}</span>
+</ProductDescription>
 ```
 
-And it will render the description that is passed as a children component.
+| Prop name          | Type       | Description                                                                 |
+| ------------------ | ---------- | --------------------------------------------------------------------------- |
+| `component`        | `Node!`    | Children component which contains the product description                   |
+
+See an example at [Product Details](https://github.com/vtex-apps/product-details/blob/master/react/ProductDetails.js#L88) app

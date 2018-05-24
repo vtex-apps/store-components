@@ -17,7 +17,7 @@ Storecomponents is a collection of components that can be used to create/extend 
 
 ## Components Specs
 
-Above we have a README for each component of this project that explains how to use them. 
+Below we have a README for each component of this project that explains how to use them. 
 
 - [Buy Button](https://github.com/vtex-apps/storecomponents/blob/master/react/components/BuyButton/README.md)
 - [Collection Badges](https://github.com/vtex-apps/storecomponents/blob/master/react/components/CollectionBadges/README.md)
@@ -28,8 +28,8 @@ Above we have a README for each component of this project that explains how to u
 - [Product Images](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductImages/README.md)
 - [Product Name](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductName/README.md)
 - [Product Price](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductPrice/README.md)
-- [Quantity Selector](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductPrice/README.md)
-- [Search Bar](https://github.com/vtex-apps/storecomponents/blob/master/react/components/QuantitySelector/README.md)
+- [Quantity Selector](https://github.com/vtex-apps/storecomponents/blob/master/react/components/QuantitySelector/README.md)
+- [Search Bar](https://github.com/vtex-apps/storecomponents/blob/master/react/components/SearchBar/README.md)
 - [Shipping Simulator](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ShippingSimulator/README.md)
 - [SKU Selector](https://github.com/vtex-apps/storecomponents/blob/master/react/components/SKUSelector/README.md)
 - [Slider](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Slider/README.md)

@@ -1,4 +1,4 @@
-# Footer
+# Footer - DEPRECATED
 
 This is our footer component.
 

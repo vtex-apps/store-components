@@ -80,4 +80,5 @@ You can use it into your code like a React component with the jsx tag: `<SKUSele
 
 | Prop names         | Type       | Description                                                                 |
 | ------------------ | ---------- | --------------------------------------------------------------------------- |
-| `name`             | `String!`  | Categorie name                                                              |
+| `name`             | `String!`  | Category name                                                               |
+

@@ -1,17 +1,5 @@
 # Product Price
-
-This is our product price component.
-
-## Installation
-
-To install this component follow the instructions below. 
-
-You need to add into the dependencies of your `manifest.json` and use it like a npm module. 
-```json 
-"dependencies": {
-    "vtex.storecomponents": "1.x"
-  }
-```
+Product Price is a canonical component that any VTEX app can import.
 
 And to import it into your code: 
 ```js
@@ -19,9 +7,8 @@ import ProductPrice from 'vtex.storecomponents/ProductPrice'
 ```
 
 ## Usage
-
 You can use it in your code like a React component with the jsx tag: `<ProductPrice />`. 
-```js
+```html
 <ProductPrice
     listPrice={commertialOffer.ListPrice}
     sellingPrice={commertialOffer.Price}
@@ -43,5 +30,6 @@ You can use it in your code like a React component with the jsx tag: `<ProductPr
 | `showSavings`      | `Boolean`  | Set visibility of savings                                                   |
 | `installments`     | `Number`   | Available number of installments                                            |
 | `installmentPrice` | `Number`   | Single installment price                                                    |
+| `intl`             | `Object`   | Internationalization property to format data                                |
 
 See an example at [Product Summary](https://github.com/vtex-apps/product-summary/blob/master/react/ProductSummary.js#L84) app
