@@ -20,4 +20,4 @@ You can use it in your code like a React component with the jsx tag: `<Share />`
 | -------------- | --------- | -------------------------------------------------------------------------- |
 | `social`       | `Object!` | Social networks definition. The key is the name and the value is a boolean |
 | `options`      | `Object`  | Object to configure the Component                                          |
-| `options.size` | `Number`  | Buttons size                                                               |
+| `options.size` | `Number`  | Buttons size in pixels                                                     |
