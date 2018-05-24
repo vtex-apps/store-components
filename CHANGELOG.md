@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Add _Share_ Component.
+- Initial version of the availability subscriber component.
 
 ## [1.2.0] - 2018-05-24
 ### Added

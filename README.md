@@ -34,6 +34,8 @@ Below we have a README for each component of this project that explains how to u
 - [Shipping Simulator](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ShippingSimulator/README.md)
 - [SKU Selector](https://github.com/vtex-apps/storecomponents/blob/master/react/components/SKUSelector/README.md)
 - [Slider](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Slider/README.md)
+- [Technical Specifications](https://github.com/vtex-apps/storecomponents/blob/master/react/components/TechnicalSpecifications/README.md)
+- [Availability Subscriber](https://github.com/vtex-apps/storecomponents/blob/master/react/components/AvailabilitySubscriber/README.md)
 
 ## Usage
 To import a component of this project follow the instructions below. 
@@ -41,8 +43,8 @@ To import a component of this project follow the instructions below.
 You need to add into the dependencies of your `manifest.json` and use it like a npm module. 
 ```json 
 "dependencies": {
-    "vtex.store-components": "1.x"
-  }
+  "vtex.store-components": "1.x"
+}
 ```
 
 And to import it into your code, for example: 
