@@ -61,7 +61,7 @@ class AvailabilitySubscriber extends Component {
   handleClick = () => {
     /* TODO: we don't have a definition for which api to use yet */
 
-    const event = new Event('item:add') // TODO: implement toast message success on dreamstore
+    const event = new Event('message:success')
 
     event.details = {
       success: true,
