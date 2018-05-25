@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { isEmpty } from 'ramda'
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 
 /**
@@ -15,12 +16,23 @@ class Price extends Component {
       sellingPrice,
       listPrice,
       installments,
-      installmentPrice,
       showInstallments,
       showLabels,
       showSavings,
       intl: { formatNumber },
     } = this.props
+
+    const noInterestRateInstallments = installments.filter(
+      installment => !installment.InterestRate
+    )
+
+    const installment = (isEmpty(noInterestRateInstallments)
+      ? installments
+      : noInterestRateInstallments
+    ).reduce(
+      (ac, inst) =>
+        ac.NumberOfInstallments > inst.NumberOfInstallments ? ac : inst
+    )
 
     const differentPrices =
       this.props.showListPrice && sellingPrice !== listPrice
@@ -33,12 +45,12 @@ class Price extends Component {
     }
 
     const formattedInstallmentPrice = formatNumber(
-      installmentPrice,
+      installment.Value,
       currencyOptions
     )
 
     const [installmentsElement, installmentPriceElement, timesElement] = [
-      installments,
+      installment.NumberOfInstallments,
       formattedInstallmentPrice,
       <span key="times">&times;</span>,
     ].map((element, index) => (
@@ -72,8 +84,7 @@ class Price extends Component {
           </div>
         </div>
         {showInstallments &&
-          installments &&
-          installmentPrice && (
+          installment && (
           <div className="vtex-price-installments__container">
             <div className="vtex-price-installments dib">
               {showLabels ? (
@@ -89,6 +100,11 @@ class Price extends Component {
                 <span>
                   {installmentsElement} {timesElement}{' '}
                   {installmentPriceElement}
+                </span>
+              )}
+              {!installment.InterestRate && (
+                <span className="pl1">
+                  <FormattedMessage id="pricing.interest-free" />
                 </span>
               )}
             </div>
@@ -128,10 +144,8 @@ Price.propTypes = {
   showInstallments: PropTypes.bool.isRequired,
   /** Set visibility of savings */
   showSavings: PropTypes.bool,
-  /** Available number of installments */
-  installments: PropTypes.number,
-  /** Single installment price */
-  installmentPrice: PropTypes.number,
+  /** Available installments */
+  installments: PropTypes.array,
   /** intl property to format data */
   intl: intlShape.isRequired,
 }

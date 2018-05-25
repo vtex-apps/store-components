@@ -8,6 +8,7 @@
     "O hasta {installments} {times} de {installmentPrice}",
   "pricing.from": "De:",
   "pricing.to": "Por:",
+  "pricing.interest-free": "sin interés",
   "loading": "Cargando…",
   "shipping.label": "Calcular el flete",
   "shipping.eta": "hasta {eta} días",
