@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add _Share_ Component.
 
+### Changed
+- Change _ProductPrice_'s installments logic.
+
 ## [1.2.0] - 2018-05-24
 ### Added
 - `TechnicalSpecifications` component.

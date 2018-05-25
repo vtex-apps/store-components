@@ -8,6 +8,7 @@
     "Or up to {installments} {times} of {installmentPrice}",
   "pricing.from": "From:",
   "pricing.to": "To:",
+  "pricing.interest-free": "interest-free",
   "loading": "Loading…",
   "shipping.label": "Calculate shipping",
   "shipping.eta": "up to {eta} days",
