@@ -16,7 +16,7 @@ class AvailabilitySubscriber extends Component {
   }
 
   static propTypes = {
-    skuId: PropTypes.number.isRequired,
+    skuId: PropTypes.string.isRequired,
     intl: intlShape.isRequired,
   }
 
@@ -59,7 +59,16 @@ class AvailabilitySubscriber extends Component {
   }
 
   handleClick = () => {
-    console.log('mutation')
+    /* TODO: we don't have a definition for which api to use yet */
+
+    const event = new Event('item:add') // TODO: implement toast message success on dreamstore
+
+    event.details = {
+      success: true,
+      message: this.translate('availability-subscriber.added-message'),
+    }
+
+    document.dispatchEvent(event)
   }
 
   translate = id => this.props.intl.formatMessage({ id })

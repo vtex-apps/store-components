@@ -20,5 +20,6 @@
   "availability-subscriber.email-placeholder": "Email",
   "availability-subscriber.name-placeholder": "Name",
   "availability-subscriber.send-label": "Send",
-  "availability-subscriber.invalid-email": "Invalid email"
+  "availability-subscriber.invalid-email": "Invalid email",
+  "availability-subscriber.added-message": "E-mail registered successfully"
 }
