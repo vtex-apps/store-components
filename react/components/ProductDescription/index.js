@@ -65,6 +65,7 @@ class ProductDescription extends Component {
 
 ProductDescription.defaultProps = {
   specifications: [],
+  children: {},
 }
 
 ProductDescription.propTypes = {
@@ -79,10 +80,6 @@ ProductDescription.propTypes = {
   })),
   /** Name of the current SKU */
   skuName: PropTypes.string,
-}
-
-ProductDescription.defaultProps = {
-  children: {},
 }
 
 export default injectIntl(ProductDescription)
