@@ -54,7 +54,7 @@ class Price extends Component {
       formattedInstallmentPrice,
       <span key="times">&times;</span>,
     ].map((element, index) => (
-      <span className="vtex-price-installments__value ph1" key={index}>
+      <span className="vtex-price-installments__value" key={index}>
         {element}
       </span>
     ))
