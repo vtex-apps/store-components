@@ -8,7 +8,7 @@ import './global.css'
 
 /**
  * Product Description Component.
- * Render the description of a product and it's technical specifications.
+ * Render the description and technical specifications of a product
  */
 class ProductDescription extends Component {
   render() {
@@ -74,10 +74,12 @@ ProductDescription.propTypes = {
   children: PropTypes.node.isRequired,
   /** Intl object to provides internationalization */
   intl: intlShape.isRequired,
-  /** Specifications of the product */
+  /** Specifications that will be displayed on the table */
   specifications: PropTypes.arrayOf(
     PropTypes.shape({
+      /** Specification name */
       name: PropTypes.string.isRequired,
+      /** Specifications value */
       values: PropTypes.arrayOf(PropTypes.string).isRequired,
     })
   ),
