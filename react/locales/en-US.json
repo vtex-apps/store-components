@@ -5,9 +5,10 @@
   "more-information-links": "More Information",
   "payment-form": "Payment Forms",
   "pricing.installment-display":
-    "Or up to {installments} {times} of {installmentPrice}",
+    "Or {installments} {times} of {installmentPrice}",
   "pricing.from": "From:",
   "pricing.to": "To:",
+  "pricing.savings": "Save: {savings}",
   "pricing.interest-free": "interest-free",
   "loading": "Loading…",
   "shipping.label": "Calculate shipping",

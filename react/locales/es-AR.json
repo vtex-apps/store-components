@@ -5,9 +5,10 @@
   "more-information-links": "Mas informaciones",
   "payment-form": "Formas de Pago",
   "pricing.installment-display":
-    "O hasta {installments} {times} de {installmentPrice}",
+    "O {installments} {times} de {installmentPrice}",
   "pricing.from": "De:",
   "pricing.to": "Por:",
+  "pricing.savings": "Ahorre: {savings}",
   "pricing.interest-free": "sin interés",
   "loading": "Cargando…",
   "shipping.label": "Calcular el flete",
