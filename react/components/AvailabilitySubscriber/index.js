@@ -7,6 +7,10 @@ import Input from '@vtex/styleguide/lib/Input'
 
 import './global.css'
 
+/**
+ * Represents the availability subscriber form, that's shown when
+ * the product isn't available.
+ */
 class AvailabilitySubscriber extends Component {
   state = {
     name: '',
@@ -16,6 +20,7 @@ class AvailabilitySubscriber extends Component {
   }
 
   static propTypes = {
+    /** The id of the current product sku */
     skuId: PropTypes.string.isRequired,
     intl: intlShape.isRequired,
   }
