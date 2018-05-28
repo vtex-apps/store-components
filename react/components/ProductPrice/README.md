@@ -17,7 +17,6 @@ You can use it in your code like a React component with the jsx tag: `<ProductPr
     listPrice={commertialOffer.ListPrice}
     sellingPrice={commertialOffer.Price}
     installments={commertialOffer.Installments}
-    installmentPrice={commertialOffer.InstallmentPrice}
     showListPrice={showListPrice}
     showLabels={showLabels}
     showInstallments={showInstallments}
