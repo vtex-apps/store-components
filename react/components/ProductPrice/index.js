@@ -26,6 +26,10 @@ class Price extends Component {
       installment => !installment.InterestRate
     )
 
+    /*
+     * - The selected installment will be the one with the highest `NumberOfInstallments`;
+     * - If there is no 'interest-free' installments, the normal installments will be analyzed.
+     */
     const installment = (isEmpty(noInterestRateInstallments)
       ? installments
       : noInterestRateInstallments
