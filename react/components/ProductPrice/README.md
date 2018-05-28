@@ -36,7 +36,7 @@ You can use it in your code like a React component with the jsx tag: `<ProductPr
 | `installments.Value`                      | `Number!`  | Installment price                                 |
 | `installments.InterestRate`               | `Number!`  | Installment interest rate (zero if interest-free) |
 | `installments.TotalValuePlusInterestRate` | `Number`   | Calculated total value                            |
-| `installments.NumberOfInstallments!`      | `Number`   | Number of installments                            |
+| `installments.NumberOfInstallments`       | `Number!`  | Number of installments                            |
 | `installments.Name`                       | `String`   | Installment offer name                            |
 | `intl`                                    | `Object`   | Internationalization property to format data      |
 
