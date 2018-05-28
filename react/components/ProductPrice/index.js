@@ -89,47 +89,47 @@ class Price extends Component {
         </div>
         {showInstallments &&
           installment && (
-          <div className="vtex-price-installments__container">
-            <div className="vtex-price-installments dib">
-              {showLabels ? (
-                <FormattedMessage
-                  id="pricing.installment-display"
-                  values={{
-                    installments: installmentsElement,
-                    installmentPrice: installmentPriceElement,
-                    times: timesElement,
-                  }}
-                />
-              ) : (
-                <span>
-                  {installmentsElement} {timesElement}{' '}
-                  {installmentPriceElement}
-                </span>
-              )}
-              {!installment.InterestRate && (
-                <span className="pl1">
-                  <FormattedMessage id="pricing.interest-free" />
-                </span>
-              )}
+            <div className="vtex-price-installments__container">
+              <div className="vtex-price-installments dib">
+                {showLabels ? (
+                  <FormattedMessage
+                    id="pricing.installment-display"
+                    values={{
+                      installments: installmentsElement,
+                      installmentPrice: installmentPriceElement,
+                      times: timesElement,
+                    }}
+                  />
+                ) : (
+                  <span>
+                    {installmentsElement} {timesElement}{' '}
+                    {installmentPriceElement}
+                  </span>
+                )}
+                {!installment.InterestRate && (
+                  <span className="pl1">
+                    <FormattedMessage id="pricing.interest-free" />
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
         {differentPrices &&
           showSavings && (
-          <div className="vtex-price-savings__container">
-            <div className="vtex-price-savings dib">
-              <FormattedMessage
-                id="pricing.savings"
-                values={{
-                  savings: formatNumber(
-                    listPrice - sellingPrice,
-                    currencyOptions
-                  ),
-                }}
-              />
+            <div className="vtex-price-savings__container">
+              <div className="vtex-price-savings dib">
+                <FormattedMessage
+                  id="pricing.savings"
+                  values={{
+                    savings: formatNumber(
+                      listPrice - sellingPrice,
+                      currencyOptions
+                    ),
+                  }}
+                />
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     )
   }
@@ -159,7 +159,7 @@ Price.propTypes = {
       TotalValuePlusInterestRate: PropTypes.number,
       /** Number of installments */
       NumberOfInstallments: PropTypes.number.isRequired,
-      /** Installments offer name */
+      /** Installment offer name */
       Name: PropTypes.string,
     })
   ),
