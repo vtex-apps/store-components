@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { isEmpty } from 'ramda'
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
+import { FormattedMessage, injectIntl } from 'react-intl'
+
+import PricePropTypes from './propTypes'
 
 /**
  * The Price component. Shows the prices information of the Product Summary.
@@ -9,6 +11,14 @@ import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 class Price extends Component {
   static contextTypes = {
     culture: PropTypes.object,
+  }
+
+  static propTypes = PricePropTypes
+
+  static defaultProps = {
+    showListPrice: true,
+    showLabels: true,
+    showInstallments: false,
   }
 
   render() {
@@ -89,88 +99,50 @@ class Price extends Component {
         </div>
         {showInstallments &&
           installment && (
-            <div className="vtex-price-installments__container">
-              <div className="vtex-price-installments dib">
-                {showLabels ? (
-                  <FormattedMessage
-                    id="pricing.installment-display"
-                    values={{
-                      installments: installmentsElement,
-                      installmentPrice: installmentPriceElement,
-                      times: timesElement,
-                    }}
-                  />
-                ) : (
-                  <span>
-                    {installmentsElement} {timesElement}{' '}
-                    {installmentPriceElement}
-                  </span>
-                )}
-                {!installment.InterestRate && (
-                  <span className="pl1">
-                    <FormattedMessage id="pricing.interest-free" />
-                  </span>
-                )}
-              </div>
-            </div>
-          )}
-        {differentPrices &&
-          showSavings && (
-            <div className="vtex-price-savings__container">
-              <div className="vtex-price-savings dib">
+          <div className="vtex-price-installments__container">
+            <div className="vtex-price-installments dib">
+              {showLabels ? (
                 <FormattedMessage
-                  id="pricing.savings"
+                  id="pricing.installment-display"
                   values={{
-                    savings: formatNumber(
-                      listPrice - sellingPrice,
-                      currencyOptions
-                    ),
+                    installments: installmentsElement,
+                    installmentPrice: installmentPriceElement,
+                    times: timesElement,
                   }}
                 />
-              </div>
+              ) : (
+                <span>
+                  {installmentsElement} {timesElement}{' '}
+                  {installmentPriceElement}
+                </span>
+              )}
+              {!installment.InterestRate && (
+                <span className="pl1">
+                  <FormattedMessage id="pricing.interest-free" />
+                </span>
+              )}
             </div>
-          )}
+          </div>
+        )}
+        {differentPrices &&
+          showSavings && (
+          <div className="vtex-price-savings__container">
+            <div className="vtex-price-savings dib">
+              <FormattedMessage
+                id="pricing.savings"
+                values={{
+                  savings: formatNumber(
+                    listPrice - sellingPrice,
+                    currencyOptions
+                  ),
+                }}
+              />
+            </div>
+          </div>
+        )}
       </div>
     )
   }
-}
-
-Price.propTypes = {
-  /** Product selling price */
-  sellingPrice: PropTypes.number.isRequired,
-  /** Product list price */
-  listPrice: PropTypes.number.isRequired,
-  /** Set visibility of list price */
-  showListPrice: PropTypes.bool.isRequired,
-  /** Set visibility of labels */
-  showLabels: PropTypes.bool.isRequired,
-  /** Set visibility of installments */
-  showInstallments: PropTypes.bool.isRequired,
-  /** Set visibility of savings */
-  showSavings: PropTypes.bool,
-  /** Available installments */
-  installments: PropTypes.arrayOf(
-    PropTypes.shape({
-      /** Installment value */
-      Value: PropTypes.number.isRequired,
-      /** Interest rate (zero if interest-free) */
-      InterestRate: PropTypes.number.isRequired,
-      /** Calculated total value */
-      TotalValuePlusInterestRate: PropTypes.number,
-      /** Number of installments */
-      NumberOfInstallments: PropTypes.number.isRequired,
-      /** Installment offer name */
-      Name: PropTypes.string,
-    })
-  ),
-  /** intl property to format data */
-  intl: intlShape.isRequired,
-}
-
-Price.defaultProps = {
-  showListPrice: true,
-  showLabels: true,
-  showInstallments: false,
 }
 
 export default injectIntl(Price)
