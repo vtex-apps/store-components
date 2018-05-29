@@ -21,7 +21,7 @@ class ShippingSimulator extends Component {
     intl: intlShape.isRequired,
     client: PropTypes.object,
     skuId: PropTypes.string.isRequired,
-    sellerId: PropTypes.string.isRequired,
+    seller: PropTypes.string.isRequired,
   }
 
   state = {
@@ -51,7 +51,7 @@ class ShippingSimulator extends Component {
   handleClick = e => {
     e.preventDefault()
 
-    const { skuId, sellerId } = this.props
+    const { skuId, seller } = this.props
 
     this.setState({
       loading: true,
@@ -66,7 +66,7 @@ class ShippingSimulator extends Component {
           {
             quantity: '1',
             id: skuId,
-            seller: sellerId,
+            seller,
           },
         ],
       },
