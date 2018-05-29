@@ -1,7 +1,13 @@
 import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
+import { withApollo, compose } from 'react-apollo'
+
+import Button from '@vtex/styleguide/lib/Button'
+import Input from '@vtex/styleguide/lib/Input'
 
 import ShippingTable from './components/ShippingTable'
+import getShippingEstimates from './queries/getShippingEstimates.gql'
 
 import './global.css'
 
@@ -13,11 +19,15 @@ import './global.css'
 class ShippingSimulator extends Component {
   static propTypes = {
     intl: intlShape.isRequired,
+    client: PropTypes.object,
+    skuId: PropTypes.string.isRequired,
+    sellerId: PropTypes.string.isRequired,
   }
 
   state = {
     zipcodeValue: '',
-    shippingOptionList: [],
+    shipping: {},
+    loading: false,
   }
 
   handleChange = e => {
@@ -41,28 +51,35 @@ class ShippingSimulator extends Component {
   handleClick = e => {
     e.preventDefault()
 
-    // TODO: call graphql
+    const { skuId, sellerId } = this.props
+
     this.setState({
-      shippingOptionList: [
-        {
-          name: 'Super Expressa',
-          value: 65.99,
-          eta: 4,
-        },
-        {
-          name: 'Expressa',
-          value: 45,
-          eta: 7,
-        },
-        {
-          name: 'Econômica',
-          value: 0,
-          eta: 20,
-        },
-        {
-          name: 'Retirada Rápida',
-        },
-      ],
+      loading: true,
+    })
+
+    this.props.client.query({
+      query: getShippingEstimates,
+      variables: {
+        country: 'BRA', // TODO @lucasecdb: get country of user instead of hard-coding
+        postalCode: this.state.zipcodeValue,
+        items: [
+          {
+            quantity: '1',
+            id: skuId,
+            seller: sellerId,
+          },
+        ],
+      },
+    }).then(result => {
+      this.setState({
+        shipping: result.data.shipping,
+      })
+    }).catch(error => {
+      console.error(error)
+    }).finally(() => {
+      this.setState({
+        loading: false,
+      })
     })
   }
 
@@ -71,31 +88,36 @@ class ShippingSimulator extends Component {
   }
 
   render() {
-    const { shippingOptionList, zipcodeValue } = this.state
+    const { shipping, zipcodeValue, loading } = this.state
 
     return (
       <Fragment>
-        <label className="vtex-shipping-simulator">
+        <label className="vtex-shipping-simulator f7">
           {this.formatMessage('shipping.label')}
-          <input
+          <Input
             className="vtex-shipping-simulator__input"
             name="zipcode"
             type="text"
             onChange={this.handleChange}
             value={zipcodeValue}
           />
-          <button
+          <Button
             className="vtex-shipping-simulator__cta"
             onClick={this.handleClick}
-            disabled={zipcodeValue.length < 9}>
+            disabled={zipcodeValue.length < 9}
+            isLoading={loading}
+          >
             OK
-          </button>
+          </Button>
         </label>
 
-        <ShippingTable shippingOptionList={shippingOptionList} />
+        <ShippingTable shipping={shipping} />
       </Fragment>
     )
   }
 }
 
-export default injectIntl(ShippingSimulator)
+export default compose(
+  withApollo,
+  injectIntl
+)(ShippingSimulator)

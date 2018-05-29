@@ -3,30 +3,30 @@
   display: flex;
   align-items: center;
   color: #828282;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
-.vtex-shipping-simulator__input {
+.vtex-shipping-simulator .vtex-input {
   height: 100%;
   margin-left: 10px;
-  padding: 2px 5px;
-  font-size: 12px;
-  color: #4f4f4f;
+}
 
+.vtex-shipping-simulator .vtex-input input {
+  padding: 2px 5px;
+  color: #4f4f4f;
   border: 1px solid #bdbdbd;
   border-radius: 2px;
+  height: 100%;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.vtex-shipping-simulator__cta {
+.vtex-shipping-simulator .vtex-button {
   height: 100%;
   width: 26px;
+  font-size: inherit;
   background-color: #e0e0e0;
   padding: 6px 2px;
-  color: inherit;
-  font-size: inherit;
-
   border: 1px solid #bdbdbd;
   border-left: none;
   border-radius: 2px;
@@ -35,16 +35,17 @@
 }
 
 .vtex-shipping-table {
-  border-top: 1px solid #828282;
-  border-bottom: 1px solid #828282;
+  width: 100%;
+  border-bottom: 1px solid #bdbdbd;
+  background-color: rgba(0, 0, 0, 0.05);
   color: #828282;
-  font-size: 12px;
-  margin: 15px 0;
+  margin-top: 7px;
   padding: 5px 0;
 }
 
 .vtex-shipping-table__cell {
   padding: 2px 10px;
+  font-size: 0.75rem;
 }
 
 .vtex-shipping-table__cell--center {
