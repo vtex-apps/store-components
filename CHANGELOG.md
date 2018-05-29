@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Change _ProductPrice_'s installments logic.
 - Merge _TechnicalSpecifications_ Component with _ProductDescription_.
+- Integration of the `ShippingComponent` with graphql.
 
 ## [1.2.0] - 2018-05-24
 ### Added
