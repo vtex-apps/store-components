@@ -6,14 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.3.0] - 2018-05-29
 ### Added
 - Add _Share_ Component.
 - Initial version of the availability subscriber component.
 
 ### Changed
 - Change _ProductPrice_'s installments logic.
-
-### Changed
 - Merge _TechnicalSpecifications_ Component with _ProductDescription_.
 
 ## [1.2.0] - 2018-05-24
