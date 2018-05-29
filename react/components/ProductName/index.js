@@ -47,7 +47,7 @@ class ProductName extends Component {
           {name} {showBrandName && brandName && `(${brandName})`}
         </div>
         <div className={skuClasses}>{skuName}</div>
-        {showEAN && <div className="vtex-product-name__ean pt3 f7 ttu gray">{`(EAN ${ean})`}</div>}
+        {showEAN && ean && <div className="vtex-product-name__ean pt3 f7 ttu gray">{`(EAN ${ean})`}</div>}
       </div>
     )
   }
