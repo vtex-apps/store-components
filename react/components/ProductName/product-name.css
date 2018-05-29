@@ -13,3 +13,7 @@
 .vtex-product-name__sku {
   font-size: 0.875rem;
 }
+
+.vtex-product-name--hiden {
+  display: none;
+}
