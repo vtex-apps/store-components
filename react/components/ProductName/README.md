@@ -20,7 +20,8 @@ You can use it in your code like a React component with the jsx tag: `<ProductNa
 | ----------------- | ---------- | ------------------------------------------------ |
 | `name`            | `String!`  | Name of the product                              |
 | `skuName`         | `String`   | Selected SKU name                                |
-| `showSkuName`     | `Boolean`  | Show SKU name                                    |
+| `ean`             | `String`   | EAN                                              |
+| `showEAN`         | `Boolean`  | Show EAN                                         |
 | `brandName`       | `String`   | Brand name                                       |
 | `showBrandName`   | `Boolean`  | Show brand name                                  |
 | `label`           | `Boolean`  | Displays large font                              |
