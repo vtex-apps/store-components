@@ -56,3 +56,8 @@
   margin-right: 15px; 
 }
 
+.vtex-shipping__no-shipping-message {
+  display: inline-block;
+  font-size: 12px;
+  margin-top: 7px;
+}

@@ -14,6 +14,7 @@
   "shipping.label": "Calcular o frete",
   "shipping.eta": "até {eta} dias",
   "shipping.free": "Grátis",
+  "shipping.empty-sla": "Não existe um frete disponível para o CEP informado",
   "buybutton.add-failure":
     "Algo deu errado e o item não pode ser adicionado ao seu carrinho!",
   "technicalspecifications.title": "Especificações Técnicas",
