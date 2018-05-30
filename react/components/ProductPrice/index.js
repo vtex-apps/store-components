@@ -21,16 +21,23 @@ class Price extends Component {
     showInstallments: false,
   }
 
-  render() {
+  currencyOptions = {
+    style: 'currency',
+    currency: this.context.culture.currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }
+
+  getInstallmentsNode() {
     const {
-      sellingPrice,
-      listPrice,
       installments,
-      showInstallments,
       showLabels,
-      showSavings,
       intl: { formatNumber },
     } = this.props
+
+    if (!installments || isEmpty(installments)) {
+      return null
+    }
 
     const noInterestRateInstallments = installments.filter(
       installment => !installment.InterestRate
@@ -50,19 +57,9 @@ class Price extends Component {
           : current
     )
 
-    const differentPrices =
-      this.props.showListPrice && sellingPrice !== listPrice
-
-    const currencyOptions = {
-      style: 'currency',
-      currency: this.context.culture.currency,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }
-
     const formattedInstallmentPrice = formatNumber(
       installment.Value,
-      currencyOptions
+      this.currencyOptions
     )
 
     const [installmentsElement, installmentPriceElement, timesElement] = [
@@ -76,6 +73,46 @@ class Price extends Component {
     ))
 
     return (
+      <div className="vtex-price-installments__container">
+        <div className="vtex-price-installments dib">
+          {showLabels ? (
+            <FormattedMessage
+              id="pricing.installment-display"
+              values={{
+                installments: installmentsElement,
+                installmentPrice: installmentPriceElement,
+                times: timesElement,
+              }}
+            />
+          ) : (
+            <span>
+              {installmentsElement} {timesElement} {installmentPriceElement}
+            </span>
+          )}
+          {!installment.InterestRate && (
+            <span className="pl1">
+              <FormattedMessage id="pricing.interest-free" />
+            </span>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  render() {
+    const {
+      sellingPrice,
+      listPrice,
+      showInstallments,
+      showLabels,
+      showSavings,
+      intl: { formatNumber },
+    } = this.props
+
+    const differentPrices =
+      this.props.showListPrice && sellingPrice !== listPrice
+
+    return (
       <div className="vtex-price flex flex-column justify-around">
         {differentPrices && (
           <div className="vtex-price-list__container pv1 normal">
@@ -85,7 +122,7 @@ class Price extends Component {
               </div>
             )}
             <div className="vtex-price-list dib ph2 strike">
-              {formatNumber(listPrice, currencyOptions)}
+              {formatNumber(listPrice, this.currencyOptions)}
             </div>
           </div>
         )}
@@ -96,52 +133,26 @@ class Price extends Component {
             </div>
           )}
           <div className="vtex-price-selling dib ph2">
-            {formatNumber(sellingPrice, currencyOptions)}
+            {formatNumber(sellingPrice, this.currencyOptions)}
           </div>
         </div>
-        {showInstallments &&
-          installment && (
-            <div className="vtex-price-installments__container">
-              <div className="vtex-price-installments dib">
-                {showLabels ? (
-                  <FormattedMessage
-                    id="pricing.installment-display"
-                    values={{
-                      installments: installmentsElement,
-                      installmentPrice: installmentPriceElement,
-                      times: timesElement,
-                    }}
-                  />
-                ) : (
-                  <span>
-                    {installmentsElement} {timesElement}{' '}
-                    {installmentPriceElement}
-                  </span>
-                )}
-                {!installment.InterestRate && (
-                  <span className="pl1">
-                    <FormattedMessage id="pricing.interest-free" />
-                  </span>
-                )}
-              </div>
-            </div>
-          )}
+        {showInstallments && this.getInstallmentsNode()}
         {differentPrices &&
           showSavings && (
-            <div className="vtex-price-savings__container">
-              <div className="vtex-price-savings dib">
-                <FormattedMessage
-                  id="pricing.savings"
-                  values={{
-                    savings: formatNumber(
-                      listPrice - sellingPrice,
-                      currencyOptions
-                    ),
-                  }}
-                />
-              </div>
+          <div className="vtex-price-savings__container">
+            <div className="vtex-price-savings dib">
+              <FormattedMessage
+                id="pricing.savings"
+                values={{
+                  savings: formatNumber(
+                    listPrice - sellingPrice,
+                    this.currencyOptions
+                  ),
+                }}
+              />
             </div>
-          )}
+          </div>
+        )}
       </div>
     )
   }
