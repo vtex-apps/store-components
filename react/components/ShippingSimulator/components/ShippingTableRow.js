@@ -31,7 +31,7 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   return (
     <tr key={name}>
       <td className="vtex-shipping-table__cell">
-        <label>
+        <label className="vtex-shipping-table__shipping-name-label">
           <input
             className="vtex-shipping-table__radio-input"
             name="shipping-option"
