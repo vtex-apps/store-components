@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { FormattedMessage } from 'react-intl'
 
 import ShippingTableRow from './ShippingTableRow'
 
@@ -30,6 +31,16 @@ export default class ShippingTable extends Component {
       (slas, info) => [...slas, ...info.slas],
       []
     )
+
+    if (slaList.length === 0) {
+      return (
+        <FormattedMessage id="shipping.empty-sla">
+          {text => (
+            <span className="vtex-shipping__no-shipping-message">{text}</span>
+          )}
+        </FormattedMessage>
+      )
+    }
 
     return (
       <table className="vtex-shipping-table">
