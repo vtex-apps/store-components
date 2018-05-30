@@ -79,7 +79,7 @@ export class BuyButton extends Component {
                 this.toastMessage(success)
 
                 if (success && isOneClickBuy) {
-                  location.assign('/checkout/#/cart')
+                  location.assign(CONSTANTS.CHECKOUT_URL)
                 }
               },
               mutationErr => {
