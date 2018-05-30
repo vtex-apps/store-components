@@ -6,15 +6,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Change _ProductName_, added: showBrandName, showEan, ean attributes.
+
+## [1.3.1] - 2018-5-30
+### Fixed
+- Fix _ProductPrice_ Component when no Installments are passed.
+
+## [1.3.0] - 2018-05-29
 ### Added
 - Add _Share_ Component.
 - Initial version of the availability subscriber component.
 
 ### Changed
 - Change _ProductPrice_'s installments logic.
-- Change _ProductName_, added: showBrandName, showEan, ean attributes.
-
-### Changed
 - Merge _TechnicalSpecifications_ Component with _ProductDescription_.
 
 ## [1.2.0] - 2018-05-24
