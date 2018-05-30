@@ -6,7 +6,7 @@ import ShippingTableRow from './ShippingTableRow'
 
 export default class ShippingTable extends Component {
   static propTypes = {
-    /** Placeholder */
+    /** Shipping informations */
     shipping: PropTypes.shape({
       logisticsInfo: PropTypes.arrayOf(PropTypes.shape({
         itemIndex: PropTypes.string,
