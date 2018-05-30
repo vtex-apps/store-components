@@ -1,3 +1,4 @@
+/* global __RUNTIME__ */
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
@@ -60,7 +61,7 @@ class ShippingSimulator extends Component {
     this.props.client.query({
       query: getShippingEstimates,
       variables: {
-        country: 'BRA', // TODO @lucasecdb: get country of user instead of hard-coding
+        country: __RUNTIME__.hints.country,
         postalCode: this.state.zipcodeValue,
         items: [
           {
