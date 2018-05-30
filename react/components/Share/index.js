@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { indexBy, prop } from 'ramda'
 
 import { SOCIAL_ENUM } from './constants/social'
-import { SocialButton } from './utils/socialResolver'
+import SocialButton from './components/SocialButton'
 
 import './global.css'
 
@@ -64,6 +64,7 @@ class Share extends Component {
                 key={index}>
                 <SocialButton
                   url={window.location && window.location.href}
+                  message="Olha só essa maravilha!"
                   socialEnum={socialNetwork}
                   size={size}
                 />
