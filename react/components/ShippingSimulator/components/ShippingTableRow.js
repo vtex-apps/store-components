@@ -54,7 +54,7 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
 
 ShippingTableRow.propTypes = {
   name: PropTypes.string,
-  shippingEstimate: PropTypes.number,
+  shippingEstimate: PropTypes.string,
   price: PropTypes.number,
   intl: intlShape.isRequired,
 }
