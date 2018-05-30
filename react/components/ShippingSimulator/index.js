@@ -1,4 +1,3 @@
-/* global __RUNTIME__ */
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
@@ -22,7 +21,8 @@ class ShippingSimulator extends Component {
     intl: intlShape.isRequired,
     client: PropTypes.object,
     skuId: PropTypes.string.isRequired,
-    seller: PropTypes.string.isRequired,
+    seller: PropTypes.number.isRequired,
+    country: PropTypes.string.isRequired,
   }
 
   state = {
@@ -52,7 +52,7 @@ class ShippingSimulator extends Component {
   handleClick = e => {
     e.preventDefault()
 
-    const { skuId, seller } = this.props
+    const { skuId, seller, country } = this.props
 
     this.setState({
       loading: true,
@@ -61,7 +61,7 @@ class ShippingSimulator extends Component {
     this.props.client.query({
       query: getShippingEstimates,
       variables: {
-        country: __RUNTIME__.hints.country,
+        country,
         postalCode: this.state.zipcodeValue,
         items: [
           {
@@ -93,15 +93,17 @@ class ShippingSimulator extends Component {
 
     return (
       <Fragment>
-        <label className="vtex-shipping-simulator f7">
-          {this.formatMessage('shipping.label')}
-          <Input
-            className="vtex-shipping-simulator__input"
-            name="zipcode"
-            type="text"
-            onChange={this.handleChange}
-            value={zipcodeValue}
-          />
+        <form className="vtex-shipping-simulator">
+          <label className="vtex-shipping-simulator__zipcode-label">
+            {this.formatMessage('shipping.label')}
+            <Input
+              className="vtex-shipping-simulator__input"
+              name="zipcode"
+              type="text"
+              onChange={this.handleChange}
+              value={zipcodeValue}
+            />
+          </label>
           <Button
             className="vtex-shipping-simulator__cta"
             onClick={this.handleClick}
@@ -110,7 +112,7 @@ class ShippingSimulator extends Component {
           >
             OK
           </Button>
-        </label>
+        </form>
 
         <ShippingTable shipping={shipping} />
       </Fragment>

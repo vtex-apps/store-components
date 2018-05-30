@@ -2,8 +2,14 @@
   height: 26px;
   display: flex;
   align-items: center;
-  color: #828282;
-  font-size: 0.75rem;
+  color: #4F4F4F;
+  font-size: 0.875rem;
+}
+
+.vtex-shipping-simulator__zipcode-label {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .vtex-shipping-simulator .vtex-input {
@@ -35,21 +41,24 @@
 }
 
 .vtex-shipping-table {
-  width: 100%;
+  border-top: 1px solid #bdbdbd;
   border-bottom: 1px solid #bdbdbd;
-  background-color: rgba(0, 0, 0, 0.05);
-  color: #828282;
+  color: #4F4F4F;
   margin-top: 7px;
   padding: 5px 0;
 }
 
 .vtex-shipping-table__cell {
   padding: 2px 10px;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 
 .vtex-shipping-table__cell--center {
   text-align: center;
+}
+
+.vtex-shipping-table__shipping-name-label {
+  font-weight: bold;
 }
 
 .vtex-shipping-table__radio-input {
@@ -58,6 +67,6 @@
 
 .vtex-shipping__no-shipping-message {
   display: inline-block;
-  font-size: 12px;
+  font-size: 0.875rem;
   margin-top: 7px;
 }
