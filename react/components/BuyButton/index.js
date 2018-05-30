@@ -8,27 +8,23 @@ import { injectIntl, intlShape } from 'react-intl'
 import ADD_TO_CART_MUTATION from './mutations/addToCartMutation.gql'
 import ORDER_FORM_QUERY from './queries/orderFormQuery.gql'
 
-const EVENT_SUCCESS = 'item:add'
-const EVENT_ERROR = 'message:error'
+const EVENT = {
+  SUCCESS: 'item:add',
+  ERROR: 'message:error',
+}
 
 /**
  * BuyButton Component. Adds a list of items to the cart.
  */
 export class BuyButton extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { isLoading: false }
-  }
-
-  static defaultProps = {
-    quantity: 1,
-    seller: 1,
+  state = {
+    isLoading: false,
   }
 
   translateMessage = id => this.props.intl.formatMessage({ id: id })
 
   toastMessage = (success, err) => {
-    const event = new Event(success ? EVENT_SUCCESS : EVENT_ERROR)
+    const event = new Event(success ? EVENT.SUCCESS : EVENT.ERROR)
     event.detail = {
       success,
       message: success ? '' : this.translateMessage('buybutton.add-failure'),
@@ -111,6 +107,11 @@ export class BuyButton extends Component {
       </ApolloConsumer>
     )
   }
+}
+
+BuyButton.defaultProps = {
+  quantity: 1,
+  seller: 1,
 }
 
 BuyButton.propTypes = {
