@@ -47,7 +47,7 @@ class ProductName extends Component {
           {name} {showBrandName && brandName && `(${brandName})`}
         </div>
         <div className={skuClasses}>{skuName}</div>
-        {showProductReference && productReference && <div className="vtex-product-name__product-reference pt3 f7 ttu gray">{`# (${productReference})`}</div>}
+        {showProductReference && productReference && <div className="vtex-product-name__product-reference pt3 f7 ttu gray">{`REF: ${productReference}`}</div>}
       </div>
     )
   }
