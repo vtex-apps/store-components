@@ -1,0 +1,10 @@
+mutation signIn($fields: AuthInput)
+  @context(scope: "private") {
+  signIn(fields: $fields) {
+    auth {
+      email
+      code
+      authToken
+    }
+  }
+}
