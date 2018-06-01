@@ -108,3 +108,20 @@
 :global .vtex-product-image .vtex-slider__dots li.slick-active button:before {
   color: inherit;
 }
+
+/* Zoom image component */
+
+.vtex-product-image__zoom {
+  width: 500px;
+  height: 500px;
+}
+
+.vtex-product-image__zoom-image {
+  width: 1000px;
+  height: 1000px;
+}
+
+.vtex-product-image__zoom-image img{
+  width: 1000px;
+  max-height: 1000px;
+}
