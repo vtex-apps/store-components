@@ -12,10 +12,10 @@ class ProductName extends Component {
     name: PropTypes.string.isRequired,
     /** Selected SKU name */
     skuName: PropTypes.string,
-    /** EAN */
-    ean: PropTypes.string,
-    /** Show EAN */
-    showEAN: PropTypes.bool,
+    /** Product reference */
+    productReference: PropTypes.string,
+    /** Show product reference */
+    showProductReference: PropTypes.bool,
     /** Brand name */
     brandName: PropTypes.string,
     /** Show brand name */
@@ -27,11 +27,11 @@ class ProductName extends Component {
   static defaultProps = {
     large: false,
     showBrandName: true,
-    showEAN: true,
+    showProductReference: true,
   }
 
   render() {
-    const { name, skuName, brandName, large, showBrandName, showEAN, ean } = this.props
+    const { name, skuName, brandName, large, showBrandName, showProductReference, productReference } = this.props
 
     let brandClasses = 'vtex-product-name__brand'
     let skuClasses = 'vtex-product-name__sku'
@@ -47,7 +47,7 @@ class ProductName extends Component {
           {name} {showBrandName && brandName && `(${brandName})`}
         </div>
         <div className={skuClasses}>{skuName}</div>
-        {showEAN && ean && <div className="vtex-product-name__ean pt3 f7 ttu gray">{`(EAN ${ean})`}</div>}
+        {showProductReference && productReference && <div className="vtex-product-name__product-reference pt3 f7 ttu gray">{`# (${productReference})`}</div>}
       </div>
     )
   }
