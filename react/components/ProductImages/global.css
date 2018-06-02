@@ -22,10 +22,20 @@
     width: 500px;
     height: 500px;
   }
+
+  .vtex-product-image__zoom {
+    width: 500px;
+    height: 500px;
+  }
 }
 
 @media only screen and (min-width: 40em) and (max-width: 60em) {
   .vtex-product-image__selected-image div {
+    width: 100%;
+    height: 300px;
+  }
+
+  .vtex-product-image__zoom {
     width: 100%;
     height: 300px;
   }
@@ -111,11 +121,6 @@
 
 /* Zoom image component */
 
-.vtex-product-image__zoom {
-  width: 500px;
-  height: 500px;
-}
-
 .vtex-product-image__zoom-image {
   width: 1000px;
   height: 1000px;
@@ -124,4 +129,9 @@
 .vtex-product-image__zoom-image img{
   width: 1000px;
   max-height: 1000px;
+}
+
+.vtex-product-image__image-zoom-container {
+  top: 0px;
+  left: 0px;
 }

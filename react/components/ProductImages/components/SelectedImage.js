@@ -8,7 +8,7 @@ import VTEXClasses from '../constants/productImagesClasses'
  * Selected Image component.
  * Display an image.
  */
-class SelectedImage extends Component {
+export default class SelectedImage extends Component {
   constructor(props) {
     super(props)
     this.state = { showZoom: false }
@@ -28,18 +28,21 @@ class SelectedImage extends Component {
 
     return (
       <div>
-        <div
-          className={`${
-            VTEXClasses.SELECTED_IMAGE
-          } flex-ns justify-center-ns items-center-ns dn`}>
-          <div className="flex justify-center items-center">
-            <img onMouseEnter={this.handleMouseEnterImage} src={imageUrl} alt={imageText} />
+        <div className="relative">
+          <div
+            className={`${
+              VTEXClasses.SELECTED_IMAGE
+            } flex-ns justify-center-ns items-center-ns dn`}>
+            <div className="flex justify-center items-center">
+              <img onMouseEnter={this.handleMouseEnterImage} src={imageUrl} alt={imageText} />
+            </div>
+          </div>
+          <div className="vtex-product-image__image-zoom-container absolute">
+            {showZoom &&
+            <ImageZoom src={imageUrl} alt={imageText} onMouseLeaveZoom={this.handleMouseLeaveZoom} />
+            }
           </div>
         </div>
-
-        {showZoom &&
-          <ImageZoom src={imageUrl} alt={imageText} onMouseLeaveZoom={this.handleMouseLeaveZoom} />
-        }
       </div>
     )
   }
@@ -54,5 +57,3 @@ SelectedImage.propTypes = {
     imageText: PropTypes.string.isRequired,
   }).isRequired,
 }
-
-export default SelectedImage

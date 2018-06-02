@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { ZoomImagePropTypes } from '../constants/propTypes'
 
-export default class Zoom extends Component {
+/**
+ * Inner Zoom Component.
+ */
+export default class InnerZoom extends Component {
   render() {
-    const { src, alt, position, onMouseLeaveZoom } = this.props
+    const { position, onMouseLeaveZoom, children } = this.props
 
     const zoomStyle = {
       left: `${-position.x}px`,
@@ -13,14 +16,14 @@ export default class Zoom extends Component {
     }
 
     return (
-      <div>
+      <div className="bg-white">
         <div
           className="vtex-product-image__zoom relative overflow-hidden"
           onMouseLeave={onMouseLeaveZoom} >
           <div
             className="vtex-product-image__zoom-image absolute ph8 flex justify-center items-center"
             style={zoomStyle}>
-            <img src={src} alt={alt} />
+            {children}
           </div>
         </div>
       </div>
@@ -28,18 +31,23 @@ export default class Zoom extends Component {
   }
 }
 
-Zoom.propTypes = {
-/* Reused props */
-  alt: ZoomImagePropTypes.alt,
-  /* Reused props */
-  src: ZoomImagePropTypes.src,
+InnerZoom.propTypes = {
+  /* The object the will be zoomed */
+  children: PropTypes.object,
+  /* Mouse cursor coordinates */
+  position: PropTypes.shape({
+    /** Mouse cursor x-position */
+    x: PropTypes.number,
+    /** Mouse cursor y-position */
+    y: PropTypes.number,
+  }),
   /* Reused props */
   onMouseLeaveZoom: ZoomImagePropTypes.onMouseLeaveZoom,
-  /** Mouse cursor coordinates */
-  position: PropTypes.shape({
-    /** x mouse cursor position */
-    x: PropTypes.number.isRequired,
-    /** y mouse cursor position */
-    y: PropTypes.number.isRequired,
-  }).isRequired,
+}
+
+InnerZoom.defaultProps = {
+  position: {
+    x: 0,
+    y: 0,
+  },
 }
