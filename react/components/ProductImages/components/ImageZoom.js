@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import ReactCursorPosition from 'react-cursor-position'
 import { ZoomImagePropTypes } from '../constants/propTypes'
-import Zoom from './Zoom'
+import InnerZoom from './InnerZoom'
 
 export default class ZoomImage extends Component {
   render() {
+    const { src, alt } = this.props
     return (
       <ReactCursorPosition>
-        <Zoom {...this.props} />
+        <InnerZoom {...this.props} >
+          <img src={src} alt={alt} />
+        </InnerZoom>
       </ReactCursorPosition>
     )
   }
