@@ -6,6 +6,27 @@ import { ZoomImagePropTypes } from '../constants/propTypes'
  * Inner Zoom Component.
  */
 export default class InnerZoom extends Component {
+  static propTypes = {
+    /* The object the will be zoomed */
+    children: PropTypes.object,
+    /* Mouse cursor coordinates */
+    position: PropTypes.shape({
+      /** Mouse cursor x-position */
+      x: PropTypes.number,
+      /** Mouse cursor y-position */
+      y: PropTypes.number,
+    }),
+    /* Reused props */
+    onMouseLeaveZoom: ZoomImagePropTypes.onMouseLeaveZoom,
+  }
+
+  static defaultProps = {
+    position: {
+      x: 0,
+      y: 0,
+    },
+  }
+
   render() {
     const { position, onMouseLeaveZoom, children } = this.props
 
@@ -29,25 +50,4 @@ export default class InnerZoom extends Component {
       </div>
     )
   }
-}
-
-InnerZoom.propTypes = {
-  /* The object the will be zoomed */
-  children: PropTypes.object,
-  /* Mouse cursor coordinates */
-  position: PropTypes.shape({
-    /** Mouse cursor x-position */
-    x: PropTypes.number,
-    /** Mouse cursor y-position */
-    y: PropTypes.number,
-  }),
-  /* Reused props */
-  onMouseLeaveZoom: ZoomImagePropTypes.onMouseLeaveZoom,
-}
-
-InnerZoom.defaultProps = {
-  position: {
-    x: 0,
-    y: 0,
-  },
 }

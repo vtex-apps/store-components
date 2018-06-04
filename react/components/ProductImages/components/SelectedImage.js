@@ -9,9 +9,18 @@ import VTEXClasses from '../constants/productImagesClasses'
  * Display an image.
  */
 export default class SelectedImage extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { showZoom: false }
+  static propTypes = {
+    /** Image to be displayed */
+    image: PropTypes.shape({
+      /** URL of the image */
+      imageUrl: PropTypes.string.isRequired,
+      /** Text that describes the image */
+      imageText: PropTypes.string.isRequired,
+    }).isRequired,
+  }
+
+  state = {
+    showZoom: false,
   }
 
   handleMouseEnterImage = () => {
@@ -39,7 +48,7 @@ export default class SelectedImage extends Component {
           </div>
           <div className="vtex-product-image__image-zoom-container absolute">
             {showZoom &&
-            <ImageZoom src={imageUrl} alt={imageText} onMouseLeaveZoom={this.handleMouseLeaveZoom} />
+              <ImageZoom src={imageUrl} alt={imageText} onMouseLeaveZoom={this.handleMouseLeaveZoom} />
             }
           </div>
         </div>
@@ -48,12 +57,3 @@ export default class SelectedImage extends Component {
   }
 }
 
-SelectedImage.propTypes = {
-  /** Image to be displayed */
-  image: PropTypes.shape({
-    /** URL of the image */
-    imageUrl: PropTypes.string.isRequired,
-    /** Text that describes the image */
-    imageText: PropTypes.string.isRequired,
-  }).isRequired,
-}
