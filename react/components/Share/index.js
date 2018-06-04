@@ -14,7 +14,7 @@ class Share extends Component {
     options: PropTypes.shape({
       size: PropTypes.number,
     }),
-    quantity: PropTypes.number,
+    title: PropTypes.string,
   }
 
   static defaultProps = {
@@ -31,6 +31,11 @@ class Share extends Component {
     description: 'List of share buttons',
     type: 'object',
     properties: {
+      title: {
+        title: 'Share title',
+        type: 'string',
+        default: 'Olha só essa maravilha!', // FIXME
+      },
       social: {
         title: 'Social Networks',
         type: 'object',
@@ -51,6 +56,7 @@ class Share extends Component {
   render() {
     const {
       social,
+      title,
       options: { size },
     } = this.props
 
@@ -64,7 +70,7 @@ class Share extends Component {
                 key={index}>
                 <SocialButton
                   url={window.location && window.location.href}
-                  message="Olha só essa maravilha!"
+                  message={title}
                   socialEnum={socialNetwork}
                   size={size}
                 />
