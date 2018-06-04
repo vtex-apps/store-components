@@ -4,6 +4,8 @@ import { ZoomImagePropTypes } from '../constants/propTypes'
 import InnerZoom from './InnerZoom'
 
 export default class ZoomImage extends Component {
+  static propTypes = ZoomImagePropTypes
+
   render() {
     const { src, alt } = this.props
     return (
@@ -16,4 +18,3 @@ export default class ZoomImage extends Component {
   }
 }
 
-ZoomImage.propTypes = ZoomImagePropTypes
