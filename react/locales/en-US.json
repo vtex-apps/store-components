@@ -6,8 +6,8 @@
   "payment-form": "Payment Forms",
   "pricing.installment-display":
     "Or {installments} {times} of {installmentPrice}",
-  "pricing.from": "From:",
-  "pricing.to": "To:",
+  "pricing.from": "From",
+  "pricing.to": "To",
   "pricing.savings": "Save: {savings}",
   "pricing.interest-free": "interest-free",
   "loading": "Loading…",
