@@ -23,5 +23,9 @@
   "availability-subscriber.send-label": "Send",
   "availability-subscriber.invalid-email": "Invalid email",
   "availability-subscriber.added-message": "E-mail registered successfully",
-  "password": "Password"
+  "password": "Password",
+  "login-options.title": "Use one of these options to login",
+  "login-options.email-verification": "Receive access key by email",
+  "login.go-back": "Go back",
+  "login.send": "Send"
 }

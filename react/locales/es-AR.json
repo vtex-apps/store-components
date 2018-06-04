@@ -23,5 +23,9 @@
   "availability-subscriber.send-label": "Enviar",
   "availability-subscriber.invalid-email": "E-mail inválido",
   "availability-subscriber.added-message": "E-mail registrado con éxito",
-  "password": "Contraseña"
+  "password": "Contraseña",
+  "login-options.title": "Use una de estas opciones para iniciar sesión",
+  "login-options.email-verification": "Recibir clave de acceso por correo electrónico",
+  "login.go-back": "Volver",
+  "login.send": "Enviar"
 }
