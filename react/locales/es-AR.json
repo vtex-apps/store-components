@@ -6,8 +6,8 @@
   "payment-form": "Formas de Pago",
   "pricing.installment-display":
     "O {installments} {times} de {installmentPrice}",
-  "pricing.from": "De:",
-  "pricing.to": "Por:",
+  "pricing.from": "De",
+  "pricing.to": "Por",
   "pricing.savings": "Ahorre: {savings}",
   "pricing.interest-free": "sin interés",
   "loading": "Cargando…",
