@@ -3,10 +3,12 @@
   width: 40px;
   height: 40px;
   margin-right: 2px;
+  padding: 2px;
+  border-radius: 5%;
 }
 
 .vtex-selector__item:hover {
-  border-color: black;
+  border-color: grey;
 }
 
 .vtex-selector__item p {
