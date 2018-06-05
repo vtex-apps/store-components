@@ -13,7 +13,7 @@ const FIRST_INDEX = 0
 /**
  * Display a list of SKU items of a problem and its specifications.
  */
-class SKUSelector extends Component {
+export default class SKUSelector extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -35,16 +35,16 @@ class SKUSelector extends Component {
     const selectedSKUIndex = this.state.selectedSKUIndex
     return (
       <div className={`${VTEXClasses.SKU_SELECTOR} flex flex-column`}>
-        <SelectorManager 
-          title={this.props.title} 
+        <SelectorManager
+          title={this.props.title}
           onItemClick={this.handleSKUSelected}>
           {
             skuItems.map(skuItem => (
               skuItem.images.length > FIRST_INDEX &&
-              <SelectorItem key={skuItem.images[FIRST_INDEX].imageUrl}>
+              <SelectorItem key={skuItem.images[FIRST_INDEX].imageUrl} isAvailable={skuItem.sellers[0].commertialOffer.AvailableQuantity !== 0}>
                 <img
-                  src={skuItem.images[FIRST_INDEX].imageUrl} 
-                  alt={skuItem.images[FIRST_INDEX].imageLabel} 
+                  src={skuItem.images[FIRST_INDEX].imageUrl}
+                  alt={skuItem.images[FIRST_INDEX].imageLabel}
                 />
               </SelectorItem>
             ))
@@ -59,9 +59,9 @@ class SKUSelector extends Component {
               title={spec.name}>
               {
                 spec.categories.map(category => (
-                  <SelectorItem key={category.name}> 
+                  <SelectorItem key={category.name}>
                     <p className="b tc">
-                      { category.name }
+                      {category.name}
                     </p>
                   </SelectorItem>
                 ))
@@ -108,4 +108,3 @@ SKUSelector.defaultProps = {
   skuItems: [],
 }
 
-export default SKUSelector
