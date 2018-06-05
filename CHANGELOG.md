@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add _Login_ Component.
 
+### Fixed
+- Vertical centralization of SKU Selector Items.
+
+### Added
+- Inner zoom image to the product image.
+
+### Changed
+- Slightly changed the layout of `ProductName` and `SkuSelector` to accomplish proposed design.
+
 ## [1.3.2] - 2018-5-31
 ### Changed
 - Integration of the `ShippingComponent` with graphql.

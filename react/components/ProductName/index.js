@@ -36,7 +36,7 @@ class ProductName extends Component {
     return (
       <div className="vtex-product-name">
         <div className={brandClasses}>
-          {name} {brandName && `(${brandName})`}
+          {name} {brandName && `- ${brandName}`}
         </div>
         <div className={skuClasses}>{skuName}</div>
       </div>
