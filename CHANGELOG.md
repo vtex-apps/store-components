@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Inner zoom image to the product image.
+- Max height of the logo image
 
 ## [1.3.2] - 2018-5-31
 ### Changed
