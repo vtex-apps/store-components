@@ -29,18 +29,18 @@ class SelectorManager extends Component {
     return (
       <div className={`${VTEXClasses.SELECTOR_MANAGER} ma1`}>
         <div className="b fabriga overflow-hidden">
-          { this.props.title }
+          {this.props.title}
         </div>
-        <div className="inline-flex flex-wrap"> 
+        <div className="inline-flex flex-wrap">
           {
             Children.map(this.props.children, (child, index) => {
-              return child.type !== SelectorItem ? child : 
-                React.cloneElement(child, {
+              return child.type !== SelectorItem ? child
+                : React.cloneElement(child, {
                   index,
                   isSelected: index === this.state.selectedIndex,
                   onClick: this.handleItemClick,
                 })
-              }
+            }
             )
           }
         </div>
