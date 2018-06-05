@@ -9,7 +9,7 @@ class LoginOptions extends Component {
   render() {
     const { onStateChange, titleLable, options, intl } = this.props
 
-    let i = -1
+    let step = -1
     return (
       <div>
         <h3 className="fw5 ttu br2 tc fw4 v-mid relative pv3 ph5 f6 rebel-pink">
@@ -17,12 +17,12 @@ class LoginOptions extends Component {
         </h3>
         <ul className="vtex-login-options__list">
           {options.map(el => {
-            i++
+            step++
             return (
-              <li className="mb5" key={`array=${i}`}>
+              <li className="mb5" key={`login-option-array-${step}`}>
                 <Button
                   primary
-                  onClick={() => onStateChange({ step: i + 1 })}
+                  onClick={() => onStateChange({ step: step + 1 })}
                   block
                 >
                   {translate(el, intl)}

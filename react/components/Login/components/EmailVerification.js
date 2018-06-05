@@ -43,11 +43,11 @@ class EmailVerification extends Component {
     const { goBack, send, intl, onStateChange, previous, email } = this.props
 
     return (
-      <div>
+      <div className="vtex.login__email-verification">
         <Input
           value={email}
           onChange={this.handleInputChange}
-          placeholder={'Ex: jose@mail.com'}
+          placeholder={'Ex: example@mail.com'}
         />
         <div className="bt mt5 min-h-2 b--light-gray">
           <div className="fl mt4">
