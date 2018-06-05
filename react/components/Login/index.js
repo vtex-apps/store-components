@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import Card from '@vtex/styleguide/lib/Card'
-import EmailVerification from './components/EmailVerification'
+import Button from '@vtex/styleguide/lib/Button'
+
 import LoginOptions from './components/LoginOptions'
+import EmailVerification from './components/EmailVerification'
 import CodeConfirmation from './components/CodeConfirmation'
-import { injectIntl } from 'react-intl'
+import ProfileIcon from './images/ProfileIcon'
 
 import './global.css'
 
@@ -29,9 +30,11 @@ const CONSTANTS = [
   },
 ]
 
-/** Canonical login that calls a mutation to retrieve the authentication token*/
-class Login extends Component {
+/** Canonical login that calls a mutation to retrieve the authentication token */
+export default class Login extends Component {
   state = {
+    isMouseOnButton: false,
+    isMouseOnContent: false,
     step: 0,
     email: '',
     code: '',
@@ -43,9 +46,15 @@ class Login extends Component {
   }
 
   render() {
-    const { email, code, authtoken } = this.state
-    let render
+    const {
+      isMouseOnButton,
+      isMouseOnContent,
+      email,
+      code,
+      authtoken,
+    } = this.state
 
+    let render
     switch (this.state.step) {
       case 1:
         render = (
@@ -79,11 +88,39 @@ class Login extends Component {
     }
 
     return (
-      <Card className="vtex-login">
-        <div className="mw-90">{render}</div>
-      </Card>
+      <div className="relative fr">
+        <Button
+          icon
+          onClick={this.handleClickButton}
+          onMouseEnter={() => this.handleUpdateState({ isMouseOnButton: true })}
+          onMouseLeave={() =>
+            this.handleUpdateState({ isMouseOnButton: false })
+          }
+        >
+          <ProfileIcon />
+        </Button>
+        {(isMouseOnContent || isMouseOnButton) && (
+          <div
+            className="vtex-login__box absolute right-0 z-max flex flex-colunm"
+            onMouseLeave={() =>
+              this.handleUpdateState({ isMouseOnContent: false })
+            }
+            onMouseEnter={() =>
+              this.handleUpdateState({ isMouseOnContent: true })
+            }
+          >
+            <div className="vtex-login__arrow-up absolute top-0 right-0 shadow-3" />
+
+            <div className="shadow-3 mt3flex flex-column relative">
+              <div className="bg-white">
+                <div className="vtex-login__content pa4 overflow-auto">
+                  {render}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     )
   }
 }
-
-export default injectIntl(Login)

@@ -47,7 +47,7 @@ class CodeConfirmation extends Component {
 
     return (
       <div>
-        <h3 className="fw5 ttu br2 fw4 v-mid relative pv3 ph5 f6 rebel-pink">
+        <h3 className="fw5 ttu br2 fw4 v-mid relative tc pv3 ph5 f6 rebel-pink">
           {translate(titleLable, intl)}
         </h3>
         <Input value={code} onChange={this.handleInputChange} />
