@@ -111,7 +111,7 @@ export default class Login extends Component {
           >
             <div className="vtex-login__arrow-up absolute top-0 right-0 shadow-3" />
 
-            <div className="shadow-3 mt3flex flex-column relative">
+            <div className="shadow-3 mt3 flex flex-column relative">
               <div className="bg-white">
                 <div className="vtex-login__content pa4 overflow-auto">
                   {render}
