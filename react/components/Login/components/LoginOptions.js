@@ -4,6 +4,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import { translate } from '../utils'
 import Button from '@vtex/styleguide/lib/Button'
 
+/** LoginOptions tab component. Displays a list of login options */
 class LoginOptions extends Component {
   render() {
     const { onStateChange, titleLable, options, intl } = this.props
@@ -36,9 +37,13 @@ class LoginOptions extends Component {
 }
 
 LoginOptions.propTypes = {
+  /** Intl object*/
   intl: intlShape,
+  /** Function to change de active tab */
   onStateChange: PropTypes.func.isRequired,
+  /** Title that will be shown on top */
   titleLable: PropTypes.string.isRequired,
+  /** List of options to be displayed */
   options: PropTypes.arrayOf(PropTypes.string),
 }
 
