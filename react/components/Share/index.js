@@ -31,11 +31,6 @@ class Share extends Component {
     description: 'List of share buttons',
     type: 'object',
     properties: {
-      title: {
-        title: 'Share title',
-        type: 'string',
-        default: 'Olha só essa maravilha!', // FIXME
-      },
       social: {
         title: 'Social Networks',
         type: 'object',
