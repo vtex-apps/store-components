@@ -36,7 +36,7 @@ SelectorItem.propTypes = {
   children: PropTypes.node,
   /** Function that is called when the item is clicked */
   onClick: PropTypes.func,
-  /** Flag that indicates if the sku in available */
+  /** Flag that indicates if the sku is available */
   isAvailable: PropTypes.bool,
   /** Flag that indicates if the current item is selected */
   isSelected: PropTypes.bool,
