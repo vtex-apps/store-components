@@ -17,8 +17,8 @@ export default class SelectorItem extends PureComponent {
   render() {
     return (
       <div
-        className={`${VTEXClasses.SELECTOR__ITEM} di ba bw1 pointer
-        ${this.props.isSelected ? 'b--black' : 'b--transparent'}
+        className={`${VTEXClasses.SELECTOR__ITEM} di ba bw1 pointer flex items-center
+        ${this.props.isSelected ? 'b--blue' : 'b--transparent'}
         ${!this.props.isAvailable && 'bg-light-gray'}`}
         onClick={this.handleClick}>
         <div className={`${!this.props.isAvailable && 'o-50'}`}>
