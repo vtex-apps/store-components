@@ -11,14 +11,26 @@ class LoginOptions extends Component {
     let i = -1
     return (
       <div>
-        <h3 className="fw5 ttu br2 fw4 v-mid relative pv3 ph5 f6 rebel-pink" >{translate(titleLable, intl)}</h3>
+        <h3 className="fw5 ttu br2 fw4 v-mid relative pv3 ph5 f6 rebel-pink">
+          {translate(titleLable, intl)}
+        </h3>
         <ul className="vtex-login-options__list">
-          {options.map((el) => {
+          {options.map(el => {
             i++
-            return (<li className="mb5" key={`array=${i}`}><Button primary onClick={() => onStateChange({ step: i + 1 })} block>{translate(el, intl)}</Button></li>)
+            return (
+              <li className="mb5" key={`array=${i}`}>
+                <Button
+                  primary
+                  onClick={() => onStateChange({ step: i + 1 })}
+                  block
+                >
+                  {translate(el, intl)}
+                </Button>
+              </li>
+            )
           })}
         </ul>
-      </div >
+      </div>
     )
   }
 }

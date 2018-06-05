@@ -38,7 +38,7 @@ class Login extends Component {
     authtoken: '',
   }
 
-  handleUpdateState = (state) => {
+  handleUpdateState = state => {
     this.setState(state)
   }
 
@@ -48,13 +48,33 @@ class Login extends Component {
 
     switch (this.state.step) {
       case 1:
-        render = (<EmailVerification {...CONSTANTS[1]} email={email} authtoken={authtoken} onStateChange={this.handleUpdateState} />)
+        render = (
+          <EmailVerification
+            {...CONSTANTS[1]}
+            email={email}
+            authtoken={authtoken}
+            onStateChange={this.handleUpdateState}
+          />
+        )
         break
       case 2:
-        render = (<CodeConfirmation {...CONSTANTS[2]} email={email} code={code} authtoken={authtoken} onStateChange={this.handleUpdateState} />)
+        render = (
+          <CodeConfirmation
+            {...CONSTANTS[2]}
+            email={email}
+            code={code}
+            authtoken={authtoken}
+            onStateChange={this.handleUpdateState}
+          />
+        )
         break
       default:
-        render = (<LoginOptions {...CONSTANTS[0]} onStateChange={this.handleUpdateState} />)
+        render = (
+          <LoginOptions
+            {...CONSTANTS[0]}
+            onStateChange={this.handleUpdateState}
+          />
+        )
         break
     }
 

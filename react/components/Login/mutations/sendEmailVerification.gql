@@ -1,5 +1,5 @@
 mutation sendEmailVerification($email: String) {
   sendEmailVerification(email: $email) {
-      authToken
+    authToken
   }
 }

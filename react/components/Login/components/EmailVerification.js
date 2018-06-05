@@ -11,7 +11,7 @@ import { translate } from '../utils'
 
 /** EmailVerification tab component. Receive a email from an input and call the sendEmailVerification mutation */
 class EmailVerification extends Component {
-  handleInputChange = (event) => {
+  handleInputChange = event => {
     this.props.onStateChange({ email: event.target.value })
   }
 
@@ -21,8 +21,15 @@ class EmailVerification extends Component {
     if (email !== '') {
       sendEmailVerification({ variables: { email: email } }).then(
         res => {
-          if (res.data && res.data.sendEmailVerification && res.data.sendEmailVerification.authToken) {
-            onStateChange({ step: next, authtoken: res.data.sendEmailVerification.authToken })
+          if (
+            res.data &&
+            res.data.sendEmailVerification &&
+            res.data.sendEmailVerification.authToken
+          ) {
+            onStateChange({
+              step: next,
+              authtoken: res.data.sendEmailVerification.authToken,
+            })
           }
         },
         err => {
@@ -37,16 +44,24 @@ class EmailVerification extends Component {
 
     return (
       <div>
-        <Input value={email} onChange={this.handleInputChange} placeholder={'Ex: jose@mail.com'} />
+        <Input
+          value={email}
+          onChange={this.handleInputChange}
+          placeholder={'Ex: jose@mail.com'}
+        />
         <div className="bt mt5 min-h-2 b--light-gray">
           <div className="fl mt4">
-            <Button onClick={() => onStateChange({ step: previous })}>{translate(goBack, intl)}</Button>
+            <Button onClick={() => onStateChange({ step: previous })}>
+              {translate(goBack, intl)}
+            </Button>
           </div>
           <div className="fr mt4">
-            <Button onClick={() => this.handleOnSubimit()}>{translate(send, intl)}</Button>
+            <Button onClick={() => this.handleOnSubimit()}>
+              {translate(send, intl)}
+            </Button>
           </div>
         </div>
-      </div >
+      </div>
     )
   }
 }
@@ -70,5 +85,8 @@ EmailVerification.propTypes = {
   intl: intlShape,
 }
 
-export default injectIntl(graphql(sendEmailVerification, { name: 'sendEmailVerification' })(EmailVerification))
-
+export default injectIntl(
+  graphql(sendEmailVerification, { name: 'sendEmailVerification' })(
+    EmailVerification
+  )
+)
