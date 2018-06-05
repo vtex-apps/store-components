@@ -41,7 +41,7 @@ export default class SKUSelector extends Component {
           {
             skuItems.map(skuItem => (
               skuItem.images.length > FIRST_INDEX &&
-              <SelectorItem key={skuItem.images[FIRST_INDEX].imageUrl} isAvailable={skuItem.sellers[0].commertialOffer.AvailableQuantity !== 0}>
+              <SelectorItem key={skuItem.images[FIRST_INDEX].imageUrl} isAvailable={skuItem.sellers[0].commertialOffer.AvailableQuantity > 0}>
                 <img
                   src={skuItem.images[FIRST_INDEX].imageUrl}
                   alt={skuItem.images[FIRST_INDEX].imageLabel}
