@@ -1,8 +1,8 @@
 import { addLocaleData } from 'react-intl'
 
-import enLocale from './locales/en-US.json'
-import ptLocale from './locales/pt-BR.json'
-import esLocale from './locales/es-AR.json'
+import enLocale from '../../locales/en-US.json'
+import ptLocale from '../../locales/pt-BR.json'
+import esLocale from '../../locales/es-AR.json'
 
 export default () =>
   addLocaleData([
