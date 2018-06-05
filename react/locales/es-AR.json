@@ -27,5 +27,6 @@
   "login-options.title": "Use una de estas opciones para iniciar sesión",
   "login-options.email-verification": "Recibir clave de acceso por correo electrónico",
   "login.go-back": "Volver",
-  "login.send": "Enviar"
+  "login.send": "Enviar",
+  "login-email-code.title": "Informar el código recibido en su correo electrónico"
 }

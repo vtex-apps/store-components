@@ -11,23 +11,19 @@ import { translate } from '../utils'
 
 /** EmailVerification tab component. Receive a email from an input and call the sendEmailVerification mutation */
 class EmailVerification extends Component {
-  state = {
-    email: '',
-  }
-
   handleInputChange = (event) => {
-    this.setState({ email: event.target.value })
+    this.props.onStateChange({ email: event.target.value })
   }
 
   handleOnSubimit = () => {
-    const { sendEmailVerification } = this.props
-    const { email } = this.state
+    const { sendEmailVerification, email, onStateChange, next } = this.props
 
-    console.log(email)
     if (email !== '') {
       sendEmailVerification({ variables: { email: email } }).then(
         res => {
-          console.log(res)
+          if (res.data && res.data.sendEmailVerification && res.data.sendEmailVerification.authToken) {
+            onStateChange({ step: next, authtoken: res.data.sendEmailVerification.authToken })
+          }
         },
         err => {
           console.log(err)
@@ -37,15 +33,14 @@ class EmailVerification extends Component {
   }
 
   render() {
-    const { email } = this.state
-    const { goBack, send, intl, onOptionSelect } = this.props
+    const { goBack, send, intl, onStateChange, previous, email } = this.props
 
     return (
       <div>
         <Input value={email} onChange={this.handleInputChange} placeholder={'Ex: jose@mail.com'} />
         <div className="bt mt5 min-h-2 b--light-gray">
           <div className="fl mt4">
-            <Button onClick={() => onOptionSelect(0)}>{translate(goBack, intl)}</Button>
+            <Button onClick={() => onStateChange({ step: previous })}>{translate(goBack, intl)}</Button>
           </div>
           <div className="fr mt4">
             <Button onClick={() => this.handleOnSubimit()}>{translate(send, intl)}</Button>
@@ -57,12 +52,18 @@ class EmailVerification extends Component {
 }
 
 EmailVerification.propTypes = {
+  /** Next step */
+  next: PropTypes.number.isRequired,
+  /** Previous step */
+  previous: PropTypes.number.isRequired,
+  /** Email set on state */
+  email: PropTypes.string.isRequired,
   /** Locales go back string id */
   goBack: PropTypes.string.isRequired,
   /** Locales send string id */
   send: PropTypes.string.isRequired,
   /** Function to change de active tab */
-  onOptionSelect: PropTypes.func.isRequired,
+  onStateChange: PropTypes.func.isRequired,
   /** Graphql property to call a mutation */
   sendEmailVerification: PropTypes.func.isRequired,
   /** Intl object*/

@@ -6,7 +6,7 @@ import Button from '@vtex/styleguide/lib/Button'
 
 class LoginOptions extends Component {
   render() {
-    const { onOptionSelect, titleLable, options, intl } = this.props
+    const { onStateChange, titleLable, options, intl } = this.props
 
     let i = -1
     return (
@@ -15,7 +15,7 @@ class LoginOptions extends Component {
         <ul className="vtex-login-options__list">
           {options.map((el) => {
             i++
-            return (<li className="mb5" key={`array=${i}`}><Button primary onClick={() => onOptionSelect(i + 1)} block>{translate(el, intl)}</Button></li>)
+            return (<li className="mb5" key={`array=${i}`}><Button primary onClick={() => onStateChange({ step: i + 1 })} block>{translate(el, intl)}</Button></li>)
           })}
         </ul>
       </div >
@@ -25,7 +25,7 @@ class LoginOptions extends Component {
 
 LoginOptions.propTypes = {
   intl: intlShape,
-  onOptionSelect: PropTypes.func.isRequired,
+  onStateChange: PropTypes.func.isRequired,
   titleLable: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string),
 }
