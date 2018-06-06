@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - `SKU Selector` with a different item selected on entering the product page
+- `SKU Selector` item's discount badge position
 
 ## [1.4.0] - 2018-6-6
 ### Added
