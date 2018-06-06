@@ -26,10 +26,8 @@ class SelectorManager extends Component {
   }
 
   render() {
-    let selectedSKUIndex = this.state.selectedIndex
-    if (selectedSKUIndex == null) {
-      selectedSKUIndex = this.props.defaultIndex
-    }
+    const selectedSKUIndex = this.state.selectedIndex == null ? this.props.defaultIndex : this.state.selectedIndex
+
     return (
       <div className={`${VTEXClasses.SELECTOR_MANAGER} ma1`}>
         <div className="b fabriga overflow-hidden">

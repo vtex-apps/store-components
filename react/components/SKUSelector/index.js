@@ -34,7 +34,8 @@ export default class SKUSelector extends Component {
     let maxPrice = 0
     if (items) {
       items.forEach(item => {
-        maxPrice = Math.max(maxPrice, item.sellers[0].commertialOffer.Price)
+        const [{ commertialOffer: { Price } }] = item.sellers
+        maxPrice = Math.max(maxPrice, Price)
       })
     }
     return maxPrice
@@ -43,10 +44,7 @@ export default class SKUSelector extends Component {
   render() {
     const skuItems = this.props.skuItems
 
-    let selectedSKUIndex = this.state.selectedSKUIndex
-    if (selectedSKUIndex == null) {
-      selectedSKUIndex = this.props.defaultIndex
-    }
+    const selectedSKUIndex = this.state.selectedSKUIndex == null ? this.props.defaultIndex : this.state.selectedSKUIndex
 
     const maxSkuPrice = this.getMaxSkuPrice(skuItems)
 
