@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Max height of the logo image
+- Added a title to the _Share_ Component share url.
 
 ### Fixed
 - `SKU Selector` with a different item selected on entering the product page
