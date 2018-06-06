@@ -187,35 +187,50 @@ export default class Footer extends Component {
           type: 'number',
           title: 'Number of social networks links',
           minimum: 0,
+          widget: {
+            'ui:widget': 'range',
+          },
         },
         numberOfSectionLinks: {
           type: 'number',
           title: 'Number of section links',
           minimum: 0,
+          widget: {
+            'ui:widget': 'range',
+          },
         },
         numberOfMoreInformationLinks: {
           type: 'number',
           title: 'Number of more information links',
           minimum: 0,
+          widget: {
+            'ui:widget': 'range',
+          },
         },
         numberOfBadges: {
           type: 'number',
           title: 'Number of badges to be displayed',
           minimum: 0,
+          widget: {
+            'ui:widget': 'range',
+          },
         },
         numberOfPaymentForms: {
           type: 'number',
           title: 'Number of payment forms available',
           minimum: 0,
+          widget: {
+            'ui:widget': 'range',
+          },
         },
         showPaymentFormsInColor: {
           type: 'boolean',
-          title: 'Show the payment forms icons in color',
+          title: 'Show payment forms icons in color',
           default: false,
         },
         showSocialNetworksInColor: {
           type: 'boolean',
-          title: 'Show the social networks icons in color',
+          title: 'Show social networks icons in color',
           default: false,
         },
         ...socialNetworksSchema,
