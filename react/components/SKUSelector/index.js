@@ -30,12 +30,26 @@ export default class SKUSelector extends Component {
     }
   }
 
+  getMaxSkuPrice = items => {
+    let maxPrice = 0
+    if (items) {
+      items.forEach(item => {
+        maxPrice = Math.max(maxPrice, item.sellers[0].commertialOffer.Price)
+      })
+    }
+    return maxPrice
+  }
+
   render() {
     const skuItems = this.props.skuItems
+
     let selectedSKUIndex = this.state.selectedSKUIndex
     if (selectedSKUIndex == null) {
       selectedSKUIndex = this.props.defaultIndex
     }
+
+    const maxSkuPrice = this.getMaxSkuPrice(skuItems)
+
     return (
       <div className={`${VTEXClasses.SKU_SELECTOR} flex flex-column`}>
         <SelectorManager
@@ -45,7 +59,11 @@ export default class SKUSelector extends Component {
           {
             skuItems.map(skuItem => (
               skuItem.images.length > FIRST_INDEX &&
-              <SelectorItem key={skuItem.images[FIRST_INDEX].imageUrl} isAvailable={skuItem.sellers[0].commertialOffer.AvailableQuantity > 0}>
+              <SelectorItem
+                key={skuItem.images[FIRST_INDEX].imageUrl}
+                isAvailable={skuItem.sellers[0].commertialOffer.AvailableQuantity > 0}
+                maxPrice={maxSkuPrice}
+                price={skuItem.sellers[0].commertialOffer.Price}>
                 <img
                   src={skuItem.images[FIRST_INDEX].imageUrl}
                   alt={skuItem.images[FIRST_INDEX].imageLabel}
@@ -113,4 +131,3 @@ SKUSelector.defaultProps = {
   title: '',
   skuItems: [],
 }
-
