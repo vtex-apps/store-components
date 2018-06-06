@@ -20,16 +20,14 @@ export default class SelectorItem extends PureComponent {
     const discount = getDiscount(maxPrice, price)
     return (
       <div
-        className={`${VTEXClasses.SELECTOR__ITEM} di ba bw1 pointer flex items-center
+        className={`${VTEXClasses.SELECTOR__ITEM} di ba bw1 pointer flex items-center relative
         ${isSelected ? 'b--blue' : 'b--transparent'}
         ${!isAvailable && 'bg-light-gray'}`}
         onClick={this.handleClick}>
-        <div className="relative">
-          <div className={`${!isAvailable && 'o-50'}`}>
-            {children}
-          </div>
-          {discount > 0 && <span className={`${VTEXClasses.SKU_BADGE} b`}><FormattedNumber value={discount} style="percent" /></span>}
+        <div className={`${!isAvailable && 'o-50'}`}>
+          {children}
         </div>
+        {discount > 0 && <span className={`${VTEXClasses.SKU_BADGE} b`}><FormattedNumber value={discount} style="percent" /></span>}
       </div>
     )
   }
