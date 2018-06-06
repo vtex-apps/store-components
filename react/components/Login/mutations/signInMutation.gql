@@ -1,0 +1,9 @@
+mutation signIn($fields: AuthInput) {
+  signIn(fields: $fields) {
+    auth {
+      email
+      code
+      authToken
+    }
+  }
+}

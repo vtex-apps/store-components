@@ -19,10 +19,12 @@ Storecomponents is a collection of components that can be used to create/extend 
 
 Below we have a README for each component of this project that explains how to use them. 
 
+- [Availability Subscriber](https://github.com/vtex-apps/storecomponents/blob/master/react/components/AvailabilitySubscriber/README.md)
 - [Buy Button](https://github.com/vtex-apps/storecomponents/blob/master/react/components/BuyButton/README.md)
 - [Collection Badges](https://github.com/vtex-apps/storecomponents/blob/master/react/components/CollectionBadges/README.md)
 - [Discount Badge](https://github.com/vtex-apps/storecomponents/blob/master/react/components/DiscountBadge/README.md)
 - [Footer](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Footer/README.md)
+- [Login](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Login/README.md)
 - [Logo](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Logo/README.md)
 - [Product Description](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductDescription/README.md)
 - [Product Images](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductImages/README.md)
@@ -34,8 +36,6 @@ Below we have a README for each component of this project that explains how to u
 - [Shipping Simulator](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ShippingSimulator/README.md)
 - [SKU Selector](https://github.com/vtex-apps/storecomponents/blob/master/react/components/SKUSelector/README.md)
 - [Slider](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Slider/README.md)
-- [Technical Specifications](https://github.com/vtex-apps/storecomponents/blob/master/react/components/TechnicalSpecifications/README.md)
-- [Availability Subscriber](https://github.com/vtex-apps/storecomponents/blob/master/react/components/AvailabilitySubscriber/README.md)
 
 ## Usage
 To import a component of this project follow the instructions below. 

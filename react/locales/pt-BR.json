@@ -4,8 +4,7 @@
   "section-links": "Links",
   "more-information-links": "Mais Informações",
   "payment-form": "Formas de Pagamento",
-  "pricing.installment-display":
-    "Ou {installments} {times} de {installmentPrice}",
+  "pricing.installment-display": "Ou {installments} {times} de {installmentPrice}",
   "pricing.from": "De",
   "pricing.to": "Por",
   "pricing.savings": "Economize: {savings}",
@@ -15,8 +14,7 @@
   "shipping.eta": "até {eta} dias",
   "shipping.free": "Grátis",
   "shipping.empty-sla": "Não existe um frete disponível para o CEP informado",
-  "buybutton.add-failure":
-    "Algo deu errado e o item não pode ser adicionado ao seu carrinho!",
+  "buybutton.add-failure": "Algo deu errado e o item não pode ser adicionado ao seu carrinho!",
   "technicalspecifications.title": "Especificações Técnicas",
   "availability-subscriber.title": "Este produto não está disponível no momento",
   "availability-subscriber.subscribe-label": "Avise-me quando estiver disponível",
@@ -24,5 +22,11 @@
   "availability-subscriber.name-placeholder": "Nome",
   "availability-subscriber.send-label": "Enviar",
   "availability-subscriber.invalid-email": "E-mail inválido",
-  "availability-subscriber.added-message": "E-mail cadastrado com sucesso"
+  "availability-subscriber.added-message": "E-mail cadastrado com sucesso",
+  "password": "Senha",
+  "login-options.title": "Use uma dessas opções para logar-se",
+  "login-options.email-verification": "Receber chave de acesso por email",
+  "login.go-back": "Voltar",
+  "login.send": "Enviar",
+  "login-email-code.title": "Informar o código recebido por email"
 }

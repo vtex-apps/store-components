@@ -4,8 +4,7 @@
   "section-links": "Enlaces",
   "more-information-links": "Mas informaciones",
   "payment-form": "Formas de Pago",
-  "pricing.installment-display":
-    "O {installments} {times} de {installmentPrice}",
+  "pricing.installment-display": "O {installments} {times} de {installmentPrice}",
   "pricing.from": "De",
   "pricing.to": "Por",
   "pricing.savings": "Ahorre: {savings}",
@@ -15,8 +14,7 @@
   "shipping.eta": "hasta {eta} días",
   "shipping.free": "Gratis",
   "shipping.empty-sla": "No hay información de envío disponible para el código postal informado",
-  "buybutton.add-failure":
-    "¡Algo salió mal y el artículo no se agregó a tu carrito!",
+  "buybutton.add-failure": "¡Algo salió mal y el artículo no se agregó a tu carrito!",
   "technicalspecifications.title": "Especificaciones Tecnicas",
   "availability-subscriber.title": "Este producto no está disponible actualmente",
   "availability-subscriber.subscribe-label": "Me avisa cuando este producto está disponible",
@@ -24,5 +22,11 @@
   "availability-subscriber.name-placeholder": "Nombre",
   "availability-subscriber.send-label": "Enviar",
   "availability-subscriber.invalid-email": "E-mail inválido",
-  "availability-subscriber.added-message": "E-mail registrado con éxito"
+  "availability-subscriber.added-message": "E-mail registrado con éxito",
+  "password": "Contraseña",
+  "login-options.title": "Use una de estas opciones para iniciar sesión",
+  "login-options.email-verification": "Recibir clave de acceso por correo electrónico",
+  "login.go-back": "Volver",
+  "login.send": "Enviar",
+  "login-email-code.title": "Informar el código recibido en su correo electrónico"
 }

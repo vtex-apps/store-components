@@ -1,0 +1,29 @@
+.vtex-login-options__list {
+  list-style-type: none;
+}
+
+.vtex-login__arrow-up {
+  transform: rotate(45deg);
+  width: 25px;
+  height: 25px;
+  right: 7px;
+  background-color: white;
+}
+
+.vtex-login__box {
+  top: 100%;
+  display: block;
+  visibility: visible;
+}
+
+.vtex-login__content {
+  max-height: 410px;
+  min-width: 410px;
+}
+
+@media only screen and (max-width: 600px) {
+  .vtex-login__box {
+    display: none;
+    visibility: hidden;
+  }
+}
