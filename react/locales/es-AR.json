@@ -6,14 +6,15 @@
   "payment-form": "Formas de Pago",
   "pricing.installment-display":
     "O {installments} {times} de {installmentPrice}",
-  "pricing.from": "De:",
-  "pricing.to": "Por:",
+  "pricing.from": "De",
+  "pricing.to": "Por",
   "pricing.savings": "Ahorre: {savings}",
   "pricing.interest-free": "sin interés",
   "loading": "Cargando…",
   "shipping.label": "Calcular el flete",
   "shipping.eta": "hasta {eta} días",
   "shipping.free": "Gratis",
+  "shipping.empty-sla": "No hay información de envío disponible para el código postal informado",
   "buybutton.add-failure":
     "¡Algo salió mal y el artículo no se agregó a tu carrito!",
   "technicalspecifications.title": "Especificaciones Tecnicas",

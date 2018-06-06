@@ -31,7 +31,15 @@ class ProductName extends Component {
   }
 
   render() {
-    const { name, skuName, brandName, large, showBrandName, showProductReference, productReference } = this.props
+    const {
+      name,
+      skuName,
+      brandName,
+      large,
+      showBrandName,
+      showProductReference,
+      productReference,
+    } = this.props
 
     let brandClasses = 'vtex-product-name__brand'
     let skuClasses = 'vtex-product-name__sku'
@@ -44,10 +52,13 @@ class ProductName extends Component {
     return (
       <div className="vtex-product-name">
         <div className={brandClasses}>
-          {name} {showBrandName && brandName && `(${brandName})`}
+          {name} {showBrandName && brandName && `- ${brandName}`}
         </div>
         <div className={skuClasses}>{skuName}</div>
-        {showProductReference && productReference && <div className="vtex-product-name__product-reference pt3 f7 ttu gray">{`REF: ${productReference}`}</div>}
+        {showProductReference &&
+          productReference && (
+            <div className="vtex-product-name__product-reference pt3 f7 ttu gray">{`REF: ${productReference}`}</div>
+          )}
       </div>
     )
   }

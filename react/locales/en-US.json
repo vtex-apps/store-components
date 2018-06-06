@@ -6,14 +6,15 @@
   "payment-form": "Payment Forms",
   "pricing.installment-display":
     "Or {installments} {times} of {installmentPrice}",
-  "pricing.from": "From:",
-  "pricing.to": "To:",
+  "pricing.from": "From",
+  "pricing.to": "To",
   "pricing.savings": "Save: {savings}",
   "pricing.interest-free": "interest-free",
   "loading": "Loading…",
   "shipping.label": "Calculate shipping",
   "shipping.eta": "up to {eta} days",
   "shipping.free": "Free",
+  "shipping.empty-sla": "There's no shipping information available for the informed zip code",
   "buybutton.add-failure":
     "Something went wrong and the item wasn't added to your cart!",
   "technicalspecifications.title": "Technical Specifications",

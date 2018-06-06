@@ -6,8 +6,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Vertical centralization of SKU Selector Items.
+
+### Added
+- Inner zoom image to the product image.
+
 ### Changed
+- Slightly changed the layout of `ProductName` and `SkuSelector` to accomplish proposed design.
+- Style of the unavailable sku to be different from the others.
 - Change _ProductName_, added: showBrandName, showProductReference, productReference attributes.
+
+## [1.3.2] - 2018-5-31
+### Changed
+- Integration of the `ShippingComponent` with graphql.
 
 ## [1.3.1] - 2018-5-30
 ### Fixed
