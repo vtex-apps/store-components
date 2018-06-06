@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Max height of the logo image
 
+### Fixed
+- `SKU Selector` with a different item selected on entering the product page
+
 ## [1.4.0] - 2018-6-6
 ### Added
 - Inner zoom image to the product image.
