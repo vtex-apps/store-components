@@ -6,10 +6,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Max height of the logo image
 
+## [1.4.0] - 2018-6-6
 ### Added
 - Inner zoom image to the product image.
-- Max height of the logo image
+
+### Changed
+- Slightly changed the layout of `ProductName` and `SkuSelector` to accomplish proposed design.
+- Style of the unavailable sku to be different from the others.
+- Change _ProductName_, added: showBrandName, showProductReference, productReference attributes.
+- Customize Footer uiSchema.
+
+### Fixed
+- Vertical centralization of SKU Selector Items.
 
 ## [1.3.2] - 2018-5-31
 ### Changed
