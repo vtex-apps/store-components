@@ -16,11 +16,14 @@ You can use it in your code like a React component with the jsx tag: `<ProductNa
 />
 ```
 
-| Prop name         | Type       | Description                                      |
-| ----------------- | ---------- | ------------------------------------------------ |
-| `name`            | `String!`  | Name of the product                              |
-| `skuName`         | `String`   | Selected SKU name                                |
-| `brandName`       | `String`   | Brand name                                       |
-| `label`           | `Boolean`  | Displays large font                              |
+| Prop name             | Type       | Description                                      |
+| --------------------- | ---------- | ------------------------------------------------ |
+| `name`                | `String!`  | Name of the product                              |
+| `skuName`             | `String`   | Selected SKU name                                |
+| `productReference`    | `String`   | Product reference                                |
+| `showProductReference`| `Boolean`  | Show product reference                           |
+| `brandName`           | `String`   | Brand name                                       |
+| `showBrandName`       | `Boolean`  | Show brand name                                  |
+| `label`               | `Boolean`  | Displays large font                              |
 
 See an example at [Product Details](https://github.com/vtex-apps/product-details/blob/master/react/ProductDetails.js#L49) app

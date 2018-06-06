@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Slightly changed the layout of `ProductName` and `SkuSelector` to accomplish proposed design.
 - Style of the unavailable sku to be different from the others.
+- Change _ProductName_, added: showBrandName, showProductReference, productReference attributes.
 - Customize Footer uiSchema.
 
 ### Fixed
