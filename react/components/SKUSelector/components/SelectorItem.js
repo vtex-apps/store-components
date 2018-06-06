@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import { FormattedNumber } from 'react-intl'
 
 import VTEXClasses from '../constants/CustomClasses'
 
@@ -15,14 +16,19 @@ export default class SelectorItem extends PureComponent {
   }
 
   render() {
+    const { isAvailable, isSelected, children, maxPrice, price } = this.props
+    const discount = getDiscount(maxPrice, price)
     return (
       <div
         className={`${VTEXClasses.SELECTOR__ITEM} di ba bw1 pointer flex items-center
-        ${this.props.isSelected ? 'b--blue' : 'b--transparent'}
-        ${!this.props.isAvailable && 'bg-light-gray'}`}
+        ${isSelected ? 'b--blue' : 'b--transparent'}
+        ${!isAvailable && 'bg-light-gray'}`}
         onClick={this.handleClick}>
-        <div className={`${!this.props.isAvailable && 'o-50'}`}>
-          {this.props.children}
+        <div className="relative">
+          <div className={`${!isAvailable && 'o-50'}`}>
+            {children}
+          </div>
+          {discount > 0 && <span className={`${VTEXClasses.SKU_BADGE} b`}><FormattedNumber value={discount} style="percent" /></span>}
         </div>
       </div>
     )
@@ -40,6 +46,10 @@ SelectorItem.propTypes = {
   isAvailable: PropTypes.bool,
   /** Flag that indicates if the current item is selected */
   isSelected: PropTypes.bool,
+  /** Max sku price */
+  maxPrice: PropTypes.number,
+  /** Price of the current sku */
+  price: PropTypes.number,
 }
 
 SelectorItem.defaultProps = {
@@ -47,4 +57,12 @@ SelectorItem.defaultProps = {
   children: {},
   isAvailable: true,
   isSelected: false,
+}
+
+const getDiscount = (maxPrice, price) => {
+  let discount = 0
+  if (maxPrice && price) {
+    discount = 1 - (price / maxPrice)
+  }
+  return discount
 }
