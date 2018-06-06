@@ -21,7 +21,9 @@ class CodeConfirmation extends Component {
     if (code !== '') {
       signInMutation({
         variables: {
-          fields: { email: email, code: code, authToken: authtoken },
+          fields: {
+            authInput: { email: email, code: code, authToken: authtoken },
+          },
         },
       }).then(
         res => {
