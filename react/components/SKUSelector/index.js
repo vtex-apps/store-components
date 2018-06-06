@@ -30,10 +30,20 @@ export default class SKUSelector extends Component {
     }
   }
 
+  getMaxSkuPrice = items => {
+    let maxPrice = 0
+    if (items) {
+      items.forEach(item => {
+        maxPrice = Math.max(maxPrice, item.sellers[0].commertialOffer.Price)
+      })
+    }
+    return maxPrice
+  }
+
   render() {
     const skuItems = this.props.skuItems
     const selectedSKUIndex = this.state.selectedSKUIndex
-    const maxSkuPrice = getMaxSkuPrice(skuItems)
+    const maxSkuPrice = this.getMaxSkuPrice(skuItems)
 
     return (
       <div className={`${VTEXClasses.SKU_SELECTOR} flex flex-column`}>
@@ -112,14 +122,4 @@ SKUSelector.propTypes = {
 SKUSelector.defaultProps = {
   title: '',
   skuItems: [],
-}
-
-const getMaxSkuPrice = (items) => {
-  let maxPrice = 0
-  if (items) {
-    items.forEach(item => {
-      maxPrice = Math.max(maxPrice, item.sellers[0].commertialOffer.Price)
-    })
-  }
-  return maxPrice
 }
