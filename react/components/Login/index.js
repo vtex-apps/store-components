@@ -9,24 +9,46 @@ import ProfileIcon from './images/ProfileIcon'
 import './global.css'
 
 const GO_BACK = 'login.go-back'
-
-const CONSTANTS = [
-  {
-    page: 'login-options',
-    titleLable: 'login-options.title',
-    options: ['login-options.email-verification'],
+const STEPS = [
+  // eslint-disable-next-line
+  (state, func) => {
+    return (
+      <LoginOptions
+        page="login-options"
+        titleLable="login-options.title"
+        options={['login-options.email-verification']}
+        onStateChange={func}
+      />
+    )
   },
-  {
-    goBack: GO_BACK,
-    send: 'login.send',
-    next: 2,
-    previous: 0,
+  // eslint-disable-next-line
+  (state, func) => {
+    return (
+      <EmailVerification
+        goBack={GO_BACK}
+        send="login.send"
+        next={2}
+        previous={0}
+        email={state.email}
+        authtoken={state.authtoken}
+        onStateChange={func}
+      />
+    )
   },
-  {
-    goBack: GO_BACK,
-    send: 'login.send',
-    titleLable: 'login-email-code.title',
-    previous: 1,
+  // eslint-disable-next-line
+  (state, func) => {
+    return (
+      <CodeConfirmation
+        goBack={GO_BACK}
+        confirm="login.confirm"
+        titleLable="login-email-code.title"
+        previous={1}
+        email={state.email}
+        code={state.code}
+        authtoken={state.authtoken}
+        onStateChange={func}
+      />
+    )
   },
 ]
 
@@ -46,46 +68,9 @@ export default class Login extends Component {
   }
 
   render() {
-    const {
-      isMouseOnButton,
-      isMouseOnContent,
-      email,
-      code,
-      authtoken,
-    } = this.state
+    const { isMouseOnButton, isMouseOnContent, step } = this.state
 
-    let render
-    switch (this.state.step) {
-      case 1:
-        render = (
-          <EmailVerification
-            {...CONSTANTS[1]}
-            email={email}
-            authtoken={authtoken}
-            onStateChange={this.handleUpdateState}
-          />
-        )
-        break
-      case 2:
-        render = (
-          <CodeConfirmation
-            {...CONSTANTS[2]}
-            email={email}
-            code={code}
-            authtoken={authtoken}
-            onStateChange={this.handleUpdateState}
-          />
-        )
-        break
-      default:
-        render = (
-          <LoginOptions
-            {...CONSTANTS[0]}
-            onStateChange={this.handleUpdateState}
-          />
-        )
-        break
-    }
+    const render = STEPS[step](this.state, this.handleUpdateState)
 
     return (
       <div className="relative fr">
@@ -111,11 +96,9 @@ export default class Login extends Component {
           >
             <div className="vtex-login__arrow-up absolute top-0 right-0 shadow-3" />
 
-            <div className="shadow-3 mt3 flex flex-column relative">
-              <div className="bg-white">
-                <div className="vtex-login__content pa4 overflow-auto">
-                  {render}
-                </div>
+            <div className="shadow-3 mt3">
+              <div className="vtex-login__content pa4 flex items-center justify-center relative bg-white">
+                {render}
               </div>
             </div>
           </div>

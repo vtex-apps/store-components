@@ -28,5 +28,6 @@
   "login-options.email-verification": "Receive access key by email",
   "login.go-back": "Go back",
   "login.send": "Send",
+  "login.confirm": "Confirm",
   "login-email-code.title": "Inform the code received on your email"
 }

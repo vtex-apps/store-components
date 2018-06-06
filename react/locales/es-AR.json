@@ -28,5 +28,6 @@
   "login-options.email-verification": "Recibir clave de acceso por correo electrónico",
   "login.go-back": "Volver",
   "login.send": "Enviar",
+  "login.confirm": "Confirmar",
   "login-email-code.title": "Informar el código recibido en su correo electrónico"
 }

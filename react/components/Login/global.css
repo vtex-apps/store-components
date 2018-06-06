@@ -1,5 +1,6 @@
 .vtex-login-options__list {
   list-style-type: none;
+  padding: 0;
 }
 
 .vtex-login__arrow-up {

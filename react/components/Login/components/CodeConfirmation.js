@@ -37,7 +37,7 @@ class CodeConfirmation extends Component {
   render() {
     const {
       goBack,
-      send,
+      confirm,
       intl,
       onStateChange,
       titleLable,
@@ -59,7 +59,7 @@ class CodeConfirmation extends Component {
           </div>
           <div className="fr mt4">
             <Button onClick={() => this.handleOnSubimit()}>
-              {translate(send, intl)}
+              {translate(confirm, intl)}
             </Button>
           </div>
         </div>
@@ -81,8 +81,8 @@ CodeConfirmation.propTypes = {
   titleLable: PropTypes.string.isRequired,
   /** Locales go back string id */
   goBack: PropTypes.string.isRequired,
-  /** Locales send string id */
-  send: PropTypes.string.isRequired,
+  /** Locales confirm string id */
+  confirm: PropTypes.string.isRequired,
   /** Function to change de active tab */
   onStateChange: PropTypes.func.isRequired,
   /** Graphql property to call a mutation */
