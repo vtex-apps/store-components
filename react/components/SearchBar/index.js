@@ -15,7 +15,7 @@ export default class SearchBar extends Component {
   // frameworks, like React Router or another approach.
   handleEnterPress(event) {
     if (event.key === 'Enter') {
-      location.assign(`/${event.target.value}/s`)
+      location.assign(`/${encodeURI(event.target.value)}/s`)
     }
   }
 

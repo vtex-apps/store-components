@@ -13,6 +13,19 @@ function getImageUrl(image) {
   return (image.match(/http:(.*?)"/g) || [''])[0]
 }
 
+function mountSearchParams(slug) {
+  const params = {}
+
+  const regex = /^\/(.*)\//g
+
+  slug.replace(regex, '$1')
+    .toLowerCase().split('/').map((el, i) => {
+      params[`term${i === 0 ? '' : i}`] = el
+    })
+
+  return params
+}
+
 /** List of search results to be displayed*/
 class ResultsList extends Component {
   render() {
@@ -48,10 +61,10 @@ class ResultsList extends Component {
         {items.map((el, index) => (
           <li key={el.name + index} className={listItemClassNames}>
             <Link
-              page={el.criteria ? 'store/search' : 'store/product'}
+              page={el.criteria ? 'store/search1' : 'store/product'}
               params={
                 el.criteria
-                  ? { term: `${encodeURI(el.slug).replace('/', '%2F')}` }
+                  ? { ...mountSearchParams((encodeURI(el.slug))) }
                   : { slug: `${encodeURI(el.slug)}` }
               }
               {...getItemProps({
