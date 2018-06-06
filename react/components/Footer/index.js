@@ -187,6 +187,8 @@ export default class Footer extends Component {
           type: 'number',
           title: 'Number of social networks links',
           minimum: 0,
+          maximum: 10,
+          default: 0,
           widget: {
             'ui:widget': 'range',
           },
@@ -195,6 +197,8 @@ export default class Footer extends Component {
           type: 'number',
           title: 'Number of section links',
           minimum: 0,
+          maximum: 10,
+          default: 0,
           widget: {
             'ui:widget': 'range',
           },
@@ -203,6 +207,8 @@ export default class Footer extends Component {
           type: 'number',
           title: 'Number of more information links',
           minimum: 0,
+          maximum: 10,
+          default: 0,
           widget: {
             'ui:widget': 'range',
           },
@@ -211,6 +217,8 @@ export default class Footer extends Component {
           type: 'number',
           title: 'Number of badges to be displayed',
           minimum: 0,
+          maximum: 10,
+          default: 0,
           widget: {
             'ui:widget': 'range',
           },
@@ -219,6 +227,8 @@ export default class Footer extends Component {
           type: 'number',
           title: 'Number of payment forms available',
           minimum: 0,
+          maximum: 10,
+          default: 0,
           widget: {
             'ui:widget': 'range',
           },
