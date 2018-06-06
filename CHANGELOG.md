@@ -7,9 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Fixed
-- Vertical centralization of SKU Selector Items.
-
 ### Added
 - Inner zoom image to the product image.
 - Max height of the logo image
