@@ -39,11 +39,11 @@ class SelectorManager extends Component {
               return child.type !== SelectorItem ? child
                 : React.cloneElement(child, {
                   index,
+                  key: index,
                   isSelected: index === selectedSKUIndex,
                   onClick: this.handleItemClick,
                 })
-            }
-            )
+            })
           }
         </div>
       </div>

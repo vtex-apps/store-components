@@ -106,7 +106,7 @@ SKUSelector.propTypes = {
       /** URL of source Image */
       imageUrl: PropTypes.string.isRequired,
       /** Brief description of the image */
-      imageLabel: PropTypes.string.isRequired,
+      imageLabel: PropTypes.string,
     })).isRequired,
     /** SKU Specifications */
     specs: PropTypes.arrayOf(PropTypes.shape({
