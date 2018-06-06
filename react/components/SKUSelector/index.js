@@ -17,7 +17,7 @@ export default class SKUSelector extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedSKUIndex: FIRST_INDEX,
+      selectedSKUIndex: null,
     }
   }
 
@@ -32,12 +32,16 @@ export default class SKUSelector extends Component {
 
   render() {
     const skuItems = this.props.skuItems
-    const selectedSKUIndex = this.state.selectedSKUIndex
+    let selectedSKUIndex = this.state.selectedSKUIndex
+    if (selectedSKUIndex == null) {
+      selectedSKUIndex = this.props.defaultIndex
+    }
     return (
       <div className={`${VTEXClasses.SKU_SELECTOR} flex flex-column`}>
         <SelectorManager
           title={this.props.title}
-          onItemClick={this.handleSKUSelected}>
+          onItemClick={this.handleSKUSelected}
+          defaultIndex={this.props.defaultIndex}>
           {
             skuItems.map(skuItem => (
               skuItem.images.length > FIRST_INDEX &&
@@ -99,6 +103,8 @@ SKUSelector.propTypes = {
       })).isRequired,
     })),
   })).isRequired,
+  /** Default SKU Selection in case of is not the first item */
+  defaultIndex:  PropTypes.number,
   /** Function that is called when a SKU item is clicked */
   onSKUSelected: PropTypes.func,
 }
