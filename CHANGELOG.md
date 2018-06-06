@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.4.0] - 2018-6-6
 ### Added
 - Inner zoom image to the product image.
+- Discount badge to sku item.
 
 ### Changed
 - Slightly changed the layout of `ProductName` and `SkuSelector` to accomplish proposed design.
