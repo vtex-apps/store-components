@@ -17,7 +17,7 @@ export default class SKUSelector extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedSKUIndex: FIRST_INDEX,
+      selectedSKUIndex: null,
     }
   }
 
@@ -34,7 +34,8 @@ export default class SKUSelector extends Component {
     let maxPrice = 0
     if (items) {
       items.forEach(item => {
-        maxPrice = Math.max(maxPrice, item.sellers[0].commertialOffer.Price)
+        const [{ commertialOffer: { Price } }] = item.sellers
+        maxPrice = Math.max(maxPrice, Price)
       })
     }
     return maxPrice
@@ -42,14 +43,17 @@ export default class SKUSelector extends Component {
 
   render() {
     const skuItems = this.props.skuItems
-    const selectedSKUIndex = this.state.selectedSKUIndex
+
+    const selectedSKUIndex = this.state.selectedSKUIndex == null ? this.props.defaultIndex : this.state.selectedSKUIndex
+
     const maxSkuPrice = this.getMaxSkuPrice(skuItems)
 
     return (
       <div className={`${VTEXClasses.SKU_SELECTOR} flex flex-column`}>
         <SelectorManager
           title={this.props.title}
-          onItemClick={this.handleSKUSelected}>
+          onItemClick={this.handleSKUSelected}
+          defaultIndex={this.props.defaultIndex}>
           {
             skuItems.map(skuItem => (
               skuItem.images.length > FIRST_INDEX &&
@@ -102,7 +106,7 @@ SKUSelector.propTypes = {
       /** URL of source Image */
       imageUrl: PropTypes.string.isRequired,
       /** Brief description of the image */
-      imageLabel: PropTypes.string.isRequired,
+      imageLabel: PropTypes.string,
     })).isRequired,
     /** SKU Specifications */
     specs: PropTypes.arrayOf(PropTypes.shape({
@@ -115,6 +119,8 @@ SKUSelector.propTypes = {
       })).isRequired,
     })),
   })).isRequired,
+  /** Default SKU Selection in case of is not the first item */
+  defaultIndex:  PropTypes.number,
   /** Function that is called when a SKU item is clicked */
   onSKUSelected: PropTypes.func,
 }
