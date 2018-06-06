@@ -10,10 +10,14 @@ import './global.css'
 
 class Share extends Component {
   static propTypes = {
+    /** Socilal Networks configuration */
     social: PropTypes.object.isRequired,
+    /** Share buttons options */
     options: PropTypes.shape({
+      /** Share buttons size in pixels */
       size: PropTypes.number,
     }),
+    /** Share URL title */
     title: PropTypes.string,
   }
 
