@@ -162,28 +162,28 @@ class Price extends Component {
 const priceComponent = injectIntl(Price)
 
 priceComponent.schema = {
-  title: 'Price',
-  description: "Product's price Component",
+  title: 'editor.product-price.title',
+  description: 'editor.product-price.description',
   type: 'object',
   properties: {
     showListPrice: {
       type: 'boolean',
-      title: "Show product's list price",
+      title: 'editor.product-price.show-list-price',
       default: Price.defaultProps.showListPrice,
     },
     showLabels: {
       type: 'boolean',
-      title: "Show product's prices' labels",
+      title: 'editor.product-price.show-labels',
       default: Price.defaultProps.showLabels,
     },
     showInstallments: {
       type: 'boolean',
-      title: "Show product's payment installments",
+      title: 'editor.product-price.show-installments',
       default: Price.defaultProps.showInstallments,
     },
     showSavings: {
       type: 'boolean',
-      title: "Show product's list and selling price difference",
+      title: 'editor.product-price.show-savings',
       default: Price.defaultProps.showSavings,
     },
   },
