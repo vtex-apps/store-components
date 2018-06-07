@@ -4,13 +4,18 @@
   "editor.product-price.show-list-price": "Mostrar preço de tabela",
   "editor.product-price.show-labels": "Mostrar legendas nos preços",
   "editor.product-price.show-installments": "Mostrar opção de parcelamento",
-  "editor.product-price.show-savings": "Mostrar diferença entre o preço tabelado e o de venda",
+  "editor.product-price.show-savings":
+    "Mostrar diferença entre o preço tabelado e o de venda",
+  "editor.share.title": "Compartilhamento",
+  "editor.share.description": "Lista de botões de compartilhamento",
+  "editor.share.social.title": "Redes sociais",
   "product-description.title": "Descrição do Produto",
   "social-networks": "Redes Sociais",
   "section-links": "Links",
   "more-information-links": "Mais Informações",
   "payment-form": "Formas de Pagamento",
-  "pricing.installment-display": "Ou {installments} {times} de {installmentPrice}",
+  "pricing.installment-display":
+    "Ou {installments} {times} de {installmentPrice}",
   "pricing.from": "De",
   "pricing.to": "Por",
   "pricing.savings": "Economize: {savings}",
@@ -20,10 +25,13 @@
   "shipping.eta": "até {eta} dias",
   "shipping.free": "Grátis",
   "shipping.empty-sla": "Não existe um frete disponível para o CEP informado",
-  "buybutton.add-failure": "Algo deu errado e o item não pode ser adicionado ao seu carrinho!",
+  "buybutton.add-failure":
+    "Algo deu errado e o item não pode ser adicionado ao seu carrinho!",
   "technicalspecifications.title": "Especificações Técnicas",
-  "availability-subscriber.title": "Este produto não está disponível no momento",
-  "availability-subscriber.subscribe-label": "Avise-me quando estiver disponível",
+  "availability-subscriber.title":
+    "Este produto não está disponível no momento",
+  "availability-subscriber.subscribe-label":
+    "Avise-me quando estiver disponível",
   "availability-subscriber.email-placeholder": "E-mail",
   "availability-subscriber.name-placeholder": "Nome",
   "availability-subscriber.send-label": "Enviar",
@@ -32,13 +40,18 @@
   "editor.footer.title": "Rodapé",
   "editor.footer.description": "Um rodapé que aparece no inferior da sua loja",
   "editor.footer.logoUrl.title": "URL da logo",
-  "editor.footer.numberOfSocialNetworks.title": "Número de links de redes sociais",
+  "editor.footer.numberOfSocialNetworks.title":
+    "Número de links de redes sociais",
   "editor.footer.numberOfSectionLinks.title": "Número de links de seções",
-  "editor.footer.numberOfMoreInformationLinks.title": "Número de links para mais informações",
+  "editor.footer.numberOfMoreInformationLinks.title":
+    "Número de links para mais informações",
   "editor.footer.numberOfBadges.title": "Número de medalhas a serem exibidas",
-  "editor.footer.numberOfPaymentForms.title": "Número de formas de pagamento disponíveis",
-  "editor.footer.showPaymentFormsInColor.title": "Mostrar os ícones das formas de pagamento coloridos",
-  "editor.footer.showSocialNetworksInColor.title": "Mostrar os ícones das redes sociais coloridos",
+  "editor.footer.numberOfPaymentForms.title":
+    "Número de formas de pagamento disponíveis",
+  "editor.footer.showPaymentFormsInColor.title":
+    "Mostrar os ícones das formas de pagamento coloridos",
+  "editor.footer.showSocialNetworksInColor.title":
+    "Mostrar os ícones das redes sociais coloridos",
   "editor.footer.link": "Links",
   "editor.footer.link.title": "Link #{id}",
   "editor.footer.link.title.title": "Título do link",
