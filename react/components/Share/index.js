@@ -31,12 +31,12 @@ class Share extends Component {
   }
 
   static schema = {
-    title: 'Share',
-    description: 'List of share buttons',
+    title: 'editor.share.title',
+    description: 'editor.share.description',
     type: 'object',
     properties: {
       social: {
-        title: 'Social Networks',
+        title: 'editor.share.social.title',
         type: 'object',
         properties: {
           ...indexBy(
