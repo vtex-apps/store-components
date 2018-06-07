@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Max height of the logo image
 - Added a title to the _Share_ Component share url.
 - Internationalization of the `Footer` schema.
+- Internationalization of the `Share` schema.
 
 ### Fixed
 - _SKU Selector_ with a different item selected on entering the product page
