@@ -1,11 +1,16 @@
 {
+  "editor.product-price.title": "Product price",
+  "editor.product-price.description": "Product price Component",
+  "editor.product-price.show-list-price": "Show product's list price",
+  "editor.product-price.show-labels": "Show product's prices' labels",
+  "editor.product-price.show-installments": "Show product's payment installments",
+  "editor.product-price.show-savings": "Show product's list and selling price difference",
   "product-description.title": "Product Description",
   "social-networks": "Social Networks",
   "section-links": "Links",
   "more-information-links": "More Information",
   "payment-form": "Payment Forms",
-  "pricing.installment-display":
-    "Or {installments} {times} of {installmentPrice}",
+  "pricing.installment-display": "Or {installments} {times} of {installmentPrice}",
   "pricing.from": "From",
   "pricing.to": "To",
   "pricing.savings": "Save: {savings}",
@@ -15,8 +20,7 @@
   "shipping.eta": "up to {eta} days",
   "shipping.free": "Free",
   "shipping.empty-sla": "There's no shipping information available for the informed zip code",
-  "buybutton.add-failure":
-    "Something went wrong and the item wasn't added to your cart!",
+  "buybutton.add-failure": "Something went wrong and the item wasn't added to your cart!",
   "technicalspecifications.title": "Technical Specifications",
   "availability-subscriber.title": "This product isn't available right now",
   "availability-subscriber.subscribe-label": "Let me know when this product is available again",

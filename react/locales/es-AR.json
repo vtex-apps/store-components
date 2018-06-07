@@ -1,11 +1,16 @@
 {
+  "editor.product-price.title": "Precio del producto",
+  "editor.product-price.description": "Componente del precio del producto",
+  "editor.product-price.show-list-price": "Mostrar precios de tabla",
+  "editor.product-price.show-labels": "Mostrar subtítulos en los precios",
+  "editor.product-price.show-installments": "Mostrar opción de parcelamiento",
+  "editor.product-price.show-savings": "Mostrar diferencia entre el precio tabulado y el de venta",
   "product-description.title": "Descripción del Producto",
   "social-networks": "Redes Sociales",
   "section-links": "Enlaces",
   "more-information-links": "Mas informaciones",
   "payment-form": "Formas de Pago",
-  "pricing.installment-display":
-    "O {installments} {times} de {installmentPrice}",
+  "pricing.installment-display": "O {installments} {times} de {installmentPrice}",
   "pricing.from": "De",
   "pricing.to": "Por",
   "pricing.savings": "Ahorre: {savings}",
@@ -15,8 +20,7 @@
   "shipping.eta": "hasta {eta} días",
   "shipping.free": "Gratis",
   "shipping.empty-sla": "No hay información de envío disponible para el código postal informado",
-  "buybutton.add-failure":
-    "¡Algo salió mal y el artículo no se agregó a tu carrito!",
+  "buybutton.add-failure": "¡Algo salió mal y el artículo no se agregó a tu carrito!",
   "technicalspecifications.title": "Especificaciones Tecnicas",
   "availability-subscriber.title": "Este producto no está disponible actualmente",
   "availability-subscriber.subscribe-label": "Me avisa cuando este producto está disponible",
