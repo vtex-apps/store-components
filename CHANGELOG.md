@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - _SKU Selector_ with a different item selected on entering the product page
+- _SKU Selector_ item's discount badge position
 - Put the _ProductPrice_ schema inside it's Component.
 
 ## [1.4.0] - 2018-6-6
