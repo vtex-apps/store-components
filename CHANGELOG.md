@@ -9,10 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Max height of the logo image
 - Added a title to the _Share_ Component share url.
+- Internationalization of the `Footer` schema.
 
 ### Fixed
-- `SKU Selector` with a different item selected on entering the product page
-- `SKU Selector` item's discount badge position
+- _SKU Selector_ with a different item selected on entering the product page
+- _SKU Selector_ item's discount badge position
+- Put the _ProductPrice_ schema inside it's Component.
 
 ## [1.4.0] - 2018-6-6
 ### Added

@@ -19,6 +19,7 @@ class Price extends Component {
     showListPrice: true,
     showLabels: true,
     showInstallments: false,
+    showSavings: false,
   }
 
   currencyOptions = {
@@ -158,4 +159,34 @@ class Price extends Component {
   }
 }
 
-export default injectIntl(Price)
+const priceComponent = injectIntl(Price)
+
+priceComponent.schema = {
+  title: 'editor.product-price.title',
+  description: 'editor.product-price.description',
+  type: 'object',
+  properties: {
+    showListPrice: {
+      type: 'boolean',
+      title: 'editor.product-price.show-list-price',
+      default: Price.defaultProps.showListPrice,
+    },
+    showLabels: {
+      type: 'boolean',
+      title: 'editor.product-price.show-labels',
+      default: Price.defaultProps.showLabels,
+    },
+    showInstallments: {
+      type: 'boolean',
+      title: 'editor.product-price.show-installments',
+      default: Price.defaultProps.showInstallments,
+    },
+    showSavings: {
+      type: 'boolean',
+      title: 'editor.product-price.show-savings',
+      default: Price.defaultProps.showSavings,
+    },
+  },
+}
+
+export default priceComponent
