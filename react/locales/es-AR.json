@@ -1,10 +1,10 @@
 {
-  "editor.product-price.title": "Precio del producto",
-  "editor.product-price.description": "Componente del precio del producto",
-  "editor.product-price.show-list-price": "Mostrar precios de tabla",
-  "editor.product-price.show-labels": "Mostrar subtítulos en los precios",
-  "editor.product-price.show-installments": "Mostrar opción de parcelamiento",
-  "editor.product-price.show-savings":
+  "editor.productPrice.title": "Precio del producto",
+  "editor.productPrice.description": "Componente del precio del producto",
+  "editor.productPrice.showListPrice": "Mostrar precios de tabla",
+  "editor.productPrice.showLabels": "Mostrar subtítulos en los precios",
+  "editor.productPrice.showInstallments": "Mostrar opción de parcelamiento",
+  "editor.productPrice.showSavings":
     "Mostrar diferencia entre el precio tabulado y el de venta",
   "editor.share.title": "Compartir",
   "editor.share.description": "Lista de botones para compartir",

@@ -1,11 +1,10 @@
 {
-  "editor.product-price.title": "Product price",
-  "editor.product-price.description": "Product price Component",
-  "editor.product-price.show-list-price": "Show product's list price",
-  "editor.product-price.show-labels": "Show product's prices' labels",
-  "editor.product-price.show-installments":
-    "Show product's payment installments",
-  "editor.product-price.show-savings":
+  "editor.productPrice.title": "Product price",
+  "editor.productPrice.description": "Product price Component",
+  "editor.productPrice.showListPrice": "Show product's list price",
+  "editor.productPrice.showLabels": "Show product's prices' labels",
+  "editor.productPrice.showInstallments": "Show product's payment installments",
+  "editor.productPrice.showSavings":
     "Show product's list and selling price difference",
   "editor.share.title": "Share",
   "editor.share.description": "List of share buttons",
