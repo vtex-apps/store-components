@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
-import { Link } from 'render'
+
 import autocomplete from '../queries/autocomplete.gql'
+import { Spinner } from 'vtex.styleguide'
+import { Link } from 'render'
 
 const listClassNames =
   'vtex-results__list z-max absolute w-100 mt3 border-box bw1 br2 b--solid outline-0 near-black b--light-gray bg-white f5 pv4 ph6'
 const listItemClassNames =
-  'vtex-results__item dim pointer w-95 mt1 pa1 near-black f5 pv4 ph6'
+  'vtex-results__item dim pointer flex justify-start mt1 pa1 near-black f5 pv4 ph6'
 
 function getImageUrl(image) {
   return (image.match(/http:(.*?)"/g) || [''])[0]
@@ -15,19 +17,41 @@ function getImageUrl(image) {
 
 /** List of search results to be displayed*/
 class ResultsList extends Component {
-  render() {
-    const { getItemProps, data, emptyPlaceholder, inputValue } = this.props
-    const items = data.autocomplete ? data.autocomplete.itemsReturned : []
+  getLinkProps(element) {
+    let page = 'store/product'
+    let params = { slug: element.slug }
+    let query = ''
+    const terms = element.slug.split('/')
+    if (element.criteria) {
+      page = 'store/search'
+      params = { term: terms[0] }
+      query = `map=c,ft&Q=${terms.slice(1).join(',')}`
+    }
+    return { page, params, query }
+  }
 
+  renderSpinner() {
+    return (
+      <div className="w-100 flex justify-center">
+        <div className="w3 ma0">
+          <Spinner />
+        </div>
+      </div>
+    )
+  }
+
+  render() {
+    const { data, emptyPlaceholder, inputValue } = this.props
+    const items = data.autocomplete ? data.autocomplete.itemsReturned : []
     if (data.loading) {
       return (
         <ol className={listClassNames}>
-          <li className={listItemClassNames}>Loading...</li>
+          {this.renderSpinner()}
         </ol>
       )
     }
 
-    if (items.length === 0) {
+    if (!items.length) {
       return (
         <ol className={listClassNames}>
           <li className={listItemClassNames}>{emptyPlaceholder}</li>
@@ -37,41 +61,29 @@ class ResultsList extends Component {
 
     return (
       <ol className={listClassNames}>
-        <li className={listItemClassNames}>
-          <Link
-            page="store/search"
-            params={{ term: `${encodeURI(inputValue)}` }}
-          >
+        <Link
+          page="store/search"
+          params={{ term: `${encodeURI(inputValue)}` }}
+          query="map=ft"
+          className="clear-link dim">
+          <li className={`${listItemClassNames}`}>
             {inputValue}
-          </Link>
-        </li>
-        {items.map((el, index) => (
-          <li key={el.name + index} className={listItemClassNames}>
-            <Link
-              page={el.criteria ? 'store/search' : 'store/product'}
-              params={
-                el.criteria
-                  ? { term: `${encodeURI(el.slug).replace('/', '%2F')}` }
-                  : { slug: `${encodeURI(el.slug)}` }
-              }
-              {...getItemProps({
-                item: el.name,
-                index,
-              })}
-              className="flex"
-            >
-              {el.thumb && (
-                <div className="mr4">
-                  <img
-                    className="vtex-results__item-image"
-                    src={getImageUrl(el.thumb)}
-                  />
-                </div>
-              )}
-              <div className="flex justify-center items-center">{el.name}</div>
-            </Link>
           </li>
-        ))}
+        </Link>
+        {items.map((el, index) => {
+          return (
+            <Link key={el.name + index} {...this.getLinkProps(el)} className="clear-link dim">
+              <li className={listItemClassNames}>
+                {el.thumb && (
+                  <div className="mr4">
+                    <img className="vtex-results__item-image" src={getImageUrl(el.thumb)} />
+                  </div>
+                )}
+                <div className="flex justify-start items-center">{el.name}</div>
+              </li>
+            </Link>
+          )
+        })}
       </ol>
     )
   }
@@ -98,8 +110,6 @@ ResultsList.propTypes = {
     }),
     loading: PropTypes.bool.isRequired,
   }),
-  /** Downshift specific function */
-  getItemProps: PropTypes.func.isRequired,
   /** Message that will be displayed when there is no result ot be shown */
   emptyPlaceholder: PropTypes.string.isRequired,
   /** Downshift specific prop*/

@@ -7,7 +7,9 @@ import Input from '@vtex/styleguide/lib/Input'
 export default class AutocompleteInput extends Component {
   render() {
     return (
-      <Input size="large" onKeyPress={this.props.onKeyDown} {...this.props} />
+      <Input size="large" onKeyPress={(evt) => {
+        this.props.onKeyDown(evt)
+      }} {...this.props} />
     )
   }
 }

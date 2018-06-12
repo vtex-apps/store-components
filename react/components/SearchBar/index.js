@@ -1,28 +1,37 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { NoSSR } from 'render'
+import Downshift from 'downshift'
+import { injectIntl } from 'react-intl'
 
 import ResultsLits from './components/ResultsList'
 import AutocompleteInput from './components/AutocompleteInput'
 
-import Downshift from 'downshift'
+import { NoSSR } from 'render'
 
 import './global.css'
 
 /** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
-export default class SearchBar extends Component {
-  // TODO: This redirect should be changed to react navigation
-  // frameworks, like React Router or another approach.
-  handleEnterPress(event) {
+class SearchBar extends Component {
+  static contextTypes = {
+    intl: PropTypes.object.isRequired,
+    navigate: PropTypes.func,
+  }
+
+  handleEnterPress = (event) => {
     if (event.key === 'Enter') {
-      location.assign(`/${event.target.value}/s`)
+      this.context.navigate({
+        page: 'store/search',
+        params: { term: event.target.value },
+        query: 'map=ft',
+        fallbackToWindowLocation: false,
+      })
     }
   }
 
   render() {
-    const { placeholder, emptyPlaceholder } = this.props
-
-    const fallback = <AutocompleteInput placeholder={placeholder} />
+    const placeholder = this.context.intl.formatMessage({ id: 'search.placeholder' })
+    const emptyPlaceholder = this.context.intl.formatMessage({ id: 'search.noMatches' })
+    const fallback = (<AutocompleteInput placeholder={placeholder} />)
 
     return (
       <div className="vtex-searchbar">
@@ -30,7 +39,6 @@ export default class SearchBar extends Component {
           <Downshift>
             {({
               getInputProps,
-              getItemProps,
               inputValue,
               selectedItem,
               highlightedIndex,
@@ -47,7 +55,6 @@ export default class SearchBar extends Component {
                       inputValue,
                       selectedItem,
                       highlightedIndex,
-                      getItemProps,
                       emptyPlaceholder,
                     }}
                   />
@@ -61,14 +68,4 @@ export default class SearchBar extends Component {
   }
 }
 
-SearchBar.propTypes = {
-  /** Text that will be displayed on the search bar*/
-  placeholder: PropTypes.string,
-  /** Text that will be displayed on the result list when no result was found*/
-  emptyPlaceholder: PropTypes.string,
-}
-
-SearchBar.defaultProps = {
-  placeholder: 'Search',
-  emptyPlaceholder: 'No matches',
-}
+export default injectIntl(SearchBar)

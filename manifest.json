@@ -18,6 +18,7 @@
     "postreleasy": "vtex publish --verbose"
   },
   "dependencies": {
-    "vtex.store-graphql": "2.x"
+    "vtex.store-graphql": "2.x",
+    "vtex.styleguide": "4.x"
   }
 }
