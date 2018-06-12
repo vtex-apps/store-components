@@ -63,7 +63,7 @@ class ResultsList extends Component {
       <ol className={listClassNames}>
         <Link
           page="store/search"
-          params={{ term: `${encodeURI(inputValue)}` }}
+          params={{ term: inputValue }}
           query="map=ft"
           className="clear-link dim">
           <li className={`${listItemClassNames}`}>
