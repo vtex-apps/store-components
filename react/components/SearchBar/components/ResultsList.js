@@ -62,6 +62,7 @@ class ResultsList extends Component {
     return (
       <ol className={listClassNames}>
         <Link
+          onClick={() => { this.props.closeMenu() }}
           page="store/search"
           params={{ term: inputValue }}
           query="map=ft"
@@ -72,7 +73,11 @@ class ResultsList extends Component {
         </Link>
         {items.map((el, index) => {
           return (
-            <Link key={el.name + index} {...this.getLinkProps(el)} className="clear-link dim">
+            <Link 
+              onClick={() => { this.props.closeMenu() }}
+              key={el.name + index} 
+              {...this.getLinkProps(el)} 
+              className="clear-link dim">
               <li className={listItemClassNames}>
                 {el.thumb && (
                   <div className="mr4">
@@ -116,6 +121,8 @@ ResultsList.propTypes = {
   highlightedIndex: PropTypes.number,
   /** Search query*/
   inputValue: PropTypes.string.isRequired,
+  /** Closes the options box. */
+  closeMenu: PropTypes.func,
 }
 
 const ResultsListWithData = graphql(autocomplete)(ResultsList)

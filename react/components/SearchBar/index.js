@@ -43,11 +43,15 @@ class SearchBar extends Component {
               selectedItem,
               highlightedIndex,
               isOpen,
+              closeMenu
             }) => (
               <div className="relative">
                 <AutocompleteInput
                   {...getInputProps({ placeholder })}
-                  onKeyDown={this.handleEnterPress}
+                  onKeyDown={evt => {
+                    this.handleEnterPress(evt)
+                    closeMenu()
+                  }}
                 />
                 {isOpen && inputValue !== '' ? (
                   <ResultsLits
@@ -56,6 +60,7 @@ class SearchBar extends Component {
                       selectedItem,
                       highlightedIndex,
                       emptyPlaceholder,
+                      closeMenu,
                     }}
                   />
                 ) : null}
