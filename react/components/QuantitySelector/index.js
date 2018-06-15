@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import './global.css'
+
 /**
  * Quantity selector component.
  */
@@ -20,14 +22,17 @@ class QuantitySelector extends Component {
 
   render() {
     const { currentQuantity } = this.props
+
     return (
-      <input
-        className="vtex-quantity-selector f4 dark-gray br2-l o-100"
-        type="number"
-        name="quantity"
-        value={currentQuantity}
-        onChange={this.handleChange}
-      />
+      <div className="flex flex-column">
+        <input
+          className="mw3 ma0 border-box bw1 br2 b--solid outline-0 near-black b--light-gray hover-b--silver bg-white f6 pa2"
+          type="number"
+          name="quantity"
+          value={currentQuantity}
+          onChange={this.handleChange}
+        />
+      </div>
     )
   }
 }
