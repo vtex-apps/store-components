@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import LessIcon from './images/LessIcon'
 import PlusIcon from './images/PlusIcon'
-import Button from '@vtex/styleguide/lib/Button'
 
 import './global.css'
 
@@ -44,20 +43,20 @@ class QuantitySelector extends Component {
 
     return (
       <div className="flex flex-row">
-        <Button onClick={this.handleLessButtonClick}>
+        <div className="flex items-center justify-center" onClick={this.handleLessButtonClick}>
           <LessIcon />
-        </Button>
+        </div>
         <input
-          className="ma0 border-box bw1 br2 b--solid outline-0 near-black b--light-gray hover-b--silver bg-white f6 tc"
+          className="ma0 mh1 border-box bw1 br2 b--solid outline-0 near-black b--light-gray hover-b--silver bg-white f6 tc"
           type="number"
           name="quantity"
           value={currentQuantity}
           onChange={this.handleChange}
         />
-        <Button onClick={this.handlePlusButtonClick}>
+        <div className="flex items-center justify-center" onClick={this.handlePlusButtonClick}>
           <PlusIcon />
-        </Button>
-      </div >
+        </div>
+      </div>
     )
   }
 }

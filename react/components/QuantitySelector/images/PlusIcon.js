@@ -5,29 +5,29 @@ import PropTypes from 'prop-types'
  * Plus Icon component in svg
  */
 export default class LessIcon extends Component {
-    static propTypes = {
-      /* Percentage size of the icon */
-      size: PropTypes.number,
-      /* Fill color for the icon */
-      fillColor: PropTypes.string,
-    }
+  static propTypes = {
+    /* Percentage size of the icon */
+    size: PropTypes.number,
+    /* Fill color for the icon */
+    fillColor: PropTypes.string,
+  }
 
-    static defaultProps = {
-      size: 20,
-      fillColor: '#999999',
-    }
+  static defaultProps = {
+    size: 16,
+    fillColor: '#C4C4C4',
+  }
 
-    render() {
-      const { size, fillColor } = this.props
-      return (
-        <svg width={size} height={size} viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            fillRule="evenodd"
-            clipRule="evenodd"
-            d="M26.101 50.8137C40.5162 50.8137 52.2021 39.4387 52.2021 25.4069C52.2021 11.375 40.5162 -1.85368e-06 26.101 0C11.6858 7.21363e-06 8.17289e-06 11.375 0 25.4069C2.59352e-06 39.4387 11.6858 50.8137 26.101 50.8137ZM19.1784 36.6015L14.5643 32.1102L21.4616 25.3964L14.5643 18.6826L19.1784 14.1913L26.0756 20.905L32.9729 14.1912L37.5869 18.6826L30.6897 25.3964L37.5869 32.1102L32.9729 36.6016L26.0756 29.8877L19.1784 36.6015Z"
-            transform="translate(0 36.0081) scale(0.997842 -1.00215) rotate(-45)"
-            fill={fillColor} />
-        </svg>
-      )
-    }
+  render() {
+    const { size, fillColor } = this.props
+    return (
+      <svg width={size} height={size} viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M26.4867 53.1165C41.1148 53.1165 52.9733 41.226 52.9733 26.5583C52.9733 11.8905 41.1148 -4.84571e-06 26.4866 0C11.8585 4.84572e-06 -2.94351e-05 11.8906 0 26.5583C-1.37231e-05 41.226 11.8585 53.1165 26.4867 53.1165ZM38.121 19.3907L31.0373 26.4936L38.1209 33.5964L33.5058 38.224L26.4221 31.1212L19.3384 38.2241L14.7233 33.5965L21.8069 26.4936L14.7232 19.3907L19.3384 14.7631L26.4221 21.866L33.5058 14.7631L38.121 19.3907Z"
+          transform="translate(-10 27.5506) scale(1.00022 -0.999775) rotate(-45)"
+          fill={fillColor} />
+      </svg>
+    )
+  }
 }
