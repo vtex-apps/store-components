@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import LessIcon from './images/LessIcon'
 import PlusIcon from './images/PlusIcon'
+import Button from '@vtex/styleguide/lib/Button'
 
 import './global.css'
 
@@ -22,14 +23,30 @@ class QuantitySelector extends Component {
     onQuantityChange(quantity)
   }
 
+  handleLessButtonClick = () => {
+    const { currentQuantity, onQuantityChange } = this.props
+    if (currentQuantity > 0) {
+      onQuantityChange(currentQuantity - 1)
+    }
+  }
+
+  handlePlusButtonClick = () => {
+    const { currentQuantity, maxQuantity, onQuantityChange, onMaxReached } = this.props
+    if (currentQuantity < maxQuantity) {
+      onQuantityChange(currentQuantity + 1)
+    } else {
+      onMaxReached()
+    }
+  }
+
   render() {
     const { currentQuantity } = this.props
 
     return (
       <div className="flex flex-row">
-        <div className="flex items-center justify-center relative pr1">
+        <Button onClick={this.handleLessButtonClick}>
           <LessIcon />
-        </div>
+        </Button>
         <input
           className="ma0 border-box bw1 br2 b--solid outline-0 near-black b--light-gray hover-b--silver bg-white f6 tc"
           type="number"
@@ -37,8 +54,10 @@ class QuantitySelector extends Component {
           value={currentQuantity}
           onChange={this.handleChange}
         />
-        <PlusIcon />
-      </div>
+        <Button onClick={this.handlePlusButtonClick}>
+          <PlusIcon />
+        </Button>
+      </div >
     )
   }
 }
@@ -52,6 +71,10 @@ QuantitySelector.propTypes = {
   onQuantityChange: PropTypes.func.isRequired,
   /** Define if can buy more items than the maximum limit */
   onMaxReached: PropTypes.func.isRequired,
+}
+
+QuantitySelector.defaultProps = {
+  currentQuantity: 0,
 }
 
 export default QuantitySelector
