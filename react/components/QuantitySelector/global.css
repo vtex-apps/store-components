@@ -1,0 +1,19 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+input::-o-outer-spin-button,
+input::-o-inner-spin-button {
+    -o-appearance: none;
+    margin: 0;
+}
+
+input {
+    max-width: 3rem;
+}

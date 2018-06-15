@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import DecreaseIcon from './images/DecreaseIcon'
+import IncreaseIcon from './images/IncreaseIcon'
+
+import './global.css'
 
 /**
  * Quantity selector component.
@@ -18,16 +22,41 @@ class QuantitySelector extends Component {
     onQuantityChange(quantity)
   }
 
+  handleDecreaseButtonClick = () => {
+    const { currentQuantity, onQuantityChange } = this.props
+    if (currentQuantity > 0) {
+      onQuantityChange(currentQuantity - 1)
+    }
+  }
+
+  handleIncreaseButtonClick = () => {
+    const { currentQuantity, maxQuantity, onQuantityChange, onMaxReached } = this.props
+    if (currentQuantity < maxQuantity) {
+      onQuantityChange(currentQuantity + 1)
+    } else {
+      onMaxReached()
+    }
+  }
+
   render() {
     const { currentQuantity } = this.props
+
     return (
-      <input
-        className="vtex-quantity-selector f4 dark-gray br2-l o-100"
-        type="number"
-        name="quantity"
-        value={currentQuantity}
-        onChange={this.handleChange}
-      />
+      <div className="flex flex-row">
+        <div className="flex items-center justify-center" onClick={this.handleDecreaseButtonClick}>
+          <DecreaseIcon />
+        </div>
+        <input
+          className="ma0 mh1 border-box bw1 br2 b--solid outline-0 near-black b--light-gray hover-b--silver bg-white f6 tc"
+          type="number"
+          name="quantity"
+          value={currentQuantity}
+          onChange={this.handleChange}
+        />
+        <div className="flex items-center justify-center" onClick={this.handleIncreaseButtonClick}>
+          <IncreaseIcon />
+        </div>
+      </div>
     )
   }
 }
@@ -41,6 +70,10 @@ QuantitySelector.propTypes = {
   onQuantityChange: PropTypes.func.isRequired,
   /** Define if can buy more items than the maximum limit */
   onMaxReached: PropTypes.func.isRequired,
+}
+
+QuantitySelector.defaultProps = {
+  currentQuantity: 0,
 }
 
 export default QuantitySelector
