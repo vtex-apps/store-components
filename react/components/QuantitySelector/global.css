@@ -8,6 +8,12 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 
+input::-o-outer-spin-button,
+input::-o-inner-spin-button {
+    -o-appearance: none;
+    margin: 0;
+}
+
 input {
     max-width: 3rem;
 }
