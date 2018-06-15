@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added a title to the _Share_ Component share url.
 - Internationalization of the `Footer` schema.
 - Internationalization of the `Share` schema.
+- README documentation of Logo Component.
 
 ### Fixed
 - _SKU Selector_ with a different item selected on entering the product page
