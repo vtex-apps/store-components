@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 /**
- * Plus Icon component in svg
+ * Increase Icon component in svg
  */
-export default class LessIcon extends Component {
+export default class IncreaseIcon extends Component {
   static propTypes = {
     /* Percentage size of the icon */
     size: PropTypes.number,
