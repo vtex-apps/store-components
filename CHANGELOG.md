@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Make `onMaxReached` function not required in `QuantitySelector`
+- Use children prop in `ProductImage` to customize selected image render.
 
 ## [1.5.1] - 2018-6-18
 ### Added
@@ -28,7 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.5.0] - 2018-6-11
 ### Added
-- Max height of the logo image
+- Max height of the logo image.
 - Added a title to the _Share_ Component share url.
 - Internationalization of the `Footer` schema.
 - Internationalization of the `Share` schema.
