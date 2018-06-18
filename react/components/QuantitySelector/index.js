@@ -47,7 +47,7 @@ class QuantitySelector extends Component {
           <DecreaseIcon />
         </div>
         <input
-          className="ma0 mh1 border-box bw1 br2 b--solid outline-0 near-black b--light-gray hover-b--silver bg-white f6 tc"
+          className="vtex-quantity-selector__input ma0 mh1 border-box bw1 br2 b--solid outline-0 near-black b--light-gray hover-b--silver bg-white f6 tc"
           type="number"
           name="quantity"
           value={currentQuantity}
