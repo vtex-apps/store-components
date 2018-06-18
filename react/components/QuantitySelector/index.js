@@ -5,6 +5,8 @@ import Plus from '@vtex/styleguide/lib/icon/Plus'
 
 import './global.css'
 
+const iconColor = '#C4C4C4'
+
 /**
  * Quantity selector component.
  */
@@ -54,7 +56,7 @@ class QuantitySelector extends Component {
           onChange={this.handleChange}
         />
         <div className="pointer flex items-center justify-center" onClick={this.handleIncreaseButtonClick}>
-          <Plus color="#C4C4C4" />
+          <Plus color={iconColor} />
         </div>
       </div>
     )
