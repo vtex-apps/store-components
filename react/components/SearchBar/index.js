@@ -48,8 +48,8 @@ class SearchBar extends Component {
               <div className="relative">
                 <AutocompleteInput
                   {...getInputProps({ placeholder })}
-                  onKeyDown={evt => {
-                    this.handleEnterPress(evt)
+                  onKeyDown={event => {
+                    this.handleEnterPress(event)
                     closeMenu()
                   }}
                 />

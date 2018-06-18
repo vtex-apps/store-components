@@ -25,7 +25,7 @@ class ResultsList extends Component {
     if (element.criteria) {
       page = 'store/search'
       params = { term: terms[0] }
-      query = `map=c,ft&Q=${terms.slice(1).join(',')}`
+      query = `map=c,ft&rest=${terms.slice(1).join(',')}`
     }
     return { page, params, query }
   }
@@ -71,20 +71,20 @@ class ResultsList extends Component {
             {inputValue}
           </li>
         </Link>
-        {items.map((el, index) => {
+        {items.map((item, index) => {
           return (
             <Link 
               onClick={() => { this.props.closeMenu() }}
-              key={el.name + index} 
-              {...this.getLinkProps(el)} 
+              key={item.name + index} 
+              {...this.getLinkProps(item)} 
               className="clear-link dim">
               <li className={listItemClassNames}>
-                {el.thumb && (
+                {item.thumb && (
                   <div className="mr4">
-                    <img className="vtex-results__item-image" src={getImageUrl(el.thumb)} />
+                    <img className="vtex-results__item-image" src={getImageUrl(item.thumb)} />
                   </div>
                 )}
-                <div className="flex justify-start items-center">{el.name}</div>
+                <div className="flex justify-start items-center">{item.name}</div>
               </li>
             </Link>
           )
