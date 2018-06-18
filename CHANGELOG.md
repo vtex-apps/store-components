@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Internationalization to `SearchBar`
 - Spinner to `SearchBar`
+- `isLayout` to `ProductPrice`'s schema properties.
 
 ### Fixed
 - `QuantitySelector` input style for do not impact the others inputs
