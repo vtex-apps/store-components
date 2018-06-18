@@ -14,19 +14,19 @@ class QuantitySelector extends Component {
   handleChange = event => {
     const { maxQuantity, onQuantityChange, onMaxReached } = this.props
     const value = event.target.value
-    let quantity = value ? parseInt(value, 10) : 0
+    let quantity = value ? parseInt(value, 10) : 1
     if (quantity > maxQuantity) {
       quantity = maxQuantity
       onMaxReached()
     } else if (quantity < 0) {
-      quantity = 0
+      quantity = 1
     }
     onQuantityChange(quantity)
   }
 
   handleDecreaseButtonClick = () => {
     const { currentQuantity, onQuantityChange } = this.props
-    if (currentQuantity > 0) {
+    if (currentQuantity > 1) {
       onQuantityChange(currentQuantity - 1)
     }
   }
