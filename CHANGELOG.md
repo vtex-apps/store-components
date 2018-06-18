@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - `QuantitySelector` style
+- `QuantitySelector` plus icon to use the StyleGuide one.
 
 ## [1.5.0] - 2018-6-11
 ### Added
