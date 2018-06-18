@@ -11,7 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Spinner to `SearchBar`
 
 ### Fixed
+- `QuantitySelector` input style for do not impact the others inputs
 - `SearchBar` options link 
+
+### Changed
+- `QuantitySelector` style
+- `QuantitySelector` plus icon to use the StyleGuide one.
 
 ## [1.5.0] - 2018-6-11
 ### Added
@@ -19,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added a title to the _Share_ Component share url.
 - Internationalization of the `Footer` schema.
 - Internationalization of the `Share` schema.
+- README documentation of Logo Component.
 
 ### Fixed
 - _SKU Selector_ with a different item selected on entering the product page
