@@ -6,15 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Internationalization to `SearchBar`
+- Spinner to `SearchBar`
+
+### Fixed
+- `QuantitySelector` input style for do not impact the others inputs
+- `SearchBar` options link 
+
 ### Changed
 - `QuantitySelector` style
 - `QuantitySelector` plus icon to use the StyleGuide one.
-
-### Fixed
-- `QuantitySelector` input style for do not impact the others inputs
-
-### Fixed
-- `QuantitySelector` input style for do not impact the others inputs
 
 ## [1.5.0] - 2018-6-11
 ### Added
