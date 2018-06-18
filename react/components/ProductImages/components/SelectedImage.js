@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import ImageZoom from './ImageZoom'
 
 import VTEXClasses from '../constants/productImagesClasses'
@@ -17,6 +18,11 @@ export default class SelectedImage extends Component {
       /** Text that describes the image */
       imageText: PropTypes.string.isRequired,
     }).isRequired,
+    children: PropTypes.func,
+  }
+
+  static defaultProps = {
+    children: img => img,
   }
 
   state = {
@@ -32,7 +38,7 @@ export default class SelectedImage extends Component {
   }
 
   render() {
-    const { imageUrl, imageText } = this.props.image
+    const { children, image: { imageUrl, imageText } } = this.props
     const { showZoom } = this.state
 
     return (
@@ -43,7 +49,7 @@ export default class SelectedImage extends Component {
               VTEXClasses.SELECTED_IMAGE
             } flex-ns justify-center-ns items-center-ns dn`}>
             <div className="flex justify-center items-center">
-              <img onMouseEnter={this.handleMouseEnterImage} src={imageUrl} alt={imageText} />
+              {children(<img onMouseEnter={this.handleMouseEnterImage} src={imageUrl} alt={imageText} />)}
             </div>
           </div>
           <div className="vtex-product-image__image-zoom-container absolute">
