@@ -170,21 +170,25 @@ priceComponent.schema = {
       type: 'boolean',
       title: 'editor.productPrice.showListPrice',
       default: Price.defaultProps.showListPrice,
+      isLayout: true,
     },
     showLabels: {
       type: 'boolean',
       title: 'editor.productPrice.showLabels',
       default: Price.defaultProps.showLabels,
+      isLayout: true,
     },
     showInstallments: {
       type: 'boolean',
       title: 'editor.productPrice.showInstallments',
       default: Price.defaultProps.showInstallments,
+      isLayout: true,
     },
     showSavings: {
       type: 'boolean',
       title: 'editor.productPrice.showSavings',
       default: Price.defaultProps.showSavings,
+      isLayout: true,
     },
   },
 }
