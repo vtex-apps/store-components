@@ -1,19 +1,19 @@
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+.vtex-quantity-selector__input::-webkit-outer-spin-button,
+.vtex-quantity-selector__input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-input[type=number] {
+.vtex-quantity-selector__input[type=number] {
     -moz-appearance:textfield;
 }
 
-input::-o-outer-spin-button,
-input::-o-inner-spin-button {
+.vtex-quantity-selector__input::-o-outer-spin-button,
+.vtex-quantity-selector__input::-o-inner-spin-button {
     -o-appearance: none;
     margin: 0;
 }
 
-input {
+.vtex-quantity-selector__input {
     max-width: 3rem;
 }
