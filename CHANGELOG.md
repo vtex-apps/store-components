@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - `QuantitySelector` style
 
+### Fixed
+- `QuantitySelector` input style for do not impact the others inputs
+
 ## [1.5.0] - 2018-6-11
 ### Added
 - Max height of the logo image
