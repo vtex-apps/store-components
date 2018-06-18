@@ -40,6 +40,7 @@ class ProductImages extends Component {
       images,
       thumbnailSliderOrientation,
       thumbnailMaxVisibleItems,
+      children,
     } = this.props
 
     const thumbnailProps = {
@@ -61,7 +62,9 @@ class ProductImages extends Component {
     return (
       <div className={className}>
         <ThumbnailSlider {...thumbnailProps} />
-        <SelectedImage image={this.state.selectedImage} />
+        <SelectedImage image={this.state.selectedImage}>
+          {children}
+        </SelectedImage>
       </div>
     )
   }
@@ -81,6 +84,8 @@ ProductImages.propTypes = {
   thumbnailSliderOrientation: PropTypes.oneOf([VERTICAL, HORIZONTAL]),
   /** Maximum number of visible items that should be displayed by the Thumbnail Slider at the same time */
   thumbnailMaxVisibleItems: PropTypes.number,
+  /** Function to render selected image */
+  children: PropTypes.func,
 }
 
 ProductImages.defaultProps = {
@@ -117,6 +122,7 @@ ProductImages.defaultProps = {
     },
   ],
   thumbnailSliderOrientation: VERTICAL,
+  children: img => img,
 }
 
 export default ProductImages
