@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - `QuantitySelector` style
+- `QuantitySelector` plus icon to use the StyleGuide one.
+
+### Fixed
+- `QuantitySelector` input style for do not impact the others inputs
 
 ### Fixed
 - `QuantitySelector` input style for do not impact the others inputs

@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import DecreaseIcon from './images/DecreaseIcon'
-import IncreaseIcon from './images/IncreaseIcon'
+import Plus from '@vtex/styleguide/lib/icon/Plus'
 
 import './global.css'
+
+const iconColor = '#C4C4C4'
 
 /**
  * Quantity selector component.
@@ -43,7 +45,7 @@ class QuantitySelector extends Component {
 
     return (
       <div className="flex flex-row">
-        <div className="flex items-center justify-center" onClick={this.handleDecreaseButtonClick}>
+        <div className="pointer flex items-center justify-center" onClick={this.handleDecreaseButtonClick}>
           <DecreaseIcon />
         </div>
         <input
@@ -53,8 +55,8 @@ class QuantitySelector extends Component {
           value={currentQuantity}
           onChange={this.handleChange}
         />
-        <div className="flex items-center justify-center" onClick={this.handleIncreaseButtonClick}>
-          <IncreaseIcon />
+        <div className="pointer flex items-center justify-center" onClick={this.handleIncreaseButtonClick}>
+          <Plus color={iconColor} />
         </div>
       </div>
     )
