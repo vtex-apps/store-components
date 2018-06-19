@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import DecreaseIcon from './images/DecreaseIcon'
 import Plus from '@vtex/styleguide/lib/icon/Plus'
+import { debounce } from 'underscore'
 
 import './global.css'
 
@@ -11,6 +12,13 @@ const iconColor = '#C4C4C4'
  * Quantity selector component.
  */
 class QuantitySelector extends Component {
+  constructor(props) {
+    super(props)
+    this.debouncedDecreaseFunction = debounce(() => this.decreaseQuantity(), 1000)
+    this.debouncedIncreaseFunction = debounce(() => this.increaseQuantity(), 1000)
+    this.state = { currentQuantity: props.currentQuantity }
+  }
+
   handleChange = event => {
     const { maxQuantity, onQuantityChange, onMaxReached } = this.props
     const value = event.target.value
@@ -19,33 +27,50 @@ class QuantitySelector extends Component {
       quantity = maxQuantity
       onMaxReached()
     } else if (quantity < 0) {
-      quantity = 0
+      quantity = 1
     }
     onQuantityChange(quantity)
   }
 
-  handleDecreaseButtonClick = () => {
-    const { currentQuantity, onQuantityChange } = this.props
-    if (currentQuantity > 0) {
-      onQuantityChange(currentQuantity - 1)
+  handleDecreaseButtonClick = (event) => {
+    const { currentQuantity } = this.state
+    if (currentQuantity > 1) {
+      this.setState({ currentQuantity: currentQuantity - 1 })
+      event.persist()
+      this.debouncedDecreaseFunction()
     }
   }
 
-  handleIncreaseButtonClick = () => {
-    const { currentQuantity, maxQuantity, onQuantityChange, onMaxReached } = this.props
+  handleIncreaseButtonClick = (event) => {
+    const { maxQuantity, onMaxReached } = this.props
+    const { currentQuantity } = this.state
     if (currentQuantity < maxQuantity) {
-      onQuantityChange(currentQuantity + 1)
+      this.setState({ currentQuantity: currentQuantity + 1 })
+      event.persist()
+      this.debouncedIncreaseFunction()
     } else {
       onMaxReached()
     }
   }
 
+  decreaseQuantity = () => {
+    const { onQuantityChange } = this.props
+    const { currentQuantity } = this.state
+    onQuantityChange(currentQuantity)
+  }
+
+  increaseQuantity = () => {
+    const { currentQuantity } = this.state
+    const { onQuantityChange } = this.props
+    onQuantityChange(currentQuantity)
+  }
+
   render() {
-    const { currentQuantity } = this.props
+    const { currentQuantity } = this.state
 
     return (
       <div className="flex flex-row">
-        <div className="pointer flex items-center justify-center" onClick={this.handleDecreaseButtonClick}>
+        <div className="pointer flex items-center justify-center" onClick={(e) => this.handleDecreaseButtonClick(e)}>
           <DecreaseIcon />
         </div>
         <input
@@ -55,7 +80,7 @@ class QuantitySelector extends Component {
           value={currentQuantity}
           onChange={this.handleChange}
         />
-        <div className="pointer flex items-center justify-center" onClick={this.handleIncreaseButtonClick}>
+        <div className="pointer flex items-center justify-center" onClick={(e) => this.handleIncreaseButtonClick(e)}>
           <Plus color={iconColor} />
         </div>
       </div>
