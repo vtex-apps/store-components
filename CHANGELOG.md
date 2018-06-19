@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Debounce function to handle the increase and decrease events in the `QuantitySelector`
 
+### Changed
+- Make `onMaxReached` function not required in `QuantitySelector`
+
 ## [1.5.1] - 2018-6-18
 ### Added
 - Internationalization to `SearchBar`

@@ -48,7 +48,7 @@ class QuantitySelector extends Component {
       this.setState({ currentQuantity: currentQuantity + 1 })
       event.persist()
       this.debouncedIncreaseFunction()
-    } else {
+    } else if (onMaxReached) {
       onMaxReached()
     }
   }
@@ -96,7 +96,7 @@ QuantitySelector.propTypes = {
   /** Called when the client set the quantity selector */
   onQuantityChange: PropTypes.func.isRequired,
   /** Define if can buy more items than the maximum limit */
-  onMaxReached: PropTypes.func.isRequired,
+  onMaxReached: PropTypes.func,
 }
 
 QuantitySelector.defaultProps = {
