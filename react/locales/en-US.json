@@ -1,4 +1,6 @@
 {
+  "search.placeholder": "Search",
+  "search.noMatches": "No matches",
   "editor.productPrice.title": "Product price",
   "editor.productPrice.description": "Product price Component",
   "editor.productPrice.showListPrice": "Show product's list price",

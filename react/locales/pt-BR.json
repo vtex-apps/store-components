@@ -1,4 +1,6 @@
 {
+  "search.placeholder": "Buscar",
+  "search.noMatches": "Sem resultado",
   "editor.productPrice.title": "Preço do produto",
   "editor.productPrice.description": "Componente do preço do produto",
   "editor.productPrice.showListPrice": "Mostrar preço de tabela",
