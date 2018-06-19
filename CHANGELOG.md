@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Make `onMaxReached` function not required in `QuantitySelector`
 - Use children prop in `ProductImage` to customize selected image render.
+- Update design of `CollectionBadges`.
 
 ## [1.5.1] - 2018-6-18
 ### Added

@@ -8,24 +8,18 @@ import VTEXClasses from './components/CustomClasses'
  * Collection Badges component.
  * Encapsulates and displays a responsive list of Collection Badges.
  */
-export default class CollectionBadges extends Component {
-  render() {
-    return (
-      <div className={`${VTEXClasses.COLLECTION_BADGES} relative dib`}>
-        <div className="inline-flex absolute w-100 bottom-0">
-          {
-            this.props.collectionBadgesText.map(collectionBadgeText => (
-              <CollectionBadgeItem key={collectionBadgeText}>
-                {collectionBadgeText}
-              </CollectionBadgeItem>
-            ))
-          }
-        </div>
-        {this.props.children}
-      </div>
-    )
-  }
-}
+const CollectionBadges = ({ collectionBadgesText, children }) => (
+  <div className={`${VTEXClasses.COLLECTION_BADGES} relative dib h-100`}>
+    {children}
+    <div className="inline-flex justify-end absolute w-100 bottom-0 left-0">
+      {collectionBadgesText.map(collectionBadgeText => (
+        <CollectionBadgeItem key={collectionBadgeText}>
+          {collectionBadgeText}
+        </CollectionBadgeItem>
+      ))}
+    </div>
+  </div>
+)
 
 CollectionBadges.propTypes = {
   /** Array of collection badges text */
@@ -37,3 +31,5 @@ CollectionBadges.propTypes = {
 CollectionBadges.defaultProps = {
   collectionBadgesText: [],
 }
+
+export default CollectionBadges
