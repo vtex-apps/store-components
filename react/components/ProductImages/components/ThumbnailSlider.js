@@ -17,7 +17,7 @@ class ThumbnailSlider extends Component {
   /**
    * Function that configure slider settings according to the component props
    */
-  configureSliderSettings = () => {
+  get sliderSettings() {
     const { maxVisibleItems, orientation } = this.props
     const sliderVertical = orientation === VERTICAL
 
@@ -55,7 +55,7 @@ class ThumbnailSlider extends Component {
     const { images, onThumbnailClick, orientation } = this.props
 
     const sliderVertical = orientation === VERTICAL
-    const sliderSettings = this.configureSliderSettings()
+
     return (
       <div
         className={
@@ -63,17 +63,15 @@ class ThumbnailSlider extends Component {
             ? VTEXClasses.VERTICAL_THUMBNAIL_SLIDER
             : VTEXClasses.HORIZONTAL_THUMBNAIL_SLIDER
         }>
-        {
-          <Slider sliderSettings={sliderSettings}>
-            {images.map(image => (
-              <ThumbnailItem
-                key={image.imageUrl}
-                image={image}
-                onClick={onThumbnailClick}
-              />
-            ))}
-          </Slider>
-        }
+        <Slider sliderSettings={this.sliderSettings}>
+          {images.map(image => (
+            <ThumbnailItem
+              key={image.imageUrl}
+              image={image}
+              onClick={onThumbnailClick}
+            />
+          ))}
+        </Slider>
       </div>
     )
   }

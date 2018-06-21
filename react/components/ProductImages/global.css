@@ -5,8 +5,17 @@
 @custom-media --breakpoint-large screen and (min-width: 64em) and (max-width: 80em);
 @custom-media --breakpoint-extra-large screen and (min-width: 80em); 
 */
-.vtex-product-image {
-  width: 500px;
+.vtex-product-image__horizontal {
+  width: 630px;
+}
+
+.vtex-product-image__vertical {
+  max-width: 630px;
+}
+
+.vtex-product-image__vertical-thumbnail-slider {
+  width: 82px;
+  max-height: 500px;
 }
 
 .vtex-product-image__thumbnail-slider-item img {
