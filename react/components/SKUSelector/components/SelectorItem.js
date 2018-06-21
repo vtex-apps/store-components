@@ -24,7 +24,7 @@ export default class SelectorItem extends PureComponent {
         ${isSelected ? 'b--blue' : 'b--transparent'}
         ${!isAvailable && 'bg-light-gray'}`}
         onClick={this.handleClick}>
-        <div className={`${!isAvailable && 'o-50'}`}>
+        <div className={isAvailable ? '' : 'o-50'}>
           {children}
         </div>
         {discount > 0 && <span className={`${VTEXClasses.SKU_BADGE} b`}><FormattedNumber value={discount} style="percent" /></span>}
