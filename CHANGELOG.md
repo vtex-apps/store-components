@@ -9,6 +9,61 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Changed _BuyButton_ Component added isOneClickBuy attribute.
 
+## [1.6.0] - 2018-6-20
+### Added
+- Debounce function to handle the increase and decrease events in the `QuantitySelector`
+
+### Changed
+- Make `onMaxReached` function not required in `QuantitySelector`
+- Use children prop in `ProductImage` to customize selected image render.
+- Update design of `CollectionBadges`.
+
+## [1.5.1] - 2018-6-18
+### Added
+- Internationalization to `SearchBar`
+- Spinner to `SearchBar`
+- `isLayout` to `ProductPrice`'s schema properties.
+
+### Fixed
+- `QuantitySelector` input style for do not impact the others inputs
+- `SearchBar` options link 
+
+### Changed
+- `QuantitySelector` style
+- `QuantitySelector` plus icon to use the StyleGuide one.
+
+## [1.5.0] - 2018-6-11
+### Added
+- Max height of the logo image.
+- Added a title to the _Share_ Component share url.
+- Internationalization of the `Footer` schema.
+- Internationalization of the `Share` schema.
+- README documentation of Logo Component.
+
+### Fixed
+- _SKU Selector_ with a different item selected on entering the product page
+- _SKU Selector_ item's discount badge position
+- Put the _ProductPrice_ schema inside it's Component.
+- README typos.
+
+## [1.4.0] - 2018-6-6
+### Added
+- Inner zoom image to the product image.
+- Discount badge to sku item.
+
+### Changed
+- Slightly changed the layout of `ProductName` and `SkuSelector` to accomplish proposed design.
+- Style of the unavailable sku to be different from the others.
+- Change _ProductName_, added: showBrandName, showProductReference, productReference attributes.
+- Customize Footer uiSchema.
+
+### Fixed
+- Vertical centralization of SKU Selector Items.
+
+## [1.3.2] - 2018-5-31
+### Changed
+- Integration of the `ShippingComponent` with graphql.
+
 ## [1.3.1] - 2018-5-30
 ### Fixed
 - Fix _ProductPrice_ Component when no Installments are passed.

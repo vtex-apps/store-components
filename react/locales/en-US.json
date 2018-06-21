@@ -1,4 +1,16 @@
 {
+  "search.placeholder": "Search",
+  "search.noMatches": "No matches",
+  "editor.productPrice.title": "Product price",
+  "editor.productPrice.description": "Product price Component",
+  "editor.productPrice.showListPrice": "Show product's list price",
+  "editor.productPrice.showLabels": "Show product's prices' labels",
+  "editor.productPrice.showInstallments": "Show product's payment installments",
+  "editor.productPrice.showSavings":
+    "Show product's list and selling price difference",
+  "editor.share.title": "Share",
+  "editor.share.description": "List of share buttons",
+  "editor.share.social.title": "Social Networks",
   "product-description.title": "Product Description",
   "social-networks": "Social Networks",
   "section-links": "Links",
@@ -6,22 +18,58 @@
   "payment-form": "Payment Forms",
   "pricing.installment-display":
     "Or {installments} {times} of {installmentPrice}",
-  "pricing.from": "From:",
-  "pricing.to": "To:",
+  "pricing.from": "From",
+  "pricing.to": "To",
   "pricing.savings": "Save: {savings}",
   "pricing.interest-free": "interest-free",
   "loading": "Loading…",
   "shipping.label": "Calculate shipping",
   "shipping.eta": "up to {eta} days",
   "shipping.free": "Free",
+  "shipping.empty-sla":
+    "There's no shipping information available for the informed zip code",
   "buybutton.add-failure":
     "Something went wrong and the item wasn't added to your cart!",
   "technicalspecifications.title": "Technical Specifications",
   "availability-subscriber.title": "This product isn't available right now",
-  "availability-subscriber.subscribe-label": "Let me know when this product is available again",
+  "availability-subscriber.subscribe-label":
+    "Let me know when this product is available again",
   "availability-subscriber.email-placeholder": "Email",
   "availability-subscriber.name-placeholder": "Name",
   "availability-subscriber.send-label": "Send",
   "availability-subscriber.invalid-email": "Invalid email",
-  "availability-subscriber.added-message": "E-mail registered successfully"
+  "availability-subscriber.added-message": "E-mail registered successfully",
+  "editor.footer.title": "Footer",
+  "editor.footer.description":
+    "A footer that appears in the bottom of your store",
+  "editor.footer.logoUrl.title": "Logo URL",
+  "editor.footer.numberOfSocialNetworks.title":
+    "Number of social networks links",
+  "editor.footer.numberOfSectionLinks.title": "Number of section links",
+  "editor.footer.numberOfMoreInformationLinks.title":
+    "Number of more information links",
+  "editor.footer.numberOfBadges.title": "Number of badges to be displayed",
+  "editor.footer.numberOfPaymentForms.title":
+    "Number of payment forms available",
+  "editor.footer.showPaymentFormsInColor.title":
+    "Show payment form icons in color",
+  "editor.footer.showSocialNetworksInColor.title":
+    "Show social networks icons in color",
+  "editor.footer.link": "Links",
+  "editor.footer.link.title": "Link #{id}",
+  "editor.footer.link.title.title": "Link Title",
+  "editor.footer.link.url.title": "Link URL",
+  "editor.footer.moreInformationLink": "More Information Links",
+  "editor.footer.moreInformationLink.title": "More Information Link #{id}",
+  "editor.footer.badge": "Badges",
+  "editor.footer.badge.title": "Badge #{id}",
+  "editor.footer.badge.image.title": "Badge image URL",
+  "editor.footer.socialNetworks": "Social Networks",
+  "editor.footer.socialNetworks.title": "Social Network",
+  "editor.footer.socialNetworks.url.title": "Social Network URL",
+  "editor.footer.socialNetworks.socialNetwork.title": "Social Network #{id}",
+  "editor.footer.paymentForms": "Payment Forms",
+  "editor.footer.paymentForms.title": "Payment Form",
+  "editor.footer.paymentForm.title": "Payment Form #{id}",
+  "editor.footer.paymentForm.paymentType.title": "Payment Type"
 }

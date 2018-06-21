@@ -12,7 +12,7 @@ class SelectorManager extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedIndex: 0,
+      selectedIndex: null,
     }
   }
 
@@ -26,22 +26,24 @@ class SelectorManager extends Component {
   }
 
   render() {
+    const selectedSKUIndex = this.state.selectedIndex == null ? this.props.defaultIndex : this.state.selectedIndex
+
     return (
       <div className={`${VTEXClasses.SELECTOR_MANAGER} ma1`}>
         <div className="b fabriga overflow-hidden">
-          { this.props.title }
+          {this.props.title}
         </div>
-        <div className="inline-flex flex-wrap"> 
+        <div className="inline-flex flex-wrap">
           {
             Children.map(this.props.children, (child, index) => {
-              return child.type !== SelectorItem ? child : 
-                React.cloneElement(child, {
+              return child.type !== SelectorItem ? child
+                : React.cloneElement(child, {
                   index,
-                  isSelected: index === this.state.selectedIndex,
+                  key: index,
+                  isSelected: index === selectedSKUIndex,
                   onClick: this.handleItemClick,
                 })
-              }
-            )
+            })
           }
         </div>
       </div>
@@ -55,7 +57,9 @@ SelectorManager.propTypes = {
   /** Function that is called when an item of the Selector Manager is clicked. */
   onItemClick: PropTypes.func,
   /** Children component */
-  children: PropTypes.node,
+  children: PropTypes.node,  
+  /** Default SKU Selection in case of is not the first item */
+  defaultIndex:  PropTypes.number,
 }
 
 SelectorManager.defaultProps = {

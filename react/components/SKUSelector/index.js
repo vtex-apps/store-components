@@ -13,11 +13,11 @@ const FIRST_INDEX = 0
 /**
  * Display a list of SKU items of a problem and its specifications.
  */
-class SKUSelector extends Component {
+export default class SKUSelector extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedSKUIndex: FIRST_INDEX,
+      selectedSKUIndex: null,
     }
   }
 
@@ -30,21 +30,41 @@ class SKUSelector extends Component {
     }
   }
 
+  getMaxSkuPrice = items => {
+    let maxPrice = 0
+    if (items) {
+      items.forEach(item => {
+        const [{ commertialOffer: { Price } }] = item.sellers
+        maxPrice = Math.max(maxPrice, Price)
+      })
+    }
+    return maxPrice
+  }
+
   render() {
     const skuItems = this.props.skuItems
-    const selectedSKUIndex = this.state.selectedSKUIndex
+
+    const selectedSKUIndex = this.state.selectedSKUIndex == null ? this.props.defaultIndex : this.state.selectedSKUIndex
+
+    const maxSkuPrice = this.getMaxSkuPrice(skuItems)
+
     return (
       <div className={`${VTEXClasses.SKU_SELECTOR} flex flex-column`}>
-        <SelectorManager 
-          title={this.props.title} 
-          onItemClick={this.handleSKUSelected}>
+        <SelectorManager
+          title={this.props.title}
+          onItemClick={this.handleSKUSelected}
+          defaultIndex={this.props.defaultIndex}>
           {
             skuItems.map(skuItem => (
               skuItem.images.length > FIRST_INDEX &&
-              <SelectorItem key={skuItem.images[FIRST_INDEX].imageUrl}>
+              <SelectorItem
+                key={skuItem.images[FIRST_INDEX].imageUrl}
+                isAvailable={skuItem.sellers[0].commertialOffer.AvailableQuantity > 0}
+                maxPrice={maxSkuPrice}
+                price={skuItem.sellers[0].commertialOffer.Price}>
                 <img
-                  src={skuItem.images[FIRST_INDEX].imageUrl} 
-                  alt={skuItem.images[FIRST_INDEX].imageLabel} 
+                  src={skuItem.images[FIRST_INDEX].imageUrl}
+                  alt={skuItem.images[FIRST_INDEX].imageLabel}
                 />
               </SelectorItem>
             ))
@@ -59,9 +79,9 @@ class SKUSelector extends Component {
               title={spec.name}>
               {
                 spec.categories.map(category => (
-                  <SelectorItem key={category.name}> 
+                  <SelectorItem key={category.name}>
                     <p className="b tc">
-                      { category.name }
+                      {category.name}
                     </p>
                   </SelectorItem>
                 ))
@@ -86,7 +106,7 @@ SKUSelector.propTypes = {
       /** URL of source Image */
       imageUrl: PropTypes.string.isRequired,
       /** Brief description of the image */
-      imageLabel: PropTypes.string.isRequired,
+      imageLabel: PropTypes.string,
     })).isRequired,
     /** SKU Specifications */
     specs: PropTypes.arrayOf(PropTypes.shape({
@@ -99,6 +119,8 @@ SKUSelector.propTypes = {
       })).isRequired,
     })),
   })).isRequired,
+  /** Default SKU Selection in case of is not the first item */
+  defaultIndex:  PropTypes.number,
   /** Function that is called when a SKU item is clicked */
   onSKUSelected: PropTypes.func,
 }
@@ -107,5 +129,3 @@ SKUSelector.defaultProps = {
   title: '',
   skuItems: [],
 }
-
-export default SKUSelector

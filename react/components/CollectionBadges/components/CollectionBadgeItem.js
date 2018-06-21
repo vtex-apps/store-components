@@ -10,7 +10,7 @@ import VTEXClasses from './CustomClasses'
 export class CollectionBadgeItem extends PureComponent {
   render() {
     return (
-      <div className={`${VTEXClasses.COLLECTION_BADGE_ITEM} w-50 fl ml1 mr1 pa2 bg-blue white fabriga tc`}>
+      <div className={`${VTEXClasses.COLLECTION_BADGE_ITEM} mh1 pa2 bg-blue white tc`}>
         {this.props.children}
       </div>
     )

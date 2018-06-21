@@ -4,17 +4,21 @@ import PropTypes from 'prop-types'
 import { indexBy, prop } from 'ramda'
 
 import { SOCIAL_ENUM } from './constants/social'
-import { SocialButton } from './utils/socialResolver'
+import SocialButton from './components/SocialButton'
 
 import './global.css'
 
 class Share extends Component {
   static propTypes = {
+    /** Social Networks configuration */
     social: PropTypes.object.isRequired,
+    /** Share buttons options */
     options: PropTypes.shape({
+      /** Share buttons size in pixels */
       size: PropTypes.number,
     }),
-    quantity: PropTypes.number,
+    /** Share URL title */
+    title: PropTypes.string,
   }
 
   static defaultProps = {
@@ -27,12 +31,12 @@ class Share extends Component {
   }
 
   static schema = {
-    title: 'Share',
-    description: 'List of share buttons',
+    title: 'editor.share.title',
+    description: 'editor.share.description',
     type: 'object',
     properties: {
       social: {
-        title: 'Social Networks',
+        title: 'editor.share.social.title',
         type: 'object',
         properties: {
           ...indexBy(
@@ -51,6 +55,7 @@ class Share extends Component {
   render() {
     const {
       social,
+      title,
       options: { size },
     } = this.props
 
@@ -64,6 +69,7 @@ class Share extends Component {
                 key={index}>
                 <SocialButton
                   url={window.location && window.location.href}
+                  message={title}
                   socialEnum={socialNetwork}
                   size={size}
                 />

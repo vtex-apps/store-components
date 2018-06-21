@@ -40,6 +40,7 @@ You can use it into your code like a React component with the jsx tag: `<SKUSele
 | ------------------ | ---------- | --------------------------------------------------------------------------- |
 | `title`            | `String!`  | SKU Selector title                                                          |
 | `skuItems`         | `Array!`   | SKU list                                                                    |
+| `defaultIndex`     | `Number`   | Default SKU Selection in case of is not the first item                      |
 | `onSKUSelected`    | `Function` | Function that is called when a SKU is selected                              |
 
 - `skuItems` shape

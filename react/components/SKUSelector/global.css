@@ -1,15 +1,33 @@
 .vtex-selector__item {
   font-size: 90%;
-  width: 40px;
-  height: 40px;
-  margin-right: 2px;
+  width: 50px;
+  height: 50px;
+  margin-top: 5px;
+  margin-right: 10px;
+  padding: 2px;
+  border-radius: 5%;
 }
 
 .vtex-selector__item:hover {
-  border-color: black;
+  border-color: grey;
 }
 
 .vtex-selector__item p {
   margin: 0;
   padding-top: 10px;
+}
+
+.vtex-selector__bagde {
+  font-size: .71429rem;
+  background-color: #ff4136;
+  border-radius: 50%;
+  color: #fff;
+  height: 18px;
+  line-height: 18px;
+  right: -5px;
+  text-align: center;
+  top: -6px;
+  width: 18px;
+  position: absolute;
+  padding: 3px;
 }

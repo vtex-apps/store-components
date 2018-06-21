@@ -5,7 +5,7 @@ Storecomponents is a collection of components that can be used to create/extend 
 
 ### Travis CI
 
-[![Build Status](https://travis-ci.org/vtex-apps/storecomponents.svg?branch=master)](https://travis-ci.org/vtex-apps/storecomponents)
+[![Build Status](https://travis-ci.org/vtex-apps/store-components.svg?branch=master)](https://travis-ci.org/vtex-apps/store-components)
 
 ## Table of Contents
 - [Usage](#usage)
@@ -61,12 +61,12 @@ Inside your `react/components/<component_name>` you should have:
 
 - index.js
 - README.md
-- components/ [Optional]
-- constants/  [Optional]
-- utils/      [Optional]
-- queries/    [Optional]
-- mutations/  [Optional]
-- global.css  [Optional]
+- [Optional] components/
+- [Optional] constants/
+- [Optional] utils/
+- [Optional] queries/
+- [Optional] mutations/
+- [Optional] global.css
 
 Next, inside of `react/` folder you need to export your component, such as: 
 

@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import Input from '@vtex/styleguide/lib/Input'
+import { Input } from 'vtex.styleguide'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 export default class AutocompleteInput extends Component {
   render() {
     return (
-      <Input size="large" onKeyPress={this.props.onKeyDown} {...this.props} />
+      <Input size="large" onKeyPress={(event) => {
+        this.props.onKeyDown(event)
+      }} {...this.props} />
     )
   }
 }

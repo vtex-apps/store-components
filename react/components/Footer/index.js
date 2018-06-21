@@ -21,11 +21,11 @@ const linkSchema = {
   properties: {
     url: {
       type: 'string',
-      title: 'Link URL',
+      title: 'editor.footer.link.url.title',
     },
     title: {
       type: 'string',
-      title: 'Link Title',
+      title: 'editor.footer.link.title.title',
     },
   },
 }
@@ -35,21 +35,20 @@ const badgeSchema = {
   properties: {
     image: {
       type: 'string',
-      title: 'Badge Image URL',
+      title: 'editor.footer.badge.image.title',
     },
   },
 }
 
 const socialNetworkSchema = {
   type: 'object',
-  title: 'Social Network',
   properties: {
     url: {
       type: 'string',
-      title: 'Social Network URL',
+      title: 'editor.footer.socialNetworks.url.title',
     },
     socialNetwork: {
-      title: 'Social Network',
+      title: 'editor.footer.socialNetworks.title',
       type: 'string',
       default: 'Facebook',
       enum: [
@@ -64,10 +63,9 @@ const socialNetworkSchema = {
 
 const paymentFormSchema = {
   type: 'object',
-  title: 'Payment Form',
   properties: {
     paymentType: {
-      title: 'Payment Type',
+      title: 'editor.footer.paymentForm.paymentType.title',
       type: 'string',
       default: 'MasterCard',
       enum: [
@@ -114,7 +112,8 @@ export default class Footer extends Component {
       quantity,
       propName,
       prefix,
-      title = prefix
+      title,
+      itemTitle,
     ) =>
       quantity && {
         [propName]: {
@@ -127,7 +126,7 @@ export default class Footer extends Component {
                 index => ({
                   ...schema,
                   key: `${prefix}${index}`,
-                  title: `${title} ${index + 1}`,
+                  title: { id: itemTitle, values: { id: index + 1 } },
                 }),
                 range(0, quantity)
               )
@@ -141,14 +140,17 @@ export default class Footer extends Component {
       numberOfSocialNetworks,
       'socialNetworkLinks',
       'socialNetworks',
-      'Social Network'
+      'editor.footer.socialNetworks',
+      'editor.footer.socialNetworks.socialNetwork.title'
     )
 
     const sectionLinksSchema = generateDynamicSchema(
       linkSchema,
       numberOfSectionLinks,
       'sectionLinks',
-      'link'
+      'link',
+      'editor.footer.link',
+      'editor.footer.link.title'
     )
 
     const moreInformationLinksSchema = generateDynamicSchema(
@@ -156,14 +158,17 @@ export default class Footer extends Component {
       numberOfMoreInformationLinks,
       'moreInformationLinks',
       'moreInformationLink',
-      'More Information Link'
+      'editor.footer.moreInformationLink',
+      'editor.footer.moreInformationLink.title'
     )
 
     const badgesSchema = generateDynamicSchema(
       badgeSchema,
       numberOfBadges,
       'badges',
-      'badge'
+      'badge',
+      'editor.footer.badge',
+      'editor.footer.badge.title'
     )
 
     const paymentFormsSchema = generateDynamicSchema(
@@ -171,51 +176,77 @@ export default class Footer extends Component {
       numberOfPaymentForms,
       'paymentForms',
       'paymentForm',
-      'Payment Form'
+      'editor.footer.paymentForms',
+      'editor.footer.paymentForm.title'
     )
 
     return {
-      title: 'Footer',
-      description: 'A footer that appears in the bottom of your store',
+      title: 'editor.footer.title',
+      description: 'editor.footer.description',
       type: 'object',
       properties: {
         logo: {
           type: 'string',
-          title: 'Logo URL',
+          title: 'editor.footer.logoUrl.title',
         },
         numberOfSocialNetworks: {
           type: 'number',
-          title: 'Number of social networks links',
+          title: 'editor.footer.numberOfSocialNetworks.title',
           minimum: 0,
+          maximum: 10,
+          default: 0,
+          widget: {
+            'ui:widget': 'range',
+          },
         },
         numberOfSectionLinks: {
           type: 'number',
-          title: 'Number of section links',
+          title: 'editor.footer.numberOfSectionLinks.title',
           minimum: 0,
+          maximum: 10,
+          default: 0,
+          widget: {
+            'ui:widget': 'range',
+          },
         },
         numberOfMoreInformationLinks: {
           type: 'number',
-          title: 'Number of more information links',
+          title: 'editor.footer.numberOfMoreInformationLinks.title',
           minimum: 0,
+          maximum: 10,
+          default: 0,
+          widget: {
+            'ui:widget': 'range',
+          },
         },
         numberOfBadges: {
           type: 'number',
-          title: 'Number of badges to be displayed',
+          title: 'editor.footer.numberOfBadges.title',
           minimum: 0,
+          maximum: 10,
+          default: 0,
+          widget: {
+            'ui:widget': 'range',
+          },
         },
         numberOfPaymentForms: {
           type: 'number',
-          title: 'Number of payment forms available',
+          title: 'editor.footer.numberOfPaymentForms.title',
           minimum: 0,
+          maximum: 10,
+          default: 0,
+          widget: {
+            'ui:widget': 'range',
+          },
         },
         showPaymentFormsInColor: {
           type: 'boolean',
-          title: 'Show the payment forms icons in color',
+          title: 'editor.footer.showPaymentFormsInColor.title',
           default: false,
         },
         showSocialNetworksInColor: {
           type: 'boolean',
-          title: 'Show the social networks icons in color',
+          title: 'editor.footer.showSocialNetworksInColor.title',
           default: false,
         },
         ...socialNetworksSchema,

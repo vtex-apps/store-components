@@ -1,26 +1,52 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { FormattedMessage } from 'react-intl'
 
 import ShippingTableRow from './ShippingTableRow'
 
 export default class ShippingTable extends Component {
   static propTypes = {
-    /** Placeholder */
-    shippingOptionList: PropTypes.any,
+    /** Shipping informations */
+    shipping: PropTypes.shape({
+      logisticsInfo: PropTypes.arrayOf(PropTypes.shape({
+        itemIndex: PropTypes.string,
+        slas: PropTypes.arrayOf(PropTypes.shape({
+          id: PropTypes.string,
+          name: PropTypes.string,
+          price: PropTypes.number,
+          shippingEstimate: PropTypes.string,
+        })),
+      })),
+    }),
   }
 
   render() {
-    const { shippingOptionList } = this.props
+    const { shipping } = this.props
 
-    if (shippingOptionList.length === 0) {
+    if (!shipping || !shipping.logisticsInfo || shipping.logisticsInfo.length === 0) {
       return null
+    }
+
+    const slaList = shipping.logisticsInfo.reduce(
+      (slas, info) => [...slas, ...info.slas],
+      []
+    )
+
+    if (slaList.length === 0) {
+      return (
+        <FormattedMessage id="shipping.empty-sla">
+          {text => (
+            <span className="vtex-shipping__no-shipping-message">{text}</span>
+          )}
+        </FormattedMessage>
+      )
     }
 
     return (
       <table className="vtex-shipping-table">
         <tbody>
-          {shippingOptionList.map(shipping => (
-            <ShippingTableRow key={shipping.name} {...shipping} />
+          {slaList.map(shipping => (
+            <ShippingTableRow key={shipping.id} {...shipping} />
           ))}
         </tbody>
       </table>
