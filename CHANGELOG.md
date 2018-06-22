@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Changed _BuyButton_ Component added isOneClickBuy attribute.
+- _BuyButton_ don't wait add to cart to proceed to checkout page.
+- _BuyButton_ Component added isOneClickBuy attribute.
 
 ### Fixed
+- _BuyButton_ default props as static attribute.
 - _SKU Selector_ item with false value as class name.
 
 
