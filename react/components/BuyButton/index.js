@@ -19,7 +19,7 @@ const CONSTANTS = {
  * BuyButton Component. Adds a list of items to the cart.
  */
 export class BuyButton extends Component {
-  defaultProps = {
+  static defaultProps = {
     isOneClickBuy: false,
     quantity: 1,
     seller: 1,
@@ -73,6 +73,10 @@ export class BuyButton extends Component {
 
           variables.orderFormId = orderFormId
 
+          if (isOneClickBuy) {
+            location.assign(CONSTANTS.CHECKOUT_URL)
+          }
+
           client
             .mutate({
               mutation: ADD_TO_CART_MUTATION,
@@ -83,10 +87,6 @@ export class BuyButton extends Component {
                 const { items } = mutationRes.data.addItem
                 const success = find(items, { id: skuId })
                 this.toastMessage(success)
-
-                if (success && isOneClickBuy) {
-                  location.assign(CONSTANTS.CHECKOUT_URL)
-                }
               },
               mutationErr => {
                 this.toastMessage(false, mutationErr)
