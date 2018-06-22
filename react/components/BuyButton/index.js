@@ -19,6 +19,12 @@ const CONSTANTS = {
  * BuyButton Component. Adds a list of items to the cart.
  */
 export class BuyButton extends Component {
+  defaultProps = {
+    isOneClickBuy: false,
+    quantity: 1,
+    seller: 1,
+  }
+
   state = {
     isLoading: false,
   }
@@ -114,12 +120,6 @@ export class BuyButton extends Component {
       </ApolloConsumer>
     )
   }
-}
-
-BuyButton.defaultProps = {
-  isOneClickBuy: false,
-  quantity: 1,
-  seller: 1,
 }
 
 BuyButton.propTypes = {
