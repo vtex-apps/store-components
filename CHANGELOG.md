@@ -6,27 +6,31 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Changed _BuyButton_ Component added isOneClickBuy attribute.
+
 ### Fixed
 - _SKU Selector_ item with false value as class name.
 
+
 ## [1.6.0] - 2018-6-20
 ### Added
-- Debounce function to handle the increase and decrease events in the `QuantitySelector`
+- Debounce function to handle the increase and decrease events in the `QuantitySelector`.
 
 ### Changed
-- Make `onMaxReached` function not required in `QuantitySelector`
+- Make `onMaxReached` function not required in `QuantitySelector`.
 - Use children prop in `ProductImage` to customize selected image render.
 - Update design of `CollectionBadges`.
 
 ## [1.5.1] - 2018-6-18
 ### Added
-- Internationalization to `SearchBar`
-- Spinner to `SearchBar`
+- Internationalization to `SearchBar`.
+- Spinner to `SearchBar`.
 - `isLayout` to `ProductPrice`'s schema properties.
 
 ### Fixed
-- `QuantitySelector` input style for do not impact the others inputs
-- `SearchBar` options link 
+- `QuantitySelector` input style for do not impact the others inputs.
+- `SearchBar` options link.
 
 ### Changed
 - `QuantitySelector` style
@@ -41,8 +45,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - README documentation of Logo Component.
 
 ### Fixed
-- _SKU Selector_ with a different item selected on entering the product page
-- _SKU Selector_ item's discount badge position
+- _SKU Selector_ with a different item selected on entering the product page.
+- _SKU Selector_ item's discount badge position.
 - Put the _ProductPrice_ schema inside it's Component.
 - README typos.
 
@@ -92,8 +96,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Delayed queries on _BuyButton_ Component.
 - Add error treatment on _BuyButton_ Component.
 - Update _ProductImages_ Component.
-- Update max visible slide items on thumbnail slider
-- Add arrow icons from Nucleo to the Slider
+- Update max visible slide items on thumbnail slider.
+- Add arrow icons from Nucleo to the Slider.
 
 ### Fixed
 - Fix _ShippingSimulator_ Component CSS.
@@ -101,7 +105,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2018-05-18
 ### Added
 - Add all `product-details` components to Apps.
-- Add `Enter key` press to the `search bar`
+- Add `Enter key` press to the `search bar`.
 - Initial version of the shipping simulator.
 
 ### Changed
@@ -112,6 +116,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Fix locales directory to work with linked Apps.
 - Fix `search bar` when click on category result.
-- **slider** Fix infinite attribute of Slider settings
-- Fix Slider classNames
-- Fix Slider settings (slidesToScroll, slidesToShow)
+- **slider** Fix infinite attribute of Slider settings.
+- Fix Slider classNames.
+- Fix Slider settings (slidesToScroll, slidesToShow).

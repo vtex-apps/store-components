@@ -8,30 +8,34 @@ import { injectIntl, intlShape } from 'react-intl'
 import ADD_TO_CART_MUTATION from './mutations/addToCartMutation.gql'
 import ORDER_FORM_QUERY from './queries/orderFormQuery.gql'
 
-const EVENT_SUCCESS = 'item:add'
-const EVENT_ERROR = 'message:error'
+const CONSTANTS = {
+  EVENT_SUCCESS: 'item:add',
+  EVENT_ERROR: 'message:error',
+  ERROR_MESSAGE_ID: 'buybutton.add-failure',
+  CHECKOUT_URL: '/checkout/#/cart',
+}
 
 /**
  * BuyButton Component. Adds a list of items to the cart.
  */
 export class BuyButton extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { isLoading: false }
-  }
-
-  static defaultProps = {
+  defaultProps = {
+    isOneClickBuy: false,
     quantity: 1,
     seller: 1,
+  }
+
+  state = {
+    isLoading: false,
   }
 
   translateMessage = id => this.props.intl.formatMessage({ id: id })
 
   toastMessage = (success, err) => {
-    const event = new Event(success ? EVENT_SUCCESS : EVENT_ERROR)
+    const event = new Event(success ? CONSTANTS.EVENT_SUCCESS : CONSTANTS.EVENT_ERROR)
     event.detail = {
       success,
-      message: success ? '' : this.translateMessage('buybutton.add-failure'),
+      message: success ? '' : this.translateMessage(CONSTANTS.ERROR_MESSAGE_ID),
       err,
     }
     document.dispatchEvent(event)
@@ -40,7 +44,7 @@ export class BuyButton extends Component {
   }
 
   handleAddToCart = client => {
-    const { quantity, seller, skuId } = this.props
+    const { quantity, seller, skuId, isOneClickBuy } = this.props
 
     const variables = {
       items: [
@@ -77,7 +81,12 @@ export class BuyButton extends Component {
             .then(
               mutationRes => {
                 const { items } = mutationRes.data.addItem
-                this.toastMessage(find(items, { id: skuId }))
+                const success = find(items, { id: skuId })
+                this.toastMessage(success)
+
+                if (success && isOneClickBuy) {
+                  location.assign(CONSTANTS.CHECKOUT_URL)
+                }
               },
               mutationErr => {
                 this.toastMessage(false, mutationErr)
@@ -102,10 +111,10 @@ export class BuyButton extends Component {
                 {this.props.children}
               </Button>
             ) : (
-              <Button primary onClick={() => this.handleAddToCart(client)}>
-                {this.props.children}
-              </Button>
-            )}
+                <Button primary onClick={() => this.handleAddToCart(client)}>
+                  {this.props.children}
+                </Button>
+              )}
           </div>
         )}
       </ApolloConsumer>
@@ -122,6 +131,8 @@ BuyButton.propTypes = {
   quantity: PropTypes.number,
   /** Which seller is being referenced by the button */
   seller: PropTypes.number,
+  /** Should redirect to checkout after adding to cart */
+  isOneClickBuy: PropTypes.bool,
   /* Internationalization */
   intl: intlShape.isRequired,
 }
