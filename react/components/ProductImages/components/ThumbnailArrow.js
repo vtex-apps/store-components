@@ -23,7 +23,7 @@ const getUrl = (inverted, vertical) => {
   return previous
 }
 
-const ThumbnailArrow = ({ vertical, inverted }) => {
+const ThumbnailArrow = ({ vertical, inverted, onClick }) => {
   const className = classNames('vtex-product-image__thumbnail-arrow', {
     'vtex-product-image__thumbnail-arrow--vertical': vertical,
     'vtex-product-image__thumbnail-arrow--inverted': inverted,
@@ -31,7 +31,7 @@ const ThumbnailArrow = ({ vertical, inverted }) => {
 
   const url = getUrl(inverted, vertical)
 
-  return <img className={className} src={url} />
+  return <img className={className} src={url} onClick={onClick} />
 }
 
 ThumbnailArrow.defaultProps = {

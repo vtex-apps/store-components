@@ -43,6 +43,10 @@
   margin-right: 13px;
 }
 
+.vtex-product-image__thumbnail-arrow:hover {
+  cursor: pointer;
+}
+
 .vtex-product-image__thumbnail-arrow--vertical {
   display: block;
   margin: 0 auto;
