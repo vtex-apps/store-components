@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import ThumbnailItem from './ThumbnailItem'
 import ThumbnailArrow from './ThumbnailArrow'
 import Slider from '../../../Slider'
 
-import VTEXClasses from '../constants/productImagesClasses'
 import { HORIZONTAL, VERTICAL } from '../constants/orientation'
 
 const MAX_VISIBLE_ITEMS = 4
@@ -34,7 +34,8 @@ class ThumbnailSlider extends Component {
       arrows: true,
       prevArrow: <ThumbnailArrow vertical={sliderVertical} />,
       nextArrow: <ThumbnailArrow inverted vertical={sliderVertical} />,
-      slidesToShow: numOfVisibleItems,
+      slideWidth: 82,
+      slidesToShow: 5,
       vertical: sliderVertical,
       verticalSwiping: sliderVertical,
       /** Responsive slider behavior is defined here */
@@ -59,13 +60,13 @@ class ThumbnailSlider extends Component {
 
     const sliderVertical = orientation === VERTICAL
 
+    const className = classNames('vtex-product-image__thumbnail-slider', {
+      'vtex-product-image__thumbnail-slider--vertical': sliderVertical,
+      'vtex-product-image__thumbnail-slider--horizontal': !sliderVertical,
+    })
+
     return (
-      <div
-        className={
-          sliderVertical
-            ? VTEXClasses.VERTICAL_THUMBNAIL_SLIDER
-            : VTEXClasses.HORIZONTAL_THUMBNAIL_SLIDER
-        }>
+      <div className={className}>
         <Slider sliderSettings={this.sliderSettings}>
           {images.map(image => (
             <ThumbnailItem
