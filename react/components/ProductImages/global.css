@@ -26,6 +26,30 @@
   background-size: contain;
 }
 
+.vtex-product-image__thumbnail-arrow {
+  display: inline-block;
+  width: 34px;
+  margin-right: 13px;
+}
+
+.vtex-product-image__thumbnail-arrow--vertical {
+  display: block;
+  margin: 0 auto;
+}
+
+.vtex-product-image__thumbnail-arrow--vertical:not(.vtex-product-image__thumbnail-arrow--inverted) {
+  margin-bottom: 13px;
+}
+
+.vtex-product-image__thumbnail-arrow--vertical.vtex-product-image__thumbnail-arrow--inverted {
+  margin-top: 13px;
+}
+
+.vtex-product-image__thumbnail-arrow--inverted:not(.vtex-product-image__thumbnail-arrow--vertical) {
+  margin-right: 0;
+  margin-left: 13px;
+}
+
 @media only screen and (min-width: 60em) {
   .vtex-product-image__selected-image img {
     max-width: 500px;

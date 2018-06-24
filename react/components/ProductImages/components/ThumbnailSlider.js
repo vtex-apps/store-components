@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import ThumbnailItem from './ThumbnailItem'
+import ThumbnailArrow from './ThumbnailArrow'
 import Slider from '../../../Slider'
 
 import VTEXClasses from '../constants/productImagesClasses'
@@ -31,6 +32,8 @@ class ThumbnailSlider extends Component {
       infinite: false,
       dots: false,
       arrows: true,
+      prevArrow: <ThumbnailArrow vertical={sliderVertical} />,
+      nextArrow: <ThumbnailArrow inverted vertical={sliderVertical} />,
       slidesToShow: numOfVisibleItems,
       vertical: sliderVertical,
       verticalSwiping: sliderVertical,
