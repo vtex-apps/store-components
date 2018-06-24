@@ -20,11 +20,10 @@ class ThumbnailItem extends Component {
     const { imageUrl, imageText } = this.props.image
 
     return (
-      <img
+      <div
         className="vtex-product-image__thumbnail-slider-item pointer"
+        style={{ backgroundImage: `url(${imageUrl})` }}
         onClick={this.handleClick}
-        src={imageUrl}
-        alt={imageText}
       />
     )
   }

@@ -18,8 +18,12 @@
   max-height: 500px;
 }
 
-.vtex-product-image__thumbnail-slider-item img {
-  max-height: 80px;
+.vtex-product-image__thumbnail-slider-item {
+  height: 82px;
+  width: 82px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 @media only screen and (min-width: 60em) {
@@ -56,6 +60,7 @@
   }
 }
 
+/*
 @media only screen and (max-width: 40em) {
   .vtex-product-image__thumbnail-slider-item,
   .vtex-product-image__thumbnail-slider-item img {
@@ -69,6 +74,7 @@
     max-height: 200px;
   }
 }
+*/
 
 /* Arrows */
 .vtex-product-image .slick-prev .slick-disabled:before,
