@@ -22,7 +22,7 @@ export default class SlickSlider extends Component {
   static propTypes = {
     /** Array of items to be rendered inside the slider. */
     children: PropTypes.array.isRequired,
-    /** Slider settigns. */
+    /** Slider settings. */
     sliderSettings: PropTypes.object,
     /** Makes the items per page to adapt by the slider width. */
     adaptToScreen: PropTypes.bool,
@@ -52,17 +52,20 @@ export default class SlickSlider extends Component {
     }
   }
 
-  getSettings() {
+  get settings() {
     const { sliderSettings, adaptToScreen, scrollByPage, defaultItemWidth, children } = this.props
     const itemsPerPage = getItemsPerPage(this._slick, defaultItemWidth, sliderSettings.slidesToShow)
     const settings = { ...sliderSettings }
     const numItems = children.length
-    settings.nextArrow = <Arrow cssClass={VTEXClasses.ARROW_RIGHT_CLASS} />
-    settings.prevArrow = <Arrow cssClass={VTEXClasses.ARROW_LEFT_CLASS} />
+
+    settings.nextArrow = settings.nextArrow || <Arrow cssClass={VTEXClasses.ARROW_RIGHT_CLASS} />
+    settings.prevArrow = settings.prevArrow || <Arrow cssClass={VTEXClasses.ARROW_LEFT_CLASS} />
     settings.appendDots = dots => <Dots dots={dots} cssClass={VTEXClasses.DOTS_CLASS} />
+
     if (adaptToScreen) {
       settings.slidesToShow = itemsPerPage
     }
+
     if (scrollByPage) {
       settings.slidesToScroll = settings.slidesToShow
     }
@@ -74,7 +77,7 @@ export default class SlickSlider extends Component {
 
   render() {
     return (
-      <Slider {...this.getSettings()} ref={c => { this._slick = c }}>
+      <Slider {...this.settings} ref={c => { this._slick = c }}>
         {this.props.children}
       </Slider>
     )
