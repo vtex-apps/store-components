@@ -20,9 +20,11 @@ class ProductImages extends Component {
     selectedImage: this.props.images[DEFAULT_SELECTED_IMAGE],
   }
 
-  static getDerivedStateFromProps(nextProps) {
+  static getDerivedStateFromProps(nextProps, state) {
     return {
-      selectedImage: nextProps.images[DEFAULT_SELECTED_IMAGE],
+      selectedImage: state.selectedImage
+        ? state.selectedImage
+        : nextProps.images[DEFAULT_SELECTED_IMAGE],
     }
   }
 
