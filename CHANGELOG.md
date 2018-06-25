@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - _BuyButton_ default props as static attribute.
 - _SKU Selector_ item with false value as class name.
+- _ProductImage_ Component fix thumbnail image selection.
 
 
 ## [1.6.0] - 2018-6-20
