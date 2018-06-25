@@ -21,10 +21,17 @@ class ProductImages extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, state) {
-    return {
-      selectedImage: state.selectedImage
-        ? state.selectedImage
-        : nextProps.images[DEFAULT_SELECTED_IMAGE],
+    if (nextProps.images) {
+      const isNewProps =
+        nextProps.images[DEFAULT_SELECTED_IMAGE].imageId !== state.firstImageId
+
+      return {
+        selectedImage:
+          state.selectedImage && !isNewProps
+            ? state.selectedImage
+            : nextProps.images[DEFAULT_SELECTED_IMAGE],
+        firstImageId: nextProps.images[DEFAULT_SELECTED_IMAGE].imageId,
+      }
     }
   }
 
