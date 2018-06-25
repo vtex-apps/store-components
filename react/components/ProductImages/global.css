@@ -27,6 +27,10 @@
   max-width: 500px;
 }
 
+.vtex-product-image__thumbnail-slider .slick-track {
+  min-width: 82px;
+}
+
 .vtex-product-image__thumbnail-slider-item {
   height: 82px;
   width: 82px;
