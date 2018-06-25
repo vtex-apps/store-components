@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Debounce function to handle the increase and decrease events in the `QuantitySelector`
 
+### Fixed
+- Vertical display of `ProductImage`.
+
 ### Changed
 - Make `onMaxReached` function not required in `QuantitySelector`
 - Use children prop in `ProductImage` to customize selected image render.
