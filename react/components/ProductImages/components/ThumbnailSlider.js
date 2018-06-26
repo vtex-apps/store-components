@@ -21,10 +21,7 @@ class ThumbnailSlider extends Component {
     const { maxVisibleItems, orientation } = this.props
     const sliderVertical = orientation === VERTICAL
 
-    const numOfVisibleItems = Math.min(
-      maxVisibleItems,
-      MAX_VISIBLE_ITEMS
-    )
+    const numOfVisibleItems = Math.min(maxVisibleItems, MAX_VISIBLE_ITEMS)
 
     return {
       speed: 500,
@@ -58,11 +55,12 @@ class ThumbnailSlider extends Component {
     const sliderSettings = this.configureSliderSettings()
     return (
       <div
-        className={
+        className={`${
           sliderVertical
             ? VTEXClasses.VERTICAL_THUMBNAIL_SLIDER
             : VTEXClasses.HORIZONTAL_THUMBNAIL_SLIDER
-        }>
+        } pa3`}
+      >
         {
           <Slider sliderSettings={sliderSettings}>
             {images.map(image => (

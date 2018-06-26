@@ -38,7 +38,10 @@ export default class SelectedImage extends Component {
   }
 
   render() {
-    const { children, image: { imageUrl, imageText } } = this.props
+    const {
+      children,
+      image: { imageUrl, imageText },
+    } = this.props
     const { showZoom } = this.state
 
     return (
@@ -47,19 +50,29 @@ export default class SelectedImage extends Component {
           <div
             className={`${
               VTEXClasses.SELECTED_IMAGE
-            } flex-ns justify-center-ns items-center-ns dn`}>
+            } flex-ns justify-center-ns items-center-ns dn`}
+          >
             <div className="flex justify-center items-center">
-              {children(<img onMouseEnter={this.handleMouseEnterImage} src={imageUrl} alt={imageText} />)}
+              {children(
+                <img
+                  onMouseEnter={this.handleMouseEnterImage}
+                  src={imageUrl}
+                  alt={imageText}
+                />
+              )}
             </div>
           </div>
           <div className="vtex-product-image__image-zoom-container absolute">
-            {showZoom &&
-              <ImageZoom src={imageUrl} alt={imageText} onMouseLeaveZoom={this.handleMouseLeaveZoom} />
-            }
+            {showZoom && (
+              <ImageZoom
+                src={imageUrl}
+                alt={imageText}
+                onMouseLeaveZoom={this.handleMouseLeaveZoom}
+              />
+            )}
           </div>
         </div>
       </div>
     )
   }
 }
-
