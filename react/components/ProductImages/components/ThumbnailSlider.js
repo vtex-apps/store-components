@@ -57,9 +57,9 @@ class ThumbnailSlider extends Component {
 
     const sliderVertical = orientation === VERTICAL
 
-    const className = classNames('vtex-product-image__thumbnail-slider pa3', {
-      'vtex-product-image__thumbnail-slider--vertical': sliderVertical,
-      'vtex-product-image__thumbnail-slider--horizontal': !sliderVertical,
+    const className = classNames('vtex-product-image__thumbnail-slider', {
+      'vtex-product-image__thumbnail-slider--vertical pa3': sliderVertical,
+      'vtex-product-image__thumbnail-slider--horizontal pa3': !sliderVertical,
     })
 
     return (
