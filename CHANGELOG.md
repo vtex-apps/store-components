@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Vertical display of `ProductImage`.
+- Fix thumbnail image selection in `ProductImage`.
 
 ### Changed
 - Make `onMaxReached` function not required in `QuantitySelector`.

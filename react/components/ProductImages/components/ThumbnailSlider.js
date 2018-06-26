@@ -22,10 +22,7 @@ class ThumbnailSlider extends Component {
     const { maxVisibleItems, orientation } = this.props
     const sliderVertical = orientation === VERTICAL
 
-    const numOfVisibleItems = Math.min(
-      maxVisibleItems,
-      MAX_VISIBLE_ITEMS
-    )
+    const numOfVisibleItems = Math.min(maxVisibleItems, MAX_VISIBLE_ITEMS)
 
     return {
       speed: 500,
@@ -60,7 +57,7 @@ class ThumbnailSlider extends Component {
 
     const sliderVertical = orientation === VERTICAL
 
-    const className = classNames('vtex-product-image__thumbnail-slider', {
+    const className = classNames('vtex-product-image__thumbnail-slider pa3', {
       'vtex-product-image__thumbnail-slider--vertical': sliderVertical,
       'vtex-product-image__thumbnail-slider--horizontal': !sliderVertical,
     })
