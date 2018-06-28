@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-export const ZoomImagePropTypes = {
+export const ImageZoomPropTypes = {
   /** URL of the image */
   src: PropTypes.string.isRequired,
   /** Text that describes the image */

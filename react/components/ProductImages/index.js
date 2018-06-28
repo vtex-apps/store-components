@@ -49,7 +49,6 @@ class ProductImages extends Component {
       images,
       thumbnailSliderOrientation,
       thumbnailMaxVisibleItems,
-      children,
     } = this.props
 
     const thumbnailProps = {
@@ -61,19 +60,25 @@ class ProductImages extends Component {
 
     let className = `${
       VTEXClasses.MAIN_CLASS
-    } mb7 mb0-ns w-100 flex inline-flex-ns`
+    } mb7 mb0-ns w-80 flex inline-flex-ns`
     if (thumbnailSliderOrientation === VERTICAL) {
-      className += ` ${VTEXClasses.VERTICAL_COMPONENT} `
+      className += ` ${VTEXClasses.VERTICAL_COMPONENT}`
     } else {
       className += ` ${VTEXClasses.HORIZONTAL_COMPONENT} flex-column-reverse`
     }
 
     return (
       <div className={className}>
-        <ThumbnailSlider {...thumbnailProps} />
-        <SelectedImage image={this.state.selectedImage}>
-          {children}
-        </SelectedImage>
+        <div
+          className={thumbnailSliderOrientation === VERTICAL ? 'w-20-ns' : null}
+        >
+          <ThumbnailSlider {...thumbnailProps} />
+        </div>
+        <div
+          className={thumbnailSliderOrientation === VERTICAL ? 'w-80-ns' : null}
+        >
+          <SelectedImage image={this.state.selectedImage} />
+        </div>
       </div>
     )
   }
@@ -93,8 +98,6 @@ ProductImages.propTypes = {
   thumbnailSliderOrientation: PropTypes.oneOf([VERTICAL, HORIZONTAL]),
   /** Maximum number of visible items that should be displayed by the Thumbnail Slider at the same time */
   thumbnailMaxVisibleItems: PropTypes.number,
-  /** Function to render selected image */
-  children: PropTypes.func,
 }
 
 ProductImages.defaultProps = {
@@ -131,7 +134,6 @@ ProductImages.defaultProps = {
     },
   ],
   thumbnailSliderOrientation: VERTICAL,
-  children: img => img,
 }
 
 export default ProductImages

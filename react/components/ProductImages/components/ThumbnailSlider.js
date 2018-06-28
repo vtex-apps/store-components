@@ -6,6 +6,8 @@ import ThumbnailItem from './ThumbnailItem'
 import ThumbnailArrow from './ThumbnailArrow'
 import Slider from '../../../Slider'
 
+import VTEXClasses from '../constants/productImagesClasses'
+
 import { HORIZONTAL, VERTICAL } from '../constants/orientation'
 
 const MAX_VISIBLE_ITEMS = 4
@@ -32,7 +34,7 @@ class ThumbnailSlider extends Component {
       prevArrow: <ThumbnailArrow vertical={sliderVertical} />,
       nextArrow: <ThumbnailArrow inverted vertical={sliderVertical} />,
       slideWidth: 82,
-      slidesToShow: 5,
+      slidesToShow: numOfVisibleItems,
       vertical: sliderVertical,
       verticalSwiping: sliderVertical,
       /** Responsive slider behavior is defined here */
@@ -57,9 +59,9 @@ class ThumbnailSlider extends Component {
 
     const sliderVertical = orientation === VERTICAL
 
-    const className = classNames('vtex-product-image__thumbnail-slider', {
-      'vtex-product-image__thumbnail-slider--vertical pa3': sliderVertical,
-      'vtex-product-image__thumbnail-slider--horizontal pa3': !sliderVertical,
+    const className = classNames(`${VTEXClasses.THUMBNAIL_SLIDER} pa3`, {
+      'vtex-product-image__thumbnail-slider--vertical': sliderVertical,
+      'vtex-product-image__thumbnail-slider--horizontal': !sliderVertical,
     })
 
     return (

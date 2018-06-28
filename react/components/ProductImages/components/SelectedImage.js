@@ -18,7 +18,6 @@ export default class SelectedImage extends Component {
       /** Text that describes the image */
       imageText: PropTypes.string.isRequired,
     }).isRequired,
-    children: PropTypes.func,
   }
 
   static defaultProps = {
@@ -38,21 +37,31 @@ export default class SelectedImage extends Component {
   }
 
   render() {
-    const { children, image: { imageUrl, imageText } } = this.props
+    const {
+      image: { imageUrl, imageText },
+    } = this.props
     const { showZoom } = this.state
 
     return (
       <div className="relative">
         <div className={VTEXClasses.SELECTED_IMAGE}>
-          {children(<img onMouseEnter={this.handleMouseEnterImage} src={imageUrl} alt={imageText} />)}
+          <img
+            className="w-100"
+            onMouseEnter={this.handleMouseEnterImage}
+            src={imageUrl}
+            alt={imageText}
+          />
         </div>
-        <div className="vtex-product-image__image-zoom-container absolute">
-          {showZoom &&
-            <ImageZoom src={imageUrl} alt={imageText} onMouseLeaveZoom={this.handleMouseLeaveZoom} />
-          }
+        <div className={`${VTEXClasses.IMAGE_ZOOM_CONTAINER} absolute`}>
+          {showZoom && (
+            <ImageZoom
+              src={imageUrl}
+              alt={imageText}
+              onMouseLeaveZoom={this.handleMouseLeaveZoom}
+            />
+          )}
         </div>
       </div>
     )
   }
 }
-
