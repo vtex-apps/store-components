@@ -10,7 +10,7 @@ import VTEXClasses from '../constants/productImagesClasses'
 
 import { HORIZONTAL, VERTICAL } from '../constants/orientation'
 
-const MAX_VISIBLE_ITEMS = 4
+const MAX_VISIBLE_ITEMS = 5
 
 /**
  * Thumbnail component.
@@ -41,7 +41,7 @@ class ThumbnailSlider extends Component {
       responsive: [
         /** Should be rendered for all screens with width less than 600px */
         {
-          breakpoint: 600,
+          breakpoint: 500,
           settings: {
             dots: true,
             arrows: false,
@@ -59,8 +59,9 @@ class ThumbnailSlider extends Component {
 
     const sliderVertical = orientation === VERTICAL
 
-    const className = classNames(`${VTEXClasses.THUMBNAIL_SLIDER} pa3`, {
+    const className = classNames(`${VTEXClasses.THUMBNAIL_SLIDER} w-100-s`, {
       'vtex-product-image__thumbnail-slider--vertical': sliderVertical,
+      'mr6-ns': sliderVertical,
       'vtex-product-image__thumbnail-slider--horizontal': !sliderVertical,
     })
 

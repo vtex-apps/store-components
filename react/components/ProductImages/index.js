@@ -58,9 +58,7 @@ class ProductImages extends Component {
       maxVisibleItems: thumbnailMaxVisibleItems,
     }
 
-    let className = `${
-      VTEXClasses.MAIN_CLASS
-    } mb7 mb0-ns w-80 flex inline-flex-ns`
+    let className = `${VTEXClasses.MAIN_CLASS} mb7 mb0-ns flex inline-flex-ns`
     if (thumbnailSliderOrientation === VERTICAL) {
       className += ` ${VTEXClasses.VERTICAL_COMPONENT}`
     } else {
@@ -70,12 +68,20 @@ class ProductImages extends Component {
     return (
       <div className={className}>
         <div
-          className={thumbnailSliderOrientation === VERTICAL ? 'w-20-ns' : null}
+          className={
+            thumbnailSliderOrientation === VERTICAL
+              ? 'w-100-s w-20-ns flex justify-center'
+              : null
+          }
         >
           <ThumbnailSlider {...thumbnailProps} />
         </div>
         <div
-          className={thumbnailSliderOrientation === VERTICAL ? 'w-80-ns' : null}
+          className={
+            thumbnailSliderOrientation === VERTICAL
+              ? 'w-80-ns flex justify-center overflow-hidden'
+              : null
+          }
         >
           <SelectedImage image={this.state.selectedImage} />
         </div>

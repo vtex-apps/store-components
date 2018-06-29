@@ -17,7 +17,7 @@ class ThumbnailItem extends Component {
   }
 
   render() {
-    const { imageUrl, imageText } = this.props.image
+    const { imageUrl } = this.props.image
 
     return (
       <div
