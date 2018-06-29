@@ -7,20 +7,20 @@
 */
 
 .vtex-product-image__vertical {
-  width: 600px;
+  width: 37.5em;
 }
 
 .vtex-product-image__horizontal {
-  width: 500px;
+  width: 31.25em;
 }
 
 .vtex-product-image__selected-image {
-  height: 500px;
+  height: 31.25em;
   width: inherit;
 }
 
 .vtex-product-image__thumbnail-slider--vertical {
-  width: 82px;
+  width: 5.125em;
   display: flex;
   align-items: center;
 }
@@ -35,12 +35,12 @@
 }
 
 .vtex-product-image__thumbnail-slider .slick-track {
-  min-width: 82px;
+  min-width: 5.125em;
 }
 
 .vtex-product-image__thumbnail-slider-item {
-  height: 82px;
-  width: 82px;
+  height: 5.125em;
+  width: 5.125em;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -53,7 +53,15 @@
   }
 
   .vtex-product-image {
-    max-width: 23em;
+    max-width: 17em;
+  }
+
+  .vtex-product-image__vertical {
+    width: inherit;
+  }
+
+  .vtex-product-image__horizontal {
+    width: inherit;
   }
 
   .vtex-product-image__thumbnail-slider--horizontal .slick-slider {
@@ -78,7 +86,7 @@
   }
 
   .vtex-product-image__thumbnail-slider-item {
-    height: 23em;
+    height: 17em;
     width: inherit;
   }
 }
@@ -86,8 +94,8 @@
 /* Arrows */
 .vtex-product-image__thumbnail-arrow {
   display: inline-block;
-  width: 34px;
-  margin-right: 13px;
+  width: 2.125em;
+  margin-right: 0.8125em;
 }
 .vtex-product-image__thumbnail-arrow:hover {
   cursor: pointer;
@@ -97,14 +105,14 @@
   margin: 0 auto;
 }
 .vtex-product-image__thumbnail-arrow--vertical:not(.vtex-product-image__thumbnail-arrow--inverted) {
-  margin-bottom: 13px;
+  margin-bottom: 0.8125em;
 }
 .vtex-product-image__thumbnail-arrow--vertical.vtex-product-image__thumbnail-arrow--inverted {
-  margin-top: 13px;
+  margin-top: 0.8125em;
 }
 .vtex-product-image__thumbnail-arrow--inverted:not(.vtex-product-image__thumbnail-arrow--vertical) {
   margin-right: 0;
-  margin-left: 13px;
+  margin-left: 0.8125em;
 }
 
 /* Dots */
@@ -121,12 +129,12 @@
 
 /* Zoom image component */
 .vtex-product-image__zoom-image {
-  width: 1000px;
-  height: 1000px;
+  width: 62.5em;
+  height: 62.5em;
 }
 .vtex-product-image__zoom-image img {
-  width: 1000px;
-  max-height: 1000px;
+  width: 62.5em;
+  max-height: 62.5em;
 }
 .vtex-product-image__image-zoom-container {
   top: 0px;
@@ -134,6 +142,6 @@
   width: 100%;
 }
 .vtex-product-image__zoom {
-  height: 500px;
+  height: 31.25em;
   width: inherit;
 }

@@ -70,7 +70,7 @@ class ProductImages extends Component {
         <div
           className={
             thumbnailSliderOrientation === VERTICAL
-              ? 'w-100-s w-20-ns flex justify-center'
+              ? 'w-100-s w-20-ns flex justify-center overflow-hidden'
               : null
           }
         >
