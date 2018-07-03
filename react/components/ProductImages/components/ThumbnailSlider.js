@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
+import ContentLoader from 'react-content-loader'
 import ThumbnailItem from './ThumbnailItem'
 import ThumbnailArrow from './ThumbnailArrow'
 import Slider from '../../../Slider'
@@ -54,8 +55,17 @@ class ThumbnailSlider extends Component {
     }
   }
 
+  renderLoader = () => {
+    return (
+      <ContentLoader height={86} width={500}>
+        {/* Pure SVG */}
+        <rect x="0" y="0" rx="0" ry="0" width="500" height="86" />
+      </ContentLoader>
+    )
+  }
+
   render() {
-    const { images, onThumbnailClick, orientation } = this.props
+    const { loading, images, onThumbnailClick, orientation } = this.props
 
     const sliderVertical = orientation === VERTICAL
 
@@ -64,6 +74,8 @@ class ThumbnailSlider extends Component {
       'mr6-ns': sliderVertical,
       'vtex-product-image__thumbnail-slider--horizontal': !sliderVertical,
     })
+
+    if (loading) return this.renderLoader()
 
     return (
       <div className={className}>

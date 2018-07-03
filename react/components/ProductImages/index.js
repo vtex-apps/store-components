@@ -21,7 +21,7 @@ class ProductImages extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, state) {
-    if (nextProps.images) {
+    if (nextProps.images && !nextProps.loading) {
       const isNewProps =
         nextProps.images[DEFAULT_SELECTED_IMAGE].imageId !== state.firstImageId
 
@@ -49,6 +49,7 @@ class ProductImages extends Component {
       images,
       thumbnailSliderOrientation,
       thumbnailMaxVisibleItems,
+      loading,
     } = this.props
 
     const thumbnailProps = {
@@ -56,6 +57,7 @@ class ProductImages extends Component {
       onThumbnailClick: this.handleThumbnailClick,
       orientation: thumbnailSliderOrientation,
       maxVisibleItems: thumbnailMaxVisibleItems,
+      loading: loading,
     }
 
     let className = `${VTEXClasses.MAIN_CLASS} mb7 mb0-ns flex inline-flex-ns`
@@ -83,7 +85,7 @@ class ProductImages extends Component {
               : null
           }
         >
-          <SelectedImage image={this.state.selectedImage} />
+          <SelectedImage loading={loading} image={this.state.selectedImage} />
         </div>
       </div>
     )
@@ -100,6 +102,8 @@ ProductImages.propTypes = {
       imageText: PropTypes.string.isRequired,
     })
   ).isRequired,
+  /** Component is loading or not */
+  loading: PropTypes.bool.isRequired,
   /** Thumbnail Slider orientation */
   thumbnailSliderOrientation: PropTypes.oneOf([VERTICAL, HORIZONTAL]),
   /** Maximum number of visible items that should be displayed by the Thumbnail Slider at the same time */

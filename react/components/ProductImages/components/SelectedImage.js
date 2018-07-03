@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import ContentLoader from 'react-content-loader'
 
 import ImageZoom from './ImageZoom'
 
@@ -11,6 +12,8 @@ import VTEXClasses from '../constants/productImagesClasses'
  */
 export default class SelectedImage extends Component {
   static propTypes = {
+    /** Component is loading or not */
+    loading: PropTypes.bool.isRequired,
     /** Image to be displayed */
     image: PropTypes.shape({
       /** URL of the image */
@@ -28,6 +31,15 @@ export default class SelectedImage extends Component {
     showZoom: false,
   }
 
+  renderLoader = () => {
+    return (
+      <ContentLoader height={500} width={500}>
+        {/* Pure SVG */}
+        <rect x="0" y="0" rx="0" ry="0" width="500" height="500" />
+      </ContentLoader>
+    )
+  }
+
   handleMouseEnterImage = () => {
     this.setState({ showZoom: true })
   }
@@ -39,8 +51,13 @@ export default class SelectedImage extends Component {
   render() {
     const {
       image: { imageUrl, imageText },
+      loading,
     } = this.props
     const { showZoom } = this.state
+
+    if (loading) {
+      return this.renderLoader()
+    }
 
     return (
       <div className="w-100 relative">
