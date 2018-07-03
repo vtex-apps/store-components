@@ -1,4 +1,7 @@
 {
+  "header.buy-success": "Su producto se ha agregado a la cesta!",
+  "header.search-placeholder": "Búsqueda por productos, marcas...",
+  "header.search-emptyPlaceholder": "Ningún resultado encontrado",
   "search.placeholder": "Buscar",
   "search.noMatches": "Sin resultado",
   "editor.productPrice.title": "Precio del producto",
