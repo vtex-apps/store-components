@@ -21,7 +21,7 @@ class ProductImages extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, state) {
-    if (nextProps.images && !nextProps.loading) {
+    if (!nextProps.loading) {
       const isNewProps =
         nextProps.images[DEFAULT_SELECTED_IMAGE].imageId !== state.firstImageId
 
