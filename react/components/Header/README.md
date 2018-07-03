@@ -29,4 +29,4 @@ Or, you can add in your `pages.json`:
  }
 ```
 
-See an example at [Dreamstore](https://github.com/vtex-apps/dreamstore-theme/blob/master/pages/pages.json#L24) and [Store](https://github.com/vtex-apps/store/blob/master/react/StoreTemplate.js#L16) apps
+See an example at [Dreamstore](https://github.com/vtex-apps/dreamstore-theme/blob/master/pages/pages.json#L7) and [Store](https://github.com/vtex-apps/store/blob/master/react/StoreTemplate.js#L14) apps
