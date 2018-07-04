@@ -11,14 +11,11 @@ import { ExtensionPoint } from 'render'
 export const TOAST_TIMEOUT = 3000
 
 class Header extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isAddToCart: false,
-      hasError: false,
-      error: null,
-      showMenuPopup: false,
-    }
+  state = {
+    isAddToCart: false,
+    hasError: false,
+    error: null,
+    showMenuPopup: false,
   }
 
   static propTypes = {
