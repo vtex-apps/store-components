@@ -1,4 +1,7 @@
 {
+  "header.buy-success": "Your product was add to the cart!",
+  "header.search-placeholder": "Search for products, brands...",
+  "header.search-emptyPlaceholder": "No matches found",
   "search.placeholder": "Search",
   "search.noMatches": "No matches",
   "editor.productPrice.title": "Product price",
