@@ -29,13 +29,12 @@
   margin: auto;
 }
 
-.vtex-product-image__thumbnail-slider--horizontal .slick-slider {
+.vtex-product-image__thumbnail-slider--horizontal .slick-track {
   display: flex;
   align-items: center;
 }
 
 .vtex-product-image__thumbnail-slider .slick-track {
-  min-width: 5.125em;
 }
 
 .vtex-product-image__thumbnail-slider-item {
