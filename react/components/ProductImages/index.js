@@ -10,7 +10,6 @@ import { VERTICAL, HORIZONTAL } from './constants/orientation'
 import './global.css'
 
 const DEFAULT_SELECTED_IMAGE = 0
-const WIDTH_LIMIT = 1200
 
 /**
  *  Product Image component.
@@ -52,19 +51,15 @@ class ProductImages extends Component {
       thumbnailMaxVisibleItems,
     } = this.props
 
-    const width = window.innerWidth
-    let orientation =
-      width >= WIDTH_LIMIT ? thumbnailSliderOrientation : HORIZONTAL
-
     const thumbnailProps = {
       images,
       onThumbnailClick: this.handleThumbnailClick,
-      orientation: orientation,
+      orientation: thumbnailSliderOrientation,
       maxVisibleItems: thumbnailMaxVisibleItems,
     }
 
     let className = `${VTEXClasses.MAIN_CLASS} mb7 mb0-ns flex inline-flex-ns`
-    if (orientation === VERTICAL) {
+    if (thumbnailSliderOrientation === VERTICAL) {
       className += ` ${VTEXClasses.VERTICAL_COMPONENT}`
     } else {
       className += ` ${VTEXClasses.HORIZONTAL_COMPONENT} flex-column-reverse`
@@ -74,7 +69,7 @@ class ProductImages extends Component {
       <div className={className}>
         <div
           className={
-            orientation === VERTICAL
+            thumbnailSliderOrientation === VERTICAL
               ? 'w-100-s w-20-ns flex justify-center overflow-hidden'
               : null
           }
@@ -83,7 +78,7 @@ class ProductImages extends Component {
         </div>
         <div
           className={
-            orientation === VERTICAL
+            thumbnailSliderOrientation === VERTICAL
               ? 'w-80-ns flex justify-center overflow-hidden'
               : null
           }
