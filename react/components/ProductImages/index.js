@@ -85,7 +85,11 @@ class ProductImages extends Component {
               : null
           }
         >
-          <SelectedImage loading={loading} image={this.state.selectedImage} />
+          {loading ? (
+            <SelectedImage.Loader />
+          ) : (
+            <SelectedImage loading={loading} image={this.state.selectedImage} />
+          )}
         </div>
       </div>
     )
