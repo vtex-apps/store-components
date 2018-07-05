@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Vertical display of `ProductImage`.
+- Fix thumbnail image selection in `ProductImage`.
+
+## [1.7.0] - 2018-7-4
+### Added
+- Component `Header`.
+
 ## [1.6.1] - 2018-6-27
 ### Changed
 - _BuyButton_ don't wait add to cart to proceed to checkout page.
@@ -16,14 +24,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - _BuyButton_ default props as static attribute.
 - _SKU Selector_ item with false value as class name.
 
-
 ## [1.6.0] - 2018-6-20
 ### Added
 - Debounce function to handle the increase and decrease events in the `QuantitySelector`.
-
-### Fixed
-- Vertical display of `ProductImage`.
-- Fix thumbnail image selection in `ProductImage`.
 
 ### Changed
 - Make `onMaxReached` function not required in `QuantitySelector`.

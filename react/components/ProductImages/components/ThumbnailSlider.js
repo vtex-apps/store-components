@@ -46,6 +46,8 @@ class ThumbnailSlider extends Component {
           settings: {
             dots: true,
             arrows: false,
+            vertical: false,
+            verticalSwiping: false,
             slidesToShow: 1,
             vertical: false,
             verticalSwiping: false,
@@ -72,6 +74,7 @@ class ThumbnailSlider extends Component {
     const className = classNames(`${VTEXClasses.THUMBNAIL_SLIDER} w-100-s`, {
       'vtex-product-image__thumbnail-slider--vertical': sliderVertical,
       'mr6-ns': sliderVertical,
+      mt3: !sliderVertical,
       'vtex-product-image__thumbnail-slider--horizontal': !sliderVertical,
     })
 

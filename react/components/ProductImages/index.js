@@ -60,7 +60,9 @@ class ProductImages extends Component {
       loading: loading,
     }
 
-    let className = `${VTEXClasses.MAIN_CLASS} mb7 mb0-ns flex inline-flex-ns`
+    let className = `${
+      VTEXClasses.MAIN_CLASS
+    } mb7 mb0-ns flex inline-flex-ns w-100-s`
     if (thumbnailSliderOrientation === VERTICAL) {
       className += ` ${VTEXClasses.VERTICAL_COMPONENT}`
     } else {
@@ -72,8 +74,8 @@ class ProductImages extends Component {
         <div
           className={
             thumbnailSliderOrientation === VERTICAL
-              ? 'w-100-s w-20-ns flex justify-center overflow-hidden'
-              : null
+              ? 'w-100-s w-20-ns flex justify-center'
+              : 'w-100-s'
           }
         >
           <ThumbnailSlider {...thumbnailProps} />
