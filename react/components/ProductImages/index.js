@@ -5,7 +5,10 @@ import ThumbnailSlider from './components/ThumbnailSlider'
 import SelectedImage from './components/SelectedImage'
 
 import VTEXClasses from './constants/productImagesClasses'
+import { NoSSR } from 'render'
 import { VERTICAL, HORIZONTAL } from './constants/orientation'
+
+import ContentLoader from 'react-content-loader'
 
 import './global.css'
 
@@ -44,6 +47,14 @@ class ProductImages extends Component {
     })
   }
 
+  renderLoader() {
+    const { thumbnailSliderOrientation } = this.props
+
+    const isVertical = thumbnailSliderOrientation === VERTICAL
+
+    return <ProductImages.Loader isVertical={isVertical} />
+  }
+
   render() {
     const {
       images,
@@ -57,51 +68,67 @@ class ProductImages extends Component {
       onThumbnailClick: this.handleThumbnailClick,
       orientation: thumbnailSliderOrientation,
       maxVisibleItems: thumbnailMaxVisibleItems,
-      loading: loading,
     }
+
+    const isVertical = thumbnailSliderOrientation === VERTICAL
 
     let className = `${
       VTEXClasses.MAIN_CLASS
     } mb7 mb0-ns flex inline-flex-ns w-100-s`
-    if (thumbnailSliderOrientation === VERTICAL) {
+
+    if (isVertical) {
       className += ` ${VTEXClasses.VERTICAL_COMPONENT}`
     } else {
       className += ` ${VTEXClasses.HORIZONTAL_COMPONENT} flex-column-reverse`
     }
 
     return (
-      <div className={className}>
-        <div
-          className={
-            thumbnailSliderOrientation === VERTICAL
-              ? 'w-100-s w-20-ns flex justify-center'
-              : 'w-100-s'
-          }
-        >
-          {loading ? (
-            <ThumbnailSlider.Loader
-              isVertical={thumbnailSliderOrientation === VERTICAL}
-            />
-          ) : (
-            <ThumbnailSlider {...thumbnailProps} />
-          )}
-        </div>
-        <div
-          className={
-            thumbnailSliderOrientation === VERTICAL
-              ? 'w-80-ns flex justify-center overflow-hidden'
-              : null
-          }
-        >
-          {loading ? (
-            <SelectedImage.Loader />
-          ) : (
-            <SelectedImage image={this.state.selectedImage} />
-          )}
-        </div>
-      </div>
+      <NoSSR onSSR={this.renderLoader()}>
+        {loading ? (
+          this.renderLoader()
+        ) : (
+          <div className={className}>
+            <div
+              className={
+                isVertical ? 'w-100-s w-20-ns flex justify-center' : 'w-100-s'
+              }
+            >
+              <ThumbnailSlider {...thumbnailProps} />
+            </div>
+            <div
+              className={
+                isVertical
+                  ? 'w-80-ns flex justify-center overflow-hidden'
+                  : null
+              }
+            >
+              <SelectedImage image={this.state.selectedImage} />
+            </div>
+          </div>
+        )}
+      </NoSSR>
     )
   }
+}
+
+ProductImages.Loader = props => {
+  const { isVertical } = props
+
+  if (isVertical) {
+    return (
+      <ContentLoader height={500} width={500}>
+        <rect x="21.6" y="63" rx="0" ry="0" width="45" height="280" />
+        <rect x="73.6" y="63" rx="0" ry="0" width="316.52" height="280" />
+      </ContentLoader>
+    )
+  }
+
+  return (
+    <ContentLoader height={500} width={500}>
+      <rect x="85" y="310" rx="0" ry="0" width="316.52" height="44.56" />
+      <rect x="85" y="19" rx="0" ry="0" width="316.52" height="280.44" />
+    </ContentLoader>
+  )
 }
 
 ProductImages.propTypes = {

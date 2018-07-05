@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import ContentLoader from 'react-content-loader'
 import ThumbnailItem from './ThumbnailItem'
 import ThumbnailArrow from './ThumbnailArrow'
 import Slider from '../../../Slider'
@@ -57,17 +56,8 @@ class ThumbnailSlider extends Component {
     }
   }
 
-  renderLoader = () => {
-    return (
-      <ContentLoader height={86} width={500}>
-        {/* Pure SVG */}
-        <rect x="0" y="0" rx="0" ry="0" width="500" height="86" />
-      </ContentLoader>
-    )
-  }
-
   render() {
-    const { loading, images, onThumbnailClick, orientation } = this.props
+    const { images, onThumbnailClick, orientation } = this.props
 
     const sliderVertical = orientation === VERTICAL
 
@@ -77,8 +67,6 @@ class ThumbnailSlider extends Component {
       mt3: !sliderVertical,
       'vtex-product-image__thumbnail-slider--horizontal': !sliderVertical,
     })
-
-    if (loading) return this.renderLoader()
 
     return (
       <div className={className}>
@@ -117,24 +105,6 @@ ThumbnailSlider.propTypes = {
 ThumbnailSlider.defaultProps = {
   orientation: VERTICAL,
   maxVisibleItems: MAX_VISIBLE_ITEMS,
-}
-
-ThumbnailSlider.Loader = isVertical => {
-  if (isVertical) {
-    return (
-      <ContentLoader height={500} width={86}>
-        {/* Pure SVG */}
-        <rect x="0" y="0" rx="0" ry="0" width="86" height="500" />
-      </ContentLoader>
-    )
-  }
-
-  return (
-    <ContentLoader height={86} width={500}>
-      {/* Pure SVG */}
-      <rect x="0" y="0" rx="0" ry="0" width="500" height="86" />
-    </ContentLoader>
-  )
 }
 
 export default ThumbnailSlider
