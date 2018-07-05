@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Vertical display of `ProductImage`.
-- Fix thumbnail image selection in `ProductImage`.
+- Thumbnail image selection in `ProductImage`.
 
 ## [1.7.0] - 2018-7-4
 ### Added

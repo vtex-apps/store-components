@@ -122,7 +122,7 @@
   font-size: 1rem;
   color: inherit;
 }
-:global .vtex-product-image .vtex-slider__dots li.slick-active button:before {
+.vtex-product-image .vtex-slider__dots li.slick-active button:before {
   color: inherit;
 }
 
