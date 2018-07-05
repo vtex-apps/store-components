@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import ThumbnailItem from './ThumbnailItem'
+import ThumbnailArrow from './ThumbnailArrow'
 import Slider from '../../../Slider'
 
 import VTEXClasses from '../constants/productImagesClasses'
+
 import { HORIZONTAL, VERTICAL } from '../constants/orientation'
 
-const MAX_VISIBLE_ITEMS = 4
+const MAX_VISIBLE_ITEMS = 5
 
 /**
  * Thumbnail component.
@@ -17,20 +20,20 @@ class ThumbnailSlider extends Component {
   /**
    * Function that configure slider settings according to the component props
    */
-  configureSliderSettings = () => {
+  get sliderSettings() {
     const { maxVisibleItems, orientation } = this.props
     const sliderVertical = orientation === VERTICAL
 
-    const numOfVisibleItems = Math.min(
-      maxVisibleItems,
-      MAX_VISIBLE_ITEMS
-    )
+    const numOfVisibleItems = Math.min(maxVisibleItems, MAX_VISIBLE_ITEMS)
 
     return {
       speed: 500,
       infinite: false,
       dots: false,
       arrows: true,
+      prevArrow: <ThumbnailArrow vertical={sliderVertical} />,
+      nextArrow: <ThumbnailArrow inverted vertical={sliderVertical} />,
+      slideWidth: 82,
       slidesToShow: numOfVisibleItems,
       vertical: sliderVertical,
       verticalSwiping: sliderVertical,
@@ -38,10 +41,12 @@ class ThumbnailSlider extends Component {
       responsive: [
         /** Should be rendered for all screens with width less than 600px */
         {
-          breakpoint: 600,
+          breakpoint: 500,
           settings: {
             dots: true,
             arrows: false,
+            vertical: false,
+            verticalSwiping: false,
             slidesToShow: 1,
             vertical: false,
             verticalSwiping: false,
@@ -55,25 +60,25 @@ class ThumbnailSlider extends Component {
     const { images, onThumbnailClick, orientation } = this.props
 
     const sliderVertical = orientation === VERTICAL
-    const sliderSettings = this.configureSliderSettings()
+
+    const className = classNames(`${VTEXClasses.THUMBNAIL_SLIDER} w-100-s`, {
+      'vtex-product-image__thumbnail-slider--vertical': sliderVertical,
+      'mr6-ns': sliderVertical,
+      mt3: !sliderVertical,
+      'vtex-product-image__thumbnail-slider--horizontal': !sliderVertical,
+    })
+
     return (
-      <div
-        className={
-          sliderVertical
-            ? VTEXClasses.VERTICAL_THUMBNAIL_SLIDER
-            : VTEXClasses.HORIZONTAL_THUMBNAIL_SLIDER
-        }>
-        {
-          <Slider sliderSettings={sliderSettings}>
-            {images.map(image => (
-              <ThumbnailItem
-                key={image.imageUrl}
-                image={image}
-                onClick={onThumbnailClick}
-              />
-            ))}
-          </Slider>
-        }
+      <div className={className}>
+        <Slider sliderSettings={this.sliderSettings}>
+          {images.map(image => (
+            <ThumbnailItem
+              key={image.imageUrl}
+              image={image}
+              onClick={onThumbnailClick}
+            />
+          ))}
+        </Slider>
       </div>
     )
   }

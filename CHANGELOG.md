@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Vertical display of `ProductImage`.
+- Thumbnail image selection in `ProductImage`.
+
 ## [1.7.0] - 2018-7-4
 ### Added
 - Component `Header`.
@@ -19,7 +23,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - _BuyButton_ default props as static attribute.
 - _SKU Selector_ item with false value as class name.
-
 
 ## [1.6.0] - 2018-6-20
 ### Added

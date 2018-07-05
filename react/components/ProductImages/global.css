@@ -5,133 +5,142 @@
 @custom-media --breakpoint-large screen and (min-width: 64em) and (max-width: 80em);
 @custom-media --breakpoint-extra-large screen and (min-width: 80em); 
 */
-.vtex-product-image {
-  width: 500px;
+
+.vtex-product-image__vertical {
+  width: 37.5em;
+  max-height: 37.5em;
 }
 
-.vtex-product-image__thumbnail-slider-item img {
-  max-height: 80px;
+.vtex-product-image__horizontal {
+  width: 31.25em;
 }
 
-@media only screen and (min-width: 60em) {
-  .vtex-product-image__selected-image img {
-    max-width: 500px;
-    max-height: 500px;
-  }
-  .vtex-product-image__selected-image div {
-    width: 500px;
-    height: 500px;
-  }
-
-  .vtex-product-image__zoom {
-    width: 500px;
-    height: 500px;
-  }
+.vtex-product-image__selected-image {
+  height: 31.25em;
+  width: inherit;
 }
 
-@media only screen and (min-width: 40em) and (max-width: 60em) {
-  .vtex-product-image__selected-image div {
-    width: 100%;
-    height: 300px;
-  }
-
-  .vtex-product-image__zoom {
-    width: 100%;
-    height: 300px;
-  }
+.vtex-product-image__thumbnail-slider--vertical {
+  width: 5.125em;
+  display: flex;
+  align-items: center;
 }
 
-@media only screen and (max-width: 60em) {
-  .vtex-product-image {
-    width: 100%;
-  }
+.vtex-product-image__thumbnail-slider--vertical .slick-slider {
+  margin: auto;
 }
 
-@media only screen and (max-width: 40em) {
-  .vtex-product-image__thumbnail-slider-item,
-  .vtex-product-image__thumbnail-slider-item img {
-    max-height: 300px;
-  }
+.vtex-product-image__thumbnail-slider--horizontal .slick-slider {
+  display: flex;
+  align-items: center;
+}
+
+.vtex-product-image__thumbnail-slider--horizontal .slick-track {
+  min-width: 18.75em;
+  display: flex;
+}
+
+.vtex-product-image__thumbnail-slider--horizontal .slick-slide {
+  min-width: 5.125em;
+  margin-left: 1em;
+}
+
+.vtex-product-image__thumbnail-slider-item {
+  height: 5.125em;
+  width: 5.125em;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 @media only screen and (max-width: 27em) {
-  .vtex-product-image__thumbnail-slider-item,
-  .vtex-product-image__thumbnail-slider-item img {
-    max-height: 200px;
+  .vtex-product-image__selected-image {
+    width: 0px;
+    height: 0px;
+  }
+
+  .vtex-product-image {
+    max-width: 17em;
+  }
+
+  .vtex-product-image__thumbnail-slider--horizontal .slick-slider {
+    display: inherit;
+    align-items: inherit;
+  }
+
+  .vtex-product-image__thumbnail-slider--vertical {
+    width: inherit;
+  }
+
+  .vtex-product-image__thumbnail-slider--horizontal {
+    width: inherit;
+  }
+
+  .vtex-product-image__thumbnail-slider {
+    width: inherit;
+  }
+
+  .vtex-product-image__thumbnail-slider .slick-slider {
+    width: inherit;
+  }
+
+  .vtex-product-image__thumbnail-slider-item {
+    height: 17em;
+    width: inherit;
   }
 }
 
 /* Arrows */
-.vtex-product-image .slick-prev .slick-disabled:before,
-.vtex-product-image .slick-next .slick-disabled:before {
-  color: inherit;
+.vtex-product-image__thumbnail-arrow {
+  display: inline-block;
+  width: 2.125em;
+  margin-right: 0.8125em;
 }
-
-.vtex-product-image .slick-prev:before,
-.vtex-product-image .slick-next:before {
-  font-size: 2rem;
-  color: inherit;
+.vtex-product-image__thumbnail-arrow:hover {
+  cursor: pointer;
 }
-
-.vtex-product-image
-  .vtex-product-image__vertical-thumbnail-slider
-  .vtex-slider__arrow-left,
-.vtex-product-image
-  .vtex-product-image__vertical-thumbnail-slider
-  .vtex-slider__arrow-right {
-  transform: rotate(90deg);
-  position: relative;
-  left: 6px;
-  right: 0px;
-  margin: auto;
-  margin-bottom: 15px;
+.vtex-product-image__thumbnail-arrow--vertical {
+  display: block;
+  margin: 0 auto;
 }
-
-.vtex-product-image .vtex-slider__arrow-left,
-.vtex-product-image .vtex-slider__arrow-right {
-  z-index: 1;
-  color: black;
+.vtex-product-image__thumbnail-arrow--vertical:not(.vtex-product-image__thumbnail-arrow--inverted) {
+  margin-bottom: 0.8125em;
 }
-
-.vtex-product-image
-  .vtex-product-image__horizontal-thumbnail-slider
-  .vtex-slider__arrow-left {
-  left: 0px;
+.vtex-product-image__thumbnail-arrow--vertical.vtex-product-image__thumbnail-arrow--inverted {
+  margin-top: 0.8125em;
 }
-
-.vtex-product-image
-  .vtex-product-image__horizontal-thumbnail-slider
-  .vtex-slider__arrow-right {
-  right: 10px;
+.vtex-product-image__thumbnail-arrow--inverted:not(.vtex-product-image__thumbnail-arrow--vertical) {
+  margin-right: 0;
+  margin-left: 0.8125em;
 }
 
 /* Dots */
 .vtex-product-image .vtex-slider__dots li button {
   color: inherit;
 }
-
 .vtex-product-image .vtex-slider__dots li button:before {
   font-size: 1rem;
   color: inherit;
 }
-
-:global .vtex-product-image .vtex-slider__dots li.slick-active button:before {
+.vtex-product-image .vtex-slider__dots li.slick-active button:before {
   color: inherit;
 }
 
 /* Zoom image component */
-
 .vtex-product-image__zoom-image {
-  width: 1000px;
-  height: 1000px;
+  width: 62.5em;
+  height: 62.5em;
 }
-
-.vtex-product-image__zoom-image img{
-  width: 1000px;
-  max-height: 1000px;
+.vtex-product-image__zoom-image img {
+  width: 62.5em;
+  max-height: 62.5em;
 }
-
 .vtex-product-image__image-zoom-container {
   top: 0px;
   left: 0px;
+  width: 100%;
+}
+.vtex-product-image__zoom {
+  height: 31.25em;
+  width: inherit;
 }

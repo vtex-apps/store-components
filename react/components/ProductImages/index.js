@@ -20,9 +20,18 @@ class ProductImages extends Component {
     selectedImage: this.props.images[DEFAULT_SELECTED_IMAGE],
   }
 
-  static getDerivedStateFromProps(nextProps) {
-    return {
-      selectedImage: nextProps.images[DEFAULT_SELECTED_IMAGE],
+  static getDerivedStateFromProps(nextProps, state) {
+    if (nextProps.images) {
+      const isNewProps =
+        nextProps.images[DEFAULT_SELECTED_IMAGE].imageId !== state.firstImageId
+
+      return {
+        selectedImage:
+          state.selectedImage && !isNewProps
+            ? state.selectedImage
+            : nextProps.images[DEFAULT_SELECTED_IMAGE],
+        firstImageId: nextProps.images[DEFAULT_SELECTED_IMAGE].imageId,
+      }
     }
   }
 
@@ -40,7 +49,6 @@ class ProductImages extends Component {
       images,
       thumbnailSliderOrientation,
       thumbnailMaxVisibleItems,
-      children,
     } = this.props
 
     const thumbnailProps = {
@@ -52,19 +60,33 @@ class ProductImages extends Component {
 
     let className = `${
       VTEXClasses.MAIN_CLASS
-    } mb7 mb0-ns w-100 flex inline-flex-ns`
+    } mb7 mb0-ns flex inline-flex-ns w-100-s`
     if (thumbnailSliderOrientation === VERTICAL) {
-      className += ` ${VTEXClasses.VERTICAL_COMPONENT} `
+      className += ` ${VTEXClasses.VERTICAL_COMPONENT}`
     } else {
       className += ` ${VTEXClasses.HORIZONTAL_COMPONENT} flex-column-reverse`
     }
 
     return (
       <div className={className}>
-        <ThumbnailSlider {...thumbnailProps} />
-        <SelectedImage image={this.state.selectedImage}>
-          {children}
-        </SelectedImage>
+        <div
+          className={
+            thumbnailSliderOrientation === VERTICAL
+              ? 'w-100-s w-20-ns flex justify-center'
+              : 'w-100-s'
+          }
+        >
+          <ThumbnailSlider {...thumbnailProps} />
+        </div>
+        <div
+          className={
+            thumbnailSliderOrientation === VERTICAL
+              ? 'w-80-ns flex justify-center overflow-hidden'
+              : null
+          }
+        >
+          <SelectedImage image={this.state.selectedImage} />
+        </div>
       </div>
     )
   }
@@ -84,8 +106,6 @@ ProductImages.propTypes = {
   thumbnailSliderOrientation: PropTypes.oneOf([VERTICAL, HORIZONTAL]),
   /** Maximum number of visible items that should be displayed by the Thumbnail Slider at the same time */
   thumbnailMaxVisibleItems: PropTypes.number,
-  /** Function to render selected image */
-  children: PropTypes.func,
 }
 
 ProductImages.defaultProps = {
@@ -122,7 +142,6 @@ ProductImages.defaultProps = {
     },
   ],
   thumbnailSliderOrientation: VERTICAL,
-  children: img => img,
 }
 
 export default ProductImages
