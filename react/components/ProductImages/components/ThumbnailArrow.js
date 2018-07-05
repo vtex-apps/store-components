@@ -7,20 +7,12 @@ import down from '../images/Down.svg'
 import previous from '../images/Previous.svg'
 import next from '../images/Next.svg'
 
-const getUrl = (inverted, vertical) => {
+const getImage = (inverted, vertical) => {
   if (vertical) {
-    if (inverted) {
-      return down
-    }
-
-    return up
+    return inverted ? down : up
   }
 
-  if (inverted) {
-    return next
-  }
-
-  return previous
+  return inverted ? next : previous
 }
 
 const ThumbnailArrow = ({ vertical, inverted, onClick }) => {
@@ -29,7 +21,7 @@ const ThumbnailArrow = ({ vertical, inverted, onClick }) => {
     'vtex-product-image__thumbnail-arrow--inverted': inverted,
   })
 
-  const url = getUrl(inverted, vertical)
+  const url = getImage(inverted, vertical)
 
   return <img className={className} src={url} onClick={onClick} />
 }
@@ -45,4 +37,3 @@ ThumbnailArrow.propTypes = {
 }
 
 export default ThumbnailArrow
-
