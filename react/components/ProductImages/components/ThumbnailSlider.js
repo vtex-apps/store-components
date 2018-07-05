@@ -119,4 +119,22 @@ ThumbnailSlider.defaultProps = {
   maxVisibleItems: MAX_VISIBLE_ITEMS,
 }
 
+ThumbnailSlider.Loader = isVertical => {
+  if (isVertical) {
+    return (
+      <ContentLoader height={500} width={86}>
+        {/* Pure SVG */}
+        <rect x="0" y="0" rx="0" ry="0" width="86" height="500" />
+      </ContentLoader>
+    )
+  }
+
+  return (
+    <ContentLoader height={86} width={500}>
+      {/* Pure SVG */}
+      <rect x="0" y="0" rx="0" ry="0" width="500" height="86" />
+    </ContentLoader>
+  )
+}
+
 export default ThumbnailSlider

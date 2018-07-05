@@ -78,7 +78,13 @@ class ProductImages extends Component {
               : 'w-100-s'
           }
         >
-          <ThumbnailSlider {...thumbnailProps} />
+          {loading ? (
+            <ThumbnailSlider.Loader
+              isVertical={thumbnailSliderOrientation === VERTICAL}
+            />
+          ) : (
+            <ThumbnailSlider {...thumbnailProps} />
+          )}
         </div>
         <div
           className={
@@ -90,7 +96,7 @@ class ProductImages extends Component {
           {loading ? (
             <SelectedImage.Loader />
           ) : (
-            <SelectedImage loading={loading} image={this.state.selectedImage} />
+            <SelectedImage image={this.state.selectedImage} />
           )}
         </div>
       </div>
