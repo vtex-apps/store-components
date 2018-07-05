@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Vertical display of `ProductImage`.
+- Fix thumbnail image selection in `ProductImage`.
+
 ## [1.7.0] - 2018-7-4
 ### Added
 - Component `Header`.
@@ -24,10 +28,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.6.0] - 2018-6-20
 ### Added
 - Debounce function to handle the increase and decrease events in the `QuantitySelector`.
-
-### Fixed
-- Vertical display of `ProductImage`.
-- Fix thumbnail image selection in `ProductImage`.
 
 ### Changed
 - Make `onMaxReached` function not required in `QuantitySelector`.
