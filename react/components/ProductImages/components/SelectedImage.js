@@ -43,7 +43,7 @@ export default class SelectedImage extends Component {
     const { showZoom } = this.state
 
     return (
-      <div className="w-100 relative">
+      <div className="w-100 relative overflow-hidden">
         <div className={VTEXClasses.SELECTED_IMAGE}>
           <img
             className="w-100"
