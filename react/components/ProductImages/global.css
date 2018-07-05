@@ -8,6 +8,7 @@
 
 .vtex-product-image__vertical {
   width: 37.5em;
+  max-height: 37.5em;
 }
 
 .vtex-product-image__horizontal {
