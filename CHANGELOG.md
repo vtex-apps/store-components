@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Unescape HTML in the product description.
+- Logo link to be a `Link` component from `render`.
 
 ### Fixed
 - Vertical display of `ProductImage`.
