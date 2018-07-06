@@ -20,7 +20,7 @@ class ProductDescription extends Component {
           <FormattedMessage id="product-description.title" />
         </div>
 
-        <span dangerouslySetInnerHTML={{ __html: description }} />
+        <span className="measure-wide" dangerouslySetInnerHTML={{ __html: description }} />
 
         {specifications.length > 0 && (
           <div className="vtex-product-specifications">
