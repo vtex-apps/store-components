@@ -12,7 +12,7 @@ import './global.css'
  */
 class ProductDescription extends Component {
   render() {
-    const { specifications, skuName } = this.props
+    const { specifications, skuName, description } = this.props
 
     return (
       <div className={`${VTEXClasses.PRODUCT_DESCRIPTION} ma2`}>
@@ -20,9 +20,9 @@ class ProductDescription extends Component {
           <FormattedMessage id="product-description.title" />
         </div>
 
-        {this.props.children}
+        <span className="measure-wide" dangerouslySetInnerHTML={{ __html: description }} />
 
-        {specifications.length && (
+        {specifications.length > 0 && (
           <div className="vtex-product-specifications">
             <div className="vtex-product-specifications__title">
               <FormattedMessage id="technicalspecifications.title" />
@@ -48,7 +48,7 @@ class ProductDescription extends Component {
                     <td className="vtex-product-specifications__specification-values">
                       {specification.values.map((value, i) => (
                         <Fragment key={value}>
-                          {value}{' '}
+                          <span dangerouslySetInnerHTML={{ __html: value }} />{' '}
                           {i !== specification.values.length - 1 && <br />}
                         </Fragment>
                       ))}
@@ -66,12 +66,11 @@ class ProductDescription extends Component {
 
 ProductDescription.defaultProps = {
   specifications: [],
-  children: {},
 }
 
 ProductDescription.propTypes = {
-  /** Children component which contains the product description */
-  children: PropTypes.node.isRequired,
+  /** Product description string */
+  description: PropTypes.string.isRequired,
   /** Intl object to provides internationalization */
   intl: intlShape.isRequired,
   /** Specifications that will be displayed on the table */
