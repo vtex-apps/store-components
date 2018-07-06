@@ -20,7 +20,7 @@ class ProductDescription extends Component {
           <FormattedMessage id="product-description.title" />
         </div>
 
-        {this.props.children}
+        <span dangerouslySetInnerHTML={{ __html: this.props.children }} />
 
         {specifications.length && (
           <div className="vtex-product-specifications">
@@ -48,7 +48,7 @@ class ProductDescription extends Component {
                     <td className="vtex-product-specifications__specification-values">
                       {specification.values.map((value, i) => (
                         <Fragment key={value}>
-                          {value}{' '}
+                          <span dangerouslySetInnerHTML={{ __html: value }} />{' '}
                           {i !== specification.values.length - 1 && <br />}
                         </Fragment>
                       ))}
