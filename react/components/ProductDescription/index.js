@@ -22,7 +22,7 @@ class ProductDescription extends Component {
 
         <span dangerouslySetInnerHTML={{ __html: this.props.children }} />
 
-        {specifications.length && (
+        {specifications.length > 0 && (
           <div className="vtex-product-specifications">
             <div className="vtex-product-specifications__title">
               <FormattedMessage id="technicalspecifications.title" />
