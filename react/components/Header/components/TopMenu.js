@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
+import { ExtensionPoint, Link } from 'render'
 
 import Logo from '../../../Logo'
 import SearchBar from '../../../SearchBar'
-
-import { ExtensionPoint } from 'render'
 
 const TopMenu = ({ logoUrl, logoTitle, intl, fixed, offsetTop }) => {
   const translate = id => intl.formatMessage({ id: `header.${id}` })
@@ -18,12 +17,12 @@ const TopMenu = ({ logoUrl, logoTitle, intl, fixed, offsetTop }) => {
       style={{top: `${offsetTop}px`}}
     >
       <div className="flex w-100 w-auto-ns pa4-ns items-center">
-        <a className="link b f3 near-black tc tl-ns serious-black flex-auto" href="/">
+        <Link className="link b f3 near-black tc tl-ns serious-black flex-auto" to="/">
           <Logo
             url={logoUrl}
             title={logoTitle}
           />
-        </a>
+        </Link>
       </div>
       <div className="flex-auto pr2 pa4">
         <SearchBar
