@@ -13,7 +13,7 @@ const TopMenu = ({ logoUrl, logoTitle, intl, fixed, offsetTop }) => {
     <div
       className={`${
         fixed ? 'fixed shadow-5' : ''
-        } z-999 flex items-center w-100 flex-wrap pa4 pa5-ns bg-white tl`}
+        } vtex-top-menu z-999 flex items-center w-100 flex-wrap pa4 pa5-ns bg-white tl`}
       style={{top: `${offsetTop}px`}}
     >
       <div className="flex w-100 w-auto-ns pa4-ns items-center">
