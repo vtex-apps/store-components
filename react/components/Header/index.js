@@ -8,6 +8,8 @@ import TopMenu from './components/TopMenu'
 import { Alert } from 'vtex.styleguide'
 import { ExtensionPoint } from 'render'
 
+import './global.css'
+
 export const TOAST_TIMEOUT = 3000
 
 class Header extends Component {
