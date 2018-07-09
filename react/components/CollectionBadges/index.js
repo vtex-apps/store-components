@@ -12,8 +12,8 @@ const CollectionBadges = ({ collectionBadgesText, children }) => (
   <div className={`${VTEXClasses.COLLECTION_BADGES} relative dib h-100`}>
     {children}
     <div className="inline-flex justify-end absolute w-100 bottom-0 left-0">
-      {collectionBadgesText.map(collectionBadgeText => (
-        <CollectionBadgeItem key={collectionBadgeText}>
+      {collectionBadgesText.map((collectionBadgeText, index) => (
+        <CollectionBadgeItem key={collectionBadgeText + index}>
           {collectionBadgeText}
         </CollectionBadgeItem>
       ))}

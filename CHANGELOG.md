@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Component loader on `ProductImages`
 
+### Fixed
+- `TopMenu` display on mobile screen.
+
+## [1.7.2] - 2018-7-9
+### Changed
+- Hide fixed header while in edit mode.
+
 ## [1.7.1] - 2018-7-6
 ### Changed
 - Unescape HTML in the product description.

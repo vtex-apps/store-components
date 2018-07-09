@@ -1,2 +1,54 @@
-.vtex-header {
+.editor-provider .vtex-modal-root .vtex-top-menu {
+  display: none;
+}
+
+.vtex-top-menu {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  z-index: 999;
+  flex-wrap: wrap;
+  background-color: white;
+  text-align: left;
+  padding: .75rem;
+}
+
+.vtex-top-menu--fixed {
+  position: fixed;
+  box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, .2);
+}
+
+.vtex-top-menu__logo {
+  text-align: center;
+}
+
+.vtex-top-menu__search-bar {
+  flex: 1 1 auto;
+  padding: .75rem;
+}
+
+.vtex-top-menu__icons {
+  padding-right: .25rem;
+}
+
+@media only screen and (max-width: 639px) {
+  .vtex-top-menu__logo {
+    order: 1;
+  }
+
+  .vtex-top-menu__search-bar {
+    order: 3;
+    width: 100%;
+  }
+
+  .vtex-top-menu__icons {
+    order: 2;
+    margin-left: auto;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  .vtex-top-menu__logo {
+    padding: .75rem;
+  }
 }
