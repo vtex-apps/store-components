@@ -24,7 +24,7 @@ class ProductImages extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, state) {
-    if (!nextProps.loading) {
+    if (nextProps.images) {
       const isNewProps =
         nextProps.images[DEFAULT_SELECTED_IMAGE].imageId !== state.firstImageId
 
@@ -36,6 +36,8 @@ class ProductImages extends Component {
         firstImageId: nextProps.images[DEFAULT_SELECTED_IMAGE].imageId,
       }
     }
+
+    return null
   }
 
   /**
@@ -60,7 +62,6 @@ class ProductImages extends Component {
       images,
       thumbnailSliderOrientation,
       thumbnailMaxVisibleItems,
-      loading,
     } = this.props
 
     const thumbnailProps = {
@@ -84,28 +85,22 @@ class ProductImages extends Component {
 
     return (
       <NoSSR onSSR={this.renderLoader()}>
-        {loading ? (
-          this.renderLoader()
-        ) : (
-          <div className={className}>
-            <div
-              className={
-                isVertical ? 'w-100-s w-20-ns flex justify-center' : 'w-100-s'
-              }
-            >
-              <ThumbnailSlider {...thumbnailProps} />
-            </div>
-            <div
-              className={
-                isVertical
-                  ? 'w-80-ns flex justify-center overflow-hidden'
-                  : null
-              }
-            >
-              <SelectedImage image={this.state.selectedImage} />
-            </div>
+        <div className={className}>
+          <div
+            className={
+              isVertical ? 'w-100-s w-20-ns flex justify-center' : 'w-100-s'
+            }
+          >
+            <ThumbnailSlider {...thumbnailProps} />
           </div>
-        )}
+          <div
+            className={
+              isVertical ? 'w-80-ns flex justify-center overflow-hidden' : null
+            }
+          >
+            <SelectedImage image={this.state.selectedImage} />
+          </div>
+        </div>
       </NoSSR>
     )
   }
@@ -114,20 +109,25 @@ class ProductImages extends Component {
 ProductImages.Loader = props => {
   const { isVertical } = props
 
+  const uniquekey = 'vtex-product-image-loader'
   if (isVertical) {
     return (
-      <ContentLoader height={500} width={500}>
-        <rect x="21.6" y="63" rx="0" ry="0" width="45" height="280" />
-        <rect x="73.6" y="63" rx="0" ry="0" width="316.52" height="280" />
-      </ContentLoader>
+      <div className="vtex-product-image mb7 mb0-ns flex inline-flex-ns w-100-s vtex-product-image__vertical">
+        <ContentLoader uniquekey={uniquekey} height={500} width={500}>
+          <rect x="21.6" y="0" rx="0" ry="0" width="45" height="280" />
+          <rect x="73.6" y="0" rx="0" ry="0" width="316.52" height="280" />
+        </ContentLoader>
+      </div>
     )
   }
 
   return (
-    <ContentLoader height={500} width={500}>
-      <rect x="85" y="310" rx="0" ry="0" width="316.52" height="44.56" />
-      <rect x="85" y="19" rx="0" ry="0" width="316.52" height="280.44" />
-    </ContentLoader>
+    <div className="vtex-product-image mb7 mb0-ns flex inline-flex-ns w-100-s vtex-product-image__horizontal flex-column-reverse">
+      <ContentLoader uniquekey={uniquekey} height={500} width={500}>
+        <rect x="85" y="310" rx="0" ry="0" width="316.52" height="44.56" />
+        <rect x="85" y="19" rx="0" ry="0" width="316.52" height="280.44" />
+      </ContentLoader>
+    </div>
   )
 }
 
@@ -141,8 +141,6 @@ ProductImages.propTypes = {
       imageText: PropTypes.string.isRequired,
     })
   ).isRequired,
-  /** Component is loading or not */
-  loading: PropTypes.bool.isRequired,
   /** Thumbnail Slider orientation */
   thumbnailSliderOrientation: PropTypes.oneOf([VERTICAL, HORIZONTAL]),
   /** Maximum number of visible items that should be displayed by the Thumbnail Slider at the same time */
