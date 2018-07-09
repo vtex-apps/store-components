@@ -27,6 +27,8 @@ class Header extends Component {
     intl: intlShape.isRequired,
   }
 
+  _root = React.createRef()
+
   componentDidMount() {
     this._timeouts = []
     document.addEventListener('message:error', this.handleError)
@@ -66,12 +68,12 @@ class Header extends Component {
   }
 
   handleScroll = () => {
-    if (!this._el) {
+    if (!this._root.current) {
       return
     }
 
     const scroll = window.scrollY
-    const { scrollHeight } = this._el
+    const { scrollHeight } = this._root.current
 
     if (scroll < scrollHeight && this.state.showMenuPopup) {
       this.setState({
@@ -88,13 +90,13 @@ class Header extends Component {
     const { account } = global.__RUNTIME__
     const { name, logoUrl, logoTitle } = this.props
     const { isAddToCart, hasError, showMenuPopup, error } = this.state
-    const offsetTop = (this._el && this._el.offsetTop) || 0
+
+    const offsetTop = (this._root.current && this._root.current.offsetTop) || 0
+
     return (
       <div
         className="vtex-header relative z-2 w-100 shadow-5"
-        ref={e => {
-          this._el = e
-        }}
+        ref={this._root}
       >
         <div className="z-2 items-center w-100 top-0 bg-white tl">
           <ExtensionPoint id="menu-link" />
