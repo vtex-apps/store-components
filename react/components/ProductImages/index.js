@@ -5,7 +5,6 @@ import ThumbnailSlider from './components/ThumbnailSlider'
 import SelectedImage from './components/SelectedImage'
 
 import VTEXClasses from './constants/productImagesClasses'
-import { NoSSR } from 'render'
 import { VERTICAL, HORIZONTAL } from './constants/orientation'
 
 import ContentLoader from 'react-content-loader'
@@ -49,14 +48,6 @@ class ProductImages extends Component {
     })
   }
 
-  renderLoader() {
-    const { thumbnailSliderOrientation } = this.props
-
-    const isVertical = thumbnailSliderOrientation === VERTICAL
-
-    return <ProductImages.Loader isVertical={isVertical} />
-  }
-
   render() {
     const {
       images,
@@ -84,24 +75,22 @@ class ProductImages extends Component {
     }
 
     return (
-      <NoSSR onSSR={this.renderLoader()}>
-        <div className={className}>
-          <div
-            className={
-              isVertical ? 'w-100-s w-20-ns flex justify-center' : 'w-100-s'
-            }
-          >
-            <ThumbnailSlider {...thumbnailProps} />
-          </div>
-          <div
-            className={
-              isVertical ? 'w-80-ns flex justify-center overflow-hidden' : null
-            }
-          >
-            <SelectedImage image={this.state.selectedImage} />
-          </div>
+      <div className={className}>
+        <div
+          className={
+            isVertical ? 'w-100-s w-20-ns flex justify-center' : 'w-100-s'
+          }
+        >
+          <ThumbnailSlider {...thumbnailProps} />
         </div>
-      </NoSSR>
+        <div
+          className={
+            isVertical ? 'w-80-ns flex justify-center overflow-hidden' : null
+          }
+        >
+          <SelectedImage image={this.state.selectedImage} />
+        </div>
+      </div>
     )
   }
 }
@@ -109,7 +98,7 @@ class ProductImages extends Component {
 ProductImages.Loader = props => {
   const { isVertical } = props
 
-  const uniquekey = 'vtex-product-image-loader'
+  const uniquekey = 'vtex-product-image'
   if (isVertical) {
     return (
       <div className="vtex-product-image mb7 mb0-ns flex inline-flex-ns w-100-s vtex-product-image__vertical">
