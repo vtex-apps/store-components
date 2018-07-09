@@ -8,7 +8,7 @@ const getModalRoot = () => {
   if (typeof _modalRoot === 'undefined') {
     _modalRoot = document.createElement('div')
     _modalRoot.classList.add('vtex-modal-root')
-    const container = document.getElementsByClassName('render-container')[0]
+    const container = document.querySelector('.render-container')
     container.appendChild(_modalRoot)
   }
 
