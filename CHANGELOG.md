@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Buy button support to add multiple sku items to the cart at the same time of `BuyButton`.
 
+## [1.7.3] - 2018-07-10
+### Changed
+- Define `Footer` schema props that are layout type. 
+
 ### Fixed
 - `TopMenu` display on mobile screen.
 
