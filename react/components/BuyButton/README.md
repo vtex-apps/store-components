@@ -27,7 +27,7 @@ You can use it in your code like a React component with the jsx tag: `<BuyButton
 
 | Prop name          | Type       | Description                                                                 |
 | ------------------ | ---------- | --------------------------------------------------------------------------- |
-| `id`               | `String!`  | Specification of which product will be added to the cart                    |
+| `skuId`            | `String!`  | Specification of which product will be added to the cart                    |
 | `quantity`         | `Number!`  | Quantity of the product sku to be added to the cart                         |
 | `seller`           | `Number!`  | Which seller is being referenced by the button                              |
 

@@ -44,13 +44,13 @@ export class BuyButton extends Component {
 
   handleAddToCart = client => {
     const { skuItems, isOneClickBuy } = this.props
-    
+
     const variables = { 
       items: skuItems.map(skuItem => {
-        const { id, quantity, seller } = skuItem;
+        const { skuId, quantity, seller } = skuItem;
         return {
-          id: parseInt(id),
-          index: 1, 
+          id: parseInt(skuId),
+          index: 1,
           quantity,
           seller,
         }
@@ -85,7 +85,9 @@ export class BuyButton extends Component {
             .then(
               mutationRes => {
                 const { items } = mutationRes.data.addItem
-                const success = find(items, { id: skuId })
+                const success = skuItems.map(skuItem => (
+                  find(items, { id: skuItem.skuId })
+                ))
                 this.toastMessage(success)
               },
               mutationErr => {
@@ -127,7 +129,7 @@ BuyButton.propTypes = {
   skuItems: PropTypes.arrayOf(
     PropTypes.shape({
       /** Specification of which product will be added to the cart */
-      id: PropTypes.string.isRequired,
+      skuId: PropTypes.string.isRequired,
       /** Quantity of the product sku to be added to the cart */
       quantity: PropTypes.number.isRequired,
       /** Which seller is being referenced by the button */
