@@ -129,9 +129,9 @@ BuyButton.propTypes = {
       /** Specification of which product will be added to the cart */
       id: PropTypes.string.isRequired,
       /** Quantity of the product sku to be added to the cart */
-      quantity: PropTypes.number,
+      quantity: PropTypes.number.isRequired,
       /** Which seller is being referenced by the button */
-      seller: PropTypes.number,
+      seller: PropTypes.number.isRequired,
     }),
   ).isRequired,
   /** Component children that will be displayed inside of the button **/
