@@ -243,11 +243,13 @@ export default class Footer extends Component {
           type: 'boolean',
           title: 'editor.footer.showPaymentFormsInColor.title',
           default: false,
+          isLayout: true,
         },
         showSocialNetworksInColor: {
           type: 'boolean',
           title: 'editor.footer.showSocialNetworksInColor.title',
           default: false,
+          isLayout: true,
         },
         ...socialNetworksSchema,
         ...sectionLinksSchema,
