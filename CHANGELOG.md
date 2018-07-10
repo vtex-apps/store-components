@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Buy button support to add multiple sku items to the cart at the same time.
+- Buy button support to add multiple sku items to the cart at the same time of `BuyButton`.
 
 ### Fixed
 - `TopMenu` display on mobile screen.
