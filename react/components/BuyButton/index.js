@@ -16,13 +16,12 @@ const CONSTANTS = {
 }
 
 /**
- * BuyButton Component. Adds a list of items to the cart.
+ * BuyButton Component. 
+ * Adds a list of sku items to the cart.
  */
 export class BuyButton extends Component {
   static defaultProps = {
     isOneClickBuy: false,
-    quantity: 1,
-    seller: 1,
   }
 
   state = {
@@ -44,17 +43,18 @@ export class BuyButton extends Component {
   }
 
   handleAddToCart = client => {
-    const { quantity, seller, skuId, isOneClickBuy } = this.props
+    const { skuItems, isOneClickBuy } = this.props
 
-    const variables = {
-      items: [
-        {
+    const variables = { 
+      items: skuItems.map(skuItem => {
+        const { skuId, quantity, seller } = skuItem;
+        return {
           id: parseInt(skuId),
           index: 1,
           quantity,
           seller,
-        },
-      ],
+        }
+      })  
     }
 
     this.setState({ isLoading: true })
@@ -85,7 +85,9 @@ export class BuyButton extends Component {
             .then(
               mutationRes => {
                 const { items } = mutationRes.data.addItem
-                const success = find(items, { id: skuId })
+                const success = skuItems.map(skuItem => (
+                  find(items, { id: skuItem.skuId })
+                ))
                 this.toastMessage(success)
               },
               mutationErr => {
@@ -123,14 +125,19 @@ export class BuyButton extends Component {
 }
 
 BuyButton.propTypes = {
-  /** Specification of which product will be added to the cart */
-  skuId: PropTypes.string.isRequired,
+  /** SKU Items to be added to the cart */
+  skuItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      /** Specification of which product will be added to the cart */
+      skuId: PropTypes.string.isRequired,
+      /** Quantity of the product sku to be added to the cart */
+      quantity: PropTypes.number.isRequired,
+      /** Which seller is being referenced by the button */
+      seller: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
   /** Component children that will be displayed inside of the button **/
   children: PropTypes.PropTypes.node.isRequired,
-  /** Quantity of the product sku to be added to the cart */
-  quantity: PropTypes.number,
-  /** Which seller is being referenced by the button */
-  seller: PropTypes.number,
   /** Should redirect to checkout after adding to cart */
   isOneClickBuy: PropTypes.bool,
   /* Internationalization */
