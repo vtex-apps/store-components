@@ -101,14 +101,14 @@ class Header extends Component {
         <div className="z-2 items-center w-100 top-0 bg-white tl">
           <ExtensionPoint id="menu-link" />
         </div>
-        <TopMenu 
+        <TopMenu
           logoUrl={logoUrl}
           logoTitle={logoTitle}
         />
         <ExtensionPoint id="category-menu" />
         {showMenuPopup && (
           <Modal>
-            <TopMenu 
+            <TopMenu
               logoUrl={logoUrl}
               logoTitle={logoTitle}
               offsetTop={offsetTop}
