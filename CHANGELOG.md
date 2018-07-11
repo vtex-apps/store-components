@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Migrate the `Footer` schema to use the `type: "array"`.
+- `MiniCart` position into the `Header`.
 
 ## [1.8.0] - 2018-07-10
 ### Added
