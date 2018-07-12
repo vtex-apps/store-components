@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - `Slider` adaptToScreen function.
+- Documentation of `BuyButton`.
+
+### Changed
+- Migrate the `Footer` schema to use the `type: "array"`.
 
 ## [1.8.0] - 2018-07-10
 ### Added
