@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Slider from 'react-slick'
+import ReactResizeDetector from 'react-resize-detector'
 
 import Dots from './components/Dots'
 import Arrow from './components/Arrow'
@@ -37,9 +38,10 @@ export default class SlickSlider extends Component {
   }
 
   componentDidMount() {
-    this._timeout = setTimeout(() => {
+    this._timeout = setTimeout(() => {  
       this.forceUpdate()
     }, 50)
+    
     if (this.props.adaptToScreen) {
       window.addEventListener('resize', this.resizeListener)
     }
@@ -52,9 +54,9 @@ export default class SlickSlider extends Component {
     }
   }
 
-  get settings() {
+  getSettings(slideWidth) {
     const { sliderSettings, adaptToScreen, scrollByPage, defaultItemWidth, children } = this.props
-    const itemsPerPage = getItemsPerPage(this._slick, defaultItemWidth, sliderSettings.slidesToShow)
+    const itemsPerPage = getItemsPerPage(this._slick, slideWidth, defaultItemWidth, sliderSettings.slidesToShow)
     const settings = { ...sliderSettings }
     const numItems = children.length
 
@@ -77,9 +79,12 @@ export default class SlickSlider extends Component {
 
   render() {
     return (
-      <Slider {...this.settings} ref={c => { this._slick = c }}>
-        {this.props.children}
-      </Slider>
+      <ReactResizeDetector handleWidth>
+        {(width) => 
+        <Slider {...this.getSettings(width)} ref={c => { this._slick = c }}>
+          {this.props.children}
+        </Slider>}
+      </ReactResizeDetector>
     )
   }
 }
