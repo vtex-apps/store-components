@@ -34,7 +34,7 @@ export default class SlickSlider extends Component {
   }
 
   componentDidMount() {
-    this._timeout = setTimeout(() => {  
+    this._timeout = setTimeout(() => {
       this.forceUpdate()
     }, 50)
   }
