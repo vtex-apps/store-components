@@ -33,25 +33,14 @@ export default class SlickSlider extends Component {
     scrollByPage: PropTypes.bool,
   }
 
-  resizeListener = () => {
-    this.forceUpdate()
-  }
-
   componentDidMount() {
     this._timeout = setTimeout(() => {  
       this.forceUpdate()
     }, 50)
-    
-    if (this.props.adaptToScreen) {
-      window.addEventListener('resize', this.resizeListener)
-    }
   }
 
   componentWillUnmount() {
     clearTimeout(this._timeout)
-    if (this.props.adaptToScreen) {
-      window.removeEventListener('resize', this.resizeListener)
-    }
   }
 
   getSettings(slideWidth) {
