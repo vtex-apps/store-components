@@ -1,9 +1,5 @@
 import get from 'lodash.get'
 
-function getSlideListWidth(slick) {
-  return slick && slick.innerSlider && slick.innerSlider.list.clientWidth
-}
-
 function getItemWidth(slick) {
   const slidesNodeList = get(slick, 'innerSlider.list.childNodes[0].childNodes')
   let itemWidth = null
@@ -24,11 +20,10 @@ function getItemWidth(slick) {
 /**
  * Returns the correct number of items to be inside the slider without reduce the item width.
  */
-export default function getItemsPerPage(slick, defaultItemWidth, actualItemsPerPage) {
-  const slideListWidth = getSlideListWidth(slick)
-  if (slideListWidth) {
+export default function getItemsPerPage(slick, slideWidth, defaultItemWidth, actualItemsPerPage) {
+  if (slideWidth) {
     const shelfItemWidth = getItemWidth(slick) || defaultItemWidth
-    const maxItemsPerPage = Math.floor(slideListWidth / shelfItemWidth)
+    const maxItemsPerPage = Math.floor(slideWidth / shelfItemWidth)
     if (actualItemsPerPage >= maxItemsPerPage) {
       return maxItemsPerPage || 1
     }
