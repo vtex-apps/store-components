@@ -7,6 +7,8 @@ import SelectedImage from './components/SelectedImage'
 import VTEXClasses from './constants/productImagesClasses'
 import { VERTICAL, HORIZONTAL } from './constants/orientation'
 
+import ContentLoader from 'react-content-loader'
+
 import './global.css'
 
 const DEFAULT_SELECTED_IMAGE = 0
@@ -33,6 +35,8 @@ class ProductImages extends Component {
         firstImageId: nextProps.images[DEFAULT_SELECTED_IMAGE].imageId,
       }
     }
+
+    return null
   }
 
   /**
@@ -58,10 +62,13 @@ class ProductImages extends Component {
       maxVisibleItems: thumbnailMaxVisibleItems,
     }
 
+    const isVertical = thumbnailSliderOrientation === VERTICAL
+
     let className = `${
       VTEXClasses.MAIN_CLASS
     } mb7 mb0-ns flex inline-flex-ns w-100-s`
-    if (thumbnailSliderOrientation === VERTICAL) {
+
+    if (isVertical) {
       className += ` ${VTEXClasses.VERTICAL_COMPONENT}`
     } else {
       className += ` ${VTEXClasses.HORIZONTAL_COMPONENT} flex-column-reverse`
@@ -71,18 +78,14 @@ class ProductImages extends Component {
       <div className={className}>
         <div
           className={
-            thumbnailSliderOrientation === VERTICAL
-              ? 'w-100-s w-20-ns flex justify-center'
-              : 'w-100-s'
+            isVertical ? 'w-100-s w-20-ns flex justify-center' : 'w-100-s'
           }
         >
           <ThumbnailSlider {...thumbnailProps} />
         </div>
         <div
           className={
-            thumbnailSliderOrientation === VERTICAL
-              ? 'w-80-ns flex justify-center overflow-hidden'
-              : null
+            isVertical ? 'w-80-ns flex justify-center overflow-hidden' : null
           }
         >
           <SelectedImage image={this.state.selectedImage} />
@@ -90,6 +93,41 @@ class ProductImages extends Component {
       </div>
     )
   }
+}
+
+ProductImages.Loader = props => {
+  const { isVertical } = props
+
+  const uniquekey = 'vtex-product-image-loader'
+  if (isVertical) {
+    return (
+      <div
+        className="vtex-product-image mb7 mb0-ns flex inline-flex-ns w-100-s vtex-product-image__vertical"
+        style={{ maxWidth: '600px' }}
+      >
+        <div className="w-100">
+          <ContentLoader uniquekey={uniquekey} height={500} width={500}>
+            <rect x="21.6" y="0" rx="0" ry="0" width="45" height="280" />
+            <rect x="73.6" y="0" rx="0" ry="0" width="316.52" height="280" />
+          </ContentLoader>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div
+      className="vtex-product-image mb7 mb0-ns flex inline-flex-ns w-100-s vtex-product-image__horizontal flex-column-reverse"
+      style={{ maxWidth: '600px' }}
+    >
+      <div className="w-100">
+        <ContentLoader uniquekey={uniquekey} height={500} width={500}>
+          <rect x="85" y="310" rx="0" ry="0" width="316.52" height="44.56" />
+          <rect x="85" y="19" rx="0" ry="0" width="316.52" height="280.44" />
+        </ContentLoader>
+      </div>
+    </div>
+  )
 }
 
 ProductImages.propTypes = {
