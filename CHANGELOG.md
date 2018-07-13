@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Component loader on `ProductImages`
 
+## [1.8.1] - 2018-07-13
+### Fixed
+- `Slider` adaptToScreen function.
+- Documentation of `BuyButton`.
+
+### Changed
+- Migrate the `Footer` schema to use the `type: "array"`.
+- `MiniCart` position into the `Header`.
+
+## [1.8.0] - 2018-07-10
+### Added
+- Buy button support to add multiple sku items to the cart at the same time of `BuyButton`.
+
+## [1.7.3] - 2018-07-10
+### Changed
+- Define `Footer` schema props that are layout type. 
+
 ### Fixed
 - `TopMenu` display on mobile screen.
 

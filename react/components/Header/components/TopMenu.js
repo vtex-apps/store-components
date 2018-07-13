@@ -20,7 +20,7 @@ const TopMenu = ({ logoUrl, logoTitle, intl, fixed, offsetTop }) => {
   return (
     <div
       className={classes}
-      style={offsetTop ? {top: `${offsetTop}px`} : null}
+      style={offsetTop ? { top: `${offsetTop}px` } : null}
     >
       <div className="vtex-top-menu__logo">
         <Link className="link b f3 near-black tc tl-ns serious-black" to="/">
@@ -36,9 +36,9 @@ const TopMenu = ({ logoUrl, logoTitle, intl, fixed, offsetTop }) => {
           emptyPlaceholder={translate('search-emptyPlaceholder')}
         />
       </div>
-      <div className="vtex-top-menu__icons">
-        <ExtensionPoint id="minicart" />
+      <div className="vtex-top-menu__icons flex">
         <ExtensionPoint id="login" />
+        <ExtensionPoint id="minicart" />
       </div>
     </div>
   )

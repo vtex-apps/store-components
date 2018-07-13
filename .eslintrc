@@ -1,6 +1,10 @@
 {
   "parser": "babel-eslint",
-  "extends": ["vtex", "vtex-react", "plugin:import/recommended"],
+  "extends": [
+    "vtex",
+    "vtex-react",
+    "plugin:import/recommended"
+  ],
   "plugins": ["import"],
   "rules": {
     "import/no-unresolved": [
@@ -15,8 +19,7 @@
   "env": {
     "browser": true,
     "node": true,
-    "mocha": true,
-    "jest": true
+    "mocha": true
   },
   "globals": {
     "__DEV__": true

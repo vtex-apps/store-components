@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { indexBy, prop, map, range, values } from 'ramda'
 
 import FooterLinkList from './components/FooterLinkList'
 import FooterBadgeList from './components/FooterBadgeList'
@@ -16,67 +15,6 @@ import VTEXIcon from './images/VTEX-BW.svg'
 
 import './global.css'
 
-const linkSchema = {
-  type: 'object',
-  properties: {
-    url: {
-      type: 'string',
-      title: 'editor.footer.link.url.title',
-    },
-    title: {
-      type: 'string',
-      title: 'editor.footer.link.title.title',
-    },
-  },
-}
-
-const badgeSchema = {
-  type: 'object',
-  properties: {
-    image: {
-      type: 'string',
-      title: 'editor.footer.badge.image.title',
-    },
-  },
-}
-
-const socialNetworkSchema = {
-  type: 'object',
-  properties: {
-    url: {
-      type: 'string',
-      title: 'editor.footer.socialNetworks.url.title',
-    },
-    socialNetwork: {
-      title: 'editor.footer.socialNetworks.title',
-      type: 'string',
-      default: 'Facebook',
-      enum: [
-        'Facebook',
-        'Twitter',
-        'Instagram',
-        'Youtube',
-      ],
-    },
-  },
-}
-
-const paymentFormSchema = {
-  type: 'object',
-  properties: {
-    paymentType: {
-      title: 'editor.footer.paymentForm.paymentType.title',
-      type: 'string',
-      default: 'MasterCard',
-      enum: [
-        'MasterCard',
-        'Visa',
-        'Diners Club',
-      ],
-    },
-  },
-}
-
 /**
  * Footer component that appears in the bottom of every page.
  * Can be configured by the pages editor.
@@ -85,7 +23,7 @@ export default class Footer extends Component {
   static displayName = 'Footer'
 
   static propTypes = {
-    socialNetworkLinks: objectLikeLinkArray,
+    socialNetworks: objectLikeLinkArray,
     sectionLinks: objectLikeLinkArray,
     moreInformationLinks: objectLikeLinkArray,
     badges: objectLikeBadgeArray,
@@ -100,170 +38,141 @@ export default class Footer extends Component {
     showSocialNetworksInColor: false,
   }
 
-  static getSchema = ({
-    numberOfSocialNetworks,
-    numberOfSectionLinks,
-    numberOfMoreInformationLinks,
-    numberOfBadges,
-    numberOfPaymentForms,
-  }) => {
-    const generateDynamicSchema = (
-      schema,
-      quantity,
-      propName,
-      prefix,
-      title,
-      itemTitle,
-    ) =>
-      quantity && {
-        [propName]: {
-          title,
+  static schema = {
+    title: 'editor.footer.title',
+    description: 'editor.footer.description',
+    type: 'object',
+    properties: {
+      logo: {
+        type: 'string',
+        title: 'editor.footer.logoUrl.title',
+      },
+      showPaymentFormsInColor: {
+        type: 'boolean',
+        title: 'editor.footer.showPaymentFormsInColor.title',
+        default: false,
+        isLayout: true,
+      },
+      showSocialNetworksInColor: {
+        type: 'boolean',
+        title: 'editor.footer.showSocialNetworksInColor.title',
+        default: false,
+        isLayout: true,
+      },
+      socialNetworks: {
+        title: 'editor.footer.socialNetworks',
+        type: 'array',
+        minItems: 1,
+        maxItems: 4,
+        items: {
+          title: 'editor.footer.socialNetworks.title',
           type: 'object',
           properties: {
-            ...indexBy(
-              prop('key'),
-              map(
-                index => ({
-                  ...schema,
-                  key: `${prefix}${index}`,
-                  title: { id: itemTitle, values: { id: index + 1 } },
-                }),
-                range(0, quantity)
-              )
-            ),
+            url: {
+              type: 'string',
+              title: 'editor.footer.socialNetworks.url.title',
+            },
+            socialNetwork: {
+              title: 'editor.footer.socialNetworks.title',
+              type: 'string',
+              default: 'Facebook',
+              enum: [
+                'Facebook',
+                'Twitter',
+                'Instagram',
+                'Youtube',
+              ],
+            },
           },
         },
-      }
-
-    const socialNetworksSchema = generateDynamicSchema(
-      socialNetworkSchema,
-      numberOfSocialNetworks,
-      'socialNetworkLinks',
-      'socialNetworks',
-      'editor.footer.socialNetworks',
-      'editor.footer.socialNetworks.socialNetwork.title'
-    )
-
-    const sectionLinksSchema = generateDynamicSchema(
-      linkSchema,
-      numberOfSectionLinks,
-      'sectionLinks',
-      'link',
-      'editor.footer.link',
-      'editor.footer.link.title'
-    )
-
-    const moreInformationLinksSchema = generateDynamicSchema(
-      linkSchema,
-      numberOfMoreInformationLinks,
-      'moreInformationLinks',
-      'moreInformationLink',
-      'editor.footer.moreInformationLink',
-      'editor.footer.moreInformationLink.title'
-    )
-
-    const badgesSchema = generateDynamicSchema(
-      badgeSchema,
-      numberOfBadges,
-      'badges',
-      'badge',
-      'editor.footer.badge',
-      'editor.footer.badge.title'
-    )
-
-    const paymentFormsSchema = generateDynamicSchema(
-      paymentFormSchema,
-      numberOfPaymentForms,
-      'paymentForms',
-      'paymentForm',
-      'editor.footer.paymentForms',
-      'editor.footer.paymentForm.title'
-    )
-
-    return {
-      title: 'editor.footer.title',
-      description: 'editor.footer.description',
-      type: 'object',
-      properties: {
-        logo: {
-          type: 'string',
-          title: 'editor.footer.logoUrl.title',
-        },
-        numberOfSocialNetworks: {
-          type: 'number',
-          title: 'editor.footer.numberOfSocialNetworks.title',
-          minimum: 0,
-          maximum: 10,
-          default: 0,
-          widget: {
-            'ui:widget': 'range',
-          },
-        },
-        numberOfSectionLinks: {
-          type: 'number',
-          title: 'editor.footer.numberOfSectionLinks.title',
-          minimum: 0,
-          maximum: 10,
-          default: 0,
-          widget: {
-            'ui:widget': 'range',
-          },
-        },
-        numberOfMoreInformationLinks: {
-          type: 'number',
-          title: 'editor.footer.numberOfMoreInformationLinks.title',
-          minimum: 0,
-          maximum: 10,
-          default: 0,
-          widget: {
-            'ui:widget': 'range',
-          },
-        },
-        numberOfBadges: {
-          type: 'number',
-          title: 'editor.footer.numberOfBadges.title',
-          minimum: 0,
-          maximum: 10,
-          default: 0,
-          widget: {
-            'ui:widget': 'range',
-          },
-        },
-        numberOfPaymentForms: {
-          type: 'number',
-          title: 'editor.footer.numberOfPaymentForms.title',
-          minimum: 0,
-          maximum: 10,
-          default: 0,
-          widget: {
-            'ui:widget': 'range',
-          },
-        },
-        showPaymentFormsInColor: {
-          type: 'boolean',
-          title: 'editor.footer.showPaymentFormsInColor.title',
-          default: false,
-        },
-        showSocialNetworksInColor: {
-          type: 'boolean',
-          title: 'editor.footer.showSocialNetworksInColor.title',
-          default: false,
-        },
-        ...socialNetworksSchema,
-        ...sectionLinksSchema,
-        ...moreInformationLinksSchema,
-        ...badgesSchema,
-        ...paymentFormsSchema,
       },
-    }
+      sectionLinks: {
+        title: 'editor.footer.link',
+        type: 'array',
+        minItems: 1,
+        maxItems: 10,
+        items: {
+          title: 'editor.footer.link.title',
+          type: 'object',
+          properties: {
+            url: {
+              type: 'string',
+              title: 'editor.footer.link.url.title',
+            },
+            title: {
+              type: 'string',
+              title: 'editor.footer.link.title.title',
+            },
+          },
+        },
+      },
+      badges: {
+        title: 'editor.footer.badge',
+        type: 'array',
+        items: {
+          title: 'editor.footer.badge.title',
+          type: 'object',
+          properties: {
+            image: {
+              type: 'string',
+              title: 'editor.footer.badge.image.title',
+            },
+          },
+        },
+      },
+      moreInformationLinks: {
+        title: 'editor.footer.moreInformationLink',
+        type: 'array',
+        items: {
+          title: 'editor.footer.moreInformationLink.title',
+          type: 'object',
+          properties: {
+            url: {
+              type: 'string',
+              title: 'editor.footer.link.url.title',
+            },
+            title: {
+              type: 'string',
+              title: 'editor.footer.link.title.title',
+            },
+          },
+        },
+      },
+      paymentForms: {
+        title: 'editor.footer.paymentForms',
+        type: 'array',
+        minItems: 1,
+        maxItems: 3,
+        items: {
+          title: 'editor.footer.paymentForms.title',
+          type: 'object',
+          properties: {
+            paymentType: {
+              title: 'editor.footer.paymentForm.paymentType.title',
+              type: 'string',
+              default: 'MasterCard',
+              enum: [
+                'MasterCard',
+                'Visa',
+                'Diners Club',
+              ],
+            },
+          },
+        },
+      },
+    },
   }
 
   render() {
-    const { showPaymentFormsInColor, showSocialNetworksInColor, logo } = this.props
-    const socialNetworkLinks = values(this.props.socialNetworkLinks)
-    const sectionLinks = values(this.props.sectionLinks)
-    const paymentForms = values(this.props.paymentForms)
-    const badges = values(this.props.badges)
+    const {
+      showPaymentFormsInColor,
+      showSocialNetworksInColor,
+      logo,
+      sectionLinks,
+      socialNetworks,
+      paymentForms,
+      badges,
+    } = this.props
 
     return (
       <footer className="vtex-footer">
@@ -271,7 +180,7 @@ export default class Footer extends Component {
           <FooterLinkList titleId="section-links" list={sectionLinks} />
           <FooterSocialNetworkList
             titleId="social-networks"
-            list={socialNetworkLinks}
+            list={socialNetworks}
             horizontal
             alignRight
             showInColor={showSocialNetworksInColor}
