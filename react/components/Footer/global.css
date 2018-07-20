@@ -183,3 +183,12 @@
   }
 }
 
+.vtex-store__template > div {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.vtex-store__template > div > div:last-child {
+  margin-top: auto; 
+}
