@@ -16,13 +16,15 @@ class ThumbnailItem extends Component {
     this.props.onClick(this.props.image)
   }
 
+  stripUrl = url => url.replace(/^https?:/, '')
+
   render() {
     const { imageUrl } = this.props.image
 
     return (
       <div
         className="vtex-product-image__thumbnail-slider-item pointer"
-        style={{ backgroundImage: `url(${imageUrl})` }}
+        style={{ backgroundImage: `url(${this.stripUrl(imageUrl)})` }}
         onClick={this.handleClick}
       />
     )
