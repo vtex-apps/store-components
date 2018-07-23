@@ -41,6 +41,8 @@ export default class SKUSelector extends Component {
     return maxPrice
   }
 
+  stripUrl = url => url.replace(/^https?:/, '')
+
   render() {
     const skuItems = this.props.skuItems
 
@@ -63,7 +65,7 @@ export default class SKUSelector extends Component {
                 maxPrice={maxSkuPrice}
                 price={skuItem.sellers[0].commertialOffer.Price}>
                 <img
-                  src={skuItem.images[FIRST_INDEX].imageUrl}
+                  src={this.stripUrl(skuItem.images[FIRST_INDEX].imageUrl)}
                   alt={skuItem.images[FIRST_INDEX].imageLabel}
                 />
               </SelectorItem>
