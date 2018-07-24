@@ -10,14 +10,13 @@
   },
   "mustUpdateAt": "2019-04-02",
   "categories": [],
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "settingsSchema": {},
   "scripts": {
     "postreleasy": "vtex publish --verbose"
   },
   "dependencies": {
+    "vtex.store": "1.x",
     "vtex.store-graphql": "2.x",
     "vtex.styleguide": "4.x"
   }

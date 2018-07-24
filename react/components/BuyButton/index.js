@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { ApolloConsumer } from 'react-apollo'
 import find from 'lodash/find'
-import Button from '@vtex/styleguide/lib/Button'
+import { Button } from 'vtex.styleguide'
 import { injectIntl, intlShape } from 'react-intl'
+import { orderFormConsumer } from 'vtex.store/OrderFormContext'
 
 import ADD_TO_CART_MUTATION from './mutations/addToCartMutation.gql'
-import ORDER_FORM_QUERY from './queries/orderFormQuery.gql'
 
 const CONSTANTS = {
   EVENT_SUCCESS: 'item:add',
@@ -16,7 +16,7 @@ const CONSTANTS = {
 }
 
 /**
- * BuyButton Component. 
+ * BuyButton Component.
  * Adds a list of sku items to the cart.
  */
 export class BuyButton extends Component {
@@ -31,7 +31,9 @@ export class BuyButton extends Component {
   translateMessage = id => this.props.intl.formatMessage({ id: id })
 
   toastMessage = (success, err) => {
-    const event = new Event(success ? CONSTANTS.EVENT_SUCCESS : CONSTANTS.EVENT_ERROR)
+    const event = new Event(
+      success ? CONSTANTS.EVENT_SUCCESS : CONSTANTS.EVENT_ERROR
+    )
     event.detail = {
       success,
       message: success ? '' : this.translateMessage(CONSTANTS.ERROR_MESSAGE_ID),
@@ -43,60 +45,43 @@ export class BuyButton extends Component {
   }
 
   handleAddToCart = client => {
-    const { skuItems, isOneClickBuy } = this.props
+    const { skuItems, isOneClickBuy, orderFormData } = this.props
 
-    const variables = { 
+    const variables = {
       items: skuItems.map(skuItem => {
-        const { skuId, quantity, seller } = skuItem;
+        const { skuId, quantity, seller } = skuItem
         return {
           id: parseInt(skuId),
           index: 1,
           quantity,
           seller,
         }
-      })  
+      }),
     }
 
     this.setState({ isLoading: true })
 
+    variables.orderFormId = orderFormData.orderForm.orderFormId
+
+    if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
+
     client
-      .query({
-        query: ORDER_FORM_QUERY,
+      .mutate({
+        mutation: ADD_TO_CART_MUTATION,
+        variables,
       })
       .then(
-        queryRes => {
-          const {
-            data: {
-              orderForm: { orderFormId },
-            },
-          } = queryRes
+        mutationRes => {
+          const { items } = mutationRes.data.addItem
+          const success = skuItems.map(skuItem =>
+            find(items, { id: skuItem.skuId })
+          )
 
-          variables.orderFormId = orderFormId
-
-          if (isOneClickBuy) {
-            location.assign(CONSTANTS.CHECKOUT_URL)
-          }
-
-          client
-            .mutate({
-              mutation: ADD_TO_CART_MUTATION,
-              variables,
-            })
-            .then(
-              mutationRes => {
-                const { items } = mutationRes.data.addItem
-                const success = skuItems.map(skuItem => (
-                  find(items, { id: skuItem.skuId })
-                ))
-                this.toastMessage(success)
-              },
-              mutationErr => {
-                this.toastMessage(false, mutationErr)
-              }
-            )
+          orderFormData.refetch()
+          this.toastMessage(success)
         },
-        queryErr => {
-          this.toastMessage(false, queryErr)
+        mutationErr => {
+          this.toastMessage(false, mutationErr)
         }
       )
   }
@@ -113,10 +98,10 @@ export class BuyButton extends Component {
                 {this.props.children}
               </Button>
             ) : (
-                <Button primary onClick={() => this.handleAddToCart(client)}>
-                  {this.props.children}
-                </Button>
-              )}
+              <Button primary onClick={() => this.handleAddToCart(client)}>
+                {this.props.children}
+              </Button>
+            )}
           </div>
         )}
       </ApolloConsumer>
@@ -134,7 +119,7 @@ BuyButton.propTypes = {
       quantity: PropTypes.number.isRequired,
       /** Which seller is being referenced by the button */
       seller: PropTypes.number.isRequired,
-    }),
+    })
   ).isRequired,
   /** Component children that will be displayed inside of the button **/
   children: PropTypes.PropTypes.node.isRequired,
@@ -144,4 +129,4 @@ BuyButton.propTypes = {
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(BuyButton)
+export default orderFormConsumer(injectIntl(BuyButton))
