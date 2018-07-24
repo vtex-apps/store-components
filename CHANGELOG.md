@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - `ProductPrice` propTypes, removed warning from console.
+- `Footer` positioned always at the bottom of the page.
+- ImageUrl warning in `SKUSelector` and `ProductImages`.
 
 ## [1.8.2] - 2018-07-18
 ### Changed
