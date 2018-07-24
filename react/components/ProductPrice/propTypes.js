@@ -5,7 +5,7 @@ export default {
   /** Product selling price */
   sellingPrice: PropTypes.number.isRequired,
   /** Product list price */
-  listPrice: PropTypes.number.isRequired,
+  listPrice: PropTypes.number,
   /** Set visibility of list price */
   showListPrice: PropTypes.bool.isRequired,
   /** Set visibility of labels */
