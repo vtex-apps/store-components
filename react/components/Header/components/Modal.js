@@ -20,11 +20,9 @@ class Modal extends Component {
     children: PropTypes.node,
   }
 
-  constructor(props) {
-    super(props)
-    this.el = document.createElement('div')
-    this.modalRoot = getModalRoot()
-  }
+  el = document.createElement('div')
+
+  modalRoot = getModalRoot()
 
   componentDidMount() {
     this.modalRoot.appendChild(this.el)
