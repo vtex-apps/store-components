@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { ApolloConsumer } from 'react-apollo'
 import find from 'lodash/find'
 import { Button } from 'vtex.styleguide'
 import { injectIntl, intlShape } from 'react-intl'
-import { orderFormConsumer } from 'vtex.store/OrderFormContext'
-
-import ADD_TO_CART_MUTATION from './mutations/addToCartMutation.gql'
+import {
+  orderFormConsumer,
+  contextPropTypes,
+} from 'vtex.store/OrderFormContext'
 
 const CONSTANTS = {
   EVENT_SUCCESS: 'item:add',
@@ -44,8 +44,8 @@ export class BuyButton extends Component {
     this.setState({ isLoading: false })
   }
 
-  handleAddToCart = client => {
-    const { skuItems, isOneClickBuy, orderFormData } = this.props
+  handleAddToCart = () => {
+    const { skuItems, isOneClickBuy, orderFormContext } = this.props
 
     const variables = {
       items: skuItems.map(skuItem => {
@@ -61,13 +61,12 @@ export class BuyButton extends Component {
 
     this.setState({ isLoading: true })
 
-    variables.orderFormId = orderFormData.orderForm.orderFormId
+    variables.orderFormId = orderFormContext.orderForm.orderFormId
 
     if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
 
-    client
-      .mutate({
-        mutation: ADD_TO_CART_MUTATION,
+    orderFormContext
+      .updateOrderForm({
         variables,
       })
       .then(
@@ -77,7 +76,7 @@ export class BuyButton extends Component {
             find(items, { id: skuItem.skuId })
           )
 
-          orderFormData.refetch()
+          orderFormContext.refetch()
           this.toastMessage(success)
         },
         mutationErr => {
@@ -90,21 +89,17 @@ export class BuyButton extends Component {
     const { isLoading } = this.state
 
     return (
-      <ApolloConsumer>
-        {client => (
-          <div>
-            {isLoading ? (
-              <Button disabled isLoading={isLoading}>
-                {this.props.children}
-              </Button>
-            ) : (
-              <Button primary onClick={() => this.handleAddToCart(client)}>
-                {this.props.children}
-              </Button>
-            )}
-          </div>
+      <Fragment>
+        {isLoading ? (
+          <Button disabled isLoading={isLoading}>
+            {this.props.children}
+          </Button>
+        ) : (
+          <Button primary onClick={() => this.handleAddToCart()}>
+            {this.props.children}
+          </Button>
         )}
-      </ApolloConsumer>
+      </Fragment>
     )
   }
 }
@@ -121,6 +116,8 @@ BuyButton.propTypes = {
       seller: PropTypes.number.isRequired,
     })
   ).isRequired,
+  /** Context used to call the add to cart mutation and retrieve the orderFormId **/
+  orderFormContext: contextPropTypes,
   /** Component children that will be displayed inside of the button **/
   children: PropTypes.PropTypes.node.isRequired,
   /** Should redirect to checkout after adding to cart */
