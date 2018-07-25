@@ -34,6 +34,8 @@ class Header extends Component {
     document.addEventListener('message:error', this.handleError)
     document.addEventListener('item:add', this.handleItemAdd)
     document.addEventListener('scroll', this.handleScroll)
+
+    this.handleScroll()
   }
 
   componentWillUnmount() {
@@ -87,8 +89,7 @@ class Header extends Component {
   }
 
   render() {
-    const { account } = global.__RUNTIME__
-    const { name, logoUrl, logoTitle } = this.props
+    const { logoUrl, logoTitle } = this.props
     const { isAddToCart, hasError, showMenuPopup, error } = this.state
 
     const offsetTop = (this._root.current && this._root.current.offsetTop) || 0
