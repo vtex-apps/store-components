@@ -25,7 +25,7 @@ class AvailabilitySubscriber extends Component {
     intl: intlShape.isRequired,
   }
 
-  validateEmail = (email) => {
+  validateEmail = email => {
     const { emailError } = this.state
 
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -98,10 +98,10 @@ class AvailabilitySubscriber extends Component {
 
     return (
       <div className="vtex-availability-subscriber">
-        <div className="vtex-availability-subcriber__title">
+        <div className="vtex-availability-subcriber__title f5">
           {this.translate('availability-subscriber.title')}
         </div>
-        <div className="vtex-availability-subscriber__subscribe-label">
+        <div className="vtex-availability-subscriber__subscribe-label f6">
           {this.translate('availability-subscriber.subscribe-label')}
         </div>
         <form>
