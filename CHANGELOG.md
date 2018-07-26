@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Top menu not being rendered as an overlay on scroll down.
 
+### Changed
+- Use tachyons classes in `AvailabilitySubscriber`.
+
 ## [1.9.0] - 2018-07-26
 ### Added
 - SSR to Slider component.
