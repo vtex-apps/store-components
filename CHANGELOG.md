@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed graphql queries from `BuyButton`
 - Added `OrderFormContext` to update the minicart on `BuyButton` 
 
+## [1.8.3] - 2018-07-25
 ### Fixed
 - `ProductPrice` propTypes, removed warning from console.
 - `Footer` positioned always at the bottom of the page.
