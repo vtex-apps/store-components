@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Slider from 'react-slick'
 import ReactResizeDetector from 'react-resize-detector'
+import { NoSSR } from 'render'
 
 import Dots from './components/Dots'
 import Arrow from './components/Arrow'
@@ -31,16 +32,8 @@ export default class SlickSlider extends Component {
     defaultItemWidth: PropTypes.number,
     /** If the scroll of items is by page or not. */
     scrollByPage: PropTypes.bool,
-  }
-
-  componentDidMount() {
-    this._timeout = setTimeout(() => {
-      this.forceUpdate()
-    }, 50)
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this._timeout)
+    /** SSR fallback. */
+    ssrFallback: PropTypes.element
   }
 
   getSettings(slideWidth) {
@@ -67,13 +60,24 @@ export default class SlickSlider extends Component {
   }
 
   render() {
-    return (
+    const component = (
       <ReactResizeDetector handleWidth>
-        {(width) => 
-        <Slider {...this.getSettings(width)} ref={c => { this._slick = c }}>
-          {this.props.children}
-        </Slider>}
+        {
+          width => (
+            <Slider {...this.getSettings(width)} ref={c => { this._slick = c }}>
+              {this.props.children}
+            </Slider>
+          )
+        }
       </ReactResizeDetector>
     )
+    if (this.props.ssrFallback) {
+      return (
+        <NoSSR onSSR={this.props.ssrFallback}>
+          {component}
+        </NoSSR>
+      )
+    }
+    return component
   }
 }
