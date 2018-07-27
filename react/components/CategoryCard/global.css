@@ -1,0 +1,11 @@
+.vtex-category-card {
+  width: 250px;
+  height: 250px;
+  background-color: #555555;
+  overflow: hidden;
+}
+
+.vtex-category-card img {
+  height: 250px;
+  width: auto;
+}

@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `CategoryCard` component to display an image related to a category.
+
 ### Fixed
 - Top menu not being rendered as an overlay on scroll down.
 
