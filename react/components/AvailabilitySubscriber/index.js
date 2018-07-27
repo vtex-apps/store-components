@@ -70,7 +70,7 @@ class AvailabilitySubscriber extends Component {
   handleSubmit = (e, client) => {
     e.preventDefault()
     const variables = {
-      acronym: 'AvailabilitySubscription',
+      acronym: 'AS',
       document: {
         fields: [
           {
