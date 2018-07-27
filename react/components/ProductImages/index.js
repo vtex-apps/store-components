@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
+import './global.css'
+
 import PropTypes from 'prop-types'
-
-import ThumbnailSlider from './components/ThumbnailSlider'
-import SelectedImage from './components/SelectedImage'
-
-import VTEXClasses from './constants/productImagesClasses'
-import { VERTICAL, HORIZONTAL } from './constants/orientation'
-
+import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
 
-import './global.css'
+import SelectedImage from './components/SelectedImage'
+import ThumbnailSlider from './components/ThumbnailSlider'
+import { HORIZONTAL, VERTICAL } from './constants/orientation'
+import VTEXClasses from './constants/productImagesClasses'
 
 const DEFAULT_SELECTED_IMAGE = 0
 
@@ -19,7 +17,8 @@ const DEFAULT_SELECTED_IMAGE = 0
  */
 class ProductImages extends Component {
   state = {
-    selectedImage: this.props.images[DEFAULT_SELECTED_IMAGE],
+    selectedImage:
+      this.props.images && this.props.images[DEFAULT_SELECTED_IMAGE],
   }
 
   static getDerivedStateFromProps(nextProps, state) {
@@ -38,6 +37,37 @@ class ProductImages extends Component {
 
     return null
   }
+
+  static Loader = props =>
+    props.isVertical ? (
+      <div className="vtex-product-image vtex-product-image-loader vtex-product-image__vertical vtex-product-image__vertical--loader">
+        <ContentLoader
+          uniquekey="vtex-product-image-loader"
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
+          height="100%"
+          width="100%">
+          <rect className="vtex-product-image__selected-image--loader" />
+          <rect className="vtex-product-image__thumbnail-slider--loader" />
+        </ContentLoader>
+      </div>
+    ) : (
+      <div className="vtex-product-image vtex-product-image-loader vtex-product-image__horizontal vtex-product-image__horizontal--loader">
+        <ContentLoader
+          uniquekey="vtex-product-image-loader"
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
+          height="100%"
+          width="100%">
+          <rect className="vtex-product-image__selected-image--loader" />
+          <rect className="vtex-product-image__thumbnail-slider--loader" />
+        </ContentLoader>
+      </div>
+    )
 
   /**
    * Function that changes the selected image
@@ -74,60 +104,27 @@ class ProductImages extends Component {
       className += ` ${VTEXClasses.HORIZONTAL_COMPONENT} flex-column-reverse`
     }
 
+    if (!images) {
+      return <ProductImages.Loader isVertical={isVertical} />
+    }
+
     return (
       <div className={className}>
         <div
           className={
             isVertical ? 'w-100-s w-20-ns flex justify-center' : 'w-100-s'
-          }
-        >
+          }>
           <ThumbnailSlider {...thumbnailProps} />
         </div>
         <div
           className={
             isVertical ? 'w-80-ns flex justify-center overflow-hidden' : null
-          }
-        >
+          }>
           <SelectedImage image={this.state.selectedImage} />
         </div>
       </div>
     )
   }
-}
-
-ProductImages.Loader = props => {
-  const { isVertical } = props
-
-  const uniquekey = 'vtex-product-image-loader'
-  if (isVertical) {
-    return (
-      <div
-        className="vtex-product-image mb7 mb0-ns flex inline-flex-ns w-100-s vtex-product-image__vertical"
-        style={{ maxWidth: '600px' }}
-      >
-        <div className="w-100">
-          <ContentLoader uniquekey={uniquekey} height={500} width={500}>
-            <rect x="21.6" y="0" rx="0" ry="0" width="45" height="280" />
-            <rect x="73.6" y="0" rx="0" ry="0" width="316.52" height="280" />
-          </ContentLoader>
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div
-      className="vtex-product-image mb7 mb0-ns flex inline-flex-ns w-100-s vtex-product-image__horizontal flex-column-reverse"
-      style={{ maxWidth: '600px' }}
-    >
-      <div className="w-100">
-        <ContentLoader uniquekey={uniquekey} height={500} width={500}>
-          <rect x="85" y="310" rx="0" ry="0" width="316.52" height="44.56" />
-          <rect x="85" y="19" rx="0" ry="0" width="316.52" height="280.44" />
-        </ContentLoader>
-      </div>
-    </div>
-  )
 }
 
 ProductImages.propTypes = {
@@ -147,38 +144,6 @@ ProductImages.propTypes = {
 }
 
 ProductImages.defaultProps = {
-  images: [
-    {
-      imageUrl:
-        'https://raw.githubusercontent.com/vtex-apps/product-summary/feature/product-image/resources/images/500x500-img-pro1.png',
-      imageText: '',
-    },
-    {
-      imageUrl:
-        'https://raw.githubusercontent.com/vtex-apps/product-summary/feature/product-image/resources/images/500x500-img-pro2.png',
-      imageText: '',
-    },
-    {
-      imageUrl:
-        'https://raw.githubusercontent.com/vtex-apps/product-summary/feature/product-image/resources/images/500x500-img-pro3.png',
-      imageText: '',
-    },
-    {
-      imageUrl:
-        'https://raw.githubusercontent.com/vtex-apps/product-summary/feature/product-image/resources/images/500x500-img-pro4.png',
-      imageText: '',
-    },
-    {
-      imageUrl:
-        'https://raw.githubusercontent.com/vtex-apps/product-summary/feature/product-image/resources/images/500x500-img-pro5.png',
-      imageText: '',
-    },
-    {
-      imageUrl:
-        'https://raw.githubusercontent.com/vtex-apps/product-summary/feature/product-image/resources/images/500x500-img-pro6.png',
-      imageText: '',
-    },
-  ],
   thumbnailSliderOrientation: VERTICAL,
 }
 
