@@ -1,0 +1,9 @@
+mutation availabilitySubscribe($acronym: String, $document: DocumentInput)
+  @context(scope: "private") {
+  updateDocument(acronym: $acronym, document: $document) {
+    cacheId
+    id
+    href
+    documentId
+  }
+}

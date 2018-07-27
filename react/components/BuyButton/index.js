@@ -16,7 +16,7 @@ const CONSTANTS = {
 }
 
 /**
- * BuyButton Component. 
+ * BuyButton Component.
  * Adds a list of sku items to the cart.
  */
 export class BuyButton extends Component {
@@ -45,7 +45,7 @@ export class BuyButton extends Component {
   handleAddToCart = client => {
     const { skuItems, isOneClickBuy } = this.props
 
-    const variables = { 
+    const variables = {
       items: skuItems.map(skuItem => {
         const { skuId, quantity, seller } = skuItem;
         return {
@@ -54,7 +54,7 @@ export class BuyButton extends Component {
           quantity,
           seller,
         }
-      })  
+      })
     }
 
     this.setState({ isLoading: true })

@@ -37,6 +37,7 @@
   "availability-subscriber.send-label": "Enviar",
   "availability-subscriber.invalid-email": "E-mail inválido",
   "availability-subscriber.added-message": "E-mail registrado con éxito",
+  "availability-subscriber.error-message": "No se pudo registrar, inténtelo de nuevo",
   "editor.footer.title": "Pie de página",
   "editor.footer.description": "Un pie de página que aparece en la parte inferior de su tienda",
   "editor.footer.logoUrl.title": "URL de la insignia",
