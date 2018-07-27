@@ -31,25 +31,14 @@ class ProductName extends Component {
     showProductReference: true,
   }
 
-  static Loader = (loaderProps = {}) => {
-    loaderProps = {
-      style: {
-        width: '100%',
-        height: '100%',
-      },
-      height: 80,
-      ...loaderProps,
-    }
-
-    return (
-      <div className="vtex-product-name vtex-product-name-loader">
-        <ContentLoader uniquekey="vtex-product-name-loader" {...loaderProps}>
-          <rect className="vtex-product-name__brand--loader" />
-          <rect className="vtex-product-name__sku--loader" />
-        </ContentLoader>
-      </div>
-    )
-  }
+  static Loader = (loaderProps = {}) => (
+    <div className="vtex-product-name vtex-product-name-loader">
+      <ContentLoader uniquekey="vtex-product-name-loader" {...loaderProps}>
+        <rect className="vtex-product-name__brand--loader" />
+        <rect className="vtex-product-name__sku--loader" />
+      </ContentLoader>
+    </div>
+  )
 
   render() {
     const {

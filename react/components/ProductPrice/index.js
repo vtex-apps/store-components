@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { isEmpty } from 'ramda'
+import React, { Component } from 'react'
+import ContentLoader from 'react-content-loader'
 import { FormattedMessage, injectIntl } from 'react-intl'
 
 import PricePropTypes from './propTypes'
@@ -14,6 +15,20 @@ class Price extends Component {
   }
 
   static propTypes = PricePropTypes
+
+  static Loader = (loaderProps = {}) => (
+    <div className="vtex-price">
+      <ContentLoader
+        uniquekey="vtex-price-loader"
+        className="vtex-price-loader"
+        {...loaderProps}>
+        <rect className="vtex-price-list__container--loader" />
+        <rect className="vtex-price-selling__label--loader" />
+        <rect className="vtex-price-selling--loader" />
+        <rect className="vtex-price-savings--loader" />
+      </ContentLoader>
+    </div>
+  )
 
   static defaultProps = {
     showListPrice: true,
@@ -109,6 +124,10 @@ class Price extends Component {
       showSavings,
       intl: { formatNumber },
     } = this.props
+
+    if (!sellingPrice || !listPrice) {
+      return <Price.Loader />
+    }
 
     const differentPrices =
       this.props.showListPrice && sellingPrice !== listPrice
