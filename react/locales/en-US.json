@@ -37,6 +37,7 @@
   "availability-subscriber.send-label": "Send",
   "availability-subscriber.invalid-email": "Invalid email",
   "availability-subscriber.added-message": "E-mail registered successfully",
+  "availability-subscriber.error-message": "Failed, please try again",
   "editor.footer.title": "Footer",
   "editor.footer.description": "A footer that appears in the bottom of your store",
   "editor.footer.logoUrl.title": "Logo URL",

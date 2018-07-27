@@ -1,6 +1,7 @@
 # Availability Subscriber
 
 `AvailabilitySubscriber` is a canonical component that any VTEX app can import.
+The submit is made to Master Data on the Entity: `AvailabilitySubscription`
 
 And to import it into your code:
 
@@ -19,4 +20,3 @@ You can use it in your code as the following
 | Prop name | Type      | Description                                                                            |
 | --------- | --------- | -------------------------------------------------------------------------------------- |
 | `skuId`   | `Number!` | The id of the product sku to which will be watched for changes in the product quantity |
-
