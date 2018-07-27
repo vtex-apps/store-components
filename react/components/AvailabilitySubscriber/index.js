@@ -7,8 +7,6 @@ import { Button, Input } from 'vtex.styleguide'
 
 import ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION from './mutations/addToAvailabilitySubscriberMutation.gql'
 
-import './global.css'
-
 /**
  * Represents the availability subscriber form, that's shown when
  * the product isn't available.
