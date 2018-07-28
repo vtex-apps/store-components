@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+import { List, BulletList } from 'react-content-loader'
 
 import VTEXClasses from './CustomClasses'
 
@@ -12,7 +13,7 @@ import './global.css'
  */
 class ProductDescription extends Component {
   render() {
-    const { specifications, skuName, description } = this.props
+    const { specifications, skuName, description, loading } = this.props
 
     return (
       <div className={`${VTEXClasses.PRODUCT_DESCRIPTION} ma2`}>
@@ -20,9 +21,14 @@ class ProductDescription extends Component {
           <FormattedMessage id="product-description.title" />
         </div>
 
-        <span className="measure-wide" dangerouslySetInnerHTML={{ __html: description }} />
-
-        {specifications.length > 0 && (
+        { loading && !description 
+          ? <List />
+          : <span className="measure-wide" dangerouslySetInnerHTML={{ __html: description }} />
+        }
+        
+        { loading && !(specifications && specifications.length === 0)
+          ? <BulletList />
+          : (
           <div className="vtex-product-specifications">
             <div className="vtex-product-specifications__title">
               <FormattedMessage id="technicalspecifications.title" />
@@ -84,6 +90,8 @@ ProductDescription.propTypes = {
   ),
   /** Name of the current SKU */
   skuName: PropTypes.string,
+  /** If there is a query on the fly */
+  loading: PropTypes.bool,
 }
 
 export default injectIntl(ProductDescription)

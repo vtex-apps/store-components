@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
+import ContentLoader from 'react-content-loader'
 
 import Button from '@vtex/styleguide/lib/Button'
 import Input from '@vtex/styleguide/lib/Input'
@@ -23,6 +24,7 @@ class AvailabilitySubscriber extends Component {
     /** The id of the current product sku */
     skuId: PropTypes.string.isRequired,
     intl: intlShape.isRequired,
+    loading: PropTypes.bool
   }
 
   validateEmail = email => {
@@ -80,13 +82,25 @@ class AvailabilitySubscriber extends Component {
 
   componentDidMount() {
     this.setState({
-      email: this.emailInput.value || '',
-      name: this.nameInput.value || '',
+      email: (this.emailInput && this.emailInput.value) || '',
+      name:  (this.nameInput  && this.nameInput.value ) || '',
     })
+  }
+
+  renderLoading() {
+    return (
+      <ContentLoader>
+        <rect x="0" y="0" rx="5" ry="5" width="250" height="35" />
+        <rect x="0" y="40" rx="5" ry="5" width="150" height="30" />
+        <rect x="160" y="40" rx="5" ry="5" width="150" height="30" />
+        <rect x="0" y="75" rx="5" ry="5" width="70" height="30" />
+      </ContentLoader>
+    )
   }
 
   render() {
     const { name, email, emailError, hasBlurredEmail } = this.state
+    const { loading } = this.props
 
     const isFormDisabled = name === '' || email === '' || emailError !== ''
 
@@ -96,7 +110,9 @@ class AvailabilitySubscriber extends Component {
       emailErrorMessage = this.translate(emailError)
     }
 
-    return (
+    return loading 
+    ? this.renderLoading()
+    : (
       <div className="vtex-availability-subscriber">
         <div className="vtex-availability-subcriber__title f5">
           {this.translate('availability-subscriber.title')}
