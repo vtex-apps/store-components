@@ -1,5 +1,4 @@
 {
-  "header.buy-success": "Su producto se ha agregado a la cesta!",
   "header.search-placeholder": "Búsqueda por productos, marcas...",
   "header.search-emptyPlaceholder": "Ningún resultado encontrado",
   "search.placeholder": "Buscar",
@@ -9,7 +8,8 @@
   "editor.productPrice.showListPrice": "Mostrar precios de tabla",
   "editor.productPrice.showLabels": "Mostrar subtítulos en los precios",
   "editor.productPrice.showInstallments": "Mostrar opción de parcelamiento",
-  "editor.productPrice.showSavings": "Mostrar diferencia entre el precio tabulado y el de venta",
+  "editor.productPrice.showSavings":
+    "Mostrar diferencia entre el precio tabulado y el de venta",
   "editor.share.title": "Compartir",
   "editor.share.description": "Lista de botones para compartir",
   "editor.share.social.title": "Redes sociales",
@@ -18,7 +18,8 @@
   "section-links": "Enlaces",
   "more-information-links": "Mas informaciones",
   "payment-form": "Formas de Pago",
-  "pricing.installment-display": "O {installments} {times} de {installmentPrice}",
+  "pricing.installment-display":
+    "O {installments} {times} de {installmentPrice}",
   "pricing.from": "De",
   "pricing.to": "Por",
   "pricing.savings": "Ahorre: {savings}",
@@ -27,26 +28,37 @@
   "shipping.label": "Calcular el flete",
   "shipping.eta": "hasta {eta} días",
   "shipping.free": "Gratis",
-  "shipping.empty-sla": "No hay información de envío disponible para el código postal informado",
-  "buybutton.add-failure": "¡Algo salió mal y el artículo no se agregó a tu carrito!",
+  "shipping.empty-sla":
+    "No hay información de envío disponible para el código postal informado",
+  "buybutton.buy-success": "Su producto se ha agregado a la cesta!",
+  "buybutton.add-failure":
+    "¡Algo salió mal y el artículo no se agregó a tu carrito!",
   "technicalspecifications.title": "Especificaciones Tecnicas",
-  "availability-subscriber.title": "Este producto no está disponible actualmente",
-  "availability-subscriber.subscribe-label": "Me avisa cuando este producto está disponible",
+  "availability-subscriber.title":
+    "Este producto no está disponible actualmente",
+  "availability-subscriber.subscribe-label":
+    "Me avisa cuando este producto está disponible",
   "availability-subscriber.email-placeholder": "E-mail",
   "availability-subscriber.name-placeholder": "Nombre",
   "availability-subscriber.send-label": "Enviar",
   "availability-subscriber.invalid-email": "E-mail inválido",
   "availability-subscriber.added-message": "E-mail registrado con éxito",
   "editor.footer.title": "Pie de página",
-  "editor.footer.description": "Un pie de página que aparece en la parte inferior de su tienda",
+  "editor.footer.description":
+    "Un pie de página que aparece en la parte inferior de su tienda",
   "editor.footer.logoUrl.title": "URL de la insignia",
-  "editor.footer.numberOfSocialNetworks.title": "Número de enlaces de redes sociales",
+  "editor.footer.numberOfSocialNetworks.title":
+    "Número de enlaces de redes sociales",
   "editor.footer.numberOfSectionLinks.title": "Número de enlaces de secciones",
-  "editor.footer.numberOfMoreInformationLinks.title": "Número de enlaces para más información",
+  "editor.footer.numberOfMoreInformationLinks.title":
+    "Número de enlaces para más información",
   "editor.footer.numberOfBadges.title": "Número de medallas a mostrar",
-  "editor.footer.numberOfPaymentForms.title": "Número de formas de pago disponibles",
-  "editor.footer.showPaymentFormsInColor.title": "Mostrar los iconos de las formas de pago de colores",
-  "editor.footer.showSocialNetworksInColor.title": "Mostrar los iconos de las redes sociales de colores<Paste>",
+  "editor.footer.numberOfPaymentForms.title":
+    "Número de formas de pago disponibles",
+  "editor.footer.showPaymentFormsInColor.title":
+    "Mostrar los iconos de las formas de pago de colores",
+  "editor.footer.showSocialNetworksInColor.title":
+    "Mostrar los iconos de las redes sociales de colores<Paste>",
   "editor.footer.link": "Enlaces",
   "editor.footer.link.title": "Enlace",
   "editor.footer.link.title.title": "Título del enlace",

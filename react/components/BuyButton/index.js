@@ -9,10 +9,10 @@ import {
 } from 'vtex.store/OrderFormContext'
 
 const CONSTANTS = {
-  EVENT_SUCCESS: 'item:add',
-  EVENT_ERROR: 'message:error',
+  SUCCESS_MESSAGE_ID: 'buybutton.buy-success',
   ERROR_MESSAGE_ID: 'buybutton.add-failure',
   CHECKOUT_URL: '/checkout/#/cart',
+  TOAST_TIMEOUT: 3000,
 }
 
 /**
@@ -26,22 +26,30 @@ export class BuyButton extends Component {
 
   state = {
     isLoading: false,
+    timeOut: null,
   }
 
   translateMessage = id => this.props.intl.formatMessage({ id: id })
 
-  toastMessage = (success, err) => {
-    const event = new Event(
-      success ? CONSTANTS.EVENT_SUCCESS : CONSTANTS.EVENT_ERROR
-    )
-    event.detail = {
-      success,
-      message: success ? '' : this.translateMessage(CONSTANTS.ERROR_MESSAGE_ID),
-      err,
-    }
-    document.dispatchEvent(event)
+  toastMessage = success => {
+    const { orderFormContext } = this.props
+    const text = success
+      ? this.translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
+      : this.translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
 
-    this.setState({ isLoading: false })
+    const message = {
+      isSuccess: success,
+      text,
+    }
+
+    orderFormContext.updateToastMessage(message)
+
+    const timeOut = window.setTimeout(() => {
+      orderFormContext.updateToastMessage({ isSuccess: null, text: null })
+      this.setState({ timeOut: null })
+    }, CONSTANTS.TOAST_TIMEOUT)
+
+    this.setState({ isLoading: false, timeOut })
   }
 
   handleAddToCart = () => {
@@ -77,10 +85,10 @@ export class BuyButton extends Component {
           )
 
           orderFormContext.refetch()
-          this.toastMessage(success)
+          this.toastMessage(success.length >= 1)
         },
-        mutationErr => {
-          this.toastMessage(false, mutationErr)
+        () => {
+          this.toastMessage(false)
         }
       )
   }
