@@ -20,7 +20,7 @@ const TopMenu = ({ logoUrl, logoTitle, intl, fixed, offsetTop }) => {
   return (
     <div
       className={classes}
-      style={offsetTop ? { top: `${offsetTop}px` } : null}
+      style={offsetTop >= 0 ? { top: `${offsetTop}px` } : null}
     >
       <div className="vtex-top-menu__logo">
         <Link className="link b f3 near-black tc tl-ns serious-black" to="/">
