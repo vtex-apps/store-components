@@ -12,7 +12,6 @@
 }
 
 .vtex-product-image__horizontal {
-  height: 31.25em;
   width: 31.25em;
 }
 
@@ -52,6 +51,10 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.vtex-product-image__horizontal--loader {
+  height: 31.25em;
 }
 
 .vtex-product-image__selected-image--loader {

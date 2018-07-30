@@ -59,7 +59,7 @@ class ProductName extends Component {
       skuClasses += ' vtex-product-name__sku--large'
     }
 
-    if (!name || !skuName) {
+    if (!name) {
       return (
         <ProductName.Loader
           brandClasses={brandClasses}
