@@ -108,7 +108,6 @@ class AvailabilitySubscriber extends Component {
       })
       .then(
         mutationRes => {
-          console.log('SUCCESS: ', mutationRes)
           this.setState({
             name: '',
             email: '',
@@ -156,51 +155,53 @@ class AvailabilitySubscriber extends Component {
       <ApolloConsumer>
         {client => (
           <div className="vtex-availability-subscriber">
-            <div className="vtex-availability-subcriber__title f3 fw4 mb4">
+            <div className="vtex-availability-subcriber__title f5 fw4 mb3">
               {this.translate('availability-subscriber.title')}
             </div>
-            <div className="vtex-availability-subscriber__subscribe-label fw3">
+            <div className="vtex-availability-subscriber__subscribe-label f6 fw3">
               {this.translate('availability-subscriber.subscribe-label')}
             </div>
-            <form className="vtex-availability-subscriber__form mv4 mw6" onSubmit={(e) => this.handleSubmit(e, client)}>
-              <div className="vtex-availability-subscriber__input vtex-availability-subscriber__input-name mb4">
-                <Input
-                  name="name"
-                  type="text"
-                  placeholder={this.translate('availability-subscriber.name-placeholder')}
-                  value={name}
-                  onChange={this.handleInputChange}
-                  ref={e => { this.nameInput = e }}
-                />
+            <form className="vtex-availability-subscriber__form mb4" onSubmit={(e) => this.handleSubmit(e, client)}>
+              <div className="vtex-availability-subscriber__content flex-ns justify-between mt4 mw6">
+                <div className="vtex-availability-subscriber__input vtex-availability-subscriber__input-name w-100 mr5 mb4">
+                  <Input
+                    name="name"
+                    type="text"
+                    placeholder={this.translate('availability-subscriber.name-placeholder')}
+                    value={name}
+                    onChange={this.handleInputChange}
+                    ref={e => { this.nameInput = e }}
+                  />
+                </div>
+                <div className="vtex-availability-subscriber__input vtex-availability-subscriber__input-email w-100 mr5 mb4">
+                  <Input
+                    name="email"
+                    type="text"
+                    placeholder={this.translate('availability-subscriber.email-placeholder')}
+                    value={email}
+                    onChange={this.handleInputChange}
+                    onBlur={this.handleEmailBlur}
+                    error={hasBlurredEmail && !!emailError}
+                    errorMessage={emailErrorMessage}
+                    ref={e => { this.emailInput = e }}
+                  />
+                </div>
+                <div className="vtex-availability-subscriber__submit flex items-center mb4">
+                  <Button type="submit" variation="primary" size="small" disabled={isFormDisabled} isLoading={isLoading}>
+                    {this.translate('availability-subscriber.send-label')}
+                  </Button>
+                </div>
               </div>
-              <div className="vtex-availability-subscriber__input vtex-availability-subscriber__input-email mb4">
-                <Input
-                  name="email"
-                  type="text"
-                  placeholder={this.translate('availability-subscriber.email-placeholder')}
-                  value={email}
-                  onChange={this.handleInputChange}
-                  onBlur={this.handleEmailBlur}
-                  error={hasBlurredEmail && !!emailError}
-                  errorMessage={emailErrorMessage}
-                  ref={e => { this.emailInput = e }}
-                />
-              </div>
-              <div className="vtex-availability-subscriber__submit flex items-center">
-                <Button type="submit" variation="primary" size="small" disabled={isFormDisabled} isLoading={isLoading}>
-                  {this.translate('availability-subscriber.send-label')}
-                </Button>
-                {sendStatus === 'success' &&
-                  <div className="vtex-availability-subscriber__success ml4 green fw6">
-                    {this.translate('availability-subscriber.added-message')}
-                  </div>
-                }
-                {sendStatus === 'error' &&
-                  <div className="vtex-availability-subscriber__error ml4 heavy-rebel-pink">
-                    {this.translate('availability-subscriber.error-message')}
-                  </div>
-                }
-              </div>
+              {sendStatus === 'success' &&
+                <div className="vtex-availability-subscriber__message vtex-availability-subscriber__success green fw6">
+                  {this.translate('availability-subscriber.added-message')}
+                </div>
+              }
+              {sendStatus === 'error' &&
+                <div className="vtex-availability-subscriber__message vtex-availability-subscriber__error heavy-rebel-pink">
+                  {this.translate('availability-subscriber.error-message')}
+                </div>
+              }
             </form>
           </div>
         )}
