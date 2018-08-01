@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-
-import { indexBy, prop } from 'ramda'
-
-import { SOCIAL_ENUM } from './constants/social'
-import SocialButton from './components/SocialButton'
-
 import './global.css'
+
+import PropTypes from 'prop-types'
+import { indexBy, prop } from 'ramda'
+import React, { Component } from 'react'
+import ContentLoader from 'react-content-loader'
+
+import SocialButton from './components/SocialButton'
+import { SOCIAL_ENUM } from './constants/social'
 
 class Share extends Component {
   static propTypes = {
@@ -19,7 +19,28 @@ class Share extends Component {
     }),
     /** Share URL title */
     title: PropTypes.string,
+    /** Indcates if the component should render the Content Loader */
+    loading: PropTypes.bool,
   }
+
+  static Loader = (loaderProps = {}) => (
+    <div className="vtex-share">
+      <ContentLoader
+        uniquekey="vtex-share"
+        className="vtex-share"
+        style={{
+          width: '100%',
+          height: '100%',
+        }}
+        height="100%"
+        width="100%"
+        {...loaderProps}>
+        <circle className="vtex-share__button--loader" />
+        <circle className="vtex-share__button--loader" />
+        <circle className="vtex-share__button--loader" />
+      </ContentLoader>
+    </div>
+  )
 
   static defaultProps = {
     social: {
@@ -56,8 +77,13 @@ class Share extends Component {
     const {
       social,
       title,
+      loading,
       options: { size },
     } = this.props
+
+    if (loading) {
+      return <Share.Loader />
+    }
 
     return (
       <div className="vtex-share flex flex-row">

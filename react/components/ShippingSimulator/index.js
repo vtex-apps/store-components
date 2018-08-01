@@ -1,15 +1,15 @@
-import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { injectIntl, intlShape } from 'react-intl'
-import { withApollo, compose } from 'react-apollo'
+import './global.css'
 
 import Button from '@vtex/styleguide/lib/Button'
 import Input from '@vtex/styleguide/lib/Input'
+import PropTypes from 'prop-types'
+import React, { Component, Fragment } from 'react'
+import { compose, withApollo } from 'react-apollo'
+import ContentLoader from 'react-content-loader'
+import { injectIntl, intlShape } from 'react-intl'
 
 import ShippingTable from './components/ShippingTable'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
-
-import './global.css'
 
 /**
  * Shipping simulator component
@@ -24,6 +24,24 @@ class ShippingSimulator extends Component {
     seller: PropTypes.number.isRequired,
     country: PropTypes.string.isRequired,
   }
+
+  static Loader = (loaderProps = {}) => (
+    <div className="vtex-shipping-simulator">
+      <ContentLoader
+        uniquekey="vtex-shipping-simulator-loader"
+        className="vtex-shipping-simulator-loader"
+        style={{
+          width: '100%',
+          height: '100%',
+        }}
+        height="100%"
+        width="100%"
+        {...loaderProps}>
+        <rect className="vtex-shipping-simulator__zipcode-label--loader" />
+        <rect className="vtex-shipping-simulator__input--loader" />
+      </ContentLoader>
+    </div>
+  )
 
   state = {
     zipcodeValue: '',
@@ -58,30 +76,34 @@ class ShippingSimulator extends Component {
       loading: true,
     })
 
-    this.props.client.query({
-      query: getShippingEstimates,
-      variables: {
-        country,
-        postalCode: this.state.zipcodeValue,
-        items: [
-          {
-            quantity: '1',
-            id: skuId,
-            seller,
-          },
-        ],
-      },
-    }).then(result => {
-      this.setState({
-        shipping: result.data.shipping,
+    this.props.client
+      .query({
+        query: getShippingEstimates,
+        variables: {
+          country,
+          postalCode: this.state.zipcodeValue,
+          items: [
+            {
+              quantity: '1',
+              id: skuId,
+              seller,
+            },
+          ],
+        },
       })
-    }).catch(error => {
-      console.error(error)
-    }).finally(() => {
-      this.setState({
-        loading: false,
+      .then(result => {
+        this.setState({
+          shipping: result.data.shipping,
+        })
       })
-    })
+      .catch(error => {
+        console.error(error)
+      })
+      .finally(() => {
+        this.setState({
+          loading: false,
+        })
+      })
   }
 
   formatMessage = id => {
@@ -90,6 +112,10 @@ class ShippingSimulator extends Component {
 
   render() {
     const { shipping, zipcodeValue, loading } = this.state
+
+    if (!this.props.seller || !this.props.skuId) {
+      return <ShippingSimulator.Loader />
+    }
 
     return (
       <Fragment>
@@ -108,8 +134,7 @@ class ShippingSimulator extends Component {
             className="vtex-shipping-simulator__cta"
             onClick={this.handleClick}
             disabled={zipcodeValue.length < 9}
-            isLoading={loading}
-          >
+            isLoading={loading}>
             OK
           </Button>
         </form>

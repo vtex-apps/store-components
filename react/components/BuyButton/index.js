@@ -1,12 +1,9 @@
-import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
 import find from 'lodash/find'
-import { Button } from 'vtex.styleguide'
+import PropTypes from 'prop-types'
+import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
-import {
-  orderFormConsumer,
-  contextPropTypes,
-} from 'vtex.store/OrderFormContext'
+import { contextPropTypes, orderFormConsumer } from 'vtex.store/OrderFormContext'
+import { Button } from 'vtex.styleguide'
 
 const CONSTANTS = {
   SUCCESS_MESSAGE_ID: 'buybutton.buy-success',
@@ -95,11 +92,12 @@ export class BuyButton extends Component {
 
   render() {
     const { isLoading } = this.state
+    const loading = isLoading || !this.props.skuItems
 
     return (
       <Fragment>
-        {isLoading ? (
-          <Button disabled size="small" isLoading={isLoading}>
+        {loading ? (
+          <Button disabled size="small" isLoading={loading}>
             {this.props.children}
           </Button>
         ) : (
