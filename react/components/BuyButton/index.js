@@ -99,11 +99,11 @@ export class BuyButton extends Component {
     return (
       <Fragment>
         {isLoading ? (
-          <Button disabled isLoading={isLoading}>
+          <Button disabled size="small" isLoading={isLoading}>
             {this.props.children}
           </Button>
         ) : (
-          <Button primary onClick={() => this.handleAddToCart()}>
+          <Button primary size="small" onClick={() => this.handleAddToCart()}>
             {this.props.children}
           </Button>
         )}
