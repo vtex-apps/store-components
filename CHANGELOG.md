@@ -6,8 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.12.0] - 2018-08-02
 ### Added
-- Add `ProductName`, `ProductPrice` and `ProductImages` content loaders.
+- `ProductName`, `ProductPrice` and `ProductImages` content loaders.
+- `Share` and `ShippingSimulator` content loaders.
+- More `BuyButton` loading logic.
 
 ## [1.11.0] - 2018-08-02
 ### Changed

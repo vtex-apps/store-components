@@ -33,7 +33,15 @@ class ProductName extends Component {
 
   static Loader = (loaderProps = {}) => (
     <div className="vtex-product-name vtex-product-name-loader">
-      <ContentLoader uniquekey="vtex-product-name-loader" {...loaderProps}>
+      <ContentLoader
+        uniquekey="vtex-product-name-loader"
+        style={{
+          width: '100%',
+          height: '100%',
+        }}
+        height="100%"
+        width="100%"
+        {...loaderProps}>
         <rect className="vtex-product-name__brand--loader" />
         <rect className="vtex-product-name__sku--loader" />
       </ContentLoader>

@@ -21,6 +21,12 @@ class Price extends Component {
       <ContentLoader
         uniquekey="vtex-price-loader"
         className="vtex-price-loader"
+        style={{
+          width: '100%',
+          height: '100%',
+        }}
+        height="100%"
+        width="100%"
         {...loaderProps}>
         <rect className="vtex-price-list__container--loader" />
         <rect className="vtex-price-selling__label--loader" />
