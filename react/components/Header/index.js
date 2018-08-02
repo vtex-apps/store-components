@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
+import { injectIntl, intlShape } from 'react-intl'
 
 import Modal from './components/Modal'
 import TopMenu from './components/TopMenu'
@@ -8,15 +8,15 @@ import TopMenu from './components/TopMenu'
 import { Alert } from 'vtex.styleguide'
 import { ExtensionPoint } from 'render'
 
-import './global.css'
+import {
+  orderFormConsumer,
+  contextPropTypes,
+} from 'vtex.store/OrderFormContext'
 
-export const TOAST_TIMEOUT = 3000
+import './global.css'
 
 class Header extends Component {
   state = {
-    isAddToCart: false,
-    hasError: false,
-    error: null,
     showMenuPopup: false,
   }
 
@@ -25,48 +25,19 @@ class Header extends Component {
     logoUrl: PropTypes.string,
     logoTitle: PropTypes.string,
     intl: intlShape.isRequired,
+    orderFormContext: contextPropTypes,
   }
 
   _root = React.createRef()
 
   componentDidMount() {
-    this._timeouts = []
-    document.addEventListener('message:error', this.handleError)
-    document.addEventListener('item:add', this.handleItemAdd)
     document.addEventListener('scroll', this.handleScroll)
 
     this.handleScroll()
   }
 
   componentWillUnmount() {
-    if (this._timeouts.length !== 0) {
-      this._timeouts.map(el => {
-        clearTimeout(el)
-      })
-    }
-
-    document.removeEventListener('message:error', this.handleError)
-    document.removeEventListener('item:add', this.handleItemAdd)
     document.removeEventListener('scroll', this.handleScroll)
-  }
-
-  handleError = e => {
-    this.setState({ hasError: true, error: e })
-    const timeOut = window.setTimeout(() => {
-      this.setState({ hasError: false })
-    }, TOAST_TIMEOUT)
-
-    this._timeouts.push(timeOut)
-  }
-
-  handleItemAdd = () => {
-    this.setState({ isAddToCart: !this.state.isAddToCart })
-    const timeOut = window.setTimeout(() => {
-      this._timeoutId = undefined
-      this.setState({ isAddToCart: !this.state.isAddToCart })
-    }, TOAST_TIMEOUT)
-
-    this._timeouts.push(timeOut)
   }
 
   handleScroll = () => {
@@ -89,23 +60,20 @@ class Header extends Component {
   }
 
   render() {
-    const { logoUrl, logoTitle } = this.props
-    const { isAddToCart, hasError, showMenuPopup, error } = this.state
+    const { logoUrl, logoTitle, orderFormContext } = this.props
+    const { showMenuPopup } = this.state
 
     const offsetTop = (this._root.current && this._root.current.offsetTop) || 0
 
+    const hasMessage =
+      orderFormContext.message.text && orderFormContext.message.text != ''
+
     return (
-      <div
-        className="vtex-header relative z-2 w-100 shadow-5"
-        ref={this._root}
-      >
+      <div className="vtex-header relative z-2 w-100 shadow-5" ref={this._root}>
         <div className="z-2 items-center w-100 top-0 bg-white tl">
           <ExtensionPoint id="menu-link" />
         </div>
-        <TopMenu
-          logoUrl={logoUrl}
-          logoTitle={logoTitle}
-        />
+        <TopMenu logoUrl={logoUrl} logoTitle={logoTitle} />
         <ExtensionPoint id="category-menu" />
         {showMenuPopup && (
           <Modal>
@@ -121,17 +89,13 @@ class Header extends Component {
           className="flex flex-column items-center fixed w-100"
           style={{ top: offsetTop + 120 }}
         >
-          {isAddToCart && (
+          {hasMessage && (
             <div className="pa2 mw9">
-              <Alert type="success">
-                <FormattedMessage id="header.buy-success" />
+              <Alert
+                type={orderFormContext.message.isSuccess ? 'success' : 'error'}
+              >
+                {orderFormContext.message.text}
               </Alert>
-            </div>
-          )}
-
-          {hasError && (
-            <div className="pa2 mw9">
-              <Alert type="error">{error.detail.message}</Alert>
             </div>
           )}
         </div>
@@ -140,4 +104,4 @@ class Header extends Component {
   }
 }
 
-export default injectIntl(Header)
+export default orderFormConsumer(injectIntl(Header))

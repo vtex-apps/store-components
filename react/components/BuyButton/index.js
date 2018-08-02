@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { ApolloConsumer } from 'react-apollo'
 import find from 'lodash/find'
-import Button from '@vtex/styleguide/lib/Button'
+import { Button } from 'vtex.styleguide'
 import { injectIntl, intlShape } from 'react-intl'
-
-import ADD_TO_CART_MUTATION from './mutations/addToCartMutation.gql'
-import ORDER_FORM_QUERY from './queries/orderFormQuery.gql'
+import {
+  orderFormConsumer,
+  contextPropTypes,
+} from 'vtex.store/OrderFormContext'
 
 const CONSTANTS = {
-  EVENT_SUCCESS: 'item:add',
-  EVENT_ERROR: 'message:error',
+  SUCCESS_MESSAGE_ID: 'buybutton.buy-success',
   ERROR_MESSAGE_ID: 'buybutton.add-failure',
   CHECKOUT_URL: '/checkout/#/cart',
+  TOAST_TIMEOUT: 3000,
 }
 
 /**
@@ -26,77 +26,69 @@ export class BuyButton extends Component {
 
   state = {
     isLoading: false,
+    timeOut: null,
   }
 
   translateMessage = id => this.props.intl.formatMessage({ id: id })
 
-  toastMessage = (success, err) => {
-    const event = new Event(success ? CONSTANTS.EVENT_SUCCESS : CONSTANTS.EVENT_ERROR)
-    event.detail = {
-      success,
-      message: success ? '' : this.translateMessage(CONSTANTS.ERROR_MESSAGE_ID),
-      err,
-    }
-    document.dispatchEvent(event)
+  toastMessage = success => {
+    const { orderFormContext } = this.props
+    const text = success
+      ? this.translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
+      : this.translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
 
-    this.setState({ isLoading: false })
+    const message = {
+      isSuccess: success,
+      text,
+    }
+
+    orderFormContext.updateToastMessage(message)
+
+    const timeOut = window.setTimeout(() => {
+      orderFormContext.updateToastMessage({ isSuccess: null, text: null })
+      this.setState({ timeOut: null })
+    }, CONSTANTS.TOAST_TIMEOUT)
+
+    this.setState({ isLoading: false, timeOut })
   }
 
-  handleAddToCart = client => {
-    const { skuItems, isOneClickBuy } = this.props
+  handleAddToCart = () => {
+    const { skuItems, isOneClickBuy, orderFormContext } = this.props
 
     const variables = {
       items: skuItems.map(skuItem => {
-        const { skuId, quantity, seller } = skuItem;
+        const { skuId, quantity, seller } = skuItem
         return {
           id: parseInt(skuId),
           index: 1,
           quantity,
           seller,
         }
-      })
+      }),
     }
 
     this.setState({ isLoading: true })
 
-    client
-      .query({
-        query: ORDER_FORM_QUERY,
+    variables.orderFormId = orderFormContext.orderForm.orderFormId
+
+    if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
+
+    orderFormContext
+      .updateOrderForm({
+        variables,
       })
       .then(
-        queryRes => {
-          const {
-            data: {
-              orderForm: { orderFormId },
-            },
-          } = queryRes
+        mutationRes => {
+          const { items } = mutationRes.data.addItem
+          const success = skuItems.map(skuItem =>
+            find(items, { id: skuItem.skuId })
+          )
 
-          variables.orderFormId = orderFormId
-
-          if (isOneClickBuy) {
-            location.assign(CONSTANTS.CHECKOUT_URL)
-          }
-
-          client
-            .mutate({
-              mutation: ADD_TO_CART_MUTATION,
-              variables,
-            })
-            .then(
-              mutationRes => {
-                const { items } = mutationRes.data.addItem
-                const success = skuItems.map(skuItem => (
-                  find(items, { id: skuItem.skuId })
-                ))
-                this.toastMessage(success)
-              },
-              mutationErr => {
-                this.toastMessage(false, mutationErr)
-              }
-            )
+          orderFormContext.refetch()
+          this.toastMessage(success.length >= 1)
         },
-        queryErr => {
-          this.toastMessage(false, queryErr)
+        () => {
+          this.toastMessage(false)
         }
       )
   }
@@ -105,21 +97,17 @@ export class BuyButton extends Component {
     const { isLoading } = this.state
 
     return (
-      <ApolloConsumer>
-        {client => (
-          <div>
-            {isLoading ? (
-              <Button disabled isLoading={isLoading}>
-                {this.props.children}
-              </Button>
-            ) : (
-                <Button primary onClick={() => this.handleAddToCart(client)}>
-                  {this.props.children}
-                </Button>
-              )}
-          </div>
+      <Fragment>
+        {isLoading ? (
+          <Button disabled size="small" isLoading={isLoading}>
+            {this.props.children}
+          </Button>
+        ) : (
+          <Button primary size="small" onClick={() => this.handleAddToCart()}>
+            {this.props.children}
+          </Button>
         )}
-      </ApolloConsumer>
+      </Fragment>
     )
   }
 }
@@ -134,8 +122,10 @@ BuyButton.propTypes = {
       quantity: PropTypes.number.isRequired,
       /** Which seller is being referenced by the button */
       seller: PropTypes.number.isRequired,
-    }),
+    })
   ).isRequired,
+  /** Context used to call the add to cart mutation and retrieve the orderFormId **/
+  orderFormContext: contextPropTypes,
   /** Component children that will be displayed inside of the button **/
   children: PropTypes.PropTypes.node.isRequired,
   /** Should redirect to checkout after adding to cart */
@@ -144,4 +134,4 @@ BuyButton.propTypes = {
   intl: intlShape.isRequired,
 }
 
-export default injectIntl(BuyButton)
+export default orderFormConsumer(injectIntl(BuyButton))

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.11.0] - 2018-08-02
+### Changed
+- Removed graphql queries from `BuyButton`
+- Added `OrderFormContext` to update the minicart on `BuyButton` 
+
+
 ## [1.10.0] - 2018-08-02
 ### Fixed
 - Top menu not being rendered as an overlay on scroll down.

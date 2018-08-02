@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store-components",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "title": "VTEX Store Components",
   "defaultLocale": "pt-BR",
   "description": "The VTEX store components for that render apps can use",
@@ -18,7 +18,8 @@
     "postreleasy": "vtex publish --verbose"
   },
   "dependencies": {
+    "vtex.store": "1.x",
     "vtex.store-graphql": "2.x",
-    "vtex.styleguide": "4.x"
+    "vtex.styleguide": "5.x"
   }
 }
