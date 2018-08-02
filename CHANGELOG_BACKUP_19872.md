@@ -6,16 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+<<<<<<< HEAD
+
+## [1.10.0] - 2018-08-02
+=======
 ### Added
 - Add `ProductName`, `ProductPrice` and `ProductImages` content loaders.
 
-## [1.11.0] - 2018-08-02
-### Changed
-- Removed graphql queries from `BuyButton`
-- Added `OrderFormContext` to update the minicart on `BuyButton` 
-
-
-## [1.10.0] - 2018-08-02
+>>>>>>> CHANGELOG.md
 ### Fixed
 - Top menu not being rendered as an overlay on scroll down.
 

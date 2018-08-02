@@ -53,6 +53,26 @@
   background-size: contain;
 }
 
+.vtex-product-image__horizontal--loader {
+  height: 31.25em;
+}
+
+.vtex-product-image__selected-image--loader {
+  x: 10%;
+  y: 2%;
+  max-width: 19.782em;
+  width: 80%;
+  height: 17.465em;
+}
+
+.vtex-product-image__thumbnail-slider--loader {
+  x: 10%;
+  y: 19em;
+  max-width: 19.782em;
+  width: 80%;
+  height: 2.785em;
+}
+
 @media only screen and (max-width: 27em) {
   .vtex-product-image__selected-image {
     width: 0px;
@@ -61,6 +81,7 @@
 
   .vtex-product-image {
     max-width: 17em;
+    max-height: 17em;
   }
 
   .vtex-product-image__thumbnail-slider--horizontal .slick-slider {
@@ -87,6 +108,15 @@
   .vtex-product-image__thumbnail-slider-item {
     height: 17em;
     width: inherit;
+  }
+
+  .vtex-product-image__selected-image--loader {
+    height: 12em;
+  }
+
+  .vtex-product-image__thumbnail-slider--loader {
+    y: 13em;
+    height: 2em;
   }
 }
 

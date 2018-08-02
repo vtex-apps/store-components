@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-
 import './product-name.css'
+
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import ContentLoader from 'react-content-loader'
 
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
@@ -30,6 +31,15 @@ class ProductName extends Component {
     showProductReference: true,
   }
 
+  static Loader = (loaderProps = {}) => (
+    <div className="vtex-product-name vtex-product-name-loader">
+      <ContentLoader uniquekey="vtex-product-name-loader" {...loaderProps}>
+        <rect className="vtex-product-name__brand--loader" />
+        <rect className="vtex-product-name__sku--loader" />
+      </ContentLoader>
+    </div>
+  )
+
   render() {
     const {
       name,
@@ -49,6 +59,15 @@ class ProductName extends Component {
       skuClasses += ' vtex-product-name__sku--large'
     }
 
+    if (!name) {
+      return (
+        <ProductName.Loader
+          brandClasses={brandClasses}
+          skuClasses={skuClasses}
+        />
+      )
+    }
+
     return (
       <div className="vtex-product-name">
         <div className={brandClasses}>
@@ -57,8 +76,8 @@ class ProductName extends Component {
         <div className={skuClasses}>{skuName}</div>
         {showProductReference &&
           productReference && (
-            <div className="vtex-product-name__product-reference pt3 f7 ttu gray">{`REF: ${productReference}`}</div>
-          )}
+          <div className="vtex-product-name__product-reference pt3 f7 ttu gray">{`REF: ${productReference}`}</div>
+        )}
       </div>
     )
   }

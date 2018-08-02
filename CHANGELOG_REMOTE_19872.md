@@ -9,21 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add `ProductName`, `ProductPrice` and `ProductImages` content loaders.
 
-## [1.11.0] - 2018-08-02
-### Changed
-- Removed graphql queries from `BuyButton`
-- Added `OrderFormContext` to update the minicart on `BuyButton` 
-
-
-## [1.10.0] - 2018-08-02
 ### Fixed
 - Top menu not being rendered as an overlay on scroll down.
 
 ### Changed
 - Use tachyons classes in `AvailabilitySubscriber`.
-
-### Added
-- Added mutation in `AvailabilitySubscriber` to send the data for Master Data on the entity `AS`.
 
 ## [1.9.0] - 2018-07-26
 ### Added
@@ -54,7 +44,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.7.3] - 2018-07-10
 ### Changed
-- Define `Footer` schema props that are layout type.
+- Define `Footer` schema props that are layout type. 
 
 ### Fixed
 - `TopMenu` display on mobile screen.
