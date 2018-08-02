@@ -20,3 +20,20 @@ You can use it in your code as the following
 | --------- | --------- | -------------------------------------------------------------------------------------- |
 | `skuId`   | `Number!` | The id of the product sku to which will be watched for changes in the product quantity |
 
+## Data
+
+The form is submitted to Master Data on the Entity: `AS`
+
+| Prop name          | Description                                                                            |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| `skuId`            | The id of the product sku to which will be watched for changes in the product quantity |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| `name`             | The name of the user                                                                   |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| `email`            | The e-mail of the user                                                                 |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| `notificationSend` | If the notification has been sent already                                              |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| `createdAt`        | When the document was created                                                          |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| `sendAt`           | When the user was notificated                                                          |

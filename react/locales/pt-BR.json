@@ -42,6 +42,7 @@
   "availability-subscriber.send-label": "Enviar",
   "availability-subscriber.invalid-email": "E-mail inválido",
   "availability-subscriber.added-message": "E-mail cadastrado com sucesso",
+  "availability-subscriber.error-message": "Falha ao se cadastrar, tente novamente",
   "editor.footer.title": "Rodapé",
   "editor.footer.description": "Um rodapé que aparece no inferior da sua loja",
   "editor.footer.logoUrl.title": "URL da logo",
