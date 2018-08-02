@@ -91,8 +91,7 @@ export class BuyButton extends Component {
   }
 
   render() {
-    const { isLoading } = this.state
-    const loading = isLoading || !this.props.skuItems
+    const loading = this.state.isLoading || !this.props.skuItems
 
     return (
       <Fragment>
