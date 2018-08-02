@@ -7,9 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Add `ProductName`, `ProductPrice` and `ProductImages` content loaders.
-- Add `Share` and `ShippingSimulator` content loaders.
-- Add more `BuyButton` loading logic.
+- `ProductName`, `ProductPrice` and `ProductImages` content loaders.
+- `Share` and `ShippingSimulator` content loaders.
+- More `BuyButton` loading logic.
 
 ## [1.11.0] - 2018-08-02
 ### Changed
