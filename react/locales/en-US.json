@@ -76,11 +76,14 @@
   "editor.footer.paymentForms.title": "Payment Form",
   "editor.footer.paymentForm.title": "Payment Form",
   "editor.footer.paymentForm.paymentType.title": "Payment Type",
-  "editor.mainCategories.title": "Main Categories",
-  "editor.mainCategories.description": "Main Categories of the Department",
-  "editor.mainCategories.item.categoryName": "Category Name",
-  "editor.mainCategories.item.categoryImage": "Category Image",
-  "editor.mainCategories.category": "Category",
-  "editor.mainCategories.categories": "Categories",
-  "editor.mainCategories.showMainCategories": "Show main categories"
+  "editor.categoriesHighlights.title": "Categories Highlights",
+  "editor.categoriesHighlights.description":
+    "Categories Highlights of the Department",
+  "editor.categoriesHighlights.item.categoryName": "Category Name",
+  "editor.categoriesHighlights.item.categoryImage": "Category Image",
+  "editor.categoriesHighlights.category": "Category",
+  "editor.categoriesHighlights.categories": "Categories",
+  "editor.categoriesHighlights.showCategoriesHighlights":
+    "Show categories highlights",
+  "editor.categoriesHighlights.quantityOfItems": "Quantity of Items"
 }

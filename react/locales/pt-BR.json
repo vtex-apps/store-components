@@ -76,11 +76,14 @@
   "editor.footer.paymentForms.title": "Forma de pagamento",
   "editor.footer.paymentForm.title": "Forma de pagamento",
   "editor.footer.paymentForm.paymentType.title": "Tipo de pagamento",
-  "editor.mainCategories.title": "Principais Categorias",
-  "editor.mainCategories.description": "Principais Categorias do Departamento",
-  "editor.mainCategories.item.categoryName": "Nome da Categoria",
-  "editor.mainCategories.item.categoryImage": "Imagem da Categoria",
-  "editor.mainCategories.category": "Categoria",
-  "editor.mainCategories.categories": "Categorias",
-  "editor.mainCategories.showMainCategories": "Mostrar as principais categorias"
+  "editor.categoriesHighlights.title": "Categorias em Destaque",
+  "editor.categoriesHighlights.description":
+    "Categorias em destaque do Departamento",
+  "editor.categoriesHighlights.item.categoryName": "Nome da Categoria",
+  "editor.categoriesHighlights.item.categoryImage": "Imagem da Categoria",
+  "editor.categoriesHighlights.category": "Categoria",
+  "editor.categoriesHighlights.categories": "Categorias",
+  "editor.categoriesHighlights.showCategoriesHighlights":
+    "Mostrar as categorias em destaque",
+  "editor.categoriesHighlights.quantityOfItems": "Quantidade de itens"
 }

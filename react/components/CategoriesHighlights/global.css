@@ -1,67 +1,67 @@
-.vtex-main-categories:only-child {
+.vtex-categories-highlights:only-child {
   display: none;
 }
 
-.vtex-carousel + .vtex-main-categories {
+.vtex-carousel + .vtex-categories-highlights {
   top: -90px;
 }
 
-.vtex-main-categories__category-card {
+.vtex-categories-highlights__category-card {
   background: rgba(61, 61, 61, 0.8);
   margin: 5px;
   height: 300px;
   width: 300px;
 }
 
-.vtex-main-categories__category-card img {
+.vtex-categories-highlights__category-card img {
   object-fit: cover;
   height: 300px;
   width: 300px;
 }
 
 @media only screen and (max-width: 375px) {
-  .vtex-carousel + .vtex-main-categories {
+  .vtex-carousel + .vtex-categories-highlights {
     top: -30px;
   }
 
-  .vtex-main-categories__category-card {
+  .vtex-categories-highlights__category-card {
     height: 130px;
     width: 130px;
   }
 
-  .vtex-main-categories__category-card img {
+  .vtex-categories-highlights__category-card img {
     height: 130px;
     width: 130px;
   }
 }
 
 @media only screen and (min-width: 375px) and (max-width: 800px) {
-  .vtex-carousel + .vtex-main-categories {
+  .vtex-carousel + .vtex-categories-highlights {
     top: -35px;
   }
 
-  .vtex-main-categories__category-card {
+  .vtex-categories-highlights__category-card {
     height: 150px;
     width: 150px;
   }
 
-  .vtex-main-categories__category-card img {
+  .vtex-categories-highlights__category-card img {
     height: 150px;
     width: 150px;
   }
 }
 
 @media only screen and (min-width: 800px) and (max-width: 1024px) {
-  .vtex-carousel + .vtex-main-categories {
+  .vtex-carousel + .vtex-categories-highlights {
     top: -70px;
   }
 
-  .vtex-main-categories__category-card {
+  .vtex-categories-highlights__category-card {
     height: 200px;
     width: 200px;
   }
 
-  .vtex-main-categories__category-card img {
+  .vtex-categories-highlights__category-card img {
     height: 200px;
     width: 200px;
   }
