@@ -1,0 +1,32 @@
+.vtex-product-name {
+  overflow: hidden;
+}
+
+.vtex-product-name__brand {
+  font-size: 1rem;
+}
+
+.vtex-product-name__brand--large {
+  font-size: 2.25rem;
+}
+
+.vtex-product-name__sku {
+  font-size: 0.875rem;
+}
+
+.vtex-product-name-loader {
+  padding-top: 1em;
+}
+
+.vtex-product-name__brand--loader {
+  height: 1.125em;
+  width: 75%;
+  x: 15%;
+}
+
+.vtex-product-name__sku--loader {
+  height: 1.125em;
+  width: 50%;
+  x: 25%;
+  y: 2em;
+}

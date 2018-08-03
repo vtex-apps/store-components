@@ -1,3 +1,5 @@
+import './global.css'
+
 import PropTypes from 'prop-types'
 import { isEmpty } from 'ramda'
 import React, { Component } from 'react'
@@ -17,10 +19,9 @@ class Price extends Component {
   static propTypes = PricePropTypes
 
   static Loader = (loaderProps = {}) => (
-    <div className="vtex-price">
+    <div className="vtex-price vtex-price-loader">
       <ContentLoader
         uniquekey="vtex-price-loader"
-        className="vtex-price-loader"
         style={{
           width: '100%',
           height: '100%',
@@ -31,6 +32,7 @@ class Price extends Component {
         <rect className="vtex-price-list__container--loader" />
         <rect className="vtex-price-selling__label--loader" />
         <rect className="vtex-price-selling--loader" />
+        <rect className="vtex-price-installments--loader" />
         <rect className="vtex-price-savings--loader" />
       </ContentLoader>
     </div>

@@ -1,4 +1,4 @@
-import './product-name.css'
+import './global.css'
 
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
