@@ -21,7 +21,6 @@ class Price extends Component {
   static Loader = (loaderProps = {}) => (
     <div className="vtex-price vtex-price-loader">
       <ContentLoader
-        uniquekey="vtex-price-loader"
         style={{
           width: '100%',
           height: '100%',
