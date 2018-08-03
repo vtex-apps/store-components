@@ -1,18 +1,41 @@
-import React, { Component, Fragment } from 'react'
+import './global.css'
+
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+import React, { Component, Fragment } from 'react'
+import ContentLoader from 'react-content-loader'
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 
 import VTEXClasses from './CustomClasses'
-
-import './global.css'
 
 /**
  * Product Description Component.
  * Render the description and technical specifications of a product
  */
 class ProductDescription extends Component {
+  static Loader = (loaderProps = {}) => (
+    <div className="vtex-product-specifications vtex-product-specifications-loader">
+      <ContentLoader
+        uniquekey="vtex-product-specifications-loader"
+        style={{
+          width: '100%',
+          height: '100%',
+        }}
+        height="100%"
+        width="100%"
+        {...loaderProps}>
+        <rect className="vtex-product-specifications__description-title--loader" />
+        <rect className="vtex-product-specifications__description--loader" />
+        <rect className="vtex-product-specifications__title--loader" />
+        <rect className="vtex-product-specifications__table--loader" />
+      </ContentLoader>
+    </div>
+  )
   render() {
     const { specifications, skuName, description } = this.props
+
+    if (!description || !specifications) {
+      return <ProductDescription.Loader />
+    }
 
     return (
       <div className={`${VTEXClasses.PRODUCT_DESCRIPTION} ma2`}>
@@ -20,7 +43,10 @@ class ProductDescription extends Component {
           <FormattedMessage id="product-description.title" />
         </div>
 
-        <span className="measure-wide" dangerouslySetInnerHTML={{ __html: description }} />
+        <span
+          className="measure-wide"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
 
         {specifications.length > 0 && (
           <div className="vtex-product-specifications">
@@ -40,8 +66,7 @@ class ProductDescription extends Component {
                 {specifications.map(specification => (
                   <tr
                     key={specification.name}
-                    className="vtex-product-specifications__table-row"
-                  >
+                    className="vtex-product-specifications__table-row">
                     <th className="vtex-product-specifications__specification-name">
                       {specification.name}
                     </th>
