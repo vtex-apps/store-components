@@ -127,18 +127,18 @@ class Price extends Component {
     const {
       sellingPrice,
       listPrice,
+      showListPrice,
       showInstallments,
       showLabels,
       showSavings,
       intl: { formatNumber },
     } = this.props
 
-    if (!sellingPrice || !listPrice) {
+    if (!sellingPrice || (showListPrice && !listPrice)) {
       return <Price.Loader />
     }
 
-    const differentPrices =
-      this.props.showListPrice && sellingPrice !== listPrice
+    const differentPrices = showListPrice && sellingPrice !== listPrice
 
     return (
       <div className="vtex-price flex flex-column justify-around">
