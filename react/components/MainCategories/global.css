@@ -10,6 +10,7 @@
 }
 
 .vtex-main-categories__category-card img {
+  object-fit: cover;
   height: 300px;
   width: 300px;
 }
