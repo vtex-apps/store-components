@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 
 import CategoryCard from './components/CategoryCard'
 
-const MAX_NUMBER_OF_CATEGORIES = 4
+const QUANTITY_ITENS = 4
 
 /**
  * MainCategories is a component responsible to display the
@@ -22,10 +22,13 @@ class MainCategories extends Component {
         image: PropTypes.string,
       })
     ).isRequired,
+    /** Flag which indicates if the main categories should be displayed or not */
+    showMainCategories: PropTypes.bool.isRequired,
   }
 
   static defaultProps = {
     categories: [],
+    showMainCategories: false,
   }
 
   static uiSchema = {
@@ -47,8 +50,8 @@ class MainCategories extends Component {
         categories: {
           type: 'array',
           title: 'editor.mainCategories.categories',
-          minItens: 1,
-          maxItens: MAX_NUMBER_OF_CATEGORIES,
+          minItens: QUANTITY_ITENS,
+          maxItens: QUANTITY_ITENS,
           items: {
             type: 'object',
             title: 'editor.mainCategories.category',
@@ -68,28 +71,33 @@ class MainCategories extends Component {
               },
             },
           },
+          isLayout: false,
+        },
+        showMainCategories: {
+          type: 'boolean',
+          title: 'editor.mainCategories.showMainCategories',
+          default: false,
+          isLayout: true,
         },
       },
     }
   }
 
   render() {
-    const { categories } = this.props
+    const { categories, showMainCategories } = this.props
 
-    if (!categories.length) return null
+    if (!categories.length || categories.length < QUANTITY_ITENS || !showMainCategories) return null
 
     return (
       <div className="vtex-main-categories relative">
         <div className="flex flex-row flex-wrap items-center justify-center">
-          {categories
-            .slice(0, MAX_NUMBER_OF_CATEGORIES)
-            .map((category, index) => (
-              <div
-                className="vtex-main-categories__category-card-container"
-                key={index}>
-                <CategoryCard {...category} />
-              </div>
-            ))}
+          {categories.slice(0, QUANTITY_ITENS).map((category, index) => (
+            <div
+              className="vtex-main-categories__category-card-container"
+              key={index}>
+              <CategoryCard {...category} />
+            </div>
+          ))}
         </div>
       </div>
     )

@@ -1,3 +1,7 @@
+.vtex-main-categories:only-child {
+  display: none;
+}
+
 .vtex-carousel + .vtex-main-categories {
   top: -90px;
 }

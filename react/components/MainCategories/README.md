@@ -17,6 +17,8 @@ You can use it in your code like a React component with the jsx tag: `<MainCateg
 | Prop name                | Type       | Description                                                                 |
 | ------------------------ | ---------- | --------------------------------------------------------------------------- |
 | `categories`             | `Array!`   | Main categories of the department                                           |
+| `showMainCategories`     | `Boolean!` | Flag which indicates if the main categories should be displayed or not      |
+
 
 
 

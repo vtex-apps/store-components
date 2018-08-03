@@ -84,5 +84,6 @@
   "editor.mainCategories.item.categoryName": "Nombre de la categoría",
   "editor.mainCategories.item.categoryImage": "Imagen de la categoría",
   "editor.mainCategories.category": "Categoria",
-  "editor.mainCategories.categories": "Categorías"
+  "editor.mainCategories.categories": "Categorías",
+  "editor.mainCategories.showMainCategories": "Mostrar las principales categorías"
 }
