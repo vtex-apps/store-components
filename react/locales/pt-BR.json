@@ -42,7 +42,8 @@
   "availability-subscriber.send-label": "Enviar",
   "availability-subscriber.invalid-email": "E-mail inválido",
   "availability-subscriber.added-message": "E-mail cadastrado com sucesso",
-  "availability-subscriber.error-message": "Falha ao se cadastrar, tente novamente",
+  "availability-subscriber.error-message":
+    "Falha ao se cadastrar, tente novamente",
   "editor.footer.title": "Rodapé",
   "editor.footer.description": "Um rodapé que aparece no inferior da sua loja",
   "editor.footer.logoUrl.title": "URL da logo",
@@ -74,5 +75,11 @@
   "editor.footer.paymentForms": "Formas de pagamento",
   "editor.footer.paymentForms.title": "Forma de pagamento",
   "editor.footer.paymentForm.title": "Forma de pagamento",
-  "editor.footer.paymentForm.paymentType.title": "Tipo de pagamento"
+  "editor.footer.paymentForm.paymentType.title": "Tipo de pagamento",
+  "editor.mainCategories.title": "Principais Categorias",
+  "editor.mainCategories.description": "Principais Categorias do Departamento",
+  "editor.mainCategories.item.categoryName": "Nome da Categoria",
+  "editor.mainCategories.item.categoryImage": "Imagem da Categoria",
+  "editor.mainCategories.category": "Categoria",
+  "editor.mainCategories.categories": "Categorias"
 }

@@ -75,5 +75,11 @@
   "editor.footer.paymentForms": "Payment Forms",
   "editor.footer.paymentForms.title": "Payment Form",
   "editor.footer.paymentForm.title": "Payment Form",
-  "editor.footer.paymentForm.paymentType.title": "Payment Type"
+  "editor.footer.paymentForm.paymentType.title": "Payment Type",
+  "editor.mainCategories.title": "Main Categories",
+  "editor.mainCategories.description": "Main Categories of the Department",
+  "editor.mainCategories.item.categoryName": "Category Name",
+  "editor.mainCategories.item.categoryImage": "Category Image",
+  "editor.mainCategories.category": "Category",
+  "editor.mainCategories.categories": "Categories"
 }
