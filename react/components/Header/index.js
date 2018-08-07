@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 
@@ -69,37 +69,45 @@ class Header extends Component {
       orderFormContext.message.text && orderFormContext.message.text != ''
 
     return (
-      <div className="vtex-header relative z-2 w-100 shadow-5" ref={this._root}>
-        <div className="z-2 items-center w-100 top-0 bg-white tl">
-          <ExtensionPoint id="menu-link" />
-        </div>
-        <TopMenu logoUrl={logoUrl} logoTitle={logoTitle} />
-        <ExtensionPoint id="category-menu" />
-        {showMenuPopup && (
-          <Modal>
-            <TopMenu
-              logoUrl={logoUrl}
-              logoTitle={logoTitle}
-              offsetTop={offsetTop}
-              fixed
-            />
-          </Modal>
-        )}
+      <Fragment>
+        <ExtensionPoint id="impersonate" />
         <div
-          className="flex flex-column items-center fixed w-100"
-          style={{ top: offsetTop + 120 }}
+          className="vtex-header relative z-2 w-100 shadow-5"
+          ref={this._root}
         >
-          {hasMessage && (
-            <div className="pa2 mw9">
-              <Alert
-                type={orderFormContext.message.isSuccess ? 'success' : 'error'}
-              >
-                {orderFormContext.message.text}
-              </Alert>
-            </div>
+          <div className="z-2 items-center w-100 top-0 bg-white tl">
+            <ExtensionPoint id="menu-link" />
+          </div>
+          <TopMenu logoUrl={logoUrl} logoTitle={logoTitle} />
+          <ExtensionPoint id="category-menu" />
+          {showMenuPopup && (
+            <Modal>
+              <TopMenu
+                logoUrl={logoUrl}
+                logoTitle={logoTitle}
+                offsetTop={offsetTop}
+                fixed
+              />
+            </Modal>
           )}
+          <div
+            className="flex flex-column items-center fixed w-100"
+            style={{ top: offsetTop + 120 }}
+          >
+            {hasMessage && (
+              <div className="pa2 mw9">
+                <Alert
+                  type={
+                    orderFormContext.message.isSuccess ? 'success' : 'error'
+                  }
+                >
+                  {orderFormContext.message.text}
+                </Alert>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      </Fragment>
     )
   }
 }
