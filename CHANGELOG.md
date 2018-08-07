@@ -8,9 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `ProductDescription` content loader.
-
-### Added
 - `MainCategories` component.
+
+### Fixed
+- Correct function from `orderFormContext` to add a new item to the orderForm.
 
 ## [1.12.0] - 2018-08-02
 ### Added
