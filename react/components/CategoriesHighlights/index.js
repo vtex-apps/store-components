@@ -6,6 +6,8 @@ import React, { Component } from 'react'
 
 import CategoryCard from './components/CategoryCard'
 
+const ITENS_PER_ROW = 2
+
 /**
  * CategoriesHighlights is a component responsible to display the
  * Categories in Hightlight of a department.
@@ -114,11 +116,15 @@ class CategoriesHighlights extends Component {
     return (
       <div className="vtex-categories-highlights relative">
         <div className="flex flex-row flex-wrap items-center justify-center">
-          {categories.map((category, index) => (
-            <div
-              className="vtex-categories-highlights__category-card-container"
-              key={index}>
-              <CategoryCard {...category} />
+          {range(0, quantityOfItems / ITENS_PER_ROW).map(indexRow => (
+            <div className="flex flex-row items-center justify-center">
+              {range(0, ITENS_PER_ROW).map(indexCol => (
+                <div
+                  className="vtex-categories-highlights__category-card-container"
+                  key={2 * indexRow + indexCol}>
+                  <CategoryCard {...categories[2 * indexRow + indexCol]} />
+                </div>
+              ))}
             </div>
           ))}
         </div>
