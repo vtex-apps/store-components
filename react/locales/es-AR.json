@@ -84,7 +84,7 @@
   "editor.categoriesHighlights.item.categoryName": "Nombre de la categoría",
   "editor.categoriesHighlights.item.categoryImage": "Imagen de la categoría",
   "editor.categoriesHighlights.category": "Categoria",
-  "editor.categoriesHighlights.categories": "Categorías",
+  "editor.categoriesHighlights.categoriesHightlights": "Categorías destacadas",
   "editor.categoriesHighlights.showCategoriesHighlights":
     "Mostrar las categorías descatacadas",
   "editor.categoriesHighlights.quantityOfItems": "Cantidad de artículos"

@@ -82,7 +82,7 @@
   "editor.categoriesHighlights.item.categoryName": "Category Name",
   "editor.categoriesHighlights.item.categoryImage": "Category Image",
   "editor.categoriesHighlights.category": "Category",
-  "editor.categoriesHighlights.categories": "Categories",
+  "editor.categoriesHighlights.categoriesHightlights": "Categories Highlights",
   "editor.categoriesHighlights.showCategoriesHighlights":
     "Show categories highlights",
   "editor.categoriesHighlights.quantityOfItems": "Quantity of Items"

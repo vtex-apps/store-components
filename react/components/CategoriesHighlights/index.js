@@ -23,7 +23,6 @@ class CategoriesHighlights extends Component {
   static defaultProps = {
     categories: {},
     showCategoriesHighlights: false,
-    quantityOfItems: 2,
   }
 
   static uiSchema = {
@@ -36,34 +35,30 @@ class CategoriesHighlights extends Component {
     },
   }
 
-  static getSchema = props => {
-    const { showCategoriesHighlights, quantityOfItems } = props
+  static getSchema = ({ quantityOfItems }) => {
+    let categoriesHightlightsProps = {}
 
-    let categoriesProps = {}
-
-    if (showCategoriesHighlights) {
-      range(0, quantityOfItems).forEach(index => {
-        categoriesProps[`category${index}`] = {
-          type: 'object',
-          title: 'editor.categoriesHighlights.category',
-          properties: {
-            name: {
-              type: 'string',
-              default: '',
-              title: 'editor.categoriesHighlights.item.categoryName',
-            },
-            image: {
-              type: 'string',
-              title: 'editor.categoriesHighlights.item.categoryImage',
-              default: '',
-              widget: {
-                'ui:widget': 'image-uploader',
-              },
+    range(0, quantityOfItems).forEach(index => {
+      categoriesHightlightsProps[`category${index}`] = {
+        type: 'object',
+        title: 'editor.categoriesHighlights.category',
+        properties: {
+          name: {
+            type: 'string',
+            default: '',
+            title: 'editor.categoriesHighlights.item.categoryName',
+          },
+          image: {
+            type: 'string',
+            title: 'editor.categoriesHighlights.item.categoryImage',
+            default: '',
+            widget: {
+              'ui:widget': 'image-uploader',
             },
           },
-        }
-      })
-    }
+        },
+      }
+    })
 
     return {
       title: 'editor.categoriesHighlights.title',
@@ -89,10 +84,10 @@ class CategoriesHighlights extends Component {
           },
           isLayout: true,
         },
-        categories: {
+        categoriesHightlights: {
           type: 'object',
-          title: 'editor.categoriesHighlights.categories',
-          properties: categoriesProps,
+          title: 'editor.categoriesHighlights.categoriesHightlights',
+          properties: categoriesHightlightsProps,
           isLayout: false,
         },
       },
@@ -100,14 +95,26 @@ class CategoriesHighlights extends Component {
   }
 
   render() {
-    const { categories, showCategoriesHighlights } = this.props
+    const {
+      categoriesHightlights,
+      showCategoriesHighlights,
+      quantityOfItems,
+    } = this.props
 
     if (!showCategoriesHighlights) return null
+
+    let categories = values(categoriesHightlights).map(category => category)
+    range(categories.length, quantityOfItems).forEach(() => {
+      categories.push({
+        name: '',
+        image: '',
+      })
+    })
 
     return (
       <div className="vtex-categories-highlights relative">
         <div className="flex flex-row flex-wrap items-center justify-center">
-          {values(categories).map((category, index) => (
+          {categories.map((category, index) => (
             <div
               className="vtex-categories-highlights__category-card-container"
               key={index}>

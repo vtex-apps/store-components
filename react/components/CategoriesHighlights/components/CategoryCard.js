@@ -21,6 +21,7 @@ class CategoryCard extends Component {
     return (
       <div className="vtex-categories-highlights__category-card shadow-1">
         {/* TODO: Redirect to the page of the category specified by its name */}
+
         <Link>
           {image ? (
             <img src={image} alt={name} />
