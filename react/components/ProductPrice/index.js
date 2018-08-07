@@ -133,7 +133,7 @@ class Price extends Component {
       intl: { formatNumber },
     } = this.props
 
-    if (!sellingPrice || (showListPrice && !listPrice)) {
+    if ((showListPrice && !listPrice) || !sellingPrice) {
       return <Price.Loader />
     }
 
