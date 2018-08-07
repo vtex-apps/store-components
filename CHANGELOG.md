@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `ProductDescription` content loader.
 
+### Added
+- `MainCategories` component.
+
 ## [1.12.0] - 2018-08-02
 ### Added
 - `ProductName`, `ProductPrice` and `ProductImages` content loaders.

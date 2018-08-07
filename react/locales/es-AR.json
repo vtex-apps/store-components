@@ -43,7 +43,8 @@
   "availability-subscriber.send-label": "Enviar",
   "availability-subscriber.invalid-email": "E-mail inválido",
   "availability-subscriber.added-message": "E-mail registrado con éxito",
-  "availability-subscriber.error-message": "No se pudo registrar, inténtelo de nuevo",
+  "availability-subscriber.error-message":
+    "No se pudo registrar, inténtelo de nuevo",
   "editor.footer.title": "Pie de página",
   "editor.footer.description":
     "Un pie de página que aparece en la parte inferior de su tienda",
@@ -76,5 +77,15 @@
   "editor.footer.paymentForms": "Formas de pago",
   "editor.footer.paymentForms.title": "Forma de pago",
   "editor.footer.paymentForm.title": "Forma de pago",
-  "editor.footer.paymentForm.paymentType.title": "Tipo de pago"
+  "editor.footer.paymentForm.paymentType.title": "Tipo de pago",
+  "editor.categoriesHighlights.title": "Categorías destacadas",
+  "editor.categoriesHighlights.description":
+    "Categorias destacadas de este departamento",
+  "editor.categoriesHighlights.item.categoryName": "Nombre de la categoría",
+  "editor.categoriesHighlights.item.categoryImage": "Imagen de la categoría",
+  "editor.categoriesHighlights.category": "Categoria",
+  "editor.categoriesHighlights.categoriesHightlights": "Categorías destacadas",
+  "editor.categoriesHighlights.showCategoriesHighlights":
+    "Mostrar las categorías descatacadas",
+  "editor.categoriesHighlights.quantityOfItems": "Cantidad de artículos"
 }

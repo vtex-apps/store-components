@@ -75,5 +75,15 @@
   "editor.footer.paymentForms": "Payment Forms",
   "editor.footer.paymentForms.title": "Payment Form",
   "editor.footer.paymentForm.title": "Payment Form",
-  "editor.footer.paymentForm.paymentType.title": "Payment Type"
+  "editor.footer.paymentForm.paymentType.title": "Payment Type",
+  "editor.categoriesHighlights.title": "Categories Highlights",
+  "editor.categoriesHighlights.description":
+    "Categories Highlights of the Department",
+  "editor.categoriesHighlights.item.categoryName": "Category Name",
+  "editor.categoriesHighlights.item.categoryImage": "Category Image",
+  "editor.categoriesHighlights.category": "Category",
+  "editor.categoriesHighlights.categoriesHightlights": "Categories Highlights",
+  "editor.categoriesHighlights.showCategoriesHighlights":
+    "Show categories highlights",
+  "editor.categoriesHighlights.quantityOfItems": "Quantity of Items"
 }
