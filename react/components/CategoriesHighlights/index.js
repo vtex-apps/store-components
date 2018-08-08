@@ -5,8 +5,7 @@ import { range, values } from 'ramda'
 import React, { Component } from 'react'
 
 import CategoryCard from './components/CategoryCard'
-
-const ITENS_PER_ROW = 2
+import { ITEMS_PER_ROW, RECTANGULAR, SQUARED } from './constants.js'
 
 /**
  * CategoriesHighlights is a component responsible to display the
@@ -20,11 +19,15 @@ class CategoriesHighlights extends Component {
     showCategoriesHighlights: PropTypes.bool.isRequired,
     /** Number of categories in highlight to be displayed (it should be 2 or 4) */
     quantityOfItems: PropTypes.number.isRequired,
+    /** Shape of the box which wrapes each category (it should be 'squared' or 'rectangular')  */
+    boxShape: PropTypes.oneOf([SQUARED, RECTANGULAR]).isRequired,
   }
 
   static defaultProps = {
     categories: {},
     showCategoriesHighlights: false,
+    quantityOfItems: ITEMS_PER_ROW,
+    boxShape: SQUARED,
   }
 
   static uiSchema = {
@@ -40,7 +43,7 @@ class CategoriesHighlights extends Component {
   static getSchema = ({ quantityOfItems }) => {
     let categoriesHightlightsProps = {}
 
-    range(0, quantityOfItems).forEach(index => {
+    range(0, quantityOfItems || ITEMS_PER_ROW).forEach(index => {
       categoriesHightlightsProps[`category${index}`] = {
         type: 'object',
         title: 'editor.categoriesHighlights.category',
@@ -86,6 +89,23 @@ class CategoriesHighlights extends Component {
           },
           isLayout: true,
         },
+        boxShape: {
+          type: 'string',
+          title: 'editor.categoriesHighlights.boxShape',
+          enum: [SQUARED, RECTANGULAR],
+          enumNames: [
+            'editor.categoriesHighlights.boxShape.squared',
+            'editor.categoriesHighlights.boxShape.rectangular',
+          ],
+          default: SQUARED,
+          widget: {
+            'ui:widget': 'radio',
+            'ui:options': {
+              inline: true,
+            },
+          },
+          isLayout: true,
+        },
         categoriesHightlights: {
           type: 'object',
           title: 'editor.categoriesHighlights.categoriesHightlights',
@@ -101,6 +121,7 @@ class CategoriesHighlights extends Component {
       categoriesHightlights,
       showCategoriesHighlights,
       quantityOfItems,
+      boxShape,
     } = this.props
 
     if (!showCategoriesHighlights) return null
@@ -114,15 +135,18 @@ class CategoriesHighlights extends Component {
     })
 
     return (
-      <div className="vtex-categories-highlights relative">
+      <div className={`vtex-categories-highlights-${boxShape} relative`}>
         <div className="flex flex-row flex-wrap items-center justify-center">
-          {range(0, quantityOfItems / ITENS_PER_ROW).map(indexRow => (
-            <div className="flex flex-row items-center justify-center">
-              {range(0, ITENS_PER_ROW).map(indexCol => (
+          {range(0, quantityOfItems / ITEMS_PER_ROW).map(indexRow => (
+            <div className="flex flex-row flex-wrap items-center justify-center">
+              {range(0, ITEMS_PER_ROW).map(indexCol => (
                 <div
-                  className="vtex-categories-highlights__category-card-container"
+                  className={`vtex-categories-highlights__category-${boxShape}-card`}
                   key={2 * indexRow + indexCol}>
-                  <CategoryCard {...categories[2 * indexRow + indexCol]} />
+                  <CategoryCard
+                    shape={boxShape}
+                    {...categories[2 * indexRow + indexCol]}
+                  />
                 </div>
               ))}
             </div>
