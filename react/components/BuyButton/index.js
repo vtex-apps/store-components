@@ -71,7 +71,7 @@ export class BuyButton extends Component {
     if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
 
     orderFormContext
-      .updateOrderForm({
+      .addItem({
         variables,
       })
       .then(
