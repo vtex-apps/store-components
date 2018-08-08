@@ -1,12 +1,12 @@
-import './global.css'
+import './global.css';
 
-import PropTypes from 'prop-types'
-import { isEmpty } from 'ramda'
-import React, { Component } from 'react'
-import ContentLoader from 'react-content-loader'
-import { FormattedMessage, injectIntl } from 'react-intl'
+import PropTypes from 'prop-types';
+import { isEmpty } from 'ramda';
+import React, { Component } from 'react';
+import ContentLoader from 'react-content-loader';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
-import PricePropTypes from './propTypes'
+import PricePropTypes from './propTypes';
 
 /**
  * The Price component. Shows the prices information of the Product Summary.
@@ -133,7 +133,10 @@ class Price extends Component {
       intl: { formatNumber },
     } = this.props
 
-    if ((showListPrice && !listPrice) || !sellingPrice) {
+    if (
+      (showListPrice && Number.isNaN(+listPrice)) ||
+      Number.isNaN(+sellingPrice)
+    ) {
       return <Price.Loader />
     }
 
@@ -166,20 +169,20 @@ class Price extends Component {
         {showInstallments && this.getInstallmentsNode()}
         {differentPrices &&
           showSavings && (
-          <div className="vtex-price-savings__container">
-            <div className="vtex-price-savings dib">
-              <FormattedMessage
-                id="pricing.savings"
-                values={{
-                  savings: formatNumber(
-                    listPrice - sellingPrice,
-                    this.currencyOptions
-                  ),
-                }}
-              />
+            <div className="vtex-price-savings__container">
+              <div className="vtex-price-savings dib">
+                <FormattedMessage
+                  id="pricing.savings"
+                  values={{
+                    savings: formatNumber(
+                      listPrice - sellingPrice,
+                      this.currencyOptions
+                    ),
+                  }}
+                />
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     )
   }
