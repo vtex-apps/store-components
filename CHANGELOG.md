@@ -6,15 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `ProductDescription` content loader.
+- `ProductName` and `ProductPrice` content loaders default style.
+- `Impersonate` component to  `Header`.
 
 ## [1.12.1] - 2018-08-08
 ### Added
-- `ProductDescription` content loader.
-- `Impersonate` component to  `Header`.
-- `ProductName` and `ProductPrice` content loaders default style.
-
-### Added
 - `MainCategories` component.
+- `ProductDescription` content loader.
 
 ## [1.12.0] - 2018-08-02
 ### Added
