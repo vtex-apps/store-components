@@ -73,7 +73,7 @@
   "editor.categoriesHighlights.categoriesHightlights": "Categories Highlights",
   "editor.categoriesHighlights.showCategoriesHighlights": "Show categories highlights",
   "editor.categoriesHighlights.quantityOfItems": "Quantity of Items",
-  "editor.categoriesHighlights.boxShape": "Box shape",
-  "editor.categoriesHighlights.boxShape.squared": "Squared",
-  "editor.categoriesHighlights.boxShape.rectangular": "Rectangular"
+  "editor.categoriesHighlights.cardShape": "Box shape",
+  "editor.categoriesHighlights.cardShape.squared": "Squared",
+  "editor.categoriesHighlights.cardShape.rectangular": "Rectangular"
 }

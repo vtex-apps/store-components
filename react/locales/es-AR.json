@@ -73,7 +73,7 @@
   "editor.categoriesHighlights.categoriesHightlights": "Categorías destacadas",
   "editor.categoriesHighlights.showCategoriesHighlights": "Mostrar las categorías descatacadas",
   "editor.categoriesHighlights.quantityOfItems": "Cantidad de artículos",
-  "editor.categoriesHighlights.boxShape": "Forma de la caja",
-  "editor.categoriesHighlights.boxShape.squared": "Cuadrada",
-  "editor.categoriesHighlights.boxShape.rectangular": "Rectangular"
+  "editor.categoriesHighlights.cardShape": "Forma de la caja",
+  "editor.categoriesHighlights.cardShape.squared": "Cuadrada",
+  "editor.categoriesHighlights.cardShape.rectangular": "Rectangular"
 }

@@ -73,7 +73,7 @@
   "editor.categoriesHighlights.categoriesHightlights": "Categorias em Destaque",
   "editor.categoriesHighlights.showCategoriesHighlights": "Mostrar as categorias em destaque",
   "editor.categoriesHighlights.quantityOfItems": "Quantidade de itens",
-  "editor.categoriesHighlights.boxShape": "Forma da caixa",
-  "editor.categoriesHighlights.boxShape.squared": "Quadrada",
-  "editor.categoriesHighlights.boxShape.rectangular": "Retangular"
+  "editor.categoriesHighlights.cardShape": "Forma da caixa",
+  "editor.categoriesHighlights.cardShape.squared": "Quadrada",
+  "editor.categoriesHighlights.cardShape.rectangular": "Retangular"
 }
