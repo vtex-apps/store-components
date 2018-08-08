@@ -7,11 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-<<<<<<< HEAD
 - Correct function from `orderFormContext` to add a new item to the orderForm.
-=======
 - `ProductPrice` condition now uses `isNil` function from `ramda`.
->>>>>>> Fix ProductPrice Loader condition
 
 ## [1.12.2] - 2018-08-08
 ### Added
