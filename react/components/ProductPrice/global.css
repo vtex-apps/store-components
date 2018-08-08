@@ -1,0 +1,23 @@
+.vtex-price-loader {
+  height: 4.1em;
+}
+
+.vtex-price-list__container--loader {
+  height: 0.75em;
+  width: 50%;
+  x: 25%;
+}
+
+.vtex-price-selling--loader {
+  height: 1em;
+  width: 70%;
+  x: 15%;
+  y: 1.25em;
+}
+
+.vtex-price-installments--loader {
+  height: 0.75em;
+  width: 80%;
+  x: 10%;
+  y: 2.75em;
+}

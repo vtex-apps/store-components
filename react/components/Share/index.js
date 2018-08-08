@@ -1,12 +1,12 @@
-import './global.css'
+import './global.css';
 
-import PropTypes from 'prop-types'
-import { indexBy, prop } from 'ramda'
-import React, { Component } from 'react'
-import ContentLoader from 'react-content-loader'
+import PropTypes from 'prop-types';
+import { indexBy, prop } from 'ramda';
+import React, { Component } from 'react';
+import ContentLoader from 'react-content-loader';
 
-import SocialButton from './components/SocialButton'
-import { SOCIAL_ENUM } from './constants/social'
+import SocialButton from './components/SocialButton';
+import { SOCIAL_ENUM } from './constants/social';
 
 class Share extends Component {
   static propTypes = {
@@ -26,7 +26,6 @@ class Share extends Component {
   static Loader = (loaderProps = {}) => (
     <div className="vtex-share">
       <ContentLoader
-        uniquekey="vtex-share"
         className="vtex-share"
         style={{
           width: '100%',
