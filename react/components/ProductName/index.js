@@ -1,4 +1,4 @@
-import './product-name.css'
+import './global.css'
 
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
@@ -34,7 +34,6 @@ class ProductName extends Component {
   static Loader = (loaderProps = {}) => (
     <div className="vtex-product-name vtex-product-name-loader">
       <ContentLoader
-        uniquekey="vtex-product-name-loader"
         style={{
           width: '100%',
           height: '100%',

@@ -1,13 +1,13 @@
-import './global.css'
+import './global.css';
 
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import ContentLoader from 'react-content-loader'
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import ContentLoader from 'react-content-loader';
 
-import SelectedImage from './components/SelectedImage'
-import ThumbnailSlider from './components/ThumbnailSlider'
-import { HORIZONTAL, VERTICAL } from './constants/orientation'
-import VTEXClasses from './constants/productImagesClasses'
+import SelectedImage from './components/SelectedImage';
+import ThumbnailSlider from './components/ThumbnailSlider';
+import { HORIZONTAL, VERTICAL } from './constants/orientation';
+import VTEXClasses from './constants/productImagesClasses';
 
 const DEFAULT_SELECTED_IMAGE = 0
 
@@ -42,7 +42,6 @@ class ProductImages extends Component {
     props.isVertical ? (
       <div className="vtex-product-image vtex-product-image-loader vtex-product-image__vertical vtex-product-image__vertical--loader">
         <ContentLoader
-          uniquekey="vtex-product-image-loader"
           style={{
             width: '100%',
             height: '100%',
@@ -56,7 +55,6 @@ class ProductImages extends Component {
     ) : (
       <div className="vtex-product-image vtex-product-image-loader vtex-product-image__horizontal vtex-product-image__horizontal--loader">
         <ContentLoader
-          uniquekey="vtex-product-image-loader"
           style={{
             width: '100%',
             height: '100%',

@@ -1,10 +1,12 @@
-import PropTypes from 'prop-types'
-import { isEmpty } from 'ramda'
-import React, { Component } from 'react'
-import ContentLoader from 'react-content-loader'
-import { FormattedMessage, injectIntl } from 'react-intl'
+import './global.css';
 
-import PricePropTypes from './propTypes'
+import PropTypes from 'prop-types';
+import { isEmpty } from 'ramda';
+import React, { Component } from 'react';
+import ContentLoader from 'react-content-loader';
+import { FormattedMessage, injectIntl } from 'react-intl';
+
+import PricePropTypes from './propTypes';
 
 /**
  * The Price component. Shows the prices information of the Product Summary.
@@ -17,10 +19,8 @@ class Price extends Component {
   static propTypes = PricePropTypes
 
   static Loader = (loaderProps = {}) => (
-    <div className="vtex-price">
+    <div className="vtex-price vtex-price-loader">
       <ContentLoader
-        uniquekey="vtex-price-loader"
-        className="vtex-price-loader"
         style={{
           width: '100%',
           height: '100%',
@@ -31,6 +31,7 @@ class Price extends Component {
         <rect className="vtex-price-list__container--loader" />
         <rect className="vtex-price-selling__label--loader" />
         <rect className="vtex-price-selling--loader" />
+        <rect className="vtex-price-installments--loader" />
         <rect className="vtex-price-savings--loader" />
       </ContentLoader>
     </div>
@@ -125,18 +126,21 @@ class Price extends Component {
     const {
       sellingPrice,
       listPrice,
+      showListPrice,
       showInstallments,
       showLabels,
       showSavings,
       intl: { formatNumber },
     } = this.props
 
-    if (!sellingPrice || !listPrice) {
+    if (
+      (showListPrice && Number.isNaN(+listPrice)) ||
+      Number.isNaN(+sellingPrice)
+    ) {
       return <Price.Loader />
     }
 
-    const differentPrices =
-      this.props.showListPrice && sellingPrice !== listPrice
+    const differentPrices = showListPrice && sellingPrice !== listPrice
 
     return (
       <div className="vtex-price flex flex-column justify-around">
@@ -165,20 +169,20 @@ class Price extends Component {
         {showInstallments && this.getInstallmentsNode()}
         {differentPrices &&
           showSavings && (
-          <div className="vtex-price-savings__container">
-            <div className="vtex-price-savings dib">
-              <FormattedMessage
-                id="pricing.savings"
-                values={{
-                  savings: formatNumber(
-                    listPrice - sellingPrice,
-                    this.currencyOptions
-                  ),
-                }}
-              />
+            <div className="vtex-price-savings__container">
+              <div className="vtex-price-savings dib">
+                <FormattedMessage
+                  id="pricing.savings"
+                  values={{
+                    savings: formatNumber(
+                      listPrice - sellingPrice,
+                      this.currencyOptions
+                    ),
+                  }}
+                />
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     )
   }

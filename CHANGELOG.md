@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `ProductDescription` content loader.
 - `Impersonate` component to  `Header`.
+- `ProductName` and `ProductPrice` content loaders default style.
 
 ### Added
 - `MainCategories` component.

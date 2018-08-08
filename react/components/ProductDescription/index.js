@@ -15,7 +15,6 @@ class ProductDescription extends Component {
   static Loader = (loaderProps = {}) => (
     <div className="vtex-product-specifications vtex-product-specifications-loader">
       <ContentLoader
-        uniquekey="vtex-product-specifications-loader"
         style={{
           width: '100%',
           height: '100%',
