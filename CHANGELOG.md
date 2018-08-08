@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.12.1] - 2018-08-08
 ### Added
 - `ProductDescription` content loader.
+- `ProductName` and `ProductPrice` content loaders default style.
 
 ### Added
 - `MainCategories` component.

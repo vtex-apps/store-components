@@ -28,7 +28,6 @@ class ShippingSimulator extends Component {
   static Loader = (loaderProps = {}) => (
     <div className="vtex-shipping-simulator">
       <ContentLoader
-        uniquekey="vtex-shipping-simulator-loader"
         className="vtex-shipping-simulator-loader"
         style={{
           width: '100%',
