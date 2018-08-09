@@ -138,7 +138,9 @@ class CategoriesHighlights extends Component {
       <div className={`vtex-categories-highlights-${cardShape} relative`}>
         <div className="flex flex-row flex-wrap items-center justify-center">
           {range(0, quantityOfItems / ITEMS_PER_ROW).map(indexRow => (
-            <div className="flex flex-row flex-wrap items-center justify-center">
+            <div
+              key={`row${indexRow}`}
+              className="flex flex-row flex-wrap items-center justify-center">
               {range(0, ITEMS_PER_ROW).map(indexCol => (
                 <div key={2 * indexRow + indexCol}>
                   <CategoryCard
