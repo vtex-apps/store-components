@@ -1,8 +1,8 @@
-import './global.css'
+import './global.css';
 
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import ContentLoader from 'react-content-loader'
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import ContentLoader from 'react-content-loader';
 
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
@@ -41,8 +41,19 @@ class ProductName extends Component {
         height="100%"
         width="100%"
         {...loaderProps}>
-        <rect className="vtex-product-name__brand--loader" />
-        <rect className="vtex-product-name__sku--loader" />
+        <rect
+          height="1.125em"
+          width="75%"
+          x="15%"
+          {...loaderProps['vtex-product-name__brand--loader']}
+        />
+        <rect
+          height="1.125em"
+          width="50%"
+          x="25%"
+          y="1.75em"
+          {...loaderProps['vtex-product-name__sku--loader']}
+        />
       </ContentLoader>
     </div>
   )
@@ -83,8 +94,8 @@ class ProductName extends Component {
         <div className={skuClasses}>{skuName}</div>
         {showProductReference &&
           productReference && (
-          <div className="vtex-product-name__product-reference pt3 f7 ttu gray">{`REF: ${productReference}`}</div>
-        )}
+            <div className="vtex-product-name__product-reference pt3 f7 ttu gray">{`REF: ${productReference}`}</div>
+          )}
       </div>
     )
   }
