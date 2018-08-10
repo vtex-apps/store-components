@@ -23,6 +23,8 @@ class ProductName extends Component {
     showBrandName: PropTypes.bool,
     /** Display large font */
     large: PropTypes.bool,
+    /** Component and content loader styles */
+    styles: PropTypes.object,
   }
 
   static defaultProps = {
@@ -80,6 +82,7 @@ class ProductName extends Component {
     if (!name) {
       return (
         <ProductName.Loader
+          {...this.props.styles}
           brandClasses={brandClasses}
           skuClasses={skuClasses}
         />
