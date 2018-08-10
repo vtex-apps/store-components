@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Fix all content loaders to work on Firefox.
+- All content loaders to work on Firefox.
 
 ## [1.12.4] - 2018-08-10
 ### Added
