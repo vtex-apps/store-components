@@ -21,25 +21,48 @@ class Share extends Component {
     title: PropTypes.string,
     /** Indcates if the component should render the Content Loader */
     loading: PropTypes.bool,
+    /** Component and content loader styles */
+    styles: PropTypes.object,
   }
 
-  static Loader = (loaderProps = {}) => (
-    <div className="vtex-share">
-      <ContentLoader
-        className="vtex-share"
-        style={{
-          width: '100%',
-          height: '100%',
-        }}
-        height="100%"
-        width="100%"
-        {...loaderProps}>
-        <circle className="vtex-share__button--loader" />
-        <circle className="vtex-share__button--loader" />
-        <circle className="vtex-share__button--loader" />
-      </ContentLoader>
-    </div>
-  )
+  static Loader = (loaderProps = {}) => {
+    const loaderStyles = {
+      r: '1em',
+      height: '2em',
+      cy: '1em',
+      ...loaderProps['vtex-share__button--loader'],
+    }
+
+    return (
+      <div className="vtex-share">
+        <ContentLoader
+          className="vtex-share"
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
+          height="100%"
+          width="100%"
+          {...loaderProps}>
+          <circle
+            cx="1em"
+            {...loaderStyles}
+            {...loaderProps['vtex-share__button--loader-1']}
+          />
+          <circle
+            cx="3.5em"
+            {...loaderStyles}
+            {...loaderProps['vtex-share__button--loader-2']}
+          />
+          <circle
+            cx="6em"
+            {...loaderStyles}
+            {...loaderProps['vtex-share__button--loader-3']}
+          />
+        </ContentLoader>
+      </div>
+    )
+  }
 
   static defaultProps = {
     social: {
@@ -81,7 +104,7 @@ class Share extends Component {
     } = this.props
 
     if (loading) {
-      return <Share.Loader />
+      return <Share.Loader {...this.props.styles} />
     }
 
     return (

@@ -5,22 +5,3 @@
 .vtex-share__social-button:hover:not(:active) {
   opacity: 0.75;
 }
-
-.vtex-share__button--loader {
-  r: 1em;
-  height: 2em;
-}
-
-.vtex-share__button--loader:nth-of-type(1) {
-  cx: 1em;
-  cy: 1em;
-}
-
-.vtex-share__button--loader:nth-of-type(2) {
-  cx: 3.5em;
-  cy: 1em;
-}
-.vtex-share__button--loader:nth-of-type(3) {
-  cx: 6em;
-  cy: 1em;
-}
