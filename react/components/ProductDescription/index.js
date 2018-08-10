@@ -1,11 +1,11 @@
-import './global.css'
+import './global.css';
 
-import PropTypes from 'prop-types'
-import React, { Component, Fragment } from 'react'
-import ContentLoader from 'react-content-loader'
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
+import PropTypes from 'prop-types';
+import React, { Component, Fragment } from 'react';
+import ContentLoader from 'react-content-loader';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 
-import VTEXClasses from './CustomClasses'
+import VTEXClasses from './CustomClasses';
 
 /**
  * Product Description Component.
@@ -22,10 +22,31 @@ class ProductDescription extends Component {
         height="100%"
         width="100%"
         {...loaderProps}>
-        <rect className="vtex-product-specifications__description-title--loader" />
-        <rect className="vtex-product-specifications__description--loader" />
-        <rect className="vtex-product-specifications__title--loader" />
-        <rect className="vtex-product-specifications__table--loader" />
+        <rect
+          width="15em"
+          height="2em"
+          {...loaderProps[
+            'vtex-product-specifications__description-title--loader'
+          ]}
+        />
+        <rect
+          width="100%"
+          height="5em"
+          y="3em"
+          {...loaderProps['vtex-product-specifications__description--loader']}
+        />
+        <rect
+          width="15em"
+          height="2em"
+          y="11em"
+          {...loaderProps['vtex-product-specifications__title--loader']}
+        />
+        <rect
+          width="100%"
+          height="12em"
+          y="14em"
+          {...loaderProps['vtex-product-specifications__table--loader']}
+        />
       </ContentLoader>
     </div>
   )
@@ -33,7 +54,7 @@ class ProductDescription extends Component {
     const { specifications, skuName, description } = this.props
 
     if (!description || !specifications) {
-      return <ProductDescription.Loader />
+      return <ProductDescription.Loader {...this.props.styles} />
     }
 
     return (
@@ -108,6 +129,8 @@ ProductDescription.propTypes = {
   ),
   /** Name of the current SKU */
   skuName: PropTypes.string,
+  /** Component and content loader styles */
+  styles: PropTypes.object,
 }
 
 export default injectIntl(ProductDescription)
