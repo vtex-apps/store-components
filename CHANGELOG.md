@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `Impersonate` component to  `Header`.
+- `ImpersonateCustomer` component to  `Header`.
 
 ## [1.12.3] - 2018-08-09
 ### Fixed
@@ -18,7 +18,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `ProductDescription` content loader.
 - `ProductName` and `ProductPrice` content loaders default style.
-- `Impersonate` component to  `Header`.
 
 ## [1.12.1] - 2018-08-08
 ### Added
