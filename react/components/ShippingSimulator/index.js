@@ -1,15 +1,15 @@
-import './global.css'
+import './global.css';
 
-import Button from '@vtex/styleguide/lib/Button'
-import Input from '@vtex/styleguide/lib/Input'
-import PropTypes from 'prop-types'
-import React, { Component, Fragment } from 'react'
-import { compose, withApollo } from 'react-apollo'
-import ContentLoader from 'react-content-loader'
-import { injectIntl, intlShape } from 'react-intl'
+import Button from '@vtex/styleguide/lib/Button';
+import Input from '@vtex/styleguide/lib/Input';
+import PropTypes from 'prop-types';
+import React, { Component, Fragment } from 'react';
+import { compose, withApollo } from 'react-apollo';
+import ContentLoader from 'react-content-loader';
+import { injectIntl, intlShape } from 'react-intl';
 
-import ShippingTable from './components/ShippingTable'
-import getShippingEstimates from './queries/getShippingEstimates.gql'
+import ShippingTable from './components/ShippingTable';
+import getShippingEstimates from './queries/getShippingEstimates.gql';
 
 /**
  * Shipping simulator component
@@ -23,6 +23,8 @@ class ShippingSimulator extends Component {
     skuId: PropTypes.string.isRequired,
     seller: PropTypes.number.isRequired,
     country: PropTypes.string.isRequired,
+    /** Component and content loader styles */
+    styles: PropTypes.object,
   }
 
   static Loader = (loaderProps = {}) => (
@@ -36,8 +38,17 @@ class ShippingSimulator extends Component {
         height="100%"
         width="100%"
         {...loaderProps}>
-        <rect className="vtex-shipping-simulator__zipcode-label--loader" />
-        <rect className="vtex-shipping-simulator__input--loader" />
+        <rect
+          height="100%"
+          width="7em"
+          {...loaderProps['vtex-shipping-simulator__zipcode-label--loader']}
+        />
+        <rect
+          height="100%"
+          width="15em"
+          x="8em"
+          {...loaderProps['vtex-shipping-simulator__input--loader']}
+        />
       </ContentLoader>
     </div>
   )
@@ -112,8 +123,8 @@ class ShippingSimulator extends Component {
   render() {
     const { shipping, zipcodeValue, loading } = this.state
 
-    if (!this.props.seller || !this.props.skuId) {
-      return <ShippingSimulator.Loader />
+    if (!!this.props.seller || !this.props.skuId) {
+      return <ShippingSimulator.Loader {...this.props.styles} />
     }
 
     return (
