@@ -1,16 +1,16 @@
-# CategoriesHighlights description
-CategoriesHighlights is a canonical component that any VTEX app can import.
+# CategoriesHighlighted description
+CategoriesHighlighted is a canonical component that any VTEX app can import.
 
 To import it into your code: 
 ```js
-import CategoriesHighlights from 'vtex.store-components/CategoriesHighlights'
+import CategoriesHighlighted from 'vtex.store-components/CategoriesHighlighted'
 ```
 
 ## Usage
-You can use it in your code like a React component with the jsx tag: `<CategoriesHighlights />`. 
+You can use it in your code like a React component with the jsx tag: `<CategoriesHighlighted />`. 
 ```jsx
-<CategoriesHighlights 
-    categoriesHightlights={ 
+<CategoriesHighlighted 
+    categoriesHighlighted={ 
         categoryX: { name: 'X', image: 'Image X' }, 
         categoryY: { name: 'Y', image: 'Image Y' } 
     } 
@@ -19,12 +19,12 @@ You can use it in your code like a React component with the jsx tag: `<Categorie
 
 | Prop name                           | Type       | Description                                                                           |
 | ----------------------------------- | ---------- | ------------------------------------------------------------------------------------- |
-| `categoriesHightlights`             | `Object!`  | Categories in Highlight of the department                                             |
-| `showCategoriesHighlights`          | `Boolean!` | Flag which indicates if the categories in highlight should be displayed or not        |
-| `quantityOfItems`                   | `Number!`  | Number of categories in highlight to be displayed (it should be 2 or 4)               |
+| `categoriesHighlighted`             | `Object!`  | Categories highlighted of the department                                              |
+| `showCategoriesHighlighted`         | `Boolean!` | Flag which indicates if the categories highlighted should be displayed or not         |
+| `quantityOfItems`                   | `Number!`  | Number of categories highlighted to be displayed (it should be 2 or 4)                |
 | `boxShape`                          | `String!`  | Shape of the box which wrapes each category (it should be 'squared' or 'rectangular') |                               
 
-| categoriesHightlights Props         | Type       | Description                                                                           |
+| categoriesHighlighted Props         | Type       | Description                                                                           |
 | ----------------------------------- | ---------- | ------------------------------------------------------------------------------------- |
 | `name`                              | `String!`  | Name of the category                                                                  |
 | `image`                             | `String`   | Image of the category                                                                 |

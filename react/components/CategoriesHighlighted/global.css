@@ -1,0 +1,88 @@
+.vtex-categories-highlighted-squared:only-child,
+.vtex-categories-highlighted-rectangular:only-child {
+  display: none;
+}
+
+.vtex-carousel + .vtex-categories-highlighted-squared,
+.vtex-carousel + .vtex-categories-highlighted-rectangular {
+  top: -90px;
+}
+
+.vtex-categories-highlighted__category-squared-card,
+.vtex-categories-highlighted__category-rectangular-card {
+  background: rgba(61, 61, 61, 0.8);
+  margin: 2.5px;
+  height: 300px;
+}
+
+.vtex-categories-highlighted__category-squared-card {
+  width: 300px;
+}
+
+.vtex-categories-highlighted__category-rectangular-card {
+  width: 600px;
+}
+
+.vtex-categories-highlighted__category-squared-card img,
+.vtex-categories-highlighted__category-rectangular-card img {
+  object-fit: cover;
+  height: 300px;
+}
+
+.vtex-categories-highlighted__category-squared-card img {
+  width: 300px;
+}
+
+.vtex-categories-highlighted__category-rectangular-card img {
+  width: 600px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 800px) {
+  .vtex-carousel + .vtex-categories-highlighted-squared {
+    top: -50px;
+  }
+
+  .vtex-carousel + .vtex-categories-highlighted-rectangular {
+    top: 0px;
+  }
+
+  .vtex-categories-highlighted__category-squared-card,
+  .vtex-categories-highlighted__category-squared-card img {
+    height: 150px;
+    width: 150px;
+  }
+
+  .vtex-categories-highlighted__category-rectangular-card,
+  .vtex-categories-highlighted__category-rectangular-card img {
+    height: 200px;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1024px) {
+  .vtex-carousel + .vtex-categories-highlighted-squared,
+  .vtex-carousel + .vtex-categories-highlighted-rectangular {
+    top: -70px;
+  }
+
+  .vtex-categories-highlighted__category-squared-card,
+  .vtex-categories-highlighted__category-rectangular-card {
+    margin: 0px;
+    height: 200px;
+  }
+
+  .vtex-categories-highlighted__category-squared-card,
+  .vtex-categories-highlighted__category-squared-card img {
+    width: 200px;
+  }
+
+  .vtex-categories-highlighted__category-rectangular-card,
+  .vtex-categories-highlighted__category-rectangular-card img {
+    width: 400px;
+  }
+
+  .vtex-categories-highlighted__category-squared-card img,
+  .vtex-categories-highlighted__category-rectangular-card img {
+    height: 200px;
+  }
+}

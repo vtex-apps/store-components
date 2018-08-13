@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import { Link } from 'render'
 
 import { RECTANGULAR, SQUARED } from '../constants'
-import categoryPlaceholder from '../images/category-placeholder.png'
+import rectangularPlaceholder from '../images/rectangular-placeholder.svg'
+import squaredPlaceholder from '../images/squared-placeholder.svg'
 
 /**
  * CategoryCard is a component responsible to display an image of a category
@@ -23,14 +24,19 @@ class CategoryCard extends Component {
     const { name, image, shape } = this.props
     return (
       <div
-        className={`vtex-categories-highlights__category-${shape}-card shadow-1`}>
+        className={`vtex-categories-highlighted__category-${shape}-card shadow-1`}>
         {/* TODO: Redirect to the page of the category specified by its name */}
 
         <Link>
           {image ? (
             <img src={image} alt={name} />
           ) : (
-            <img src={categoryPlaceholder} alt="" />
+            <img
+              src={
+                shape == SQUARED ? squaredPlaceholder : rectangularPlaceholder
+              }
+              alt=""
+            />
           )}
         </Link>
       </div>
