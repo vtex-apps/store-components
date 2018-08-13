@@ -9,17 +9,17 @@ import { ITEMS_PER_ROW, RECTANGULAR, SQUARED } from './constants.js'
 
 /**
  * CategoriesHighlighted is a component responsible to display the
- * Categories highlighted of a department.
+ * Categories highlighted in a department.
  */
 class CategoriesHighlighted extends Component {
   static propTypes = {
-    /** Categories highlighted of the department */
+    /** Categories highlighted in the department */
     categoriesHighlighted: PropTypes.object,
     /** Flag which indicates if the categories highlighted should be displayed or not */
     showCategoriesHighlights: PropTypes.bool,
     /** Number of categories highlighted to be displayed (it should be 2 or 4) */
     quantityOfItems: PropTypes.number.isRequired,
-    /** Shape of the card box which wrapes each category (it should be 'squared' or 'rectangular')  */
+    /** Shape of the card box which wraps each category (it should be 'squared' or 'rectangular')  */
     cardShape: PropTypes.oneOf([SQUARED, RECTANGULAR]).isRequired,
   }
 
