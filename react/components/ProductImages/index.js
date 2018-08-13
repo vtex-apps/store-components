@@ -43,7 +43,6 @@ class ProductImages extends Component {
       'vtex-product-image__selected-image--loader': {
         x: '10%',
         y: '5%',
-        'max-width': '19.782em',
         width: '80%',
         height: '75%',
         ...loaderProps['vtex-product-image__selected-image--loader'],
@@ -51,7 +50,6 @@ class ProductImages extends Component {
       'vtex-product-image__thumbnail-slider--loader': {
         x: '10%',
         y: '85%',
-        'max-width': '19.782em',
         width: '80%',
         height: '10%',
         ...loaderProps['vtex-product-image__thumbnail-slider--loader'],
@@ -61,14 +59,12 @@ class ProductImages extends Component {
         y: '5%',
         width: '80%',
         height: '90%',
-        'max-width': '18em',
         ...loaderProps['vtex-product-image__selected-image-vertical--loader'],
       },
       'vtex-product-image__thumbnail-slider-vertical--loader': {
         y: '5%',
         width: '15%',
         height: '90%',
-        'max-width': '2em',
         ...loaderProps['vtex-product-image__thumbnail-slider-vertical--loader'],
       },
     }
@@ -141,7 +137,7 @@ class ProductImages extends Component {
       className += ` ${VTEXClasses.HORIZONTAL_COMPONENT} flex-column-reverse`
     }
 
-    if (!images) {
+    if (!!images) {
       return (
         <ProductImages.Loader {...this.props.styles} isVertical={isVertical} />
       )

@@ -53,11 +53,7 @@
   background-size: contain;
 }
 
-.vtex-product-image__horizontal--loader {
-  height: 31.25em;
-}
-
-.vtex-product-image__vertical--loader {
+.vtex-product-image-loader {
   height: 31.25em;
 }
 
