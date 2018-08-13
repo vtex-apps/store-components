@@ -137,7 +137,7 @@ class ProductImages extends Component {
       className += ` ${VTEXClasses.HORIZONTAL_COMPONENT} flex-column-reverse`
     }
 
-    if (!!images) {
+    if (!images) {
       return (
         <ProductImages.Loader {...this.props.styles} isVertical={isVertical} />
       )
