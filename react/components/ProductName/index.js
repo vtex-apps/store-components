@@ -1,8 +1,8 @@
-import './global.css';
+import './global.css'
 
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import ContentLoader from 'react-content-loader';
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import ContentLoader from 'react-content-loader'
 
 /**
  * Name component. Show name and relevant SKU information of the Product Summary

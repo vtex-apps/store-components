@@ -1,13 +1,13 @@
-import './global.css';
+import './global.css'
 
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import ContentLoader from 'react-content-loader';
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import ContentLoader from 'react-content-loader'
 
-import SelectedImage from './components/SelectedImage';
-import ThumbnailSlider from './components/ThumbnailSlider';
-import { HORIZONTAL, VERTICAL } from './constants/orientation';
-import VTEXClasses from './constants/productImagesClasses';
+import SelectedImage from './components/SelectedImage'
+import ThumbnailSlider from './components/ThumbnailSlider'
+import { HORIZONTAL, VERTICAL } from './constants/orientation'
+import VTEXClasses from './constants/productImagesClasses'
 
 const DEFAULT_SELECTED_IMAGE = 0
 

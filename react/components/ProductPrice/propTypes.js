@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import { intlShape } from 'react-intl';
+import PropTypes from 'prop-types'
+import { intlShape } from 'react-intl'
 
 export default {
   /** Product selling price */

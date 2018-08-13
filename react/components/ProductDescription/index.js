@@ -1,11 +1,11 @@
-import './global.css';
+import './global.css'
 
-import PropTypes from 'prop-types';
-import React, { Component, Fragment } from 'react';
-import ContentLoader from 'react-content-loader';
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
+import PropTypes from 'prop-types'
+import React, { Component, Fragment } from 'react'
+import ContentLoader from 'react-content-loader'
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 
-import VTEXClasses from './CustomClasses';
+import VTEXClasses from './CustomClasses'
 
 /**
  * Product Description Component.

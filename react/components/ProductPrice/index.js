@@ -1,12 +1,12 @@
-import './global.css';
+import './global.css'
 
-import PropTypes from 'prop-types';
-import { isEmpty, isNil } from 'ramda';
-import React, { Component } from 'react';
-import ContentLoader from 'react-content-loader';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import PropTypes from 'prop-types'
+import { isEmpty, isNil } from 'ramda'
+import React, { Component } from 'react'
+import ContentLoader from 'react-content-loader'
+import { FormattedMessage, injectIntl } from 'react-intl'
 
-import PricePropTypes from './propTypes';
+import PricePropTypes from './propTypes'
 
 /**
  * The Price component. Shows the prices information of the Product Summary.
