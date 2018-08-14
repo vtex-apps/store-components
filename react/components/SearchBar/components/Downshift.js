@@ -7,7 +7,6 @@ import DownshiftComponent from 'downshift'
 
 import { NoSSR } from 'render'
 
-/** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 export default class Downshift extends Component {
   static propTypes = {
     /** Empty placeholder to be used on the input */
