@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 
 import CategoryCard from './components/CategoryCard'
 
-const ITENS_PER_ROW = 2
+const ITEMS_PER_ROW = 2
 
 /**
  * CategoriesHighlights is a component responsible to display the
@@ -25,6 +25,7 @@ class CategoriesHighlights extends Component {
   static defaultProps = {
     categories: {},
     showCategoriesHighlights: false,
+    quantityOfItems: ITEMS_PER_ROW,
   }
 
   static uiSchema = {
@@ -40,7 +41,7 @@ class CategoriesHighlights extends Component {
   static getSchema = ({ quantityOfItems }) => {
     let categoriesHightlightsProps = {}
 
-    range(0, quantityOfItems).forEach(index => {
+    range(0, quantityOfItems || ITEMS_PER_ROW).forEach(index => {
       categoriesHightlightsProps[`category${index}`] = {
         type: 'object',
         title: 'editor.categoriesHighlights.category',
@@ -116,14 +117,15 @@ class CategoriesHighlights extends Component {
     return (
       <div className="vtex-categories-highlights relative">
         <div className="flex flex-row flex-wrap items-center justify-center">
-          {range(0, quantityOfItems / ITENS_PER_ROW).map(indexRow => (
-            <div className="flex flex-row items-center justify-center">
-              {range(0, ITENS_PER_ROW).map(indexCol => (
-                <div
-                  className="vtex-categories-highlights__category-card-container"
-                  key={2 * indexRow + indexCol}>
-                  <CategoryCard {...categories[2 * indexRow + indexCol]} />
-                </div>
+          {range(0, quantityOfItems / ITEMS_PER_ROW).map(indexRow => (
+            <div
+              key={`row${indexRow}`}
+              className="flex flex-row flex-wrap items-center justify-center">
+              {range(0, ITEMS_PER_ROW).map(indexCol => (
+                <CategoryCard
+                  key={2 * indexRow + indexCol}
+                  {...categories[2 * indexRow + indexCol]}
+                />
               ))}
             </div>
           ))}
