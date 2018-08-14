@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Downshift from './components/Downshift'
 import { injectIntl } from 'react-intl'
 
-import SearchMobile from './components/SearchMobile'
+import MobileSearch from './components/MobileSearch'
 
 import './global.css'
 
@@ -27,7 +27,7 @@ class SearchBar extends Component {
 
     if (isMobileMode) {
       return (
-        <SearchMobile
+        <MobileSearch
           placeholder={placeholder}
           emptyPlaceholder={emptyPlaceholder}
           isSearchMode={isSearchMode}
