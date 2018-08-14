@@ -6,8 +6,10 @@ import autocomplete from '../queries/autocomplete.gql'
 import { Spinner } from 'vtex.styleguide'
 import { Link } from 'render'
 
-const listClassNames = 'vtex-results__list z-max w-90 absolute mt3 border-box bw1 br2 b--solid outline-0 near-black b--light-gray bg-white f5 pv4 ph6'
-const listItemClassNames = 'vtex-results__item dim pointer flex justify-start mt1 pa1 near-black f5 pv4 ph6'
+const listClassNames =
+  'vtex-results__list z-max absolute w-100 mt4 mt2-m border-box bw1 br2 b--solid outline-0 near-black b--light-gray bg-white f5 pv4 ph6 left-0'
+const listItemClassNames =
+  'vtex-results__item dim pointer flex justify-start mt1 pa1 near-black f5 pv4 ph6'
 
 function getImageUrl(image) {
   return (image.match(/http:(.*?)"/g) || [''])[0]

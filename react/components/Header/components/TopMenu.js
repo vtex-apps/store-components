@@ -32,7 +32,7 @@ class TopMenu extends Component {
   renderLogo(mobileMode, logoUrl, logoTitle) {
     const isTabletMode = global.__RUNTIME__.hints.tablet
     return (
-      <div className="vtex-top-menu__logo w-30-m flex justify-center">
+      <div className="vtex-top-menu__logo w-20-m w-30-l flex justify-center">
         <Link to="/">
           <Logo
             showLabel={!mobileMode}
@@ -49,9 +49,11 @@ class TopMenu extends Component {
 
   renderMobileMenu() {
     return (
-      <div className="vtex-mobile-menu flex items-center dn-m pl7 white f5 ">
-        {MENU_LABEL}
-        <div className="ml3 mb2">
+      <div className="vtex-mobile-menu flex items-center dn-m pa4 white f5 pointer">
+        <span className="mt1">
+          {MENU_LABEL}
+        </span>
+        <div className="ml3">
           <IconCaretDown size={10} color="#FFF" />
         </div>
       </div>
@@ -80,8 +82,8 @@ class TopMenu extends Component {
 
   renderIcons(mobileMode) {
     return (
-      <div className="vtex-top-menu__icons flex justify-center items-center w-30-l">
-        <div className="pv4 ph5 pv0-m ph0-m mr7">
+      <div className="vtex-top-menu__icons flex justify-center items-center w-30-m">
+        <div className="mr7">
           <ExtensionPoint
             id="login"
             iconSize={mobileMode ? LOGIN_ICON_SIZE_MOBILE : LOGIN_ICON_SIZE_DESKTOP}

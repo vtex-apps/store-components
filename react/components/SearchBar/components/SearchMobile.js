@@ -26,7 +26,7 @@ export default class SearchMobile extends Component {
     const { placeholder, emptyPlaceholder, isSearchMode } = this.props
     if (isSearchMode) {
       return (
-        <div className="vtex-search-mobile flex justify-center items-center w-100 pl3">
+        <div className="vtex-search-mobile flex justify-center items-center w-100">
           <Downshift
             placeholder={placeholder}
             emptyPlaceholder={emptyPlaceholder}
@@ -41,7 +41,10 @@ export default class SearchMobile extends Component {
       )
     }
     return (
-      <span className="flex items-center pa4 pointer" onClick={this.handleToogleSearch}>
+      <span
+        className="flex items-center pa4 pointer"
+        onClick={this.handleToogleSearch}
+      >
         <IconSearch />
       </span>
     )

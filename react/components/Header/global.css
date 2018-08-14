@@ -19,18 +19,35 @@
   align-items: center;
 }
 
+.vtex-top-menu__logo a {
+  outline: 0;
+}
+
 .vtex-top-menu__icons {
   padding-right: .25rem;
 }
 
+.vtex-top-menu .vtex-minicart .vtex-button {
+  border-width: 0px;
+}
+
+@media only screen and (min-width: 48rem) and (max-width: 70rem){
+  .vtex-top-menu {
+    padding: 0 1rem 0 1rem;
+  }
+  .vtex-top-menu__search-bar {
+    width: 40%;
+  }
+}
+
 @media only screen and (max-width: 48rem) {
   .vtex-top-menu {
-    padding: 0px;
+    padding: 0 .5rem 0 .5rem;
     height: 4rem;
   }
 
-  .vtex-top-menu__logo .vtex-logo {
-    margin-left: 1.2rem;
+  .vtex-top-menu .vtex-logo {
+    padding: .75rem;
   }
 
   .vtex-top-menu__search-bar {
