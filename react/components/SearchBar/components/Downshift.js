@@ -47,18 +47,16 @@ export default class Downshift extends Component {
             isOpen,
             closeMenu,
           }) => (
-            <div className="w-100">
-              {
-                <AutocompleteInput
-                  isMobileSearchMode={isMobileSearchMode}
-                  closeMenu={closeMenu}
-                  {...getInputProps({ placeholder })}
-                  onKeyDown={event => {
-                    this.handleEnterPress(event)
-                    closeMenu()
-                  }}
-                />
-              }
+            <div className="relative-m w-100">
+              <AutocompleteInput
+                isMobileSearchMode={isMobileSearchMode}
+                closeMenu={closeMenu}
+                {...getInputProps({ placeholder })}
+                onKeyDown={event => {
+                  this.handleEnterPress(event)
+                  closeMenu()
+                }}
+              />
               {isOpen && inputValue !== '' ? (
                 <ResultsLits
                   {...{
