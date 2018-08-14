@@ -10,8 +10,11 @@ import './global.css'
 /** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
 class SearchBar extends Component {
   static propTypes = {
+    /** Set search mode */
     isSearchMode: PropTypes.bool,
+    /** Set mobile mode */
     isMobileMode: PropTypes.bool,
+    /** Toogle search mode */
     toogleSearchMode: PropTypes.func,
   }
 
