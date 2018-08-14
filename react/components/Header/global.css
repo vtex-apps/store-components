@@ -14,8 +14,9 @@
   box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, .2);
 }
 
-.vtex-top-menu__logo a {
-  display: inline-block;
+.vtex-top-menu__logo .vtex-logo {
+  display: flex;
+  align-items: center;
 }
 
 .vtex-top-menu__icons {
@@ -29,8 +30,6 @@
   }
 
   .vtex-top-menu__logo .vtex-logo {
-    display: flex;
-    align-items: center;
     margin-left: 1.2rem;
   }
 

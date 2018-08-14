@@ -32,7 +32,7 @@ class TopMenu extends Component {
   renderLogo(mobileMode, logoUrl, logoTitle) {
     const isTabletMode = global.__RUNTIME__.hints.tablet
     return (
-      <div className="vtex-top-menu__logo w-33-m">
+      <div className="vtex-top-menu__logo w-30-m flex justify-center">
         <Link to="/">
           <Logo
             showLabel={!mobileMode}
@@ -60,7 +60,7 @@ class TopMenu extends Component {
 
   renderSearchBar(mobileMode, searchMode) {
     const classes = classNames(
-      'vtex-top-menu__search-bar flex w-33-m pa2-m',
+      'vtex-top-menu__search-bar flex w-40-m pa2-m',
       {
         'w-100': searchMode,
       }
@@ -80,8 +80,8 @@ class TopMenu extends Component {
 
   renderIcons(mobileMode) {
     return (
-      <div className="vtex-top-menu__icons flex justify-center items-center w-33-l">
-        <div className="mr7 pa4">
+      <div className="vtex-top-menu__icons flex justify-center items-center w-30-l">
+        <div className="pv4 ph5 pv0-m ph0-m mr7">
           <ExtensionPoint
             id="login"
             iconSize={mobileMode ? LOGIN_ICON_SIZE_MOBILE : LOGIN_ICON_SIZE_DESKTOP}
@@ -90,9 +90,9 @@ class TopMenu extends Component {
         </div>
         <ExtensionPoint
           id="minicart"
-          miniCartIconColor="#FFF"
-          miniCartIconSize={mobileMode ? MINICART_ICON_SIZE_MOBILE : MINICART_ICON_SIZE_DESKTOP}
-          miniCartIconLabel={!mobileMode ? this.translate('topMenu.minicart.icon.label') : ''}
+          iconColor="#FFF"
+          iconSize={mobileMode ? MINICART_ICON_SIZE_MOBILE : MINICART_ICON_SIZE_DESKTOP}
+          iconLabel={!mobileMode ? this.translate('topMenu.minicart.icon.label') : ''}
         />
       </div>
     )
@@ -103,7 +103,7 @@ class TopMenu extends Component {
     const mobileMode = global.__RUNTIME__.hints.mobile && !global.__RUNTIME__.hints.tablet
     const { searchMode } = this.state
     const classes = classNames(
-      'vtex-top-menu bg-near-black flex justify-center pb3 pt4',
+      'vtex-top-menu bg-near-black flex justify-center pv6',
       {
         'vtex-top-menu--fixed': fixed,
       }
