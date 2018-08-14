@@ -75,5 +75,8 @@
   "editor.categoriesHighlighted.quantityOfItems": "Quantity of Items",
   "editor.categoriesHighlighted.cardShape": "Box shape",
   "editor.categoriesHighlighted.cardShape.squared": "Squared",
-  "editor.categoriesHighlighted.cardShape.rectangular": "Rectangular"
+  "editor.categoriesHighlighted.cardShape.rectangular": "Rectangular",
+  "header.topMenu.minicart.icon.label": "My Cart",
+  "header.topMenu.login.icon.label": "Sign in",
+  "searchBar.button.cancel.label": "Cancel"
 }

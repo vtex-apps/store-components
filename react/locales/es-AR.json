@@ -75,5 +75,8 @@
   "editor.categoriesHighlighted.quantityOfItems": "Cantidad de artículos",
   "editor.categoriesHighlighted.cardShape": "Forma de la caja",
   "editor.categoriesHighlighted.cardShape.squared": "Cuadrada",
-  "editor.categoriesHighlighted.cardShape.rectangular": "Rectangular"
+  "editor.categoriesHighlighted.cardShape.rectangular": "Rectangular",
+  "header.topMenu.minicart.icon.label": "Mi Cesta",
+  "header.topMenu.login.icon.label": "Entrar",
+  "searchBar.button.cancel.label": "Cancelar"
 }
