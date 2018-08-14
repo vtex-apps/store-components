@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.12.6] - 2018-08-14
+
+### Fixed
+- Undefined behavior of the `CategoriesHightlights` schema.
+
 ## [1.12.5] - 2018-08-13
 ### Added
 - `ImpersonateCustomer` component to  `Header`.
