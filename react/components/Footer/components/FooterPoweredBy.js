@@ -5,9 +5,6 @@ import VTEXIcon from './../images/VTEX-BW.svg'
 
 class FooterPoweredBy extends PureComponent {
   static displayName = 'FooterPoweredBy'
-  static contextTypes = {
-    account: PropTypes.string,
-  }
 
   render() {
     return (
