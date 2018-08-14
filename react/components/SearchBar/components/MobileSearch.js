@@ -7,9 +7,13 @@ import IconSearch from '../images/IconSearch'
 
 export default class SearchMobile extends Component {
   static propTypes = {
+    /** Set search mode. */
     isSearchMode: PropTypes.bool,
+    /** Toogle search mode */
     toogleSearchMode: PropTypes.func,
+    /** Input's placeholder */
     placeholder: PropTypes.string,
+    /** Message that will be displayed when there is no result ot be shown */
     emptyPlaceholder: PropTypes.string,
   }
 

@@ -18,7 +18,7 @@ export default class Logo extends Component {
     width: PropTypes.number,
     /** Logo's height */
     height: PropTypes.number,
-    /** If must show vtex logo's label */
+    /** Set label visibility */
     showLabel: PropTypes.bool,
   }
 
