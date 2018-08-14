@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Downshift from 'downshift'
+import Downshift from './components/Downshift'
 import { injectIntl } from 'react-intl'
 
-import AutocompleteInput from './components/AutocompleteInput'
 import SearchMobile from './components/SearchMobile'
-
-import { NoSSR } from 'render'
 
 import './global.css'
 
@@ -25,7 +22,7 @@ class SearchBar extends Component {
   render() {
     const placeholder = this.context.intl.formatMessage({ id: 'search.placeholder' })
     const emptyPlaceholder = this.context.intl.formatMessage({ id: 'search.noMatches' })
-    const fallback = (<AutocompleteInput placeholder={placeholder} />)
+
     const { isMobileMode, isSearchMode, toogleSearchMode } = this.props
 
     if (isMobileMode) {
@@ -40,14 +37,12 @@ class SearchBar extends Component {
     }
 
     return (
-      <div className="vtex-searchbar">
-        <NoSSR onSSR={fallback}>
-          <Downshift
-            placeholder={placeholder}
-            emptyPlaceholder={emptyPlaceholder}
-            isMobileSearchMode={isSearchMode}
-          />
-        </NoSSR>
+      <div className="vtex-searchbar w-100">
+        <Downshift
+          placeholder={placeholder}
+          emptyPlaceholder={emptyPlaceholder}
+          isMobileSearchMode={isSearchMode}
+        />
       </div>
     )
   }
