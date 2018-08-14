@@ -6,11 +6,27 @@
   list-style-type: none;
 }
 
-.vtex-results__item a {
+.vtex-results__list a {
   text-decoration: none;
   color: inherit;
 }
 
+.vtex-searchbar input {
+  border: none;
+}
+
 .vtex-searchbar .vtex-results__list {
   top: 100%;
+}
+
+.vtex-search-mobile .vtex-button {
+  padding: 0.9rem;
+  font-weight: 400;
+  font-size: .875rem;
+}
+
+.vtex-search-mobile input {
+  background-color: #4f4f4f;
+  color: white;
+  border: none;
 }

@@ -66,7 +66,7 @@ class Header extends Component {
     const offsetTop = (this._root.current && this._root.current.offsetTop) || 0
 
     const hasMessage =
-      orderFormContext.message.text && orderFormContext.message.text != ''
+      orderFormContext.message.text && orderFormContext.message.text !== ''
 
     return (
       <Fragment>
