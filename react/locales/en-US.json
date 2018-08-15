@@ -8,8 +8,7 @@
   "editor.productPrice.showListPrice": "Show product's list price",
   "editor.productPrice.showLabels": "Show product's prices' labels",
   "editor.productPrice.showInstallments": "Show product's payment installments",
-  "editor.productPrice.showSavings":
-    "Show product's list and selling price difference",
+  "editor.productPrice.showSavings": "Show product's list and selling price difference",
   "editor.share.title": "Share",
   "editor.share.description": "List of share buttons",
   "editor.share.social.title": "Social Networks",
@@ -18,8 +17,7 @@
   "section-links": "Links",
   "more-information-links": "More Information",
   "payment-form": "Payment Forms",
-  "pricing.installment-display":
-    "Or {installments} {times} of {installmentPrice}",
+  "pricing.installment-display": "Or {installments} {times} of {installmentPrice}",
   "pricing.from": "From",
   "pricing.to": "To",
   "pricing.savings": "Save: {savings}",
@@ -28,15 +26,12 @@
   "shipping.label": "Calculate shipping",
   "shipping.eta": "up to {eta} days",
   "shipping.free": "Free",
-  "shipping.empty-sla":
-    "There's no shipping information available for the informed zip code",
+  "shipping.empty-sla": "There's no shipping information available for the informed zip code",
   "buybutton.buy-success": "Your product was add to the cart!",
-  "buybutton.add-failure":
-    "Something went wrong and the item wasn't added to your cart!",
+  "buybutton.add-failure": "Something went wrong and the item wasn't added to your cart!",
   "technicalspecifications.title": "Technical Specifications",
   "availability-subscriber.title": "This product isn't available right now",
-  "availability-subscriber.subscribe-label":
-    "Let me know when this product is available again",
+  "availability-subscriber.subscribe-label": "Let me know when this product is available again",
   "availability-subscriber.email-placeholder": "Email",
   "availability-subscriber.name-placeholder": "Name",
   "availability-subscriber.send-label": "Send",
@@ -44,21 +39,15 @@
   "availability-subscriber.added-message": "E-mail registered successfully",
   "availability-subscriber.error-message": "Failed, please try again",
   "editor.footer.title": "Footer",
-  "editor.footer.description":
-    "A footer that appears in the bottom of your store",
+  "editor.footer.description": "A footer that appears in the bottom of your store",
   "editor.footer.logoUrl.title": "Logo URL",
-  "editor.footer.numberOfSocialNetworks.title":
-    "Number of social networks links",
+  "editor.footer.numberOfSocialNetworks.title": "Number of social networks links",
   "editor.footer.numberOfSectionLinks.title": "Number of section links",
-  "editor.footer.numberOfMoreInformationLinks.title":
-    "Number of more information links",
+  "editor.footer.numberOfMoreInformationLinks.title": "Number of more information links",
   "editor.footer.numberOfBadges.title": "Number of badges to be displayed",
-  "editor.footer.numberOfPaymentForms.title":
-    "Number of payment forms available",
-  "editor.footer.showPaymentFormsInColor.title":
-    "Show payment form icons in color",
-  "editor.footer.showSocialNetworksInColor.title":
-    "Show social networks icons in color",
+  "editor.footer.numberOfPaymentForms.title": "Number of payment forms available",
+  "editor.footer.showPaymentFormsInColor.title": "Show payment form icons in color",
+  "editor.footer.showSocialNetworksInColor.title": "Show social networks icons in color",
   "editor.footer.link": "Links",
   "editor.footer.link.title": "Link",
   "editor.footer.link.title.title": "Link Title",
@@ -76,14 +65,15 @@
   "editor.footer.paymentForms.title": "Payment Form",
   "editor.footer.paymentForm.title": "Payment Form",
   "editor.footer.paymentForm.paymentType.title": "Payment Type",
-  "editor.categoriesHighlights.title": "Categories Highlights",
-  "editor.categoriesHighlights.description":
-    "Categories Highlights of the Department",
-  "editor.categoriesHighlights.item.categoryName": "Category Name",
-  "editor.categoriesHighlights.item.categoryImage": "Category Image",
-  "editor.categoriesHighlights.category": "Category",
-  "editor.categoriesHighlights.categoriesHightlights": "Categories Highlights",
-  "editor.categoriesHighlights.showCategoriesHighlights":
-    "Show categories highlights",
-  "editor.categoriesHighlights.quantityOfItems": "Quantity of Items"
+  "editor.categoriesHighlighted.title": "Categories Highlighted",
+  "editor.categoriesHighlighted.description": "Categories Highlighted of the Department",
+  "editor.categoriesHighlighted.item.categoryName": "Category Name",
+  "editor.categoriesHighlighted.item.categoryImage": "Category Image",
+  "editor.categoriesHighlighted.category": "Category",
+  "editor.categoriesHighlighted.categoriesHighlighted": "Categories Highlighted",
+  "editor.categoriesHighlighted.showCategoriesHighlighted": "Show categories highlighted",
+  "editor.categoriesHighlighted.quantityOfItems": "Quantity of Items",
+  "editor.categoriesHighlighted.cardShape": "Box shape",
+  "editor.categoriesHighlighted.cardShape.squared": "Squared",
+  "editor.categoriesHighlighted.cardShape.rectangular": "Rectangular"
 }
