@@ -8,11 +8,16 @@ import VTEXClasses from '../constants/CustomClasses'
  * Inherits the components that should be displayed inside the Selector component.
  */
 export default class SelectorItem extends PureComponent {
-  handleClick = event => {
-    event.preventDefault()
-    if (this.props.onClick) {
-      this.props.onClick(this.props.index)
-    }
+  static contextTypes = {
+    navigate: PropTypes.func,
+  }
+
+  handleClick = () => {
+    this.context.navigate({
+      page: 'store/product',
+      params: { slug: this.props.productSlug },
+      query: `skuId=${this.props.skuId}`,
+    })
   }
 
   render() {
@@ -48,6 +53,10 @@ SelectorItem.propTypes = {
   maxPrice: PropTypes.number,
   /** Price of the current sku */
   price: PropTypes.number,
+  /** Product's slug */
+  productSlug: PropTypes.string,
+  /** SKU's ID */
+  skuId: PropTypes.string,
 }
 
 SelectorItem.defaultProps = {

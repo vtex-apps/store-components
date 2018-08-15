@@ -1,13 +1,13 @@
-import './global.css';
+import './global.css'
 
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import ContentLoader from 'react-content-loader';
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import ContentLoader from 'react-content-loader'
 
-import SelectedImage from './components/SelectedImage';
-import ThumbnailSlider from './components/ThumbnailSlider';
-import { HORIZONTAL, VERTICAL } from './constants/orientation';
-import VTEXClasses from './constants/productImagesClasses';
+import SelectedImage from './components/SelectedImage'
+import ThumbnailSlider from './components/ThumbnailSlider'
+import { HORIZONTAL, VERTICAL } from './constants/orientation'
+import VTEXClasses from './constants/productImagesClasses'
 
 const DEFAULT_SELECTED_IMAGE = 0
 
@@ -38,8 +38,38 @@ class ProductImages extends Component {
     return null
   }
 
-  static Loader = props =>
-    props.isVertical ? (
+  static Loader = (loaderProps = {}) => {
+    const styles = {
+      'vtex-product-image__selected-image--loader': {
+        x: '10%',
+        y: '5%',
+        width: '80%',
+        height: '75%',
+        ...loaderProps['vtex-product-image__selected-image--loader'],
+      },
+      'vtex-product-image__thumbnail-slider--loader': {
+        x: '10%',
+        y: '85%',
+        width: '80%',
+        height: '10%',
+        ...loaderProps['vtex-product-image__thumbnail-slider--loader'],
+      },
+      'vtex-product-image__selected-image-vertical--loader': {
+        x: '20%',
+        y: '5%',
+        width: '80%',
+        height: '90%',
+        ...loaderProps['vtex-product-image__selected-image-vertical--loader'],
+      },
+      'vtex-product-image__thumbnail-slider-vertical--loader': {
+        y: '5%',
+        width: '15%',
+        height: '90%',
+        ...loaderProps['vtex-product-image__thumbnail-slider-vertical--loader'],
+      },
+    }
+
+    return loaderProps.isVertical ? (
       <div className="vtex-product-image vtex-product-image-loader vtex-product-image__vertical vtex-product-image__vertical--loader">
         <ContentLoader
           style={{
@@ -48,8 +78,12 @@ class ProductImages extends Component {
           }}
           height="100%"
           width="100%">
-          <rect className="vtex-product-image__selected-image--loader" />
-          <rect className="vtex-product-image__thumbnail-slider--loader" />
+          <rect
+            {...styles['vtex-product-image__selected-image-vertical--loader']}
+          />
+          <rect
+            {...styles['vtex-product-image__thumbnail-slider-vertical--loader']}
+          />
         </ContentLoader>
       </div>
     ) : (
@@ -61,11 +95,12 @@ class ProductImages extends Component {
           }}
           height="100%"
           width="100%">
-          <rect className="vtex-product-image__selected-image--loader" />
-          <rect className="vtex-product-image__thumbnail-slider--loader" />
+          <rect {...styles['vtex-product-image__selected-image--loader']} />
+          <rect {...styles['vtex-product-image__thumbnail-slider--loader']} />
         </ContentLoader>
       </div>
     )
+  }
 
   /**
    * Function that changes the selected image
@@ -103,7 +138,9 @@ class ProductImages extends Component {
     }
 
     if (!images) {
-      return <ProductImages.Loader isVertical={isVertical} />
+      return (
+        <ProductImages.Loader {...this.props.styles} isVertical={isVertical} />
+      )
     }
 
     return (
@@ -139,6 +176,8 @@ ProductImages.propTypes = {
   thumbnailSliderOrientation: PropTypes.oneOf([VERTICAL, HORIZONTAL]),
   /** Maximum number of visible items that should be displayed by the Thumbnail Slider at the same time */
   thumbnailMaxVisibleItems: PropTypes.number,
+  /** Component and content loader styles */
+  styles: PropTypes.object,
 }
 
 ProductImages.defaultProps = {

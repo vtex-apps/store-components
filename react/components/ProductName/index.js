@@ -23,6 +23,8 @@ class ProductName extends Component {
     showBrandName: PropTypes.bool,
     /** Display large font */
     large: PropTypes.bool,
+    /** Component and content loader styles */
+    styles: PropTypes.object,
   }
 
   static defaultProps = {
@@ -41,8 +43,19 @@ class ProductName extends Component {
         height="100%"
         width="100%"
         {...loaderProps}>
-        <rect className="vtex-product-name__brand--loader" />
-        <rect className="vtex-product-name__sku--loader" />
+        <rect
+          height="1.125em"
+          width="75%"
+          x="15%"
+          {...loaderProps['vtex-product-name__brand--loader']}
+        />
+        <rect
+          height="1.125em"
+          width="50%"
+          x="25%"
+          y="1.75em"
+          {...loaderProps['vtex-product-name__sku--loader']}
+        />
       </ContentLoader>
     </div>
   )
@@ -69,6 +82,7 @@ class ProductName extends Component {
     if (!name) {
       return (
         <ProductName.Loader
+          {...this.props.styles}
           brandClasses={brandClasses}
           skuClasses={skuClasses}
         />
@@ -83,8 +97,8 @@ class ProductName extends Component {
         <div className={skuClasses}>{skuName}</div>
         {showProductReference &&
           productReference && (
-          <div className="vtex-product-name__product-reference pt3 f7 ttu gray">{`REF: ${productReference}`}</div>
-        )}
+            <div className="vtex-product-name__product-reference pt3 f7 ttu gray">{`REF: ${productReference}`}</div>
+          )}
       </div>
     )
   }

@@ -54,26 +54,3 @@
 .vtex-product-specifications-loader {
   height: 26em;
 }
-
-.vtex-product-specifications__description-title--loader {
-  width: 15em;
-  height: 2em;
-}
-
-.vtex-product-specifications__description--loader {
-  width: 100%;
-  height: 5em;
-  y: 3em;
-}
-
-.vtex-product-specifications__title--loader {
-  width: 15em;
-  height: 2em;
-  y: 11em;
-}
-
-.vtex-product-specifications__table--loader {
-  width: 100%;
-  height: 12em;
-  y: 14em;
-}

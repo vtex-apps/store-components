@@ -12,17 +12,6 @@
   height: 100%;
 }
 
-.vtex-shipping-simulator__zipcode-label--loader {
-  height: 100%;
-  width: 7em;
-}
-
-.vtex-shipping-simulator__input--loader {
-  height: 100%;
-  width: 15em;
-  x: 8em;
-}
-
 .vtex-shipping-simulator .vtex-input {
   height: 100%;
   margin-left: 10px;

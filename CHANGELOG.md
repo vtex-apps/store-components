@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `CategoryCard` shapes.
 
+## [1.12.7] - 2018-08-15
+### Fixed
+- All content loaders to work on Firefox.
+
+## [1.12.6] - 2018-08-14
+
+### Fixed
+- Undefined behavior of the `CategoriesHightlights` schema.
+
+## [1.12.5] - 2018-08-13
+### Added
+- `ImpersonateCustomer` component to  `Header`.
+
+## [1.12.4] - 2018-08-10
+### Added
+- Link redirect to handleClick of `SKUSelector`.
+
 ## [1.12.3] - 2018-08-09
 ### Fixed
 - Correct function from `orderFormContext` to add a new item to the orderForm.
