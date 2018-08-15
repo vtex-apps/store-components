@@ -23,6 +23,8 @@ class ShippingSimulator extends Component {
     skuId: PropTypes.string.isRequired,
     seller: PropTypes.number.isRequired,
     country: PropTypes.string.isRequired,
+    /** Component and content loader styles */
+    styles: PropTypes.object,
   }
 
   static Loader = (loaderProps = {}) => (
@@ -36,8 +38,17 @@ class ShippingSimulator extends Component {
         height="100%"
         width="100%"
         {...loaderProps}>
-        <rect className="vtex-shipping-simulator__zipcode-label--loader" />
-        <rect className="vtex-shipping-simulator__input--loader" />
+        <rect
+          height="100%"
+          width="7em"
+          {...loaderProps['vtex-shipping-simulator__zipcode-label--loader']}
+        />
+        <rect
+          height="100%"
+          width="15em"
+          x="8em"
+          {...loaderProps['vtex-shipping-simulator__input--loader']}
+        />
       </ContentLoader>
     </div>
   )
@@ -113,7 +124,7 @@ class ShippingSimulator extends Component {
     const { shipping, zipcodeValue, loading } = this.state
 
     if (!this.props.seller || !this.props.skuId) {
-      return <ShippingSimulator.Loader />
+      return <ShippingSimulator.Loader {...this.props.styles} />
     }
 
     return (

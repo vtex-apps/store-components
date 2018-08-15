@@ -29,6 +29,8 @@ export default {
       Name: PropTypes.string,
     })
   ),
+  /** Component and content loader styles */
+  styles: PropTypes.object,
   /** intl property to format data */
   intl: intlShape.isRequired,
 }

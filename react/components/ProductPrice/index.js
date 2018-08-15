@@ -28,11 +28,28 @@ class Price extends Component {
         height="100%"
         width="100%"
         {...loaderProps}>
-        <rect className="vtex-price-list__container--loader" />
-        <rect className="vtex-price-selling__label--loader" />
-        <rect className="vtex-price-selling--loader" />
-        <rect className="vtex-price-installments--loader" />
-        <rect className="vtex-price-savings--loader" />
+        <rect
+          height="0.75em"
+          width="50%"
+          x="25%"
+          {...loaderProps['vtex-price-list__container--loader']}
+        />
+        <rect {...loaderProps['vtex-price-selling__label--loader']} />
+        <rect
+          height="1em"
+          width="70%"
+          x="15%"
+          y="1.25em"
+          {...loaderProps['vtex-price-selling--loader']}
+        />
+        <rect
+          height="0.75em"
+          width="80%"
+          x="10%"
+          y="2.75em"
+          {...loaderProps['vtex-price-installments--loader']}
+        />
+        <rect {...loaderProps['vtex-price-savings--loader']} />
       </ContentLoader>
     </div>
   )
@@ -134,7 +151,7 @@ class Price extends Component {
     } = this.props
 
     if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
-      return <Price.Loader />
+      return <Price.Loader {...this.props.styles} />
     }
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
