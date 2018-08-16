@@ -5,31 +5,33 @@ import { range, values } from 'ramda'
 import React, { Component } from 'react'
 
 import CategoryCard from './components/CategoryCard'
-
-const ITEMS_PER_ROW = 2
+import { ITEMS_PER_ROW, RECTANGULAR, SQUARED } from './constants.js'
 
 /**
- * CategoriesHighlights is a component responsible to display the
- * Categories in Hightlight of a department.
+ * CategoriesHighlighted is a component responsible to display the
+ * Categories highlighted in a department.
  */
 class CategoriesHighlights extends Component {
   static propTypes = {
-    /** Categories in Highlight of the department */
-    categories: PropTypes.object,
-    /** Flag which indicates if the categories in highlight should be displayed or not */
-    showCategoriesHighlights: PropTypes.bool.isRequired,
-    /** Number of categories in highlight to be displayed (it should be 2 or 4) */
+    /** Categories highlighted in the department */
+    categoriesHighlighted: PropTypes.object,
+    /** Flag which indicates if the categories highlighted should be displayed or not */
+    showCategoriesHighlights: PropTypes.bool,
+    /** Number of categories highlighted to be displayed (it should be 2 or 4) */
     quantityOfItems: PropTypes.number.isRequired,
+    /** Shape of the card box which wraps each category (it should be 'squared' or 'rectangular')  */
+    cardShape: PropTypes.oneOf([SQUARED, RECTANGULAR]).isRequired,
   }
 
   static defaultProps = {
-    categories: {},
-    showCategoriesHighlights: false,
+    categoriesHighlighted: {},
+    showCategoriesHighlighted: false,
     quantityOfItems: ITEMS_PER_ROW,
+    cardShape: SQUARED,
   }
 
   static uiSchema = {
-    categories: {
+    categoriesHighlighted: {
       items: {
         image: {
           'ui:widget': 'image-uploader',
@@ -39,21 +41,21 @@ class CategoriesHighlights extends Component {
   }
 
   static getSchema = ({ quantityOfItems }) => {
-    let categoriesHightlightsProps = {}
+    let categoriesHighlightedProps = {}
 
     range(0, quantityOfItems || ITEMS_PER_ROW).forEach(index => {
-      categoriesHightlightsProps[`category${index}`] = {
+      categoriesHighlightedProps[`category${index}`] = {
         type: 'object',
-        title: 'editor.categoriesHighlights.category',
+        title: 'editor.categoriesHighlighted.category',
         properties: {
           name: {
             type: 'string',
             default: '',
-            title: 'editor.categoriesHighlights.item.categoryName',
+            title: 'editor.categoriesHighlighted.item.categoryName',
           },
           image: {
             type: 'string',
-            title: 'editor.categoriesHighlights.item.categoryImage',
+            title: 'editor.categoriesHighlighted.item.categoryImage',
             default: '',
             widget: {
               'ui:widget': 'image-uploader',
@@ -64,19 +66,19 @@ class CategoriesHighlights extends Component {
     })
 
     return {
-      title: 'editor.categoriesHighlights.title',
-      description: 'editor.categoriesHighlights.description',
+      title: 'editor.categoriesHighlighted.title',
+      description: 'editor.categoriesHighlighted.description',
       type: 'object',
       properties: {
-        showCategoriesHighlights: {
+        showCategoriesHighlighted: {
           type: 'boolean',
-          title: 'editor.categoriesHighlights.showCategoriesHighlights',
+          title: 'editor.categoriesHighlighted.showCategoriesHighlighted',
           default: false,
           isLayout: true,
         },
         quantityOfItems: {
           type: 'number',
-          title: 'editor.categoriesHighlights.quantityOfItems',
+          title: 'editor.categoriesHighlighted.quantityOfItems',
           enum: [2, 4],
           default: 2,
           widget: {
@@ -87,10 +89,27 @@ class CategoriesHighlights extends Component {
           },
           isLayout: true,
         },
-        categoriesHightlights: {
+        cardShape: {
+          type: 'string',
+          title: 'editor.categoriesHighlighted.cardShape',
+          enum: [SQUARED, RECTANGULAR],
+          enumNames: [
+            'editor.categoriesHighlighted.cardShape.squared',
+            'editor.categoriesHighlighted.cardShape.rectangular',
+          ],
+          default: SQUARED,
+          widget: {
+            'ui:widget': 'radio',
+            'ui:options': {
+              inline: true,
+            },
+          },
+          isLayout: true,
+        },
+        categoriesHighlighted: {
           type: 'object',
-          title: 'editor.categoriesHighlights.categoriesHightlights',
-          properties: categoriesHightlightsProps,
+          title: 'editor.categoriesHighlighted.categoriesHighlighted',
+          properties: categoriesHighlightedProps,
           isLayout: false,
         },
       },
@@ -99,14 +118,15 @@ class CategoriesHighlights extends Component {
 
   render() {
     const {
-      categoriesHightlights,
-      showCategoriesHighlights,
+      categoriesHighlighted,
+      showCategoriesHighlighted,
       quantityOfItems,
+      cardShape,
     } = this.props
 
-    if (!showCategoriesHighlights) return null
+    if (!showCategoriesHighlighted) return null
 
-    let categories = values(categoriesHightlights).map(category => category)
+    let categories = values(categoriesHighlighted).map(category => category)
     range(categories.length, quantityOfItems).forEach(() => {
       categories.push({
         name: '',
@@ -115,7 +135,7 @@ class CategoriesHighlights extends Component {
     })
 
     return (
-      <div className="vtex-categories-highlights relative">
+      <div className={`vtex-categories-highlighted-${cardShape} relative`}>
         <div className="flex flex-row flex-wrap items-center justify-center">
           {range(0, quantityOfItems / ITEMS_PER_ROW).map(indexRow => (
             <div
@@ -124,6 +144,7 @@ class CategoriesHighlights extends Component {
               {range(0, ITEMS_PER_ROW).map(indexCol => (
                 <CategoryCard
                   key={2 * indexRow + indexCol}
+                  shape={cardShape}
                   {...categories[2 * indexRow + indexCol]}
                 />
               ))}
