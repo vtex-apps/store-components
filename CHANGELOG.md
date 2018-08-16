@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.13.2] - 2018-08-16
+### Fixed
+- Breaking change rename of `CategoriesHighlights`.
+
 ## [1.13.1] - 2018-08-16
 ### Changed
 - Undeprecate v1.13.0 version.
