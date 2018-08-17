@@ -5,13 +5,12 @@ import FooterLinkList from './components/FooterLinkList'
 import FooterBadgeList from './components/FooterBadgeList'
 import FooterPaymentFormList from './components/FooterPaymentFormList'
 import FooterSocialNetworkList from './components/FooterSocialNetworkList'
+import FooterPoweredBy from './components/FooterPoweredBy'
 import {
   objectLikeLinkArray,
   objectLikeBadgeArray,
   objectLikePaymentFormArray,
 } from './propTypes'
-
-import VTEXIcon from './images/VTEX-BW.svg'
 
 import './global.css'
 
@@ -198,11 +197,12 @@ export default class Footer extends Component {
           <FooterBadgeList list={badges} />
           <div className="vtex-footer__badge-list vtex-footer__list-container--right-aligned">
             <span className="vtex-footer__badge"><img className="vtex-footer__logo-image" src={logo} /></span>
-            <span className="vtex-footer__badge"><img className="vtex-footer__vtexlogo-form-item" src={VTEXIcon} /></span>
+            <span className="vtex-footer__badge">
+              <FooterPoweredBy />
+            </span>
           </div>
         </div>
       </footer>
     )
   }
 }
-
