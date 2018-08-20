@@ -1,19 +1,14 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import './global.css'
 
-import FooterLinkList from './components/FooterLinkList'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+
 import FooterBadgeList from './components/FooterBadgeList'
+import FooterLinksMatrix from './components/FooterLinksMatrix'
 import FooterPaymentFormList from './components/FooterPaymentFormList'
 import FooterSocialNetworkList from './components/FooterSocialNetworkList'
-import {
-  objectLikeLinkArray,
-  objectLikeBadgeArray,
-  objectLikePaymentFormArray,
-} from './propTypes'
-
 import VTEXIcon from './images/VTEX-BW.svg'
-
-import './global.css'
+import { objectLikeBadgeArray, objectLikeLinkArray, objectLikePaymentFormArray } from './propTypes'
 
 /**
  * Footer component that appears in the bottom of every page.
@@ -36,6 +31,14 @@ export default class Footer extends Component {
   static defaultProps = {
     showPaymentFormsInColor: false,
     showSocialNetworksInColor: false,
+    socialNetworks: [
+      {
+        socialNetwork: 'Facebook',
+      },
+    ],
+    sectionLinks: [{}],
+    badges: [],
+    paymentForms: [{ paymentType: 'MasterCard' }],
   }
 
   static schema = {
@@ -76,12 +79,7 @@ export default class Footer extends Component {
               title: 'editor.footer.socialNetworks.title',
               type: 'string',
               default: 'Facebook',
-              enum: [
-                'Facebook',
-                'Twitter',
-                'Instagram',
-                'Youtube',
-              ],
+              enum: ['Facebook', 'Twitter', 'Instagram', 'Youtube'],
             },
           },
         },
@@ -120,24 +118,6 @@ export default class Footer extends Component {
           },
         },
       },
-      moreInformationLinks: {
-        title: 'editor.footer.moreInformationLink',
-        type: 'array',
-        items: {
-          title: 'editor.footer.moreInformationLink.title',
-          type: 'object',
-          properties: {
-            url: {
-              type: 'string',
-              title: 'editor.footer.link.url.title',
-            },
-            title: {
-              type: 'string',
-              title: 'editor.footer.link.title.title',
-            },
-          },
-        },
-      },
       paymentForms: {
         title: 'editor.footer.paymentForms',
         type: 'array',
@@ -151,11 +131,7 @@ export default class Footer extends Component {
               title: 'editor.footer.paymentForm.paymentType.title',
               type: 'string',
               default: 'MasterCard',
-              enum: [
-                'MasterCard',
-                'Visa',
-                'Diners Club',
-              ],
+              enum: ['MasterCard', 'Visa', 'Diners Club'],
             },
           },
         },
@@ -168,23 +144,36 @@ export default class Footer extends Component {
       showPaymentFormsInColor,
       showSocialNetworksInColor,
       logo,
-      sectionLinks,
+      // sectionLinks,
       socialNetworks,
       paymentForms,
       badges,
     } = this.props
 
+    // FIXME: Testing code. DELET DIS
+    const sectionLink = {
+      url: 'google.com',
+      title:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.',
+    }
+    const sectionLinks = Array(4).fill(Array(4).fill(sectionLink))
+    const titles = Array(4).fill('Links doido')
+
     return (
       <footer className="vtex-footer">
         <div className="vtex-footer__container">
-          <FooterLinkList titleId="section-links" list={sectionLinks} />
-          <FooterSocialNetworkList
-            titleId="social-networks"
-            list={socialNetworks}
-            horizontal
-            alignRight
-            showInColor={showSocialNetworksInColor}
-          />
+          <div className="vtex-footer__links-container">
+            <FooterLinksMatrix titles={titles} links={sectionLinks} />
+          </div>
+          <div className="vtex-footer__social-networks-container">
+            <FooterSocialNetworkList
+              titleId="social-networks"
+              list={socialNetworks}
+              horizontal
+              alignRight
+              showInColor={showSocialNetworksInColor}
+            />
+          </div>
         </div>
         <div className="vtex-footer__container vtex-footer__container--white">
           <FooterPaymentFormList
@@ -197,12 +186,15 @@ export default class Footer extends Component {
         <div className="vtex-footer__container">
           <FooterBadgeList list={badges} />
           <div className="vtex-footer__badge-list vtex-footer__list-container--right-aligned">
-            <span className="vtex-footer__badge"><img className="vtex-footer__logo-image" src={logo} /></span>
-            <span className="vtex-footer__badge"><img className="vtex-footer__vtexlogo-form-item" src={VTEXIcon} /></span>
+            <span className="vtex-footer__badge">
+              <img className="vtex-footer__logo-image" src={logo} />
+            </span>
+            <span className="vtex-footer__badge">
+              <img className="vtex-footer__vtexlogo-form-item" src={VTEXIcon} />
+            </span>
           </div>
         </div>
       </footer>
     )
   }
 }
-

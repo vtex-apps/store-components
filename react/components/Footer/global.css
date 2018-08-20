@@ -1,13 +1,13 @@
 .vtex-footer__container {
-  background-color: #3d3d3d;
+  background-color: #474747;
   color: #f2f2f2;
   display: flex;
   justify-content: space-between;
 }
 
 .vtex-footer__container--white {
-  background-color: #f2f2f2;
-  color: #333333;
+  background-color: #4f4f4f;
+  color: #f2f2f2;
 }
 
 .vtex-footer__badge-list {
@@ -61,11 +61,39 @@
   width: 32px;
 }
 
+.vtex-footer__links-container {
+  width: 80%;
+}
+
+.vtex-footer__links-container .vtex-footer__list {
+  flex-flow: column;
+}
+
+.vtex-footer__matrix-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.vtex-footer__matrix-link-item {
+  width: auto;
+  min-width: 225px;
+  flex: 1;
+}
+
 .vtex-footer__list-link {
   display: inline-block;
   text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
   margin: 0.15rem 0;
   color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875em;
+}
+
+.vtex-footer__links-container .vtex-footer__list-title {
+  font-size: 0.875em;
 }
 
 .vtex-footer__list-link:hover {
@@ -76,6 +104,7 @@
   height: 64px;
 }
 
+/* Mobile */
 @media screen and (min-width: 10em) {
   .vtex-footer__container {
     flex-direction: column;
@@ -118,13 +147,8 @@
     padding: 20px;
   }
 
-  .vtex-footer__list {
-    max-height: 150px;
-  }
-
   .vtex-footer__list-container {
     margin-top: 0;
-    width: 225px;
   }
 
   .vtex-footer__list-container--horizontal {
@@ -190,5 +214,5 @@
 }
 
 .vtex-store__template > div > div:last-child {
-  margin-top: auto; 
+  margin-top: auto;
 }
