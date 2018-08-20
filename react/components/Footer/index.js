@@ -156,8 +156,8 @@ export default class Footer extends Component {
       title:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.',
     }
-    const sectionLinks = Array(4).fill(Array(4).fill(sectionLink))
-    const titles = Array(4).fill('Links doido')
+    const sectionLinks = Array(5).fill(Array(5).fill(sectionLink))
+    const titles = Array(5).fill('Links doido')
 
     return (
       <footer className="vtex-footer">
