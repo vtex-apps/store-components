@@ -26,6 +26,12 @@
   text-transform: uppercase;
 }
 
+.vtex-footer__accordion-title {
+  margin: 0;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
 .vtex-footer__list {
   display: flex;
   flex-flow: column wrap;

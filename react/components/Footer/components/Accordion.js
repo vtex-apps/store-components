@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { Collapse } from 'react-collapse'
+import { injectIntl, intlShape } from 'react-intl'
 import { IconCaretDown, IconCaretUp } from 'vtex.styleguide'
 
-export default class Accordion extends Component {
+class Accordion extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
+    intl: intlShape.isRequired,
   }
 
   state = {
@@ -25,7 +27,11 @@ export default class Accordion extends Component {
             this.setState({ open: !open })
           }}>
           <div className="f4">
-            {title}
+            {title && (
+              <h4 className="vtex-footer__accordion-title">
+                {this.props.intl.formatMessage({ id: title })}
+              </h4>
+            )}
             <span className="vtex-footer__accordion-icon fr">
               {open ? <IconCaretUp /> : <IconCaretDown />}
             </span>
@@ -39,3 +45,5 @@ export default class Accordion extends Component {
     )
   }
 }
+
+export default injectIntl(Accordion)
