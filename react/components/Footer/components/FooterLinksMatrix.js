@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 
-import FooterLinkList from './FooterLinkList'
+import Accordion from './Accordion'
+import FooterLinkList, { FooterLinkItem } from './FooterLinkList'
 
 class FooterLinksMatrix extends Component {
   static propTypes = {
@@ -19,11 +20,22 @@ class FooterLinksMatrix extends Component {
     const { titles, links } = this.props
 
     return (
-      <div className="vtex-footer__matrix-container">
+      <div className="vtex-footer__matrix-container pb4">
         {titles.map((title, index) => (
-          <div className="vtex-footer__matrix-link-item">
-            <FooterLinkList titleId={title} list={links[index]} />
-          </div>
+          <Fragment>
+            <div className="vtex-footer__matrix-link-item dn-s flex-ns">
+              <FooterLinkList titleId={title} list={links[index]} />
+            </div>
+            <div className="vtex-footer__matrix-link-item--small dn-ns db-s w-100 ph2 pv1">
+              <Accordion title={title}>
+                {links[index].map(link => (
+                  <div className="vtex-footer__accordion-link-item pv1">
+                    <FooterLinkItem {...link} />
+                  </div>
+                ))}
+              </Accordion>
+            </div>
+          </Fragment>
         ))}
       </div>
     )

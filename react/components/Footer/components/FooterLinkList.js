@@ -1,9 +1,9 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 import footerList from './footerList'
 
-const FooterLinkItem = ({ url, title }) => (
+export const FooterLinkItem = ({ url, title }) => (
   <a className="vtex-footer__list-link" href={url}>
     {title}
   </a>
