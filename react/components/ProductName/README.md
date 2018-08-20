@@ -20,6 +20,7 @@ You can use it in your code like a React component with the jsx tag: `<ProductNa
 | --------------------- | ---------- | ------------------------------------------------ |
 | `name`                | `String!`  | Name of the product                              |
 | `skuName`             | `String`   | Selected SKU name                                |
+| `showSku`             | `Boolean`  | Show product SKU                                 |
 | `productReference`    | `String`   | Product reference                                |
 | `showProductReference`| `Boolean`  | Show product reference                           |
 | `brandName`           | `String`   | Brand name                                       |
