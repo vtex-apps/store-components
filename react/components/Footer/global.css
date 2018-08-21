@@ -71,6 +71,10 @@
   fill: #f2f2f2;
 }
 
+.vtex-footer__links-container {
+  font-size: 0.875em;
+}
+
 .vtex-footer__links-container .vtex-footer__list {
   flex-flow: column;
 }

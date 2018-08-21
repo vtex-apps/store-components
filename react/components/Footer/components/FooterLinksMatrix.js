@@ -26,10 +26,10 @@ class FooterLinksMatrix extends Component {
             <div className="vtex-footer__matrix-link-item dn-s flex-ns">
               <FooterLinkList titleId={title} list={links[index]} />
             </div>
-            <div className="vtex-footer__matrix-link-item--small dn-ns db-s w-100 ph2 pv1">
+            <div className="vtex-footer__matrix-link-item--small dn-ns db-s w-100 ph2 pv3">
               <Accordion title={title}>
                 {links[index].map(link => (
-                  <div className="vtex-footer__accordion-link-item pv1">
+                  <div className="vtex-footer__accordion-link-item pt1">
                     <FooterLinkItem {...link} />
                   </div>
                 ))}
