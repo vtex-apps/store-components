@@ -84,13 +84,12 @@
   flex-flow: row wrap;
 }
 
-.vtex-footer__matrix-link-item {
-  width: auto;
-  min-width: 225px;
+.vtex-footer__link-matrix-item {
   flex: 1;
+  min-width: 225px;
 }
 
-.vtex-footer__matrix-link-item--small {
+.vtex-footer__link-matrix-item--small {
   border-bottom: 0.5px solid #bdbdbd;
 }
 

@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 
 import FooterBadgeList from './components/FooterBadgeList'
 import FooterLinksMatrix from './components/FooterLinksMatrix'
-import FooterPaymentFormList from './components/FooterPaymentFormList'
+import FooterPaymentFormMatrix from './components/FooterPaymentFormMatrix'
 import FooterSocialNetworkList from './components/FooterSocialNetworkList'
 import VTEXIcon from './images/VTEX-BW.svg'
 import { objectLikeBadgeArray, objectLikeLinkArray, objectLikePaymentFormArray } from './propTypes'
@@ -146,7 +146,7 @@ export default class Footer extends Component {
       logo,
       // sectionLinks,
       socialNetworks,
-      paymentForms,
+      // paymentForms,
       badges,
     } = this.props
 
@@ -157,13 +157,17 @@ export default class Footer extends Component {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.',
     }
     const sectionLinks = Array(5).fill(Array(5).fill(sectionLink))
-    const titles = Array(5).fill('Links doido')
+    const linksTitles = Array(5).fill('Links doido')
+
+    const paymentTitles = Array(2).fill('Pagamentos doido')
+    const paymentForm = { paymentType: 'MasterCard' }
+    const paymentForms = Array(2).fill(Array(8).fill(paymentForm))
 
     return (
       <footer className="vtex-footer">
         <div className="vtex-footer__container">
           <div className="vtex-footer__links-container">
-            <FooterLinksMatrix titles={titles} links={sectionLinks} />
+            <FooterLinksMatrix titles={linksTitles} links={sectionLinks} />
           </div>
           <div className="vtex-footer__social-networks-container">
             <FooterSocialNetworkList
@@ -176,9 +180,15 @@ export default class Footer extends Component {
           </div>
         </div>
         <div className="vtex-footer__container vtex-footer__container--white">
-          <FooterPaymentFormList
+          {/*<FooterPaymentFormList
             titleId="payment-form"
             list={paymentForms}
+            horizontal
+            showInColor={showPaymentFormsInColor}
+          />*/}
+          <FooterPaymentFormMatrix
+            titles={paymentTitles}
+            paymentForms={paymentForms}
             horizontal
             showInColor={showPaymentFormsInColor}
           />

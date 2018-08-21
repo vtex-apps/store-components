@@ -20,16 +20,16 @@ class FooterLinksMatrix extends Component {
     const { titles, links } = this.props
 
     return (
-      <div className="vtex-footer__matrix-container pb4">
+      <div className="vtex-footer__matrix-container vtex-footer__links-matrix-container pb4">
         {titles.map((title, index) => (
           <Fragment>
-            <div className="vtex-footer__matrix-link-item dn-s flex-ns">
+            <div className="vtex-footer__matrix-item vtex-footer__link-matrix-item dn-s flex-ns">
               <FooterLinkList titleId={title} list={links[index]} />
             </div>
-            <div className="vtex-footer__matrix-link-item--small dn-ns db-s w-100 ph2 pv3">
+            <div className="vtex-footer__matrix-item--small vtex-footer__link-matrix-item--small dn-ns db-s w-100 ph2 pv3">
               <Accordion title={title}>
                 {links[index].map(link => (
-                  <div className="vtex-footer__accordion-link-item pt1">
+                  <div className="vtex-footer__accordion-item vtex-footer__link-accordion-item pt1">
                     <FooterLinkItem {...link} />
                   </div>
                 ))}
