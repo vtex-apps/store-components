@@ -109,4 +109,30 @@ class ProductName extends Component {
   }
 }
 
+ProductName.schema = {
+  title: 'editor.productName.title',
+  description: 'editor.productName.description',
+  type: 'object',
+  properties: {
+    showBrandName: {
+      type: 'boolean',
+      title: 'editor.productName.showBrandName.title',
+      default: false,
+      isLayout: true,
+    },
+    showSku: {
+      type: 'boolean',
+      title: 'editor.productName.showSku.title',
+      default: false,
+      isLayout: true,
+    },
+    showProductReference: {
+      type: 'boolean',
+      title: 'editor.productName.showProductReference.title',
+      default: false,
+      isLayout: true,
+    },
+  },
+}
+
 export default ProductName
