@@ -161,7 +161,7 @@ export default class Footer extends Component {
 
     const paymentTitles = Array(2).fill('Pagamentos doido')
     const paymentForm = { paymentType: 'MasterCard' }
-    const paymentForms = Array(2).fill(Array(8).fill(paymentForm))
+    const paymentForms = Array(2).fill(Array(10).fill(paymentForm))
 
     return (
       <footer className="vtex-footer">
@@ -180,12 +180,6 @@ export default class Footer extends Component {
           </div>
         </div>
         <div className="vtex-footer__container vtex-footer__container--white">
-          {/*<FooterPaymentFormList
-            titleId="payment-form"
-            list={paymentForms}
-            horizontal
-            showInColor={showPaymentFormsInColor}
-          />*/}
           <FooterPaymentFormMatrix
             titles={paymentTitles}
             paymentForms={paymentForms}
