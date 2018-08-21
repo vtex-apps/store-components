@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { intlShape, injectIntl } from 'react-intl'
 import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import { injectIntl, intlShape } from 'react-intl'
 
 function getDisplayName(Component) {
   return Component.displayName || Component.name || 'Component'
@@ -29,7 +29,13 @@ export default function footerList(WrappedComponent) {
     }
 
     render() {
-      const { list, titleId, alignRight, horizontal, ...otherProps } = this.props
+      const {
+        list,
+        titleId,
+        alignRight,
+        horizontal,
+        ...otherProps
+      } = this.props
 
       if (!list || list.length === 0) return null
 
@@ -48,9 +54,11 @@ export default function footerList(WrappedComponent) {
 
       return (
         <div className={listContainerClasses}>
-          {titleId && <h4 className="vtex-footer__list-title">
-            {this.formatMessage(titleId)}
-          </h4>}
+          {titleId && (
+            <span className="vtex-footer__list-title db">
+              {this.formatMessage(titleId)}
+            </span>
+          )}
           <ul className={listClasses}>
             {list.map((item, index) => (
               <li key={index} className={listItemClasses}>

@@ -24,6 +24,7 @@
 .vtex-footer__list-title {
   margin: 0;
   text-transform: uppercase;
+  font-size: 0.875em;
 }
 
 .vtex-footer__accordion-title {
@@ -86,7 +87,8 @@
 
 .vtex-footer__link-matrix-item {
   flex: 1;
-  min-width: 225px;
+  min-width: 1.4rem;
+  flex-basis: 0;
 }
 
 .vtex-footer__link-matrix-item--small {
@@ -105,12 +107,12 @@
   font-size: 0.875em;
 }
 
-.vtex-footer__links-container .vtex-footer__list-title {
-  font-size: 0.875em;
-}
-
 .vtex-footer__list-link:hover {
   text-decoration: underline;
+}
+
+.vtex-footer__text-information {
+  max-width: 50%;
 }
 
 .vtex-footer__logo-image {
@@ -122,6 +124,10 @@
   .vtex-footer__container {
     flex-direction: column;
     padding: 22px 10px;
+  }
+
+  .vtex-footer__text-container {
+    width: 100%;
   }
 
   .vtex-footer__links-container {
@@ -162,6 +168,10 @@
   .vtex-footer__container {
     flex-flow: row wrap;
     padding: 20px;
+  }
+
+  .vtex-footer__text-container {
+    width: 80%;
   }
 
   .vtex-footer__links-container {

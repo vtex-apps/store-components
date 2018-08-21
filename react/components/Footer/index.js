@@ -36,7 +36,7 @@ export default class Footer extends Component {
         socialNetwork: 'Facebook',
       },
     ],
-    sectionLinks: [{}],
+    sectionLinks: [],
     badges: [],
     paymentForms: [{ paymentType: 'MasterCard' }],
   }
@@ -153,15 +153,19 @@ export default class Footer extends Component {
     // FIXME: Testing code. DELET DIS
     const sectionLink = {
       url: 'google.com',
-      title:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.',
+      title: 'Parceros da loja',
     }
     const sectionLinks = Array(5).fill(Array(5).fill(sectionLink))
     const linksTitles = Array(5).fill('Links doido')
 
     const paymentTitles = Array(2).fill('Pagamentos doido')
     const paymentForm = { paymentType: 'MasterCard' }
-    const paymentForms = Array(2).fill(Array(10).fill(paymentForm))
+    const paymentForms = Array(2).fill(Array(4).fill(paymentForm))
+
+    const storeInformation = [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam euismod nulla et ligula maximus, eu consequat mauris tincidunt. Sed eget malesuada tellus, id luctus ante. Praesent iaculis placerat leo et laoreet. Praesent a metus diam. Donec euismod feugiat metus, a sollicitudin purus gravida nec.',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam euismod nulla et ligula maximus, eu consequat mauris tincidunt. Sed eget malesuada tellus, id luctus ante. Praesent iaculis placerat leo et laoreet. Praesent a metus diam. Donec euismod feugiat metus, a sollicitudin purus gravida nec.',
+    ]
 
     return (
       <footer className="vtex-footer">
@@ -188,6 +192,16 @@ export default class Footer extends Component {
           />
         </div>
         <div className="vtex-footer__container">
+          <div className="vtex-footer__text-container flex flex-wrap">
+            {storeInformation &&
+              storeInformation.map((information, index) => (
+                <div
+                  key={`information-${index}`}
+                  className="vtex-footer__text-information ph3">
+                  {information}
+                </div>
+              ))}
+          </div>
           <FooterBadgeList list={badges} />
           <div className="vtex-footer__badge-list vtex-footer__list-container--right-aligned">
             <span className="vtex-footer__badge">

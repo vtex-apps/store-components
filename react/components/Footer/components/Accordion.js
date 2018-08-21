@@ -28,9 +28,9 @@ class Accordion extends Component {
           }}>
           <div>
             {title && (
-              <h4 className="vtex-footer__accordion-title">
+              <span className="vtex-footer__accordion-title db">
                 {this.props.intl.formatMessage({ id: title })}
-              </h4>
+              </span>
             )}
             <span className="vtex-footer__accordion-icon fr">
               {open ? <IconCaretDown /> : <IconCaretRight />}

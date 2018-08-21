@@ -19,20 +19,23 @@ class FooterPaymentFormMatrix extends Component {
   render() {
     const { titles, paymentForms, showPaymentFormsInColor } = this.props
 
-    console.log(this.props)
     return (
-      <div className="vtex-footer__matrix-container vtex-footer__payment-matrix-container pb4">
-        {titles.map((title, index) => (
-          <div className="vtex-footer__matrix-item vtex-footer__payment-matrix-item">
-            <FooterPaymentFormList
-              horizontal
-              showInColor={showPaymentFormsInColor}
-              titleId={title}
-              list={paymentForms[index]}
-            />
-          </div>
-        ))}
-      </div>
+      paymentForms && (
+        <div className="vtex-footer__matrix-container vtex-footer__payment-matrix-container pb4">
+          {titles.map((title, index) => (
+            <div
+              key={`payment-container-${index}`}
+              className="vtex-footer__matrix-item vtex-footer__payment-matrix-item">
+              <FooterPaymentFormList
+                horizontal
+                showInColor={showPaymentFormsInColor}
+                titleId={title}
+                list={paymentForms[index]}
+              />
+            </div>
+          ))}
+        </div>
+      )
     )
   }
 }
