@@ -21,7 +21,7 @@ class FooterLinksMatrix extends Component {
 
     return (
       links && (
-        <div className="vtex-footer__matrix-container vtex-footer__links-matrix-container pb4">
+        <div className="vtex-footer__matrix-container vtex-footer__links-matrix-container">
           {titles.map((title, index) => (
             <Fragment key={`links-container-${index}`}>
               <div className="vtex-footer__matrix-item vtex-footer__link-matrix-item dn-s flex-ns">

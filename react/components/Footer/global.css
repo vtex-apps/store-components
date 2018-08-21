@@ -16,6 +16,11 @@
   align-items: center;
 }
 
+.vtex-footer__link-matrix-item .vtex-footer__list-container {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
 .vtex-footer__list-container {
   padding: 0 0.35rem;
   height: 100%;
@@ -24,7 +29,7 @@
 .vtex-footer__list-title {
   margin: 0;
   text-transform: uppercase;
-  font-size: 0.875em;
+  font-size: 0.875rem;
 }
 
 .vtex-footer__accordion-title {
@@ -73,7 +78,7 @@
 }
 
 .vtex-footer__links-container {
-  font-size: 0.875em;
+  font-size: 0.875rem;
 }
 
 .vtex-footer__links-container .vtex-footer__list {
@@ -104,7 +109,7 @@
   width: 100%;
   margin: 0.15rem 0;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.875em;
+  font-size: 0.875rem;
 }
 
 .vtex-footer__list-link:hover {
@@ -113,6 +118,7 @@
 
 .vtex-footer__text-information {
   max-width: 50%;
+  font-size: 0.75rem;
 }
 
 .vtex-footer__logo-image {

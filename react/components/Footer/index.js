@@ -155,7 +155,7 @@ export default class Footer extends Component {
       url: 'google.com',
       title: 'Parceros da loja',
     }
-    const sectionLinks = Array(5).fill(Array(5).fill(sectionLink))
+    const sectionLinks = Array(5).fill(Array(10).fill(sectionLink))
     const linksTitles = Array(5).fill('Links doido')
 
     const paymentTitles = Array(2).fill('Pagamentos doido')

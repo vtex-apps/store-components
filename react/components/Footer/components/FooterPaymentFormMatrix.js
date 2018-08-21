@@ -21,7 +21,7 @@ class FooterPaymentFormMatrix extends Component {
 
     return (
       paymentForms && (
-        <div className="vtex-footer__matrix-container vtex-footer__payment-matrix-container pb4">
+        <div className="vtex-footer__matrix-container vtex-footer__payment-matrix-container">
           {titles.map((title, index) => (
             <div
               key={`payment-container-${index}`}
