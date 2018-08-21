@@ -13,6 +13,8 @@ class ProductName extends Component {
     name: PropTypes.string.isRequired,
     /** Selected SKU name */
     skuName: PropTypes.string,
+    /** Show sku */
+    showSku: PropTypes.bool,
     /** Product reference */
     productReference: PropTypes.string,
     /** Show product reference */
@@ -29,8 +31,9 @@ class ProductName extends Component {
 
   static defaultProps = {
     large: false,
-    showBrandName: true,
-    showProductReference: true,
+    showBrandName: false,
+    showProductReference: false,
+    showSku: false,
   }
 
   static Loader = (loaderProps = {}) => (
@@ -42,7 +45,8 @@ class ProductName extends Component {
         }}
         height="100%"
         width="100%"
-        {...loaderProps}>
+        {...loaderProps}
+      >
         <rect
           height="1.125em"
           width="75%"
@@ -68,6 +72,7 @@ class ProductName extends Component {
       large,
       showBrandName,
       showProductReference,
+      showSku,
       productReference,
     } = this.props
 
@@ -94,7 +99,7 @@ class ProductName extends Component {
         <div className={brandClasses}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </div>
-        <div className={skuClasses}>{skuName}</div>
+        {showSku && <div className={skuClasses}>{skuName}</div>}
         {showProductReference &&
           productReference && (
             <div className="vtex-product-name__product-reference pt3 f7 ttu gray">{`REF: ${productReference}`}</div>
