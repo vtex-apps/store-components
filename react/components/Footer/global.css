@@ -47,7 +47,6 @@
 .vtex-footer__social-network-item {
   height: 32px;
   width: 32px;
-  color: #727273;
 }
 
 .vtex-footer__accordion-icon path {
@@ -72,7 +71,6 @@
   display: inline-block;
   text-decoration: none;
   margin: 0.15rem 0;
-  color: rgba(255, 255, 255, 0.8);
 }
 
 .vtex-footer__list-link:hover {
