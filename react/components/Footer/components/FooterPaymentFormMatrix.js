@@ -6,8 +6,12 @@ import FooterPaymentFormList from './FooterPaymentFormList'
 
 class FooterPaymentFormMatrix extends Component {
   static propTypes = {
-    titles: PropTypes.arrayOf(PropTypes.string),
-    paymentForms: PropTypes.arrayOf(PropTypes.array),
+    paymentForms: PropTypes.arrayOf(
+      PropTypes.objectOf({
+        title: PropTypes.string.isRequired,
+        paymentTypes: PropTypes.arrayOf(PropTypes.string.isRequired),
+      })
+    ),
     showPaymentFormsInColor: PropTypes.bool,
     intl: intlShape.isRequired,
   }
@@ -17,20 +21,22 @@ class FooterPaymentFormMatrix extends Component {
   }
 
   render() {
-    const { titles, paymentForms, showPaymentFormsInColor } = this.props
+    const { paymentForms, showPaymentFormsInColor } = this.props
 
     return (
       paymentForms && (
         <div className="vtex-footer__matrix-container vtex-footer__payment-matrix-container">
-          {titles.map((title, index) => (
+          {paymentForms.map((paymentFormsItem, index) => (
             <div
               key={`payment-container-${index}`}
               className="vtex-footer__matrix-item vtex-footer__payment-matrix-item">
               <FooterPaymentFormList
                 horizontal
                 showInColor={showPaymentFormsInColor}
-                titleId={title}
-                list={paymentForms[index]}
+                titleId={paymentFormsItem.title}
+                list={paymentFormsItem.paymentTypes.map(paymentType => ({
+                  paymentType,
+                }))}
               />
             </div>
           ))}

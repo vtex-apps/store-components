@@ -92,7 +92,7 @@
 
 .vtex-footer__link-matrix-item {
   flex: 1;
-  min-width: 1.4rem;
+  min-width: 5rem;
   flex-basis: 0;
 }
 

@@ -38,7 +38,12 @@ export default class Footer extends Component {
     ],
     sectionLinks: [],
     badges: [],
-    paymentForms: [{ paymentType: 'MasterCard' }],
+    paymentForms: [
+      {
+        title: 'editor.footer.paymentForm.title',
+        paymentTypes: ['MasterCard'],
+      },
+    ],
   }
 
   static schema = {
@@ -72,8 +77,8 @@ export default class Footer extends Component {
           type: 'object',
           properties: {
             url: {
-              type: 'string',
               title: 'editor.footer.socialNetworks.url.title',
+              type: 'string',
             },
             socialNetwork: {
               title: 'editor.footer.socialNetworks.title',
@@ -85,21 +90,39 @@ export default class Footer extends Component {
         },
       },
       sectionLinks: {
-        title: 'editor.footer.link',
+        title: 'editor.footer.linksSections',
         type: 'array',
-        minItems: 1,
-        maxItems: 10,
+        minItems: 0,
+        maxItems: 5,
         items: {
-          title: 'editor.footer.link.title',
+          title: 'editor.footer.linksSections.linksSection',
           type: 'object',
           properties: {
-            url: {
-              type: 'string',
-              title: 'editor.footer.link.url.title',
-            },
             title: {
+              title: 'editor.footer.linksSections.linksSection.title',
               type: 'string',
-              title: 'editor.footer.link.title.title',
+            },
+            links: {
+              title: 'editor.footer.linksSections.linksSection.links',
+              type: 'array',
+              minItems: 1,
+              maxItems: 10,
+              items: {
+                title: 'editor.footer.linksSections.linksSection.links.link',
+                type: 'object',
+                properties: {
+                  title: {
+                    title:
+                      'editor.footer.linksSections.linksSection.links.link.title',
+                    type: 'string',
+                  },
+                  url: {
+                    title:
+                      'editor.footer.linksSections.linksSection.links.link.url',
+                    type: 'string',
+                  },
+                },
+              },
             },
           },
         },
@@ -122,16 +145,26 @@ export default class Footer extends Component {
         title: 'editor.footer.paymentForms',
         type: 'array',
         minItems: 1,
-        maxItems: 3,
+        maxItems: 5,
         items: {
-          title: 'editor.footer.paymentForms.title',
+          title: 'editor.footer.paymentForms.paymentForm',
           type: 'object',
           properties: {
-            paymentType: {
-              title: 'editor.footer.paymentForm.paymentType.title',
+            title: {
+              title: 'editor.footer.paymentForms.paymentForm.title',
               type: 'string',
-              default: 'MasterCard',
-              enum: ['MasterCard', 'Visa', 'Diners Club'],
+            },
+            paymentTypes: {
+              title: 'editor.footer.paymentForms.paymentForm.paymentTypes',
+              type: 'array',
+              minItems: 1,
+              items: {
+                title:
+                  'editor.footer.paymentForms.paymentForm.paymentTypes.paymentType',
+                type: 'string',
+                default: 'MasterCard',
+                enum: ['MasterCard', 'Visa', 'Diners Club'],
+              },
             },
           },
         },
@@ -144,23 +177,23 @@ export default class Footer extends Component {
       showPaymentFormsInColor,
       showSocialNetworksInColor,
       logo,
-      // sectionLinks,
+      sectionLinks,
       socialNetworks,
-      // paymentForms,
+      paymentForms,
       badges,
     } = this.props
 
     // FIXME: Testing code. DELET DIS
-    const sectionLink = {
-      url: 'google.com',
-      title: 'Parceros da loja',
-    }
-    const sectionLinks = Array(5).fill(Array(10).fill(sectionLink))
-    const linksTitles = Array(5).fill('Links doido')
+    // const sectionLink = {
+    //   url: 'google.com',
+    //   title: 'Parceros da loja',
+    // }
+    // const sectionLinks = Array(5).fill(Array(10).fill(sectionLink))
+    // const linksTitles = Array(5).fill('Links doido')
 
-    const paymentTitles = Array(2).fill('Pagamentos doido')
-    const paymentForm = { paymentType: 'MasterCard' }
-    const paymentForms = Array(2).fill(Array(4).fill(paymentForm))
+    // const paymentTitles = Array(2).fill('Pagamentos doido')
+    // const paymentForm = { paymentType: 'MasterCard' }
+    // const paymentForms = Array(2).fill(Array(4).fill(paymentForm))
 
     const storeInformation = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam euismod nulla et ligula maximus, eu consequat mauris tincidunt. Sed eget malesuada tellus, id luctus ante. Praesent iaculis placerat leo et laoreet. Praesent a metus diam. Donec euismod feugiat metus, a sollicitudin purus gravida nec.',
@@ -171,7 +204,7 @@ export default class Footer extends Component {
       <footer className="vtex-footer">
         <div className="vtex-footer__container">
           <div className="vtex-footer__links-container">
-            <FooterLinksMatrix titles={linksTitles} links={sectionLinks} />
+            <FooterLinksMatrix links={sectionLinks} />
           </div>
           <div className="vtex-footer__social-networks-container">
             <FooterSocialNetworkList
@@ -185,7 +218,6 @@ export default class Footer extends Component {
         </div>
         <div className="vtex-footer__container vtex-footer__container--white">
           <FooterPaymentFormMatrix
-            titles={paymentTitles}
             paymentForms={paymentForms}
             horizontal
             showInColor={showPaymentFormsInColor}

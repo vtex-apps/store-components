@@ -7,8 +7,15 @@ import FooterLinkList, { FooterLinkItem } from './FooterLinkList'
 
 class FooterLinksMatrix extends Component {
   static propTypes = {
-    titles: PropTypes.string,
-    links: PropTypes.array,
+    links: PropTypes.arrayOf(
+      PropTypes.objectOf({
+        title: PropTypes.string.isRequired,
+        links: PropTypes.objectOf({
+          title: PropTypes.string.isRequired,
+          url: PropTypes.string.isRequired,
+        }),
+      })
+    ),
     intl: intlShape.isRequired,
   }
 
@@ -17,19 +24,22 @@ class FooterLinksMatrix extends Component {
   }
 
   render() {
-    const { titles, links } = this.props
+    const { links } = this.props
 
     return (
       links && (
         <div className="vtex-footer__matrix-container vtex-footer__links-matrix-container">
-          {titles.map((title, index) => (
+          {links.map((linkItem, index) => (
             <Fragment key={`links-container-${index}`}>
               <div className="vtex-footer__matrix-item vtex-footer__link-matrix-item dn-s flex-ns">
-                <FooterLinkList titleId={title} list={links[index]} />
+                <FooterLinkList
+                  titleId={linkItem.title}
+                  list={linkItem.links}
+                />
               </div>
               <div className="vtex-footer__matrix-item--small vtex-footer__link-matrix-item--small dn-ns db-s w-100 ph2 pv3">
-                <Accordion title={title}>
-                  {links[index].map(link => (
+                <Accordion title={linkItem.title}>
+                  {linkItem.links.map(link => (
                     <div
                       key={`links-${index}`}
                       className="vtex-footer__accordion-item vtex-footer__link-accordion-item pt1">
