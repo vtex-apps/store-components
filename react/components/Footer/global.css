@@ -32,12 +32,6 @@
   font-size: 0.875rem;
 }
 
-.vtex-footer__accordion-title {
-  margin: 0;
-  display: inline-block;
-  text-transform: uppercase;
-}
-
 .vtex-footer__list {
   display: flex;
   flex-flow: column wrap;
@@ -85,11 +79,6 @@
   flex-flow: column;
 }
 
-.vtex-footer__matrix-container {
-  display: flex;
-  flex-flow: row wrap;
-}
-
 .vtex-footer__link-matrix-item {
   flex: 1;
   min-width: 5rem;
@@ -103,9 +92,6 @@
 .vtex-footer__list-link {
   display: inline-block;
   text-decoration: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   width: 100%;
   margin: 0.15rem 0;
   color: rgba(255, 255, 255, 0.8);
@@ -130,10 +116,6 @@
   .vtex-footer__container {
     flex-direction: column;
     padding: 22px 10px;
-  }
-
-  .vtex-footer__text-container {
-    width: 100%;
   }
 
   .vtex-footer__links-container {
@@ -178,10 +160,6 @@
   .vtex-footer__container {
     flex-flow: row wrap;
     padding: 20px;
-  }
-
-  .vtex-footer__text-container {
-    width: 80%;
   }
 
   .vtex-footer__links-container {

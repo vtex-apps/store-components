@@ -31,7 +31,7 @@ class Accordion extends Component {
           }}>
           <div>
             {title && (
-              <span className="vtex-footer__accordion-title db">
+              <span className="vtex-footer__accordion-title dib ma0 ttu">
                 {this.props.intl.formatMessage({ id: title })}
               </span>
             )}

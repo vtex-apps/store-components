@@ -27,7 +27,7 @@ export default class FooterLinksMatrix extends Component {
 
     return (
       links && (
-        <div className="vtex-footer__matrix-container vtex-footer__links-matrix-container">
+        <div className="vtex-footer__matrix-container vtex-footer__links-matrix-container flex flex-wrap">
           {links.map((linkItem, index) => (
             <Fragment key={`links-container-${index}`}>
               <div className="vtex-footer__matrix-item vtex-footer__link-matrix-item dn-s flex-ns">

@@ -216,15 +216,40 @@ export default class Footer extends Component {
 
   render() {
     const {
-      showPaymentFormsInColor,
+      // showPaymentFormsInColor,
       showSocialNetworksInColor,
       logo,
-      sectionLinks,
+      // sectionLinks,
       socialNetworks,
-      paymentForms,
+      // paymentForms,
       badges,
-      storeInformations,
+      // storeInformations,
     } = this.props
+
+    const sectionLink = { title: 'Parceiros da Loja', url: 'google' }
+    const sectionLinks = Array(5).fill({
+      title: 'Links',
+      links: Array(6).fill(sectionLink),
+    })
+
+    const paymentType = 'MasterCard'
+    const paymentForms = Array(2).fill({
+      title: 'Formas de Pagamento',
+      paymentTypes: Array(5).fill(paymentType),
+    })
+
+    const storeInformations = [
+      {
+        storeInformation:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt gravida commodo. Integer malesuada massa accumsan dapibus lacinia. Vivamus porta sit amet dolor eget vehicula. In ut risus fringilla, vestibulum odio sed, lacinia tortor. Morbi eu elementum felis, sed lacinia eros',
+      },
+      {
+        storeInformation:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt gravida commodo. Integer malesuada massa accumsan dapibus lacinia. Vivamus porta sit amet dolor eget vehicula. In ut risus fringilla, vestibulum odio sed, lacinia tortor. Morbi eu elementum felis, sed lacinia eros',
+      },
+    ]
+
+    const showPaymentFormsInColor = true
 
     return (
       <footer className="vtex-footer">
@@ -250,7 +275,7 @@ export default class Footer extends Component {
           />
         </div>
         <div className="vtex-footer__container">
-          <div className="vtex-footer__text-container flex flex-wrap">
+          <div className="vtex-footer__text-container w-100-s w-80-ns flex flex-wrap">
             {storeInformations &&
               storeInformations.map(({ storeInformation }, index) => (
                 <div
