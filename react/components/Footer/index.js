@@ -192,6 +192,9 @@ export default class Footer extends Component {
             storeInformation: {
               title: 'editor.footer.storeInformations.storeInformation',
               type: 'string',
+              widget: {
+                'ui:widget': 'textarea',
+              },
             },
           },
         },
