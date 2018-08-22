@@ -44,9 +44,12 @@ export default function footerList(WrappedComponent) {
         'vtex-footer__list-container--horizontal': horizontal,
       })
 
-      const listClasses = classNames('vtex-footer__list', {
-        'vtex-footer__list--horizontal': horizontal,
-      })
+      const listClasses = classNames(
+        'vtex-footer__list flex flex-column flex-wrap pa0 mb0',
+        {
+          'vtex-footer__list--horizontal': horizontal,
+        }
+      )
 
       const listItemClasses = classNames('vtex-footer__list-item', {
         'vtex-footer__list-item--horizontal': horizontal,
@@ -54,11 +57,9 @@ export default function footerList(WrappedComponent) {
 
       return (
         <div className={listContainerClasses}>
-          {titleId && (
-            <span className="vtex-footer__list-title f6 ttu ma0 db">
-              {this.formatMessage(titleId)}
-            </span>
-          )}
+          <span className="vtex-footer__list-title f6 ttu ma0 db">
+            {titleId && this.formatMessage(titleId)}
+          </span>
           <ul className={listClasses}>
             {list.map((item, index) => (
               <li key={index} className={listItemClasses}>

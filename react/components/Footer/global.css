@@ -1,5 +1,5 @@
 .vtex-footer {
-  box-shadow: 0 -5px 7px -5px #CACBCC;
+  box-shadow: 4px -4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .vtex-footer__badge-list {
@@ -19,12 +19,12 @@
 }
 
 .vtex-footer__list {
-  display: flex;
-  flex-flow: column wrap;
   list-style: none;
-  padding: 0;
   margin-top: 10px;
-  margin-bottom: 0;
+}
+
+.vtex-footer__list-title {
+  min-height: 0.875rem;
 }
 
 .vtex-footer__list--horizontal {
