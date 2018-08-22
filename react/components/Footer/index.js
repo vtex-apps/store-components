@@ -20,12 +20,12 @@ export default class Footer extends Component {
   static propTypes = {
     socialNetworks: objectLikeLinkArray,
     sectionLinks: objectLikeLinkArray,
-    moreInformationLinks: objectLikeLinkArray,
     badges: objectLikeBadgeArray,
     paymentForms: objectLikePaymentFormArray,
     showPaymentFormsInColor: PropTypes.bool,
     showSocialNetworksInColor: PropTypes.bool,
     logo: PropTypes.string,
+    storeInformation: PropTypes.arrayOf(PropTypes.string.isRequired),
   }
 
   static defaultProps = {
@@ -40,10 +40,11 @@ export default class Footer extends Component {
     badges: [],
     paymentForms: [
       {
-        title: 'editor.footer.paymentForm.title',
+        title: 'editor.footer.paymentForms.paymentForm',
         paymentTypes: ['MasterCard'],
       },
     ],
+    storeInformations: [],
   }
 
   static schema = {
@@ -169,6 +170,22 @@ export default class Footer extends Component {
           },
         },
       },
+      storeInformations: {
+        title: 'editor.footer.storeInformations',
+        type: 'array',
+        minItems: 0,
+        maxItems: 2,
+        items: {
+          title: 'editor.footer.storeInformations.storeInformation',
+          type: 'object',
+          properties: {
+            storeInformation: {
+              title: 'editor.footer.storeInformations.storeInformation',
+              type: 'string',
+            },
+          },
+        },
+      },
     },
   }
 
@@ -181,24 +198,8 @@ export default class Footer extends Component {
       socialNetworks,
       paymentForms,
       badges,
+      storeInformations,
     } = this.props
-
-    // FIXME: Testing code. DELET DIS
-    // const sectionLink = {
-    //   url: 'google.com',
-    //   title: 'Parceros da loja',
-    // }
-    // const sectionLinks = Array(5).fill(Array(10).fill(sectionLink))
-    // const linksTitles = Array(5).fill('Links doido')
-
-    // const paymentTitles = Array(2).fill('Pagamentos doido')
-    // const paymentForm = { paymentType: 'MasterCard' }
-    // const paymentForms = Array(2).fill(Array(4).fill(paymentForm))
-
-    const storeInformation = [
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam euismod nulla et ligula maximus, eu consequat mauris tincidunt. Sed eget malesuada tellus, id luctus ante. Praesent iaculis placerat leo et laoreet. Praesent a metus diam. Donec euismod feugiat metus, a sollicitudin purus gravida nec.',
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam euismod nulla et ligula maximus, eu consequat mauris tincidunt. Sed eget malesuada tellus, id luctus ante. Praesent iaculis placerat leo et laoreet. Praesent a metus diam. Donec euismod feugiat metus, a sollicitudin purus gravida nec.',
-    ]
 
     return (
       <footer className="vtex-footer">
@@ -225,12 +226,12 @@ export default class Footer extends Component {
         </div>
         <div className="vtex-footer__container">
           <div className="vtex-footer__text-container flex flex-wrap">
-            {storeInformation &&
-              storeInformation.map((information, index) => (
+            {storeInformations &&
+              storeInformations.map(({ storeInformation }, index) => (
                 <div
                   key={`information-${index}`}
                   className="vtex-footer__text-information ph3">
-                  {information}
+                  {storeInformation}
                 </div>
               ))}
           </div>

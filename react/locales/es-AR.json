@@ -74,6 +74,8 @@
   "editor.footer.paymentForms.paymentForm.title": "Título de la Forma de pago",
   "editor.footer.paymentForms.paymentForm.paymentTypes": "Tipos de pago",
   "editor.footer.paymentForm.paymentForm.paymentTypes.paymentType": "Tipo de pago",
+  "editor.footer.storeInformations": "Informaciónes de la Tienda",
+  "editor.footer.storeInformations.storeInformation": "Información de la Tienda",
   "editor.categoriesHighlighted.title": "Categorías destacadas",
   "editor.categoriesHighlighted.description": "Categorias destacadas de este departamento",
   "editor.categoriesHighlighted.item.categoryName": "Nombre de la categoría",
