@@ -7,7 +7,7 @@ import FooterPaymentFormList from './FooterPaymentFormList'
 class FooterPaymentFormMatrix extends Component {
   static propTypes = {
     paymentForms: PropTypes.arrayOf(
-      PropTypes.objectOf({
+      PropTypes.shape({
         title: PropTypes.string.isRequired,
         paymentTypes: PropTypes.arrayOf(PropTypes.string.isRequired),
       })

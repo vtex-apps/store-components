@@ -8,9 +8,9 @@ import FooterLinkList, { FooterLinkItem } from './FooterLinkList'
 class FooterLinksMatrix extends Component {
   static propTypes = {
     links: PropTypes.arrayOf(
-      PropTypes.objectOf({
+      PropTypes.shape({
         title: PropTypes.string.isRequired,
-        links: PropTypes.objectOf({
+        links: PropTypes.shape({
           title: PropTypes.string.isRequired,
           url: PropTypes.string.isRequired,
         }),

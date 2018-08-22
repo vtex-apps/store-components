@@ -8,7 +8,7 @@ import FooterLinksMatrix from './components/FooterLinksMatrix'
 import FooterPaymentFormMatrix from './components/FooterPaymentFormMatrix'
 import FooterSocialNetworkList from './components/FooterSocialNetworkList'
 import VTEXIcon from './images/VTEX-BW.svg'
-import { objectLikeBadgeArray, objectLikeLinkArray, objectLikePaymentFormArray } from './propTypes'
+import { objectLikeBadgeArray, objectLikeLinkArray } from './propTypes'
 
 /**
  * Footer component that appears in the bottom of every page.
@@ -19,13 +19,23 @@ export default class Footer extends Component {
 
   static propTypes = {
     socialNetworks: objectLikeLinkArray,
-    sectionLinks: objectLikeLinkArray,
+    sectionLinks: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        links: objectLikeLinkArray,
+      })
+    ),
     badges: objectLikeBadgeArray,
-    paymentForms: objectLikePaymentFormArray,
+    paymentForms: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        paymentTypes: PropTypes.arrayOf(PropTypes.string),
+      })
+    ),
     showPaymentFormsInColor: PropTypes.bool,
     showSocialNetworksInColor: PropTypes.bool,
     logo: PropTypes.string,
-    storeInformation: PropTypes.arrayOf(PropTypes.string.isRequired),
+    storeInformation: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   }
 
   static defaultProps = {
