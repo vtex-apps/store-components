@@ -229,7 +229,7 @@ export default class Footer extends Component {
 
     return (
       <footer className="vtex-footer">
-        <div className="vtex-footer__container flex justify-between bg-light-gray mid-gray">
+        <div className="vtex-footer__container flex justify-between bg-white mid-gray">
           <div className="vtex-footer__links-container f6 w-100-s w-80-ns">
             <FooterLinksMatrix links={sectionLinks} />
           </div>
@@ -243,14 +243,14 @@ export default class Footer extends Component {
             />
           </div>
         </div>
-        <div className="vtex-footer__container flex justify-between bg-light-gray mid-gray">
+        <div className="vtex-footer__container flex justify-between bg-white mid-gray">
           <FooterPaymentFormMatrix
             paymentForms={paymentForms}
             horizontal
             showInColor={showPaymentFormsInColor}
           />
         </div>
-        <div className="vtex-footer__container flex justify-between bg-light-gray mid-gray">
+        <div className="vtex-footer__container flex justify-between bg-white mid-gray">
           <div className="vtex-footer__text-container w-100-s w-80-ns flex flex-wrap">
             {storeInformations &&
               storeInformations.map(({ storeInformation }, index) => (
