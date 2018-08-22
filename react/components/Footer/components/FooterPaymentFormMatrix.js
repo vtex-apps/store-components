@@ -19,7 +19,7 @@ export default class FooterPaymentFormMatrix extends Component {
   }
 
   render() {
-    const { paymentForms, showPaymentFormsInColor } = this.props
+    const { paymentForms, ...otherProps } = this.props
 
     return (
       paymentForms && (
@@ -30,11 +30,11 @@ export default class FooterPaymentFormMatrix extends Component {
               className="vtex-footer__matrix-item vtex-footer__payment-matrix-item">
               <FooterPaymentFormList
                 horizontal
-                showInColor={showPaymentFormsInColor}
                 titleId={paymentFormsItem.title}
                 list={paymentFormsItem.paymentTypes.map(paymentType => ({
                   paymentType,
                 }))}
+                {...otherProps}
               />
             </div>
           ))}

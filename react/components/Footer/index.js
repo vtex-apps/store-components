@@ -242,7 +242,7 @@ export default class Footer extends Component {
             />
           </div>
         </div>
-        <div className="vtex-footer__container vtex-footer__container--white">
+        <div className="vtex-footer__container vtex-footer__container">
           <FooterPaymentFormMatrix
             paymentForms={paymentForms}
             horizontal

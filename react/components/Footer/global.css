@@ -140,6 +140,10 @@
     width: 100%;
   }
 
+  .vtex-footer__social-networks-container {
+    padding-top: 1.5rem;
+  }
+
   .vtex-footer__list-container {
     width: 100%;
     margin-top: 10px;
@@ -182,6 +186,10 @@
 
   .vtex-footer__links-container {
     width: 80%;
+  }
+
+  .vtex-footer__social-networks-container {
+    padding-top: 0;
   }
 
   .vtex-footer__list-container {
