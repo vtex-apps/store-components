@@ -12,7 +12,8 @@ const listItemClassNames =
   'vtex-results__item flex justify-start f5 pa4 pl6 outline-0'
 
 function getImageUrl(image) {
-  return (image.match(/http:(.*?)"/g) || [''])[0].replace(/-25-25/g, '-50-50')
+  const imageUrl = (image.match(/https?:(.*?)"/g) || [''])[0]
+  return imageUrl.replace(/https?:/, '').replace(/-25-25/g, '-50-50')
 }
 
 /** List of search results to be displayed*/
