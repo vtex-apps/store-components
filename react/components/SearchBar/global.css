@@ -5,6 +5,8 @@
 .vtex-results__list {
   list-style-type: none;
   width: calc(100% - 42px);
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
 .vtex-results__list a, .vtex-results__list div {
@@ -41,5 +43,7 @@
   }
   .vtex-results__list {
     width: 100%;
+    margin: 0px;
+    max-height: calc(100vh - 7.5rem);
   }
 }
