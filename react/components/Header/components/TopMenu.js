@@ -86,7 +86,6 @@ class TopMenu extends Component {
       <ReactResizeDetector handleWidth>
         {
           width => {
-            console.log(width)
             const mobileMode = width <= 769
             return (
               <div className={classes}>
