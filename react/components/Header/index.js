@@ -85,7 +85,6 @@ class Header extends Component {
               <TopMenu
                 logoUrl={logoUrl}
                 logoTitle={logoTitle}
-                offsetTop={offsetTop}
                 fixed
               />
             </Modal>

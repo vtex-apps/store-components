@@ -1,18 +1,24 @@
 .vtex-results__item-image {
-  width: 50px;
+  width: 70px;
 }
 
 .vtex-results__list {
   list-style-type: none;
+  width: calc(100% - 42px);
 }
 
-.vtex-results__list a {
+.vtex-results__list a, .vtex-results__list div {
   text-decoration: none;
-  color: inherit;
+  color: #727273;
+}
+
+.vtex-results__list a:hover {
+  background-color: #F2F4F5;
 }
 
 .vtex-searchbar input {
-  border: none;
+  box-shadow: 4px 4px 8px 0 rgba( 0, 0, 0, .2 );
+  color: #727273;
 }
 
 .vtex-searchbar .vtex-results__list {
@@ -26,7 +32,14 @@
 }
 
 .vtex-search-mobile input {
-  background-color: #4f4f4f;
-  color: white;
   border: none;
+}
+
+@media only screen and (max-width: 49rem) {
+  .vtex-searchbar input {
+    box-shadow: none;
+  }
+  .vtex-results__list {
+    width: 100%;
+  }
 }
