@@ -55,7 +55,7 @@ export default function footerList(WrappedComponent) {
       return (
         <div className={listContainerClasses}>
           {titleId && (
-            <span className="vtex-footer__list-title db">
+            <span className="vtex-footer__list-title f6 ttu ma0 db">
               {this.formatMessage(titleId)}
             </span>
           )}

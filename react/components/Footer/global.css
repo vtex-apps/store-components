@@ -1,15 +1,3 @@
-.vtex-footer__container {
-  background-color: #474747;
-  color: #f2f2f2;
-  display: flex;
-  justify-content: space-between;
-}
-
-.vtex-footer__container--white {
-  background-color: #4f4f4f;
-  color: #f2f2f2;
-}
-
 .vtex-footer__badge-list {
   display: flex;
   flex-direction: row;
@@ -24,12 +12,6 @@
 .vtex-footer__list-container {
   padding: 0 0.35rem;
   height: 100%;
-}
-
-.vtex-footer__list-title {
-  margin: 0;
-  text-transform: uppercase;
-  font-size: 0.875rem;
 }
 
 .vtex-footer__list {
@@ -65,14 +47,11 @@
 .vtex-footer__social-network-item {
   height: 32px;
   width: 32px;
+  color: #727273;
 }
 
 .vtex-footer__accordion-icon path {
   fill: #f2f2f2;
-}
-
-.vtex-footer__links-container {
-  font-size: 0.875rem;
 }
 
 .vtex-footer__links-container .vtex-footer__list {
@@ -118,10 +97,6 @@
     padding: 22px 10px;
   }
 
-  .vtex-footer__links-container {
-    width: 100%;
-  }
-
   .vtex-footer__social-networks-container {
     padding-top: 1.5rem;
   }
@@ -160,10 +135,6 @@
   .vtex-footer__container {
     flex-flow: row wrap;
     padding: 20px;
-  }
-
-  .vtex-footer__links-container {
-    width: 80%;
   }
 
   .vtex-footer__social-networks-container {
