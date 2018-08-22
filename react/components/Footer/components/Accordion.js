@@ -6,8 +6,11 @@ import { IconCaretDown, IconCaretRight } from 'vtex.styleguide'
 
 class Accordion extends Component {
   static propTypes = {
+    /** Title shown in Accordion */
     title: PropTypes.string.isRequired,
+    /** Accordion children. Components shown inside Collapse */
     children: PropTypes.node.isRequired,
+    /** Internationalization */
     intl: intlShape.isRequired,
   }
 

@@ -18,24 +18,36 @@ export default class Footer extends Component {
   static displayName = 'Footer'
 
   static propTypes = {
+    /** Social Networks */
     socialNetworks: objectLikeLinkArray,
+    /** Links Sections */
     sectionLinks: PropTypes.arrayOf(
       PropTypes.shape({
+        /** Link section title */
         title: PropTypes.string.isRequired,
+        /** Link  section links */
         links: objectLikeLinkArray,
       })
     ),
+    /** Badges */
     badges: objectLikeBadgeArray,
+    /** Payment Forms */
     paymentForms: PropTypes.arrayOf(
       PropTypes.shape({
+        /** Payment Form title */
         title: PropTypes.string.isRequired,
+        /** Payment Types */
         paymentTypes: PropTypes.arrayOf(PropTypes.string),
       })
     ),
+    /** Determines if the icons are colorful */
     showPaymentFormsInColor: PropTypes.bool,
+    /** Determines if the icons are colorful */
     showSocialNetworksInColor: PropTypes.bool,
+    /** Logo URL */
     logo: PropTypes.string,
-    storeInformation: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+    /** Store Informations */
+    storeInformations: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   }
 
   static defaultProps = {

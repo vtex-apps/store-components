@@ -1,26 +1,25 @@
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
-import { injectIntl, intlShape } from 'react-intl'
 
 import Accordion from './Accordion'
 import FooterLinkList, { FooterLinkItem } from './FooterLinkList'
 
-class FooterLinksMatrix extends Component {
+export default class FooterLinksMatrix extends Component {
   static propTypes = {
+    /** Links to be shown */
     links: PropTypes.arrayOf(
       PropTypes.shape({
+        /** Link section title */
         title: PropTypes.string.isRequired,
+        /** Link section links */
         links: PropTypes.shape({
+          /** Link text */
           title: PropTypes.string.isRequired,
+          /** Link URL */
           url: PropTypes.string.isRequired,
         }),
       })
     ),
-    intl: intlShape.isRequired,
-  }
-
-  formatMessage(id) {
-    return this.props.intl.formatMessage({ id })
   }
 
   render() {
@@ -55,5 +54,3 @@ class FooterLinksMatrix extends Component {
     )
   }
 }
-
-export default injectIntl(FooterLinksMatrix)

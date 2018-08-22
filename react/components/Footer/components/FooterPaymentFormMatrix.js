@@ -1,23 +1,21 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { injectIntl, intlShape } from 'react-intl'
 
 import FooterPaymentFormList from './FooterPaymentFormList'
 
-class FooterPaymentFormMatrix extends Component {
+export default class FooterPaymentFormMatrix extends Component {
   static propTypes = {
+    /** Payment forms array */
     paymentForms: PropTypes.arrayOf(
       PropTypes.shape({
+        /** Payment form title */
         title: PropTypes.string.isRequired,
+        /** Payment types */
         paymentTypes: PropTypes.arrayOf(PropTypes.string.isRequired),
       })
     ),
+    /** Determines if the icons are colorful */
     showPaymentFormsInColor: PropTypes.bool,
-    intl: intlShape.isRequired,
-  }
-
-  formatMessage(id) {
-    return this.props.intl.formatMessage({ id })
   }
 
   render() {
@@ -45,5 +43,3 @@ class FooterPaymentFormMatrix extends Component {
     )
   }
 }
-
-export default injectIntl(FooterPaymentFormMatrix)
