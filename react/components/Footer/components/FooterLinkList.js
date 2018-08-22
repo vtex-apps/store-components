@@ -4,7 +4,7 @@ import React from 'react'
 import footerList from './footerList'
 
 export const FooterLinkItem = ({ url, title }) => (
-  <a className="vtex-footer__list-link truncate" href={url}>
+  <a className="vtex-footer__list-link w-100 f6 truncate" href={url}>
     {title}
   </a>
 )

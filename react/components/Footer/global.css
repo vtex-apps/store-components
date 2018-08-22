@@ -71,19 +71,12 @@
 .vtex-footer__list-link {
   display: inline-block;
   text-decoration: none;
-  width: 100%;
   margin: 0.15rem 0;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 0.875rem;
 }
 
 .vtex-footer__list-link:hover {
   text-decoration: underline;
-}
-
-.vtex-footer__text-information {
-  max-width: 50%;
-  font-size: 0.75rem;
 }
 
 .vtex-footer__logo-image {
@@ -135,10 +128,6 @@
   .vtex-footer__container {
     flex-flow: row wrap;
     padding: 20px;
-  }
-
-  .vtex-footer__social-networks-container {
-    padding-top: 0;
   }
 
   .vtex-footer__list-container {

@@ -232,7 +232,7 @@ export default class Footer extends Component {
           <div className="vtex-footer__links-container f6 w-100-s w-80-ns">
             <FooterLinksMatrix links={sectionLinks} />
           </div>
-          <div className="vtex-footer__social-networks-container">
+          <div className="vtex-footer__social-networks-container pt0">
             <FooterSocialNetworkList
               titleId="social-networks"
               list={socialNetworks}
@@ -255,7 +255,7 @@ export default class Footer extends Component {
               storeInformations.map(({ storeInformation }, index) => (
                 <div
                   key={`information-${index}`}
-                  className="vtex-footer__text-information ph3">
+                  className="vtex-footer__text-information w-50 f7 ph3">
                   {storeInformation}
                 </div>
               ))}
