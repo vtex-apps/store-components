@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fix
+- Component name into the documentation of `CategoryHighlights`.
 
 ## [1.15.0] - 2018-08-23
 ### Changed
