@@ -16,7 +16,7 @@
   outline: 0;
 }
 
-.vtex-login__profile, .vtex-minicart__label {
+.vtex-login__profile, .vtex-login__label, .vtex-minicart__label {
   color: #979899;
 }
 
