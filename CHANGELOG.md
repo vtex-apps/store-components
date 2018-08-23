@@ -6,14 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Changed
-- Refact the `ProductPrice` component
-### Fixed
-- Update the propTypes of the components: `BuyButton`, `ProductPrice`, `ProductName`
-
-## [2.0.0] - 2018-08-30
 ### Removed
-- `QuantitySelector` that should not exist because the styleguide has a component with the same purpose, the `NumericStepper`.
+- `QuantitySelector`.
 
 ## [1.14.2] - 2018-08-22
 ### Added
