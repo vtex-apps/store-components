@@ -6,33 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Fixed
-- Updatethe proptypes of the components: `BuyButton`, `ProductPrice`, `ProductName`
-
-## [1.16.3] - 2018-08-29
-### Changed
-- Refact `SearchBar` component
-
-## [1.16.2] - 2018-08-27
-### Fixed
-- `SearchBar` proptype error on SSR
-- `Footer` proptype error
-
-## [1.16.1] - 2018-08-24
-### Changed
-- `SearchBar` debouncing and search only inputs with a minimum of 2 characters
-
-## [1.16.0] - 2018-08-24
-### Changed
-- `SearchBar` design.
-- Update `Header` design to a white style.
-
-### Fix
-- Component name into the documentation of `CategoryHighlights`.
-
-## [1.15.0] - 2018-08-23
-### Changed
-- Footer redesigned.
+### Removed
+- `QuantitySelector`.
 
 ## [1.14.2] - 2018-08-22
 ### Added
