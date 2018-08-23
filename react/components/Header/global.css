@@ -2,11 +2,6 @@
   display: none;
 }
 
-.vtex-top-menu, .vtex-header .vtex-category-menu {
-  padding-left: 8rem;
-  padding-right: 8rem;
-}
-
 .vtex-top-menu--fixed {
   position: fixed;
   box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, .2);
@@ -69,5 +64,8 @@
 
   .vtex-top-menu__icons > div {
     margin: 0px
+  }
+  .vtex-top-menu__icons .vtex-button span {
+    color: white !important;
   }
 }

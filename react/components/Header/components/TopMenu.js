@@ -77,7 +77,7 @@ class TopMenu extends Component {
   render() {
     const { logoUrl, logoTitle, fixed } = this.props
     const classes = classNames(
-      'vtex-top-menu w-100 bg-white flex justify-center pv6 z-999',
+      'vtex-top-menu w-100 bg-white flex justify-center ph10 pv6 z-999',
       {
         'vtex-top-menu--fixed top-0': fixed,
       }
