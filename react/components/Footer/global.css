@@ -1,13 +1,5 @@
-.vtex-footer__container {
-  background-color: #3d3d3d;
-  color: #f2f2f2;
-  display: flex;
-  justify-content: space-between;
-}
-
-.vtex-footer__container--white {
-  background-color: #f2f2f2;
-  color: #333333;
+.vtex-footer {
+  box-shadow: 4px -4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .vtex-footer__badge-list {
@@ -16,23 +8,23 @@
   align-items: center;
 }
 
+.vtex-footer__link-matrix-item .vtex-footer__list-container {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
 .vtex-footer__list-container {
   padding: 0 0.35rem;
   height: 100%;
 }
 
-.vtex-footer__list-title {
-  margin: 0;
-  text-transform: uppercase;
+.vtex-footer__list {
+  list-style: none;
+  margin-top: 10px;
 }
 
-.vtex-footer__list {
-  display: flex;
-  flex-flow: column wrap;
-  list-style: none;
-  padding: 0;
-  margin-top: 10px;
-  margin-bottom: 0;
+.vtex-footer__list-title {
+  min-height: 0.875rem;
 }
 
 .vtex-footer__list--horizontal {
@@ -61,11 +53,28 @@
   width: 32px;
 }
 
+.vtex-footer__accordion-icon path {
+  fill: #727273;
+}
+
+.vtex-footer__links-container .vtex-footer__list {
+  flex-flow: column;
+}
+
+.vtex-footer__link-matrix-item {
+  flex: 1;
+  min-width: 5rem;
+  flex-basis: 0;
+}
+
+.vtex-footer__link-matrix-item--small {
+  border-bottom: 0.5px solid #bdbdbd;
+}
+
 .vtex-footer__list-link {
   display: inline-block;
   text-decoration: none;
   margin: 0.15rem 0;
-  color: rgba(255, 255, 255, 0.8);
 }
 
 .vtex-footer__list-link:hover {
@@ -76,10 +85,15 @@
   height: 64px;
 }
 
+/* Mobile */
 @media screen and (min-width: 10em) {
   .vtex-footer__container {
     flex-direction: column;
     padding: 22px 10px;
+  }
+
+  .vtex-footer__social-networks-container {
+    padding-top: 1.5rem;
   }
 
   .vtex-footer__list-container {
@@ -118,13 +132,8 @@
     padding: 20px;
   }
 
-  .vtex-footer__list {
-    max-height: 150px;
-  }
-
   .vtex-footer__list-container {
     margin-top: 0;
-    width: 225px;
   }
 
   .vtex-footer__list-container--horizontal {
@@ -190,5 +199,5 @@
 }
 
 .vtex-store__template > div > div:last-child {
-  margin-top: auto; 
+  margin-top: auto;
 }

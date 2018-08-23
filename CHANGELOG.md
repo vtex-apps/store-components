@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.15.0] - 2018-08-23
+### Changed
+- Footer redesigned.
+
 ## [1.14.2] - 2018-08-22
 ### Added
 - `schema` to the `ProductName` component 

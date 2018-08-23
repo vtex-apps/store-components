@@ -1,19 +1,14 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-
-import FooterLinkList from './components/FooterLinkList'
-import FooterBadgeList from './components/FooterBadgeList'
-import FooterPaymentFormList from './components/FooterPaymentFormList'
-import FooterSocialNetworkList from './components/FooterSocialNetworkList'
-import {
-  objectLikeLinkArray,
-  objectLikeBadgeArray,
-  objectLikePaymentFormArray,
-} from './propTypes'
-
-import VTEXIcon from './images/VTEX-BW.svg'
-
 import './global.css'
+
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+
+import FooterBadgeList from './components/FooterBadgeList'
+import FooterLinksMatrix from './components/FooterLinksMatrix'
+import FooterPaymentFormMatrix from './components/FooterPaymentFormMatrix'
+import FooterSocialNetworkList from './components/FooterSocialNetworkList'
+import VTEXIcon from './images/VTEX-BW.svg'
+import { objectLikeBadgeArray, objectLikeLinkArray } from './propTypes'
 
 /**
  * Footer component that appears in the bottom of every page.
@@ -23,19 +18,55 @@ export default class Footer extends Component {
   static displayName = 'Footer'
 
   static propTypes = {
+    /** Social Networks */
     socialNetworks: objectLikeLinkArray,
-    sectionLinks: objectLikeLinkArray,
-    moreInformationLinks: objectLikeLinkArray,
+    /** Links Sections */
+    sectionLinks: PropTypes.arrayOf(
+      PropTypes.shape({
+        /** Link section title */
+        title: PropTypes.string.isRequired,
+        /** Link  section links */
+        links: objectLikeLinkArray,
+      })
+    ),
+    /** Badges */
     badges: objectLikeBadgeArray,
-    paymentForms: objectLikePaymentFormArray,
+    /** Payment Forms */
+    paymentForms: PropTypes.arrayOf(
+      PropTypes.shape({
+        /** Payment Form title */
+        title: PropTypes.string.isRequired,
+        /** Payment Types */
+        paymentTypes: PropTypes.arrayOf(PropTypes.string),
+      })
+    ),
+    /** Determines if the icons are colorful */
     showPaymentFormsInColor: PropTypes.bool,
+    /** Determines if the icons are colorful */
     showSocialNetworksInColor: PropTypes.bool,
+    /** Logo URL */
     logo: PropTypes.string,
+    /** Store Informations */
+    storeInformations: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   }
 
   static defaultProps = {
     showPaymentFormsInColor: false,
     showSocialNetworksInColor: false,
+    socialNetworks: [
+      {
+        socialNetwork: 'Facebook',
+      },
+    ],
+    sectionLinks: [],
+    badges: [],
+    paymentForms: [
+      {
+        title: 'editor.footer.paymentForms.paymentForm',
+        paymentTypes: ['MasterCard'],
+      },
+    ],
+    storeInformations: [],
   }
 
   static schema = {
@@ -69,39 +100,52 @@ export default class Footer extends Component {
           type: 'object',
           properties: {
             url: {
-              type: 'string',
               title: 'editor.footer.socialNetworks.url.title',
+              type: 'string',
             },
             socialNetwork: {
               title: 'editor.footer.socialNetworks.title',
               type: 'string',
               default: 'Facebook',
-              enum: [
-                'Facebook',
-                'Twitter',
-                'Instagram',
-                'Youtube',
-              ],
+              enum: ['Facebook', 'Twitter', 'Instagram', 'Youtube'],
             },
           },
         },
       },
       sectionLinks: {
-        title: 'editor.footer.link',
+        title: 'editor.footer.linksSections',
         type: 'array',
-        minItems: 1,
-        maxItems: 10,
+        minItems: 0,
+        maxItems: 5,
         items: {
-          title: 'editor.footer.link.title',
+          title: 'editor.footer.linksSections.linksSection',
           type: 'object',
           properties: {
-            url: {
-              type: 'string',
-              title: 'editor.footer.link.url.title',
-            },
             title: {
+              title: 'editor.footer.linksSections.linksSection.title',
               type: 'string',
-              title: 'editor.footer.link.title.title',
+            },
+            links: {
+              title: 'editor.footer.linksSections.linksSection.links',
+              type: 'array',
+              minItems: 1,
+              maxItems: 10,
+              items: {
+                title: 'editor.footer.linksSections.linksSection.links.link',
+                type: 'object',
+                properties: {
+                  title: {
+                    title:
+                      'editor.footer.linksSections.linksSection.links.link.title',
+                    type: 'string',
+                  },
+                  url: {
+                    title:
+                      'editor.footer.linksSections.linksSection.links.link.url',
+                    type: 'string',
+                  },
+                },
+              },
             },
           },
         },
@@ -120,42 +164,49 @@ export default class Footer extends Component {
           },
         },
       },
-      moreInformationLinks: {
-        title: 'editor.footer.moreInformationLink',
-        type: 'array',
-        items: {
-          title: 'editor.footer.moreInformationLink.title',
-          type: 'object',
-          properties: {
-            url: {
-              type: 'string',
-              title: 'editor.footer.link.url.title',
-            },
-            title: {
-              type: 'string',
-              title: 'editor.footer.link.title.title',
-            },
-          },
-        },
-      },
       paymentForms: {
         title: 'editor.footer.paymentForms',
         type: 'array',
         minItems: 1,
-        maxItems: 3,
+        maxItems: 5,
         items: {
-          title: 'editor.footer.paymentForms.title',
+          title: 'editor.footer.paymentForms.paymentForm',
           type: 'object',
           properties: {
-            paymentType: {
-              title: 'editor.footer.paymentForm.paymentType.title',
+            title: {
+              title: 'editor.footer.paymentForms.paymentForm.title',
               type: 'string',
-              default: 'MasterCard',
-              enum: [
-                'MasterCard',
-                'Visa',
-                'Diners Club',
-              ],
+            },
+            paymentTypes: {
+              title: 'editor.footer.paymentForms.paymentForm.paymentTypes',
+              type: 'array',
+              minItems: 1,
+              items: {
+                title:
+                  'editor.footer.paymentForms.paymentForm.paymentTypes.paymentType',
+                type: 'string',
+                default: 'MasterCard',
+                enum: ['MasterCard', 'Visa', 'Diners Club'],
+              },
+            },
+          },
+        },
+      },
+      storeInformations: {
+        title: 'editor.footer.storeInformations',
+        type: 'array',
+        minItems: 0,
+        maxItems: 2,
+        items: {
+          title: 'editor.footer.storeInformations.storeInformation',
+          type: 'object',
+          properties: {
+            storeInformation: {
+              title: 'editor.footer.storeInformations.storeInformation',
+              type: 'string',
+              widget: {
+                'ui:widget': 'textarea',
+              },
             },
           },
         },
@@ -164,6 +215,7 @@ export default class Footer extends Component {
   }
 
   render() {
+
     const {
       showPaymentFormsInColor,
       showSocialNetworksInColor,
@@ -172,37 +224,54 @@ export default class Footer extends Component {
       socialNetworks,
       paymentForms,
       badges,
+      storeInformations,
     } = this.props
 
     return (
       <footer className="vtex-footer">
-        <div className="vtex-footer__container">
-          <FooterLinkList titleId="section-links" list={sectionLinks} />
-          <FooterSocialNetworkList
-            titleId="social-networks"
-            list={socialNetworks}
-            horizontal
-            alignRight
-            showInColor={showSocialNetworksInColor}
-          />
+        <div className="vtex-footer__container flex justify-between bg-white mid-gray">
+          <div className="vtex-footer__links-container f6 w-100-s w-80-ns">
+            <FooterLinksMatrix links={sectionLinks} />
+          </div>
+          <div className="vtex-footer__social-networks-container pt0">
+            <FooterSocialNetworkList
+              titleId="social-networks"
+              list={socialNetworks}
+              horizontal
+              alignRight
+              showInColor={showSocialNetworksInColor}
+            />
+          </div>
         </div>
-        <div className="vtex-footer__container vtex-footer__container--white">
-          <FooterPaymentFormList
-            titleId="payment-form"
-            list={paymentForms}
+        <div className="vtex-footer__container flex justify-between bg-white mid-gray">
+          <FooterPaymentFormMatrix
+            paymentForms={paymentForms}
             horizontal
             showInColor={showPaymentFormsInColor}
           />
         </div>
-        <div className="vtex-footer__container">
+        <div className="vtex-footer__container flex justify-between bg-white mid-gray">
+          <div className="vtex-footer__text-container w-100-s w-80-ns flex flex-wrap">
+            {storeInformations &&
+              storeInformations.map(({ storeInformation }, index) => (
+                <div
+                  key={`information-${index}`}
+                  className="vtex-footer__text-information w-50 f7 ph3">
+                  {storeInformation}
+                </div>
+              ))}
+          </div>
           <FooterBadgeList list={badges} />
           <div className="vtex-footer__badge-list vtex-footer__list-container--right-aligned">
-            <span className="vtex-footer__badge"><img className="vtex-footer__logo-image" src={logo} /></span>
-            <span className="vtex-footer__badge"><img className="vtex-footer__vtexlogo-form-item" src={VTEXIcon} /></span>
+            <span className="vtex-footer__badge">
+              <img className="vtex-footer__logo-image" src={logo} />
+            </span>
+            <span className="vtex-footer__badge">
+              <img className="vtex-footer__vtexlogo-form-item" src={VTEXIcon} />
+            </span>
           </div>
         </div>
       </footer>
     )
   }
 }
-

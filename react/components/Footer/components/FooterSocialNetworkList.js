@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 
 import footerList from './footerList'
 
@@ -9,10 +9,11 @@ class FooterSocialNetworkItem extends Component {
   componentDidMount() {
     const { socialNetwork, showInColor } = this.props
 
-    import(`../images/${socialNetwork}${showInColor ? '' : '-BW'}.svg`)
-      .then(image => {
+    import(`../images/${socialNetwork}${showInColor ? '' : '-BW'}.svg`).then(
+      image => {
         this.setState({ image })
-      })
+      }
+    )
   }
 
   render() {
@@ -23,7 +24,7 @@ class FooterSocialNetworkItem extends Component {
     }
 
     return (
-      <a href={this.props.url} target="_blank">
+      <a href={this.props.url} target="_blank" style={{color: '#727273'}}>
         <img className="vtex-footer__social-network-item" src={image} />
       </a>
     )
@@ -44,4 +45,3 @@ FooterSocialNetworkItem.propTypes = {
 }
 
 export default footerList(FooterSocialNetworkItem)
-
