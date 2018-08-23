@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Removed
-- `QuantitySelector`.
+- `QuantitySelector` that should not exist because the styleguide has a component with the same purpose, the `NumericStepper`.
 
 ## [1.14.2] - 2018-08-22
 ### Added
