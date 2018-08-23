@@ -44,6 +44,6 @@
   .vtex-results__list {
     width: 100%;
     margin: 0px;
-    max-height: calc(100vh - 7.5rem);
+    max-height: calc(100vh - 6.9rem);
   }
 }

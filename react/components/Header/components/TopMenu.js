@@ -43,7 +43,7 @@ class TopMenu extends Component {
 
   renderSearchBar(mobileMode) {
     return (
-      <div className="vtex-top-menu__search-bar flex w-100 w-40-m pa2-m">
+      <div className={`vtex-top-menu__search-bar flex w-100-s w-40-l pa2-m ${mobileMode ? 'order-2' : 'order-1'}`}>
         <SearchBar
           isMobile={mobileMode}
           placeholder={this.translate('search-placeholder')}
@@ -55,8 +55,8 @@ class TopMenu extends Component {
 
   renderIcons(mobileMode) {
     return (
-      <div className="vtex-top-menu__icons flex justify-end items-center w-30-m">
-        <div className="mr7">
+      <div className={`vtex-top-menu__icons flex justify-end items-center w-30-m ${mobileMode ? 'order-1 ml-auto' : 'order-2'}`}>
+        <div className="mr7-m">
           <ExtensionPoint
             id="login"
             iconColor="#979899"
@@ -77,7 +77,7 @@ class TopMenu extends Component {
   render() {
     const { logoUrl, logoTitle, fixed } = this.props
     const classes = classNames(
-      'vtex-top-menu w-100 bg-white flex justify-center ph10 pv6 z-999',
+      'vtex-top-menu w-100 bg-white flex justify-center ph4-s ph10-l pv3-s pv6-m z-999',
       {
         'vtex-top-menu--fixed top-0': fixed,
       }
@@ -86,7 +86,7 @@ class TopMenu extends Component {
       <ReactResizeDetector handleWidth>
         {
           width => {
-            const mobileMode = width <= 769
+            const mobileMode = width < 769 || (global.__RUNTIME__.hints.mobile && (!width || width < 769))
             return (
               <div className={classes}>
                 <div className="flex flex-wrap w-100 justify-between-m items-center">
