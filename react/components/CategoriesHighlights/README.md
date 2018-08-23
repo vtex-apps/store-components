@@ -1,15 +1,15 @@
-# CategoriesHighlighted description
-CategoriesHighlighted is a canonical component that any VTEX app can import.
+# CategoriesHighlights description
+CategoriesHighlights is a canonical component that any VTEX app can import.
 
 To import it into your code: 
 ```js
-import CategoriesHighlighted from 'vtex.store-components/CategoriesHighlighted'
+import CategoriesHighlights from 'vtex.store-components/CategoriesHighlights'
 ```
 
 ## Usage
-You can use it in your code like a React component with the jsx tag: `<CategoriesHighlighted />`. 
+You can use it in your code like a React component with the jsx tag: `<CategoriesHighlights />`. 
 ```jsx
-<CategoriesHighlighted 
+<CategoriesHighlights
     categoriesHighlighted={ 
         categoryX: { name: 'X', image: 'Image X' }, 
         categoryY: { name: 'Y', image: 'Image Y' } 

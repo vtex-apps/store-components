@@ -8,7 +8,7 @@ import CategoryCard from './components/CategoryCard'
 import { ITEMS_PER_ROW, RECTANGULAR, SQUARED } from './constants.js'
 
 /**
- * CategoriesHighlighted is a component responsible to display the
+ * CategoriesHighlights is a component responsible to display the
  * Categories highlighted in a department.
  */
 class CategoriesHighlights extends Component {
