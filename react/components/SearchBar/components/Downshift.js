@@ -17,11 +17,24 @@ export default class Downshift extends Component {
     isMobileSearchMode: PropTypes.bool,
   }
 
+  timeOut = null
+
+  state = {
+    makeSearch: false,
+  }
+
+  handleMakeSearch = () => {
+    this.setState({ makeSearch: false })
+    this.timeOut = setTimeout(() => {
+      this.setState({ makeSearch: true })
+    }, 1000)
+  }
+
   static contextTypes = {
     navigate: PropTypes.func,
   }
 
-  handleEnterPress = (event) => {
+  handleEnterPress = event => {
     if (event.key === 'Enter') {
       this.context.navigate({
         page: 'store/search',
@@ -34,7 +47,8 @@ export default class Downshift extends Component {
 
   render() {
     const { placeholder, emptyPlaceholder, isMobileSearchMode } = this.props
-    const fallback = (<AutocompleteInput placeholder={placeholder} />)
+    const fallback = <AutocompleteInput placeholder={placeholder} />
+
     return (
       <NoSSR onSSR={fallback}>
         <DownshiftComponent>
@@ -48,6 +62,7 @@ export default class Downshift extends Component {
           }) => (
             <div className="relative-m w-100">
               <AutocompleteInput
+                onMakeSearch={this.handleMakeSearch}
                 isMobileSearchMode={isMobileSearchMode}
                 closeMenu={closeMenu}
                 {...getInputProps({ placeholder })}
@@ -56,7 +71,7 @@ export default class Downshift extends Component {
                   closeMenu()
                 }}
               />
-              {isOpen && inputValue !== '' ? (
+              {this.state.makeSearch && isOpen && inputValue !== '' ? (
                 <ResultsLits
                   {...{
                     inputValue,

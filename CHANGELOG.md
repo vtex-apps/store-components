@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fix
 - Component name into the documentation of `CategoryHighlights`.
+- `SearchBar` delaying queries.
 
 ## [1.15.0] - 2018-08-23
 ### Changed
