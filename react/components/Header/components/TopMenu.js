@@ -22,7 +22,7 @@ class TopMenu extends Component {
 
   renderLogo(mobileMode, logoUrl, logoTitle) {
     return (
-      <div className="vtex-top-menu__logo w-20-m w-30-l flex justify-start">
+      <div className="vtex-top-menu__logo w-20-m flex justify-start">
         <Link to="/">
           <Logo
             url={logoUrl}
@@ -43,7 +43,7 @@ class TopMenu extends Component {
 
   renderSearchBar(mobileMode) {
     return (
-      <div className={`vtex-top-menu__search-bar flex w-100-s w-40-l pa2-m ${mobileMode ? 'order-2' : 'order-1'}`}>
+      <div className={`vtex-top-menu__search-bar flex pa2-m ${mobileMode ? 'order-2' : 'order-1'}`}>
         <SearchBar
           isMobile={mobileMode}
           placeholder={this.translate('search-placeholder')}
@@ -55,7 +55,7 @@ class TopMenu extends Component {
 
   renderIcons(mobileMode) {
     return (
-      <div className={`vtex-top-menu__icons flex justify-end items-center w-30-m ${mobileMode ? 'order-1 ml-auto' : 'order-2'}`}>
+      <div className={`vtex-top-menu__icons flex justify-end items-center ${mobileMode ? 'order-1 ml-auto' : 'order-2'}`}>
         <div className="mr7-m">
           <ExtensionPoint
             id="login"
@@ -77,7 +77,7 @@ class TopMenu extends Component {
   render() {
     const { logoUrl, logoTitle, fixed } = this.props
     const classes = classNames(
-      'vtex-top-menu w-100 bg-white flex justify-center ph4-s ph10-l pv3-s pv6-m z-999',
+      'vtex-top-menu w-100 bg-white flex justify-center pb4 pv2-m pv6-l z-999',
       {
         'vtex-top-menu--fixed top-0': fixed,
       }

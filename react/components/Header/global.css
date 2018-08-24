@@ -1,5 +1,6 @@
-.editor-provider .vtex-modal-root .vtex-top-menu {
-  display: none;
+.vtex-top-menu, .vtex-category-menu, .vtex-category-menu__item-container {
+  padding-left: 10rem;
+  padding-right: 10rem;
 }
 
 .vtex-top-menu--fixed {
@@ -24,12 +25,35 @@
   border-width: 0px;
 }
 
-@media only screen and (min-width: 48.05rem) and (max-width: 80rem){
-  .vtex-top-menu__search-bar {
-    width: 40%
+@media only screen and (min-width: 48.05rem) {
+  .vtex-top-menu__logo {
+    width: 32%;
   }
-  .vtex-top-menu, .vtex-header .vtex-category-menu {
+  .vtex-top-menu__search-bar {
+    width: 36%
+  } 
+  .vtex-top-menu__icons {
+    width: 32%;
+  }
+  
+}
+
+@media only screen and (min-width: 48.05rem) and (max-width: 76rem){
+  .vtex-top-menu, .vtex-category-menu, .vtex-category-menu__item-container {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+  .vtex-login__profile, .vtex-login__label, .vtex-minicart__label {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 48.05rem) {
+  .vtex-top-menu {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .vtex-top-menu__search-bar {
+    width: 100%;
   }
 }

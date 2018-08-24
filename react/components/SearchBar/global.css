@@ -19,8 +19,9 @@
 }
 
 .vtex-searchbar input {
-  box-shadow: 4px 4px 8px 0 rgba( 0, 0, 0, .2 );
+  height: 38px;
   color: #727273;
+  border-radius: 1px;
 }
 
 .vtex-searchbar .vtex-results__list {
@@ -44,6 +45,6 @@
   .vtex-results__list {
     width: 100%;
     margin: 0px;
-    max-height: calc(100vh - 6.9rem);
+    max-height: calc(100vh - 6.2rem);
   }
 }
