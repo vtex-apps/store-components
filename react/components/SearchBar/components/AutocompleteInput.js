@@ -14,9 +14,12 @@ export default class AutocompleteInput extends Component {
     navigate: PropTypes.func,
   }
 
-  handleInputChange = (evt, handleChangeProps) => {
-    this.setState({ inputValue: evt.target.value })
-    handleChangeProps(evt)
+  handleInputChange = (event, handleChangeProps) => {
+    this.setState({ inputValue: event.target.value })
+    handleChangeProps(event)
+
+    let shouldSearch = event.target.value.length >= 2
+    this.props.onMakeSearch(shouldSearch)
   }
 
   handleIconClick = () => {
@@ -33,7 +36,10 @@ export default class AutocompleteInput extends Component {
     const { isMobile, ...restProps } = this.props
     if (isMobile) {
       restProps['suffixIcon'] = (
-        <span className="flex items-center pointer" onClick={this.handleIconClick}>
+        <span
+          className="flex items-center pointer"
+          onClick={this.handleIconClick}
+        >
           <IconSearch color="#979899" />
         </span>
       )
@@ -48,7 +54,10 @@ export default class AutocompleteInput extends Component {
           value={this.state.inputValue}
         />
         {!isMobile && (
-          <span className="flex items-center pl4 pointer" onClick={this.handleIconClick}>
+          <span
+            className="flex items-center pl4 pointer"
+            onClick={this.handleIconClick}
+          >
             <IconSearch size={30} color="#979899" />
           </span>
         )}
@@ -58,6 +67,8 @@ export default class AutocompleteInput extends Component {
 }
 
 AutocompleteInput.propTypes = {
+  /** Function to execute search with deboucing */
+  onMakeSearch: PropTypes.func.isRequired,
   /** Downshift prop to be passed to the input */
   autoComplete: PropTypes.string,
   /** Input ID */
