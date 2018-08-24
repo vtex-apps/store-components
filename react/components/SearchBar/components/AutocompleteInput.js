@@ -14,12 +14,11 @@ export default class AutocompleteInput extends Component {
     navigate: PropTypes.func,
   }
 
-  handleInputChange = (evt, handleChangeProps) => {
-    this.setState({ inputValue: evt.target.value })
-    handleChangeProps(evt)
+  handleInputChange = (event, handleChangeProps) => {
+    this.setState({ inputValue: event.target.value })
+    handleChangeProps(event)
 
-    let shouldSearch = evt.target.value.length >= 2
-
+    let shouldSearch = event.target.value.length >= 2
     this.props.onMakeSearch(shouldSearch)
   }
 
