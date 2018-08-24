@@ -33,7 +33,7 @@ export default class SlickSlider extends Component {
     /** If the scroll of items is by page or not. */
     scrollByPage: PropTypes.bool,
     /** SSR fallback. */
-    ssrFallback: PropTypes.element
+    ssrFallback: PropTypes.element,
   }
 
   getSettings(slideWidth) {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 
@@ -7,12 +7,13 @@ import { Spinner } from 'vtex.styleguide'
 import { Link } from 'render'
 
 const listClassNames =
-  'vtex-results__list z-max absolute w-100 mt4 mt2-m border-box bw1 br2 b--solid outline-0 near-black b--light-gray bg-white f5 pv4 ph6 left-0'
+  'vtex-results__list z-max absolute w-100 mt1 mt2-m shadow-3 bg-white f5 left-0'
 const listItemClassNames =
-  'vtex-results__item dim pointer flex justify-start mt1 pa1 near-black f5 pv4 ph6'
+  'vtex-results__item flex justify-start f5 pa4 pl6 outline-0'
 
 function getImageUrl(image) {
-  return (image.match(/http:(.*?)"/g) || [''])[0]
+  const imageUrl = (image.match(/https?:(.*?)"/g) || [''])[0]
+  return imageUrl.replace(/https?:/, '').replace(/-25-25/g, '-50-50')
 }
 
 /** List of search results to be displayed*/
@@ -45,51 +46,49 @@ class ResultsList extends Component {
     const items = data.autocomplete ? data.autocomplete.itemsReturned : []
     if (data.loading) {
       return (
-        <ol className={listClassNames}>
-          {this.renderSpinner()}
-        </ol>
+        <div className={listClassNames}>
+          <div className={listItemClassNames}>
+            {this.renderSpinner()}
+          </div>
+        </div>
       )
     }
 
     if (!items.length) {
       return (
-        <ol className={listClassNames}>
-          <li className={listItemClassNames}>{emptyPlaceholder}</li>
-        </ol>
+        <div className={listClassNames}>
+          <div className={listItemClassNames}>{emptyPlaceholder}</div>
+        </div>
       )
     }
 
     return (
-      <ol className={listClassNames}>
+      <div className={listClassNames}>
         <Link
           onClick={() => { this.props.closeMenu() }}
           page="store/search"
           params={{ term: inputValue }}
           query="map=ft"
-          className="clear-link dim">
-          <li className={`${listItemClassNames}`}>
-            {inputValue}
-          </li>
+          className={listItemClassNames}>
+          {inputValue}
         </Link>
         {items.map((item, index) => {
           return (
-            <Link
-              onClick={() => { this.props.closeMenu() }}
-              key={item.name + index}
-              {...this.getLinkProps(item)}
-              className="clear-link dim">
-              <li className={listItemClassNames}>
+            <Fragment key={item.name + index}>
+              <hr className="o-05 ma0 w-90 center" />
+              <Link
+                onClick={() => { this.props.closeMenu() }}
+                {...this.getLinkProps(item)}
+                className={listItemClassNames}>
                 {item.thumb && (
-                  <div className="mr4">
-                    <img className="vtex-results__item-image" src={getImageUrl(item.thumb)} />
-                  </div>
+                  <img className="vtex-results__item-image mr4" src={getImageUrl(item.thumb)} />
                 )}
                 <div className="flex justify-start items-center">{item.name}</div>
-              </li>
-            </Link>
+              </Link>
+            </Fragment>
           )
         })}
-      </ol>
+      </div>
     )
   }
 }

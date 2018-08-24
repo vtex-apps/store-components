@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import { Input } from 'vtex.styleguide'
 import IconSearch from '../images/IconSearch'
-import IconDeny from '../images/IconDeny'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 export default class AutocompleteInput extends Component {
@@ -31,16 +30,11 @@ export default class AutocompleteInput extends Component {
   }
 
   render() {
-    const { isMobileSearchMode, ...restProps } = this.props
-    if (isMobileSearchMode) {
+    const { isMobile, ...restProps } = this.props
+    if (isMobile) {
       restProps['suffixIcon'] = (
-        <span className="flex items-center pointer" onClick={() => this.setState({ inputValue: '' })}>
-          <IconDeny />
-        </span>
-      )
-      restProps['prefix'] = (
         <span className="flex items-center pointer" onClick={this.handleIconClick}>
-          <IconSearch />
+          <IconSearch color="#979899" />
         </span>
       )
     }
@@ -53,9 +47,9 @@ export default class AutocompleteInput extends Component {
           onChange={event => this.handleInputChange(event, restProps.onChange)}
           value={this.state.inputValue}
         />
-        {!isMobileSearchMode && (
+        {!isMobile && (
           <span className="flex items-center pl4 pointer" onClick={this.handleIconClick}>
-            <IconSearch size={30} />
+            <IconSearch size={30} color="#979899" />
           </span>
         )}
       </div>
@@ -79,7 +73,7 @@ AutocompleteInput.propTypes = {
   /** Placeholder to be used on the input */
   placeholder: PropTypes.string,
   /** If is mobile search mode */
-  isMobileSearchMode: PropTypes.bool,
+  isMobile: PropTypes.bool,
   /** Function that closes the autocomplete suggestions */
   closeMenu: PropTypes.func,
 }

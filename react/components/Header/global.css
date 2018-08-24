@@ -1,12 +1,6 @@
-.editor-provider .vtex-modal-root .vtex-top-menu {
-  display: none;
-}
-
-.vtex-top-menu {
-  width: 100%;
-  z-index: 999;
-  padding-left: 6rem;
-  padding-right: 6rem;
+.vtex-top-menu, .vtex-category-menu, .vtex-category-menu__item-container {
+  padding-left: 10rem;
+  padding-right: 10rem;
 }
 
 .vtex-top-menu--fixed {
@@ -23,38 +17,43 @@
   outline: 0;
 }
 
-.vtex-top-menu__icons {
-  padding-right: .25rem;
+.vtex-login__profile, .vtex-login__label, .vtex-minicart__label {
+  color: #979899;
 }
 
 .vtex-top-menu .vtex-minicart .vtex-button {
   border-width: 0px;
 }
 
-@media only screen and (min-width: 48rem) and (max-width: 70rem){
-  .vtex-top-menu {
-    padding: 0 1rem 0 1rem;
+@media only screen and (min-width: 48.05rem) {
+  .vtex-top-menu__logo {
+    width: 32%;
   }
   .vtex-top-menu__search-bar {
-    width: 40%;
+    width: 36%
+  } 
+  .vtex-top-menu__icons {
+    width: 32%;
+  }
+  
+}
+
+@media only screen and (min-width: 48.05rem) and (max-width: 76rem){
+  .vtex-top-menu, .vtex-category-menu, .vtex-category-menu__item-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .vtex-login__profile, .vtex-login__label, .vtex-minicart__label {
+    display: none;
   }
 }
 
-@media only screen and (max-width: 48rem) {
+@media only screen and (max-width: 48.05rem) {
   .vtex-top-menu {
-    padding: 0 .5rem 0 .5rem;
-    height: 4rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
-
-  .vtex-top-menu .vtex-logo {
-    padding: .75rem;
-  }
-
   .vtex-top-menu__search-bar {
-    margin-left: auto;
-  }
-
-  .vtex-top-menu__icons > div {
-    margin: 0px
+    width: 100%;
   }
 }

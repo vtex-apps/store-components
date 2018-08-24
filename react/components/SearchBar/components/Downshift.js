@@ -14,7 +14,7 @@ export default class Downshift extends Component {
     /** Placeholder to be used on the input */
     placeholder: PropTypes.string,
     /** If is mobile search mode */
-    isMobileSearchMode: PropTypes.bool,
+    isMobile: PropTypes.bool,
   }
 
   static contextTypes = {
@@ -33,7 +33,7 @@ export default class Downshift extends Component {
   }
 
   render() {
-    const { placeholder, emptyPlaceholder, isMobileSearchMode } = this.props
+    const { placeholder, emptyPlaceholder, isMobile } = this.props
     const fallback = (<AutocompleteInput placeholder={placeholder} />)
     return (
       <NoSSR onSSR={fallback}>
@@ -48,7 +48,7 @@ export default class Downshift extends Component {
           }) => (
             <div className="relative-m w-100">
               <AutocompleteInput
-                isMobileSearchMode={isMobileSearchMode}
+                isMobile={isMobile}
                 closeMenu={closeMenu}
                 {...getInputProps({ placeholder })}
                 onKeyDown={event => {
