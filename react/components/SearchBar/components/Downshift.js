@@ -29,10 +29,11 @@ export default class Downshift extends Component {
     this.setState({ makeSearch: false })
     this.timeoutId = null
 
-    if (shouldSearch)
-      {this.timeoutId = setTimeout(() => {
+    if (shouldSearch) {
+      this.timeoutId = setTimeout(() => {
         this.setState({ makeSearch: true })
-      }, 500)}
+      }, 500)
+    }
   }
 
   handleEnterPress = event => {
