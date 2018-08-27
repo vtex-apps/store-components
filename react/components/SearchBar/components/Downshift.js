@@ -50,7 +50,12 @@ export default class Downshift extends Component {
 
   render() {
     const { placeholder, emptyPlaceholder, isMobile } = this.props
-    const fallback = <AutocompleteInput placeholder={placeholder} />
+    const fallback = (
+      <AutocompleteInput
+        placeholder={placeholder}
+        onMakeSearch={this.handleMakeSearch}
+      />
+    )
 
     return (
       <NoSSR onSSR={fallback}>
