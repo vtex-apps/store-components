@@ -4,7 +4,6 @@
 
 .vtex-results__list {
   list-style-type: none;
-  width: calc(100% - 42px);
   max-height: 60vh;
   overflow-y: auto;
 }
@@ -43,7 +42,6 @@
     box-shadow: none;
   }
   .vtex-results__list {
-    width: 100%;
     margin: 0px;
     max-height: calc(100vh - 6.2rem);
   }
