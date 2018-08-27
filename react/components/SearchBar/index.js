@@ -7,11 +7,6 @@ import './global.css'
 
 /** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
 class SearchBar extends Component {
-  static propTypes = {
-    /** Set mobile mode */
-    isMobile: PropTypes.bool,
-  }
-
   static contextTypes = {
     intl: PropTypes.object.isRequired,
   }
@@ -23,7 +18,6 @@ class SearchBar extends Component {
     return (
       <div className="vtex-searchbar w-100">
         <Downshift
-          isMobile={this.props.isMobile}
           placeholder={placeholder}
           emptyPlaceholder={emptyPlaceholder}
         />

@@ -13,8 +13,6 @@ export default class Downshift extends Component {
     emptyPlaceholder: PropTypes.string,
     /** Placeholder to be used on the input */
     placeholder: PropTypes.string,
-    /** If is mobile search mode */
-    isMobile: PropTypes.bool,
   }
 
   static contextTypes = {
@@ -31,10 +29,11 @@ export default class Downshift extends Component {
     this.setState({ makeSearch: false })
     this.timeoutId = null
 
-    if (shouldSearch)
+    if (shouldSearch) {
       this.timeoutId = setTimeout(() => {
         this.setState({ makeSearch: true })
       }, 500)
+    }
   }
 
   handleEnterPress = event => {
@@ -49,7 +48,7 @@ export default class Downshift extends Component {
   }
 
   render() {
-    const { placeholder, emptyPlaceholder, isMobile } = this.props
+    const { placeholder, emptyPlaceholder } = this.props
     const fallback = (
       <AutocompleteInput
         placeholder={placeholder}
@@ -71,7 +70,6 @@ export default class Downshift extends Component {
             <div className="relative-m w-100">
               <AutocompleteInput
                 onMakeSearch={this.handleMakeSearch}
-                isMobile={isMobile}
                 closeMenu={closeMenu}
                 {...getInputProps({ placeholder })}
                 onKeyDown={event => {

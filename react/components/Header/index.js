@@ -72,7 +72,7 @@ class Header extends Component {
       <Fragment>
         <ExtensionPoint id="telemarketing" />
         <div
-          className="vtex-header relative z-2 w-100 shadow-5"
+          className="vtex-header relative z-2 w-100"
           ref={this._root}
         >
           <div className="z-2 items-center w-100 top-0 bg-white tl">

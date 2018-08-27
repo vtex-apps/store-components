@@ -18,7 +18,7 @@ export default class AutocompleteInput extends Component {
     this.setState({ inputValue: event.target.value })
     handleChangeProps(event)
 
-    let shouldSearch = event.target.value.length >= 2
+    const shouldSearch = event.target.value.length >= 2
     this.props.onMakeSearch(shouldSearch)
   }
 
@@ -33,34 +33,21 @@ export default class AutocompleteInput extends Component {
   }
 
   render() {
-    const { isMobile, ...restProps } = this.props
-    if (isMobile) {
-      restProps['suffixIcon'] = (
-        <span
-          className="flex items-center pointer"
-          onClick={this.handleIconClick}
-        >
-          <IconSearch color="#979899" />
-        </span>
-      )
-    }
+    const suffixIcon = (
+      <span className="flex items-center pointer" onClick={this.handleIconClick}>
+        <IconSearch color="#979899" />
+      </span>
+    )
     return (
       <div className="flex">
         <Input
           size="large"
           onKeyPress={event => this.props.onKeyDown(event)}
-          {...restProps}
-          onChange={event => this.handleInputChange(event, restProps.onChange)}
+          {...this.props}
+          suffixIcon={suffixIcon}
+          onChange={event => this.handleInputChange(event, this.props.onChange)}
           value={this.state.inputValue}
         />
-        {!isMobile && (
-          <span
-            className="flex items-center pl4 pointer"
-            onClick={this.handleIconClick}
-          >
-            <IconSearch size={30} color="#979899" />
-          </span>
-        )}
       </div>
     )
   }
@@ -83,8 +70,6 @@ AutocompleteInput.propTypes = {
   value: PropTypes.string,
   /** Placeholder to be used on the input */
   placeholder: PropTypes.string,
-  /** If is mobile search mode */
-  isMobile: PropTypes.bool,
   /** Function that closes the autocomplete suggestions */
   closeMenu: PropTypes.func,
 }
