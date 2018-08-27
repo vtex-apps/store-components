@@ -56,6 +56,7 @@ export default class Footer extends Component {
     socialNetworks: [
       {
         socialNetwork: 'Facebook',
+        url: '#',
       },
     ],
     sectionLinks: [],
@@ -215,7 +216,6 @@ export default class Footer extends Component {
   }
 
   render() {
-
     const {
       showPaymentFormsInColor,
       showSocialNetworksInColor,
@@ -256,7 +256,8 @@ export default class Footer extends Component {
               storeInformations.map(({ storeInformation }, index) => (
                 <div
                   key={`information-${index}`}
-                  className="vtex-footer__text-information w-50 f7 ph3">
+                  className="vtex-footer__text-information w-50 f7 ph3"
+                >
                   {storeInformation}
                 </div>
               ))}

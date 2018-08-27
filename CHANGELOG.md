@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - `SearchBar` proptype error on SSR
+- `Footer` proptype error
 
 ## [1.16.1] - 2018-08-24
 ### Changed
