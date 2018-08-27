@@ -44,5 +44,6 @@
   .vtex-results__list {
     margin: 0px;
     max-height: calc(100vh - 6.2rem);
+    box-shadow: inset 0px 4px 4px 0 rgba(0, 0, 0, .2), 0px 4px 4px 0 rgba(0, 0, 0, .2);
   }
 }
