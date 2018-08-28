@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
-
-import autocomplete from '../queries/autocomplete.gql'
 import { Spinner } from 'vtex.styleguide'
 import { Link } from 'render'
+
+import autocomplete from '../queries/autocomplete.gql'
 
 const listClassNames =
   'vtex-results__list z-max absolute w-100 mt1 mt2-m shadow-3 bg-white f5 left-0'
@@ -42,14 +42,12 @@ class ResultsList extends Component {
   }
 
   render() {
-    const { data, emptyPlaceholder, inputValue } = this.props
+    const { data, emptyPlaceholder, inputValue, closeMenu } = this.props
     const items = data.autocomplete ? data.autocomplete.itemsReturned : []
     if (data.loading) {
       return (
         <div className={listClassNames}>
-          <div className={listItemClassNames}>
-            {this.renderSpinner()}
-          </div>
+          <div className={listItemClassNames}>{this.renderSpinner()}</div>
         </div>
       )
     }
@@ -65,25 +63,33 @@ class ResultsList extends Component {
     return (
       <div className={listClassNames}>
         <Link
-          onClick={() => { this.props.closeMenu() }}
+          onClick={() => closeMenu()}
           page="store/search"
           params={{ term: inputValue }}
           query="map=ft"
-          className={listItemClassNames}>
+          className={listItemClassNames}
+        >
           {inputValue}
         </Link>
+
         {items.map((item, index) => {
           return (
             <Fragment key={item.name + index}>
               <hr className="o-05 ma0 w-90 center" />
               <Link
-                onClick={() => { this.props.closeMenu() }}
+                onClick={() => closeMenu()}
                 {...this.getLinkProps(item)}
-                className={listItemClassNames}>
+                className={listItemClassNames}
+              >
                 {item.thumb && (
-                  <img className="vtex-results__item-image mr4" src={getImageUrl(item.thumb)} />
+                  <img
+                    className="vtex-results__item-image mr4"
+                    src={getImageUrl(item.thumb)}
+                  />
                 )}
-                <div className="flex justify-start items-center">{item.name}</div>
+                <div className="flex justify-start items-center">
+                  {item.name}
+                </div>
               </Link>
             </Fragment>
           )

@@ -6,57 +6,24 @@ import IconSearch from '../images/IconSearch'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 export default class AutocompleteInput extends Component {
-  state = {
-    inputValue: '',
-  }
-
-  static contextTypes = {
-    navigate: PropTypes.func,
-  }
-
-  handleInputChange = (event, handleChangeProps) => {
-    this.setState({ inputValue: event.target.value })
-    handleChangeProps(event)
-
-    let shouldSearch = event.target.value.length >= 2
-    this.props.onMakeSearch(shouldSearch)
-  }
-
-  handleIconClick = () => {
-    this.context.navigate({
-      page: 'store/search',
-      params: { term: this.state.inputValue },
-      query: 'map=ft',
-      fallbackToWindowLocation: false,
-    })
-    this.props.closeMenu()
-  }
-
   render() {
-    const { isMobile, ...restProps } = this.props
+    const { isMobile, onGoToSearchPage, ...restProps } = this.props
+
     if (isMobile) {
       restProps['suffixIcon'] = (
-        <span
-          className="flex items-center pointer"
-          onClick={this.handleIconClick}
-        >
+        <span className="flex items-center pointer" onClick={onGoToSearchPage}>
           <IconSearch color="#979899" />
         </span>
       )
     }
+
     return (
       <div className="flex">
-        <Input
-          size="large"
-          onKeyPress={event => this.props.onKeyDown(event)}
-          {...restProps}
-          onChange={event => this.handleInputChange(event, restProps.onChange)}
-          value={this.state.inputValue}
-        />
+        <Input size="large" {...restProps} />
         {!isMobile && (
           <span
             className="flex items-center pl4 pointer"
-            onClick={this.handleIconClick}
+            onClick={onGoToSearchPage}
           >
             <IconSearch size={30} color="#979899" />
           </span>
@@ -67,8 +34,6 @@ export default class AutocompleteInput extends Component {
 }
 
 AutocompleteInput.propTypes = {
-  /** Function to execute search with deboucing */
-  onMakeSearch: PropTypes.func.isRequired,
   /** Downshift prop to be passed to the input */
   autoComplete: PropTypes.string,
   /** Input ID */
@@ -85,6 +50,6 @@ AutocompleteInput.propTypes = {
   placeholder: PropTypes.string,
   /** If is mobile search mode */
   isMobile: PropTypes.bool,
-  /** Function that closes the autocomplete suggestions */
-  closeMenu: PropTypes.func,
+  /** Function to direct the user to the searchPage */
+  onGoToSearchPage: PropTypes.func.isRequired,
 }
