@@ -33,6 +33,80 @@ class Price extends Component {
     maximumFractionDigits: 2,
   }
 
+<<<<<<< HEAD
+=======
+  getInstallmentsNode() {
+    const {
+      installments,
+      showLabels,
+      intl: { formatNumber },
+    } = this.props
+
+    if (!installments || isEmpty(installments)) {
+      return null
+    }
+
+    const noInterestRateInstallments = installments.filter(
+      installment => !installment.InterestRate
+    )
+
+    /*
+     * - The selected installment will be the one with the highest `NumberOfInstallments`;
+     * - If there is no 'interest-free' installments, the normal installments will be analyzed.
+     */
+    const installment = (isEmpty(noInterestRateInstallments)
+      ? installments
+      : noInterestRateInstallments
+    ).reduce(
+      (previous, current) =>
+        previous.NumberOfInstallments > current.NumberOfInstallments
+          ? previous
+          : current
+    )
+
+    const formattedInstallmentPrice = formatNumber(
+      installment.Value,
+      this.currencyOptions
+    )
+
+    const [installmentsElement, installmentPriceElement, timesElement] = [
+      installment.NumberOfInstallments,
+      formattedInstallmentPrice,
+      <span key="times">&times;</span>,
+    ].map((element, index) => (
+      <span className="vtex-price-installments__value" key={index}>
+        {element}
+      </span>
+    ))
+
+    return (
+      <div className="vtex-price-installments__container">
+        <div className="vtex-price-installments dib">
+          {showLabels ? (
+            <FormattedMessage
+              id="pricing.installment-display"
+              values={{
+                installments: installmentsElement,
+                installmentPrice: installmentPriceElement,
+                times: timesElement,
+              }}
+            />
+          ) : (
+              <span>
+                {installmentsElement} {timesElement} {installmentPriceElement}
+              </span>
+            )}
+          {!installment.InterestRate && (
+            <span className="pl1">
+              <FormattedMessage id="pricing.interest-free" />
+            </span>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+>>>>>>> removing console warnings
   render() {
     const {
       sellingPrice,
@@ -51,7 +125,7 @@ class Price extends Component {
     }
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
-
+    console.log('version')
     return (
       <div className="vtex-price flex flex-column justify-around">
         {differentPrices && (
@@ -62,7 +136,7 @@ class Price extends Component {
               </div>
             )}
             <div className="vtex-price-list dib ph2 strike">
-              {formatNumber(listPrice, this.currencyOptions)}
+              {formatNumber(listPrice, this.currencyOptions).replace(" ", '')}
             </div>
           </div>
         )}
@@ -73,7 +147,7 @@ class Price extends Component {
             </div>
           )}
           <div className="vtex-price-selling dib ph2">
-            {formatNumber(sellingPrice, this.currencyOptions)}
+            {formatNumber(sellingPrice, this.currencyOptions).replace(" ", '')}
           </div>
         </div>
         {showInstallments &&
@@ -93,7 +167,7 @@ class Price extends Component {
                     savings: formatNumber(
                       listPrice - sellingPrice,
                       this.currencyOptions
-                    ),
+                    ).replace(" ", ''),
                   }}
                 />
               </div>
