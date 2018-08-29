@@ -125,10 +125,10 @@ class Price extends Component {
               }}
             />
           ) : (
-            <span>
-              {installmentsElement} {timesElement} {installmentPriceElement}
-            </span>
-          )}
+              <span>
+                {installmentsElement} {timesElement} {installmentPriceElement}
+              </span>
+            )}
           {!installment.InterestRate && (
             <span className="pl1">
               <FormattedMessage id="pricing.interest-free" />
@@ -155,7 +155,7 @@ class Price extends Component {
     }
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
-
+    console.log('version')
     return (
       <div className="vtex-price flex flex-column justify-around">
         {differentPrices && (
@@ -166,7 +166,7 @@ class Price extends Component {
               </div>
             )}
             <div className="vtex-price-list dib ph2 strike">
-              {formatNumber(listPrice, this.currencyOptions)}
+              {formatNumber(listPrice, this.currencyOptions).replace(" ", '')}
             </div>
           </div>
         )}
@@ -177,7 +177,7 @@ class Price extends Component {
             </div>
           )}
           <div className="vtex-price-selling dib ph2">
-            {formatNumber(sellingPrice, this.currencyOptions)}
+            {formatNumber(sellingPrice, this.currencyOptions).replace(" ", '')}
           </div>
         </div>
         {showInstallments && this.getInstallmentsNode()}
@@ -191,7 +191,7 @@ class Price extends Component {
                     savings: formatNumber(
                       listPrice - sellingPrice,
                       this.currencyOptions
-                    ),
+                    ).replace(" ", ''),
                   }}
                 />
               </div>

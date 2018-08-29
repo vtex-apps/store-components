@@ -10,7 +10,7 @@ import ContentLoader from 'react-content-loader'
 class ProductName extends Component {
   static propTypes = {
     /** Name of the product */
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     /** Selected SKU name */
     skuName: PropTypes.string,
     /** Show sku */

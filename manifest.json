@@ -20,6 +20,6 @@
   "dependencies": {
     "vtex.store": "1.x",
     "vtex.store-graphql": "2.x",
-    "vtex.styleguide": "5.x"
+    "vtex.styleguide": "6.x"
   }
 }
