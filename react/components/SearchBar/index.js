@@ -1,35 +1,105 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Downshift from './components/Downshift'
-import { injectIntl } from 'react-intl'
+import SearchBar from './components/SearchBar'
+import { injectIntl, intlShape } from 'react-intl'
 
 import './global.css'
 
+const SEARCH_DELAY_TIME = 500
+
 /** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
-class SearchBar extends Component {
-  static propTypes = {
-    /** Set mobile mode */
-    isMobile: PropTypes.bool,
+class SearchBarContainer extends Component {
+  timeoutId = null
+
+  state = {
+    shouldSearch: false,
+    inputValue: '',
   }
 
-  static contextTypes = {
-    intl: PropTypes.object.isRequired,
+  handleClearSearchResults = () => {
+    this.setState({ shouldSearch: false })
+
+    this.timeoutId = null
+  }
+
+  handleClearInput = () => {
+    this.setState({ inputValue: '' })
+    this.handleClearSearchResults()
+  }
+
+  handleGoToSearchPage = () => {
+    const search = this.state.inputValue
+
+    this.setState({ inputValue: '' })
+    this.context.navigate({
+      page: 'store/search',
+      params: { term: search },
+      query: 'map=ft',
+      fallbackToWindowLocation: false,
+    })
+  }
+
+  handleEnterPress = event => {
+    if (event.key === 'Enter') {
+      this.handleGoToSearchPage()
+    }
+  }
+
+  handleMakeSearch = () => {
+    this.handleClearSearchResults()
+
+    this.timeoutId = setTimeout(() => {
+      this.setState({ shouldSearch: true })
+    }, SEARCH_DELAY_TIME)
+  }
+
+  handleInputChange = event => {
+    const value = event.target.value
+
+    this.setState({ inputValue: value })
+
+    if (value.length < 2) {
+      this.handleClearSearchResults()
+    } else this.handleMakeSearch()
   }
 
   render() {
-    const placeholder = this.context.intl.formatMessage({ id: 'search.placeholder' })
-    const emptyPlaceholder = this.context.intl.formatMessage({ id: 'search.noMatches' })
+    const { intl, isMobile } = this.props
+    const { shouldSearch, inputValue } = this.state
+
+    const placeholder = intl.formatMessage({
+      id: 'search.placeholder',
+    })
+    const emptyPlaceholder = intl.formatMessage({
+      id: 'search.noMatches',
+    })
 
     return (
-      <div className="vtex-searchbar w-100">
-        <Downshift
-          isMobile={this.props.isMobile}
-          placeholder={placeholder}
-          emptyPlaceholder={emptyPlaceholder}
-        />
-      </div>
+      <SearchBar
+        isMobile={isMobile}
+        placeholder={placeholder}
+        emptyPlaceholder={emptyPlaceholder}
+        shouldSearch={shouldSearch}
+        inputValue={inputValue}
+        onClearInput={this.handleClearInput}
+        onGoToSearchPage={this.handleGoToSearchPage}
+        onEnterPress={this.handleEnterPress}
+        onMakeSearch={this.handleMakeSearch}
+        onInputChange={this.handleInputChange}
+      />
     )
   }
 }
 
-export default injectIntl(SearchBar)
+SearchBarContainer.contextTypes = {
+  navigate: PropTypes.func,
+}
+
+SearchBarContainer.propTypes = {
+  /** Set mobile mode */
+  isMobile: PropTypes.bool,
+  /* Internationalization */
+  intl: intlShape.isRequired,
+}
+
+export default injectIntl(SearchBarContainer)
