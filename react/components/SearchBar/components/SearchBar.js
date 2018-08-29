@@ -54,9 +54,6 @@ export default class SearchBar extends Component {
                     placeholder,
                     value: inputValue,
                     onChange: onInputChange,
-                    onBlur: () => {
-                      onClearInput()
-                    },
                     onKeyDown: event => {
                       closeMenu()
                       onEnterPress(event)
@@ -71,6 +68,7 @@ export default class SearchBar extends Component {
                       highlightedIndex,
                       emptyPlaceholder,
                       closeMenu,
+                      onClearInput,
                     }}
                   />
                 ) : null}

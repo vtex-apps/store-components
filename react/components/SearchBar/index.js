@@ -31,7 +31,6 @@ class SearchBarContainer extends Component {
     const search = this.state.inputValue
 
     this.setState({ inputValue: '' })
-    console.log('goto searhc')
     this.context.navigate({
       page: 'store/search',
       params: { term: search },

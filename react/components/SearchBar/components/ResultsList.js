@@ -42,7 +42,13 @@ class ResultsList extends Component {
   }
 
   render() {
-    const { data, emptyPlaceholder, inputValue, closeMenu } = this.props
+    const {
+      data,
+      emptyPlaceholder,
+      inputValue,
+      closeMenu,
+      onClearInput,
+    } = this.props
     const items = data.autocomplete ? data.autocomplete.itemsReturned : []
     if (data.loading) {
       return (
@@ -63,7 +69,10 @@ class ResultsList extends Component {
     return (
       <div className={listClassNames}>
         <Link
-          onClick={() => closeMenu()}
+          onClick={() => {
+            onClearInput()
+            closeMenu()
+          }}
           page="store/search"
           params={{ term: inputValue }}
           query="map=ft"
@@ -77,7 +86,10 @@ class ResultsList extends Component {
             <Fragment key={item.name + index}>
               <hr className="o-05 ma0 w-90 center" />
               <Link
-                onClick={() => closeMenu()}
+                onClick={() => {
+                  onClearInput()
+                  closeMenu()
+                }}
                 {...this.getLinkProps(item)}
                 className={listItemClassNames}
               >
@@ -128,6 +140,8 @@ ResultsList.propTypes = {
   inputValue: PropTypes.string.isRequired,
   /** Closes the options box. */
   closeMenu: PropTypes.func,
+  /** Clears the input */
+  onClearInput: PropTypes.func,
 }
 
 const ResultsListWithData = graphql(autocomplete)(ResultsList)
