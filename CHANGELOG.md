@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- `SearchBar` refactoring
+- Refact `SearchBar` component
 
 ## [1.16.2] - 2018-08-27
 ### Fixed
