@@ -34,6 +34,7 @@ class Price extends Component {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   getInstallmentsNode() {
     const {
@@ -107,6 +108,8 @@ class Price extends Component {
   }
 
 >>>>>>> removing console warnings
+=======
+>>>>>>> Refact the ProductPrice component
   render() {
     const {
       sellingPrice,
@@ -167,7 +170,7 @@ class Price extends Component {
                     savings: formatNumber(
                       listPrice - sellingPrice,
                       this.currencyOptions
-                    ).replace(" ", ''),
+                    ),
                   }}
                 />
               </div>
