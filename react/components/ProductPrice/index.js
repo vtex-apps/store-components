@@ -62,7 +62,7 @@ class Price extends Component {
               </div>
             )}
             <div className="vtex-price-list dib ph2 strike">
-              {formatNumber(listPrice, this.currencyOptions).replace(" ", '')}
+              {formatNumber(listPrice, this.currencyOptions)}
             </div>
           </div>
         )}
@@ -73,7 +73,7 @@ class Price extends Component {
             </div>
           )}
           <div className="vtex-price-selling dib ph2">
-            {formatNumber(sellingPrice, this.currencyOptions).replace(" ", '')}
+            {formatNumber(sellingPrice, this.currencyOptions)}
           </div>
         </div>
         {showInstallments &&
