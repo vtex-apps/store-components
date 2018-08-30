@@ -100,10 +100,10 @@ export class BuyButton extends Component {
             {this.props.children}
           </Button>
         ) : (
-          <Button primary size="small" onClick={() => this.handleAddToCart()}>
-            {this.props.children}
-          </Button>
-        )}
+            <Button primary size="small" onClick={() => this.handleAddToCart()}>
+              {this.props.children}
+            </Button>
+          )}
       </Fragment>
     )
   }
@@ -120,7 +120,7 @@ BuyButton.propTypes = {
       /** Which seller is being referenced by the button */
       seller: PropTypes.number.isRequired,
     })
-  ).isRequired,
+  ),
   /** Context used to call the add to cart mutation and retrieve the orderFormId **/
   orderFormContext: contextPropTypes,
   /** Component children that will be displayed inside of the button **/

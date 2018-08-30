@@ -3,7 +3,7 @@ import { intlShape } from 'react-intl'
 
 export default {
   /** Product selling price */
-  sellingPrice: PropTypes.number.isRequired,
+  sellingPrice: PropTypes.number,
   /** Product list price */
   listPrice: PropTypes.number,
   /** Set visibility of list price */
