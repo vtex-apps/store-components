@@ -58,7 +58,8 @@ class TopMenu extends Component {
         <div className="mr7-m">
           <ExtensionPoint
             id="login"
-            iconColor="#979899"
+            iconClasses="gray"
+            labelClasses="gray"
             iconSize={mobileMode ? LOGIN_ICON_SIZE_MOBILE : LOGIN_ICON_SIZE_DESKTOP}
             iconLabel={!mobileMode ? this.translate('topMenu.login.icon.label') : ''}
           />
