@@ -47,9 +47,6 @@
     padding-left: 2rem;
     padding-right: 2rem;
   }
-  .vtex-login__profile, .vtex-login__label, .vtex-minicart__label {
-    display: none;
-  }
 }
 
 @media only screen and (max-width: 48.05rem) {
