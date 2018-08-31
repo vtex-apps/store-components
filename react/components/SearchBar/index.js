@@ -64,7 +64,7 @@ class SearchBarContainer extends Component {
   }
 
   render() {
-    const { intl, isMobile } = this.props
+    const { intl } = this.props
     const { shouldSearch, inputValue } = this.state
 
     const placeholder = intl.formatMessage({
@@ -76,7 +76,6 @@ class SearchBarContainer extends Component {
 
     return (
       <SearchBar
-        isMobile={isMobile}
         placeholder={placeholder}
         emptyPlaceholder={emptyPlaceholder}
         shouldSearch={shouldSearch}
@@ -96,8 +95,6 @@ SearchBarContainer.contextTypes = {
 }
 
 SearchBarContainer.propTypes = {
-  /** Set mobile mode */
-  isMobile: PropTypes.bool,
   /* Internationalization */
   intl: intlShape.isRequired,
 }
