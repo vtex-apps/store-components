@@ -7,27 +7,17 @@ import IconSearch from '../images/IconSearch'
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 export default class AutocompleteInput extends Component {
   render() {
-    const { isMobile, onGoToSearchPage, ...restProps } = this.props
+    const { onGoToSearchPage, ...restProps } = this.props
 
-    if (isMobile) {
-      restProps['suffixIcon'] = (
-        <span className="flex items-center pointer" onClick={onGoToSearchPage}>
-          <IconSearch color="#979899" />
-        </span>
-      )
-    }
+    const suffixIcon = (
+      <span className="flex items-center pointer" onClick={onGoToSearchPage}>
+        <IconSearch color="#979899" />
+      </span>
+    )
 
     return (
       <div className="flex">
-        <Input size="large" {...restProps} />
-        {!isMobile && (
-          <span
-            className="flex items-center pl4 pointer"
-            onClick={onGoToSearchPage}
-          >
-            <IconSearch size={30} color="#979899" />
-          </span>
-        )}
+        <Input size="large" {...restProps} suffixIcon={suffixIcon} />
       </div>
     )
   }
@@ -48,8 +38,6 @@ AutocompleteInput.propTypes = {
   value: PropTypes.string,
   /** Placeholder to be used on the input */
   placeholder: PropTypes.string,
-  /** If is mobile search mode */
-  isMobile: PropTypes.bool,
   /** Function to direct the user to the searchPage */
   onGoToSearchPage: PropTypes.func.isRequired,
 }

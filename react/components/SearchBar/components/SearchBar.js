@@ -12,7 +12,6 @@ export default class SearchBar extends Component {
     const {
       placeholder,
       emptyPlaceholder,
-      isMobile,
       onEnterPress,
       onMakeSearch,
       onInputChange,
@@ -45,7 +44,6 @@ export default class SearchBar extends Component {
             }) => (
               <div className="relative-m w-100">
                 <AutocompleteInput
-                  isMobile={isMobile}
                   onGoToSearchPage={() => {
                     closeMenu()
                     onGoToSearchPage()
@@ -88,8 +86,6 @@ SearchBar.propTypes = {
   placeholder: PropTypes.string.isRequired,
   /** Current value of the input */
   inputValue: PropTypes.string.isRequired,
-  /** If is mobile search mode */
-  isMobile: PropTypes.bool,
   /** Variable that controls when the search should be made */
   shouldSearch: PropTypes.bool.isRequired,
   /** Function that controls when the search should be executed */

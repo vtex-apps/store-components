@@ -45,7 +45,6 @@ class TopMenu extends Component {
     return (
       <div className={`vtex-top-menu__search-bar flex pa2-m ${mobileMode ? 'order-2' : 'order-1'}`}>
         <SearchBar
-          isMobile={mobileMode}
           placeholder={this.translate('search-placeholder')}
           emptyPlaceholder={this.translate('search-emptyPlaceholder')}
         />
