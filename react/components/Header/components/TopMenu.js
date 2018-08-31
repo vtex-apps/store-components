@@ -68,6 +68,7 @@ class TopMenu extends Component {
           iconColor="#979899"
           iconSize={mobileMode ? MINICART_ICON_SIZE_MOBILE : MINICART_ICON_SIZE_DESKTOP}
           iconLabel={!mobileMode ? this.translate('topMenu.minicart.icon.label') : ''}
+          labelClasses="gray"
         />
       </div>
     )
