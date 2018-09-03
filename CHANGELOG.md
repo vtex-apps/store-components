@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Added a top margin to `Footer` component in order to not collapse with `Login`
+- `Footer` component top margin, in order to no collapse with `Login`
 
 ## [2.0.2] - 2018-08-31
 ### Fixed
