@@ -2,30 +2,7 @@
   box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, .2), 2px 4px 4px 0 rgba(0, 0, 0, .2);
 }
 
-.vtex-top-menu, .vtex-category-menu, .vtex-category-menu__item-container {
-  padding-left: 10rem;
-  padding-right: 10rem;
-}
-
-.vtex-top-menu--fixed {
-  position: fixed;
-  box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, .2);
-}
-
-.vtex-top-menu__logo .vtex-logo {
-  display: flex;
-  align-items: center;
-}
-
-.vtex-top-menu__logo a {
-  outline: 0;
-}
-
-.vtex-top-menu .vtex-minicart .vtex-button {
-  border-width: 0px;
-}
-
-@media only screen and (min-width: 48.05rem) {
+@media only screen and (min-width: 40em) {
   .vtex-top-menu__logo {
     width: 32%;
   }
@@ -34,27 +11,10 @@
   } 
   .vtex-top-menu__icons {
     width: 32%;
-  }
+  }  
 }
 
-@media only screen and (min-width: 48.05rem) and (max-width: 76rem){
-  .vtex-top-menu, .vtex-category-menu, .vtex-category-menu__item-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-@media only screen and (max-width: 48.05rem) {
-  .vtex-top-menu {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-  .vtex-top-menu__search-bar {
-    width: 100%;
-  }
-}
-
-@media only screen and (max-width: 76rem) {
+@media only screen and (max-width: 80em) {
   .vtex-login__profile {
     display: none;
   }

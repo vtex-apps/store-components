@@ -23,7 +23,7 @@ class TopMenu extends Component {
   renderLogo(mobileMode, logoUrl, logoTitle) {
     return (
       <div className="vtex-top-menu__logo w-20-m flex justify-start">
-        <Link to="/">
+        <Link to="/" className="outline-0">
           <Logo
             url={logoUrl}
             title={logoTitle}
@@ -43,7 +43,7 @@ class TopMenu extends Component {
 
   renderSearchBar(mobileMode) {
     return (
-      <div className={`vtex-top-menu__search-bar flex pa2-m ${mobileMode ? 'order-2' : 'order-1'}`}>
+      <div className={`vtex-top-menu__search-bar flex pa2-m w-100-s ${mobileMode ? 'order-2' : 'order-1'}`}>
         <SearchBar
           placeholder={this.translate('search-placeholder')}
           emptyPlaceholder={this.translate('search-emptyPlaceholder')}
@@ -77,24 +77,27 @@ class TopMenu extends Component {
 
   render() {
     const { logoUrl, logoTitle, fixed } = this.props
-    const classes = classNames(
-      'vtex-top-menu w-100 bg-white flex justify-center pb4 pv2-m pv6-l z-999',
+    const containerClasses = classNames(
+      'vtex-top-menu flex justify-center w-100 bg-white',
       {
-        'vtex-top-menu--fixed top-0': fixed,
+        'fixed shadow-5 top-0 z-999': fixed,
       }
     )
+    const contentClasses = 'w-100 w-90-m w-80-xl center flex justify-center pb4 pv2-m pv6-l ph3-s ph7-m ph6-xl'
     return (
       <ReactResizeDetector handleWidth>
         {
           width => {
-            const mobileMode = width < 769 || (global.__RUNTIME__.hints.mobile && (!width || width < 769))
+            const mobileMode = width < 640 || (global.__RUNTIME__.hints.mobile && (!width || width < 640))
             return (
-              <div className={classes}>
-                <div className="flex flex-wrap w-100 justify-between-m items-center">
-                  {mobileMode && this.renderMobileMenu()}
-                  {this.renderLogo(mobileMode, logoUrl, logoTitle)}
-                  {this.renderSearchBar(mobileMode)}
-                  {this.renderIcons(mobileMode)}
+              <div className={containerClasses}>
+                <div className={contentClasses}>
+                  <div className="flex flex-wrap w-100 justify-between-m items-center">
+                    {mobileMode && this.renderMobileMenu()}
+                    {this.renderLogo(mobileMode, logoUrl, logoTitle)}
+                    {this.renderSearchBar(mobileMode)}
+                    {this.renderIcons(mobileMode)}
+                  </div>
                 </div>
               </div>
             )
