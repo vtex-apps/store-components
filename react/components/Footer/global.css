@@ -1,5 +1,6 @@
 .vtex-footer {
   box-shadow: 4px -4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin-top: 8px;
 }
 
 .vtex-footer__badge-list {
