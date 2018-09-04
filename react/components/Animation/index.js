@@ -26,17 +26,24 @@ const ANIMATIONS = {
   },
 }
 
+/**
+ * Animation component
+ */
 export default class Animation extends Component {
   static propTypes = {
+    /* Object to be animated */
     children: PropTypes.object.isRequired,
-    isShown: PropTypes.bool,
+    /* Active the animation */
+    isActive: PropTypes.bool,
+    /* Classname to the animation */
     className: PropTypes.string,
+    /* Type of animation */
     from: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
   }
 
   static defaultProps = {
     className: '',
-    from: 'top',
+    from: 'left',
   }
 
   renderChildren = style => (
@@ -47,15 +54,15 @@ export default class Animation extends Component {
   )
 
   render() {
-    const { isShown, from } = this.props
+    const { isActive, from } = this.props
     const style = ANIMATIONS[from]
 
     return (
       <Transition
-        keys={isShown ? ['children'] : []}
+        keys={isActive ? ['children'] : []}
         {...style}
       >
-        {isShown ? [this.renderChildren] : []}
+        {isActive ? [this.renderChildren] : []}
       </Transition>
     )
   }
