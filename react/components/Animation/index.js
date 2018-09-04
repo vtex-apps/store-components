@@ -37,7 +37,7 @@ export default class Animation extends Component {
     isActive: PropTypes.bool,
     /* Classname to the animation */
     className: PropTypes.string,
-    /* Type of animation */
+    /* Origin of animation */
     from: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
   }
 
