@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `AnimationComponent`.
+- `Animation` component.
 
 ### Changed
 - Update `Price` props documentation.

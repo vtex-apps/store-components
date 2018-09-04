@@ -4,22 +4,22 @@ import PropTypes from 'prop-types'
 import { Transition } from 'react-spring'
 
 const ANIMATIONS = {
-  'left': {
+  left: {
     from: { transform: 'translateX(100%)' },
     enter: { transform: 'translateX(0%)' },
     leave: { transform: 'translateX(100%)' },
   },
-  'right': {
+  right: {
     from: { transform: 'translateX(-100%)' },
     enter: { transform: 'translateX(0%)' },
     leave: { transform: 'translateX(-100%)' },
   },
-  'top': {
+  top: {
     from: { transform: 'translateY(-100%)' },
     enter: { transform: 'translateY(0%)' },
     leave: { transform: 'translateY(-100%)' },
   },
-  'bottom': {
+  bottom: {
     from: { transform: 'translateY(100%)' },
     enter: { transform: 'translateY(0%)' },
     leave: { transform: 'translateY(100%)' },
@@ -48,7 +48,8 @@ export default class Animation extends Component {
 
   renderChildren = style => (
     <div className={this.props.className}
-      style={style}>
+      style={style}
+    >
       {this.props.children}
     </div>
   )
