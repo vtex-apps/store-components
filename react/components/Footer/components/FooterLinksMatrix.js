@@ -12,12 +12,12 @@ export default class FooterLinksMatrix extends Component {
         /** Link section title */
         title: PropTypes.string.isRequired,
         /** Link section links */
-        links: PropTypes.shape({
-          /** Link text */
-          title: PropTypes.string.isRequired,
-          /** Link URL */
-          url: PropTypes.string.isRequired,
-        }),
+        links: PropTypes.arrayOf(
+          PropTypes.shape({
+            /** Link text */
+            title: PropTypes.string.isRequired,
+          }),
+        ),
       })
     ),
   }
@@ -40,7 +40,7 @@ export default class FooterLinksMatrix extends Component {
                 <Accordion title={linkItem.title}>
                   {linkItem.links.map(link => (
                     <div
-                      key={`links-${index}`}
+                      key={`${link.title}-${index}`}
                       className="vtex-footer__accordion-item vtex-footer__link-accordion-item pt1">
                       <FooterLinkItem {...link} />
                     </div>

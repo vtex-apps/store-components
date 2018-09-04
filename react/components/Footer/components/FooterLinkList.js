@@ -4,7 +4,7 @@ import React from 'react'
 import footerList from './footerList'
 
 export const FooterLinkItem = ({ url, title }) => (
-  <a className="vtex-footer__list-link w-100 f6 truncate mid-gray" href={url}>
+  <a className="vtex-footer__list-link w-100 f6 truncate mid-gray pointer" href={url}>
     {title}
   </a>
 )
@@ -12,7 +12,7 @@ export const FooterLinkItem = ({ url, title }) => (
 FooterLinkItem.displayName = 'FooterLinkItem'
 
 FooterLinkItem.propTypes = {
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
   title: PropTypes.string.isRequired,
 }
 

@@ -34,7 +34,7 @@ class FooterSocialNetworkItem extends Component {
 FooterSocialNetworkItem.displayName = 'FooterSocialNetworkItem'
 
 FooterSocialNetworkItem.propTypes = {
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
   showInColor: PropTypes.bool.isRequired,
   socialNetwork: PropTypes.oneOf([
     'Facebook',
