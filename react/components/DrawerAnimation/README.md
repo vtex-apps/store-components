@@ -1,17 +1,17 @@
-# Animation
-Animation is a component that any VTEX app can import.
+# DrawerAnimation
+DrawerAnimation is a component that any VTEX app can import.
 
 To import it into your code: 
 ```js
-import Animation from 'vtex.store-components/Animation'
+import DrawerAnimation from 'vtex.store-components/DrawerAnimation'
 ```
 
 ## Usage
-You can use it in your code like a React component with the jsx tag: `<Animation />`. 
+You can use it in your code like a React component with the jsx tag: `<DrawerAnimation />`. 
 ```html
-<Animation> 
+<DrawerAnimation> 
   This is an animated text! \o/
-</Animation>
+</DrawerAnimation>
 ```
 
 | Prop name          | Type       | Description                                                                   |

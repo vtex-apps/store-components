@@ -27,9 +27,9 @@ const ANIMATIONS = {
 }
 
 /**
- * Animation component
+ * DrawerAnimation component
  */
-export default class Animation extends Component {
+export default class DrawerAnimation extends Component {
   static propTypes = {
     /* Object to be animated */
     children: PropTypes.object.isRequired,
