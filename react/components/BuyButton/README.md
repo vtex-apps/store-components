@@ -8,7 +8,7 @@ import BuyButton from 'vtex.store-components/BuyButton'
 
 ## Usage
 You can use it in your code like a React component with the jsx tag: `<BuyButton />`. 
-```html
+```jsx
 <BuyButton skuItems={[{ skuId: '1', quantity: 1, seller: 1 }]}> 
   Buy!
 </BuyButton>

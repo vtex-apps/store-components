@@ -8,7 +8,7 @@ import DiscountBadge from 'vtex.store-components/DiscountBadge'
 
 ## Usage
 You can use it in your code like a React component with the jsx tag: `<DiscountBadge />`. 
-```html
+```jsx
 <DiscountBadge listPrice={commertialOffer.ListPrice}
                 sellingPrice={commertialOffer.Price}
                 label={badgeText}> 

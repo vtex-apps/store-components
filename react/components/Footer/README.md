@@ -18,7 +18,7 @@ Also, you can import as a dependency in your `manifest.json`
 
 You can use it in your code like a React component with the jsx tag: `<Footer />`.
 
-```html
+```jsx
 <Footer />
 ```
 

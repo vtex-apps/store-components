@@ -8,7 +8,7 @@ import DrawerAnimation from 'vtex.store-components/DrawerAnimation'
 
 ## Usage
 You can use it in your code like a React component with the jsx tag: `<DrawerAnimation />`. 
-```html
+```jsx
 <DrawerAnimation> 
   This is an animated text! \o/
 </DrawerAnimation>

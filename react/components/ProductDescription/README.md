@@ -8,7 +8,7 @@ import ProductDescription from 'vtex.store-components/ProductDescription'
 
 ## Usage
 You can use it in your code like a React component with the jsx tag: `<ProductDescription />`. 
-```html
+```jsx
 <ProductDescription specifications={product.specs} skuName={product.name}> 
    <span>{product.description}</span>
 </ProductDescription>
