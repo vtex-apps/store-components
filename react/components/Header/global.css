@@ -21,10 +21,6 @@
   outline: 0;
 }
 
-.vtex-login__profile, .vtex-login__label, .vtex-minicart__label {
-  color: #979899;
-}
-
 .vtex-top-menu .vtex-minicart .vtex-button {
   border-width: 0px;
 }
@@ -39,7 +35,6 @@
   .vtex-top-menu__icons {
     width: 32%;
   }
-  
 }
 
 @media only screen and (min-width: 48.05rem) and (max-width: 76rem){
@@ -60,7 +55,7 @@
 }
 
 @media only screen and (max-width: 76rem) {
-  .vtex-login__profile, .vtex-login__label, .vtex-minicart__label {
+  .vtex-login__profile {
     display: none;
   }
 }
