@@ -43,7 +43,7 @@ export default class Animation extends Component {
 
   static defaultProps = {
     className: '',
-    from: 'drawerLeft',
+    type: 'drawerLeft',
   }
 
   renderChildren = style => (
