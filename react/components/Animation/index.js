@@ -32,7 +32,7 @@ const ANIMATIONS = {
 export default class Animation extends Component {
   static propTypes = {
     /* Object to be animated */
-    children: PropTypes.object.isRequired,
+    children: PropTypes.node.isRequired,
     /* Active the animation */
     isActive: PropTypes.bool,
     /* Classname to the animation */
