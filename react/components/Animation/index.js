@@ -4,22 +4,22 @@ import PropTypes from 'prop-types'
 import { Transition } from 'react-spring'
 
 const ANIMATIONS = {
-  left: {
+  drawerLeft: {
     from: { transform: 'translateX(100%)' },
     enter: { transform: 'translateX(0%)' },
     leave: { transform: 'translateX(100%)' },
   },
-  right: {
+  drawerRight: {
     from: { transform: 'translateX(-100%)' },
     enter: { transform: 'translateX(0%)' },
     leave: { transform: 'translateX(-100%)' },
   },
-  top: {
+  drawerTop: {
     from: { transform: 'translateY(-100%)' },
     enter: { transform: 'translateY(0%)' },
     leave: { transform: 'translateY(-100%)' },
   },
-  bottom: {
+  drawerBottom: {
     from: { transform: 'translateY(100%)' },
     enter: { transform: 'translateY(0%)' },
     leave: { transform: 'translateY(100%)' },
@@ -27,9 +27,9 @@ const ANIMATIONS = {
 }
 
 /**
- * DrawerAnimation component
+ * Animation component
  */
-export default class DrawerAnimation extends Component {
+export default class Animation extends Component {
   static propTypes = {
     /* Object to be animated */
     children: PropTypes.object.isRequired,
@@ -37,13 +37,13 @@ export default class DrawerAnimation extends Component {
     isActive: PropTypes.bool,
     /* Classname to the animation */
     className: PropTypes.string,
-    /* Origin of animation */
-    from: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+    /* Type of animation */
+    type: PropTypes.oneOf(['drawerLeft', 'drawerRight', 'drawerTop', 'drawerBottom']),
   }
 
   static defaultProps = {
     className: '',
-    from: 'left',
+    from: 'drawerLeft',
   }
 
   renderChildren = style => (
@@ -55,8 +55,8 @@ export default class DrawerAnimation extends Component {
   )
 
   render() {
-    const { isActive, from } = this.props
-    const style = ANIMATIONS[from]
+    const { isActive, type } = this.props
+    const style = ANIMATIONS[type]
 
     return (
       <Transition
