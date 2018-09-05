@@ -7,15 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.3] - 2018-09-05
+### Fixed
+- `Footer` propTypes error.
+
 ## [2.0.2] - 2018-08-31
 ### Fixed
 - Fix design issues.
 
 ## [2.0.1] - 2018-08-30
 ### Changed
-- Refact the `ProductPrice` component
+- Refact the `ProductPrice` component.
 ### Fixed
-- Update the propTypes of the components: `BuyButton`, `ProductPrice`, `ProductName`
+- Update the propTypes of the components: `BuyButton`, `ProductPrice`, `ProductName`.
 
 ## [2.0.0] - 2018-08-30
 ### Removed
@@ -27,7 +31,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.16.3] - 2018-08-29
 ### Changed
-- Refact `SearchBar` component
+- Refact `SearchBar` component.
 
 ## [1.16.2] - 2018-08-27
 ### Fixed
@@ -52,11 +56,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.14.2] - 2018-08-22
 ### Added
-- `schema` to the `ProductName` component 
+- `schema` to the `ProductName` component .
 
 ## [1.14.1] - 2018-08-21
 ### Added
-- prop `showSku` to the `ProductName` component
+- prop `showSku` to the `ProductName` component.
 
 ## [1.14.0] - 2018-08-17
 ### Added

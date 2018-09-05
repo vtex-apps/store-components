@@ -32,7 +32,7 @@ class Accordion extends Component {
           <div>
             {title && (
               <span className="vtex-footer__accordion-title dib ma0 ttu">
-                {this.props.intl.formatMessage({ id: title })}
+                {this.props.intl.messages[title] && this.props.intl.formatMessage({ id: title })}
               </span>
             )}
             <span className="vtex-footer__accordion-icon fr">
