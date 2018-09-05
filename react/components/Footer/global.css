@@ -93,7 +93,7 @@
   }
 
   .vtex-footer__social-networks-container {
-    padding-top: 1.5rem;
+    padding-top: 0.3rem;
   }
 
   .vtex-footer__list-container {
@@ -103,10 +103,6 @@
 
   .vtex-footer__list-container:first-child {
     margin-top: 0;
-  }
-
-  .vtex-footer__list-container--right-aligned {
-    margin-left: 0;
   }
 
   .vtex-footer__list--horizontal {
