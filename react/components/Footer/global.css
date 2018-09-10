@@ -129,7 +129,6 @@
 @media screen and (min-width: 40em) {
   .vtex-footer__container {
     flex-flow: row wrap;
-    padding: 20px;
   }
 
   .vtex-footer__list-container {
@@ -150,10 +149,6 @@
 }
 
 @media screen and (min-width: 64em) {
-  .vtex-footer__container {
-    padding: 20px 70px 20px;
-  }
-
   .vtex-footer__container:first-of-type {
     padding-top: 25px;
   }
@@ -168,27 +163,6 @@
 
   .vtex-footer__list-item--horizontal {
     margin-right: 15px;
-  }
-}
-
-@media screen and (min-width: 80em) {
-  .vtex-footer__container {
-    padding-left: 140px;
-    padding-right: 140px;
-  }
-}
-
-@media screen and (min-width: 100em) {
-  .vtex-footer__container {
-    padding-left: 250px;
-    padding-right: 250px;
-  }
-}
-
-@media screen and (min-width: 120em) {
-  .vtex-footer__container {
-    padding-left: 320px;
-    padding-right: 320px;
   }
 }
 

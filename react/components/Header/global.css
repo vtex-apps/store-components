@@ -1,5 +1,5 @@
 .vtex-header {
-  box-shadow: inset 2px 2px 4px 0 rgba(0, 0, 0, .2), 2px 4px 4px 0 rgba(0, 0, 0, .2);
+  box-shadow: inset 0 0, 2px 4px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 @media only screen and (min-width: 40em) {
@@ -7,11 +7,11 @@
     width: 32%;
   }
   .vtex-top-menu__search-bar {
-    width: 36%
-  } 
+    width: 36%;
+  }
   .vtex-top-menu__icons {
     width: 32%;
-  }  
+  }
 }
 
 @media only screen and (max-width: 80em) {

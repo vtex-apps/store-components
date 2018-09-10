@@ -1,19 +1,14 @@
-import React, { Component, Fragment } from 'react'
+import './global.css'
+
 import PropTypes from 'prop-types'
+import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
+import { ExtensionPoint } from 'render'
+import { contextPropTypes, orderFormConsumer } from 'vtex.store/OrderFormContext'
+import { Alert } from 'vtex.styleguide'
 
 import Modal from './components/Modal'
 import TopMenu from './components/TopMenu'
-
-import { Alert } from 'vtex.styleguide'
-import { ExtensionPoint } from 'render'
-
-import {
-  orderFormConsumer,
-  contextPropTypes,
-} from 'vtex.store/OrderFormContext'
-
-import './global.css'
 
 class Header extends Component {
   state = {
@@ -71,39 +66,32 @@ class Header extends Component {
     return (
       <Fragment>
         <ExtensionPoint id="telemarketing" />
-        <div
-          className="vtex-header relative z-2 w-100"
-          ref={this._root}
-        >
+        <div className="vtex-header relative z-2 w-100" ref={this._root}>
           <div className="z-2 items-center w-100 top-0 bg-white tl">
             <ExtensionPoint id="menu-link" />
           </div>
-          <TopMenu logoUrl={logoUrl} logoTitle={logoTitle} />
-          <ExtensionPoint id="category-menu" />
-          {showMenuPopup && (
-            <Modal>
-              <TopMenu
-                logoUrl={logoUrl}
-                logoTitle={logoTitle}
-                fixed
-              />
-            </Modal>
-          )}
-          <div
-            className="flex flex-column items-center fixed w-100"
-            style={{ top: offsetTop + 120 }}
-          >
-            {hasMessage && (
-              <div className="pa2 mw9">
-                <Alert
-                  type={
-                    orderFormContext.message.isSuccess ? 'success' : 'error'
-                  }
-                >
-                  {orderFormContext.message.text}
-                </Alert>
-              </div>
+          <div className="vtex-page-padding">
+            <TopMenu logoUrl={logoUrl} logoTitle={logoTitle} />
+            <ExtensionPoint id="category-menu" />
+            {showMenuPopup && (
+              <Modal>
+                <TopMenu logoUrl={logoUrl} logoTitle={logoTitle} fixed />
+              </Modal>
             )}
+            <div
+              className="flex flex-column items-center fixed w-100"
+              style={{ top: offsetTop + 120 }}>
+              {hasMessage && (
+                <div className="pa2 mw9">
+                  <Alert
+                    type={
+                      orderFormContext.message.isSuccess ? 'success' : 'error'
+                    }>
+                    {orderFormContext.message.text}
+                  </Alert>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </Fragment>
