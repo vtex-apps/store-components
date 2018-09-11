@@ -1,25 +1,25 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class FooterVtexLogo extends React.Component{
-  state = { VTEXIcon: null }
+export default class FooterVtexLogo extends Component{
+  state = { poweredByVtexIcon: null }
 
   componentDidMount() {
     const { showInColor } = this.props
 
     import(`../images/VTEX${showInColor ? '' : '-BW'}.svg`).then(
-      VTEXIcon => {
-        this.setState({ VTEXIcon })
+      poweredByVtexIcon => {
+        this.setState({ poweredByVtexIcon })
       }
     )
   }
 
   render() {
-    const { VTEXIcon } = this.state
+    const { poweredByVtexIcon } = this.state
 
     const { logoUrl } = this.props
 
-    if (!VTEXIcon) {
+    if (!poweredByVtexIcon) {
       return null
     }
 
@@ -29,7 +29,7 @@ class FooterVtexLogo extends React.Component{
           <img className="vtex-footer__logo-image" src={logoUrl} />
         </span>
         <span className="vtex-footer__badge nt7-ns">
-          <img className="vtex-footer__vtexlogo-form-item" src={VTEXIcon} />
+          <img className="vtex-footer__vtexlogo-form-item" src={poweredByVtexIcon} />
         </span>
       </div>
     )
@@ -42,5 +42,3 @@ FooterVtexLogo.propTypes = {
   showInColor: PropTypes.bool.isRequired,
   logoUrl: PropTypes.string.isRequired
 }
-
-export default FooterVtexLogo
