@@ -10,7 +10,7 @@ const FooterSocialNetworkItem = ({ imageSrc, url }) => {
   }
 
   return (
-    <a href={url} target="_blank" style={{ color: '#727273' }}>
+    <a href={url} target="_blank" className="mid-gray">
       <img className="vtex-footer__social-network-item" src={imageSrc} />
     </a>
   )

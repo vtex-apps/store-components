@@ -25,7 +25,8 @@ export default function footerList(WrappedComponent) {
     }
 
     formatMessage(id) {
-      return this.props.intl.messages[id] && this.props.intl.formatMessage({ id })
+      console.log(id);  
+      return this.props.intl.messages[id] && this.props.intl.formatMessage({ id }) || id;
     }
 
     render() {
