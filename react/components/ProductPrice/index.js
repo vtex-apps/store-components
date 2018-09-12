@@ -1,13 +1,13 @@
-import './global.css'
-
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { isNil } from 'ramda'
-import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
 import { FormattedMessage, injectIntl } from 'react-intl'
 
 import PricePropTypes from './propTypes'
 import Installments from './Installments'
+
+import './global.css'
 
 /**
  * The Price component. Shows the prices information of the Product Summary.
@@ -83,22 +83,21 @@ class Price extends Component {
             formatNumber={formatNumber}
             currencyOptions={this.currencyOptions}
           />}
-        {differentPrices &&
-          showSavings && (
-            <div className="vtex-price-savings__container">
-              <div className="vtex-price-savings dib">
-                <FormattedMessage
-                  id="pricing.savings"
-                  values={{
-                    savings: formatNumber(
-                      listPrice - sellingPrice,
-                      this.currencyOptions
-                    ),
-                  }}
-                />
-              </div>
+        {differentPrices && showSavings && (
+          <div className="vtex-price-savings__container">
+            <div className="vtex-price-savings dib">
+              <FormattedMessage
+                id="pricing.savings"
+                values={{
+                  savings: formatNumber(
+                    listPrice - sellingPrice,
+                    this.currencyOptions
+                  ),
+                }}
+              />
             </div>
-          )}
+          </div>
+        )}
       </div>
     )
   }
@@ -140,6 +139,7 @@ Price.Loader = (loaderProps = {}) => (
   </div>
 )
 
+Price.Loader.displayName = 'Price.Loader'
 
 const priceWithIntel = injectIntl(Price)
 
