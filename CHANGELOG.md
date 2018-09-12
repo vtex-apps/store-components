@@ -39,10 +39,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - `QuantitySelector` that should not exist because the styleguide has a component with the same purpose, the `NumericStepper`.
 
-## [2.0.0] - 2018-08-30
-### Removed
-- `QuantitySelector` that should not exist because the styleguide has a component with the same purpose, the `NumericStepper`.
-
 ## [1.16.3] - 2018-08-29
 ### Changed
 - Refact `SearchBar` component.
