@@ -2,30 +2,19 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import footerList from './footerList'
+import withImage from './withImage'
 
 class FooterSocialNetworkItem extends Component {
-  state = {}
-
-  componentDidMount() {
-    const { socialNetwork, showInColor } = this.props
-
-    import(`../images/${socialNetwork}${showInColor ? '' : '-BW'}.svg`).then(
-      image => {
-        this.setState({ image })
-      }
-    )
-  }
-
   render() {
-    const { image } = this.state
+    const { imageSrc } = this.props
 
-    if (!image) {
+    if (!imageSrc) {
       return null
     }
 
     return (
       <a href={this.props.url} target="_blank" style={{ color: '#727273' }}>
-        <img className="vtex-footer__social-network-item" src={image} />
+        <img className="vtex-footer__social-network-item" src={imageSrc} />
       </a>
     )
   }
@@ -43,5 +32,9 @@ FooterSocialNetworkItem.propTypes = {
     'Youtube',
   ]),
 }
+const getImagePathFromProps = ({ socialNetwork, showInColor }) =>
+  `${socialNetwork}${showInColor ? '' : '-BW'}.svg`
 
-export default footerList(FooterSocialNetworkItem)
+export default footerList(
+  withImage(getImagePathFromProps)(FooterSocialNetworkItem)
+)

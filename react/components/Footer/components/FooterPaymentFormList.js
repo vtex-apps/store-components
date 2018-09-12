@@ -1,27 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import footerList from './footerList'
+import withImage from './withImage'
 
 class FooterPaymentFormItem extends Component {
-  state = {}
-
-  componentDidMount() {
-    const { paymentType, showInColor } = this.props
-
-    import(`../images/${paymentType}${showInColor ? '' : '-BW'}.svg`)
-      .then(image => {
-        this.setState({ image })
-      })
-  }
-
   render() {
-    const { image } = this.state
+    const { imageSrc } = this.props
 
-    if (!image) {
+    if (!imageSrc) {
       return null
     }
 
-    return <img className="vtex-footer__payment-form-item" src={image} />
+    return <img className="vtex-footer__payment-form-item" src={imageSrc} />
   }
 }
 
@@ -32,4 +22,9 @@ FooterPaymentFormItem.propTypes = {
   showInColor: PropTypes.bool.isRequired,
 }
 
-export default footerList(FooterPaymentFormItem)
+const getImagePathFromProps = ({ paymentType, showInColor }) =>
+  `${paymentType}${showInColor ? '' : '-BW'}.svg`
+
+export default footerList(
+  withImage(getImagePathFromProps)(FooterPaymentFormItem)
+)

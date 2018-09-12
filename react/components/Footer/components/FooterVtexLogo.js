@@ -1,25 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-export default class FooterVtexLogo extends Component{
-  state = { poweredByVtexIcon: null }
+import withImage from './withImage'
 
-  componentDidMount() {
-    const { showInColor } = this.props
-
-    import(`../images/VTEX${showInColor ? '' : '-BW'}.svg`).then(
-      poweredByVtexIcon => {
-        this.setState({ poweredByVtexIcon })
-      }
-    )
-  }
-
+class FooterVtexLogo extends Component {
   render() {
-    const { poweredByVtexIcon } = this.state
+    const { logoUrl, imageSrc } = this.props
 
-    const { logoUrl } = this.props
-
-    if (!poweredByVtexIcon) {
+    if (!imageSrc) {
       return null
     }
 
@@ -29,7 +17,7 @@ export default class FooterVtexLogo extends Component{
           <img className="vtex-footer__logo-image" src={logoUrl} />
         </span>
         <span className="vtex-footer__badge nt7-ns">
-          <img className="vtex-footer__vtexlogo-form-item" src={poweredByVtexIcon} />
+          <img className="vtex-footer__vtexlogo-form-item" src={imageSrc} />
         </span>
       </div>
     )
@@ -40,5 +28,10 @@ FooterVtexLogo.displayName = 'FooterVtexLogo'
 
 FooterVtexLogo.propTypes = {
   showInColor: PropTypes.bool.isRequired,
-  logoUrl: PropTypes.string.isRequired
+  logoUrl: PropTypes.string.isRequired,
 }
+
+const getImagePathFromProps = ({ showInColor }) =>
+  `VTEX${showInColor ? '' : '-BW'}.svg`
+
+export default withImage(getImagePathFromProps)(FooterVtexLogo)
