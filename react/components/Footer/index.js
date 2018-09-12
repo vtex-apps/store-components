@@ -233,7 +233,7 @@ export default class Footer extends Component {
           <div className="vtex-footer__links-container f6 w-100-s w-80-ns">
             <FooterLinksMatrix links={sectionLinks} />
           </div>
-          <div className="vtex-footer__social-networks-container pt0 relative">
+          <div className="vtex-footer__social-networks-container pa1 pt0 relative">
             <FooterSocialNetworkList
               titleId="social-networks"
               list={socialNetworks}

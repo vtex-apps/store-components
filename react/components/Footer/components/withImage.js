@@ -4,7 +4,7 @@ function getDisplayName(Component) {
   return Component.displayName || Component.name || 'Component'
 }
 
-export default function withImage(inputFn) {
+export default function withImage(getImageFilename) {
   return WrappedComponent => {
     class WithImage extends Component {
       static displayName = `WithImage(${getDisplayName(WrappedComponent)})`
@@ -12,7 +12,7 @@ export default function withImage(inputFn) {
       state = {}
 
       componentDidMount() {
-        const imageName = inputFn(this.props)
+        const imageName = getImageFilename(this.props)
         import(`../images/${imageName}`).then(imageSrc => {
           this.setState({ imageSrc })
         })

@@ -39,10 +39,6 @@
   width: auto;
 }
 
-.vtex-footer__payment-form-item {
-  height: 2.533rem;
-  width: 2.533rem;
-}
 .vtex-footer__vtexlogo-form-item {
   height: 64px;
   width: 64px;
@@ -90,10 +86,6 @@
   .vtex-footer__container {
     flex-direction: column;
     padding: 22px 10px;
-  }
-
-  .vtex-footer__social-networks-container {
-    padding-top: 0.3rem;
   }
 
   .vtex-footer__list-container {
@@ -156,14 +148,6 @@
 
   .vtex-footer__container:last-of-type {
     padding-bottom: 25px;
-  }
-
-  .vtex-footer__list-item {
-    margin-right: 100px;
-  }
-
-  .vtex-footer__list-item--horizontal {
-    margin-right: 15px;
   }
 }
 

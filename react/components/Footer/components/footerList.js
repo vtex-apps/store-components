@@ -56,7 +56,7 @@ export default function footerList(WrappedComponent) {
         }
       )
 
-      const listItemClasses = classNames('vtex-footer__list-item', {
+      const listItemClasses = classNames('vtex-footer__list-item mr2-m', {
         'vtex-footer__list-item--horizontal': horizontal,
       })
 

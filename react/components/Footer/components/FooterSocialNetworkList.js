@@ -4,20 +4,16 @@ import React, { Component } from 'react'
 import footerList from './footerList'
 import withImage from './withImage'
 
-class FooterSocialNetworkItem extends Component {
-  render() {
-    const { imageSrc } = this.props
-
-    if (!imageSrc) {
-      return null
-    }
-
-    return (
-      <a href={this.props.url} target="_blank" style={{ color: '#727273' }}>
-        <img className="vtex-footer__social-network-item" src={imageSrc} />
-      </a>
-    )
+const FooterSocialNetworkItem = ({ imageSrc, url }) => {
+  if (!imageSrc) {
+    return null
   }
+
+  return (
+    <a href={url} target="_blank" style={{ color: '#727273' }}>
+      <img className="vtex-footer__social-network-item" src={imageSrc} />
+    </a>
+  )
 }
 
 FooterSocialNetworkItem.displayName = 'FooterSocialNetworkItem'
