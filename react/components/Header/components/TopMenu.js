@@ -5,7 +5,6 @@ import { ExtensionPoint, Link } from 'render'
 import classNames from 'classnames'
 import ReactResizeDetector from 'react-resize-detector'
 
-import Logo from '../../../Logo'
 import SearchBar from '../../../SearchBar'
 
 const LOGO_WIDTH_MOBILE = 90
@@ -24,7 +23,8 @@ class TopMenu extends Component {
     return (
       <div className="vtex-top-menu__logo w-20-m flex justify-start">
         <Link to="/" className="outline-0">
-          <Logo
+          <ExtensionPoint
+            id="logo"
             url={logoUrl}
             title={logoTitle}
             width={mobileMode ? LOGO_WIDTH_MOBILE : LOGO_WIDTH_DESKTOP}
