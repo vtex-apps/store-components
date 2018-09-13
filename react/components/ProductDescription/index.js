@@ -1,11 +1,11 @@
-import './global.css'
-
-import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import ContentLoader from 'react-content-loader'
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 
-import VTEXClasses from './CustomClasses'
+import SpecificationRow from './SpecificationRow'
+
+import './global.css'
 
 /**
  * Product Description Component.
@@ -13,7 +13,7 @@ import VTEXClasses from './CustomClasses'
  */
 class ProductDescription extends Component {
   static Loader = (loaderProps = {}) => (
-    <div className="vtex-product-specifications vtex-product-specifications-loader">
+    <div className="vtex-product-specifications vtex-product-specifications-loader mt6">
       <ContentLoader
         style={{
           width: '100%',
@@ -50,6 +50,7 @@ class ProductDescription extends Component {
       </ContentLoader>
     </div>
   )
+
   render() {
     const { specifications, skuName, description } = this.props
 
@@ -58,7 +59,7 @@ class ProductDescription extends Component {
     }
 
     return (
-      <div className={`${VTEXClasses.PRODUCT_DESCRIPTION} ma2`}>
+      <div className="vtex-product-description ma2">
         <div className="f4 b ttu mb3">
           <FormattedMessage id="product-description.title" />
         </div>
@@ -69,36 +70,26 @@ class ProductDescription extends Component {
         />
 
         {specifications.length > 0 && (
-          <div className="vtex-product-specifications">
-            <div className="vtex-product-specifications__title">
+          <div className="vtex-product-specifications mt6">
+            <div className="vtex-product-specifications__title f4 b ttu mb6-ns mb5-s">
               <FormattedMessage id="technicalspecifications.title" />
             </div>
-            <table className="vtex-product-specifications__table">
+            <table className="vtex-product-specifications__table w-100">
               <tbody>
                 {skuName && (
-                  <tr className="vtex-product-specifications__table-row">
-                    <th className="vtex-product-specifications__specification-name">
-                      SKU {skuName}
-                    </th>
-                    <td className="vtex-product-specifications__specification-values" />
-                  </tr>
+                  <SpecificationRow name={`SKU ${skuName}`} />
                 )}
                 {specifications.map(specification => (
-                  <tr
+                  <SpecificationRow
                     key={specification.name}
-                    className="vtex-product-specifications__table-row">
-                    <th className="vtex-product-specifications__specification-name">
-                      {specification.name}
-                    </th>
-                    <td className="vtex-product-specifications__specification-values">
-                      {specification.values.map((value, i) => (
-                        <Fragment key={value}>
-                          <span dangerouslySetInnerHTML={{ __html: value }} />{' '}
-                          {i !== specification.values.length - 1 && <br />}
-                        </Fragment>
-                      ))}
-                    </td>
-                  </tr>
+                    name={specification.name}
+                    values={specification.values.map((value, i) => (
+                      <Fragment key={value}>
+                        <span dangerouslySetInnerHTML={{ __html: value }} />{' '}
+                        {i !== specification.values.length - 1 && <br />}
+                      </Fragment>
+                    ))}
+                  />
                 ))}
               </tbody>
             </table>

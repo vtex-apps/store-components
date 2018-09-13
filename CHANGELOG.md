@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Hability to handle more than one variation on the same sku in the `SKUSelector`
 
+### Changed
+- Update `ProductDescription` css and move to tachyons classes.
+
 ## [2.3.0] - 2018-09-17
 ### Added
 - `Header` default padding to match the page's padding.
