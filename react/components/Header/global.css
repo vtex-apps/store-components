@@ -9,7 +9,10 @@
   .vtex-top-menu__search-bar {
     width: 36%;
   }
-  .vtex-top-menu__icons {
-    width: 32%;
+}
+
+@media only screen and (max-width: 80em) {
+  .vtex-login__profile {
+    display: none;
   }
 }
