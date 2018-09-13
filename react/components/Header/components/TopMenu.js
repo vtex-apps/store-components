@@ -34,7 +34,9 @@ class TopMenu extends Component {
   }
 
   renderMobileMenu() {
-    return <ExtensionPoint id="category-menu" mobileMode />
+    return (
+      <ExtensionPoint id="category-menu" mobileMode />
+    )
   }
 
   renderSearchBar(mobileMode) {
@@ -51,32 +53,21 @@ class TopMenu extends Component {
 
   renderIcons(mobileMode) {
     return (
-      <div
-        className={`vtex-top-menu__icons flex justify-end items-center ${
-          mobileMode ? 'order-1 ml-auto' : 'order-2'
-        }`}>
+      <div className={`vtex-top-menu__icons flex justify-end items-center ${mobileMode ? 'order-1 ml-auto' : 'order-2'}`}>
         <div className="mr7-m">
           <ExtensionPoint
             id="login"
             iconClasses="gray"
             labelClasses="gray"
-            iconSize={
-              mobileMode ? LOGIN_ICON_SIZE_MOBILE : LOGIN_ICON_SIZE_DESKTOP
-            }
-            iconLabel={
-              !mobileMode ? this.translate('topMenu.login.icon.label') : ''
-            }
+            iconSize={mobileMode ? LOGIN_ICON_SIZE_MOBILE : LOGIN_ICON_SIZE_DESKTOP}
+            iconLabel={!mobileMode ? this.translate('topMenu.login.icon.label') : ''}
           />
         </div>
         <ExtensionPoint
           id="minicart"
           iconClasses="gray"
-          iconSize={
-            mobileMode ? MINICART_ICON_SIZE_MOBILE : MINICART_ICON_SIZE_DESKTOP
-          }
-          iconLabel={
-            !mobileMode ? this.translate('topMenu.minicart.icon.label') : ''
-          }
+          iconSize={mobileMode ? MINICART_ICON_SIZE_MOBILE : MINICART_ICON_SIZE_DESKTOP}
+          iconLabel={!mobileMode ? this.translate('topMenu.minicart.icon.label') : ''}
           labelClasses="gray"
         />
       </div>
@@ -94,23 +85,23 @@ class TopMenu extends Component {
     const contentClasses = 'flex justify-center pb4 pv2-m pv6-l'
     return (
       <ReactResizeDetector handleWidth>
-        {width => {
-          const mobileMode =
-            width < 640 ||
-            (global.__RUNTIME__.hints.mobile && (!width || width < 640))
-          return (
-            <div className={containerClasses}>
-              <div className={contentClasses}>
-                <div className="flex flex-wrap w-100 justify-between-m items-center">
-                  {mobileMode && this.renderMobileMenu()}
-                  {this.renderLogo(mobileMode, logoUrl, logoTitle)}
-                  {this.renderSearchBar(mobileMode)}
-                  {this.renderIcons(mobileMode)}
+        {
+          width => {
+            const mobileMode = width < 640 || (global.__RUNTIME__.hints.mobile && (!width || width < 640))
+            return (
+              <div className={containerClasses}>
+                <div className={contentClasses}>
+                  <div className="flex flex-wrap w-100 justify-between-m items-center">
+                    {mobileMode && this.renderMobileMenu()}
+                    {this.renderLogo(mobileMode, logoUrl, logoTitle)}
+                    {this.renderSearchBar(mobileMode)}
+                    {this.renderIcons(mobileMode)}
+                  </div>
                 </div>
               </div>
-            </div>
-          )
-        }}
+            )
+          }
+        }
       </ReactResizeDetector>
     )
   }

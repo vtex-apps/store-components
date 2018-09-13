@@ -66,7 +66,10 @@ class Header extends Component {
     return (
       <Fragment>
         <ExtensionPoint id="telemarketing" />
-        <div className="vtex-header relative z-2 w-100" ref={this._root}>
+        <div
+          className="vtex-header relative z-2 w-100"
+          ref={this._root}
+        >
           <div className="z-2 items-center w-100 top-0 bg-white tl">
             <ExtensionPoint id="menu-link" />
           </div>
@@ -75,18 +78,24 @@ class Header extends Component {
             <ExtensionPoint id="category-menu" />
             {showMenuPopup && (
               <Modal>
-                <TopMenu logoUrl={logoUrl} logoTitle={logoTitle} fixed />
+                <TopMenu
+                  logoUrl={logoUrl}
+                  logoTitle={logoTitle}
+                  fixed
+                />
               </Modal>
             )}
             <div
               className="flex flex-column items-center fixed w-100"
-              style={{ top: offsetTop + 120 }}>
+              style={{ top: offsetTop + 120 }}
+            >
               {hasMessage && (
                 <div className="pa2 mw9">
                   <Alert
                     type={
                       orderFormContext.message.isSuccess ? 'success' : 'error'
-                    }>
+                    }
+                  >
                     {orderFormContext.message.text}
                   </Alert>
                 </div>
