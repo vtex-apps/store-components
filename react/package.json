@@ -25,6 +25,7 @@
     "react-responsive-modal": "^2.0.1",
     "react-share": "^2.1.1",
     "react-slick": "^0.23.1",
+    "react-spring": "^5.6.12",
     "render": "^0.1.4",
     "slick-carousel": "^1.8.1",
     "underscore": "^1.9.1",

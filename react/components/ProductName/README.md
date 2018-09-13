@@ -8,7 +8,7 @@ import ProductName from 'vtex.store-components/ProductName'
 
 ## Usage
 You can use it in your code like a React component with the jsx tag: `<ProductName />`. 
-```html
+```jsx
 <ProductName
     name={product.productName}
     skuName={selectedItem.name}

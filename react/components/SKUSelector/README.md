@@ -11,7 +11,7 @@ import SKUSelector from 'vtex.store-components/SKUSelector'
 
 You can use it into your code like a React component with the jsx tag: `<SKUSelector />`. 
 
-```html
+```jsx
 <SKUSelector
   title={'SKUSelector'}
   skuItems={[

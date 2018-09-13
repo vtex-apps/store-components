@@ -8,7 +8,7 @@ import CollectionBadges from 'vtex.store-components/CollectionBadges'
 
 ## Usage
 You can use it in your code like a React component with the jsx tag: `<CollectionBadges />`. 
-```html
+```jsx
 <CollectionBadges collectionBadgesText={[ 'foo', 'bar' ]}> 
   <img src="" alt="">
 </CollectionBadges>

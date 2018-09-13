@@ -12,7 +12,7 @@ import Share from 'vtex.store-components/Share'
 
 You can use it in your code like a React component with the jsx tag: `<Share />`.
 
-```html
+```jsx
 <Share social={{'Facebook': true, 'WhatsApp': true }} />
 ```
 

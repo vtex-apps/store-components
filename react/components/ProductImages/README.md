@@ -8,7 +8,7 @@ import ProductImages from 'vtex.store-components/ProductImages'
 
 ## Usage
 You can use it in your code like a React component with the jsx tag: `<ProductImages />`. 
-```html
+```jsx
 <ProductImages  
     images={selectedItem.images}
     thumbnailSliderOrientation="HORIZONTAL"

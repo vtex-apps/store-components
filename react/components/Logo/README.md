@@ -8,7 +8,7 @@ import Logo from 'vtex.store-components/Logo'
 
 ## Usage
 You can use it in your code like a React component with the jsx tag: `<Logo />`. 
-```html
+```jsx
 <Logo url={image.url} title={image.title} /> 
 ```
 

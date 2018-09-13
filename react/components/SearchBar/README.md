@@ -8,7 +8,7 @@ import SearchBar from 'vtex.store-components/SearchBar'
 
 ## Usage
 You can use it in your code like a React component with the jsx tag: `<SearchBar />`. 
-```html
+```jsx
 <SearchBar
     placeholder={"Search.. "}
     emptyPlaceholder={"No result"}
