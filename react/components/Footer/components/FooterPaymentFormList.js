@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import footerList from './footerList'
 import withImage from './withImage'
 
+/**
+ * Shows an image for the payments forms accepted
+ */
 const FooterPaymentFormItem = ({ imageSrc }) => {
   if (!imageSrc) {
     return null
@@ -14,7 +17,9 @@ const FooterPaymentFormItem = ({ imageSrc }) => {
 FooterPaymentFormItem.displayName = 'FooterPaymentFormItem'
 
 FooterPaymentFormItem.propTypes = {
+  /** Indicates which one of the payments forms should the component show its image */
   paymentType: PropTypes.string.isRequired,
+  /** If true, the original logo (with color) is used. If not, the grayscale's one */
   showInColor: PropTypes.bool.isRequired,
 }
 

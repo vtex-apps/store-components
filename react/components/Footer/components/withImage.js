@@ -4,6 +4,14 @@ function getDisplayName(Component) {
   return Component.displayName || Component.name || 'Component'
 }
 
+/**
+ * HOC used for lazily load an image in the 'images' folder right above
+ * this component.
+ * 
+ * Used for loading the logos for the Footer 
+ * 
+ * @param {Function} getImageFilename 
+ */
 export default function withImage(getImageFilename) {
   return WrappedComponent => {
     class WithImage extends Component {

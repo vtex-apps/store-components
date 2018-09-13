@@ -3,6 +3,10 @@ import PropTypes from 'prop-types'
 
 import withImage from './withImage'
 
+/**
+ * "Powered By Vtex" image's component, used in Footer
+ * 
+ */
 const FooterVtexLogo = ({ logoUrl, imageSrc }) => {
   if (!imageSrc) {
     return null
@@ -23,7 +27,9 @@ const FooterVtexLogo = ({ logoUrl, imageSrc }) => {
 FooterVtexLogo.displayName = 'FooterVtexLogo'
 
 FooterVtexLogo.propTypes = {
+  /** If true, the original logo (with color) is used. If not, the grayscale's one */
   showInColor: PropTypes.bool,
+  /** The source for an external customizable logo to show above "Powered By Vtex" */
   logoUrl: PropTypes.string,
 }
 
