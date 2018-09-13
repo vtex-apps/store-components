@@ -129,8 +129,8 @@
 @media screen and (min-width: 40em) {
   .vtex-footer__container {
     flex-flow: row wrap;
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   .vtex-footer__list-container {
@@ -152,8 +152,8 @@
 
 @media screen and (min-width: 64em) {
   .vtex-footer__container {
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   .vtex-footer__container:first-of-type {
