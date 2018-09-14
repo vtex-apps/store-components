@@ -5,9 +5,6 @@ import { ExtensionPoint, Link } from 'render'
 import classNames from 'classnames'
 import ReactResizeDetector from 'react-resize-detector'
 
-import Logo from '../../../Logo'
-import SearchBar from '../../../SearchBar'
-
 const LOGO_WIDTH_MOBILE = 90
 const LOGO_WIDTH_DESKTOP = 150
 const LOGO_HEIGHT_MOBILE = 30
@@ -24,7 +21,8 @@ class TopMenu extends Component {
     return (
       <div className="vtex-top-menu__logo w-20-m flex justify-start">
         <Link to="/" className="outline-0">
-          <Logo
+          <ExtensionPoint
+            id="logo"
             url={logoUrl}
             title={logoTitle}
             width={mobileMode ? LOGO_WIDTH_MOBILE : LOGO_WIDTH_DESKTOP}
@@ -44,7 +42,8 @@ class TopMenu extends Component {
   renderSearchBar(mobileMode) {
     return (
       <div className={`vtex-top-menu__search-bar flex pa2-m w-100 w-30-m ${mobileMode ? 'order-2' : 'order-1'}`}>
-        <SearchBar
+        <ExtensionPoint
+          id="search-bar"
           placeholder={this.translate('search-placeholder')}
           emptyPlaceholder={this.translate('search-emptyPlaceholder')}
         />
