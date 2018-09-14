@@ -115,7 +115,7 @@ ProductDescription.defaultProps = {
 
 ProductDescription.propTypes = {
   /** Product description string */
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   /** Intl object to provides internationalization */
   intl: intlShape.isRequired,
   /** Specifications that will be displayed on the table */
