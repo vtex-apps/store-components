@@ -77,7 +77,7 @@ class TopMenu extends Component {
   render() {
     const { logoUrl, logoTitle, fixed } = this.props
     const containerClasses = classNames(
-      'vtex-top-menu bg-white vtex-page-padding w-100',
+      'vtex-top-menu vtex-page-padding bg-white w-100',
       {
         'fixed shadow-5 top-0 z-999': fixed,
       }
