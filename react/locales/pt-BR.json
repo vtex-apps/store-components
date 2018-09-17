@@ -1,6 +1,4 @@
 {
-  "header.search-placeholder": "Busque por produtos, marcas...",
-  "header.search-emptyPlaceholder": "Nenhum resultado encontrado",
   "search.placeholder": "Buscar",
   "search.noMatches": "Sem resultado",
   "editor.productName.title": "Nome do produto",
@@ -85,7 +83,5 @@
   "editor.categoriesHighlighted.cardShape": "Forma da caixa",
   "editor.categoriesHighlighted.cardShape.squared": "Quadrada",
   "editor.categoriesHighlighted.cardShape.rectangular": "Retangular",
-  "header.topMenu.minicart.icon.label": "Meu Carrinho",
-  "header.topMenu.login.icon.label": "Entrar",
   "searchBar.button.cancel.label": "Cancelar"
 }
