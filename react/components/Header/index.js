@@ -1,19 +1,14 @@
-import React, { Component, Fragment } from 'react'
+import './global.css'
+
 import PropTypes from 'prop-types'
+import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
+import { ExtensionPoint } from 'render'
+import { contextPropTypes, orderFormConsumer } from 'vtex.store/OrderFormContext'
+import { Alert } from 'vtex.styleguide'
 
 import Modal from './components/Modal'
 import TopMenu from './components/TopMenu'
-
-import { Alert } from 'vtex.styleguide'
-import { ExtensionPoint } from 'render'
-
-import {
-  orderFormConsumer,
-  contextPropTypes,
-} from 'vtex.store/OrderFormContext'
-
-import './global.css'
 
 class Header extends Component {
   state = {
@@ -72,7 +67,7 @@ class Header extends Component {
       <Fragment>
         <ExtensionPoint id="telemarketing" />
         <div
-          className="vtex-header relative z-2 w-100"
+          className="vtex-header vtex-page-padding relative z-2 w-100"
           ref={this._root}
         >
           <div className="z-2 items-center w-100 top-0 bg-white tl">
@@ -82,11 +77,7 @@ class Header extends Component {
           <ExtensionPoint id="category-menu" />
           {showMenuPopup && (
             <Modal>
-              <TopMenu
-                logoUrl={logoUrl}
-                logoTitle={logoTitle}
-                fixed
-              />
+              <TopMenu logoUrl={logoUrl} logoTitle={logoTitle} fixed />
             </Modal>
           )}
           <div

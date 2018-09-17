@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { intlShape, injectIntl } from 'react-intl'
-import { ExtensionPoint, Link } from 'render'
 import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import { injectIntl, intlShape } from 'react-intl'
 import ReactResizeDetector from 'react-resize-detector'
+import { ExtensionPoint, Link } from 'render'
 
 const LOGO_WIDTH_MOBILE = 90
 const LOGO_WIDTH_DESKTOP = 150
@@ -77,12 +77,12 @@ class TopMenu extends Component {
   render() {
     const { logoUrl, logoTitle, fixed } = this.props
     const containerClasses = classNames(
-      'vtex-top-menu vtex-page-padding bg-white w-100',
+      'vtex-top-menu bg-white w-100',
       {
-        'fixed shadow-5 top-0 z-999': fixed,
+        'vtex-page-padding fixed shadow-5 top-0 z-999': fixed,
       }
     )
-    const contentClasses = 'flex justify-center pb4 pv2-m pv6-l'
+    const contentClasses = 'flex justify-center pb4 pv2-m pv6-l ph3-s'
     return (
       <ReactResizeDetector handleWidth>
         {
