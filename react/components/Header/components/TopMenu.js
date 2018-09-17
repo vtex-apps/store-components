@@ -82,7 +82,7 @@ class TopMenu extends Component {
         'vtex-page-padding fixed shadow-5 top-0 z-999': fixed,
       }
     )
-    const contentClasses = 'flex justify-center pb4 pv2-m pv6-l'
+    const contentClasses = 'flex justify-center pb4 pv2-m pv6-l ph3-s'
     return (
       <ReactResizeDetector handleWidth>
         {
