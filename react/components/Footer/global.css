@@ -39,10 +39,6 @@
   width: auto;
 }
 
-.vtex-footer__payment-form-item {
-  height: 64px;
-  width: 64px;
-}
 .vtex-footer__vtexlogo-form-item {
   height: 64px;
   width: 64px;
@@ -92,10 +88,6 @@
     padding: 22px 10px;
   }
 
-  .vtex-footer__social-networks-container {
-    padding-top: 1.5rem;
-  }
-
   .vtex-footer__list-container {
     width: 100%;
     margin-top: 10px;
@@ -103,10 +95,6 @@
 
   .vtex-footer__list-container:first-child {
     margin-top: 0;
-  }
-
-  .vtex-footer__list-container--right-aligned {
-    margin-left: 0;
   }
 
   .vtex-footer__list--horizontal {
@@ -160,14 +148,6 @@
 
   .vtex-footer__container:last-of-type {
     padding-bottom: 25px;
-  }
-
-  .vtex-footer__list-item {
-    margin-right: 100px;
-  }
-
-  .vtex-footer__list-item--horizontal {
-    margin-right: 15px;
   }
 }
 

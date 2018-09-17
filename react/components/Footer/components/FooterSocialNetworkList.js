@@ -2,40 +2,31 @@ import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
 import footerList from './footerList'
+import withImage from './withImage'
 
-class FooterSocialNetworkItem extends Component {
-  state = {}
-
-  componentDidMount() {
-    const { socialNetwork, showInColor } = this.props
-
-    import(`../images/${socialNetwork}${showInColor ? '' : '-BW'}.svg`).then(
-      image => {
-        this.setState({ image })
-      }
-    )
+/**
+ * Shows an image for an specific social network
+ */
+const FooterSocialNetworkItem = ({ imageSrc, url }) => {
+  if (!imageSrc) {
+    return null
   }
 
-  render() {
-    const { image } = this.state
-
-    if (!image) {
-      return null
-    }
-
-    return (
-      <a href={this.props.url} target="_blank" style={{ color: '#727273' }}>
-        <img className="vtex-footer__social-network-item" src={image} />
-      </a>
-    )
-  }
+  return (
+    <a href={url} target="_blank" className="mid-gray">
+      <img className="vtex-footer__social-network-item" src={imageSrc} />
+    </a>
+  )
 }
 
 FooterSocialNetworkItem.displayName = 'FooterSocialNetworkItem'
 
 FooterSocialNetworkItem.propTypes = {
+  /** For which link should the user be redirected if the image is clicked */
   url: PropTypes.string,
+  /** If true, the original logo (with color) is used. If not, the grayscale's one */
   showInColor: PropTypes.bool.isRequired,
+  /** Indicates from which social network should the image be displayed */
   socialNetwork: PropTypes.oneOf([
     'Facebook',
     'Twitter',
@@ -43,5 +34,9 @@ FooterSocialNetworkItem.propTypes = {
     'Youtube',
   ]),
 }
+const getImagePathFromProps = ({ socialNetwork, showInColor }) =>
+  `${socialNetwork}${showInColor ? '' : '-BW'}.svg`
 
-export default footerList(FooterSocialNetworkItem)
+export default footerList(
+  withImage(getImagePathFromProps)(FooterSocialNetworkItem)
+)

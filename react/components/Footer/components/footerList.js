@@ -25,7 +25,8 @@ export default function footerList(WrappedComponent) {
     }
 
     formatMessage(id) {
-      return this.props.intl.messages[id] && this.props.intl.formatMessage({ id })
+      console.log(id);  
+      return this.props.intl.messages[id] && this.props.intl.formatMessage({ id }) || id;
     }
 
     render() {
@@ -34,10 +35,15 @@ export default function footerList(WrappedComponent) {
         titleId,
         alignRight,
         horizontal,
+        titleCapitals,
         ...otherProps
       } = this.props
 
       if (!list || list.length === 0) return null
+
+      const titleClasses = classNames('vtex-footer__list-title f6 ma0 db', {
+        'ttu': !titleCapitals
+      })
 
       const listContainerClasses = classNames('vtex-footer__list-container', {
         'vtex-footer__list-container--right-aligned': alignRight,
@@ -51,13 +57,13 @@ export default function footerList(WrappedComponent) {
         }
       )
 
-      const listItemClasses = classNames('vtex-footer__list-item', {
+      const listItemClasses = classNames('vtex-footer__list-item mr2-m', {
         'vtex-footer__list-item--horizontal': horizontal,
       })
 
       return (
         <div className={listContainerClasses}>
-          <span className="vtex-footer__list-title f6 ttu ma0 db">
+          <span className={titleClasses}>
             {titleId && this.formatMessage(titleId)}
           </span>
           <ul className={listClasses}>

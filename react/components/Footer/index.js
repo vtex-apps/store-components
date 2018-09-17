@@ -7,7 +7,7 @@ import FooterBadgeList from './components/FooterBadgeList'
 import FooterLinksMatrix from './components/FooterLinksMatrix'
 import FooterPaymentFormMatrix from './components/FooterPaymentFormMatrix'
 import FooterSocialNetworkList from './components/FooterSocialNetworkList'
-import VTEXIcon from './images/VTEX-BW.svg'
+import FooterVtexLogo from './components/FooterVtexLogo'
 import { objectLikeBadgeArray, objectLikeLinkArray } from './propTypes'
 
 /**
@@ -233,12 +233,13 @@ export default class Footer extends Component {
           <div className="vtex-footer__links-container f6 w-100-s w-80-ns">
             <FooterLinksMatrix links={sectionLinks} />
           </div>
-          <div className="vtex-footer__social-networks-container pt0">
+          <div className="vtex-footer__social-networks-container pa1 pt0 relative">
             <FooterSocialNetworkList
               titleId="social-networks"
               list={socialNetworks}
               horizontal
               alignRight
+              titleCapitals
               showInColor={showSocialNetworksInColor}
             />
           </div>
@@ -262,15 +263,8 @@ export default class Footer extends Component {
                 </div>
               ))}
           </div>
+          <FooterVtexLogo logoUrl={logo} />
           <FooterBadgeList list={badges} />
-          <div className="vtex-footer__badge-list vtex-footer__list-container--right-aligned">
-            <span className="vtex-footer__badge">
-              <img className="vtex-footer__logo-image" src={logo} />
-            </span>
-            <span className="vtex-footer__badge">
-              <img className="vtex-footer__vtexlogo-form-item" src={VTEXIcon} />
-            </span>
-          </div>
         </div>
       </footer>
     )

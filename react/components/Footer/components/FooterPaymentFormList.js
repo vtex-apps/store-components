@@ -1,35 +1,31 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import footerList from './footerList'
+import withImage from './withImage'
 
-class FooterPaymentFormItem extends Component {
-  state = {}
-
-  componentDidMount() {
-    const { paymentType, showInColor } = this.props
-
-    import(`../images/${paymentType}${showInColor ? '' : '-BW'}.svg`)
-      .then(image => {
-        this.setState({ image })
-      })
+/**
+ * Shows an image for the payments forms accepted
+ */
+const FooterPaymentFormItem = ({ imageSrc }) => {
+  if (!imageSrc) {
+    return null
   }
 
-  render() {
-    const { image } = this.state
-
-    if (!image) {
-      return null
-    }
-
-    return <img className="vtex-footer__payment-form-item" src={image} />
-  }
+  return <img className="vtex-footer__payment-form-item w2 h2" src={imageSrc} />
 }
 
 FooterPaymentFormItem.displayName = 'FooterPaymentFormItem'
 
 FooterPaymentFormItem.propTypes = {
+  /** Indicates which one of the payments forms should the component show its image */
   paymentType: PropTypes.string.isRequired,
+  /** If true, the original logo (with color) is used. If not, the grayscale's one */
   showInColor: PropTypes.bool.isRequired,
 }
 
-export default footerList(FooterPaymentFormItem)
+const getImagePathFromProps = ({ paymentType, showInColor }) =>
+  `${paymentType}${showInColor ? '' : '-BW'}.svg`
+
+export default footerList(
+  withImage(getImagePathFromProps)(FooterPaymentFormItem)
+)
