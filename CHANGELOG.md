@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `Header` default padding to match the page's padding.
 
 ## [2.2.2] - 2018-09-17
 ### Fixed
@@ -26,9 +28,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Update `Price` props documentation.
 - `Header` to import the `Logo` and `Header` as extension points.
-
-### Added
-- `Header` default padding to match the page's padding.
 
 ## [2.0.6] - 2018-09-06
 ### Changed

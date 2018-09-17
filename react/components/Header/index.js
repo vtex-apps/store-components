@@ -67,40 +67,34 @@ class Header extends Component {
       <Fragment>
         <ExtensionPoint id="telemarketing" />
         <div
-          className="vtex-header relative z-2 w-100"
+          className="vtex-header vtex-page-padding relative z-2 w-100"
           ref={this._root}
         >
           <div className="z-2 items-center w-100 top-0 bg-white tl">
             <ExtensionPoint id="menu-link" />
           </div>
-          <div className="vtex-page-padding">
-            <TopMenu logoUrl={logoUrl} logoTitle={logoTitle} />
-            <ExtensionPoint id="category-menu" />
-            {showMenuPopup && (
-              <Modal>
-                <TopMenu
-                  logoUrl={logoUrl}
-                  logoTitle={logoTitle}
-                  fixed
-                />
-              </Modal>
+          <TopMenu logoUrl={logoUrl} logoTitle={logoTitle} />
+          <ExtensionPoint id="category-menu" />
+          {showMenuPopup && (
+            <Modal>
+              <TopMenu logoUrl={logoUrl} logoTitle={logoTitle} fixed />
+            </Modal>
+          )}
+          <div
+            className="flex flex-column items-center fixed w-100"
+            style={{ top: offsetTop + 120 }}
+          >
+            {hasMessage && (
+              <div className="pa2 mw9">
+                <Alert
+                  type={
+                    orderFormContext.message.isSuccess ? 'success' : 'error'
+                  }
+                >
+                  {orderFormContext.message.text}
+                </Alert>
+              </div>
             )}
-            <div
-              className="flex flex-column items-center fixed w-100"
-              style={{ top: offsetTop + 120 }}
-            >
-              {hasMessage && (
-                <div className="pa2 mw9">
-                  <Alert
-                    type={
-                      orderFormContext.message.isSuccess ? 'success' : 'error'
-                    }
-                  >
-                    {orderFormContext.message.text}
-                  </Alert>
-                </div>
-              )}
-            </div>
           </div>
         </div>
       </Fragment>
