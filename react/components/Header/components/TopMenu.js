@@ -53,7 +53,7 @@ class TopMenu extends Component {
 
   renderIcons(mobileMode) {
     return (
-      <div className={`vtex-top-menu__icons flex justify-end items-center ${mobileMode ? 'order-1 ml-auto' : 'order-2'}`}>
+      <div className={`flex justify-end items-center ${mobileMode ? 'order-1 ml-auto' : 'order-2'}`}>
         <div className="mr7-m">
           <ExtensionPoint
             id="login"
@@ -91,7 +91,7 @@ class TopMenu extends Component {
             return (
               <div className={containerClasses}>
                 <div className={contentClasses}>
-                  <div className="flex flex-wrap w-100 justify-between-m items-center">
+                  <div className="flex-wrap flex-nowrap-ns flex w-100 justify-between-m items-center">
                     {mobileMode && this.renderMobileMenu()}
                     {this.renderLogo(mobileMode, logoUrl, logoTitle)}
                     {this.renderSearchBar(mobileMode)}
