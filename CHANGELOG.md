@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Hability to handle more than one variation on the same sku in the `SKUSelector`
 
+## [2.3.1] - 2018-09-20
 ### Changed
 - Update `ProductDescription` css and move to tachyons classes.
 
