@@ -1,90 +1,83 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
-import VTEXClasses from './constants/CustomClasses'
-import SelectorItem from './components/SelectorItem'
+import SKUSelector from './components/SKUSelector';
+import { SKUSelectorContainerPropTypes } from './utils/proptypes'
+import { getMainVariationName, getVariationOptions } from './utils'
 
 import './global.css'
 
 /**
- * Display a list of SKU items of a problem and its specifications.
+ * Display a list of SKU items of a product and its specifications.
  */
-export default class SKUSelector extends Component {
-  static propTypes = {
-    /** Product's slug */
-    productSlug: PropTypes.string,
-    /** SKU selected */
-    skuSelected: PropTypes.object,
-    /** Title which describes the SKU Selector Type */
-    title: PropTypes.string.isRequired,
-    /** List of SKU Items */
-    skuItems: PropTypes.arrayOf(PropTypes.shape({
-      /** Name of the SKU Item */
-      name: PropTypes.string.isRequired,
-      /** Images of the SKU item */
-      images: PropTypes.arrayOf(PropTypes.shape({
-        /** URL of source Image */
-        imageUrl: PropTypes.string.isRequired,
-        /** Brief description of the image */
-        imageLabel: PropTypes.string,
-      })).isRequired,
-    })).isRequired,
-  }
+export default class SKUSelectorContainer extends Component {
+  constructor(props) {
+    super(props)
+    const { skuSelected } = props
 
-  static defaultProps = {
-    title: '',
-    skuItems: [],
-  }
-
-  getMaxSkuPrice = items => {
-    let maxPrice = 0
-    if (items) {
-      items.forEach(item => {
-        const [{ commertialOffer: { Price } }] = item.sellers
-        maxPrice = Math.max(maxPrice, Price)
-      })
+    let mainVariationValue = ''
+    if (skuSelected && skuSelected.variations) {
+      const name = getMainVariationName(skuSelected.variations)
+      mainVariationValue = skuSelected[name]
     }
-    return maxPrice
+
+    this.state = { mainVariationValue }
   }
 
-  stripUrl = url => url.replace(/^https?:/, '')
+  handleSelectSku = (skuId) => {
+    //const slug = this.props.productSlug
+    const slug = "ninja-300"
+
+    this.context.navigate({
+      page: 'store/product',
+      params: { slug },
+      query: `skuId=${skuId}`,
+    })
+  }
+
+  handleSelectMainVariation = mainVariationValue => {
+    console.log("set main", mainVariationValue)
+    this.setState({ mainVariationValue })
+  }
 
   render() {
-    const skuItems = this.props.skuItems
-    const maxSkuPrice = this.getMaxSkuPrice(skuItems)
-    const { productSlug, skuSelected: { itemId: skuSelectedId } } = this.props
+    const { skuItems, skuSelected: { variations, itemId } } = this.props
+    const { mainVariationValue } = this.state
+
+    const mainName = getMainVariationName(variations)
+    const mainVariation = {
+      name: mainName,
+      value: mainVariationValue,
+      options: getVariationOptions(mainName, skuItems)
+    }
+
+    const secondaryVariation = {}
+
+    const filteredSkus = skuItems.filter(sku => sku[mainVariation.name] === mainVariation.value)
+
+    if (variations.length > 1) {
+      secondaryVariation.name = variations.filter(variation => variation != mainVariation.name)[0]
+      secondaryVariation.options = getVariationOptions(secondaryVariation.name, filteredSkus)
+    }
+
     return (
-      <div className={`${VTEXClasses.SKU_SELECTOR} flex flex-column`}>
-        <div className="ma1">
-          <div className="b fabriga overflow-hidden">
-            {this.props.title}
-          </div>
-          <div className="inline-flex flex-wrap">
-            {
-              skuItems.map(skuItem => {
-                if (!skuItem.images.length) return null
-                const [skuImage] = skuItem.images
-                const [seller] = skuItem.sellers
-                return (
-                  <SelectorItem
-                    isSelected={skuItem.itemId === skuSelectedId}
-                    key={skuItem.itemId}
-                    isAvailable={seller.commertialOffer.AvailableQuantity > 0}
-                    maxPrice={maxSkuPrice}
-                    productSlug={productSlug}
-                    skuId={skuItem.itemId}
-                    price={seller.commertialOffer.Price}>
-                    <img
-                      src={this.stripUrl(skuImage.imageUrl)}
-                      alt={skuImage.imageLabel}
-                    />
-                  </SelectorItem>
-                )
-              })
-            }
-          </div>
-        </div>
-      </div>
+      <SKUSelector
+        mainVariation={mainVariation}
+        secondaryVariation={secondaryVariation}
+        onSelectSku={this.handleSelectSku}
+        onSelectMainVariation={this.handleSelectMainVariation}
+        selectedId={itemId}
+        skus={filteredSkus}
+      />
     )
   }
+}
+
+SKUSelectorContainer.contextTypes = {
+  navigate: PropTypes.func,
+}
+
+SKUSelectorContainer.propTypes = SKUSelectorContainerPropTypes
+
+SKUSelectorContainer.defaultProps = {
+  skuItems: [],
 }

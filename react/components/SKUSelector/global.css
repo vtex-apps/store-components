@@ -1,4 +1,4 @@
-.vtex-selector__item {
+.vtex-sku-selector__item {
   font-size: 90%;
   width: 50px;
   height: 50px;
@@ -8,16 +8,16 @@
   border-radius: 5%;
 }
 
-.vtex-selector__item:hover {
+.vtex-sku-selector__item:hover {
   border-color: grey;
 }
 
-.vtex-selector__item p {
+.vtex-sku-selector__item p {
   margin: 0;
   padding-top: 10px;
 }
 
-.vtex-selector__bagde {
+.vtex-sku-selector__bagde {
   font-size: .71429rem;
   background-color: #ff4136;
   border-radius: 50%;
