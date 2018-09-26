@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 
 import SelectorItem from './SelectorItem'
 import { SELECTOR__VARIATION } from '../utils/classes'
-import { getMaxSkuPrice, stripUrl, isColor } from '../utils'
+import { stripUrl, isColor } from '../utils'
 
 export default class Variation extends Component {
   render() {
-    const { variation, skus, selectedId, onSelectItem } = this.props
+    const { variation, onSelectItem, maxSkuPrice, isSelected } = this.props
 
     const shouldDisplayImages = isColor(variation.name)
-    const maxSkuPrice = getMaxSkuPrice(skus)
 
     return (
       <div className={`${SELECTOR__VARIATION} flex flex-column`}>
@@ -18,19 +17,19 @@ export default class Variation extends Component {
             {variation.name}
           </div>
           <div className="inline-flex flex-wrap">
-            {skus.map(skuItem => {
+            {variation.options.map(skuItem => {
               if (!skuItem.images.length) return null
               const [skuImage] = skuItem.images
               const [seller] = skuItem.sellers
               return (
                 <SelectorItem
-                  isSelected={skuItem.itemId === selectedId}
+                  isSelected={isSelected(skuItem)}
                   key={skuItem.itemId}
                   isAvailable={seller.commertialOffer.AvailableQuantity > 0}
                   maxPrice={maxSkuPrice}
                   skuId={skuItem.itemId}
                   price={seller.commertialOffer.Price}
-                  onClick={() => onSelectItem({ skuId: skuItem.itemId, variation: skuItem[variation.name] })}
+                  onClick={() => onSelectItem(skuItem.itemId)}
                 >
                   {shouldDisplayImages ?
                     <img

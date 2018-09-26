@@ -2,30 +2,29 @@ import React, { Component } from 'react'
 
 import SKUSelector from './components/SKUSelector';
 import { SKUSelectorContainerPropTypes } from './utils/proptypes'
-import { getMainVariationName, getVariationOptions } from './utils'
+import { getMainVariationName, getVariationOptions, getMaxSkuPrice, parseSku } from './utils'
 
 import './global.css'
 
 /**
+ * Parse the skus to retrieve the given varitations.
+ */
+export default (props) => {
+
+  if (!props.skuSelected || !props.skuSelected.variations || props.skuSelected.variations.length === 0) return null
+
+  const skuSelected = props.skuSelected && parseSku(props.skuSelected) || null
+  const skuItems = props.skuItems && props.skuItems.map(sku => parseSku(sku)) || null
+
+  return <SKUSelectorContainer {...props} skuSelected={skuSelected} skuItems={skuItems} />
+}
+
+/**
  * Display a list of SKU items of a product and its specifications.
  */
-export default class SKUSelectorContainer extends Component {
-  constructor(props) {
-    super(props)
-    const { skuSelected } = props
-
-    let mainVariationValue = ''
-    if (skuSelected && skuSelected.variations) {
-      const name = getMainVariationName(skuSelected.variations)
-      mainVariationValue = skuSelected[name]
-    }
-
-    this.state = { mainVariationValue }
-  }
-
+class SKUSelectorContainer extends Component {
   handleSelectSku = (skuId) => {
-    //const slug = this.props.productSlug
-    const slug = "ninja-300"
+    const slug = this.props.productSlug
 
     this.context.navigate({
       page: 'store/product',
@@ -34,22 +33,17 @@ export default class SKUSelectorContainer extends Component {
     })
   }
 
-  handleSelectMainVariation = mainVariationValue => {
-    console.log("set main", mainVariationValue)
-    this.setState({ mainVariationValue })
-  }
-
   render() {
     const { skuItems, skuSelected: { variations, itemId } } = this.props
-    const { mainVariationValue } = this.state
 
-    const mainName = getMainVariationName(variations)
+    const name = getMainVariationName(variations)
     const mainVariation = {
-      name: mainName,
-      value: mainVariationValue,
-      options: getVariationOptions(mainName, skuItems)
+      name,
+      value: this.props.skuSelected[name],
+      options: getVariationOptions(name, skuItems)
     }
 
+    const maxSkuPrice = getMaxSkuPrice(skuItems)
     const secondaryVariation = {}
 
     const filteredSkus = skuItems.filter(sku => sku[mainVariation.name] === mainVariation.value)
@@ -64,9 +58,8 @@ export default class SKUSelectorContainer extends Component {
         mainVariation={mainVariation}
         secondaryVariation={secondaryVariation}
         onSelectSku={this.handleSelectSku}
-        onSelectMainVariation={this.handleSelectMainVariation}
+        maxSkuPrice={maxSkuPrice}
         selectedId={itemId}
-        skus={filteredSkus}
       />
     )
   }
@@ -77,7 +70,3 @@ SKUSelectorContainer.contextTypes = {
 }
 
 SKUSelectorContainer.propTypes = SKUSelectorContainerPropTypes
-
-SKUSelectorContainer.defaultProps = {
-  skuItems: [],
-}
