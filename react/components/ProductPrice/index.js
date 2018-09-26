@@ -55,7 +55,7 @@ class Price extends Component {
     return (
       <div className="vtex-price flex flex-column justify-around">
         {differentPrices && (
-          <div className="vtex-price-list__container pv1 normal">
+          <div className="vtex-price-list__container pv1 normal c-muted-2">
             {showLabels && (
               <div className="vtex-price-list__label dib strike">
                 <FormattedMessage id="pricing.from" />
@@ -66,7 +66,7 @@ class Price extends Component {
             </div>
           </div>
         )}
-        <div className="vtex-price-selling__container pv1 b">
+        <div className="vtex-price-selling__container pv1 b c-muted-1">
           {showLabels && (
             <div className="vtex-price-selling__label dib">
               <FormattedMessage id="pricing.to" />
@@ -84,7 +84,7 @@ class Price extends Component {
             currencyOptions={this.currencyOptions}
           />}
         {differentPrices && showSavings && (
-          <div className="vtex-price-savings__container">
+          <div className="vtex-price-savings__container c-muted-2">
             <div className="vtex-price-savings dib">
               <FormattedMessage
                 id="pricing.savings"
