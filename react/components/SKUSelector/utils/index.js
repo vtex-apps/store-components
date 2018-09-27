@@ -6,12 +6,15 @@ import { clone } from 'ramda'
  */
 export const getMaxSkuPrice = items => {
   let maxPrice = 0
+
   if (items) {
-    items.forEach(item => {
-      const [{ commertialOffer: { Price } }] = item.sellers
-      maxPrice = Math.max(maxPrice, Price)
+    maxPrice = items.reduce((max, sku) => {
+      const [{ commertialOffer: { Price } }] = sku.sellers
+
+      return Math.max(max, Price)
     })
   }
+
   return maxPrice
 }
 

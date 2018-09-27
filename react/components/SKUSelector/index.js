@@ -7,7 +7,7 @@ import { getMainVariationName, getVariationOptions, getMaxSkuPrice, parseSku } f
 import './global.css'
 
 /**
- * Parse the skus to retrieve the given varitations.
+ * Parse the skus to retrieve the given variations.
  */
 export default (props) => {
 
@@ -49,7 +49,7 @@ class SKUSelectorContainer extends Component {
     const filteredSkus = skuItems.filter(sku => sku[mainVariation.name] === mainVariation.value)
 
     if (variations.length > 1) {
-      secondaryVariation.name = variations.filter(variation => variation != mainVariation.name)[0]
+      secondaryVariation.name = variations.filter(variation => variation !== mainVariation.name)[0]
       secondaryVariation.options = getVariationOptions(secondaryVariation.name, filteredSkus)
     }
 
