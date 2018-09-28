@@ -1,90 +1,65 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { withRuntimeContext } from 'render'
 
-import VTEXClasses from './constants/CustomClasses'
-import SelectorItem from './components/SelectorItem'
+import SKUSelector from './components/SKUSelector';
+import { SKUSelectorContainerPropTypes } from './utils/proptypes'
+import { getMainVariationName, getVariationOptions, getMaxSkuPrice, parseSku } from './utils'
 
 import './global.css'
 
 /**
- * Display a list of SKU items of a problem and its specifications.
+ * Display a list of SKU items of a product and its specifications.
  */
-export default class SKUSelector extends Component {
-  static propTypes = {
-    /** Product's slug */
-    productSlug: PropTypes.string,
-    /** SKU selected */
-    skuSelected: PropTypes.object,
-    /** Title which describes the SKU Selector Type */
-    title: PropTypes.string.isRequired,
-    /** List of SKU Items */
-    skuItems: PropTypes.arrayOf(PropTypes.shape({
-      /** Name of the SKU Item */
-      name: PropTypes.string.isRequired,
-      /** Images of the SKU item */
-      images: PropTypes.arrayOf(PropTypes.shape({
-        /** URL of source Image */
-        imageUrl: PropTypes.string.isRequired,
-        /** Brief description of the image */
-        imageLabel: PropTypes.string,
-      })).isRequired,
-    })).isRequired,
-  }
+class SKUSelectorContainer extends Component {
+  handleSelectSku = (skuId) => {
+    const { runtime: { navigate } } = this.props
 
-  static defaultProps = {
-    title: '',
-    skuItems: [],
-  }
+    const slug = this.props.productSlug
 
-  getMaxSkuPrice = items => {
-    let maxPrice = 0
-    if (items) {
-      items.forEach(item => {
-        const [{ commertialOffer: { Price } }] = item.sellers
-        maxPrice = Math.max(maxPrice, Price)
-      })
-    }
-    return maxPrice
+    navigate({
+      page: 'store/product',
+      params: { slug },
+      query: `skuId=${skuId}`,
+    })
   }
-
-  stripUrl = url => url.replace(/^https?:/, '')
 
   render() {
-    const skuItems = this.props.skuItems
-    const maxSkuPrice = this.getMaxSkuPrice(skuItems)
-    const { productSlug, skuSelected: { itemId: skuSelectedId } } = this.props
+    if (!this.props.skuSelected || !this.props.skuSelected.variations || this.props.skuSelected.variations.length === 0) return null
+
+    const skuSelected = this.props.skuSelected && parseSku(this.props.skuSelected)
+    const skuItems = this.props.skuItems && this.props.skuItems.map(sku => parseSku(sku))
+    const itemId = skuSelected.itemId
+    const variations = skuSelected.variations
+
+    const name = getMainVariationName(variations)
+    const mainVariation = {
+      name,
+      value: skuSelected[name],
+      options: getVariationOptions(name, skuItems)
+    }
+
+    const maxSkuPrice = getMaxSkuPrice(skuItems)
+    const secondaryVariation = {}
+
+    const filteredSkus = skuItems.filter(sku => sku[name] === mainVariation.value)
+
+    if (variations.length > 1) {
+      secondaryVariation.name = variations.filter(variation => variation !== name)[0]
+      secondaryVariation.options = getVariationOptions(secondaryVariation.name, filteredSkus)
+    }
+
     return (
-      <div className={`${VTEXClasses.SKU_SELECTOR} flex flex-column`}>
-        <div className="ma1">
-          <div className="b fabriga overflow-hidden">
-            {this.props.title}
-          </div>
-          <div className="inline-flex flex-wrap">
-            {
-              skuItems.map(skuItem => {
-                if (!skuItem.images.length) return null
-                const [skuImage] = skuItem.images
-                const [seller] = skuItem.sellers
-                return (
-                  <SelectorItem
-                    isSelected={skuItem.itemId === skuSelectedId}
-                    key={skuItem.itemId}
-                    isAvailable={seller.commertialOffer.AvailableQuantity > 0}
-                    maxPrice={maxSkuPrice}
-                    productSlug={productSlug}
-                    skuId={skuItem.itemId}
-                    price={seller.commertialOffer.Price}>
-                    <img
-                      src={this.stripUrl(skuImage.imageUrl)}
-                      alt={skuImage.imageLabel}
-                    />
-                  </SelectorItem>
-                )
-              })
-            }
-          </div>
-        </div>
-      </div>
+      <SKUSelector
+        mainVariation={mainVariation}
+        secondaryVariation={secondaryVariation}
+        onSelectSku={this.handleSelectSku}
+        maxSkuPrice={maxSkuPrice}
+        selectedId={itemId}
+      />
     )
   }
 }
+
+SKUSelectorContainer.propTypes = SKUSelectorContainerPropTypes
+
+export default withRuntimeContext(SKUSelectorContainer)

@@ -2,37 +2,22 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedNumber } from 'react-intl'
 
-import VTEXClasses from '../constants/CustomClasses'
-
 /**
  * Inherits the components that should be displayed inside the Selector component.
  */
 export default class SelectorItem extends PureComponent {
-  static contextTypes = {
-    navigate: PropTypes.func,
-  }
-
-  handleClick = () => {
-    this.context.navigate({
-      page: 'store/product',
-      params: { slug: this.props.productSlug },
-      query: `skuId=${this.props.skuId}`,
-    })
-  }
-
   render() {
-    const { isAvailable, isSelected, children, maxPrice, price } = this.props
+    const { isAvailable, isSelected, children, maxPrice, price, onClick } = this.props
     const discount = getDiscount(maxPrice, price)
     return (
-      <div
-        className={`${VTEXClasses.SELECTOR__ITEM} di ba bw1 pointer flex items-center relative
+      <div className={`vtex-sku-selector__item di ba bw1 pointer flex items-center relative
         ${isSelected ? 'b--blue' : 'b--transparent'}
         ${!isAvailable && 'bg-light-gray'}`}
-        onClick={this.handleClick}>
-        <div className={isAvailable ? '' : 'o-50'}>
+        onClick={onClick}>
+        <div className={`center b ${isAvailable ? '' : 'o-50'}`}>
           {children}
         </div>
-        {discount > 0 && <span className={`${VTEXClasses.SKU_BADGE} b`}><FormattedNumber value={discount} style="percent" /></span>}
+        {discount > 0 && <span className="vtex-sku-selector__bagde b"><FormattedNumber value={discount} style="percent" /></span>}
       </div>
     )
   }
@@ -53,8 +38,6 @@ SelectorItem.propTypes = {
   maxPrice: PropTypes.number,
   /** Price of the current sku */
   price: PropTypes.number,
-  /** Product's slug */
-  productSlug: PropTypes.string,
   /** SKU's ID */
   skuId: PropTypes.string,
 }
