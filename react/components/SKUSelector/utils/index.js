@@ -5,17 +5,13 @@ import { clone } from 'ramda'
  * @param {array of sku's} items 
  */
 export const getMaxSkuPrice = items => {
-  let maxPrice = 0
+  if (!items) return 0
 
-  if (items) {
-    maxPrice = items.reduce((max, sku) => {
-      const [{ commertialOffer: { Price } }] = sku.sellers
+  return items.reduce((max, sku) => {
+    const [{ commertialOffer: { Price } }] = sku.sellers
 
-      return Math.max(max, Price)
-    })
-  }
-
-  return maxPrice
+    return Math.max(max, Price)
+  })
 }
 
 /**
@@ -57,7 +53,7 @@ export const getVariationOptions = (variation, skus) => {
   return Object.values(hTable).sort((a, b) => {
     if (a[variation] < b[variation]) return -1
     if (a[variation] > b[variation]) return 1
-    return 0;
+    return 0
   })
 }
 
@@ -66,11 +62,9 @@ export const getVariationOptions = (variation, skus) => {
  * @param {string} variation 
  */
 export const isColor = (variation) => {
-  let result = false
-  if (variation)
-    result = variation.toLowerCase() === "cor" || variation.toLowerCase() === "color"
+  if (!variation) return false
 
-  return result
+  return variation.toLowerCase() === "cor" || variation.toLowerCase() === "color"
 }
 
 /**
@@ -78,14 +72,9 @@ export const isColor = (variation) => {
  * @param {Array[string]} variations 
  */
 export const getMainVariationName = (variations) => {
-  let result
-
   for (let i = 0; i < variations.length; i++) {
-    if (isColor(variations[i])) {
-      result = variations[i]
-      break
-    }
+    if (isColor(variations[i])) return variations[i]
   }
 
-  return result || variations[0]
+  return variations[0]
 }
