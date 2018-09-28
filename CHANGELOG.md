@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Hability to handle more than one variation on the same sku in the `SKUSelector`
+- Availability prop to `BuyButton` component.
 
 ## [2.3.1] - 2018-09-20
 ### Changed
