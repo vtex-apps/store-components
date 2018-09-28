@@ -87,5 +87,6 @@
   "editor.categoriesHighlighted.cardShape.rectangular": "Retangular",
   "header.topMenu.minicart.icon.label": "Meu Carrinho",
   "header.topMenu.login.icon.label": "Entrar",
-  "searchBar.button.cancel.label": "Cancelar"
+  "searchBar.button.cancel.label": "Cancelar",
+  "buyButton-label-unavailable": "Indisponível"
 }

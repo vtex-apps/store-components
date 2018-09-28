@@ -1,7 +1,8 @@
 import find from 'lodash/find'
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+
 import { contextPropTypes, orderFormConsumer } from 'vtex.store/OrderFormContext'
 import { Button } from 'vtex.styleguide'
 
@@ -19,6 +20,7 @@ const CONSTANTS = {
 export class BuyButton extends Component {
   static defaultProps = {
     isOneClickBuy: false,
+    available: true,
   }
 
   state = {
@@ -91,17 +93,20 @@ export class BuyButton extends Component {
   }
 
   render() {
-    const loading = this.state.isLoading || !this.props.skuItems
+    const { children, skuItems, available } = this.props
+    const loading = this.state.isLoading || !skuItems
 
     return (
       <Fragment>
         {loading ? (
           <Button disabled size="small" isLoading={loading}>
-            {this.props.children}
+            {children}
           </Button>
         ) : (
-            <Button primary size="small" onClick={() => this.handleAddToCart()}>
-              {this.props.children}
+            <Button primary size="small" disabled={!available} onClick={() => this.handleAddToCart()}>
+              {available ? children : (
+                <FormattedMessage id="buyButton-label-unavailable" />
+              )}
             </Button>
           )}
       </Fragment>
@@ -127,8 +132,10 @@ BuyButton.propTypes = {
   children: PropTypes.PropTypes.node.isRequired,
   /** Should redirect to checkout after adding to cart */
   isOneClickBuy: PropTypes.bool,
-  /* Internationalization */
+  /** Internationalization */
   intl: intlShape.isRequired,
+  /** If the product is available or not*/
+  available: PropTypes.bool.isRequired
 }
 
 export default orderFormConsumer(injectIntl(BuyButton))
