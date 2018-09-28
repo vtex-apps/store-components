@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import SelectorItem from './SelectorItem'
-import { SELECTOR__VARIATION } from '../utils/classes'
 import { stripUrl, isColor } from '../utils'
 
 export default class Variation extends Component {
@@ -11,7 +10,7 @@ export default class Variation extends Component {
     const shouldDisplayImages = isColor(variation.name)
 
     return (
-      <div className={`${SELECTOR__VARIATION} flex flex-column`}>
+      <div className="vtex-sku-selector__variation flex flex-column">
         <div className="ma1">
           <div className="b fabriga overflow-hidden">
             {variation.name}
