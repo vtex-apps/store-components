@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.4.1] - 2018-10-02
+### Changed
+- Updated the product price and name colors.
+
+### Fixed
+- Discount badge positioning.
+
 ## [2.4.0] - 2018-09-28
 ### Added
 - Hability to handle more than one variation on the same sku in the `SKUSelector`

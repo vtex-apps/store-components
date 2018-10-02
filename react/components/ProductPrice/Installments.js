@@ -53,7 +53,7 @@ export default class Installments extends Component {
     ))
 
     return (
-      <div className="vtex-price-installments__container">
+      <div className="vtex-price-installments__container c-muted-2">
         <div className="vtex-price-installments dib">
           {showLabels ? (
             <FormattedMessage
@@ -65,10 +65,10 @@ export default class Installments extends Component {
               }}
             />
           ) : (
-              <span>
-                {installmentsElement} {timesElement} {installmentPriceElement}
-              </span>
-            )}
+            <span>
+              {installmentsElement} {timesElement} {installmentPriceElement}
+            </span>
+          )}
           {!installment.InterestRate && (
             <span className="pl1">
               <FormattedMessage id="pricing.interest-free" />

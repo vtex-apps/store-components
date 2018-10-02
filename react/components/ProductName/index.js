@@ -95,15 +95,16 @@ class ProductName extends Component {
     }
 
     return (
-      <div className="vtex-product-name">
+      <div className="vtex-product-name c-on-base">
         <div className={brandClasses}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </div>
         {showSku && <div className={skuClasses}>{skuName}</div>}
-        {showProductReference &&
-          productReference && (
-            <div className="vtex-product-name__product-reference pt3 f7 ttu gray">{`REF: ${productReference}`}</div>
-          )}
+        {showProductReference && productReference && (
+          <div className="vtex-product-name__product-reference pt3 f7 ttu">
+            {`REF: ${productReference}`}
+          </div>
+        )}
       </div>
     )
   }
