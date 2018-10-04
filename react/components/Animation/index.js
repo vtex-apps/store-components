@@ -1,30 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
-import { Transition } from 'react-spring'
-
-const ANIMATIONS = {
-  drawerLeft: {
-    from: { transform: 'translateX(100%)' },
-    enter: { transform: 'translateX(0%)' },
-    leave: { transform: 'translateX(100%)' },
-  },
-  drawerRight: {
-    from: { transform: 'translateX(-100%)' },
-    enter: { transform: 'translateX(0%)' },
-    leave: { transform: 'translateX(-100%)' },
-  },
-  drawerTop: {
-    from: { transform: 'translateY(-100%)' },
-    enter: { transform: 'translateY(0%)' },
-    leave: { transform: 'translateY(-100%)' },
-  },
-  drawerBottom: {
-    from: { transform: 'translateY(100%)' },
-    enter: { transform: 'translateY(0%)' },
-    leave: { transform: 'translateY(100%)' },
-  },
-}
+import { ANIMATIONS } from './animation'
 
 /**
  * Animation component
@@ -39,32 +15,27 @@ export default class Animation extends Component {
     className: PropTypes.string,
     /* Type of animation */
     type: PropTypes.oneOf(['drawerLeft', 'drawerRight', 'drawerTop', 'drawerBottom']),
+    /* The animation's duration in seconds */
+    duration: PropTypes.number,
+    /* The animation's deslocation in percentage */
+    transfer: PropTypes.number,
   }
 
   static defaultProps = {
     className: '',
     type: 'drawerLeft',
+    duration: 0.4,
+    transfer: 110,
   }
 
-  renderChildren = style => (
-    <div className={this.props.className}
-      style={style}
-    >
-      {this.props.children}
-    </div>
-  )
-
   render() {
-    const { isActive, type } = this.props
-    const style = ANIMATIONS[type]
+    const { isActive, type, className, children, duration, transfer } = this.props
+    const style = ANIMATIONS[type][isActive ? 'from' : 'leave'](duration, transfer)
 
     return (
-      <Transition
-        keys={isActive ? ['children'] : []}
-        {...style}
-      >
-        {isActive ? [this.renderChildren] : []}
-      </Transition>
+      <div className={className} style={style}>
+        {children}
+      </div>
     )
   }
 }
