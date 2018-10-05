@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { ANIMATIONS } from './animation'
 
+const ANIMATION_TRANSFER = 110
+const ANIMATION_TRANSFER_ENTER = 0
+const ANIMATION_TIME = 0.4
+
 /**
  * Animation component
  */
@@ -17,23 +21,37 @@ export default class Animation extends Component {
     type: PropTypes.oneOf(['drawerLeft', 'drawerRight', 'drawerTop', 'drawerBottom']),
     /* The animation's duration in seconds */
     duration: PropTypes.number,
-    /* The animation's deslocation in percentage */
+    /* The active animation's dislocation in percentage */
     transfer: PropTypes.number,
+    /* The not active animation dislocation in percentage */
+    transferEnter: PropTypes.number,
   }
 
   static defaultProps = {
     className: '',
     type: 'drawerLeft',
-    duration: 0.4,
-    transfer: 110,
+    duration: ANIMATION_TIME,
+    transfer: ANIMATION_TRANSFER,
+    transferEnter: ANIMATION_TRANSFER_ENTER,
+  }
+
+  getAnimation = () => {
+    const { isActive, type, duration, transfer, transferEnter } = this.props
+    let animation = ANIMATIONS[type]
+    if (isActive) {
+      animation = animation['from'](duration, transferEnter)
+    } else {
+      animation = animation['leave'](duration, transfer)
+    }
+    return animation
   }
 
   render() {
-    const { isActive, type, className, children, duration, transfer } = this.props
-    const style = ANIMATIONS[type][isActive ? 'from' : 'leave'](duration, transfer)
+    const { className, children } = this.props
+    const animation = this.getAnimation()
 
     return (
-      <div className={className} style={style}>
+      <div className={className} style={animation}>
         {children}
       </div>
     )
