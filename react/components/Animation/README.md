@@ -21,4 +21,5 @@ You can use it in your code like a React component with the jsx tag: `<Animation
 | `type`             | `String`   | Type of the animation, it can be 'drawerLeft', 'drawerRight', 'drawerTop' or 'drawerBottom' |
 | `isActive`         | `Boolean`  | Active the animation                                                                        |
 | `duration`         | `number`   | The animation duration in seconds, the default value is 0.4 second.                         |
-| `transfer`         | `number`   | The animation deslocation in percentage, the default value is 110%.                         |
+| `transfer`         | `number`   | The active animation dislocation in percentage, the default value is 110%.                  |
+| `transferEnter`    | `number`   | The not active animation dislocation in percentage, the default value is 0%.                |
