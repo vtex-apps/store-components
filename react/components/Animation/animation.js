@@ -14,7 +14,7 @@ export const DRAWER_ANIMATION = {
 
 export const ANIMATIONS = {
   drawerLeft: {
-    from: (duration, transfer) => DRAWER_ANIMATION[DRAWER_HORIZONTAL](duration, transfer),
+    from: (duration, transfer) => DRAWER_ANIMATION[DRAWER_HORIZONTAL](duration, -transfer),
     leave: (duration, transfer) => DRAWER_ANIMATION[DRAWER_HORIZONTAL](duration, transfer),
   },
   drawerRight: {
@@ -22,7 +22,7 @@ export const ANIMATIONS = {
     leave: (duration, transfer) => DRAWER_ANIMATION[DRAWER_HORIZONTAL](duration, -transfer),
   },
   drawerTop: {
-    from: (duration, transfer) => DRAWER_ANIMATION[DRAWER_VERTICAL](duration, transfer),
+    from: (duration, transfer) => DRAWER_ANIMATION[DRAWER_VERTICAL](duration, -transfer),
     leave: (duration, transfer) => DRAWER_ANIMATION[DRAWER_VERTICAL](duration, transfer),
   },
   drawerBottom: {
