@@ -21,7 +21,7 @@ export default class Animation extends Component {
     type: PropTypes.oneOf(['drawerLeft', 'drawerRight', 'drawerTop', 'drawerBottom']),
     /* The animation's duration in seconds */
     duration: PropTypes.number,
-    /* The active animation's dislocation in percentage */
+    /* The active animation dislocation in percentage */
     transfer: PropTypes.number,
     /* The not active animation dislocation in percentage */
     transferEnter: PropTypes.number,
