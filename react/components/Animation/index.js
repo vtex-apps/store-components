@@ -1,30 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { ANIMATIONS } from './animation'
 
-import { Transition } from 'react-spring'
-
-const ANIMATIONS = {
-  drawerLeft: {
-    from: { transform: 'translateX(100%)' },
-    enter: { transform: 'translateX(0%)' },
-    leave: { transform: 'translateX(100%)' },
-  },
-  drawerRight: {
-    from: { transform: 'translateX(-100%)' },
-    enter: { transform: 'translateX(0%)' },
-    leave: { transform: 'translateX(-100%)' },
-  },
-  drawerTop: {
-    from: { transform: 'translateY(-100%)' },
-    enter: { transform: 'translateY(0%)' },
-    leave: { transform: 'translateY(-100%)' },
-  },
-  drawerBottom: {
-    from: { transform: 'translateY(100%)' },
-    enter: { transform: 'translateY(0%)' },
-    leave: { transform: 'translateY(100%)' },
-  },
-}
+const ANIMATION_TRANSFER = 110
+const ANIMATION_TRANSFER_ENTER = 0
+const ANIMATION_TIME = 0.4
 
 /**
  * Animation component
@@ -39,32 +19,40 @@ export default class Animation extends Component {
     className: PropTypes.string,
     /* Type of animation */
     type: PropTypes.oneOf(['drawerLeft', 'drawerRight', 'drawerTop', 'drawerBottom']),
+    /* The animation's duration in seconds */
+    duration: PropTypes.number,
+    /* The active animation deslocation in percentage */
+    transfer: PropTypes.number,
+    /* The not active animation deslocation in percentage */
+    transferEnter: PropTypes.number,
   }
 
   static defaultProps = {
     className: '',
     type: 'drawerLeft',
+    duration: ANIMATION_TIME,
+    transfer: ANIMATION_TRANSFER,
+    transferEnter: ANIMATION_TRANSFER_ENTER,
   }
 
-  renderChildren = style => (
-    <div className={this.props.className}
-      style={style}
-    >
-      {this.props.children}
-    </div>
-  )
+  get animation() {
+    const { isActive, type, duration, transfer, transferEnter } = this.props
+    let animation = ANIMATIONS[type]
+    if (isActive) {
+      animation = animation['from'](duration, transferEnter)
+    } else {
+      animation = animation['leave'](duration, transfer)
+    }
+    return animation
+  }
 
   render() {
-    const { isActive, type } = this.props
-    const style = ANIMATIONS[type]
+    const { className, children } = this.props
 
     return (
-      <Transition
-        keys={isActive ? ['children'] : []}
-        {...style}
-      >
-        {isActive ? [this.renderChildren] : []}
-      </Transition>
+      <div className={className} style={this.animation}>
+        {children}
+      </div>
     )
   }
 }

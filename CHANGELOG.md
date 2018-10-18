@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.4.2] - 2018-10-18
+### Changed
+- `Animation` component to use only CSS instead of `Transition` from the `spring` module.
+
 ## [2.4.1] - 2018-10-02
 ### Changed
 - Updated the product price and name colors.
