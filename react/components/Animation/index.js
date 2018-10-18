@@ -35,7 +35,7 @@ export default class Animation extends Component {
     transferEnter: ANIMATION_TRANSFER_ENTER,
   }
 
-  getAnimation = () => {
+  get animation() {
     const { isActive, type, duration, transfer, transferEnter } = this.props
     let animation = ANIMATIONS[type]
     if (isActive) {
@@ -48,10 +48,9 @@ export default class Animation extends Component {
 
   render() {
     const { className, children } = this.props
-    const animation = this.getAnimation()
 
     return (
-      <div className={className} style={animation}>
+      <div className={className} style={this.animation}>
         {children}
       </div>
     )
