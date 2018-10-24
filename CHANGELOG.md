@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Add onSKUSelected to props and call it when its defined.
+- Add onSKUSelected to SKUSelector props and call it when its defined.
 
 ## [2.6.7] - 2018-11-26
 ### Fixed
