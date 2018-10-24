@@ -11,9 +11,12 @@ import './global.css'
  * Display a list of SKU items of a product and its specifications.
  */
 class SKUSelectorContainer extends Component {
-  handleSelectSku = (skuId) => {
-    const { runtime: { navigate } } = this.props
+  handleSkuSelection = (skuId) => {
+    this.props.onSKUSelected ? this.props.onSKUSelected(skuId) : this.redirectToSku(skuId)
+  }
 
+  redirectToSku(skuId) {
+    const { runtime: { navigate } } = this.props
     const slug = this.props.productSlug
 
     navigate({
@@ -52,7 +55,7 @@ class SKUSelectorContainer extends Component {
       <SKUSelector
         mainVariation={mainVariation}
         secondaryVariation={secondaryVariation}
-        onSelectSku={this.handleSelectSku}
+        onSelectSku={this.handleSkuSelection}
         maxSkuPrice={maxSkuPrice}
         selectedId={itemId}
       />
