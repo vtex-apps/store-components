@@ -28,7 +28,7 @@ export const SKUSelectorContainerPropTypes = {
 const variationPropTypes = PropTypes.shape({
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
-  options: PropTypes.arrayOf(skuPropType)
+  options: PropTypes.arrayOf(skuPropType),
 })
 
 export const SKUSelectorPropTypes = {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRuntimeContext } from 'render'
 
-import SKUSelector from './components/SKUSelector';
+import SKUSelector from './components/SKUSelector'
 import { SKUSelectorContainerPropTypes } from './utils/proptypes'
 import { getMainVariationName, getVariationOptions, getMaxSkuPrice, parseSku } from './utils'
 
@@ -35,7 +35,7 @@ class SKUSelectorContainer extends Component {
     const mainVariation = {
       name,
       value: skuSelected[name],
-      options: getVariationOptions(name, skuItems)
+      options: getVariationOptions(name, skuItems),
     }
 
     const maxSkuPrice = getMaxSkuPrice(skuItems)
