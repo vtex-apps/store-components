@@ -2,6 +2,7 @@ import find from 'lodash/find'
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+import ContentLoader from 'react-content-loader'
 
 import { contextPropTypes, orderFormConsumer } from 'vtex.store/OrderFormContext'
 import { Button } from 'vtex.styleguide'
@@ -66,7 +67,7 @@ export class BuyButton extends Component {
       }),
     }
 
-    this.setState({ isLoading: true })
+    this.setState({ isAddingToCart: true })
 
     variables.orderFormId = orderFormContext.orderForm.orderFormId
 
@@ -89,26 +90,27 @@ export class BuyButton extends Component {
         () => {
           this.toastMessage(false)
         }
-      )
+      ).finally(() => {
+        this.setState({ isAddingToCart: false })
+      })
   }
 
   render() {
     const { children, skuItems, available } = this.props
     const loading = this.state.isLoading || !skuItems
+    const isAddingToCart = this.state.isAddingToCart
 
     return (
       <Fragment>
         {loading ? (
-          <Button disabled size="small" isLoading={loading}>
-            {children}
-          </Button>
+          <ContentLoader />
         ) : (
-            <Button primary size="small" disabled={!available} onClick={() => this.handleAddToCart()}>
-              {available ? children : (
-                <FormattedMessage id="buyButton-label-unavailable" />
-              )}
-            </Button>
-          )}
+          <Button primary size="small" disabled={!available} onClick={() => this.handleAddToCart()} isLoading={isAddingToCart}>
+            {available ? children : (
+              <FormattedMessage id="buyButton-label-unavailable" />
+            )}
+          </Button>
+        )}
       </Fragment>
     )
   }
@@ -135,7 +137,7 @@ BuyButton.propTypes = {
   /** Internationalization */
   intl: intlShape.isRequired,
   /** If the product is available or not*/
-  available: PropTypes.bool.isRequired
+  available: PropTypes.bool.isRequired,
 }
 
 export default orderFormConsumer(injectIntl(BuyButton))
