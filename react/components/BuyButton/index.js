@@ -26,6 +26,7 @@ export class BuyButton extends Component {
 
   state = {
     isLoading: false,
+    isAddingToCart: false,
     timeOut: null,
   }
 
@@ -44,16 +45,15 @@ export class BuyButton extends Component {
 
     orderFormContext.updateToastMessage(message)
 
-    const timeOut = window.setTimeout(() => {
+    window.setTimeout(() => {
       orderFormContext.updateToastMessage({ isSuccess: null, text: null })
       this.setState({ timeOut: null })
     }, CONSTANTS.TOAST_TIMEOUT)
-
-    this.setState({ isLoading: false, timeOut })
   }
 
-  handleAddToCart = () => {
+  handleAddToCart = async () => {
     const { skuItems, isOneClickBuy, orderFormContext } = this.props
+    this.setState({ isAddingToCart: true })
 
     const variables = {
       items: skuItems.map(skuItem => {
@@ -67,16 +67,11 @@ export class BuyButton extends Component {
       }),
     }
 
-    this.setState({ isAddingToCart: true })
-
     variables.orderFormId = orderFormContext.orderForm.orderFormId
 
     if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
 
-    orderFormContext
-      .addItem({
-        variables,
-      })
+    await orderFormContext.addItem({ variables })
       .then(
         mutationRes => {
           const { items } = mutationRes.data.addItem
@@ -90,15 +85,14 @@ export class BuyButton extends Component {
         () => {
           this.toastMessage(false)
         }
-      ).finally(() => {
-        this.setState({ isAddingToCart: false })
-      })
+      )
+    this.setState({ isAddingToCart: false })
   }
 
   render() {
     const { children, skuItems, available } = this.props
     const loading = this.state.isLoading || !skuItems
-    const isAddingToCart = this.state.isAddingToCart
+    const { isAddingToCart } = this.state
 
     return (
       <Fragment>
