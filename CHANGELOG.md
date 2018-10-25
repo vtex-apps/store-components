@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Replace spinner by content loader in BuyButton
+- Replace spinner by content loader in BuyButton.
 
 ## [2.4.2] - 2018-10-18
 ### Changed
