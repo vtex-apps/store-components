@@ -7,8 +7,6 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import PricePropTypes from './propTypes'
 import Installments from './Installments'
 
-import './global.css'
-
 /**
  * The Price component. Shows the prices information of the Product Summary.
  */
@@ -104,7 +102,7 @@ class Price extends Component {
 }
 
 Price.Loader = (loaderProps = {}) => (
-  <div className="vtex-price vtex-price-loader">
+  <div className="vtex-price vtex-price-loader h3">
     <ContentLoader
       style={{
         width: '100%',
