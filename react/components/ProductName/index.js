@@ -1,5 +1,3 @@
-import './global.css'
-
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
@@ -37,7 +35,7 @@ class ProductName extends Component {
   }
 
   static Loader = (loaderProps = {}) => (
-    <div className="vtex-product-name vtex-product-name-loader">
+    <div className="vtex-product-name vtex-product-name-loader pt5 overflow-hidden">
       <ContentLoader
         style={{
           width: '100%',
@@ -76,11 +74,11 @@ class ProductName extends Component {
       productReference,
     } = this.props
 
-    let brandClasses = 'vtex-product-name__brand'
-    let skuClasses = 'vtex-product-name__sku'
+    let brandClasses = 'vtex-product-name__brand f5'
+    let skuClasses = 'vtex-product-name__sku f6'
 
     if (large) {
-      brandClasses += ' vtex-product-name__brand--large'
+      brandClasses += ' vtex-product-name__brand--large f2'
       skuClasses += ' vtex-product-name__sku--large'
     }
 
@@ -95,7 +93,7 @@ class ProductName extends Component {
     }
 
     return (
-      <div className="vtex-product-name c-on-base">
+      <div className="vtex-product-name overflow-hidden c-on-base">
         <div className={brandClasses}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </div>
