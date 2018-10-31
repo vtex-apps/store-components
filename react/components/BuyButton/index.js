@@ -2,6 +2,7 @@ import find from 'lodash/find'
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+import ContentLoader from 'react-content-loader'
 
 import { contextPropTypes, orderFormConsumer } from 'vtex.store/OrderFormContext'
 import { Button } from 'vtex.styleguide'
@@ -25,6 +26,7 @@ export class BuyButton extends Component {
 
   state = {
     isLoading: false,
+    isAddingToCart: false,
     timeOut: null,
   }
 
@@ -43,16 +45,15 @@ export class BuyButton extends Component {
 
     orderFormContext.updateToastMessage(message)
 
-    const timeOut = window.setTimeout(() => {
+    window.setTimeout(() => {
       orderFormContext.updateToastMessage({ isSuccess: null, text: null })
       this.setState({ timeOut: null })
     }, CONSTANTS.TOAST_TIMEOUT)
-
-    this.setState({ isLoading: false, timeOut })
   }
 
-  handleAddToCart = () => {
+  handleAddToCart = async () => {
     const { skuItems, isOneClickBuy, orderFormContext } = this.props
+    this.setState({ isAddingToCart: true })
 
     const variables = {
       items: skuItems.map(skuItem => {
@@ -66,16 +67,11 @@ export class BuyButton extends Component {
       }),
     }
 
-    this.setState({ isLoading: true })
-
     variables.orderFormId = orderFormContext.orderForm.orderFormId
 
     if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
 
-    orderFormContext
-      .addItem({
-        variables,
-      })
+    await orderFormContext.addItem({ variables })
       .then(
         mutationRes => {
           const { items } = mutationRes.data.addItem
@@ -90,25 +86,25 @@ export class BuyButton extends Component {
           this.toastMessage(false)
         }
       )
+    this.setState({ isAddingToCart: false })
   }
 
   render() {
     const { children, skuItems, available } = this.props
     const loading = this.state.isLoading || !skuItems
+    const { isAddingToCart } = this.state
 
     return (
       <Fragment>
         {loading ? (
-          <Button disabled size="small" isLoading={loading}>
-            {children}
-          </Button>
+          <ContentLoader />
         ) : (
-            <Button primary size="small" disabled={!available} onClick={() => this.handleAddToCart()}>
-              {available ? children : (
-                <FormattedMessage id="buyButton-label-unavailable" />
-              )}
-            </Button>
-          )}
+          <Button primary size="small" disabled={!available} onClick={() => this.handleAddToCart()} isLoading={isAddingToCart}>
+            {available ? children : (
+              <FormattedMessage id="buyButton-label-unavailable" />
+            )}
+          </Button>
+        )}
       </Fragment>
     )
   }
@@ -135,7 +131,7 @@ BuyButton.propTypes = {
   /** Internationalization */
   intl: intlShape.isRequired,
   /** If the product is available or not*/
-  available: PropTypes.bool.isRequired
+  available: PropTypes.bool.isRequired,
 }
 
 export default orderFormConsumer(injectIntl(BuyButton))

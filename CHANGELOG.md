@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.4.3] - 2018-10-31
+### Fixed
+- Replace spinner by content loader in BuyButton.
+
 ## [2.4.2] - 2018-10-18
 ### Changed
 - `Animation` component to use only CSS instead of `Transition` from the `spring` module.
