@@ -25,17 +25,23 @@ class ProductName extends Component {
     large: PropTypes.bool,
     /** Component and content loader styles */
     styles: PropTypes.object,
+    /** Render function for name field, this function should expect a name string and large prop */
+    renderName: PropTypes.func,
+    /** Render function for sku field, this function should expect a skuName string and large prop */
+    renderSku: PropTypes.func,
+    /** Render function for product reference field, this funcitno should expect a productReference string and large prop */
+    renderProductReference: PropTypes.func
   }
 
   static defaultProps = {
     large: false,
     showBrandName: false,
     showProductReference: false,
-    showSku: false,
+    showSku: false
   }
 
   static Loader = (loaderProps = {}) => (
-    <div className="vtex-product-name vtex-product-name-loader pt5 overflow-hidden">
+    <div className="vtex-product-name vtex-product-name-loader pt5">
       <ContentLoader
         style={{
           width: '100%',
@@ -66,43 +72,27 @@ class ProductName extends Component {
     const {
       name,
       skuName,
-      brandName,
       large,
-      showBrandName,
       showProductReference,
       showSku,
       productReference,
+      renderName
     } = this.props
-
-    let brandClasses = 'vtex-product-name__brand f5'
-    let skuClasses = 'vtex-product-name__sku f6'
-
-    if (large) {
-      brandClasses += ' vtex-product-name__brand--large f2'
-      skuClasses += ' vtex-product-name__sku--large'
-    }
 
     if (!name) {
       return (
         <ProductName.Loader
           {...this.props.styles}
-          brandClasses={brandClasses}
-          skuClasses={skuClasses}
         />
       )
     }
 
     return (
-      <div className="vtex-product-name overflow-hidden c-on-base">
-        <div className={brandClasses}>
-          {name} {showBrandName && brandName && `- ${brandName}`}
-        </div>
-        {showSku && <div className={skuClasses}>{skuName}</div>}
-        {showProductReference && productReference && (
-          <div className="vtex-product-name__product-reference pt3 f7 ttu">
-            {`REF: ${productReference}`}
-          </div>
-        )}
+      <div className="vtex-product-name">
+        {renderName && renderName({ large, name })}
+        {showSku && renderSku && renderSku({ skuName, large })}
+        {showProductReference && renderProductReference
+          && renderProductReference({ productReference, large })}
       </div>
     )
   }
