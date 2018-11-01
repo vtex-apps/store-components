@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Remove CSS from ProductName and ProductPrice.
+- Change the API of `ProductName` component to use render props.
 
 ## [2.4.2] - 2018-10-18
 ### Changed
