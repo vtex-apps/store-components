@@ -10,7 +10,6 @@ export default class Installments extends Component {
   render() {
     const {
       installments,
-      showLabels,
       formatNumber,
       currencyOptions,
     } = this.props
@@ -46,31 +45,22 @@ export default class Installments extends Component {
       installment.NumberOfInstallments,
       formattedInstallmentPrice,
       <span key="times">&times;</span>,
-    ].map((element, index) => (
-      <span className="vtex-price-installments__value" key={index}>
-        {element}
-      </span>
-    ))
+    ]
 
     return (
-      <div className="vtex-price-installments__container c-muted-2">
-        <div className="vtex-price-installments dib">
-          {showLabels ? (
-            <FormattedMessage
-              id="pricing.installment-display"
-              values={{
-                installments: installmentsElement,
-                installmentPrice: installmentPriceElement,
-                times: timesElement,
-              }}
-            />
-          ) : (
-            <span>
-              {installmentsElement} {timesElement} {installmentPriceElement}
-            </span>
-          )}
+      <div className="lh-copy">
+        <div>
+          <FormattedMessage
+            id="pricing.installment-display"
+            values={{
+              installments: installmentsElement,
+              installmentPrice: installmentPriceElement,
+              times: timesElement,
+            }}
+          />
           {!installment.InterestRate && (
-            <span className="pl1">
+            <span>
+              <span> </span>
               <FormattedMessage id="pricing.interest-free" />
             </span>
           )}
@@ -83,8 +73,6 @@ export default class Installments extends Component {
 Installments.propTypes = {
   /** Product installments to be displayed */
   installments: PricePropTypes.installments,
-  /** Pages editor config to display labels */
-  showLabels: PropTypes.bool.isRequired,
   /** react-intl function to format the prices*/
   formatNumber: PropTypes.func.isRequired,
   /** Options to be passe to the formatNumber function*/

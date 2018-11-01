@@ -21,7 +21,6 @@ class Price extends Component {
 
   static defaultProps = {
     showListPrice: true,
-    showLabels: true,
     showInstallments: false,
     showSavings: false,
   }
@@ -39,7 +38,6 @@ class Price extends Component {
       listPrice,
       showListPrice,
       showInstallments,
-      showLabels,
       showSavings,
       installments,
       styles,
@@ -53,49 +51,32 @@ class Price extends Component {
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
     return (
-      <div className="vtex-price flex flex-column justify-around">
+      <div className="flex flex-column justify-around mt3 mb3">
         {differentPrices && (
-          <div className="vtex-price-list__container pv1 normal c-muted-2">
-            {showLabels && (
-              <div className="vtex-price-list__label dib strike">
-                <FormattedMessage id="pricing.from" />
-              </div>
-            )}
-            <div className="vtex-price-list dib ph2 strike">
-              {formatNumber(listPrice, this.currencyOptions)}
-            </div>
+          <div className="c-muted-2 dib strike lh-copy mb2">
+            {formatNumber(listPrice, this.currencyOptions)}
           </div>
         )}
-        <div className="vtex-price-selling__container pv1 b c-muted-1">
-          {showLabels && (
-            <div className="vtex-price-selling__label dib">
-              <FormattedMessage id="pricing.to" />
-            </div>
-          )}
-          <div className="vtex-price-selling dib ph2">
-            {formatNumber(sellingPrice, this.currencyOptions)}
-          </div>
+        <div className="b dib c-on-base t-heading-2 lh-title">
+          {formatNumber(sellingPrice, this.currencyOptions)}
         </div>
         {showInstallments &&
-          <Installments
-            installments={installments}
-            showLabels={showLabels}
-            formatNumber={formatNumber}
-            currencyOptions={this.currencyOptions}
-          />}
+        <Installments
+          installments={installments}
+          formatNumber={formatNumber}
+          currencyOptions={this.currencyOptions}
+        />}
         {differentPrices && showSavings && (
-          <div className="vtex-price-savings__container c-muted-2">
-            <div className="vtex-price-savings dib">
-              <FormattedMessage
-                id="pricing.savings"
-                values={{
-                  savings: formatNumber(
-                    listPrice - sellingPrice,
-                    this.currencyOptions
-                  ),
-                }}
-              />
-            </div>
+          <div className="f5 dib c-success t-small lh-copy mt3 mb2">
+            <FormattedMessage
+              id="pricing.savings"
+              values={{
+                savings: formatNumber(
+                  listPrice - sellingPrice,
+                  this.currencyOptions
+                ),
+              }}
+            />
           </div>
         )}
       </div>
@@ -152,12 +133,6 @@ priceWithIntel.schema = {
       type: 'boolean',
       title: 'editor.productPrice.showListPrice',
       default: Price.defaultProps.showListPrice,
-      isLayout: true,
-    },
-    showLabels: {
-      type: 'boolean',
-      title: 'editor.productPrice.showLabels',
-      default: Price.defaultProps.showLabels,
       isLayout: true,
     },
     showInstallments: {

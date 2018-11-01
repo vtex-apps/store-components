@@ -18,7 +18,6 @@ You can use it in your code like a React component with the jsx tag: `<ProductPr
   sellingPrice={commertialOffer.Price}
   installments={commertialOffer.Installments}
   showListPrice={showListPrice}
-  showLabels={showLabels}
   showInstallments={showInstallments}
 />
 ```
@@ -28,7 +27,6 @@ You can use it in your code like a React component with the jsx tag: `<ProductPr
 | `sellingPrice` | `Number` | Product selling price |
 | `listPrice` | `Number` | Product list price |
 | `showListPrice` | `Boolean!` | Set visibility of list price |
-| `showLabels` | `Boolean!` | Set visibility of labels |
 | `showInstallments` | `Boolean!` | Set visibility of installments |
 | `showSavings` | `Boolean` | Set visibility of savings |
 | `installments` | `Array` | Available installments |

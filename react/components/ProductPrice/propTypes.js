@@ -8,8 +8,6 @@ export default {
   listPrice: PropTypes.number,
   /** Set visibility of list price */
   showListPrice: PropTypes.bool.isRequired,
-  /** Set visibility of labels */
-  showLabels: PropTypes.bool.isRequired,
   /** Set visibility of installments */
   showInstallments: PropTypes.bool.isRequired,
   /** Set visibility of savings */
