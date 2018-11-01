@@ -34,7 +34,7 @@ class ProductName extends Component {
     renderName: PropTypes.func,
     /** Render function for sku field, this function should expect a skuName string and large prop */
     renderSku: PropTypes.func,
-    /** Render function for product reference field, this funcitno should expect a productReference string and large prop */
+    /** Render function for product reference field, this function should expect a productReference string and large prop */
     renderProductReference: PropTypes.func
   }
 
