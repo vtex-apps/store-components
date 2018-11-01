@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
+import classNames from 'classnames'
 
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
@@ -23,6 +24,10 @@ class ProductName extends Component {
     showBrandName: PropTypes.bool,
     /** Display large font */
     large: PropTypes.bool,
+    /** Extra classes for loader of the component */
+    loaderClasses: PropTypes.string,
+    /** Extra classes for root of the component */
+    rootClasses: PropTypes.string,
     /** Component and content loader styles */
     styles: PropTypes.object,
     /** Render function for name field, this function should expect a name string and large prop */
@@ -37,11 +42,13 @@ class ProductName extends Component {
     large: false,
     showBrandName: false,
     showProductReference: false,
-    showSku: false
+    showSku: false,
+    loaderClasses: '',
+    rootClasses: ''
   }
 
   static Loader = (loaderProps = {}) => (
-    <div className="vtex-product-name vtex-product-name-loader pt5">
+    <div className={loaderProps.loaderClasses}>
       <ContentLoader
         style={{
           width: '100%',
@@ -71,24 +78,27 @@ class ProductName extends Component {
   render() {
     const {
       name,
-      skuName,
       large,
-      showProductReference,
+      skuName,
       showSku,
+      renderName,
+      rootClasses,
+      loaderClasses,
       productReference,
-      renderName
+      showProductReference,
     } = this.props
 
     if (!name) {
       return (
         <ProductName.Loader
+          loaderClasses={classNames('vtex-product-name', 'vtex-product-name-loader', loaderClasses)}
           {...this.props.styles}
         />
       )
     }
 
     return (
-      <div className="vtex-product-name">
+      <div className={classNames('vtex-product-name', rootClasses)}>
         {renderName && renderName({ large, name })}
         {showSku && renderSku && renderSku({ skuName, large })}
         {showProductReference && renderProductReference
