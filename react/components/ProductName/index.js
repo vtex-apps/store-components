@@ -29,7 +29,7 @@ class ProductName extends Component {
     /** Component and content loader styles */
     styles: PropTypes.object,
     /** Render all fields of the component */
-    children: PropTypes.node.isRequired
+    children: PropTypes.func.isRequired
   }
 
   static defaultProps = {
