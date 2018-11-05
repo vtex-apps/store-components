@@ -26,16 +26,10 @@ class ProductName extends Component {
     large: PropTypes.bool,
     /** Extra classes for loader of the component */
     loaderClasses: PropTypes.string,
-    /** Extra classes for root of the component */
-    rootClasses: PropTypes.string,
     /** Component and content loader styles */
     styles: PropTypes.object,
-    /** Render function for name field, this function should expect a name string and large prop */
-    renderName: PropTypes.func,
-    /** Render function for sku field, this function should expect a skuName string and large prop */
-    renderSku: PropTypes.func,
-    /** Render function for product reference field, this function should expect a productReference string and large prop */
-    renderProductReference: PropTypes.func
+    /** Render all fields of the component */
+    children: PropTypes.node.isRequired
   }
 
   static defaultProps = {
@@ -44,7 +38,10 @@ class ProductName extends Component {
     showProductReference: false,
     showSku: false,
     loaderClasses: '',
-    rootClasses: ''
+    rootClasses: '',
+    children: ({ name }) => {
+      return <span>{name}</span>
+    }
   }
 
   static Loader = (loaderProps = {}) => (
@@ -81,9 +78,10 @@ class ProductName extends Component {
       large,
       skuName,
       showSku,
-      renderName,
-      rootClasses,
+      children,
+      brandName,
       loaderClasses,
+      showBrandName,
       productReference,
       showProductReference,
     } = this.props
@@ -91,20 +89,19 @@ class ProductName extends Component {
     if (!name) {
       return (
         <ProductName.Loader
-          loaderClasses={classNames('vtex-product-name', 'vtex-product-name-loader', loaderClasses)}
+          loaderClasses={classNames('vtex-product-name vtex-product-name-loader', loaderClasses)}
           {...this.props.styles}
         />
       )
     }
 
-    return (
-      <div className={classNames('vtex-product-name', rootClasses)}>
-        {renderName && renderName({ large, name })}
-        {showSku && renderSku && renderSku({ skuName, large })}
-        {showProductReference && renderProductReference
-          && renderProductReference({ productReference, large })}
-      </div>
-    )
+    return children({
+      name,
+      large,
+      skuName: showSku ? skuName : null,
+      brandName: showBrandName ? brandName : null,
+      productReference: showProductReference ? productReference : null
+    })
   }
 }
 
