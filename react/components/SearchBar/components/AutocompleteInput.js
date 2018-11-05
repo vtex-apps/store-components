@@ -1,23 +1,29 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { Input } from 'vtex.styleguide'
+import { Input, IconClose } from 'vtex.styleguide'
 import IconSearch from '../images/IconSearch'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 export default class AutocompleteInput extends Component {
   render() {
-    const { onGoToSearchPage, ...restProps } = this.props
+    const { onGoToSearchPage, mobileMode, value, ...restProps } = this.props
+
+    const prefixIcon = (
+      mobileMode ? <IconSearch color="#979899" /> : ""
+    )
 
     const suffixIcon = (
-      <span className="flex items-center pointer" onClick={onGoToSearchPage}>
-        <IconSearch color="#979899" />
-      </span>
+      mobileMode ? !value ? "" : <IconClose className="pa0" size={10} color="#979899" />
+        :
+        <span className="flex items-center pointer" onClick={onGoToSearchPage}>
+          <IconSearch color="#979899" />
+        </span>
     )
 
     return (
       <div className="flex">
-        <Input size="large" {...restProps} suffixIcon={suffixIcon} />
+        <Input size="large" {...restProps} suffixIcon={suffixIcon} prefix={prefixIcon} />
       </div>
     )
   }
@@ -40,4 +46,5 @@ AutocompleteInput.propTypes = {
   placeholder: PropTypes.string,
   /** Function to direct the user to the searchPage */
   onGoToSearchPage: PropTypes.func.isRequired,
+  mobileMode: PropTypes.bool,
 }

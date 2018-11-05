@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
+import classNames from 'classnames'
 import AutocompleteInput from './AutocompleteInput'
 import ResultsLits from './ResultsList'
 import DownshiftComponent from 'downshift'
-
 import { NoSSR } from 'render'
 
 export default class SearchBar extends Component {
@@ -19,7 +18,10 @@ export default class SearchBar extends Component {
       onClearInput,
       shouldSearch,
       inputValue,
+      mobileMode
     } = this.props
+
+    console.log(mobileMode)
 
     const fallback = (
       <AutocompleteInput
@@ -31,8 +33,15 @@ export default class SearchBar extends Component {
       />
     )
 
+    const mainClasses = classNames(
+      'vtex-searchbar w-100 no-borders', 
+      {
+        'no-borders' : mobileMode
+      }
+    )
+
     return (
-      <div className="vtex-searchbar w-100">
+      <div className={mainClasses}>
         <NoSSR onSSR={fallback}>
           <DownshiftComponent>
             {({
@@ -44,6 +53,7 @@ export default class SearchBar extends Component {
             }) => (
               <div className="relative-m w-100">
                 <AutocompleteInput
+                  mobileMode={mobileMode}
                   onGoToSearchPage={() => {
                     closeMenu()
                     onGoToSearchPage()
@@ -98,4 +108,6 @@ SearchBar.propTypes = {
   onGoToSearchPage: PropTypes.func.isRequired,
   /** Function to clear the input */
   onClearInput: PropTypes.func.isRequired,
+  /** Indentify when a the component is used in a mobile */
+  mobileMode: PropTypes.bool,
 }

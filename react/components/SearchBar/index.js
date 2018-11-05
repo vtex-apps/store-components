@@ -64,7 +64,7 @@ class SearchBarContainer extends Component {
   }
 
   render() {
-    const { intl } = this.props
+    const { intl, mobileMode } = this.props
     const { shouldSearch, inputValue } = this.state
 
     const placeholder = intl.formatMessage({
@@ -85,6 +85,7 @@ class SearchBarContainer extends Component {
         onEnterPress={this.handleEnterPress}
         onMakeSearch={this.handleMakeSearch}
         onInputChange={this.handleInputChange}
+        mobileMode={mobileMode}
       />
     )
   }
@@ -97,6 +98,9 @@ SearchBarContainer.contextTypes = {
 SearchBarContainer.propTypes = {
   /* Internationalization */
   intl: intlShape.isRequired,
+  mobileMode: PropTypes.bool,
 }
+
+
 
 export default injectIntl(SearchBarContainer)
