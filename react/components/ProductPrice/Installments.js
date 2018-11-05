@@ -44,12 +44,12 @@ export default class Installments extends Component {
     const [installmentsElement, installmentPriceElement, timesElement] = [
       installment.NumberOfInstallments,
       formattedInstallmentPrice,
-      <span key="times">&times;</span>,
+      <span className="vtex-price-installments__value" key="times">&times;</span>,
     ]
 
     return (
-      <div className="lh-copy">
-        <div>
+      <div className="vtex-price-installments__container lh-copy">
+        <div className="vtex-price-installments">
           <FormattedMessage
             id="pricing.installment-display"
             values={{

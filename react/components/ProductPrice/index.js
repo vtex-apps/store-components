@@ -51,14 +51,18 @@ class Price extends Component {
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
     return (
-      <div className="flex flex-column justify-around mt3 mb3">
+      <div className="vtex-price flex flex-column justify-around mt3 mb3">
         {differentPrices && (
-          <div className="c-muted-2 dib strike lh-copy mb2">
-            {formatNumber(listPrice, this.currencyOptions)}
+          <div className="vtex-price-list__container">
+            <div className="vtex-price-list c-muted-2 dib strike lh-copy mb2">
+              {formatNumber(listPrice, this.currencyOptions)}
+            </div>
           </div>
         )}
-        <div className="b dib c-on-base t-heading-2 lh-title">
-          {formatNumber(sellingPrice, this.currencyOptions)}
+        <div className="vtex-price-selling__container">
+          <div className="vtex-price-selling b dib c-on-base t-heading-2 lh-title">
+            {formatNumber(sellingPrice, this.currencyOptions)}
+          </div>
         </div>
         {showInstallments &&
         <Installments
@@ -67,16 +71,18 @@ class Price extends Component {
           currencyOptions={this.currencyOptions}
         />}
         {differentPrices && showSavings && (
-          <div className="f5 dib c-success t-small lh-copy mt3 mb2">
-            <FormattedMessage
-              id="pricing.savings"
-              values={{
-                savings: formatNumber(
-                  listPrice - sellingPrice,
-                  this.currencyOptions
-                ),
-              }}
-            />
+          <div className="vtex-price-savings__container">
+            <div className="vtex-price-savings f5 dib c-success t-small lh-copy mt3 mb2">
+              <FormattedMessage
+                id="pricing.savings"
+                values={{
+                  savings: formatNumber(
+                    listPrice - sellingPrice,
+                    this.currencyOptions
+                  ),
+                }}
+              />
+            </div>
           </div>
         )}
       </div>
