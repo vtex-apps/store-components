@@ -7,7 +7,7 @@ import { orderFormConsumer, contextPropTypes } from 'vtex.store/OrderFormContext
 import Loader from './Loader'
 
 const Wrapper = ({ children }) => (
-  <div className="vtex-greeting vtex-page-loading mh4 pv4 f3 fw4 c-on-base nowrap">{children}</div>
+  <div className="vtex-greeting vtex-page-padding mh4 pv4 f3 fw4 c-on-base nowrap">{children}</div>
 )
 
 const withWrapper = Component => props => (
