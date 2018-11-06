@@ -35,7 +35,6 @@ class ProductName extends Component {
   }
 
   static defaultProps = {
-    large: false,
     showBrandName: false,
     showProductReference: false,
     showSku: false,
