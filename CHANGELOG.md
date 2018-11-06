@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.1] - 2018-11-06
+### Fixed
+- Remove CSS from ProductName and ProductPrice.
+
 ## [2.5.0] - 2018-11-06
 ### Added
 - `Greeting` component that renders a welcome message with the user first name
