@@ -90,5 +90,6 @@
   "header.topMenu.minicart.icon.label": "Mi Cesta",
   "header.topMenu.login.icon.label": "Entrar",
   "searchBar.button.cancel.label": "Cancelar",
-  "buyButton-label-unavailable": "Indisponible"
+  "buyButton-label-unavailable": "Indisponible",
+  "greeting": "Hola"
 }

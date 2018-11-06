@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.0] - 2018-11-06
+### Added
+- `Greeting` component that renders a welcome message with the user first name
+
 ## [2.4.3] - 2018-10-31
 ### Fixed
 - Replace spinner by content loader in BuyButton.

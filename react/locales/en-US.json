@@ -90,5 +90,6 @@
   "header.topMenu.minicart.icon.label": "My Cart",
   "header.topMenu.login.icon.label": "Sign in",
   "searchBar.button.cancel.label": "Cancel",
-  "buyButton-label-unavailable": "Unavailable"
+  "buyButton-label-unavailable": "Unavailable",
+  "greeting": "Hello"
 }
