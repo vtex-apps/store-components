@@ -23,10 +23,6 @@
   border-radius: 1px;
 }
 
-.vtex-searchbar .no-borders {
-  border:none !important;
-}
-
 .vtex-searchbar .vtex-results__list {
   top: 100%;
 }

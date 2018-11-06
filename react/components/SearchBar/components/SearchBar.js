@@ -21,8 +21,6 @@ export default class SearchBar extends Component {
       mobileMode
     } = this.props
 
-    console.log(mobileMode)
-
     const fallback = (
       <AutocompleteInput
         placeholder={placeholder}
@@ -34,10 +32,7 @@ export default class SearchBar extends Component {
     )
 
     const mainClasses = classNames(
-      'vtex-searchbar w-100 no-borders', 
-      {
-        'no-borders' : mobileMode
-      }
+      'vtex-searchbar w-100'
     )
 
     return (
