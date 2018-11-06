@@ -33,13 +33,13 @@ class ProductName extends Component {
     /** Classes to be applied to productReference element */
     productReferenceClass: PropTypes.string,
     /** Classes to be applied to loader root element */
-    loaderClass: PropTypes.string
+    loaderClass: PropTypes.string,
   }
 
   static defaultProps = {
     showBrandName: false,
     showProductReference: false,
-    showSku: false
+    showSku: false,
   }
 
   static Loader = (loaderProps = {}) => (
@@ -51,7 +51,7 @@ class ProductName extends Component {
         }}
         width={456}
         height={100}
-        preserveAspectRatio='xMinYMin meet'
+        preserveAspectRatio="xMinYMin meet"
         {...loaderProps}
       >
         <rect
