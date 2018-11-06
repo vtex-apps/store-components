@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
+import { path } from 'ramda'
 
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
@@ -25,6 +26,14 @@ class ProductName extends Component {
     large: PropTypes.bool,
     /** Component and content loader styles */
     styles: PropTypes.object,
+    /** Classes to apply to elements of the component */
+    classes: PropTypes.shape({
+      root: PropTypes.string,
+      brandName: PropTypes.string,
+      skuName: PropTypes.string,
+      productReference: PropTypes.string,
+      rootLoader: PropTypes.string
+    })
   }
 
   static defaultProps = {
@@ -32,10 +41,17 @@ class ProductName extends Component {
     showBrandName: false,
     showProductReference: false,
     showSku: false,
+    classes: {
+      root: null,
+      brandName: null,
+      skuName: null,
+      productReference: null,
+      rootLoader: null
+    }
   }
 
   static Loader = (loaderProps = {}) => (
-    <div className="vtex-product-name vtex-product-name-loader pt5 overflow-hidden">
+    <div className={path(['classes', 'rootLoader'], loaderProps)}>
       <ContentLoader
         style={{
           width: '100%',
@@ -73,36 +89,30 @@ class ProductName extends Component {
       showProductReference,
       showSku,
       productReference,
+      classes
     } = this.props
-
-    let brandClasses = 'vtex-product-name__brand f5'
-    let skuClasses = 'vtex-product-name__sku f6'
-
-    if (large) {
-      brandClasses += ' vtex-product-name__brand--large f2'
-      skuClasses += ' vtex-product-name__sku--large'
-    }
 
     if (!name) {
       return (
         <ProductName.Loader
-          {...this.props.styles}
-          brandClasses={brandClasses}
+          classes={classes}
           skuClasses={skuClasses}
+          brandClasses={brandClasses}
+          {...this.props.styles}
         />
       )
     }
 
     return (
-      <div className="vtex-product-name overflow-hidden c-on-base">
-        <div className={brandClasses}>
+      <div className={classes.root}>
+        <span className={classes.brandName}>
           {name} {showBrandName && brandName && `- ${brandName}`}
-        </div>
-        {showSku && <div className={skuClasses}>{skuName}</div>}
+        </span>
+        {showSku && <span className={classes.skuName}>{skuName}</span>}
         {showProductReference && productReference && (
-          <div className="vtex-product-name__product-reference pt3 f7 ttu">
+          <span className={classes.productReference}>
             {`REF: ${productReference}`}
-          </div>
+          </span>
         )}
       </div>
     )
