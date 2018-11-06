@@ -88,5 +88,6 @@
   "header.topMenu.minicart.icon.label": "Meu Carrinho",
   "header.topMenu.login.icon.label": "Entrar",
   "searchBar.button.cancel.label": "Cancelar",
-  "buyButton-label-unavailable": "Indisponível"
+  "buyButton-label-unavailable": "Indisponível",
+  "greeting": "Olá"
 }
