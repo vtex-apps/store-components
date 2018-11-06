@@ -22,8 +22,6 @@ class ProductName extends Component {
     brandName: PropTypes.string,
     /** Show brand name */
     showBrandName: PropTypes.bool,
-    /** Display large font */
-    large: PropTypes.bool,
     /** Component and content loader styles */
     styles: PropTypes.object,
     /** Classes to apply to elements of the component */
@@ -81,24 +79,18 @@ class ProductName extends Component {
   render() {
     const {
       name,
+      classes,
       skuName,
-      brandName,
-      large,
-      showBrandName,
-      showProductReference,
       showSku,
+      brandName,
+      showBrandName,
       productReference,
-      classes
+      showProductReference,
     } = this.props
 
     if (!name) {
       return (
-        <ProductName.Loader
-          classes={classes}
-          skuClasses={skuClasses}
-          brandClasses={brandClasses}
-          {...this.props.styles}
-        />
+        <ProductName.Loader classes={classes} {...this.props.styles} />
       )
     }
 
