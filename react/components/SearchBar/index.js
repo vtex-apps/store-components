@@ -64,7 +64,7 @@ class SearchBarContainer extends Component {
   }
 
   render() {
-    const { intl, mobileMode } = this.props
+    const { intl, compactMode } = this.props
     const { shouldSearch, inputValue } = this.state
 
     const placeholder = intl.formatMessage({
@@ -85,7 +85,7 @@ class SearchBarContainer extends Component {
         onEnterPress={this.handleEnterPress}
         onMakeSearch={this.handleMakeSearch}
         onInputChange={this.handleInputChange}
-        mobileMode={mobileMode}
+        compactMode={compactMode}
       />
     )
   }
@@ -98,7 +98,8 @@ SearchBarContainer.contextTypes = {
 SearchBarContainer.propTypes = {
   /* Internationalization */
   intl: intlShape.isRequired,
-  mobileMode: PropTypes.bool,
+  /** Indentify when use the compact version of the component */
+  compactMode: PropTypes.bool,
 }
 
 

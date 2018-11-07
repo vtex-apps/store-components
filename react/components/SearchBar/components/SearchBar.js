@@ -18,7 +18,7 @@ export default class SearchBar extends Component {
       onClearInput,
       shouldSearch,
       inputValue,
-      mobileMode
+      compactMode
     } = this.props
 
     const fallback = (
@@ -48,7 +48,7 @@ export default class SearchBar extends Component {
             }) => (
               <div className="relative-m w-100">
                 <AutocompleteInput
-                  mobileMode={mobileMode}
+                  compactMode={compactMode}
                   onGoToSearchPage={() => {
                     closeMenu()
                     onGoToSearchPage()
@@ -103,6 +103,6 @@ SearchBar.propTypes = {
   onGoToSearchPage: PropTypes.func.isRequired,
   /** Function to clear the input */
   onClearInput: PropTypes.func.isRequired,
-  /** Indentify when a the component is used in a mobile */
-  mobileMode: PropTypes.bool,
+  /** Indentify when use the compact version of the component */
+  compactMode: PropTypes.bool,
 }

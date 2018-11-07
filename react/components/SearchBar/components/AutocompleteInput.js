@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 import { Input, IconClose } from 'vtex.styleguide'
 import IconSearch from '../images/IconSearch'
@@ -15,15 +16,15 @@ export default class AutocompleteInput extends Component {
 
   changeClassInput() {
 
-    const { mobileMode } = this.props
+    const { compactMode } = this.props
 
-    if (mobileMode) {
+    if (compactMode) {
       this.inputClass.current.placeholder = ""
-      this.inputClass.current.classList.remove('bw1')
-      this.inputClass.current.classList.add('bn')
-      this.inputClass.current.classList.add('vtex-searchbar__border-bottom')
     }
-    console.log(this.inputClass)
+  }
+
+  componentDidUpdate() {
+    this.changeClassInput()
   }
 
   componentDidMount() {
@@ -36,22 +37,31 @@ export default class AutocompleteInput extends Component {
 
   render() {
 
-    const { onGoToSearchPage, mobileMode, value, ...restProps } = this.props
+    const { onGoToSearchPage, compactMode, value, ...restProps } = this.props
 
     const prefixIcon = (
-      mobileMode ? <IconSearch color="#979899" /> : ""
+      compactMode ? <IconSearch color="#979899" /> : ""
     )
     const suffixIcon = (
-      mobileMode ? !value ? "" : <IconClose className="pa0" size={10} color="#979899" />
+      compactMode ? !value ? "" : <IconClose className="pa0" size={10} color="#979899" />
         :
         <span className="flex items-center pointer" onClick={onGoToSearchPage}>
           <IconSearch color="#979899" />
         </span>
     )
 
+    const classContainer = classNames(
+      
+      {
+        'vtex-searchbar__border-bottom': compactMode
+      }
+    )
+
     return (
       <div className="flex">
-        <Input ref={this.inputClass} size="large" {...restProps} suffixIcon={suffixIcon} prefix={prefixIcon} />
+        <div className={classContainer}>
+          <Input ref={this.inputClass} size="large" {...restProps} suffixIcon={suffixIcon} prefix={prefixIcon} />
+        </div>
       </div>
     )
   }
@@ -74,5 +84,5 @@ AutocompleteInput.propTypes = {
   placeholder: PropTypes.string,
   /** Function to direct the user to the searchPage */
   onGoToSearchPage: PropTypes.func.isRequired,
-  mobileMode: PropTypes.bool,
+  compactMode: PropTypes.bool,
 }
