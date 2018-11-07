@@ -23,7 +23,10 @@
   border-radius: 1px;
 }
 
-.vtex-searchbar__border-bottom {
+.vtex-searchbar__compact-mode input{
+  border-top-style: none !important; 
+  border-left-style: none !important; 
+  border-right-style: none !important; 
   border-bottom: solid !important;
 }
 

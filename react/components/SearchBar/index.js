@@ -23,6 +23,7 @@ class SearchBarContainer extends Component {
   }
 
   handleClearInput = () => {
+    console.log(this.state.inputValue)
     this.setState({ inputValue: '' })
     this.handleClearSearchResults()
   }

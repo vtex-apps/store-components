@@ -15,9 +15,7 @@ export default class AutocompleteInput extends Component {
   }
 
   changeClassInput() {
-
     const { compactMode } = this.props
-
     if (compactMode) {
       this.inputClass.current.placeholder = ""
     }
@@ -31,19 +29,26 @@ export default class AutocompleteInput extends Component {
     this.changeClassInput()
   }
 
-  componentWillUpdate() {
-    this.changeClassInput()
+  cleanInputField() {
+    let { value } = this.props
+    console.log(value)
+    value = ""
   }
+
+
 
   render() {
 
-    const { onGoToSearchPage, compactMode, value, ...restProps } = this.props
+    const { onGoToSearchPage, onClearInput, compactMode, value, ...restProps } = this.props
 
     const prefixIcon = (
       compactMode ? <IconSearch color="#979899" /> : ""
     )
     const suffixIcon = (
-      compactMode ? !value ? "" : <IconClose className="pa0" size={10} color="#979899" />
+      compactMode ? !value ? "" :
+        <span className="flex items-center pointer" onClick={onClearInput} >
+          <IconClose className="pa0" size={10} color="#979899" />
+        </span>
         :
         <span className="flex items-center pointer" onClick={onGoToSearchPage}>
           <IconSearch color="#979899" />
@@ -51,16 +56,16 @@ export default class AutocompleteInput extends Component {
     )
 
     const classContainer = classNames(
-      
+      'w-100',
       {
-        'vtex-searchbar__border-bottom': compactMode
+        'vtex-searchbar__compact-mode': compactMode
       }
     )
 
     return (
       <div className="flex">
         <div className={classContainer}>
-          <Input ref={this.inputClass} size="large" {...restProps} suffixIcon={suffixIcon} prefix={prefixIcon} />
+          <Input ref={this.inputClass} size="large" value={value} {...restProps} suffixIcon={suffixIcon} prefix={prefixIcon} />
         </div>
       </div>
     )
@@ -85,4 +90,6 @@ AutocompleteInput.propTypes = {
   /** Function to direct the user to the searchPage */
   onGoToSearchPage: PropTypes.func.isRequired,
   compactMode: PropTypes.bool,
+  /** Clears the input */
+  onClearInput: PropTypes.func,
 }

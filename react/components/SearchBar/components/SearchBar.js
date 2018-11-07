@@ -49,6 +49,7 @@ export default class SearchBar extends Component {
               <div className="relative-m w-100">
                 <AutocompleteInput
                   compactMode={compactMode}
+                  onClearInput={onClearInput}
                   onGoToSearchPage={() => {
                     closeMenu()
                     onGoToSearchPage()
@@ -62,6 +63,7 @@ export default class SearchBar extends Component {
                       onEnterPress(event)
                     },
                   })}
+                  
                 />
                 {shouldSearch && isOpen ? (
                   <ResultsLits
