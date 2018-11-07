@@ -7,7 +7,7 @@ import { orderFormConsumer, contextPropTypes } from 'vtex.store/OrderFormContext
 import Loader from './Loader'
 
 const Wrapper = ({ children }) => (
-  <div className="vtex-greeting vtex-page-padding mh4 pv4 f3 fw4 c-on-base nowrap">{children}</div>
+  <div className="vtex-greeting vtex-page-padding mh4 pv4 t-heading-4 c-on-base nowrap">{children}</div>
 )
 
 const withWrapper = Component => props => (
@@ -26,7 +26,7 @@ const Greeting = ({ orderFormContext }) => {
         <span className="vtex-greeting__message">
           <FormattedMessage id="greeting" />,
         </span>
-        <span className="vtex-greeting__first-name pl2 fw6">{firstName}</span>
+        <span className="vtex-greeting__first-name pl2 b">{firstName}</span>
       </Fragment>
     </Wrapper>
   )
