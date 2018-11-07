@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { isNil } from 'ramda'
+import { isNil, path } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { FormattedMessage, injectIntl } from 'react-intl'
 
 import PricePropTypes from './propTypes'
 import Installments from './Installments'
+
 
 /**
  * The Price component. Shows the prices information of the Product Summary.
@@ -15,9 +16,9 @@ class Price extends Component {
   static contextTypes = {
     culture: PropTypes.object,
   }
-
+  
   static propTypes = PricePropTypes
-
+  
   static defaultProps = {
     showListPrice: true,
     showLabels: true,
@@ -25,7 +26,7 @@ class Price extends Component {
     showSavings: false,
     labelSellingPrice: null,
   }
-
+  
   currencyOptions = {
     style: 'currency',
     currency: this.context.culture.currency,
@@ -59,6 +60,13 @@ class Price extends Component {
       styles,
       intl: { formatNumber },
     } = this.props
+
+    let { classes } = this.props
+    // avoiding undefined verifications
+    classes = {
+      ...Price.defaultProps.classes,
+      ...classes
+    }
 
     if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
       return <Price.Loader loaderClass={loaderClass} {...styles} />
