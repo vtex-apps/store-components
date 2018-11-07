@@ -17,9 +17,7 @@ export default class AutocompleteInput extends Component {
     const { compactMode } = this.props
     if (compactMode) {
       this.inputClass.current.placeholder = ""
-      console.log(this.inputClass)
       this.inputClass.current.classList.add("vtex-searchbar__padding-input")
-      console.log(this.inputClass)
 
     }
   }
