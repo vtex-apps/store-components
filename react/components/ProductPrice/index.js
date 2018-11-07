@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { isNil } from 'ramda'
+import { isNil, path } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { FormattedMessage, injectIntl } from 'react-intl'
 
 import PricePropTypes from './propTypes'
 import Installments from './Installments'
+
 
 /**
  * The Price component. Shows the prices information of the Product Summary.
@@ -14,9 +15,9 @@ class Price extends Component {
   static contextTypes = {
     culture: PropTypes.object,
   }
-
+  
   static propTypes = PricePropTypes
-
+  
   static defaultProps = {
     showListPrice: true,
     showLabels: true,
@@ -24,7 +25,7 @@ class Price extends Component {
     showSavings: false,
     labelSellingPrice: null,
   }
-
+  
   currencyOptions = {
     style: 'currency',
     currency: this.context.culture.currency,
@@ -42,37 +43,50 @@ class Price extends Component {
       showSavings,
       labelSellingPrice,
       installments,
+      installmentsClasses,
       styles,
       intl: { formatNumber },
     } = this.props
 
+    let { classes } = this.props
+    // avoiding undefined verifications
+    classes = {
+      ...Price.defaultProps.classes,
+      ...classes
+    }
+
     if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
-      return <Price.Loader {...styles} />
+      return <Price.Loader classes={classes} {...styles} />
     }
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
     return (
-      <div className="vtex-price flex flex-column justify-around">
+      <div className={classes.root}>
         {differentPrices && (
-          <div className="vtex-price-list__container pv1 normal c-muted-2">
+          <div className={classes.listPrice.container}>
             {showLabels && (
-              <div className="vtex-price-list__label dib strike">
+              <div className={classes.listPrice.label}>
                 <FormattedMessage id="pricing.from" />
               </div>
             )}
-            <div className="vtex-price-list dib ph2 strike">
+            <span className={classes.listPrice.value}>
               {formatNumber(listPrice, this.currencyOptions)}
-            </div>
+            </span>
           </div>
         )}
-        <div className="vtex-price-selling__container pv1 b c-muted-1">
+        <div className={classes.sellingPrice.container}>
           {showLabels && (
+<<<<<<< HEAD
             <div className="vtex-price-selling__label dib">
               {labelSellingPrice || <FormattedMessage id="pricing.to" />}
+=======
+            <div className={classes.sellingPrice.label}>
+              <FormattedMessage id="pricing.to" />
+>>>>>>> Add classes prop to style Price component
             </div>
           )}
-          <div className="vtex-price-selling dib ph2">
+          <div className={classes.sellingPrice.value}>
             {formatNumber(sellingPrice, this.currencyOptions)}
           </div>
         </div>
@@ -82,10 +96,11 @@ class Price extends Component {
             showLabels={showLabels}
             formatNumber={formatNumber}
             currencyOptions={this.currencyOptions}
+            classes={installmentsClasses}
           />}
         {differentPrices && showSavings && (
-          <div className="vtex-price-savings__container c-muted-2">
-            <div className="vtex-price-savings dib">
+          <div className={classes.savings.container}>
+            <div className={classes.savings.value}>
               <FormattedMessage
                 id="pricing.savings"
                 values={{
@@ -104,7 +119,7 @@ class Price extends Component {
 }
 
 Price.Loader = (loaderProps = {}) => (
-  <div className="vtex-price vtex-price-loader h3">
+  <div className={loaderProps.classes.rootLoader}>
     <ContentLoader
       style={{
         width: '100%',
