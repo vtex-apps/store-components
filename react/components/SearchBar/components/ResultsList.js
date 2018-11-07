@@ -7,7 +7,7 @@ import { Link } from 'render'
 import autocomplete from '../queries/autocomplete.gql'
 
 const listClassNames =
-  'vtex-results__list z-max absolute w-100 mt1 mt2-m shadow-3 bg-white f5 left-0'
+  'vtex-results__list z-max absolute w-100 mt1 mt2-m pb4 bg-white f5 left-0'
 const listItemClassNames =
   'vtex-results__item flex justify-start f5 pa4 pl6 outline-0'
 
