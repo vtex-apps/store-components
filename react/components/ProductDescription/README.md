@@ -22,4 +22,4 @@ You can use it in your code like a React component with the jsx tag: `<ProductDe
 | `specifications[n].value`| `String`   | Specifications value                                                        |
 | `skuName`                | `String`   | Name of the SKU                                                             |
 
-See an example at [Product Details](https://github.com/vtex-apps/product-details/blob/master/react/ProductDetails.js#L88) app
+See an example at [Product Details](https://github.com/vtex-apps/product-details) app

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.2] - 2018-11-07
+### Changed
+- Remove `ContentLoader` of `ProductDescription`.
+
 ## [2.5.1] - 2018-11-06
 ### Fixed
 - Remove CSS from ProductName and ProductPrice.
