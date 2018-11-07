@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import ContentLoader from 'react-content-loader'
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 
 import SpecificationRow from './SpecificationRow'
