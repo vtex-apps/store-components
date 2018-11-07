@@ -31,6 +31,25 @@ export default {
       Name: PropTypes.string,
     })
   ),
+  /** CSS classes to be applied in the Price component Component */
+  classes: PropTypes.shape({
+    root: PropTypes.string,
+    rootLoader: PropTypes.string,
+    listPrice: PropTypes.shape({
+      container: PropTypes.string,
+      label: PropTypes.string,
+      value: PropTypes.string
+    }),
+    sellingPrice: PropTypes.shape({
+      container: PropTypes.string,
+      label: PropTypes.string,
+      value: PropTypes.string
+    }),
+    savings: PropTypes.shape({
+      container: PropTypes.string,
+      value: PropTypes.string
+    })
+  }),
   /** Classes to be applied in the Installments Component */
   installmentsClasses: PropTypes.shape({
     root: PropTypes.string,
