@@ -6,7 +6,3 @@
 .vtex-product-specifications__table-row:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.05);
 }
-
-.vtex-product-specifications-loader {
-  height: 26em;
-}

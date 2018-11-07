@@ -12,50 +12,11 @@ import './global.css'
  * Render the description and technical specifications of a product
  */
 class ProductDescription extends Component {
-  static Loader = (loaderProps = {}) => (
-    <div className="vtex-product-specifications vtex-product-specifications-loader mt6">
-      <ContentLoader
-        style={{
-          width: '100%',
-          height: '100%',
-        }}
-        height="100%"
-        width="100%"
-        {...loaderProps}>
-        <rect
-          width="15em"
-          height="2em"
-          {...loaderProps[
-            'vtex-product-specifications__description-title--loader'
-          ]}
-        />
-        <rect
-          width="100%"
-          height="5em"
-          y="3em"
-          {...loaderProps['vtex-product-specifications__description--loader']}
-        />
-        <rect
-          width="15em"
-          height="2em"
-          y="11em"
-          {...loaderProps['vtex-product-specifications__title--loader']}
-        />
-        <rect
-          width="100%"
-          height="12em"
-          y="14em"
-          {...loaderProps['vtex-product-specifications__table--loader']}
-        />
-      </ContentLoader>
-    </div>
-  )
-
   render() {
     const { specifications, skuName, description } = this.props
 
     if (!description || !specifications) {
-      return <ProductDescription.Loader {...this.props.styles} />
+      return null
     }
 
     return (
@@ -120,8 +81,6 @@ ProductDescription.propTypes = {
   ),
   /** Name of the current SKU */
   skuName: PropTypes.string,
-  /** Component and content loader styles */
-  styles: PropTypes.object,
 }
 
 export default injectIntl(ProductDescription)
