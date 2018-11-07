@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { isEmpty } from 'ramda'
 import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
@@ -7,11 +7,44 @@ import PricePropTypes from './propTypes'
 
 /** Installments component */
 export default class Installments extends Component {
+
+  static defaultProps = {
+    classes: {
+      root: null,
+      installmentValue: null,
+      interestRate: null
+    }
+
+  }
+
+  static propTypes = {
+    /** Product installments to be displayed */
+    installments: PricePropTypes.installments,
+    /** Pages editor config to display labels */
+    showLabels: PropTypes.bool.isRequired,
+    /** react-intl function to format the prices*/
+    formatNumber: PropTypes.func.isRequired,
+    /** Options to be passe to the formatNumber function*/
+    currencyOptions: PropTypes.shape({
+      style: PropTypes.string.isRequired,
+      currency: PropTypes.string.isRequired,
+      minimumFractionDigits: PropTypes.number.isRequired,
+      maximumFractionDigits: PropTypes.number.isRequired,
+    }).isRequired,
+    /** Classes to be applied in the Installments Component */
+    classes: PropTypes.shape({
+      root: PropTypes.string,
+      installmentValue: PropTypes.string,
+      interestRate: PropTypes.string
+    })
+  }
+  
   render() {
     const {
-      installments,
+      classes,
       showLabels,
       formatNumber,
+      installments,
       currencyOptions,
     } = this.props
 
@@ -45,53 +78,35 @@ export default class Installments extends Component {
     const [installmentsElement, installmentPriceElement, timesElement] = [
       installment.NumberOfInstallments,
       formattedInstallmentPrice,
-      <span key="times">&times;</span>,
+      <Fragment>&times;</Fragment>,
     ].map((element, index) => (
-      <span className="vtex-price-installments__value" key={index}>
+      <span className={classes.installmentValue} key={index}>
         {element}
       </span>
     ))
 
     return (
-      <div className="vtex-price-installments__container c-muted-2">
-        <div className="vtex-price-installments dib">
-          {showLabels ? (
-            <FormattedMessage
-              id="pricing.installment-display"
-              values={{
-                installments: installmentsElement,
-                installmentPrice: installmentPriceElement,
-                times: timesElement,
-              }}
-            />
-          ) : (
-            <span>
+      <div className={classes.root}>
+        {showLabels ? (
+          <FormattedMessage
+            id="pricing.installment-display"
+            values={{
+              installments: installmentsElement,
+              installmentPrice: installmentPriceElement,
+              times: timesElement,
+            }}
+          />
+        ) : (
+            <Fragment>
               {installmentsElement} {timesElement} {installmentPriceElement}
-            </span>
+            </Fragment>
           )}
-          {!installment.InterestRate && (
-            <span className="pl1">
-              <FormattedMessage id="pricing.interest-free" />
-            </span>
-          )}
-        </div>
+        {!installment.InterestRate && (
+          <div className={classes.interestRate}>
+            <FormattedMessage id="pricing.interest-free" />
+          </div>
+        )}
       </div>
     )
   }
-}
-
-Installments.propTypes = {
-  /** Product installments to be displayed */
-  installments: PricePropTypes.installments,
-  /** Pages editor config to display labels */
-  showLabels: PropTypes.bool.isRequired,
-  /** react-intl function to format the prices*/
-  formatNumber: PropTypes.func.isRequired,
-  /** Options to be passe to the formatNumber function*/
-  currencyOptions: PropTypes.shape({
-    style: PropTypes.string.isRequired,
-    currency: PropTypes.string.isRequired,
-    minimumFractionDigits: PropTypes.number.isRequired,
-    maximumFractionDigits: PropTypes.number.isRequired,
-  }).isRequired,
 }
