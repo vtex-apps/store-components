@@ -27,7 +27,7 @@
   border-top-style: none !important; 
   border-left-style: none !important; 
   border-right-style: none !important; 
-  border-bottom: solid !important;
+  border-bottom: 2px solid !important;
 }
 
 .vtex-searchbar .vtex-results__list {
