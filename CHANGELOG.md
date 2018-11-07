@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Make `ProductDescription` use design tokens.
 - Make `AvailabilitySubscriber` use design tokens.
 - Make `SKUSelector` use design tokens.
+- Add `classes` and `installmentsClasses` to ProductPrice component to style the component.
 
 ### Removed
 - Remove `Header` component.
