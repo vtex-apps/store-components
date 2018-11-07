@@ -6,13 +6,41 @@ import IconSearch from '../images/IconSearch'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 export default class AutocompleteInput extends Component {
+
+  constructor(props) {
+    super(props)
+    this.inputClass = React.createRef();
+    this.changeClassInput = this.changeClassInput.bind(this)
+  }
+
+  changeClassInput() {
+
+    const { mobileMode } = this.props
+
+    if (mobileMode) {
+      this.inputClass.current.placeholder = ""
+      this.inputClass.current.classList.remove('bw1')
+      this.inputClass.current.classList.add('bn')
+      this.inputClass.current.classList.add('vtex-searchbar__border-bottom')
+    }
+    console.log(this.inputClass)
+  }
+
+  componentDidMount() {
+    this.changeClassInput()
+  }
+
+  componentWillUpdate() {
+    this.changeClassInput()
+  }
+
   render() {
+
     const { onGoToSearchPage, mobileMode, value, ...restProps } = this.props
 
     const prefixIcon = (
       mobileMode ? <IconSearch color="#979899" /> : ""
     )
-
     const suffixIcon = (
       mobileMode ? !value ? "" : <IconClose className="pa0" size={10} color="#979899" />
         :
@@ -23,7 +51,7 @@ export default class AutocompleteInput extends Component {
 
     return (
       <div className="flex">
-        <Input size="large" {...restProps} suffixIcon={suffixIcon} prefix={prefixIcon} />
+        <Input ref={this.inputClass} size="large" {...restProps} suffixIcon={suffixIcon} prefix={prefixIcon} />
       </div>
     )
   }
