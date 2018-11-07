@@ -21,6 +21,7 @@
   height: 38px;
   color: #727273;
   border-radius: 1px;
+  padding-left: 40px !important;
 }
 
 .vtex-searchbar__compact-mode input{
@@ -28,6 +29,11 @@
   border-left-style: none !important; 
   border-right-style: none !important; 
   border-bottom: 2px solid !important;
+}
+
+.vtex-searchbar__padding-input input {
+  -webkit-appearance: none;
+  padding-left: 40px !important;
 }
 
 .vtex-searchbar .vtex-results__list {
