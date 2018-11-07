@@ -31,6 +31,12 @@ export default {
       Name: PropTypes.string,
     })
   ),
+  /** Classes to be applied in the Installments Component */
+  installmentsClasses: PropTypes.shape({
+    root: PropTypes.string,
+    installmentValue: PropTypes.string,
+    interestRate: PropTypes.string
+  }),
   /** Component and content loader styles */
   styles: PropTypes.object,
   /** intl property to format data */
