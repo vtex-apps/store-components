@@ -29,14 +29,6 @@ export default class AutocompleteInput extends Component {
     this.changeClassInput()
   }
 
-  cleanInputField() {
-    let { value } = this.props
-    console.log(value)
-    value = ""
-  }
-
-
-
   render() {
 
     const { onGoToSearchPage, onClearInput, compactMode, value, ...restProps } = this.props
