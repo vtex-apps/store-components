@@ -21,10 +21,6 @@ export default class AutocompleteInput extends Component {
     }
   }
 
-  componentDidUpdate() {
-    this.changeClassInput()
-  }
-
   componentDidMount() {
     this.changeClassInput()
   }
