@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react'
+<<<<<<< HEAD
 import classNames from 'classnames'
+=======
+>>>>>>> Add classes prop to Installments component
 import { isEmpty } from 'ramda'
 import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
@@ -29,7 +32,7 @@ export default class Installments extends Component {
       maximumFractionDigits: PropTypes.number.isRequired,
     }).isRequired
   }
-  
+
   render() {
     const {
       showLabels,
