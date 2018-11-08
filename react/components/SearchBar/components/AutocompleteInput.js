@@ -17,6 +17,8 @@ export default class AutocompleteInput extends Component {
     const { compactMode } = this.props
     if (compactMode) {
       this.inputClass.current.placeholder = ""
+      this.inputClass.current.classList.add("vtex-searchbar__padding-input")
+
     }
   }
 
@@ -34,7 +36,7 @@ export default class AutocompleteInput extends Component {
     const suffixIcon = (
       compactMode ? !value ? "" :
         <span className="flex items-center pointer" onClick={onClearInput} >
-          <IconClose className="pa0" size={10} color="#979899" />
+          <IconClose className="pa0" size={20} color="#979899" />
         </span>
         :
         <span className="flex items-center pointer" onClick={onGoToSearchPage}>
