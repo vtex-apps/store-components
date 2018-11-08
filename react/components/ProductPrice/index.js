@@ -22,7 +22,7 @@ class Price extends Component {
     showLabels: true,
     showInstallments: false,
     showSavings: false,
-    labelSellingPrice: null
+    labelSellingPrice: null,
   }
 
   currencyOptions = {
