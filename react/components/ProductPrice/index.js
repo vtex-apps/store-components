@@ -148,6 +148,12 @@ priceWithIntel.schema = {
   description: 'editor.productPrice.description',
   type: 'object',
   properties: {
+    labelSellingPrice: {
+      type: 'string',
+      title: 'editor.productPrice.labelSellingPrice',
+      default: Price.defaultProps.labelSellingPrice,
+      isLayout: true,
+    },
     showListPrice: {
       type: 'boolean',
       title: 'editor.productPrice.showListPrice',
@@ -171,11 +177,6 @@ priceWithIntel.schema = {
       title: 'editor.productPrice.showSavings',
       default: Price.defaultProps.showSavings,
       isLayout: true,
-    },
-    labelSellingPrice: {
-      type: 'string',
-      title: 'editor.productPrice.labelSellingPrice',
-      default: Price.defaultProps.labelSellingPrice,
     }
   },
 }
