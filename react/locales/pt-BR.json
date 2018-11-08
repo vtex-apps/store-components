@@ -14,6 +14,7 @@
   "editor.productPrice.showLabels": "Mostrar legendas nos preços",
   "editor.productPrice.showInstallments": "Mostrar opção de parcelamento",
   "editor.productPrice.showSavings": "Mostrar diferença entre o preço tabelado e o de venda",
+  "editor.productPrice.labelSellingPrice": "Label do selling price",
   "editor.share.title": "Compartilhamento",
   "editor.share.description": "Lista de botões de compartilhamento",
   "editor.share.social.title": "Redes sociais",
