@@ -14,6 +14,8 @@ export default {
   showInstallments: PropTypes.bool.isRequired,
   /** Set visibility of savings */
   showSavings: PropTypes.bool,
+  /** Text to the selling price's label */
+  labelSellingPrice: PropTypes.string,
   /** Available installments */
   installments: PropTypes.arrayOf(
     PropTypes.shape({

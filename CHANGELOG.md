@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.5] - 2018-11-07
+### Added
+- Make the Product Price's label editable through Storefront. 
+
 ## [2.5.4] - 2018-11-07
 
 ## [2.5.3] - 2018-11-07

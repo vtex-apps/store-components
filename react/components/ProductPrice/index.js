@@ -22,6 +22,7 @@ class Price extends Component {
     showLabels: true,
     showInstallments: false,
     showSavings: false,
+    labelSellingPrice: null,
   }
 
   currencyOptions = {
@@ -39,6 +40,7 @@ class Price extends Component {
       showInstallments,
       showLabels,
       showSavings,
+      labelSellingPrice,
       installments,
       styles,
       intl: { formatNumber },
@@ -67,7 +69,7 @@ class Price extends Component {
         <div className="vtex-price-selling__container pv1 b c-muted-1">
           {showLabels && (
             <div className="vtex-price-selling__label dib">
-              <FormattedMessage id="pricing.to" />
+              {labelSellingPrice || <FormattedMessage id="pricing.to" />}
             </div>
           )}
           <div className="vtex-price-selling dib ph2">
@@ -146,6 +148,12 @@ priceWithIntel.schema = {
   description: 'editor.productPrice.description',
   type: 'object',
   properties: {
+    labelSellingPrice: {
+      type: 'string',
+      title: 'editor.productPrice.labelSellingPrice',
+      default: Price.defaultProps.labelSellingPrice,
+      isLayout: true,
+    },
     showListPrice: {
       type: 'boolean',
       title: 'editor.productPrice.showListPrice',
@@ -169,7 +177,7 @@ priceWithIntel.schema = {
       title: 'editor.productPrice.showSavings',
       default: Price.defaultProps.showSavings,
       isLayout: true,
-    },
+    }
   },
 }
 
