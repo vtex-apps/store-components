@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.6] - 2018-11-08
+### Fixed
+- Removed call to `Array.from` breaking the `Shelf` on Internet Explorer.
+
 ## [2.5.5] - 2018-11-07
 ### Added
 - Make the Product Price's label editable through Storefront. 
