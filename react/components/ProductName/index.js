@@ -48,7 +48,7 @@ class ProductName extends Component {
   }
 
   static Loader = (loaderProps = {}) => (
-    <div className={path(['classes', 'rootLoader'], loaderProps)}>
+    <div className={path(['rootLoader'], loaderProps)}>
       <ContentLoader
         style={{
           width: '100%',
@@ -90,7 +90,7 @@ class ProductName extends Component {
 
     if (!name) {
       return (
-        <ProductName.Loader classes={classes} {...this.props.styles} />
+        <ProductName.Loader rootLoader={classes.rootLoader} {...this.props.styles} />
       )
     }
 
