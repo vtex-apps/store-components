@@ -92,5 +92,10 @@
   "header.topMenu.login.icon.label": "Sign in",
   "searchBar.button.cancel.label": "Cancel",
   "buyButton-label-unavailable": "Unavailable",
-  "greeting": "Hello"
+  "greeting": "Hello",
+  "alert.connectionError": "There was an error connecting with the system, try reloading the page.",
+  "alert.unauthenticated": "You need to be authenticated to proceed with this action.",
+  "alert.reload": "Reload",
+  "alert.unknownError": "An error occurred, try again.",
+  "commons.back": "Return"
 }

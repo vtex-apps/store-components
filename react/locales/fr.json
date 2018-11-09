@@ -1,0 +1,7 @@
+{
+  "alert.connectionError": "Une erreur s'est produite lors de la connexion au système, essayez de recharger la page.",
+  "alert.unauthenticated": "Vous devez être authentifié pour poursuivre cette action.",
+  "alert.reload": "Recharger",
+  "alert.unknownError": "Une erreur est survenue, réessayez.",
+  "commons.back": "Retour"
+}
