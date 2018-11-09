@@ -36,6 +36,7 @@ Below we have a README for each component of this project that explains how to u
 - [Slider](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Slider/README.md)
 - [Technical Specifications](https://github.com/vtex-apps/storecomponents/blob/master/react/components/TechnicalSpecifications/README.md)
 - [Availability Subscriber](https://github.com/vtex-apps/storecomponents/blob/master/react/components/AvailabilitySubscriber/README.md)
+- [Account](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Account/README.md)
 
 ## Usage
 To import a component of this project follow the instructions below. 
@@ -43,7 +44,7 @@ To import a component of this project follow the instructions below.
 You need to add into the dependencies of your `manifest.json` and use it like a npm module. 
 ```json 
 "dependencies": {
-  "vtex.store-components": "1.x"
+  "vtex.store-components": "2.x"
 }
 ```
 
