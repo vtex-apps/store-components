@@ -46,7 +46,7 @@ class ContentWrapper extends Component {
               errorId="alert.unknownError"
             />
           )}
-          {children(this.handleError)}
+          {children({ handleError: this.handleError })}
         </main>
       </section>
     )
