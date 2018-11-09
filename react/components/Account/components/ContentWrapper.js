@@ -54,7 +54,7 @@ class ContentWrapper extends Component {
 }
 
 ContentWrapper.propTypes = {
-  intl: intlShape,
+  intl: intlShape.isRequired,
   children: PropTypes.func.isRequired,
   title: PropTypes.string,
   titleId: PropTypes.string,
