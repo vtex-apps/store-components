@@ -86,6 +86,7 @@ ProductDescription.defaultProps = {
 }
 
 ProductDescription.propTypes = {
+  /** CSS classes to be applied in the elements of the component */
   classes: PropTypes.shape({
     root: PropTypes.string,
     description: PropTypes.shape({
@@ -115,6 +116,12 @@ ProductDescription.propTypes = {
   ),
   /** Name of the current SKU */
   skuName: PropTypes.string,
+  /** CSS classes to be applied in the elements of SpecificaitonRow component */
+  rowClasses: PropTypes.shape({
+    row: PropTypes.string,
+    thName: PropTypes.string,
+    tdValue: PropTypes.string
+  })
 }
 
 export default injectIntl(ProductDescription)
