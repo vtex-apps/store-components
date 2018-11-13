@@ -78,7 +78,7 @@ const rowClasses = {
 | `specifications[n].name` | `String`   | Specification name                                                          |
 | `specifications[n].value`| `String`   | Specifications value                                                        |
 | `classes`                | `Object`   | CSS classes to be applied in the elements of the component                  |
-| `rowClasses`             | `Object`   | CSS classes to be applied in the elements of SpecificaitonRow component     |
+| `rowClasses`             | `Object`   | CSS classes to be applied in the elements of SpecificationRow component     |
 | `skuName`                | `String`   | Name of the SKU                                                             |
 
 See an example at [Product Details](https://github.com/vtex-apps/product-details) app
