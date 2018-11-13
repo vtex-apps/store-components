@@ -52,7 +52,7 @@ The `classes` and the `installmentsClasses` props have the following structure
   })
 }
 ```
-The attributes of `classes` and `installmentsClasses` objects represent an element of the component. To understend better see the following example of how to pass classes to elements
+The attributes of `classes` and `installmentsClasses` objects represent an element of the component. To understand better see the following example of how to pass classes to elements
 ```jsx
 
 const classes = {
@@ -87,7 +87,7 @@ const installmentsClasses = {
 | `showLabels`                              | `Boolean!` | Set visibility of labels                                   |
 | `showInstallments`                        | `Boolean!` | Set visibility of installments                             |
 | `showSavings`                             | `Boolean`  | Set visibility of savings                                  |
-| `classes`                                 | `Object`   | CSS classes to be applied in the Price component Component |
+| `classes`                                 | `Object`   | CSS classes to be applied in the Price component elements  |
 | `installments`                            | `Array`    | Available installments                                     |
 | `installmentsClasses`                     | `Object`   | CSS classes to be applied in the Installments Component    |
 | `installments.Value`                      | `Number!`  | Installment price                                          |
