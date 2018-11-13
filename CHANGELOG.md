@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Removed
-- Removing `Account` component bundle.
-- Removing `@vtex/styleguide` dependency.
+- `Account` component bundle.
+- `@vtex/styleguide` dependency.
 
 ## [2.6.1] - 2018-11-11
 
