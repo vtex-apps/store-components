@@ -4,7 +4,6 @@
     "test": "vtex-scripts test"
   },
   "dependencies": {
-    "@vtex/styleguide": "~2.3.0",
     "apollo-client": "~2.2.3",
     "classnames": "^2.2.5",
     "debounce": "^1.1.0",

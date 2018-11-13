@@ -1,12 +1,11 @@
 import './global.css'
 
-import Button from '@vtex/styleguide/lib/Button'
-import Input from '@vtex/styleguide/lib/Input'
-import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
+import { injectIntl, intlShape } from 'react-intl'
 import { compose, withApollo } from 'react-apollo'
 import ContentLoader from 'react-content-loader'
-import { injectIntl, intlShape } from 'react-intl'
+import PropTypes from 'prop-types'
+import { Button, Input } from 'vtex.styleguide'
 
 import ShippingTable from './components/ShippingTable'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
