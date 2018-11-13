@@ -92,10 +92,5 @@
   "header.topMenu.login.icon.label": "Entrar",
   "searchBar.button.cancel.label": "Cancelar",
   "buyButton-label-unavailable": "Indisponible",
-  "greeting": "Hola",
-  "alert.connectionError": "Hubo un error al conectar con el sistema, intente cargar la página nuevamente.",
-  "alert.unauthenticated": "Debe estar autenticado para continuar con esta acción.",
-  "alert.reload": "Recargar",
-  "alert.unknownError": "Se produjo un error, inténtalo de nuevo.",
-  "commons.back": "Regreso"
+  "greeting": "Hola"
 }
