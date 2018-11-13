@@ -1,20 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default function SpecificationRow({ name, values }) {
+export default function SpecificationRow({ name, values, classes }) {
+
   return (
-    <tr className="vtex-product-specifications__table-row">
-      <th className="vtex-product-specifications__specification-name dtc-ns tr-ns ttu normal w-25-ns pt2 pb2-ns ph6 br-ns b--muted-3 db-s tl-s pb0-s w-auto-s bn-s">
+    <tr className={classes.row}>
+      <th className={classes.thName}>
         {name}
       </th>
-      <td className="vtex-product-specifications__specification-values dtc-ns pv2 ph6 c-muted-2 db-s">
+      <td className={classes.tdValue}>
         {values}
       </td>
     </tr>
   )
 }
 
+SpecificationRow.defaultProps = {
+  classes: {
+    row: null,
+    thName: null,
+    tdValue: null
+  }
+}
+
 SpecificationRow.propTypes = {
+  classes: PropTypes.shape({
+    row: PropTypes.string,
+    thName: PropTypes.string,
+    tdValue: PropTypes.string
+  }),
   name: PropTypes.node,
   values: PropTypes.node,
 }

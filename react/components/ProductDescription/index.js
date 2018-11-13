@@ -12,35 +12,42 @@ import './global.css'
  */
 class ProductDescription extends Component {
   render() {
-    const { specifications, skuName, description } = this.props
+    const { specifications, skuName, description, rowClasses } = this.props
+    let { classes } = this.props
 
     if (!description || !specifications) {
       return null
     }
 
+    classes = {
+      ...ProductDescription.defaultProps.classes,
+      ...classes
+    }
+
     return (
-      <div className="vtex-product-description ma2">
-        <div className="f4 b ttu mb3">
-          <FormattedMessage id="product-description.title" />
+      <div className={classes.root}>
+        <div className={classes.description.container}>
+          <div className={classes.description.title}>
+            <FormattedMessage id="product-description.title" />
+          </div>
+          <span
+            className={classes.description.text}
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </div>
-
-        <span
-          className="measure-wide"
-          dangerouslySetInnerHTML={{ __html: description }}
-        />
-
         {specifications.length > 0 && (
-          <div className="vtex-product-specifications mt6">
-            <div className="vtex-product-specifications__title f4 b ttu mb6-ns mb5-s">
+          <div className={classes.table.container}>
+            <div className={classes.table.title}>
               <FormattedMessage id="technicalspecifications.title" />
             </div>
-            <table className="vtex-product-specifications__table w-100">
-              <tbody>
+            <table className={classes.table.tableElement}>
+              <tbody className={classes.table.tableBody}>
                 {skuName && (
-                  <SpecificationRow name={`SKU ${skuName}`} />
+                  <SpecificationRow classes={rowClasses} name={`SKU ${skuName}`} />
                 )}
                 {specifications.map(specification => (
                   <SpecificationRow
+                    classes={rowClasses}
                     key={specification.name}
                     name={specification.name}
                     values={specification.values.map((value, i) => (
@@ -61,10 +68,38 @@ class ProductDescription extends Component {
 }
 
 ProductDescription.defaultProps = {
-  specifications: [],
+  classes: {
+    root: null,
+    description: {
+      text: null,
+      title: null,
+      container: null,
+    },
+    table: {
+      title: null,
+      container: null,
+      tableBody: null,
+      tableElement: null
+    }
+  },
+  specifications: []
 }
 
 ProductDescription.propTypes = {
+  classes: PropTypes.shape({
+    root: PropTypes.string,
+    description: PropTypes.shape({
+      container: PropTypes.string,
+      title: PropTypes.string,
+      text: PropTypes.string
+    }),
+    table: PropTypes.shape({
+      container: PropTypes.string,
+      title: PropTypes.string,
+      tableElement: PropTypes.string,
+      tableBody: PropTypes.string
+    }),
+  }),
   /** Product description string */
   description: PropTypes.string,
   /** Intl object to provides internationalization */
