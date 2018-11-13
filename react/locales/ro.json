@@ -1,7 +1,0 @@
-{
-  "alert.connectionError": "A apărut o eroare la conectarea la sistem, încercați să reîncărcați pagina.",
-  "alert.unauthenticated": "Trebuie să fiți autentificat pentru a continua această acțiune.",
-  "alert.reload": "Reîncarcă",
-  "alert.unknownError": "A apărut o eroare, încercați din nou.",
-  "commons.back": "Întoarcere"
-}
