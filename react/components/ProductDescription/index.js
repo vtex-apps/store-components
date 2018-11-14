@@ -22,11 +22,6 @@ class ProductDescription extends Component {
       return null
     }
 
-    classes = {
-      ...ProductDescription.defaultProps.classes,
-      ...classes
-    }
-
     return (
       <div className={classes.root}>
         <div className={classes.description.container}>
