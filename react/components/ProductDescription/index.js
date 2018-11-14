@@ -13,7 +13,10 @@ import './global.css'
 class ProductDescription extends Component {
   render() {
     const { specifications, skuName, description, rowClasses } = this.props
-    let { classes } = this.props
+    const classes = {
+      ...ProductDescription.defaultProps.classes,
+      ...this.props.classes,
+    }
 
     if (!description || !specifications) {
       return null
