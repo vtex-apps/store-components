@@ -1,6 +1,7 @@
 import './global.css'
 
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 import { indexBy, prop } from 'ramda'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
@@ -11,7 +12,7 @@ import { SOCIAL_ENUM } from './constants/social'
 class Share extends Component {
   static propTypes = {
     /** Social Networks configuration */
-    social: PropTypes.object.isRequired,
+    social: PropTypes.object,
     /** Share buttons options */
     options: PropTypes.shape({
       /** Share buttons size in pixels */
@@ -23,6 +24,18 @@ class Share extends Component {
     loading: PropTypes.bool,
     /** Component and content loader styles */
     styles: PropTypes.object,
+    /** CSS classes to be applied in the elements of the component */
+    classes: PropTypes.shape({
+      root: PropTypes.string,
+      loader: PropTypes.shape({
+        container: PropTypes.string,
+        contentLoader: PropTypes.string
+      }),
+      social: PropTypes.shape({
+        button: PropTypes.string,
+        icon: PropTypes.string
+      })
+    })
   }
 
   static Loader = (loaderProps = {}) => {
@@ -34,9 +47,11 @@ class Share extends Component {
     }
 
     return (
-      <div className="vtex-share">
+      <div className={loaderProps.classes
+        && classNames('vtex-share vtex-share-loader', loaderProps.classes.container)}>
         <ContentLoader
-          className="vtex-share"
+          className={loaderProps.classes
+            && loaderProps.classes.contentLoader}
           style={{
             width: '100%',
             height: '100%',
@@ -71,6 +86,17 @@ class Share extends Component {
       WhatsApp: true,
     },
     options: {},
+    classes: {
+      root: null,
+      loader: {
+        container: null,
+        contentLoader: null
+      },
+      social: {
+        button: null,
+        icon: null,
+      }
+    }
   }
 
   static schema = {
@@ -103,25 +129,28 @@ class Share extends Component {
       options: { size },
     } = this.props
 
+    const classes = {
+      ...Share.defaultProps.classes,
+      ...this.props.classes
+    }
+
     if (loading) {
-      return <Share.Loader {...this.props.styles} />
+      return <Share.Loader classes={classes.loader} {...this.props.styles} />
     }
 
     return (
-      <div className="vtex-share flex flex-row">
+      <div className={classNames('vtex-share', classes.root)}>
         {Object.keys(social).map(
           (socialNetwork, index) =>
             social[socialNetwork] && (
-              <div
-                className={`vtex-share__${socialNetwork}-button ph1`}
-                key={index}>
-                <SocialButton
-                  url={window.location && window.location.href}
-                  message={title}
-                  socialEnum={socialNetwork}
-                  size={size}
-                />
-              </div>
+              <SocialButton
+                key={index}
+                url={window.location && window.location.href}
+                message={title}
+                classes={classes.social}
+                socialEnum={socialNetwork}
+                size={size}
+              />
             )
         )}
       </div>
