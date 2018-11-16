@@ -1,6 +1,6 @@
 import get from 'lodash.get'
 
-function getItemWidth(slick) {
+function getItemWidth(slick, maxwidth) {
   const slidesNodeList = get(slick, 'innerSlider.list.childNodes[0].childNodes')
   let itemWidth = null
   if (slidesNodeList) {
@@ -10,6 +10,7 @@ function getItemWidth(slick) {
       attributes.map(attr => {
         if (attr.nodeName === 'data-index' && attr.nodeValue === '0') {
           itemWidth = get(slide, 'childNodes[0].clientWidth')
+          if(maxwidth && maxwidth < itemWidth) itemWidth = maxwidth
         }
       })
     })
@@ -22,7 +23,7 @@ function getItemWidth(slick) {
  */
 export default function getItemsPerPage(slick, slideWidth, defaultItemWidth, actualItemsPerPage) {
   if (slideWidth) {
-    const shelfItemWidth = getItemWidth(slick) || defaultItemWidth
+    const shelfItemWidth = getItemWidth(slick, defaultItemWidth) || defaultItemWidth
     const maxItemsPerPage = Math.floor(slideWidth / shelfItemWidth)
     if (actualItemsPerPage >= maxItemsPerPage) {
       return maxItemsPerPage || 1
