@@ -1,5 +1,3 @@
-import './global.css'
-
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { indexBy, prop } from 'ramda'
