@@ -81,7 +81,7 @@ class ProductName extends Component {
       skuClasses += ' vtex-product-name__sku--large'
     }
 
-    // if (!name) {
+    if (!name) {
       return (
         <ProductName.Loader
           {...this.props.styles}
@@ -89,7 +89,7 @@ class ProductName extends Component {
           skuClasses={skuClasses}
         />
       )
-    // }
+    }
 
     return (
       <div className="vtex-product-name overflow-hidden c-on-base">

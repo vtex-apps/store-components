@@ -46,9 +46,9 @@ class Price extends Component {
       intl: { formatNumber },
     } = this.props
 
-    // if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
+    if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
     return <Price.Loader {...styles} />
-    // }
+    }
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
