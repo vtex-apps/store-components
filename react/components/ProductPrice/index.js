@@ -15,9 +15,9 @@ class Price extends Component {
   static contextTypes = {
     culture: PropTypes.object,
   }
-  
+
   static propTypes = PricePropTypes
-  
+
   static defaultProps = {
     showListPrice: true,
     showLabels: true,
@@ -25,7 +25,7 @@ class Price extends Component {
     showSavings: false,
     labelSellingPrice: null,
   }
-  
+
   currencyOptions = {
     style: 'currency',
     currency: this.context.culture.currency,

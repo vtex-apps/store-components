@@ -79,21 +79,21 @@ const installmentsClasses = {
 />
 ```
 
-| Prop name                                 | Type       | Description                                                |
-| ----------------------------------------- | ---------- | ---------------------------------------------------------- |
-| `sellingPrice`                            | `Number`   | Product selling price                                      |
-| `listPrice`                               | `Number`   | Product list price                                         |
-| `showListPrice`                           | `Boolean!` | Set visibility of list price                               |
-| `showLabels`                              | `Boolean!` | Set visibility of labels                                   |
-| `showInstallments`                        | `Boolean!` | Set visibility of installments                             |
-| `showSavings`                             | `Boolean`  | Set visibility of savings                                  |
-| `classes`                                 | `Object`   | CSS classes to be applied in the Price component elements  |
-| `installments`                            | `Array`    | Available installments                                     |
-| `installmentsClasses`                     | `Object`   | CSS classes to be applied in the Installments Component    |
-| `installments.Value`                      | `Number!`  | Installment price                                          |
-| `installments.InterestRate`               | `Number!`  | Installment interest rate (zero if interest-free)          |
-| `installments.TotalValuePlusInterestRate` | `Number`   | Calculated total value                                     |
-| `installments.NumberOfInstallments`       | `Number!`  | Number of installments                                     |
-| `installments.Name`                       | `String`   | Installment offer name                                     |
+| Prop name | Type | Description |
+| --------- | ---- | ----------- |
+| `sellingPrice` | `Number` | Product selling price |
+| `listPrice` | `Number` | Product list price |
+| `showListPrice` | `Boolean!` | Set visibility of list price |
+| `showLabels` | `Boolean!` | Set visibility of labels |
+| `showInstallments` | `Boolean!` | Set visibility of installments |
+| `showSavings` | `Boolean` | Set visibility of savings |
+| `classes` | `Object` | CSS classes to be applied in the Price component elements |
+| `installments` | `Array` | Available installments |
+| `installmentsClasses` | `Object` | CSS classes to be applied in the Installments Component |
+| `installments.Value` | `Number!` | Installment price |
+| `installments.InterestRate` | `Number!` | Installment interest rate (zero if interest-free) |
+| `installments.TotalValuePlusInterestRate` | `Number` | Calculated total value |
+| `installments.NumberOfInstallments` | `Number!` | Number of installments |
+| `installments.Name` | `String` | Installment offer name |
 
 See an example at [Product Summary](https://github.com/vtex-apps/product-summary) app
