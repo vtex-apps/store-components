@@ -47,7 +47,7 @@ class Price extends Component {
     } = this.props
 
     if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
-    return <Price.Loader {...styles} />
+      return <Price.Loader {...styles} />
     }
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
