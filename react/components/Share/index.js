@@ -37,19 +37,24 @@ class Share extends Component {
   }
 
   static Loader = (loaderProps = {}) => {
+    const {
+      'vtex-share__button--loader': button,
+      'vtex-share__button--loader-1': button1,
+      'vtex-share__button--loader-2': button2,
+      'vtex-share__button--loader-3': button3,
+      classes
+    } = loaderProps
     const loaderStyles = {
       r: '1em',
       height: '2em',
       cy: '1em',
-      ...loaderProps['vtex-share__button--loader'],
+      ...button,
     }
 
     return (
-      <div className={loaderProps.classes
-        && classNames('vtex-share vtex-share-loader', loaderProps.classes.container)}>
+      <div className={classes && classNames('vtex-share vtex-share-loader', classes.container)}>
         <ContentLoader
-          className={loaderProps.classes
-            && loaderProps.classes.contentLoader}
+          className={classes && classes.contentLoader}
           style={{
             width: '100%',
             height: '100%',
@@ -60,17 +65,17 @@ class Share extends Component {
           <circle
             cx="1em"
             {...loaderStyles}
-            {...loaderProps['vtex-share__button--loader-1']}
+            {...button1}
           />
           <circle
             cx="3.5em"
             {...loaderStyles}
-            {...loaderProps['vtex-share__button--loader-2']}
+            {...button2}
           />
           <circle
             cx="6em"
             {...loaderStyles}
-            {...loaderProps['vtex-share__button--loader-3']}
+            {...button3}
           />
         </ContentLoader>
       </div>

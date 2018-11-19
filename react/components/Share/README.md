@@ -33,7 +33,7 @@ The `classes` prop has the following structure:
   })
 }
 ```
-The attributes of `classes` object represetn an element of the component. See the folowing example
+The attributes of `classes` object represent an element of the component. See the folowing example
 ```jsx
 const social = {
   Facebook: true,
