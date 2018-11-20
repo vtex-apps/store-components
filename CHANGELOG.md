@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Add `classes` and `installmentsClasses` to ProductPrice component to style the component.
+
 ### Removed
 - `Footer` component.
 
