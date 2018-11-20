@@ -56,8 +56,8 @@ The attributes of `classes` and `installmentsClasses` objects represent an eleme
 ```jsx
 
 const classes = {
-  root: 'vtex-price some-css-class',
-  rootLoader: 'vtex-price vtex-price-loader some-other-css-class',
+  root: 'some-css-class',
+  rootLoader: 'some-other-css-class',
   sellingPrice: {
     container: 'some-css-class-for-selling-container'
   }
