@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import classNames from 'classnames'
 import { isEmpty } from 'ramda'
 import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
@@ -86,7 +87,7 @@ export default class Installments extends Component {
     ))
 
     return (
-      <div className={classes.root}>
+      <div className={classNames('vtex-price-installments__container', classes.root)}>
         {showLabels ? (
           <FormattedMessage
             id="pricing.installment-display"
@@ -102,7 +103,7 @@ export default class Installments extends Component {
             </Fragment>
           )}
         {!installment.InterestRate && (
-          <div className={classes.interestRate}>
+          <div className={classNames('vtex-price-installments__interest-rate', classes.interestRate)}>
             <FormattedMessage id="pricing.interest-free" />
           </div>
         )}

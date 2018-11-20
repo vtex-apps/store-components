@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { isNil, path } from 'ramda'
 import ContentLoader from 'react-content-loader'
@@ -6,7 +7,6 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 
 import PricePropTypes from './propTypes'
 import Installments from './Installments'
-
 
 /**
  * The Price component. Shows the prices information of the Product Summary.
@@ -52,7 +52,7 @@ class Price extends Component {
     // avoiding undefined verifications
     classes = {
       ...Price.defaultProps.classes,
-      ...classes
+      ...classes,
     }
 
     if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
@@ -62,31 +62,26 @@ class Price extends Component {
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
     return (
-      <div className={classes.root}>
+      <div className={classNames('vtex-price', classes.root)}>
         {differentPrices && (
-          <div className={classes.listPrice.container}>
+          <div className={classNames('vtex-price-list__container', classes.listPrice.container)}>
             {showLabels && (
-              <div className={classes.listPrice.label}>
+              <div className={classNames('vtex-price-list__label', classes.listPrice.label)}>
                 <FormattedMessage id="pricing.from" />
               </div>
             )}
-            <span className={classes.listPrice.value}>
+            <span className={classNames('vtex-price-list', classes.listPrice.value)}>
               {formatNumber(listPrice, this.currencyOptions)}
             </span>
           </div>
         )}
-        <div className={classes.sellingPrice.container}>
+        <div className={classNames('vtex-price-selling__container', classes.sellingPrice.container)}>
           {showLabels && (
-<<<<<<< HEAD
-            <div className="vtex-price-selling__label dib">
-              {labelSellingPrice || <FormattedMessage id="pricing.to" />}
-=======
-            <div className={classes.sellingPrice.label}>
+            <div className={classNames('vtex-price-selling__label', classes.sellingPrice.label)}>
               <FormattedMessage id="pricing.to" />
->>>>>>> Add classes prop to style Price component
             </div>
           )}
-          <div className={classes.sellingPrice.value}>
+          <div className={classNames('vtex-price-selling', classes.sellingPrice.value)}>
             {formatNumber(sellingPrice, this.currencyOptions)}
           </div>
         </div>
@@ -99,8 +94,8 @@ class Price extends Component {
             classes={installmentsClasses}
           />}
         {differentPrices && showSavings && (
-          <div className={classes.savings.container}>
-            <div className={classes.savings.value}>
+          <div className={classNames('vtex-price-savings__container', classes.savings.container)}>
+            <div className={classNames('vtex-price-savings', classes.savings.value)}>
               <FormattedMessage
                 id="pricing.savings"
                 values={{
@@ -119,7 +114,7 @@ class Price extends Component {
 }
 
 Price.Loader = (loaderProps = {}) => (
-  <div className={loaderProps.classes.rootLoader}>
+  <div className={classNames('vtex-price vtex-price-loader', loaderProps.classes.rootLoader)}>
     <ContentLoader
       style={{
         width: '100%',
@@ -192,7 +187,7 @@ priceWithIntel.schema = {
       title: 'editor.productPrice.showSavings',
       default: Price.defaultProps.showSavings,
       isLayout: true,
-    }
+    },
   },
 }
 
