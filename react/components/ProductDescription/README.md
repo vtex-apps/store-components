@@ -44,22 +44,21 @@ The attributes of `classes` and `rowClasses` objects represent an element of the
 ```jsx
 // ...
 const classes = {
-  root: 'vtex-product-description ma2',
+  root: 'ma2',
   description: {
     title: 'f4 b ttu mb3',
     text: 'measure-wide'
   },
   table: {
-    container: 'vtex-product-specifications mt6',
-    title: 'vtex-product-specifications__title f4 b ttu mb6-ns mb5-s',
-    tableElement: 'vtex-product-specifications__table w-100'
+    container: 'mt6',
+    title: 'f4 b ttu mb6-ns mb5-s',
+    tableElement: 'w-100'
   }
 }
 
 const rowClasses = {
-  row: 'vtex-product-specifications__table-row',
-  thName: 'vtex-product-specifications__specification-name dtc-ns bn-s',
-  tdValue: 'vtex-product-specifications__specification-values c-muted-2 db-s'
+  thName: 'dtc-ns bn-s',
+  tdValue: 'c-muted-2 db-s'
 }
 
 <ProductDescription
@@ -71,14 +70,14 @@ const rowClasses = {
 />
 ```
 
-| Prop name                | Type       | Description                                                                 |
-| ------------------------ | ---------- | --------------------------------------------------------------------------- |
-| `children`               | `Node!`    | Children component which contains the product description                   |
-| `specifications`         | `Array`    | Specifications that will be displayed on the table                          |
-| `specifications[n].name` | `String`   | Specification name                                                          |
-| `specifications[n].value`| `String`   | Specifications value                                                        |
-| `classes`                | `Object`   | CSS classes to be applied in the elements of the component                  |
-| `rowClasses`             | `Object`   | CSS classes to be applied in the elements of SpecificationRow component     |
-| `skuName`                | `String`   | Name of the SKU                                                             |
+| Prop name | Type | Description |
+| --------- | ---- | ----------- |
+| `children` | `Node!` | Children component which contains the product description |
+| `specifications` | `Array` | Specifications that will be displayed on the table |
+| `specifications[n].name` | `String` | Specification name |
+| `specifications[n].value` | `String` | Specifications value |
+| `classes` | `Object` | CSS classes to be applied in the elements of the component |
+| `rowClasses` | `Object` | CSS classes to be applied in the elements of SpecificationRow component |
+| `skuName` | `String` | Name of the SKU |
 
 See an example at [Product Details](https://github.com/vtex-apps/product-details) app

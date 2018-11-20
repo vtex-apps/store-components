@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 
@@ -23,9 +24,9 @@ class ProductDescription extends Component {
     }
 
     return (
-      <div className={classes.root}>
-        <div className={classes.description.container}>
-          <div className={classes.description.title}>
+      <div className={classNames('vtex-product-description', classes.root)}>
+        <div className={classNames('vtex-product-description__description__container', classes.description.container)}>
+          <div className={classNames('vtex-product-description__description__title', classes.description.title)}>
             <FormattedMessage id="product-description.title" />
           </div>
           <span
@@ -34,12 +35,12 @@ class ProductDescription extends Component {
           />
         </div>
         {specifications.length > 0 && (
-          <div className={classes.table.container}>
-            <div className={classes.table.title}>
+          <div className={classNames('vtex-product-specifications', classes.table.container)}>
+            <div className={classNames('vtex-product-specifications__title', classes.table.title)}>
               <FormattedMessage id="technicalspecifications.title" />
             </div>
-            <table className={classes.table.tableElement}>
-              <tbody className={classes.table.tableBody}>
+            <table className={classNames('vtex-product-specifications__table', classes.table.tableElement)}>
+              <tbody className={classNames('vtex-product-specifications__tbody', classes.table.tableBody)}>
                 {skuName && (
                   <SpecificationRow classes={rowClasses} name={`SKU ${skuName}`} />
                 )}
