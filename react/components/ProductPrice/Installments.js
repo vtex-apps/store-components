@@ -1,8 +1,5 @@
 import React, { Component, Fragment } from 'react'
-<<<<<<< HEAD
 import classNames from 'classnames'
-=======
->>>>>>> Add classes prop to Installments component
 import { isEmpty } from 'ramda'
 import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
@@ -30,7 +27,7 @@ export default class Installments extends Component {
       currency: PropTypes.string.isRequired,
       minimumFractionDigits: PropTypes.number.isRequired,
       maximumFractionDigits: PropTypes.number.isRequired,
-    }).isRequired
+    }).isRequired,
   }
 
   render() {
@@ -41,7 +38,7 @@ export default class Installments extends Component {
       currencyOptions,
       className,
       installmentClass,
-      interestRateClass
+      interestRateClass,
     } = this.props
 
     if (!installments || isEmpty(installments)) {
@@ -93,10 +90,10 @@ export default class Installments extends Component {
             }}
           />
         ) : (
-            <Fragment>
-              {installmentsElement} {timesElement} {installmentPriceElement}
-            </Fragment>
-          )}
+          <Fragment>
+            {installmentsElement} {timesElement} {installmentPriceElement}
+          </Fragment>
+        )}
         {!installment.InterestRate && (
           <div className={classNames('vtex-price-installments__interest-rate', interestRateClass)}>
             <FormattedMessage id="pricing.interest-free" />
