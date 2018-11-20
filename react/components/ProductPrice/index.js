@@ -24,6 +24,7 @@ class Price extends Component {
     showLabels: true,
     showInstallments: false,
     showSavings: false,
+    labelSellingPrice: null,
     installmentsClasses: {},
     classes: {
       root: null,
@@ -60,6 +61,7 @@ class Price extends Component {
       showInstallments,
       showLabels,
       showSavings,
+      labelSellingPrice,
       installments,
       installmentsClasses,
       styles,
@@ -96,7 +98,7 @@ class Price extends Component {
         <div className={classNames('vtex-price-selling__container', classes.sellingPrice.container)}>
           {showLabels && (
             <div className={classNames('vtex-price-selling__label', classes.sellingPrice.label)}>
-              <FormattedMessage id="pricing.to" />
+              {labelSellingPrice || <FormattedMessage id="pricing.to" />}
             </div>
           )}
           <div className={classNames('vtex-price-selling', classes.sellingPrice.value)}>
@@ -176,6 +178,12 @@ priceWithIntel.schema = {
   description: 'editor.productPrice.description',
   type: 'object',
   properties: {
+    labelSellingPrice: {
+      type: 'string',
+      title: 'editor.productPrice.labelSellingPrice',
+      default: Price.defaultProps.labelSellingPrice,
+      isLayout: true,
+    },
     showListPrice: {
       type: 'boolean',
       title: 'editor.productPrice.showListPrice',
@@ -199,7 +207,7 @@ priceWithIntel.schema = {
       title: 'editor.productPrice.showSavings',
       default: Price.defaultProps.showSavings,
       isLayout: true,
-    },
+    }
   },
 }
 

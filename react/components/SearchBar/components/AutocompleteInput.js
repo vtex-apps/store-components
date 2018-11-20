@@ -1,23 +1,61 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
-import { Input } from 'vtex.styleguide'
-import IconSearch from '../images/IconSearch'
+import { Input, IconClose, IconSearch } from 'vtex.styleguide'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 export default class AutocompleteInput extends Component {
-  render() {
-    const { onGoToSearchPage, ...restProps } = this.props
 
+  constructor(props) {
+    super(props)
+    this.inputClass = React.createRef();
+    this.changeClassInput = this.changeClassInput.bind(this)
+  }
+
+  changeClassInput() {
+    const { compactMode } = this.props
+    if (compactMode) {
+      this.inputClass.current.placeholder = ""
+      this.inputClass.current.classList.add("vtex-searchbar__padding-input")
+
+    }
+  }
+
+  componentDidMount() {
+    this.changeClassInput()
+  }
+
+  render() {
+
+    const { onGoToSearchPage, onClearInput, compactMode, value, ...restProps } = this.props
+
+    const prefixIcon = (
+      compactMode ? <IconSearch color="#979899" /> : ""
+    )
     const suffixIcon = (
-      <span className="flex items-center pointer" onClick={onGoToSearchPage}>
-        <IconSearch color="#979899" />
-      </span>
+      compactMode ? !value ? "" :
+        <span className="flex items-center pointer" onClick={onClearInput} >
+          <IconClose className="pa0" size={20} color="#979899" />
+        </span>
+        :
+        <span className="flex items-center pointer" onClick={onGoToSearchPage}>
+          <IconSearch color="#979899" />
+        </span>
+    )
+
+    const classContainer = classNames(
+      'w-100',
+      {
+        'vtex-searchbar__compact-mode': compactMode
+      }
     )
 
     return (
       <div className="flex">
-        <Input size="large" {...restProps} suffixIcon={suffixIcon} />
+        <div className={classContainer}>
+          <Input ref={this.inputClass} size="large" value={value} {...restProps} suffixIcon={suffixIcon} prefix={prefixIcon} />
+        </div>
       </div>
     )
   }
@@ -40,4 +78,7 @@ AutocompleteInput.propTypes = {
   placeholder: PropTypes.string,
   /** Function to direct the user to the searchPage */
   onGoToSearchPage: PropTypes.func.isRequired,
+  compactMode: PropTypes.bool,
+  /** Clears the input */
+  onClearInput: PropTypes.func,
 }

@@ -14,6 +14,7 @@
   "editor.productPrice.showLabels": "Show product's prices' labels",
   "editor.productPrice.showInstallments": "Show product's payment installments",
   "editor.productPrice.showSavings": "Show product's list and selling price difference",
+  "editor.productPrice.labelSellingPrice": "Selling price's label",
   "editor.share.title": "Share",
   "editor.share.description": "List of share buttons",
   "editor.share.social.title": "Social Networks",

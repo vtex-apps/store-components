@@ -21,6 +21,19 @@
   height: 38px;
   color: #727273;
   border-radius: 1px;
+  padding-left: 40px !important;
+}
+
+.vtex-searchbar__compact-mode input{
+  border-top-style: none !important; 
+  border-left-style: none !important; 
+  border-right-style: none !important; 
+  border-bottom: 2px solid !important;
+}
+
+.vtex-searchbar__padding-input input {
+  -webkit-appearance: none;
+  padding-left: 40px !important;
 }
 
 .vtex-searchbar .vtex-results__list {
@@ -44,6 +57,6 @@
   .vtex-results__list {
     margin: 0px;
     max-height: calc(100vh - 6.2rem);
-    box-shadow: inset 0px 4px 4px 0 rgba(0, 0, 0, .2), 0px 4px 4px 0 rgba(0, 0, 0, .2);
+    box-shadow: inset 0px 2px 2px 0 rgba(0, 0, 0, .1);
   }
 }

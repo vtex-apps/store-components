@@ -12,6 +12,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - `Footer` component.
 
+## [2.6.4] - 2018-11-20
+### Fixed
+- Assign correct size to arrow element.
+
+## [2.6.3] - 2018-11-20
+### Fixed
+- Add `vtex-page-padding` class to Greeting
+
+## [2.6.2] - 2018-11-13
+### Removed
+- `Account` component bundle.
+- `@vtex/styleguide` dependency.
+
+## [2.6.1] - 2018-11-11
+
+## [2.6.0] - 2018-11-09
+### Added
+- `Account` shared components
+
+## [2.5.6] - 2018-11-08
+### Fixed
+- Removed call to `Array.from` breaking the `Shelf` on Internet Explorer.
+
+## [2.5.5] - 2018-11-07
+### Added
+- Make the Product Price's label editable through Storefront. 
+
+## [2.5.4] - 2018-11-07
+
+## [2.5.3] - 2018-11-07
+### Added
+- Add `compactMode` props that change the design of `SearchBar` component to a compact layout.
+
 ## [2.5.2] - 2018-11-07
 ### Changed
 - Remove `ContentLoader` of `ProductDescription`.

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
+import classNames from 'classnames'
 import AutocompleteInput from './AutocompleteInput'
 import ResultsLits from './ResultsList'
 import DownshiftComponent from 'downshift'
-
 import { NoSSR } from 'render'
 
 export default class SearchBar extends Component {
@@ -19,6 +18,7 @@ export default class SearchBar extends Component {
       onClearInput,
       shouldSearch,
       inputValue,
+      compactMode
     } = this.props
 
     const fallback = (
@@ -31,8 +31,12 @@ export default class SearchBar extends Component {
       />
     )
 
+    const mainClasses = classNames(
+      'vtex-searchbar w-100'
+    )
+
     return (
-      <div className="vtex-searchbar w-100">
+      <div className={mainClasses}>
         <NoSSR onSSR={fallback}>
           <DownshiftComponent>
             {({
@@ -44,6 +48,8 @@ export default class SearchBar extends Component {
             }) => (
               <div className="relative-m w-100">
                 <AutocompleteInput
+                  compactMode={compactMode}
+                  onClearInput={onClearInput}
                   onGoToSearchPage={() => {
                     closeMenu()
                     onGoToSearchPage()
@@ -57,6 +63,7 @@ export default class SearchBar extends Component {
                       onEnterPress(event)
                     },
                   })}
+                  
                 />
                 {shouldSearch && isOpen ? (
                   <ResultsLits
@@ -98,4 +105,6 @@ SearchBar.propTypes = {
   onGoToSearchPage: PropTypes.func.isRequired,
   /** Function to clear the input */
   onClearInput: PropTypes.func.isRequired,
+  /** Indentify when use the compact version of the component */
+  compactMode: PropTypes.bool,
 }
