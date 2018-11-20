@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
-import { path } from 'ramda'
+import classNames from 'classnames'
 
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
@@ -48,7 +48,7 @@ class ProductName extends Component {
   }
 
   static Loader = (loaderProps = {}) => (
-    <div className={path(['rootLoader'], loaderProps)}>
+    <div className={classNames('vtex-product-name vtex-product-name-loader', loaderProps.className)}>
       <ContentLoader
         style={{
           width: '100%',
@@ -90,18 +90,20 @@ class ProductName extends Component {
 
     if (!name) {
       return (
-        <ProductName.Loader rootLoader={classes.rootLoader} {...this.props.styles} />
+        <ProductName.Loader className={classes.rootLoader} {...this.props.styles} />
       )
     }
 
     return (
-      <div className={classes.root}>
-        <span className={classes.brandName}>
+      <div className={classNames('vtex-product-name', classes.root)}>
+        <span className={classNames('vtex-product-name__brand', classes.brandName)}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
-        {showSku && <span className={classes.skuName}>{skuName}</span>}
+        {showSku && skuName && (
+          <span className={classNames('vtex-product-name__sku', classes.skuName)}>{skuName}</span>
+        )}
         {showProductReference && productReference && (
-          <span className={classes.productReference}>
+          <span className={classNames('vtex-product-name__product-reference', classes.productReference)}>
             {`REF: ${productReference}`}
           </span>
         )}

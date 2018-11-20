@@ -32,10 +32,10 @@ classes: PropTypes.shape({
 Every attribute of the `classes` object represent a element of the component. To understand better see the following example of how to pass classes to every element
 ```jsx
 const classes = {
-  root: 'vtex-product-name__container some-css-class -pt4',
-  brandName: 'vtex-product-name__brand f5',
-  skuName: 'vtex-product-name__sku f6',
-  rootLoader: 'vtex-product-name vtex-product-name-loader pt5 overflow-hidden'
+  root: 'some-css-class pt4',
+  brandName: 'f5',
+  skuName: 'f6',
+  rootLoader: 'pt5 overflow-hidden'
 }
 <ProductName
   showSku
