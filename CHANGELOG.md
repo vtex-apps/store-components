@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Add `classes` prop to ProductName and remove `large` prop.
+- Remove Header from `vtex.store-components`.
 
 ## [2.6.9] - 2018-11-26
 ### Fixed
