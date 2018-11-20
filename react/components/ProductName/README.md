@@ -48,16 +48,15 @@ const classes = {
 ```
 See that we are not passing classes to `productReference`, beacause we don't need  it, since we are not rendering it. If you have any doubt check the [Component implementation](https://github.com/vtex-apps/store-components/tree/master/react/components/ProductName).
 
-| Prop name             | Type       | Description                                      |
-| --------------------- | ---------- | ------------------------------------------------ |
-| `name`                | `String!`  | Name of the product                              |
-| `skuName`             | `String`   | Selected SKU name                                |
-| `showSku`             | `Boolean`  | Show product SKU                                 |
-| `productReference`    | `String`   | Product reference                                |
-| `classes`             | `Object`   | Classes to apply to elements of the component    |
-| `showProductReference`| `Boolean`  | Show product reference                           |
-| `brandName`           | `String`   | Brand name                                       |
-| `showBrandName`       | `Boolean`  | Show brand name                                  |
+| Prop name | Type | Description |
+| --------- | ---- | ----------- |
+| `name` | `String!` | Name of the product |
+| `skuName` | `String` | Selected SKU name |
+| `showSku` | `Boolean` | Show product SKU |
+| `productReference` | `String` | Product reference |
+| `classes` | `Object` | Classes to apply to elements of the component |
+| `showProductReference` | `Boolean` | Show product reference |
+| `brandName` | `String` | Brand name |
+| `showBrandName` | `Boolean` | Show brand name |
 
 See an example at [Product Details](https://github.com/vtex-apps/product-details/blob/master/react/ProductDetails.js#L49) app
-
