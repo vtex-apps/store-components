@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import { ImageZoomPropTypes } from '../constants/propTypes'
 import VTEXClasses from '../constants/productImagesClasses'
 
-const SMALL_SCREEN_WIDTH = 1280
-
 /**
  * Inner Zoom Component.
  */
@@ -53,7 +51,6 @@ export default class InnerZoom extends Component {
 
   render() {
     let scaleConfig = this.getScale()    
-    console.log(scaleConfig.x, scaleConfig.y)
     const { position, onMouseLeaveZoom, children } = this.props
     const zoomStyle = {
       left: `${-position.x / scaleConfig.x}px`,
