@@ -147,5 +147,5 @@
 }
 .vtex-product-image__zoom {
   height: 31.25em;
-  width: 100%;
+  width: inherit;
 }
