@@ -24,27 +24,22 @@ class ProductName extends Component {
     showBrandName: PropTypes.bool,
     /** Component and content loader styles */
     styles: PropTypes.object,
-    /** Classes to apply to elements of the component */
-    classes: PropTypes.shape({
-      root: PropTypes.string,
-      brandName: PropTypes.string,
-      skuName: PropTypes.string,
-      productReference: PropTypes.string,
-      rootLoader: PropTypes.string
-    })
+    /** Classes to be applied to root element */
+    className: PropTypes.string,
+    /** Classes to be applied to brandName element */
+    brandNameClass: PropTypes.string,
+    /** Classes to be applied to skuName element */
+    skuNameClass: PropTypes.string,
+    /** Classes to be applied to productReference element */
+    productReferenceClass: PropTypes.string,
+    /** Classes to be applied to loader root element */
+    loaderClass: PropTypes.string
   }
 
   static defaultProps = {
     showBrandName: false,
     showProductReference: false,
-    showSku: false,
-    classes: {
-      root: null,
-      brandName: null,
-      skuName: null,
-      productReference: null,
-      rootLoader: null
-    }
+    showSku: false
   }
 
   static Loader = (loaderProps = {}) => (
@@ -77,8 +72,12 @@ class ProductName extends Component {
 
   render() {
     const {
+      productReferenceClass,
+      brandNameClass,
+      skuNameClass,
+      loaderClass,
+      className,
       name,
-      classes,
       skuName,
       showSku,
       brandName,
@@ -89,20 +88,20 @@ class ProductName extends Component {
 
     if (!name) {
       return (
-        <ProductName.Loader className={classes.rootLoader} {...this.props.styles} />
+        <ProductName.Loader className={loaderClass} {...this.props.styles} />
       )
     }
 
     return (
-      <div className={classNames('vtex-product-name', classes.root)}>
-        <span className={classNames('vtex-product-name__brand', classes.brandName)}>
+      <div className={classNames('vtex-product-name', className)}>
+        <span className={classNames('vtex-product-name__brand', brandNameClass)}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
         {showSku && skuName && (
-          <span className={classNames('vtex-product-name__sku', classes.skuName)}>{skuName}</span>
+          <span className={classNames('vtex-product-name__sku', skuNameClass)}>{skuName}</span>
         )}
         {showProductReference && productReference && (
-          <span className={classNames('vtex-product-name__product-reference', classes.productReference)}>
+          <span className={classNames('vtex-product-name__product-reference', productReferenceClass)}>
             {`REF: ${productReference}`}
           </span>
         )}
