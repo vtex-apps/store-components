@@ -19,44 +19,34 @@ You can use it in your code like a React component with the jsx tag: `<ProductNa
 ```
 
 ## Passing classes to the elements of the component
-The `classes` prop has the following structure
-```js
-classes: PropTypes.shape({
-  root: PropTypes.string,
-  brandName: PropTypes.string,
-  skuName: PropTypes.string,
-  productReference: PropTypes.string,
-  rootLoader: PropTypes.string
-})
-```
-Every attribute of the `classes` object represent a element of the component. To understand better see the following example of how to pass classes to every element
+Every prop that ends with `Class` will be passed to an element of the component, see the code below
 ```jsx
-const classes = {
-  root: 'some-css-class pt4',
-  brandName: 'f5',
-  skuName: 'f6',
-  rootLoader: 'pt5 overflow-hidden'
-}
 <ProductName
+  skuNameClass="some-other-css-class"
+  className="pv4 overflow-hidden"
+  brandNameClass="c-muted"
   showSku
   showBrandName
+  brandName={product.brand}
   name={product.productName}
   skuName={selectedItem.name}
-  brandName={product.brand}
-  classes={classes}
 />
+})
 ```
-See that we are not passing classes to `productReference`, beacause we don't need  it, since we are not rendering it. If you have any doubt check the [Component implementation](https://github.com/vtex-apps/store-components/tree/master/react/components/ProductName).
 
 | Prop name | Type | Description |
-| --------- | ---- | ----------- |
+| --- | --- | --- |
 | `name` | `String!` | Name of the product |
 | `skuName` | `String` | Selected SKU name |
 | `showSku` | `Boolean` | Show product SKU |
 | `productReference` | `String` | Product reference |
-| `classes` | `Object` | Classes to apply to elements of the component |
 | `showProductReference` | `Boolean` | Show product reference |
 | `brandName` | `String` | Brand name |
 | `showBrandName` | `Boolean` | Show brand name |
+| `className` | `String` | Classes to be applied to root element |
+| `brandNameClass` | `String` | Classes to be applied to brandName element |
+| `skuNameClass` | `String` | Classes to be applied to skuName element |
+| `productReferenceClass` | `String` | Classes to be applied to productReference element |
+| `loaderClass` | `String` | Classes to be applied to loader root element |
 
-See an example at [Product Details](https://github.com/vtex-apps/product-details/blob/master/react/ProductDetails.js#L49) app
+See an example at [Product Details](https://github.com/vtex-apps/product-details) app
