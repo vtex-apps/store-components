@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Add several props to style the `ProductPrice` component.
 - Add several props to style `ProductName` and remove `large` prop from it.
+- Make `ProductDescription` use design tokens.
 
 ### Removed
 - `Header` from `vtex.store-components`.
