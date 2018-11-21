@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Add several props to style the `ProductPrice` component.
-- Add `classes` prop to ProductName and remove `large` prop.
+- Add several props to style `ProductName` and remove `large` prop from it.
 
 ### Removed
 - `Header` from `vtex.store-components`.
