@@ -42,12 +42,25 @@ class Price extends Component {
       showLabels,
       showSavings,
       labelSellingPrice,
+      className,
+      loaderClass,
+      listPriceContainerClass,
+      listPriceLabelClass,
+      listPriceClass,
+      sellingPriceContainerClass,
+      sellingPriceLabelClass,
+      sellingPriceClass,
+      savingsContainerClass,
+      savingsClass,
       installments,
-      installmentsClasses,
+      installmentClass,
+      interestRateClass,
+      installmentContainerClass,
       styles,
       intl: { formatNumber },
     } = this.props
 
+<<<<<<< HEAD
     let { classes } = this.props
     // avoiding undefined verifications
     classes = {
@@ -55,33 +68,40 @@ class Price extends Component {
       ...classes,
     }
 
+=======
+>>>>>>> Change the object aproach to props in order to style the ProductPrice component
     if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
-      return <Price.Loader classes={classes} {...styles} />
+      return <Price.Loader loaderClass={loaderClass} {...styles} />
     }
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
     return (
-      <div className={classNames('vtex-price', classes.root)}>
+      <div className={classNames('vtex-price', className)}>
         {differentPrices && (
-          <div className={classNames('vtex-price-list__container', classes.listPrice.container)}>
+          <div className={classNames('vtex-price-list__container', listPriceContainerClass)}>
             {showLabels && (
-              <div className={classNames('vtex-price-list__label', classes.listPrice.label)}>
+              <div className={classNames('vtex-price-list__label', listPriceLabelClass)}>
                 <FormattedMessage id="pricing.from" />
               </div>
             )}
-            <span className={classNames('vtex-price-list', classes.listPrice.value)}>
+            <span className={classNames('vtex-price-list', listPriceClass)}>
               {formatNumber(listPrice, this.currencyOptions)}
             </span>
           </div>
         )}
-        <div className={classNames('vtex-price-selling__container', classes.sellingPrice.container)}>
+        <div className={classNames('vtex-price-selling__container', sellingPriceContainerClass)}>
           {showLabels && (
+<<<<<<< HEAD
             <div className={classNames('vtex-price-selling__label', classes.sellingPrice.label)}>
               <FormattedMessage id="pricing.to" />
+=======
+            <div className={classNames('vtex-price-selling__label', sellingPriceLabelClass)}>
+              {labelSellingPrice || <FormattedMessage id="pricing.to" />}
+>>>>>>> Change the object aproach to props in order to style the ProductPrice component
             </div>
           )}
-          <div className={classNames('vtex-price-selling', classes.sellingPrice.value)}>
+          <div className={classNames('vtex-price-selling', sellingPriceClass)}>
             {formatNumber(sellingPrice, this.currencyOptions)}
           </div>
         </div>
@@ -91,11 +111,13 @@ class Price extends Component {
             showLabels={showLabels}
             formatNumber={formatNumber}
             currencyOptions={this.currencyOptions}
-            classes={installmentsClasses}
+            className={installmentContainerClass}
+            interestRateClass={interestRateClass}
+            installmentClass={installmentClass}
           />}
         {differentPrices && showSavings && (
-          <div className={classNames('vtex-price-savings__container', classes.savings.container)}>
-            <div className={classNames('vtex-price-savings', classes.savings.value)}>
+          <div className={classNames('vtex-price-savings__container', savingsContainerClass)}>
+            <div className={classNames('vtex-price-savings', savingsClass)}>
               <FormattedMessage
                 id="pricing.savings"
                 values={{
@@ -114,7 +136,7 @@ class Price extends Component {
 }
 
 Price.Loader = (loaderProps = {}) => (
-  <div className={classNames('vtex-price vtex-price-loader', loaderProps.classes.rootLoader)}>
+  <div className={classNames('vtex-price vtex-price-loader', loaderProps.loaderClass)}>
     <ContentLoader
       style={{
         width: '100%',
