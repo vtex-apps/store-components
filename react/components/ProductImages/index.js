@@ -7,7 +7,6 @@ import ContentLoader from 'react-content-loader'
 import SelectedImage from './components/SelectedImage'
 import ThumbnailSlider from './components/ThumbnailSlider'
 import { HORIZONTAL, VERTICAL } from './constants/orientation'
-import VTEXClasses from './constants/productImagesClasses'
 
 const DEFAULT_SELECTED_IMAGE = 0
 
@@ -127,14 +126,12 @@ class ProductImages extends Component {
 
     const isVertical = thumbnailSliderOrientation === VERTICAL
 
-    let className = `${
-      VTEXClasses.MAIN_CLASS
-    } mb7 mb0-ns flex inline-flex-ns w-100-s`
+    let className = 'vtex-product-image mb7 mb0-ns flex inline-flex-ns w-100-s'
 
     if (isVertical) {
-      className += ` ${VTEXClasses.VERTICAL_COMPONENT}`
+      className += 'vtex-product-image__vertical'
     } else {
-      className += ` ${VTEXClasses.HORIZONTAL_COMPONENT} flex-column-reverse`
+      className += 'vtex-product-image__horizontal flex-column-reverse'
     }
 
     if (!images) {

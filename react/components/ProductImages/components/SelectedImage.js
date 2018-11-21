@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 import ImageZoom from './ImageZoom'
 
-import VTEXClasses from '../constants/productImagesClasses'
-
 /**
  * Selected Image component.
  * Display an image.
@@ -46,15 +44,15 @@ export default class SelectedImage extends Component {
 
     return (
       <div className="w-100 relative overflow-hidden">
-        <div className={VTEXClasses.SELECTED_IMAGE}>
+        <div className="vtex-product-image__selected-image">
           <img
-            className={`${VTEXClasses.IMAGE_RESPONSIVE} w-100 h-100`}
+            className="vtex-product-image__img-responsive w-100 h-100"
             onMouseEnter={this.handleMouseEnterImage}
             src={this.stripUrl(imageUrl)}
             alt={imageText}
           />
         </div>
-        <div className={`${VTEXClasses.IMAGE_ZOOM_CONTAINER} absolute`}>
+        <div className="vtex-product-image__image-zoom-container absolute">
           {showZoom && (
             <ImageZoom
               src={this.stripUrl(imageUrl)}
