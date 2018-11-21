@@ -1,6 +1,4 @@
 {
-  "header.search-placeholder": "Search for products, brands...",
-  "header.search-emptyPlaceholder": "No matches found",
   "search.placeholder": "Search",
   "search.noMatches": "No matches",
   "editor.productName.title": "Product name",
@@ -51,8 +49,6 @@
   "editor.categoriesHighlighted.cardShape": "Box shape",
   "editor.categoriesHighlighted.cardShape.squared": "Squared",
   "editor.categoriesHighlighted.cardShape.rectangular": "Rectangular",
-  "header.topMenu.minicart.icon.label": "My Cart",
-  "header.topMenu.login.icon.label": "Sign in",
   "searchBar.button.cancel.label": "Cancel",
   "buyButton-label-unavailable": "Unavailable",
   "greeting": "Hello"
