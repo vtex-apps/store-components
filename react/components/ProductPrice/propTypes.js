@@ -31,6 +31,32 @@ export default {
       Name: PropTypes.string,
     })
   ),
+  /** Classes to be applied to root element */
+  className: PropTypes.string,
+  /** Classes to be applied to loader root element */
+  loaderClass: PropTypes.string,
+  /** Classes to be applied to container of list price */
+  listPriceContainerClass: PropTypes.string,
+  /** Classes to be applied to label of price */
+  listPriceLabelClass: PropTypes.string,
+  /** Classes to be applied to price value */
+  listPriceClass: PropTypes.string,
+  /** Classes to be applied to selling price container */
+  sellingPriceContainerClass: PropTypes.string,
+  /** Classes to be applied to selling price label */
+  sellingPriceLabelClass: PropTypes.string,
+  /** Classes to be applied to selling price value */
+  sellingPriceClass: PropTypes.string,
+  /** Classes to be applied to savings container */
+  savingsContainerClass: PropTypes.string,
+  /** Classes to be applied to savings */
+  savingsClass: PropTypes.string,
+  /** Classes to be applied to installment element */
+  installmentClass: PropTypes.string,
+  /** Classes to be applied to installment container */
+  installmentContainerClass: PropTypes.string,
+  /** Classes to be applied to interest rate element */
+  interestRateClass: PropTypes.string,
   /** Component and content loader styles */
   styles: PropTypes.object,
   /** intl property to format data */
