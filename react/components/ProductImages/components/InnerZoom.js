@@ -28,34 +28,34 @@ export default class InnerZoom extends Component {
     },
   }
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.imageZoomed = React.createRef()
     this.contentDiv = React.createRef()
   }
 
   getScale = () => {
-    let scale = {
-      x : 1,
-      y : 1
+    const scale = {
+      x: 1,
+      y: 1,
     }
 
     if (this.contentDiv.current && this.imageZoomed.current) {
       const { offsetWidth, offsetHeight } = this.contentDiv.current
-      scale.x = (offsetWidth/this.imageZoomed.current.offsetWidth)
-      scale.y = (offsetHeight/this.imageZoomed.current.offsetHeight)
+      scale.x = (offsetWidth / this.imageZoomed.current.offsetWidth)
+      scale.y = (offsetHeight / this.imageZoomed.current.offsetHeight)
     }
 
     return scale
   }
 
   render() {
-    const scaleConfig = this.getScale()    
+    const scaleConfig = this.getScale()
     const { position, onMouseLeaveZoom, children } = this.props
     const zoomStyle = {
       left: `${-position.x / scaleConfig.x}px`,
       top: `${-position.y / scaleConfig.y}px`,
-      cursor: "zoom-in",
+      cursor: 'zoom-in',
     }
 
     return (
@@ -65,7 +65,7 @@ export default class InnerZoom extends Component {
           onMouseLeave={onMouseLeaveZoom}
         >
           <div
-          ref={this.imageZoomed}
+            ref={this.imageZoomed}
             className={`${
               VTEXClasses.IMAGE_ZOOM_IMG
             } absolute ph8 flex justify-center items-center`}

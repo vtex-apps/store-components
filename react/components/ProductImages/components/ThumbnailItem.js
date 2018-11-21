@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import VTEXClasses from '../constants/productImagesClasses'
-
 /**
  * Thumbnail Item Component.
  * Display a thumbnail image with an on click event well defined.

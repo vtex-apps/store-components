@@ -48,8 +48,6 @@ class ThumbnailSlider extends Component {
             vertical: false,
             verticalSwiping: false,
             slidesToShow: 1,
-            vertical: false,
-            verticalSwiping: false,
           },
         },
       ],
