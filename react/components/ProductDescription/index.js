@@ -20,10 +20,9 @@ class ProductDescription extends Component {
 
     return (
       <div className="vtex-product-description ma2">
-        <div className="t-heading-5 mb3">
+        <div className="t-heading-5 mb6-ns mb5-s">
           <FormattedMessage id="product-description.title" />
         </div>
-
         <span
           className="measure-wide c-muted-1"
           dangerouslySetInnerHTML={{ __html: description }}
