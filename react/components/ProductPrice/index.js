@@ -60,6 +60,13 @@ class Price extends Component {
       intl: { formatNumber },
     } = this.props
 
+    let { classes } = this.props
+    // avoiding undefined verifications
+    classes = {
+      ...Price.defaultProps.classes,
+      ...classes,
+    }
+
     if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
       return <Price.Loader loaderClass={loaderClass} {...styles} />
     }
