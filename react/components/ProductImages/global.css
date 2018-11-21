@@ -17,7 +17,6 @@
 
 .vtex-product-image__selected-image {
   height: 31.25em;
-  padding: 5.25em;
   width: inherit;
 }
 
@@ -136,7 +135,6 @@
 .vtex-product-image__zoom-image {
   width: 62.5em;
   height: 62.5em;
-  
 }
 .vtex-product-image__zoom-image img {
   width: 62.5em;
@@ -146,7 +144,6 @@
   top: 0px;
   left: 0px;
   width: 100%;
-  padding: 5.25em;
 }
 .vtex-product-image__zoom {
   height: 31.25em;
