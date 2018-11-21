@@ -9,4 +9,5 @@ export default {
   IMAGE_ZOOM_IMG: 'vtex-product-image__zoom-image',
   IMAGE_ZOOM_CONTAINER: 'vtex-product-image__image-zoom-container',
   DOTS_CLASS: 'vtex-product-image__dots',
+  IMAGE_RESPONSIVE: 'vtex-product-image__img-responsive',
 }

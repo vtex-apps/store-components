@@ -12,12 +12,16 @@
 }
 
 .vtex-product-image__horizontal {
-  width: 31.25em;
+  max-width: 31.25em;
 }
 
 .vtex-product-image__selected-image {
   height: 31.25em;
   width: inherit;
+}
+
+.vtex-product-image__img-responsive {
+  object-fit: contain;
 }
 
 .vtex-product-image__thumbnail-slider--vertical {

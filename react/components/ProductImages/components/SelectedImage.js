@@ -48,7 +48,7 @@ export default class SelectedImage extends Component {
       <div className="w-100 relative overflow-hidden">
         <div className={VTEXClasses.SELECTED_IMAGE}>
           <img
-            className="w-100"
+            className={`${VTEXClasses.IMAGE_RESPONSIVE} w-100 h-100`}
             onMouseEnter={this.handleMouseEnterImage}
             src={this.stripUrl(imageUrl)}
             alt={imageText}
