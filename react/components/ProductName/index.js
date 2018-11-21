@@ -79,6 +79,7 @@ class ProductName extends Component {
       loaderClass,
       className,
       name,
+      styles,
       skuName,
       showSku,
       brandName,
@@ -89,7 +90,7 @@ class ProductName extends Component {
 
     if (!name) {
       return (
-        <ProductName.Loader className={loaderClass} {...this.props.styles} />
+        <ProductName.Loader className={loaderClass} {...styles} />
       )
     }
 
