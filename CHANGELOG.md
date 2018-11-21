@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add several props to style the `ProductPrice` component.
 - Add several props to style `ProductName` and remove `large` prop from it.
 - Make `ProductDescription` use design tokens.
+- Make `AvailabilitySubscriber` use design tokens.
 
 ### Removed
 - Remove `Header` component.
