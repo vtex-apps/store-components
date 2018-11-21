@@ -24,57 +24,17 @@ You can use it in your code like a React component with the jsx tag: `<ProductPr
 ```
 
 ### Passing classes to the elements of the component
-The `classes` and the `installmentsClasses` props have the following structure
-```js
-{
-  classes: PropTypes.shape({
-    root: PropTypes.string,
-    rootLoader: PropTypes.string,
-    listPrice: PropTypes.shape({
-      container: PropTypes.string,
-      label: PropTypes.string,
-      value: PropTypes.string
-    }),
-    sellingPrice: PropTypes.shape({
-      container: PropTypes.string,
-      label: PropTypes.string,
-      value: PropTypes.string
-    }),
-    savings: PropTypes.shape({
-      container: PropTypes.string,
-      value: PropTypes.string
-    })
-  }),
-  installmentsClasses: PropTypes.shape({
-      root: PropTypes.string,
-      installmentValue: PropTypes.string,
-      interestRate: PropTypes.string
-  })
-}
-```
-The attributes of `classes` and `installmentsClasses` objects represent an element of the component. To understand better see the following example of how to pass classes to elements
+Every prop that ends with `Class` will be passed to an element of the component, see the following code
 ```jsx
-
-const classes = {
-  root: 'some-css-class',
-  rootLoader: 'some-other-css-class',
-  sellingPrice: {
-    container: 'some-css-class-for-selling-container'
-  }
-}
-
-const installmentsClasses = {
-  root: 'css-class-for-root-of-installments'
-}
-
 <ProductPrice
-  classes={classes}
+  className="pv4 overflow-hidden"
+  listPriceLabelClass="c-muted-4"
+  savingsClass="h4 ph5 dib"
   showLabels={showLabels}
   showListPrice={showListPrice}
   showInstallments={showInstallments}
   sellingPrice={commertialOffer.Price}
   listPrice={commertialOffer.ListPrice}
-  installmentsClasses={installmentsClasses}
   installments={commertialOffer.Installments}
 />
 ```
@@ -87,13 +47,24 @@ const installmentsClasses = {
 | `showLabels` | `Boolean!` | Set visibility of labels |
 | `showInstallments` | `Boolean!` | Set visibility of installments |
 | `showSavings` | `Boolean` | Set visibility of savings |
-| `classes` | `Object` | CSS classes to be applied in the Price component elements |
 | `installments` | `Array` | Available installments |
-| `installmentsClasses` | `Object` | CSS classes to be applied in the Installments Component |
 | `installments.Value` | `Number!` | Installment price |
 | `installments.InterestRate` | `Number!` | Installment interest rate (zero if interest-free) |
 | `installments.TotalValuePlusInterestRate` | `Number` | Calculated total value |
 | `installments.NumberOfInstallments` | `Number!` | Number of installments |
 | `installments.Name` | `String` | Installment offer name |
+| `className` | `String` | Classes to be applied to root element |
+| `loaderClass` | `String` | Classes to be applied to loader root element |
+| `listPriceContainerClass` | `String` | Classes to be applied to container of list price |
+| `listPriceLabelClass` | `String` | Classes to be applied to label of price |
+| `listPriceClass` | `String` | Classes to be applied to price value |
+| `sellingPriceContainerClass` | `String` | Classes to be applied to selling price container |
+| `sellingPriceLabelClass` | `String` | Classes to be applied to selling price label |
+| `sellingPriceClass` | `String` | Classes to be applied to selling price value |
+| `savingsContainerClass` | `String` | Classes to be applied to savings container |
+| `savingsClass` | `String` | Classes to be applied to savings |
+| `installmentClass` | `String` | Classes to be applied to installment element |
+| `installmentContainerClass` | `String` | Classes to be applied to installment container |
+| `interestRateClass` | `String` | Classes to be applied to interest rate element |
 
 See an example at [Product Summary](https://github.com/vtex-apps/product-summary) app
