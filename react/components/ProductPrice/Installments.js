@@ -8,17 +8,13 @@ import PricePropTypes from './propTypes'
 
 /** Installments component */
 export default class Installments extends Component {
-
-  static defaultProps = {
-    classes: {
-      root: null,
-      installmentValue: null,
-      interestRate: null
-    }
-
-  }
-
   static propTypes = {
+    /** Classes to be applied to the root element */
+    className: PropTypes.string,
+    /** Classes to be applied to installment value element */
+    installmentClass: PropTypes.string,
+    /** Classes to be applied to interest rate element */
+    interestRateClass: PropTypes.string,
     /** Product installments to be displayed */
     installments: PricePropTypes.installments,
     /** Pages editor config to display labels */
@@ -31,22 +27,18 @@ export default class Installments extends Component {
       currency: PropTypes.string.isRequired,
       minimumFractionDigits: PropTypes.number.isRequired,
       maximumFractionDigits: PropTypes.number.isRequired,
-    }).isRequired,
-    /** Classes to be applied in the Installments Component */
-    classes: PropTypes.shape({
-      root: PropTypes.string,
-      installmentValue: PropTypes.string,
-      interestRate: PropTypes.string
-    })
+    }).isRequired
   }
   
   render() {
     const {
-      classes,
       showLabels,
       formatNumber,
       installments,
       currencyOptions,
+      className,
+      installmentClass,
+      interestRateClass
     } = this.props
 
     if (!installments || isEmpty(installments)) {
@@ -81,13 +73,13 @@ export default class Installments extends Component {
       formattedInstallmentPrice,
       <Fragment>&times;</Fragment>,
     ].map((element, index) => (
-      <span className={classes.installmentValue} key={index}>
+      <span className={installmentClass} key={index}>
         {element}
       </span>
     ))
 
     return (
-      <div className={classNames('vtex-price-installments__container', classes.root)}>
+      <div className={classNames('vtex-price-installments__container', className)}>
         {showLabels ? (
           <FormattedMessage
             id="pricing.installment-display"
@@ -103,7 +95,7 @@ export default class Installments extends Component {
             </Fragment>
           )}
         {!installment.InterestRate && (
-          <div className={classNames('vtex-price-installments__interest-rate', classes.interestRate)}>
+          <div className={classNames('vtex-price-installments__interest-rate', interestRateClass)}>
             <FormattedMessage id="pricing.interest-free" />
           </div>
         )}
