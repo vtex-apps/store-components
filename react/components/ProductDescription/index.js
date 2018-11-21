@@ -20,18 +20,17 @@ class ProductDescription extends Component {
 
     return (
       <div className="vtex-product-description ma2">
-        <div className="f4 b ttu mb3">
+        <div className="t-heading-5 mb6-ns mb5-s">
           <FormattedMessage id="product-description.title" />
         </div>
-
         <span
-          className="measure-wide"
+          className="vtex-product-description__text measure-wide c-muted-1"
           dangerouslySetInnerHTML={{ __html: description }}
         />
 
         {specifications.length > 0 && (
           <div className="vtex-product-specifications mt6">
-            <div className="vtex-product-specifications__title f4 b ttu mb6-ns mb5-s">
+            <div className="vtex-product-specifications__title t-heading-5 mb6-ns mb5-s">
               <FormattedMessage id="technicalspecifications.title" />
             </div>
             <table className="vtex-product-specifications__table w-100">
