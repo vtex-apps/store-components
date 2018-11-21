@@ -40,7 +40,7 @@ Every prop that ends with `Class` will be passed to an element of the component,
 ```
 
 | Prop name | Type | Description |
-| --------- | ---- | ----------- |
+| --- | --- | --- |
 | `sellingPrice` | `Number` | Product selling price |
 | `listPrice` | `Number` | Product list price |
 | `showListPrice` | `Boolean!` | Set visibility of list price |
