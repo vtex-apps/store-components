@@ -41,7 +41,7 @@ export default class InnerZoom extends Component {
     }
 
     if(this.contentDiv.current && this.imageZoomed.current) {
-      let { offsetWidth, offsetHeight } = this.contentDiv.current
+      const { offsetWidth, offsetHeight } = this.contentDiv.current
       scale.x = (offsetWidth/this.imageZoomed.current.offsetWidth)
       scale.y = (offsetHeight/this.imageZoomed.current.offsetHeight)
     }
@@ -50,12 +50,11 @@ export default class InnerZoom extends Component {
   }
 
   render() {
-    let scaleConfig = this.getScale()    
+    const scaleConfig = this.getScale()    
     const { position, onMouseLeaveZoom, children } = this.props
     const zoomStyle = {
       left: `${-position.x / scaleConfig.x}px`,
       top: `${-position.y / scaleConfig.y}px`,
-      cursor: "-moz-zoom-in",
       cursor: "zoom-in",
     }
 
