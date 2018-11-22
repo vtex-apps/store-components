@@ -8,10 +8,6 @@
   border-radius: 5%;
 }
 
-.vtex-sku-selector__item:hover {
-  border-color: grey;
-}
-
 .vtex-sku-selector__item p {
   margin: 0;
   padding-top: 10px;
