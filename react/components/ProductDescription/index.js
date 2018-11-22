@@ -2,9 +2,8 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 import { Table } from 'vtex.styleguide'
-import classNames from 'classnames'
-
-import SpecificationRow from './SpecificationRow'
+import { withRuntimeContext } from 'render'
+import { compose } from 'ramda'
 
 import './global.css'
 
@@ -21,7 +20,7 @@ class ProductDescription extends Component {
         'title': 'Name',
         cellRenderer: ({ cellData: name }) => {
           return (
-            <span className="vtex-product-specifications__specification-name dtc-ns tr-ns w-20-ns pb2-ns ttu t-body  c-muted-1 pt2  ph6 br-ns b--muted-3">
+            <span className="vtex-product-specifications__specification-name dtc-ns tr-ns w-20-ns pb2-ns ttu t-body c-muted-1 pt2  ph6 br-ns b--muted-3">
               {name}
             </span>
           )
@@ -46,7 +45,7 @@ class ProductDescription extends Component {
   }
 
   render() {
-    const { specifications, skuName, description } = this.props
+    const { specifications, skuName, description, runtime: { hints: { mobile } } } = this.props
 
     if (!description || !specifications) {
       return null
@@ -69,35 +68,8 @@ class ProductDescription extends Component {
               <FormattedMessage id="technicalspecifications.title" />
             </div>
             <div className="vtex-product-specifications__table w-100">
-              <Table items={specifications} schema={ProductDescription.specificationSchema} density={'high'} disableHeader />
+              <Table items={specifications} schema={ProductDescription.specificationSchema} density={mobile ? 'medium' : 'high'} disableHeader />
             </div>
-          </div>
-        )}
-
-        {specifications.length > 0 && (
-          <div className="vtex-product-specifications mt6">
-            <div className="vtex-product-specifications__title t-heading-5 mb6-ns mb5-s">
-              <FormattedMessage id="technicalspecifications.title" />
-            </div>
-            <table className="vtex-product-specifications__table w-100">
-              <tbody>
-                {skuName && (
-                  <SpecificationRow name={`SKU ${skuName}`} />
-                )}
-                {specifications.map(specification => (
-                  <SpecificationRow
-                    key={specification.name}
-                    name={specification.name}
-                    values={specification.values.map((value, i) => (
-                      <Fragment key={value}>
-                        <span dangerouslySetInnerHTML={{ __html: value }} />{' '}
-                        {i !== specification.values.length - 1 && <br />}
-                      </Fragment>
-                    ))}
-                  />
-                ))}
-              </tbody>
-            </table>
           </div>
         )}
       </div>
@@ -127,4 +99,4 @@ ProductDescription.propTypes = {
   skuName: PropTypes.string,
 }
 
-export default injectIntl(ProductDescription)
+export default compose(injectIntl, withRuntimeContext)(ProductDescription)
