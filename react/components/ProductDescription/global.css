@@ -6,3 +6,22 @@
 .vtex-product-specifications__table-row:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.05);
 }
+
+.ReactVirtualized__Table__row:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+@media screen and (max-width: 40em) {
+  /* db-s tl-s pb0-s w-auto-s bn-s dtc-ns */
+  .ReactVirtualized__Table__rowColumn{
+    text-align: left;
+    width: 100%;
+    border: none;
+  }
+
+  .ReactVirtualized__Table__row{
+    display: grid;
+    display: -ms-grid;
+    grid-row-gap: 1em;
+  }
+}
