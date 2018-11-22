@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add several props to style `ProductName` and remove `large` prop from it.
 - Make `ProductDescription` use design tokens.
 - Make `AvailabilitySubscriber` use design tokens.
+- Make `SKUSelector` use design tokens.
 
 ### Removed
 - `Header` from `vtex.store-components`.
