@@ -126,7 +126,7 @@ class ProductImages extends Component {
 
     const isVertical = thumbnailSliderOrientation === VERTICAL
 
-    let className = 'vtex-product-image mb7 mb0-ns flex inline-flex-ns w-100-s'
+    let className = 'vtex-product-image mb7 mb0-ns flex inline-flex-ns w-100 h-100'
 
     if (isVertical) {
       className += 'vtex-product-image__vertical'
