@@ -51,7 +51,6 @@ class ProductDescription extends Component {
       return null
     }
 
-
     return (
       <div className="vtex-product-description ma2">
         <div className="t-heading-5 mb6-ns mb5-s">
