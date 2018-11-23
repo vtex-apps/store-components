@@ -45,7 +45,7 @@ class ProductDescription extends Component {
   }
 
   render() {
-    const { specifications, skuName, description, runtime: { hints: { mobile } } } = this.props
+    const { specifications, description, runtime: { hints: { mobile } } } = this.props
 
     if (!description || !specifications) {
       return null
