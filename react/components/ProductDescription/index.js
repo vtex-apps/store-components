@@ -94,8 +94,6 @@ ProductDescription.propTypes = {
       values: PropTypes.arrayOf(PropTypes.string).isRequired,
     })
   ),
-  /** Name of the current SKU */
-  skuName: PropTypes.string,
 }
 
 export default compose(injectIntl, withRuntimeContext)(ProductDescription)

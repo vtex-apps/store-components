@@ -9,7 +9,7 @@ import ProductDescription from 'vtex.store-components/ProductDescription'
 ## Usage
 You can use it in your code like a React component with the jsx tag: `<ProductDescription />`. 
 ```jsx
-<ProductDescription specifications={product.specs} skuName={product.name}> 
+<ProductDescription specifications={product.specs}>
    <span>{product.description}</span>
 </ProductDescription>
 ```
@@ -20,6 +20,5 @@ You can use it in your code like a React component with the jsx tag: `<ProductDe
 | `specifications`         | `Array`    | Specifications that will be displayed on the table                          |
 | `specifications[n].name` | `String`   | Specification name                                                          |
 | `specifications[n].value`| `String`   | Specifications value                                                        |
-| `skuName`                | `String`   | Name of the SKU                                                             |
 
 See an example at [Product Details](https://github.com/vtex-apps/product-details) app
