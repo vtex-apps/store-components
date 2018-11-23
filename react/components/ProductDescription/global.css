@@ -14,3 +14,9 @@
     padding-top: .75em;
   }
 }
+
+@media all and (width: 768px) and (height: 1024px) and (orientation:portrait) {
+  .ReactVirtualized__Table__rowColumn{
+    flex: 0 1 50% !important;
+  }
+}
