@@ -104,9 +104,9 @@ class Share extends Component {
       options: { size },
     } = this.props
 
-    // if (loading) {
+    if (loading) {
       return <Share.Loader {...this.props.styles} />
-    // }
+    }
 
     return (
       <div className="vtex-share flex flex-row">

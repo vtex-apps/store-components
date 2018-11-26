@@ -46,9 +46,9 @@ class Price extends Component {
       intl: { formatNumber },
     } = this.props
 
-    // if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
+    if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
       return <Price.Loader {...styles} />
-    // }
+    }
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
@@ -110,7 +110,7 @@ Price.Loader = (loaderProps = {}) => (
         width: '100%',
         height: '100%',
       }}
-      width={285}
+      width={300}
       height={70}
       preserveAspectRatio='xMinYMin meet'
       {...loaderProps}>

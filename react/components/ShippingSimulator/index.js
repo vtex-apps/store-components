@@ -123,9 +123,9 @@ class ShippingSimulator extends Component {
   render() {
     const { shipping, zipcodeValue, loading } = this.state
 
-    // if (!this.props.seller || !this.props.skuId) {
+    if (!this.props.seller || !this.props.skuId) {
       return <ShippingSimulator.Loader {...this.props.styles} />
-    // }
+    }
 
     return (
       <Fragment>
