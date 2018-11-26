@@ -15,11 +15,10 @@ export default class SocialButton extends Component {
     socialEnum: PropTypes.string.isRequired,
     /** Button size in pixels */
     size: PropTypes.number,
-    /** CSS classes to be applied in the elements of the component */
-    classes: PropTypes.shape({
-      button: PropTypes.string,
-      icon: PropTypes.string
-    })
+    /** Classes to be applied to social button */
+    buttonClass: PropTypes.string,
+    /** Classes to be applied to icon of the button */
+    iconClass: PropTypes.string
   }
 
   static defaultProps = {
@@ -27,7 +26,7 @@ export default class SocialButton extends Component {
   }
 
   render() {
-    const { url, message, size, socialEnum, classes } = this.props
+    const { url, message, size, socialEnum, buttonClass, iconClass } = this.props
     const socialComponentName = SOCIAL_ENUM_TO_COMPONENT[socialEnum]
     const SocialComponent = ReactShare[`${socialComponentName}ShareButton`]
     const SocialIcon = ReactShare[`${socialComponentName}Icon`]
@@ -36,13 +35,13 @@ export default class SocialButton extends Component {
     return (
       <SocialComponent
         url={url}
-        className={classNames('vtex-share__social-button', classes.button, classes[`button${socialEnum}`])}
+        className={classNames('vtex-share__social-button', buttonClass)}
         {...additionalProps}
       >
         <SocialIcon
           round
           size={size}
-          className={classNames('vtex-share__social-icon', classes.icon, classes[`icon${socialEnum}`])}
+          className={classNames('vtex-share__social-icon', iconClass)}
         />
       </SocialComponent>
     )
