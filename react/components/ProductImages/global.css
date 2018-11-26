@@ -20,10 +20,6 @@
   width: inherit;
 }
 
-.vtex-product-image__img-responsive {
-  object-fit: contain;
-}
-
 .vtex-product-image__thumbnail-slider--vertical {
   width: 5.125em;
   display: flex;
