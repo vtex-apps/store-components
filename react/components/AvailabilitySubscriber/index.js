@@ -155,10 +155,10 @@ class AvailabilitySubscriber extends Component {
       <ApolloConsumer>
         {client => (
           <div className="vtex-availability-subscriber">
-            <div className="vtex-availability-subcriber__title f5 fw4 mb3">
+            <div className="vtex-availability-subcriber__title t-body mb3">
               {this.translate('availability-subscriber.title')}
             </div>
-            <div className="vtex-availability-subscriber__subscribe-label f6 fw3">
+            <div className="vtex-availability-subscriber__subscribe-label t-small fw3">
               {this.translate('availability-subscriber.subscribe-label')}
             </div>
             <form className="vtex-availability-subscriber__form mb4" onSubmit={(e) => this.handleSubmit(e, client)}>
@@ -193,12 +193,12 @@ class AvailabilitySubscriber extends Component {
                 </div>
               </div>
               {sendStatus === 'success' &&
-                <div className="vtex-availability-subscriber__message vtex-availability-subscriber__success green fw6">
+                <div className="vtex-availability-subscriber__message vtex-availability-subscriber__success t-body c-success">
                   {this.translate('availability-subscriber.added-message')}
                 </div>
               }
               {sendStatus === 'error' &&
-                <div className="vtex-availability-subscriber__message vtex-availability-subscriber__error heavy-rebel-pink">
+                <div className="vtex-availability-subscriber__message vtex-availability-subscriber__error c-danger">
                   {this.translate('availability-subscriber.error-message')}
                 </div>
               }

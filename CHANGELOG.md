@@ -7,7 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Add `classes` props to `Share` component.
+- Add several props to style the `ProductPrice` component.
+- Add several props to style `ProductName` and remove `large` prop from it.
+- Add several props to style `Share` component.
+- Make `ProductDescription` use design tokens.
+- Make `AvailabilitySubscriber` use design tokens.
+- Make `SKUSelector` use design tokens.
+
+### Removed
+- `Header` from `vtex.store-components`.
+
+## [2.6.4] - 2018-11-20
+### Fixed
+- Assign correct size to arrow element.
+
+## [2.6.3] - 2018-11-20
+### Fixed
+- Add `vtex-page-padding` class to Greeting
 
 ## [2.6.2] - 2018-11-13
 ### Removed
