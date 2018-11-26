@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.6.9] - 2018-11-26
+### Fixed
+- Fix svg warnings of `ProductName` and `ProductPrice`. 
+
 ## [2.6.8] - 2018-11-26
 ### Added
 - Add onSKUSelected to SKUSelector props and call it when its defined.
@@ -30,6 +34,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [2.6.3] - 2018-11-20
 ### Fixed
 - Add `vtex-page-padding` class to Greeting
+
 
 ## [2.6.2] - 2018-11-13
 ### Removed

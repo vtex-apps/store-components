@@ -41,8 +41,9 @@ class ProductName extends Component {
           width: '100%',
           height: '100%',
         }}
-        height="100%"
-        width="100%"
+        width={456}
+        height={100}
+        preserveAspectRatio='xMinYMin meet'
         {...loaderProps}
       >
         <rect

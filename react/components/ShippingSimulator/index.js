@@ -34,8 +34,9 @@ class ShippingSimulator extends Component {
           width: '100%',
           height: '100%',
         }}
-        height="100%"
-        width="100%"
+        width={500}
+        height={40}
+        preserveAspectRatio="xMinYMin meet"
         {...loaderProps}>
         <rect
           height="100%"

@@ -110,8 +110,9 @@ Price.Loader = (loaderProps = {}) => (
         width: '100%',
         height: '100%',
       }}
-      height="100%"
-      width="100%"
+      width={300}
+      height={70}
+      preserveAspectRatio='xMinYMin meet'
       {...loaderProps}>
       <rect
         height="0.75em"
