@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 
 import ImageZoom from './ImageZoom'
@@ -24,6 +25,7 @@ export default class SelectedImage extends Component {
 
   state = {
     showZoom: false,
+    dimensions: {},
   }
 
   handleMouseEnterImage = () => {
@@ -34,22 +36,42 @@ export default class SelectedImage extends Component {
     this.setState({ showZoom: false })
   }
 
+  handleImageLoad = ({ target: img }) => {
+    this.setState({
+      dimensions : { 
+        height: img.offsetHeight,
+        width: img.offsetWidth
+      }
+    })
+  }
+
   stripUrl = url => url.replace(/^https?:/, '')
 
   render() {
     const {
       image: { imageUrl, imageText },
     } = this.props
-    const { showZoom } = this.state
+    const {
+      showZoom,
+      dimensions,
+     } = this.state
+
+    const classNamesImage = classNames('', {
+      'h-100 w-auto': dimensions && dimensions.height > dimensions.width,
+      'h-auto w-100': !dimensions || dimensions.height <= dimensions.width,
+    })
 
     return (
       <div className="w-100 relative overflow-hidden">
-        <div className="vtex-product-image__selected-image">
+        <div
+          className="vtex-product-image__selected-image flex items-center justify-center"
+          onMouseEnter={this.handleMouseEnterImage}
+          >
           <img
-            className="vtex-product-image__img-responsive w-100 h-100"
-            onMouseEnter={this.handleMouseEnterImage}
+            className={classNamesImage}
             src={this.stripUrl(imageUrl)}
             alt={imageText}
+            onLoad={e => this.handleImageLoad(e)}
           />
         </div>
         <div className="vtex-product-image__image-zoom-container absolute">
