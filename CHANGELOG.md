@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.6.7] - 2018-11-26
+### Fixed
+- Slider crashing in store-componentes master
+
 ## [2.6.6] - 2018-11-26
 ### Fixed
 - Fix the number of items shown in slider.

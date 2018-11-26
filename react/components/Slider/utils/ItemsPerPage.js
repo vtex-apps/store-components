@@ -10,7 +10,7 @@ function getItemWidth(slick, maxWidth) {
       attributes.map(attr => {
         if (attr.nodeName === 'data-index' && attr.nodeValue === '0') {
           itemWidth = get(slide, 'childNodes[0].clientWidth')
-          if(maxwidth && maxWidth < itemWidth) itemWidth = maxWidth
+          if(maxWidth && maxWidth < itemWidth) itemWidth = maxWidth
         }
       })
     })
