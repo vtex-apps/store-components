@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { isNil, path } from 'ramda'
+import { isNil } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { FormattedMessage, injectIntl } from 'react-intl'
 
@@ -60,16 +60,6 @@ class Price extends Component {
       intl: { formatNumber },
     } = this.props
 
-<<<<<<< HEAD
-    let { classes } = this.props
-    // avoiding undefined verifications
-    classes = {
-      ...Price.defaultProps.classes,
-      ...classes,
-    }
-
-=======
->>>>>>> Change the object aproach to props in order to style the ProductPrice component
     if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
       return <Price.Loader loaderClass={loaderClass} {...styles} />
     }
@@ -92,13 +82,8 @@ class Price extends Component {
         )}
         <div className={classNames('vtex-price-selling__container', sellingPriceContainerClass)}>
           {showLabels && (
-<<<<<<< HEAD
-            <div className={classNames('vtex-price-selling__label', classes.sellingPrice.label)}>
-              <FormattedMessage id="pricing.to" />
-=======
             <div className={classNames('vtex-price-selling__label', sellingPriceLabelClass)}>
               {labelSellingPrice || <FormattedMessage id="pricing.to" />}
->>>>>>> Change the object aproach to props in order to style the ProductPrice component
             </div>
           )}
           <div className={classNames('vtex-price-selling', sellingPriceClass)}>
