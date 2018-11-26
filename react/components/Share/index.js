@@ -41,8 +41,8 @@ class Share extends Component {
             width: '100%',
             height: '100%',
           }}
-          height="33"
-          width="303"
+          height={33}
+          width={303}
           preserveAspectRatio="xMinYMin slice"
           {...loaderProps}>
           <circle
