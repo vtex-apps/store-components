@@ -34,6 +34,7 @@ ThumbnailArrow.defaultProps = {
 ThumbnailArrow.propTypes = {
   vertical: PropTypes.bool,
   inverted: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
 }
 
 export default ThumbnailArrow

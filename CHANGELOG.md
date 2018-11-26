@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.6.5] - 2018-11-26
+### Fixed
+- Image Zoom in product details was not working properly
+
 ## [2.6.4] - 2018-11-20
 ### Fixed
 - Assign correct size to arrow element.
