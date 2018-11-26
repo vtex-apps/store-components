@@ -41,7 +41,9 @@ class ProductName extends Component {
           width: '100%',
           height: '100%',
         }}
-        preserveAspectRatio='xMinYMin meet'
+        width={456}
+        height={100}
+        preserveAspectRatio='xMidYMid meet'
         {...loaderProps}
       >
         <rect
@@ -81,15 +83,15 @@ class ProductName extends Component {
       skuClasses += ' vtex-product-name__sku--large'
     }
 
-    if (!name) {
-      return (
-        <ProductName.Loader
-          {...this.props.styles}
-          brandClasses={brandClasses}
-          skuClasses={skuClasses}
-        />
-      )
-    }
+    // if (!name) {
+    return (
+      <ProductName.Loader
+        {...this.props.styles}
+        brandClasses={brandClasses}
+        skuClasses={skuClasses}
+      />
+    )
+    // }
 
     return (
       <div className="vtex-product-name overflow-hidden c-on-base">
