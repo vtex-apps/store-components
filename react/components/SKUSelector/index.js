@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRuntimeContext } from 'render'
 
-import SKUSelector from './components/SKUSelector';
+import SKUSelector from './components/SKUSelector'
 import { SKUSelectorContainerPropTypes } from './utils/proptypes'
 import { getMainVariationName, getVariationOptions, getMaxSkuPrice, parseSku } from './utils'
 
@@ -11,9 +11,12 @@ import './global.css'
  * Display a list of SKU items of a product and its specifications.
  */
 class SKUSelectorContainer extends Component {
-  handleSelectSku = (skuId) => {
-    const { runtime: { navigate } } = this.props
+  handleSkuSelection = (skuId) => {
+    this.props.onSKUSelected ? this.props.onSKUSelected(skuId) : this.redirectToSku(skuId)
+  }
 
+  redirectToSku(skuId) {
+    const { runtime: { navigate } } = this.props
     const slug = this.props.productSlug
 
     navigate({
@@ -35,7 +38,7 @@ class SKUSelectorContainer extends Component {
     const mainVariation = {
       name,
       value: skuSelected[name],
-      options: getVariationOptions(name, skuItems)
+      options: getVariationOptions(name, skuItems),
     }
 
     const maxSkuPrice = getMaxSkuPrice(skuItems)
@@ -52,7 +55,7 @@ class SKUSelectorContainer extends Component {
       <SKUSelector
         mainVariation={mainVariation}
         secondaryVariation={secondaryVariation}
-        onSelectSku={this.handleSelectSku}
+        onSelectSku={this.handleSkuSelection}
         maxSkuPrice={maxSkuPrice}
         selectedId={itemId}
       />

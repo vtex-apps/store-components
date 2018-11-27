@@ -23,12 +23,14 @@ export const SKUSelectorContainerPropTypes = {
   skuSelected: skuPropType.isRequired,
   /** List of SKU Items */
   skuItems: PropTypes.arrayOf(skuPropType).isRequired,
+  /** Callback that is called when an SKU is selected */
+  onSKUSelected: PropTypes.func,
 }
 
 const variationPropTypes = PropTypes.shape({
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
-  options: PropTypes.arrayOf(skuPropType)
+  options: PropTypes.arrayOf(skuPropType),
 })
 
 export const SKUSelectorPropTypes = {
