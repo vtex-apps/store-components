@@ -49,8 +49,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.6.3] - 2018-11-20
 ### Fixed
-- Add `vtex-page-padding` class to Greeting
-
+- Add `vtex-page-padding` class to Greeting.
 
 ## [2.6.2] - 2018-11-13
 ### Removed
@@ -61,7 +60,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.6.0] - 2018-11-09
 ### Added
-- `Account` shared components
+- `Account` shared components.
 
 ## [2.5.6] - 2018-11-08
 ### Fixed
