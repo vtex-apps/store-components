@@ -1,6 +1,5 @@
-import './global.css'
-
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 import { indexBy, prop } from 'ramda'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
@@ -11,7 +10,7 @@ import { SOCIAL_ENUM } from './constants/social'
 class Share extends Component {
   static propTypes = {
     /** Social Networks configuration */
-    social: PropTypes.object.isRequired,
+    social: PropTypes.object,
     /** Share buttons options */
     options: PropTypes.shape({
       /** Share buttons size in pixels */
@@ -23,42 +22,59 @@ class Share extends Component {
     loading: PropTypes.bool,
     /** Component and content loader styles */
     styles: PropTypes.object,
+    /** Classes to be applied to root element  */
+    className: PropTypes.string,
+    /** Classes to be applied to social button */
+    socialButtonClass: PropTypes.string,
+    /** Classes to be applied to icon of the button */
+    socialIconClass: PropTypes.string,
+    /** Classes to be applied to the Content Loader container */
+    loaderContainerClass: PropTypes.string,
+    /** Classes to be applied to the Content Loader */
+    contentLoaderClass: PropTypes.string
   }
 
   static Loader = (loaderProps = {}) => {
+    const {
+      'vtex-share__button--loader': button,
+      'vtex-share__button--loader-1': button1,
+      'vtex-share__button--loader-2': button2,
+      'vtex-share__button--loader-3': button3,
+      containerClass,
+      contentLoaderClass
+    } = loaderProps
     const loaderStyles = {
       r: '1em',
       height: '2em',
       cy: '1em',
-      ...loaderProps['vtex-share__button--loader'],
+      ...button,
     }
 
     return (
-      <div className="vtex-share">
+      <div className={classNames('vtex-share vtex-share-loader', containerClass)}>
         <ContentLoader
-          className="vtex-share"
+          className={contentLoaderClass}
           style={{
             width: '100%',
             height: '100%',
           }}
-          height={33}
-          width={303}
-          preserveAspectRatio="xMinYMin slice"
+          height="100%"
+          width="100%"
           {...loaderProps}>
           <circle
             cx="1em"
             {...loaderStyles}
-            {...loaderProps['vtex-share__button--loader-1']}
+            {...button1}
           />
           <circle
             cx="3.5em"
             {...loaderStyles}
-            {...loaderProps['vtex-share__button--loader-2']}
+            {...button2}
           />
           <circle
             cx="6em"
             {...loaderStyles}
-            {...loaderProps['vtex-share__button--loader-3']}
+            {...button3}
           />
         </ContentLoader>
       </div>
@@ -71,7 +87,7 @@ class Share extends Component {
       Twitter: true,
       WhatsApp: true,
     },
-    options: {},
+    options: {}
   }
 
   static schema = {
@@ -102,27 +118,35 @@ class Share extends Component {
       title,
       loading,
       options: { size },
+      className,
+      socialButtonClass,
+      socialIconClass,
+      loaderContainerClass,
+      contentLoaderClass
     } = this.props
 
     if (loading) {
-      return <Share.Loader {...this.props.styles} />
+      return <Share.Loader
+        containerClass={loaderContainerClass}
+        contentLoaderClass={contentLoaderClass}
+        {...this.props.styles}
+      />
     }
 
     return (
-      <div className="vtex-share flex flex-row">
+      <div className={classNames('vtex-share', className)}>
         {Object.keys(social).map(
           (socialNetwork, index) =>
             social[socialNetwork] && (
-              <div
-                className={`vtex-share__${socialNetwork}-button ph1`}
-                key={index}>
-                <SocialButton
-                  url={window.location && window.location.href}
-                  message={title}
-                  socialEnum={socialNetwork}
-                  size={size}
-                />
-              </div>
+              <SocialButton
+                key={index}
+                url={window.location && window.location.href}
+                message={title}
+                iconClass={socialIconClass}
+                buttonClass={socialButtonClass}
+                socialEnum={socialNetwork}
+                size={size}
+              />
             )
         )}
       </div>
