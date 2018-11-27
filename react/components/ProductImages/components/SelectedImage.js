@@ -25,7 +25,6 @@ export default class SelectedImage extends Component {
 
   state = {
     showZoom: false,
-    dimensions: {},
   }
 
   handleMouseEnterImage = () => {
@@ -36,44 +35,22 @@ export default class SelectedImage extends Component {
     this.setState({ showZoom: false })
   }
 
-  handleImageLoad = ({ target: img }) => {
-    this.setState({
-      dimensions : { 
-        height: img.offsetHeight,
-        width: img.offsetWidth
-      }
-    })
-  }
-
   stripUrl = url => url.replace(/^https?:/, '')
 
   render() {
     const {
       image: { imageUrl, imageText },
     } = this.props
-    const {
-      showZoom,
-      dimensions,
-     } = this.state
-
-    const classNamesImage = classNames('', {
-      'h-100 w-auto': dimensions && dimensions.height > dimensions.width,
-      'h-auto w-100': !dimensions || dimensions.height <= dimensions.width,
-    })
+    const { showZoom } = this.state
 
     return (
       <div className="w-100 relative overflow-hidden">
         <div
-          className="vtex-product-image__selected-image flex items-center justify-center"
+          className="vtex-product-image__selected-image bg-center contain"
+          style={{ backgroundImage: `url(${imageUrl})` }}
           onMouseEnter={this.handleMouseEnterImage}
-          >
-          <img
-            className={classNamesImage}
-            src={this.stripUrl(imageUrl)}
-            alt={imageText}
-            onLoad={e => this.handleImageLoad(e)}
-          />
-        </div>
+          title={imageText}
+        />
         <div className="vtex-product-image__image-zoom-container absolute">
           {showZoom && (
             <ImageZoom

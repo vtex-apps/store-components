@@ -18,6 +18,9 @@
 .vtex-product-image__selected-image {
   height: 31.25em;
   width: inherit;
+  max-width: 500px;
+  max-height: 500px;
+  margin: auto;
 }
 
 .vtex-product-image__thumbnail-slider--vertical {
