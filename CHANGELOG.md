@@ -30,9 +30,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Slider crashing in store-componentes master
 
-### Removed
-- Remove `Header` component.
-- Remove `Footer` component.
+## [2.6.6] - 2018-11-26
+### Fixed
+- Fix the number of items shown in slider.
+
+## [2.6.5] - 2018-11-26
+### Fixed
+- Image Zoom in product details was not working properly
 
 ## [2.6.4] - 2018-11-20
 ### Fixed
@@ -40,8 +44,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.6.3] - 2018-11-20
 ### Fixed
-- Add `vtex-page-padding` class to Greeting
-
+- Add `vtex-page-padding` class to Greeting.
 
 ## [2.6.2] - 2018-11-13
 ### Removed
@@ -52,7 +55,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.6.0] - 2018-11-09
 ### Added
-- `Account` shared components
+- `Account` shared components.
 
 ## [2.5.6] - 2018-11-08
 ### Fixed
