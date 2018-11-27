@@ -1,7 +1,0 @@
-.vtex-share__social-button {
-  cursor: pointer;
-}
-
-.vtex-share__social-button:hover:not(:active) {
-  opacity: 0.75;
-}
