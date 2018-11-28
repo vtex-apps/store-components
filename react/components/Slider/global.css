@@ -7,3 +7,13 @@
     width: inherit !important;
     height: inherit !important;
 }
+
+/* Clearfix for left arrow */
+.slick-prev {
+    left: 0;
+}
+
+/* Clearfix for right arrow */
+.slick-next {
+    right: 0;
+}

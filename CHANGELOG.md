@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Make `SKUSelector` use design tokens.
 - Add `classes` and `installmentsClasses` to ProductPrice component to style the component.
 - Use style guide table in `ProductDescription` component.
+- Make `Slider` receive custom classes.
 
 ### Removed
 - Remove `Header` component.
