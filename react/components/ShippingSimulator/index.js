@@ -129,8 +129,8 @@ class ShippingSimulator extends Component {
 
     return (
       <Fragment>
-        <form className="vtex-shipping-simulator">
-          <label className="vtex-shipping-simulator__zipcode-label">
+        <form className="vtex-shipping-simulator t-small items-center flex c-on-base">
+          <label className="vtex-shipping-simulator__zipcode-label flex items-center h-100">
             {this.formatMessage('shipping.label')}
             <Input
               className="vtex-shipping-simulator__input"
