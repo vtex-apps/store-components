@@ -29,7 +29,6 @@ export default class InnerZoom extends Component {
 
   constructor(props) {
     super(props)
-    this.imageZoomed = React.createRef()
     this.contentDiv = React.createRef()
   }
 
@@ -66,7 +65,6 @@ export default class InnerZoom extends Component {
           onMouseLeave={onMouseLeaveZoom}
         >
           <div
-            ref={this.imageZoomed}
             className="vtex-product-image__zoom-image absolute ph8 flex justify-center items-center"
             style={zoomStyle}
           >
