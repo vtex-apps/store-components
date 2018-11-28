@@ -35,8 +35,8 @@ export default class InnerZoom extends Component {
 
   getScale = () => {
     const scale = {
-      x: 1,
-      y: 1,
+      width: 1,
+      height: 1,
     }
 
     if (this.contentDiv.current) {
