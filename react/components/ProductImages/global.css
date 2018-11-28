@@ -18,8 +18,11 @@
 .vtex-product-image__selected-image {
   height: 31.25em;
   width: inherit;
-  max-width: 500px;
+}
+
+.vtex-product-image__selected-image-container {
   max-height: 500px;
+  max-width: 500px;
   margin: auto;
 }
 
@@ -146,7 +149,8 @@
 .vtex-product-image__image-zoom-container {
   top: 0px;
   left: 0px;
-  width: 100%;
+  width: inherit;
+  height: inherit;
 }
 .vtex-product-image__zoom {
   height: 31.25em;

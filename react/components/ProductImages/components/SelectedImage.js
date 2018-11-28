@@ -43,7 +43,7 @@ export default class SelectedImage extends Component {
     const { showZoom } = this.state
 
     return (
-      <div className="w-100 relative overflow-hidden">
+      <div className="vtex-product-image__selected-image-container w-100 relative overflow-hidden tc">
         <div
           className="vtex-product-image__selected-image bg-center contain"
           style={{ backgroundImage: `url(${imageUrl})` }}
