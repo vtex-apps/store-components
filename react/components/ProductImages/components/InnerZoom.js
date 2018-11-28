@@ -3,6 +3,11 @@ import PropTypes from 'prop-types'
 import { ImageZoomPropTypes } from '../constants/propTypes'
 
 /**
+ * Zoom level
+ */
+const ZOOM_LEVEL = 2
+
+/**
  * Inner Zoom Component.
  */
 export default class InnerZoom extends Component {
@@ -40,8 +45,8 @@ export default class InnerZoom extends Component {
 
     if (this.contentDiv.current) {
       const { offsetWidth } = this.contentDiv.current
-      scale.width = offsetWidth * 2
-      scale.height = offsetWidth * 2
+      scale.width = offsetWidth * ZOOM_LEVEL
+      scale.height = offsetWidth * ZOOM_LEVEL
     }
 
     return scale
