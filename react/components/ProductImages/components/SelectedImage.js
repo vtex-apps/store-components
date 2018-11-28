@@ -34,8 +34,6 @@ export default class SelectedImage extends Component {
     this.setState({ showZoom: false })
   }
 
-  stripUrl = url => url.replace(/^https?:/, '')
-
   render() {
     const {
       image: { imageUrl, imageText },
@@ -53,7 +51,7 @@ export default class SelectedImage extends Component {
         <div className="vtex-product-image__image-zoom-container absolute">
           {showZoom && (
             <ImageZoom
-              src={this.stripUrl(imageUrl)}
+              src={imageUrl}
               alt={imageText}
               onMouseLeaveZoom={this.handleMouseLeaveZoom}
             />
