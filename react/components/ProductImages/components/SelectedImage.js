@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 import ImageZoom from './ImageZoom'
 
-import VTEXClasses from '../constants/productImagesClasses'
-
 /**
  * Selected Image component.
  * Display an image.
@@ -36,8 +34,6 @@ export default class SelectedImage extends Component {
     this.setState({ showZoom: false })
   }
 
-  stripUrl = url => url.replace(/^https?:/, '')
-
   render() {
     const {
       image: { imageUrl, imageText },
@@ -45,19 +41,17 @@ export default class SelectedImage extends Component {
     const { showZoom } = this.state
 
     return (
-      <div className="w-100 relative overflow-hidden">
-        <div className={VTEXClasses.SELECTED_IMAGE}>
-          <img
-            className="w-100"
-            onMouseEnter={this.handleMouseEnterImage}
-            src={this.stripUrl(imageUrl)}
-            alt={imageText}
-          />
-        </div>
-        <div className={`${VTEXClasses.IMAGE_ZOOM_CONTAINER} absolute`}>
+      <div className="vtex-product-image__selected-image-container w-100 relative overflow-hidden tc">
+        <div
+          className="vtex-product-image__selected-image bg-center contain"
+          style={{ backgroundImage: `url(${imageUrl})` }}
+          onMouseEnter={this.handleMouseEnterImage}
+          title={imageText}
+        />
+        <div className="vtex-product-image__image-zoom-container absolute">
           {showZoom && (
             <ImageZoom
-              src={this.stripUrl(imageUrl)}
+              src={imageUrl}
               alt={imageText}
               onMouseLeaveZoom={this.handleMouseLeaveZoom}
             />

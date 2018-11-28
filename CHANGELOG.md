@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.6.10] - 2018-11-28
+### Fixed
+- `SelectedImage` not fitting properly its container.
+
 ## [2.6.9] - 2018-11-26
 ### Fixed
 - Fix svg warnings of `ProductName` and `ProductPrice`. 
