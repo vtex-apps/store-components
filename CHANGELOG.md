@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Make `SKUSelector` use design tokens.
 - Use style guide table in `ProductDescription` component.
 
+### Fixed
+- Fix design problems of `ShippingSimulator`.
+
 ### Removed
 - Remove `Header` component.
 - Remove `Footer` component.
