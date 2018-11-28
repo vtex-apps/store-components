@@ -55,6 +55,7 @@ class ShippingSimulator extends Component {
 
   state = {
     zipcodeValue: '',
+    prevZipcode: '',
     shipping: {},
     loading: false,
   }
@@ -72,9 +73,7 @@ class ShippingSimulator extends Component {
       zipcodeValue = zipcodeValue.replace(/(\d{5})(\d+)/, '$1-$2')
     }
 
-    this.setState({
-      zipcodeValue,
-    })
+    this.setState({ zipcodeValue })
   }
 
   handleClick = e => {
@@ -82,9 +81,10 @@ class ShippingSimulator extends Component {
 
     const { skuId, seller, country } = this.props
 
-    this.setState({
+    this.setState(prevState => ({
       loading: true,
-    })
+      prevZipcode: prevState.zipcodeValue
+    }))
 
     this.props.client
       .query({
@@ -121,7 +121,7 @@ class ShippingSimulator extends Component {
   }
 
   render() {
-    const { shipping, zipcodeValue, loading } = this.state
+    const { shipping, zipcodeValue, loading, prevZipcode } = this.state
 
     if (!this.props.seller || !this.props.skuId) {
       return <ShippingSimulator.Loader {...this.props.styles} />
@@ -130,10 +130,9 @@ class ShippingSimulator extends Component {
     return (
       <Fragment>
         <form className="vtex-shipping-simulator t-small items-center flex c-on-base">
-          <label className="vtex-shipping-simulator__zipcode-label flex items-center h-100">
+          <label className="vtex-shipping-simulator__zipcode-label flex items-center nowrap">
             {this.formatMessage('shipping.label')}
             <Input
-              className="vtex-shipping-simulator__input"
               name="zipcode"
               type="text"
               onChange={this.handleChange}
@@ -143,12 +142,13 @@ class ShippingSimulator extends Component {
           <Button
             className="vtex-shipping-simulator__cta"
             onClick={this.handleClick}
-            disabled={zipcodeValue.length < 9}
+            disabled={zipcodeValue.length < 9 || zipcodeValue === prevZipcode}
+            size="small"
+            type="submit"
             isLoading={loading}>
             OK
           </Button>
         </form>
-
         <ShippingTable shipping={shipping} />
       </Fragment>
     )

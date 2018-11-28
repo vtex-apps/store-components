@@ -1,16 +1,12 @@
-.vtex-shipping-simulator {
-  height: 1.85em;
-}
-
 .vtex-shipping-simulator .vtex-input {
   height: 100%;
   margin-left: 0.625em;
 }
 
 .vtex-shipping-simulator .vtex-input input {
-  padding: 5px 5px;
+  padding: 10px 5px;
   color: #4f4f4f;
-  border: 1px solid #bdbdbd;
+  border: 1px solid #e3e4e6;
   border-radius: 2px;
   height: 100%;
   border-top-right-radius: 0;
@@ -18,13 +14,6 @@
 }
 
 .vtex-shipping-simulator .vtex-button {
-  height: 100%;
-  width: 26px;
-  font-size: inherit;
-  background-color: #e0e0e0;
-  padding: 6px 2px;
-  border: 1px solid #bdbdbd;
-  border-left: none;
   border-radius: 2px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
