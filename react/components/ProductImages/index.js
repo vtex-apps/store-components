@@ -129,9 +129,9 @@ class ProductImages extends Component {
     let className = 'vtex-product-image mb7 mb0-ns flex inline-flex-ns w-100 h-100'
 
     if (isVertical) {
-      className += 'vtex-product-image__vertical'
+      className += ' vtex-product-image__vertical'
     } else {
-      className += 'vtex-product-image__horizontal flex-column-reverse'
+      className += ' vtex-product-image__horizontal flex-column-reverse'
     }
 
     if (!images) {
