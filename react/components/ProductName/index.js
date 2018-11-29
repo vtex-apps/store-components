@@ -39,7 +39,7 @@ class ProductName extends Component {
   static defaultProps = {
     showBrandName: false,
     showProductReference: false,
-    showSku: false,
+    showSku: false
   }
 
   static Loader = (loaderProps = {}) => (

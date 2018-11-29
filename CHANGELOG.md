@@ -6,8 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Fixed
-- Fix negative padding on arrows.
+### Added
+- Design tokens in `ShippingSimulator`.
+
 ### Changed
 - Add several props to style the `ProductPrice` component.
 - Add several props to style `ProductName` and remove `large` prop from it.
@@ -15,9 +16,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Make `ProductDescription` use design tokens.
 - Make `AvailabilitySubscriber` use design tokens.
 - Make `SKUSelector` use design tokens.
+- Use style guide table in `ProductDescription` component.
+
+### Fixed
+- Fix design problems of `ShippingSimulator`.
 - Add `classes` and `installmentsClasses` to ProductPrice component to style the component.
 - Use style guide table in `ProductDescription` component.
 - Make `Slider` receive custom classes.
+- Fix negative padding on arrows.
 
 ### Removed
 - Remove `Header` component.

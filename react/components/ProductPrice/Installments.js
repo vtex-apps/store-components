@@ -29,7 +29,6 @@ export default class Installments extends Component {
       maximumFractionDigits: PropTypes.number.isRequired,
     }).isRequired,
   }
-
   render() {
     const {
       showLabels,
@@ -90,10 +89,10 @@ export default class Installments extends Component {
             }}
           />
         ) : (
-          <Fragment>
-            {installmentsElement} {timesElement} {installmentPriceElement}
-          </Fragment>
-        )}
+            <Fragment>
+              {installmentsElement} {timesElement} {installmentPriceElement}
+            </Fragment>
+          )}
         {!installment.InterestRate && (
           <div className={classNames('vtex-price-installments__interest-rate', interestRateClass)}>
             <FormattedMessage id="pricing.interest-free" />
