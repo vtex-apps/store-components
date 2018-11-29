@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.0] - 2018-11-29
+### Added
+- Design tokens in `ShippingSimulator`.
+
+### Changed
+- Add several props to style the `ProductPrice` component.
+- Add several props to style `ProductName` and remove `large` prop from it.
+- Add several props to style `Share` component.
+- Make `ProductDescription` use design tokens.
+- Make `AvailabilitySubscriber` use design tokens.
+- Make `SKUSelector` use design tokens.
+- Use style guide table in `ProductDescription` component.
+
+### Fixed
+- Fix design problems of `ShippingSimulator`.
+- Add `classes` and `installmentsClasses` to ProductPrice component to style the component.
+- Use style guide table in `ProductDescription` component.
+- Make `Slider` receive custom classes.
+- Fix negative padding on arrows.
+
+### Removed
+- Remove `Header` component.
+- Remove `Footer` component.
+
+### Added
+- Share label to `Share` component.
+
 ## [2.6.10] - 2018-11-28
 ### Fixed
 - `SelectedImage` not fitting properly its container.
@@ -37,8 +64,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.6.3] - 2018-11-20
 ### Fixed
-- Add `vtex-page-padding` class to Greeting
-
+- Add `vtex-page-padding` class to Greeting.
 
 ## [2.6.2] - 2018-11-13
 ### Removed
@@ -49,7 +75,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.6.0] - 2018-11-09
 ### Added
-- `Account` shared components
+- `Account` shared components.
 
 ## [2.5.6] - 2018-11-08
 ### Fixed

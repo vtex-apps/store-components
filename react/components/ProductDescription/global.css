@@ -1,8 +1,22 @@
-.vtex-product-specifications__table {
-  margin: 0 auto;
-  border-collapse: collapse;
+.ReactVirtualized__Table__row:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
-.vtex-product-specifications__table-row:nth-child(odd) {
-  background-color: rgba(0, 0, 0, 0.05);
+@media screen and (max-width: 40em) {
+  .ReactVirtualized__Table__rowColumn{
+    text-align: left;
+    width: 100%;
+    border: none;
+  }
+
+  .ReactVirtualized__Table__row{
+    display: block;
+    padding-top: .75em;
+  }
+}
+
+@media all and (width: 768px) and (height: 1024px) and (orientation:portrait) {
+  .ReactVirtualized__Table__rowColumn{
+    flex: 0 1 50% !important;
+  }
 }

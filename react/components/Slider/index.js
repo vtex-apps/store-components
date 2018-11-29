@@ -34,16 +34,20 @@ export default class SlickSlider extends Component {
     scrollByPage: PropTypes.bool,
     /** SSR fallback. */
     ssrFallback: PropTypes.element,
+    /** Left arrow custom classes */
+    leftArrowClasses: PropTypes.string,
+    /** Right arrow custom classes */
+    rightArrowClasses: PropTypes.string,
   }
 
   getSettings(slideWidth) {
-    const { sliderSettings, adaptToScreen, scrollByPage, defaultItemWidth, children } = this.props
+    const { sliderSettings, adaptToScreen, scrollByPage, defaultItemWidth, children, leftArrowClasses, rightArrowClasses } = this.props
     const itemsPerPage = getItemsPerPage(this._slick, slideWidth, defaultItemWidth, sliderSettings.slidesToShow)
     const settings = { ...sliderSettings }
     const numItems = children.length
 
-    settings.nextArrow = settings.nextArrow || <Arrow cssClass={VTEXClasses.ARROW_RIGHT_CLASS} />
-    settings.prevArrow = settings.prevArrow || <Arrow cssClass={VTEXClasses.ARROW_LEFT_CLASS} />
+    settings.nextArrow = settings.nextArrow || <Arrow customClasses={rightArrowClasses} cssClass={VTEXClasses.ARROW_RIGHT_CLASS} />
+    settings.prevArrow = settings.prevArrow || <Arrow customClasses={leftArrowClasses} cssClass={VTEXClasses.ARROW_LEFT_CLASS} />
     settings.appendDots = dots => <Dots dots={dots} cssClass={VTEXClasses.DOTS_CLASS} />
 
     if (adaptToScreen) {

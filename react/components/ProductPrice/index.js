@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { isNil } from 'ramda'
 import ContentLoader from 'react-content-loader'
@@ -41,38 +42,58 @@ class Price extends Component {
       showLabels,
       showSavings,
       labelSellingPrice,
+      className,
+      loaderClass,
+      listPriceContainerClass,
+      listPriceLabelClass,
+      listPriceClass,
+      sellingPriceContainerClass,
+      sellingPriceLabelClass,
+      sellingPriceClass,
+      savingsContainerClass,
+      savingsClass,
       installments,
+      installmentClass,
+      interestRateClass,
+      installmentContainerClass,
       styles,
       intl: { formatNumber },
     } = this.props
 
+    let { classes } = this.props
+    // avoiding undefined verifications
+    classes = {
+      ...Price.defaultProps.classes,
+      ...classes,
+    }
+
     if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
-      return <Price.Loader {...styles} />
+      return <Price.Loader loaderClass={loaderClass} {...styles} />
     }
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
     return (
-      <div className="vtex-price flex flex-column justify-around">
+      <div className={classNames('vtex-price', className)}>
         {differentPrices && (
-          <div className="vtex-price-list__container pv1 normal c-muted-2">
+          <div className={classNames('vtex-price-list__container', listPriceContainerClass)}>
             {showLabels && (
-              <div className="vtex-price-list__label dib strike">
+              <div className={classNames('vtex-price-list__label', listPriceLabelClass)}>
                 <FormattedMessage id="pricing.from" />
               </div>
             )}
-            <div className="vtex-price-list dib ph2 strike">
+            <span className={classNames('vtex-price-list', listPriceClass)}>
               {formatNumber(listPrice, this.currencyOptions)}
-            </div>
+            </span>
           </div>
         )}
-        <div className="vtex-price-selling__container pv1 b c-muted-1">
+        <div className={classNames('vtex-price-selling__container', sellingPriceContainerClass)}>
           {showLabels && (
-            <div className="vtex-price-selling__label dib">
+            <div className={classNames('vtex-price-selling__label', sellingPriceLabelClass)}>
               {labelSellingPrice || <FormattedMessage id="pricing.to" />}
             </div>
           )}
-          <div className="vtex-price-selling dib ph2">
+          <div className={classNames('vtex-price-selling', sellingPriceClass)}>
             {formatNumber(sellingPrice, this.currencyOptions)}
           </div>
         </div>
@@ -82,10 +103,13 @@ class Price extends Component {
             showLabels={showLabels}
             formatNumber={formatNumber}
             currencyOptions={this.currencyOptions}
+            className={installmentContainerClass}
+            interestRateClass={interestRateClass}
+            installmentClass={installmentClass}
           />}
         {differentPrices && showSavings && (
-          <div className="vtex-price-savings__container c-muted-2">
-            <div className="vtex-price-savings dib">
+          <div className={classNames('vtex-price-savings__container', savingsContainerClass)}>
+            <div className={classNames('vtex-price-savings', savingsClass)}>
               <FormattedMessage
                 id="pricing.savings"
                 values={{
@@ -104,7 +128,7 @@ class Price extends Component {
 }
 
 Price.Loader = (loaderProps = {}) => (
-  <div className="vtex-price vtex-price-loader h3">
+  <div className={classNames('vtex-price vtex-price-loader', loaderProps.loaderClass)}>
     <ContentLoader
       style={{
         width: '100%',
@@ -112,7 +136,7 @@ Price.Loader = (loaderProps = {}) => (
       }}
       width={300}
       height={70}
-      preserveAspectRatio='xMinYMin meet'
+      preserveAspectRatio="xMinYMin meet"
       {...loaderProps}>
       <rect
         height="0.75em"
@@ -178,7 +202,7 @@ priceWithIntel.schema = {
       title: 'editor.productPrice.showSavings',
       default: Price.defaultProps.showSavings,
       isLayout: true,
-    }
+    },
   },
 }
 

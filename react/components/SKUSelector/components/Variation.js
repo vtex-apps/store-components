@@ -10,11 +10,11 @@ export default class Variation extends Component {
     const shouldDisplayImages = isColor(variation.name)
 
     return (
-      <div className="vtex-sku-selector__variation flex flex-column">
-        <div className="ma1">
-          <div className="b fabriga overflow-hidden">
+      <div className="vtex-sku-selector__container flex flex-column">
+        <div className="vtex-sku-selector__name-container ma1">
+          <span className="vtex-sku-selector__name b db t-body overflow-hidden">
             {variation.name}
-          </div>
+          </span>
           <div className="inline-flex flex-wrap">
             {variation.options.map(skuItem => {
               if (!skuItem.images.length) return null

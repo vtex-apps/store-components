@@ -14,12 +14,28 @@ You can use it in your code like a React component with the jsx tag: `<ProductPr
 
 ```jsx
 <ProductPrice
-  listPrice={commertialOffer.ListPrice}
-  sellingPrice={commertialOffer.Price}
-  installments={commertialOffer.Installments}
-  showListPrice={showListPrice}
   showLabels={showLabels}
+  showListPrice={showListPrice}
   showInstallments={showInstallments}
+  sellingPrice={commertialOffer.Price}
+  listPrice={commertialOffer.ListPrice}
+  installments={commertialOffer.Installments}
+/>
+```
+
+### Passing classes to the elements of the component
+Every prop that ends with `Class` will be passed to an element of the component, see the following code
+```jsx
+<ProductPrice
+  className="pv4 overflow-hidden"
+  listPriceLabelClass="c-muted-4"
+  savingsClass="h4 ph5 dib"
+  showLabels={showLabels}
+  showListPrice={showListPrice}
+  showInstallments={showInstallments}
+  sellingPrice={commertialOffer.Price}
+  listPrice={commertialOffer.ListPrice}
+  installments={commertialOffer.Installments}
 />
 ```
 
@@ -37,5 +53,18 @@ You can use it in your code like a React component with the jsx tag: `<ProductPr
 | `installments.TotalValuePlusInterestRate` | `Number` | Calculated total value |
 | `installments.NumberOfInstallments` | `Number!` | Number of installments |
 | `installments.Name` | `String` | Installment offer name |
+| `className` | `String` | Classes to be applied to root element |
+| `loaderClass` | `String` | Classes to be applied to loader root element |
+| `listPriceContainerClass` | `String` | Classes to be applied to container of list price |
+| `listPriceLabelClass` | `String` | Classes to be applied to label of price |
+| `listPriceClass` | `String` | Classes to be applied to price value |
+| `sellingPriceContainerClass` | `String` | Classes to be applied to selling price container |
+| `sellingPriceLabelClass` | `String` | Classes to be applied to selling price label |
+| `sellingPriceClass` | `String` | Classes to be applied to selling price value |
+| `savingsContainerClass` | `String` | Classes to be applied to savings container |
+| `savingsClass` | `String` | Classes to be applied to savings |
+| `installmentClass` | `String` | Classes to be applied to installment element |
+| `installmentContainerClass` | `String` | Classes to be applied to installment container |
+| `interestRateClass` | `String` | Classes to be applied to interest rate element |
 
-See an example at [Product Summary](https://github.com/vtex-apps/product-summary/blob/master/react/ProductSummary.js#L84) app
+See an example at [Product Summary](https://github.com/vtex-apps/product-summary) app

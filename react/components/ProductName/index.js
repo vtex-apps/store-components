@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
+import classNames from 'classnames'
 
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
@@ -21,21 +22,28 @@ class ProductName extends Component {
     brandName: PropTypes.string,
     /** Show brand name */
     showBrandName: PropTypes.bool,
-    /** Display large font */
-    large: PropTypes.bool,
     /** Component and content loader styles */
     styles: PropTypes.object,
+    /** Classes to be applied to root element */
+    className: PropTypes.string,
+    /** Classes to be applied to brandName element */
+    brandNameClass: PropTypes.string,
+    /** Classes to be applied to skuName element */
+    skuNameClass: PropTypes.string,
+    /** Classes to be applied to productReference element */
+    productReferenceClass: PropTypes.string,
+    /** Classes to be applied to loader root element */
+    loaderClass: PropTypes.string,
   }
 
   static defaultProps = {
-    large: false,
     showBrandName: false,
     showProductReference: false,
-    showSku: false,
+    showSku: false
   }
 
   static Loader = (loaderProps = {}) => (
-    <div className="vtex-product-name vtex-product-name-loader pt5 overflow-hidden">
+    <div className={classNames('vtex-product-name vtex-product-name-loader', loaderProps.className)}>
       <ContentLoader
         style={{
           width: '100%',
@@ -43,7 +51,7 @@ class ProductName extends Component {
         }}
         width={456}
         height={100}
-        preserveAspectRatio='xMinYMin meet'
+        preserveAspectRatio="xMinYMin meet"
         {...loaderProps}
       >
         <rect
@@ -65,44 +73,39 @@ class ProductName extends Component {
 
   render() {
     const {
+      productReferenceClass,
+      brandNameClass,
+      skuNameClass,
+      loaderClass,
+      className,
       name,
+      styles,
       skuName,
-      brandName,
-      large,
-      showBrandName,
-      showProductReference,
       showSku,
+      brandName,
+      showBrandName,
       productReference,
+      showProductReference,
     } = this.props
-
-    let brandClasses = 'vtex-product-name__brand f5'
-    let skuClasses = 'vtex-product-name__sku f6'
-
-    if (large) {
-      brandClasses += ' vtex-product-name__brand--large f2'
-      skuClasses += ' vtex-product-name__sku--large'
-    }
 
     if (!name) {
       return (
-        <ProductName.Loader
-          {...this.props.styles}
-          brandClasses={brandClasses}
-          skuClasses={skuClasses}
-        />
+        <ProductName.Loader className={loaderClass} {...styles} />
       )
     }
 
     return (
-      <div className="vtex-product-name overflow-hidden c-on-base">
-        <div className={brandClasses}>
+      <div className={classNames('vtex-product-name', className)}>
+        <span className={classNames('vtex-product-name__brand', brandNameClass)}>
           {name} {showBrandName && brandName && `- ${brandName}`}
-        </div>
-        {showSku && <div className={skuClasses}>{skuName}</div>}
+        </span>
+        {showSku && skuName && (
+          <span className={classNames('vtex-product-name__sku', skuNameClass)}>{skuName}</span>
+        )}
         {showProductReference && productReference && (
-          <div className="vtex-product-name__product-reference pt3 f7 ttu">
+          <span className={classNames('vtex-product-name__product-reference', productReferenceClass)}>
             {`REF: ${productReference}`}
-          </div>
+          </span>
         )}
       </div>
     )
