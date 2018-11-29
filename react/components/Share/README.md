@@ -32,6 +32,8 @@ const social = {
 | `options` | `Object` | Object to configure the Component |
 | `options.size` | `Number` | Buttons size in pixels |
 | `className` | `String` | Classes to be applied to root element |
+| `buttonsContainerClass` | `String` | Classes to be applied to container of the buttons |
+| `shareLabelClass` | `String` | Classes to be applied to Share label |
 | `socialButtonClass` | `String` | Classes to be applied to social button |
 | `socialIconClass` | `String` | Classes to be applied to icon of the button |
 | `loaderContainerClass` | `String` | Classes to be applied to the `ContentLoader` container |

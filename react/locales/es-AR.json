@@ -51,5 +51,6 @@
   "editor.categoriesHighlighted.cardShape.rectangular": "Rectangular",
   "searchBar.button.cancel.label": "Cancelar",
   "buyButton-label-unavailable": "Indisponible",
-  "greeting": "Hola"
+  "greeting": "Hola",
+  "share.label": "COMPARTIR"
 }

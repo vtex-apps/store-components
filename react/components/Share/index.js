@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import { indexBy, prop } from 'ramda'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
+import { FormattedMessage, injectIntl } from 'react-intl'
 
 import SocialButton from './components/SocialButton'
 import { SOCIAL_ENUM } from './constants/social'
@@ -24,8 +25,12 @@ class Share extends Component {
     styles: PropTypes.object,
     /** Classes to be applied to root element  */
     className: PropTypes.string,
+    /** Classes to be applied to Share label */
+    shareLabelClass: PropTypes.string,
     /** Classes to be applied to social button */
     socialButtonClass: PropTypes.string,
+    /** Classes to be applied to container of the buttons */
+    buttonsContainerClass: PropTypes.string,
     /** Classes to be applied to icon of the button */
     socialIconClass: PropTypes.string,
     /** Classes to be applied to the Content Loader container */
@@ -88,7 +93,9 @@ class Share extends Component {
       WhatsApp: true,
     },
     options: {},
-    className: 'flex flex-row'
+    className: 'flex flex-row flex-wrap w-100',
+    shareLabelClass: 'pv2 pr3 t-small',
+    buttonsContainerClass: 'flex flex-row'
   }
 
   static schema = {
@@ -120,6 +127,8 @@ class Share extends Component {
       loading,
       options: { size },
       className,
+      shareLabelClass,
+      buttonsContainerClass,
       socialButtonClass,
       socialIconClass,
       loaderContainerClass,
@@ -136,23 +145,28 @@ class Share extends Component {
 
     return (
       <div className={classNames('vtex-share', className)}>
-        {Object.keys(social).map(
-          (socialNetwork, index) =>
-            social[socialNetwork] && (
-              <SocialButton
-                key={index}
-                url={window.location && window.location.href}
-                message={title}
-                iconClass={socialIconClass}
-                buttonClass={socialButtonClass}
-                socialEnum={socialNetwork}
-                size={size}
-              />
-            )
-        )}
+        <div className={classNames('share__label', shareLabelClass)}>
+          <FormattedMessage id="share.label" />:
+        </div>
+        <div className={classNames('share__buttons-container', buttonsContainerClass)}>
+          {Object.keys(social).map(
+            (socialNetwork, index) =>
+              social[socialNetwork] && (
+                <SocialButton
+                  key={index}
+                  url={window.location && window.location.href}
+                  message={title}
+                  iconClass={socialIconClass}
+                  buttonClass={socialButtonClass}
+                  socialEnum={socialNetwork}
+                  size={size}
+                />
+              )
+          )}
+        </div>
       </div>
     )
   }
 }
 
-export default Share
+export default injectIntl(Share)
