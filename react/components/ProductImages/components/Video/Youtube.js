@@ -29,6 +29,8 @@ class Youtube extends Component {
     const videoId = Youtube.extractVideoID(url)
     const getUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${youtubeApiKey}`
 
+    this.iframeRef = React.createRef()
+
     fetch(getUrl)
       .then(response => {
         return response.json()
@@ -77,7 +79,7 @@ class Youtube extends Component {
 
     return <div style={iframe.divStyle} className={`relative ${className}`}>
       <iframe
-        ref={(ref) => this.iframeRef = ref}
+        ref={this.iframeRef}
         title={id}
         className="absolute top-0 left-0 w-100 h-100"
         src={iframe.src}

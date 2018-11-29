@@ -32,6 +32,8 @@ class Vimeo extends Component {
     const params = `autoplay=${autoplay}&loop=${loop}&title=${showTitle}&width=${width}&height=${height}`
     const getUrl = `https://vimeo.com/api/oembed.json?url=${url}&${params}`
 
+    this.iframeRef = React.createRef()
+
     fetch(getUrl)
       .then(response => {
         return response.json()
@@ -69,7 +71,7 @@ class Vimeo extends Component {
 
     return <div style={iframe.divStyle} className={`relative ${className}`}>
       <iframe
-        ref={(ref) => this.iframeRef = ref}
+        ref={this.iframeRef}
         title={id}
         className="absolute top-0 left-0 w-100 h-100"
         src={iframe.src}
