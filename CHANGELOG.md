@@ -19,6 +19,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Remove `Header` component.
 - Remove `Footer` component.
 
+### Added
+- Share label to `Share` component.
+
 ## [2.6.9] - 2018-11-26
 ### Fixed
 - Fix svg warnings of `ProductName` and `ProductPrice`. 
