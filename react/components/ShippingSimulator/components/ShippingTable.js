@@ -36,14 +36,14 @@ export default class ShippingTable extends Component {
       return (
         <FormattedMessage id="shipping.empty-sla">
           {text => (
-            <span className="vtex-shipping__no-shipping-message">{text}</span>
+            <span className="vtex-shipping__no-shipping-message dib t-small mt4">{text}</span>
           )}
         </FormattedMessage>
       )
     }
 
     return (
-      <table className="vtex-shipping-table">
+      <table className="vtex-shipping-table bt bb b--muted-4 c-muted-1 ph0 pv3 mt4 w-100">
         <tbody>
           {slaList.map(shipping => (
             <ShippingTableRow key={shipping.id} {...shipping} />

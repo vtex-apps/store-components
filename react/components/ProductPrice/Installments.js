@@ -27,9 +27,8 @@ export default class Installments extends Component {
       currency: PropTypes.string.isRequired,
       minimumFractionDigits: PropTypes.number.isRequired,
       maximumFractionDigits: PropTypes.number.isRequired,
-    }).isRequired
+    }).isRequired,
   }
-  
   render() {
     const {
       showLabels,
@@ -38,7 +37,7 @@ export default class Installments extends Component {
       currencyOptions,
       className,
       installmentClass,
-      interestRateClass
+      interestRateClass,
     } = this.props
 
     if (!installments || isEmpty(installments)) {
