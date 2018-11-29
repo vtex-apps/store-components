@@ -23,6 +23,7 @@ export default class SocialButton extends Component {
 
   static defaultProps = {
     size: 32,
+    buttonClass: 'mh1 pointer outline-0 dim'
   }
 
   render() {

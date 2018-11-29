@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Add several props to style the `ProductPrice` component.
 - Add several props to style `ProductName` and remove `large` prop from it.
-- Add several props to `Share` component.
+- Add several props to style `Share` component.
 - Make `ProductDescription` use design tokens.
 - Make `AvailabilitySubscriber` use design tokens.
 - Make `SKUSelector` use design tokens.
@@ -28,6 +28,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - Remove `Header` component.
 - Remove `Footer` component.
+
+### Added
+- Share label to `Share` component.
 
 ## [2.6.10] - 2018-11-28
 ### Fixed
