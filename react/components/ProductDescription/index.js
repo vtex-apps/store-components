@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
-import { Table } from 'vtex.styleguide'
-import { withRuntimeContext } from 'render'
-import { compose } from 'ramda'
+import HtmlParser from 'react-html-parser'
+import GradientCollapse from './components/GradientCollapse'
 
 import './global.css'
 
@@ -12,63 +11,57 @@ import './global.css'
  * Render the description and technical specifications of a product
  */
 class ProductDescription extends Component {
-
-  static specificationSchema = {
-    'properties': {
-      'name': {
-        'type': 'string',
-        'title': 'Name',
-        cellRenderer: ({ cellData: name }) => {
-          return (
-            <span className="vtex-product-specifications__specification-name dtc-ns tr-ns w-20-ns pb2-ns ttu t-body c-muted-1 pt2  ph6 br-ns b--muted-3">
-              {name}
-            </span>
-          )
-        }
-      },
-      'values': {
-        'type': "array",
-        'title': 'Values',
-        'items': {
-          'type': 'string',
-          'title': 'Items',
-        },
-        cellRenderer: ({ cellData: value }) => {
-          return (
-            <span className="vtex-product-specifications__specification-values dtc-ns pv2 ph6 c-muted-2 db-s">
-              {value}
-            </span>
-          )
-        }
-      }
-    }
-  }
-
   render() {
-    const { specifications, description, runtime: { hints: { mobile } } } = this.props
+    const { specifications, description } = this.props
 
     if (!description || !specifications) {
       return null
     }
 
-    return (
-      <div className="vtex-product-description ma2">
-        <div className="t-heading-5 mb6-ns mb5-s">
-          <FormattedMessage id="product-description.title" />
-        </div>
-        <span
-          className="vtex-product-description__text measure-wide c-muted-1"
-          dangerouslySetInnerHTML={{ __html: description }}
-        />
+    const specificationItems = specifications.map(specification => {
+      return {property: specification.name, specifications: specification.values[0]}
+    })
 
+    return (
+      <div className="vtex-product-description flex-l">
+        <div className="w-100 w-60-l">
+          <div className="t-heading-5 mb5">
+            <FormattedMessage id="product-description.title"/>
+          </div>
+
+          <div className="c-muted-1">
+            <GradientCollapse collapseHeight={220}>
+              {HtmlParser(description)}
+            </GradientCollapse>
+          </div>
+        </div>
         {specifications.length > 0 && (
-          <div className="vtex-product-specifications mt6">
-            <div className="vtex-product-specifications__title t-heading-5 mb6-ns mb5-s">
+          <div className="vtex-product-specifications mt9 mt0-l w-100 w-40-l pl6-l">
+            <div className="vtex-product-specifications__title t-heading-5 mb5">
               <FormattedMessage id="technicalspecifications.title" />
             </div>
-            <div className="vtex-product-specifications__table w-100">
-              <Table items={specifications} schema={ProductDescription.specificationSchema} density={mobile ? 'medium' : 'high'} disableHeader />
-            </div>
+            <GradientCollapse collapseHeight={220}>
+              <table className="vtex-product-specifications__table w-100 bg-base border-collapse">
+                <thead>
+                <tr>
+                  <th className="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5">
+                    <FormattedMessage id="product-description.property"/>
+                  </th>
+                  <th className="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5">
+                    <FormattedMessage id="product-description.specification"/>
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                {specificationItems.map((specification, i) => (
+                  <tr key={i}>
+                    <td className="w-50 b--muted-4 bb pa5">{specification.property}</td>
+                    <td className="w-50 b--muted-4 bb pa5">{specification.specifications}</td>
+                  </tr>
+                ))}
+                </tbody>
+              </table>
+            </GradientCollapse>
           </div>
         )}
       </div>
@@ -93,7 +86,7 @@ ProductDescription.propTypes = {
       /** Specifications value */
       values: PropTypes.arrayOf(PropTypes.string).isRequired,
     })
-  ),
+  )
 }
 
-export default compose(injectIntl, withRuntimeContext)(ProductDescription)
+export default injectIntl(ProductDescription)
