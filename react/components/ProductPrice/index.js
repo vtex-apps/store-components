@@ -60,6 +60,13 @@ class Price extends Component {
       intl: { formatNumber },
     } = this.props
 
+    let { classes } = this.props
+    // avoiding undefined verifications
+    classes = {
+      ...Price.defaultProps.classes,
+      ...classes,
+    }
+
     if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
       return <Price.Loader loaderClass={loaderClass} {...styles} />
     }
@@ -129,7 +136,7 @@ Price.Loader = (loaderProps = {}) => (
       }}
       width={300}
       height={70}
-      preserveAspectRatio='xMinYMin meet'
+      preserveAspectRatio="xMinYMin meet"
       {...loaderProps}>
       <rect
         height="0.75em"

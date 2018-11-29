@@ -12,12 +12,18 @@
 }
 
 .vtex-product-image__horizontal {
-  width: 31.25em;
+  max-width: 31.25em;
 }
 
 .vtex-product-image__selected-image {
   height: 31.25em;
   width: inherit;
+}
+
+.vtex-product-image__selected-image-container {
+  max-height: 500px;
+  max-width: 500px;
+  margin: auto;
 }
 
 .vtex-product-image__thumbnail-slider--vertical {
@@ -143,7 +149,8 @@
 .vtex-product-image__image-zoom-container {
   top: 0px;
   left: 0px;
-  width: 100%;
+  width: inherit;
+  height: inherit;
 }
 .vtex-product-image__zoom {
   height: 31.25em;

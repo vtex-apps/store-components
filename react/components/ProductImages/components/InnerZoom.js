@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { ImageZoomPropTypes } from '../constants/propTypes'
-import VTEXClasses from '../constants/productImagesClasses'
 
 /**
  * Inner Zoom Component.
@@ -61,14 +60,12 @@ export default class InnerZoom extends Component {
     return (
       <div className="bg-white" ref={this.contentDiv}>
         <div
-          className={`${VTEXClasses.IMAGE_ZOOM} relative overflow-hidden`}
+          className="vtex-product-image__zoom relative overflow-hidden"
           onMouseLeave={onMouseLeaveZoom}
         >
           <div
             ref={this.imageZoomed}
-            className={`${
-              VTEXClasses.IMAGE_ZOOM_IMG
-            } absolute ph8 flex justify-center items-center`}
+            className="vtex-product-image__zoom-image absolute ph8 flex justify-center items-center"
             style={zoomStyle}
           >
             {children}

@@ -6,8 +6,6 @@ import ThumbnailItem from './ThumbnailItem'
 import ThumbnailArrow from './ThumbnailArrow'
 import Slider from '../../../Slider'
 
-import VTEXClasses from '../constants/productImagesClasses'
-
 import { HORIZONTAL, VERTICAL } from '../constants/orientation'
 
 const MAX_VISIBLE_ITEMS = 5
@@ -59,7 +57,7 @@ class ThumbnailSlider extends Component {
 
     const sliderVertical = orientation === VERTICAL
 
-    const className = classNames(`${VTEXClasses.THUMBNAIL_SLIDER} w-100-s`, {
+    const className = classNames('vtex-product-image__thumbnail-slider w-100-s', {
       'vtex-product-image__thumbnail-slider--vertical': sliderVertical,
       'mr6-ns': sliderVertical,
       mt3: !sliderVertical,

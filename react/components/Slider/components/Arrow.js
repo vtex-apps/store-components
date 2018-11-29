@@ -7,11 +7,11 @@ import PropTypes from 'prop-types'
  */
 export default class Arrow extends Component {
   render() {
-    const { className, style, onClick, cssClass } = this.props
+    const { className, style, onClick, cssClass, customClasses } = this.props
 
     return (
       <div
-        className={`${className} ${cssClass}`}
+        className={`${className} ${cssClass} ${customClasses}`}
         style={{ ...style }}
         onClick={onClick}
       />
@@ -28,4 +28,6 @@ Arrow.propTypes = {
   onClick: PropTypes.func,
   /** Specifies wich css class the arrow will receive. */
   cssClass: PropTypes.string.isRequired,
+  /** Custom classes */
+  customClasses: PropTypes.string
 }
