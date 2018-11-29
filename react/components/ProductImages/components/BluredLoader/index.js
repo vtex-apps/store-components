@@ -36,7 +36,7 @@ class BluredLoader extends React.Component{
   }
 
   componentDidMount() {
-    this.genImage()
+    this.generateImage()
     window.addEventListener('resize', this.debouncedUpdate)
   }
 
@@ -63,10 +63,9 @@ class BluredLoader extends React.Component{
     return bestUrlIndex
   }
 
-  genImage = (imageUrl = null) => {
+  generateImage = (imageUrl = null) => {
     const { realUrls } = this.props
     const { realUrlIndex } = this.state
-
 
     const bestUrlIndex = this.getBestImageUrl(imageUrl)
 
@@ -79,14 +78,14 @@ class BluredLoader extends React.Component{
     hdImageLoader.onerror = () => {
       if(this.loadCounter > 10) return
       this.loadCounter++
-      this.genImage(Math.max(bestUrlIndex - 1, 0))
+      this.generateImage(Math.max(bestUrlIndex - 1, 0))
     }
 
     hdImageLoader.onload = () => {
       const { realUrlIndex } = this.state
       if(realUrlIndex && bestUrlIndex <= realUrlIndex) return
       if(this.getBestImageUrl() > bestUrlIndex)
-        this.genImage()
+        this.generateImage()
 
       this.setState({
         loadState: LoadStates.TRANSITION,
