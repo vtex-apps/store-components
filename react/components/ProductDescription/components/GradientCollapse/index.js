@@ -5,13 +5,18 @@ import debounce from 'debounce'
 import { FormattedMessage } from 'react-intl'
 import './global.css'
 
-class GrandientCollapse extends Component {
-  state = { showCollapse: true, collapsed: true, maxHeight: 'auto' }
+class GradientCollapse extends Component {
+  constructor(props){
+    super(props)
+    this.state = { showCollapse: true, collapsed: true, maxHeight: 'auto' }
+
+    this.wrapper = React.createRef()
+  }
 
   calcMaxHeight = () => {
     const {collapseHeight} = this.props
-    if (this.ref.scrollHeight > collapseHeight) {
-      const maxHeight = this.ref.scrollHeight + 60
+    if (this.wrapper.scrollHeight > collapseHeight) {
+      const maxHeight = this.wrapper.scrollHeight + 60
       this.setState({showCollapse: true, maxHeight})
     } else this.setState({showCollapse: false, maxHeight: 'auto'})
   }
@@ -42,7 +47,7 @@ class GrandientCollapse extends Component {
           <div
             style={{...transitionStyle(transitionTime), height, overflow: 'hidden'}}
             className="relative">
-            <div ref={(ref) => this.ref = ref} className="h-auto">
+            <div ref={this.wrapper} className="h-auto">
               {children}
             </div>
             <div className={`${showCollapse ? 'flex' : 'dn'} absolute bottom-0 pointer-events-none w-100 h-100 flex-column justify-end`}>
@@ -63,10 +68,10 @@ class GrandientCollapse extends Component {
   }
 }
 
-GrandientCollapse.propTypes = {
+GradientCollapse.propTypes = {
   /** Maximum height collapsed */
   collapseHeight: PropTypes.number.isRequired,
 }
 
-export default GrandientCollapse
+export default GradientCollapse
 
