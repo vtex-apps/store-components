@@ -1,6 +1,11 @@
 import React from 'react'
 
 class ImageResizer extends React.Component {
+  constructor(props){
+    super(props)
+    this.canvas = React.createRef()
+  }
+
   componentDidMount(){
     this.drawImage()
   }
@@ -8,10 +13,9 @@ class ImageResizer extends React.Component {
   drawImage = () => {
     const { src } = this.props
     const image = new Image()
-    image.src = src
 
     image.onload = () => {
-      if(!this.ref) return
+      if(!this.canvas) return
       const {minRatio} = this.props
 
       const width = image.width >= image.height * minRatio ?
@@ -20,13 +24,14 @@ class ImageResizer extends React.Component {
 
       const height = image.height
 
-      const canvas = this.ref
+      const canvas = this.canvas
       const canvasContext = canvas.getContext('2d')
       canvas.width = width
       canvas.height = height
 
       canvasContext.drawImage(image, (width - image.width) / 2, 0)
     }
+    image.src = src
   }
 
   render() {
@@ -34,7 +39,7 @@ class ImageResizer extends React.Component {
 
     this.drawImage()
 
-    return <canvas ref={ref => this.ref = ref} alt={alt} className={className} />
+    return <canvas ref={this.canvas} alt={alt} className={className} />
   }
 }
 
