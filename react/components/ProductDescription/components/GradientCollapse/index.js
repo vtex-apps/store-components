@@ -34,7 +34,7 @@ class GrandientCollapse extends Component {
     const height = showCollapse && collapsed ? collapseHeight : maxHeight
     const transitionTime = 600
     const fadeOutTime = 400
-    const transitionStyle = (transitionTime) => {return {transition: `${transitionTime}ms ease-in-out`}}
+    const transitionStyle = (transitionTime) => ({transition: `${transitionTime}ms ease-in-out`})
 
     return (
       <Transition timeout={transitionTime} in={!collapsed}>
