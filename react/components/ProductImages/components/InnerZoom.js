@@ -44,9 +44,9 @@ export default class InnerZoom extends Component {
     }
 
     if (this.contentDiv.current) {
-      const { offsetWidth } = this.contentDiv.current
+      const { offsetWidth, offsetHeight } = this.contentDiv.current
       scale.width = offsetWidth * ZOOM_LEVEL
-      scale.height = offsetWidth * ZOOM_LEVEL
+      scale.height = offsetHeight * ZOOM_LEVEL
     }
 
     return scale
