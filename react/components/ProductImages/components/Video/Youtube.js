@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {youtubeApiKey} from './contants'
+//import {youtubeApiKey} from './contants'
+const youtubeApiKey = null
 
 class Youtube extends Component {
   static getThumbUrl = (url, thumbWidth) => new Promise((resolve, reject) => {
