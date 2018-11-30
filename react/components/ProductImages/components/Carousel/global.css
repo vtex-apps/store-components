@@ -651,3 +651,11 @@ button.swiper-pagination-bullet {
 .translate--50y{
   transform: translate(0, -50%);
 }
+
+.vtex__icon-caret-right,
+.vtex__icon-caret-left {
+  stroke: white;
+  stroke-width: 0.5px;
+  -webkit-filter: drop-shadow( 0px 1px 1px #CACBCC );
+  filter: drop-shadow( 0px 1px 1px #CACBCC );
+}

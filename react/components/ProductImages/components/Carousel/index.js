@@ -129,6 +129,8 @@ class Carousel extends Component {
     const { rebuildGalleryOnUpdate, isVideo } = this
     const { slides } = this.props
 
+    const caretClassName = 'pv7 pl7 absolute top-50 translate--50y z-2 pointer c-action-primary'
+
     if(!thumbsLoaded || Swiper == null) return <Loader slidesAmount={slides.length}/>
 
     const galleryParams = {
@@ -151,8 +153,18 @@ class Carousel extends Component {
       },
       rebuildOnUpdate: rebuildGalleryOnUpdate,
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
-      renderNextButton: () => <span className="swiper-caret-next pv7 pl7 absolute top-50 translate--50y z-2 right-1 pointer c-action-primary "><IconCaretRight/></span>,
-      renderPrevButton: () => <span className="swiper-caret-prev pv7 pr7 absolute top-50 translate--50y z-2 left-1 pointer c-action-primary "><IconCaretLeft/></span>,
+      renderNextButton: () =>
+        <span className={`swiper-caret-next right-1 ${caretClassName}`}>
+          <span className="stroke-white">
+            <IconCaretRight/>
+          </span>
+        </span>,
+      renderPrevButton: () =>
+        <span className={`swiper-caret-prev left-1 ${caretClassName}`}>
+          <span className="stroke-white">
+            <IconCaretLeft/>
+          </span>
+        </span>,
       on: {
         init: this.linkGallery(),
         slideChange: this.onSlideChange(),
@@ -194,7 +206,7 @@ class Carousel extends Component {
                 <img className="w-100 h-auto db"
                      alt={slide.alt ? this.state.alt[i] : ""}
                      src={slide.thumbUrl || this.state.thumbUrl[i]}/>
-                <div className="absolute absolute--fill b--solid b--action-primary bw1 thumb-border"/>
+                <div className="absolute absolute--fill b--solid b--muted-2 bw1 thumb-border"/>
               </div>
             ))}
           </Swiper>
