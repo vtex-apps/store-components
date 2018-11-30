@@ -24,7 +24,7 @@ class ImageResizer extends React.Component {
 
       const height = image.height
 
-      const canvas = this.canvas
+      const canvas = this.canvas.current
       const canvasContext = canvas.getContext('2d')
       canvas.width = width
       canvas.height = height
