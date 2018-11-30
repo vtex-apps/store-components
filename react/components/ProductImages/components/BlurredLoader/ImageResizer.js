@@ -12,6 +12,9 @@ class ImageResizer extends React.Component {
 
   drawImage = () => {
     const { src } = this.props
+
+    if(!src) return
+
     const image = new Image()
 
     image.onload = () => {
@@ -37,11 +40,13 @@ class ImageResizer extends React.Component {
     image.src = src
   }
 
+  componentDidUpdate(prevProps){
+    if(prevProps.src !== this.props.src)
+      this.drawImage()
+  }
+
   render() {
     const { alt, className } = this.props
-
-    this.drawImage()
-
     return <canvas ref={this.canvas} alt={alt} className={className} />
   }
 }
