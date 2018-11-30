@@ -5,6 +5,7 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import { withStyles } from '@material-ui/core/styles'
 import './global.css'
 import ImageResizer from './ImageResizer'
+import { path } from 'ramda'
 
 const styles = { barColorPrimary: { backgroundColor: 'currentColor' } }
 const LinearProgressWithStyle = withStyles(styles)(LinearProgress)
@@ -30,6 +31,7 @@ class BlurredLoader extends React.Component{
       loadState: LOAD_STATES.LOADING,
       realUrlIndex: null,
     }
+    this.timers = {}
     this.loadCounter = 0
   }
 
@@ -62,10 +64,11 @@ class BlurredLoader extends React.Component{
         realUrlIndex: bestUrlIndex
       })
 
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         this.setState({ loadState: LOAD_STATES.LOADED })
         this.props.onload && this.props.onload()
       }, 1000)
+      this.timers[timer] = true
 
       if(this.props.bestUrlIndex > bestUrlIndex)
         this.generateImage()
@@ -97,12 +100,20 @@ class BlurredLoader extends React.Component{
     }
   }
 
+  componentDidMount(){
+    this.generateImage()
+  }
+
+  componentWillUnmount(){
+    const keys = Object.keys(this.timers)
+    keys.forEach(key => clearTimeout(key))
+  }
+
   render(){
     const { Loader } = this
     const { className, alt, loaderUrl, realUrls } = this.props
     const { loadState, realUrlIndex } = this.state
     const loaded = loadState === LOAD_STATES.LOADED
-    this.generateImage()
 
     return (
       <React.Fragment>
@@ -148,5 +159,4 @@ BlurredLoader.defaultProps = {
 }
 
 export default BlurredLoader
-
 
