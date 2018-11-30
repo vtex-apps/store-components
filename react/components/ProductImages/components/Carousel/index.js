@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import BluredLoader from '../BluredLoader'
+import BlurredLoader from '../BlurredLoader'
 import {IconCaretLeft, IconCaretRight} from 'vtex.styleguide'
 import Video from '../Video'
 import debounce from 'debounce'
@@ -109,11 +109,11 @@ class Carousel extends Component {
       case "image":
         return (
           <div className={loaded[i] ? "swiper-zoom-container" : "overflow-hidden"}>
-            <BluredLoader
-              loaderType="spinner"
+            <BlurredLoader
+              loaderType="SPINNER"
               loaderUrl={slide.thumbUrl}
               realUrls={slide.urls}
-              thresholds={slide.thresholds}
+              bestUrlIndex={slide.bestUrlIndex}
               alt={slide.alt}
               onload={this.onImageLoad(i)}/>
           </div>)
@@ -129,10 +129,10 @@ class Carousel extends Component {
     const { rebuildGalleryOnUpdate, isVideo } = this
     const { slides } = this.props
 
-    const caretClassName = 'pv7 pl7 absolute top-50 translate--50y z-2 pointer c-action-primary'
 
     if(!thumbsLoaded || Swiper == null) return <Loader slidesAmount={slides.length}/>
 
+    const caretClassName = 'pv7 pl7 absolute top-50 translate--50y z-2 pointer c-action-primary'
     const galleryParams = {
       containerClass: "swiper-container",
       pagination: slides.length > 1 ? {

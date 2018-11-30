@@ -1,10 +1,32 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import debounce from 'debounce'
 
 import Carousel from './components/Carousel'
 
 
 class ProductImages extends Component {
+  componentDidMount(){
+    window.addEventListener('resize', this.debouncedGetBestUrl)
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener('resize', this.debouncedGetBestUrl)
+  }
+
+  debouncedGetBestUrl = debounce(this.forceUpdate(), 500)
+
+  getBestUrlIndex = (thresholds) => {
+    const windowSize = window.innerWidth
+
+    let bestUrlIndex = 0
+    thresholds.forEach((threshold, i) => {
+      if (windowSize > threshold) bestUrlIndex = i + 1
+    })
+
+    return bestUrlIndex
+  }
+
   render() {
     const {images} = this.props
 
@@ -14,9 +36,9 @@ class ProductImages extends Component {
       return {
         type: 'image',
         urls: image.imageUrls,
-        thresholds: image.thresholds || [],
-        thumbUrl: image.thumbnailUrl || image.imageUrls[0],
         alt: image.imageText,
+        thumbUrl: image.thumbnailUrl || image.imageUrls[0],
+        bestUrlIndex: this.getBestUrlIndex(image.thresholds),
       }})
 
     return (
