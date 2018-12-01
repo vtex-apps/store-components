@@ -5,7 +5,6 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import { withStyles } from '@material-ui/core/styles'
 import './global.css'
 import ImageResizer from './ImageResizer'
-import { path } from 'ramda'
 
 const styles = { barColorPrimary: { backgroundColor: 'currentColor' } }
 const LinearProgressWithStyle = withStyles(styles)(LinearProgress)
@@ -13,17 +12,17 @@ const LinearProgressWithStyle = withStyles(styles)(LinearProgress)
 const LOAD_STATES = {
   LOADING: 'LOADING',
   TRANSITION: 'TRANSITION',
-  LOADED: 'LOADED'
+  LOADED: 'LOADED',
 }
 
-const imageMinRatio = 2/3
+const imageMinRatio = 2 / 3
 
 export const LOADER_TYPES = {
   SPINNER: 'SPINNER',
   LINEAR: 'LINEAR',
 }
 
-class BlurredLoader extends React.Component{
+class BlurredLoader extends React.Component {
   constructor(props) {
     super(props)
 
@@ -38,52 +37,51 @@ class BlurredLoader extends React.Component{
   generateImage = (urlIndex) => {
     const { realUrls } = this.props
     const { realUrlIndex } = this.state
-    const bestUrlIndex = urlIndex ? urlIndex : this.props.bestUrlIndex
+    const bestUrlIndex = urlIndex || this.props.bestUrlIndex
 
-    if (realUrlIndex && bestUrlIndex <= realUrlIndex)
-      return
+    if (realUrlIndex && bestUrlIndex <= realUrlIndex) { return }
 
     const hdImageLoader = new Image()
     hdImageLoader.src = realUrls[ bestUrlIndex ]
 
     hdImageLoader.onerror = () => {
       let { realUrlIndex } = this.state
-      if(!realUrlIndex) realUrlIndex = 0
+      if (!realUrlIndex) realUrlIndex = 0
 
-      if(this.loadCounter > 10) return
+      if (this.loadCounter > 10) return
       this.loadCounter++
       this.generateImage(Math.max(bestUrlIndex - 1, realUrlIndex))
     }
 
     hdImageLoader.onload = () => {
       const { realUrlIndex } = this.state
-      if(realUrlIndex && bestUrlIndex <= realUrlIndex) return
+      if (realUrlIndex && bestUrlIndex <= realUrlIndex) return
 
       this.setState({
         loadState: LOAD_STATES.TRANSITION,
-        realUrlIndex: bestUrlIndex
+        realUrlIndex: bestUrlIndex,
       })
 
       const timer = setTimeout(() => {
         this.setState({ loadState: LOAD_STATES.LOADED })
         this.props.onload && this.props.onload()
+        delete this.timers[timer]
       }, 1000)
       this.timers[timer] = true
 
-      if(this.props.bestUrlIndex > bestUrlIndex)
-        this.generateImage()
+      if (this.props.bestUrlIndex > bestUrlIndex) { this.generateImage() }
     }
   }
 
   Loader = () => {
     const { loaderType } = this.props
     const { loadState } = this.state
-    switch(loaderType){
+    switch (loaderType) {
       case LOADER_TYPES.LINEAR:
         return (
           <div className={`w-100 top-0 z-2 absolute transition-opacity-1 ${
             loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
-            }`}>
+          }`}>
             <LinearProgressWithStyle className="c-action-primary" />
           </div>)
       case LOADER_TYPES.SPINNER:
@@ -91,25 +89,25 @@ class BlurredLoader extends React.Component{
           <div
             className={`absolute z-2 center-all left-0 right-0 top-0 bottom-0 transition-opacity-1 ${
               loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
-              }`}
+            }`}
             style={{ height: 40, width: 40 }}>
-            <Spinner/>
+            <Spinner />
           </div>)
       default:
         return null
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.generateImage()
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     const keys = Object.keys(this.timers)
-    keys.forEach(key => clearTimeout(key))
+    keys.forEach(key => this.timers[key] && clearTimeout(key))
   }
 
-  render(){
+  render() {
     const { Loader } = this
     const { className, alt, loaderUrl, realUrls } = this.props
     const { loadState, realUrlIndex } = this.state
@@ -121,17 +119,17 @@ class BlurredLoader extends React.Component{
           className={`w-100 ${loaded ? 'db' : 'dn'}`}
           alt={alt}
           src={realUrls[realUrlIndex]}
-          minRatio={imageMinRatio}/>
+          minRatio={imageMinRatio} />
         {!loaded &&
         <div className="relative w-100 db">
-          <Loader/>
+          <Loader />
           <ImageResizer
             alt={alt}
             src={loaderUrl}
             minRatio={imageMinRatio}
             className={`w-100 blur-30 transition-opacity-1 db z-2 ${
               loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
-              } ${className}`}
+            } ${className}`}
           />
           <ImageResizer
             alt=""
@@ -139,19 +137,22 @@ class BlurredLoader extends React.Component{
             minRatio={imageMinRatio}
             className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 transition-opacity-1 db ${
               loadState === LOAD_STATES.LOADING ? 'o-0' : 'o-100'
-              }`}
+            }`}
           />
         </div>}
       </React.Fragment>)
   }
 }
 
-BlurredLoader.proptype = {
+BlurredLoader.propTypes = {
   className: PropTypes.string,
   alt: PropTypes.string,
   loaderUrl: PropTypes.string.required,
   realUrls: PropTypes.arrayOf(PropTypes.string).required,
   thresholds: PropTypes.arrayOf(PropTypes.number),
+  onload: PropTypes.function,
+  bestUrlIndex: PropTypes.number,
+  loaderType: PropTypes.string,
 }
 
 BlurredLoader.defaultProps = {

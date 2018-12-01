@@ -19,14 +19,14 @@ class ProductDescription extends Component {
     }
 
     const specificationItems = specifications.map(specification => {
-      return {property: specification.name, specifications: specification.values[0]}
+      return { property: specification.name, specifications: specification.values[0] }
     })
 
     return (
       <div className="vtex-product-description flex-l">
         <div className="w-100 w-60-l">
           <div className="t-heading-5 mb5">
-            <FormattedMessage id="product-description.title"/>
+            <FormattedMessage id="product-description.title" />
           </div>
 
           <div className="c-muted-1">
@@ -43,22 +43,22 @@ class ProductDescription extends Component {
             <GradientCollapse collapseHeight={220}>
               <table className="vtex-product-specifications__table w-100 bg-base border-collapse">
                 <thead>
-                <tr>
-                  <th className="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5">
-                    <FormattedMessage id="product-description.property"/>
-                  </th>
-                  <th className="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5">
-                    <FormattedMessage id="product-description.specification"/>
-                  </th>
-                </tr>
+                  <tr>
+                    <th className="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5">
+                      <FormattedMessage id="product-description.property" />
+                    </th>
+                    <th className="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5">
+                      <FormattedMessage id="product-description.specification" />
+                    </th>
+                  </tr>
                 </thead>
                 <tbody>
-                {specificationItems.map((specification, i) => (
-                  <tr key={i}>
-                    <td className="w-50 b--muted-4 bb pa5">{specification.property}</td>
-                    <td className="w-50 b--muted-4 bb pa5">{specification.specifications}</td>
-                  </tr>
-                ))}
+                  {specificationItems.map((specification, i) => (
+                    <tr key={i}>
+                      <td className="w-50 b--muted-4 bb pa5">{specification.property}</td>
+                      <td className="w-50 b--muted-4 bb pa5">{specification.specifications}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </GradientCollapse>
@@ -86,7 +86,7 @@ ProductDescription.propTypes = {
       /** Specifications value */
       values: PropTypes.arrayOf(PropTypes.string).isRequired,
     })
-  )
+  ),
 }
 
 export default injectIntl(ProductDescription)

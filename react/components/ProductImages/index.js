@@ -1,16 +1,21 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
+import { path } from 'ramda'
 import debounce from 'debounce'
 
 import Carousel from './components/Carousel'
 
-
 class ProductImages extends Component {
-  componentDidMount(){
+  constructor(props) {
+    super(props)
+    this.slides = []
+  }
+  componentDidMount() {
+    this.slides = this.getSlidesFromProps()
     window.addEventListener('resize', this.debouncedGetBestUrl)
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     window.removeEventListener('resize', this.debouncedGetBestUrl)
   }
 
@@ -27,23 +32,32 @@ class ProductImages extends Component {
     return bestUrlIndex
   }
 
-  render() {
-    const {images} = this.props
+  componentDidUpdate(prevProps) {
+    const { images } = this.props
+    if (path([0, 'imageUrls', 0], images) !==
+       path([0, 'imageUrls', 0], prevProps.images)) { this.slides = this.getSlidesFromProps() }
+  }
 
-    if(images.length === 0) return null
+  getSlidesFromProps() {
+    const { images } = this.props
 
-    const slides = images.map(image => {
+    if (images.length === 0) return
+
+    return images.map(image => {
       return {
         type: 'image',
         urls: image.imageUrls,
         alt: image.imageText,
         thumbUrl: image.thumbnailUrl || image.imageUrls[0],
         bestUrlIndex: this.getBestUrlIndex(image.thresholds),
-      }})
+      }
+    })
+  }
 
+  render() {
     return (
       <div className="w-100">
-        <Carousel slides={slides}/>
+        <Carousel slides={this.slides} />
       </div>)
   }
 }
@@ -65,7 +79,7 @@ ProductImages.propTypes = {
 }
 
 ProductImages.defaultProps = {
-  images: []
+  images: [],
 }
 
 export default ProductImages

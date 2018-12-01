@@ -1,33 +1,33 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 class ImageResizer extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.canvas = React.createRef()
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.drawImage()
   }
 
   drawImage = () => {
     const { src } = this.props
 
-    if(!src) return
+    if (!src) return
 
     const image = new Image()
 
     image.onload = () => {
       const { minRatio } = this.props
 
-      if(!this.canvas || !this.canvas.current)
-        return
+      if (!this.canvas || !this.canvas.current) { return }
 
       const canvas = this.canvas.current
 
-      const width = image.width >= image.height * minRatio ?
-        image.width :
-        image.height * minRatio
+      const width = image.width >= image.height * minRatio
+        ? image.width
+        : image.height * minRatio
 
       const height = image.height
 
@@ -40,15 +40,20 @@ class ImageResizer extends React.Component {
     image.src = src
   }
 
-  componentDidUpdate(prevProps){
-    if(prevProps.src !== this.props.src)
-      this.drawImage()
+  componentDidUpdate(prevProps) {
+    if (prevProps.src !== this.props.src) { this.drawImage() }
   }
 
   render() {
     const { alt, className } = this.props
     return <canvas ref={this.canvas} alt={alt} className={className} />
   }
+}
+
+ImageResizer.propTypes = {
+  src: PropTypes.string,
+  alt: PropTypes.string,
+  className: PropTypes.string,
 }
 
 export default ImageResizer
