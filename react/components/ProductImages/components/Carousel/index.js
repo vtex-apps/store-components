@@ -177,7 +177,7 @@ class Carousel extends Component {
     }
 
     const caretClassName =
-      'pv7 pl7 absolute top-50 translate--50y z-2 pointer c-action-primary'
+      'pv7 absolute top-50 translate--50y z-2 pointer c-action-primary'
     const galleryParams = {
       containerClass: 'swiper-container',
       pagination:
@@ -206,17 +206,13 @@ class Carousel extends Component {
       rebuildOnUpdate: rebuildGalleryOnUpdate,
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       renderNextButton: () => (
-        <span className={`swiper-caret-next right-1 ${caretClassName}`}>
-          <span className="stroke-white">
-            <IconCaretRight />
-          </span>
+        <span className={`swiper-caret-next pl7 right-1 ${caretClassName}`}>
+          <IconCaretRight />
         </span>
       ),
       renderPrevButton: () => (
-        <span className={`swiper-caret-prev left-1 ${caretClassName}`}>
-          <span className="stroke-white">
-            <IconCaretLeft />
-          </span>
+        <span className={`swiper-caret-prev pr7 left-1 ${caretClassName}`}>
+          <IconCaretLeft />
         </span>
       ),
       on: {
