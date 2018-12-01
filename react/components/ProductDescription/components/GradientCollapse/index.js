@@ -15,8 +15,10 @@ class GradientCollapse extends Component {
 
   calcMaxHeight = () => {
     const { collapseHeight } = this.props
-    if (this.wrapper.scrollHeight > collapseHeight) {
-      const maxHeight = this.wrapper.scrollHeight + 60
+    const wrapper = this.wrapper.current
+
+    if (wrapper.scrollHeight > collapseHeight) {
+      const maxHeight = wrapper.scrollHeight + 60
       this.setState({ isCollapseVisible: true, maxHeight })
     } else this.setState({ isCollapseVisible: false, maxHeight: 'auto' })
   }
