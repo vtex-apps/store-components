@@ -147,10 +147,10 @@ class BlurredLoader extends React.Component {
 BlurredLoader.propTypes = {
   className: PropTypes.string,
   alt: PropTypes.string,
-  loaderUrl: PropTypes.string.required,
-  realUrls: PropTypes.arrayOf(PropTypes.string).required,
+  loaderUrl: PropTypes.string.isRequired,
+  realUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
   thresholds: PropTypes.arrayOf(PropTypes.number),
-  onload: PropTypes.function,
+  onload: PropTypes.func,
   bestUrlIndex: PropTypes.number,
   loaderType: PropTypes.string,
 }

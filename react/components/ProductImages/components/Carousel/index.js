@@ -281,7 +281,7 @@ class Carousel extends Component {
 
 Carousel.propTypes = {
   slides: PropTypes.arrayOf(
-    PropTypes.objectOf({
+    PropTypes.shape({
       type: PropTypes.string,
       urls: PropTypes.arrayOf(PropTypes.string),
       alt: PropTypes.string,
