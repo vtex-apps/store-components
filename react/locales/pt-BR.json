@@ -24,7 +24,7 @@
   "pricing.installment-display": "Ou {installments} {times} de {installmentPrice}",
   "pricing.from": "De",
   "pricing.to": "Por",
-  "pricing.savings": "Economize: {savings}",
+  "pricing.savings": "Economize {savings}",
   "pricing.interest-free": "sem juros",
   "loading": "Carregando…",
   "shipping.label": "Calcular o frete",
