@@ -4,7 +4,10 @@ import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
 
-import { contextPropTypes, orderFormConsumer } from 'vtex.store/OrderFormContext'
+import {
+  contextPropTypes,
+  orderFormConsumer,
+} from 'vtex.store/OrderFormContext'
 import { Button } from 'vtex.styleguide'
 
 const CONSTANTS = {
@@ -22,15 +25,15 @@ export class BuyButton extends Component {
   static defaultProps = {
     isOneClickBuy: false,
     available: true,
-  }
+  };
 
   state = {
     isLoading: false,
     isAddingToCart: false,
     timeOut: null,
-  }
+  };
 
-  translateMessage = id => this.props.intl.formatMessage({ id: id })
+  translateMessage = id => this.props.intl.formatMessage({ id: id });
 
   toastMessage = success => {
     const { orderFormContext } = this.props
@@ -49,7 +52,7 @@ export class BuyButton extends Component {
       orderFormContext.updateToastMessage({ isSuccess: null, text: null })
       this.setState({ timeOut: null })
     }, CONSTANTS.TOAST_TIMEOUT)
-  }
+  };
 
   handleAddToCart = async () => {
     const { skuItems, isOneClickBuy, orderFormContext } = this.props
@@ -71,26 +74,25 @@ export class BuyButton extends Component {
 
     if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
 
-    await orderFormContext.addItem({ variables })
-      .then(
-        mutationRes => {
-          const { items } = mutationRes.data.addItem
-          const success = skuItems.map(skuItem =>
-            find(items, { id: skuItem.skuId })
-          )
+    await orderFormContext.addItem({ variables }).then(
+      mutationRes => {
+        const { items } = mutationRes.data.addItem
+        const success = skuItems.map(skuItem =>
+          find(items, { id: skuItem.skuId })
+        )
 
-          orderFormContext.refetch()
-          this.toastMessage(success.length >= 1)
-        },
-        () => {
-          this.toastMessage(false)
-        }
-      )
+        orderFormContext.refetch()
+        this.toastMessage(success.length >= 1)
+      },
+      () => {
+        this.toastMessage(false)
+      }
+    )
     this.setState({ isAddingToCart: false })
-  }
+  };
 
   render() {
-    const { children, skuItems, available } = this.props
+    const { children, skuItems, available, large } = this.props
     const loading = this.state.isLoading || !skuItems
     const { isAddingToCart } = this.state
 
@@ -99,8 +101,16 @@ export class BuyButton extends Component {
         {loading ? (
           <ContentLoader />
         ) : (
-          <Button primary size="small" disabled={!available} onClick={() => this.handleAddToCart()} isLoading={isAddingToCart}>
-            {available ? children : (
+          <Button
+            primary
+            block={large}
+            disabled={!available}
+            onClick={() => this.handleAddToCart()}
+            isLoading={isAddingToCart}
+          >
+            {available ? (
+              children
+            ) : (
               <FormattedMessage id="buyButton-label-unavailable" />
             )}
           </Button>
@@ -128,6 +138,8 @@ BuyButton.propTypes = {
   children: PropTypes.PropTypes.node.isRequired,
   /** Should redirect to checkout after adding to cart */
   isOneClickBuy: PropTypes.bool,
+  /** Set style to large */
+  large: PropTypes.bool,
   /** Internationalization */
   intl: intlShape.isRequired,
   /** If the product is available or not*/
