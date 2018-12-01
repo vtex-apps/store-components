@@ -70,7 +70,7 @@ export default class Installments extends Component {
     const [installmentsElement, installmentPriceElement, timesElement] = [
       installment.NumberOfInstallments,
       formattedInstallmentPrice,
-      <Fragment>&times;</Fragment>,
+      <Fragment>x</Fragment>,
     ].map((element, index) => (
       <span className={installmentClass} key={index}>
         {element}
@@ -89,10 +89,10 @@ export default class Installments extends Component {
             }}
           />
         ) : (
-            <Fragment>
-              {installmentsElement} {timesElement} {installmentPriceElement}
-            </Fragment>
-          )}
+          <Fragment>
+            {installmentsElement}{timesElement} {installmentPriceElement}
+          </Fragment>
+        )}
         {!installment.InterestRate && (
           <div className={classNames('vtex-price-installments__interest-rate', interestRateClass)}>
             <FormattedMessage id="pricing.interest-free" />
