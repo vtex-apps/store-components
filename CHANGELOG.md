@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Major refactor of ProductImage component
+- ProductImage Zoom with two clicks or gesture
+- ProductDescription design
+- ProductDescription table
+
+### Added
+- Frontend Vimeo video support at ProductImage
+- Blurred loader to ProductImages
+- Collapse to ProductDescription
+- Large prop to BuyButton
 
 ## [3.0.0] - 2018-11-29
 ### Added
