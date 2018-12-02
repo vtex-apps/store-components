@@ -31,11 +31,11 @@ export default props => {
         height="100%"
         width="100%"
       >
-        <rect className="dn db-ns" width="20%" height="20%" />
-        <rect className="dn db-ns" width="20%" height="20%" y="21%" />
-        <rect className="dn db-ns" width="20%" height="20%" y="42%" />
-        <rect className="dn db-ns" width="20%" height="20%" y="63%" />
-        <rect className="dn db-ns" width="89%" height="89%" x="21%" />
+        <rect className="dn db-ns" width="18%" height="18%" />
+        <rect className="dn db-ns" width="18%" height="18%" y="20%" />
+        <rect className="dn db-ns" width="18%" height="18%" y="40%" />
+        <rect className="dn db-ns" width="18%" height="18%" y="61%" />
+        <rect className="dn db-ns" width="89%" height="89%" x="20%" />
         <rect className="db dn-ns" width="100%" height="100%" />
       </ContentLoader>
     </div>
