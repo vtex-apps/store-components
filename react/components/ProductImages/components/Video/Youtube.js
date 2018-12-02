@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-// import {youtubeApiKey} from './contants'
 const youtubeApiKey = null
+
+// TODO: Youtube Component disabled until settings update and backend update to support video
+// Author: @samuraiexx
 
 class Youtube extends Component {
   static getThumbUrl = (url, thumbWidth) =>
