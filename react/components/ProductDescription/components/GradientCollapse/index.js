@@ -5,6 +5,8 @@ import debounce from 'debounce'
 import { FormattedMessage } from 'react-intl'
 import './global.css'
 
+const transitionStyle = (transitionTime) => ({ transition: `${transitionTime}ms ease-in-out` })
+
 class GradientCollapse extends Component {
   constructor(props) {
     super(props)
@@ -40,7 +42,6 @@ class GradientCollapse extends Component {
     const height = isCollapseVisible && collapsed ? collapseHeight : maxHeight
     const transitionTime = 600
     const fadeOutTime = 400
-    const transitionStyle = (transitionTime) => ({ transition: `${transitionTime}ms ease-in-out` })
 
     return (
       <Transition timeout={transitionTime} in={!collapsed}>
