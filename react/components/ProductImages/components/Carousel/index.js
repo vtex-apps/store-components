@@ -90,7 +90,6 @@ class Carousel extends Component {
   onSlideChange = () => {
     const _this = this
     return function() {
-      return
       const { activeIndex } = this
       _this.setState({ activeIndex })
     }
