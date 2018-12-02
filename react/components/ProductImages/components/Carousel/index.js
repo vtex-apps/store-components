@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import debounce from 'debounce'
 import Loader from './Loader.js'
 import { path } from 'ramda'
-import { IconCaretLeft, IconCaretRight } from 'vtex.styleguide'
+import Icon from 'vtex.use-svg/Icon'
 import BlurredLoader from '../BlurredLoader'
 import Video from '../Video'
 
@@ -207,12 +207,12 @@ class Carousel extends Component {
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       renderNextButton: () => (
         <span className={`swiper-caret-next pl7 right-1 ${caretClassName}`}>
-          <IconCaretRight />
+          <Icon id="nav-angle--right" size={16} className="vtex__icon-caret-right" />
         </span>
       ),
       renderPrevButton: () => (
         <span className={`swiper-caret-prev pr7 left-1 ${caretClassName}`}>
-          <IconCaretLeft />
+          <Icon id="nav-angle--left" size={16} className="vtex__icon-caret-left" />
         </span>
       ),
       on: {
@@ -243,7 +243,7 @@ class Carousel extends Component {
       <div className={'relative overflow-hidden'}>
         <div
           className={`w-20 gallery-thumbs bottom-0 top-0 left-0 absolute pr5 dn ${slides.length >
-            1 && 'db-ns'}`}
+          1 && 'db-ns'}`}
         >
           <Swiper {...thumbnailParams}>
             {slides.map((slide, i) => (
@@ -260,7 +260,7 @@ class Carousel extends Component {
         </div>
         <div
           className={`w-100 ${slides.length > 1 &&
-            'w-80-ns ml-20-ns'} border-box gallery-cursor`}
+          'w-80-ns ml-20-ns'} border-box gallery-cursor`}
         >
           <Swiper {...galleryParams}>
             {slides.map((slide, i) => (
