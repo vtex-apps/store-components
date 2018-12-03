@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+- SKUSelector style
 
 ## [3.1.0] - 2018-12-03
 ### Changed
@@ -13,7 +14,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - ProductImage Zoom with two clicks or gesture
 - ProductDescription design
 - ProductDescription table
-- SKUSelector style
 
 ### Added
 - Frontend Vimeo video support at ProductImage
