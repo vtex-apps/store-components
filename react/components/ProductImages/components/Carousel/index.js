@@ -176,7 +176,7 @@ class Carousel extends Component {
     }
 
     const caretClassName =
-      'pv7 absolute top-50 translate--50y z-2 cursor-pointer c-action-primary'
+      'pv7 absolute top-50 translate--50y z-2 pointer c-action-primary'
     const galleryParams = {
       containerClass: 'swiper-container',
       pagination:
