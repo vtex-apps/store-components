@@ -8,23 +8,54 @@ import classNames from 'classnames'
  */
 export default class SelectorItem extends PureComponent {
   render() {
-    const { isAvailable, isSelected, children, maxPrice, price, onClick } = this.props
+    const {
+      isAvailable,
+      isSelected,
+      children,
+      maxPrice,
+      price,
+      onClick,
+      isImage,
+    } = this.props
     const discount = getDiscount(maxPrice, price)
 
-    const rootClasses = classNames('vtex-sku-selector__item di ba bw1 pointer flex items-center relative', {
-      'b--action-primary': isSelected,
-      'b--transparent': !isSelected,
-      'hover-b--muted-2': !isSelected,
-      'bg-muted-4': !isAvailable
-    })
-
     return (
-      <div className={rootClasses}
-        onClick={onClick}>
-        <div className={classNames('center b', { 'o-50': !isAvailable })}>
-          {children}
+      <div
+        className={classNames(
+          'vtex-sku-selector__item relative di pointer flex items-center',
+          isImage && 'vtex-sku-selector__item-image'
+        )}
+        onClick={onClick}
+      >
+        <div
+          className={classNames(
+            'absolute frame-around b--action-primary br3 bw1',
+            isSelected && 'ba'
+          )}
+        />
+        <div
+          className={classNames(
+            'w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden',
+            isSelected || 'hover-b--muted-2'
+          )}
+        >
+          <div
+            className={classNames(
+              'absolute absolute--fill',
+              isAvailable || 'diagonal-cross'
+            )}
+          />
+          <div
+            className={classNames(isImage || 'c-on-base center pl5 pr5 z-1')}
+          >
+            {children}
+          </div>
         </div>
-        {discount > 0 && <span className="vtex-sku-selector__bagde b"><FormattedNumber value={discount} style="percent" /></span>}
+        {discount > 0 && (
+          <span className="vtex-sku-selector__bagde b">
+            <FormattedNumber value={discount} style="percent" />
+          </span>
+        )}
       </div>
     )
   }
@@ -47,6 +78,8 @@ SelectorItem.propTypes = {
   price: PropTypes.number,
   /** SKU's ID */
   skuId: PropTypes.string,
+  /** True if it's an image variation */
+  isImage: PropTypes.bool,
 }
 
 SelectorItem.defaultProps = {
@@ -59,7 +92,7 @@ SelectorItem.defaultProps = {
 const getDiscount = (maxPrice, price) => {
   let discount = 0
   if (maxPrice && price) {
-    discount = 1 - (price / maxPrice)
+    discount = 1 - price / maxPrice
   }
   return discount
 }

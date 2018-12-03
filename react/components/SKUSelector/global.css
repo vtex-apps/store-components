@@ -1,11 +1,14 @@
 .vtex-sku-selector__item {
   font-size: 90%;
-  width: 50px;
-  height: 50px;
-  margin-top: 5px;
+  margin-bottom: 5px;
   margin-right: 10px;
-  padding: 2px;
-  border-radius: 5%;
+  height: 36px;
+}
+
+.vtex-sku-selector__item-image {
+  padding: 0;
+  height: 40px;
+  width: 40px;
 }
 
 .vtex-sku-selector__item p {
@@ -26,4 +29,22 @@
   width: 18px;
   position: absolute;
   padding: 3px;
+}
+
+.diagonal-cross {
+  background-image: linear-gradient(
+      to top right,
+      transparent 44%,
+      rgba(0, 0, 0, 0.3) 48%,
+      currentColor 48%,
+      currentColor 52%,
+      transparent 52%
+  );
+}
+
+.frame-around {
+  bottom: -0.25rem;
+  top: -0.25rem;
+  left: -0.25rem;
+  right: -0.25rem;
 }
