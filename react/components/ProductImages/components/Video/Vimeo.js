@@ -22,7 +22,7 @@ class Vimeo extends Component {
     const thumbHeight = Math.ceil((thumbWidth * height) / width)
 
     return thumb.replace(
-      /_[123456789]*x[123456789]*./,
+      /_[0123456789]*x[0123456789]*./,
       `_${thumbWidth}x${thumbHeight}.`
     )
   }
