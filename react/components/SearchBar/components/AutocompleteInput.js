@@ -27,30 +27,28 @@ export default class AutocompleteInput extends Component {
   render() {
     const { onGoToSearchPage, onClearInput, compactMode, value, ...restProps } = this.props
 
-    const prefixIcon = (
-      compactMode ? <IconSearch color="#979899" /> : ''
-    )
-    const suffixIcon = (
-      compactMode ? !value ? ''
-        : <span className="flex items-center pointer" onClick={onClearInput} >
-          <IconClose className="pa0" size={20} color="#979899" />
-        </span>
-        : (<span className="flex items-center pointer" onClick={onGoToSearchPage}>
-          <IconSearch color="#979899" />
-        </span>)
+    const suffix = (
+      <span className="flex items-center pointer" onClick={compactMode ? onClearInput : onGoToSearchPage} >
+        {value
+          ? <IconClose className="pa0" size={20} color="#979899" />
+          : <IconSearch color="#979899" />
+        }
+      </span>
     )
 
-    const classContainer = classNames(
-      'w-100',
-      {
-        'vtex-searchbar__compact-mode': compactMode,
-      }
-    )
+    const classContainer = classNames('w-100', {
+      'vtex-searchbar__compact-mode': compactMode,
+    })
 
     return (
       <div className="flex">
         <div className={classContainer}>
-          <Input ref={this.inputClass} size="large" value={value} {...restProps} suffixIcon={suffixIcon} prefix={prefixIcon} />
+          <Input
+            ref={this.inputClass}
+            size="large" value={value}
+            suffix={suffix}
+            prefix={compactMode && <IconSearch color="#979899" />}
+            {...restProps} />
         </div>
       </div>
     )
