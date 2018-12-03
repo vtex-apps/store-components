@@ -1,14 +1,14 @@
-import './global.css'
-
+import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
-import { injectIntl, intlShape } from 'react-intl'
 import { compose, withApollo } from 'react-apollo'
 import ContentLoader from 'react-content-loader'
-import PropTypes from 'prop-types'
+import { injectIntl, intlShape } from 'react-intl'
 import { Button, Input } from 'vtex.styleguide'
 
 import ShippingTable from './components/ShippingTable'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
+
+import './global.css'
 
 /**
  * Shipping simulator component
@@ -83,7 +83,7 @@ class ShippingSimulator extends Component {
 
     this.setState(prevState => ({
       loading: true,
-      prevZipcode: prevState.zipcodeValue
+      prevZipcode: prevState.zipcodeValue,
     }))
 
     this.props.client
@@ -140,12 +140,12 @@ class ShippingSimulator extends Component {
             />
           </label>
           <Button
-            className="vtex-shipping-simulator__cta"
             onClick={this.handleClick}
             disabled={zipcodeValue.length < 9 || zipcodeValue === prevZipcode}
             size="small"
             type="submit"
-            isLoading={loading}>
+            isLoading={loading}
+          >
             OK
           </Button>
         </form>
