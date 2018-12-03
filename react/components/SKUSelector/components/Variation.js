@@ -7,7 +7,7 @@ export default class Variation extends Component {
   render() {
     const { variation, onSelectItem, maxSkuPrice, isSelected } = this.props
 
-    const shouldDisplayImages = isColor(variation.name)
+    const displayImage = isColor(variation.name)
 
     return (
       <div className="vtex-sku-selector__container flex flex-column mb6">
@@ -29,9 +29,9 @@ export default class Variation extends Component {
                   skuId={skuItem.itemId}
                   price={seller.commertialOffer.Price}
                   onClick={() => onSelectItem(skuItem.itemId)}
-                  isImage={shouldDisplayImages}
+                  isImage={displayImage}
                 >
-                  {shouldDisplayImages
+                  {displayImage
                     ? <img
                       src={stripUrl(skuImage.imageUrl)}
                       alt={skuImage.imageLabel}
