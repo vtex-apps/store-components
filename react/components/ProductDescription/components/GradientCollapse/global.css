@@ -1,0 +1,11 @@
+.fade-bottom {
+    background-image: linear-gradient(transparent, white);
+}
+
+.pointer-events-none {
+    pointer-events: none;
+}
+
+.pointer-events-auto {
+    pointer-events: auto;
+}
