@@ -10,12 +10,12 @@ export default class Variation extends Component {
     const shouldDisplayImages = isColor(variation.name)
 
     return (
-      <div className="vtex-sku-selector__container flex flex-column">
+      <div className="vtex-sku-selector__container flex flex-column mb6">
         <div className="vtex-sku-selector__name-container ma1">
-          <span className="vtex-sku-selector__name b db t-body overflow-hidden">
+          <span className="vtex-sku-selector__name c-muted-2 db t-small overflow-hidden mb3">
             {variation.name}
           </span>
-          <div className="inline-flex flex-wrap">
+          <div className="inline-flex flex-wrap ml2">
             {variation.options.map(skuItem => {
               if (!skuItem.images.length) return null
               const [skuImage] = skuItem.images
@@ -29,13 +29,14 @@ export default class Variation extends Component {
                   skuId={skuItem.itemId}
                   price={seller.commertialOffer.Price}
                   onClick={() => onSelectItem(skuItem.itemId)}
+                  isImage={shouldDisplayImages}
                 >
-                  {shouldDisplayImages ?
-                    <img
+                  {shouldDisplayImages
+                    ? <img
                       src={stripUrl(skuImage.imageUrl)}
                       alt={skuImage.imageLabel}
                     /> : (
-                      <span>{skuItem[variation.name]}</span>
+                      <span className="c-on-base t-body" >{skuItem[variation.name]}</span>
                     )}
                 </SelectorItem>
               )

@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - ProductImage Zoom with two clicks or gesture
 - ProductDescription design
 - ProductDescription table
+- SKUSelector style
 
 ### Added
 - Frontend Vimeo video support at ProductImage
