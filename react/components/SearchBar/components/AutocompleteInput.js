@@ -6,19 +6,17 @@ import { Input, IconClose, IconSearch } from 'vtex.styleguide'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 export default class AutocompleteInput extends Component {
-
   constructor(props) {
     super(props)
-    this.inputClass = React.createRef();
+    this.inputClass = React.createRef()
     this.changeClassInput = this.changeClassInput.bind(this)
   }
 
   changeClassInput() {
     const { compactMode } = this.props
     if (compactMode) {
-      this.inputClass.current.placeholder = ""
-      this.inputClass.current.classList.add("vtex-searchbar__padding-input")
-
+      this.inputClass.current.placeholder = ''
+      this.inputClass.current.classList.add('vtex-searchbar__padding-input')
     }
   }
 
@@ -27,27 +25,25 @@ export default class AutocompleteInput extends Component {
   }
 
   render() {
-
     const { onGoToSearchPage, onClearInput, compactMode, value, ...restProps } = this.props
 
     const prefixIcon = (
-      compactMode ? <IconSearch color="#979899" /> : ""
+      compactMode ? <IconSearch color="#979899" /> : ''
     )
     const suffixIcon = (
-      compactMode ? !value ? "" :
-        <span className="flex items-center pointer" onClick={onClearInput} >
+      compactMode ? !value ? ''
+        : <span className="flex items-center pointer" onClick={onClearInput} >
           <IconClose className="pa0" size={20} color="#979899" />
         </span>
-        :
-        <span className="flex items-center pointer" onClick={onGoToSearchPage}>
+        : (<span className="flex items-center pointer" onClick={onGoToSearchPage}>
           <IconSearch color="#979899" />
-        </span>
+        </span>)
     )
 
     const classContainer = classNames(
       'w-100',
       {
-        'vtex-searchbar__compact-mode': compactMode
+        'vtex-searchbar__compact-mode': compactMode,
       }
     )
 
