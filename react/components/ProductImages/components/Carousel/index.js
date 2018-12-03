@@ -241,8 +241,8 @@ class Carousel extends Component {
     return (
       <div className={'relative overflow-hidden'}>
         <div
-          className={`w-20 gallery-thumbs bottom-0 top-0 left-0 absolute pr5 dn ${slides.length >
-          1 && 'db-ns'}`}
+          className={`w-20 gallery-thumbs bottom-0 top-0 left-0 absolute pr5 dn
+          ${slides.length > 1 ? 'db-ns' : ''}`}
         >
           <Swiper {...thumbnailParams}>
             {slides.map((slide, i) => (
@@ -258,8 +258,8 @@ class Carousel extends Component {
           </Swiper>
         </div>
         <div
-          className={`w-100 ${slides.length > 1 &&
-          'w-80-ns ml-20-ns'} border-box gallery-cursor`}
+          className={`w-100 ${slides.length > 1
+            ? 'w-80-ns ml-20-ns' : ''} border-box gallery-cursor`}
         >
           <Swiper {...galleryParams}>
             {slides.map((slide, i) => (
