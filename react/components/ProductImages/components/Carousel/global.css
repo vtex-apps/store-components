@@ -659,3 +659,7 @@ button.swiper-pagination-bullet {
   -webkit-filter: drop-shadow( 0px 1px 1px #CACBCC );
   filter: drop-shadow( 0px 1px 1px #CACBCC );
 }
+
+.cursor-default:hover{
+  cursor: default;
+}

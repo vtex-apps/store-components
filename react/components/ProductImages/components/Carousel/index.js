@@ -193,7 +193,7 @@ class Carousel extends Component {
           ? {
             prevEl: '.swiper-caret-prev',
             nextEl: '.swiper-caret-next',
-            disabledClass: 'c-disabled',
+            disabledClass: 'c-disabled cursor-default',
           }
           : {},
       thumbs: {
@@ -206,12 +206,12 @@ class Carousel extends Component {
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       renderNextButton: () => (
         <span className={`swiper-caret-next pl7 right-1 ${caretClassName}`}>
-          <Icon id="nav-angle--right" size={16} className="vtex__icon-caret-right" />
+          <Icon id="nav-angle--right" size={24} className="vtex__icon-caret-right" />
         </span>
       ),
       renderPrevButton: () => (
         <span className={`swiper-caret-prev pr7 left-1 ${caretClassName}`}>
-          <Icon id="nav-angle--left" size={16} className="vtex__icon-caret-left" />
+          <Icon id="nav-angle--left" size={24} className="vtex__icon-caret-left" />
         </span>
       ),
       on: {
