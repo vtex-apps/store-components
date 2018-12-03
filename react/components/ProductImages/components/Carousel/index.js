@@ -27,10 +27,10 @@ class Carousel extends Component {
     super(props)
 
     this.state = initialState
-    this.build()
+    this.setInitialVariablesState()
   }
 
-  build() {
+  setInitialVariablesState() {
     const slides = this.props.slides
 
     this.isVideo = []
@@ -149,7 +149,7 @@ class Carousel extends Component {
     const { isVideo } = this
 
     if (prevProps.slides !== this.props.slides) {
-      this.build()
+      this.setInitialVariablesState()
       this.setState(initialState)
       return
     }
