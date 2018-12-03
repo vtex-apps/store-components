@@ -10,7 +10,7 @@ export default class Variation extends Component {
     const displayImage = isColor(variation.name)
 
     return (
-      <div className="vtex-sku-selector__container flex flex-column mb6">
+      <div className="vtex-sku-selector__container flex flex-column mb7">
         <div className="vtex-sku-selector__name-container ma1">
           <span className="vtex-sku-selector__name c-muted-2 db t-small overflow-hidden mb3">
             {variation.name}
