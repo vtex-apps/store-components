@@ -18,6 +18,8 @@ export default class Logo extends Component {
     height: PropTypes.number,
     /** Set label visibility */
     showLabel: PropTypes.bool,
+    /** Called when the image is loaded */
+    onLoad: PropTypes.func,
   }
 
   static defaultProps = {
@@ -26,13 +28,40 @@ export default class Logo extends Component {
     showLabel: true,
     width: 493,
     height: 177,
+    onLoad: () => {},
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.imageRef = React.createRef()
+  }
+
+  componentDidMount() {
+    const imageElement = this.imageRef.current
+    if (imageElement) {
+      imageElement.addEventListener('load', event => this.props.onLoad(event))
+    } else {
+      this.props.onLoad()
+    }
   }
 
   render() {
     const { width, height, color, showLabel, url, title } = this.props
 
     if (url) {
-      return <img className="vtex-logo" src={url} alt={title} />
+      return (
+        <img
+          ref={this.imageRef}
+          className="vtex-logo"
+          src={url}
+          alt={title}
+          style={{
+            maxWidth: width,
+            maxHeight: height,
+          }}
+        />
+      )
     }
 
     if (!showLabel) {
