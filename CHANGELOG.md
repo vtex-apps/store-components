@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- **Logo** Added `onLoad` handler on Logo
+
 ## [3.1.5] - 2018-12-04
 ### Changed
 - Left margin of the specifications at the ProductDetails component
