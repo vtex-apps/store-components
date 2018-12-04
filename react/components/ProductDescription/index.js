@@ -36,7 +36,7 @@ class ProductDescription extends Component {
           </div>
         </div>
         {specifications.length > 0 && (
-          <div className="vtex-product-specifications mt9 mt0-l w-100 w-40-l pl6-l">
+          <div className="vtex-product-specifications mt9 mt0-l w-100 w-40-l pl8-l">
             <div className="vtex-product-specifications__title t-heading-5 mb5">
               <FormattedMessage id="technicalspecifications.title" />
             </div>
