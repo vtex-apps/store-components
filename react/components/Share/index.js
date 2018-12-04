@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { indexBy, prop } from 'ramda'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
-import { FormattedMessage, injectIntl } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 
 import SocialButton from './components/SocialButton'
 import { SOCIAL_ENUM } from './constants/social'
@@ -132,7 +132,7 @@ class Share extends Component {
       socialButtonClass,
       socialIconClass,
       loaderContainerClass,
-      contentLoaderClass
+      contentLoaderClass,
     } = this.props
 
     if (loading) {
@@ -146,7 +146,7 @@ class Share extends Component {
     return (
       <div className={classNames('vtex-share', className)}>
         <div className={classNames('share__label', shareLabelClass)}>
-          <FormattedMessage id="share.label" />:
+          <FormattedMessage id="store-components.share.label" />
         </div>
         <div className={classNames('share__buttons-container', buttonsContainerClass)}>
           {Object.keys(social).map(
@@ -169,4 +169,4 @@ class Share extends Component {
   }
 }
 
-export default injectIntl(Share)
+export default Share
