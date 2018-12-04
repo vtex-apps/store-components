@@ -40,9 +40,14 @@ export default class Logo extends Component {
   componentDidMount() {
     const imageElement = this.imageRef.current
     if (imageElement) {
-      imageElement.addEventListener('load', event => this.props.onLoad(event))
-    } else {
-      this.props.onLoad()
+      // checks if image has already been loaded,
+      // so adding a load listener would not be needed
+      // (and would not even work, in fact)
+      if (imageElement.naturalWidth != 0) {
+        this.props.onLoad(imageElement)
+      } else {
+        imageElement.addEventListener('load', () => this.props.onLoad(imageElement))
+      }
     }
   }
 
