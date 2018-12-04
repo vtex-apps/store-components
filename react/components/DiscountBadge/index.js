@@ -16,7 +16,7 @@ class DiscountBadge extends Component {
     const percent = this.calculateDiscountTax(listPrice, sellingPrice)
     return percent ? (
       <div className="vtex-discount-badge relative dib w-100">
-        <div className="f7 white absolute right-0 pa2-s bg-red">
+        <div className="t-mini white absolute right-0 pv2 ph3 bg-emphasis">
           {label === '' && '-'}
           <FormattedNumber value={percent} style="percent" /> {label}
         </div>
