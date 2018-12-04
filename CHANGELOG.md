@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.1.5] - 2018-12-04
+### Changed
+- Left margin of the specifications at the ProductDetails component
+- Share.label id to store-components.share.label
+
 ## [3.1.4] - 2018-12-04
 ### Fixed
 - Negative padding on `Slider` arrows.
