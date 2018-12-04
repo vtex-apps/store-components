@@ -32,7 +32,7 @@ export default class Logo extends Component {
     const { width, height, color, showLabel, url, title } = this.props
 
     if (url) {
-      return <img className="vtex-logo" src={url} alt={title} />
+      return <img className="vtex-logo" width={width} height={height} src={url} alt={title} />
     }
 
     if (!showLabel) {
