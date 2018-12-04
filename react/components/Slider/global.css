@@ -10,10 +10,10 @@
 
 /* Clearfix for left arrow */
 .slick-prev {
-    left: 0;
+    left: 0 !important;
 }
 
 /* Clearfix for right arrow */
 .slick-next {
-    right: 0;
+    right: 0 !important;
 }
