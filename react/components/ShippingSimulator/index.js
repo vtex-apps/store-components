@@ -83,7 +83,7 @@ class ShippingSimulator extends Component {
 
     this.setState(prevState => ({
       loading: true,
-      prevZipcode: prevState.zipcodeValue
+      prevZipcode: prevState.zipcodeValue,
     }))
 
     this.props.client
@@ -129,25 +129,27 @@ class ShippingSimulator extends Component {
 
     return (
       <Fragment>
-        <form className="vtex-shipping-simulator t-small items-center flex c-on-base">
-          <label className="vtex-shipping-simulator__zipcode-label flex items-center nowrap">
+        <form className="vtex-shipping-simulator t-small c-on-base">
+          <label className="vtex-shipping-simulator__zipcode-label c-muted-2 db t-small mb3">
             {this.formatMessage('shipping.label')}
+          </label>
+          <div className="flex">
             <Input
               name="zipcode"
               type="text"
               onChange={this.handleChange}
               value={zipcodeValue}
             />
-          </label>
-          <Button
-            className="vtex-shipping-simulator__cta"
-            onClick={this.handleClick}
-            disabled={zipcodeValue.length < 9 || zipcodeValue === prevZipcode}
-            size="small"
-            type="submit"
-            isLoading={loading}>
-            OK
-          </Button>
+            <Button
+              className="vtex-shipping-simulator__cta"
+              onClick={this.handleClick}
+              disabled={zipcodeValue.length < 9 || zipcodeValue === prevZipcode}
+              size="small"
+              type="submit"
+              isLoading={loading}>
+            Ok
+            </Button>
+          </div>
         </form>
         <ShippingTable shipping={shipping} />
       </Fragment>
