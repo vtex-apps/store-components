@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.1.6] - 2018-12-04
+- Add typography token to badge
+- Add emphasis color to badge instead of red
+
 ## [3.1.5] - 2018-12-04
 ### Changed
 - Left margin of the specifications at the ProductDetails component
