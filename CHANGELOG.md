@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Make `Logo` properly receive width and height properties.
+- Make `Logo` properly receive maxWidth and maxHeight properties.
 
 ## [3.1.6] - 2018-12-04
 - Add typography token to badge
