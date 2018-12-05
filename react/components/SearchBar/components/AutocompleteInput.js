@@ -8,15 +8,14 @@ import { Input, IconClose, IconSearch } from 'vtex.styleguide'
 export default class AutocompleteInput extends Component {
   constructor(props) {
     super(props)
-    this.inputClass = React.createRef()
-    this.changeClassInput = this.changeClassInput.bind(this)
+    this.inputRef = React.createRef()
   }
 
-  changeClassInput() {
+  changeClassInput = () => {
     const { compactMode } = this.props
     if (compactMode) {
-      this.inputClass.current.placeholder = ''
-      this.inputClass.current.classList.add('vtex-searchbar__padding-input')
+      this.inputRef.current.placeholder = ''
+      this.inputRef.current.classList.add('vtex-searchbar__padding-input')
     }
   }
 
@@ -30,8 +29,8 @@ export default class AutocompleteInput extends Component {
     const suffix = (
       <span className="flex items-center pointer" onClick={value ? onClearInput : undefined} >
         {value
-          ? <IconClose className="pa0" size={20} color="#979899" />
-          : <IconSearch color="#979899" />
+          ? <IconClose className="pa0" size={20}/>
+          : <IconSearch />
         }
       </span>
     )
@@ -45,7 +44,8 @@ export default class AutocompleteInput extends Component {
         <div className={classContainer}>
           <Input
             ref={this.inputClass}
-            size="large" value={value}
+            size="large" 
+            value={value}
             suffix={suffix}
             {...restProps} />
         </div>
