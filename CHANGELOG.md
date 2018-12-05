@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.1.7] - 2018-12-05
+### Fixed
+- Make `Logo` properly receive maxWidth and maxHeight properties.
+
 ## [3.1.6] - 2018-12-04
 - Add typography token to badge
 - Add emphasis color to badge instead of red

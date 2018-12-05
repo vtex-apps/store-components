@@ -30,9 +30,10 @@ export default class Logo extends Component {
 
   render() {
     const { width, height, color, showLabel, url, title } = this.props
+    const imgInlineStyles = { maxWidth: width, maxHeight: height }
 
     if (url) {
-      return <img className="vtex-logo" src={url} alt={title} />
+      return <img className="vtex-logo" style={imgInlineStyles} src={url} alt={title} />
     }
 
     if (!showLabel) {
