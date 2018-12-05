@@ -6,19 +6,16 @@ import { Input, IconClose, IconSearch } from 'vtex.styleguide'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 export default class AutocompleteInput extends Component {
-
   constructor(props) {
     super(props)
-    this.inputClass = React.createRef();
-    this.changeClassInput = this.changeClassInput.bind(this)
+    this.inputRef = React.createRef()
   }
 
-  changeClassInput() {
+  changeClassInput = () => {
     const { compactMode } = this.props
     if (compactMode) {
-      this.inputClass.current.placeholder = ""
-      this.inputClass.current.classList.add("vtex-searchbar__padding-input")
-
+      this.inputRef.current.placeholder = ''
+      this.inputRef.current.classList.add('vtex-searchbar__padding-input')
     }
   }
 
@@ -27,34 +24,30 @@ export default class AutocompleteInput extends Component {
   }
 
   render() {
-
     const { onGoToSearchPage, onClearInput, compactMode, value, ...restProps } = this.props
 
-    const prefixIcon = (
-      compactMode ? <IconSearch color="#979899" /> : ""
-    )
-    const suffixIcon = (
-      compactMode ? !value ? "" :
-        <span className="flex items-center pointer" onClick={onClearInput} >
-          <IconClose className="pa0" size={20} color="#979899" />
-        </span>
-        :
-        <span className="flex items-center pointer" onClick={onGoToSearchPage}>
-          <IconSearch color="#979899" />
-        </span>
+    const suffix = (
+      <span className="flex items-center pointer" onClick={value ? onClearInput : undefined} >
+        {value
+          ? <IconClose className="pa0" size={20}/>
+          : <IconSearch />
+        }
+      </span>
     )
 
-    const classContainer = classNames(
-      'w-100',
-      {
-        'vtex-searchbar__compact-mode': compactMode
-      }
-    )
+    const classContainer = classNames('w-100', {
+      'vtex-searchbar__compact-mode': compactMode,
+    })
 
     return (
       <div className="flex">
         <div className={classContainer}>
-          <Input ref={this.inputClass} size="large" value={value} {...restProps} suffixIcon={suffixIcon} prefix={prefixIcon} />
+          <Input
+            ref={this.inputRef}
+            size="large" 
+            value={value}
+            suffix={suffix}
+            {...restProps} />
         </div>
       </div>
     )

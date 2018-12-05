@@ -102,6 +102,4 @@ SearchBarContainer.propTypes = {
   compactMode: PropTypes.bool,
 }
 
-
-
 export default injectIntl(SearchBarContainer)
