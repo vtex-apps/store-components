@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { FormattedNumber } from 'react-intl'
 import PropTypes from 'prop-types'
 
@@ -14,16 +14,16 @@ class DiscountBadge extends Component {
   render() {
     const { listPrice, sellingPrice, label } = this.props
     const percent = this.calculateDiscountTax(listPrice, sellingPrice)
-    return percent ? (
+    return (
       <div className="vtex-discount-badge relative dib w-100">
-        <div className="t-mini white absolute right-0 pv2 ph3 bg-emphasis">
-          {label === '' && '-'}
-          <FormattedNumber value={percent} style="percent" /> {label}
-        </div>
+        {percent ? (
+          <div className="t-mini white absolute right-0 pv2 ph3 bg-emphasis">
+            {label === '' && '-'}
+            <FormattedNumber value={percent} style="percent" /> {label}
+          </div>
+        ) : null}
         {this.props.children}
       </div>
-    ) : (
-      this.props.children
     )
   }
 }
