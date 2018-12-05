@@ -43,7 +43,7 @@ export default class AutocompleteInput extends Component {
       <div className="flex">
         <div className={classContainer}>
           <Input
-            ref={this.inputClass}
+            ref={this.inputRef}
             size="large" 
             value={value}
             suffix={suffix}
