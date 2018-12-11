@@ -8,7 +8,7 @@ import {
   contextPropTypes,
   orderFormConsumer,
 } from 'vtex.store/OrderFormContext'
-import { Button } from 'vtex.styleguide'
+import { Button, withToast } from 'vtex.styleguide'
 
 const CONSTANTS = {
   SUCCESS_MESSAGE_ID: 'buybutton.buy-success',
@@ -36,22 +36,10 @@ export class BuyButton extends Component {
   translateMessage = id => this.props.intl.formatMessage({ id: id });
 
   toastMessage = success => {
-    const { orderFormContext } = this.props
-    const text = success
+    const message = success
       ? this.translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
       : this.translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
-
-    const message = {
-      isSuccess: success,
-      text,
-    }
-
-    orderFormContext.updateToastMessage(message)
-
-    window.setTimeout(() => {
-      orderFormContext.updateToastMessage({ isSuccess: null, text: null })
-      this.setState({ timeOut: null })
-    }, CONSTANTS.TOAST_TIMEOUT)
+    this.props.showToast({ message })
   };
 
   handleAddToCart = async () => {
@@ -146,4 +134,4 @@ BuyButton.propTypes = {
   available: PropTypes.bool.isRequired,
 }
 
-export default orderFormConsumer(injectIntl(BuyButton))
+export default withToast(orderFormConsumer(injectIntl(BuyButton)))

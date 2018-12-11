@@ -20,7 +20,7 @@
   "dependencies": {
     "vtex.store": "1.x",
     "vtex.store-graphql": "2.x",
-    "vtex.styleguide": "7.x",
+    "vtex.styleguide": "8.x",
     "vtex.use-svg": "0.x"
   }
 }
