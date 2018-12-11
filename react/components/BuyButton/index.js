@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
+import { compose } from 'ramda'
 
 import {
   contextPropTypes,
@@ -134,4 +135,4 @@ BuyButton.propTypes = {
   available: PropTypes.bool.isRequired,
 }
 
-export default withToast(orderFormConsumer(injectIntl(BuyButton)))
+export default compose(withToast, orderFormConsumer, injectIntl)(BuyButton)
