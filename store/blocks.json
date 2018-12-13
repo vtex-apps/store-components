@@ -1,0 +1,10 @@
+{
+  "logo": {
+    "blocks": [],
+    "component": "Logo"
+  },
+  "search-bar": {
+    "blocks": [],
+    "component": "SearchBar"
+  }
+}
