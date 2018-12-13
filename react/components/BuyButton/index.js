@@ -5,10 +5,10 @@ import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
 import { compose } from 'ramda'
 
-import {
-  contextPropTypes,
-  orderFormConsumer,
-} from 'vtex.store/OrderFormContext'
+// import {
+//   contextPropTypes,
+//   orderFormConsumer,
+// } from 'vtex.store/OrderFormContext'
 import { Button, withToast } from 'vtex.styleguide'
 
 const CONSTANTS = {
@@ -90,20 +90,20 @@ export class BuyButton extends Component {
         {loading ? (
           <ContentLoader />
         ) : (
-          <Button
-            primary
-            block={large}
-            disabled={!available}
-            onClick={() => this.handleAddToCart()}
-            isLoading={isAddingToCart}
-          >
-            {available ? (
-              children
-            ) : (
-              <FormattedMessage id="buyButton-label-unavailable" />
-            )}
-          </Button>
-        )}
+            <Button
+              primary
+              block={large}
+              disabled={!available}
+              onClick={() => this.handleAddToCart()}
+              isLoading={isAddingToCart}
+            >
+              {available ? (
+                children
+              ) : (
+                  <FormattedMessage id="buyButton-label-unavailable" />
+                )}
+            </Button>
+          )}
       </Fragment>
     )
   }
@@ -122,7 +122,7 @@ BuyButton.propTypes = {
     })
   ),
   /** Context used to call the add to cart mutation and retrieve the orderFormId **/
-  orderFormContext: contextPropTypes,
+  // orderFormContext: contextPropTypes,
   /** Component children that will be displayed inside of the button **/
   children: PropTypes.node.isRequired,
   /** Should redirect to checkout after adding to cart */
@@ -137,4 +137,5 @@ BuyButton.propTypes = {
   showToast: PropTypes.func.isRequired,
 }
 
-export default compose(withToast, orderFormConsumer, injectIntl)(BuyButton)
+export default compose(withToast, injectIntl)(BuyButton)
+

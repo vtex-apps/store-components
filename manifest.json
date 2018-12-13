@@ -7,6 +7,7 @@
   "description": "The VTEX store components for that render apps can use",
   "builders": {
     "react": "2.x",
+    "store": "0.x",
     "messages": "0.x"
   },
   "mustUpdateAt": "2019-04-02",
@@ -18,7 +19,6 @@
     "postreleasy": "vtex publish --verbose"
   },
   "dependencies": {
-    "vtex.store": "1.x",
     "vtex.store-graphql": "2.x",
     "vtex.styleguide": "8.x",
     "vtex.use-svg": "0.x"
