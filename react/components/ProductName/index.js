@@ -96,7 +96,7 @@ class ProductName extends Component {
 
     return (
       <div className={classNames('vtex-product-name', className)}>
-        <span className={classNames('vtex-product-name__brand', brandNameClass)}>
+        <span className={brandNameClass}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
         {showSku && skuName && (
