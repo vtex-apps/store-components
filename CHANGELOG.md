@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Design tokens dont change `ProductName` size.
+- Design tokens now are able to the change ProductName's size.
 
 ## [3.2.0] - 2018-12-13
 ### Changed
