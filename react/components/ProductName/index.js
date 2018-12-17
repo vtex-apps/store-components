@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
 import classNames from 'classnames'
 
+import productName from './productName.css'
+
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
  */
@@ -95,15 +97,15 @@ class ProductName extends Component {
     }
 
     return (
-      <div className={classNames('vtex-product-name', className)}>
+      <div className={classNames(`${productName.container}`, className)}>
         <span className={brandNameClass}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
         {showSku && skuName && (
-          <span className={classNames('vtex-product-name__sku', skuNameClass)}>{skuName}</span>
+          <span className={classNames(`${productName.sku}`, skuNameClass)}>{skuName}</span>
         )}
         {showProductReference && productReference && (
-          <span className={classNames('vtex-product-name__product-reference', productReferenceClass)}>
+          <span className={classNames(`${productName.productReference}`, productReferenceClass)}>
             {`REF: ${productReference}`}
           </span>
         )}
