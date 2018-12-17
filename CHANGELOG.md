@@ -6,8 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Fixed
-- Design tokens now are able to the change ProductName's size.
+### Changed
+- Refactoring to use CSS Modules.
 
 ## [3.2.0] - 2018-12-13
 ### Changed

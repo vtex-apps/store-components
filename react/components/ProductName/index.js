@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
-import classNames from 'classnames'
 
 import productName from './productName.css'
 
@@ -45,7 +44,7 @@ class ProductName extends Component {
   }
 
   static Loader = (loaderProps = {}) => (
-    <div className={classNames('vtex-product-name vtex-product-name-loader', loaderProps.className)}>
+    <div className={`${productName.container} ${productName.loader} ${loaderProps.className}`}>
       <ContentLoader
         style={{
           width: '100%',
@@ -97,15 +96,15 @@ class ProductName extends Component {
     }
 
     return (
-      <div className={classNames(`${productName.container}`, className)}>
-        <span className={brandNameClass}>
+      <div className={`${productName.container} ${className}`}>
+        <span className={`${productName.brand} ${brandNameClass}`}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
         {showSku && skuName && (
-          <span className={classNames(`${productName.sku}`, skuNameClass)}>{skuName}</span>
+          <span className={`${productName.sku} ${skuNameClass}`}>{skuName}</span>
         )}
         {showProductReference && productReference && (
-          <span className={classNames(`${productName.productReference}`, productReferenceClass)}>
+          <span className={`${productName.productReference} ${productReferenceClass}`}>
             {`REF: ${productReference}`}
           </span>
         )}
