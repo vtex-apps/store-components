@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Refactoring to use CSS Modules.
+- Using CSS Modules in `ProductName`.
 
 ## [3.2.0] - 2018-12-13
 ### Changed
