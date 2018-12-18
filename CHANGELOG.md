@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Converts `ShippingTableRow` `price` prop value to decimal based number.
 
 ## [3.2.0] - 2018-12-13
 ### Changed
@@ -94,7 +96,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.6.9] - 2018-11-26
 ### Fixed
-- Fix svg warnings of `ProductName` and `ProductPrice`. 
+- Fix svg warnings of `ProductName` and `ProductPrice`.
 
 ## [2.6.8] - 2018-11-26
 ### Added
@@ -137,7 +139,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [2.5.5] - 2018-11-07
 ### Added
-- Make the Product Price's label editable through Storefront. 
+- Make the Product Price's label editable through Storefront.
 
 ## [2.5.4] - 2018-11-07
 
@@ -332,7 +334,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.11.0] - 2018-08-02
 ### Changed
 - Removed graphql queries from `BuyButton`
-- Added `OrderFormContext` to update the minicart on `BuyButton` 
+- Added `OrderFormContext` to update the minicart on `BuyButton`
 
 
 ## [1.10.0] - 2018-08-02
