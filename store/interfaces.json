@@ -2,11 +2,11 @@
   "logo": {
     "allowed": [],
     "required": [],
-    "component": "Logo"
+    "inheritComponent": true
   },
   "search-bar": {
     "allowed": [],
     "required": [],
-    "component": "SearchBar"
+    "inheritComponent": true
   }
 }
