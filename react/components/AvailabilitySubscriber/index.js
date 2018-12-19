@@ -188,7 +188,7 @@ class AvailabilitySubscriber extends Component {
                     ref={e => { this.emailInput = e }}
                   />
                 </div>
-                <div className={`${availabilitySubscriber.subscriber__submit} flex items-center mb4`}>
+                <div className={`${availabilitySubscriber.submit} flex items-center mb4`}>
                   <Button type="submit" variation="primary" size="small" disabled={isFormDisabled} isLoading={isLoading}>
                     {this.translate('availability-subscriber.send-label')}
                   </Button>
