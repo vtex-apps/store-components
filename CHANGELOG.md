@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Support to CSS modules in `SearchBar`.
 - Support to CSS modules in `ProductDescription`.
+- Support to CSS modules in `Greeting`.
 
 ## [3.5.8] - 2019-01-15
 ### Fixed
