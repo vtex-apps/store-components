@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.3.0] - 2018-12-20
+### Added
+- Support to messages builder.
+
 ## [3.2.2] - 2018-12-18
 ### Changed
 - Converts `ShippingTableRow` `price` prop value to decimal based number.

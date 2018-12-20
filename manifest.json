@@ -1,19 +1,19 @@
 {
   "vendor": "vtex",
   "name": "store-components",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "title": "VTEX Store Components",
   "defaultLocale": "pt-BR",
   "description": "The VTEX store components for that render apps can use",
   "builders": {
-    "react": "2.x"
+    "react": "2.x",
+    "messages": "0.x"
   },
   "mustUpdateAt": "2019-04-02",
   "categories": [],
   "registries": [
     "smartcheckout"
   ],
-  "settingsSchema": {},
   "scripts": {
     "postreleasy": "vtex publish --verbose"
   },
