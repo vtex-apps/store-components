@@ -9,7 +9,7 @@ import Loader from './Loader'
 import greeting from './greeting.css'
 
 const Wrapper = ({ children }) => (
-  <div className={`${greeting.container} vtex-page-padding mh4 pv4 t-heading-4 c-on-base nowrap`}>{children}</div>
+  <div className={`${greeting.container} mh4 pv4 t-heading-4 c-on-base nowrap`}>{children}</div>
 )
 
 const withWrapper = Component => props => (
