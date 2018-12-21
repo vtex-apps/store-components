@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { FormattedNumber } from 'react-intl'
 import PropTypes from 'prop-types'
 
+import discountBadge from './discountBadge.css'
+
 /**
  * The discount badge component. It receives the product's list and selling prices
  * and calculates the discount percent to show it in the product's sumary.
@@ -17,7 +19,7 @@ class DiscountBadge extends Component {
     return (
       <div className="vtex-discount-badge relative dib w-100">
         {percent ? (
-          <div className="t-mini white absolute right-0 pv2 ph3 bg-emphasis">
+          <div className={`${discountBadge.content} relative dib w-100`}>
             {label === '' && '-'}
             <FormattedNumber value={percent} style="percent" /> {label}
           </div>
