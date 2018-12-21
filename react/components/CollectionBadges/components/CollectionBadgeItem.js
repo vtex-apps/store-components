@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import VTEXClasses from './CustomClasses'
+import collectionBadges from './collectionBadges.css'
 
 /**
  * Collection Badge Item.
@@ -10,7 +10,7 @@ import VTEXClasses from './CustomClasses'
 export class CollectionBadgeItem extends PureComponent {
   render() {
     return (
-      <div className={`${VTEXClasses.COLLECTION_BADGE_ITEM} mh1 pa2 bg-blue white tc`}>
+      <div className={`${collectionBadges.item} mh1 pa2 bg-blue white tc`}>
         {this.props.children}
       </div>
     )
