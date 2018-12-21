@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import collectionBadges from './collectionBadges.css'
+import collectionBadges from '../collectionBadges.css'
 
 /**
  * Collection Badge Item.
