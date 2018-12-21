@@ -4,7 +4,7 @@ import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 import HtmlParser from 'react-html-parser'
 import GradientCollapse from './components/GradientCollapse'
 
-import './global.css'
+import productDescription from './productDescription.css'
 
 /**
  * Product Description Component.
@@ -23,7 +23,7 @@ class ProductDescription extends Component {
     })
 
     return (
-      <div className="vtex-product-description flex-l">
+      <div className={`${productDescription.container} flex-l`}>
         <div className="w-100 w-60-l">
           <div className="t-heading-5 mb5">
             <FormattedMessage id="product-description.title" />
@@ -36,12 +36,12 @@ class ProductDescription extends Component {
           </div>
         </div>
         {specifications.length > 0 && (
-          <div className="vtex-product-specifications mt9 mt0-l w-100 w-40-l pl8-l">
-            <div className="vtex-product-specifications__title t-heading-5 mb5">
+          <div className={`${productDescription.specifications} mt9 mt0-l w-100 w-40-l pl8-l`}>
+            <div className={`${productDescription.specificationsTitle} t-heading-5 mb5`}>
               <FormattedMessage id="technicalspecifications.title" />
             </div>
             <GradientCollapse collapseHeight={220}>
-              <table className="vtex-product-specifications__table w-100 bg-base border-collapse">
+              <table className={`${productDescription.specificationsTable} w-100 bg-base border-collapse`}>
                 <thead>
                   <tr>
                     <th className="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5">

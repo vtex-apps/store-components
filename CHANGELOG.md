@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Support to CSS modules in `SearchBar`.
+- Support to CSS modules in `ProductDescription`.
 
 ## [3.5.8] - 2019-01-15
 ### Fixed
