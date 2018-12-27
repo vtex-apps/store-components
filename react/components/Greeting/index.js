@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { compose, branch, renderComponent } from 'recompose'
 import { FormattedMessage } from 'react-intl'
 import { path } from 'ramda'
-// import { orderFormConsumer, contextPropTypes } from 'vtex.store/OrderFormContext'
+import { orderFormConsumer, contextPropTypes } from 'vtex.store-resources/OrderFormContext'
 
 import Loader from './Loader'
 
@@ -32,10 +32,10 @@ const Greeting = ({ orderFormContext }) => {
   )
 }
 
-// Greeting.propTypes = { orderFormContext: contextPropTypes }
+Greeting.propTypes = { orderFormContext: contextPropTypes }
 
 const enhanced = compose(
-  // orderFormConsumer,
+  orderFormConsumer,
   branch(({ loading }) => loading, renderComponent(withWrapper(Loader)))
 )
 
