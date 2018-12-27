@@ -22,7 +22,7 @@ const CONSTANTS = {
  * BuyButton Component.
  * Adds a list of sku items to the cart.
  */
-export class BuyButton extends Component {
+class BuyButton extends Component {
   static defaultProps = {
     isOneClickBuy: false,
     available: true,
@@ -136,5 +136,7 @@ BuyButton.propTypes = {
   /** Function used to show toasts (messages) to user */
   showToast: PropTypes.func.isRequired,
 }
+
+export { BuyButton }
 
 export default compose(withToast, orderFormConsumer, injectIntl)(BuyButton)
