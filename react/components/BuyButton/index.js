@@ -124,7 +124,7 @@ BuyButton.propTypes = {
   /** Context used to call the add to cart mutation and retrieve the orderFormId **/
   orderFormContext: contextPropTypes,
   /** Component children that will be displayed inside of the button **/
-  children: PropTypes.PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
   /** Should redirect to checkout after adding to cart */
   isOneClickBuy: PropTypes.bool,
   /** Set style to large */
@@ -133,6 +133,8 @@ BuyButton.propTypes = {
   intl: intlShape.isRequired,
   /** If the product is available or not*/
   available: PropTypes.bool.isRequired,
+  /** Function used to show toasts (messages) to user */
+  showToast: PropTypes.func.isRequired,
 }
 
 export default compose(withToast, orderFormConsumer, injectIntl)(BuyButton)

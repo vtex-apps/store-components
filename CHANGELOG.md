@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.3.1] - 2018-12-27
+### Fixed
+- Fix typing problem and crash on `BuyButton`
+
 ## [3.3.0] - 2018-12-20
 ### Added
 - Support to messages builder.
