@@ -1,10 +1,10 @@
 {
   "logo": {
     "blocks": [],
-    "component": "Logo"
+    "inheritComponent": true
   },
   "search-bar": {
     "blocks": [],
-    "component": "SearchBar"
+    "inheritComponent": true
   }
 }

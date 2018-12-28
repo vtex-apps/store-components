@@ -137,4 +137,4 @@ BuyButton.propTypes = {
   showToast: PropTypes.func.isRequired,
 }
 
-export default compose(withToast, orderFormConsumer, injectIntl)(BuyButton)	
+export default compose(withToast, orderFormConsumer, injectIntl)(BuyButton)
