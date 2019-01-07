@@ -4,6 +4,8 @@ import classNames from 'classnames'
 
 import { Input, IconClose, IconSearch } from 'vtex.styleguide'
 
+import searchbar from '../searchbar.css'
+
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 export default class AutocompleteInput extends Component {
   constructor(props) {
@@ -15,7 +17,7 @@ export default class AutocompleteInput extends Component {
     const { compactMode } = this.props
     if (compactMode) {
       this.inputRef.current.placeholder = ''
-      this.inputRef.current.classList.add('vtex-searchbar__padding-input')
+      this.inputRef.current.classList.add(searchbar.searchbarPaddingInput)
     }
   }
 
@@ -36,7 +38,7 @@ export default class AutocompleteInput extends Component {
     )
 
     const classContainer = classNames('w-100', {
-      'vtex-searchbar__compact-mode': compactMode,
+      [searchbar.searchbarCompactMode]: compactMode,
     })
 
     return (
