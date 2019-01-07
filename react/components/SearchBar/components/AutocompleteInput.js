@@ -4,7 +4,7 @@ import classNames from 'classnames'
 
 import { Input, IconClose, IconSearch } from 'vtex.styleguide'
 
-import searchbar from '../searchbar.css'
+import searchbar from '../searchBar.css'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 export default class AutocompleteInput extends Component {

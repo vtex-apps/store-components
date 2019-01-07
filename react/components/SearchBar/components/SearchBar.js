@@ -6,7 +6,7 @@ import ResultsLits from './ResultsList'
 import DownshiftComponent from 'downshift'
 import { NoSSR } from 'render'
 
-import searchbar from '../searchbar.css'
+import searchbar from '../searchBar.css'
 
 export default class SearchBar extends Component {
   render() {
