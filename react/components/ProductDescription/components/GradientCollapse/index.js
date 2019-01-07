@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import debounce from 'debounce'
 import { FormattedMessage } from 'react-intl'
+import { classNames } from 'classnames'
 import productDescription from '../../productDescription.css'
+
 
 const transitionStyle = (transitionTime) => ({ transition: `${transitionTime}ms ease-in-out` })
 
@@ -52,10 +54,10 @@ class GradientCollapse extends Component {
             <div ref={this.wrapper} className="h-auto">
               {children}
             </div>
-            <div className={`${isCollapseVisible ? 'flex' : 'dn'} absolute bottom-0 ${productDescription.pointerEventsNone} w-100 h-100 flex-column justify-end`}>
+            <div className={classNames(productDescription.pointerEventsNone, { 'flex': isCollapseVisible, 'dn': !isCollapseVisible}, 'absolute bottom-0 w-100 h-100 flex-column justify-end')}>
               <div style={transitionStyle(fadeOutTime)}
-                className={`${state === 'entered' ? 'o-0' : ''} ${productDescription.fadeBottom} w-100 h-50`} />
-              <div className={`${state === 'entered' ? 'bg-transparent' : 'bg-base'} tc w-100 ${productDescription.pointerEventsAuto}`}>
+                className={classNames(productDescription.fadeBottom, { 'o-0': state === 'entered' }, 'w-100 h-50')} />
+              <div className={classNames(productDescription.pointerEventsAuto, { 'bg-transparent': state === 'entered', 'bg-base': state != 'entered' }, 'tc w-100')}>
                 <div
                   className="c-action-primary t-action pointer ma5"
                   onClick={() => this.setState({ collapsed: !collapsed })}>
