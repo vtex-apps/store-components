@@ -19,7 +19,7 @@ export default class ShippingTable extends Component {
       })),
     }),
   }
-
+ 
   render() {
     const { shipping } = this.props
 
