@@ -11,9 +11,9 @@ const datesMap = {
   default: "shipping.busniess-days"
 }
 
-const estimateDateParser = (estimateDate) => {
-  const estimateDateRegex = /^(\d+)([a-z]+)$/i
-  const eta = estimateDateRegex.exec(estimateDate) 
+const deliveryTimeParser = (deliveryTime) => {
+  const deliveryTimeRegex = /^(\d+)([a-z]+)$/i
+  const eta = deliveryTimeRegex.exec(deliveryTime) 
   if(!eta) return { value: "", key: "" }
   return { value: eta[1], especification: datesMap[eta[2]] || datesMap.default }
 }  
@@ -27,9 +27,9 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
     'tc': price === undefined,
   })
 
-  const estimateDate = estimateDateParser(shippingEstimate)
-  const estimateDateEspecificationText = intl.formatMessage({ id:estimateDate.especification })
-  const estimateDateText = intl.formatMessage({ id: 'shipping.eta' }, { eta: estimateDate.value, especification: estimateDateEspecificationText })
+  const deliveryTime = deliveryTimeParser(shippingEstimate)
+  const deliveryTimeEspecificationText = intl.formatMessage({id:deliveryTime.especification})
+  const deliveryTimeText = intl.formatMessage({ id: 'shipping.eta' }, { eta: deliveryTime.value, especification: deliveryTimeEspecificationText})
   
   let  valueText 
 
@@ -55,7 +55,7 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
         </label>
       </td>
       <td className={etaClassName}>
-        {estimateDateText}
+        {deliveryTimeText}
       </td>
       <td className={valueClassName}>
         {valueText}

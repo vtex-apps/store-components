@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
--  translate and place the correct specification of the shippingEstimate on `ShippingSimulator`
+-  translate and place the correct specification of the deliveryTime on `ShippingSimulator`
 -  remove unnecessary code of the of locale builder
 
 ## [3.3.1] - 2018-12-27
