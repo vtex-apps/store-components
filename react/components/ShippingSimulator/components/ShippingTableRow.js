@@ -4,17 +4,17 @@ import { intlShape, injectIntl } from 'react-intl'
 import classNames from 'classnames'
 
 const datesMap = {
-  bd: "shipping.busniess-days",
-  d: "shipping.calendar-days",
-  m: "shipping.minutes",
-  h: "shipping.hours",
-  default: "shipping.busniess-days"
+  bd: 'shipping.busniess-days',
+  d: 'shipping.calendar-days',
+  m: 'shipping.minutes',
+  h: 'shipping.hours',
+  default: 'shipping.busniess-days'
 }
 
 const deliveryTimeParser = (deliveryTime) => {
   const deliveryTimeRegex = /^(\d+)([a-z]+)$/i
   const eta = deliveryTimeRegex.exec(deliveryTime) 
-  if(!eta) return { value: "", key: "" }
+  if(!eta) return { value: '', key: '' }
   return { value: eta[1], specification: datesMap[eta[2]] || datesMap.default }
 }  
 
@@ -28,10 +28,10 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   })
 
   const deliveryTime = deliveryTimeParser(shippingEstimate)
-  const deliveryTimeEspecificationText = intl.formatMessage({id:deliveryTime.specification})
-  const deliveryTimeText = intl.formatMessage({ id: 'shipping.eta' }, { eta: deliveryTime.value, specification: deliveryTimeEspecificationText})
+  const deliveryTimeEspecificationText = intl.formatMessage({ id:deliveryTime.specification })
+  const deliveryTimeText = intl.formatMessage({ id: 'shipping.eta' }, { eta: deliveryTime.value, specification: deliveryTimeEspecificationText })
   
-  let  valueText 
+  let valueText
 
   if (price === undefined) {
     valueText = '-'
