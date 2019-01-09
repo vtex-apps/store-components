@@ -28,7 +28,7 @@
   "pricing.interest-free": "sem juros",
   "loading": "Carregando…",
   "shipping.label": "Calcular o frete",
-  "shipping.eta": "até {eta} {especification}", 
+  "shipping.eta": "até {eta} {specification}", 
   "shipping.busniess-days":"dias úteis",
   "shipping.calendar-days":"dias corridos",
   "shipping.minutes":"minutos",

@@ -28,7 +28,7 @@
   "pricing.interest-free": "interest-free",
   "loading": "Loading…",
   "shipping.label": "Calculate shipping",
-  "shipping.eta": "up to {eta} {especification}", 
+  "shipping.eta": "up to {eta} {specification}", 
   "shipping.busniess-days":"busniess days",
   "shipping.calendar-days":"calendar days",
   "shipping.minutes":"minutes",
