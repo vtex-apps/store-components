@@ -28,8 +28,8 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   })
 
   const estimateDate = estimateDateParser(shippingEstimate)
-  const estimateDateEspecificationText = intl.formatMessage({id:estimateDate.especification})
-  const etaText = intl.formatMessage({ id: 'shipping.eta' }, { eta: estimateDate.value, especification: estimateDateEspecificationText})
+  const estimateDateEspecificationText = intl.formatMessage({ id:estimateDate.especification })
+  const estimateDateText = intl.formatMessage({ id: 'shipping.eta' }, { eta: estimateDate.value, especification: estimateDateEspecificationText })
   
   let  valueText 
 
@@ -55,7 +55,7 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
         </label>
       </td>
       <td className={etaClassName}>
-        {etaText}
+        {estimateDateText}
       </td>
       <td className={valueClassName}>
         {valueText}
