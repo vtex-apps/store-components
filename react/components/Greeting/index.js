@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { compose, branch, renderComponent } from 'recompose'
 import { FormattedMessage } from 'react-intl'
 import { path } from 'ramda'
-import { orderFormConsumer, contextPropTypes } from 'vtex.store/OrderFormContext'
+import { orderFormConsumer, contextPropTypes } from 'vtex.store-resources/OrderFormContext'
 
 import Loader from './Loader'
 
@@ -17,7 +17,7 @@ const withWrapper = Component => props => (
 )
 
 const Greeting = ({ orderFormContext }) => {
-  const firstName = path(['orderForm', 'clientProfileData', 'firstName'], orderFormContext)  
+  const firstName = path(['orderForm', 'clientProfileData', 'firstName'], orderFormContext)
   if (!firstName) return null
 
   return (

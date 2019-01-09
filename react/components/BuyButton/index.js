@@ -8,7 +8,7 @@ import { compose } from 'ramda'
 import {
   contextPropTypes,
   orderFormConsumer,
-} from 'vtex.store/OrderFormContext'
+} from 'vtex.store-resources/OrderFormContext'
 import { Button, withToast } from 'vtex.styleguide'
 
 const CONSTANTS = {
@@ -90,20 +90,20 @@ export class BuyButton extends Component {
         {loading ? (
           <ContentLoader />
         ) : (
-          <Button
-            primary
-            block={large}
-            disabled={!available}
-            onClick={() => this.handleAddToCart()}
-            isLoading={isAddingToCart}
-          >
-            {available ? (
-              children
-            ) : (
-              <FormattedMessage id="buyButton-label-unavailable" />
-            )}
-          </Button>
-        )}
+            <Button
+              primary
+              block={large}
+              disabled={!available}
+              onClick={() => this.handleAddToCart()}
+              isLoading={isAddingToCart}
+            >
+              {available ? (
+                children
+              ) : (
+                  <FormattedMessage id="buyButton-label-unavailable" />
+                )}
+            </Button>
+          )}
       </Fragment>
     )
   }

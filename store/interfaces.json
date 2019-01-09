@@ -1,0 +1,12 @@
+{
+  "logo": {
+    "allowed": [],
+    "required": [],
+    "component": "Logo"
+  },
+  "search-bar": {
+    "allowed": [],
+    "required": [],
+    "component": "SearchBar"
+  }
+}
