@@ -28,7 +28,6 @@
   "pricing.interest-free": "interest-free",
   "loading": "Loading…",
   "shipping.label": "Calculate shipping",
-  "shipping.eta": "up to {eta} days",
   "shipping.free": "Free",
   "shipping.empty-sla": "There's no shipping information available for the informed zip code",
   "buybutton.buy-success": "Your product was add to the cart!",

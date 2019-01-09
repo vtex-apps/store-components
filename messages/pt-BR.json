@@ -28,7 +28,6 @@
   "pricing.interest-free": "sem juros",
   "loading": "Carregando…",
   "shipping.label": "Calcular o frete",
-  "shipping.eta": "até {eta} dias",
   "shipping.free": "Grátis",
   "shipping.empty-sla": "Não existe um frete disponível para o CEP informado",
   "buybutton.buy-success": "Seu produto foi adicionado ao carrinho!",

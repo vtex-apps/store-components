@@ -28,7 +28,6 @@
   "pricing.interest-free": "sin interés",
   "loading": "Cargando…",
   "shipping.label": "Calcular el flete",
-  "shipping.eta": "hasta {eta} días",
   "shipping.free": "Gratis",
   "shipping.empty-sla": "No hay información de envío disponible para el código postal informado",
   "buybutton.buy-success": "Su producto se ha agregado a la cesta!",

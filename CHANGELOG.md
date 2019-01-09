@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.5.1] - 2019-01-09
+### Added
+-  `vtex.shipping-estimate-translator` app to translate and place the correct delivery time on `ShippingSimulator`
+
 ## [3.5.0] - 2019-01-09
 
 ### Changed
