@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+
 import styles from './styles.css'
 
 /**
@@ -23,8 +24,7 @@ export default class Logo extends Component {
   }
 
   static defaultProps = {
-    title: 'VTEX logo',
-    color: '#F71963',
+    title: 'Store logo',
     showLabel: true,
     width: 493,
     height: 177,
