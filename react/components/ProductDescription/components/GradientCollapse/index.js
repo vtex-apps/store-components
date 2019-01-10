@@ -45,6 +45,10 @@ class GradientCollapse extends Component {
     const transitionTime = 600
     const fadeOutTime = 400
 
+    const pointerEventsNoneClasses = classNames(productDescription.pointerEventsNone, { 'flex': isCollapseVisible, 'dn': !isCollapseVisible}, 'absolute bottom-0 w-100 h-100 flex-column justify-end')
+    const fadeBottomClasses = classNames(productDescription.fadeBottom, { 'o-0': state === 'entered' }, 'w-100 h-50')
+    const pointerEventsAutoClasses = classNames(productDescription.pointerEventsAuto, { 'bg-transparent': state === 'entered', 'bg-base': state != 'entered' }, 'tc w-100')
+
     return (
       <Transition timeout={transitionTime} in={!collapsed}>
         {(state) => (
@@ -54,10 +58,10 @@ class GradientCollapse extends Component {
             <div ref={this.wrapper} className="h-auto">
               {children}
             </div>
-            <div className={classNames(productDescription.pointerEventsNone, { 'flex': isCollapseVisible, 'dn': !isCollapseVisible}, 'absolute bottom-0 w-100 h-100 flex-column justify-end')}>
+            <div className={pointerEventsNoneClasses}>
               <div style={transitionStyle(fadeOutTime)}
-                className={classNames(productDescription.fadeBottom, { 'o-0': state === 'entered' }, 'w-100 h-50')} />
-              <div className={classNames(productDescription.pointerEventsAuto, { 'bg-transparent': state === 'entered', 'bg-base': state != 'entered' }, 'tc w-100')}>
+                className={fadeBottomClasses} />
+              <div className={pointerEventsAutoClasses}>
                 <div
                   className="c-action-primary t-action pointer ma5"
                   onClick={() => this.setState({ collapsed: !collapsed })}>
