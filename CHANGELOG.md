@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Change the syntax of routes `/` to `.`. 
 
 ## [3.5.2] - 2019-01-09
 ### Changed
@@ -16,7 +18,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -  `vtex.shipping-estimate-translator` app to translate and place the correct delivery time on `ShippingSimulator`
 
 ## [3.5.0] - 2019-01-09
-
 ### Changed
 - Bye `pages.json`! Welcome `store-builder`.
 
