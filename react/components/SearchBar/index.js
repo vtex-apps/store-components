@@ -32,7 +32,7 @@ class SearchBarContainer extends Component {
 
     this.setState({ inputValue: '' })
     this.context.navigate({
-      page: 'store/search',
+      page: 'store.search',
       params: { term: search },
       query: 'map=ft',
       fallbackToWindowLocation: false,

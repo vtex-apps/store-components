@@ -20,7 +20,7 @@ class SKUSelectorContainer extends Component {
     const slug = this.props.productSlug
 
     navigate({
-      page: 'store/product',
+      page: 'store.product',
       params: { slug },
       query: `skuId=${skuId}`,
     })

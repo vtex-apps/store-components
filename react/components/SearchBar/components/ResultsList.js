@@ -19,12 +19,12 @@ function getImageUrl(image) {
 /** List of search results to be displayed*/
 class ResultsList extends Component {
   getLinkProps(element) {
-    let page = 'store/product'
+    let page = 'store.product'
     let params = { slug: element.slug }
     let query = ''
     const terms = element.slug.split('/')
     if (element.criteria) {
-      page = 'store/search'
+      page = 'store.search'
       params = { term: terms[0] }
       query = `map=c,ft&rest=${terms.slice(1).join(',')}`
     }
@@ -73,7 +73,7 @@ class ResultsList extends Component {
             onClearInput()
             closeMenu()
           }}
-          page="store/search"
+          page="store.search"
           params={{ term: inputValue }}
           query="map=ft"
           className={listItemClassNames}

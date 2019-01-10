@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.5.3] - 2019-01-10
+### Changed
+- Change the syntax of routes `/` to `.`. 
+
 ## [3.5.2] - 2019-01-09
 ### Changed
 - Proxy unused props of the `Container` component to the root element.
@@ -16,7 +20,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -  `vtex.shipping-estimate-translator` app to translate and place the correct delivery time on `ShippingSimulator`
 
 ## [3.5.0] - 2019-01-09
-
 ### Changed
 - Bye `pages.json`! Welcome `store-builder`.
 
