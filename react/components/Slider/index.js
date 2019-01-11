@@ -38,6 +38,8 @@ export default class SlickSlider extends Component {
     leftArrowClasses: PropTypes.string,
     /** Right arrow custom classes */
     rightArrowClasses: PropTypes.string,
+    /** Slider classNames */
+    className: PropTypes.string,
   }
 
   getSettings(slideWidth) {
@@ -64,11 +66,12 @@ export default class SlickSlider extends Component {
   }
 
   render() {
+    const { className } = this.props
     const component = (
       <ReactResizeDetector handleWidth>
         {
           width => (
-            <Slider {...this.getSettings(width)} ref={c => { this._slick = c }}>
+            <Slider className={className} {...this.getSettings(width)} ref={c => { this._slick = c }}>
               {this.props.children}
             </Slider>
           )
