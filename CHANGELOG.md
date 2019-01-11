@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Remove logo inline style css.
+- Incorrect click area on product summary.
 
 ## [3.9.0] - 2019-01-25
 ### Changed
