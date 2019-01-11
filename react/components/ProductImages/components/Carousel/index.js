@@ -18,17 +18,13 @@ const initialState = {
   gallerySwiper: null,
   thumbUrl: [],
   alt: [],
+  invalidSlides: [],
   thumbsLoaded: false,
   activeIndex: 0,
 }
 
 class Carousel extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = initialState
-    this.setInitialVariablesState()
-  }
+  state = initialState
 
   setInitialVariablesState() {
     const slides = this.props.slides
@@ -50,20 +46,28 @@ class Carousel extends Component {
     this.state.thumbSwiper && this.state.thumbSwiper.update()
   }, 500);
 
-  getThumb = thumbUrl => {
-    if (!window.navigator) return // Image object doesn't exist when it's being rendered in the server side
-
-    const image = new Image()
-    image.onload = () => {
-      this.thumbLoadCount++
-      if (this.thumbLoadCount === this.props.slides.length) {
-        this.setState({ thumbsLoaded: true })
-      }
+  handleImageLoad = () => {
+    this.thumbLoadCount++
+    if (this.thumbLoadCount === this.props.slides.length) {
+      this.setState({ thumbsLoaded: true })
     }
+  }
+
+  getThumb = thumbUrl => {
+    const image = new Image()
+
+    image.onload = () => this.handleImageLoad()
+  
+    image.onerror = () => {
+      this.setState({ invalidSlides: [...this.state.invalidSlides, image.src]})
+      this.handleImageLoad()
+    }
+
     image.src = thumbUrl
   };
 
   componentDidMount() {
+    this.setInitialVariablesState()
     window.addEventListener('resize', this.debouncedRebuildOnUpdate)
   }
 
@@ -238,6 +242,7 @@ class Carousel extends Component {
       shouldSwiperUpdate: true,
     }
 
+    const validsSlides = slides.filter(currentSlide => !this.state.invalidSlides.includes(currentSlide.thumbUrl))
     return (
       <div className={'relative overflow-hidden'}>
         <div
@@ -245,7 +250,7 @@ class Carousel extends Component {
           ${slides.length > 1 ? 'db-ns' : ''}`}
         >
           <Swiper {...thumbnailParams}>
-            {slides.map((slide, i) => (
+            {validsSlides.map((slide, i) => (
               <div key={i} className="swiper-slide w-100 h-auto mb5">
                 <img
                   className="w-100 h-auto db"
@@ -262,7 +267,7 @@ class Carousel extends Component {
             ? 'w-80-ns ml-20-ns' : ''} border-box gallery-cursor`}
         >
           <Swiper {...galleryParams}>
-            {slides.map((slide, i) => (
+            {validsSlides.map((slide, i) => (
               <div key={i} className="swiper-slide center-all">
                 {this.renderSlide(slide, i)}
               </div>
