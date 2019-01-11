@@ -43,7 +43,9 @@ export class BuyButton extends Component {
     this.props.showToast({ message })
   };
 
-  handleAddToCart = async () => {
+  handleAddToCart = async (e) => {
+    e.preventDefault()
+    e.stopPropagation()
     const { skuItems, isOneClickBuy, orderFormContext } = this.props
     this.setState({ isAddingToCart: true })
 
@@ -90,20 +92,20 @@ export class BuyButton extends Component {
         {loading ? (
           <ContentLoader />
         ) : (
-            <Button
-              primary
-              block={large}
-              disabled={!available}
-              onClick={() => this.handleAddToCart()}
-              isLoading={isAddingToCart}
-            >
-              {available ? (
-                children
-              ) : (
-                  <FormattedMessage id="buyButton-label-unavailable" />
-                )}
-            </Button>
-          )}
+          <Button
+            primary
+            block={large}
+            disabled={!available}
+            onClick={this.handleAddToCart}
+            isLoading={isAddingToCart}
+          >
+            {available ? (
+              children
+            ) : (
+              <FormattedMessage id="buyButton-label-unavailable" />
+            )}
+          </Button>
+        )}
       </Fragment>
     )
   }
