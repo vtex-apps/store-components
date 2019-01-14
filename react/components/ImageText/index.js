@@ -34,8 +34,8 @@ class ImageText extends Component {
     textTitle: "Enjoy pure water throughout your home",
     textDescription: "Your family relies on clean water to stay healthy. Choose from a high-quality selection of water softeners and filtration systems to remove water contaminants and hardness in your home. Take control with a water system designed around your unique needs.",
     buttonTitle: "Shop water infiltration",
-    image: "https://st3.depositphotos.com/1531183/16673/v/1600/depositphotos_166738714-stock-illustration-vector-curved-paper-banner-isolated.jpg",
-    mobileImage: "https://st3.depositphotos.com/1531183/16673/v/1600/depositphotos_166738714-stock-illustration-vector-curved-paper-banner-isolated.jpg",
+    image: "https://ecowaterqa.vteximg.com.br/arquivos/ids/155512",
+    mobileImage: "https://ecowaterqa.vteximg.com.br/arquivos/ids/155513",
   }
 
   render() {
@@ -55,9 +55,14 @@ class ImageText extends Component {
 
     return (
       <div className={imageText.container}>
-          <img className="w-100" src={isMobile && mobileImage ? mobileImage : image} 
+        <div className={imageText.imageContainer}>
+          <img className={`${imageText.image} w-100`} 
+            src={isMobile && mobileImage ? mobileImage : image} 
             alt={imageDescription} />
-          <div className={`${imageText.textContainer} w-40-ns pt4`}>
+        </div>
+        <div className={`${imageText.textContainer} w-50-ns center pt8 w-90 left-2 absolute`}>
+          <div>
+
             <div className={imageText.textTitleContainer}>
               <h1>{textTitle}</h1>
             </div>
@@ -67,13 +72,14 @@ class ImageText extends Component {
             <div>
               <Button
                 primary
+                className=""
                 onClick={() => {handleButton}}
               >
                 {buttonTitle}
               </Button>
             </div>
           </div>
-            
+        </div>
       </div>
     )
   }

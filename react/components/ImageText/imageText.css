@@ -1,5 +1,5 @@
 .container {
-
+  display: flex;
 }
 
 .textTitleContainer {
@@ -7,11 +7,18 @@
 }
 
 .textContainer {
-  position: absolute;
-  top: 10%;
-  left: 10%;
+  
 }
 
 .textDescriptionContainer {
   line-height: 30px;
+}
+
+.imageContainer {
+  /* background: linear-gradient(to left, rgba(0,0,0,0) 0%,rgba(255,255,255,1) 50%); */
+  display: flex;
+}
+
+.image {
+  /* z-index: -1; */
 }
