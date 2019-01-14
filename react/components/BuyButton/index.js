@@ -43,7 +43,7 @@ export class BuyButton extends Component {
     this.props.showToast({ message })
   };
 
-  handleAddToCart = async (e) => {
+  handleAddToCart = async e => {
     e.preventDefault()
     e.stopPropagation()
     const { skuItems, isOneClickBuy, orderFormContext } = this.props
