@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.5.7] - 2019-01-14
+### Changed
+- Change default logo to Dreamstore logo.
+
 ## [3.5.6] - 2019-01-14
 ### Fixed
 - Add `SearchBar` padding in mobile view.
