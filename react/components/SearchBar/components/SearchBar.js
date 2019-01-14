@@ -32,7 +32,7 @@ export default class SearchBar extends Component {
     )
 
     const mainClasses = classNames(
-      'vtex-searchbar w-100'
+      'vtex-searchbar w-100 ph5 ph0-ns pb5 pb0-ns'
     )
 
     return (
