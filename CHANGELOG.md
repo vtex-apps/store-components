@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.5.5] - 2019-01-14
+### Changed
+- Add CSS modules on `Slider` component.
+
 ## [3.5.4] - 2019-01-14
 ### Fixed
 - Remove undefined css classes of `ProductName` component.

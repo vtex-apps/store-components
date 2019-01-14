@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 /**
  * Arrow component. It's an overriden component of react-slick that controls
@@ -8,10 +9,15 @@ import PropTypes from 'prop-types'
 export default class Arrow extends Component {
   render() {
     const { className, style, onClick, cssClass, customClasses } = this.props
+    const arrowClasses = classNames({
+      [`${className}`]: className,
+      [`${cssClass}`]: cssClass,
+      [`${customClasses}`]: customClasses,
+    })
 
     return (
       <div
-        className={`${className} ${cssClass} ${customClasses}`}
+        className={`${arrowClasses}`}
         style={{ ...style }}
         onClick={onClick}
       />
