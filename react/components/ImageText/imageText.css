@@ -1,0 +1,17 @@
+.container {
+
+}
+
+.textTitleContainer {
+  
+}
+
+.textContainer {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+}
+
+.textDescriptionContainer {
+  line-height: 30px;
+}
