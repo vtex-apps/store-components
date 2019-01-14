@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.5.4] - 2019-01-14
+### Fixed
+- Remove undefined css classes of `ProductName` component.
+
 ## [3.5.3] - 2019-01-10
 ### Changed
 - Change the syntax of routes `/` to `.`. 
