@@ -10,11 +10,12 @@ import Arrow from './components/Arrow'
 import getItemsPerPage from './utils/ItemsPerPage'
 
 import './global.css'
+import slider from './slider.css'
 
 const VTEXClasses = {
-  ARROW_RIGHT_CLASS: 'vtex-slider__arrow-right',
-  ARROW_LEFT_CLASS: 'vtex-slider__arrow-left',
-  DOTS_CLASS: 'vtex-slider__dots',
+  ARROW_RIGHT_CLASS: `${slider.arrowRight}`,
+  ARROW_LEFT_CLASS: `${slider.arrowLeft}`,
+  DOTS_CLASS: `${slider.dots}`,
 }
 
 /**
