@@ -10,7 +10,7 @@ import collectionBadges from './collectionBadges.css'
  * Encapsulates and displays a responsive list of Collection Badges.
  */
 const CollectionBadges = ({ collectionBadgesText, children }) => (
-  <div className={`${collectionBadges.container} relative dib h-100`}>
+  <div className={`${collectionBadges.container} relative dib w-100`}>
     {children}
     <div className="inline-flex justify-end absolute w-100 bottom-0 left-0">
       {collectionBadgesText.map((collectionBadgeText, index) => (
