@@ -17,7 +17,7 @@ export default class AutocompleteInput extends Component {
     const { compactMode } = this.props
     if (compactMode) {
       this.inputRef.current.placeholder = ''
-      this.inputRef.current.classList.add(searchbar.searchbarPaddingInput)
+      this.inputRef.current.classList.add(searchbar.paddingInput)
     }
   }
 
@@ -38,7 +38,7 @@ export default class AutocompleteInput extends Component {
     )
 
     const classContainer = classNames('w-100', {
-      [searchbar.searchbarCompactMode]: compactMode,
+      [searchbar.compactMode]: compactMode,
     })
 
     return (

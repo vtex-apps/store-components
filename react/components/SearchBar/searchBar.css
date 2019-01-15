@@ -23,14 +23,14 @@
     border-radius: 1px;
 }
   
-.searchbarCompactMode input{
+.compactMode input{
     border-top-style: none !important; 
     border-left-style: none !important; 
     border-right-style: none !important; 
     border-bottom: 2px solid !important;
 }
   
-.searchbarPaddingInput input {
+.paddingInput input {
     -webkit-appearance: none;
     padding-left: 40px !important;
 }
