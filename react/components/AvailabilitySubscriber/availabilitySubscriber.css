@@ -1,3 +1,27 @@
 /**
 * AvailabilitySubscriber CSS Module
 */
+
+.container {}
+
+.title {}
+
+.subscribeLabel {}
+
+.form {}
+
+.content {}
+
+.input {}
+
+.inputName {}
+
+.inputEmail {}
+
+.submit {}
+
+.message {}
+
+.success {}
+
+.error {}
