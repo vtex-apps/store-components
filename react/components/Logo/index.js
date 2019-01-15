@@ -37,8 +37,8 @@ export default class Logo extends Component {
       [logo.maxSizeMobile]: isMobile,
     })
     const svgClassNames = classNames('vtex-logo', {
-      [logo.sizeDesktop]: isMobile,
-      [logo.sizeMobile]: !isMobile,
+      [logo.sizeDesktop]: !isMobile,
+      [logo.sizeMobile]: isMobile,
     })
 
     if (url) {
