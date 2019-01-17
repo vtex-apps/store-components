@@ -1,0 +1,24 @@
+/**
+*   ProductPrice CSS Modules
+*/
+.priceContainer {}
+.listPrice {}
+.listPriceLabel {}
+.listPriceValue {}
+
+.sellingPrice {}
+.sellingPriceLabel {}
+.sellingPriceValue {}
+
+.savingPrice {}
+.savingPriceValue {}
+
+.installmentsPrice {}
+.interestRatePrice {}
+
+.priceLoaderContainer {}
+.listPriceLoader {}
+.sellingPriceLabelLoader {}
+.sellingPriceLoader {}
+.installmentsPriceLoader {}
+.savingsPriceLoader {}

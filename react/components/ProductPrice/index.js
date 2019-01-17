@@ -8,6 +8,7 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import PricePropTypes from './propTypes'
 import Installments from './Installments'
 
+import styles from 'styles.css'
 /**
  * The Price component. Shows the prices information of the Product Summary.
  */
@@ -74,26 +75,26 @@ class Price extends Component {
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
     return (
-      <div className={classNames('vtex-price', className)}>
+      <div className={classNames(`${styles.priceContainer}`, className)}>
         {differentPrices && (
-          <div className={classNames('vtex-price-list__container', listPriceContainerClass)}>
+          <div className={classNames(`${styles.listPrice}`, listPriceContainerClass)}>
             {showLabels && (
-              <div className={classNames('vtex-price-list__label', listPriceLabelClass)}>
+              <div className={classNames(`${styles.listPriceLabel}`, listPriceLabelClass)}>
                 <FormattedMessage id="pricing.from" />
               </div>
             )}
-            <span className={classNames('vtex-price-list', listPriceClass)}>
+            <span className={classNames(`${styles.listPriceValue}`, listPriceClass)}>
               {formatNumber(listPrice, this.currencyOptions)}
             </span>
           </div>
         )}
-        <div className={classNames('vtex-price-selling__container', sellingPriceContainerClass)}>
+        <div className={classNames(`${styles.sellingPrice}`, sellingPriceContainerClass)}>
           {showLabels && (
-            <div className={classNames('vtex-price-selling__label', sellingPriceLabelClass)}>
+            <div className={classNames(`${styles.sellingPriceLabel}`, sellingPriceLabelClass)}>
               {labelSellingPrice || <FormattedMessage id="pricing.to" />}
             </div>
           )}
-          <div className={classNames('vtex-price-selling', sellingPriceClass)}>
+          <div className={classNames(`${styles.sellingPrice}`, sellingPriceClass)}>
             {formatNumber(sellingPrice, this.currencyOptions)}
           </div>
         </div>
@@ -108,8 +109,8 @@ class Price extends Component {
             installmentClass={installmentClass}
           />}
         {differentPrices && showSavings && (
-          <div className={classNames('vtex-price-savings__container', savingsContainerClass)}>
-            <div className={classNames('vtex-price-savings', savingsClass)}>
+          <div className={classNames(`${styles.savingPrice}`, savingsContainerClass)}>
+            <div className={classNames(`${styles.savingPriceValue}`, savingsClass)}>
               <FormattedMessage
                 id="pricing.savings"
                 values={{
@@ -128,7 +129,7 @@ class Price extends Component {
 }
 
 Price.Loader = (loaderProps = {}) => (
-  <div className={classNames('vtex-price vtex-price-loader', loaderProps.loaderClass)}>
+  <div className={classNames(`${styles.priceContainer} ${styles.priceContainerLoader}`, loaderProps.loaderClass)}>
     <ContentLoader
       style={{
         width: '100%',
@@ -142,24 +143,24 @@ Price.Loader = (loaderProps = {}) => (
         height="0.75em"
         width="50%"
         x="25%"
-        {...loaderProps['vtex-price-list__container--loader']}
+        {...loaderProps[`${styles.listPriceLoader}`]}
       />
-      <rect {...loaderProps['vtex-price-selling__label--loader']} />
+      <rect {...loaderProps[`${styles.sellingPriceLabelLoader}`]} />
       <rect
         height="1em"
         width="70%"
         x="15%"
         y="1.25em"
-        {...loaderProps['vtex-price-selling--loader']}
+        {...loaderProps[`${styles.sellingPriceLoader}`]}
       />
       <rect
         height="0.75em"
         width="80%"
         x="10%"
         y="2.75em"
-        {...loaderProps['vtex-price-installments--loader']}
+        {...loaderProps[`${styles.installmentsPriceLoader}`]}
       />
-      <rect {...loaderProps['vtex-price-savings--loader']} />
+      <rect {...loaderProps[`${styles.savingsPriceLoader}`]} />
     </ContentLoader>
   </div>
 )

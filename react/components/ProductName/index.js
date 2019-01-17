@@ -100,32 +100,16 @@ class ProductName extends Component {
       )
     }
 
-    const productNameClasses = classNames(`${productName.productNameContainer} mv0`, {
-      [`${className}`]: className
-    })
-
-    const productBrandClasses = classNames(`${productName.productBrand}`, {
-      [`${brandNameClass}`]: brandNameClass
-    })
-
-    const productSkuClasses = classNames(`${productName.productBrand}`, {
-      [`${skuNameClass}`]: skuNameClass
-    })
-
-    const productReferenceClasses = classNames(`${productName.productReference}`, {
-      [`${productReferenceClass}`]: productReferenceClass
-    })
-
     return (
-      <Wrapper className={productNameClasses}>
-        <span className={productBrandClasses}>
+      <Wrapper className={`${productName.productNameContainer}`}>
+        <span className={classNames(`${productName.productBrand}`, brandNameClass)}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
         {showSku && skuName && (
-          <span className={productSkuClasses}>{skuName}</span>
+          <span className={classNames(`${productName.productBrand}`, skuNameClass)}>{skuName}</span>
         )}
         {showProductReference && productReference && (
-          <span className={productReferenceClasses}>
+          <span className={classNames(`${productName.productReference}`, productReferenceClass)}>
             {`REF: ${productReference}`}
           </span>
         )}
