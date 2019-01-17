@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
 import { compose } from 'ramda'
+import { Pixel } from 'vtex.pixel-manager/PixelContext'
 
 import {
   contextPropTypes,
@@ -43,10 +44,8 @@ export class BuyButton extends Component {
     this.props.showToast({ message })
   };
 
-  handleAddToCart = async e => {
-    e.preventDefault()
-    e.stopPropagation()
-    const { skuItems, isOneClickBuy, orderFormContext } = this.props
+  handleAddToCart = async () => {
+    const { skuItems, isOneClickBuy, orderFormContext, push } = this.props
     this.setState({ isAddingToCart: true })
 
     const variables = {
@@ -64,6 +63,10 @@ export class BuyButton extends Component {
     variables.orderFormId = orderFormContext.orderForm.orderFormId
 
     if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
+
+    push({
+      event: 'addToCart',
+    })
 
     await orderFormContext.addItem({ variables }).then(
       mutationRes => {
@@ -139,4 +142,9 @@ BuyButton.propTypes = {
   showToast: PropTypes.func.isRequired,
 }
 
-export default compose(withToast, orderFormConsumer, injectIntl)(BuyButton)
+export default compose(
+  withToast,
+  orderFormConsumer,
+  injectIntl,
+  Pixel,
+)(BuyButton)
