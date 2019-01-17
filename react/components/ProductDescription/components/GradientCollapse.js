@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import debounce from 'debounce'
 import { FormattedMessage } from 'react-intl'
-import { classNames } from 'classnames'
+import classNames from 'classnames'
 import styles from '../styles.css'
 
 
@@ -46,8 +46,8 @@ class GradientCollapse extends Component {
     const fadeOutTime = 400
 
     const pointerEventsNoneClasses = classNames(styles.pointerEventsNone, { 'flex': isCollapseVisible, 'dn': !isCollapseVisible }, 'absolute bottom-0 w-100 h-100 flex-column justify-end')
-    const fadeBottomClasses = classNames(styles.fadeBottom, { 'o-0': state === 'entered' }, 'w-100 h-50')
-    const pointerEventsAutoClasses = classNames(styles.pointerEventsAuto, { 'bg-transparent': state === 'entered', 'bg-base': state != 'entered' }, 'tc w-100')
+    const fadeBottomClasses = state => classNames(styles.fadeBottom, { 'o-0': state === 'entered' }, 'w-100 h-50')
+    const pointerEventsAutoClasses = state => classNames(styles.pointerEventsAuto, { 'bg-transparent': state === 'entered', 'bg-base': state != 'entered' }, 'tc w-100')
 
     return (
       <Transition timeout={transitionTime} in={!collapsed}>
@@ -60,8 +60,8 @@ class GradientCollapse extends Component {
             </div>
             <div className={pointerEventsNoneClasses}>
               <div style={transitionStyle(fadeOutTime)}
-                className={fadeBottomClasses} />
-              <div className={pointerEventsAutoClasses}>
+                className={fadeBottomClasses(state)} />
+              <div className={pointerEventsAutoClasses(state)}>
                 <div
                   className="c-action-primary t-action pointer ma5"
                   onClick={() => this.setState({ collapsed: !collapsed })}>
