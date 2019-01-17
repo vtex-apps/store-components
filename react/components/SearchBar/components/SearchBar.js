@@ -34,7 +34,7 @@ export default class SearchBar extends Component {
     )
 
     const mainClasses = classNames(
-      `${styles.container} w-100 ph5 ph0-ns pb5 pb0-ns`
+      `${styles.searchBarContainer} w-100 ph5 ph0-ns pb5 pb0-ns`
     )
 
     return (

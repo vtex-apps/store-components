@@ -17,7 +17,7 @@
     background-color: #F2F4F5;
 }
   
-.container input {
+.searchBarContainer input {
     height: 38px;
     color: #727273;
     border-radius: 1px;
@@ -35,7 +35,7 @@
     padding-left: 40px !important;
 }
   
-.container .resultsList {
+.searchBarContainer .resultsList {
     top: 100%;
 }
   
@@ -50,7 +50,7 @@
 }
   
 @media only screen and (max-width: 49rem) {
-    .container input {
+    .searchBarContainer input {
         box-shadow: none;
     }
     .resultsList {
