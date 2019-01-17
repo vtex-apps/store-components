@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.6.1] - 2019-01-17
+### Fixed
+- Use header elements in `ProductDetails` instead of span tags.
+
 ## [3.6.0] - 2019-01-17
 ### Changed
 - Support to CSS modules in `SearchBar`.
