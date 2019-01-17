@@ -1,15 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import { CollectionBadgeItem } from './components/CollectionBadgeItem'
-import VTEXClasses from './components/CustomClasses'
+
+import styles from './styles.css'
 
 /**
  * Collection Badges component.
  * Encapsulates and displays a responsive list of Collection Badges.
  */
 const CollectionBadges = ({ collectionBadgesText, children }) => (
-  <div className={`${VTEXClasses.COLLECTION_BADGES} relative dib h-100`}>
+  <div className={`${styles.container} relative dib w-100`}>
     {children}
     <div className="inline-flex justify-end absolute w-100 bottom-0 left-0">
       {collectionBadgesText.map((collectionBadgeText, index) => (
