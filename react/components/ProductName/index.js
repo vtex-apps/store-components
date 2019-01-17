@@ -44,7 +44,7 @@ class ProductName extends Component {
   }
 
   static Loader = (loaderProps = {}) => (
-    <div className={`${productName.container} ${productName.loader} ${loaderProps.className}`}>
+    <div className={`${productName.productNameContainer} ${productName.productNameLoader} ${loaderProps.className}`}>
       <ContentLoader
         style={{
           width: '100%',
@@ -59,14 +59,14 @@ class ProductName extends Component {
           height="1.125em"
           width="75%"
           x="15%"
-          {...loaderProps['vtex-product-name__brand--loader']}
+          {...loaderProps[`${productName.productNameBrandLoader}`]}
         />
         <rect
           height="1.125em"
           width="50%"
           x="25%"
           y="1.75em"
-          {...loaderProps['vtex-product-name__sku--loader']}
+          {...loaderProps[`${productName.productNameSkuLoader}`]}
         />
       </ContentLoader>
     </div>
@@ -96,12 +96,12 @@ class ProductName extends Component {
     }
 
     return (
-      <div className={`${productName.container} ${className}`}>
-        <span className={`${productName.brand} ${brandNameClass}`}>
+      <div className={`${productName.productNameContainer} ${className}`}>
+        <span className={`${productName.productBrand} ${brandNameClass}`}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
         {showSku && skuName && (
-          <span className={`${productName.sku} ${skuNameClass}`}>{skuName}</span>
+          <span className={`${productName.productSku} ${skuNameClass}`}>{skuName}</span>
         )}
         {showProductReference && productReference && (
           <span className={`${productName.productReference} ${productReferenceClass}`}>
