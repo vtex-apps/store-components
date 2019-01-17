@@ -6,10 +6,12 @@ import { Link } from 'render'
 
 import autocomplete from '../queries/autocomplete.gql'
 
+import styles from '../styles.css'
+
 const listClassNames =
-  'vtex-results__list z-max absolute w-100 mt1 mt2-m pb4 bg-white f5 left-0'
+  `${styles.resultsList} z-max absolute w-100 mt1 mt2-m pb4 bg-white f5 left-0`
 const listItemClassNames =
-  'vtex-results__item flex justify-start f5 pa4 pl6 outline-0'
+  `${styles.resultsItem} flex justify-start f5 pa4 pl6 outline-0`
 
 function getImageUrl(image) {
   const imageUrl = (image.match(/https?:(.*?)"/g) || [''])[0]
@@ -95,7 +97,7 @@ class ResultsList extends Component {
               >
                 {item.thumb && (
                   <img
-                    className="vtex-results__item-image mr4"
+                    className={`${styles.resultsItemImage} mr4`}
                     src={getImageUrl(item.thumb)}
                   />
                 )}

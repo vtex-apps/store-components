@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import SearchBar from './components/SearchBar'
 import { injectIntl, intlShape } from 'react-intl'
 
-import './global.css'
-
 const SEARCH_DELAY_TIME = 500
 
 /** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
