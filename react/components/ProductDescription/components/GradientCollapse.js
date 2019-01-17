@@ -4,7 +4,7 @@ import { Transition } from 'react-transition-group'
 import debounce from 'debounce'
 import { FormattedMessage } from 'react-intl'
 import { classNames } from 'classnames'
-import productDescription from '../../productDescription.css'
+import styles from '../styles.css'
 
 
 const transitionStyle = (transitionTime) => ({ transition: `${transitionTime}ms ease-in-out` })
@@ -45,9 +45,9 @@ class GradientCollapse extends Component {
     const transitionTime = 600
     const fadeOutTime = 400
 
-    const pointerEventsNoneClasses = classNames(productDescription.pointerEventsNone, { 'flex': isCollapseVisible, 'dn': !isCollapseVisible}, 'absolute bottom-0 w-100 h-100 flex-column justify-end')
-    const fadeBottomClasses = classNames(productDescription.fadeBottom, { 'o-0': state === 'entered' }, 'w-100 h-50')
-    const pointerEventsAutoClasses = classNames(productDescription.pointerEventsAuto, { 'bg-transparent': state === 'entered', 'bg-base': state != 'entered' }, 'tc w-100')
+    const pointerEventsNoneClasses = classNames(styles.pointerEventsNone, { 'flex': isCollapseVisible, 'dn': !isCollapseVisible }, 'absolute bottom-0 w-100 h-100 flex-column justify-end')
+    const fadeBottomClasses = classNames(styles.fadeBottom, { 'o-0': state === 'entered' }, 'w-100 h-50')
+    const pointerEventsAutoClasses = classNames(styles.pointerEventsAuto, { 'bg-transparent': state === 'entered', 'bg-base': state != 'entered' }, 'tc w-100')
 
     return (
       <Transition timeout={transitionTime} in={!collapsed}>
@@ -67,7 +67,7 @@ class GradientCollapse extends Component {
                   onClick={() => this.setState({ collapsed: !collapsed })}>
                   {state === 'entered' || collapsed && state !== 'exited'
                     ? <FormattedMessage id="product-description.collapse.showLess" />
-                    : <FormattedMessage id="product-description.collapse.showMore" /> }
+                    : <FormattedMessage id="product-description.collapse.showMore" />}
                 </div>
               </div>
             </div>
