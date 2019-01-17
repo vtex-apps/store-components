@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.6.3] - 2019-01-17
+### Fixed
+- Fixes warning of `propTypes` being passed to `React.forwardRef`.
+
 ## [3.6.2] - 2019-01-17
 ### Fixed
 - Use header elements in `ProductName` through tag prop.

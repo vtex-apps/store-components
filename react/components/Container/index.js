@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const Container = ({ className, children, ...props }, ref) => {
+const render = ({ className, children, ...props }, ref) => {
   const classes = classNames('ph3 ph5-m ph8-l ph9-xl', className)
 
   return (
@@ -12,9 +12,13 @@ const Container = ({ className, children, ...props }, ref) => {
   )
 }
 
+render.displayName = 'Container'
+
+const Container = React.forwardRef(render)
+
 Container.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 }
 
-export default React.forwardRef(Container)
+export default Container
