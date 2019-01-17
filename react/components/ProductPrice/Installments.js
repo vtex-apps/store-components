@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 import PricePropTypes from './propTypes'
 
-import styles from './styles.css'
+import productPrice from './styles.css'
 
 /** Installments component */
 export default class Installments extends Component {
@@ -80,7 +80,7 @@ export default class Installments extends Component {
     ))
 
     return (
-      <div className={classNames(`${styles.installmentsPrice}`, className)}>
+      <div className={classNames(`${productPrice.installmentsPrice}`, className)}>
         {showLabels ? (
           <FormattedMessage
             id="pricing.installment-display"
@@ -96,7 +96,7 @@ export default class Installments extends Component {
             </Fragment>
           )}
         {!installment.InterestRate && (
-          <div className={classNames(`${styles.interestRatePrice}`, interestRateClass)}>
+          <div className={classNames(`${productPrice.interestRatePrice}`, interestRateClass)}>
             <FormattedMessage id="pricing.interest-free" />
           </div>
         )}

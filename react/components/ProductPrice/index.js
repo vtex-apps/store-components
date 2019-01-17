@@ -8,7 +8,7 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import PricePropTypes from './propTypes'
 import Installments from './Installments'
 
-import styles from './styles.css'
+import productPrice from './styles.css'
 /**
  * The Price component. Shows the prices information of the Product Summary.
  */
@@ -75,26 +75,26 @@ class Price extends Component {
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
     return (
-      <div className={classNames(`${styles.priceContainer}`, className)}>
+      <div className={classNames(`${productPrice.priceContainer}`, className)}>
         {differentPrices && (
-          <div className={classNames(`${styles.listPrice}`, listPriceContainerClass)}>
+          <div className={classNames(`${productPrice.listPrice}`, listPriceContainerClass)}>
             {showLabels && (
-              <div className={classNames(`${styles.listPriceLabel}`, listPriceLabelClass)}>
+              <div className={classNames(`${productPrice.listPriceLabel}`, listPriceLabelClass)}>
                 <FormattedMessage id="pricing.from" />
               </div>
             )}
-            <span className={classNames(`${styles.listPriceValue}`, listPriceClass)}>
+            <span className={classNames(`${productPrice.listPriceValue}`, listPriceClass)}>
               {formatNumber(listPrice, this.currencyOptions)}
             </span>
           </div>
         )}
-        <div className={classNames(`${styles.sellingPrice}`, sellingPriceContainerClass)}>
+        <div className={classNames(`${productPrice.sellingPrice}`, sellingPriceContainerClass)}>
           {showLabels && (
-            <div className={classNames(`${styles.sellingPriceLabel}`, sellingPriceLabelClass)}>
+            <div className={classNames(`${productPrice.sellingPriceLabel}`, sellingPriceLabelClass)}>
               {labelSellingPrice || <FormattedMessage id="pricing.to" />}
             </div>
           )}
-          <div className={classNames(`${styles.sellingPrice}`, sellingPriceClass)}>
+          <div className={classNames(`${productPrice.sellingPrice}`, sellingPriceClass)}>
             {formatNumber(sellingPrice, this.currencyOptions)}
           </div>
         </div>
@@ -109,8 +109,8 @@ class Price extends Component {
             installmentClass={installmentClass}
           />}
         {differentPrices && showSavings && (
-          <div className={classNames(`${styles.savingPrice}`, savingsContainerClass)}>
-            <div className={classNames(`${styles.savingPriceValue}`, savingsClass)}>
+          <div className={classNames(`${productPrice.savingPrice}`, savingsContainerClass)}>
+            <div className={classNames(`${productPrice.savingPriceValue}`, savingsClass)}>
               <FormattedMessage
                 id="pricing.savings"
                 values={{
@@ -129,7 +129,7 @@ class Price extends Component {
 }
 
 Price.Loader = (loaderProps = {}) => (
-  <div className={classNames(`${styles.priceContainer} ${styles.priceContainerLoader}`, loaderProps.loaderClass)}>
+  <div className={classNames(`${productPrice.priceContainer} ${productPrice.priceContainerLoader}`, loaderProps.loaderClass)}>
     <ContentLoader
       style={{
         width: '100%',
@@ -143,24 +143,24 @@ Price.Loader = (loaderProps = {}) => (
         height="0.75em"
         width="50%"
         x="25%"
-        {...loaderProps[`${styles.listPriceLoader}`]}
+        {...loaderProps[`${productPrice.listPriceLoader}`]}
       />
-      <rect {...loaderProps[`${styles.sellingPriceLabelLoader}`]} />
+      <rect {...loaderProps[`${productPrice.sellingPriceLabelLoader}`]} />
       <rect
         height="1em"
         width="70%"
         x="15%"
         y="1.25em"
-        {...loaderProps[`${styles.sellingPriceLoader}`]}
+        {...loaderProps[`${productPrice.sellingPriceLoader}`]}
       />
       <rect
         height="0.75em"
         width="80%"
         x="10%"
         y="2.75em"
-        {...loaderProps[`${styles.installmentsPriceLoader}`]}
+        {...loaderProps[`${productPrice.installmentsPriceLoader}`]}
       />
-      <rect {...loaderProps[`${styles.savingsPriceLoader}`]} />
+      <rect {...loaderProps[`${productPrice.savingsPriceLoader}`]} />
     </ContentLoader>
   </div>
 )
