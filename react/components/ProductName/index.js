@@ -36,12 +36,15 @@ class ProductName extends Component {
     productReferenceClass: PropTypes.string,
     /** Classes to be applied to loader root element */
     loaderClass: PropTypes.string,
+    /** HTML tag to be used in the component container */
+    tag: PropTypes.oneOf(['div', 'h1', 'h2', 'h3']),
   }
 
   static defaultProps = {
     showBrandName: false,
     showProductReference: false,
-    showSku: false
+    showSku: false,
+    tag: 'div',
   }
 
   static Loader = (loaderProps = {}) => (
@@ -88,6 +91,7 @@ class ProductName extends Component {
       showBrandName,
       productReference,
       showProductReference,
+      tag:Wrapper,
     } = this.props
 
     if (!name) {
@@ -96,7 +100,7 @@ class ProductName extends Component {
       )
     }
 
-    const productNameClasses = classNames(`${productName.productNameContainer}`, {
+    const productNameClasses = classNames(`${productName.productNameContainer} mv0`, {
       [`${className}`]: className
     })
 
@@ -113,7 +117,7 @@ class ProductName extends Component {
     })
 
     return (
-      <div className={productNameClasses}>
+      <Wrapper className={productNameClasses}>
         <span className={productBrandClasses}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
@@ -125,7 +129,7 @@ class ProductName extends Component {
             {`REF: ${productReference}`}
           </span>
         )}
-      </div>
+      </Wrapper>
     )
   }
 }
