@@ -6,8 +6,10 @@ import { orderFormConsumer, contextPropTypes } from 'vtex.store-resources/OrderF
 
 import Loader from './Loader'
 
+import styles from './styles.css'
+
 const Wrapper = ({ children }) => (
-  <div className="vtex-greeting vtex-page-padding mh4 pv4 t-heading-4 c-on-base nowrap">{children}</div>
+  <div className={`${styles.container} mh4 pv4 t-heading-4 c-on-base nowrap`}>{children}</div>
 )
 
 const withWrapper = Component => props => (
@@ -23,10 +25,10 @@ const Greeting = ({ orderFormContext }) => {
   return (
     <Wrapper>
       <Fragment>
-        <span className="vtex-greeting__message">
+        <span className={styles.message}>
           <FormattedMessage id="greeting" />,
         </span>
-        <span className="vtex-greeting__first-name pl2 b">{firstName}</span>
+        <span className={`${styles.firstName} pl2 b`}>{firstName}</span>
       </Fragment>
     </Wrapper>
   )
