@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.6.0] - 2019-01-17
 ### Changed
 - Support to CSS modules in `SearchBar`.
 - Support to CSS modules in `ProductDescription`.
@@ -13,6 +15,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support to CSS modules in `CollectionBadges`.
 - Support to CSS modules in `DiscountBadge`.
 - Support to CSS modules in `AvailabilitySubscriber`.
+- Support to CSS modules in `Logo`.
+- Support to CSS modules in `ShippingSimulator`.
 
 ## [3.5.8] - 2019-01-15
 ### Fixed

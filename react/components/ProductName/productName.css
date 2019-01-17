@@ -1,8 +1,11 @@
 /**
     ProductName CSS Module
 */
-.container {}
-.loader {}
-.brand {}
-.sku {}
+.productNameContainer {}
+.productBrand {}
+.productSku {}
 .productReference {}
+
+.productNameloader {}
+.productNameBrandLoader {}
+.productNameSkuLoader {}

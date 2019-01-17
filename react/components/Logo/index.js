@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import logo from './logo.css'
+import styles from './styles.css'
 
 /**
  * Logo of the store
@@ -32,13 +32,13 @@ export default class Logo extends Component {
 
   render() {
     const { width, height, isMobile, color, showLabel, url, title } = this.props
-    const imgClassNames = classNames('vtex-logo', {
-      [logo.maxSizeDesktop]: !isMobile,
-      [logo.maxSizeMobile]: isMobile,
+    const imgClassNames = classNames(`${styles.logoContainer}`, {
+      [styles.maxSizeDesktop]: !isMobile,
+      [styles.maxSizeMobile]: isMobile,
     })
-    const svgClassNames = classNames('vtex-logo', {
-      [logo.sizeDesktop]: !isMobile,
-      [logo.sizeMobile]: isMobile,
+    const svgClassNames = classNames(`${styles.logoContainer}`, {
+      [styles.sizeDesktop]: !isMobile,
+      [styles.sizeMobile]: isMobile,
     })
 
     if (url) {

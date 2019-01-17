@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
+import classNames from 'classnames'
 
 import productName from './productName.css'
 
@@ -44,7 +45,7 @@ class ProductName extends Component {
   }
 
   static Loader = (loaderProps = {}) => (
-    <div className={`${productName.container} ${productName.loader} ${loaderProps.className}`}>
+    <div className={`${productName.productNameContainer} ${productName.productNameLoader} ${loaderProps.className}`}>
       <ContentLoader
         style={{
           width: '100%',
@@ -59,14 +60,14 @@ class ProductName extends Component {
           height="1.125em"
           width="75%"
           x="15%"
-          {...loaderProps['vtex-product-name__brand--loader']}
+          {...loaderProps[`${productName.productNameBrandLoader}`]}
         />
         <rect
           height="1.125em"
           width="50%"
           x="25%"
           y="1.75em"
-          {...loaderProps['vtex-product-name__sku--loader']}
+          {...loaderProps[`${productName.productNameSkuLoader}`]}
         />
       </ContentLoader>
     </div>
@@ -95,16 +96,32 @@ class ProductName extends Component {
       )
     }
 
+    const productNameClasses = classNames(`${productName.productNameContainer}`, {
+      [`${className}`]: className
+    })
+
+    const productBrandClasses = classNames(`${productName.productBrand}`, {
+      [`${brandNameClass}`]: brandNameClass
+    })
+
+    const productSkuClasses = classNames(`${productName.productBrand}`, {
+      [`${skuNameClass}`]: skuNameClass
+    })
+
+    const productReferenceClasses = classNames(`${productName.productReference}`, {
+      [`${productReferenceClass}`]: productReferenceClass
+    })
+
     return (
-      <div className={`${productName.container} ${className}`}>
-        <span className={`${productName.brand} ${brandNameClass}`}>
+      <div className={productNameClasses}>
+        <span className={productBrandClasses}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
         {showSku && skuName && (
-          <span className={`${productName.sku} ${skuNameClass}`}>{skuName}</span>
+          <span className={productSkuClasses}>{skuName}</span>
         )}
         {showProductReference && productReference && (
-          <span className={`${productName.productReference} ${productReferenceClass}`}>
+          <span className={productReferenceClasses}>
             {`REF: ${productReference}`}
           </span>
         )}
