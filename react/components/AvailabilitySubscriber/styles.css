@@ -2,7 +2,7 @@
 * AvailabilitySubscriber CSS Module
 */
 
-.container {}
+.subscriberContainer {}
 
 .title {}
 
@@ -19,8 +19,6 @@
 .inputEmail {}
 
 .submit {}
-
-.message {}
 
 .success {}
 

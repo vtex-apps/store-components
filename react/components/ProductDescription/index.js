@@ -23,7 +23,7 @@ class ProductDescription extends Component {
     })
 
     return (
-      <div className={`${styles.container} flex-l`}>
+      <div className={`${styles.productDescriptionContainer} flex-l`}>
         <div className="w-100 w-60-l">
           <div className="t-heading-5 mb5">
             <FormattedMessage id="product-description.title" />

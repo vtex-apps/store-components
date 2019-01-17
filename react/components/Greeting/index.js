@@ -9,7 +9,7 @@ import Loader from './Loader'
 import styles from './styles.css'
 
 const Wrapper = ({ children }) => (
-  <div className={`${styles.container} mh4 pv4 t-heading-4 c-on-base nowrap`}>{children}</div>
+  <div className={`${styles.greetingContainer} mh4 pv4 t-heading-4 c-on-base nowrap`}>{children}</div>
 )
 
 const withWrapper = Component => props => (

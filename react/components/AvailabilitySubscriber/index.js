@@ -156,7 +156,7 @@ class AvailabilitySubscriber extends Component {
     return (
       <ApolloConsumer>
         {client => (
-          <div className={styles.container}>
+          <div className={styles.subscriberContainer}>
             <div className={`${styles.title} t-body mb3`}>
               {this.translate('availability-subscriber.title')}
             </div>

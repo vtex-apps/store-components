@@ -10,7 +10,7 @@ import styles from './styles.css'
  * Encapsulates and displays a responsive list of Collection Badges.
  */
 const CollectionBadges = ({ collectionBadgesText, children }) => (
-  <div className={`${styles.container} relative dib w-100`}>
+  <div className={`${styles.collectionContainer} relative dib w-100`}>
     {children}
     <div className="inline-flex justify-end absolute w-100 bottom-0 left-0">
       {collectionBadgesText.map((collectionBadgeText, index) => (
