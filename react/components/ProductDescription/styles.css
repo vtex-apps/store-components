@@ -1,11 +1,15 @@
-.fade-bottom {
+/**
+*   ProductDescription CSS Modules
+*/
+
+.fadeBottom {
     background-image: linear-gradient(transparent, white);
 }
 
-.pointer-events-none {
+.pointerEventsNone {
     pointer-events: none;
 }
 
-.pointer-events-auto {
+.pointerEventsAuto {
     pointer-events: auto;
 }
