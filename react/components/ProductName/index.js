@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
+import classNames from 'classnames'
 
 import productName from './productName.css'
 
@@ -95,16 +96,32 @@ class ProductName extends Component {
       )
     }
 
+    const productNameClasses = classNames(`${productName.productNameContainer}`, {
+      [`${className}`]: className
+    })
+
+    const productBrandClasses = classNames(`${productName.productBrand}`, {
+      [`${brandNameClass}`]: brandNameClass
+    })
+
+    const productSkuClasses = classNames(`${productName.productBrand}`, {
+      [`${skuNameClass}`]: skuNameClass
+    })
+
+    const productReferenceClasses = classNames(`${productName.productReference}`, {
+      [`${productReferenceClass}`]: productReferenceClass
+    })
+
     return (
-      <div className={`${productName.productNameContainer} ${className}`}>
-        <span className={`${productName.productBrand} ${brandNameClass}`}>
+      <div className={productNameClasses}>
+        <span className={productBrandClasses}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
         {showSku && skuName && (
-          <span className={`${productName.productSku} ${skuNameClass}`}>{skuName}</span>
+          <span className={productSkuClasses}>{skuName}</span>
         )}
         {showProductReference && productReference && (
-          <span className={`${productName.productReference} ${productReferenceClass}`}>
+          <span className={productReferenceClasses}>
             {`REF: ${productReference}`}
           </span>
         )}
