@@ -6,7 +6,7 @@ import ResultsLits from './ResultsList'
 import DownshiftComponent from 'downshift'
 import { NoSSR } from 'render'
 
-import searchbar from '../searchBar.css'
+import styles from '../styles.css'
 
 export default class SearchBar extends Component {
   render() {
@@ -34,7 +34,7 @@ export default class SearchBar extends Component {
     )
 
     const mainClasses = classNames(
-      `${searchbar.container} w-100 ph5 ph0-ns pb5 pb0-ns`
+      `${styles.container} w-100 ph5 ph0-ns pb5 pb0-ns`
     )
 
     return (
@@ -48,39 +48,39 @@ export default class SearchBar extends Component {
               isOpen,
               closeMenu,
             }) => (
-              <div className="relative-m w-100">
-                <AutocompleteInput
-                  compactMode={compactMode}
-                  onClearInput={onClearInput}
-                  onGoToSearchPage={() => {
-                    closeMenu()
-                    onGoToSearchPage()
-                  }}
-                  {...getInputProps({
-                    placeholder,
-                    value: inputValue,
-                    onChange: onInputChange,
-                    onKeyDown: event => {
+                <div className="relative-m w-100">
+                  <AutocompleteInput
+                    compactMode={compactMode}
+                    onClearInput={onClearInput}
+                    onGoToSearchPage={() => {
                       closeMenu()
-                      onEnterPress(event)
-                    },
-                  })}
-                  
-                />
-                {shouldSearch && isOpen ? (
-                  <ResultsLits
-                    {...{
-                      inputValue,
-                      selectedItem,
-                      highlightedIndex,
-                      emptyPlaceholder,
-                      closeMenu,
-                      onClearInput,
+                      onGoToSearchPage()
                     }}
+                    {...getInputProps({
+                      placeholder,
+                      value: inputValue,
+                      onChange: onInputChange,
+                      onKeyDown: event => {
+                        closeMenu()
+                        onEnterPress(event)
+                      },
+                    })}
+
                   />
-                ) : null}
-              </div>
-            )}
+                  {shouldSearch && isOpen ? (
+                    <ResultsLits
+                      {...{
+                        inputValue,
+                        selectedItem,
+                        highlightedIndex,
+                        emptyPlaceholder,
+                        closeMenu,
+                        onClearInput,
+                      }}
+                    />
+                  ) : null}
+                </div>
+              )}
           </DownshiftComponent>
         </NoSSR>
       </div>
