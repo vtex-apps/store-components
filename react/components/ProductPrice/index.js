@@ -8,7 +8,7 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import PricePropTypes from './propTypes'
 import Installments from './Installments'
 
-import styles from 'styles.css'
+import styles from './styles.css'
 /**
  * The Price component. Shows the prices information of the Product Summary.
  */

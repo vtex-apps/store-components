@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 import PricePropTypes from './propTypes'
 
-import styles from 'styles.css'
+import styles from './styles.css'
 
 /** Installments component */
 export default class Installments extends Component {
