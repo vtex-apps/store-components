@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import collectionBadges from '../collectionBadges.css'
+import styles from '../styles.css'
 
 /**
  * Collection Badge Item.
@@ -10,7 +10,7 @@ import collectionBadges from '../collectionBadges.css'
 export class CollectionBadgeItem extends PureComponent {
   render() {
     return (
-      <div className={`${collectionBadges.item} mh1 pa2 bg-blue white tc`}>
+      <div className={`${styles.item} mh1 pa2 bg-blue white tc`}>
         {this.props.children}
       </div>
     )

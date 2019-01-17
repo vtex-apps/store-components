@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 
 import { CollectionBadgeItem } from './components/CollectionBadgeItem'
 
-import collectionBadges from './collectionBadges.css'
+import styles from './styles.css'
 
 /**
  * Collection Badges component.
  * Encapsulates and displays a responsive list of Collection Badges.
  */
 const CollectionBadges = ({ collectionBadgesText, children }) => (
-  <div className={`${collectionBadges.container} relative dib w-100`}>
+  <div className={`${styles.container} relative dib w-100`}>
     {children}
     <div className="inline-flex justify-end absolute w-100 bottom-0 left-0">
       {collectionBadgesText.map((collectionBadgeText, index) => (
