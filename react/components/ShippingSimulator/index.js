@@ -1,5 +1,3 @@
-import './global.css'
-
 import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import { compose, withApollo } from 'react-apollo'
@@ -10,6 +8,8 @@ import { Button, Input } from 'vtex.styleguide'
 import ShippingTable from './components/ShippingTable'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
 
+import './global.css'
+import styles from './styles.css'
 /**
  * Shipping simulator component
  *
@@ -27,9 +27,9 @@ class ShippingSimulator extends Component {
   }
 
   static Loader = (loaderProps = {}) => (
-    <div className="vtex-shipping-simulator">
+    <div className={`${styles.shippingContainer}`}>
       <ContentLoader
-        className="vtex-shipping-simulator-loader"
+        className={`${styles.shippingContainerLoader}`}
         style={{
           width: '100%',
           height: '100%',
@@ -41,13 +41,13 @@ class ShippingSimulator extends Component {
         <rect
           height="100%"
           width="7em"
-          {...loaderProps['vtex-shipping-simulator__zipcode-label--loader']}
+          {...loaderProps[`${styles.shippingZipcodeLabelLoader}`]}
         />
         <rect
           height="100%"
           width="15em"
           x="8em"
-          {...loaderProps['vtex-shipping-simulator__input--loader']}
+          {...loaderProps[`${styles.shippingInputLoader}`]}
         />
       </ContentLoader>
     </div>
@@ -129,8 +129,8 @@ class ShippingSimulator extends Component {
 
     return (
       <Fragment>
-        <form className="vtex-shipping-simulator t-small c-on-base">
-          <label className="vtex-shipping-simulator__zipcode-label c-muted-2 db t-small mb3">
+        <form className={`${styles.shippingContainer} t-small c-on-base`}>
+          <label className={`${styles.shippingZipcodeLabel} c-muted-2 db t-small mb3`}>
             {this.formatMessage('shipping.label')}
           </label>
           <div className="flex">
@@ -141,13 +141,13 @@ class ShippingSimulator extends Component {
               value={zipcodeValue}
             />
             <Button
-              className="vtex-shipping-simulator__cta"
+              className={`${styles.shippingCTA}`}
               onClick={this.handleClick}
               disabled={zipcodeValue.length < 9 || zipcodeValue === prevZipcode}
               size="small"
               type="submit"
               isLoading={loading}>
-            Ok
+              Ok
             </Button>
           </div>
         </form>

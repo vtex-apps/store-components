@@ -1,8 +1,8 @@
-.vtex-shipping-simulator .vtex-input {
+.vtex-store-components-3-x-shippingContainer .vtex-input {
   height: 100%;
 }
 
-.vtex-shipping-simulator .vtex-input input {
+.vtex-store-components-3-x-shippingContainer .vtex-input input {
   padding: 10px 5px;
   color: #4f4f4f;
   border: 1px solid #e3e4e6;
@@ -12,7 +12,7 @@
   border-bottom-right-radius: 0;
 }
 
-.vtex-shipping-simulator .vtex-button {
+.vtex-store-components-3-x-shippingContainer .vtex-button {
   border-radius: 2px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
