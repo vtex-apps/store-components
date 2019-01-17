@@ -7,7 +7,7 @@ import { Button, Input } from 'vtex.styleguide'
 
 import ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION from './mutations/addToAvailabilitySubscriberMutation.gql'
 
-import availabilitySubscriber from './availabilitySubscriber.css'
+import styles from './styles.css'
 
 /**
  * Represents the availability subscriber form, that's shown when
@@ -156,16 +156,16 @@ class AvailabilitySubscriber extends Component {
     return (
       <ApolloConsumer>
         {client => (
-          <div className={availabilitySubscriber.container}>
-            <div className={`${availabilitySubscriber.title} t-body mb3`}>
+          <div className={styles.container}>
+            <div className={`${styles.title} t-body mb3`}>
               {this.translate('availability-subscriber.title')}
             </div>
-            <div className={`${availabilitySubscriber.subscribeLabel} t-small fw3`}>
+            <div className={`${styles.subscribeLabel} t-small fw3`}>
               {this.translate('availability-subscriber.subscribe-label')}
             </div>
-            <form className={`${availabilitySubscriber.form} mb4`} onSubmit={(e) => this.handleSubmit(e, client)}>
-              <div className={`${availabilitySubscriber.content} flex-ns justify-between mt4 mw6`}>
-                <div className={`${availabilitySubscriber.input} ${availabilitySubscriber.inputName} w-100 mr5 mb4`}>
+            <form className={`${styles.form} mb4`} onSubmit={(e) => this.handleSubmit(e, client)}>
+              <div className={`${styles.content} flex-ns justify-between mt4 mw6`}>
+                <div className={`${styles.input} ${styles.inputName} w-100 mr5 mb4`}>
                   <Input
                     name="name"
                     type="text"
@@ -175,7 +175,7 @@ class AvailabilitySubscriber extends Component {
                     ref={e => { this.nameInput = e }}
                   />
                 </div>
-                <div className={`${availabilitySubscriber.input} ${availabilitySubscriber.inputEmail} w-100 mr5 mb4`}>
+                <div className={`${styles.input} ${styles.inputEmail} w-100 mr5 mb4`}>
                   <Input
                     name="email"
                     type="text"
@@ -188,19 +188,19 @@ class AvailabilitySubscriber extends Component {
                     ref={e => { this.emailInput = e }}
                   />
                 </div>
-                <div className={`${availabilitySubscriber.submit} flex items-center mb4`}>
+                <div className={`${styles.submit} flex items-center mb4`}>
                   <Button type="submit" variation="primary" size="small" disabled={isFormDisabled} isLoading={isLoading}>
                     {this.translate('availability-subscriber.send-label')}
                   </Button>
                 </div>
               </div>
               {sendStatus === 'success' &&
-                <div className={`${availabilitySubscriber.message} ${availabilitySubscriber.success} t-body c-success`}>
+                <div className={`${styles.success} t-body c-success`}>
                   {this.translate('availability-subscriber.added-message')}
                 </div>
               }
               {sendStatus === 'error' &&
-                <div className={`${availabilitySubscriber.message} ${availabilitySubscriber.error} c-danger`}>
+                <div className={`${styles.error} c-danger`}>
                   {this.translate('availability-subscriber.error-message')}
                 </div>
               }
