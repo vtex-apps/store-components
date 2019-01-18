@@ -11,18 +11,14 @@
     "messages": "0.x"
   },
   "mustUpdateAt": "2019-04-02",
-  "categories": [],
-  "registries": [
-    "smartcheckout"
-  ],
   "scripts": {
     "postreleasy": "vtex publish --verbose"
   },
   "dependencies": {
-    "vtex.shipping-estimate-translator": "1.x",
+    "vtex.shipping-estimate-translator": "2.x",
     "vtex.store-graphql": "2.x",
     "vtex.store-resources": "0.x",
     "vtex.styleguide": "9.x",
-    "vtex.use-svg": "0.x"
+    "vtex.use-svg": "1.x"
   }
 }
