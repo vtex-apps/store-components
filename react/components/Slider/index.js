@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Slider from 'react-slick'
 import ReactResizeDetector from 'react-resize-detector'
-import { NoSSR } from 'render'
+import { NoSSR } from 'vtex.render-runtime'
 
 import Dots from './components/Dots'
 import Arrow from './components/Arrow'

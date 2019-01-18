@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { Link } from 'render'
+import { Link } from 'vtex.render-runtime'
 
 import { RECTANGULAR, SQUARED } from '../constants'
 import rectangularPlaceholder from '../images/rectangular-placeholder.svg'
@@ -31,13 +31,13 @@ class CategoryCard extends Component {
           {image ? (
             <img src={image} alt={name} />
           ) : (
-            <img
-              src={
-                shape == SQUARED ? squaredPlaceholder : rectangularPlaceholder
-              }
-              alt=""
-            />
-          )}
+              <img
+                src={
+                  shape == SQUARED ? squaredPlaceholder : rectangularPlaceholder
+                }
+                alt=""
+              />
+            )}
         </Link>
       </div>
     )

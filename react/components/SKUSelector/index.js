@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRuntimeContext } from 'render'
+import { withRuntimeContext } from 'vtex.render-runtime'
 
 import SKUSelector from './components/SKUSelector'
 import { SKUSelectorContainerPropTypes } from './utils/proptypes'

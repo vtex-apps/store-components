@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'react-apollo'
 import { Spinner } from 'vtex.styleguide'
-import { Link } from 'render'
+import { Link } from 'vtex.render-runtime'
 
 import autocomplete from '../queries/autocomplete.gql'
 

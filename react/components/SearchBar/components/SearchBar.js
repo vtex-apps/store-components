@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import AutocompleteInput from './AutocompleteInput'
 import ResultsLits from './ResultsList'
 import DownshiftComponent from 'downshift'
-import { NoSSR } from 'render'
+import { NoSSR } from 'vtex.render-runtime'
 
 import styles from '../styles.css'
 
