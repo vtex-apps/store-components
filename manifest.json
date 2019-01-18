@@ -6,7 +6,7 @@
   "defaultLocale": "pt-BR",
   "description": "The VTEX store components for that render apps can use",
   "builders": {
-    "react": "2.x",
+    "react": "3.x",
     "store": "0.x",
     "messages": "0.x"
   },
