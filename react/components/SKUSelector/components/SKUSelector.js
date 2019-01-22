@@ -11,7 +11,7 @@ export default class SKUSelector extends Component {
     const { selectedId, onSelectSku, mainVariation, secondaryVariation, maxSkuPrice } = this.props
 
     return (
-      <div className={`${styles.skuSelectorContainer}`}>
+      <div className={styles.skuSelectorContainer}>
         <Variation
           variation={mainVariation}
           onSelectItem={onSelectSku}
