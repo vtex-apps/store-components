@@ -35,14 +35,14 @@ export class BuyButton extends Component {
     timeOut: null,
   };
 
-  translateMessage = id => this.props.intl.formatMessage({ id: id });
+  translateMessage = id => this.props.intl.formatMessage({ id: id })
 
   toastMessage = success => {
     const message = success
       ? this.translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
       : this.translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
     this.props.showToast({ message })
-  };
+  }
 
   handleAddToCart = async () => {
     const { skuItems, isOneClickBuy, orderFormContext, push } = this.props
@@ -84,7 +84,7 @@ export class BuyButton extends Component {
       }
     )
     this.setState({ isAddingToCart: false })
-  };
+  }
 
   render() {
     const { children, skuItems, available, large } = this.props
@@ -128,6 +128,10 @@ BuyButton.propTypes = {
         PropTypes.string,
         PropTypes.number,
       ]).isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      variant: PropTypes.string,
+      brand: PropTypes.string.isRequired,
     })
   ),
   /** Context used to call the add to cart mutation and retrieve the orderFormId **/
