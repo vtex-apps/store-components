@@ -66,6 +66,7 @@ export class BuyButton extends Component {
 
     push({
       event: 'addToCart',
+      items: skuItems,
     })
 
     await orderFormContext.addItem({ variables }).then(
@@ -123,7 +124,7 @@ BuyButton.propTypes = {
       /** Quantity of the product sku to be added to the cart */
       quantity: PropTypes.number.isRequired,
       /** Which seller is being referenced by the button */
-      seller: PropTypes.number.isRequired,
+      seller: PropTypes.string.isRequired,
     })
   ),
   /** Context used to call the add to cart mutation and retrieve the orderFormId **/
