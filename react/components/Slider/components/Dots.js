@@ -7,10 +7,10 @@ import PropTypes from 'prop-types'
  */
 export default class Dots extends Component {
   render() {
-    const { className, style, dots, cssClass } = this.props
+    const { className, style, dots, cssClass, dotsClasses } = this.props
 
     return (
-      <div className={`${className} ${cssClass}`}>
+      <div className={`${className} ${cssClass} ${dotsClasses}`}>
         <ul className="ma0 pa0" style={{ ...style }}>
           {dots}
         </ul>
