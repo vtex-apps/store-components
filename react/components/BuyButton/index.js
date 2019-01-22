@@ -124,7 +124,10 @@ BuyButton.propTypes = {
       /** Quantity of the product sku to be added to the cart */
       quantity: PropTypes.number.isRequired,
       /** Which seller is being referenced by the button */
-      seller: PropTypes.string.isRequired,
+      seller: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]).isRequired,
     })
   ),
   /** Context used to call the add to cart mutation and retrieve the orderFormId **/
