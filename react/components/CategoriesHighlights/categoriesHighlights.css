@@ -37,7 +37,7 @@
   width: 600px;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 800px) {
+@media only screen and (min-width: 20em) and (max-width: 50em) {
   :global(.vtex-carousel) + .squared {
     top: -50px;
   }
@@ -59,7 +59,7 @@
   }
 }
 
-@media only screen and (min-width: 800px) and (max-width: 1024px) {
+@media only screen and (min-width: 50em) and (max-width: 64em) {
   :global(.vtex-carousel) + .squared,
   :global(.vtex-carousel) + .rectangular {
     top: -70px;
