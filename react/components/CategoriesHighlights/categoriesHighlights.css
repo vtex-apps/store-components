@@ -1,0 +1,88 @@
+.squared:only-child,
+.rectangular:only-child {
+  display: none;
+}
+
+:global(.vtex-carousel) + .squared,
+:global(.vtex-carousel) + .rectangular {
+  top: -90px;
+}
+
+.squaredCard,
+.rectangularCard {
+  background: rgba(61, 61, 61, 0.8);
+  margin: 2.5px;
+  height: 300px;
+}
+
+.squaredCard {
+  width: 300px;
+}
+
+.rectangularCard {
+  width: 600px;
+}
+
+.squaredCard img,
+.rectangularCard img {
+  object-fit: cover;
+  height: 300px;
+}
+
+.squaredCard img {
+  width: 300px;
+}
+
+.rectangularCard img {
+  width: 600px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 800px) {
+  :global(.vtex-carousel) + .squared {
+    top: -50px;
+  }
+
+  :global(.vtex-carousel) + .rectangular {
+    top: 0px;
+  }
+
+  .squaredCard,
+  .squaredCard img {
+    height: 150px;
+    width: 150px;
+  }
+
+  .rectangularCard,
+  .rectangularCard img {
+    height: 200px;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1024px) {
+  :global(.vtex-carousel) + .squared,
+  :global(.vtex-carousel) + .rectangular {
+    top: -70px;
+  }
+
+  .squaredCard,
+  .rectangularCard {
+    margin: 0px;
+    height: 200px;
+  }
+
+  .squaredCard,
+  .squaredCard img {
+    width: 200px;
+  }
+
+  .rectangularCard,
+  .rectangularCard img {
+    width: 400px;
+  }
+
+  .squaredCard img,
+  .rectangularCard img {
+    height: 200px;
+  }
+}

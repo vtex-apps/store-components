@@ -1,4 +1,4 @@
-import './global.css'
+import categoriesHighlights from './categoriesHighlights.css'
 
 import PropTypes from 'prop-types'
 import { range, values } from 'ramda'
@@ -135,7 +135,7 @@ class CategoriesHighlights extends Component {
     })
 
     return (
-      <div className={`vtex-categories-highlighted-${cardShape} relative`}>
+      <div className={`${categoriesHighlights.cardShape} relative`}>
         <div className="flex flex-row flex-wrap items-center justify-center">
           {range(0, quantityOfItems / ITEMS_PER_ROW).map(indexRow => (
             <div
