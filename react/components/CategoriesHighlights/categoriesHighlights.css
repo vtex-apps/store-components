@@ -23,17 +23,17 @@
   width: 600px;
 }
 
-.squaredCard img,
-.rectangularCard img {
+.squaredCardImage,
+.rectangularCardImage {
   object-fit: cover;
   height: 300px;
 }
 
-.squaredCard img {
+.squaredCardImage {
   width: 300px;
 }
 
-.rectangularCard img {
+.rectangularCardImage {
   width: 600px;
 }
 
@@ -47,13 +47,13 @@
   }
 
   .squaredCard,
-  .squaredCard img {
+  .squaredCardImage {
     height: 150px;
     width: 150px;
   }
 
   .rectangularCard,
-  .rectangularCard img {
+  .rectangularCardImage {
     height: 200px;
     width: 100%;
   }
@@ -72,17 +72,17 @@
   }
 
   .squaredCard,
-  .squaredCard img {
+  .squaredCardImage {
     width: 200px;
   }
 
   .rectangularCard,
-  .rectangularCard img {
+  .rectangularCardImage {
     width: 400px;
   }
 
-  .squaredCard img,
-  .rectangularCard img {
+  .squaredCardImage,
+  .rectangularCardImage {
     height: 200px;
   }
 }

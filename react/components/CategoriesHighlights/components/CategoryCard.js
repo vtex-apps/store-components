@@ -33,13 +33,14 @@ class CategoryCard extends Component {
 
         <Link>
           {image ? (
-            <img src={image} alt={name} />
+            <img src={image} alt={name} className={`${categoriesHighlights[cardShape]}Image`}/>
           ) : (
               <img
                 src={
                   shape == SQUARED ? squaredPlaceholder : rectangularPlaceholder
                 }
                 alt=""
+                className={`${categoriesHighlights[cardShape]}Image`}
               />
             )}
         </Link>
