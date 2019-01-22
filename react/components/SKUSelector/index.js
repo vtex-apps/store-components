@@ -5,8 +5,6 @@ import SKUSelector from './components/SKUSelector'
 import { SKUSelectorContainerPropTypes } from './utils/proptypes'
 import { getMainVariationName, getVariationOptions, getMaxSkuPrice, parseSku } from './utils'
 
-import './global.css'
-
 /**
  * Display a list of SKU items of a product and its specifications.
  */

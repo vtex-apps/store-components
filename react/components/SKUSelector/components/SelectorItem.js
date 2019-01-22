@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { FormattedNumber } from 'react-intl'
 import classNames from 'classnames'
 
+import styles from '../styles.css'
+
 /**
  * Inherits the components that should be displayed inside the Selector component.
  */
@@ -22,14 +24,14 @@ export default class SelectorItem extends PureComponent {
     return (
       <div
         className={classNames(
-          'vtex-sku-selector__item relative di pointer flex items-center',
-          isImage && 'vtex-sku-selector__item-image'
+          `${styles.skuSelectorItem} relative di pointer flex items-center`,
+          isImage && `${styles.skuSelectorItemImage}`
         )}
         onClick={onClick}
       >
         <div
           className={classNames(
-            'absolute frame-around b--action-primary br3 bw1',
+            `absolute ${styles.frameAround} b--action-primary br3 bw1`,
             isSelected && 'ba'
           )}
         />
@@ -42,7 +44,7 @@ export default class SelectorItem extends PureComponent {
           <div
             className={classNames(
               'absolute absolute--fill',
-              isAvailable || 'diagonal-cross'
+              isAvailable || `${styles.diagonalCross}`
             )}
           />
           <div
@@ -52,7 +54,7 @@ export default class SelectorItem extends PureComponent {
           </div>
         </div>
         {discount > 0 && (
-          <span className="vtex-sku-selector__bagde b">
+          <span className={`${styles.skuSelectorBadge} b`}>
             <FormattedNumber value={discount} style="percent" />
           </span>
         )}

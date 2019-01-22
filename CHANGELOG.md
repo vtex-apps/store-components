@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Support to CSS modules in `ProductImages`.
+- Support to CSS modules in `SKUSelector`.
 
 ## [3.8.5] - 2019-01-25
 
