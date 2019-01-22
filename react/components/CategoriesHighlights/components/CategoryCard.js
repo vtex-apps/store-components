@@ -24,23 +24,22 @@ class CategoryCard extends Component {
 
   render() {
     const { name, image, shape } = this.props
-    const cardShape = shape + "Card"
 
     return (
       <div
-        className={`${categoriesHighlights[cardShape]} shadow-1`}>
+        className={`${categoriesHighlights[shape]}Card shadow-1`}>
         {/* TODO: Redirect to the page of the category specified by its name */}
 
         <Link>
           {image ? (
-            <img src={image} alt={name} className={`${categoriesHighlights[cardShape]}Image`}/>
+            <img src={image} alt={name} className={`${categoriesHighlights[shape]}CardImage`}/>
           ) : (
               <img
                 src={
                   shape == SQUARED ? squaredPlaceholder : rectangularPlaceholder
                 }
                 alt=""
-                className={`${categoriesHighlights[cardShape]}Image`}
+                className={`${categoriesHighlights[cardShape]}CardImage`}
               />
             )}
         </Link>
