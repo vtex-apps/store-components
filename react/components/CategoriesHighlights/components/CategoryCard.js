@@ -28,7 +28,7 @@ class CategoryCard extends Component {
 
     return (
       <div
-        className={`${categoriesHighlights.cardShape} shadow-1`}>
+        className={`${categoriesHighlights[cardShape]} shadow-1`}>
         {/* TODO: Redirect to the page of the category specified by its name */}
 
         <Link>

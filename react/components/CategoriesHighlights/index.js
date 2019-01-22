@@ -135,7 +135,7 @@ class CategoriesHighlights extends Component {
     })
 
     return (
-      <div className={`${categoriesHighlights.cardShape} relative`}>
+      <div className={`${categoriesHighlights[cardShape]} relative`}>
         <div className="flex flex-row flex-wrap items-center justify-center">
           {range(0, quantityOfItems / ITEMS_PER_ROW).map(indexRow => (
             <div
