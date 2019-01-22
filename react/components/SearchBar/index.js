@@ -62,7 +62,7 @@ class SearchBarContainer extends Component {
   }
 
   render() {
-    const { intl, compactMode } = this.props
+    const { intl, compactMode, hasIconLeft, iconClasses } = this.props
     const { shouldSearch, inputValue } = this.state
 
     const placeholder = intl.formatMessage({
@@ -84,6 +84,8 @@ class SearchBarContainer extends Component {
         onMakeSearch={this.handleMakeSearch}
         onInputChange={this.handleInputChange}
         compactMode={compactMode}
+        hasIconLeft={hasIconLeft}
+        iconClasses={iconClasses}
       />
     )
   }
@@ -98,6 +100,10 @@ SearchBarContainer.propTypes = {
   intl: intlShape.isRequired,
   /** Indentify when use the compact version of the component */
   compactMode: PropTypes.bool,
+  /** Identify if the search icon is on left or right position */
+  hasIconLeft: PropTypes.bool,
+  /** Custom classes for the search icon */
+  iconClasses: PropTypes.string
 }
 
 export default injectIntl(SearchBarContainer)

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import { Input, IconClose, IconSearch } from 'vtex.styleguide'
+import { Input, IconClose } from 'vtex.styleguide'
+import Icon from 'vtex.use-svg/Icon'
 
 import styles from '../styles.css'
 
@@ -26,15 +27,19 @@ export default class AutocompleteInput extends Component {
   }
 
   render() {
-    const { onGoToSearchPage, onClearInput, compactMode, value, ...restProps } = this.props
+    const { onGoToSearchPage, onClearInput, compactMode, value, hasIconLeft, iconClasses, ...restProps } = this.props
 
     const suffix = (
       <span className="flex items-center pointer" onClick={value ? onClearInput : undefined} >
         {value
           ? <IconClose className="pa0" size={20} />
-          : <IconSearch />
+          : !hasIconLeft && <Icon id="hpa-search" className={iconClasses} />
         }
       </span>
+    )
+
+    const prefix = (
+      <Icon id="hpa-search" className={iconClasses} />
     )
 
     const classContainer = classNames('w-100', {
@@ -48,6 +53,7 @@ export default class AutocompleteInput extends Component {
             ref={this.inputRef}
             size="large"
             value={value}
+            prefix={hasIconLeft && prefix}
             suffix={suffix}
             {...restProps} />
         </div>
@@ -76,4 +82,8 @@ AutocompleteInput.propTypes = {
   compactMode: PropTypes.bool,
   /** Clears the input */
   onClearInput: PropTypes.func,
+  /** Identify if the search icon is on left or right position */
+  hasIconLeft: PropTypes.bool,
+  /** Custom classes for the search icon */
+  iconClasses: PropTypes.string
 }
