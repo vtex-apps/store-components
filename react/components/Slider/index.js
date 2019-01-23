@@ -51,7 +51,7 @@ export default class SlickSlider extends Component {
 
     settings.nextArrow = settings.nextArrow || <Arrow customClasses={rightArrowClasses} cssClass={VTEXClasses.ARROW_RIGHT_CLASS} />
     settings.prevArrow = settings.prevArrow || <Arrow customClasses={leftArrowClasses} cssClass={VTEXClasses.ARROW_LEFT_CLASS} />
-    settings.appendDots = dots => <Dots dots={dots} dotsClasses={dotsClasses} cssClass={VTEXClasses.DOTS_CLASS} />
+    settings.appendDots = dots => <Dots dots={dots} customClass={dotsClasses} cssClass={VTEXClasses.DOTS_CLASS} />
 
     if (adaptToScreen) {
       settings.slidesToShow = itemsPerPage
