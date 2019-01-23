@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'debounce'
+import classNames from 'classnames'
 import Loader from './Loader.js'
 import { path } from 'ramda'
 import Icon from 'vtex.use-svg/Icon'
 import BlurredLoader from '../BlurredLoader'
 import Video from '../Video'
 
+import styles from './styles.css'
 import './global.css'
 
 const Swiper = window.navigator ? require('react-id-swiper').default : null
@@ -193,7 +195,7 @@ class Carousel extends Component {
           ? {
             prevEl: '.swiper-caret-prev',
             nextEl: '.swiper-caret-next',
-            disabledClass: 'c-disabled cursor-default',
+            disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
           }
           : {},
       thumbs: {
@@ -206,12 +208,12 @@ class Carousel extends Component {
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       renderNextButton: () => (
         <span className={`swiper-caret-next pl7 right-1 ${caretClassName}`}>
-          <Icon id="nav-angle--right" size={24} className="vtex__icon-caret-right" />
+          <Icon id="nav-angle--right" size={24} className={styles.carouselIconCaretRight} />
         </span>
       ),
       renderPrevButton: () => (
         <span className={`swiper-caret-prev pr7 left-1 ${caretClassName}`}>
-          <Icon id="nav-angle--left" size={24} className="vtex__icon-caret-left" />
+          <Icon id="nav-angle--left" size={24} className={styles.carouselIconCaretLeft} />
         </span>
       ),
       on: {
@@ -241,8 +243,10 @@ class Carousel extends Component {
     return (
       <div className={'relative overflow-hidden'}>
         <div
-          className={`w-20 gallery-thumbs bottom-0 top-0 left-0 absolute pr5 dn
-          ${slides.length > 1 ? 'db-ns' : ''}`}
+          className={classNames(
+            `w-20 ${styles.carouselGaleryThumbs} bottom-0 top-0 left-0 absolute pr5 dn`,
+            { 'db-ns': slides.length > 1 }
+          )}
         >
           <Swiper {...thumbnailParams}>
             {slides.map((slide, i) => (
@@ -252,14 +256,16 @@ class Carousel extends Component {
                   alt={slide.alt ? this.state.alt[i] : ''}
                   src={slide.thumbUrl || this.state.thumbUrl[i]}
                 />
-                <div className="absolute absolute--fill b--solid b--muted-2 bw1 thumb-border" />
+                <div className={`absolute absolute--fill b--solid b--muted-2 bw1 ${styles.carouselThumbBorder}`}  />
               </div>
             ))}
           </Swiper>
         </div>
         <div
-          className={`w-100 ${slides.length > 1
-            ? 'w-80-ns ml-20-ns' : ''} border-box gallery-cursor`}
+          className={classNames(
+            `w-100 border-box ${styles.carouselGaleryCursor}`, {
+            'w-80-ns ml-20-ns': slides.length > 1 
+          })}
         >
           <Swiper {...galleryParams}>
             {slides.map((slide, i) => (
