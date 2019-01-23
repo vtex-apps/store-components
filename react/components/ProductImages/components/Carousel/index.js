@@ -177,6 +177,7 @@ class Carousel extends Component {
       return <Loader slidesAmount={slides ? slides.length : 0} />
     }
 
+    const iconSize = 24
     const caretClassName =
       'pv7 absolute top-50 translate--50y z-2 pointer c-action-primary'
     const galleryParams = {
@@ -208,12 +209,12 @@ class Carousel extends Component {
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       renderNextButton: () => (
         <span className={`swiper-caret-next pl7 right-1 ${caretClassName}`}>
-          <Icon id="nav-angle--right" size={24} className={styles.carouselIconCaretRight} />
+          <Icon id="nav-angle--right" size={iconSize} className={styles.carouselIconCaretRight} />
         </span>
       ),
       renderPrevButton: () => (
         <span className={`swiper-caret-prev pr7 left-1 ${caretClassName}`}>
-          <Icon id="nav-angle--left" size={24} className={styles.carouselIconCaretLeft} />
+          <Icon id="nav-angle--left" size={iconSize} className={styles.carouselIconCaretLeft} />
         </span>
       ),
       on: {
