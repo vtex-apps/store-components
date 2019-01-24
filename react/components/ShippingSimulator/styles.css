@@ -9,3 +9,23 @@
 .shippingTableCell {}
 .shippingTableLabel {}
 .shippingTableRadioBtn {}
+
+.shippingContainer :global(.vtex-input) {
+  height: 100%;
+}
+
+.shippingContainer :global(.vtex-input input) {
+  padding: 10px 5px;
+  color: #4f4f4f;
+  border: 1px solid #e3e4e6;
+  border-radius: 2px;
+  height: 100%;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.shippingContainer :global(.vtex-button) {
+  border-radius: 2px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
