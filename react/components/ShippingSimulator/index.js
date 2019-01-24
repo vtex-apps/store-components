@@ -130,13 +130,14 @@ class ShippingSimulator extends Component {
     return (
       <Fragment>
         <form className={`${styles.shippingContainer} t-small c-on-base`}>
-          <label className={`${styles.shippingZipcodeLabel} c-muted-2 db t-small mb3`}>
+          <label className={`${styles.shippingZipcodeLabel} c-muted-2 db t-small mb3`} htmlFor="shipping-zipcode">
             {this.formatMessage('shipping.label')}
           </label>
           <div className="flex">
             <Input
               name="zipcode"
               type="text"
+              id="shipping-zipcode"
               onChange={this.handleChange}
               value={zipcodeValue}
             />
