@@ -36,10 +36,8 @@ export default class SearchBar extends Component {
         iconClasses={iconClasses}
       />
     )
-
-    const mainClasses = classNames(
-      `${styles.searchBarContainer}`
-    )
+    
+    const mainClasses = classNames(styles.searchBarContainer)
 
     return (
       <div className={mainClasses}>
