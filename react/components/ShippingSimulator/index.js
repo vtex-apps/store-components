@@ -8,7 +8,6 @@ import { Button, Input } from 'vtex.styleguide'
 import ShippingTable from './components/ShippingTable'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
 
-import './global.css'
 import styles from './styles.css'
 /**
  * Shipping simulator component
