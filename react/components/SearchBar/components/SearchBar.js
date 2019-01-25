@@ -20,7 +20,9 @@ export default class SearchBar extends Component {
       onClearInput,
       shouldSearch,
       inputValue,
-      compactMode
+      compactMode,
+      hasIconLeft, 
+      iconClasses,
     } = this.props
 
     const fallback = (
@@ -30,12 +32,12 @@ export default class SearchBar extends Component {
         onInputChange={onInputChange}
         onGoToSearchPage={onGoToSearchPage}
         inputValue={inputValue}
+        hasIconLeft={hasIconLeft}
+        iconClasses={iconClasses}
       />
     )
-
-    const mainClasses = classNames(
-      `${styles.searchBarContainer} w-100 ph5 ph0-ns pb5 pb0-ns`
-    )
+    
+    const mainClasses = classNames(styles.searchBarContainer)
 
     return (
       <div className={mainClasses}>
@@ -52,6 +54,8 @@ export default class SearchBar extends Component {
                   <AutocompleteInput
                     compactMode={compactMode}
                     onClearInput={onClearInput}
+                    hasIconLeft={hasIconLeft}
+                    iconClasses={iconClasses}
                     onGoToSearchPage={() => {
                       closeMenu()
                       onGoToSearchPage()
@@ -109,4 +113,8 @@ SearchBar.propTypes = {
   onClearInput: PropTypes.func.isRequired,
   /** Indentify when use the compact version of the component */
   compactMode: PropTypes.bool,
+  /** Identify if the search icon is on left or right position */
+  hasIconLeft: PropTypes.bool,
+  /** Custom classes for the search icon */
+  iconClasses: PropTypes.string 
 }
