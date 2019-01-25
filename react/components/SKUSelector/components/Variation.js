@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import SelectorItem from './SelectorItem'
 import { stripUrl, isColor } from '../utils'
 
+import styles from '../styles.css'
+
 export default class Variation extends Component {
   render() {
     const { variation, onSelectItem, maxSkuPrice, isSelected } = this.props
@@ -10,9 +12,9 @@ export default class Variation extends Component {
     const displayImage = isColor(variation.name)
 
     return (
-      <div className="vtex-sku-selector__container flex flex-column mb7">
-        <div className="vtex-sku-selector__name-container ma1">
-          <span className="vtex-sku-selector__name c-muted-2 db t-small overflow-hidden mb3">
+      <div className={`${styles.skuSelectorSubcontainer} flex flex-column mb7`}>
+        <div className={`${styles.skuSelectorNameContainer} ma1`}>
+          <span className={`${styles.skuSelectorName} c-muted-2 db t-small overflow-hidden mb3`}>
             {variation.name}
           </span>
           <div className="inline-flex flex-wrap ml2">

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { FormattedNumber } from 'react-intl'
 import classNames from 'classnames'
 
+import styles from '../styles.css'
+
 /**
  * Inherits the components that should be displayed inside the Selector component.
  */
@@ -22,37 +24,41 @@ export default class SelectorItem extends PureComponent {
     return (
       <div
         className={classNames(
-          'vtex-sku-selector__item relative di pointer flex items-center',
-          isImage && 'vtex-sku-selector__item-image'
+          `${styles.skuSelectorItem} relative di pointer flex items-center`, {
+            [styles.skuSelectorItemImage]: isImage
+          }
         )}
         onClick={onClick}
       >
         <div
           className={classNames(
-            'absolute frame-around b--action-primary br3 bw1',
-            isSelected && 'ba'
+            `absolute ${styles.frameAround} b--action-primary br3 bw1`, {
+              'ba': isSelected
+            }
           )}
         />
         <div
           className={classNames(
-            'w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden',
-            isSelected || 'hover-b--muted-2'
+            'w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden', {
+              'hover-b--muted-2': !isSelected
+            }
           )}
         >
           <div
             className={classNames(
-              'absolute absolute--fill',
-              isAvailable || 'diagonal-cross'
+              'absolute absolute--fill', {
+                [styles.diagonalCross]: !isAvailable
+              }
             )}
           />
           <div
-            className={classNames(isImage || 'c-on-base center pl5 pr5 z-1')}
+            className={classNames({ 'c-on-base center pl5 pr5 z-1': !isImage })}
           >
             {children}
           </div>
         </div>
         {discount > 0 && (
-          <span className="vtex-sku-selector__bagde b">
+          <span className={`${styles.skuSelectorBadge} b`}>
             <FormattedNumber value={discount} style="percent" />
           </span>
         )}

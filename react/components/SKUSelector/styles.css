@@ -1,22 +1,30 @@
-.vtex-sku-selector__item {
+/**
+*   SKU Selector CSS Module
+*/
+.skuSelectorContainer {}
+.skuSelectorSubcontainer {}
+.skuSelectorName {}
+.skuSelectorNameContainer {}
+
+.skuSelectorItem {
   font-size: 90%;
   margin-bottom: 5px;
   margin-right: 10px;
   height: 36px;
 }
 
-.vtex-sku-selector__item-image {
+.skuSelectorItemImage {
   padding: 0;
   height: 40px;
   width: 40px;
 }
 
-.vtex-sku-selector__item p {
+.skuSelectorItem p {
   margin: 0;
   padding-top: 10px;
 }
 
-.vtex-sku-selector__bagde {
+.skuSelectorBagde {
   font-size: .71429rem;
   background-color: #ff4136;
   border-radius: 50%;
@@ -31,18 +39,18 @@
   padding: 3px;
 }
 
-.diagonal-cross {
+.diagonalCross {
   background-image: linear-gradient(
-      to top right,
-      transparent 44%,
-      rgba(0, 0, 0, 0.3) 48%,
-      currentColor 48%,
-      currentColor 52%,
-      transparent 52%
+    to top right,
+    transparent 44%,
+    rgba(0, 0, 0, 0.3) 48%,
+    currentColor 48%,
+    currentColor 52%,
+    transparent 52%
   );
 }
 
-.frame-around {
+.frameAround {
   bottom: -0.25rem;
   top: -0.25rem;
   left: -0.25rem;
