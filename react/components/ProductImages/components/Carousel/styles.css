@@ -1,0 +1,26 @@
+/**
+*   Carousel CSS Module
+*/
+.carouselGaleryCursor {
+  cursor: url('./cursor.svg') 8 8, default;
+}
+
+.carouselGaleryThumbs :global(.swiper-slide) {
+  height: auto;
+}
+
+.carouselGaleryThumbs :global(.swiper-slide):not(:global(.swiper-slide-thumb-active)) .carouselThumbBorder {
+  border-width: 0px;
+}
+
+.carouselIconCaretRight,
+.carouselIconCaretLeft {
+  stroke: white;
+  stroke-width: 0.5px;
+  -webkit-filter: drop-shadow( 0px 1px 1px #CACBCC );
+  filter: drop-shadow( 0px 1px 1px #CACBCC );
+}
+
+.carouselCursorDefault:hover{
+  cursor: default;
+}
