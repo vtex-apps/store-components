@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.10.0] - 2019-01-25
+### Changed
+- Emit `addToCart` event from `BuyButton`.
+
 ## [3.9.2] - 2019-01-25
 ### Fixed
 - Incorrect click area on product summary.

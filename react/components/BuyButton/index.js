@@ -4,6 +4,7 @@ import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
 import { compose } from 'ramda'
+import { Pixel } from 'vtex.pixel-manager/PixelContext'
 
 import {
   contextPropTypes,
@@ -34,19 +35,17 @@ export class BuyButton extends Component {
     timeOut: null,
   };
 
-  translateMessage = id => this.props.intl.formatMessage({ id: id });
+  translateMessage = id => this.props.intl.formatMessage({ id: id })
 
   toastMessage = success => {
     const message = success
       ? this.translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
       : this.translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
     this.props.showToast({ message })
-  };
+  }
 
-  handleAddToCart = async e => {
-    e.preventDefault()
-    e.stopPropagation()
-    const { skuItems, isOneClickBuy, orderFormContext } = this.props
+  handleAddToCart = async () => {
+    const { skuItems, isOneClickBuy, orderFormContext, push } = this.props
     this.setState({ isAddingToCart: true })
 
     const variables = {
@@ -65,6 +64,11 @@ export class BuyButton extends Component {
 
     if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
 
+    push({
+      event: 'addToCart',
+      items: skuItems,
+    })
+
     await orderFormContext.addItem({ variables }).then(
       mutationRes => {
         const { items } = mutationRes.data.addItem
@@ -80,7 +84,7 @@ export class BuyButton extends Component {
       }
     )
     this.setState({ isAddingToCart: false })
-  };
+  }
 
   render() {
     const { children, skuItems, available, large } = this.props
@@ -120,7 +124,14 @@ BuyButton.propTypes = {
       /** Quantity of the product sku to be added to the cart */
       quantity: PropTypes.number.isRequired,
       /** Which seller is being referenced by the button */
-      seller: PropTypes.number.isRequired,
+      seller: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]).isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      variant: PropTypes.string,
+      brand: PropTypes.string.isRequired,
     })
   ),
   /** Context used to call the add to cart mutation and retrieve the orderFormId **/
@@ -139,4 +150,9 @@ BuyButton.propTypes = {
   showToast: PropTypes.func.isRequired,
 }
 
-export default compose(withToast, orderFormConsumer, injectIntl)(BuyButton)
+export default compose(
+  withToast,
+  orderFormConsumer,
+  injectIntl,
+  Pixel,
+)(BuyButton)
