@@ -3,6 +3,13 @@
 ## Description
 Storecomponents is a collection of components that can be used to create/extend others VTEX apps.
 
+## Release schedule
+
+| Release  | Status              | Initial Release | Maintenance LTS Start | End-of-life | Dreamstore Compatibility
+| :--:     | :---:               |  :---:          | :---:                 | :---:       | :---: 
+| [2.x]    | **Maintenance LTS** |  2018-10-02     | 2018-12-01            | March 2019  | 1.x
+| [3.x]    | **Current Release** |  2018-11-29     |                       |             | 2.x
+
 ### Travis CI
 
 [![Build Status](https://travis-ci.org/vtex-apps/store-components.svg?branch=master)](https://travis-ci.org/vtex-apps/store-components)
