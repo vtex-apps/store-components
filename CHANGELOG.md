@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.10.2] - 2019-01-28
+### Changed
+- Support to CSS modules in `CategoriesHighlights`.
+
 ## [3.10.1] - 2019-01-28
 ### Added
 - Props on `Slider` for custom classes.
