@@ -129,7 +129,7 @@ class Price extends Component {
 }
 
 Price.Loader = (loaderProps = {}) => (
-  <div className={classNames(productPrice.priceContainer, productPrice.priceContainerLoader, loaderProps.loaderClass)}>
+  <div className={classNames(productPrice.priceContainer, productPrice.priceLoaderContainer, loaderProps.loaderClass)}>
     <ContentLoader
       style={{
         width: '100%',
