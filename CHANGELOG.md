@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.10.1] - 2019-01-28
+### Added
+- Props on `Slider` for custom classes.
+
 ## [3.10.0] - 2019-01-25
 ### Changed
 - Emit `addToCart` event from `BuyButton`.

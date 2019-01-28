@@ -17,3 +17,8 @@
 .slick-next {
     right: 0 !important;
 }
+
+.slick-dots {
+    position: inherit !important;
+}
+
