@@ -48,7 +48,7 @@ class ProductName extends Component {
   }
 
   static Loader = (loaderProps = {}) => (
-    <div className={productName.productNameContainer, productName.productNameLoader, loaderProps.className}>
+    <div className={classNames(productName.productNameContainer, productName.productNameLoader, loaderProps.className)}>
       <ContentLoader
         style={{
           width: '100%',
