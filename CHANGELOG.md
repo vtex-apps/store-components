@@ -6,8 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.11.0] - 2019-01-28
 ### Changed
 - Bump messages builder to `1.x`. 
+
+### Fixed
+- Fix typo on added to cart message in english
+
 ## [3.10.3] - 2019-01-28
 ### Changed
 - Support to CSS Modules in `ProductPrice`.
