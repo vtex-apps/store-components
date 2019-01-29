@@ -47,7 +47,7 @@ export default class Installments extends Component {
     }
 
     const noInterestRateInstallments = installments.filter(
-      installment => !installment.InterestRate
+      installment => !installment.InterestRate && installment.NumberOfInstallments > 1
     )
 
     /*
