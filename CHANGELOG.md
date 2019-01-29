@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.11.1] - 2019-01-29
+### Fixed
+- Show installments with fee when the biggest with free is 1.
+
 ## [3.11.0] - 2019-01-28
 ### Changed
-- Bump messages builder to `1.x`. 
+- Bump messages builder to `1.x`.
 
 ### Fixed
 - Fix typo on added to cart message in english
@@ -108,7 +112,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.5.3] - 2019-01-10
 ### Changed
-- Change the syntax of routes `/` to `.`. 
+- Change the syntax of routes `/` to `.`.
 
 ## [3.5.2] - 2019-01-09
 ### Changed
