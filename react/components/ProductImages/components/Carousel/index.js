@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'debounce'
 import classNames from 'classnames'
-import Loader from './Loader.js'
 import { path } from 'ramda'
-import Icon from 'vtex.use-svg/Icon'
+
+import { IconCaret } from 'vtex.dreamstore-icons'
+
 import BlurredLoader from '../BlurredLoader'
+import Loader from './Loader.js'
 import Video from '../Video'
 
 import styles from './styles.css'
@@ -75,7 +77,7 @@ class Carousel extends Component {
 
   linkThumb = () => {
     const _this = this
-    return function() {
+    return function () {
       this.visibleSlidesIndexes || (this.visibleSlidesIndexes = []) // Swiper bug fix
       _this.rebuildGalleryOnUpdate = true
       _this.setState({ thumbSwiper: this })
@@ -84,14 +86,14 @@ class Carousel extends Component {
 
   linkGallery = () => {
     const _this = this
-    return function() {
+    return function () {
       _this.setState({ gallerySwiper: this })
     }
   };
 
   onSlideChange = () => {
     const _this = this
-    return function() {
+    return function () {
       const { activeIndex } = this
       _this.setState({ activeIndex })
     }
@@ -188,7 +190,7 @@ class Carousel extends Component {
             el: '.swiper-pagination',
             clickable: true,
             bulletActiveClass:
-                'c-action-primary swiper-pagination-bullet-active',
+              'c-action-primary swiper-pagination-bullet-active',
           }
           : {},
       navigation:
@@ -209,12 +211,12 @@ class Carousel extends Component {
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       renderNextButton: () => (
         <span className={`swiper-caret-next pl7 right-1 ${caretClassName}`}>
-          <Icon id="nav-angle--right" size={iconSize} className={styles.carouselIconCaretRight} />
+          <IconCaret orientation="right" size={iconSize} className={styles.carouselIconCaretRight} />
         </span>
       ),
       renderPrevButton: () => (
         <span className={`swiper-caret-prev pr7 left-1 ${caretClassName}`}>
-          <Icon id="nav-angle--left" size={iconSize} className={styles.carouselIconCaretLeft} />
+          <IconCaret orientation="left" size={iconSize} className={styles.carouselIconCaretLeft} />
         </span>
       ),
       on: {
@@ -257,7 +259,7 @@ class Carousel extends Component {
                   alt={slide.alt ? this.state.alt[i] : ''}
                   src={slide.thumbUrl || this.state.thumbUrl[i]}
                 />
-                <div className={`absolute absolute--fill b--solid b--muted-2 bw1 ${styles.carouselThumbBorder}`}  />
+                <div className={`absolute absolute--fill b--solid b--muted-2 bw1 ${styles.carouselThumbBorder}`} />
               </div>
             ))}
           </Swiper>
@@ -265,8 +267,8 @@ class Carousel extends Component {
         <div
           className={classNames(
             `w-100 border-box ${styles.carouselGaleryCursor}`, {
-            'w-80-ns ml-20-ns': slides.length > 1 
-          })}
+              'w-80-ns ml-20-ns': slides.length > 1
+            })}
         >
           <Swiper {...galleryParams}>
             {slides.map((slide, i) => (
