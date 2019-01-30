@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-import { Input, IconClose } from 'vtex.styleguide'
-import Icon from 'vtex.use-svg/Icon'
+import { Input } from 'vtex.styleguide'
+import { IconClose, IconSearch } from 'vtex.dreamstore-icons'
 
 import styles from '../styles.css'
 
@@ -33,13 +33,13 @@ export default class AutocompleteInput extends Component {
       <span className="flex items-center pointer" onClick={value && onClearInput} >
         {value
           ? <IconClose className="pa0" size={20} />
-          : !hasIconLeft && <Icon id="hpa-search" className={iconClasses} />
+          : !hasIconLeft && <IconSearch className={iconClasses} />
         }
       </span>
     )
 
     const prefix = (
-      <Icon id="hpa-search" className={iconClasses} />
+      <IconSearch className={iconClasses} />
     )
 
     const classContainer = classNames('w-100', {
