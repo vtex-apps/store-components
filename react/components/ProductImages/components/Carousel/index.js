@@ -15,44 +15,36 @@ import './global.css'
 
 const Swiper = window.navigator ? require('react-id-swiper').default : null
 
-const initialState = {
-  Swiper: null,
-  loaded: [],
-  thumbSwiper: null,
-  gallerySwiper: null,
-  thumbUrl: [],
-  alt: [],
-  thumbsLoaded: false,
-  activeIndex: 0,
-}
-
 class Carousel extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = initialState
-    this.setInitialVariablesState()
+  state = {
+    Swiper: null,
+    loaded: [],
+    thumbSwiper: null,
+    gallerySwiper: null,
+    thumbUrl: [],
+    alt: [],
+    thumbsLoaded: false,
+    activeIndex: 0,
   }
 
   setInitialVariablesState() {
-    const slides = this.props.slides
+    const slides = this.props.slides || []
 
     this.isVideo = []
     this.rebuildGalleryOnUpdate = false
     this.thumbLoadCount = 0
 
-    slides &&
-      slides.forEach((slide, i) => {
-        if (slide.type === 'video') {
-          this.isVideo[i] = true
-          Video.getThumbUrl(slide.src, slide.thumbWidth).then(this.getThumb)
-        } else this.getThumb(slide.thumbUrl)
-      })
+    slides.forEach((slide, i) => {
+      if (slide.type === 'video') {
+        this.isVideo[i] = true
+        Video.getThumbUrl(slide.src, slide.thumbWidth).then(this.getThumb)
+      } else this.getThumb(slide.thumbUrl)
+    })
   }
 
   debouncedRebuildOnUpdate = debounce(() => {
     this.state.thumbSwiper && this.state.thumbSwiper.update()
-  }, 500);
+  }, 500)
 
   getThumb = thumbUrl => {
     if (!window.navigator) return // Image object doesn't exist when it's being rendered in the server side
@@ -65,10 +57,12 @@ class Carousel extends Component {
       }
     }
     image.src = thumbUrl
-  };
+  }
 
   componentDidMount() {
     window.addEventListener('resize', this.debouncedRebuildOnUpdate)
+
+    this.setInitialVariablesState()
   }
 
   componentWillUnmount() {
@@ -77,27 +71,27 @@ class Carousel extends Component {
 
   linkThumb = () => {
     const _this = this
-    return function () {
+    return function() {
       this.visibleSlidesIndexes || (this.visibleSlidesIndexes = []) // Swiper bug fix
       _this.rebuildGalleryOnUpdate = true
       _this.setState({ thumbSwiper: this })
     }
-  };
+  }
 
   linkGallery = () => {
     const _this = this
-    return function () {
+    return function() {
       _this.setState({ gallerySwiper: this })
     }
-  };
+  }
 
   onSlideChange = () => {
     const _this = this
-    return function () {
+    return function() {
       const { activeIndex } = this
       _this.setState({ activeIndex })
     }
-  };
+  }
 
   setVideoThumb = i => (url, title) => {
     const thumbUrl = { ...this.state.thumbUrl }
@@ -107,13 +101,13 @@ class Carousel extends Component {
     alt[i] = title
 
     this.setState({ thumbUrl, alt })
-  };
+  }
 
   onImageLoad = i => () => {
     const loaded = { ...this.state.loaded }
     loaded[i] = true
     this.setState({ loaded })
-  };
+  }
 
   renderSlide = (slide, i) => {
     const { loaded } = this.state
@@ -146,7 +140,7 @@ class Carousel extends Component {
       default:
         return null
     }
-  };
+  }
 
   componentDidUpdate(prevProps) {
     const { gallerySwiper, loaded, activeIndex } = this.state
@@ -187,19 +181,19 @@ class Carousel extends Component {
       pagination:
         slides.length > 1
           ? {
-            el: '.swiper-pagination',
-            clickable: true,
-            bulletActiveClass:
-              'c-action-primary swiper-pagination-bullet-active',
-          }
+              el: '.swiper-pagination',
+              clickable: true,
+              bulletActiveClass:
+                'c-action-primary swiper-pagination-bullet-active',
+            }
           : {},
       navigation:
         slides.length > 1
           ? {
-            prevEl: '.swiper-caret-prev',
-            nextEl: '.swiper-caret-next',
-            disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
-          }
+              prevEl: '.swiper-caret-prev',
+              nextEl: '.swiper-caret-next',
+              disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
+            }
           : {},
       thumbs: {
         swiper: thumbSwiper,
@@ -211,12 +205,20 @@ class Carousel extends Component {
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       renderNextButton: () => (
         <span className={`swiper-caret-next pl7 right-1 ${caretClassName}`}>
-          <IconCaret orientation="right" size={iconSize} className={styles.carouselIconCaretRight} />
+          <IconCaret
+            orientation="right"
+            size={iconSize}
+            className={styles.carouselIconCaretRight}
+          />
         </span>
       ),
       renderPrevButton: () => (
         <span className={`swiper-caret-prev pr7 left-1 ${caretClassName}`}>
-          <IconCaret orientation="left" size={iconSize} className={styles.carouselIconCaretLeft} />
+          <IconCaret
+            orientation="left"
+            size={iconSize}
+            className={styles.carouselIconCaretLeft}
+          />
         </span>
       ),
       on: {
@@ -247,7 +249,9 @@ class Carousel extends Component {
       <div className={'relative overflow-hidden'}>
         <div
           className={classNames(
-            `w-20 ${styles.carouselGaleryThumbs} bottom-0 top-0 left-0 absolute pr5 dn`,
+            `w-20 ${
+              styles.carouselGaleryThumbs
+            } bottom-0 top-0 left-0 absolute pr5 dn`,
             { 'db-ns': slides.length > 1 }
           )}
         >
@@ -259,16 +263,22 @@ class Carousel extends Component {
                   alt={slide.alt ? this.state.alt[i] : ''}
                   src={slide.thumbUrl || this.state.thumbUrl[i]}
                 />
-                <div className={`absolute absolute--fill b--solid b--muted-2 bw1 ${styles.carouselThumbBorder}`} />
+                <div
+                  className={`absolute absolute--fill b--solid b--muted-2 bw1 ${
+                    styles.carouselThumbBorder
+                  }`}
+                />
               </div>
             ))}
           </Swiper>
         </div>
         <div
           className={classNames(
-            `w-100 border-box ${styles.carouselGaleryCursor}`, {
-              'w-80-ns ml-20-ns': slides.length > 1
-            })}
+            `w-100 border-box ${styles.carouselGaleryCursor}`,
+            {
+              'w-80-ns ml-20-ns': slides.length > 1,
+            }
+          )}
         >
           <Swiper {...galleryParams}>
             {slides.map((slide, i) => (
