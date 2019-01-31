@@ -6,12 +6,7 @@ import debounce from 'debounce'
 import Carousel from './components/Carousel'
 
 class ProductImages extends Component {
-  constructor(props) {
-    super(props)
-    this.slides = []
-  }
   componentDidMount() {
-    this.slides = this.getSlidesFromProps()
     window.addEventListener('resize', this.debouncedGetBestUrl)
   }
 
@@ -19,9 +14,9 @@ class ProductImages extends Component {
     window.removeEventListener('resize', this.debouncedGetBestUrl)
   }
 
-  debouncedGetBestUrl = debounce(this.forceUpdate(), 500)
+  debouncedGetBestUrl = debounce(this.forceUpdate, 500)
 
-  getBestUrlIndex = (thresholds) => {
+  getBestUrlIndex = thresholds => {
     const windowSize = window.innerWidth
 
     let bestUrlIndex = 0
@@ -32,13 +27,7 @@ class ProductImages extends Component {
     return bestUrlIndex
   }
 
-  componentDidUpdate(prevProps) {
-    const { images } = this.props
-    if (path([0, 'imageUrls', 0], images) !==
-       path([0, 'imageUrls', 0], prevProps.images)) { this.slides = this.getSlidesFromProps() }
-  }
-
-  getSlidesFromProps() {
+  get slides() {
     const { images } = this.props
 
     if (images.length === 0) return
@@ -58,7 +47,8 @@ class ProductImages extends Component {
     return (
       <div className="w-100">
         <Carousel slides={this.slides} />
-      </div>)
+      </div>
+    )
   }
 }
 
@@ -74,7 +64,7 @@ ProductImages.propTypes = {
       thumbnailUrl: PropTypes.string,
       /** Text that describes the image */
       imageText: PropTypes.string.isRequired,
-    })
+    }),
   ),
 }
 
