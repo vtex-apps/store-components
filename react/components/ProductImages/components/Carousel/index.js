@@ -15,17 +15,18 @@ import './global.css'
 
 const Swiper = window.navigator ? require('react-id-swiper').default : null
 
+const initialState = {
+  loaded: [],
+  thumbSwiper: null,
+  gallerySwiper: null,
+  thumbUrl: [],
+  alt: [],
+  thumbsLoaded: false,
+  activeIndex: 0,
+}
+
 class Carousel extends Component {
-  state = {
-    Swiper: null,
-    loaded: [],
-    thumbSwiper: null,
-    gallerySwiper: null,
-    thumbUrl: [],
-    alt: [],
-    thumbsLoaded: false,
-    activeIndex: 0,
-  }
+  state = initialState
 
   setInitialVariablesState() {
     const slides = this.props.slides || []
