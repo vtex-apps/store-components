@@ -18,12 +18,12 @@
 }
   
 .searchBarContainer input {
-    height: 2rem;
+    height: 2.5rem;
     color: #727273;
     border-radius: 0.0625rem;
 }
   
-.compactMode input{
+.compactMode input {
     border-top-style: none !important; 
     border-left-style: none !important; 
     border-right-style: none !important; 
