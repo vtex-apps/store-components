@@ -23,26 +23,24 @@ export const LOADER_TYPES = {
 }
 
 class BlurredLoader extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      loadState: LOAD_STATES.LOADING,
-      realUrlIndex: null,
-    }
-    this.timers = {}
-    this.loadCounter = 0
+  state = {
+    loadState: LOAD_STATES.LOADING,
+    realUrlIndex: null,
   }
+  timers = {}
+  loadCounter = 0
 
-  generateImage = (urlIndex) => {
+  generateImage = urlIndex => {
     const { realUrls } = this.props
     const { realUrlIndex } = this.state
     const bestUrlIndex = urlIndex || this.props.bestUrlIndex
 
-    if (realUrlIndex && bestUrlIndex <= realUrlIndex) { return }
+    if (realUrlIndex && bestUrlIndex <= realUrlIndex) {
+      return
+    }
 
     const hdImageLoader = new Image()
-    hdImageLoader.src = realUrls[ bestUrlIndex ]
+    hdImageLoader.src = realUrls[bestUrlIndex]
 
     hdImageLoader.onerror = () => {
       let { realUrlIndex } = this.state
@@ -69,7 +67,9 @@ class BlurredLoader extends React.Component {
       }, 1000)
       this.timers[timer] = true
 
-      if (this.props.bestUrlIndex > bestUrlIndex) { this.generateImage() }
+      if (this.props.bestUrlIndex > bestUrlIndex) {
+        this.generateImage()
+      }
     }
   }
 
@@ -79,20 +79,25 @@ class BlurredLoader extends React.Component {
     switch (loaderType) {
       case LOADER_TYPES.LINEAR:
         return (
-          <div className={`w-100 top-0 z-2 absolute transition-opacity-1 ${
-            loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
-          }`}>
+          <div
+            className={`w-100 top-0 z-2 absolute transition-opacity-1 ${
+              loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
+            }`}
+          >
             <LinearProgressWithStyle className="c-action-primary" />
-          </div>)
+          </div>
+        )
       case LOADER_TYPES.SPINNER:
         return (
           <div
             className={`absolute z-2 center-all left-0 right-0 top-0 bottom-0 transition-opacity-1 ${
               loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
             }`}
-            style={{ height: 40, width: 40 }}>
+            style={{ height: 40, width: 40 }}
+          >
             <Spinner />
-          </div>)
+          </div>
+        )
       default:
         return null
     }
@@ -119,28 +124,31 @@ class BlurredLoader extends React.Component {
           className={`w-100 ${loaded ? 'db' : 'dn'}`}
           alt={alt}
           src={realUrls[realUrlIndex]}
-          minRatio={imageMinRatio} />
-        {!loaded &&
-        <div className="relative w-100 db">
-          <Loader />
-          <ImageResizer
-            alt={alt}
-            src={loaderUrl}
-            minRatio={imageMinRatio}
-            className={`w-100 blur-30 transition-opacity-1 db z-2 ${
-              loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
-            } ${className}`}
-          />
-          <ImageResizer
-            alt=""
-            src={realUrls[realUrlIndex]}
-            minRatio={imageMinRatio}
-            className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 transition-opacity-1 db ${
-              loadState === LOAD_STATES.LOADING ? 'o-0' : 'o-100'
-            }`}
-          />
-        </div>}
-      </React.Fragment>)
+          minRatio={imageMinRatio}
+        />
+        {!loaded && (
+          <div className="relative w-100 db">
+            <Loader />
+            <ImageResizer
+              alt={alt}
+              src={loaderUrl}
+              minRatio={imageMinRatio}
+              className={`w-100 blur-30 transition-opacity-1 db z-2 ${
+                loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
+              } ${className}`}
+            />
+            <ImageResizer
+              alt=""
+              src={realUrls[realUrlIndex]}
+              minRatio={imageMinRatio}
+              className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 transition-opacity-1 db ${
+                loadState === LOAD_STATES.LOADING ? 'o-0' : 'o-100'
+              }`}
+            />
+          </div>
+        )}
+      </React.Fragment>
+    )
   }
 }
 
@@ -160,4 +168,3 @@ BlurredLoader.defaultProps = {
 }
 
 export default BlurredLoader
-

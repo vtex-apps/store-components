@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.12.1] - 2019-01-31
+### Changed
+- Move slides property to getter on `ProductImages` component.
+
+### Fixed
+- Fix `forceUpdate` being called on instantiation of the `ProductImage` component.
+
 ## [3.12.0] - 2019-01-30
 ### Changed
 - Use icons from `vtex.dreamstore-icons`.
