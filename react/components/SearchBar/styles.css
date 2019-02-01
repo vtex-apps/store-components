@@ -1,5 +1,5 @@
 .resultsItemImage {
-    width: 50px;
+    width: 3.125rem;
   }
   
 .resultsList {
@@ -18,21 +18,21 @@
 }
   
 .searchBarContainer input {
-    height: 32px;
+    height: 2rem;
     color: #727273;
-    border-radius: 1px;
+    border-radius: 0.0625rem;
 }
   
 .compactMode input{
     border-top-style: none !important; 
     border-left-style: none !important; 
     border-right-style: none !important; 
-    border-bottom: 2px solid !important;
+    border-bottom: 0.125rem solid !important;
 }
   
 .paddingInput input {
     -webkit-appearance: none;
-    padding-left: 40px !important;
+    padding-left: 2.5rem !important;
 }
   
 .searchBarContainer .resultsList {

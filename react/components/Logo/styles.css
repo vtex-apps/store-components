@@ -1,21 +1,21 @@
 .sizeDesktop {
-  width: 146px;
-  height: 52px;
+  width: 9.125rem;
+  height: 3.25rem;
 }
 
 .sizeMobile {
-  width: 90px;
-  height: 40px;
+  width: 5.625rem;
+  height: 2.5rem;
 }
 
 .maxSizeDesktop {
-  max-width: 146px;
-  max-height: 52px;
+  max-width: 9.125rem;
+  max-height: 3.25rem;
 }
 
 .maxSizeMobile {
-  max-width: 90px;
-  max-height: 40px;
+  max-width: 5.625rem;
+  max-height: 2.5rem;
 }
 
 .logoContainer {}
