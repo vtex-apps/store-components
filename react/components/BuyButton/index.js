@@ -1,6 +1,8 @@
 import find from 'lodash/find'
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
 import { compose, pick } from 'ramda'
@@ -27,13 +29,13 @@ export class BuyButton extends Component {
   static defaultProps = {
     isOneClickBuy: false,
     available: true,
-  };
+  }
 
   state = {
     isLoading: false,
     isAddingToCart: false,
     timeOut: null,
-  };
+  }
 
   translateMessage = id => this.props.intl.formatMessage({ id: id })
 
@@ -125,10 +127,8 @@ BuyButton.propTypes = {
       /** Quantity of the product sku to be added to the cart */
       quantity: PropTypes.number.isRequired,
       /** Which seller is being referenced by the button */
-      seller: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]).isRequired,
+      seller: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
       name: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       variant: PropTypes.string,
@@ -161,9 +161,34 @@ BuyButton.propTypes = {
   onAddFinish: PropTypes.func,
 }
 
+const withMutation = graphql(
+  gql`
+    type Item {
+      detailUrl: String
+      id: String
+      imageUrl: String
+      listPrice: Float
+      name: String
+      quantity: Int
+      sellingPrice: Float
+      skuName: String
+    }
+
+    mutation addToCart($item: Item) {
+      addToCart(item: $item) @client
+    }
+  `,
+  {
+    props: ({ mutate }) => ({
+      addToCart: item => mutate({ variables: { item } }),
+    }),
+  }
+)
+
 export default compose(
+  withMutation,
   withToast,
   orderFormConsumer,
   injectIntl,
-  Pixel,
+  Pixel
 )(BuyButton)
