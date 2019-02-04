@@ -101,7 +101,7 @@ class ProductName extends Component {
     }
 
     return (
-      <Wrapper className={productName.productNameContainer}>
+      <Wrapper className={classNames('mv0', productName.productNameContainer, className)}>
         <span className={classNames(productName.productBrand, brandNameClass)}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
