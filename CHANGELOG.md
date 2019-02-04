@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.12.4] - 2019-02-04
+### Fixed
+- Error of not defined variable in the `Carousel` component.
+
 ## [3.12.3] - 2019-02-04
 ### Fixed
 - Fix `ProductName` container css class not being used.
