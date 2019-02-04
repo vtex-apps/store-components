@@ -5,13 +5,8 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
-import { compose, pick } from 'ramda'
-import { Pixel } from 'vtex.pixel-manager/PixelContext'
+import { compose } from 'ramda'
 
-import {
-  contextPropTypes,
-  orderFormConsumer,
-} from 'vtex.store-resources/OrderFormContext'
 import { Button, withToast } from 'vtex.styleguide'
 
 const CONSTANTS = {
@@ -47,44 +42,64 @@ export class BuyButton extends Component {
   }
 
   handleAddToCart = async () => {
-    const { skuItems, isOneClickBuy, orderFormContext, push, onAddStart, onAddFinish } = this.props
+    const {
+      addToCart,
+      skuItems,
+      isOneClickBuy,
+      onAddStart,
+      onAddFinish,
+    } = this.props
     this.setState({ isAddingToCart: true })
     onAddStart && onAddStart()
 
-    const variables = {
-      items: skuItems.map(skuItem => {
-        const { skuId } = skuItem
-        return {
-          id: parseInt(skuId),
-          index: 1,
-          ...pick(['quantity', 'seller', 'options'], skuItem),
-        }
-      }),
-    }
-
-    variables.orderFormId = orderFormContext.orderForm.orderFormId
-
     if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
 
-    push({
-      event: 'addToCart',
-      items: skuItems,
-    })
+    try {
+      const minicartItems = skuItems.map(skuItem => {
+        const {
+          skuId: id,
+          variant: skuName,
+          price: sellingPrice,
+          detailUrl,
+          imageUrl,
+          quantity,
+          seller,
+          name,
+          options,
+          listPrice,
+        } = skuItem
 
-    await orderFormContext.addItem({ variables }).then(
-      mutationRes => {
-        const { items } = mutationRes.data.addItem
-        const success = skuItems.map(skuItem =>
-          find(items, { id: skuItem.skuId })
-        )
+        return {
+          __typename: 'MinicartItem',
+          detailUrl,
+          id,
+          imageUrl,
+          listPrice,
+          name,
+          quantity,
+          sellingPrice,
+          skuName,
+          seller,
+          options,
+          index: 1,
+        }
+      })
 
-        orderFormContext.refetch()
-        this.toastMessage(success.length >= 1)
-      },
-      () => {
-        this.toastMessage(false)
-      }
-    )
+      const {
+        data: { addToCart: linkStateItems },
+      } = await addToCart(minicartItems)
+
+      const success = skuItems.map(skuItem =>
+        find(linkStateItems, { id: skuItem.skuId })
+      )
+
+      // TODO: Minicart should mutate the orderForm and push to Pixel
+      this.toastMessage(success.length >= 1)
+    } catch (err) {
+      console.error(err)
+      this.toastMessage(false)
+    }
+
     this.setState({ isAddingToCart: false })
     onAddFinish && onAddFinish()
   }
@@ -138,11 +153,9 @@ BuyButton.propTypes = {
         quantity: PropTypes.number.isRequired,
         assemblyId: PropTypes.string.isRequired,
         seller: PropTypes.string.isRequired,
-      }))
+      })),
     })
   ),
-  /** Context used to call the add to cart mutation and retrieve the orderFormId **/
-  orderFormContext: contextPropTypes,
   /** Component children that will be displayed inside of the button **/
   children: PropTypes.node.isRequired,
   /** Should redirect to checkout after adding to cart */
@@ -159,28 +172,19 @@ BuyButton.propTypes = {
   onAddStart: PropTypes.func,
   /** Function to be called on the end of add to cart event */
   onAddFinish: PropTypes.func,
+  /** Add to cart mutation */
+  addToCart: PropTypes.func.isRequired,
 }
 
 const withMutation = graphql(
   gql`
-    type Item {
-      detailUrl: String
-      id: String
-      imageUrl: String
-      listPrice: Float
-      name: String
-      quantity: Int
-      sellingPrice: Float
-      skuName: String
-    }
-
-    mutation addToCart($item: Item) {
-      addToCart(item: $item) @client
+    mutation addToCart($items: [MinicartItem]) {
+      addToCart(items: $items) @client
     }
   `,
   {
     props: ({ mutate }) => ({
-      addToCart: item => mutate({ variables: { item } }),
+      addToCart: items => mutate({ variables: { items } }),
     }),
   }
 )
@@ -188,7 +192,5 @@ const withMutation = graphql(
 export default compose(
   withMutation,
   withToast,
-  orderFormConsumer,
-  injectIntl,
-  Pixel
+  injectIntl
 )(BuyButton)
