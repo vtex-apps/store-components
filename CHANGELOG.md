@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.13.0] - 2019-02-05
+### Added
+- Declare interfaces for components used in `ProductDetail`.
+
 ## [3.12.4] - 2019-02-04
 ### Fixed
 - Error of not defined variable in the `Carousel` component.
