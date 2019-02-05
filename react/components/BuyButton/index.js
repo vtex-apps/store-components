@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
-import { compose } from 'ramda'
+import { compose, pick } from 'ramda'
 import { Pixel } from 'vtex.pixel-manager/PixelContext'
 
 import {
@@ -50,12 +50,11 @@ export class BuyButton extends Component {
 
     const variables = {
       items: skuItems.map(skuItem => {
-        const { skuId, quantity, seller } = skuItem
+        const { skuId } = skuItem
         return {
           id: parseInt(skuId),
           index: 1,
-          quantity,
-          seller,
+          ...pick(['quantity', 'seller', 'options'], skuItem),
         }
       }),
     }
@@ -128,10 +127,12 @@ BuyButton.propTypes = {
         PropTypes.string,
         PropTypes.number,
       ]).isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      variant: PropTypes.string,
-      brand: PropTypes.string.isRequired,
+      options: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        quantity: PropTypes.number.isRequired,
+        assemblyId: PropTypes.string.isRequired,
+        seller: PropTypes.string.isRequired,
+      }))
     })
   ),
   /** Context used to call the add to cart mutation and retrieve the orderFormId **/
