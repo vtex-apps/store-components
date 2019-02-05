@@ -4,5 +4,32 @@
   },
   "search-bar": {
     "component": "SearchBar"
+  },
+  "buy-button": {
+    "component": "BuyButton"
+  },
+  "product-name": {
+    "component": "ProductName"
+  },
+  "product-images": {
+    "component": "ProductImages"
+  },
+  "product-price": {
+    "component": "ProductPrice"
+  },
+  "product-description": {
+    "component": "ProductDescription"
+  },
+  "sku-selector": {
+    "component": "SkuSelector"
+  },
+  "shipping-simulator": {
+    "component": "ShippingSimulator"
+  },
+  "share": {
+    "component": "Share"
+  },
+  "availability-subscriber": {
+    "component": "AvailabilitySubscriber"
   }
 }
