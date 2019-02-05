@@ -127,6 +127,10 @@ BuyButton.propTypes = {
         PropTypes.string,
         PropTypes.number,
       ]).isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      variant: PropTypes.string,
+      brand: PropTypes.string.isRequired,
       options: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.string.isRequired,
         quantity: PropTypes.number.isRequired,
