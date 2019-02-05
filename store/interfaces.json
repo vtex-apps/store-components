@@ -21,7 +21,7 @@
     "component": "ProductDescription"
   },
   "sku-selector": {
-    "component": "SkuSelector"
+    "component": "SKUSelector"
   },
   "shipping-simulator": {
     "component": "ShippingSimulator"
