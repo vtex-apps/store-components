@@ -5,26 +5,35 @@ import { FormattedMessage } from 'react-intl'
 import ShippingTableRow from './ShippingTableRow'
 
 import styles from '../styles.css'
+
 export default class ShippingTable extends Component {
   static propTypes = {
     /** Shipping informations */
     shipping: PropTypes.shape({
-      logisticsInfo: PropTypes.arrayOf(PropTypes.shape({
-        itemIndex: PropTypes.string,
-        slas: PropTypes.arrayOf(PropTypes.shape({
-          id: PropTypes.string,
-          name: PropTypes.string,
-          price: PropTypes.number,
-          shippingEstimate: PropTypes.string,
-        })),
-      })),
+      logisticsInfo: PropTypes.arrayOf(
+        PropTypes.shape({
+          itemIndex: PropTypes.string,
+          slas: PropTypes.arrayOf(
+            PropTypes.shape({
+              id: PropTypes.string,
+              name: PropTypes.string,
+              price: PropTypes.number,
+              shippingEstimate: PropTypes.string,
+            })
+          ),
+        })
+      ),
     }),
   }
 
   render() {
     const { shipping } = this.props
 
-    if (!shipping || !shipping.logisticsInfo || shipping.logisticsInfo.length === 0) {
+    if (
+      !shipping ||
+      !shipping.logisticsInfo ||
+      shipping.logisticsInfo.length === 0
+    ) {
       return null
     }
 
@@ -37,15 +46,20 @@ export default class ShippingTable extends Component {
       return (
         <FormattedMessage id="shipping.empty-sla">
           {text => (
-            <span className={`${styles.shippingNoMessage} dib t-small mt4`}>{text}</span>
-          )
-          }
-        </FormattedMessage >
+            <span className={`${styles.shippingNoMessage} dib t-small mt4`}>
+              {text}
+            </span>
+          )}
+        </FormattedMessage>
       )
     }
 
     return (
-      <table className={`${styles.shippingTable} bt bb b--muted-4 c-muted-1 ph0 pv3 mt4 w-100`} >
+      <table
+        className={`${
+          styles.shippingTable
+        } bt bb b--muted-4 c-muted-1 ph0 pv3 mt4 w-100`}
+      >
         <tbody>
           {slaList.map(shipping => (
             <ShippingTableRow key={shipping.id} {...shipping} />
@@ -55,4 +69,3 @@ export default class ShippingTable extends Component {
     )
   }
 }
-

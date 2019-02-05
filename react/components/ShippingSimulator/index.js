@@ -9,6 +9,7 @@ import ShippingTable from './components/ShippingTable'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
 
 import styles from './styles.css'
+
 /**
  * Shipping simulator component
  *
@@ -36,7 +37,8 @@ class ShippingSimulator extends Component {
         width={500}
         height={40}
         preserveAspectRatio="xMinYMin meet"
-        {...loaderProps}>
+        {...loaderProps}
+      >
         <rect
           height="100%"
           width="7em"
@@ -93,16 +95,16 @@ class ShippingSimulator extends Component {
           postalCode: this.state.zipcodeValue,
           items: [
             {
-              quantity: '1',
+              quantity: 1,
               id: skuId,
-              seller,
+              seller: `${seller}`,
             },
           ],
         },
       })
       .then(result => {
         this.setState({
-          shipping: result.data.shipping,
+          shipping: result.data.simulation,
         })
       })
       .catch(error => {
@@ -129,7 +131,12 @@ class ShippingSimulator extends Component {
     return (
       <Fragment>
         <form className={`${styles.shippingContainer} t-small c-on-base`}>
-          <label className={`${styles.shippingZipcodeLabel} c-muted-2 db t-small mb3`} htmlFor="shipping-zipcode">
+          <label
+            className={`${
+              styles.shippingZipcodeLabel
+            } c-muted-2 db t-small mb3`}
+            htmlFor="shipping-zipcode"
+          >
             {this.formatMessage('shipping.label')}
           </label>
           <div className="flex">
@@ -146,7 +153,8 @@ class ShippingSimulator extends Component {
               disabled={zipcodeValue.length < 9 || zipcodeValue === prevZipcode}
               size="small"
               type="submit"
-              isLoading={loading}>
+              isLoading={loading}
+            >
               Ok
             </Button>
           </div>

@@ -1,5 +1,5 @@
-query getShippingEstimates($items: [ShippingItem], $postalCode: String, $country: String) {
-  shipping(items: $items, postalCode: $postalCode, country: $country) {
+query getShippingEstimates($items: [SimulationItem], $postalCode: String, $country: String) {
+  simulation(items: $items, postalCode: $postalCode, country: $country) {
     logisticsInfo {
       itemIndex
       slas {
