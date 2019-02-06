@@ -12,6 +12,8 @@ import {
 } from 'vtex.store-resources/OrderFormContext'
 import { Button, withToast } from 'vtex.styleguide'
 
+import buyButton from './styles.css'
+
 const CONSTANTS = {
   SUCCESS_MESSAGE_ID: 'buybutton.buy-success',
   ERROR_MESSAGE_ID: 'buybutton.add-failure',
@@ -91,7 +93,7 @@ export class BuyButton extends Component {
     const { isAddingToCart } = this.state
 
     return (
-      <Fragment>
+      <div className={buyButton.container}>
         {loading ? (
           <ContentLoader />
         ) : (
@@ -109,7 +111,7 @@ export class BuyButton extends Component {
             )}
           </Button>
         )}
-      </Fragment>
+      </div>
     )
   }
 }
