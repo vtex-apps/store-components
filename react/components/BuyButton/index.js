@@ -148,12 +148,14 @@ BuyButton.propTypes = {
       price: PropTypes.number.isRequired,
       variant: PropTypes.string,
       brand: PropTypes.string.isRequired,
-      options: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        quantity: PropTypes.number.isRequired,
-        assemblyId: PropTypes.string.isRequired,
-        seller: PropTypes.string.isRequired,
-      })),
+      options: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          quantity: PropTypes.number.isRequired,
+          assemblyId: PropTypes.string.isRequired,
+          seller: PropTypes.string.isRequired,
+        })
+      ),
     })
   ),
   /** Component children that will be displayed inside of the button **/
