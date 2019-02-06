@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { curry } from 'ramda'
 
 import Variation from './Variation'
 import { SKUSelectorPropTypes } from '../utils/proptypes'
@@ -10,18 +11,20 @@ export default class SKUSelector extends Component {
   render() {
     const { selectedId, onSelectSku, mainVariation, secondaryVariation, maxSkuPrice } = this.props
 
+    const onSkuSelected = curry(onSelectSku) 
+
     return (
       <div className={styles.skuSelectorContainer}>
         <Variation
           variation={mainVariation}
-          onSelectItem={onSelectSku}
+          onSelectItem={onSkuSelected(true)}
           isSelected={(sku) => { return sku[mainVariation.name] === mainVariation.value }}
           maxSkuPrice={maxSkuPrice}
         />
         {
           secondaryVariation.name && <Variation
             variation={secondaryVariation}
-            onSelectItem={onSelectSku}
+            onSelectItem={onSkuSelected(false)}
             isSelected={sku => sku.itemId === selectedId}
             maxSkuPrice={maxSkuPrice}
           />
