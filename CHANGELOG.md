@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.14.1] - 2019-02-06
+
+## [3.14.0] - 2019-02-06
+### Added
+- After switching secondary variations on a product, those changes won't be kept on `history`.
+
+### Fixed
+- Remove scrolling to top after changing SKU in `SKUSelector`.
+
 ## [3.13.1] - 2019-02-05
 ### Added
 - Make it possible to be able to add items with assembly options on `BuyButton`
