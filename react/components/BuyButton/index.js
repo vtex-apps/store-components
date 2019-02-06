@@ -54,6 +54,7 @@ export class BuyButton extends Component {
 
     if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
 
+    let toastMessage = null
     try {
       const minicartItems = skuItems.map(skuItem => {
         const {
@@ -93,15 +94,16 @@ export class BuyButton extends Component {
         find(linkStateItems, { id: skuItem.skuId })
       )
 
-      // TODO: Minicart should mutate the orderForm and push to Pixel
-      this.toastMessage(success.length >= 1)
+      toastMessage = () => this.toastMessage(success.length >= 1)
     } catch (err) {
       console.error(err)
-      this.toastMessage(false)
+      toastMessage = () => this.toastMessage(false)
     }
 
-    this.setState({ isAddingToCart: false })
-    onAddFinish && onAddFinish()
+    setTimeout(
+      () => this.setState({ isAddingToCart: false }, toastMessage),
+      5e2
+    )
   }
 
   render() {

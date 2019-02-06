@@ -19,7 +19,6 @@
     "vtex.store-graphql": "2.x",
     "vtex.store-resources": "0.x",
     "vtex.styleguide": "9.x",
-    "vtex.dreamstore-icons": "0.x",
-    "vtex.pixel-manager": "0.x"
+    "vtex.dreamstore-icons": "0.x"
   }
 }
