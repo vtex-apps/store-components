@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix `Logo` to only use maxWidth and maxHeight to define it's size.
 
 ### Added
-- Add an API Docs to `ProductDescription`.
+- Use the new minicart's optimistic strategy on `BuyButton`.
 
 ## [3.15.0] - 2019-02-12
 ### Added
