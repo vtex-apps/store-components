@@ -5,9 +5,8 @@ cache:
 node_js:
   - "8"
 before_install:
-  - npm i -g lerna
+  - cd react
 install: 
   - yarn install
 script: 
-  - lerna run build
-  - lerna run test
+  - yarn test
