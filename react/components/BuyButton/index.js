@@ -77,7 +77,7 @@ export class BuyButton extends Component {
     this.setState({ isAddingToCart: true })
     onAddStart && onAddStart()
 
-    let toastMessage = null
+    let showToastMessage = null
     try {
       const minicartItems = skuItems.map(this.skuItemToMinicartItem)
 
@@ -90,15 +90,15 @@ export class BuyButton extends Component {
       )
 
       if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
-      toastMessage = () => this.toastMessage(success.length >= 1)
+      showToastMessage = () => this.toastMessage(success.length >= 1)
     } catch (err) {
       console.error(err)
-      toastMessage = () => this.toastMessage(false)
+      showToastMessage = () => this.toastMessage(false)
     }
 
     setTimeout(
-      () => this.setState({ isAddingToCart: false }, toastMessage),
-      5e2
+      () => this.setState({ isAddingToCart: false }, showToastMessage),
+      500
     )
   }
 
