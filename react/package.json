@@ -1,7 +1,7 @@
 {
   "name": "vtex.store-components",
   "scripts": {
-    "test": "vtex-scripts test"
+    "test": "echo FIXME"
   },
   "dependencies": {
     "@material-ui/core": "^3.5.1",
