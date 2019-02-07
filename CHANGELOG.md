@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Add an API Docs to `ProductDescription`.
+- Use the new minicart's optimistic strategy on `BuyButton`.
 
 ## [3.15.0] - 2019-02-12
 ### Added
