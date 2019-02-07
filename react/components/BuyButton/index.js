@@ -1,11 +1,10 @@
-import find from 'lodash/find'
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
-import { compose } from 'ramda'
+import { compose, pick } from 'ramda'
 
 import { Button, withToast } from 'vtex.styleguide'
 
@@ -41,6 +40,32 @@ export class BuyButton extends Component {
     this.props.showToast({ message })
   }
 
+  skuItemToMinicartItem = ({
+    skuId: id,
+    variant: skuName,
+    price: sellingPrice,
+    ...restSkuItem
+  }) => {
+    return {
+      id,
+      sellingPrice,
+      skuName,
+      ...pick(
+        [
+          'detailUrl',
+          'imageUrl',
+          'quantity',
+          'seller',
+          'name',
+          'options',
+          'listPrice',
+        ],
+        restSkuItem
+      ),
+      index: 1,
+    }
+  }
+
   handleAddToCart = async () => {
     const {
       addToCart,
@@ -52,47 +77,19 @@ export class BuyButton extends Component {
     this.setState({ isAddingToCart: true })
     onAddStart && onAddStart()
 
-    if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
-
     let toastMessage = null
     try {
-      const minicartItems = skuItems.map(skuItem => {
-        const {
-          skuId: id,
-          variant: skuName,
-          price: sellingPrice,
-          detailUrl,
-          imageUrl,
-          quantity,
-          seller,
-          name,
-          options,
-          listPrice,
-        } = skuItem
-
-        return {
-          detailUrl,
-          id,
-          imageUrl,
-          listPrice,
-          name,
-          quantity,
-          sellingPrice,
-          skuName,
-          seller,
-          options,
-          index: 1,
-        }
-      })
+      const minicartItems = skuItems.map(this.skuItemToMinicartItem)
 
       const {
         data: { addToCart: linkStateItems },
       } = await addToCart(minicartItems)
 
       const success = skuItems.map(skuItem =>
-        find(linkStateItems, { id: skuItem.skuId })
+        !!linkStateItems.find(({ id }) => id === skuItem.skuId)
       )
 
+      if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
       toastMessage = () => this.toastMessage(success.length >= 1)
     } catch (err) {
       console.error(err)
