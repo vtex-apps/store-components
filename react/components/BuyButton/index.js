@@ -71,7 +71,6 @@ export class BuyButton extends Component {
         } = skuItem
 
         return {
-          __typename: 'MinicartItem',
           detailUrl,
           id,
           imageUrl,
