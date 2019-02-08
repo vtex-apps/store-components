@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.14.2] - 2019-02-08
+### Added
+- Add callbacks to click event on `BuyButton`
+
 ## [3.14.1] - 2019-02-06
 
 ## [3.14.0] - 2019-02-06
