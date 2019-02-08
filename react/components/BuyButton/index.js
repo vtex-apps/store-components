@@ -45,9 +45,9 @@ export class BuyButton extends Component {
   }
 
   handleAddToCart = async () => {
-    const { skuItems, isOneClickBuy, orderFormContext, push, onAddPress, onAddFinish } = this.props
+    const { skuItems, isOneClickBuy, orderFormContext, push, onAddStart, onAddFinish } = this.props
     this.setState({ isAddingToCart: true })
-    onAddPress && onAddPress()
+    onAddStart && onAddStart()
 
     const variables = {
       items: skuItems.map(skuItem => {
@@ -156,7 +156,7 @@ BuyButton.propTypes = {
   /** Function used to show toasts (messages) to user */
   showToast: PropTypes.func.isRequired,
   /** Function to be called on the start of add to cart click event */
-  onAddPress: PropTypes.func,
+  onAddStart: PropTypes.func,
   /** Function to be called on the end of add to cart event */
   onAddFinish: PropTypes.func,
 }
