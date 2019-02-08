@@ -22,7 +22,7 @@ You can use it in your code like a React component with the jsx tag: `<BuyButton
 | `available`        | `Boolean`               | If component is available or not |
 | `showToast`        | `Boolean`               | If toast with feedback should be shown after add item request is processed |
 | `onAddStart`       | `Function: () => void`  | Function called before add item request starts |
-| `onAddFinish`      | `Function: () => void`  | Function called after add item request starts |
+| `onAddFinish`      | `Function: () => void`  | Function called after add item request ends |
 
 #### SKU Items Props
 
