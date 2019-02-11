@@ -1,20 +1,6 @@
 /**
-*   ProductDescription CSS Modules
+*   ProductSpecifications CSS Modules
 */
-
-.fadeBottom {
-    background-image: linear-gradient(transparent, white);
-}
-
-.pointerEventsNone {
-    pointer-events: none;
-}
-
-.pointerEventsAuto {
-    pointer-events: auto;
-}
-
-.productDescriptionContainer {}
 
 .specifications {}
 
