@@ -13,6 +13,8 @@ VTEX Store Components is a collection of components that can be used to create/e
 | [2.x]    | **Maintenance LTS** |  2018-10-02     | 2018-12-01            | March 2019  | 1.x
 | [3.x]    | **Current Release** |  2018-11-29     |                       |             | 2.x
 
+See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for more information.
+
 ## Table of Contents
 - [Usage](#usage)
 - [Components Specs](#components-specs)
@@ -22,23 +24,20 @@ VTEX Store Components is a collection of components that can be used to create/e
 - [Tests](#tests)
 
 ## Usage
-To import a component of this project follow the instructions below. 
 
-You need to add into the dependencies of your `manifest.json` and use it like a npm module. 
+This app uses our store builder with the blocks architecture. To know more about Store Builder [click here.](https://help.vtex.com/en/tutorial/understanding-storebuilder-and-stylesbuilder#structuring-and-configuring-our-store-with-object-object)
+
+To use this app, you need to import in your dependencies on `manifest.json`.
+ 
 ```json 
   "dependencies": {
     "vtex.store-components": "3.x"
   }
 ```
 
-And to import it into your code, for example: 
-```js
-import ProductPrice from 'vtex.store-components/ProductPrice'
-```
-
 ## Components Specs
 
-Below we have a README for each component of this project that explains how to use them. 
+Below we have a README for each component of this project that explains how to use them.
 
 - [Animation](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Animation/README.md)
 - [Availability Subscriber](https://github.com/vtex-apps/storecomponents/blob/master/react/components/AvailabilitySubscriber/README.md)
