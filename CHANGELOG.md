@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Fix `Logo` to only use maxWith and maxHeight to define it's size.
+- Fix `Logo` to only use maxWidth and maxHeight to define it's size.
 
 ### Added
 - Add an API Docs to `ProductDescription`.
