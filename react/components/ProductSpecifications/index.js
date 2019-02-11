@@ -24,19 +24,19 @@ class ProductSpecifications extends Component {
     })
   }
 
-  get tableVision(){
+  get tableView(){
     const { specifications } = this.props;
 
     return(
       <Fragment>
         {specifications.length > 0 && (
-          <div className={`${styles.specifications} mt9 mt0-l w-100 w-40-l pl8-l`}>
+          <div className={`${styles.specifications} mt9 mt0-l pl8-l`}>
             <FormattedMessage id="technicalspecifications.title">
               {(txt) => (
                 <h2 className={`${styles.specificationsTitle} t-heading-5 mb5 mt0`}>{HtmlParser(txt)}</h2>
               )}
             </FormattedMessage>
-            <GradientCollapse collapseHeight={300}>
+            <GradientCollapse collapseHeight={220}>
               <table className={`${styles.specificationsTable} w-100 bg-base border-collapse`}>
                 <thead>
                   <tr>
@@ -64,28 +64,30 @@ class ProductSpecifications extends Component {
     )
   }
 
-  get tabsVision(){
+  get tabsView(){
     const { currentTab } = this.state;
 
     return(
-      <Fragment>
-        <Tabs>
+      <div className="pt8">
+        <Tabs fullWidth>
           {
             this.specificationItems.map((specification, i) => (
               <Tab label={HtmlParser(specification.property)} active={currentTab === i} onClick={() => this.handleTabChange(i)}>
-                <GradientCollapse collapseHeight={300}>
-                  {HtmlParser(specification.specifications)}
-                </GradientCollapse>
+                <div className="pb8 c-muted-1">
+                  <GradientCollapse collapseHeight={300}>
+                    {HtmlParser(specification.specifications)}
+                  </GradientCollapse>
+                </div>
               </Tab>
             ))
           }
         </Tabs>
-      </Fragment>
+      </div>
     )
   }
 
   render(){
-    return this.props.tabs ? this.tabsVision : this.tableVision
+    return this.props.tabs ? this.tabsView : this.tableView
   }
 }
 
