@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 import HtmlParser from 'react-html-parser'
 
-import GradientCollapse from './components/GradientCollapse'
+import GradientCollapse from '../GradientCollapse/index'
 
 import styles from './styles.css'
 

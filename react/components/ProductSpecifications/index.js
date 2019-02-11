@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
 import HtmlParser from 'react-html-parser'
-import GradientCollapse from './GradientCollapse'
+import GradientCollapse from '../GradientCollapse/index'
 
 import { Tabs, Tab } from 'vtex.styleguide'
 
