@@ -35,20 +35,9 @@ Through the Storefront, you can change the `ProductName`'s behavior and interfac
 
 | Prop name | Type | Description |
 | --- | --- | --- |
-| `name` | `String!` | Name of the product |
-| `skuName` | `String` | Selected SKU name |
 | `showSku` | `Boolean` | Show product SKU |
-| `productReference` | `String` | Product reference |
 | `showProductReference` | `Boolean` | Show product reference |
-| `brandName` | `String` | Brand name |
 | `showBrandName` | `Boolean` | Show brand name |
-| `styles` | `Object` | Styles applied to the component and content loader |
-| `className` | `String` | Classes to be applied to root element |
-| `brandNameClass` | `String` | Classes to be applied to brandName element |
-| `skuNameClass` | `String` | Classes to be applied to skuName element |
-| `productReferenceClass` | `String` | Classes to be applied to productReference element |
-| `loaderClass` | `String` | Classes to be applied to loader root element |
-| `tag` | `Enum` | Select the HTML tag used in the component (div, h1, h2, h3) |
 
 ### Styles API
 :construction: :construction: :construction:
