@@ -9,6 +9,7 @@ This Component can be imported and used by any VTEX App.
 
 ## Table of Contents
 - [Usage](#usage)
+  - [Blocks API](#blocks-api)
   - [Configuration](#configuration)
   - [Styles API](#styles-api)
 
