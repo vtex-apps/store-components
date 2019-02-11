@@ -10,8 +10,6 @@ Product Name is a canonical component that any VTEX app can import.
 - [Usage](#usage)
   - [Configuration](#configuration)
   - [Styles API](#styles-api)
-- [Troubleshooting](#troubleshooting)
-- [Tests](#tests)
 
 ## Usage
 
@@ -67,10 +65,4 @@ Every prop that ends with `Class` will be passed to an element of the component,
 See an example at [Product Details](https://github.com/vtex-apps/product-details) app
 
 ### Styles API
-:construction: :construction: :construction:
-
-## Troubleshooting
-You can check if others are passing through similar issues [here](https://github.com/vtex-apps/store-components/issues). Also feel free to [open issues](https://github.com/vtex-apps/store-components/issues/new) or contribute with pull requests.
-
-## Tests
 :construction: :construction: :construction:
