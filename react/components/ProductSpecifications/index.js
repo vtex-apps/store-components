@@ -123,4 +123,4 @@ ProductSpecifications.propTypes = {
   tabsMode: PropTypes.bool,
 }
 
-export default ProductSpecifications
+export default injectIntl(ProductSpecifications)
