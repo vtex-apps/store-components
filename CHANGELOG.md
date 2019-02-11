@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Create an API Docs.
 - Add an API Docs to `ProductName`.
+- Refactor `Product Description` component into two new components.
+- Create `ProductSpecifications` component allowing two visualizations modes.
+- Create `GradientCollapse` component.
 
 ## [3.14.3] - 2019-02-08
 ### Fixed
