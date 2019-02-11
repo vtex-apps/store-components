@@ -44,7 +44,7 @@ class ProductSpecifications extends Component {
     return(
       <Fragment>
         {specifications.length > 0 && (
-          <div className={`${styles.specifications} mt9 mt0-l pl8-l`}>
+          <div className={`${styles.specificationsTableContainer} mt9 mt0-l pl8-l`}>
             {this.specificationTitle}
             <GradientCollapse collapseHeight={220}>
               <table className={`${styles.specificationsTable} w-100 bg-base border-collapse`}>
@@ -78,13 +78,13 @@ class ProductSpecifications extends Component {
     const { currentTab } = this.state;
 
     return(
-      <div className={`${styles.specifications} pt8`}>
+      <div className={`${styles.specificationsTabsContainer} pt8`}>
         {this.specificationTitle}
         <Tabs fullWidth>
           {
             this.specificationItems.map((specification, i) => (
               <Tab label={HtmlParser(specification.property)} active={currentTab === i} onClick={() => this.handleTabChange(i)}>
-                <div className="pb8 c-muted-1">
+                <div className="pb8 c-muted-1 pv6">
                   <GradientCollapse collapseHeight={220}>
                     {HtmlParser(specification.specifications)}
                   </GradientCollapse>
