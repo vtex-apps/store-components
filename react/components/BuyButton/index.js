@@ -97,7 +97,10 @@ export class BuyButton extends Component {
     }
 
     setTimeout(
-      () => this.setState({ isAddingToCart: false }, showToastMessage),
+      () => this.setState({ isAddingToCart: false }, () => {
+        showToastMessage()
+        onAddFinish && onAddFinish()
+      }),
       500
     )
   }
