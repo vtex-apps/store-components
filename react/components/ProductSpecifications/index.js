@@ -8,6 +8,10 @@ import { Tabs, Tab } from 'vtex.styleguide'
 
 import styles from './styles.css'
 
+/**
+ * Product Specification Component.
+ * Render the technical specifications of a product. Can be displayed in two views: Table view or Tabs view.
+ */
 class ProductSpecifications extends Component {
 
   state = { currentTab: 0 }
@@ -87,8 +91,29 @@ class ProductSpecifications extends Component {
   }
 
   render(){
-    return this.props.tabs ? this.tabsView : this.tableView
+    return this.props.tabsMode ? this.tabsView : this.tableView
   }
+}
+
+ProductSpecifications.defaultProps = {
+  specifications: [],
+  tabsMode: false
+}
+
+ProductSpecifications.propTypes = {
+  /** Intl object to provides internationalization */
+  intl: intlShape.isRequired,
+  /** Specifications that will be displayed on the table */
+  specifications: PropTypes.arrayOf(
+    PropTypes.shape({
+      /** Specification name */
+      name: PropTypes.string.isRequired,
+      /** Specifications value */
+      values: PropTypes.arrayOf(PropTypes.string).isRequired,
+    })
+  ),
+  /** Tabs mode view ? */
+  tabsMode: PropTypes.bool,
 }
 
 export default ProductSpecifications

@@ -9,13 +9,13 @@ import styles from './styles.css'
 
 /**
  * Product Description Component.
- * Render the description and technical specifications of a product
+ * Render the description of a product
  */
 class ProductDescription extends Component {
   render() {
-    const { specifications, description } = this.props
+    const { description } = this.props
 
-    if (!description || !specifications) {
+    if (!description) {
       return null
     }
 
@@ -35,24 +35,11 @@ class ProductDescription extends Component {
   }
 }
 
-ProductDescription.defaultProps = {
-  specifications: [],
-}
-
 ProductDescription.propTypes = {
   /** Product description string */
   description: PropTypes.string,
   /** Intl object to provides internationalization */
   intl: intlShape.isRequired,
-  /** Specifications that will be displayed on the table */
-  specifications: PropTypes.arrayOf(
-    PropTypes.shape({
-      /** Specification name */
-      name: PropTypes.string.isRequired,
-      /** Specifications value */
-      values: PropTypes.arrayOf(PropTypes.string).isRequired,
-    })
-  ),
 }
 
 export default injectIntl(ProductDescription)
