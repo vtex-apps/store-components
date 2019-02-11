@@ -1,52 +1,43 @@
 # Product Name
-Product Name is a canonical component that any VTEX app can import.
 
-To import it into your code: 
-```js
-import ProductName from 'vtex.store-components/ProductName'
-```
+## Description
+
+`ProductName` is a VTEX Component that shows the name of the product with other informations such as SKU or brand.
+This Component can be imported and used by any VTEX App.
+
+:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+
+## Table of Contents
+- [Usage](#usage)
+  - [Blocks API](#blocks-api)
+  - [Configuration](#configuration)
+  - [Styles API](#styles-api)
 
 ## Usage
-You can use it in your code like a React component with the jsx tag: `<ProductName />`. 
-```jsx
-<ProductName
-  showSku
-  showBrandName
-  name={product.productName}
-  skuName={selectedItem.name}
-  brandName={product.brand}
-/>
+
+You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
+
+Then, add `product-name` block into our app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
+
+### Blocks API
+
+This component has an interface that describes which rules must be implemented by a block when you want to use the `ProductName`.
+
+```json
+  "product-name": {
+    "component": "ProductName"
+  }
 ```
 
-## Passing classes to the elements of the component
-Every prop that ends with `Class` will be passed to an element of the component, see the code below
-```jsx
-<ProductName
-  skuNameClass="some-other-css-class"
-  className="pv4 overflow-hidden"
-  brandNameClass="c-muted"
-  showSku
-  showBrandName
-  brandName={product.brand}
-  name={product.productName}
-  skuName={selectedItem.name}
-/>
-})
-```
+### Configuration
+
+Through the Storefront, you can change the `ProductName`'s behavior and interface. However, you also can make in your theme app, as Dreamstore does.
 
 | Prop name | Type | Description |
 | --- | --- | --- |
-| `name` | `String!` | Name of the product |
-| `skuName` | `String` | Selected SKU name |
 | `showSku` | `Boolean` | Show product SKU |
-| `productReference` | `String` | Product reference |
 | `showProductReference` | `Boolean` | Show product reference |
-| `brandName` | `String` | Brand name |
 | `showBrandName` | `Boolean` | Show brand name |
-| `className` | `String` | Classes to be applied to root element |
-| `brandNameClass` | `String` | Classes to be applied to brandName element |
-| `skuNameClass` | `String` | Classes to be applied to skuName element |
-| `productReferenceClass` | `String` | Classes to be applied to productReference element |
-| `loaderClass` | `String` | Classes to be applied to loader root element |
 
-See an example at [Product Details](https://github.com/vtex-apps/product-details) app
+### Styles API
+:construction: :construction: :construction:
