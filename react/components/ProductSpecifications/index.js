@@ -119,7 +119,7 @@ ProductSpecifications.propTypes = {
       values: PropTypes.arrayOf(PropTypes.string).isRequired,
     })
   ),
-  /** Tabs mode view ? */
+  /** Tabs mode view */
   tabsMode: PropTypes.bool,
 }
 
