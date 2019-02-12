@@ -35,31 +35,11 @@ Through the Storefront, you can change the `ProductPrice`'s behavior and interfa
 
 | Prop name | Type | Description |
 | --------- | ---- | ----------- |
-| `sellingPrice` | `Number` | Product selling price |
-| `listPrice` | `Number` | Product list price |
-| `showListPrice` | `Boolean!` | Set visibility of list price |
-| `showLabels` | `Boolean!` | Set visibility of labels |
-| `showInstallments` | `Boolean!` | Set visibility of installments |
+| `labelSellingPrice` | `String` | Product selling price label |
+| `showListPrice` | `Boolean` | Set visibility of list price |
+| `showLabels` | `Boolean` | Set visibility of labels |
+| `showInstallments` | `Boolean` | Set visibility of installments |
 | `showSavings` | `Boolean` | Set visibility of savings |
-| `installments` | `Array` | Available installments |
-| `installments.Value` | `Number!` | Installment price |
-| `installments.InterestRate` | `Number!` | Installment interest rate (zero if interest-free) |
-| `installments.TotalValuePlusInterestRate` | `Number` | Calculated total value |
-| `installments.NumberOfInstallments` | `Number!` | Number of installments |
-| `installments.Name` | `String` | Installment offer name |
-| `className` | `String` | Classes to be applied to root element |
-| `loaderClass` | `String` | Classes to be applied to loader root element |
-| `listPriceContainerClass` | `String` | Classes to be applied to container of list price |
-| `listPriceLabelClass` | `String` | Classes to be applied to label of price |
-| `listPriceClass` | `String` | Classes to be applied to price value |
-| `sellingPriceContainerClass` | `String` | Classes to be applied to selling price container |
-| `sellingPriceLabelClass` | `String` | Classes to be applied to selling price label |
-| `sellingPriceClass` | `String` | Classes to be applied to selling price value |
-| `savingsContainerClass` | `String` | Classes to be applied to savings container |
-| `savingsClass` | `String` | Classes to be applied to savings |
-| `installmentClass` | `String` | Classes to be applied to installment element |
-| `installmentContainerClass` | `String` | Classes to be applied to installment container |
-| `interestRateClass` | `String` | Classes to be applied to interest rate element |
 
 ### Styles API
 You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api).
