@@ -84,7 +84,7 @@ class ProductSpecifications extends Component {
           {
             this.specificationItems.map((specification, i) => (
               <Tab label={HtmlParser(specification.property)} active={currentTab === i} onClick={() => this.handleTabChange(i)}>
-                <div className="pb8 c-muted-1 pv6">
+                <div className={`${styles.specificationsTab} pb8 c-muted-1 pv6`}>
                   <GradientCollapse collapseHeight={220}>
                     {HtmlParser(specification.specifications)}
                   </GradientCollapse>
