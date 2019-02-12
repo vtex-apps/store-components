@@ -31,5 +31,8 @@
   },
   "availability-subscriber": {
     "component": "AvailabilitySubscriber"
+  },
+  "product-specifications":{
+    "component": "ProductSpecifications"
   }
 }

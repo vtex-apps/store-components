@@ -4,7 +4,7 @@ import { Transition } from 'react-transition-group'
 import debounce from 'debounce'
 import { FormattedMessage } from 'react-intl'
 import classNames from 'classnames'
-import styles from '../styles.css'
+import styles from './styles.css'
 
 
 const transitionStyle = (transitionTime) => ({ transition: `${transitionTime}ms ease-in-out` })

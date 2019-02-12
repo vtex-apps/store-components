@@ -6,9 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.15.0] - 2019-02-12
 ### Added
 - Create an API Docs.
 - Add an API Docs to `ProductName`.
+- Refactor `Product Description` component into two new components.
+- Create `ProductSpecifications` component allowing two visualizations modes.
+- Create `GradientCollapse` component.
 
 ## [3.14.3] - 2019-02-08
 ### Fixed
