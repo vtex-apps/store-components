@@ -1,24 +1,48 @@
 # Product Description
-Product Description is a canonical component that any VTEX app can import.
 
-To import it into your code: 
-```js
-import ProductDescription from 'vtex.store-components/ProductDescription'
-```
+## Description
+
+`ProductDescription` is a VTEX Component that shows the description of a product.
+This Component can be imported and used by any VTEX App.
+
+:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+
+## Table of Contents
+- [Usage](#usage)
+  - [Blocks API](#blocks-api)
+  - [Configuration](#configuration)
+  - [Styles API](#styles-api)
 
 ## Usage
-You can use it in your code like a React component with the jsx tag: `<ProductDescription />`. 
-```jsx
-<ProductDescription specifications={product.specs}>
-   <span>{product.description}</span>
-</ProductDescription>
+
+You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
+
+Then, add `product-description` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
+
+### Blocks API
+
+This component has an interface that describes which rules must be implemented by a block when you want to use the `ProductDescription`.
+
+```json
+  "product-description": {
+    "component": "ProductDescription"
+  }
 ```
 
-| Prop name                | Type       | Description                                                                 |
-| ------------------------ | ---------- | --------------------------------------------------------------------------- |
-| `children`               | `Node!`    | Children component which contains the product description                   |
-| `specifications`         | `Array`    | Specifications that will be displayed on the table                          |
-| `specifications[n].name` | `String`   | Specification name                                                          |
-| `specifications[n].value`| `String`   | Specifications value                                                        |
+### Configuration
 
-See an example at [Product Details](https://github.com/vtex-apps/product-details) app
+Through the Storefront, you can change the `ProductDescription`'s behavior and interface. However, you also can make in your theme app, as Dreamstore does.
+
+| Prop name                | Type       | Description          |
+| ------------------------ | ---------- |--------------------- |
+| `description`            | `String`   | Product description  |
+
+### Styles API
+You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api).
+
+Below, we describe the tokens, their explanation and the component where it is located.
+
+| Token name | Component | Description |
+| ---------- | --------- |------------ |
+| `productDescriptionContainer` | [ProductDescription](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductDescription/index.js) | The main container of `ProductDescription` |
+
