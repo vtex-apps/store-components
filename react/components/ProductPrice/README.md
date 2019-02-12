@@ -1,46 +1,42 @@
 # Product Price
 
-Product Price is a canonical component that any VTEX app can import.
+## Description
 
-To import it into your code:
+`ProductPrice` is a VTEX component that shows the price of a product.
+This Component can be imported and used by any VTEX app.
 
-```js
-import ProductPrice from 'vtex.store-components/ProductPrice'
-```
+:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+
+## Table of Contents
+
+## Table of Contents
+- [Usage](#usage)
+  - [Blocks API](#blocks-api)
+  - [Configuration](#configuration)
+  - [Styles API](#styles-api)
 
 ## Usage
 
-You can use it in your code like a React component with the jsx tag: `<ProductPrice />`.
+You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
 
-```jsx
-<ProductPrice
-  showLabels={showLabels}
-  showListPrice={showListPrice}
-  showInstallments={showInstallments}
-  sellingPrice={commertialOffer.Price}
-  listPrice={commertialOffer.ListPrice}
-  installments={commertialOffer.Installments}
-/>
-```
+Then, add `product-price` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
 
-### Passing classes to the elements of the component
-Every prop that ends with `Class` will be passed to an element of the component, see the following code
-```jsx
-<ProductPrice
-  className="pv4 overflow-hidden"
-  listPriceLabelClass="c-muted-4"
-  savingsClass="h4 ph5 dib"
-  showLabels={showLabels}
-  showListPrice={showListPrice}
-  showInstallments={showInstallments}
-  sellingPrice={commertialOffer.Price}
-  listPrice={commertialOffer.ListPrice}
-  installments={commertialOffer.Installments}
-/>
-```
+### Blocks API
+
+This component has an interface that describes which rules must be implemented by a block when you want to use the `ProductPrice`.
+
+ ```json
+  "product-price": {
+    "component": "ProductPrice"
+  }
+```	
+
+### Configuration
+
+Through the Storefront, you can change the `ProductPrice`'s behavior and interface. However, you also can make in your theme app, as Dreamstore does.
 
 | Prop name | Type | Description |
-| --- | --- | --- |
+| --------- | ---- | ----------- |
 | `sellingPrice` | `Number` | Product selling price |
 | `listPrice` | `Number` | Product list price |
 | `showListPrice` | `Boolean!` | Set visibility of list price |
@@ -67,4 +63,8 @@ Every prop that ends with `Class` will be passed to an element of the component,
 | `installmentContainerClass` | `String` | Classes to be applied to installment container |
 | `interestRateClass` | `String` | Classes to be applied to interest rate element |
 
-See an example at [Product Summary](https://github.com/vtex-apps/product-summary) app
+### Styles API
+You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api).
+
+| Token name | Component | Description |
+| ---------- | --------- | ----------- |
