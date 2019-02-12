@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.15.0] - 2019-02-12
 ### Added
+- Add an API Docs to `ProductDescription`.
+
+### Added
 - Create an API Docs.
 - Add an API Docs to `ProductName`.
 - Refactor `Product Description` component into two new components.
