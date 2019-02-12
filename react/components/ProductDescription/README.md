@@ -27,6 +27,7 @@ This component has an interface that describes which rules must be implemented b
   "product-description": {
     "component": "ProductDescription"
   }
+```
 
 ### Configuration
 
