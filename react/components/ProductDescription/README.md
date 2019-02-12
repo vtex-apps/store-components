@@ -2,7 +2,7 @@
 
 ## Description
 
-`ProductDescription` is a VTEX Component that shows the description of the product.
+`ProductDescription` is a VTEX Component that shows the description of a product.
 This Component can be imported and used by any VTEX App.
 
 :loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
@@ -17,7 +17,7 @@ This Component can be imported and used by any VTEX App.
 
 You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
 
-Then, add `product-description` block into our app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
+Then, add `product-description` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
 
 ### Blocks API
 
