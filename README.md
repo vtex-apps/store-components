@@ -20,6 +20,7 @@ See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for mor
 - [Components Specs](#components-specs)
 - [Creating a new component](#creating-a-new-component)
   - [Project structure](#project-structure)
+- [Styles API](#styles-api)
 - [Troubleshooting](#troubleshooting)
 - [Tests](#tests)
 
@@ -82,6 +83,21 @@ export default ProductPrice
 ```
 
 Also, all dependencies needed should be inserted inside the react/package.json
+
+## Styles API
+This app has CSS customization through `CSS Modules`. CSS Modules is a CSS file in which all class names and animation names are scoped locally by default. You can read more about CSS Modules [here](https://github.com/css-modules/css-modules).
+
+We use it `css-loader` to generate a CSS token on a HTML element. For example, the builder generate a CSS token based on app vendor, name and major version. Like `productNameContainer` token declared in `ProductName`, generate the classname `vtex.store-components-3-x-productNameContainer`.
+
+To override the default CSS, you need to import `styles` on your manifest:
+
+```json
+  "builders": {
+    "styles": "1.x"
+  }
+```
+
+Also, create a `vtex.store-components.css` file in `styles/css` for your handlers customization.
 
 ## Troubleshooting
 You can check if others are passing through similar issues [here](https://github.com/vtex-apps/store-components/issues). Also feel free to [open issues](https://github.com/vtex-apps/store-components/issues/new) or contribute with pull requests.

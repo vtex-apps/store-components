@@ -33,12 +33,16 @@ This component has an interface that describes which rules must be implemented b
 
 Through the Storefront, you can change the `ProductDescription`'s behavior and interface. However, you also can make in your theme app, as Dreamstore does.
 
-| Prop name                | Type       | Description                                                                 |
-| ------------------------ | ---------- | --------------------------------------------------------------------------- |
-| `children`               | `Node!`    | Children component which contains the product description                   |
-| `specifications`         | `Array`    | Specifications that will be displayed on the table                          |
-| `specifications[n].name` | `String`   | Specification name                                                          |
-| `specifications[n].value`| `String`   | Specifications value                                                        |
+| Prop name                | Type       | Description          |
+| ------------------------ | ---------- |--------------------- |
+| `description`            | `String`   | Product description  |
 
 ### Styles API
-:construction: :construction: :construction:
+You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api).
+
+Below, we describe the tokens, their explanation and the component where it is located.
+
+| Token name | Component | Description |
+| ---------- | --------- |------------ |
+| `productDescriptionContainer` | [ProductDescription](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductDescription/index.js) | The main container of `ProductDescription` |
+
