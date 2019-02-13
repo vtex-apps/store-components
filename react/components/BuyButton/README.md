@@ -1,18 +1,36 @@
-# BuyButton
-BuyButton is a canonical component that any VTEX app can import.
+# Buy Button
 
-To import it into your code: 
-```js
-import BuyButton from 'vtex.store-components/BuyButton'
-```
+## Description
+
+`BuyButton` is a VTEX Component that is resposible to handle events of adding productins in the minicart. This Component can be imported and used by any VTEX App.
+
+:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+
+## Table of Contents
+- [Usage](#usage)
+  - [Blocks API](#blocks-api)
+  - [Configuration](#configuration)
+  - [Styles API](#styles-api)
 
 ## Usage
-You can use it in your code like a React component with the jsx tag: `<BuyButton />`. 
-```jsx
-<BuyButton skuItems={[{ skuId: '1', quantity: 1, seller: 1 }]}> 
-  Buy!
-</BuyButton>
+
+You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
+
+Then, add `product-description` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
+
+### Blocks API
+
+This component has an interface that describes which rules must be implemented by a block when you want to use the `BuyButton`.
+
+```json
+  "buy-button": {
+    "component": "BuyButton"
+  }
 ```
+
+### Configuration
+
+Through the Storefront, you can change the `BuyButton`'s behavior and interface. However, you also can make in your theme app, as Dreamstore does.
 
 | Prop name          | Type                    | Description                                                                 |
 | ------------------ | ----------------------- | --------------------------------------------------------------------------- |
@@ -24,7 +42,7 @@ You can use it in your code like a React component with the jsx tag: `<BuyButton
 | `onAddStart`       | `Function: () => void`  | Function called before add item request starts |
 | `onAddFinish`      | `Function: () => void`  | Function called after add item request ends |
 
-#### SKU Items Props
+SKUItem:
 
 | Prop name          | Type                 | Description                                                                 |
 | ------------------ | -------------------- | --------------------------------------------------------------------------- |
@@ -37,10 +55,14 @@ You can use it in your code like a React component with the jsx tag: `<BuyButton
 | `variant`          | `String`             | Product variant |
 | `options`          | `Array<OptionType>`  | Items to be added as assembly options of this parent product |
 
-#### OptionType
+OptionType:
+
 | Prop name          | Type       | Description                                                                 |
 | ------------------ | ---------- | --------------------------------------------------------------------------- |
 | `id`               | `String!`  | Id of assembly option |
 | `quantity`         | `Number!`  | Quantity of assembly option to be added |
 | `assemblyId`       | `String!`  | parentAssemblyBinding of assembly option |
 | `seller`           | `String!`  | seller of assembly option |
+
+### Styles API
+:construction: :construction: :construction:
