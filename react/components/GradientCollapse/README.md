@@ -22,8 +22,9 @@ You can use it in your code like a React component with the jsx tag: `<GradientC
 ### Configuration
 | Prop name | Type | Description | Default Value |
 | --------- | ---- | ----------- | ----------- |
-| `collapseHeight` | `Number!` | MaxHeight of the container | -
-| `children` | `Node` | The component to be collapsed | -
+| `collapseHeight` | `Number!` | MaxHeight of the container | - |
+| `children` | `Node` | The component to be collapsed | - |
+
 ### Styles API
 You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api).
 | Token name | Component | Description |
