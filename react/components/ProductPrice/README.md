@@ -46,3 +46,20 @@ You should follow the Styles API instruction in the main [README](https://github
 
 | Token name | Component | Description |
 | ---------- | --------- | ----------- |
+| `priceContainer` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The main container of `ProductPrice` |
+| `listPrice` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The list price container |
+| `listPriceLabel` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The list price label |
+| `listPriceValue` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The list price value |
+| `sellingPrice` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The selling price container |
+| `sellingPriceLabel` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The selling price label |
+| `sellingPriceValue` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The selling price value |
+| `savingPrice` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The saving price container |
+| `savingPriceValue` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The saving price value |
+| `installmentsPrice` | [Installments](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/Installments.js) | The installments price container |
+| `interestRatePrice` | [Installments](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/Installments.js) | The interest rate price |
+| `priceLoaderContainer` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The container of the `ProductPrice` loader |
+| `listPriceLoader` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The list price loader |
+| `sellingPriceLabelLoader` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The selling price loader label |
+| `sellingPriceLoader` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The selling price loader |
+| `installmentsPriceLoader` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The installments price loader |
+| `savingsPriceLoader` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The savings price loader |
