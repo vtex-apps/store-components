@@ -12,7 +12,6 @@ const CONSTANTS = {
   SUCCESS_MESSAGE_ID: 'buybutton.buy-success',
   ERROR_MESSAGE_ID: 'buybutton.add-failure',
   CHECKOUT_URL: '/checkout/#/cart',
-  TOAST_TIMEOUT: 3000,
 }
 
 /**
@@ -26,9 +25,7 @@ export class BuyButton extends Component {
   }
 
   state = {
-    isLoading: false,
     isAddingToCart: false,
-    timeOut: null,
   }
 
   translateMessage = id => this.props.intl.formatMessage({ id: id })
@@ -106,13 +103,12 @@ export class BuyButton extends Component {
   }
 
   render() {
-    const { children, skuItems, available, large } = this.props
-    const loading = this.state.isLoading || !skuItems
+    const { children, skuItems, available, large, showLoading } = this.props
     const { isAddingToCart } = this.state
 
     return (
       <Fragment>
-        {loading ? (
+        {!skuItems ? (
           <ContentLoader />
         ) : (
           <Button
@@ -120,7 +116,7 @@ export class BuyButton extends Component {
             block={large}
             disabled={!available}
             onClick={this.handleAddToCart}
-            isLoading={isAddingToCart}
+            isLoading={isAddingToCart || showLoading}
           >
             {available ? (
               children
@@ -177,6 +173,8 @@ BuyButton.propTypes = {
   onAddFinish: PropTypes.func,
   /** Add to cart mutation */
   addToCart: PropTypes.func.isRequired,
+  /** If the button should show the loading spinner */
+  showLoading: PropTypes.bool,
 }
 
 const withMutation = graphql(

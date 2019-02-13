@@ -23,6 +23,7 @@ You can use it in your code like a React component with the jsx tag: `<BuyButton
 | `showToast`        | `Boolean`               | If toast with feedback should be shown after add item request is processed |
 | `onAddStart`       | `Function: () => void`  | Function called before add item request starts |
 | `onAddFinish`      | `Function: () => void`  | Function called after add item request ends |
+| `showLoading`      | `Boolean`               | If should show loading spinner in the moment (even when not loading) |
 
 #### SKU Items Props
 

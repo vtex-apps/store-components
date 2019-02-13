@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ## [3.16.1] - 2019-02-13
+### Changed
+- Remove unused state and vars on `BuyButton`
+- Create showLoading prop for `BuyButton`
+
 ### Fixed
 - Wrong rebase.
 
