@@ -33,10 +33,10 @@ This component has an interface that describes which rules must be implemented b
 
 Through the Storefront, you can change the `ProductSpecifications`'s behavior and interface. However, you also can make in your theme app, as Dreamstore does.
 
-| Prop name | Type | Description |
-| --------- | ---- | ----------- |
-| `specifications` | `Array(Specification)` | Specifications of a product |
-| `tabsMode` | `Boolean` | `true`: displays the specifications in tab mode; `false`: displays the specifications in table mode (default: `false`) |
+| Prop name | Type | Description | Default value |
+| --------- | ---- | ----------- | ------------- |
+| `specifications` | `Array(Specification)` | Specifications of a product | `[]` |
+| `tabsMode` | `Boolean` | Displays the technical specifications in tab mode. Else displays in table mode | `false`
 
 Specification:
 
