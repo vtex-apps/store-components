@@ -1,12 +1,22 @@
 # Animation
-Animation is a component that any VTEX app can import.
+
+## Description
+
+`Animation` is a VTEX Component that display some animations in their children props. 
+This Component can be imported and used by any VTEX App.
+
+:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+
+## Table of Contents
+- [Usage](#usage)
+
+## Usage
 
 To import it into your code: 
 ```js
 import Animation from 'vtex.store-components/Animation'
 ```
 
-## Usage
 You can use it in your code like a React component with the jsx tag: `<Animation />`. 
 ```jsx
 <Animation> 
