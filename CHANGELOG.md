@@ -6,12 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
-## [3.16.1] - 2019-02-13
 ### Changed
 - Remove unused state and vars on `BuyButton`
-- Create showLoading prop for `BuyButton`
+- Create `showLoading` prop for `BuyButton`
 
+## [3.16.1] - 2019-02-13
 ### Fixed
 - Wrong rebase.
 
