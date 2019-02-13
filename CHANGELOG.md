@@ -6,13 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Wrong rebase.
+
+## [3.16.0] - 2019-02-13
+### Added
+- Use the new minicart's optimistic strategy on `BuyButton`.
 
 ## [3.15.1] - 2019-02-13
 ### Fixed
 - Fix `Logo` to only use maxWidth and maxHeight to define it's size.
-
-### Added
-- Use the new minicart's optimistic strategy on `BuyButton`.
 
 ## [3.15.0] - 2019-02-12
 ### Added
