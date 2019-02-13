@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
-import { compose, pick } from 'ramda'
+import { compose, pathOr, pick } from 'ramda'
 
 import { Button, withToast } from 'vtex.styleguide'
 
@@ -81,9 +81,9 @@ export class BuyButton extends Component {
     try {
       const minicartItems = skuItems.map(this.skuItemToMinicartItem)
 
-      const {
-        data: { addToCart: linkStateItems },
-      } = await addToCart(minicartItems)
+      const response = await addToCart(minicartItems)
+      console.info(response)
+      const linkStateItems = pathOr([], ['data', 'addToCart'], response)
 
       const success = skuItems.map(skuItem =>
         !!linkStateItems.find(({ id }) => id === skuItem.skuId)
