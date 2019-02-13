@@ -8,8 +8,7 @@ Categories Highlights shows two or four categories in a lighlighted position in 
 
 ## Table of Contents
 - [Usage](#usage)
-  - [Blocks API](#blocks-api)
-    - [Configuration](#configuration)
+  - [Configuration](#configuration)
   - [Styles API](#styles-api)
     - [CSS namespaces](#css-namespaces)
 
@@ -32,7 +31,7 @@ You can use it in your code like a React component with the jsx tag: `<Categorie
 />
 ```
 
-### Configuration
+## Configuration
 
 | Prop name                           | Type       | Description                                                                               | Default value
 | ----------------------------------- | ---------- | ----------------------------------------------------------------------------------------- |---------------- |
@@ -48,11 +47,11 @@ Category Highlight:
 | `name`                              | `String!`  | Name of the category                                                                      |
 | `image`                             | `String`   | Image of the category                                                                     |
 
-### Styles API
+## Styles API
 
 This app provides some CSS classes as an API for style customization. You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api).
 
-#### CSS namespaces
+### CSS namespaces
 Below, we describe the namespaces that are defined in the categories highlights.
 
 Class name        | Description                    | Component Source        
