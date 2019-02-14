@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import * as ReactShare from 'react-share'
 
 import { SOCIAL_TO_ENUM, SOCIAL_ENUM_TO_COMPONENT } from '../constants/social'
-import share from '../styles.css'
+import styles from '../styles.css'
 
 export default class SocialButton extends Component {
   static propTypes = {
@@ -37,13 +37,13 @@ export default class SocialButton extends Component {
     return (
       <SocialComponent
         url={url}
-        className={classNames(share.socialButton, buttonClass)}
+        className={classNames(styles.shareSocialButton, buttonClass)}
         {...additionalProps}
       >
         <SocialIcon
           round
           size={size}
-          className={classNames(share.socialIcon, iconClass)}
+          className={classNames(styles.shareSocialIcon, iconClass)}
         />
       </SocialComponent>
     )
