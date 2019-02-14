@@ -1,4 +1,4 @@
-# Share
+# Container
 
 ## Description
 
@@ -19,7 +19,7 @@ You should follow the usage instruction in the main [README](https://github.com/
 
 To import it into your code: 
 ```js
-import Container from 'vtex.store-components/Container'
+import { Container } from 'vtex.store-components'
 ```
 
 You can use it in your code like a React component with the jsx tag: `<Container>`. 
@@ -29,12 +29,12 @@ You can use it in your code like a React component with the jsx tag: `<Container
 </Container>
 ```
 
-#### Configuration
+### Configuration
 
 | Prop name | Type | Description |
 | --------- | ---- | ----------- |
 | `className` | `String` | The tachyons classes to be applied in the container |
-| `children` | `String` | The content to be wrapped |
+| `children` | `Node` | The content to be wrapped |
 
 ### Styles API
 You should follow the Styles API instruction in the main [README](/README.md#styles-api).
