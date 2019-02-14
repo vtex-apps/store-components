@@ -10,8 +10,9 @@ This Component can be imported and used by any VTEX app.
 ## Table of Contents
 - [Usage](#usage)
   - [Blocks API](#blocks-api)
-  - [Configuration](#configuration)
+    - [Configuration](#configuration)
   - [Styles API](#styles-api)
+    - [CSS namespaces](#css-namespaces)
 
 ## Usage
 
@@ -21,45 +22,50 @@ Then, add `product-price` block into your app theme, as we do in our [Product De
 
 ### Blocks API
 
-This component has an interface that describes which rules must be implemented by a block when you want to use the `ProductPrice`.
+When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `ProductPrice` and describes if they are required or optional.
 
- ```json
+```json
   "product-price": {
     "component": "ProductPrice"
   }
-```	
+```
 
-### Configuration
+For now this block does not have any required or optional blocks.
 
-Through the Storefront, you can change the `ProductPrice`'s behavior and interface. However, you also can make in your theme app, as Dreamstore does.
+#### Configuration
 
-| Prop name | Type | Description |
-| --------- | ---- | ----------- |
-| `labelSellingPrice` | `String` | Product selling price label |
-| `showListPrice` | `Boolean` | Set visibility of list price |
-| `showLabels` | `Boolean` | Set visibility of labels |
-| `showInstallments` | `Boolean` | Set visibility of installments |
-| `showSavings` | `Boolean` | Set visibility of savings |
+Through the Storefront, you can change the `ProductPrice`'s behavior and interface. However, you also can make in your theme app, as Store theme does. However, you also can make in your theme app, as Store theme does.
+
+| Prop name | Type | Description | Default value |
+| --------- | ---- | ----------- | ------------- |
+| `labelSellingPrice` | `String` | Product selling price label | null |
+| `showListPrice` | `Boolean` | Set visibility of list price | true |
+| `showLabels` | `Boolean` | Set visibility of labels | true |
+| `showInstallments` | `Boolean` | Set visibility of installments | false |
+| `showSavings` | `Boolean` | Set visibility of savings | false |
 
 ### Styles API
 You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api).
 
-| Token name | Component | Description |
-| ---------- | --------- | ----------- |
-| `priceContainer` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The main container of `ProductPrice` |
-| `listPrice` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The list price container |
-| `listPriceLabel` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The list price label |
-| `listPriceValue` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The list price value |
-| `sellingPrice` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The selling price container |
-| `sellingPriceLabel` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The selling price label |
-| `sellingPriceValue` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The selling price value |
-| `savingPrice` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The saving price container |
-| `savingPriceValue` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The saving price value |
-| `installmentsPrice` | [Installments](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/Installments.js) | The installments price container |
-| `interestRatePrice` | [Installments](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/Installments.js) | The interest rate price |
-| `priceLoaderContainer` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The container of the `ProductPrice` loader |
-| `listPriceLoader` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The list price loader |
-| `sellingPriceLabelLoader` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The selling price loader label |
-| `sellingPriceLoader` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The selling price loader |
-| `installmentsPriceLoader` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The installments price loader |
-| `savingsPriceLoader` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | The savings price loader |
+#### CSS Namespaces
+Below, we describe the namespace that are defined in the `ProductPrice`.
+
+| Class name | Description | Component Source |
+| ---------- | ----------- | ---------------- |
+| `priceContainer` | The main container of `ProductPrice` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) |
+| `listPrice` | The list price container | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) |
+| `listPriceLabel` | The list price label | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | 
+| `listPriceValue` | The list price value | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) |
+| `sellingPrice` | The selling price container | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) | 
+| `sellingPriceLabel` | The selling price label | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) |
+| `sellingPriceValue` | The selling price value | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) |
+| `savingPrice` | The saving price container | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) |
+| `savingPriceValue` | The saving price value | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) |
+| `installmentsPrice` | The installments price container | [Installments](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/Installments.js) | 
+| `interestRatePrice` | The interest rate price | [Installments](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/Installments.js) |
+| `priceLoaderContainer` | The container of the `ProductPrice` loader | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) |
+| `listPriceLoader` | The list price loader | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) |
+| `sellingPriceLabelLoader` | The selling price loader label | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) |
+| `sellingPriceLoader` | The selling price loader | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) |
+| `installmentsPriceLoader` | The installments price loader | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) |
+| `savingsPriceLoader` | The savings price loader | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductPrice/index.js) |
