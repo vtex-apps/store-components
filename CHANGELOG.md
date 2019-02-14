@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add an API DOcs to `Share`.
 - Add an API Docs to `BuyButton`.
 - Add an API Docs to `Greeting`.
+- Add an API Docs to `Container`.
 
 ## [3.16.3] - 2019-02-14
 
