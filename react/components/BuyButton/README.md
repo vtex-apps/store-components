@@ -2,7 +2,7 @@
 
 ## Description
 
-`BuyButton` is a VTEX Component that is resposible to handle events of adding productins in the minicart. This Component can be imported and used by any VTEX App.
+`BuyButton` is a VTEX Component that is resposible to handle events of adding products in the minicart. This Component can be imported and used by any VTEX App.
 
 :loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
 
