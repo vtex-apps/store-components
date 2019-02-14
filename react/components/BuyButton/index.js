@@ -85,7 +85,7 @@ export class BuyButton extends Component {
       console.info(response)
       const linkStateItems = pathOr([], ['data', 'addToCart'], response)
 
-      const success = skuItems.map(skuItem =>
+      const success = skuItems.filter(skuItem =>
         !!linkStateItems.find(({ id }) => id === skuItem.skuId)
       )
 
