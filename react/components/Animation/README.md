@@ -10,6 +10,8 @@ This Component can be imported and used by any VTEX App.
 ## Table of Contents
 - [Usage](#usage)
   - [Configuration](#configuration)
+  - [Styles API](#styles-api)
+    - [CSS Namespaces](#css-namespaces)
 
 ## Usage
 You should follow the usage instruction in the main [README](/README.md#usage).
@@ -26,6 +28,8 @@ You can use it in your code like a React component with the jsx tag: `<Animation
 </Animation>
 ```
 
+### Configuration
+
 | Prop name          | Type       | Description                                                                                 |
 | ------------------ | ---------- | ------------------------------------------------------------------------------------------- |
 | `className`        | `String`   | The className to set the animation                                                          |
@@ -35,3 +39,9 @@ You can use it in your code like a React component with the jsx tag: `<Animation
 | `duration`         | `number`   | The animation duration in seconds, the default value is 0.4 second.                         |
 | `transfer`         | `number`   | The active animation deslocation in percentage, the default value is 110%.                  |
 | `transferEnter`    | `number`   | The not active animation deslocation in percentage, the default value is 0%.                |
+
+### Styles API
+You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+
+#### CSS Namespaces
+For now this component does not have any css namespaces.
