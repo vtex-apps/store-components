@@ -11,10 +11,11 @@ This Component can be imported and used by any VTEX App.
 - [Usage](#usage)
 
 ## Usage
+You should follow the usage instruction in the main [README](/README.md#usage).
 
 To import it into your code: 
 ```js
-import Animation from 'vtex.store-components/Animation'
+import { Animation } from 'vtex.store-components'
 ```
 
 You can use it in your code like a React component with the jsx tag: `<Animation />`. 
