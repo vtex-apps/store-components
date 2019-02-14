@@ -6,16 +6,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Added
-- Add an API Docs to `AvailabilitySubscriber`.
-- Add an API Docs to `ProductPrice`.
-- Add an API Docs to `ProductSpecifications`
-- Add an API Docs to `GradientCollapse`.
-- Add an API Docs to `CategoriesHighlights`.
-- Add an API DOcs to `Share`.
-- Add an API Docs to `BuyButton`.
-- Add an API Docs to `Greeting`.
-- Add an API Docs to `Container`.
 
 ## [3.16.3] - 2019-02-14
 
