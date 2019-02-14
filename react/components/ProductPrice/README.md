@@ -12,7 +12,7 @@ This Component can be imported and used by any VTEX app.
   - [Blocks API](#blocks-api)
     - [Configuration](#configuration)
   - [Styles API](#styles-api)
-    - [CSS namespaces](#css-namespaces)
+    - [CSS Namespaces](#css-namespaces)
 
 ## Usage
 
