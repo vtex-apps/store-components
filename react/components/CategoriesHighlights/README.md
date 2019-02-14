@@ -2,7 +2,7 @@
 
 ## Description
 
-Categories Highlights shows two or four categories in a lighlighted position in the store. This Component can be imported and used by any VTEX App.
+Categories Highlights is a banner which shows two or four categories in a highlighted position in the store. This Component can be imported and used by any VTEX App.
 
 :loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
 
@@ -27,7 +27,7 @@ You can use it in your code like a React component with the jsx tag: `<Categorie
     categoriesHighlighted={ 
         categoryX: { name: 'X', image: 'Image X' }, 
         categoryY: { name: 'Y', image: 'Image Y' } 
-    } x
+    }
 />
 ```
 
