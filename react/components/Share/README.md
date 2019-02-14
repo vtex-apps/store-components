@@ -3,7 +3,7 @@
 ## Description
 
 `Share` is a VTEX component that allows to share a product url via social medias.
-This Component can be imported and used by any VTEX app.
+This component can be imported and used by any VTEX app.
 
 :loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
 
@@ -34,15 +34,15 @@ For now this block does not have any required or optional blocks.
 
 #### Configuration
 
-Through the Storefront, you can change the `Share`'s behavior and interface. However, you also can make in your theme app, as Store theme does. However, you also can make in your theme app, as Store theme does.
+Through the Storefront, you can change the `Share`'s behavior and interface. However, you also can make in your theme app, as Store theme does.
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
 | `className` | `String` | The main container classes | null |
 | `shareLabelClass` | `String` | The share label classes | true |
 | `buttonsContainerClass` | `String` | The button container classes | true |
-| `options` | `Object` | Share button options, like "size" | {} |
-| `social` | `Object` | The possible social medias to be displayed | {Facebook: true, Twitter: true, WhatsApp: true} |
+| `options` | `Options` | Share button options, like "size" | {} |
+| `social` | `Social` | The possible social medias to be displayed | {Facebook: true, Twitter: true, WhatsApp: true} |
 
 Options:
 
