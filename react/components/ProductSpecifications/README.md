@@ -10,18 +10,20 @@ This Component can be imported and used by any VTEX app.
 ## Table of Contents
 - [Usage](#usage)
   - [Blocks API](#blocks-api)
-  - [Configuration](#configuration)
+    - [Configuration](#configuration)
   - [Styles API](#styles-api)
+    - [CSS Namespaces](#css-namespaces)
 
 ## Usage
 
-You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
+You should follow the usage instruction in the main [README](/README.md#usage).
 
 Then, add `product-specifications` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
 
 ### Blocks API
 
-This component has an interface that describes which rules must be implemented by a block when you want to use the `ProductSpecifications`.
+
+When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `ProductSpecifications` and describes if they are required or optional.
 
  ```json
   "product-specifications":{
@@ -29,9 +31,11 @@ This component has an interface that describes which rules must be implemented b
   }
 ```	
 
+For now this block does not have any required or optional blocks.
+
 ### Configuration
 
-Through the Storefront, you can change the `ProductSpecifications`'s behavior and interface. However, you also can make in your theme app, as Dreamstore does.
+Through the Storefront, you can change the `ProductSpecifications`'s behavior and interface. However, you also can make in your theme app, as Store theme does.
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
@@ -47,12 +51,16 @@ Specification:
 
 
 ### Styles API
-You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api).
 
-| Token name | Component | Description |
-| ---------- | --------- | ----------- |
-| `specificationsTitle` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductSpecifications/index.js) | The title of the specifications section |
-| `specificationsTableContainer` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductSpecifications/index.js) | The main container of the product specifications in table view including the `specificationsTable` and the `specificationTitle` |
-| `specificationsTable` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductSpecifications/index.js) | The table of specifications |
-| `specificationsTabsContainer` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductSpecifications/index.js) | The main container of the product specifications in tabs view including the `specificationsTable` and the `specificationTitle` |
-| `specificationsTab` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductSpecifications/index.js) | The content inside a tab of the product |
+You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+
+#### CSS Namespaces
+Below, we describe the namespace that are defined in the `ProductSpecifications`.
+
+| Class name | Description | Component Source |
+| ---------- | ----------- | ---------------- |
+| `specificationsTitle` | The title of the specifications section | [index](/react/components/ProductSpecifications/index.js) |
+| `specificationsTableContainer` | The main container of the product specifications in table view including the `specificationsTable` and the `specificationTitle` | [index](/react/components/ProductSpecifications/index.js) |
+| `specificationsTable` |  The table of specifications | [index](/react/components/ProductSpecifications/index.js) |
+| `specificationsTabsContainer` | The main container of the product specifications in tabs view including the `specificationsTable` and the `specificationTitle` | [index](/react/components/ProductSpecifications/index.js) |
+| `specificationsTab` | The content inside a tab of the product | [index](/react/components/ProductSpecifications/index.js) |
