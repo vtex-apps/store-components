@@ -22,7 +22,6 @@ Then, add `product-specifications` block into your app theme, as we do in our [P
 
 ### Blocks API
 
-
 When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `ProductSpecifications` and describes if they are required or optional.
 
  ```json
