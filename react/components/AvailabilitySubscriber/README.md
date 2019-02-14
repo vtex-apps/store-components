@@ -9,8 +9,9 @@
 ## Table of Contents
 - [Usage](#usage)
   - [Blocks API](#blocks-api)
-  - [Configuration](#configuration)
+    - [Configuration](#configuration)
   - [Styles API](#styles-api)
+    - [CSS Namespace](#css-namespaces)
 - [Data](#data)
 
 ## Usage
@@ -21,13 +22,15 @@ Then, add `availability-subscriber` block into your app theme, as we do in our [
 
 ### Blocks API
 
-This component has an interface that describes which rules must be implemented by a block when you want to use the `AvailabilitySubscriber`.
+When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `AvailabilitySubscriber` and describes if they are required or optional.
 
 ```json
   "availability-subscriber": {
     "component": "AvailabilitySubscriber"
   }
 ```
+
+For now this block does not have any required or optional blocks.
 
 ### Configuration
 
@@ -37,21 +40,23 @@ This component has an interface that describes which rules must be implemented b
 
 You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api).
 
-Below, we describe the tokens, their explanation and the component where it is located.
+#### CSS Namespaces
 
-| Token name | Component | Description |
-| ---------- | --------- |------------ |
-| `subscriberContainer` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) | `AvailabilitySubscriber` container |
-| `title` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) | `AvailabilitySubscriber` title |
-| `subscribeLabel` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) | `AvailabilitySubscriber` subscribe label |
-| `form` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) | `AvailabilitySubscriber` form container |
-| `content` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) | `AvailabilitySubscriber` form content container |
-| `input` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) | `AvailabilitySubscriber` form input containter |
-| `inputName` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) | `AvailabilitySubscriber` form input name |
-| `inputEmail` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) | `AvailabilitySubscriber` form input email |
-| `submit` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) | `AvailabilitySubscriber` form submit button |
-| `success` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) | `AvailabilitySubscriber` success feedback message |
-| `error` |  [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) | `AvailabilitySubscriber` error feedback message |
+Below, we describe the namespace that are defined in the `AvailabilitySubscriber`.
+
+| Class name | Description | Component Source |
+| ---------- | ----------- |----------------- |
+| `subscriberContainer` | `AvailabilitySubscriber` container | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) |
+| `title` | `AvailabilitySubscriber` title | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) |
+| `subscribeLabel` | `AvailabilitySubscriber` subscribe label | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) |
+| `form` | `AvailabilitySubscriber` form container | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) |
+| `content` | `AvailabilitySubscriber` form content container | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) |
+| `input` | `AvailabilitySubscriber` form input containter | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) |
+| `inputName` | `AvailabilitySubscriber` form input name | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) |
+| `inputEmail` | `AvailabilitySubscriber` form input email | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) |
+| `submit` | `AvailabilitySubscriber` form submit button | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) |
+| `success` | `AvailabilitySubscriber` success feedback message | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) |
+| `error` | `AvailabilitySubscriber` error feedback message | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/AvailabilitySubscriber/index.js) |
 
 ## Data
 
