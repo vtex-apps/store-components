@@ -8,9 +8,9 @@
 
 ## Table of Contents
 - [Usage](#usage)
-  - [Blocks API](#blocks-api)
   - [Configuration](#configuration)
   - [Styles API](#styles-api)
+    - [CSS Namespaces](#css-namespaces)
 
 ## Usage
 You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
@@ -28,6 +28,7 @@ You can use it in your code like a React component with the jsx tag: `<GradientC
 ```
 
 ### Configuration
+
 | Prop name | Type | Description | Default Value |
 | --------- | ---- | ----------- | ----------- |
 | `collapseHeight` | `Number!` | MaxHeight of the container | - |
@@ -35,10 +36,13 @@ You can use it in your code like a React component with the jsx tag: `<GradientC
 
 ### Styles API
 
-You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api).
+You should follow the Styles API instruction in the main [README](/README.md#styles-api).
 
-| Token name | Component | Description |
-| ---------- | --------- | ----------- |
-| `fadeBottom` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/GradientCollapse/index.js) | The bottom of the collapse |
-| `pointerEventsNone` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/GradientCollapse/index.js) | The GradientCollapse container |
-| `pointerEventsAuto` | [index](https://github.com/vtex-apps/store-components/blob/master/react/components/GradientCollapse/index.js) | The _Show Less_/_Show More_ button area |
+#### CSS Namespaces
+Below, we describe the namespace that are defined in the `GradientCollapse`.
+
+| Class name | Description | Component Source |
+| ---------- | ----------- | ---------------- |
+| `fadeBottom` | The bottom of the collapse | [index](/react/components/ProductPrice/index.js) |
+| `pointerEventsNone` | The GradientCollapse container | [index](/react/components/ProductPrice/index.js) |
+| `pointerEventsAuto` | The _Show Less_/_Show More_ button area | [index](/react/components/ProductPrice/index.js) |
