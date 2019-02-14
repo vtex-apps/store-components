@@ -1,70 +1,71 @@
 # Product Price
 
-Product Price is a canonical component that any VTEX app can import.
+## Description
 
-To import it into your code:
+`ProductPrice` is a VTEX component that shows the price of a product.
+This Component can be imported and used by any VTEX app.
 
-```js
-import ProductPrice from 'vtex.store-components/ProductPrice'
-```
+:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+
+## Table of Contents
+- [Usage](#usage)
+  - [Blocks API](#blocks-api)
+    - [Configuration](#configuration)
+  - [Styles API](#styles-api)
+    - [CSS Namespaces](#css-namespaces)
 
 ## Usage
 
-You can use it in your code like a React component with the jsx tag: `<ProductPrice />`.
+You should follow the usage instruction in the main [README](/README.md#usage).
 
-```jsx
-<ProductPrice
-  showLabels={showLabels}
-  showListPrice={showListPrice}
-  showInstallments={showInstallments}
-  sellingPrice={commertialOffer.Price}
-  listPrice={commertialOffer.ListPrice}
-  installments={commertialOffer.Installments}
-/>
+Then, add `product-price` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
+
+### Blocks API
+
+When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `ProductPrice` and describes if they are required or optional.
+
+```json
+  "product-price": {
+    "component": "ProductPrice"
+  }
 ```
 
-### Passing classes to the elements of the component
-Every prop that ends with `Class` will be passed to an element of the component, see the following code
-```jsx
-<ProductPrice
-  className="pv4 overflow-hidden"
-  listPriceLabelClass="c-muted-4"
-  savingsClass="h4 ph5 dib"
-  showLabels={showLabels}
-  showListPrice={showListPrice}
-  showInstallments={showInstallments}
-  sellingPrice={commertialOffer.Price}
-  listPrice={commertialOffer.ListPrice}
-  installments={commertialOffer.Installments}
-/>
-```
+For now this block does not have any required or optional blocks.
 
-| Prop name | Type | Description |
-| --- | --- | --- |
-| `sellingPrice` | `Number` | Product selling price |
-| `listPrice` | `Number` | Product list price |
-| `showListPrice` | `Boolean!` | Set visibility of list price |
-| `showLabels` | `Boolean!` | Set visibility of labels |
-| `showInstallments` | `Boolean!` | Set visibility of installments |
-| `showSavings` | `Boolean` | Set visibility of savings |
-| `installments` | `Array` | Available installments |
-| `installments.Value` | `Number!` | Installment price |
-| `installments.InterestRate` | `Number!` | Installment interest rate (zero if interest-free) |
-| `installments.TotalValuePlusInterestRate` | `Number` | Calculated total value |
-| `installments.NumberOfInstallments` | `Number!` | Number of installments |
-| `installments.Name` | `String` | Installment offer name |
-| `className` | `String` | Classes to be applied to root element |
-| `loaderClass` | `String` | Classes to be applied to loader root element |
-| `listPriceContainerClass` | `String` | Classes to be applied to container of list price |
-| `listPriceLabelClass` | `String` | Classes to be applied to label of price |
-| `listPriceClass` | `String` | Classes to be applied to price value |
-| `sellingPriceContainerClass` | `String` | Classes to be applied to selling price container |
-| `sellingPriceLabelClass` | `String` | Classes to be applied to selling price label |
-| `sellingPriceClass` | `String` | Classes to be applied to selling price value |
-| `savingsContainerClass` | `String` | Classes to be applied to savings container |
-| `savingsClass` | `String` | Classes to be applied to savings |
-| `installmentClass` | `String` | Classes to be applied to installment element |
-| `installmentContainerClass` | `String` | Classes to be applied to installment container |
-| `interestRateClass` | `String` | Classes to be applied to interest rate element |
+#### Configuration
 
-See an example at [Product Summary](https://github.com/vtex-apps/product-summary) app
+Through the Storefront, you can change the `ProductPrice`'s behavior and interface. However, you also can make in your theme app, as Store theme does. However, you also can make in your theme app, as Store theme does.
+
+| Prop name | Type | Description | Default value |
+| --------- | ---- | ----------- | ------------- |
+| `labelSellingPrice` | `String` | Product selling price label | null |
+| `showListPrice` | `Boolean` | Set visibility of list price | true |
+| `showLabels` | `Boolean` | Set visibility of labels | true |
+| `showInstallments` | `Boolean` | Set visibility of installments | false |
+| `showSavings` | `Boolean` | Set visibility of savings | false |
+
+### Styles API
+You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+
+#### CSS Namespaces
+Below, we describe the namespace that are defined in the `ProductPrice`.
+
+| Class name | Description | Component Source |
+| ---------- | ----------- | ---------------- |
+| `priceContainer` | The main container of `ProductPrice` | [index](/react/components/ProductPrice/index.js) |
+| `listPrice` | The list price container | [index](/react/components/ProductPrice/index.js) |
+| `listPriceLabel` | The list price label | [index](/react/components/ProductPrice/index.js) | 
+| `listPriceValue` | The list price value | [index](/react/components/ProductPrice/index.js) |
+| `sellingPrice` | The selling price container | [index](/react/components/ProductPrice/index.js) | 
+| `sellingPriceLabel` | The selling price label | [index](/react/components/ProductPrice/index.js) |
+| `sellingPriceValue` | The selling price value | [index](/react/components/ProductPrice/index.js) |
+| `savingPrice` | The saving price container | [index](/react/components/ProductPrice/index.js) |
+| `savingPriceValue` | The saving price value | [index](/react/components/ProductPrice/index.js) |
+| `installmentsPrice` | The installments price container | [Installments](/react/components/ProductPrice/Installments.js) | 
+| `interestRatePrice` | The interest rate price | [Installments](/react/components/ProductPrice/Installments.js) |
+| `priceLoaderContainer` | The container of the `ProductPrice` loader | [index](/react/components/ProductPrice/index.js) |
+| `listPriceLoader` | The list price loader | [index](/react/components/ProductPrice/index.js) |
+| `sellingPriceLabelLoader` | The selling price loader label | [index](/react/components/ProductPrice/index.js) |
+| `sellingPriceLoader` | The selling price loader | [index](/react/components/ProductPrice/index.js) |
+| `installmentsPriceLoader` | The installments price loader | [index](/react/components/ProductPrice/index.js) |
+| `savingsPriceLoader` | The savings price loader | [index](/react/components/ProductPrice/index.js) |
