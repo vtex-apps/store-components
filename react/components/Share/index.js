@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl'
 
 import SocialButton from './components/SocialButton'
 import { SOCIAL_ENUM } from './constants/social'
+import share from './styles.css'
 
 class Share extends Component {
   static propTypes = {
@@ -56,7 +57,7 @@ class Share extends Component {
     }
 
     return (
-      <div className={classNames('vtex-share vtex-share-loader', containerClass)}>
+      <div className={classNames(share.container, share.loader, containerClass)}>
         <ContentLoader
           className={contentLoaderClass}
           style={{
@@ -144,11 +145,11 @@ class Share extends Component {
     }
 
     return (
-      <div className={classNames('vtex-share', className)}>
-        <div className={classNames('share__label', shareLabelClass)}>
+      <div className={classNames(share.container, className)}>
+        <div className={classNames(share.label, shareLabelClass)}>
           <FormattedMessage id="store-components.share.label" />
         </div>
-        <div className={classNames('share__buttons-container', buttonsContainerClass)}>
+        <div className={classNames(share.buttonsContainer, buttonsContainerClass)}>
           {Object.keys(social).map(
             (socialNetwork, index) =>
               social[socialNetwork] && (

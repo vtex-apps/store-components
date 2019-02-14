@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import * as ReactShare from 'react-share'
 
 import { SOCIAL_TO_ENUM, SOCIAL_ENUM_TO_COMPONENT } from '../constants/social'
+import share from '../styles.css'
 
 export default class SocialButton extends Component {
   static propTypes = {
@@ -36,13 +37,13 @@ export default class SocialButton extends Component {
     return (
       <SocialComponent
         url={url}
-        className={classNames('vtex-share__social-button', buttonClass)}
+        className={classNames(share.socialButton, buttonClass)}
         {...additionalProps}
       >
         <SocialIcon
           round
           size={size}
-          className={classNames('vtex-share__social-icon', iconClass)}
+          className={classNames(share.socialIcon, iconClass)}
         />
       </SocialComponent>
     )
