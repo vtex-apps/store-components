@@ -43,6 +43,6 @@ Below, we describe the namespace that are defined in the `GradientCollapse`.
 
 | Class name | Description | Component Source |
 | ---------- | ----------- | ---------------- |
-| `fadeBottom` | The bottom of the collapse | [index](/react/components/ProductPrice/index.js) |
-| `pointerEventsNone` | The GradientCollapse container | [index](/react/components/ProductPrice/index.js) |
-| `pointerEventsAuto` | The _Show Less_/_Show More_ button area | [index](/react/components/ProductPrice/index.js) |
+| `fadeBottom` | The bottom of the collapse | [index](/react/components/GradientCollapse/index.js) |
+| `pointerEventsNone` | The GradientCollapse container | [index](/react/components/GradientCollapse/index.js) |
+| `pointerEventsAuto` | The _Show Less_/_Show More_ button area | [index](/react/components/GradientCollapse/index.js) |
