@@ -9,6 +9,7 @@ This Component can be imported and used by any VTEX App.
 
 ## Table of Contents
 - [Usage](#usage)
+  - [Configuration](#configuration)
 
 ## Usage
 You should follow the usage instruction in the main [README](/README.md#usage).
