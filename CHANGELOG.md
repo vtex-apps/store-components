@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Add an API Docs to `AvailabilitySubscriber`.
+- Add an API Docs to `ProductPrice`.
 
 ## [3.16.3] - 2019-02-14
 
@@ -24,6 +25,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.15.1] - 2019-02-13
 ### Fixed
 - Fix `Logo` to only use maxWidth and maxHeight to define it's size.
+
+### Added
+- Add an API Docs to `ProductDescription`.
 
 ## [3.15.0] - 2019-02-12
 ### Added
