@@ -85,7 +85,7 @@ export class BuyButton extends Component {
         data: { addToCart: linkStateItems },
       } = await addToCart(minicartItems)
 
-      const success = skuItems.map(skuItem =>
+      const success = linkStateItems && skuItems.map(skuItem =>
         !!linkStateItems.find(({ id }) => id === skuItem.skuId)
       )
 
