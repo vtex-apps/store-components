@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add an API Docs to `ProductSpecifications`
 - Add an API Docs to `GradientCollapse`.
 - Add an API Docs to `CategoriesHighlights`.
+- Add an API DOcs to `Share`.
 
 ## [3.16.3] - 2019-02-14
 
