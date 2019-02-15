@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.17.0] - 2019-02-15
+### Added
+- Support to CSS Modules in `Share`.
+
 ## [3.16.4] - 2019-02-15
 ### Fixed
 - Undo the link-state changes.
