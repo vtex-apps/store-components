@@ -1,9 +1,9 @@
 # Search Bar
 
 ## Description
-`Search Bar` is a VTEX Component that shows a search bar with autocomplete options displaying the matching products as well. This component can be imported and used by any VTEX App.
+`Search Bar` is a VTEX Component that shows a search bar with autocomplete options and displays the matching products as well. This component can be imported and used by any VTEX App.
 
-:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
+:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
 
 ## Table of Contents
 - [Usage](#usage)
@@ -32,13 +32,13 @@ For now this block does not have any required or optional blocks.
 
 #### Configuration
 
-Through the Storefront, you can change the `SearchBar`'s behavior and interface. However, you also can make in your theme app, as Store theme does. However, you also can make in your theme app, as Store theme does.
+Through the Storefront, you can change the `SearchBar`'s behavior and interface. However, you also can make in your theme app, as Store theme does.
 
 | Prop name          | Type      | Description                                                          | Default value
 | ------------------ | --------- | -------------------------------------------------------------------- |------------- |
 | `placeholder`      | `String!`  | Placeholder to be used on the input                             | - |
 | `emptyPlaceholder` | `String!`  | Shows a placeholder when the ResultList hasn't results to displayed  | - |
-| `compactMode` | `Boolean`  | Indentify when use the compact version of the component  | - |
+| `compactMode` | `Boolean`  | Identify when to use the compact version of the component  | - |
 | `hasIconLeft` | `Boolean`  | Identify if the search icon is on left or right position  | - |
 | `iconClasses` | `String`  | Custom classes for the search icon  | - |
 
