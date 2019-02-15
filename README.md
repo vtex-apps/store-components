@@ -4,7 +4,7 @@
 
 VTEX Store Components is a collection of components that can be used to create/extend others VTEX apps.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
 
 ## Release Schedule
 
@@ -80,16 +80,18 @@ Below we have a README for each component of this project that explains how to u
 - [Collection Badges](/react/components/CollectionBadges/README.md)
 - [Container](/react/components/Container/README.md)
 - [Discount Badge](/react/components/DiscountBadge/README.md)
+- [Gradient Collapse](/react/components/GradientCollapse/README.md)
 - [Greeting](/react/components/Greeting/README.md)
 - [Logo](/react/components/Logo/README.md)
 - [Product Description](/react/components/ProductDescription/README.md)
 - [Product Images](/react/components/ProductImages/README.md)
 - [Product Name](/react/components/ProductName/README.md)
 - [Product Price](/react/components/ProductPrice/README.md)
+- [Product Specifications](/react/components/ProductSpecifications/README.md)
+- [SKU Selector](/react/components/SKUSelector/README.md)
 - [Search Bar](/react/components/SearchBar/README.md)
 - [Share](/react/components/Share/README.md)
 - [Shipping Simulator](/react/components/ShippingSimulator/README.md)
-- [SKU Selector](/react/components/SKUSelector/README.md)
 - [Slider](/react/components/Slider/README.md)
 
 ## Creating a new component
