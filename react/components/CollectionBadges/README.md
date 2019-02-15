@@ -1,25 +1,49 @@
-## Collection Badges
-Collection Badges is a canonical component that any VTEX app can import.
+# Collection Badges
+
+## Description
+
+`Collection Badges` is a VTEX component that will render an image with the list of collection badges located at the bottom.
+This component can be imported and used by any VTEX app.
+
+:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+
+## Table of Contents
+- [Usage](#usage)
+  - [Configuration](#configuration)
+  - [Styles API](#styles-api)
+    - [CSS Namespaces](#css-namespaces)
+
+## Usage
+
+You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
 
 To import it into your code: 
 ```js
-import CollectionBadges from 'vtex.store-components/CollectionBadges'
+import { CollectionBadges } from 'vtex.store-components'
 ```
 
-## Usage
-You can use it in your code like a React component with the jsx tag: `<CollectionBadges />`. 
+You can use it in your code like a React component with the jsx tag: `<CollectionBadges>`. 
 ```jsx
-<CollectionBadges collectionBadgesText={[ 'foo', 'bar' ]}> 
-  <img src="" alt="">
+<CollectionBadges collectionBadgesText={[ 'foo', 'bar' ]}>
+  <img src="..." alt="...">
 </CollectionBadges>
 ```
 
-And it will render an image with the list of collection badges located at the bottom.
+### Configuration
 
-| Prop name              | Type       | Description                                                                 |
-| ---------------------- | ---------- | --------------------------------------------------------------------------- |
-| `collectionBadgesText` | `Array!`   | Array of collection badges text                                             |
-| `label`                | `Node!`    | Children component that should be render inside the collection badge item   |
+| Prop name | Type | Description | Default Values |
+| --------- | ---- | ----------- | -------------- |
+| `collectionBadgesText` | `Array(String)!` | An array of collection badges text | [] |
+| `children` | `Node!` | Children components that should be rendered inside the collection badge item | - |
 
-_TODO - Add some sample when an app use this component @brunojdo - 2018/05/23_
-See an example at ... app
+### Styles API
+You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+
+#### CSS Namespaces
+
+Below, we describe the namespace that are defined in the `CollectionBadges`.
+
+| Class name | Description | Component Source |
+| ---------- | ----------- | ---------------- |
+| `collectionContainer` | The collection badger main container | [index](/react/components/CollectionBadges/index.js) |
+| `item` | The collection badge item main container | [index](/react/components/CollectionBadges/components/CollectionBadgeItem.js) |

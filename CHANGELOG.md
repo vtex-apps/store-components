@@ -8,11 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Support to CSS Modules in `Share`.
-- Add an API Docs to `AvailabilitySubscriber`.
-- Add an API Docs to `ProductPrice`.
-- Add an API Docs to `ProductSpecifications`
-- Add an API Docs to `GradientCollapse`.
-- Add an API Docs to `CategoriesHighlights`.
+
+## [3.16.4] - 2019-02-15
+### Fixed
+- Undo the link-state changes.
 
 ## [3.16.3] - 2019-02-14
 
