@@ -5,7 +5,7 @@
 `Slider` is a VTEX component that allows to show a collection of children components through a slide. To accomplish that, an external library called [react-slick](https://github.com/akiran/react-slick) is used.
 This component can be imported and used by any VTEX app.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
 
 ## Table of Contents
 - [Usage](#usage)
