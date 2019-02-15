@@ -8,10 +8,10 @@ VTEX Store Components is a collection of components that can be used to create/e
 
 ## Release Schedule
 
-| Release  | Status              | Initial Release | Maintenance LTS Start | End-of-life | Dreamstore Compatibility
+| Release  | Status              | Initial Release | Maintenance LTS Start | End-of-life | Store Compatibility
 | :--:     | :---:               |  :---:          | :---:                 | :---:       | :---: 
-| [2.x]    | **Maintenance LTS** |  2018-10-02     | 2018-12-01            | March 2019  | 1.x
 | [3.x]    | **Current Release** |  2018-11-29     |                       |             | 2.x
+| [2.x]    | **Maintenance LTS** |  2018-10-02     | 2018-12-01            | March 2019  | 1.x
 
 See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for more information.
 
@@ -36,14 +36,24 @@ To use this app, you need to import in your dependencies on `manifest.json`.
   }
 ```
 
+Then, you can add a component block into your app theme as we do with `product-price` in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
+
+For example, now you can change the behavior of `product-price` block that is in the product details. See an example of how to configure: 
+```json
+"product-price": {
+  "props": {
+    "showListPrice": true,
+    "showLabels": false,
+  }
+}
+```
+
 ### Styles API
-This app has CSS customization through `CSS Modules`. CSS Modules is a CSS file in which all class names and animation names are scoped locally by default. You can read more about CSS Modules [here](https://github.com/css-modules/css-modules).
+This app provides some CSS classes as an API for style customization.
 
-We use it `css-loader` to generate a CSS token on a HTML element. For example, the builder generate a CSS token based on app vendor, name and major version. Like `productNameContainer` token declared in `ProductName`, generate the classname `vtex.store-components-3-x-productNameContainer`.
+To use this CSS API, you must add the `styles` builder and create an app styling CSS file.
 
-Each component provides in your `README` a section `Styles API` with all suported tokens.
-
-To override the default CSS, you need to import `styles` on your manifest:
+1. Add the `styles` builder to your `manifest.json`:
 
 ```json
   "builders": {
@@ -51,30 +61,36 @@ To override the default CSS, you need to import `styles` on your manifest:
   }
 ```
 
-Also, create a `vtex.store-components.css` file in `styles/css` for your handlers customization.
+2. Create a file called `vtex.store-components.css` inside the `styles/css` folder. Add your custom styles:
+
+```css
+.container {
+  margin-top: 10px;
+}
+```
 
 ## Components Specs
 
 Below we have a README for each component of this project that explains how to use them.
 
-- [Animation](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Animation/README.md)
-- [Availability Subscriber](https://github.com/vtex-apps/storecomponents/blob/master/react/components/AvailabilitySubscriber/README.md)
-- [Buy Button](https://github.com/vtex-apps/storecomponents/blob/master/react/components/BuyButton/README.md)
-- [Categories Highlights](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Container/README.md)
-- [Collection Badges](https://github.com/vtex-apps/storecomponents/blob/master/react/components/CollectionBadges/README.md)
-- [Container](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Container/README.md)
-- [Discount Badge](https://github.com/vtex-apps/storecomponents/blob/master/react/components/DiscountBadge/README.md)
-- [Greeting](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Greeting/README.md)
-- [Logo](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Logo/README.md)
-- [Product Description](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductDescription/README.md)
-- [Product Images](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductImages/README.md)
-- [Product Name](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductName/README.md)
-- [Product Price](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ProductPrice/README.md)
-- [Search Bar](https://github.com/vtex-apps/storecomponents/blob/master/react/components/SearchBar/README.md)
-- [Share](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Share/README.md)
-- [Shipping Simulator](https://github.com/vtex-apps/storecomponents/blob/master/react/components/ShippingSimulator/README.md)
-- [SKU Selector](https://github.com/vtex-apps/storecomponents/blob/master/react/components/SKUSelector/README.md)
-- [Slider](https://github.com/vtex-apps/storecomponents/blob/master/react/components/Slider/README.md)
+- [Animation](/react/components/Animation/README.md)
+- [Availability Subscriber](/react/components/AvailabilitySubscriber/README.md)
+- [Buy Button](/react/components/BuyButton/README.md)
+- [Categories Highlights](/react/components/CategoriesHighlights/README.md)
+- [Collection Badges](/react/components/CollectionBadges/README.md)
+- [Container](/react/components/Container/README.md)
+- [Discount Badge](/react/components/DiscountBadge/README.md)
+- [Greeting](/react/components/Greeting/README.md)
+- [Logo](/react/components/Logo/README.md)
+- [Product Description](/react/components/ProductDescription/README.md)
+- [Product Images](/react/components/ProductImages/README.md)
+- [Product Name](/react/components/ProductName/README.md)
+- [Product Price](/react/components/ProductPrice/README.md)
+- [Search Bar](/react/components/SearchBar/README.md)
+- [Share](/react/components/Share/README.md)
+- [Shipping Simulator](/react/components/ShippingSimulator/README.md)
+- [SKU Selector](/react/components/SKUSelector/README.md)
+- [Slider](/react/components/Slider/README.md)
 
 ## Creating a new component
 To start your development, create a new folder on react/components. Thats where your source code will be stored. Also create a new js file on /react, this file should be used to expose your component, like:
