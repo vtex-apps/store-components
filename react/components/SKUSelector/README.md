@@ -37,25 +37,25 @@ Through the Storefront, you can change the `SKUSelector` behavior and interface.
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| productSlug | String | Product's slug | Required | 
-| skuSelected | SKU | SKU selected | Required |
-| skuItems | Array(SKU) | List of SKU Items | Required |
-| onSKUSelected | Function | Callback that is called when a SKU is selected | Function that redirects to the page with the product and the selected SKU |
+| productSlug | !String | Product's slug | - | 
+| skuSelected | !SKU | SKU selected | - |
+| skuItems | !Array(SKU) | List of SKU Items | - |
+| onSKUSelected | !Function | Callback that is called when a SKU is selected | Function that redirects to the page with the product and the selected SKU |
 
 SKU
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| name | String| Name of the sku | Required |
-| itemId | String | The SKU id | Required |
-| images | Array(Image)| The images of the SKU | Required |
+| name | !String| Name of the sku | - |
+| itemId | !String | The SKU id | - |
+| images | !Array(Image)| The images of the SKU | - |
 
 Image
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| imageUrl | String | The URL of the image | Required |
-| imageLabel | String | The label of the image | `undefined` |
+| imageUrl | !String | The URL of the image | - |
+| imageLabel | String | The label of the image | - |
 
 ### Styles API
 
