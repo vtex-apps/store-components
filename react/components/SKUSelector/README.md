@@ -1,4 +1,4 @@
-# SKUSelector
+# SKU Selector
 
 ## Description
 
