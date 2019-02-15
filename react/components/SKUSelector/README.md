@@ -37,24 +37,24 @@ Through the Storefront, you can change the `SKUSelector` behavior and interface.
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| productSlug | !String | Product's slug | - | 
-| skuSelected | !SKU | SKU selected | - |
-| skuItems | !Array(SKU) | List of SKU Items | - |
-| onSKUSelected | !Function | Callback that is called when a SKU is selected | Function that redirects to the page with the product and the selected SKU |
+| productSlug | String! | Product's slug | - | 
+| skuSelected | SKU! | SKU selected | - |
+| skuItems | Array(SKU)! | List of SKU Items | - |
+| onSKUSelected | Function! | Callback that is called when a SKU is selected | Function that redirects to the page with the product and the selected SKU |
 
 SKU
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| name | !String| Name of the sku | - |
-| itemId | !String | The SKU id | - |
-| images | !Array(Image)| The images of the SKU | - |
+| name | String! | Name of the sku | - |
+| itemId | String! | The SKU id | - |
+| images | Array(Image)! | The images of the SKU | - |
 
 Image
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| imageUrl | !String | The URL of the image | - |
+| imageUrl | String! | The URL of the image | - |
 | imageLabel | String | The label of the image | - |
 
 ### Styles API
@@ -65,7 +65,7 @@ You should follow the Styles API instruction in the main [README](/README.md#sty
 
 | ClassName | Description | Component Source
 | --------- | ----------- | ----------------
-| skuSelectorContainer | `SKUSelector` container| [SKUSelectorContainer](https://github.com/vtex-apps/store-components/blob/master/react/components/SKUSelector/components/SKUSelector.js)|
-| skuSelectorSubcontainer | `SKUSelector` inner container | [Variation](https://github.com/vtex-apps/store-components/blob/master/react/components/SKUSelector/components/Variation.js) |
-| skuSelectorName | `SKUSelector` name | [Variation](https://github.com/vtex-apps/store-components/blob/master/react/components/SKUSelector/components/Variation.js)|
-| skuSelectorNameContainer | `SKUSelector` name container| [Variation](https://github.com/vtex-apps/store-components/blob/master/react/components/SKUSelector/components/Variation.js)|
+| skuSelectorContainer | `SKUSelector` container| [SKUSelectorContainer](/react/components/SKUSelector/components/SKUSelector.js)|
+| skuSelectorSubcontainer | `SKUSelector` inner container | [Variation](/react/components/SKUSelector/components/Variation.js) |
+| skuSelectorName | `SKUSelector` name | [Variation](/react/components/SKUSelector/components/Variation.js)|
+| skuSelectorNameContainer | `SKUSelector` name container| [Variation](/react/components/SKUSelector/components/Variation.js)|
