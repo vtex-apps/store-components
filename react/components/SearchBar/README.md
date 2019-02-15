@@ -3,7 +3,7 @@
 ## Description
 `Search Bar` is a VTEX Component that shows a search bar with autocomplete options displaying the matching products as well. This component can be imported and used by any VTEX App.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
 
 ## Table of Contents
 - [Usage](#usage)
