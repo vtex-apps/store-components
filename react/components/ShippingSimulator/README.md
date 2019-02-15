@@ -49,7 +49,7 @@ Below, we describe the namespace that are defined in the `ShippingSimulator`.
 | `shippingContainerLoader` | The container for the spinner loader | [index](/react/components/ShippingSimulator/index.js) |
 | `shippingZipcodeLabelLoader` | The container for the ZIP code loader | [index](/react/components/ShippingSimulator/index.js) |
 | `shippingInputLoader` | The container for the ZIP code input loader | [index](/react/components/ShippingSimulator/index.js) |
-| `shippingZipcodeLabel` | The label for the text `Calculate shipping` | [index](/react/components/ShippingSimulator/index.js) |
+| `shippingZipcodeLabel` | The shipping label | [index](/react/components/ShippingSimulator/index.js) |
 | `shippingCTA` | The calculate shipping button | [index](/react/components/ShippingSimulator/index.js) |
 | `shippingNoMessage` | The message when the store does not have a shipping method | [ShippingTable](/react/components/ShippingSimulator/components/ShippingTable.js) |
 | `shippingTable` | The table for the shipping methods | [ShippingTable](/react/components/ShippingSimulator/components/ShippingTable.js) |
