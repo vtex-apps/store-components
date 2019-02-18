@@ -1,34 +1,42 @@
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { useMemo, useEffect, useState } from 'react'
 import { path } from 'ramda'
 import debounce from 'debounce'
 
 import Carousel from './components/Carousel'
 
-class ProductImages extends Component {
-  componentDidMount() {
-    window.addEventListener('resize', this.debouncedGetBestUrl)
-  }
+const getBestUrlIndex = thresholds => {
+  const windowSize = window.innerWidth
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.debouncedGetBestUrl)
-  }
+  let bestUrlIndex = 0
 
-  debouncedGetBestUrl = debounce(this.forceUpdate, 500)
+  thresholds.forEach((threshold, i) => {
+    if (windowSize > threshold) bestUrlIndex = i + 1
+  })
 
-  getBestUrlIndex = thresholds => {
-    const windowSize = window.innerWidth
+  return bestUrlIndex
+}
 
-    let bestUrlIndex = 0
-    thresholds.forEach((threshold, i) => {
-      if (windowSize > threshold) bestUrlIndex = i + 1
-    })
+const ProductImages = props => {
+  const [_, setState] = useState(0)
 
-    return bestUrlIndex
-  }
+  const debouncedGetBestUrl = debounce(() => {
+    // force update
+    setState(c => c + 1)
+  }, 500)
 
-  get slides() {
-    const { images } = this.props
+  useEffect(() => {
+    window.addEventListener('resize', debouncedGetBestUrl)
+
+    return () => {
+      window.removeEventListener('resize', debouncedGetBestUrl)
+
+      debouncedGetBestUrl.flush()
+    }
+  }, [])
+
+  const slides = useMemo(() => {
+    const { images } = props
 
     if (images.length === 0) return
 
@@ -38,18 +46,16 @@ class ProductImages extends Component {
         urls: image.imageUrls,
         alt: image.imageText,
         thumbUrl: image.thumbnailUrl || image.imageUrls[0],
-        bestUrlIndex: this.getBestUrlIndex(image.thresholds),
+        bestUrlIndex: getBestUrlIndex(image.thresholds),
       }
     })
-  }
+  }, [props.images])
 
-  render() {
-    return (
-      <div className="w-100">
-        <Carousel slides={this.slides} />
-      </div>
-    )
-  }
+  return (
+    <div className="w-100">
+      <Carousel slides={slides} />
+    </div>
+  )
 }
 
 ProductImages.propTypes = {
