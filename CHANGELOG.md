@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.17.2] - 2019-02-18
+
 ## [3.17.1] - 2019-02-18
 ### Fixed
 - Quick fix on `AutocompleteInput` to remove warnings.
