@@ -30,7 +30,7 @@ export default class AutocompleteInput extends Component {
     const { onGoToSearchPage, onClearInput, compactMode, value, hasIconLeft, iconClasses, ...restProps } = this.props
 
     const suffix = (
-      <span className="flex items-center pointer" onClick={value && onClearInput} >
+      <span className="flex items-center pointer" onClick={() => value && onClearInput} >
         {value
           ? <IconClose className="pa0" size={20} />
           : !hasIconLeft && <IconSearch className={iconClasses} />
