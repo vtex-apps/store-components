@@ -64,7 +64,7 @@ ProductImages.propTypes = {
       thumbnailUrl: PropTypes.string,
       /** Text that describes the image */
       imageText: PropTypes.string.isRequired,
-    }),
+    })
   ),
 }
 
