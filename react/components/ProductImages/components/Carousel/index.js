@@ -69,7 +69,7 @@ class Carousel extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.debouncedRebuildOnUpdate)
 
-    this.debouncedRebuildOnUpdate.flush()
+    this.debouncedRebuildOnUpdate.clear()
   }
 
   onSlideChange = () => {

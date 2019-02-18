@@ -31,7 +31,7 @@ const ProductImages = props => {
     return () => {
       window.removeEventListener('resize', debouncedGetBestUrl)
 
-      debouncedGetBestUrl.flush()
+      debouncedGetBestUrl.clear()
     }
   }, [])
 
