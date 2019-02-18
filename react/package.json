@@ -1,12 +1,16 @@
 {
   "name": "vtex.store-components",
   "scripts": {
-    "test": "echo FIXME"
+    "test": "jest"
   },
   "dependencies": {
     "@material-ui/core": "^3.5.1",
     "@vtex/styleguide": "~2.3.0",
     "apollo-client": "~2.2.3",
+    "babel": "^6.23.0",
+    "babel-jest": "^24.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react-app": "^7.0.1",
     "classnames": "^2.2.5",
     "debounce": "^1.2.0",
     "downshift": "^1.31.14",
@@ -40,9 +44,32 @@
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1"
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.5",
+    "jest": "^24.1.0",
+    "jest-transform-graphql": "^2.1.0"
   },
   "vtexScriptsOverride": {
     "srcPath": "."
+  },
+  "jest": {
+    "verbose": true,
+    "transform": {
+      "\\.(gql|graphql)$": "jest-transform-graphql",
+      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest"
+    },
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
+    ],
+    "setupFiles": [
+      "./setupTests.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss)$": "identity-obj-proxy"
+    }
   }
 }
