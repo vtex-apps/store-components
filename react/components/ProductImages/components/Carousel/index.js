@@ -24,8 +24,6 @@ const initialState = {
 }
 
 class Carousel extends Component {
-  _mounted = false
-
   state = initialState
 
   thumbSwiper = React.createRef()
@@ -46,11 +44,6 @@ class Carousel extends Component {
   }
 
   debouncedRebuildOnUpdate = debounce(() => {
-    // fix: cannot call setState on unmounted component
-    if (!this._mounted) {
-      return
-    }
-
     this.thumbSwiper.current && this.thumbSwiper.current.swiper.update()
   }, 500)
 
@@ -71,14 +64,10 @@ class Carousel extends Component {
     window.addEventListener('resize', this.debouncedRebuildOnUpdate)
 
     this.setInitialVariablesState()
-
-    this._mounted = true
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.debouncedRebuildOnUpdate)
-
-    this._mounted = false
   }
 
   onSlideChange = () => {
