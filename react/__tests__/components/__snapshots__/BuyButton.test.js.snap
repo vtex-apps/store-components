@@ -1,35 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<BuyButton /> should match snapshot loading 1`] = `
-<Fragment>
-  <ContentLoader />
-</Fragment>
+<div
+  class="content-loader-mock"
+/>
 `;
 
 exports[`<BuyButton /> should match snapshot normal 1`] = `
-<Fragment>
-  <Button
-    disabled={false}
-    isLoading={false}
-    onClick={[Function]}
-    primary={true}
-  >
-     Test 
-  </Button>
-</Fragment>
+<button
+  type="button"
+>
+    Test  
+</button>
 `;
 
 exports[`<BuyButton /> should match snapshot unavailable 1`] = `
-<Fragment>
-  <Button
-    disabled={true}
-    isLoading={false}
-    onClick={[Function]}
-    primary={true}
-  >
-    <FormattedMessage
-      id="buyButton-label-unavailable"
-    />
-  </Button>
-</Fragment>
+<button
+  type="button"
+>
+   
+  <span>
+    Unavailable
+  </span>
+   
+</button>
 `;
