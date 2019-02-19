@@ -10,12 +10,14 @@ exports[`<ProductPrice /> should match snapshot 1`] = `
     <div
       class="sellingPriceLabel"
     >
-      FormattedMessage
+      <span>
+        To
+      </span>
     </div>
     <div
       class="sellingPrice"
     >
-      40
+      $40.00
     </div>
   </div>
 </div>

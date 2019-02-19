@@ -1,6 +1,7 @@
 {
   "name": "vtex.store-components",
   "scripts": {
+    "pretest": "yarn",
     "test": "jest"
   },
   "dependencies": {
