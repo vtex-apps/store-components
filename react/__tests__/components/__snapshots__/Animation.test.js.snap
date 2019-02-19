@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Animation /> component should match snapshot 1`] = `
+<div
+  class=""
+  style="transform:translateX(110%);transition:transform 0.4s ease-in-out"
+>
+   Test 
+</div>
+`;
