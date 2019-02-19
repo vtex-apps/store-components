@@ -1,27 +1,37 @@
 import React from 'react'
 
 import Animation from '../../Animation'
-import { renderWithIntl } from '../../__helpers__/intl-helper'
+import { render } from 'enzyme'
 
 describe('<Animation /> component', () => {
-  let wrapper
-
   const renderComponent = customProps => {
     const comp = <Animation {...customProps}> Test </Animation>
 
-    return renderWithIntl(comp)
+    return render(comp)
   }
 
-  beforeEach(() => {
-    wrapper = renderComponent()
-  })
-
   it('should be rendered', () => {
-    expect(wrapper).toBeDefined()
+    const wrapper = renderComponent()
     expect(wrapper).toBeTruthy()
   })
 
-  it('should match snapshot', () => {
+  it('should match snapshot animation left', () => {
+    const wrapper = renderComponent()
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  it('should match snapshot animation right', () => {
+    const wrapper = renderComponent({ type: 'drawerRight' })
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  it('should match snapshot animation top', () => {
+    const wrapper = renderComponent({ type: 'drawerTop' })
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  it('should match snapshot animation bottom', () => {
+    const wrapper = renderComponent({ type: 'drawerBottom' })
     expect(wrapper).toMatchSnapshot()
   })
 })
