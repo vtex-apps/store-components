@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Animation /> component should match snapshot animation bottom 1`] = `
+<div
+  class=""
+  style="transform:translateY(-110%);transition:transform 0.4s ease-in-out"
+>
+   Test 
+</div>
+`;
+
+exports[`<Animation /> component should match snapshot animation left 1`] = `
+<div
+  class=""
+  style="transform:translateX(110%);transition:transform 0.4s ease-in-out"
+>
+   Test 
+</div>
+`;
+
+exports[`<Animation /> component should match snapshot animation right 1`] = `
+<div
+  class=""
+  style="transform:translateX(-110%);transition:transform 0.4s ease-in-out"
+>
+   Test 
+</div>
+`;
+
+exports[`<Animation /> component should match snapshot animation top 1`] = `
+<div
+  class=""
+  style="transform:translateY(110%);transition:transform 0.4s ease-in-out"
+>
+   Test 
+</div>
+`;
