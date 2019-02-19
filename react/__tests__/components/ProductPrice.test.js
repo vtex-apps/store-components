@@ -1,12 +1,14 @@
 import React from 'react'
 import ProductPrice from './../../ProductPrice'
-import { mount } from 'enzyme'
+import { render } from 'enzyme'
 
 describe("<ProductPrice />", () => {
   let renderComponent = null
   const defaultProps = {
     loaderClass: '',
-    intl: { formatNumber: (number, currency) => `${currency} ${number}` }
+    showListPrice: false,
+    sellingPrice: 40,
+    intl: { formatNumber: (number) => number }
   }
   
   const context = { culture: { currency : 'USD' } };
@@ -17,7 +19,7 @@ describe("<ProductPrice />", () => {
         ...defaultProps,
         ...customProps,
       }
-      return mount(<ProductPrice {...props} />, { context })
+      return render(<ProductPrice {...props} />, { context })
     }
   })
 
@@ -27,5 +29,9 @@ describe("<ProductPrice />", () => {
 
   it('should match snapshot', () => {
     expect(renderComponent()).toMatchSnapshot()
+  })
+  
+  it('should match snapshot Loader', () => {
+    expect(renderComponent({ showListPrice: true })).toMatchSnapshot()
   })
 })
