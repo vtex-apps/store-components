@@ -7,8 +7,6 @@ describe('<BuyButton />', () => {
   const renderComponent = customProps => {
     const props = {
       ...customProps,
-      orderFormContext: () => {},
-      showToast: () => {},
     }
 
     const comp = <BuyButton {...props}> Test </BuyButton>
