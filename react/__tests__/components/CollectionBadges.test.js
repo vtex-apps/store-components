@@ -5,11 +5,7 @@ import CollectionBadges from '../../CollectionBadges'
 
 describe('<CollectionBadges />', () => {
   function renderComponent(customProps = {}) {
-    const props = {
-      collectionBadgesText: ['badge1', 'badge2'],
-      ...customProps,
-    }
-    const component = <CollectionBadges {...props}>Test</CollectionBadges>
+    const component = <CollectionBadges {...customProps}>Test</CollectionBadges>
 
     return render(component)
   }
@@ -18,7 +14,13 @@ describe('<CollectionBadges />', () => {
     expect(renderComponent()).toBeTruthy()
   })
 
-  it('should match snapshot', () => {
+  it('should match snapshot without badges', () => {
     expect(renderComponent()).toMatchSnapshot()
+  })
+
+  it('should match snapshot with badges', () => {
+    expect(
+      renderComponent({ collectionBadgesText: ['badge1', 'badge2'] })
+    ).toMatchSnapshot()
   })
 })
