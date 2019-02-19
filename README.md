@@ -123,4 +123,9 @@ Also, all dependencies needed should be inserted inside the react/package.json.
 You can check if others are passing through similar issues [here](https://github.com/vtex-apps/store-components/issues). Also feel free to [open issues](https://github.com/vtex-apps/store-components/issues/new) or contribute with pull requests.
 
 ## Tests
-:construction: :construction: :construction:
+
+To execute our tests go to `react/` folder and run `yarn test`
+
+### Travis CI
+
+[![Build Status](https://api.travis-ci.org/vtex-apps/store-components.svg?branch=master)](https://travis-ci.org/vtex-apps/store-components)
