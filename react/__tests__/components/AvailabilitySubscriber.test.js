@@ -12,7 +12,7 @@ describe('<AvailabilitySubscriber />', () => {
     }
     const component = (
       <MockedProvider mocks={[]}>
-        <AvailabilitySubscriber {...customProps}/>
+        <AvailabilitySubscriber {...props} />
       </MockedProvider>
     )
 
