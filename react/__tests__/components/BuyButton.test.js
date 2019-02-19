@@ -1,20 +1,19 @@
 import React from 'react'
-import { shallow } from 'enzyme'
 
 import BuyButton from '../../BuyButton'
+import { renderWithIntl } from '../../__helpers__/intl-helper'
 
 describe('<BuyButton />', () => {
-  let wrapper
-
   const renderComponent = customProps => {
     const props = {
       ...customProps,
+      orderFormContext: () => {},
       showToast: () => {},
     }
 
-    const component = shallow(<BuyButton {...props}> Test </BuyButton>)
+    const comp = <BuyButton {...props}> Test </BuyButton>
 
-    return component
+    return renderWithIntl(comp)
   }
 
   it('should be rendered', () => {
