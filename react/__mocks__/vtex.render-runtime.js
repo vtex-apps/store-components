@@ -4,4 +4,4 @@ export function withRuntimeContext(Comp) {
   return Comp
 }
 
-export const Link = ({ children }) => <div>{children}</div>
+export const Link = ({ children }) => <a>{children}</a>

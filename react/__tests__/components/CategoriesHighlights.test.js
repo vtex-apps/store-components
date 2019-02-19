@@ -5,14 +5,10 @@ import { render } from 'enzyme'
 import CategoriesHighlights from '../../CategoriesHighlights'
 
 describe('<CategoriesHighlights />', () => {
-  const defaultProps = {
-    cardShape: 'squared',
-    showCategoriesHighlighted: true,
-  }
-
   const renderComponent = customProps => {
     const props = {
-      ...defaultProps,
+      cardShape: 'squared',
+      showCategoriesHighlighted: true,
       ...customProps,
     }
 
