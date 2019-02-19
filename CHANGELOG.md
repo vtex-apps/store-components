@@ -7,23 +7,37 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Snapshot tests for `BuyButton`
+
 ## [3.17.2] - 2019-02-18
+
 ### Fixed
+
 - Fix product images carousel refresh bug.
 
 ## [3.17.1] - 2019-02-18
+
 ### Fixed
+
 - Quick fix on `AutocompleteInput` to remove warnings.
+
 ### Added
+
 - Base settings for tests.
 - Snapshot tests for ProductPrice.
 
 ## [3.17.0] - 2019-02-15
+
 ### Added
+
 - Support to CSS Modules in `Share`.
 
 ## [3.16.4] - 2019-02-15
+
 ### Fixed
+
 - Undo the link-state changes.
 
 ## [3.16.3] - 2019-02-14
@@ -31,22 +45,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.16.2] - 2019-02-14
 
 ## [3.16.1] - 2019-02-13
+
 ### Fixed
+
 - Wrong rebase.
 
 ## [3.16.0] - 2019-02-13
+
 ### Added
+
 - Use the new minicart's optimistic strategy on `BuyButton`.
 
 ## [3.15.1] - 2019-02-13
+
 ### Fixed
+
 - Fix `Logo` to only use maxWidth and maxHeight to define it's size.
 
 ### Added
+
 - Add an API Docs to `ProductDescription`.
 
 ## [3.15.0] - 2019-02-12
+
 ### Added
+
 - Create an API Docs.
 - Add an API Docs to `ProductName`.
 - Refactor `Product Description` component into two new components.
@@ -54,129 +77,186 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Create `GradientCollapse` component.
 
 ## [3.14.3] - 2019-02-08
+
 ### Fixed
+
 - Improve `BuyButton` `README.md`
 
 ## [3.14.2] - 2019-02-08
+
 ### Added
+
 - Add callbacks to click event on `BuyButton`
 
 ## [3.14.1] - 2019-02-06
 
 ## [3.14.0] - 2019-02-06
+
 ### Added
+
 - After switching secondary variations on a product, those changes won't be kept on `history`.
 
 ### Fixed
+
 - Remove scrolling to top after changing SKU in `SKUSelector`.
 
 ## [3.13.1] - 2019-02-05
+
 ### Added
+
 - Make it possible to be able to add items with assembly options on `BuyButton`
 
 ## [3.13.0] - 2019-02-05
+
 ### Added
+
 - Declare interfaces for components used in `ProductDetail`.
 
 ## [3.12.4] - 2019-02-04
+
 ### Fixed
+
 - Error of not defined variable in the `Carousel` component.
 
 ## [3.12.3] - 2019-02-04
+
 ### Fixed
+
 - Fix `ProductName` container css class not being used.
 
 ## [3.12.2] - 2019-02-01
 
 ## [3.12.1] - 2019-01-31
+
 ### Changed
+
 - Move slides property to getter on `ProductImages` component.
 
 ### Fixed
+
 - Fix `forceUpdate` being called on instantiation of the `ProductImage` component.
 
 ## [3.12.0] - 2019-01-30
+
 ### Changed
+
 - Use icons from `vtex.dreamstore-icons`.
 
 ## [3.11.2] - 2019-01-29
+
 ### Fixed
+
 - Remove `inheritComponent` from blocks.
 
 ## [3.11.1] - 2019-01-29
+
 ### Fixed
+
 - Show installments with fee when the biggest with free is 1.
 
 ## [3.11.0] - 2019-01-28
+
 ### Changed
+
 - Bump messages builder to `1.x`.
 
 ### Fixed
+
 - Fix typo on added to cart message in english
 
 ## [3.10.3] - 2019-01-28
+
 ### Changed
+
 - Support to CSS Modules in `ProductPrice`.
 
 ## [3.10.2] - 2019-01-28
+
 ### Changed
+
 - Support to CSS modules in `CategoriesHighlights`.
 
 ## [3.10.1] - 2019-01-28
+
 ### Added
+
 - Props on `Slider` for custom classes.
 
 ## [3.10.0] - 2019-01-25
+
 ### Changed
+
 - Emit `addToCart` event from `BuyButton`.
 
 ## [3.9.2] - 2019-01-25
+
 ### Fixed
+
 - Incorrect click area on product summary.
 
 ## [3.9.0] - 2019-01-25
+
 ### Changed
+
 - Support to CSS modules in `ProductImages`.
 - Support to CSS modules in `SKUSelector`.
 
 ## [3.8.5] - 2019-01-25
 
 ## [3.8.4] - 2019-01-25
+
 ### Added
+
 - Added props that allow search icon to be on left or right in `SearchBar`.
 
 ## [3.8.3] - 2019-01-25
+
 ### Fixed
+
 - Labels not pointing to input on `ShippingSimulator`.
 
 ## [3.8.2] - 2019-01-18
 
 ## [3.8.1] - 2019-01-18
+
 ### Changed
+
 - Bump dependencies majors.
 
 ## [3.8.0] - 2019-01-18
+
 ### Changed
+
 - Bump vtex.styleguide to 9.x.
 
 ## [3.7.0] - 2019-01-18
+
 ### Changed
+
 - Update React builder to `3.x`.
 
 ## [3.6.3] - 2019-01-17
+
 ### Fixed
+
 - Fixes warning of `propTypes` being passed to `React.forwardRef`.
 
 ## [3.6.2] - 2019-01-17
+
 ### Fixed
+
 - Use header elements in `ProductName` through tag prop.
 
 ## [3.6.1] - 2019-01-17
+
 ### Fixed
+
 - Use header elements in `ProductDetails` instead of span tags.
 
 ## [3.6.0] - 2019-01-17
+
 ### Changed
+
 - Support to CSS modules in `SearchBar`.
 - Support to CSS modules in `ProductDescription`.
 - Support to CSS modules in `Greeting`.
@@ -187,120 +267,173 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support to CSS modules in `ShippingSimulator`.
 
 ## [3.5.8] - 2019-01-15
+
 ### Fixed
+
 - Remove logo inline style css.
 
 ## [3.5.7] - 2019-01-14
+
 ### Changed
+
 - Change default logo to Dreamstore logo.
 
 ## [3.5.6] - 2019-01-14
+
 ### Fixed
+
 - Add `SearchBar` padding in mobile view.
 
 ## [3.5.5] - 2019-01-14
+
 ### Changed
+
 - Add CSS modules on `Slider` component.
 
 ## [3.5.4] - 2019-01-14
+
 ### Fixed
+
 - Remove undefined css classes of `ProductName` component.
 
 ## [3.5.3] - 2019-01-10
+
 ### Changed
+
 - Change the syntax of routes `/` to `.`.
 
 ## [3.5.2] - 2019-01-09
+
 ### Changed
+
 - Proxy unused props of the `Container` component to the root element.
 
 ## [3.5.1] - 2019-01-09
+
 ### Added
--  `vtex.shipping-estimate-translator` app to translate and place the correct delivery time on `ShippingSimulator`
+
+- `vtex.shipping-estimate-translator` app to translate and place the correct delivery time on `ShippingSimulator`
 
 ## [3.5.0] - 2019-01-09
+
 ### Changed
+
 - Bye `pages.json`! Welcome `store-builder`.
 
 ## [3.4.0] - 2019-01-09
+
 ### Added
+
 - `Container` component.
 
 ## [3.3.1] - 2018-12-27
+
 ### Fixed
+
 - Fix typing problem and crash on `BuyButton`
 
 ## [3.3.0] - 2018-12-20
+
 ### Added
+
 - Support to messages builder.
 
 ## [3.2.2] - 2018-12-18
+
 ### Changed
+
 - Converts `ShippingTableRow` `price` prop value to decimal based number.
 
 ## [3.2.1] - 2018-12-18
+
 ### Changed
+
 - Support to CSS modules in `ProductName`.
 
 ## [3.2.0] - 2018-12-13
+
 ### Changed
+
 - BuyButton using `styleguide` `Toast`.
 
 ## [3.1.9] - 2018-12-06
+
 ### Fixed
+
 - The root div of `DiscountBadge` is now always rendered.
 
 ## [3.1.8] - 2018-12-05
+
 ### Fixed
+
 - Fix how icons were displayed in `SearchBar`
 
 ## [3.1.7] - 2018-12-05
+
 ### Fixed
+
 - Make `Logo` properly receive maxWidth and maxHeight properties.
 
 ## [3.1.6] - 2018-12-04
+
 - Add typography token to badge
 - Add emphasis color to badge instead of red
 
 ## [3.1.5] - 2018-12-04
+
 ### Changed
+
 - Left margin of the specifications at the ProductDetails component
 - Share.label id to store-components.share.label
 
 ## [3.1.4] - 2018-12-04
+
 ### Fixed
+
 - Negative padding on `Slider` arrows.
 
 ## [3.1.3] - 2018-12-04
+
 ### Changed
+
 - ShippingSimulator style
 
 ## [3.1.2] - 2018-12-03
+
 ### Changed
+
 - ProductImages cursor style
 
 ## [3.1.1] - 2018-12-03
+
 ### Changed
+
 - SKUSelector style
 
 ## [3.1.0] - 2018-12-03
+
 ### Changed
+
 - Major refactor of ProductImage component
 - ProductImage Zoom with two clicks or gesture
 - ProductDescription design
 - ProductDescription table
 
 ### Added
+
 - Frontend Vimeo video support at ProductImage
 - Blurred loader to ProductImages
 - Collapse to ProductDescription
 - Large prop to BuyButton
 
 ## [3.0.0] - 2018-11-29
+
 ### Added
+
 - Design tokens in `ShippingSimulator`.
 
 ### Changed
+
 - Add several props to style the `ProductPrice` component.
 - Add several props to style `ProductName` and remove `large` prop from it.
 - Add several props to style `Share` component.
@@ -310,6 +443,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Use style guide table in `ProductDescription` component.
 
 ### Fixed
+
 - Fix design problems of `ShippingSimulator`.
 - Add `classes` and `installmentsClasses` to ProductPrice component to style the component.
 - Use style guide table in `ProductDescription` component.
@@ -317,118 +451,171 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix negative padding on arrows.
 
 ### Removed
+
 - Remove `Header` component.
 - Remove `Footer` component.
 
 ### Added
+
 - Share label to `Share` component.
 
 ## [2.6.10] - 2018-11-28
+
 ### Fixed
+
 - `SelectedImage` not fitting properly its container.
 
 ## [2.6.9] - 2018-11-26
+
 ### Fixed
+
 - Fix svg warnings of `ProductName` and `ProductPrice`.
 
 ## [2.6.8] - 2018-11-26
+
 ### Added
+
 - Add onSKUSelected to SKUSelector props and call it when its defined.
 
 ## [2.6.7] - 2018-11-26
+
 ### Fixed
+
 - Slider crashing in store-componentes master
 
 ## [2.6.6] - 2018-11-26
+
 ### Fixed
+
 - Fix the number of items shown in slider.
 
 ## [2.6.5] - 2018-11-26
+
 ### Fixed
+
 - Image Zoom in product details was not working properly
 
 ## [2.6.4] - 2018-11-20
+
 ### Fixed
+
 - Assign correct size to arrow element.
 
 ## [2.6.3] - 2018-11-20
+
 ### Fixed
+
 - Add `vtex-page-padding` class to Greeting.
 
 ## [2.6.2] - 2018-11-13
+
 ### Removed
+
 - `Account` component bundle.
 - `@vtex/styleguide` dependency.
 
 ## [2.6.1] - 2018-11-11
 
 ## [2.6.0] - 2018-11-09
+
 ### Added
+
 - `Account` shared components.
 
 ## [2.5.6] - 2018-11-08
+
 ### Fixed
+
 - Removed call to `Array.from` breaking the `Shelf` on Internet Explorer.
 
 ## [2.5.5] - 2018-11-07
+
 ### Added
+
 - Make the Product Price's label editable through Storefront.
 
 ## [2.5.4] - 2018-11-07
 
 ## [2.5.3] - 2018-11-07
+
 ### Added
+
 - Add `compactMode` props that change the design of `SearchBar` component to a compact layout.
 
 ## [2.5.2] - 2018-11-07
+
 ### Changed
+
 - Remove `ContentLoader` of `ProductDescription`.
 
 ## [2.5.1] - 2018-11-06
+
 ### Fixed
+
 - Remove CSS from ProductName and ProductPrice.
 
 ## [2.5.0] - 2018-11-06
+
 ### Added
+
 - `Greeting` component that renders a welcome message with the user first name
 
 ## [2.4.3] - 2018-10-31
+
 ### Fixed
+
 - Replace spinner by content loader in BuyButton.
 
 ## [2.4.2] - 2018-10-18
+
 ### Changed
+
 - `Animation` component to use only CSS instead of `Transition` from the `spring` module.
 
 ## [2.4.1] - 2018-10-02
+
 ### Changed
+
 - Updated the product price and name colors.
 
 ### Fixed
+
 - Discount badge positioning.
 
 ## [2.4.0] - 2018-09-28
+
 ### Added
+
 - Hability to handle more than one variation on the same sku in the `SKUSelector`
 
 ## [2.3.2] - 2018-09-28
+
 ### Added
+
 - Availability prop to `BuyButton` component.
 
 ## [2.3.1] - 2018-09-20
+
 ### Changed
+
 - Update `ProductDescription` css and move to tachyons classes.
 
 ## [2.3.0] - 2018-09-17
+
 ### Added
+
 - `Header` default padding to match the page's padding.
 
 ## [2.2.2] - 2018-09-17
+
 ### Fixed
+
 - Update header padding to match the whole store.
 
 ## [2.2.1] - 2018-09-14
+
 ### Fixed
+
 - propTypes console errors.
 
 ## [2.2.0] - 2018-09-14
@@ -436,235 +623,331 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [2.1.1] - 2018-09-13
 
 ## [2.1.0] - 2018-09-13
+
 ### Added
+
 - `Animation` component.
 
 ### Changed
+
 - Update `Price` props documentation.
 - `Header` to import the `Logo` and `Header` as extension points.
 
 ## [2.0.6] - 2018-09-06
+
 ### Changed
+
 - Update css to use tachyons classes
 
 ## [2.0.5] - 2018-09-05
+
 ### Fixed
+
 - `Footer` component top margin, in order to not collapse with `Login`
 
 ## [2.0.4] - 2018-09-05
+
 ### Changed
+
 - `TopMenu` to pass classnames to change the icon and label of the `MiniCart` and `Login` instead of pass the hexadecimal color.
 
 ## [2.0.3] - 2018-09-05
+
 ### Fixed
+
 - `Footer` propTypes error.
 
 ## [2.0.2] - 2018-08-31
+
 ### Fixed
+
 - Fix design issues.
 
 ## [2.0.1] - 2018-08-30
+
 ### Changed
+
 - Refact the `ProductPrice` component.
+
 ### Fixed
+
 - Update the propTypes of the components: `BuyButton`, `ProductPrice`, `ProductName`.
 
 ## [2.0.0] - 2018-08-30
+
 ### Removed
+
 - `QuantitySelector` that should not exist because the styleguide has a component with the same purpose, the `NumericStepper`.
 
 ## [1.16.3] - 2018-08-29
+
 ### Changed
+
 - Refact `SearchBar` component.
 
 ## [1.16.2] - 2018-08-27
+
 ### Fixed
+
 - `SearchBar` proptype error on SSR
 - `Footer` proptype error
 
 ## [1.16.1] - 2018-08-24
+
 ### Changed
+
 - `SearchBar` debouncing and search only inputs with a minimum of 2 characters
 
 ## [1.16.0] - 2018-08-24
+
 ### Changed
+
 - `SearchBar` design.
 - Update `Header` design to a white style.
 
 ### Fix
+
 - Component name into the documentation of `CategoryHighlights`.
 
 ## [1.15.0] - 2018-08-23
+
 ### Changed
+
 - Footer redesigned.
 
 ## [1.14.2] - 2018-08-22
+
 ### Added
+
 - `schema` to the `ProductName` component .
 
 ## [1.14.1] - 2018-08-21
+
 ### Added
+
 - prop `showSku` to the `ProductName` component.
 
 ## [1.14.0] - 2018-08-17
+
 ### Added
+
 - props `color`, `width`, `height` e `showLabel` to `Logo` component.
 - `MobileSearch` component to `SearchBar`.
 
 ### Changed
+
 - `Header` design.
 
 ## [1.13.2] - 2018-08-16
+
 ### Fixed
+
 - Breaking change rename of `CategoriesHighlights`.
 
 ## [1.13.1] - 2018-08-16
+
 ### Changed
+
 - Undeprecate v1.13.0 version.
 
 ## [1.13.0] - 2018-08-15
+
 ### Added
+
 - `CategoryCard` shapes.
 
 ## [1.12.7] - 2018-08-15
+
 ### Fixed
+
 - All content loaders to work on Firefox.
 
 ## [1.12.6] - 2018-08-14
 
 ### Fixed
+
 - Undefined behavior of the `CategoriesHightlights` schema.
 
 ## [1.12.5] - 2018-08-13
+
 ### Added
-- `ImpersonateCustomer` component to  `Header`.
+
+- `ImpersonateCustomer` component to `Header`.
 
 ## [1.12.4] - 2018-08-10
+
 ### Added
+
 - Link redirect to handleClick of `SKUSelector`.
 
 ## [1.12.3] - 2018-08-09
+
 ### Fixed
+
 - Correct function from `orderFormContext` to add a new item to the orderForm.
 - `ProductPrice` condition now uses `isNil` function from `ramda`.
 
 ## [1.12.2] - 2018-08-08
+
 ### Added
+
 - `ProductDescription` content loader.
 - `ProductName` and `ProductPrice` content loaders default style.
 
 ## [1.12.1] - 2018-08-08
+
 ### Added
+
 - `MainCategories` component.
 - `ProductDescription` content loader.
 
 ## [1.12.0] - 2018-08-02
+
 ### Added
+
 - `ProductName`, `ProductPrice` and `ProductImages` content loaders.
 - `Share` and `ShippingSimulator` content loaders.
 - More `BuyButton` loading logic.
 
 ## [1.11.0] - 2018-08-02
+
 ### Changed
+
 - Removed graphql queries from `BuyButton`
 - Added `OrderFormContext` to update the minicart on `BuyButton`
 
-
 ## [1.10.0] - 2018-08-02
+
 ### Fixed
+
 - Top menu not being rendered as an overlay on scroll down.
 
 ### Changed
+
 - Use tachyons classes in `AvailabilitySubscriber`.
 
 ### Added
+
 - Added mutation in `AvailabilitySubscriber` to send the data for Master Data on the entity `AS`.
 
 ## [1.9.0] - 2018-07-26
+
 ### Added
+
 - SSR to Slider component.
 
 ## [1.8.3] - 2018-07-25
+
 ### Fixed
+
 - `ProductPrice` propTypes, removed warning from console.
 - `Footer` positioned always at the bottom of the page.
 - ImageUrl warning in `SKUSelector` and `ProductImages`.
 
 ## [1.8.2] - 2018-07-18
+
 ### Changed
+
 - Component loader on `ProductImages`
 
 ## [1.8.1] - 2018-07-13
+
 ### Fixed
+
 - `Slider` adaptToScreen function.
 - Documentation of `BuyButton`.
 
 ### Changed
+
 - Migrate the `Footer` schema to use the `type: "array"`.
 - `MiniCart` position into the `Header`.
 
 ## [1.8.0] - 2018-07-10
+
 ### Added
+
 - Buy button support to add multiple sku items to the cart at the same time of `BuyButton`.
 
 ## [1.7.3] - 2018-07-10
+
 ### Changed
+
 - Define `Footer` schema props that are layout type.
 
 ### Fixed
+
 - `TopMenu` display on mobile screen.
 
 ## [1.7.2] - 2018-7-9
+
 ### Changed
+
 - Hide fixed header while in edit mode.
 
 ## [1.7.1] - 2018-7-6
+
 ### Changed
+
 - Unescape HTML in the product description.
 - Logo link to be a `Link` component from `render`.
 
 ### Fixed
+
 - Vertical display of `ProductImage`.
 - Thumbnail image selection in `ProductImage`.
 
 ## [1.7.0] - 2018-7-4
+
 ### Added
+
 - Component `Header`.
 
 ## [1.6.1] - 2018-6-27
+
 ### Changed
+
 - _BuyButton_ don't wait add to cart to proceed to checkout page.
 - _BuyButton_ Component added isOneClickBuy attribute.
 
 ### Fixed
+
 - _BuyButton_ default props as static attribute.
 - _SKU Selector_ item with false value as class name.
 
 ## [1.6.0] - 2018-6-20
+
 ### Added
+
 - Debounce function to handle the increase and decrease events in the `QuantitySelector`.
 
 ### Changed
+
 - Make `onMaxReached` function not required in `QuantitySelector`.
 - Use children prop in `ProductImage` to customize selected image render.
 - Update design of `CollectionBadges`.
 
 ## [1.5.1] - 2018-6-18
+
 ### Added
+
 - Internationalization to `SearchBar`.
 - Spinner to `SearchBar`.
 - `isLayout` to `ProductPrice`'s schema properties.
 
 ### Fixed
+
 - `QuantitySelector` input style for do not impact the others inputs.
 - `SearchBar` options link.
 
 ### Changed
+
 - `QuantitySelector` style
 - `QuantitySelector` plus icon to use the StyleGuide one.
 
 ## [1.5.0] - 2018-6-11
+
 ### Added
+
 - Max height of the logo image.
 - Added a title to the _Share_ Component share url.
 - Internationalization of the `Footer` schema.
@@ -672,54 +955,71 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - README documentation of Logo Component.
 
 ### Fixed
+
 - _SKU Selector_ with a different item selected on entering the product page.
 - _SKU Selector_ item's discount badge position.
 - Put the _ProductPrice_ schema inside it's Component.
 - README typos.
 
 ## [1.4.0] - 2018-6-6
+
 ### Added
+
 - Inner zoom image to the product image.
 - Discount badge to sku item.
 
 ### Changed
+
 - Slightly changed the layout of `ProductName` and `SkuSelector` to accomplish proposed design.
 - Style of the unavailable sku to be different from the others.
 - Change _ProductName_, added: showBrandName, showProductReference, productReference attributes.
 - Customize Footer uiSchema.
 
 ### Fixed
+
 - Vertical centralization of SKU Selector Items.
 
 ## [1.3.2] - 2018-5-31
+
 ### Changed
+
 - Integration of the `ShippingComponent` with graphql.
 
 ## [1.3.1] - 2018-5-30
+
 ### Fixed
+
 - Fix _ProductPrice_ Component when no Installments are passed.
 
 ## [1.3.0] - 2018-05-29
+
 ### Added
+
 - Add _Share_ Component.
 - Initial version of the availability subscriber component.
 
 ### Changed
+
 - Change _ProductPrice_'s installments logic.
 - Merge _TechnicalSpecifications_ Component with _ProductDescription_.
 
 ## [1.2.0] - 2018-05-24
+
 ### Added
+
 - `TechnicalSpecifications` component.
 - Initial version of SKU selector component.
 
 ### Fixed
+
 - Fix bug on Slider when has just one element.
 - Fix bug in the url when search something in the product page and click enter.
 - Footer component padding
 
 ## [1.1.0] - 2018-05-21
+
 ### Changed
+
 - Delayed queries on _BuyButton_ Component.
 - Add error treatment on _BuyButton_ Component.
 - Update _ProductImages_ Component.
@@ -727,20 +1027,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add arrow icons from Nucleo to the Slider.
 
 ### Fixed
+
 - Fix _ShippingSimulator_ Component CSS.
 
 ## [1.0.0] - 2018-05-18
+
 ### Added
+
 - Add all `product-details` components to Apps.
 - Add `Enter key` press to the `search bar`.
 - Initial version of the shipping simulator.
 
 ### Changed
+
 - Transform `npm-storecomponents` in a app that can be used in a VTEX store.
 - Update _Price_ Component.
 - **SSR** Added SSR compliancy to the searchbar.
 
 ### Fixed
+
 - Fix locales directory to work with linked Apps.
 - Fix `search bar` when click on category result.
 - **slider** Fix infinite attribute of Slider settings.
