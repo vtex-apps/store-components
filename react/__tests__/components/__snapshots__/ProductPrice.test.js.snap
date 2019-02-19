@@ -27,7 +27,9 @@ exports[`<ProductPrice /> should match snapshot Loader 1`] = `
 <div
   class="priceContainer priceLoaderContainer"
 >
-  <div>
+  <div
+    class="content-loader-mock"
+  >
     <rect
       height="0.75em"
       width="50%"
