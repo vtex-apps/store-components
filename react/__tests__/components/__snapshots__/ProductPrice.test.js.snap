@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductPrice /> should match snapshot 1`] = `
+<Price
+  intl={
+    Object {
+      "formatNumber": [Function],
+    }
+  }
+  labelSellingPrice={null}
+  loaderClass=""
+  showInstallments={false}
+  showLabels={true}
+  showListPrice={true}
+  showSavings={false}
+>
+  <Price.Loader
+    loaderClass=""
+  >
+    <div
+      className="priceContainer priceLoaderContainer"
+    >
+      <ContentLoad
+        height={70}
+        loaderClass=""
+        preserveAspectRatio="xMinYMin meet"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        width={300}
+      >
+        <div>
+          <rect
+            height="0.75em"
+            width="50%"
+            x="25%"
+          />
+          <rect />
+          <rect
+            height="1em"
+            width="70%"
+            x="15%"
+            y="1.25em"
+          />
+          <rect
+            height="0.75em"
+            width="80%"
+            x="10%"
+            y="2.75em"
+          />
+          <rect />
+        </div>
+      </ContentLoad>
+    </div>
+  </Price.Loader>
+</Price>
+`;

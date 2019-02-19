@@ -25,7 +25,6 @@
     "react-dom": "^16.3.2",
     "react-html-parser": "^2.0.2",
     "react-id-swiper": "^1.6.8",
-    "react-intl": "^2.4.0",
     "react-motion": "^0.5.2",
     "react-resize-detector": "^3.0.1",
     "react-responsive-modal": "^2.0.1",
@@ -46,8 +45,10 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.5",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^24.1.0",
-    "jest-transform-graphql": "^2.1.0"
+    "jest-transform-graphql": "^2.1.0",
+    "react-intl": "^2.8.0"
   },
   "vtexScriptsOverride": {
     "srcPath": "."
