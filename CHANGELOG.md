@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Snapshot tests for `AvailabilitySubscriber`.
 - Snapshot tests for `Animation`.
 - Snapshot tests for `CollectionBadges`.
+- Snapshot tests for `Container`.
 
 ## [3.17.2] - 2019-02-18
 
