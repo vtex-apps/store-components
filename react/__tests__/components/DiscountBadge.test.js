@@ -3,7 +3,7 @@ import { renderWithIntl } from 'intl-helper'
 
 import DiscountBadge from '../../DiscountBadge'
 
-describe('<DiscountBadge />', () => {
+describe('<DiscountBadge /> component', () => {
   function renderComponent(customProps = {}) {
     const props = {
       listPrice: 100,
@@ -16,17 +16,17 @@ describe('<DiscountBadge />', () => {
   }
 
   it('should be able to mount and not break', () => {
-    const comp = renderComponent()
-    expect(comp).toBeTruthy()
+    const component = renderComponent()
+    expect(component).toBeTruthy()
   })
 
   it('should match snapshot without label', () => {
-    const comp = renderComponent()
-    expect(comp).toMatchSnapshot()
+    const component = renderComponent()
+    expect(component).toMatchSnapshot()
   })
 
   it('should match snapshot with label', () => {
-    const comp = renderComponent({ label: 'LABEL' })
-    expect(comp).toMatchSnapshot()
+    const component = renderComponent({ label: 'LABEL' })
+    expect(component).toMatchSnapshot()
   })
 })

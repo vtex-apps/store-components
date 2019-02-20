@@ -3,7 +3,7 @@ import { render } from 'enzyme'
 
 import CollectionBadges from '../../CollectionBadges'
 
-describe('<CollectionBadges />', () => {
+describe('<CollectionBadges /> component', () => {
   function renderComponent(customProps = {}) {
     const component = <CollectionBadges {...customProps}>Test</CollectionBadges>
 
@@ -11,16 +11,19 @@ describe('<CollectionBadges />', () => {
   }
 
   it('should be able to mount and not break', () => {
-    expect(renderComponent()).toBeTruthy()
+    const component = renderComponent()
+    expect(component).toBeTruthy()
   })
 
   it('should match snapshot without badges', () => {
-    expect(renderComponent()).toMatchSnapshot()
+    const component = renderComponent()
+    expect(component).toMatchSnapshot()
   })
 
   it('should match snapshot with badges', () => {
-    expect(
-      renderComponent({ collectionBadgesText: ['badge1', 'badge2'] })
-    ).toMatchSnapshot()
+    const component = renderComponent({
+      collectionBadgesText: ['badge1', 'badge2'],
+    })
+    expect(component).toMatchSnapshot()
   })
 })

@@ -3,7 +3,7 @@ import { renderWithIntl } from 'intl-helper'
 
 import GradientCollapse from '../../GradientCollapse'
 
-describe('<GradientCollapse />', () => {
+describe('<GradientCollapse /> component', () => {
   function renderComponent(customProps = {}) {
     const props = {
       collapseHeight: 50,
@@ -15,12 +15,12 @@ describe('<GradientCollapse />', () => {
   }
 
   it('should be able to mount and not break', () => {
-    const comp = renderComponent()
-    expect(comp).toBeTruthy()
+    const component = renderComponent()
+    expect(component).toBeTruthy()
   })
 
   it('should match snapshot', () => {
-    const comp = renderComponent()
-    expect(comp).toMatchSnapshot()
+    const component = renderComponent()
+    expect(component).toMatchSnapshot()
   })
 })
