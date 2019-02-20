@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductName /> should match snapshot 1`] = `
+<div
+  class="productNameContainer mv0"
+>
+  <span
+    class="productBrand"
+  >
+    ProductTest 
+  </span>
+</div>
+`;
+
+exports[`<ProductName /> should match snapshot Loader 1`] = `
+<div
+  class="productNameContainer productNameLoader"
+>
+  <div
+    class="content-loader-mock"
+  >
+    <rect
+      height="1.125em"
+      width="75%"
+      x="15%"
+    />
+    <rect
+      height="1.125em"
+      width="50%"
+      x="25%"
+      y="1.75em"
+    />
+  </div>
+</div>
+`;
+
+exports[`<ProductName /> should match snapshot with SkuName 1`] = `
+<div
+  class="productNameContainer mv0"
+>
+  <span
+    class="productBrand"
+  >
+    ProductTest 
+  </span>
+  <span
+    class="productBrand"
+  >
+    ProductSkuName
+  </span>
+</div>
+`;
