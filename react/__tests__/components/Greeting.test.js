@@ -3,7 +3,7 @@ import React from 'react'
 import Greeting from '../../Greeting'
 import { renderWithIntl } from '../../__helpers__/intl-helper'
 
-describe('<Container /> component', () => {
+describe('<Greeting /> component', () => {
   const renderComponent = customProps => {
     const props = {
       ...customProps,
