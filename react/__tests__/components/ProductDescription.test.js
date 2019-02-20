@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderWithIntl } from '../../__helpers__/intl-helper'
+import { renderWithIntl } from 'intl-helper'
 import ProductDescription from './../../ProductDescription'
 
 describe('<ProductDescription />', () => {
