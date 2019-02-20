@@ -8,6 +8,14 @@
 
 .image { }
 
+.imageBlur30 { 
+  filter: blur(30px);
+}
+
+.imageTransitionOpacity {
+  transition: 1s;
+}
+
 .carouselGaleryCursor {
   cursor: url('./components/Carousel/cursor.svg') 8 8, default;
 }

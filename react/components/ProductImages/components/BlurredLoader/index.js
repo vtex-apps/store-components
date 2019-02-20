@@ -81,7 +81,7 @@ class BlurredLoader extends React.Component {
       case LOADER_TYPES.LINEAR:
         return (
           <div
-            className={`w-100 top-0 z-2 absolute transition-opacity-1 ${
+            className={`w-100 top-0 z-2 absolute ${styles.imageTransitionOpacity} ${
               loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
               }`}
           >
@@ -91,7 +91,7 @@ class BlurredLoader extends React.Component {
       case LOADER_TYPES.SPINNER:
         return (
           <div
-            className={`absolute z-2 center-all left-0 right-0 top-0 bottom-0 transition-opacity-1 ${
+            className={`absolute z-2 center-all left-0 right-0 top-0 bottom-0 ${styles.imageTransitionOpacity} ${
               loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
               }`}
             style={{ height: 40, width: 40 }}
@@ -121,7 +121,7 @@ class BlurredLoader extends React.Component {
 
     return (
       <React.Fragment>
-        <div className={style.image}>
+        <div className={styles.image}>
           <ImageResizer
             className={`w-100 ${loaded ? 'db' : 'dn'}`}
             alt={alt}
@@ -135,7 +135,7 @@ class BlurredLoader extends React.Component {
                 alt={alt}
                 src={loaderUrl}
                 minRatio={imageMinRatio}
-                className={`w-100 blur-30 transition-opacity-1 db z-2 ${
+                className={`w-100 ${styles.imageBlur30} ${styles.imageTransitionOpacity} db z-2 ${
                   loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
                   } ${className}`}
               />
@@ -143,7 +143,7 @@ class BlurredLoader extends React.Component {
                 alt=""
                 src={realUrls[realUrlIndex]}
                 minRatio={imageMinRatio}
-                className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 transition-opacity-1 db ${
+                className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 ${styles.imageTransitionOpacity} db ${
                   loadState === LOAD_STATES.LOADING ? 'o-0' : 'o-100'
                   }`}
               />
