@@ -11,3 +11,11 @@ export function Input(props) {
 export function withToast(Comp) {
   return Comp
 }
+
+export function Tabs(props) {
+  return <div className="tabs"> {props.children} </div>
+}
+
+export function Tab(props) {
+  return <div className="tab"> {props.children} </div>
+}
