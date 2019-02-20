@@ -21,3 +21,6 @@ export const IconClose = ({ orientation, size, className }) =>
 
 export const IconSearch = ({ orientation, size, className }) =>
   iconMock(orientation, size, className, 'IconSearch')
+
+export const IconCaret = ({ orientation, size, className }) =>
+  iconMock(orientation, size, className, 'IconCaret')
