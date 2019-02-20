@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Spinner } from 'vtex.styleguide'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { withStyles } from '@material-ui/core/styles'
+import classNames from 'classnames'
 import ImageResizer from './ImageResizer'
 import styles from '../../styles.css'
 
@@ -76,13 +77,16 @@ class BlurredLoader extends React.Component {
   Loader = () => {
     const { loaderType } = this.props
     const { loadState } = this.state
+    const stateLoader = loadState === LOAD_STATES.LOADING
+    const loadStateClass = classNames({
+      'o-100': stateLoader,
+      'o-0': !stateLoader
+    })
     switch (loaderType) {
       case LOADER_TYPES.LINEAR:
         return (
           <div
-            className={`w-100 top-0 z-2 absolute ${styles.imageTransitionOpacity} ${
-              loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
-              }`}
+            className={`w-100 top-0 z-2 absolute ${styles.imageTransitionOpacity} ${loadStateClass}`}
           >
             <LinearProgressWithStyle className="c-action-primary" />
           </div>
@@ -90,9 +94,7 @@ class BlurredLoader extends React.Component {
       case LOADER_TYPES.SPINNER:
         return (
           <div
-            className={`absolute z-2 center-all left-0 right-0 top-0 bottom-0 ${styles.imageTransitionOpacity} ${
-              loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
-              }`}
+            className={`absolute z-2 center-all left-0 right-0 top-0 bottom-0 ${styles.imageTransitionOpacity} ${loadStateClass}`}
             style={{ height: 40, width: 40 }}
           >
             <Spinner />
@@ -117,6 +119,11 @@ class BlurredLoader extends React.Component {
     const { className, alt, loaderUrl, realUrls } = this.props
     const { loadState, realUrlIndex } = this.state
     const loaded = loadState === LOAD_STATES.LOADED
+    const loading = loadState === LOAD_STATES.LOADING
+    const loadingClass = classNames({
+      'o-100': loading,
+      'o-0': !loading
+    })
 
     return (
       <div className={styles.image}>
@@ -133,17 +140,13 @@ class BlurredLoader extends React.Component {
               alt={alt}
               src={loaderUrl}
               minRatio={imageMinRatio}
-              className={`w-100 ${styles.imageBlur30} ${styles.imageTransitionOpacity} db z-2 ${
-                loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
-                } ${className}`}
+              className={`w-100 ${styles.imageBlur30} ${styles.imageTransitionOpacity} db z-2 ${loadingClass} ${className}`}
             />
             <ImageResizer
               alt=""
               src={realUrls[realUrlIndex]}
               minRatio={imageMinRatio}
-              className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 ${styles.imageTransitionOpacity} db ${
-                loadState === LOAD_STATES.LOADING ? 'o-0' : 'o-100'
-                }`}
+              className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 ${styles.imageTransitionOpacity} db ${loadingClass}`}
             />
           </div>
         )}
