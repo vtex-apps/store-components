@@ -10,7 +10,7 @@ import BlurredLoader from '../BlurredLoader'
 import Loader from './Loader.js'
 import Video from '../Video'
 
-import styles from './styles.css'
+import styles from '../../styles.css'
 import './global.css'
 
 const Swiper = window.navigator ? require('react-id-swiper').default : null
@@ -169,19 +169,19 @@ class Carousel extends Component {
       pagination:
         slides.length > 1
           ? {
-              el: '.swiper-pagination',
-              clickable: true,
-              bulletActiveClass:
-                'c-action-primary swiper-pagination-bullet-active',
-            }
+            el: '.swiper-pagination',
+            clickable: true,
+            bulletActiveClass:
+              'c-action-primary swiper-pagination-bullet-active',
+          }
           : {},
       navigation:
         slides.length > 1
           ? {
-              prevEl: '.swiper-caret-prev',
-              nextEl: '.swiper-caret-next',
-              disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
-            }
+            prevEl: '.swiper-caret-prev',
+            nextEl: '.swiper-caret-next',
+            disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
+          }
           : {},
       thumbs: {
         swiper: thumbSwiper,
@@ -232,7 +232,7 @@ class Carousel extends Component {
         <div
           className={classNames(
             `w-20 ${
-              styles.carouselGaleryThumbs
+            styles.carouselGaleryThumbs
             } bottom-0 top-0 left-0 absolute pr5 dn`,
             { 'db-ns': slides.length > 1 }
           )}
@@ -248,7 +248,7 @@ class Carousel extends Component {
                 <div
                   className={`absolute absolute--fill b--solid b--muted-2 bw1 ${
                     styles.carouselThumbBorder
-                  }`}
+                    }`}
                 />
               </div>
             ))}
