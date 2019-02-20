@@ -22,6 +22,35 @@ exports[`<ProductName /> should match the snapshot Loader 1`] = `
 </div>
 `;
 
+exports[`<ProductName /> should match the snapshot with Name and Brand 1`] = `
+<div
+  class="productNameContainer mv0"
+>
+  <span
+    class="productBrand"
+  >
+    ProductTest - ProductBrandName
+  </span>
+</div>
+`;
+
+exports[`<ProductName /> should match the snapshot with Name and Product Reference 1`] = `
+<div
+  class="productNameContainer mv0"
+>
+  <span
+    class="productBrand"
+  >
+    ProductTest 
+  </span>
+  <span
+    class="productReference"
+  >
+    REF: productReferenceTest
+  </span>
+</div>
+`;
+
 exports[`<ProductName /> should match the snapshot with Name and SkuName 1`] = `
 <div
   class="productNameContainer mv0"
@@ -35,6 +64,28 @@ exports[`<ProductName /> should match the snapshot with Name and SkuName 1`] = `
     class="productBrand"
   >
     ProductSkuName
+  </span>
+</div>
+`;
+
+exports[`<ProductName /> should match the snapshot with all options 1`] = `
+<div
+  class="productNameContainer mv0"
+>
+  <span
+    class="productBrand"
+  >
+    ProductTest - ProductBrandName
+  </span>
+  <span
+    class="productBrand"
+  >
+    ProductSkuName
+  </span>
+  <span
+    class="productReference"
+  >
+    REF: productReferenceTest
   </span>
 </div>
 `;

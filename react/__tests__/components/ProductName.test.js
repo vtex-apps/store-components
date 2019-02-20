@@ -38,6 +38,34 @@ describe('<ProductName />', () => {
     ).toMatchSnapshot()
   })
 
+  it('should match the snapshot with Name and Brand', () => {
+    expect(
+      renderComponent({ brandName: 'ProductBrandName', showBrandName: true })
+    ).toMatchSnapshot()
+  })
+
+  it('should match the snapshot with Name and Product Reference', () => {
+    expect(
+      renderComponent({
+        productReference: 'productReferenceTest',
+        showProductReference: true,
+      })
+    ).toMatchSnapshot()
+  })
+
+  it('should match the snapshot with all options', () => {
+    expect(
+      renderComponent({
+        skuName: 'ProductSkuName',
+        showSku: true,
+        brandName: 'ProductBrandName',
+        showBrandName: true,
+        productReference: 'productReferenceTest',
+        showProductReference: true,
+      })
+    ).toMatchSnapshot()
+  })
+
   it('should match the snapshot Loader', () => {
     expect(renderComponent({ name: undefined })).toMatchSnapshot()
   })
