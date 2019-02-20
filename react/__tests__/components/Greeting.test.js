@@ -1,7 +1,7 @@
 import React from 'react'
+import { renderWithIntl } from 'intl-helper'
 
 import Greeting from '../../Greeting'
-import { renderWithIntl } from '../../__helpers__/intl-helper'
 
 describe('<Greeting /> component', () => {
   const renderComponent = customProps => {

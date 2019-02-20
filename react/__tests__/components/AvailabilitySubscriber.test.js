@@ -1,7 +1,7 @@
 import React from 'react'
 import { MockedProvider } from 'react-apollo/test-utils'
+import { renderWithIntl } from 'intl-helper'
 
-import { renderWithIntl } from '../../__helpers__/intl-helper'
 import AvailabilitySubscriber from '../../AvailabilitySubscriber'
 
 describe('<AvailabilitySubscriber />', () => {
