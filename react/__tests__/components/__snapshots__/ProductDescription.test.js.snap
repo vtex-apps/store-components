@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductDescription /> should match the snapshot with description 1`] = `
+<div
+  class="productDescriptionContainer"
+>
+  <h2
+    class="t-heading-5 mb5 mt0"
+  >
+    Product Description
+  </h2>
+  <div
+    class="c-muted-1"
+  >
+    <div
+      class="relative"
+      style="transition:600ms ease-in-out;height:220px;overflow:hidden"
+    >
+      <div
+        class="h-auto"
+      >
+        Test description
+      </div>
+      <div
+        class="pointerEventsNone flex absolute bottom-0 w-100 h-100 flex-column justify-end"
+      >
+        <div
+          class="fadeBottom w-100 h-50"
+          style="transition:400ms ease-in-out"
+        />
+        <div
+          class="pointerEventsAuto bg-base tc w-100"
+        >
+          <div
+            class="c-action-primary t-action pointer ma5"
+          >
+            <span>
+              Show more
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
