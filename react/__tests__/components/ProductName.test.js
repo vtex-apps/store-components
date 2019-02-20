@@ -24,7 +24,7 @@ describe('<ProductName />', () => {
     })
   }
 
-  it('should be mount', () => {
+  it('should be mounted', () => {
     expect(renderComponent()).toBeDefined()
   })
 
