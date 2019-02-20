@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Spinner } from 'vtex.styleguide'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { withStyles } from '@material-ui/core/styles'
-import './global.css'
 import ImageResizer from './ImageResizer'
 import styles from '../../styles.css'
 
