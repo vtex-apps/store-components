@@ -4,6 +4,8 @@ import { path } from 'ramda'
 import debounce from 'debounce'
 
 import Carousel from './components/Carousel'
+import styles from './styles.css'
+
 
 const getBestUrlIndex = thresholds => {
   const windowSize = window.innerWidth
@@ -52,7 +54,7 @@ const ProductImages = props => {
   }, [props.images])
 
   return (
-    <div className="w-100">
+    <div className={`${styles.content} w-100`}>
       <Carousel slides={slides} />
     </div>
   )

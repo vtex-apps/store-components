@@ -1,6 +1,13 @@
 /**
-*   Carousel CSS Module
+*   Product Image CSS Module
 */
+
+.content { }
+
+.video { }
+
+.image { }
+
 .carouselGaleryCursor {
   cursor: url('./components/Carousel/cursor.svg') 8 8, default;
 }

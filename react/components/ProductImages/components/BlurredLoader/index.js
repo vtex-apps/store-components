@@ -5,9 +5,10 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import { withStyles } from '@material-ui/core/styles'
 import './global.css'
 import ImageResizer from './ImageResizer'
+import styles from '../../styles.css'
 
-const styles = { barColorPrimary: { backgroundColor: 'currentColor' } }
-const LinearProgressWithStyle = withStyles(styles)(LinearProgress)
+const stylesDefault = { barColorPrimary: { backgroundColor: 'currentColor' } }
+const LinearProgressWithStyle = withStyles(stylesDefault)(LinearProgress)
 
 const LOAD_STATES = {
   LOADING: 'LOADING',
@@ -82,7 +83,7 @@ class BlurredLoader extends React.Component {
           <div
             className={`w-100 top-0 z-2 absolute transition-opacity-1 ${
               loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
-            }`}
+              }`}
           >
             <LinearProgressWithStyle className="c-action-primary" />
           </div>
@@ -92,7 +93,7 @@ class BlurredLoader extends React.Component {
           <div
             className={`absolute z-2 center-all left-0 right-0 top-0 bottom-0 transition-opacity-1 ${
               loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
-            }`}
+              }`}
             style={{ height: 40, width: 40 }}
           >
             <Spinner />
@@ -120,33 +121,35 @@ class BlurredLoader extends React.Component {
 
     return (
       <React.Fragment>
-        <ImageResizer
-          className={`w-100 ${loaded ? 'db' : 'dn'}`}
-          alt={alt}
-          src={realUrls[realUrlIndex]}
-          minRatio={imageMinRatio}
-        />
-        {!loaded && (
-          <div className="relative w-100 db">
-            <Loader />
-            <ImageResizer
-              alt={alt}
-              src={loaderUrl}
-              minRatio={imageMinRatio}
-              className={`w-100 blur-30 transition-opacity-1 db z-2 ${
-                loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
-              } ${className}`}
-            />
-            <ImageResizer
-              alt=""
-              src={realUrls[realUrlIndex]}
-              minRatio={imageMinRatio}
-              className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 transition-opacity-1 db ${
-                loadState === LOAD_STATES.LOADING ? 'o-0' : 'o-100'
-              }`}
-            />
-          </div>
-        )}
+        <div className={style.image}>
+          <ImageResizer
+            className={`w-100 ${loaded ? 'db' : 'dn'}`}
+            alt={alt}
+            src={realUrls[realUrlIndex]}
+            minRatio={imageMinRatio}
+          />
+          {!loaded && (
+            <div className="relative w-100 db">
+              <Loader />
+              <ImageResizer
+                alt={alt}
+                src={loaderUrl}
+                minRatio={imageMinRatio}
+                className={`w-100 blur-30 transition-opacity-1 db z-2 ${
+                  loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
+                  } ${className}`}
+              />
+              <ImageResizer
+                alt=""
+                src={realUrls[realUrlIndex]}
+                minRatio={imageMinRatio}
+                className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 transition-opacity-1 db ${
+                  loadState === LOAD_STATES.LOADING ? 'o-0' : 'o-100'
+                  }`}
+              />
+            </div>
+          )}
+        </div>
       </React.Fragment>
     )
   }
