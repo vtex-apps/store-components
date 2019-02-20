@@ -57,9 +57,9 @@
   },
   "jest": {
     "verbose": true,
-    "moduleDirectories": [
-      "node_modules",
-      "__helpers__"
+    "modulePaths": [
+      "<rootDir>/node_modules",
+      "<rootDir>/testUtils"
     ],
     "transform": {
       "\\.(gql|graphql)$": "jest-transform-graphql",
@@ -72,7 +72,7 @@
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
     ],
     "setupFiles": [
-      "./setupTests.js"
+      "./testUtils/setupTests.js"
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",

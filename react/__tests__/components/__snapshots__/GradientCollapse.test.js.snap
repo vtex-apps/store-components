@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<GradientCollapse /> should match snapshot 1`] = `
+exports[`<GradientCollapse /> component should match snapshot 1`] = `
 <div
   class="relative"
   style="transition:600ms ease-in-out;height:50px;overflow:hidden"
