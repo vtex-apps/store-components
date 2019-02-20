@@ -1,6 +1,6 @@
 import React from 'react'
+import { renderWithIntl } from 'intl-helper'
 
-import { renderWithIntl } from '../../__helpers__/intl-helper'
 import GradientCollapse from '../../GradientCollapse'
 
 describe('<GradientCollapse />', () => {

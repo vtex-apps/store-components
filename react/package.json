@@ -57,6 +57,10 @@
   },
   "jest": {
     "verbose": true,
+    "moduleDirectories": [
+      "node_modules",
+      "__helpers__"
+    ],
     "transform": {
       "\\.(gql|graphql)$": "jest-transform-graphql",
       "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest"

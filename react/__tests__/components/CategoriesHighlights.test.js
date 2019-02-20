@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { render } from 'enzyme'
 
 import CategoriesHighlights from '../../CategoriesHighlights'
