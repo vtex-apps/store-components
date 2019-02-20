@@ -1,7 +1,8 @@
 import React from 'react'
-import ProductPrice from './../../ProductPrice'
-import { renderWithIntl } from '../../__helpers__/intl-helper'
 import PropTypes from 'prop-types'
+import { renderWithIntl } from 'intl-helper'
+
+import ProductPrice from './../../ProductPrice'
 
 describe('<ProductPrice />', () => {
   const defaultProps = {

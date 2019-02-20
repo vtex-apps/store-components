@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Snapshot tests for `GradientCollapse`.
 - Snapshot tests for `Greeting`.
 - Snapshot tests for `ProductNames`.
+- Better use of helpers in tests.
 
 ## [3.17.2] - 2019-02-18
 
