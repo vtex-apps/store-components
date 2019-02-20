@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed 
-- Improve css handles in `ProductImages` component. 
+- Improve CSS handles in `ProductImages` component. 
 
 ### Added
 
