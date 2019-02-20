@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Container /> component should match snapshot with loading 1`] = `
+<div
+  class="greetingContainer mh4 pv4 t-heading-4 c-on-base nowrap"
+>
+  <div
+    class="content-loader-mock"
+  >
+    <rect
+      height="32"
+      rx="1"
+      ry="1"
+      width="300"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Container /> component should match snapshot without loading 1`] = `
+<div
+  class="greetingContainer mh4 pv4 t-heading-4 c-on-base nowrap"
+>
+  <span
+    class="message"
+  >
+    <span>
+      Hello
+    </span>
+    ,
+  </span>
+  <span
+    class="firstName pl2 b"
+  >
+    name
+  </span>
+</div>
+`;
