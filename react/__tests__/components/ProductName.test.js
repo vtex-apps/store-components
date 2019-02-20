@@ -28,11 +28,11 @@ describe('<ProductName />', () => {
     expect(renderComponent()).toBeDefined()
   })
 
-  it('should match snapshot', () => {
+  it('should match the snapshot with only Name', () => {
     expect(renderComponent()).toMatchSnapshot()
   })
 
-  it('should match snapshot with SkuName', () => {
+  it('should match snapshot with Name and SkuName', () => {
     expect(
       renderComponent({ skuName: 'ProductSkuName', showSku: true })
     ).toMatchSnapshot()
