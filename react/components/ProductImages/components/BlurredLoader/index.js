@@ -120,37 +120,35 @@ class BlurredLoader extends React.Component {
     const loaded = loadState === LOAD_STATES.LOADED
 
     return (
-      <React.Fragment>
-        <div className={styles.image}>
-          <ImageResizer
-            className={`w-100 ${loaded ? 'db' : 'dn'}`}
-            alt={alt}
-            src={realUrls[realUrlIndex]}
-            minRatio={imageMinRatio}
-          />
-          {!loaded && (
-            <div className="relative w-100 db">
-              <Loader />
-              <ImageResizer
-                alt={alt}
-                src={loaderUrl}
-                minRatio={imageMinRatio}
-                className={`w-100 ${styles.imageBlur30} ${styles.imageTransitionOpacity} db z-2 ${
-                  loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
-                  } ${className}`}
-              />
-              <ImageResizer
-                alt=""
-                src={realUrls[realUrlIndex]}
-                minRatio={imageMinRatio}
-                className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 ${styles.imageTransitionOpacity} db ${
-                  loadState === LOAD_STATES.LOADING ? 'o-0' : 'o-100'
-                  }`}
-              />
-            </div>
-          )}
-        </div>
-      </React.Fragment>
+      <div className={styles.image}>
+        <ImageResizer
+          className={`w-100 ${loaded ? 'db' : 'dn'}`}
+          alt={alt}
+          src={realUrls[realUrlIndex]}
+          minRatio={imageMinRatio}
+        />
+        {!loaded && (
+          <div className="relative w-100 db">
+            <Loader />
+            <ImageResizer
+              alt={alt}
+              src={loaderUrl}
+              minRatio={imageMinRatio}
+              className={`w-100 ${styles.imageBlur30} ${styles.imageTransitionOpacity} db z-2 ${
+                loadState === LOAD_STATES.LOADING ? 'o-100' : 'o-0'
+                } ${className}`}
+            />
+            <ImageResizer
+              alt=""
+              src={realUrls[realUrlIndex]}
+              minRatio={imageMinRatio}
+              className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 ${styles.imageTransitionOpacity} db ${
+                loadState === LOAD_STATES.LOADING ? 'o-0' : 'o-100'
+                }`}
+            />
+          </div>
+        )}
+      </div>
     )
   }
 }
