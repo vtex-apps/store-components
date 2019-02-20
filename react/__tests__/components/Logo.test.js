@@ -5,10 +5,7 @@ import { render } from 'enzyme'
 
 describe('<Logo /> component', () => {
   const renderComponent = customProps => {
-    const props = {
-      ...customProps,
-    }
-    const comp = <Logo {...props} />
+    const comp = <Logo {...customProps} />
 
     return render(comp)
   }
