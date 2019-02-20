@@ -17,12 +17,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Snapshot tests for `Container`.
 - Snapshot tests for `DiscountBadge`.
 - Snapshot tests for `CategoriesHighlights`.
-<<<<<<< HEAD
 - Snapshot tests for `GradientCollapse`.
 - Snapshot tests for `Greeting`.
-=======
 - Snapshot tests for `ProductNames`.
->>>>>>> Add productName snapshots
 
 ## [3.17.2] - 2019-02-18
 
