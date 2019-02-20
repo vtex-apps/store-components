@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductName /> should match the snapshot Loader 1`] = `
+<div
+  class="productNameContainer productNameLoader"
+>
+  <div
+    class="content-loader-mock"
+  >
+    <rect
+      height="1.125em"
+      width="75%"
+      x="15%"
+    />
+    <rect
+      height="1.125em"
+      width="50%"
+      x="25%"
+      y="1.75em"
+    />
+  </div>
+</div>
+`;
+
+exports[`<ProductName /> should match the snapshot with Name and Brand 1`] = `
+<div
+  class="productNameContainer mv0"
+>
+  <span
+    class="productBrand"
+  >
+    ProductTest - ProductBrandName
+  </span>
+</div>
+`;
+
+exports[`<ProductName /> should match the snapshot with Name and Product Reference 1`] = `
+<div
+  class="productNameContainer mv0"
+>
+  <span
+    class="productBrand"
+  >
+    ProductTest 
+  </span>
+  <span
+    class="productReference"
+  >
+    REF: productReferenceTest
+  </span>
+</div>
+`;
+
+exports[`<ProductName /> should match the snapshot with Name and SkuName 1`] = `
+<div
+  class="productNameContainer mv0"
+>
+  <span
+    class="productBrand"
+  >
+    ProductTest 
+  </span>
+  <span
+    class="productBrand"
+  >
+    ProductSkuName
+  </span>
+</div>
+`;
+
+exports[`<ProductName /> should match the snapshot with all options 1`] = `
+<div
+  class="productNameContainer mv0"
+>
+  <span
+    class="productBrand"
+  >
+    ProductTest - ProductBrandName
+  </span>
+  <span
+    class="productBrand"
+  >
+    ProductSkuName
+  </span>
+  <span
+    class="productReference"
+  >
+    REF: productReferenceTest
+  </span>
+</div>
+`;
+
+exports[`<ProductName /> should match the snapshot with only Name 1`] = `
+<div
+  class="productNameContainer mv0"
+>
+  <span
+    class="productBrand"
+  >
+    ProductTest 
+  </span>
+</div>
+`;
