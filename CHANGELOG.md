@@ -16,11 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Snapshot tests for `CollectionBadges`.
 - Snapshot tests for `Container`.
 - Snapshot tests for `DiscountBadge`.
-<<<<<<< HEAD
 - Snapshot tests for `CategoriesHighlights`.
-=======
 - Snapshot tests for `GradientCollapse`.
->>>>>>> Add GradientCollapse snapshot tests
 
 ## [3.17.2] - 2019-02-18
 
