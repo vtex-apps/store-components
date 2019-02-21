@@ -6,4 +6,6 @@ export function withRuntimeContext(Comp) {
 
 export const Link = ({ children }) => <a>{children}</a>
 
-export const NoSSR = ({ children }) => <div className="NoSSR">{children}</div>
+export const NoSSR = ({ children }) => (
+  <div className="NoSSR-mock">{children}</div>
+)

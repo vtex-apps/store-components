@@ -13,13 +13,13 @@ export function withToast(Comp) {
 }
 
 export function Tabs(props) {
-  return <div className="tabs"> {props.children} </div>
+  return <div className="tabs-mock"> {props.children} </div>
 }
 
 export function Tab(props) {
-  return <div className="tab"> {props.children} </div>
+  return <div className="tab-mock"> {props.children} </div>
 }
 
 export function Spinner(props) {
-  return <div className="spinner"> {props.children} </div>
+  return <div className="spinner-mock"> {props.children} </div>
 }

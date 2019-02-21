@@ -25,10 +25,10 @@ describe('<SearchBar />', () => {
   }
 
   it('should be able to mount and not break', () => {
-    expect(renderComponent({ hasIconLeft: true })).toBeTruthy()
+    expect(renderComponent()).toBeTruthy()
   })
 
   it('should match snapshot', () => {
-    expect(renderComponent({ hasIconLeft: true })).toMatchSnapshot()
+    expect(renderComponent()).toMatchSnapshot()
   })
 })
