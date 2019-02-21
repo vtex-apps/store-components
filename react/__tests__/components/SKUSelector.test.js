@@ -7,8 +7,8 @@ import SKU from 'sku-helper'
 describe('<SKUSelector />', () => {
   const renderComponent = customProps => {
     const props = {
-      skuSelected: SKU(),
-      skuItems: [SKU('Black'), SKU('Blue'), SKU('Yellow')],
+      skuSelected: SKU.getSKU(),
+      skuItems: [SKU.getSKU('Black'), SKU.getSKU('Blue'), SKU.getSKU('Yellow')],
       ...customProps,
     }
     return renderWithIntl(<SKUSelector {...props} />)

@@ -1,6 +1,6 @@
 const DEFAULT_COLOR = 'Pink'
 
-const getSKU = (color = DEFAULT_COLOR) => ({
+export const getSKU = (color = DEFAULT_COLOR) => ({
   itemId: `SKU${color}`,
   name,
   nameComplete: `Simple SKU ${color}`,
@@ -48,5 +48,3 @@ const getSKU = (color = DEFAULT_COLOR) => ({
     },
   ],
 })
-
-export default getSKU
