@@ -5,10 +5,7 @@ import { renderWithIntl } from 'intl-helper'
 import Share from './../../Share'
 
 describe('<Share />', () => {
-  const renderComponent = customProps => {
-    const props = {
-      ...customProps,
-    }
+  const renderComponent = props => {
     return renderWithIntl(<Share {...props} />)
   }
 
