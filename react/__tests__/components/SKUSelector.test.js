@@ -14,7 +14,7 @@ describe('<SKUSelector />', () => {
     return renderWithIntl(<SKUSelector {...props} />)
   }
 
-  it('should be mount', () => {
+  it('should be mounted', () => {
     expect(renderComponent()).toBeDefined()
   })
 
