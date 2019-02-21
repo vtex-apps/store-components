@@ -34,5 +34,8 @@
   },
   "product-specifications":{
     "component": "ProductSpecifications"
+  },
+  "info-card": {
+    "component": "InfoCard"
   }
 }
