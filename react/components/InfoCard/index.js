@@ -74,8 +74,8 @@ class InfoCard extends PureComponent {
     type: 'object',
     properties: {
       isFullModeStyle: {
-        title: 'editor.info-card.isFullMode.title',
-        description: 'editor.info-card.isFullMode.description',
+        title: 'editor.info-card.isFullModeStyle.title',
+        description: 'editor.info-card.isFullModeStyle.description',
         type: 'boolean',
         default: false,
       },
