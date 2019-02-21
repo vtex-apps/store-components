@@ -3,8 +3,10 @@ import { Button } from 'vtex.styleguide'
 import { Link } from 'vtex.render-runtime'
 import styles from './infoCard.css'
 
+import { callActionValues } from './SchemaTypes'
+
 const ActionWrapper = ({ mode, text }) => {
-  if (mode === 'button') {
+  if (mode === callActionValues.BUTTON) {
     return (
       <Button size="small" onClick={() => {}}>{text}</Button>
     )
@@ -15,7 +17,7 @@ const ActionWrapper = ({ mode, text }) => {
 }
 
 const CallToAction = ({ mode, text, url }) => {
-  if (mode === 'none') {
+  if (mode === callActionValues.NONE) {
     return null
   }
 

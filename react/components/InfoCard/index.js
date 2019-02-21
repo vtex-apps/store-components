@@ -4,40 +4,42 @@ import classNames from 'classnames'
 import { withRuntimeContext } from 'vtex.render-runtime'
 
 import CallToAction from './CallToAction'
-import { textPositionTypes, textAlignmentTypes, callToActionModeTypes } from './SchemaTypes'
+import { textPositionTypes, textAlignmentTypes, callToActionModeTypes, textPostionValues, textAlignmentValues } from './SchemaTypes'
 
 import styles from './infoCard.css'
 
 const justifyTokens = {
-  left: 'justify-start',
-  center: 'justify-center',
-  right: 'justify-end'
+  [textPostionValues.LEFT]: 'justify-start',
+  [textPostionValues.CENTER]: 'justify-center',
+  [textPostionValues.RIGHT]: 'justify-end'
 }
 
 const alignTokens = {
-  left: 'tl',
-  center: 'tc',
-  right: 'tr'
+  [textAlignmentValues.LEFT]: 'tl',
+  [textAlignmentValues.CENTER]: 'tc',
+  [textAlignmentValues.RIGHT]: 'tr'
 }
 
 const itemsTokens = {
-  left: 'items-start',
-  center: 'items-center',
-  right: 'items-end'
+  [textAlignmentValues.LEFT]: 'items-start',
+  [textAlignmentValues.CENTER]: 'items-center',
+  [textAlignmentValues.RIGHT]: 'items-end'
 }
 
 const flexOrderTokens = {
-  left: 'flex-row',
-  right: 'flex-row-reverse'
+  [textPostionValues.LEFT]: 'flex-row',
+  [textPostionValues.RIGHT]: 'flex-row-reverse'
 }
 
 const defaultValues = {
   textPosition: textPositionTypes.TEXT_POSITION_LEFT.value,
-  textAlignment: textPositionTypes.TEXT_ALIGNMENT_LEFT.value,
+  textAlignment: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
 }
 
 const getEnumValues = enumObject => Object.values(enumObject).map(({ value }) => value)
 const getEnumNames = enumObject => Object.values(enumObject).map(({ name }) => name)
+
+const safelyGetToken = (tokenMap, valueWanted, propName) => tokenMap[valueWanted] || defaultValues[propName]
 
 class InfoCard extends PureComponent {
   static propTypes = {
@@ -51,21 +53,9 @@ class InfoCard extends PureComponent {
     imageUrl: string,
     mobileImageUrl: string,
     textAlignment: oneOf(getEnumValues(textAlignmentTypes)),
-  };
+  }
 
   static defaultProps = {
-    // isFullModeStyle: true,
-    // textPosition: textPositionTypes.TEXT_POSITION_LEFT.value,
-    // headline: 'Enjoy pure water throughout your home',
-    // subline: 'Your family relies on clean water to stay healthy. Choose from a high-quality selection of water softeners and filtration systems to remove water contaminants and hardness in your home. Take control with a water system designed around your unique needs.',
-    // callToActionMode: 'button',
-    // callToActionText: 'Shop Water Filtration',
-    // callToActionUrl: 's/under-sink-filtration',
-    // // imageUrl: 'https://ecowaterqa.vteximg.com.br/arquivos/ids/155513',
-    // imageUrl: 'https://www.atribunamt.com.br/wp-content/uploads/2018/12/Palmeiras-campeao-brasileiro-1024x576.jpg',
-    // mobileImageUrl: 'https://ecowaterqa.vteximg.com.br/arquivos/ids/155513',
-    // textAlignment: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
-
     isFullModeStyle: false,
     textPosition: textPositionTypes.TEXT_POSITION_LEFT.value,
     headline: null,
@@ -79,71 +69,71 @@ class InfoCard extends PureComponent {
   }
 
   static schema = {
-    title: 'editor.hero-header.title',
-    description: 'editor.hero-header.description',
+    title: 'editor.info-card.title',
+    description: 'editor.info-card.description',
     type: 'object',
     properties: {
       isFullModeStyle: {
-        title: 'editor.hero-header.isFullMode.title',
-        description: 'editor.hero-header.isFullMode.description',
+        title: 'editor.info-card.isFullMode.title',
+        description: 'editor.info-card.isFullMode.description',
         type: 'boolean',
         default: false,
       },
       textPosition: {
-        title: 'editor.hero-header.textPosition.title',
-        description: 'editor.hero-header.textPosition.description',
+        title: 'editor.info-card.textPosition.title',
+        description: 'editor.info-card.textPosition.description',
         type: 'string',
         enum: getEnumValues(textPositionTypes),
         enumNames: getEnumNames(textPositionTypes),
         default: textPositionTypes.TEXT_POSITION_LEFT.value,
       },
       headline: {
-        title: 'editor.hero-header.headline.title',
-        description: 'editor.hero-header.headline.description',
+        title: 'editor.info-card.headline.title',
+        description: 'editor.info-card.headline.description',
         type: 'string',
         default: null,
       },
       subline: {
-        title: 'editor.hero-header.subline.title',
-        description: 'editor.hero-header.subline.description',
+        title: 'editor.info-card.subline.title',
+        description: 'editor.info-card.subline.description',
         type: 'string',
         default: null,
       },
       callToActionMode: {
-        title: 'editor.hero-header.callToActionMode.title',
-        description: 'editor.hero-header.callToActionMode.description',
+        title: 'editor.info-card.callToActionMode.title',
+        description: 'editor.info-card.callToActionMode.description',
         type: 'string',
         enum: getEnumValues(callToActionModeTypes),
         enumNames: getEnumNames(callToActionModeTypes),
         default: callToActionModeTypes.CALL_ACTION_BUTTON.value
       },
       callToActionText: {
-        title: 'editor.hero-header.callToActionText.title',
-        description: 'editor.hero-header.callToActionText.description',
+        title: 'editor.info-card.callToActionText.title',
+        description: 'editor.info-card.callToActionText.description',
         type: 'string',
         default: '',
       },
       callToActionUrl: {
-        title: 'editor.hero-header.callToActionUrl.title',
-        description: 'editor.hero-header.callToActionUrl.description',
+        title: 'editor.info-card.callToActionUrl.title',
+        description: 'editor.info-card.callToActionUrl.description',
         type: 'string',
         default: '',
       },
       imageUrl: {
-        title: 'editor.hero-header.imageUrl.title',
-        description: 'editor.hero-header.imageUrl.description',
+        title: 'editor.info-card.imageUrl.title',
+        description: 'editor.info-card.imageUrl.description',
         type: 'string',
         default: '',
       },
       mobileImageUrl: {
-        title: 'editor.hero-header.mobileImageUrl.title',
-        description: 'editor.hero-header.mobileImageUrl.description',
+        title: 'editor.info-card.mobileImageUrl.title',
+        description: 'editor.info-card.mobileImageUrl.description',
         type: 'string',
         default: null,
       },
       textAlignment: {
-        title: 'editor.hero-header.textAlignment.title',
-        description: 'editor.hero-header.textAlignment.description',
+        title: 'editor.info-card.textAlignment.title',
+        description: 'editor.info-card.textAlignment.description',
         type: 'string',
         default: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
         enum: getEnumValues(textAlignmentTypes),
@@ -169,12 +159,13 @@ class InfoCard extends PureComponent {
       textAlignment,
     } = this.props
 
-    const paddingClass = textPosition === 'left' ? 'pr4-ns' : 'pl4-ns'
-    
-    const alignToken = alignTokens[textAlignment] || alignTokens[defaultValues.textAlignment]
-    const itemsToken = itemsTokens[textAlignment] || itemsTokens[defaultValues.textAlignment]
-    const justifyToken = justifyTokens[textPosition] || justifyTokens[defaultValues.textPosition]
-    const flexOrderToken = flexOrderTokens[textPosition] || flexOrderTokens[defaultValues.textPosition]
+    const paddingClass = textPosition === textPostionValues.LEFT ? 'pr4-ns' : 'pl4-ns'
+
+    // We ignore textAlignment tokens when full image mode
+    const alignToken = isFullModeStyle ? safelyGetToken(alignTokens, textPosition, 'textPosition') : safelyGetToken(alignTokens, textAlignment, 'textAlignment')
+    const itemsToken = isFullModeStyle ? safelyGetToken(itemsTokens, textPosition, 'textPosition') : safelyGetToken(itemsTokens, textAlignment, 'textAlignment')
+    const justifyToken = safelyGetToken(justifyTokens, textPosition, 'textPosition')
+    const flexOrderToken = safelyGetToken(flexOrderTokens, textPosition, 'textPosition')
 
     const containerStyle = isFullModeStyle ? { backgroundImage: `url(${this.getImageUrl()})` } : {}
 
@@ -185,7 +176,7 @@ class InfoCard extends PureComponent {
 
     const textContainerClasses = classNames(`${styles.infoCardTextContainer} flex flex-column`, {
       [`w-50-ns ph3-s ${itemsToken} ${paddingClass}`]: !isFullModeStyle,
-      [`ml8-ns mh4-s w-40-ns ${itemsToken}`]: isFullModeStyle,
+      [`mh8-ns mh4-s w-40-ns ${itemsToken}`]: isFullModeStyle,
     })
 
     return (
