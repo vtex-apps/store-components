@@ -4,7 +4,7 @@ import { intlShape, injectIntl } from 'react-intl'
 import TranslateEstimate from 'vtex.shipping-estimate-translator/TranslateEstimate'
 import classNames from 'classnames'
 
-import styles from '../styles'
+import styles from '../styles.css'
 
 const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   const etaClassName = classNames(`${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`, {
