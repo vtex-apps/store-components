@@ -46,7 +46,7 @@ Through the Storefront, you can change the `InfoCard`'s behavior and interface. 
 | `textPosition` | `TextPostionEnum` | Choose in which position of the component text will be displayed, left, center or right | `"left"` |
 | `textAlignment` | `TextAlignmentEnum` | Control the text alignment inside component. This prop is ignored if `isFullModeStyle` is true  | `"left"` |
 | `headline` | `String` | Text to be used as headline. If not provided, it will not be rendered | `null` |
-| `subline` | `String` | Text to be displayed underneath the headline. If not provided, it will not be rendered | `null` |
+| `subhead` | `String` | Text to be displayed underneath the headline. If not provided, it will not be rendered | `null` |
 | `callToActionMode` | `CallToActionEnum` | Set Call to Action component mode | `"button"` |
 | `callToActionText` | `String` | Text to be displayed inside the CTA component | `""` |
 | `callToActionUrl` | `String` | URL to be redirected when CTA component is clicked | `""` |
@@ -86,5 +86,5 @@ Below, we describe the namespace that are defined in the `ProductPrice`.
 | `infoCardContainer` | The main container of `InfoCard` | [index](/react/components/InfoCard/index.js) |
 | `infoCardTextContainer` | The text container | [index](/react/components/InfoCard/index.js) |
 | `infoCardHeadline` | The headline label | [index](/react/components/InfoCard/index.js) | 
-| `infoCardSubline` | The subline label | [index](/react/components/InfoCard/index.js) |
+| `infoCardSubhead` | The subhead label | [index](/react/components/InfoCard/index.js) |
 | `infoCardCallActionContainer` | The Call to Action container | [index](/react/components/InfoCard/CallToAction.js) | 

@@ -8,7 +8,7 @@ import { callActionValues } from './SchemaTypes'
 const ActionWrapper = ({ mode, text }) => {
   if (mode === callActionValues.BUTTON) {
     return (
-      <Button size="small" onClick={() => {}}>{text}</Button>
+      <Button onClick={() => {}}>{text}</Button>
     )
   }
 
