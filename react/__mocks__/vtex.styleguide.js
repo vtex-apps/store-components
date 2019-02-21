@@ -19,3 +19,7 @@ export function Tabs(props) {
 export function Tab(props) {
   return <div className="tab"> {props.children} </div>
 }
+
+export function Spinner(props) {
+  return <div className="spinner"> {props.children} </div>
+}
