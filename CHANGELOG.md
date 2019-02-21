@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Snapshot tests for `ProductDescription`.
 - Snapshot tests for `Logo`.
 - Snapshot tests for `ProductSpecifications`.
+- Snapshot tests for `SKUSelector`.
 
 ## [3.17.2] - 2019-02-18
 

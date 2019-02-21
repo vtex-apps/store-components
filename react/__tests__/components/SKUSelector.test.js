@@ -2,32 +2,13 @@ import React from 'react'
 import { renderWithIntl } from 'intl-helper'
 
 import SKUSelector from './../../SKUSelector'
+import SKU from 'sku-helper'
 
 describe('<SKUSelector />', () => {
   const renderComponent = customProps => {
-    const sku = {
-      name: 'SKU 1',
-      commertialOffer: {
-        Price: 12,
-      },
-      images: [
-        {
-          imageUrl: 'mockedUrl',
-          imageLabel: 'Image 1',
-        },
-      ],
-      itemId: '1',
-      variations: [
-        {
-          name: 'color',
-          values: ['blue', 'yellow'],
-        },
-      ],
-    }
-
     const props = {
-      skuSelected: sku,
-      skuItems: [sku, sku, sku],
+      skuSelected: SKU(),
+      skuItems: [SKU('Black'), SKU('Blue'), SKU('Yellow')],
       ...customProps,
     }
     return renderWithIntl(<SKUSelector {...props} />)
@@ -37,11 +18,7 @@ describe('<SKUSelector />', () => {
     expect(renderComponent()).toBeDefined()
   })
 
-  it('should match snapshot', () => {
+  it('should match the snapshot', () => {
     expect(renderComponent()).toMatchSnapshot()
-  })
-
-  it('should match snapshot Loader', () => {
-    expect(renderComponent({ showListPrice: true })).toMatchSnapshot()
   })
 })
