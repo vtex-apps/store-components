@@ -167,11 +167,11 @@ class InfoCard extends PureComponent {
     const justifyToken = safelyGetToken(justifyTokens, textPosition, 'textPosition')
     const flexOrderToken = safelyGetToken(flexOrderTokens, textPosition, 'textPosition')
 
-    const containerStyle = isFullModeStyle ? { backgroundImage: `url(${this.getImageUrl()})` } : {}
+    const containerStyle = isFullModeStyle ? { backgroundImage: `url(${this.getImageUrl()})`, backgroundSize: 'cover' } : {}
 
     const containerClasses = classNames(`${styles.infoCardContainer} items-center`, {
       [`flex-ns ${flexOrderToken} bg-base ph2-ns pb2 justify-between`]: !isFullModeStyle,
-      [`bg-center cover bb b--muted-4 flex ${justifyToken}`]: isFullModeStyle,
+      [`bg-center bb b--muted-4 flex ${justifyToken}`]: isFullModeStyle,
     })
 
     const textContainerClasses = classNames(`${styles.infoCardTextContainer} flex flex-column`, {
