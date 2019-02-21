@@ -88,11 +88,11 @@ exports[`<ProductSpecifications /> component should match snapshot with tabs vie
     Technical Specifications
   </h2>
   <div
-    class="tabs"
+    class="tabs-mock"
   >
      
     <div
-      class="tab"
+      class="tab-mock"
     >
        
       <div
