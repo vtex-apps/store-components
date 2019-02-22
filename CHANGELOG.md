@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.18.1] - 2019-02-21
 ### Added
+
+- Snapshot tests for `Share`.
+
+## [3.18.1] - 2019-02-21
+
+### Added
+
 - Add `info-card` to `interfaces.json`
 
 ## [3.18.0] - 2019-02-21
@@ -33,7 +39,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Snapshot tests for `SKUSelector`.
 - Snapshot tests for `ShippingSimulator`.
 - Snapshot tests for `SearchBar`.
-- Create `InfoCard` component
+- Create `InfoCard` component.
 
 ## [3.17.2] - 2019-02-18
 
