@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Snapshot tests for `Share`.
+
 ## [3.18.1] - 2019-02-21
 
 ### Added
@@ -35,8 +39,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Snapshot tests for `SKUSelector`.
 - Snapshot tests for `ShippingSimulator`.
 - Snapshot tests for `SearchBar`.
-- Create `InfoCard` component
-- Snapshot tests for `Share`.
+- Create `InfoCard` component.
 
 ## [3.17.2] - 2019-02-18
 
