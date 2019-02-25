@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `UserAddress` component.
 - Added `ProductImages` docs. 
 
 ## [3.18.2] - 2019-02-25
@@ -15,7 +16,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- `UserAddress` component.
 - Snapshot tests for `Share`.
 
 ## [3.18.1] - 2019-02-21
