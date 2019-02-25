@@ -86,27 +86,23 @@ class UserAddress extends React.Component {
       inline: isInline,
     })
 
-    return (
-      <div>
-        {isInline ? (
-          <div
-            className="ph5"
-            style={{
-              maxWidth: '30rem',
-            }}>
+    return isInline ? (
+      <div
+        className="ph5"
+        style={{
+          maxWidth: '30rem',
+        }}>
+        {content}
+      </div>
+    ) : (
+      <div
+        className="bg-base--inverted c-on-base--inverted flex ph5 pointer pv3"
+      >
+        <Container className="flex justify-center w-100 left-0">
+          <div className="w-100 mw9 flex">
             {content}
           </div>
-        ) : (
-          <div
-            className="bg-base--inverted c-on-base--inverted flex ph5 pointer pv3"
-          >
-            <Container className="flex justify-center w-100 left-0">
-              <div className="w-100 mw9 flex">
-                {content}
-              </div>
-            </Container>
-          </div>
-        )}
+        </Container>
       </div>
     )
   }
