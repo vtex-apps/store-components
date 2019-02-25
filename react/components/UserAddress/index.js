@@ -35,10 +35,10 @@ class UserAddress extends React.Component {
     return (
       <div className={`flex ${inline ? 'items-end' : 'items-center flex-auto' }`}>
         <div className="flex flex-auto">
-          <div className={`vtex-address-manager__icon mr3 flex items-center ${inverted ? 'c-on-base--inverted' : 'c-muted-2'}`}>
+          <div className={`mr3 flex items-center ${inverted ? 'c-on-base--inverted' : 'c-muted-2'}`}>
             <ChangeAddressIcon />
           </div>
-          <div className="vtex-address-manager__address flex flex-auto flex-column">
+          <div className="flex flex-auto flex-column">
             <div className={`t-small ${inverted ? 'c-on-base--inverted' : 'c-muted-2'}`}>
               {isPickup
               ? <FormattedMessage id="user-address.pickup" />
@@ -87,7 +87,7 @@ class UserAddress extends React.Component {
     })
 
     return (
-      <div className="vtex-address-manager">
+      <div>
         {isInline ? (
           <div
             className="ph5"
@@ -101,7 +101,7 @@ class UserAddress extends React.Component {
             className="bg-base--inverted c-on-base--inverted flex ph5 pointer pv3"
           >
             <Container className="flex justify-center w-100 left-0">
-              <div className="vtex-address-manager__container w-100 mw9 flex">
+              <div className="w-100 mw9 flex">
                 {content}
               </div>
             </Container>
