@@ -5,7 +5,7 @@
 `ProductImages` is a VTEX component that render a set of Image or Video of a product.
 This Component can be imported and used by any VTEX app.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
 
 ## Table of Contents
 - [Product Specifications](#product-specifications)
