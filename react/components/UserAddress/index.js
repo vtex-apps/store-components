@@ -1,11 +1,12 @@
 import React  from 'react'
 import PropTypes from 'prop-types'
-import { orderFormConsumer, contextPropTypes } from 'vtex.store-resources/OrderFormContext'
-import ChangeAddressIcon from './ChangeAddressIcon'
+import { FormattedMessage } from 'react-intl'
 
+import { orderFormConsumer, contextPropTypes } from 'vtex.store-resources/OrderFormContext'
+
+import ChangeAddressIcon from './ChangeAddressIcon'
 import Container from '../Container'
 
-import { FormattedMessage } from 'react-intl'
 
 class UserAddress extends React.Component {
   static propTypes = {
