@@ -51,12 +51,16 @@ You should follow the Styles API instruction in the main [README](/README.md#sty
 #### CSS Namespaces
 Below, we describe the namespace that are defined in the `ProductImages`.
 
-| Class name                | Description                                                                             | Component Source                                                         |
-| ------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| `.content`                | The wrapper of `Carousel` scope                                                         | [index](/react/components/ProductImages/index.js)                        |
-| `carouselCursorDefault`   | Specification that define the default customization for the cursor in `Swipe` Component | [Carousel](/react/components/ProductImages/components/Carousel/index.js) |
-| `carouselInconCaretRight` | Customization to the right caret icon in `IconCaret` component                          | [Carousel](/react/components/ProductImages/components/Carousel/index.js) |
-| `carouselIconCaretLeft`   | Customization to the left caret icon in `IconCaret` component                           | [Carousel](/react/components/ProductImages/components/Carousel/index.js) |
-| `carouselGaleryThumbs`    | The container of Thumbs area                                                            | [Carousel](/react/components/ProductImages/components/Carousel/index.js) |
-| `carouselThumbBorder`     | Define the border of Thumb area                                                         | [Carousel](/react/components/ProductImages/components/Carousel/index.js) |
-| `carouselGaleryCursor`    | Define the svg icon that will show when hover the `Carousel`                            | [Carousel](/react/components/ProductImages/components/Carousel/index.js) |
+| Class name                | Description                                                                             | Component Source                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `.content`                | The wrapper of `Carousel` scope                                                         | [index](/react/components/ProductImages/index.js)                                  |
+| `.video`                  | The wrapper of `Video` scope                                                            | [Video](/react/components/ProductImages/components/Video/index.js)                 |
+| `.image`                  | The wrapper container to `BlurredLoader` component                                      | [BlurredLoader](/react/components/ProductImages/components/BlurredLoader/index.js) |
+| `carouselCursorDefault`   | Specification that define the default customization for the cursor in `Swipe` Component | [Carousel](/react/components/ProductImages/components/Carousel/index.js)           |
+| `carouselInconCaretRight` | Customization to the right caret icon in `IconCaret` component                          | [Carousel](/react/components/ProductImages/components/Carousel/index.js)           |
+| `carouselIconCaretLeft`   | Customization to the left caret icon in `IconCaret` component                           | [Carousel](/react/components/ProductImages/components/Carousel/index.js)           |
+| `carouselGaleryThumbs`    | The container of Thumbs area                                                            | [Carousel](/react/components/ProductImages/components/Carousel/index.js)           |
+| `carouselThumbBorder`     | Define the border of Thumb area                                                         | [Carousel](/react/components/ProductImages/components/Carousel/index.js)           |
+| `carouselGaleryCursor`    | Define the svg icon that will show when hover the `Carousel`                            | [Carousel](/react/components/ProductImages/components/Carousel/index.js)           |
+| `imageBlur30`             | Blur of the Image                                                                       | [BlurredLoader](/react/components/ProductImages/components/BlurredLoader/index.js) |
+| `imageTransitionOpacity`  | Time transition between images                                                          | [BlurredLoader](/react/components/ProductImages/components/BlurredLoader/index.js) |
