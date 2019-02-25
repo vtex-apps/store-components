@@ -1,1 +1,4 @@
-export { default as default } from './components/Container'
+import Container from './components/Container/index'
+
+export default Container
+
