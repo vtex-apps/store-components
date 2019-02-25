@@ -51,8 +51,12 @@ You should follow the Styles API instruction in the main [README](/README.md#sty
 #### CSS Namespaces
 Below, we describe the namespace that are defined in the `ProductImages`.
 
-| Class name              | Description                                                                             | Component Source                                          |
-| ----------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| `specificationsTitle`   | The title of the specifications section                                                 | [index](/react/components/ProductSpecifications/index.js) |
-| `.content`              | The wrapper of `Carousel` scope                                                         | [index](/react/components/ProductImages/index.js)         |
-| `carouselCursorDefault` | Specification that define the default customization for the cursor in `Swipe` Component |
+| Class name                | Description                                                                             | Component Source                                                         |
+| ------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `.content`                | The wrapper of `Carousel` scope                                                         | [index](/react/components/ProductImages/index.js)                        |
+| `carouselCursorDefault`   | Specification that define the default customization for the cursor in `Swipe` Component | [Carousel](/react/components/ProductImages/components/Carousel/index.js) |
+| `carouselInconCaretRight` | Customization to the right caret icon in `IconCaret` component                          | [Carousel](/react/components/ProductImages/components/Carousel/index.js) |
+| `carouselIconCaretLeft`   | Customization to the left caret icon in `IconCaret` component                           | [Carousel](/react/components/ProductImages/components/Carousel/index.js) |
+| `carouselGaleryThumbs`    | The container of Thumbs area                                                            | [Carousel](/react/components/ProductImages/components/Carousel/index.js) |
+| `carouselThumbBorder`     | Define the border of Thumb area                                                         | [Carousel](/react/components/ProductImages/components/Carousel/index.js) |
+| `carouselGaleryCursor`    | Define the svg icon that will show when hover the `Carousel`                            | [Carousel](/react/components/ProductImages/components/Carousel/index.js) |
