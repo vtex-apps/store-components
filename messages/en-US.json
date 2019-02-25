@@ -86,5 +86,8 @@
   "editor.info-card.textAlignment.right": "Right",
   "editor.info-card.callAction.none": "None",
   "editor.info-card.callAction.button": "Button",
-  "editor.info-card.callAction.link": "Link"
+  "editor.info-card.callAction.link": "Link",
+  "user-address.pickup": "Pick up at",
+  "user-address.order": "Order to",
+  "user-address.change": "Change"
 }
