@@ -1,62 +1,61 @@
 .resultsItemImage {
-    width: 50px;
-  }
-  
+  width: 50px;
+}
+
 .resultsList {
-    list-style-type: none;
-    max-height: 60vh;
-    overflow-y: auto;
+  list-style-type: none;
+  max-height: 60vh;
+  overflow-y: auto;
 }
-  
-.resultsList a, .resultsList div {
-    text-decoration: none;
-    color: #727273;
-  }
-  
+
+.resultsList a,
+.resultsList div {
+  text-decoration: none;
+  color: #727273;
+}
+
 .resultsList a:hover {
-    background-color: #F2F4F5;
+  background-color: #f2f4f5;
 }
-  
+
 .searchBarContainer input {
-    height: 38px;
-    color: #727273;
-    border-radius: 1px;
+  height: 38px;
+  color: #727273;
+  border-radius: 1px;
 }
-  
-.compactMode input{
-    border-top-style: none !important; 
-    border-left-style: none !important; 
-    border-right-style: none !important; 
-    border-bottom: 2px solid !important;
+
+.compactMode input {
+  border-top-style: none !important;
+  border-left-style: none !important;
+  border-right-style: none !important;
+  border-bottom: 2px solid !important;
 }
-  
+
 .paddingInput input {
-    -webkit-appearance: none;
-    padding-left: 40px !important;
+  -webkit-appearance: none;
+  padding-left: 40px !important;
 }
-  
+
 .searchBarContainer .resultsList {
-    top: 100%;
+  top: 100%;
 }
-  
+
 .searchMobile .vtex-button {
-    padding: 0.9rem;
-    font-weight: 400;
-    font-size: .875rem;
+  padding: 0.9rem;
+  font-weight: 400;
+  font-size: 0.875rem;
 }
-  
+
 .searchMobile input {
-    border: none;
+  border: none;
 }
-  
+
 @media only screen and (max-width: 49rem) {
-    .searchBarContainer input {
-        box-shadow: none;
-    }
-    .resultsList {
-        margin: 0px;
-        max-height: calc(100vh - 6.2rem);
-        box-shadow: inset 0px 2px 2px 0 rgba(0, 0, 0, .1);
-    }
+  .searchBarContainer input {
+    box-shadow: none;
+  }
+  .resultsList {
+    margin: 0px;
+    max-height: calc(100vh - 6.2rem);
+  }
 }
-  
