@@ -1,11 +1,13 @@
-.maxSizeDesktop {
+.sizeDesktop {
   max-width: 150px;
   max-height: 75px;
+  min-width: 120px;
 }
 
-.maxSizeMobile {
+.sizeMobile {
   max-width: 90px;
   max-height: 40px;
+  min-width: 72px;
 }
 
 .logoContainer {}

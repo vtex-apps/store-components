@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.19.1] - 2019-02-26
+### Added
+- `min-width` for Logo
+
 ## [3.19.0] - 2019-02-25
 ### Added
 - `UserAddress` component.

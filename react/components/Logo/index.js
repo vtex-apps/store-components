@@ -33,8 +33,8 @@ export default class Logo extends Component {
   render() {
     const { width, height, isMobile, color, showLabel, url, title } = this.props
     const logoClassNames = classNames(`${styles.logoContainer}`, {
-      [styles.maxSizeDesktop]: !isMobile,
-      [styles.maxSizeMobile]: isMobile,
+      [styles.sizeDesktop]: !isMobile,
+      [styles.sizeMobile]: isMobile,
     })
 
     if (url) {
