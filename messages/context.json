@@ -86,5 +86,8 @@
   "editor.info-card.textAlignment.right": "Name of enum value to align text to the right",
   "editor.info-card.callAction.none": "Name of enum value to make CTA disappear",
   "editor.info-card.callAction.button": "Name of enum value to make CTA a button",
-  "editor.info-card.callAction.link": "Name of enum value to make CTA a link"
+  "editor.info-card.callAction.link": "Name of enum value to make CTA a link",
+  "user-address.pickup": "Pickup at <address>",
+  "user-address.order": "Order to <address>",
+  "user-address.change": "Change address button label"
 }

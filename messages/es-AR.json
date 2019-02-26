@@ -77,5 +77,8 @@
   "editor.info-card.mobileImageUrl.title": "mobileImageUrl",
   "editor.info-card.mobileImageUrl.description": "URL de la imagen a usuario usada en dispositivos móviles",
   "editor.info-card.textAlignment.title": "textAlignment",
-  "editor.info-card.textAlignment.description": "Controla la alineación de los textos dentro del componente"
+  "editor.info-card.textAlignment.description": "Controla la alineación de los textos dentro del componente",
+  "user-address.change": "Cambiar",
+  "user-address.pickup": "Recoger en",
+  "user-address.order": "Orden a"
 }
