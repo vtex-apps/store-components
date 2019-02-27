@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Using `store-icons` instead of `dreamstore-icons`.
+
 ## [3.19.2] - 2019-02-27
 ### Changed
 - Change overall look of `SearchBar` on mobile and desktop in order to match the design.
