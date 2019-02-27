@@ -27,19 +27,33 @@ export default class AutocompleteInput extends Component {
   }
 
   render() {
-    const { onGoToSearchPage, onClearInput, compactMode, value, hasIconLeft, iconClasses, ...restProps } = this.props
+    const {
+      onGoToSearchPage,
+      onClearInput,
+      compactMode,
+      value,
+      hasIconLeft,
+      iconClasses,
+      ...restProps
+    } = this.props
 
     const suffix = (
-      <span className="flex items-center pointer" onClick={() => value && onClearInput} >
-        {value
-          ? <IconClose className="pa0" size={20} />
-          : !hasIconLeft && <IconSearch className={iconClasses} />
-        }
+      <span
+        className={`${iconClasses} flex items-center pointer`}
+        onClick={() => value && onClearInput()}
+      >
+        {value ? (
+          <IconClose type="line" size={22} />
+        ) : (
+          !hasIconLeft && <IconSearch />
+        )}
       </span>
     )
 
     const prefix = (
-      <IconSearch className={iconClasses} />
+      <span className={iconClasses}>
+        <IconSearch />
+      </span>
     )
 
     const classContainer = classNames('w-100', {
@@ -55,7 +69,8 @@ export default class AutocompleteInput extends Component {
             value={value}
             prefix={hasIconLeft && prefix}
             suffix={suffix}
-            {...restProps} />
+            {...restProps}
+          />
         </div>
       </div>
     )
@@ -85,5 +100,5 @@ AutocompleteInput.propTypes = {
   /** Identify if the search icon is on left or right position */
   hasIconLeft: PropTypes.bool,
   /** Custom classes for the search icon */
-  iconClasses: PropTypes.string
+  iconClasses: PropTypes.string,
 }
