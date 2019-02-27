@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- logoUrl now support `{{account.name}}` in the string url.
+  eg. store with account name gc-xoi8837:
+  https://static.gocommerce.com/{{account.name}}/assets/logo.png
+  it will render https://static.gocommerce.com/gc-xoi8837/assets/logo.png
 
 ### Changed
 
