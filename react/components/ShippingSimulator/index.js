@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl, intlShape, defineMessages } from 'react-intl'
 import { compose, withApollo } from 'react-apollo'
 import ContentLoader from 'react-content-loader'
 import PropTypes from 'prop-types'
@@ -14,6 +14,12 @@ import styles from './styles.css'
  *
  * Display an input for the zipcode
  */
+const messages = defineMessages({
+  label: {
+    id: 'shipping.label',
+    defaultMessage: '',
+  },
+})
 class ShippingSimulator extends Component {
   static propTypes = {
     intl: intlShape.isRequired,
@@ -130,7 +136,7 @@ class ShippingSimulator extends Component {
       <Fragment>
         <form className={`${styles.shippingContainer} t-small c-on-base`}>
           <label className={`${styles.shippingZipcodeLabel} c-muted-2 db t-small mb3`} htmlFor="shipping-zipcode">
-            {this.formatMessage('shipping.label')}
+            {this.formatMessage(messages.label)}
           </label>
           <div className="flex">
             <Input

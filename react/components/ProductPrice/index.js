@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { isNil } from 'ramda'
 import ContentLoader from 'react-content-loader'
-import { FormattedMessage, injectIntl } from 'react-intl'
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl'
 
 import PricePropTypes from './propTypes'
 import Installments from './Installments'
@@ -169,38 +169,69 @@ Price.Loader.displayName = 'Price.Loader'
 
 const priceWithIntel = injectIntl(Price)
 
+const messages = defineMessages({
+  title: {
+    id: 'editor.productPrice.title',
+    defaultMessage: '', 
+  },
+  description: {
+    id: 'editor.productPrice.description',
+    defaultMessage: '', 
+  },
+  labelSellingPrice: {
+    id: 'editor.productPrice.labelSellingPrice',
+    defaultMessage: '', 
+  },
+  showListPrice: {
+    id: 'editor.productPrice.showListPrice',
+    defaultMessage: '', 
+  },
+  showLabels: {
+    id: 'editor.productPrice.showLabels',
+    defaultMessage: '', 
+  },
+  showInstallments: {
+    id: 'editor.productPrice.showInstallments',
+    defaultMessage: '', 
+  },
+  showSavings: {
+    id: 'editor.productPrice.showSavings',
+    defaultMessage: '',
+  },
+})
+
 priceWithIntel.schema = {
-  title: 'editor.productPrice.title',
-  description: 'editor.productPrice.description',
+  title: messages.title,
+  description: messages.description,
   type: 'object',
   properties: {
     labelSellingPrice: {
       type: 'string',
-      title: 'editor.productPrice.labelSellingPrice',
+      title: messages.labelSellingPrice,
       default: Price.defaultProps.labelSellingPrice,
       isLayout: true,
     },
     showListPrice: {
       type: 'boolean',
-      title: 'editor.productPrice.showListPrice',
+      title: messages.showListPrice,
       default: Price.defaultProps.showListPrice,
       isLayout: true,
     },
     showLabels: {
       type: 'boolean',
-      title: 'editor.productPrice.showLabels',
+      title: messages.showLabels,
       default: Price.defaultProps.showLabels,
       isLayout: true,
     },
     showInstallments: {
       type: 'boolean',
-      title: 'editor.productPrice.showInstallments',
+      title: messages.showInstallments,
       default: Price.defaultProps.showInstallments,
       isLayout: true,
     },
     showSavings: {
       type: 'boolean',
-      title: 'editor.productPrice.showSavings',
+      title: messages.showSavings,
       default: Price.defaultProps.showSavings,
       isLayout: true,
     },

@@ -3,11 +3,27 @@ import classNames from 'classnames'
 import { indexBy, prop } from 'ramda'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, defineMessages } from 'react-intl'
 
 import SocialButton from './components/SocialButton'
 import { SOCIAL_ENUM } from './constants/social'
 import styles from './styles.css'
+
+
+const messages = defineMessages({
+  title: {
+    id: 'editor.share.title',
+    defaultMessage: '', 
+  },
+  description: {
+    id: 'editor.share.description',
+    defaultMessage: '', 
+  },
+  socialTitle: {
+    id: 'editor.share.social.title',
+    defaultMessage: '',
+  },
+})
 
 class Share extends Component {
   static propTypes = {
@@ -100,12 +116,12 @@ class Share extends Component {
   }
 
   static schema = {
-    title: 'editor.share.title',
-    description: 'editor.share.description',
+    title: messages.title,
+    description: messages.description,
     type: 'object',
     properties: {
       social: {
-        title: 'editor.share.social.title',
+        title: messages.socialTitle,
         type: 'object',
         properties: {
           ...indexBy(

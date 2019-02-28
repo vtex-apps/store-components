@@ -4,6 +4,7 @@ import ContentLoader from 'react-content-loader'
 import classNames from 'classnames'
 
 import productName from './productName.css'
+import { defineMessages } from 'react-intl'
 
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
@@ -118,26 +119,49 @@ class ProductName extends Component {
   }
 }
 
+const messages = defineMessages({
+  title: {
+    id: 'editor.productName.title',
+    defaultMessage: '',
+  },
+  description: {
+    id: 'editor.productName.description',
+    defaultMessage: '',
+  },
+  showBrandNameTitle: {
+    id: 'editor.productName.showBrandName.title',
+    defaultMessage: '',
+  },
+  showSkuTitle: {
+    id: 'editor.productName.showSku.title',
+    defaultMessage: '',
+  },
+  showProductReferenceTitle: {
+    id: 'editor.productName.showProductReference.title',
+    defaultMessage: '',
+  },
+})
+
 ProductName.schema = {
-  title: 'editor.productName.title',
-  description: 'editor.productName.description',
+  title: messages.title,
+  description: messages.description,
   type: 'object',
   properties: {
     showBrandName: {
       type: 'boolean',
-      title: 'editor.productName.showBrandName.title',
+      title: messages.showBrandNameTitle,
       default: false,
       isLayout: true,
     },
     showSku: {
       type: 'boolean',
-      title: 'editor.productName.showSku.title',
+      title: messages.showSkuTitle,
       default: false,
       isLayout: true,
     },
     showProductReference: {
       type: 'boolean',
-      title: 'editor.productName.showProductReference.title',
+      title: messages.showProductReferenceTitle,
       default: false,
       isLayout: true,
     },

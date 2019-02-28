@@ -6,6 +6,54 @@ import React, { Component } from 'react'
 
 import CategoryCard from './components/CategoryCard'
 import { ITEMS_PER_ROW, RECTANGULAR, SQUARED } from './constants.js'
+import { defineMessages } from 'react-intl'
+
+const messages = defineMessages({
+  title: {
+    id: 'editor.categoriesHighlighted.title',
+    defaultMessage: '', 
+  },
+  description: {
+    id: 'editor.categoriesHighlighted.description',
+    defaultMessage: '', 
+  },
+  showCategoriesHighlighted: {
+    id: 'editor.categoriesHighlighted.showCategoriesHighlighted',
+    defaultMessage: '', 
+  },
+  quantityOfItems: {
+    id: 'editor.categoriesHighlighted.quantityOfItems',
+    defaultMessage: '', 
+  },
+  cardShape: {
+    id: 'editor.categoriesHighlighted.cardShape',
+    defaultMessage: '', 
+  },
+  cardShapeSquared: {
+    id: 'editor.categoriesHighlighted.cardShape.squared',
+    defaultMessage: '', 
+  },
+  cardShapeRectangular: {
+    id: 'editor.categoriesHighlighted.cardShape.rectangular',
+    defaultMessage: '',
+  },
+  categoriesHighlighted: {
+    id: 'editor.categoriesHighlighted.categoriesHighlighted',
+    defaultMessage: '', 
+  },
+  category: {
+    id: 'editor.categoriesHighlighted.category',
+    defaultMessage: '', 
+  },
+  categoryName: {
+    id: 'editor.categoriesHighlighted.item.categoryName',
+    defaultMessage: '', 
+  },
+  categoryImage: {
+    id: 'editor.categoriesHighlighted.item.categoryImage',
+    defaultMessage: '',
+  },
+})
 
 /**
  * CategoriesHighlights is a component responsible to display the
@@ -46,16 +94,16 @@ class CategoriesHighlights extends Component {
     range(0, quantityOfItems || ITEMS_PER_ROW).forEach(index => {
       categoriesHighlightedProps[`category${index}`] = {
         type: 'object',
-        title: 'editor.categoriesHighlighted.category',
+        title: messages.category,
         properties: {
           name: {
             type: 'string',
             default: '',
-            title: 'editor.categoriesHighlighted.item.categoryName',
+            title: messages.categoryName,
           },
           image: {
             type: 'string',
-            title: 'editor.categoriesHighlighted.item.categoryImage',
+            title: messages.categoryImage,
             default: '',
             widget: {
               'ui:widget': 'image-uploader',
@@ -66,19 +114,19 @@ class CategoriesHighlights extends Component {
     })
 
     return {
-      title: 'editor.categoriesHighlighted.title',
-      description: 'editor.categoriesHighlighted.description',
+      title: messages.title,
+      description: messages.description,
       type: 'object',
       properties: {
         showCategoriesHighlighted: {
           type: 'boolean',
-          title: 'editor.categoriesHighlighted.showCategoriesHighlighted',
+          title: messages.showCategoriesHighlighted,
           default: false,
           isLayout: true,
         },
         quantityOfItems: {
           type: 'number',
-          title: 'editor.categoriesHighlighted.quantityOfItems',
+          title: messages.quantityOfItems,
           enum: [2, 4],
           default: 2,
           widget: {
@@ -91,11 +139,11 @@ class CategoriesHighlights extends Component {
         },
         cardShape: {
           type: 'string',
-          title: 'editor.categoriesHighlighted.cardShape',
+          title: messages.cardShape,
           enum: [SQUARED, RECTANGULAR],
           enumNames: [
-            'editor.categoriesHighlighted.cardShape.squared',
-            'editor.categoriesHighlighted.cardShape.rectangular',
+            messages.cardShapeSquared,
+            messages.cardShapeRectangular,
           ],
           default: SQUARED,
           widget: {
@@ -108,7 +156,7 @@ class CategoriesHighlights extends Component {
         },
         categoriesHighlighted: {
           type: 'object',
-          title: 'editor.categoriesHighlighted.categoriesHighlighted',
+          title: messages.categoriesHighlighted,
           properties: categoriesHighlightedProps,
           isLayout: false,
         },

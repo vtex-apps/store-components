@@ -1,9 +1,29 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import SearchBar from './components/SearchBar'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl, intlShape, defineMessages } from 'react-intl'
 
 const SEARCH_DELAY_TIME = 500
+
+const messages = defineMessages({
+  search: {
+      id: 'search.placeholder',
+      defaultMessage: ''
+  },
+  empty: {
+    id: 'search.noMatches',
+    defaultMessage: ''
+  },
+  cancelLabel: {
+    id: 'searchBar.button.cancel.label',
+    defaultMessage: '',
+  },
+  loading: {
+    id: 'loading',
+    defaultMessage: '',
+  }
+});
+
 
 /** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
 class SearchBarContainer extends Component {
@@ -65,12 +85,8 @@ class SearchBarContainer extends Component {
     const { intl, compactMode, hasIconLeft, iconClasses } = this.props
     const { shouldSearch, inputValue } = this.state
 
-    const placeholder = intl.formatMessage({
-      id: 'search.placeholder',
-    })
-    const emptyPlaceholder = intl.formatMessage({
-      id: 'search.noMatches',
-    })
+    const placeholder = intl.formatMessage(messages.search)
+    const emptyPlaceholder = intl.formatMessage(messages.empty)
 
     return (
       <SearchBar

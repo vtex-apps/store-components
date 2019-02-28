@@ -1,13 +1,48 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { ApolloConsumer } from 'react-apollo'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl, intlShape, defineMessages } from 'react-intl'
 
 import { Button, Input } from 'vtex.styleguide'
 
 import ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION from './mutations/addToAvailabilitySubscriberMutation.gql'
 
 import styles from './styles.css'
+
+const messages = defineMessages({
+  title: {
+    id: 'availability-subscriber.title',
+    defaultMessage: '',
+  },
+  label: {
+    id: 'availability-subscriber.subscribe-label',
+    defaultMessage: '',
+  },
+  emailPlaceholder: {
+    id: 'availability-subscriber.email-placeholder',
+    defaultMessage: '',
+  },
+  namePlaceholder: {
+    id: 'availability-subscriber.name-placeholder', 
+    defaultMessage: '',
+  },
+  sendLabel: {
+    id: 'availability-subscriber.send-label',
+    defaultMessage: '',
+  },
+  invalidEmail: {
+    id: 'availability-subscriber.invalid-email',
+    defaultMessage: '',
+  },
+  addedMessage: {
+    id: 'availability-subscriber.added-message',
+    defaultMessage: '',
+  },
+  errorMessage: {
+    id: 'availability-subscriber.error-message',
+    defaultMessage: '',
+  },
+})
 
 /**
  * Represents the availability subscriber form, that's shown when
@@ -37,7 +72,7 @@ class AvailabilitySubscriber extends Component {
     let error = ''
 
     if (!emailRegex.test(email.toLowerCase())) {
-      error = 'availability-subscriber.invalid-email'
+      error = messages.invalidEmail
     }
 
     if (error !== emailError) {
@@ -128,12 +163,12 @@ class AvailabilitySubscriber extends Component {
     const event = new Event('message:success')
     event.details = {
       success: true,
-      message: this.translate('availability-subscriber.added-message'),
+      message: this.translate(messages.addedMessage),
     }
     document.dispatchEvent(event)
   }
 
-  translate = id => this.props.intl.formatMessage({ id })
+  translate = message => this.props.intl.formatMessage(message)
 
   componentDidMount() {
     this.setState({
@@ -150,7 +185,7 @@ class AvailabilitySubscriber extends Component {
     let emailErrorMessage = ''
 
     if (hasBlurredEmail && emailError !== '') {
-      emailErrorMessage = this.translate(emailError)
+      emailErrorMessage = this.translate({id: emailError})
     }
 
     return (
@@ -158,10 +193,10 @@ class AvailabilitySubscriber extends Component {
         {client => (
           <div className={styles.subscriberContainer}>
             <div className={`${styles.title} t-body mb3`}>
-              {this.translate('availability-subscriber.title')}
+              {this.translate(messages.title)}
             </div>
             <div className={`${styles.subscribeLabel} t-small fw3`}>
-              {this.translate('availability-subscriber.subscribe-label')}
+              {this.translate(messages.subscribeLabel)}
             </div>
             <form className={`${styles.form} mb4`} onSubmit={(e) => this.handleSubmit(e, client)}>
               <div className={`${styles.content} flex-ns justify-between mt4 mw6`}>
@@ -169,7 +204,7 @@ class AvailabilitySubscriber extends Component {
                   <Input
                     name="name"
                     type="text"
-                    placeholder={this.translate('availability-subscriber.name-placeholder')}
+                    placeholder={this.translate(messages.namePlaceholder)}
                     value={name}
                     onChange={this.handleInputChange}
                     ref={e => { this.nameInput = e }}
@@ -179,7 +214,7 @@ class AvailabilitySubscriber extends Component {
                   <Input
                     name="email"
                     type="text"
-                    placeholder={this.translate('availability-subscriber.email-placeholder')}
+                    placeholder={this.translate(messages.emailPlaceholder)}
                     value={email}
                     onChange={this.handleInputChange}
                     onBlur={this.handleEmailBlur}
@@ -190,18 +225,18 @@ class AvailabilitySubscriber extends Component {
                 </div>
                 <div className={`${styles.submit} flex items-center mb4`}>
                   <Button type="submit" variation="primary" size="small" disabled={isFormDisabled} isLoading={isLoading}>
-                    {this.translate('availability-subscriber.send-label')}
+                    {this.translate(messages.sendLabel)}
                   </Button>
                 </div>
               </div>
               {sendStatus === 'success' &&
                 <div className={`${styles.success} t-body c-success`}>
-                  {this.translate('availability-subscriber.added-message')}
+                  {this.translate(messages.addedMessage)}
                 </div>
               }
               {sendStatus === 'error' &&
                 <div className={`${styles.error} c-danger`}>
-                  {this.translate('availability-subscriber.error-message')}
+                  {this.translate(messages.errorMessage)}
                 </div>
               }
             </form>

@@ -1,7 +1,7 @@
 import find from 'lodash/find'
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+import { injectIntl, intlShape, FormattedMessage, defineMessages } from 'react-intl'
 import ContentLoader from 'react-content-loader'
 import { compose, pick } from 'ramda'
 import { Pixel } from 'vtex.pixel-manager/PixelContext'
@@ -12,9 +12,20 @@ import {
 } from 'vtex.store-resources/OrderFormContext'
 import { Button, withToast } from 'vtex.styleguide'
 
+const messages = defineMessages({
+  buySuccess: {
+    id: 'buybutton.add-failure',
+    defaultMessage: '',
+  },
+  addFailure: {
+    id: 'buybutton.buy-success',
+    defaultMessage: '',
+  },
+})
+
 const CONSTANTS = {
-  SUCCESS_MESSAGE_ID: 'buybutton.buy-success',
-  ERROR_MESSAGE_ID: 'buybutton.add-failure',
+  SUCCESS_MESSAGE_ID: messages.buySuccess,
+  ERROR_MESSAGE_ID: messages.addFailure,
   CHECKOUT_URL: '/checkout/#/cart',
   TOAST_TIMEOUT: 3000,
 }
@@ -35,7 +46,7 @@ export class BuyButton extends Component {
     timeOut: null,
   };
 
-  translateMessage = id => this.props.intl.formatMessage({ id: id })
+  translateMessage = message => this.props.intl.formatMessage(message)
 
   toastMessage = success => {
     const message = success

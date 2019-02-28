@@ -1,10 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { intlShape, injectIntl } from 'react-intl'
+import { intlShape, injectIntl, defineMessages } from 'react-intl'
 import TranslateEstimate from 'vtex.shipping-estimate-translator/TranslateEstimate'
 import classNames from 'classnames'
 
 import styles from '../styles'
+
+const messages = defineMessages({
+	free: {
+    id: 'shipping.free',
+    defaultMessage: '',
+  }
+})
 
 const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   const etaClassName = classNames(`${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`, {
@@ -20,7 +27,7 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   if (price === undefined) {
     valueText = '-'
   } else if (price === 0) {
-    valueText = intl.formatMessage({ id: 'shipping.free' })
+    valueText = intl.formatMessage(messages.free)
   } else {
     valueText = intl.formatNumber(price / 100, { style: 'currency', currency: 'BRL' })
   }
