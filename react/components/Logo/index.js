@@ -21,6 +21,8 @@ class Logo extends Component {
     height: PropTypes.number,
     /** Set label visibility */
     showLabel: PropTypes.bool,
+    /** Render Runtime */
+    runtime: PropTypes.object,
   }
 
   static defaultProps = {
@@ -32,9 +34,7 @@ class Logo extends Component {
   }
 
   getUrl(url, runtime) {
-    let urlReplace = url.replace(/{{account.name}}/g, runtime.account)
-
-    return urlReplace
+    return url.replace(/{{account}}/g, runtime.account)
   }
 
   render() {
