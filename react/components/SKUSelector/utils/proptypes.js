@@ -25,6 +25,8 @@ export const SKUSelectorContainerPropTypes = {
   skuItems: PropTypes.arrayOf(skuPropType).isRequired,
   /** Callback that is called when an SKU is selected */
   onSKUSelected: PropTypes.func,
+  /** If true, show secondary options (if present), even when main variation is not picked yet. Default to true */
+  shouldShowSecondary: PropTypes.bool,
 }
 
 const variationPropTypes = PropTypes.shape({
@@ -34,8 +36,6 @@ const variationPropTypes = PropTypes.shape({
 })
 
 export const SKUSelectorPropTypes = {
-  /** Selected SKU id */
-  selectedId: PropTypes.string.isRequired,
   /** Function to go to the product page of a given sku */
   onSelectSku: PropTypes.func.isRequired,
   /** Name and list of options of the main variation */
@@ -44,4 +44,6 @@ export const SKUSelectorPropTypes = {
   secondaryVariation: variationPropTypes,
   /** Max price find on the sku list */
   maxSkuPrice: PropTypes.number.isRequired,
+  /** If true, show secondary options (if present), even when main variation is not picked yet */
+  shouldShowSecondary: PropTypes.bool,
 }
