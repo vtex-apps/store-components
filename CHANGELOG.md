@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.19.4] - 2019-03-01
+### Changed
+- Make `SKUSelector` more generic, add "step-by-step" mode, save state
+
 ## [3.19.3] - 2019-03-01
 
 ### Changed

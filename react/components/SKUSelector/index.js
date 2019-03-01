@@ -14,9 +14,67 @@ import {
  * Display a list of SKU items of a product and its specifications.
  */
 class SKUSelectorContainer extends Component {
+
+  static defaultProps = {
+    alwaysShowSecondary: true,
+  }
+
+  state = { mainVariation: null, secondaryVariation: null }
+
+  buildVariations = (rawSkuSelected) => {
+    const skuSelected = rawSkuSelected && parseSku(rawSkuSelected)
+    const skuItems =
+      this.props.skuItems && this.props.skuItems.map(sku => parseSku(sku))
+    const itemId = skuSelected.itemId
+    const variations = skuSelected.variations
+
+    const name = getMainVariationName(variations)
+    const mainVariation = {
+      name,
+      value: this.props.skuSelected ? skuSelected[name] : null,
+      options: getVariationOptions(name, skuItems),
+    }
+
+    const secondaryVariation = { value: this.props.skuSelected ? itemId : null }
+
+    const filteredSkus = skuItems.filter(sku => sku[name] === skuSelected[name])
+
+    if (variations.length > 1) {
+      secondaryVariation.name = variations.find(variation => variation !== name)
+      secondaryVariation.options = getVariationOptions(
+        secondaryVariation.name,
+        filteredSkus
+      )
+    }
+
+    return { mainVariation, secondaryVariation }
+  }
+
+  componentDidMount() {
+    this.setState(this.buildVariations(this.props.skuSelected || this.props.skuItems[0]))
+  }
+
   handleSkuSelection = (isMainVariation, skuId) => {
+
+    const selectedSku = this.props.skuItems.find(({ itemId }) => itemId === skuId)
+    const variations = this.buildVariations(selectedSku)
+
+    variations.mainVariation.value = selectedSku.variations[0].values[0]
+    variations.secondaryVariation.value = null
+    // If there is secondary variation and there is only one option, assign skuId value to it  
+    if (variations.secondaryVariation.options && variations.secondaryVariation.options.length === 1) {
+      variations.secondaryVariation.value = skuId
+    }
+    if (!isMainVariation) {
+      variations.secondaryVariation.value = skuId
+    }
+
+    this.setState(variations)
+
+    const isSecondaryPicked = !!variations.secondaryVariation.value
+    
     this.props.onSKUSelected
-      ? this.props.onSKUSelected(skuId, isMainVariation)
+      ? this.props.onSKUSelected(skuId, isMainVariation, isSecondaryPicked)
       : this.redirectToSku(skuId, isMainVariation)
   }
 
@@ -36,51 +94,21 @@ class SKUSelectorContainer extends Component {
   }
 
   render() {
-    if (
-      !this.props.skuSelected ||
-      !this.props.skuSelected.variations ||
-      this.props.skuSelected.variations.length === 0
-    )
+    if (!this.props.skuItems || this.props.skuItems.length === 0) {
       return null
-
-    const skuSelected =
-      this.props.skuSelected && parseSku(this.props.skuSelected)
+    }
     const skuItems =
       this.props.skuItems && this.props.skuItems.map(sku => parseSku(sku))
-    const itemId = skuSelected.itemId
-    const variations = skuSelected.variations
-
-    const name = getMainVariationName(variations)
-    const mainVariation = {
-      name,
-      value: skuSelected[name],
-      options: getVariationOptions(name, skuItems),
-    }
 
     const maxSkuPrice = getMaxSkuPrice(skuItems)
-    const secondaryVariation = {}
-
-    const filteredSkus = skuItems.filter(
-      sku => sku[name] === mainVariation.value
-    )
-
-    if (variations.length > 1) {
-      secondaryVariation.name = variations.filter(
-        variation => variation !== name
-      )[0]
-      secondaryVariation.options = getVariationOptions(
-        secondaryVariation.name,
-        filteredSkus
-      )
-    }
 
     return (
       <SKUSelector
-        mainVariation={mainVariation}
-        secondaryVariation={secondaryVariation}
+        mainVariation={this.state.mainVariation}
+        secondaryVariation={this.state.secondaryVariation}
         onSelectSku={this.handleSkuSelection}
         maxSkuPrice={maxSkuPrice}
-        selectedId={itemId}
+        alwaysShowSecondary={this.props.alwaysShowSecondary}
       />
     )
   }
