@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Logo from '../../Logo'
-import { render } from 'enzyme'
+import { render } from 'react-testing-library'
 
 describe('<Logo /> component', () => {
   const renderComponent = customProps => {
@@ -11,17 +11,17 @@ describe('<Logo /> component', () => {
   }
 
   it('should be rendered', () => {
-    const wrapper = renderComponent()
-    expect(wrapper).toBeTruthy()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot with label', () => {
-    const wrapper = renderComponent()
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot without label', () => {
-    const wrapper = renderComponent({ showLabel: false })
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent({ showLabel: false })
+    expect(asFragment()).toMatchSnapshot()
   })
 })

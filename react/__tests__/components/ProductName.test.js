@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductName from './../../ProductName'
-import { render } from 'enzyme'
+import { render } from 'react-testing-library'
 import PropTypes from 'prop-types'
 
 describe('<ProductName />', () => {
@@ -25,48 +25,54 @@ describe('<ProductName />', () => {
   }
 
   it('should be mounted', () => {
-    expect(renderComponent()).toBeDefined()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeDefined()
   })
 
   it('should match the snapshot with only Name', () => {
-    expect(renderComponent()).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match the snapshot with Name and SkuName', () => {
-    expect(
-      renderComponent({ skuName: 'ProductSkuName', showSku: true })
-    ).toMatchSnapshot()
+    const { asFragment } = renderComponent({
+      skuName: 'ProductSkuName',
+      showSku: true,
+    })
+
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match the snapshot with Name and Brand', () => {
-    expect(
-      renderComponent({ brandName: 'ProductBrandName', showBrandName: true })
-    ).toMatchSnapshot()
+    const { asFragment } = renderComponent({
+      brandName: 'ProductBrandName',
+      showBrandName: true,
+    })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match the snapshot with Name and Product Reference', () => {
-    expect(
-      renderComponent({
-        productReference: 'productReferenceTest',
-        showProductReference: true,
-      })
-    ).toMatchSnapshot()
+    const { asFragment } = renderComponent({
+      productReference: 'productReferenceTest',
+      showProductReference: true,
+    })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match the snapshot with all options', () => {
-    expect(
-      renderComponent({
-        skuName: 'ProductSkuName',
-        showSku: true,
-        brandName: 'ProductBrandName',
-        showBrandName: true,
-        productReference: 'productReferenceTest',
-        showProductReference: true,
-      })
-    ).toMatchSnapshot()
+    const { asFragment } = renderComponent({
+      skuName: 'ProductSkuName',
+      showSku: true,
+      brandName: 'ProductBrandName',
+      showBrandName: true,
+      productReference: 'productReferenceTest',
+      showProductReference: true,
+    })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match the snapshot Loader', () => {
-    expect(renderComponent({ name: undefined })).toMatchSnapshot()
+    const { asFragment } = renderComponent({ name: undefined })
+    expect(asFragment()).toMatchSnapshot()
   })
 })

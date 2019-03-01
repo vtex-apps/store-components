@@ -1,37 +1,37 @@
 import React from 'react'
 
 import ProductSpecifications from '../../ProductSpecifications'
-import { renderWithIntl } from 'intl-helper'
+import { render } from 'intl-helper'
 
 describe('<ProductSpecifications /> component', () => {
   const renderComponent = customProps => {
     const comp = <ProductSpecifications {...customProps} />
 
-    return renderWithIntl(comp)
+    return render(comp)
   }
 
   it('should be rendered', () => {
-    const wrapper = renderComponent()
-    expect(wrapper).toBeTruthy()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot with table view and no specifications', () => {
-    const wrapper = renderComponent()
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot with table view and with specification', () => {
-    const wrapper = renderComponent({
+    const { asFragment } = renderComponent({
       specifications: [{ name: 'test', values: ['value'] }],
     })
-    expect(wrapper).toMatchSnapshot()
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot with tabs view', () => {
-    const wrapper = renderComponent({
+    const { asFragment } = renderComponent({
       specifications: [{ name: 'test', values: ['value'] }],
       tabsMode: true,
     })
-    expect(wrapper).toMatchSnapshot()
+    expect(asFragment()).toMatchSnapshot()
   })
 })

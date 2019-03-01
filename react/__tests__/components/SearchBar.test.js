@@ -1,6 +1,6 @@
 import React from 'react'
 import { MockedProvider } from 'react-apollo/test-utils'
-import { renderWithIntl } from 'intl-helper'
+import { render } from 'intl-helper'
 import { createClientMock } from '../../testUtils/mockProvider'
 
 import SearchBar from '../../SearchBar'
@@ -17,7 +17,7 @@ describe('<SearchBar />', () => {
 
   const renderComponent = (customProps = {}) => {
     const client = createClientMock(mockedResult)
-    return renderWithIntl(
+    return render(
       <MockedProvider client={client}>
         <SearchBar />
       </MockedProvider>
@@ -25,10 +25,12 @@ describe('<SearchBar />', () => {
   }
 
   it('should be able to mount and not break', () => {
-    expect(renderComponent()).toBeTruthy()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot', () => {
-    expect(renderComponent()).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toMatchSnapshot()
   })
 })

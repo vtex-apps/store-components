@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'enzyme'
+import { render } from 'react-testing-library'
 
 import CollectionBadges from '../../CollectionBadges'
 
@@ -11,19 +11,19 @@ describe('<CollectionBadges /> component', () => {
   }
 
   it('should be able to mount and not break', () => {
-    const component = renderComponent()
-    expect(component).toBeTruthy()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot without badges', () => {
-    const component = renderComponent()
-    expect(component).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot with badges', () => {
-    const component = renderComponent({
+    const { asFragment } = renderComponent({
       collectionBadgesText: ['badge1', 'badge2'],
     })
-    expect(component).toMatchSnapshot()
+    expect(asFragment()).toMatchSnapshot()
   })
 })

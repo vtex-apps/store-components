@@ -1,6 +1,6 @@
 import React from 'react'
 import { MockedProvider } from 'react-apollo/test-utils'
-import { renderWithIntl } from 'intl-helper'
+import { render } from 'intl-helper'
 
 import ShippingSimulator from '../../ShippingSimulator'
 
@@ -16,17 +16,17 @@ describe('<ShippingSimulator /> component', () => {
       </MockedProvider>
     )
 
-    return renderWithIntl(component)
+    return render(component)
   }
 
   it('should be able to mount and not break', () => {
-    const component = renderComponent()
-    expect(component).toBeTruthy()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot without skuId and seller', () => {
-    const component = renderComponent()
-    expect(component).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment).toMatchSnapshot()
   })
 
   it('should match snapshot with skuId and seller', () => {
@@ -34,7 +34,7 @@ describe('<ShippingSimulator /> component', () => {
       skuId: 'skuId',
       seller: 1,
     }
-    const component = renderComponent(props)
-    expect(component).toMatchSnapshot()
+    const { asFragment } = renderComponent(props)
+    expect(asFragment()).toMatchSnapshot()
   })
 })

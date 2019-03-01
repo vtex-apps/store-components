@@ -1,46 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ProductDescription /> should match the snapshot with description 1`] = `
-<div
-  class="productDescriptionContainer"
->
-  <h2
-    class="t-heading-5 mb5 mt0"
-  >
-    Product Description
-  </h2>
+<DocumentFragment>
   <div
-    class="c-muted-1"
+    class="productDescriptionContainer"
   >
+    <h2
+      class="t-heading-5 mb5 mt0"
+    >
+      Product Description
+    </h2>
     <div
-      class="relative"
-      style="transition:600ms ease-in-out;height:220px;overflow:hidden"
+      class="c-muted-1"
     >
       <div
-        class="h-auto"
-      >
-        Test description
-      </div>
-      <div
-        class="pointerEventsNone flex absolute bottom-0 w-100 h-100 flex-column justify-end"
+        class="relative"
+        style="transition: 600ms ease-in-out; height: auto; overflow: hidden;"
       >
         <div
-          class="fadeBottom w-100 h-50"
-          style="transition:400ms ease-in-out"
-        />
+          class="h-auto"
+        >
+          Test description
+        </div>
         <div
-          class="pointerEventsAuto bg-base tc w-100"
+          class="pointerEventsNone dn absolute bottom-0 w-100 h-100 flex-column justify-end"
         >
           <div
-            class="c-action-primary t-action pointer ma5"
+            class="fadeBottom w-100 h-50"
+            style="transition: 400ms ease-in-out;"
+          />
+          <div
+            class="pointerEventsAuto bg-base tc w-100"
           >
-            <span>
-              Show more
-            </span>
+            <div
+              class="c-action-primary t-action pointer ma5"
+            >
+              <span>
+                Show more
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

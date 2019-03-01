@@ -1,33 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<GradientCollapse /> component should match snapshot 1`] = `
-<div
-  class="relative"
-  style="transition:600ms ease-in-out;height:50px;overflow:hidden"
->
+<DocumentFragment>
   <div
-    class="h-auto"
-  >
-    Test
-  </div>
-  <div
-    class="pointerEventsNone flex absolute bottom-0 w-100 h-100 flex-column justify-end"
+    class="relative"
+    style="transition: 600ms ease-in-out; height: auto; overflow: hidden;"
   >
     <div
-      class="fadeBottom w-100 h-50"
-      style="transition:400ms ease-in-out"
-    />
+      class="h-auto"
+    >
+      Test
+    </div>
     <div
-      class="pointerEventsAuto bg-base tc w-100"
+      class="pointerEventsNone dn absolute bottom-0 w-100 h-100 flex-column justify-end"
     >
       <div
-        class="c-action-primary t-action pointer ma5"
+        class="fadeBottom w-100 h-50"
+        style="transition: 400ms ease-in-out;"
+      />
+      <div
+        class="pointerEventsAuto bg-base tc w-100"
       >
-        <span>
-          Show more
-        </span>
+        <div
+          class="c-action-primary t-action pointer ma5"
+        >
+          <span>
+            Show more
+          </span>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

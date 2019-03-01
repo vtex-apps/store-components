@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Animation from '../../Animation'
-import { render } from 'enzyme'
+import { render } from 'react-testing-library'
 
 describe('<Animation /> component', () => {
   const renderComponent = customProps => {
@@ -11,27 +11,27 @@ describe('<Animation /> component', () => {
   }
 
   it('should be rendered', () => {
-    const wrapper = renderComponent()
-    expect(wrapper).toBeTruthy()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot animation left', () => {
-    const wrapper = renderComponent()
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot animation right', () => {
-    const wrapper = renderComponent({ type: 'drawerRight' })
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent({ type: 'drawerRight' })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot animation top', () => {
-    const wrapper = renderComponent({ type: 'drawerTop' })
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent({ type: 'drawerTop' })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot animation bottom', () => {
-    const wrapper = renderComponent({ type: 'drawerBottom' })
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent({ type: 'drawerBottom' })
+    expect(asFragment()).toMatchSnapshot()
   })
 })

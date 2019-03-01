@@ -1,34 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<SearchBar /> should match snapshot 1`] = `
-<div
-  class="searchBarContainer"
->
+<DocumentFragment>
   <div
-    class="NoSSR-mock"
+    class="searchBarContainer"
   >
     <div
-      class="relative-m w-100"
+      class="NoSSR-mock"
     >
       <div
-        class="flex"
+        class="relative-m w-100"
       >
         <div
-          class="w-100"
+          class="flex"
         >
-          <input
-            aria-autocomplete="list"
-            aria-expanded="false"
-            autocomplete="off"
-            id="downshift-1-input"
-            placeholder="Search"
-            role="combobox"
-            suffix="[object Object]"
-            value=""
-          />
+          <div
+            class="w-100"
+          >
+            <input
+              aria-autocomplete="list"
+              aria-expanded="false"
+              autocomplete="off"
+              id="downshift-1-input"
+              placeholder="Search"
+              role="combobox"
+              suffix="[object Object]"
+              value=""
+            />
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

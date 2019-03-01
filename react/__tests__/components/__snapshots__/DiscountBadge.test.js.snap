@@ -1,34 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<DiscountBadge /> component should match snapshot with label 1`] = `
-<div
-  class="discountContainer relative dib w-100"
->
+<DocumentFragment>
   <div
-    class="t-mini white absolute right-0 pv2 ph3 bg-emphasis"
+    class="discountContainer relative dib w-100"
   >
-    <span>
-      10%
-    </span>
-     LABEL
+    <div
+      class="t-mini white absolute right-0 pv2 ph3 bg-emphasis"
+    >
+      <span>
+        10%
+      </span>
+       LABEL
+    </div>
+    Test
   </div>
-  Test
-</div>
+</DocumentFragment>
 `;
 
 exports[`<DiscountBadge /> component should match snapshot without label 1`] = `
-<div
-  class="discountContainer relative dib w-100"
->
+<DocumentFragment>
   <div
-    class="t-mini white absolute right-0 pv2 ph3 bg-emphasis"
+    class="discountContainer relative dib w-100"
   >
-    -
-    <span>
-      10%
-    </span>
-     
+    <div
+      class="t-mini white absolute right-0 pv2 ph3 bg-emphasis"
+    >
+      -
+      <span>
+        10%
+      </span>
+       
+    </div>
+    Test
   </div>
-  Test
-</div>
+</DocumentFragment>
 `;

@@ -1,54 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ProductPrice /> should match snapshot 1`] = `
-<div
-  class="priceContainer"
->
+<DocumentFragment>
   <div
-    class="sellingPrice"
+    class="priceContainer"
   >
-    <div
-      class="sellingPriceLabel"
-    >
-      <span>
-        To
-      </span>
-    </div>
     <div
       class="sellingPrice"
     >
-      $40.00
+      <div
+        class="sellingPriceLabel"
+      >
+        <span>
+          To
+        </span>
+      </div>
+      <div
+        class="sellingPrice"
+      >
+        $40.00
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`<ProductPrice /> should match snapshot Loader 1`] = `
-<div
-  class="priceContainer priceLoaderContainer"
->
+<DocumentFragment>
   <div
-    class="content-loader-mock"
+    class="priceContainer priceLoaderContainer"
   >
-    <rect
-      height="0.75em"
-      width="50%"
-      x="25%"
-    />
-    <rect />
-    <rect
-      height="1em"
-      width="70%"
-      x="15%"
-      y="1.25em"
-    />
-    <rect
-      height="0.75em"
-      width="80%"
-      x="10%"
-      y="2.75em"
-    />
-    <rect />
+    <div
+      class="content-loader-mock"
+    >
+      <rect
+        height="0.75em"
+        width="50%"
+        x="25%"
+      />
+      <rect />
+      <rect
+        height="1em"
+        width="70%"
+        x="15%"
+        y="1.25em"
+      />
+      <rect
+        height="0.75em"
+        width="80%"
+        x="10%"
+        y="2.75em"
+      />
+      <rect />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

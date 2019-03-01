@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderWithIntl } from 'intl-helper'
+import { render } from 'intl-helper'
 
 import BuyButton from '../../BuyButton'
 
@@ -11,27 +11,27 @@ describe('<BuyButton />', () => {
 
     const comp = <BuyButton {...props}> Test </BuyButton>
 
-    return renderWithIntl(comp)
+    return render(comp)
   }
 
   it('should be rendered', () => {
-    const wrapper = renderComponent()
-    expect(wrapper).toBeDefined()
-    expect(wrapper).toBeTruthy()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeDefined()
+    expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot normal', () => {
-    const wrapper = renderComponent({ available: true, skuItems: [] })
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent({ available: true, skuItems: [] })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot unavailable', () => {
-    const wrapper = renderComponent({ available: false, skuItems: [] })
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent({ available: false, skuItems: [] })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot loading', () => {
-    const wrapper = renderComponent({ available: false })
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent({ available: false })
+    expect(asFragment()).toMatchSnapshot()
   })
 })

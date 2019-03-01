@@ -1,91 +1,86 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { renderWithIntl } from 'intl-helper'
+import { render } from 'intl-helper'
 
 import Share from './../../Share'
 
 describe('<Share />', () => {
   const renderComponent = props => {
-    return renderWithIntl(<Share {...props} />)
+    return render(<Share {...props} />)
   }
 
   it('should be mounted', () => {
-    expect(renderComponent()).toBeDefined()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeDefined()
   })
 
   it('should match the snapshot with Facebook', () => {
-    expect(
-      renderComponent({
-        social: {
-          Facebook: true,
-        },
-      })
-    ).toMatchSnapshot()
+    const { asFragment } = renderComponent({
+      social: {
+        Facebook: true,
+      },
+    })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match the snapshot with Twitter', () => {
-    expect(
-      renderComponent({
-        social: {
-          Twitter: true,
-        },
-      })
-    ).toMatchSnapshot()
+    const { asFragment } = renderComponent({
+      social: {
+        Twitter: true,
+      },
+    })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match the snapshot with WhatsApp', () => {
-    expect(
-      renderComponent({
-        social: {
-          WhatsApp: true,
-        },
-      })
-    ).toMatchSnapshot()
+    const { asFragment } = renderComponent({
+      social: {
+        WhatsApp: true,
+      },
+    })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match the snapshot with Telegram', () => {
-    expect(
-      renderComponent({
-        social: {
-          Telegram: true,
-        },
-      })
-    ).toMatchSnapshot()
+    const { asFragment } = renderComponent({
+      social: {
+        Telegram: true,
+      },
+    })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match the snapshot with Google+', () => {
-    expect(
-      renderComponent({
-        social: {
-          'Google+': true,
-        },
-      })
-    ).toMatchSnapshot()
+    const { asFragment } = renderComponent({
+      social: {
+        'Google+': true,
+      },
+    })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match the snapshot with E-mail', () => {
-    expect(
-      renderComponent({
-        social: {
-          'E-mail': true,
-        },
-      })
-    ).toMatchSnapshot()
+    const { asFragment } = renderComponent({
+      social: {
+        'E-mail': true,
+      },
+    })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match the snapshot with multiples Socials', () => {
-    expect(
-      renderComponent({
-        social: {
-          'E-mail': true,
-          Twitter: true,
-          Telegram: true,
-        },
-      })
-    ).toMatchSnapshot()
+    const { asFragment } = renderComponent({
+      social: {
+        'E-mail': true,
+        Twitter: true,
+        Telegram: true,
+      },
+    })
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot Loader', () => {
-    expect(renderComponent({ loading: true })).toMatchSnapshot()
+    const { asFragment } = renderComponent({ loading: true })
+    expect(asFragment()).toMatchSnapshot()
   })
 })

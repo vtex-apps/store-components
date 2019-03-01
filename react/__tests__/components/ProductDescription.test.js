@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderWithIntl } from 'intl-helper'
+import { render } from 'intl-helper'
 import ProductDescription from './../../ProductDescription'
 
 describe('<ProductDescription />', () => {
@@ -8,14 +8,16 @@ describe('<ProductDescription />', () => {
       description: 'Test description',
       ...customProps,
     }
-    return renderWithIntl(<ProductDescription {...props} />)
+    return render(<ProductDescription {...props} />)
   }
 
   it('should be mounted', () => {
-    expect(renderComponent()).toBeDefined()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeDefined()
   })
 
   it('should match the snapshot with description', () => {
-    expect(renderComponent()).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toMatchSnapshot()
   })
 })
