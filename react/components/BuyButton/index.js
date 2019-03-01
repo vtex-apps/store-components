@@ -1,15 +1,11 @@
-import find from 'lodash/find'
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
 import { compose, pick } from 'ramda'
-import { Pixel } from 'vtex.pixel-manager/PixelContext'
 
-import {
-  contextPropTypes,
-  orderFormConsumer,
-} from 'vtex.store-resources/OrderFormContext'
 import { Button, withToast } from 'vtex.styleguide'
 
 const CONSTANTS = {
@@ -27,13 +23,13 @@ export class BuyButton extends Component {
   static defaultProps = {
     isOneClickBuy: false,
     available: true,
-  };
+  }
 
   state = {
     isLoading: false,
     isAddingToCart: false,
     timeOut: null,
-  };
+  }
 
   translateMessage = id => this.props.intl.formatMessage({ id: id })
 
@@ -44,50 +40,69 @@ export class BuyButton extends Component {
     this.props.showToast({ message })
   }
 
+  skuItemToMinicartItem = ({
+    skuId: id,
+    variant: skuName,
+    price: sellingPrice,
+    ...restSkuItem
+  }) => {
+    return {
+      id,
+      sellingPrice,
+      skuName,
+      ...pick(
+        [
+          'detailUrl',
+          'imageUrl',
+          'quantity',
+          'seller',
+          'name',
+          'options',
+          'listPrice',
+        ],
+        restSkuItem
+      ),
+      index: 1,
+    }
+  }
+
   handleAddToCart = async event => {
     event.stopPropagation()
     event.preventDefault()
 
-    const { skuItems, isOneClickBuy, orderFormContext, push, onAddStart, onAddFinish } = this.props
+    const {
+      addToCart,
+      skuItems,
+      isOneClickBuy,
+      onAddStart,
+      onAddFinish,
+    } = this.props
     this.setState({ isAddingToCart: true })
     onAddStart && onAddStart()
 
-    const variables = {
-      items: skuItems.map(skuItem => {
-        const { skuId } = skuItem
-        return {
-          id: parseInt(skuId),
-          index: 1,
-          ...pick(['quantity', 'seller', 'options'], skuItem),
-        }
-      }),
-    }
+    let showToastMessage = null
+    try {
+      const minicartItems = skuItems.map(this.skuItemToMinicartItem)
 
-    variables.orderFormId = orderFormContext.orderForm.orderFormId
-
-    if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
-
-    push({
-      event: 'addToCart',
-      items: skuItems,
-    })
-
-    await orderFormContext.addItem({ variables }).then(
-      mutationRes => {
-        const { items } = mutationRes.data.addItem
-        const success = skuItems.map(skuItem =>
-          find(items, { id: skuItem.skuId })
+      const {
+        data: { addToCart: linkStateItems },
         )
 
-        orderFormContext.refetch()
-        this.toastMessage(success.length >= 1)
-      },
-      () => {
-        this.toastMessage(false)
-      }
+      if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
+      showToastMessage = () => this.toastMessage(success.length >= 1)
+    } catch (err) {
+      console.error(err)
+      showToastMessage = () => this.toastMessage(false)
+    }
+
+    setTimeout(
+      () =>
+        this.setState({ isAddingToCart: false }, () => {
+          showToastMessage()
+          onAddFinish && onAddFinish()
+        }),
+      500
     )
-    this.setState({ isAddingToCart: false })
-    onAddFinish && onAddFinish()
   }
 
   render() {
@@ -127,24 +142,21 @@ BuyButton.propTypes = {
       /** Quantity of the product sku to be added to the cart */
       quantity: PropTypes.number.isRequired,
       /** Which seller is being referenced by the button */
-      seller: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]).isRequired,
+      seller: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       name: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       variant: PropTypes.string,
       brand: PropTypes.string.isRequired,
-      options: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        quantity: PropTypes.number.isRequired,
-        assemblyId: PropTypes.string.isRequired,
-        seller: PropTypes.string.isRequired,
-      }))
+      options: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          quantity: PropTypes.number.isRequired,
+          assemblyId: PropTypes.string.isRequired,
+          seller: PropTypes.string,
+        })
+      ),
     })
   ),
-  /** Context used to call the add to cart mutation and retrieve the orderFormId **/
-  orderFormContext: contextPropTypes,
   /** Component children that will be displayed inside of the button **/
   children: PropTypes.node.isRequired,
   /** Should redirect to checkout after adding to cart */
@@ -161,11 +173,25 @@ BuyButton.propTypes = {
   onAddStart: PropTypes.func,
   /** Function to be called on the end of add to cart event */
   onAddFinish: PropTypes.func,
+  /** Add to cart mutation */
+  addToCart: PropTypes.func.isRequired,
 }
 
+const withMutation = graphql(
+  gql`
+    mutation addToCart($items: [MinicartItem]) {
+      addToCart(items: $items) @client
+    }
+  `,
+  {
+    props: ({ mutate }) => ({
+      addToCart: items => mutate({ variables: { items } }),
+    }),
+  }
+)
+
 export default compose(
+  withMutation,
   withToast,
-  orderFormConsumer,
-  injectIntl,
-  Pixel,
+  injectIntl
 )(BuyButton)
