@@ -4,7 +4,7 @@ import debounce from 'debounce'
 import classNames from 'classnames'
 import { path, equals } from 'ramda'
 
-import { IconCaret } from 'vtex.dreamstore-icons'
+import { IconCaret } from 'vtex.store-icons'
 
 import BlurredLoader from '../BlurredLoader'
 import Loader from './Loader.js'

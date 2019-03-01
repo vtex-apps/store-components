@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import { Input } from 'vtex.styleguide'
-import { IconClose, IconSearch } from 'vtex.dreamstore-icons'
+import { IconClose, IconSearch } from 'vtex.store-icons'
 
 import styles from '../styles.css'
 
