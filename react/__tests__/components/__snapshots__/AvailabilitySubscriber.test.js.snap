@@ -1,56 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<AvailabilitySubscriber /> should match snapshot 1`] = `
-<div
-  class="subscriberContainer"
->
+<DocumentFragment>
   <div
-    class="title t-body mb3"
-  >
-    This product isn't available right now
-  </div>
-  <div
-    class="subscribeLabel t-small fw3"
-  >
-    Let me know when this product is available again
-  </div>
-  <form
-    class="form mb4"
+    class="subscriberContainer"
   >
     <div
-      class="content flex-ns justify-between mt4 mw6"
+      class="title t-body mb3"
+    >
+      This product isn't available right now
+    </div>
+    <div
+      class="subscribeLabel t-small fw3"
+    >
+      Let me know when this product is available again
+    </div>
+    <form
+      class="form mb4"
     >
       <div
-        class="input inputName w-100 mr5 mb4"
+        class="content flex-ns justify-between mt4 mw6"
       >
-        <input
-          name="name"
-          placeholder="Name"
-          type="text"
-          value=""
-        />
-      </div>
-      <div
-        class="input inputEmail w-100 mr5 mb4"
-      >
-        <input
-          errormessage=""
-          name="email"
-          placeholder="Email"
-          type="text"
-          value=""
-        />
-      </div>
-      <div
-        class="submit flex items-center mb4"
-      >
-        <button
-          type="button"
+        <div
+          class="input inputName w-100 mr5 mb4"
         >
-           Send 
-        </button>
+          <input
+            name="name"
+            placeholder="Name"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="input inputEmail w-100 mr5 mb4"
+        >
+          <input
+            errormessage=""
+            name="email"
+            placeholder="Email"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          class="submit flex items-center mb4"
+        >
+          <button
+            type="button"
+          >
+             Send 
+          </button>
+        </div>
       </div>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
+</DocumentFragment>
 `;

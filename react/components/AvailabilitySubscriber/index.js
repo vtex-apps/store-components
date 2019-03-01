@@ -14,13 +14,16 @@ import styles from './styles.css'
  * the product isn't available.
  */
 class AvailabilitySubscriber extends Component {
+  emailInput = React.createRef()
+  nameInput = React.createRef()
+
   state = {
     name: '',
     email: '',
     emailError: '',
     hasBlurredEmail: false,
     isLoading: false,
-    sendStatus: ''
+    sendStatus: '',
   }
 
   static propTypes = {
@@ -75,30 +78,30 @@ class AvailabilitySubscriber extends Component {
         fields: [
           {
             key: 'skuId',
-            value: this.props.skuId
+            value: this.props.skuId,
           },
           {
             key: 'name',
-            value: this.state.name
+            value: this.state.name,
           },
           {
             key: 'email',
-            value: this.state.email
+            value: this.state.email,
           },
           {
             key: 'notificationSend',
-            value: false
+            value: false,
           },
           {
             key: 'createdAt',
-            value: new Date().toISOString()
+            value: new Date().toISOString(),
           },
           {
             key: 'sendAt',
-            value: null
-          }
-        ]
-      }
+            value: null,
+          },
+        ],
+      },
     }
     this.setState({
       isLoading: true,
@@ -114,14 +117,14 @@ class AvailabilitySubscriber extends Component {
             name: '',
             email: '',
             isLoading: false,
-            sendStatus: 'success'
+            sendStatus: 'success',
           })
         },
         mutationErr => {
           console.log('ERROR: ', mutationErr)
           this.setState({
             isLoading: false,
-            sendStatus: 'error'
+            sendStatus: 'error',
           })
         }
       )
@@ -143,9 +146,17 @@ class AvailabilitySubscriber extends Component {
   }
 
   render() {
-    const { name, email, emailError, hasBlurredEmail, isLoading, sendStatus } = this.state
+    const {
+      name,
+      email,
+      emailError,
+      hasBlurredEmail,
+      isLoading,
+      sendStatus,
+    } = this.state
 
-    const isFormDisabled = name === '' || email === '' || emailError !== '' || isLoading
+    const isFormDisabled =
+      name === '' || email === '' || emailError !== '' || isLoading
 
     let emailErrorMessage = ''
 
@@ -163,47 +174,74 @@ class AvailabilitySubscriber extends Component {
             <div className={`${styles.subscribeLabel} t-small fw3`}>
               {this.translate('availability-subscriber.subscribe-label')}
             </div>
-            <form className={`${styles.form} mb4`} onSubmit={(e) => this.handleSubmit(e, client)}>
-              <div className={`${styles.content} flex-ns justify-between mt4 mw6`}>
-                <div className={`${styles.input} ${styles.inputName} w-100 mr5 mb4`}>
+            <form
+              className={`${styles.form} mb4`}
+              onSubmit={e => this.handleSubmit(e, client)}
+            >
+              <div
+                className={`${styles.content} flex-ns justify-between mt4 mw6`}
+              >
+                <div
+                  className={`${styles.input} ${
+                    styles.inputName
+                  } w-100 mr5 mb4`}
+                >
                   <Input
                     name="name"
                     type="text"
-                    placeholder={this.translate('availability-subscriber.name-placeholder')}
+                    placeholder={this.translate(
+                      'availability-subscriber.name-placeholder'
+                    )}
                     value={name}
                     onChange={this.handleInputChange}
-                    ref={e => { this.nameInput = e }}
+                    ref={e => {
+                      this.nameInput = e
+                    }}
                   />
                 </div>
-                <div className={`${styles.input} ${styles.inputEmail} w-100 mr5 mb4`}>
+                <div
+                  className={`${styles.input} ${
+                    styles.inputEmail
+                  } w-100 mr5 mb4`}
+                >
                   <Input
                     name="email"
                     type="text"
-                    placeholder={this.translate('availability-subscriber.email-placeholder')}
+                    placeholder={this.translate(
+                      'availability-subscriber.email-placeholder'
+                    )}
                     value={email}
                     onChange={this.handleInputChange}
                     onBlur={this.handleEmailBlur}
                     error={hasBlurredEmail && !!emailError}
                     errorMessage={emailErrorMessage}
-                    ref={e => { this.emailInput = e }}
+                    ref={e => {
+                      this.emailInput = e
+                    }}
                   />
                 </div>
                 <div className={`${styles.submit} flex items-center mb4`}>
-                  <Button type="submit" variation="primary" size="small" disabled={isFormDisabled} isLoading={isLoading}>
+                  <Button
+                    type="submit"
+                    variation="primary"
+                    size="small"
+                    disabled={isFormDisabled}
+                    isLoading={isLoading}
+                  >
                     {this.translate('availability-subscriber.send-label')}
                   </Button>
                 </div>
               </div>
-              {sendStatus === 'success' &&
+              {sendStatus === 'success' && (
                 <div className={`${styles.success} t-body c-success`}>
                   {this.translate('availability-subscriber.added-message')}
                 </div>
-              }
-              {sendStatus === 'error' &&
+              )}
+              {sendStatus === 'error' && (
                 <div className={`${styles.error} c-danger`}>
                   {this.translate('availability-subscriber.error-message')}
                 </div>
-              }
+              )}
             </form>
           </div>
         )}
