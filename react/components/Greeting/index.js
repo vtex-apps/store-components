@@ -1,8 +1,10 @@
+import PropTypes from 'prop-types'
 import React, { Fragment } from 'react'
 import { compose, branch, renderComponent } from 'recompose'
 import { FormattedMessage } from 'react-intl'
 import { path } from 'ramda'
-import { orderFormConsumer, contextPropTypes } from 'vtex.store-resources/OrderFormContext'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 import Loader from './Loader'
 
@@ -18,8 +20,8 @@ const withWrapper = Component => props => (
   </Wrapper>
 )
 
-const Greeting = ({ orderFormContext }) => {
-  const firstName = path(['orderForm', 'clientProfileData', 'firstName'], orderFormContext)
+const Greeting = ({ orderForm }) => {
+  const firstName = path(['clientProfileData', 'firstName'], orderForm)
   if (!firstName) return null
 
   return (
@@ -34,11 +36,32 @@ const Greeting = ({ orderFormContext }) => {
   )
 }
 
-Greeting.propTypes = { orderFormContext: contextPropTypes }
+Greeting.propTypes = {
+  orderForm: PropTypes.shape({
+    clientProfileData: PropTypes.shape({
+      firstName: PropTypes.string,
+    }),
+  }),
+}
 
-const enhanced = compose(
-  orderFormConsumer,
-  branch(({ loading }) => loading, renderComponent(withWrapper(Loader)))
+const withLinkStateOrderForm = graphql(
+  gql`
+    query {
+      orderForm @client {
+        clientProfileData {
+          firstName
+        }
+      }
+    }
+  `,
+  {
+    props: ({ data: { orderForm } }) => ({
+      orderForm,
+    }),
+  }
 )
 
-export default enhanced(Greeting)
+export default compose(
+  withLinkStateOrderForm,
+  branch(({ loading }) => loading, renderComponent(withWrapper(Loader)))
+)(Greeting)
