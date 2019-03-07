@@ -57,7 +57,7 @@
   },
   "jest": {
     "verbose": true,
-    "moduleDirectories": [
+    "modulePaths": [
       "node_modules",
       "<rootDir>/testUtils"
     ],
