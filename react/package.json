@@ -58,7 +58,6 @@
   "jest": {
     "verbose": true,
     "modulePaths": [
-      "node_modules",
       "<rootDir>/testUtils"
     ],
     "transform": {
