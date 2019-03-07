@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductImages /> should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content w-100"
+  >
+    <div
+      class="w-100 aspect-ratio aspect-ratio--1x1"
+    >
+      <div
+        class="content-loader-mock"
+      >
+        <rect
+          height="100%"
+          width="100%"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

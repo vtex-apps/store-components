@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.19.5] - 2019-03-07
 ### Added
+
+- `ProductImages` snapshot tests.
+
+## [3.19.5] - 2019-03-07
+
+### Added
+
 - logoUrl now support `{{account}}` in the string url.
   eg. store with account name gc-xoi8837:
   https://static.gocommerce.com/{{account}}/assets/logo.png
@@ -41,16 +47,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Make the clear button on `SearchBar` work as expected.
 
 ## [3.19.1] - 2019-02-26
+
 ### Added
+
 - `min-width` for Logo
 
 ## [3.19.0] - 2019-02-25
+
 ### Added
+
 - `UserAddress` component.
 - Added `ProductImages` docs.
 
 ## [3.18.2] - 2019-02-25
+
 ### Fixed
+
 - Improve CSS handles in `ProductImages` component.
 
 ### Added
