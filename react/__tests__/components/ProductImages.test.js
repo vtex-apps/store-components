@@ -3,7 +3,16 @@ import { render } from 'intl-helper'
 import ProductImages from './../../ProductImages'
 
 describe('<ProductImages />', () => {
-  const renderComponent = () => {
+  const renderComponent = customProps => {
+    return render(<ProductImages {...customProps} />)
+  }
+
+  it('should be mounted', () => {
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeDefined()
+  })
+
+  it('should match the snapshot with images', () => {
     const props = {
       images: [
         {
@@ -14,15 +23,11 @@ describe('<ProductImages />', () => {
         },
       ],
     }
-    return render(<ProductImages {...props} />)
-  }
-
-  it('should be mounted', () => {
-    const { asFragment } = renderComponent()
-    expect(asFragment()).toBeTruthy()
+    const { asFragment } = renderComponent(props)
+    expect(asFragment()).toMatchSnapshot()
   })
 
-  it('should match the snapshot', () => {
+  it('should match the snapshot with no images', () => {
     const { asFragment } = renderComponent()
     expect(asFragment()).toMatchSnapshot()
   })
