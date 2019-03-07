@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'enzyme'
+import { render } from 'react-testing-library'
 
 import CategoriesHighlights from '../../CategoriesHighlights'
 
@@ -15,18 +15,18 @@ describe('<CategoriesHighlights />', () => {
   }
 
   it('should be rendered', () => {
-    const wrapper = renderComponent()
-    expect(wrapper).toBeDefined()
-    expect(wrapper).toBeTruthy()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeDefined()
+    expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot Squared', () => {
-    const wrapper = renderComponent()
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot Rectangular', () => {
-    const wrapper = renderComponent({ cardShape: 'rectangular' })
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent({ cardShape: 'rectangular' })
+    expect(asFragment()).toMatchSnapshot()
   })
 })

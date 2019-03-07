@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Container from '../../Container'
-import { render } from 'enzyme'
+import { render } from 'react-testing-library'
 
 describe('<Container /> component', () => {
   const renderComponent = customProps => {
@@ -11,12 +11,12 @@ describe('<Container /> component', () => {
   }
 
   it('should be rendered', () => {
-    const wrapper = renderComponent()
-    expect(wrapper).toBeTruthy()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot', () => {
-    const wrapper = renderComponent()
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toMatchSnapshot()
   })
 })

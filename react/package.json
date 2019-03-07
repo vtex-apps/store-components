@@ -23,7 +23,7 @@
     "react-collapse": "^4.0.3",
     "react-content-loader": "^3.1.2",
     "react-cursor-position": "^2.4.2",
-    "react-dom": "^16.3.2",
+    "react-dom": "^16.8.3",
     "react-html-parser": "^2.0.2",
     "react-id-swiper": "^1.6.8",
     "react-motion": "^0.5.2",
@@ -39,18 +39,18 @@
     "vtex-tachyons": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "apollo-cache-inmemory": "^1.4.3",
-    "babel": "^6.23.0",
     "babel-jest": "^24.1.0",
-    "babel-preset-env": "^1.7.0",
     "babel-preset-react-app": "^7.0.1",
-    "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.7.1",
-    "enzyme-to-json": "^3.3.5",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.1.0",
+    "jest-dom": "^3.1.2",
     "jest-transform-graphql": "^2.1.0",
-    "react-intl": "^2.8.0"
+    "react-intl": "^2.8.0",
+    "react-testing-library": "^6.0.0",
+    "regenerator-runtime": "^0.13.1"
   },
   "vtexScriptsOverride": {
     "srcPath": "."
@@ -64,14 +64,11 @@
       "\\.(gql|graphql)$": "jest-transform-graphql",
       "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest"
     },
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
     ],
-    "setupFiles": [
-      "./testUtils/setupTests.js"
+    "setupFilesAfterEnv": [
+      "<rootDir>/testUtils/setupTests.js"
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",

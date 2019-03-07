@@ -77,28 +77,55 @@ class Price extends Component {
     return (
       <div className={classNames(productPrice.priceContainer, className)}>
         {differentPrices && (
-          <div className={classNames(productPrice.listPrice, listPriceContainerClass)}>
+          <div
+            className={classNames(
+              productPrice.listPrice,
+              listPriceContainerClass
+            )}
+          >
             {showLabels && (
-              <div className={classNames(productPrice.listPriceLabel, listPriceLabelClass)}>
+              <div
+                className={classNames(
+                  productPrice.listPriceLabel,
+                  listPriceLabelClass
+                )}
+              >
                 <FormattedMessage id="pricing.from" />
               </div>
             )}
-            <span className={classNames(productPrice.listPriceValue, listPriceClass)}>
+            <span
+              className={classNames(
+                productPrice.listPriceValue,
+                listPriceClass
+              )}
+            >
               {formatNumber(listPrice, this.currencyOptions)}
             </span>
           </div>
         )}
-        <div className={classNames(productPrice.sellingPrice, sellingPriceContainerClass)}>
+        <div
+          className={classNames(
+            productPrice.sellingPrice,
+            sellingPriceContainerClass
+          )}
+        >
           {showLabels && (
-            <div className={classNames(productPrice.sellingPriceLabel, sellingPriceLabelClass)}>
+            <div
+              className={classNames(
+                productPrice.sellingPriceLabel,
+                sellingPriceLabelClass
+              )}
+            >
               {labelSellingPrice || <FormattedMessage id="pricing.to" />}
             </div>
           )}
-          <div className={classNames(productPrice.sellingPrice, sellingPriceClass)}>
+          <div
+            className={classNames(productPrice.sellingPrice, sellingPriceClass)}
+          >
             {formatNumber(sellingPrice, this.currencyOptions)}
           </div>
         </div>
-        {showInstallments &&
+        {showInstallments && (
           <Installments
             installments={installments}
             showLabels={showLabels}
@@ -107,10 +134,21 @@ class Price extends Component {
             className={installmentContainerClass}
             interestRateClass={interestRateClass}
             installmentClass={installmentClass}
-          />}
+          />
+        )}
         {differentPrices && showSavings && (
-          <div className={classNames(productPrice.savingPrice, savingsContainerClass)}>
-            <div className={classNames(productPrice.savingPriceValue, savingsClass)}>
+          <div
+            className={classNames(
+              productPrice.savingPrice,
+              savingsContainerClass
+            )}
+          >
+            <div
+              className={classNames(
+                productPrice.savingPriceValue,
+                savingsClass
+              )}
+            >
               <FormattedMessage
                 id="pricing.savings"
                 values={{
@@ -129,7 +167,13 @@ class Price extends Component {
 }
 
 Price.Loader = (loaderProps = {}) => (
-  <div className={classNames(productPrice.priceContainer, productPrice.priceLoaderContainer, loaderProps.loaderClass)}>
+  <div
+    className={classNames(
+      productPrice.priceContainer,
+      productPrice.priceLoaderContainer,
+      loaderProps.loaderClass
+    )}
+  >
     <ContentLoader
       style={{
         width: '100%',
@@ -138,7 +182,8 @@ Price.Loader = (loaderProps = {}) => (
       width={300}
       height={70}
       preserveAspectRatio="xMinYMin meet"
-      {...loaderProps}>
+      {...loaderProps}
+    >
       <rect
         height="0.75em"
         width="50%"

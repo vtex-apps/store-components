@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderWithIntl } from 'intl-helper'
+import { render } from 'intl-helper'
 
 import DiscountBadge from '../../DiscountBadge'
 
@@ -12,21 +12,21 @@ describe('<DiscountBadge /> component', () => {
     }
     const component = <DiscountBadge {...props}>Test</DiscountBadge>
 
-    return renderWithIntl(component)
+    return render(component)
   }
 
   it('should be able to mount and not break', () => {
-    const component = renderComponent()
-    expect(component).toBeTruthy()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot without label', () => {
-    const component = renderComponent()
-    expect(component).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot with label', () => {
-    const component = renderComponent({ label: 'LABEL' })
-    expect(component).toMatchSnapshot()
+    const { asFragment } = renderComponent({ label: 'LABEL' })
+    expect(asFragment()).toMatchSnapshot()
   })
 })

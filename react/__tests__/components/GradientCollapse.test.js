@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderWithIntl } from 'intl-helper'
+import { render } from 'intl-helper'
 
 import GradientCollapse from '../../GradientCollapse'
 
@@ -11,16 +11,16 @@ describe('<GradientCollapse /> component', () => {
     }
     const component = <GradientCollapse {...props}>Test</GradientCollapse>
 
-    return renderWithIntl(component)
+    return render(component)
   }
 
   it('should be able to mount and not break', () => {
-    const component = renderComponent()
-    expect(component).toBeTruthy()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot', () => {
-    const component = renderComponent()
-    expect(component).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toMatchSnapshot()
   })
 })

@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderWithIntl } from 'intl-helper'
+import { render } from 'intl-helper'
 
 import Greeting from '../../Greeting'
 
@@ -14,21 +14,21 @@ describe('<Greeting /> component', () => {
 
     const comp = <Greeting {...props} />
 
-    return renderWithIntl(comp)
+    return render(comp)
   }
 
   it('should be rendered', () => {
-    const wrapper = renderComponent()
-    expect(wrapper).toBeTruthy()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot without loading', () => {
-    const wrapper = renderComponent()
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot with loading', () => {
-    const wrapper = renderComponent({ loading: true })
-    expect(wrapper).toMatchSnapshot()
+    const { asFragment } = renderComponent({ loading: true })
+    expect(asFragment()).toMatchSnapshot()
   })
 })

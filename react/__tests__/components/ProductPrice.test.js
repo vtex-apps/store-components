@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { renderWithIntl } from 'intl-helper'
+import { render } from 'intl-helper'
 
 import ProductPrice from './../../ProductPrice'
+import { withContext } from 'contextUtils'
+const { Provider } = React.createContext()
 
 describe('<ProductPrice />', () => {
   const defaultProps = {
@@ -11,30 +13,30 @@ describe('<ProductPrice />', () => {
     sellingPrice: 40,
   }
 
-  const context = { culture: { currency: 'USD' } }
-
   const renderComponent = customProps => {
+    const context = { culture: { currency: 'USD' } }
     const props = {
       ...defaultProps,
       ...customProps,
     }
-    return renderWithIntl(<ProductPrice {...props} />, {
-      context,
-      childContextTypes: {
-        culture: PropTypes.object,
-      },
+    const Component = withContext(ProductPrice, context, {
+      culture: PropTypes.object,
     })
+    return render(<Component {...props} />)
   }
 
   it('should be mount', () => {
-    expect(renderComponent()).toBeDefined()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toBeDefined()
   })
 
   it('should match snapshot', () => {
-    expect(renderComponent()).toMatchSnapshot()
+    const { asFragment } = renderComponent()
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot Loader', () => {
-    expect(renderComponent({ showListPrice: true })).toMatchSnapshot()
+    const { asFragment } = renderComponent({ showListPrice: true })
+    expect(asFragment()).toMatchSnapshot()
   })
 })
