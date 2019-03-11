@@ -9,9 +9,17 @@ describe('<BuyButton />', () => {
       ...customProps,
     }
 
-    const comp = <BuyButton {...props}> Test </BuyButton>
+    const comp = <BuyButton {...props}>Test</BuyButton>
 
     return render(comp)
+  }
+
+  function wait(ms) {
+    var d = new Date()
+    var d2 = null
+    do {
+      d2 = new Date()
+    } while (d2 - d < ms)
   }
 
   it('should be rendered', () => {
@@ -33,5 +41,28 @@ describe('<BuyButton />', () => {
   it('should match snapshot loading', () => {
     const { asFragment } = renderComponent({ available: false })
     expect(asFragment()).toMatchSnapshot()
+  })
+
+  it('should call onAddStart', () => {
+    const onAddStart = jest.fn()
+    const { getByText } = renderComponent({
+      available: true,
+      skuItems: [],
+      onAddStart,
+    })
+
+    fireEvent.click(getByText(/test/i))
+    expect(onAddStart).toHaveBeenCalled()
+  })
+
+  it('should call onAddEnd', async () => {
+    const onAddFinish = jest.fn()
+    const { getByText } = renderComponent({
+      available: true,
+      skuItems: [],
+      onAddFinish,
+    })
+    fireEvent.click(getByText(/test/i))
+    expect(onAddFinish).toHaveBeenCalled()
   })
 })
