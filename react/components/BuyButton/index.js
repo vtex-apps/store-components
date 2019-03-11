@@ -86,6 +86,12 @@ export class BuyButton extends Component {
 
       const {
         data: { addToCart: linkStateItems },
+      } = await addToCart(minicartItems)
+
+      const success =
+        linkStateItems &&
+        skuItems.filter(
+          skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
         )
 
       if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
