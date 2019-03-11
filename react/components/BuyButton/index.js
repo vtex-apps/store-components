@@ -66,7 +66,10 @@ export class BuyButton extends Component {
     }
   }
 
-  handleAddToCart = async () => {
+  handleAddToCart = async (event) => {
+    event.stopPropagation()
+    event.preventDefault()
+
     const {
       addToCart,
       skuItems,
