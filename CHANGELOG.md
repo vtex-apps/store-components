@@ -36,6 +36,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Change current product image when pressing on a thumbnail.
 
+## [3.19.6-hkignore] - 2019-03-11
+
 ### Added
 
 - `ProductImages` snapshot tests.
