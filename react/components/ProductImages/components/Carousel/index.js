@@ -239,7 +239,11 @@ class Carousel extends Component {
         >
           <Swiper {...thumbnailParams} ref={this.thumbSwiper}>
             {slides.map((slide, i) => (
-              <div key={i} className="swiper-slide w-100 h-auto mb5">
+              <div 
+                key={i}
+                className="swiper-slide w-100 h-auto mb5" 
+                onClick={() => this.gallerySwiper.current.swiper.slideTo(i)}
+              >
                 <img
                   className="w-100 h-auto db"
                   alt={slide.alt ? this.state.alt[i] : ''}
