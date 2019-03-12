@@ -12,14 +12,12 @@ import styles from './styles.css'
  */
 class ProductHighlights extends Component {
 
-
   render() {
-    const { highlights } = this.props;
-
+    const { highlights } = this.props
     return (
       <ul>
         {highlights.map((item, i) => (
-          <li key={i} >{HtmlParser(item.name)}: <span className={`t-small`}>{HtmlParser(item.name)}</span> </li>
+          <li key={i} >{HtmlParser(item.name)}: <span className={`t-small`}>{HtmlParser(item.values[0])}</span> </li>
         ))}
       </ul>
     )
