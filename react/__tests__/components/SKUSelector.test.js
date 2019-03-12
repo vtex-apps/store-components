@@ -28,8 +28,8 @@ describe('<SKUSelector />', () => {
   it('should call onSKUSelected', () => {
     const onSKUSelected = jest.fn()
     const { container } = renderComponent({ onSKUSelected })
-    const comp = container.querySelector('.skuSelectorItem')
-    fireEvent.click(comp)
+    const selector = container.querySelector('.skuSelectorItem')
+    fireEvent.click(selector)
     expect(onSKUSelected).toBeCalledTimes(1)
   })
 })
