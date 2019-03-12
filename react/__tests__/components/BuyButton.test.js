@@ -35,7 +35,7 @@ describe('<BuyButton />', () => {
     expect(asFragment()).toMatchSnapshot()
   })
 
-  it('should call onAddStart and onAddFinish', done => {
+  it('should call onAddStart and onAddFinish', () => {
     const onAddStart = jest.fn()
     const onAddFinish = jest.fn()
 
@@ -52,10 +52,10 @@ describe('<BuyButton />', () => {
     )
 
     fireEvent.click(getByText(buttonText))
-    setTimeout(() => {
+    const assertions = () => {
       expect(onAddStart).toBeCalledTimes(1)
       expect(onAddFinish).toBeCalledTimes(1)
-      done()
-    }, 300)
+    }
+    expect.assertions(assertions)
   })
 })
