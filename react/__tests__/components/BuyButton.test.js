@@ -4,12 +4,12 @@ import { render } from '@vtex/test-tools/react'
 import BuyButton from '../../BuyButton'
 
 describe('<BuyButton />', () => {
-  const renderComponent = customProps => {
+  const renderComponent = (customProps, text = 'Test') => {
     const props = {
       ...customProps,
     }
 
-    const comp = <BuyButton {...props}>Test</BuyButton>
+    const comp = <BuyButton {...props}>{text}</BuyButton>
 
     return render(comp)
   }
@@ -35,30 +35,26 @@ describe('<BuyButton />', () => {
     expect(asFragment()).toMatchSnapshot()
   })
 
-  it('should call onAddStart', () => {
+  it('should call onAddStart and onAddFinish', done => {
     const onAddStart = jest.fn()
-    const { getByText } = renderComponent({
-      available: true,
-      skuItems: [],
-      onAddStart,
-    })
-
-    fireEvent.click(getByText(/test/i))
-    expect(onAddStart).toHaveBeenCalled()
-  })
-
-  it('should call onAddEnd', done => {
     const onAddFinish = jest.fn()
-    const { getByText } = renderComponent({
-      available: true,
-      skuItems: [],
-      onAddFinish,
-    })
 
-    fireEvent.click(getByText(/test/i))
+    const buttonText = 'Test inside button'
 
+    const { getByText } = renderComponent(
+      {
+        available: true,
+        skuItems: [],
+        onAddStart,
+        onAddFinish,
+      },
+      buttonText
+    )
+
+    fireEvent.click(getByText(buttonText))
     setTimeout(() => {
-      expect(onAddFinish).toHaveBeenCalled()
+      expect(onAddStart).toBeCalledTimes(1)
+      expect(onAddFinish).toBeCalledTimes(1)
       done()
     }, 300)
   })
