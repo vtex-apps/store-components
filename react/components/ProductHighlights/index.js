@@ -7,8 +7,8 @@ import HtmlParser from 'react-html-parser'
 import styles from './styles.css'
 
 /**
- * Product Specification Component.
- * Render the technical specifications of a product. Can be displayed in two views: Table view or Tabs view.
+ * Product highlights Component.
+ * Render the highlights specifications of a product.
  */
 class ProductHighlights extends Component {
 
@@ -19,7 +19,7 @@ class ProductHighlights extends Component {
     return (
       <ul>
         {highlights.map((item, i) => (
-          <li key={i} >{item.name}: <span className={`t-small`}>{item.name}</span> </li>
+          <li key={i} >{HtmlParser(item.name)}: <span className={`t-small`}>{HtmlParser(item.name)}</span> </li>
         ))}
       </ul>
     )
