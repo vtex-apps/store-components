@@ -20,7 +20,7 @@ describe('<ShippingSimulator /> component', () => {
 
   it('should match snapshot without skuId and seller', () => {
     const { asFragment } = renderComponent()
-    expect(asFragment).toMatchSnapshot()
+    expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot with skuId and seller', () => {

@@ -1,4 +1,5 @@
 export default {
+  clientProfileData: { firstName: 'name' },
   cacheId: '3335fe72057045398dd28bd2fa203b21',
   orderFormId: '3335fe72057045398dd28bd2fa203b21',
   value: 22.400000000000002,
@@ -205,7 +206,6 @@ export default {
     ],
     __typename: 'vtex_storegraphql_2_51_0_OrderFormShippingData',
   },
-  clientProfileData: null,
   storePreferencesData: {
     countryCode: 'BRA',
     currencyCode: 'BRL',

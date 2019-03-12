@@ -46,9 +46,11 @@ exports[`<AvailabilitySubscriber /> should match snapshot 1`] = `
           class="submit flex items-center mb4"
         >
           <button
-            type="button"
+            disabled=""
+            type="submit"
+            variation="primary"
           >
-             Send 
+            Send
           </button>
         </div>
       </div>
