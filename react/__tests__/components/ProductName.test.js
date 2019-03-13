@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductName from './../../ProductName'
-import { render } from 'react-testing-library'
+import { render } from '@vtex/test-tools/react'
 import PropTypes from 'prop-types'
 
 describe('<ProductName />', () => {

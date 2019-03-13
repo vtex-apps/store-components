@@ -1,7 +1,7 @@
 import React from 'react'
 import { MockedProvider } from 'react-apollo/test-utils'
-import { render } from 'intl-helper'
-import { createClientMock } from '../../testUtils/mockProvider'
+import { render } from '@vtex/test-tools/react'
+import { createClientMock } from 'mockProvider'
 
 import SearchBar from '../../SearchBar'
 

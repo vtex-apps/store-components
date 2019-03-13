@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Container from '../../Container'
-import { render } from 'react-testing-library'
+import { render } from '@vtex/test-tools/react'
 
 describe('<Container /> component', () => {
   const renderComponent = customProps => {
