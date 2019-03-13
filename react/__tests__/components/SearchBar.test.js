@@ -1,27 +1,26 @@
 import React from 'react'
-import { MockedProvider } from 'react-apollo/test-utils'
 import { render } from '@vtex/test-tools/react'
-import { createClientMock } from 'mockProvider'
 
 import SearchBar from '../../SearchBar'
+import autocomplete from '../../components/SearchBar/queries/autocomplete.gql'
 
 describe('<SearchBar />', () => {
   const mockedResult = {
-    data: {
-      loading: false,
-      autocomplete: {
-        itemsReturned: [{ thumb: 'thumb', name: 'name', href: 'href' }],
+    request: {
+      query: autocomplete,
+    },
+    result: {
+      data: {
+        loading: false,
+        autocomplete: {
+          itemsReturned: [{ thumb: 'thumb', name: 'name', href: 'href' }],
+        },
       },
     },
   }
 
   const renderComponent = (customProps = {}) => {
-    const client = createClientMock(mockedResult)
-    return render(
-      <MockedProvider client={client}>
-        <SearchBar />
-      </MockedProvider>
-    )
+    return render(<SearchBar />, { graphql: { mocks: [mockedResult] } })
   }
 
   it('should be able to mount and not break', () => {
