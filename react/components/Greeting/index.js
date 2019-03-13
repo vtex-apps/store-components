@@ -10,8 +10,26 @@ import Loader from './Loader'
 
 import styles from './styles.css'
 
+export const ORDER_FORM_QUERY = gql`
+  query {
+    minicart @client {
+      orderForm {
+        clientProfileData {
+          firstName
+        }
+      }
+    }
+  }
+`
+
 const Wrapper = ({ children }) => (
-  <div className={`${styles.greetingContainer} mh4 pv4 t-heading-4 c-on-base nowrap`}>{children}</div>
+  <div
+    className={`${
+      styles.greetingContainer
+    } mh4 pv4 t-heading-4 c-on-base nowrap`}
+  >
+    {children}
+  </div>
 )
 
 const withWrapper = Component => props => (
@@ -21,6 +39,7 @@ const withWrapper = Component => props => (
 )
 
 const Greeting = ({ orderForm }) => {
+  console.log('orderForm', orderForm)
   const firstName = path(['clientProfileData', 'firstName'], orderForm)
   if (!firstName) return null
 
@@ -44,22 +63,11 @@ Greeting.propTypes = {
   }),
 }
 
-const withLinkStateOrderForm = graphql(
-  gql`
-    query {
-      orderForm @client {
-        clientProfileData {
-          firstName
-        }
-      }
-    }
-  `,
-  {
-    props: ({ data: { orderForm } }) => ({
-      orderForm,
-    }),
-  }
-)
+const withLinkStateOrderForm = graphql(ORDER_FORM_QUERY, {
+  props: ({ data: { minicart } }) => ({
+    orderForm: minicart && minicart.orderForm,
+  }),
+})
 
 export default compose(
   withLinkStateOrderForm,
