@@ -36,12 +36,12 @@
     "render": "^0.1.4",
     "slick-carousel": "^1.8.1",
     "underscore": "^1.9.1",
-    "vtex-tachyons": "^2.3.0"
+    "vtex-tachyons": "^2.3.0",
+    "react-intl": "^2.8.0"
   },
   "devDependencies": {
     "@vtex/test-tools": "^0.1.2",
-    "apollo-cache-inmemory": "^1.4.3",
-    "react-intl": "^2.8.0"
+    "apollo-cache-inmemory": "^1.4.3"
   },
   "vtexScriptsOverride": {
     "srcPath": "."

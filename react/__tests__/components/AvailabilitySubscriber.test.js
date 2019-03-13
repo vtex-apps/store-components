@@ -10,13 +10,10 @@ describe('<AvailabilitySubscriber />', () => {
       skuId: '111111',
       ...customProps,
     }
-    const component = (
-      <MockedProvider mocks={[]}>
-        <AvailabilitySubscriber {...props} />
-      </MockedProvider>
-    )
 
-    return render(component)
+    return render(<AvailabilitySubscriber {...props} />, {
+      graphql: { mocks: [] },
+    })
   }
 
   it('should be able to mount and not break', () => {
