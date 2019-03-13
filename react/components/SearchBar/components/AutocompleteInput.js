@@ -5,7 +5,6 @@ import { path } from 'ramda'
 
 import { Input } from 'vtex.styleguide'
 import { IconClose, IconSearch } from 'vtex.store-icons'
-import { withRuntimeContext } from 'vtex.render-runtime'
 
 import styles from '../styles.css'
 
@@ -25,9 +24,9 @@ class AutocompleteInput extends Component {
   }
 
   componentDidMount() {
-    const { runtime } = this.props
+    const { autoFocus } = this.props
     this.changeClassInput()
-    path(['hints', 'mobile'], runtime) && this.inputRef.current.focus()
+    autoFocus && this.inputRef.current.focus()
   }
 
   render() {
@@ -107,4 +106,4 @@ AutocompleteInput.propTypes = {
   iconClasses: PropTypes.string,
 }
 
-export default withRuntimeContext(AutocompleteInput)
+export default AutocompleteInput

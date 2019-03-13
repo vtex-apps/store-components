@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Set `SearchBar` input focus when user click search icon on mobile devices.
+- Set `SearchBar` input focus when user click search icon.
 
 ## [3.19.6] - 2019-03-11
 

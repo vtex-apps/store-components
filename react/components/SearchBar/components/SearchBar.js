@@ -23,6 +23,7 @@ export default class SearchBar extends Component {
       compactMode,
       hasIconLeft,
       iconClasses,
+      autoFocus,
     } = this.props
 
     const fallback = (
@@ -52,6 +53,7 @@ export default class SearchBar extends Component {
             }) => (
               <div className="relative-m w-100">
                 <AutocompleteInput
+                  autoFocus={autoFocus}
                   compactMode={compactMode}
                   onClearInput={onClearInput}
                   hasIconLeft={hasIconLeft}

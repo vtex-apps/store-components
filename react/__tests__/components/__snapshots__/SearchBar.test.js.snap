@@ -24,7 +24,6 @@ exports[`<SearchBar /> should match snapshot 1`] = `
               id="downshift-1-input"
               placeholder="Search"
               role="combobox"
-              runtime="[object Object]"
               suffix="[object Object]"
               value=""
             />
