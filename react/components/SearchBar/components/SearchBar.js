@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import AutocompleteInput from './AutocompleteInput'
-import ResultsLits from './ResultsList'
+import ResultsLists from './ResultsList'
 import DownshiftComponent from 'downshift'
 import { NoSSR } from 'vtex.render-runtime'
 
@@ -21,7 +21,7 @@ export default class SearchBar extends Component {
       shouldSearch,
       inputValue,
       compactMode,
-      hasIconLeft, 
+      hasIconLeft,
       iconClasses,
     } = this.props
 
@@ -36,7 +36,7 @@ export default class SearchBar extends Component {
         iconClasses={iconClasses}
       />
     )
-    
+
     const mainClasses = classNames(styles.searchBarContainer)
 
     return (
@@ -50,41 +50,40 @@ export default class SearchBar extends Component {
               isOpen,
               closeMenu,
             }) => (
-                <div className="relative-m w-100">
-                  <AutocompleteInput
-                    compactMode={compactMode}
-                    onClearInput={onClearInput}
-                    hasIconLeft={hasIconLeft}
-                    iconClasses={iconClasses}
-                    onGoToSearchPage={() => {
+              <div className="relative-m w-100">
+                <AutocompleteInput
+                  compactMode={compactMode}
+                  onClearInput={onClearInput}
+                  hasIconLeft={hasIconLeft}
+                  iconClasses={iconClasses}
+                  onGoToSearchPage={() => {
+                    closeMenu()
+                    onGoToSearchPage()
+                  }}
+                  {...getInputProps({
+                    placeholder,
+                    value: inputValue,
+                    onChange: onInputChange,
+                    onKeyDown: event => {
                       closeMenu()
-                      onGoToSearchPage()
+                      onEnterPress(event)
+                    },
+                  })}
+                />
+                {shouldSearch && isOpen ? (
+                  <ResultsLists
+                    {...{
+                      inputValue,
+                      selectedItem,
+                      highlightedIndex,
+                      emptyPlaceholder,
+                      closeMenu,
+                      onClearInput,
                     }}
-                    {...getInputProps({
-                      placeholder,
-                      value: inputValue,
-                      onChange: onInputChange,
-                      onKeyDown: event => {
-                        closeMenu()
-                        onEnterPress(event)
-                      },
-                    })}
-
                   />
-                  {shouldSearch && isOpen ? (
-                    <ResultsLits
-                      {...{
-                        inputValue,
-                        selectedItem,
-                        highlightedIndex,
-                        emptyPlaceholder,
-                        closeMenu,
-                        onClearInput,
-                      }}
-                    />
-                  ) : null}
-                </div>
-              )}
+                ) : null}
+              </div>
+            )}
           </DownshiftComponent>
         </NoSSR>
       </div>
@@ -116,5 +115,5 @@ SearchBar.propTypes = {
   /** Identify if the search icon is on left or right position */
   hasIconLeft: PropTypes.bool,
   /** Custom classes for the search icon */
-  iconClasses: PropTypes.string 
+  iconClasses: PropTypes.string,
 }

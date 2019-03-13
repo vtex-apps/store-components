@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useLayoutEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
@@ -18,7 +18,7 @@ const AutocompleteInput = (
   iconClasses,
   ...restProps
 ) => {
-  let inputRef = React.createRef()
+  let inputRef = useRef(null)
   const { mobile: isMobile } = useRuntime().hints
 
   const changeClassInput = () => {
@@ -28,10 +28,10 @@ const AutocompleteInput = (
     }
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     changeClassInput()
     isMobile && inputRef.current.focus()
-  })
+  }, [])
 
   const suffix = (
     <span
