@@ -17,7 +17,7 @@ class ProductHighlights extends Component {
     return (
       <ul>
         {highlights.map((item, i) => (
-          <li key={i} >{HtmlParser(item.name)}: <span className={`t-small`}>{HtmlParser(item.values[0])}</span> </li>
+          <li key={i} className={`t-heading-5`}>{HtmlParser(item.name)}: <span className={`t-small`}>{HtmlParser(item.values[0])}</span> </li>
         ))}
       </ul>
     )
