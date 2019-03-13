@@ -40,7 +40,8 @@
   },
   "devDependencies": {
     "@vtex/test-tools": "^0.1.2",
-    "apollo-cache-inmemory": "^1.4.3"
+    "apollo-cache-inmemory": "^1.4.3",
+    "react-intl": "^2.8.0"
   },
   "vtexScriptsOverride": {
     "srcPath": "."
