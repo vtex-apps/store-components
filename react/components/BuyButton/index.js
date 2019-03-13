@@ -44,7 +44,7 @@ export class BuyButton extends Component {
     this.props.showToast({ message })
   }
 
-  handleAddToCart = async (event) => {
+  handleAddToCart = async event => {
     event.stopPropagation()
     event.preventDefault()
 
