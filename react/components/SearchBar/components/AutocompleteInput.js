@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import { path } from 'ramda'
 
 import { Input } from 'vtex.styleguide'
 import { IconClose, IconSearch } from 'vtex.store-icons'
@@ -26,7 +27,8 @@ class AutocompleteInput extends Component {
   componentDidMount() {
     const { runtime } = this.props
     this.changeClassInput()
-    runtime.hints.mobile && this.inputRef.current.focus()
+    console.log('device', path(['hints', 'mobile'], runtime))
+    path(['hints', 'mobile'], runtime) && this.inputRef.current.focus()
   }
 
   render() {
