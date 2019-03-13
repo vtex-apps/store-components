@@ -44,7 +44,10 @@ export class BuyButton extends Component {
     this.props.showToast({ message })
   }
 
-  handleAddToCart = async () => {
+  handleAddToCart = async (event) => {
+    event.stopPropagation()
+    event.preventDefault()
+
     const { skuItems, isOneClickBuy, orderFormContext, push, onAddStart, onAddFinish } = this.props
     this.setState({ isAddingToCart: true })
     onAddStart && onAddStart()
