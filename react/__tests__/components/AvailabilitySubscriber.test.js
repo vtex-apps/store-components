@@ -1,5 +1,4 @@
 import React from 'react'
-import { MockedProvider } from 'react-apollo/test-utils'
 import { render } from '@vtex/test-tools/react'
 
 import AvailabilitySubscriber from '../../AvailabilitySubscriber'
