@@ -1,6 +1,5 @@
 import React from 'react'
-import { MockedProvider } from 'react-apollo/test-utils'
-import { render } from 'intl-helper'
+import { render } from '@vtex/test-tools/react'
 
 import AvailabilitySubscriber from '../../AvailabilitySubscriber'
 
@@ -10,13 +9,10 @@ describe('<AvailabilitySubscriber />', () => {
       skuId: '111111',
       ...customProps,
     }
-    const component = (
-      <MockedProvider mocks={[]}>
-        <AvailabilitySubscriber {...props} />
-      </MockedProvider>
-    )
 
-    return render(component)
+    return render(<AvailabilitySubscriber {...props} />, {
+      graphql: { mocks: [] },
+    })
   }
 
   it('should be able to mount and not break', () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'intl-helper'
+import { render } from '@vtex/test-tools/react'
 
 import BuyButton from '../../BuyButton'
 

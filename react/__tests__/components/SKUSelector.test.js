@@ -1,6 +1,5 @@
 import React from 'react'
-import { render } from 'intl-helper'
-import { fireEvent } from 'react-testing-library'
+import { render, fireEvent } from '@vtex/test-tools/react'
 
 import SKUSelector from './../../SKUSelector'
 import { getSKU } from 'sku-helper'

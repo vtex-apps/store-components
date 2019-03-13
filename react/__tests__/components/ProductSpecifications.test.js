@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ProductSpecifications from '../../ProductSpecifications'
-import { render } from 'intl-helper'
+import { render } from '@vtex/test-tools/react'
 
 describe('<ProductSpecifications /> component', () => {
   const renderComponent = customProps => {

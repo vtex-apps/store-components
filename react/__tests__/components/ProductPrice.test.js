@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { render } from 'intl-helper'
+import { render } from '@vtex/test-tools/react'
 
 import ProductPrice from './../../ProductPrice'
 import { withContext } from 'contextUtils'
