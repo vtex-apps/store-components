@@ -27,7 +27,6 @@ class AutocompleteInput extends Component {
   componentDidMount() {
     const { runtime } = this.props
     this.changeClassInput()
-    console.log('device', path(['hints', 'mobile'], runtime))
     path(['hints', 'mobile'], runtime) && this.inputRef.current.focus()
   }
 
