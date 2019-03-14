@@ -1,8 +1,8 @@
 import React from 'react'
 
-export function withRuntimeContext(Comp) {
-  return Comp
-}
+export const withRuntimeContext = Comp => props => (
+  <Comp {...props} runtime={{ hints: { mobile: false } }} />
+)
 
 export const Link = ({ children }) => <a>{children}</a>
 

@@ -7,9 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.19.7] - 2019-03-14
+
 ### Added
 
 - Add behavior test to SKUSelector.
+
+### Fixed
+
+- Set `SearchBar` input focus when user click search icon.
 
 ## [3.19.6] - 2019-03-11
 

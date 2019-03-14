@@ -62,7 +62,14 @@ class SearchBarContainer extends Component {
   }
 
   render() {
-    const { intl, compactMode, hasIconLeft, iconClasses } = this.props
+    const {
+      intl,
+      compactMode,
+      hasIconLeft,
+      iconClasses,
+      autoFocus,
+    } = this.props
+
     const { shouldSearch, inputValue } = this.state
 
     const placeholder = intl.formatMessage({
@@ -74,6 +81,7 @@ class SearchBarContainer extends Component {
 
     return (
       <SearchBar
+        autoFocus={autoFocus}
         placeholder={placeholder}
         emptyPlaceholder={emptyPlaceholder}
         shouldSearch={shouldSearch}
@@ -103,7 +111,9 @@ SearchBarContainer.propTypes = {
   /** Identify if the search icon is on left or right position */
   hasIconLeft: PropTypes.bool,
   /** Custom classes for the search icon */
-  iconClasses: PropTypes.string
+  iconClasses: PropTypes.string,
+  /** Identify if the search input should autofocus or not */
+  autoFocus: PropTypes.bool,
 }
 
 export default injectIntl(SearchBarContainer)

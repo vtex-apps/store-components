@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import { path } from 'ramda'
 
 import { Input } from 'vtex.styleguide'
 import { IconClose, IconSearch } from 'vtex.store-icons'
@@ -8,7 +9,7 @@ import { IconClose, IconSearch } from 'vtex.store-icons'
 import styles from '../styles.css'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
-export default class AutocompleteInput extends Component {
+class AutocompleteInput extends Component {
   constructor(props) {
     super(props)
     this.inputRef = React.createRef()
@@ -23,7 +24,9 @@ export default class AutocompleteInput extends Component {
   }
 
   componentDidMount() {
+    const { autoFocus } = this.props
     this.changeClassInput()
+    autoFocus && this.inputRef.current.focus()
   }
 
   render() {
@@ -101,4 +104,8 @@ AutocompleteInput.propTypes = {
   hasIconLeft: PropTypes.bool,
   /** Custom classes for the search icon */
   iconClasses: PropTypes.string,
+  /** Identify if the search input should autofocus or not */
+  autoFocus: PropTypes.bool,
 }
+
+export default AutocompleteInput
