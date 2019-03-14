@@ -20,7 +20,7 @@ class ProductServices extends Component {
           .map((item, i) => (
             <div key={i} className={'flex-row dib ma2 ph2'}>
               <span className={`c-success`}>
-                <IconCheck size={20} />
+                <IconCheck type="line" size={20} />
               </span>
               <span className={`f5`}>{HtmlParser(item.name)}</span>
             </div>
