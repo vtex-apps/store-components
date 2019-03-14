@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.19.9] - 2019-03-14
+### Fixed
+- Clicking the `BuyButton` will no more redirect if there is an `anchor` tag ancestor.
+
 ## [3.19.8] - 2019-03-14
 ### Changed
 - Change messages basic languages files.
