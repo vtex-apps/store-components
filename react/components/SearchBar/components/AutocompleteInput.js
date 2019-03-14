@@ -104,6 +104,8 @@ AutocompleteInput.propTypes = {
   hasIconLeft: PropTypes.bool,
   /** Custom classes for the search icon */
   iconClasses: PropTypes.string,
+  /** Identify if the search input should autofocus or not */
+  autoFocus: PropTypes.bool,
 }
 
 export default AutocompleteInput
