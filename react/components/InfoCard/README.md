@@ -38,7 +38,7 @@ For now this block does not have any required or optional blocks.
 
 #### Configuration
 
-Through the Storefront, you can change the `InfoCard`'s behavior and interface. However, you also can make in your theme app, as Store theme does. However, you also can make in your theme app, as Store theme does.
+Through the Storefront, you can change the `InfoCard`'s behavior and interface. However, you also can make in your theme app, as Store theme does.
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
@@ -55,6 +55,7 @@ Through the Storefront, you can change the `InfoCard`'s behavior and interface. 
 
 
 Here are the possible values of `TextPostionEnum`
+
 | Enum name | Enum value | Description |
 | --------- | ---- | ----------- |
 | Left | 'left' | Text will be to the left. If `isFullModeStyle` is false, image will be on the right |
@@ -62,6 +63,7 @@ Here are the possible values of `TextPostionEnum`
 | Right | 'right' | Text will be to the right. If `isFullModeStyle` is false, image will be on the left |
 
 Here are the possible values of `CallToActionEnum`
+
 | Enum name | Enum value | Description |
 | --------- | ---- | ----------- |
 | None | 'none' | Don't render any Call to Action component  |
@@ -69,6 +71,7 @@ Here are the possible values of `CallToActionEnum`
 | Link | 'link' | Call to Action component will be a text in a link format |
 
 Here are the possible values of `TextAlignmentEnum`
+
 | Enum name | Enum value | Description |
 | --------- | ---- | ----------- |
 | Left | 'left' | Text alignment will be to the left. |
