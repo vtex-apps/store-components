@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import HtmlParser from 'react-html-parser'
 
-
+import { IconCheck } from 'vtex.store-icons'
 import styles from './styles.css'
 
 /**
@@ -11,15 +11,19 @@ import styles from './styles.css'
  * Render the services of a product.
  */
 class ProductServices extends Component {
-
   render() {
-    const { highlights } = this.props
+    const { services } = this.props
     return (
-      <ul className={styles.content}>
-        {highlights.map((item, i) => (
-          <li key={i} className={`t-heading-5`}>{HtmlParser(item.name)}: <span className={`t-small`}>{HtmlParser(item.values[0])}</span> </li>
-        ))}
-      </ul>
+      <div className={styles.content}>
+        {services
+          .filter(item => item.values[0].toLowerCase() === 'enable')
+          .map((item, i) => (
+            <div key={i} className={'flex-row dib ma2 ph2'}>
+              <IconCheck size={20} />
+              <span className={`f5`}>{HtmlParser(item.name)}</span>
+            </div>
+          ))}
+      </div>
     )
   }
 }
@@ -42,4 +46,4 @@ ProductServices.propTypes = {
   ),
 }
 
-export default injectIntl(ProductHighlights)
+export default injectIntl(ProductServices)

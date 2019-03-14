@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
+import { injectIntl, intlShape } from 'react-intl'
 import HtmlParser from 'react-html-parser'
 
 
@@ -17,7 +17,7 @@ class ProductHighlights extends Component {
     return (
       <ul className={styles.content}>
         {highlights.map((item, i) => (
-          <li key={i} className={`t-heading-5`}>{HtmlParser(item.name)}: <span className={`t-small`}>{HtmlParser(item.values[0])}</span> </li>
+          <li key={i} className={`t-heading-5`}>{HtmlParser(item.name)}: <span className={`f5`}>{HtmlParser(item.values[0])}</span> </li>
         ))}
       </ul>
     )
@@ -25,8 +25,7 @@ class ProductHighlights extends Component {
 }
 
 ProductHighlights.defaultProps = {
-  highlights: [],
-  tabsMode: false
+  services: [],
 }
 
 ProductHighlights.propTypes = {
