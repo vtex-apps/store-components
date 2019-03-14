@@ -1,8 +1,8 @@
-# Product Highlights
+# Product Services
 
 ## Description
 
-`ProductHighlights` is a VTEX Component that shows the general specifications of a product.
+`ProductServices` is a VTEX Component that shows the services of a product.
 This Component can be imported and used by any VTEX App.
 
 :loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
@@ -18,15 +18,15 @@ This Component can be imported and used by any VTEX App.
 
 You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
 
-Then, add `product-highlights` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
+Then, add `product-services` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
 
 ### Blocks API
 
-This component has an interface that describes which rules must be implemented by a block when you want to use the `ProductHighlights`.
+This component has an interface that describes which rules must be implemented by a block when you want to use the `ProductServices`.
 
 ```json
-  "product-highlights": {
-    "component": "ProductDescription"
+  "product-services": {
+    "component": "ProductServices"
   }
 ```
 
@@ -37,15 +37,15 @@ Through the Storefront, you can change the `ProductDescription`'s behavior and i
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| `highlights` | `Array(Highlights)` | Highlights of a product | `[]` |
+| `services` | `Array(Services)` | Services of a product | `[]` |
 
 
-Highlights:
+Services:
 
 | Prop name | Type | Description |
 | --------- | ---- | ----------- |
-| `name` | `String!` | Highlights name |
-| `values` | `Array(String)!` | Highlights values |
+| `name` | `String!` | Service name |
+| `values` | `Array(String)!` | Service values |
 
 
 ### Styles API
@@ -53,8 +53,8 @@ Highlights:
 You should follow the Styles API instruction in the main [README](/README.md#styles-api).
 
 #### CSS Namespaces
-Below, we describe the namespace that are defined in the `ProductHighlights`.
+Below, we describe the namespace that are defined in the `ProductServices`.
 
 | Class name | Description | Component Source |
 | ---------- | ----------- | ---------------- |
-| `content` | The content of ProductHighlights section. | [index](/react/components/ProductHighlights/index.js) |
+| `content` | The content of ProductHighlights section. | [index](/react/components/ProductServices/index.js) |
