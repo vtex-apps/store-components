@@ -19,7 +19,9 @@ class ProductServices extends Component {
           .filter(item => item.values[0].toLowerCase() === 'enable')
           .map((item, i) => (
             <div key={i} className={'flex-row dib ma2 ph2'}>
-              <IconCheck size={20} />
+              <span className={`c-success`}>
+                <IconCheck size={20} />
+              </span>
               <span className={`f5`}>{HtmlParser(item.name)}</span>
             </div>
           ))}
