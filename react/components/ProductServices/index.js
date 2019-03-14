@@ -12,7 +12,7 @@ import styles from './styles.css'
  */
 class ProductServices extends Component {
   render() {
-    const { services } = this.props
+    const { services, iconSize } = this.props
     return (
       <div className={styles.content}>
         {services
@@ -20,7 +20,7 @@ class ProductServices extends Component {
           .map((item, i) => (
             <div key={i} className={'flex-row dib ma2 ph2'}>
               <span className={`c-success`}>
-                <IconCheck type="line" size={20} />
+                <IconCheck type="line" size={iconSize} />
               </span>
               <span className={`f5`}>{HtmlParser(item.name)}</span>
             </div>
@@ -37,6 +37,8 @@ ProductServices.defaultProps = {
 ProductServices.propTypes = {
   /** Intl object to provides internationalization */
   intl: intlShape.isRequired,
+  /** The size of IconCheck */
+  iconSize: PropTypes.number,
   /** Services that will be displayed on the table */
   services: PropTypes.arrayOf(
     PropTypes.shape({
