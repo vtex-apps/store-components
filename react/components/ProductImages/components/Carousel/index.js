@@ -250,7 +250,7 @@ class Carousel extends Component {
                   src={slide.thumbUrl || this.state.thumbUrl[i]}
                 />
                 <div
-                  className={`absolute absolute--fill b--solid b--muted-2 bw1 ${
+                  className={`absolute absolute--fill b--solid b--muted-2 bw1 pointer ${
                     styles.carouselThumbBorder
                     }`}
                 />
