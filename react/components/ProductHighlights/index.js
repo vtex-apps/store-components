@@ -15,7 +15,7 @@ class ProductHighlights extends Component {
   render() {
     const { highlights } = this.props
     return (
-      <ul>
+      <ul className={styles.content}>
         {highlights.map((item, i) => (
           <li key={i} className={`t-heading-5`}>{HtmlParser(item.name)}: <span className={`t-small`}>{HtmlParser(item.values[0])}</span> </li>
         ))}
