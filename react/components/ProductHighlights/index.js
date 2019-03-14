@@ -35,9 +35,9 @@ ProductHighlights.propTypes = {
   /** Specifications that will be displayed on the table */
   highlights: PropTypes.arrayOf(
     PropTypes.shape({
-      /** Specification name */
+      /** Highlight name */
       name: PropTypes.string.isRequired,
-      /** Specifications value */
+      /** Highlight value */
       values: PropTypes.arrayOf(PropTypes.string).isRequired,
     })
   ),
