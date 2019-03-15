@@ -1,9 +1,9 @@
 import React from 'react'
-import { orderFormProps } from '@types/vtex-io'
+import PropTypes from 'prop-types'
 
 import OrderForm from 'orderForm'
 
-export const contextPropTypes = orderFormProps
+export const contextPropTypes = PropTypes.any
 
 export const orderFormConsumer = Comp => {
   const extraProps = {
@@ -26,9 +26,7 @@ export const orderFormConsumer = Comp => {
         }),
     },
   }
-  return class extends React.Component {
-    render() {
-      return <Comp {...this.props} {...extraProps} />
-    }
+  return function WrappedOrderFormConsumer(props) {
+    return <Comp {...props} {...extraProps} />
   }
 }

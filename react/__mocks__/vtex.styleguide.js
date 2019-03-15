@@ -1,22 +1,9 @@
-import React from 'react'
-
-export function Button(props) {
-  return (
-    <button type="button" {...props}>
-      {props.children}
-    </button>
-  )
-}
-
-export function Input(props) {
-  return <input {...props} />
-}
+/* eslint react/prop-types:0 */
+import React, { forwardRef } from 'react'
 
 export function withToast(Comp) {
-  return class extends React.Component {
-    render() {
-      return <Comp {...this.props} showToast={jest.fn()} />
-    }
+  return function WrappedWithToast(props) {
+    return <Comp {...props} showToast={jest.fn()} />
   }
 }
 
@@ -31,3 +18,26 @@ export function Tab(props) {
 export function Spinner(props) {
   return <div className="spinner-mock"> {props.children} </div>
 }
+
+export const Input = forwardRef(function Input({ label, error, errorMessage, isLoading, ...props }, ref) {
+  return (
+    <label>
+      {label}
+      <input
+        data-isloading={isLoading}
+        data-error={error}
+        data-errormessage={errorMessage}
+        ref={ref}
+        {...props} />
+    </label>
+  )
+})
+
+export const Button = jest.fn(({ isLoading, variation, ...props }) => {
+  return (
+    <button
+      data-variation={variation}
+      data-isloading={isLoading}
+      {...props} />
+  )
+})
