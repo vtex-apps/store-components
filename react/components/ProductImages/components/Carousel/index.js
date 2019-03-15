@@ -73,11 +73,7 @@ class Carousel extends Component {
   }
 
   onSlideChange = () => {
-    const activeIndex = path([
-      'swiper',
-      'activeIndex',
-      this.gallerySwiper.currrent,
-    ])
+    const activeIndex = path(['swiper', 'activeIndex'], this.gallerySwiper.current)
     this.setState({ activeIndex })
   }
 
@@ -241,7 +237,7 @@ class Carousel extends Component {
             {slides.map((slide, i) => (
               <div 
                 key={i}
-                className="swiper-slide w-100 h-auto mb5" 
+                className="swiper-slide w-100 h-auto mb5 pointer" 
                 onClick={() => this.gallerySwiper.current.swiper.slideTo(i)}
               >
                 <img
