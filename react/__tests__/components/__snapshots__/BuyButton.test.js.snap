@@ -13,7 +13,7 @@ exports[`<BuyButton /> should match snapshot normal 1`] = `
   <button
     type="button"
   >
-      Test  
+    Test
   </button>
 </DocumentFragment>
 `;
@@ -21,13 +21,12 @@ exports[`<BuyButton /> should match snapshot normal 1`] = `
 exports[`<BuyButton /> should match snapshot unavailable 1`] = `
 <DocumentFragment>
   <button
+    disabled=""
     type="button"
   >
-     
     <span>
       Unavailable
     </span>
-     
   </button>
 </DocumentFragment>
 `;

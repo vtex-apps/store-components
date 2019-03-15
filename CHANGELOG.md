@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Add behavior test to SKUSelector.
+- Behavior tests for BuyButton.
 
 ### Fixed
 

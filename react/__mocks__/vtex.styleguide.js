@@ -1,7 +1,11 @@
 import React from 'react'
 
 export function Button(props) {
-  return <button type="button"> {props.children} </button>
+  return (
+    <button type="button" {...props}>
+      {props.children}
+    </button>
+  )
 }
 
 export function Input(props) {
@@ -9,7 +13,11 @@ export function Input(props) {
 }
 
 export function withToast(Comp) {
-  return Comp
+  return class extends React.Component {
+    render() {
+      return <Comp {...this.props} showToast={jest.fn()} />
+    }
+  }
 }
 
 export function Tabs(props) {
