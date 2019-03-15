@@ -30,7 +30,7 @@ exports[`<ProductPrice /> should match snapshot Loader 1`] = `
   <div
     class="priceContainer priceLoaderContainer"
   >
-    <div
+    <svg
       class="content-loader-mock"
     >
       <rect
@@ -52,7 +52,7 @@ exports[`<ProductPrice /> should match snapshot Loader 1`] = `
         y="2.75em"
       />
       <rect />
-    </div>
+    </svg>
   </div>
 </DocumentFragment>
 `;

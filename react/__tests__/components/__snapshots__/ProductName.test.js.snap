@@ -5,7 +5,7 @@ exports[`<ProductName /> should match the snapshot Loader 1`] = `
   <div
     class="productNameContainer productNameLoader"
   >
-    <div
+    <svg
       class="content-loader-mock"
     >
       <rect
@@ -19,7 +19,7 @@ exports[`<ProductName /> should match the snapshot Loader 1`] = `
         x="25%"
         y="1.75em"
       />
-    </div>
+    </svg>
   </div>
 </DocumentFragment>
 `;

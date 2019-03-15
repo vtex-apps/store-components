@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ContentLoad = ({ children }) => (
-  <div className="content-loader-mock">{children}</div>
+  <svg className="content-loader-mock">{children}</svg>
 )
 
 export default ContentLoad

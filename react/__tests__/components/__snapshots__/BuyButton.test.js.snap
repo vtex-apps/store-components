@@ -2,7 +2,7 @@
 
 exports[`<BuyButton /> should match snapshot loading 1`] = `
 <DocumentFragment>
-  <div
+  <svg
     class="content-loader-mock"
   />
 </DocumentFragment>
