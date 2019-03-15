@@ -24,31 +24,37 @@ exports[`<AvailabilitySubscriber /> should match snapshot 1`] = `
         <div
           class="input inputName w-100 mr5 mb4"
         >
-          <input
-            name="name"
-            placeholder="Name"
-            type="text"
-            value=""
-          />
+          <label>
+            <input
+              name="name"
+              placeholder="Name"
+              type="text"
+              value=""
+            />
+          </label>
         </div>
         <div
           class="input inputEmail w-100 mr5 mb4"
         >
-          <input
-            errormessage=""
-            name="email"
-            placeholder="Email"
-            type="text"
-            value=""
-          />
+          <label>
+            <input
+              data-error="false"
+              data-errormessage=""
+              name="email"
+              placeholder="Email"
+              type="text"
+              value=""
+            />
+          </label>
         </div>
         <div
           class="submit flex items-center mb4"
         >
           <button
+            data-isloading="false"
+            data-variation="primary"
             disabled=""
             type="submit"
-            variation="primary"
           >
             Send
           </button>

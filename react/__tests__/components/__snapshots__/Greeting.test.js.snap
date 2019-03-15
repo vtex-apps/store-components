@@ -5,7 +5,7 @@ exports[`<Greeting /> component should match snapshot with loading 1`] = `
   <div
     class="greetingContainer mh4 pv4 t-heading-4 c-on-base nowrap"
   >
-    <div
+    <svg
       class="content-loader-mock"
     >
       <rect
@@ -14,7 +14,7 @@ exports[`<Greeting /> component should match snapshot with loading 1`] = `
         ry="1"
         width="300"
       />
-    </div>
+    </svg>
   </div>
 </DocumentFragment>
 `;

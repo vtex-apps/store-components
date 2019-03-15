@@ -5,7 +5,7 @@ exports[`<Share /> should match snapshot Loader 1`] = `
   <div
     class="shareContainer shareLoader"
   >
-    <div
+    <svg
       class="content-loader-mock"
     >
       <circle
@@ -26,7 +26,7 @@ exports[`<Share /> should match snapshot Loader 1`] = `
         height="2em"
         r="1em"
       />
-    </div>
+    </svg>
   </div>
 </DocumentFragment>
 `;

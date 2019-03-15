@@ -2,7 +2,7 @@
 
 exports[`<BuyButton /> should match snapshot loading 1`] = `
 <DocumentFragment>
-  <div
+  <svg
     class="content-loader-mock"
   />
 </DocumentFragment>
@@ -11,7 +11,7 @@ exports[`<BuyButton /> should match snapshot loading 1`] = `
 exports[`<BuyButton /> should match snapshot normal 1`] = `
 <DocumentFragment>
   <button
-    type="button"
+    data-isloading="false"
   >
     Test
   </button>
@@ -21,8 +21,8 @@ exports[`<BuyButton /> should match snapshot normal 1`] = `
 exports[`<BuyButton /> should match snapshot unavailable 1`] = `
 <DocumentFragment>
   <button
+    data-isloading="false"
     disabled=""
-    type="button"
   >
     <span>
       Unavailable

@@ -1,8 +1,11 @@
+/* eslint react/prop-types:0 */
+
 import React from 'react'
 
-export const withRuntimeContext = Comp => props => (
-  <Comp {...props} runtime={{ hints: { mobile: false } }} />
-)
+export const withRuntimeContext = Comp =>
+  function WrappedRuntimeContext(props) {
+    return <Comp {...props} runtime={{ hints: { mobile: false } }} />
+  }
 
 export const Link = ({ children }) => <a>{children}</a>
 

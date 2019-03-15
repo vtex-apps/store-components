@@ -8,14 +8,14 @@ exports[`<ProductImages /> should match the snapshot with images 1`] = `
     <div
       class="w-100 aspect-ratio aspect-ratio--1x1"
     >
-      <div
+      <svg
         class="content-loader-mock"
       >
         <rect
           height="100%"
           width="100%"
         />
-      </div>
+      </svg>
     </div>
   </div>
 </DocumentFragment>
@@ -29,7 +29,7 @@ exports[`<ProductImages /> should match the snapshot with no images 1`] = `
     <div
       class="w-100 aspect-ratio aspect-ratio--1x1"
     >
-      <div
+      <svg
         class="content-loader-mock"
       >
         <rect
@@ -66,7 +66,7 @@ exports[`<ProductImages /> should match the snapshot with no images 1`] = `
           height="100%"
           width="100%"
         />
-      </div>
+      </svg>
     </div>
   </div>
 </DocumentFragment>

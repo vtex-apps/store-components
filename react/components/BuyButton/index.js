@@ -101,7 +101,6 @@ export class BuyButton extends Component {
           <ContentLoader />
         ) : (
           <Button
-            primary
             block={large}
             disabled={!available}
             onClick={this.handleAddToCart}

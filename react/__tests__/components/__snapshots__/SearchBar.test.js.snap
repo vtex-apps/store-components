@@ -17,16 +17,18 @@ exports[`<SearchBar /> should match snapshot 1`] = `
           <div
             class="w-100"
           >
-            <input
-              aria-autocomplete="list"
-              aria-expanded="false"
-              autocomplete="off"
-              id="downshift-1-input"
-              placeholder="Search"
-              role="combobox"
-              suffix="[object Object]"
-              value=""
-            />
+            <label>
+              <input
+                aria-autocomplete="list"
+                aria-expanded="false"
+                autocomplete="off"
+                id="downshift-1-input"
+                placeholder="Search"
+                role="combobox"
+                suffix="[object Object]"
+                value=""
+              />
+            </label>
           </div>
         </div>
       </div>
