@@ -78,7 +78,16 @@
   "editor.info-card.mobileImageUrl.description": "URL de la imagen a usuario usada en dispositivos móviles",
   "editor.info-card.textAlignment.title": "textAlignment",
   "editor.info-card.textAlignment.description": "Controla la alineación de los textos dentro del componente",
-  "user-address.change": "Cambiar",
+  "editor.info-card.textPosition.left": "Izquierda",
+  "editor.info-card.textPosition.center": "Centro",
+  "editor.info-card.textPosition.right": "Derecha",
+  "editor.info-card.textAlignment.left": "Izquierda",
+  "editor.info-card.textAlignment.center": "Centro",
+  "editor.info-card.textAlignment.right": "Derecha",
+  "editor.info-card.callAction.none": "Ninguno",
+  "editor.info-card.callAction.button": "Botón",
+  "editor.info-card.callAction.link": "Link",
   "user-address.pickup": "Recoger en",
-  "user-address.order": "Orden a"
+  "user-address.order": "Orden a",
+  "user-address.change": "Cambiar"
 }
