@@ -22,20 +22,28 @@ const skuPropType = variations => {
 
 const variationsForContainer = PropTypes.arrayOf(
   PropTypes.shape({
+    /** Variation Name */
     name: PropTypes.string,
+    /** Variation Values */
     values: PropTypes.arrayOf(PropTypes.string),
   })
 )
 
 const variationParsed = PropTypes.shape({
+  /** Variation Name */
   name: PropTypes.string,
+  /** Options Array */
   options: PropTypes.arrayOf(skuPropType(PropTypes.arrayOf(PropTypes.string))),
 })
 
 export const variationComponentPropTypes = {
+  /** Variation Object */
   variation: variationParsed,
+  /** On Select item behavior */
   onSelectItem: PropTypes.func,
+  /** Max price of SKU */
   maxSkuPrice: PropTypes.number,
+  /** Function to verify if this Variation is selected */
   isSelected: PropTypes.func,
 }
 
