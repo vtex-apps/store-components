@@ -10,24 +10,22 @@ import styles from './styles.css'
  * Product Services Component.
  * Render the services of a product.
  */
-class ProductServices extends Component {
-  render() {
-    const { services, iconSize } = this.props
-    return (
-      <div className={styles.content}>
-        {services
-          .filter(item => item.values[0].toLowerCase() === 'enable')
-          .map((item, i) => (
-            <div key={i} className={'flex-row dib ma2 ph2'}>
-              <span className={`c-success`}>
-                <IconCheck type="line" size={iconSize} />
-              </span>
-              <span className={`f5`}>{HtmlParser(item.name)}</span>
-            </div>
-          ))}
-      </div>
-    )
-  }
+const ProductServices = ({ ...props }) => {
+  const { services, iconSize } = props
+  return (
+    <div className={styles.content}>
+      {services
+        .filter(item => item.values[0].toLowerCase() === "enable")
+        .map((item, i) => (
+          <div key={i} className="flex-row dib ma2 ph2">
+            <span className="c-success">
+              <IconCheck type="line" size={iconSize} />
+            </span>
+            <span className="f5">{HtmlParser(item.name)}</span>
+          </div>
+        ))}
+    </div>
+  )
 }
 
 ProductServices.defaultProps = {

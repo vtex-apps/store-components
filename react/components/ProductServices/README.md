@@ -5,7 +5,7 @@
 `ProductServices` is a VTEX Component that shows the services of a product.
 This Component can be imported and used by any VTEX App.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
 
 ## Table of Contents
 - [Usage](#usage)
