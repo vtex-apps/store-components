@@ -9,9 +9,8 @@ import styles from './styles.css'
  * Product highlights Component.
  * Render the highlights specifications of a product.
  */
-const ProductHighlights = ({...props}) => {
+const ProductHighlights = ({ ...props }) => {
   const { highlights } = props
-
   return (
     <ul className={styles.content}>
       {highlights.map((item, i) => (
