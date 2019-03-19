@@ -2,4 +2,24 @@
 *   ProductHighlights CSS Modules
 */
 
-.content {}
+.content {
+  margin-bottom: 0.75rem;
+}
+.itemHighlight {
+  width: 100%;
+  flex: row;
+  margin-bottom: 0.5rem;
+}
+.highlightTitle {
+    float: left;
+    display: list-item;
+    list-style-type: disc;
+    list-style-position: inside;
+    font-size: 1.25rem;
+    padding-right: 0.5rem;
+}
+.highlightValue {
+    margin: auto;
+    font-size: 1rem;
+    line-height: 0.75rem;
+}
