@@ -12,9 +12,9 @@ import styles from './styles.css'
 const ProductHighlights = ({ ...props }) => {
   const { highlights } = props
   return (
-    <div className={styles.content}>
+    <div className={styles.highlightContent}>
       {highlights.map((item, i) => (
-        <div className={styles.itemHighlight}>
+        <div className={styles.itemHighlight} key={i}>
           <div className={styles.highlightTitle}>{HtmlParser(item.name)}: {' '}</div>
           <div className={styles.highlightValue}>{HtmlParser(item.values[0])}</div>
         </div>
