@@ -80,13 +80,15 @@ class BlurredLoader extends React.Component {
     const stateLoader = loadState === LOAD_STATES.LOADING
     const loadStateClass = classNames({
       'o-100': stateLoader,
-      'o-0': !stateLoader
+      'o-0': !stateLoader,
     })
     switch (loaderType) {
       case LOADER_TYPES.LINEAR:
         return (
           <div
-            className={`w-100 top-0 z-2 absolute ${styles.imageTransitionOpacity} ${loadStateClass}`}
+            className={`w-100 top-0 z-2 absolute ${
+              styles.imageTransitionOpacity
+            } ${loadStateClass}`}
           >
             <LinearProgressWithStyle className="c-action-primary" />
           </div>
@@ -94,8 +96,9 @@ class BlurredLoader extends React.Component {
       case LOADER_TYPES.SPINNER:
         return (
           <div
-            className={`absolute z-2 center-all left-0 right-0 top-0 bottom-0 ${styles.imageTransitionOpacity} ${loadStateClass}`}
-            style={{ height: 40, width: 40 }}
+            className={`absolute z-2 w-100 h-100 flex justify-center items-center ${
+              styles.imageTransitionOpacity
+            } ${loadStateClass}`}
           >
             <Spinner />
           </div>
@@ -122,7 +125,7 @@ class BlurredLoader extends React.Component {
     const loading = loadState === LOAD_STATES.LOADING
     const loadingClass = classNames({
       'o-100': loading,
-      'o-0': !loading
+      'o-0': !loading,
     })
 
     return (
@@ -140,13 +143,9 @@ class BlurredLoader extends React.Component {
               alt={alt}
               src={loaderUrl}
               minRatio={imageMinRatio}
-              className={`w-100 ${styles.imageBlur30} ${styles.imageTransitionOpacity} db z-2 ${loadingClass} ${className}`}
-            />
-            <ImageResizer
-              alt=""
-              src={realUrls[realUrlIndex]}
-              minRatio={imageMinRatio}
-              className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 ${styles.imageTransitionOpacity} db ${loadingClass}`}
+              className={`w-100 ${styles.imageBlur30} ${
+                styles.imageTransitionOpacity
+              } db z-2 ${loadingClass} ${className}`}
             />
           </div>
         )}
