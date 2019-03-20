@@ -39,7 +39,6 @@ const withWrapper = Component => props => (
 )
 
 const Greeting = ({ orderForm }) => {
-  console.log('orderForm', orderForm)
   const firstName = path(['clientProfileData', 'firstName'], orderForm)
   if (!firstName) return null
 
