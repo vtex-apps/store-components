@@ -5,6 +5,7 @@ import gql from 'graphql-tag'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
 import { compose, pick } from 'ramda'
+import { orderFormConsumer } from 'vtex.store-resources/OrderFormContext'
 
 import { Button, withToast } from 'vtex.styleguide'
 
@@ -76,26 +77,49 @@ export class BuyButton extends Component {
       isOneClickBuy,
       onAddStart,
       onAddFinish,
+      orderFormContext,
     } = this.props
     this.setState({ isAddingToCart: true })
     onAddStart && onAddStart()
 
     let showToastMessage = null
+    
     try {
       const minicartItems = skuItems.map(this.skuItemToMinicartItem)
-
       const {
         data: { addToCart: linkStateItems },
       } = await addToCart(minicartItems)
 
-      const success =
-        linkStateItems &&
+      let success = null
+      if (!linkStateItems) {
+        // minicart does not have link state implemented, calling graphql directly
+        // SHOULD BE ERASED ON THE NEAR FUTURE
+        const variables = {
+          items: skuItems.map(skuItem => {
+            const { skuId } = skuItem
+            return {
+              id: parseInt(skuId),
+              index: 1,
+              ...pick(['quantity', 'seller', 'options'], skuItem),
+            }
+          }),
+        }
+        variables.orderFormId = orderFormContext.orderForm.orderFormId
+        const mutationRes = await orderFormContext.addItem({ variables })
+        const { items } = mutationRes.data.addItem
+        success = skuItems.filter(
+          skuItem => !!items.find(({ id }) => id === skuItem.skuId)
+        )
+        await orderFormContext.refetch().catch(() => null)
+      }
+
+      success = success || (linkStateItems &&
         skuItems.filter(
           skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
-        )
-
+        ))
+      
       if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
-      showToastMessage = () => this.toastMessage(success.length >= 1)
+      showToastMessage = () => this.toastMessage(success && success.length >= 1)
     } catch (err) {
       console.error(err)
       showToastMessage = () => this.toastMessage(false)
@@ -208,5 +232,6 @@ const withMutation = graphql(
 export default compose(
   withMutation,
   withToast,
-  injectIntl
+  injectIntl,
+  orderFormConsumer,
 )(BuyButton)
