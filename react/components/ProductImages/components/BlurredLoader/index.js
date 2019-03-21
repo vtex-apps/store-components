@@ -90,6 +90,12 @@ class BlurredLoader extends React.Component {
             minRatio={imageMinRatio}
             className={`w-100 db ${className}`}
           />
+          <ImageResizer
+            className="w-100"
+            alt={alt}
+            src={realUrls[realUrlIndex]}
+            minRatio={imageMinRatio}
+          />
         </Loader>
         <ImageResizer
           className="w-100"
