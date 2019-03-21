@@ -4124,6 +4124,13 @@ react-slick@^0.23.1:
     prettier "^1.14.3"
     resize-observer-polyfill "^1.5.0"
 
+react-spring@^8.0.18:
+  version "8.0.18"
+  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-8.0.18.tgz#f6fa09ab5acdeb37618c0e340d59830171b95c33"
+  integrity sha512-gb1Rtsnez2gxIHtbrbwQsAjE4ir/62m+gI+eT+1E0Uky5L1PbLccbywRIdIpK3W5jiNmU6OlEazVk0tfI8pZrA==
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+
 react-testing-library@^6.0.0:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/react-testing-library/-/react-testing-library-6.0.1.tgz#0ddf155cb609529e37359a82cc63eb3f830397fd"
