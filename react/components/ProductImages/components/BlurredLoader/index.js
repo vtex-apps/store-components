@@ -1,12 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
-import { withStyles } from '@material-ui/core/styles'
-import classNames from 'classnames'
 import ImageResizer from './ImageResizer'
 import styles from '../../styles.css'
 import { Loader } from './Loader'
-const stylesDefault = { barColorPrimary: { backgroundColor: 'currentColor' } }
 
 const LOAD_STATES = {
   LOADING: 'LOADING',
@@ -81,24 +77,18 @@ class BlurredLoader extends React.Component {
   }
 
   render() {
-    const { className, alt, loaderUrl, realUrls } = this.props
+    const { className, alt, loaderUrl, realUrls, loaderType } = this.props
     const { loadState, realUrlIndex } = this.state
     const loaded = loadState === LOAD_STATES.LOADED
-    const loading = loadState === LOAD_STATES.LOADING
-    const transition = loadState === LOAD_STATES.TRANSITION
-    const loadingClass = classNames({
-      'o-100': loading,
-      'o-0': !loading,
-    })
 
     return (
       <div className={`${styles.image} relative`}>
-        <Loader loaded={loaded}>
+        <Loader loaded={loaded} loaderType={loaderType}>
           <ImageResizer
             alt={alt}
             src={loaderUrl}
             minRatio={imageMinRatio}
-            className={`w-100 h-100 db ${className}`}
+            className={`w-100 db ${className}`}
           />
         </Loader>
         <ImageResizer
