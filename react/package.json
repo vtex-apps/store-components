@@ -41,7 +41,7 @@
     "vtex-tachyons": "^2.3.0"
   },
   "devDependencies": {
-    "@vtex/test-tools": "^0.1.2",
+    "@vtex/test-tools": "^0.1.4",
     "apollo-cache-inmemory": "^1.4.3"
   },
   "vtexScriptsOverride": {

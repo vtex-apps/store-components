@@ -1030,7 +1030,7 @@
     react-responsive-modal "^2.0.1"
     vtex-tachyons "^2.3.0"
 
-"@vtex/test-tools@^0.1.2":
+"@vtex/test-tools@^0.1.4":
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/@vtex/test-tools/-/test-tools-0.1.4.tgz#c807fe429300a50c660250b2572b58b60573b76f"
   integrity sha512-nBFvXPs8LlR1qMpeyDCNDwEISgIJLVOvw5X24HODRZVB3oLXIzzpHk7c+c2qo7OPKeCdBzKNG5Qp5ZKmYrCyIw==
@@ -1419,9 +1419,9 @@ browserslist@^4.4.2, browserslist@^4.5.1:
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.5.1.tgz#2226cada1947b33f4cfcf7b608dcb519b6128106"
   integrity sha512-/pPw5IAUyqaQXGuD5vS8tcbudyPZ241jk1W5pQBsGDfcjNQt7p8qxZhgMNuygDShte1PibLFexecWUPgmVLfrg==
   dependencies:
-    caniuse-lite "^1.0.30000949"
-    electron-to-chromium "^1.3.116"
-    node-releases "^1.1.11"
+    caniuse-lite "^1.0.30000939"
+    electron-to-chromium "^1.3.113"
+    node-releases "^1.1.8"
 
 bser@^2.0.0:
   version "2.0.0"
@@ -3964,7 +3964,7 @@ ramda@^0.26.1:
   resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.26.1.tgz#8d41351eb8111c55353617fc3bbffad8e4d35d06"
   integrity sha512-hLWjpy7EnsDBb0p+Z3B7rPi3GDeRG5ZtiI33kJhTt+ORCd38AbAIjB/9zRIUoeTbE/AVX5ZkU7m6bznsvrf8eQ==
 
-react-apollo@^2.5.2, react-apollo@~2.5.2:
+react-apollo@^2.5.2:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.5.2.tgz#6732c6af55e6adc9ebf97bf189e867a893c449d3"
   integrity sha512-lmglhG6NQ+lfAUDzx8ZgelWKUbvxBhhy1l7Z2ksgtQ8+FVqwX7i6p5O3zicAZZlIdKzdq82V0kqq5WkxEsffrA==
