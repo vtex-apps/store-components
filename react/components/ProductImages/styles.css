@@ -11,6 +11,12 @@
 .image {
 }
 
+.loader {
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available;
+}
+
 .imageBlur30 {
   content: '';
   background: inherit;

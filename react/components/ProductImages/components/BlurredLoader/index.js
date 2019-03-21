@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
+import { useSpring, animated } from 'react-spring'
 import PropTypes from 'prop-types'
 import ImageResizer from './ImageResizer'
 import styles from '../../styles.css'
@@ -17,72 +18,74 @@ export const LOADER_TYPES = {
   LINEAR: 'LINEAR',
 }
 
-class BlurredLoader extends React.Component {
-  state = {
+const BlurredLoader = ({
+  className,
+  alt,
+  loaderUrl,
+  realUrls,
+  thresholds,
+  onload,
+  bestUrlIndex,
+  loaderType,
+}) => {
+  const [state, setState] = useState({
     loadState: LOAD_STATES.LOADING,
     realUrlIndex: null,
-  }
-  timers = {}
-  loadCounter = 0
+  })
 
-  generateImage = urlIndex => {
-    const { realUrls } = this.props
-    const { realUrlIndex } = this.state
-    const bestUrlIndex = urlIndex || this.props.bestUrlIndex
+  let loadCounter = 0
+
+  const generateImage = urlIndex => {
+    const { realUrlIndex } = state
+    const newBestUrlIndex = urlIndex || bestUrlIndex
 
     if (realUrlIndex && bestUrlIndex <= realUrlIndex) {
       return
     }
 
     const hdImageLoader = new Image()
-    hdImageLoader.src = realUrls[bestUrlIndex]
+    hdImageLoader.src = realUrls[newBestUrlIndex]
 
     hdImageLoader.onerror = () => {
-      let { realUrlIndex } = this.state
+      let { realUrlIndex } = state
       if (!realUrlIndex) realUrlIndex = 0
+      console.log('erro')
 
-      if (this.loadCounter > 10) return
-      this.loadCounter++
-      this.generateImage(Math.max(bestUrlIndex - 1, realUrlIndex))
+      if (loadCounter > 10) return
+      loadCounter++
+      generateImage(Math.max(newBestUrlIndex - 1, realUrlIndex))
     }
 
     hdImageLoader.onload = () => {
-      const { realUrlIndex } = this.state
-      if (realUrlIndex && bestUrlIndex <= realUrlIndex) return
+      const { realUrlIndex } = state
+      if (realUrlIndex && newBestUrlIndex <= realUrlIndex) return
+      console.log(realUrlIndex)
 
-      this.setState({
-        loadState: LOAD_STATES.TRANSITION,
-        realUrlIndex: bestUrlIndex,
+      setState({
+        realUrlIndex: newBestUrlIndex,
       })
-      const timer = setTimeout(() => {
-        this.setState({ loadState: LOAD_STATES.LOADED })
-        this.props.onload && this.props.onload()
-        delete this.timers[timer]
-      }, 1000)
-      this.timers[timer] = true
 
-      if (this.props.bestUrlIndex > bestUrlIndex) {
-        this.generateImage()
+      if (bestUrlIndex > newBestUrlIndex) {
+        console.log('bestUrlIndex > newBestUrlIndex')
+        generateImage()
+      } else {
+        setState({ loadState: LOAD_STATES.LOADED })
+        onload && onload()
       }
     }
   }
 
-  componentDidMount() {
-    this.generateImage()
-  }
+  useEffect(() => {
+    generateImage()
+  }, [])
 
-  componentWillUnmount() {
-    const keys = Object.keys(this.timers)
-    keys.forEach(key => this.timers[key] && clearTimeout(key))
-  }
+  const { loadState, realUrlIndex } = state
+  const loaded = loadState === LOAD_STATES.LOADED
+  console.log('Rendering')
 
-  render() {
-    const { className, alt, loaderUrl, realUrls, loaderType } = this.props
-    const { loadState, realUrlIndex } = this.state
-    const loaded = loadState === LOAD_STATES.LOADED
-
-    return (
-      <div className={`${styles.image} relative`}>
+  return (
+    <div className={`${styles.image} w-100 relative`}>
+      <div className="h-100 w-100 z-5">
         <Loader loaded={loaded} loaderType={loaderType}>
           <ImageResizer
             alt={alt}
@@ -91,15 +94,17 @@ class BlurredLoader extends React.Component {
             className={`w-100 db ${className}`}
           />
         </Loader>
+      </div>
+      <div className="h-100 w-100 z-1 absolute top-0 left-0">
         <ImageResizer
-          className="w-100"
+          className="w-100 h-100"
           alt={alt}
           src={realUrls[realUrlIndex]}
           minRatio={imageMinRatio}
         />
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 BlurredLoader.propTypes = {
