@@ -21,15 +21,28 @@ You should follow the usage instruction in the main [README](https://github.com/
 
 Then, add `product-highlights` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json).
 
+Now, you can change the behavior of the `product-details` through blocks. See an example of how to configure: 
+
+```json
+  "product-details": {
+      "blocks": [
+        "...",
+        "product-highlights"
+      ]
+    }
+```
+
 ### Blocks API
 
-This component has an interface that describes which rules must be implemented by a block when you want to use the `ProductHighlights`.
+This component has an interface that describes how `product-highlight` must be implemented by a bloc.
 
 ```json
   "product-highlights": {
     "component": "ProductDescription"
   }
 ```
+
+As you can see, isn't necessary implementing any blocks to use the `ProductHighlights`.
 
 ### Configuration
 
