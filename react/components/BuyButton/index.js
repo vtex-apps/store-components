@@ -95,6 +95,7 @@ export class BuyButton extends Component {
         // minicart does not have link state implemented, calling graphql directly
         // SHOULD BE ERASED ON THE NEAR FUTURE
         const variables = {
+          orderFormId: orderFormContext.orderForm.orderFormId,
           items: skuItems.map(skuItem => {
             const { skuId } = skuItem
             return {
@@ -104,7 +105,6 @@ export class BuyButton extends Component {
             }
           }),
         }
-        variables.orderFormId = orderFormContext.orderForm.orderFormId
         const mutationRes = await orderFormContext.addItem({ variables })
         const { items } = mutationRes.data.addItem
         success = skuItems.filter(
