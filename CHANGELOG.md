@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.20.0] - 2019-03-21
+### Changed
+- Use the new Apollo Local State management API to handle the orderForm operations.
+
 ## [3.19.10] - 2019-03-15
 ### Fixed
 - Fix zoom and slide change on `Carousel` of `ProductImages`.

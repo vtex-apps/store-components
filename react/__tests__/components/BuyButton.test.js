@@ -1,5 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@vtex/test-tools/react'
+import { MockedProvider } from 'react-apollo/test-utils'
 
 import BuyButton from '../../BuyButton'
 
@@ -9,7 +10,11 @@ describe('<BuyButton />', () => {
       ...customProps,
     }
 
-    const comp = <BuyButton {...props}>{text}</BuyButton>
+    const comp = (
+      <MockedProvider resolvers={{}}>
+        <BuyButton {...props}>{text}</BuyButton>
+      </MockedProvider>
+    )
 
     return render(comp)
   }
