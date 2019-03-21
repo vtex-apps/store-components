@@ -1,14 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Spinner } from 'vtex.styleguide'
-import LinearProgress from '@material-ui/core/LinearProgress'
+
 import { withStyles } from '@material-ui/core/styles'
 import classNames from 'classnames'
 import ImageResizer from './ImageResizer'
 import styles from '../../styles.css'
-
+import { Loader } from './Loader'
 const stylesDefault = { barColorPrimary: { backgroundColor: 'currentColor' } }
-const LinearProgressWithStyle = withStyles(stylesDefault)(LinearProgress)
 
 const LOAD_STATES = {
   LOADING: 'LOADING',
@@ -60,7 +58,6 @@ class BlurredLoader extends React.Component {
         loadState: LOAD_STATES.TRANSITION,
         realUrlIndex: bestUrlIndex,
       })
-
       const timer = setTimeout(() => {
         this.setState({ loadState: LOAD_STATES.LOADED })
         this.props.onload && this.props.onload()
@@ -74,40 +71,6 @@ class BlurredLoader extends React.Component {
     }
   }
 
-  Loader = () => {
-    const { loaderType } = this.props
-    const { loadState } = this.state
-    const stateLoader = loadState === LOAD_STATES.LOADING
-    const loadStateClass = classNames({
-      'o-100': stateLoader,
-      'o-0': !stateLoader,
-    })
-    switch (loaderType) {
-      case LOADER_TYPES.LINEAR:
-        return (
-          <div
-            className={`w-100 top-0 z-2 absolute ${
-              styles.imageTransitionOpacity
-            } ${loadStateClass}`}
-          >
-            <LinearProgressWithStyle className="c-action-primary" />
-          </div>
-        )
-      case LOADER_TYPES.SPINNER:
-        return (
-          <div
-            className={`absolute z-2 w-100 h-100 flex justify-center items-center ${
-              styles.imageTransitionOpacity
-            } ${loadStateClass}`}
-          >
-            <Spinner />
-          </div>
-        )
-      default:
-        return null
-    }
-  }
-
   componentDidMount() {
     this.generateImage()
   }
@@ -118,37 +81,32 @@ class BlurredLoader extends React.Component {
   }
 
   render() {
-    const { Loader } = this
     const { className, alt, loaderUrl, realUrls } = this.props
     const { loadState, realUrlIndex } = this.state
     const loaded = loadState === LOAD_STATES.LOADED
     const loading = loadState === LOAD_STATES.LOADING
+    const transition = loadState === LOAD_STATES.TRANSITION
     const loadingClass = classNames({
       'o-100': loading,
       'o-0': !loading,
     })
 
     return (
-      <div className={styles.image}>
+      <div className={`${styles.image} relative`}>
+        <Loader loaded={loaded}>
+          <ImageResizer
+            alt={alt}
+            src={loaderUrl}
+            minRatio={imageMinRatio}
+            className={`w-100 h-100 db ${className}`}
+          />
+        </Loader>
         <ImageResizer
-          className={`w-100 ${loaded ? 'db' : 'dn'}`}
+          className="w-100"
           alt={alt}
           src={realUrls[realUrlIndex]}
           minRatio={imageMinRatio}
         />
-        {!loaded && (
-          <div className="relative w-100 db">
-            <Loader />
-            <ImageResizer
-              alt={alt}
-              src={loaderUrl}
-              minRatio={imageMinRatio}
-              className={`w-100 ${styles.imageBlur30} ${
-                styles.imageTransitionOpacity
-              } db z-2 ${loadingClass} ${className}`}
-            />
-          </div>
-        )}
       </div>
     )
   }
