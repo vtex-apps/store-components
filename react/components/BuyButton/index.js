@@ -149,15 +149,24 @@ BuyButton.propTypes = {
       quantity: PropTypes.number.isRequired,
       /** Which seller is being referenced by the button */
       seller: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      /* Sku name */
       name: PropTypes.string.isRequired,
+      /* Sku price */
       price: PropTypes.number.isRequired,
+      /* Sku variant */
       variant: PropTypes.string,
+      /* Sku brand */
       brand: PropTypes.string.isRequired,
+      /* Sku options. In delivery, for examples, are the pizza options */
       options: PropTypes.arrayOf(
         PropTypes.shape({
+          /* Option id */
           id: PropTypes.string.isRequired,
+          /* Option quantity */
           quantity: PropTypes.number.isRequired,
+          /* Option assembly id */
           assemblyId: PropTypes.string.isRequired,
+          /* Option seller */
           seller: PropTypes.string,
         })
       ),
