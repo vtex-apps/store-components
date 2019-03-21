@@ -93,7 +93,6 @@ export class BuyButton extends Component {
       let success = null
       if (!linkStateItems) {
         // minicart does not have link state implemented, calling graphql directly
-        // SHOULD BE ERASED ON THE NEAR FUTURE
         const variables = {
           orderFormId: orderFormContext.orderForm.orderFormId,
           items: skuItems.map(skuItem => {
