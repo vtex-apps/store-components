@@ -29,8 +29,6 @@ class Logo extends Component {
     title: 'VTEX logo',
     color: '#F71963',
     showLabel: true,
-    width: 493,
-    height: 177,
   }
 
   getUrl(url, runtime) {
