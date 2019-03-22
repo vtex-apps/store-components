@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.20.2] - 2019-03-22
+### Fixed
+- Fix local query on `UserAddress`.
+
 ## [3.20.1] - 2019-03-21
 ### Fixed
 - Add fallback to store-graphql add item on `BuyButton`.
