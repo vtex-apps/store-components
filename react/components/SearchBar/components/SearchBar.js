@@ -38,7 +38,7 @@ export default class SearchBar extends Component {
       />
     )
 
-    const mainClasses = classNames(styles.searchBarContainer)
+    const mainClasses = `w-100 mw7 ${classNames(styles.searchBarContainer)}`
 
     return (
       <div className={mainClasses}>
