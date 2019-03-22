@@ -128,39 +128,41 @@ class UserAddress extends React.Component {
 export default graphql(
   gql`
     query {
-      orderForm @client {
-        shippingData {
-          address {
-            id
-            neighborhood
-            complement
-            number
-            street
-            postalCode
-            city
-            reference
-            addressName
-            addressType
-          }
-          availableAddresses {
-            id
-            neighborhood
-            complement
-            number
-            street
-            postalCode
-            city
-            reference
-            addressName
-            addressType
+      minicart @client {
+        orderForm {
+          shippingData {
+            address {
+              id
+              neighborhood
+              complement
+              number
+              street
+              postalCode
+              city
+              reference
+              addressName
+              addressType
+            }
+            availableAddresses {
+              id
+              neighborhood
+              complement
+              number
+              street
+              postalCode
+              city
+              reference
+              addressName
+              addressType
+            }
           }
         }
       }
     }
   `,
   {
-    props: ({ data: { orderForm } }) => ({
-      orderForm,
+    props: ({ data: { minicart } }) => ({
+      orderForm: minicart && minicart.orderForm || {},
     }),
   }
 )(UserAddress)
