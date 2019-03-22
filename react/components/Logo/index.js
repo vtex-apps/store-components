@@ -49,7 +49,6 @@ class Logo extends Component {
     }
 
     return this.renderLogoImage()
-
   }
 
   renderLogoImage() {
@@ -86,8 +85,8 @@ class Logo extends Component {
           <div className={`${logoClassNames} store-logo`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width={`${width}px`}
-              height={`${height}px`}
+              width={`${width || 24}px`}
+              height={`${height || 24}px`}
               viewBox="0 0 24 24"
             >
               <path
