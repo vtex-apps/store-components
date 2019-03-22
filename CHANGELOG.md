@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added 
+- Allow adding link to logo.
+
+### Changed
+- Set w-100 to search bar and adjust default logo size.
 
 ## [3.19.10] - 2019-03-15
 ### Fixed
