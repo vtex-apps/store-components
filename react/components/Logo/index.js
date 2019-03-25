@@ -22,13 +22,19 @@ class Logo extends Component {
     /** Logo's height */
     height: PropTypes.number,
     /** Set label visibility */
+    /** TODO: Remove this prop, as it doesn't make sense anymore
+     * (previously, the placeholder was a VTEX logo. This prop
+     * would switch between the logo with and without a VTEX label.
+     * Now the placeholder without label is generic, so the 
+     * semantics of this prop are lost)
+     */
     showLabel: PropTypes.bool,
     /** Render Runtime */
     runtime: PropTypes.object,
   }
 
   static defaultProps = {
-    title: 'VTEX logo',
+    title: 'Logo',
     color: '#F71963',
     showLabel: true,
   }
@@ -46,7 +52,7 @@ class Logo extends Component {
       return (
         <Link to={href}>
           <div className={`${logoClassNames} store-logo pv4 ph6`}>
-          {this.renderLogoImage()}
+            {this.renderLogoImage()}
           </div>
         </Link>
       )
@@ -89,7 +95,7 @@ class Logo extends Component {
     return (
       <Placeholder
         logoClassNames={logoClassNames}
-            width={width}
+        width={width}
         height={height} />
     )
   }
