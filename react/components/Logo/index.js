@@ -48,17 +48,17 @@ class Logo extends Component {
       href,
     } = this.props
 
+    const logo = (
+      <div className={`${logoClassNames} store-logo pv4 ph6`}>
+        {this.renderLogoImage()}
+      </div>
+    )
+
     if (href) {
-      return (
-        <Link to={href}>
-          <div className={`${logoClassNames} store-logo pv4 ph6`}>
-            {this.renderLogoImage()}
-          </div>
-        </Link>
-      )
+      return <Link to={href}>{logo}</Link>
     }
 
-    return this.renderLogoImage()
+    return logo
   }
 
   renderLogoImage() {
