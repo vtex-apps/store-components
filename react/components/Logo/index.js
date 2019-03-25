@@ -94,7 +94,6 @@ class Logo extends Component {
 
     return (
       <Placeholder
-        logoClassNames={logoClassNames}
         width={width}
         height={height} />
     )
