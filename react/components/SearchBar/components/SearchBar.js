@@ -39,11 +39,9 @@ export default class SearchBar extends Component {
       />
     )
 
-    const mainClasses = `w-100 mw7 pv4 ${classNames(styles.searchBarContainer)}`
-
     return (
       <div
-        className={mainClasses}
+        className={classNames('w-100 mw7 pv4', styles.searchBarContainer)}
         style={{
           ...(maxWidth && {
             maxWidth: typeof maxWidth === "number"
