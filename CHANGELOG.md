@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Allow adding link to logo.
 
 ### Changed
-- Set w-100 to search bar and add padding
+- Set w-100 to search bar and add padding.
 - Adjust default logo size and add padding.
 
 ## [3.20.2] - 2019-03-22
