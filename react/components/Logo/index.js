@@ -46,10 +46,16 @@ class Logo extends Component {
   render() {
     const {
       href,
+      isMobile,
     } = this.props
+    
+    const logoClassNames = classNames('store-logo', styles.logoContainer, {
+      [styles.sizeDesktop]: !isMobile,
+      [styles.sizeMobile]: isMobile,
+    })
 
     const logo = (
-      <div className={`${logoClassNames} store-logo pv4 ph6`}>
+      <div className={`${logoClassNames} pv4 ph6`}>
         {this.renderLogoImage()}
       </div>
     )
@@ -65,18 +71,12 @@ class Logo extends Component {
     const {
       width,
       height,
-      isMobile,
       color,
       showLabel,
       url,
       title,
       runtime,
     } = this.props
-
-    const logoClassNames = classNames(`${styles.logoContainer}`, {
-      [styles.sizeDesktop]: !isMobile,
-      [styles.sizeMobile]: isMobile,
-    })
 
     if (url) {
       return <img src={this.getUrl(url, runtime)} alt={title} />
