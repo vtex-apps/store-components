@@ -14,8 +14,8 @@ const ProductHighlights = ({ ...props }) => {
   return (
     <div className={styles.highlightContent}>
       {highlights.map((item, i) => (
-        <div className={styles.itemHighlight} key={i}>
-          <div className={styles.highlightTitle}>{HtmlParser(item.name)}: {' '}</div>
+        <div className={styles.itemHighlight} data-name={item.name} key={i}>
+          <div className={styles.highlightTitle}  >{HtmlParser(item.name)}: {' '}</div>
           <div className={styles.highlightValue}>{HtmlParser(item.values[0])}</div>
         </div>
       ))}
