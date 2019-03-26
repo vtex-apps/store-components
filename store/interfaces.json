@@ -43,8 +43,5 @@
   },
   "user-address": {
     "component": "UserAddress"
-  },
-  "product-services": {
-    "component": "ProductServices"
   }
 }
