@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.20.3] - 2019-03-25
+### Added 
+- Allow adding link to logo.
+
+### Changed
+- Set w-100 to search bar and add padding.
+- Adjust default logo size and add padding.
+
 ## [3.20.2] - 2019-03-22
 ### Fixed
 - Fix local query on `UserAddress`.

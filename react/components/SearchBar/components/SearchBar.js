@@ -24,6 +24,7 @@ export default class SearchBar extends Component {
       hasIconLeft,
       iconClasses,
       autoFocus,
+      maxWidth,
     } = this.props
 
     const fallback = (
@@ -38,10 +39,16 @@ export default class SearchBar extends Component {
       />
     )
 
-    const mainClasses = classNames(styles.searchBarContainer)
-
     return (
-      <div className={mainClasses}>
+      <div
+        className={classNames('w-100 mw7 pv4', styles.searchBarContainer)}
+        style={{
+          ...(maxWidth && {
+            maxWidth: typeof maxWidth === "number"
+              ? `${maxWidth}px`
+              : maxWidth
+          })
+        }}>
         <NoSSR onSSR={fallback}>
           <DownshiftComponent>
             {({
@@ -120,4 +127,6 @@ SearchBar.propTypes = {
   iconClasses: PropTypes.string,
   /** Identify if the search input should autofocus or not */
   autoFocus: PropTypes.bool,
+  /** Max width of the search bar */
+  maxWidth: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
 }

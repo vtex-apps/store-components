@@ -3,7 +3,7 @@
 exports[`<SearchBar /> should match snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="searchBarContainer"
+    class="w-100 mw7 pv4 searchBarContainer"
   >
     <div
       class="NoSSR-mock"
