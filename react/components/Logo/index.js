@@ -34,7 +34,6 @@ class Logo extends Component {
   }
 
   static defaultProps = {
-    title: 'Logo',
     color: '#F71963',
     showLabel: true,
   }
@@ -88,14 +87,18 @@ class Logo extends Component {
         <LogoVTEX
           width={width}
           height={height}
-          color={color} />
+          color={color}
+          title={title}
+        />
       )
     }
 
     return (
       <Placeholder
         width={width}
-        height={height} />
+        height={height}
+        title={title}
+      />
     )
   }
 }

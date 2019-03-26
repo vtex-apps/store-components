@@ -7,36 +7,57 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.20.4] - 2019-03-26
+
+### Fixed
+
+- Use title in svg Logo.
+
 ## [3.20.3] - 2019-03-25
-### Added 
+
+### Added
+
 - Allow adding link to logo.
 
 ### Changed
+
 - Set w-100 to search bar and add padding.
 - Adjust default logo size and add padding.
 
 ## [3.20.2] - 2019-03-22
+
 ### Fixed
+
 - Fix local query on `UserAddress`.
 
 ## [3.20.1] - 2019-03-21
+
 ### Fixed
+
 - Add fallback to store-graphql add item on `BuyButton`.
 
 ## [3.20.0] - 2019-03-21
+
 ### Changed
+
 - Use the new Apollo Local State management API to handle the orderForm operations.
 
 ## [3.19.10] - 2019-03-15
+
 ### Fixed
+
 - Fix zoom and slide change on `Carousel` of `ProductImages`.
 
 ## [3.19.9] - 2019-03-14
+
 ### Fixed
+
 - Clicking the `BuyButton` will no more redirect if there is an `anchor` tag ancestor.
 
 ## [3.19.8] - 2019-03-14
+
 ### Changed
+
 - Change messages basic languages files.
 
 ## [3.19.7] - 2019-03-14

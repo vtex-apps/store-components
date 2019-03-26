@@ -5,7 +5,11 @@ import { render } from '@vtex/test-tools/react'
 
 describe('<Logo /> component', () => {
   const renderComponent = customProps => {
-    const comp = <Logo {...customProps} />
+    const props = {
+      title: 'title',
+      ...customProps,
+    }
+    const comp = <Logo {...props} />
 
     return render(comp)
   }
