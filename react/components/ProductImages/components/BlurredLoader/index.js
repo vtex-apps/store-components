@@ -1,9 +1,8 @@
-import React, { useState, useCallback, useEffect } from 'react'
-import { useSpring, animated } from 'react-spring'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import ImageResizer from './ImageResizer'
 import styles from '../../styles.css'
-import { Loader } from './Loader'
+import { Loader, LOADER_TYPES } from './Loader'
 
 const LOAD_STATES = {
   LOADING: 'LOADING',
@@ -13,10 +12,7 @@ const LOAD_STATES = {
 
 const imageMinRatio = 2 / 3
 
-export const LOADER_TYPES = {
-  SPINNER: 'SPINNER',
-  LINEAR: 'LINEAR',
-}
+export const PROGRESS_TYPES = LOADER_TYPES
 
 const BlurredLoader = ({
   className,
@@ -92,7 +88,7 @@ const BlurredLoader = ({
       <div className="h-100 w-100">
         <Loader loaded={loaded} loaderType={loaderType}>
           <ImageResizer
-            alt=""
+            alt={alt}
             src={loaderUrl}
             minRatio={imageMinRatio}
             className={`w-100 db ${className}`}

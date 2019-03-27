@@ -136,7 +136,6 @@ class Carousel extends Component {
 
     if (!equals(prevProps.slides, this.props.slides)) {
       this.setInitialVariablesState()
-
       this.setState(initialState)
       return
     }
