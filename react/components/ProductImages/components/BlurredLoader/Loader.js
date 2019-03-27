@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSpring, animated } from 'react-spring'
 import PropTypes from 'prop-types'
 import { Spinner } from 'vtex.styleguide'
@@ -7,11 +7,16 @@ import { LOADER_TYPES } from './index'
 import styles from '../../styles.css'
 
 export const Loader = ({ loaderType, loaded, children }) => {
-  const props = useSpring({
-    opacity: loaded ? 0 : 1,
-    from: { opacity: 1 },
-    config: { duration: 1000 },
-  })
+  const [props, set] = useSpring(() => ({
+    opacity: 1,
+  }))
+
+  console.log(loaded)
+
+  useEffect(() => {
+    const opacity = loaded ? 0 : 1
+    set({ opacity })
+  }, [loaded])
 
   const LoadComp =
     loaderType === LOADER_TYPES.SPINNER ? <Spinner /> : <LinearProgress />

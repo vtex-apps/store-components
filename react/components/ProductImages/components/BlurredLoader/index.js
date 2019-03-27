@@ -49,7 +49,6 @@ const BlurredLoader = ({
     hdImageLoader.onerror = () => {
       let { realUrlIndex } = state
       if (!realUrlIndex) realUrlIndex = 0
-      console.log('erro')
 
       if (loadCounter > 10) return
       loadCounter++
@@ -59,14 +58,12 @@ const BlurredLoader = ({
     hdImageLoader.onload = () => {
       const { realUrlIndex } = state
       if (realUrlIndex && newBestUrlIndex <= realUrlIndex) return
-      console.log(realUrlIndex)
 
       setState({
         realUrlIndex: newBestUrlIndex,
       })
 
       if (bestUrlIndex > newBestUrlIndex) {
-        console.log('bestUrlIndex > newBestUrlIndex')
         generateImage()
       } else {
         setState({ loadState: LOAD_STATES.LOADED })
@@ -81,27 +78,26 @@ const BlurredLoader = ({
 
   const { loadState, realUrlIndex } = state
   const loaded = loadState === LOAD_STATES.LOADED
-  console.log('Rendering')
 
   return (
     <div className={`${styles.image} w-100 relative`}>
-      <div className="h-100 w-100 z-5">
+      <div className="h-100 w-100 absolute top-0 left-0">
+        <ImageResizer
+          className="w-100"
+          alt={alt}
+          src={realUrls[realUrlIndex]}
+          minRatio={imageMinRatio}
+        />
+      </div>
+      <div className="h-100 w-100">
         <Loader loaded={loaded} loaderType={loaderType}>
           <ImageResizer
-            alt={alt}
+            alt=""
             src={loaderUrl}
             minRatio={imageMinRatio}
             className={`w-100 db ${className}`}
           />
         </Loader>
-      </div>
-      <div className="h-100 w-100 z-1 absolute top-0 left-0">
-        <ImageResizer
-          className="w-100 h-100"
-          alt={alt}
-          src={realUrls[realUrlIndex]}
-          minRatio={imageMinRatio}
-        />
       </div>
     </div>
   )
