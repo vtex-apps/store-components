@@ -19,7 +19,7 @@
     "prop-types": "^15.6.2",
     "ramda": "^0.25.0",
     "react": "^16.3.2",
-    "react-apollo": "~2.5.2",
+    "react-apollo": "2.5.2",
     "react-collapse": "^4.0.3",
     "react-content-loader": "^3.1.2",
     "react-cursor-position": "^2.4.2",
@@ -41,7 +41,7 @@
     "vtex-tachyons": "^2.3.0"
   },
   "devDependencies": {
-    "@vtex/test-tools": "^0.1.4",
+    "@vtex/test-tools": "^0.2.0",
     "apollo-cache-inmemory": "^1.4.3"
   },
   "vtexScriptsOverride": {
