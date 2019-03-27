@@ -17,6 +17,7 @@ const ProductHighlights = ({ ...props }) => {
         <div
           className={`${styles.itemHighlight} pv2`}
           data-name={item.name}
+          data-value={item.values[0]}
           key={i}
         >
           <span
