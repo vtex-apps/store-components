@@ -10,7 +10,6 @@ This Component can be imported and used by any VTEX App.
 ## Table of Contents
 
 - [Usage](#usage)
-  - [Blocks API](#blocks-api)
   - [CSS namespaces](#css-namespaces)
   - [Styles API](#styles-api)
     - [CSS namespaces](#css-namespaces)
@@ -32,17 +31,6 @@ Now, you can change the behavior of the `product-details` through blocks. See an
     }
 ```
 
-### Blocks API
-
-This component has an interface that describes how `product-highlight` must be implemented by a bloc.
-
-```json
-  "product-highlights": {
-    "component": "ProductDescription"
-  }
-```
-
-As you can see, isn't necessary implementing any blocks to use the `ProductHighlights`.
 
 ### Configuration
 
