@@ -11,8 +11,6 @@ export const Loader = ({ loaderType, loaded, children }) => {
     opacity: 1,
   }))
 
-  console.log(loaded)
-
   useEffect(() => {
     const opacity = loaded ? 0 : 1
     set({ opacity })
