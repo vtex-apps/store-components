@@ -35,10 +35,16 @@
   "product-specifications":{
     "component": "ProductSpecifications"
   },
+  "product-highlights": {
+    "component": "ProductHighlights"
+  },
   "info-card": {
     "component": "InfoCard"
   },
   "user-address": {
     "component": "UserAddress"
+  },
+  "product-services": {
+    "component": "ProductServices"
   }
 }
