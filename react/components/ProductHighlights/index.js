@@ -12,11 +12,23 @@ import styles from './styles.css'
 const ProductHighlights = ({ ...props }) => {
   const { highlights } = props
   return (
-    <div className={styles.highlightContent}>
+    <div className={`${styles.highlightContent} pt3 pb5`}>
       {highlights.map((item, i) => (
-        <div className={styles.itemHighlight} data-name={item.name} key={i}>
-          <div className={styles.highlightTitle}  >{HtmlParser(item.name)}</div>
-          <div className={styles.highlightValue}>{HtmlParser(item.values[0])}</div>
+        <div
+          className={`${styles.itemHighlight} pv2`}
+          data-name={item.name}
+          key={i}
+        >
+          <span
+            className={`${styles.highlightTitle} t-body c-on-base fw7 pr3 `}
+          >
+            {HtmlParser(item.name)}{': '}
+          </span>
+          <span
+            className={`${styles.highlightValue} t-body c-muted-1 lh-copy `}
+          >
+            {HtmlParser(item.values[0])}
+          </span>
         </div>
       ))}
     </div>
