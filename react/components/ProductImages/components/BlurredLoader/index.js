@@ -1,14 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Spinner } from 'vtex.styleguide'
-import LinearProgress from '@material-ui/core/LinearProgress'
-import { withStyles } from '@material-ui/core/styles'
-import classNames from 'classnames'
 import ImageResizer from './ImageResizer'
 import styles from '../../styles.css'
-
-const stylesDefault = { barColorPrimary: { backgroundColor: 'currentColor' } }
-const LinearProgressWithStyle = withStyles(stylesDefault)(LinearProgress)
+import { Loader, LOADER_TYPES } from './Loader'
 
 const LOAD_STATES = {
   LOADING: 'LOADING',
@@ -18,141 +12,91 @@ const LOAD_STATES = {
 
 const imageMinRatio = 2 / 3
 
-export const LOADER_TYPES = {
-  SPINNER: 'SPINNER',
-  LINEAR: 'LINEAR',
-}
+export const PROGRESS_TYPES = LOADER_TYPES
 
-class BlurredLoader extends React.Component {
-  state = {
+const BlurredLoader = ({
+  className,
+  alt,
+  loaderUrl,
+  realUrls,
+  thresholds,
+  onload,
+  bestUrlIndex,
+  loaderType,
+}) => {
+  const [state, setState] = useState({
     loadState: LOAD_STATES.LOADING,
     realUrlIndex: null,
-  }
-  timers = {}
-  loadCounter = 0
+  })
 
-  generateImage = urlIndex => {
-    const { realUrls } = this.props
-    const { realUrlIndex } = this.state
-    const bestUrlIndex = urlIndex || this.props.bestUrlIndex
+  let loadCounter = 0
+
+  const generateImage = urlIndex => {
+    const { realUrlIndex } = state
+    const newBestUrlIndex = urlIndex || bestUrlIndex
 
     if (realUrlIndex && bestUrlIndex <= realUrlIndex) {
       return
     }
 
     const hdImageLoader = new Image()
-    hdImageLoader.src = realUrls[bestUrlIndex]
+    hdImageLoader.src = realUrls[newBestUrlIndex]
 
     hdImageLoader.onerror = () => {
-      let { realUrlIndex } = this.state
+      let { realUrlIndex } = state
       if (!realUrlIndex) realUrlIndex = 0
 
-      if (this.loadCounter > 10) return
-      this.loadCounter++
-      this.generateImage(Math.max(bestUrlIndex - 1, realUrlIndex))
+      if (loadCounter > 10) return
+      loadCounter++
+      generateImage(Math.max(newBestUrlIndex - 1, realUrlIndex))
     }
 
     hdImageLoader.onload = () => {
-      const { realUrlIndex } = this.state
-      if (realUrlIndex && bestUrlIndex <= realUrlIndex) return
+      const { realUrlIndex } = state
+      if (realUrlIndex && newBestUrlIndex <= realUrlIndex) return
 
-      this.setState({
-        loadState: LOAD_STATES.TRANSITION,
-        realUrlIndex: bestUrlIndex,
+      setState({
+        realUrlIndex: newBestUrlIndex,
       })
 
-      const timer = setTimeout(() => {
-        this.setState({ loadState: LOAD_STATES.LOADED })
-        this.props.onload && this.props.onload()
-        delete this.timers[timer]
-      }, 1000)
-      this.timers[timer] = true
-
-      if (this.props.bestUrlIndex > bestUrlIndex) {
-        this.generateImage()
+      if (bestUrlIndex > newBestUrlIndex) {
+        generateImage()
+      } else {
+        setState({ loadState: LOAD_STATES.LOADED })
+        onload && onload()
       }
     }
   }
 
-  Loader = () => {
-    const { loaderType } = this.props
-    const { loadState } = this.state
-    const stateLoader = loadState === LOAD_STATES.LOADING
-    const loadStateClass = classNames({
-      'o-100': stateLoader,
-      'o-0': !stateLoader
-    })
-    switch (loaderType) {
-      case LOADER_TYPES.LINEAR:
-        return (
-          <div
-            className={`w-100 top-0 z-2 absolute ${styles.imageTransitionOpacity} ${loadStateClass}`}
-          >
-            <LinearProgressWithStyle className="c-action-primary" />
-          </div>
-        )
-      case LOADER_TYPES.SPINNER:
-        return (
-          <div
-            className={`absolute z-2 center-all left-0 right-0 top-0 bottom-0 ${styles.imageTransitionOpacity} ${loadStateClass}`}
-            style={{ height: 40, width: 40 }}
-          >
-            <Spinner />
-          </div>
-        )
-      default:
-        return null
-    }
-  }
+  useEffect(() => {
+    generateImage()
+  }, [])
 
-  componentDidMount() {
-    this.generateImage()
-  }
+  const { loadState, realUrlIndex } = state
+  const loaded = loadState === LOAD_STATES.LOADED
 
-  componentWillUnmount() {
-    const keys = Object.keys(this.timers)
-    keys.forEach(key => this.timers[key] && clearTimeout(key))
-  }
-
-  render() {
-    const { Loader } = this
-    const { className, alt, loaderUrl, realUrls } = this.props
-    const { loadState, realUrlIndex } = this.state
-    const loaded = loadState === LOAD_STATES.LOADED
-    const loading = loadState === LOAD_STATES.LOADING
-    const loadingClass = classNames({
-      'o-100': loading,
-      'o-0': !loading
-    })
-
-    return (
-      <div className={styles.image}>
+  return (
+    <div className={`${styles.image} w-100 relative`}>
+      <div className="h-100 w-100 absolute top-0 left-0">
         <ImageResizer
-          className={`w-100 ${loaded ? 'db' : 'dn'}`}
+          className="w-100"
           alt={alt}
           src={realUrls[realUrlIndex]}
           minRatio={imageMinRatio}
         />
-        {!loaded && (
-          <div className="relative w-100 db">
-            <Loader />
-            <ImageResizer
-              alt={alt}
-              src={loaderUrl}
-              minRatio={imageMinRatio}
-              className={`w-100 ${styles.imageBlur30} ${styles.imageTransitionOpacity} db z-2 ${loadingClass} ${className}`}
-            />
-            <ImageResizer
-              alt=""
-              src={realUrls[realUrlIndex]}
-              minRatio={imageMinRatio}
-              className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 ${styles.imageTransitionOpacity} db ${loadingClass}`}
-            />
-          </div>
-        )}
       </div>
-    )
-  }
+      <div className="h-100 w-100">
+        <Loader loaded={loaded} loaderType={loaderType}>
+          <ImageResizer
+            alt={alt}
+            src={loaderUrl}
+            minRatio={imageMinRatio}
+            className={`w-100 db ${className}`}
+          />
+        </Loader>
+      </div>
+    </div>
+  )
 }
 
 BlurredLoader.propTypes = {
