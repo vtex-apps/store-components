@@ -102,5 +102,13 @@
   "editor.info-card.callAction.link": "Link",
   "user-address.pickup": "Retirar em {name}",
   "user-address.order": "Enviar para",
-  "user-address.change": "Alterar"
+  "user-address.change": "Alterar",
+  "editor.notification-bar.title": "Notification bar",
+  "editor.notification-bar.description": "Um componente que mostra qualquer texto em um estilo de barra",
+  "editor.notification-bar.content.title": "Conteúdo",
+  "editor.notification-bar.content.description": "Texto da barra",
+  "editor.notification-bar.colorPattern.title": "Cor de fundo",
+  "editor.notification-bar.colorPattern.description": "A cor de fundo usada na barra",
+  "editor.notification-bar.colorPatterns.action_primary": "Cor primária",
+  "editor.notification-bar.colorPatterns.base_inverted": "Cor base invertida"
 }
