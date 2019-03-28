@@ -7,7 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed warning when use `fill-available` instead `stretch` in css.
+
 ## [3.21.2] - 2019-03-28
+
 ### Fixed
 
 - Fix `BlurredLoader` not working properly.
