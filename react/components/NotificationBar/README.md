@@ -43,14 +43,6 @@ Through the Storefront, you can change the `NotificationBar`'s behavior and inte
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
 | `content` | `String` | Text to be used in the bar. | '' |
-| `colorPattern` | `ColorPatternEnum` | Choose the background color of the bar. | `"action-primary"` |
-
-Here are the possible values of `ColorPatternEnum`
-
-| Enum name | Enum value | Description |
-| --------- | ---- | ----------- |
-| Action Primary | 'action-primary' | Background color will be 'bg-action-primary'. |
-| Base Inverted | 'base-inverted' | Background color will be 'bg-base--inverted'. |
 
 ### Styles API
 You should follow the Styles API instruction in the main [README](/README.md#styles-api).

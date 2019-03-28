@@ -106,9 +106,5 @@
   "editor.notification-bar.title": "Notification bar",
   "editor.notification-bar.description": "A component that show any text in a bar style",
   "editor.notification-bar.content.title": "Content",
-  "editor.notification-bar.content.description": "Text of the bar",
-  "editor.notification-bar.colorPattern.title": "Background color",
-  "editor.notification-bar.colorPattern.description": "The background of the bar",
-  "editor.notification-bar.colorPatterns.action_primary": "Primary color",
-  "editor.notification-bar.colorPatterns.base_inverted": "Base inverted color"
+  "editor.notification-bar.content.description": "Text of the bar"
 }
