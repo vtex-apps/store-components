@@ -87,7 +87,7 @@ class Price extends Component {
               <div
                 className={classNames(
                   productPrice.listPriceLabel,
-                  listPriceLabelClass
+                  'dib ph2 t-small-ns t-mini'
                 )}
               >
                 <FormattedMessage id="pricing.from" />
@@ -109,7 +109,7 @@ class Price extends Component {
             sellingPriceContainerClass
           )}
         >
-          {showLabels && (
+          {showLabels && listPrice !== sellingPrice && (
             <div
               className={classNames(
                 productPrice.sellingPriceLabel,

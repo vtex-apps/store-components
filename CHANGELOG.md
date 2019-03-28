@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.21.1] - 2019-03-28
+
+### Fixed
+
+- Fix labels to selling price and list price.
+
 ## [3.21.0] - 2019-03-27
 
 ### Added
+
 - Add `ProductHighlights` component.
 - Add `Newsletter` component.
 
