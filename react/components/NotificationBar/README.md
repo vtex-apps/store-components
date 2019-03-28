@@ -42,7 +42,7 @@ Through the Storefront, you can change the `NotificationBar`'s behavior and inte
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| `context` | `String` | Text to be used in the bar | '' |
+| `content` | `String` | Text to be used in the bar | '' |
 
 ### Styles API
 You should follow the Styles API instruction in the main [README](/README.md#styles-api).
