@@ -5,7 +5,7 @@
 `NotificationBar` is a VTEX component allows you to display a text content in a bar style banner.
 This Component can be imported and used by any VTEX app.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
 
 ## Table of Contents
 - [Usage](#usage)
