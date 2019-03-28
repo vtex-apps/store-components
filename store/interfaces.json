@@ -49,5 +49,8 @@
   },
   "newsletter": {
     "component": "Newsletter"
+  },
+  "notification-bar": {
+    "component": "NotificationBar"
   }
 }
