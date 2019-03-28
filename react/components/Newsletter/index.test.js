@@ -21,7 +21,7 @@ test('should add error message when user types wrong email', () => {
   const submit = getByText(/sign up/i)
 
   const wrongEmail = 'foobar'
-  fireEvent.change(mockedInput, { target: { value: wrongEmail }})
+  fireEvent.change(mockedInput, { target: { value: wrongEmail } })
   fireEvent.click(submit)
 
   expect(mockedInput).toHaveAttribute('data-errormessage')
@@ -37,16 +37,15 @@ test('should call mutation', async () => {
       },
       result: {
         data: {
-          subscribeNewsletter: {}
-        }
-      }
-    }
+          subscribeNewsletter: {},
+        },
+      },
+    },
   ]
 
-  const { getByLabelText, getByText } = render(
-    <Newsletter />,
-    { graphql: { mocks, addTypename: false }}
-  )
+  const { getByLabelText, getByText } = render(<Newsletter />, {
+    graphql: { mocks, addTypename: false },
+  })
 
   const input = getByLabelText(/subscribe to our newsletter/i)
   const submit = getByText(/sign up/i)
@@ -56,7 +55,7 @@ test('should call mutation', async () => {
 
   await wait()
 
-  const thanks = getByText(/thank you/i)
+  const thanks = getByText(/thank you/i, { exact: false })
 
   expect(thanks).toBeTruthy()
 })
@@ -69,14 +68,13 @@ test('should handle mutation error', async () => {
         query: subscribeNewsletter,
         variables: { email },
       },
-      error: new Error('ops')
-    }
+      error: new Error('ops'),
+    },
   ]
 
-  const { getByLabelText, getByText } = render(
-    <Newsletter />,
-    { graphql: { mocks, addTypename: false }}
-  )
+  const { getByLabelText, getByText, debug } = render(<Newsletter />, {
+    graphql: { mocks, addTypename: false },
+  })
 
   const input = getByLabelText(/subscribe to our newsletter/i)
   const submit = getByText(/sign up/i)
@@ -86,7 +84,7 @@ test('should handle mutation error', async () => {
 
   await wait()
 
-  const error = getByText(/something went wrong/i)
+  const error = getByText(/something went wrong/i, { exact: false })
 
   expect(error).toBeTruthy()
 })
