@@ -74,6 +74,8 @@ class Price extends Component {
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
+    console.log(sellingPrice, listPrice)
+
     return (
       <div className={classNames(productPrice.priceContainer, className)}>
         {differentPrices && (
@@ -87,7 +89,7 @@ class Price extends Component {
               <div
                 className={classNames(
                   productPrice.listPriceLabel,
-                  listPriceLabelClass
+                  'dib ph2 t-small-ns t-mini'
                 )}
               >
                 <FormattedMessage id="pricing.from" />
@@ -109,7 +111,7 @@ class Price extends Component {
             sellingPriceContainerClass
           )}
         >
-          {showLabels && (
+          {showLabels && listPrice !== sellingPrice && (
             <div
               className={classNames(
                 productPrice.sellingPriceLabel,
