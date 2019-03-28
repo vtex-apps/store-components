@@ -74,8 +74,6 @@ class Price extends Component {
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
-    console.log(sellingPrice, listPrice)
-
     return (
       <div className={classNames(productPrice.priceContainer, className)}>
         {differentPrices && (
