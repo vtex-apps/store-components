@@ -1,29 +1,24 @@
 import React, { memo } from 'react'
 import { string } from 'prop-types'
+import NotificationContent from './notificationContent'
 
-import styles from './styles.css'
-
-const NotificationBar = ({
+const NotificationInline = ({
   content
 }) => {
   return content && (
-    <div className={`${styles.notificationBarContainer} bg-base--inverted c-on-base--inverted`}>
-      <div className={`${styles.notificationBarContent} min-h-large flex items-center justify-center`}>
-        {content}
-      </div>
-    </div>
+    <NotificationContent content={content} />
   )
 }
 
-NotificationBar.propTypes = {
+NotificationInline.propTypes = {
   content: string,
 }
 
-NotificationBar.defaultProps = {
+NotificationInline.defaultProps = {
   content: '',
 }
 
-NotificationBar.schema = {
+NotificationInline.schema = {
   title: 'editor.notification-bar.title',
   description: 'editor.notification-bar.description',
   type: 'object',
@@ -37,4 +32,4 @@ NotificationBar.schema = {
   },
 }
 
-export default memo(NotificationBar)
+export default memo(NotificationInline)

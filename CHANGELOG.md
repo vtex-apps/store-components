@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `NotificationBar`.
+- New blocks `notification.bar` and `notification.inline`.
 
 ## [3.21.5] - 2019-04-01
 ### Fixed

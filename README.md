@@ -93,7 +93,7 @@ Below we have a README for each component of this project that explains how to u
 - [Share](/react/components/Share/README.md)
 - [Shipping Simulator](/react/components/ShippingSimulator/README.md)
 - [Slider](/react/components/Slider/README.md)
-- [Notification Bar](/react/components/NotificationBar/README.md)
+- [Notification](/react/components/Notification/README.md)
 
 ## Creating a new component
 To start your development, create a new folder on react/components. Thats where your source code will be stored. Also create a new js file on /react, this file should be used to expose your component, like:

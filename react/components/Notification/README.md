@@ -2,7 +2,7 @@
 
 ## Description
 
-`NotificationBar` is a VTEX component allows you to display a text content in a bar style banner.
+`Notification` is a VTEX component allows you to display a text content in a bar style or inline.
 This Component can be imported and used by any VTEX app.
 
 :loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
@@ -18,13 +18,13 @@ This Component can be imported and used by any VTEX app.
 
 You should follow the usage instruction in the main [README](/README.md#usage).
 
-`notification-bar` is a block allowed in the [store] interface(https://github.com/vtex-apps/store).
+`notification.bar` and `notification.inline` is a block allowed in the [store] interface(https://github.com/vtex-apps/store).
 
 You can use it by adding it to the blocks of your store sections, for example:
 ```json
 "store.home": {
     "blocks": [
-      "notification-bar",
+      "notification.bar",
       "carousel#home",
       "shelf#home"
     ]
@@ -38,7 +38,7 @@ For now this block does not have any required or optional blocks.
 
 #### Configuration
 
-Through the Storefront, you can change the `NotificationBar`'s behavior and interface. However, you also can make in your theme app, as Store theme does.
+Through the Storefront, you can change the `Notification`'s behavior and interface. However, you also can make in your theme app, as Store theme does.
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
@@ -48,9 +48,10 @@ Through the Storefront, you can change the `NotificationBar`'s behavior and inte
 You should follow the Styles API instruction in the main [README](/README.md#styles-api).
 
 #### CSS Namespaces
-Below, we describe the namespace that are defined in the `NotificationBar`.
+Below, we describe the namespace that are defined in the `Notification`.
 
 | Class name | Description | Component Source |
 | ---------- | ----------- | ---------------- |
-| `notificationBarContainer` | The main container of `NotificationBar` | [index](/react/components/NotificationBar/index.js) |
-| `notificationBarContent` | The content container | [index](/react/components/NotificationBar/index.js) |
+| `notificationContent` | The content of `Notification` | [index](/react/components/Notification/notificationContent.js) |
+| `notificationBarContainer` | The main container of `NotificationBar` | [index](/react/components/Notification/notificationBar.js) |
+| `notificationBarInner` | The inner container of `NotificationBar` | [index](/react/components/Notification/notificationBar.js) |

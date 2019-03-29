@@ -50,7 +50,11 @@
   "newsletter": {
     "component": "Newsletter"
   },
-  "notification-bar": {
+  "notification": { },
+  "notification.inline": {
+    "component": "NotificationInline"
+  },
+  "notification.bar": {
     "component": "NotificationBar"
   }
 }
