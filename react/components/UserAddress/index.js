@@ -3,6 +3,7 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import { compose, pathOr } from 'ramda'
 
 import ChangeAddressIcon from './ChangeAddressIcon'
 import Container from '../Container'
@@ -31,9 +32,8 @@ class UserAddress extends React.Component {
         ? `${displayStreet} - ${complement}`
         : `${displayStreet}`
 
-    /** TODO: get pickupPoint name instead of address, if it's pickup
-     * @author lbebber */
     const isPickup = addressType === 'pickup'
+    const friendlyName = pathOr('', ['pickupPointQuery', 'pickupPoint', 'friendlyName'], this.props)
 
     return (
       <div
@@ -54,7 +54,7 @@ class UserAddress extends React.Component {
               }`}
             >
               {isPickup ? (
-                <FormattedMessage id="user-address.pickup" />
+                <FormattedMessage id="user-address.pickup" values={{ name: friendlyName }} />
               ) : (
                 <FormattedMessage id="user-address.order" />
               )}
@@ -125,34 +125,18 @@ class UserAddress extends React.Component {
   }
 }
 
-export default graphql(
+const withShippingDataQuery = graphql(
   gql`
     query {
       minicart @client {
         orderForm {
+          checkedInPickupPointId
+          isCheckedIn
           shippingData {
             address {
-              id
-              neighborhood
               complement
               number
               street
-              postalCode
-              city
-              reference
-              addressName
-              addressType
-            }
-            availableAddresses {
-              id
-              neighborhood
-              complement
-              number
-              street
-              postalCode
-              city
-              reference
-              addressName
               addressType
             }
           }
@@ -165,4 +149,29 @@ export default graphql(
       orderForm: minicart && minicart.orderForm || {},
     }),
   }
+)
+
+const withPickupPointQuery = graphql(
+  gql`
+    query pickupPoint ($id: String!) {
+      pickupPoint(id: $id) {
+        friendlyName
+      }
+    }
+  `,
+  {
+    skip: ({ orderForm: { checkedInPickupPointId, isCheckedIn } }) => 
+      !checkedInPickupPointId || !isCheckedIn,
+    options: ({ orderForm: { checkedInPickupPointId }}) => ({
+      variables: {
+        id: checkedInPickupPointId,
+      },
+    }),
+    name: 'pickupPointQuery',
+  },
+)
+
+export default compose(
+  withShippingDataQuery,
+  withPickupPointQuery,
 )(UserAddress)
