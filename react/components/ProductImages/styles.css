@@ -2,26 +2,14 @@
 *   Product Image CSS Module
 */
 
-.content {
-}
+.content { }
 
-.video {
-}
+.video { }
 
-.image {
-}
+.image { }
 
-.loader {
-  height: -moz-available;
-  height: -webkit-fill-available;
-  height: fill-available;
-}
-
-.imageBlur30 {
-  content: '';
-  background: inherit;
-  box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.3);
-  filter: blur(10px);
+.imageBlur30 { 
+  filter: blur(30px);
 }
 
 .imageTransitionOpacity {
@@ -36,9 +24,7 @@
   height: auto;
 }
 
-.carouselGaleryThumbs
-  :global(.swiper-slide):not(:global(.swiper-slide-thumb-active))
-  .carouselThumbBorder {
+.carouselGaleryThumbs :global(.swiper-slide):not(:global(.swiper-slide-thumb-active)) .carouselThumbBorder {
   border-width: 0px;
 }
 
@@ -46,48 +32,10 @@
 .carouselIconCaretLeft {
   stroke: white;
   stroke-width: 0.5px;
-  -webkit-filter: drop-shadow(0px 1px 1px #cacbcc);
-  filter: drop-shadow(0px 1px 1px #cacbcc);
+  -webkit-filter: drop-shadow( 0px 1px 1px #CACBCC );
+  filter: drop-shadow( 0px 1px 1px #CACBCC );
 }
 
-.carouselCursorDefault:hover {
+.carouselCursorDefault:hover{
   cursor: default;
-}
-
-.slider {
-  position: absolute;
-  height: 5px;
-  overflow-x: hidden;
-}
-
-.subline {
-  position: absolute;
-  height: 5px;
-}
-.inc {
-  animation: increase 2s infinite;
-}
-.dec {
-  animation: decrease 2s 0.5s infinite;
-}
-
-@keyframes increase {
-  from {
-    left: -5%;
-    width: 5%;
-  }
-  to {
-    left: 130%;
-    width: 100%;
-  }
-}
-@keyframes decrease {
-  from {
-    left: -80%;
-    width: 80%;
-  }
-  to {
-    left: 110%;
-    width: 10%;
-  }
 }
