@@ -1,5 +1,5 @@
 {
-  "version": "3.21.1",
+  "version": "3.21.4",
   "scripts": {
     "lint:locales": "intl-equalizer"
   },
