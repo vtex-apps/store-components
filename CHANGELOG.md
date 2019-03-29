@@ -7,11 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.21.2] - 2019-03-28
-### Fixed
-
-- Fix `BlurredLoader` not working properly.
-
 ## [3.21.1] - 2019-03-28
 
 ### Fixed

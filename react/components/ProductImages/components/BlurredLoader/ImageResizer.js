@@ -21,16 +21,13 @@ class ImageResizer extends React.Component {
     image.onload = () => {
       const { minRatio } = this.props
 
-      if (!this.canvas || !this.canvas.current) {
-        return
-      }
+      if (!this.canvas || !this.canvas.current) { return }
 
       const canvas = this.canvas.current
 
-      const width =
-        image.width >= image.height * minRatio
-          ? image.width
-          : image.height * minRatio
+      const width = image.width >= image.height * minRatio
+        ? image.width
+        : image.height * minRatio
 
       const height = image.height
 
@@ -44,9 +41,7 @@ class ImageResizer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.src !== this.props.src) {
-      this.drawImage()
-    }
+    if (prevProps.src !== this.props.src) { this.drawImage() }
   }
 
   render() {
@@ -62,3 +57,4 @@ ImageResizer.propTypes = {
 }
 
 export default ImageResizer
+

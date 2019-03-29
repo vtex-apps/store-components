@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'debounce'
 import classNames from 'classnames'
-import { path, equals, isEmpty } from 'ramda'
+import { path, equals } from 'ramda'
 
 import { IconCaret } from 'vtex.store-icons'
 
@@ -73,10 +73,7 @@ class Carousel extends Component {
   }
 
   onSlideChange = () => {
-    const activeIndex = path(
-      ['swiper', 'activeIndex'],
-      this.gallerySwiper.current
-    )
+    const activeIndex = path(['swiper', 'activeIndex'], this.gallerySwiper.current)
     this.setState({ activeIndex })
   }
 
@@ -153,10 +150,10 @@ class Carousel extends Component {
   }
 
   render() {
-    const { thumbSwiper, thumbsLoaded, loaded } = this.state
+    const { thumbSwiper, thumbsLoaded } = this.state
     const { slides } = this.props
 
-    if ((!thumbsLoaded || Swiper == null) && isEmpty(loaded)) {
+    if (!thumbsLoaded || Swiper == null) {
       return <Loader slidesAmount={slides ? slides.length : 0} />
     }
 
@@ -168,19 +165,19 @@ class Carousel extends Component {
       pagination:
         slides.length > 1
           ? {
-              el: '.swiper-pagination',
-              clickable: true,
-              bulletActiveClass:
-                'c-action-primary swiper-pagination-bullet-active',
-            }
+            el: '.swiper-pagination',
+            clickable: true,
+            bulletActiveClass:
+              'c-action-primary swiper-pagination-bullet-active',
+          }
           : {},
       navigation:
         slides.length > 1
           ? {
-              prevEl: '.swiper-caret-prev',
-              nextEl: '.swiper-caret-next',
-              disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
-            }
+            prevEl: '.swiper-caret-prev',
+            nextEl: '.swiper-caret-next',
+            disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
+          }
           : {},
       thumbs: {
         swiper: thumbSwiper,
@@ -231,16 +228,16 @@ class Carousel extends Component {
         <div
           className={classNames(
             `w-20 ${
-              styles.carouselGaleryThumbs
+            styles.carouselGaleryThumbs
             } bottom-0 top-0 left-0 absolute pr5 dn`,
             { 'db-ns': slides.length > 1 }
           )}
         >
           <Swiper {...thumbnailParams} ref={this.thumbSwiper}>
             {slides.map((slide, i) => (
-              <div
+              <div 
                 key={i}
-                className="swiper-slide w-100 h-auto mb5 pointer"
+                className="swiper-slide w-100 h-auto mb5 pointer" 
                 onClick={() => this.gallerySwiper.current.swiper.slideTo(i)}
               >
                 <img
@@ -251,7 +248,7 @@ class Carousel extends Component {
                 <div
                   className={`absolute absolute--fill b--solid b--muted-2 bw1 ${
                     styles.carouselThumbBorder
-                  }`}
+                    }`}
                 />
               </div>
             ))}

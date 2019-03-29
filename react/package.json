@@ -19,32 +19,34 @@
     "prop-types": "^15.6.2",
     "ramda": "^0.25.0",
     "react": "^16.3.2",
-    "react-apollo": "2.5.2",
+    "react-apollo": "~2.5.2",
     "react-collapse": "^4.0.3",
     "react-content-loader": "^3.1.2",
     "react-cursor-position": "^2.4.2",
     "react-dom": "^16.8.3",
     "react-html-parser": "^2.0.2",
     "react-id-swiper": "^1.6.8",
-    "react-intl": "^2.8.0",
     "react-motion": "^0.5.2",
     "react-resize-detector": "^3.0.1",
     "react-responsive-modal": "^2.0.1",
     "react-share": "^2.1.1",
     "react-slick": "^0.23.1",
-    "react-spring": "^8.0.18",
     "react-transition-group": "^2.5.0",
     "recompose": "^0.30.0",
     "render": "^0.1.4",
     "slick-carousel": "^1.8.1",
     "underscore": "^1.9.1",
-    "vtex-tachyons": "^2.3.0"
+    "vtex-tachyons": "^2.3.0",
+    "react-intl": "^2.8.0"
   },
   "devDependencies": {
-    "@vtex/test-tools": "^0.2.0",
+    "@vtex/test-tools": "^0.1.2",
     "apollo-cache-inmemory": "^1.4.3"
   },
   "vtexScriptsOverride": {
     "srcPath": "."
+  },
+  "vtexTestTools": {
+    "defaultLocale": "en"
   }
 }
