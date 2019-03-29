@@ -20,17 +20,18 @@ class CategoryCard extends Component {
     image: PropTypes.string,
     /** Shape of the category card */
     shape: PropTypes.oneOf([RECTANGULAR, SQUARED]),
+    /** Properties of the card link */
+    ...Link.propTypes,
   }
 
   render() {
-    const { name, image, shape } = this.props
+    const { name, image, shape, page, params, query, to } = this.props
 
     return (
       <div
         className={`${categoriesHighlights[`${shape}Card`]} shadow-1 ma1`}>
-        {/* TODO: Redirect to the page of the category specified by its name */}
 
-        <Link>
+        <Link page={page} params={params} query={query} to={to}>
           {image ? (
             <img src={image} alt={name} className={`${categoriesHighlights[`${shape}CardImage`]}`}/>
           ) : (
