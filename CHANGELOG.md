@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Convert ChangeAddressIcon to a svg.
+- Use location-marker from `store-icons` on `UserAddress`.
 
 ## [3.21.6] - 2019-04-01
 ### Added
