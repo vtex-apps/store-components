@@ -49,5 +49,12 @@
   },
   "newsletter": {
     "component": "Newsletter"
+  },
+  "notification": { },
+  "notification.inline": {
+    "component": "NotificationInline"
+  },
+  "notification.bar": {
+    "component": "NotificationBar"
   }
 }
