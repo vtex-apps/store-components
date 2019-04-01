@@ -32,7 +32,7 @@ class CategoryCard extends Component {
 
         <Link>
           {image ? (
-            <img src={image} alt={name} className={`${categoriesHighlights[`${shape}CardImage`]}`}/>
+            <img src={image} alt={name} className={`${categoriesHighlights[`${shape}CardImage`]}`} />
           ) : (
               <img
                 src={
@@ -42,6 +42,7 @@ class CategoryCard extends Component {
                 className={`${categoriesHighlights[`${shape}CardImage`]}`}
               />
             )}
+          <h4 className={categoriesHighlights.cardHeader}>{name}</h4>
         </Link>
       </div>
     )
