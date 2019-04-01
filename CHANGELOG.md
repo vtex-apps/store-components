@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.21.7] - 2019-04-01
+### Changed
+- Use location-marker from `store-icons` on `UserAddress`.
+
 ## [3.21.6] - 2019-04-01
 ### Added
 - New blocks `notification.bar` and `notification.inline`.
