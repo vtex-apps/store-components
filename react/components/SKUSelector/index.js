@@ -80,15 +80,15 @@ class SKUSelectorContainer extends Component {
 
     this.props.onSKUSelected
       ? this.props.onSKUSelected(skuId, isMainVariation, isSecondaryPicked)
-      : this.redirectToSku(skuId)
+      : this.redirectToSku(skuId, isMainVariation)
   }
 
-  redirectToSku(skuId) {
+  redirectToSku(skuId, isMainVariation) {
     const {
       runtime: { setQuery },
     } = this.props
 
-    setQuery({ skuId })
+    setQuery({ skuId }, { replace: !isMainVariation })
   }
 
   render() {
