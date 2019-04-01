@@ -129,24 +129,13 @@ const withShippingDataQuery = graphql(
   gql`
     query {
       minicart @client {
-        orderForm {
-          checkedInPickupPointId
-          isCheckedIn
-          shippingData {
-            address {
-              complement
-              number
-              street
-              addressType
-            }
-          }
-        }
+        orderForm
       }
     }
   `,
   {
     props: ({ data: { minicart } }) => ({
-      orderForm: minicart && minicart.orderForm || {},
+      orderForm: minicart && minicart.orderForm ? JSON.parse(minicart.orderForm) : {},
     }),
   }
 )

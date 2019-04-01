@@ -13,11 +13,7 @@ import styles from './styles.css'
 export const ORDER_FORM_QUERY = gql`
   query {
     minicart @client {
-      orderForm {
-        clientProfileData {
-          firstName
-        }
-      }
+      orderForm
     }
   }
 `
@@ -64,7 +60,7 @@ Greeting.propTypes = {
 
 const withLinkStateOrderForm = graphql(ORDER_FORM_QUERY, {
   props: ({ data: { minicart } }) => ({
-    orderForm: minicart && minicart.orderForm,
+    orderForm: minicart && minicart.orderForm ? JSON.parse(minicart.orderForm) : null,
   }),
 })
 
