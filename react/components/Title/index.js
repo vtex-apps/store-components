@@ -59,7 +59,7 @@ Title.schema = {
           inline: true,
         },
       },
-      isLayout: false,
+      isLayout: true,
     },
   },
 }
