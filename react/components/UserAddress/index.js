@@ -5,7 +5,7 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { compose, pathOr } from 'ramda'
 
-import ChangeAddressIcon from './ChangeAddressIcon'
+import changeAddressIconSource from './images/change-address-icon.svg'
 import Container from '../Container'
 
 class UserAddress extends React.Component {
@@ -45,7 +45,7 @@ class UserAddress extends React.Component {
               inverted ? 'c-on-base--inverted' : 'c-muted-2'
             }`}
           >
-            <ChangeAddressIcon />
+            <img src={changeAddressIconSource} />
           </div>
           <div className="flex flex-auto flex-column">
             <div
