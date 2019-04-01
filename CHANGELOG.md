@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.21.5] - 2019-04-01
+### Fixed
+- Parse local state order form.
+
 ## [3.21.4] - 2019-03-29
 ### Added
 - Implement query to get pickup point checkedIn name on `UserAddress`.
