@@ -100,6 +100,13 @@
   "editor.info-card.callAction.none": "Ninguno",
   "editor.info-card.callAction.button": "Botón",
   "editor.info-card.callAction.link": "Link",
+  "editor.title.title": "Título",
+  "editor.title.description": "Componente del título",
+  "editor.title.content": "Contenido",
+  "editor.title.alignment": "Alineación",
+  "editor.title.alignment.left": "Lado izquierdo",
+  "editor.title.alignment.right": "Lado derecho",
+  "editor.title.alignment.center": "Centrar",
   "user-address.pickup": "Recoger en {name}",
   "user-address.order": "Orden a",
   "user-address.change": "Cambiar"

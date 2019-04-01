@@ -100,6 +100,13 @@
   "editor.info-card.callAction.none": "Name of enum value to make CTA disappear",
   "editor.info-card.callAction.button": "Name of enum value to make CTA a button",
   "editor.info-card.callAction.link": "Name of enum value to make CTA a link",
+  "editor.title.title": "editor.title.title",
+  "editor.title.description": "editor.title.description",
+  "editor.title.content": "editor.title.content",
+  "editor.title.alignment": "editor.title.alignment",
+  "editor.title.alignment.left": "editor.title.alignment.left",
+  "editor.title.alignment.right": "editor.title.alignment.right",
+  "editor.title.alignment.center": "editor.title.alignment.center",
   "user-address.pickup": "Pickup at <address>",
   "user-address.order": "Order to <address>",
   "user-address.change": "Change address button label"

@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Title /> component should match snapshot with default center alignment 1`] = `
+<DocumentFragment>
+  <div
+    class="flex justify-between"
+  >
+    <div
+      class="w-100 ma1"
+    >
+      <h3
+        class="tc"
+      >
+        title
+      </h3>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<Title /> component should match snapshot with left alignment 1`] = `
+<DocumentFragment>
+  <div
+    class="flex justify-between"
+  >
+    <div
+      class="w-100 ma1"
+    >
+      <h3
+        class="tl"
+      >
+        title
+      </h3>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<Title /> component should match snapshot with right alignment 1`] = `
+<DocumentFragment>
+  <div
+    class="flex justify-between"
+  >
+    <div
+      class="w-100 ma1"
+    >
+      <h3
+        class="tr"
+      >
+        title
+      </h3>
+    </div>
+  </div>
+</DocumentFragment>
+`;

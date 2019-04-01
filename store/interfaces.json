@@ -49,5 +49,11 @@
   },
   "newsletter": {
     "component": "Newsletter"
+  },
+  "title": {
+    "component": "Title"
+  },
+  "categories-highlights": {
+    "component": "CategoriesHighlights"
   }
 }
