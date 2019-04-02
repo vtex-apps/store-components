@@ -58,6 +58,7 @@
   "editor.categoriesHighlighted.description": "Categorias em destaque do Departamento",
   "editor.categoriesHighlighted.item.categoryName": "Nome da Categoria",
   "editor.categoriesHighlighted.item.categoryImage": "Imagem da Categoria",
+  "editor.categoriesHighlighted.item.categoryLink": "Link da Categoria",
   "editor.categoriesHighlighted.category": "Categoria",
   "editor.categoriesHighlighted.categoriesHighlighted": "Categorias em Destaque",
   "editor.categoriesHighlighted.showCategoriesHighlighted": "Mostrar categorias em destaque",

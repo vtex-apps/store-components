@@ -58,6 +58,7 @@
   "editor.categoriesHighlighted.description": "Categories Highlighted of the Department",
   "editor.categoriesHighlighted.item.categoryName": "Category Name",
   "editor.categoriesHighlighted.item.categoryImage": "Category Image",
+  "editor.categoriesHighlighted.item.categoryLink": "Category Link",
   "editor.categoriesHighlighted.category": "Category",
   "editor.categoriesHighlighted.categoriesHighlighted": "Categories Highlighted",
   "editor.categoriesHighlighted.showCategoriesHighlighted": "Show categories highlighted",

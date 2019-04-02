@@ -58,6 +58,7 @@
   "editor.categoriesHighlighted.description": "Categorias destacadas de este departamento",
   "editor.categoriesHighlighted.item.categoryName": "Nombre de la categoría",
   "editor.categoriesHighlighted.item.categoryImage": "Imagen de la categoría",
+  "editor.categoriesHighlighted.item.categoryLink": "Enlace de la categoría",
   "editor.categoriesHighlighted.category": "Categoria",
   "editor.categoriesHighlighted.categoriesHighlighted": "Categorías destacadas",
   "editor.categoriesHighlighted.showCategoriesHighlighted": "Mostrar las categorías descatacadas",

@@ -53,6 +53,11 @@ class CategoriesHighlights extends Component {
             default: '',
             title: 'editor.categoriesHighlighted.item.categoryName',
           },
+          to: {
+            type: 'string',
+            default: '#',
+            title: 'editor.categoriesHighlighted.item.categoryLink',
+          },
           image: {
             type: 'string',
             title: 'editor.categoriesHighlighted.item.categoryImage',
