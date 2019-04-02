@@ -7,20 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Update `Greeting` to use orderForm as string.
+
 ## [3.21.7] - 2019-04-01
+
 ### Changed
+
 - Use location-marker from `store-icons` on `UserAddress`.
 
 ## [3.21.6] - 2019-04-01
+
 ### Added
+
 - New blocks `notification.bar` and `notification.inline`.
 
 ## [3.21.5] - 2019-04-01
+
 ### Fixed
+
 - Parse local state order form.
 
 ## [3.21.4] - 2019-03-29
+
 ### Added
+
 - Implement query to get pickup point checkedIn name on `UserAddress`.
 
 ## [3.21.1] - 2019-03-28
