@@ -9,13 +9,13 @@ describe('<Greeting /> component', () => {
   const data = {
     minicart: {
       __typename: 'Minicart',
-      orderForm: {
+      orderForm: JSON.stringify({
         __typename: 'OrderFormClient',
         clientProfileData: {
           __typename: 'ClientProfileData',
           firstName: 'name',
         },
-      },
+      }),
     },
   }
 
@@ -28,7 +28,7 @@ describe('<Greeting /> component', () => {
     }
 
     const comp = (
-      <MockedProvider cache={cache} resolvers={{}}>
+      <MockedProvider cache={cache}>
         <Greeting {...props} />
       </MockedProvider>
     )
