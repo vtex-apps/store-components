@@ -2,9 +2,10 @@ import PropTypes from 'prop-types'
 import React, { Fragment } from 'react'
 import { compose, branch, renderComponent } from 'recompose'
 import { FormattedMessage } from 'react-intl'
+import { path } from 'ramda'
 import { graphql } from 'react-apollo'
-import { orderFormQuery } from './queries'
 
+import { orderFormQuery } from './queries'
 import Loader from './Loader'
 
 import styles from './styles.css'
@@ -26,20 +27,27 @@ const withWrapper = Component => props => (
 )
 
 const Greeting = ({ orderForm }) => {
+  const firstName = path(['clientProfileData', 'firstName'], orderForm)
+  if (!firstName) return null
+
   return (
     <Wrapper>
       <Fragment>
         <span className={styles.message}>
           <FormattedMessage id="greeting" />,
         </span>
-        <span className={`${styles.orderForm} pl2 b`}>{orderForm}</span>
+        <span className={`${styles.firstName} pl2 b`}>{firstName}</span>
       </Fragment>
     </Wrapper>
   )
 }
 
 Greeting.propTypes = {
-  orderForm: PropTypes.string,
+  orderForm: PropTypes.shape({
+    clientProfileData: PropTypes.shape({
+      firstName: PropTypes.string,
+    }),
+  }),
 }
 
 const withLinkStateOrderForm = graphql(orderFormQuery, {
