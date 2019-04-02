@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, act, wait } from '@vtex/test-tools/react'
+import { render, fireEvent, waitForElement } from '@vtex/test-tools/react'
 import Newsletter from '../../components/Newsletter'
 import subscribeNewsletter from '../../components/Newsletter/mutations/subscribeNewsletter.graphql'
 
@@ -52,9 +52,7 @@ test('should call mutation', async () => {
   fireEvent.change(input, { target: { value: email } })
   fireEvent.click(submit)
 
-  await wait()
-
-  const thanks = getByText(/thank you/i)
+  const thanks = await waitForElement(() => getByText(/thank you/i))
 
   expect(thanks).toBeTruthy()
 })
@@ -81,9 +79,7 @@ test('should handle mutation error', async () => {
   fireEvent.change(input, { target: { value: email } })
   fireEvent.click(submit)
 
-  await wait()
-
-  const error = getByText(/something went wrong/i)
+  const error = await waitForElement(() => getByText(/something went wrong/i))
 
   expect(error).toBeTruthy()
 })
