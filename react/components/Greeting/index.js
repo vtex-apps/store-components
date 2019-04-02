@@ -28,17 +28,17 @@ const withWrapper = Component => props => (
 
 const Greeting = ({ orderForm }) => {
   const firstName = path(['clientProfileData', 'firstName'], orderForm)
-  if (!firstName) return null
-
   return (
-    <Wrapper>
-      <Fragment>
-        <span className={styles.message}>
-          <FormattedMessage id="greeting" />,
-        </span>
-        <span className={`${styles.firstName} pl2 b`}>{firstName}</span>
-      </Fragment>
-    </Wrapper>
+    firstName && (
+      <Wrapper>
+        <Fragment>
+          <span className={styles.message}>
+            <FormattedMessage id="greeting" />,
+          </span>
+          <span className={`${styles.firstName} pl2 b`}>{firstName}</span>
+        </Fragment>
+      </Wrapper>
+    )
   )
 }
 
