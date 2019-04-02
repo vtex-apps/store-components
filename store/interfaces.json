@@ -52,5 +52,12 @@
   },
   "title": {
     "component": "Title"
+  },
+  "notification": { },
+  "notification.inline": {
+    "component": "NotificationInline"
+  },
+  "notification.bar": {
+    "component": "NotificationBar"
   }
 }

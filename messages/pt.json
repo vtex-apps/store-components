@@ -109,5 +109,9 @@
   "editor.title.alignment.center": "Centro",
   "user-address.pickup": "Retirar em {name}",
   "user-address.order": "Enviar para",
-  "user-address.change": "Alterar"
+  "user-address.change": "Alterar",
+  "editor.notification-bar.title": "Notification bar",
+  "editor.notification-bar.description": "Um componente que mostra qualquer texto em um estilo de barra",
+  "editor.notification-bar.content.title": "Conteúdo",
+  "editor.notification-bar.content.description": "Texto da barra"
 }
