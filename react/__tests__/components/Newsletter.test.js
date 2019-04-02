@@ -1,8 +1,7 @@
 import React from 'react'
 import { render, fireEvent, act, wait } from '@vtex/test-tools/react'
-import Newsletter from './index'
-import { Input as MockedInput } from 'vtex.styleguide'
-import subscribeNewsletter from './mutations/subscribeNewsletter.graphql'
+import Newsletter from '../../components/Newsletter'
+import subscribeNewsletter from '../../components/Newsletter/mutations/subscribeNewsletter.graphql'
 
 test('should have label, input and submit', () => {
   const { getByLabelText, getByText } = render(<Newsletter />)
@@ -21,7 +20,7 @@ test('should add error message when user types wrong email', () => {
   const submit = getByText(/sign up/i)
 
   const wrongEmail = 'foobar'
-  fireEvent.change(mockedInput, { target: { value: wrongEmail }})
+  fireEvent.change(mockedInput, { target: { value: wrongEmail } })
   fireEvent.click(submit)
 
   expect(mockedInput).toHaveAttribute('data-errormessage')
@@ -37,16 +36,15 @@ test('should call mutation', async () => {
       },
       result: {
         data: {
-          subscribeNewsletter: {}
-        }
-      }
-    }
+          subscribeNewsletter: {},
+        },
+      },
+    },
   ]
 
-  const { getByLabelText, getByText } = render(
-    <Newsletter />,
-    { graphql: { mocks, addTypename: false }}
-  )
+  const { getByLabelText, getByText } = render(<Newsletter />, {
+    graphql: { mocks, addTypename: false },
+  })
 
   const input = getByLabelText(/subscribe to our newsletter/i)
   const submit = getByText(/sign up/i)
@@ -69,14 +67,13 @@ test('should handle mutation error', async () => {
         query: subscribeNewsletter,
         variables: { email },
       },
-      error: new Error('ops')
-    }
+      error: new Error('ops'),
+    },
   ]
 
-  const { getByLabelText, getByText } = render(
-    <Newsletter />,
-    { graphql: { mocks, addTypename: false }}
-  )
+  const { getByLabelText, getByText } = render(<Newsletter />, {
+    graphql: { mocks, addTypename: false },
+  })
 
   const input = getByLabelText(/subscribe to our newsletter/i)
   const submit = getByText(/sign up/i)
