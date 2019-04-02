@@ -79,7 +79,7 @@ class CategoriesHighlights extends Component {
         quantityOfItems: {
           type: 'number',
           title: 'editor.categoriesHighlighted.quantityOfItems',
-          enum: [2, 4],
+          enum: [2, 4, 6, 8],
           default: 2,
           widget: {
             'ui:widget': 'radio',
