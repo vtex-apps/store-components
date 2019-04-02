@@ -2,21 +2,12 @@ import PropTypes from 'prop-types'
 import React, { Fragment } from 'react'
 import { compose, branch, renderComponent } from 'recompose'
 import { FormattedMessage } from 'react-intl'
-import { path } from 'ramda'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+import { orderFormQuery } from './queries'
 
 import Loader from './Loader'
 
 import styles from './styles.css'
-
-export const ORDER_FORM_QUERY = gql`
-  query {
-    minicart @client {
-      orderForm
-    }
-  }
-`
 
 const Wrapper = ({ children }) => (
   <div
@@ -35,32 +26,25 @@ const withWrapper = Component => props => (
 )
 
 const Greeting = ({ orderForm }) => {
-  const firstName = path(['clientProfileData', 'firstName'], orderForm)
-  if (!firstName) return null
-
   return (
     <Wrapper>
       <Fragment>
         <span className={styles.message}>
           <FormattedMessage id="greeting" />,
         </span>
-        <span className={`${styles.firstName} pl2 b`}>{firstName}</span>
+        <span className={`${styles.orderForm} pl2 b`}>{orderForm}</span>
       </Fragment>
     </Wrapper>
   )
 }
 
 Greeting.propTypes = {
-  orderForm: PropTypes.shape({
-    clientProfileData: PropTypes.shape({
-      firstName: PropTypes.string,
-    }),
-  }),
+  orderForm: PropTypes.string,
 }
 
-const withLinkStateOrderForm = graphql(ORDER_FORM_QUERY, {
+const withLinkStateOrderForm = graphql(orderFormQuery, {
   props: ({ data: { minicart } }) => ({
-    orderForm: minicart && minicart.orderForm ? JSON.parse(minicart.orderForm) : null,
+    orderForm: minicart && minicart.orderForm && JSON.parse(minicart.orderForm),
   }),
 })
 

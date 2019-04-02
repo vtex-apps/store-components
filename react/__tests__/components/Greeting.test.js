@@ -18,6 +18,7 @@ describe('<Greeting /> component', () => {
       },
     },
   }
+
   const cache = new InMemoryCache()
   cache.writeData({ data })
 
@@ -42,7 +43,7 @@ describe('<Greeting /> component', () => {
 
   it('should match snapshot without loading', () => {
     const { asFragment } = renderComponent()
-    expect(asFragment()).toMatchSnapshot()
+    expect(asFragment({ loading: false })).toMatchSnapshot()
   })
 
   it('should match snapshot with loading', () => {
