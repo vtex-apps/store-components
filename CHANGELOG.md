@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Allow 6, 8 items per row in `CategoriesHighlights` component.
+- Declare `categories-highlights` block.
 
 ## [3.21.7] - 2019-04-01
 ### Changed
