@@ -9,7 +9,7 @@ VTEX Store Components is a collection of components that can be used to create/e
 ## Release Schedule
 
 | Release  | Status              | Initial Release | Maintenance LTS Start | End-of-life | Store Compatibility
-| :--:     | :---:               |  :---:          | :---:                 | :---:       | :---: 
+| :--:     | :---:               |  :---:          | :---:                 | :---:       | :---:
 | [3.x]    | **Current Release** |  2018-11-29     |                       |             | 2.x
 | [2.x]    | **Maintenance LTS** |  2018-10-02     | 2018-12-01            | March 2019  | 1.x
 
@@ -29,16 +29,16 @@ See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for mor
 This app uses our store builder with the blocks architecture. To know more about Store Builder [click here.](https://help.vtex.com/en/tutorial/understanding-storebuilder-and-stylesbuilder#structuring-and-configuring-our-store-with-object-object)
 
 To use this app, you need to import in your dependencies on `manifest.json`.
- 
-```json 
+
+```json
   "dependencies": {
     "vtex.store-components": "3.x"
   }
 ```
 
-Then, you can add a component block into your app theme as we do with `product-price` in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
+Then, you can add a component block into your app theme as we do with `product-price` in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json).
 
-For example, now you can change the behavior of `product-price` block that is in the product details. See an example of how to configure: 
+For example, now you can change the behavior of `product-price` block that is in the product details. See an example of how to configure:
 ```json
 "product-price": {
   "props": {
@@ -93,11 +93,12 @@ Below we have a README for each component of this project that explains how to u
 - [Share](/react/components/Share/README.md)
 - [Shipping Simulator](/react/components/ShippingSimulator/README.md)
 - [Slider](/react/components/Slider/README.md)
+- [Notification](/react/components/Notification/README.md)
 
 ## Creating a new component
 To start your development, create a new folder on react/components. Thats where your source code will be stored. Also create a new js file on /react, this file should be used to expose your component, like:
 
-### Project structure 
+### Project structure
 Inside your `react/components/<component_name>` you should have:
 
 - index.js
@@ -109,7 +110,7 @@ Inside your `react/components/<component_name>` you should have:
 - [Optional] mutations/
 - [Optional] styles.css
 
-Next, inside of `react/` folder you need to export your component, such as: 
+Next, inside of `react/` folder you need to export your component, such as:
 
 ```js
 import ProductPrice from './components/ProductPrice/index'
