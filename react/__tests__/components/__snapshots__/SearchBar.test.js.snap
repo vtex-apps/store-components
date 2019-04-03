@@ -22,6 +22,7 @@ exports[`<SearchBar /> should match snapshot 1`] = `
                 aria-autocomplete="list"
                 aria-expanded="false"
                 autocomplete="off"
+                forwardedref="[object Object]"
                 id="downshift-1-input"
                 placeholder="Search"
                 role="combobox"
