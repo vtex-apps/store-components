@@ -1,6 +1,5 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import React from 'react'
-import { MockedProvider } from 'react-apollo/test-utils'
 import { render } from '@vtex/test-tools/react'
 
 import Greeting from '../../Greeting'
@@ -27,13 +26,7 @@ describe('<Greeting /> component', () => {
       ...customProps,
     }
 
-    const comp = (
-      <MockedProvider cache={cache}>
-        <Greeting {...props} />
-      </MockedProvider>
-    )
-
-    return render(comp)
+    return render(<Greeting {...props} />, { graphql: { cache: cache } })
   }
 
   it('should be rendered', () => {
