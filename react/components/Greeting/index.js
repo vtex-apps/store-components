@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl'
 import { path } from 'ramda'
 import { graphql } from 'react-apollo'
 
-import orderFormQuery from './orderFormQuery.gql'
+import orderFormQuery from './queries/orderForm.gql'
 import Loader from './Loader'
 
 import styles from './styles.css'

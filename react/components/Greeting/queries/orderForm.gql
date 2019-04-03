@@ -1,4 +1,4 @@
-query orderFromQuery {
+query orderFormQuery {
   minicart @client {
     orderForm
   }
