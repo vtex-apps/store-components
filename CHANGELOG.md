@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Passing the correct `ref` prop for `input`.
+
+### Fixed
+
 - Refactoring `Greeting`.
 
 ## [3.21.7] - 2019-04-01

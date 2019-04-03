@@ -67,7 +67,7 @@ class AutocompleteInput extends Component {
       <div className="flex">
         <div className={classContainer}>
           <Input
-            ref={this.inputRef}
+            forwardedRef={this.inputRef}
             size="large"
             value={value}
             prefix={hasIconLeft && prefix}
