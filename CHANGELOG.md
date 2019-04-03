@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Update `Greeting` to use orderForm as string.
+- Refactoring `Greeting`.
 
 ## [3.21.7] - 2019-04-01
 
