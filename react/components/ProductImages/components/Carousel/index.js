@@ -73,7 +73,10 @@ class Carousel extends Component {
   }
 
   onSlideChange = () => {
-    const activeIndex = path(['swiper', 'activeIndex'], this.gallerySwiper.current)
+    const activeIndex = path(
+      ['swiper', 'activeIndex'],
+      this.gallerySwiper.current
+    )
     this.setState({ activeIndex })
   }
 
@@ -151,7 +154,7 @@ class Carousel extends Component {
 
   render() {
     const { thumbSwiper, thumbsLoaded } = this.state
-    const { slides } = this.props
+    const { slides, position } = this.props
 
     if (!thumbsLoaded || Swiper == null) {
       return <Loader slidesAmount={slides ? slides.length : 0} />
@@ -165,19 +168,19 @@ class Carousel extends Component {
       pagination:
         slides.length > 1
           ? {
-            el: '.swiper-pagination',
-            clickable: true,
-            bulletActiveClass:
-              'c-action-primary swiper-pagination-bullet-active',
-          }
+              el: '.swiper-pagination',
+              clickable: true,
+              bulletActiveClass:
+                'c-action-primary swiper-pagination-bullet-active',
+            }
           : {},
       navigation:
         slides.length > 1
           ? {
-            prevEl: '.swiper-caret-prev',
-            nextEl: '.swiper-caret-next',
-            disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
-          }
+              prevEl: '.swiper-caret-prev',
+              nextEl: '.swiper-caret-next',
+              disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
+            }
           : {},
       thumbs: {
         swiper: thumbSwiper,
@@ -223,21 +226,32 @@ class Carousel extends Component {
       shouldSwiperUpdate: true,
     }
 
+    const imageClasses = classNames(
+      `w-100 border-box ${styles.carouselGaleryCursor}`,
+      {
+        [`w-80-ns border-box ${imageClasses}`]: slides.length > 1,
+        'ml-20-ns': position === 'left',
+        'mr-20-ns': position === 'right',
+      }
+    )
+
+    const thumbClasses = classNames(
+      `w-20 ${styles.carouselGaleryThumbs} bottom-0 top-0 absolute dn`,
+      {
+        'db-ns': slides.length > 1,
+        'left-0 pr5': position === 'left',
+        'right-0 pl5': position === 'right',
+      }
+    )
+
     return (
       <div className={'relative overflow-hidden'}>
-        <div
-          className={classNames(
-            `w-20 ${
-            styles.carouselGaleryThumbs
-            } bottom-0 top-0 left-0 absolute pr5 dn`,
-            { 'db-ns': slides.length > 1 }
-          )}
-        >
+        <div className={thumbClasses}>
           <Swiper {...thumbnailParams} ref={this.thumbSwiper}>
             {slides.map((slide, i) => (
-              <div 
+              <div
                 key={i}
-                className="swiper-slide w-100 h-auto mb5 pointer" 
+                className="swiper-slide w-100 h-auto mb5 pointer"
                 onClick={() => this.gallerySwiper.current.swiper.slideTo(i)}
               >
                 <img
@@ -248,20 +262,13 @@ class Carousel extends Component {
                 <div
                   className={`absolute absolute--fill b--solid b--muted-2 bw1 ${
                     styles.carouselThumbBorder
-                    }`}
+                  }`}
                 />
               </div>
             ))}
           </Swiper>
         </div>
-        <div
-          className={classNames(
-            `w-100 border-box ${styles.carouselGaleryCursor}`,
-            {
-              'w-80-ns ml-20-ns': slides.length > 1,
-            }
-          )}
-        >
+        <div className={imageClasses}>
           <Swiper {...galleryParams} ref={this.gallerySwiper}>
             {slides.map((slide, i) => (
               <div key={i} className="swiper-slide center-all">
