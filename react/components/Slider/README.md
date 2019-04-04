@@ -1,4 +1,4 @@
-# Share
+# Slider
 
 ## Description
 
