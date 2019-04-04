@@ -271,7 +271,7 @@ class Carousel extends Component {
           className={classNames(
             `w-100 border-box ${styles.carouselGaleryCursor}`,
             {
-              [`w-100 w-80-ns border-box ${imageClasses}`]: slides.length > 1,
+              [`w-80-ns border-box ${imageClasses}`]: slides.length > 1,
             }
           )}
         >
