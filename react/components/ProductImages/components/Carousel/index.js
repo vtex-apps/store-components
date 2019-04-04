@@ -226,26 +226,27 @@ class Carousel extends Component {
       shouldSwiperUpdate: true,
     }
 
-    let imageClasses = '',
-      thumbClasses = ''
+    const imageClasses = classNames(
+      `w-100 border-box ${styles.carouselGaleryCursor}`,
+      {
+        [`w-80-ns border-box ${imageClasses}`]: slides.length > 1,
+        'ml-20-ns': position === 'left',
+        'mr-20-ns': position === 'right',
+      }
+    )
 
-    if (position === 'left') {
-      imageClasses = 'ml-20-ns'
-      thumbClasses = 'left-0 pr5'
-    } else if (position === 'right') {
-      thumbClasses = 'right-0 pl5'
-      imageClasses = 'mr-20-ns'
-    }
+    const thumbClasses = classNames(
+      `w-20 ${styles.carouselGaleryThumbs} bottom-0 top-0 absolute dn`,
+      {
+        'db-ns': slides.length > 1,
+        'left-0 pr5': position === 'left',
+        'right-0 pl5': position === 'right',
+      }
+    )
 
     return (
       <div className={'relative overflow-hidden'}>
-        <div
-          className={classNames(
-            `w-20 ${styles.carouselGaleryThumbs} bottom-0 top-0 absolute dn`,
-            { 'db-ns': slides.length > 1 },
-            [thumbClasses]
-          )}
-        >
+        <div className={thumbClasses}>
           <Swiper {...thumbnailParams} ref={this.thumbSwiper}>
             {slides.map((slide, i) => (
               <div
@@ -267,14 +268,7 @@ class Carousel extends Component {
             ))}
           </Swiper>
         </div>
-        <div
-          className={classNames(
-            `w-100 border-box ${styles.carouselGaleryCursor}`,
-            {
-              [`w-80-ns border-box ${imageClasses}`]: slides.length > 1,
-            }
-          )}
-        >
+        <div className={imageClasses}>
           <Swiper {...galleryParams} ref={this.gallerySwiper}>
             {slides.map((slide, i) => (
               <div key={i} className="swiper-slide center-all">
