@@ -34,8 +34,8 @@ const Logo = ({ href, isMobile, url, width, height, title }) => {
           alt={title}
         />
       ) : (
-          <Placeholder width={width} height={height} title={title} />
-        )}
+        <Placeholder width={width} height={height} title={title} />
+      )}
     </span>
   )
 
