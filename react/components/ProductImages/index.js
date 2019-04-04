@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types'
 import React, { useMemo, useEffect, useState } from 'react'
-import { path } from 'ramda'
 import debounce from 'debounce'
 
 import Carousel from './components/Carousel'
 import styles from './styles.css'
-
 
 const getBestUrlIndex = thresholds => {
   const windowSize = window.innerWidth
@@ -21,6 +19,7 @@ const getBestUrlIndex = thresholds => {
 
 const ProductImages = props => {
   const [_, setState] = useState(0)
+  const { position } = props
 
   const debouncedGetBestUrl = debounce(() => {
     // force update
@@ -55,12 +54,14 @@ const ProductImages = props => {
 
   return (
     <div className={`${styles.content} w-100`}>
-      <Carousel slides={slides} />
+      <Carousel slides={slides} position={position} />
     </div>
   )
 }
 
 ProductImages.propTypes = {
+  /** The position of the thumbs */
+  position: PropTypes.oneOf(['left', 'right']),
   /** Array of images to be passed for the Thumbnail Slider component as a props */
   images: PropTypes.arrayOf(
     PropTypes.shape({
@@ -78,6 +79,7 @@ ProductImages.propTypes = {
 
 ProductImages.defaultProps = {
   images: [],
+  position: 'left',
 }
 
 export default ProductImages
