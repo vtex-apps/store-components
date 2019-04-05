@@ -44,11 +44,10 @@ export default class SearchBar extends Component {
         className={classNames('w-100 mw7 pv4', styles.searchBarContainer)}
         style={{
           ...(maxWidth && {
-            maxWidth: typeof maxWidth === "number"
-              ? `${maxWidth}px`
-              : maxWidth
-          })
-        }}>
+            maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
+          }),
+        }}
+      >
         <NoSSR onSSR={fallback}>
           <DownshiftComponent>
             {({
@@ -128,5 +127,5 @@ SearchBar.propTypes = {
   /** Identify if the search input should autofocus or not */
   autoFocus: PropTypes.bool,
   /** Max width of the search bar */
-  maxWidth: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+  maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }

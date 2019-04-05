@@ -33,7 +33,11 @@ class UserAddress extends React.Component {
         : `${displayStreet}`
 
     const isPickup = addressType === 'pickup'
-    const friendlyName = pathOr('', ['pickupPointQuery', 'pickupPoint', 'friendlyName'], this.props)
+    const friendlyName = pathOr(
+      '',
+      ['pickupPointQuery', 'pickupPoint', 'friendlyName'],
+      this.props
+    )
 
     return (
       <div
@@ -45,7 +49,7 @@ class UserAddress extends React.Component {
               inverted ? 'c-on-base--inverted' : 'c-muted-2'
             }`}
           >
-            <IconLocationMarker size={27} viewBox={'0 0 21 27'}/>
+            <IconLocationMarker size={27} viewBox={'0 0 21 27'} />
           </div>
           <div className="flex flex-auto flex-column">
             <div
@@ -54,7 +58,10 @@ class UserAddress extends React.Component {
               }`}
             >
               {isPickup ? (
-                <FormattedMessage id="user-address.pickup" values={{ name: friendlyName }} />
+                <FormattedMessage
+                  id="user-address.pickup"
+                  values={{ name: friendlyName }}
+                />
               ) : (
                 <FormattedMessage id="user-address.order" />
               )}
@@ -135,32 +142,33 @@ const withShippingDataQuery = graphql(
   `,
   {
     props: ({ data: { minicart } }) => ({
-      orderForm: minicart && minicart.orderForm ? JSON.parse(minicart.orderForm) : {},
+      orderForm:
+        minicart && minicart.orderForm ? JSON.parse(minicart.orderForm) : {},
     }),
   }
 )
 
 const withPickupPointQuery = graphql(
   gql`
-    query pickupPoint ($id: String!) {
+    query pickupPoint($id: String!) {
       pickupPoint(id: $id) {
         friendlyName
       }
     }
   `,
   {
-    skip: ({ orderForm: { checkedInPickupPointId, isCheckedIn } }) => 
+    skip: ({ orderForm: { checkedInPickupPointId, isCheckedIn } }) =>
       !checkedInPickupPointId || !isCheckedIn,
-    options: ({ orderForm: { checkedInPickupPointId }}) => ({
+    options: ({ orderForm: { checkedInPickupPointId } }) => ({
       variables: {
         id: checkedInPickupPointId,
       },
     }),
     name: 'pickupPointQuery',
-  },
+  }
 )
 
 export default compose(
   withShippingDataQuery,
-  withPickupPointQuery,
+  withPickupPointQuery
 )(UserAddress)

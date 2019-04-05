@@ -135,12 +135,17 @@ class CategoriesHighlights extends Component {
     })
 
     return (
-      <div className={`${categoriesHighlights[`${cardShape}CategoriesHighlights`]} relative`}>
+      <div
+        className={`${
+          categoriesHighlights[`${cardShape}CategoriesHighlights`]
+        } relative`}
+      >
         <div className="flex flex-row flex-wrap items-center justify-center">
           {range(0, quantityOfItems / ITEMS_PER_ROW).map(indexRow => (
             <div
               key={`row${indexRow}`}
-              className="flex flex-row flex-wrap items-center justify-center">
+              className="flex flex-row flex-wrap items-center justify-center"
+            >
               {range(0, ITEMS_PER_ROW).map(indexCol => (
                 <CategoryCard
                   key={2 * indexRow + indexCol}
