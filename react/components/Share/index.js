@@ -37,7 +37,7 @@ class Share extends Component {
     /** Classes to be applied to the Content Loader container */
     loaderContainerClass: PropTypes.string,
     /** Classes to be applied to the Content Loader */
-    contentLoaderClass: PropTypes.string
+    contentLoaderClass: PropTypes.string,
   }
 
   static Loader = (loaderProps = {}) => {
@@ -47,7 +47,7 @@ class Share extends Component {
       'vtex-share__button--loader-2': button2,
       'vtex-share__button--loader-3': button3,
       containerClass,
-      contentLoaderClass
+      contentLoaderClass,
     } = loaderProps
     const loaderStyles = {
       r: '1em',
@@ -57,7 +57,13 @@ class Share extends Component {
     }
 
     return (
-      <div className={classNames(styles.shareContainer, styles.shareLoader, containerClass)}>
+      <div
+        className={classNames(
+          styles.shareContainer,
+          styles.shareLoader,
+          containerClass
+        )}
+      >
         <ContentLoader
           className={contentLoaderClass}
           style={{
@@ -66,22 +72,11 @@ class Share extends Component {
           }}
           height="100%"
           width="100%"
-          {...loaderProps}>
-          <circle
-            cx="1em"
-            {...loaderStyles}
-            {...button1}
-          />
-          <circle
-            cx="3.5em"
-            {...loaderStyles}
-            {...button2}
-          />
-          <circle
-            cx="6em"
-            {...loaderStyles}
-            {...button3}
-          />
+          {...loaderProps}
+        >
+          <circle cx="1em" {...loaderStyles} {...button1} />
+          <circle cx="3.5em" {...loaderStyles} {...button2} />
+          <circle cx="6em" {...loaderStyles} {...button3} />
         </ContentLoader>
       </div>
     )
@@ -96,7 +91,7 @@ class Share extends Component {
     options: {},
     className: 'flex flex-row flex-wrap w-100',
     shareLabelClass: 'pv2 pr3 t-small',
-    buttonsContainerClass: 'flex flex-row'
+    buttonsContainerClass: 'flex flex-row',
   }
 
   static schema = {
@@ -137,11 +132,13 @@ class Share extends Component {
     } = this.props
 
     if (loading) {
-      return <Share.Loader
-        containerClass={loaderContainerClass}
-        contentLoaderClass={contentLoaderClass}
-        {...this.props.styles}
-      />
+      return (
+        <Share.Loader
+          containerClass={loaderContainerClass}
+          contentLoaderClass={contentLoaderClass}
+          {...this.props.styles}
+        />
+      )
     }
 
     return (

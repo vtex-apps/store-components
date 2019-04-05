@@ -33,7 +33,7 @@ class Newsletter extends Component {
     }
   }
 
-  handleChangeEmail = (e) => {
+  handleChangeEmail = e => {
     this.setState({ email: e.target.value })
   }
 
@@ -41,7 +41,7 @@ class Newsletter extends Component {
     return EMAIL_REGEX.test(this.state.email)
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault()
     if (!this.validateEmail()) {
       this.setState({ invalidEmail: true })
@@ -51,70 +51,101 @@ class Newsletter extends Component {
       return
     }
 
-    this.setState({ invalidEmail: false, loading: true, error: null, success: null })
+    this.setState({
+      invalidEmail: false,
+      loading: true,
+      error: null,
+      success: null,
+    })
 
-    this.props.subscribeNewsletter({ variables: { email: this.state.email } })
+    this.props
+      .subscribeNewsletter({ variables: { email: this.state.email } })
       .then(() => {
         this.safeSetState({ success: true, loading: false })
       })
-      .catch((e) => {
+      .catch(e => {
         this.safeSetState({ error: true, loading: false })
       })
   }
 
   render() {
     const {
-      placeholder = this.props.intl.formatMessage({ id: 'newsletter.placeholder' }),
+      placeholder = this.props.intl.formatMessage({
+        id: 'newsletter.placeholder',
+      }),
       submit = this.props.intl.formatMessage({ id: 'newsletter.submit' }),
       label = this.props.intl.formatMessage({ id: 'newsletter.label' }),
       hideLabel,
     } = this.props
 
     return (
-      <div className={`${style.newsletter} ${this.state.success ? style.confirmation : ''} w-100`}>
+      <div
+        className={`${style.newsletter} ${
+          this.state.success ? style.confirmation : ''
+        } w-100`}
+      >
         <div className={`${style.container} mw9 mr-auto ml-auto pv9`}>
-          {this.state.success
-            ? (
-              <Fragment>
-                <div className={`${style.confirmationTitle} t-heading-3 pb4 tc`}>
-                  {this.props.intl.formatMessage({ id: 'newsletter.confirmationTitle' })}
-                </div>
-                <div className={`${style.confirmationText} t-body tc`}>
-                  {this.props.intl.formatMessage({ id: 'newsletter.confirmationText' })}
-                </div>
-              </Fragment>
-            )
-            : (
-              <form className={`${style.form} mw6 center tc ph5 ph0-ns`}>
-                <label className={`${style.label} t-heading-3 tc ${hideLabel ? 'dn' : ''}`} htmlFor="newsletter-input">
-                  {label}
-                </label>
-                <div className={`${style.inputGroup} flex-ns pt5`}>
-                  <Input
-                    ref={this.inputRef}
-                    id="newsletter-input"
-                    errorMessage={this.state.invalidEmail
-                      ? this.props.intl.formatMessage({ id: 'newsletter.invalidEmail' })
+          {this.state.success ? (
+            <Fragment>
+              <div className={`${style.confirmationTitle} t-heading-3 pb4 tc`}>
+                {this.props.intl.formatMessage({
+                  id: 'newsletter.confirmationTitle',
+                })}
+              </div>
+              <div className={`${style.confirmationText} t-body tc`}>
+                {this.props.intl.formatMessage({
+                  id: 'newsletter.confirmationText',
+                })}
+              </div>
+            </Fragment>
+          ) : (
+            <form className={`${style.form} mw6 center tc ph5 ph0-ns`}>
+              <label
+                className={`${style.label} t-heading-3 tc ${
+                  hideLabel ? 'dn' : ''
+                }`}
+                htmlFor="newsletter-input"
+              >
+                {label}
+              </label>
+              <div className={`${style.inputGroup} flex-ns pt5`}>
+                <Input
+                  ref={this.inputRef}
+                  id="newsletter-input"
+                  errorMessage={
+                    this.state.invalidEmail
+                      ? this.props.intl.formatMessage({
+                          id: 'newsletter.invalidEmail',
+                        })
                       : null
-                    }
-                    placeholder={placeholder}
-                    name="newsletter"
-                    value={this.state.email}
-                    onChange={this.handleChangeEmail} />
-                  <div className={`${style.buttonContainer} pl4-ns flex-none pt3 pt0-ns`}>
-                    <Button variation="primary" type="submit" onClick={this.handleSubmit} isLoading={this.state.loading}>
-                      {submit}
-                    </Button>
-                  </div>
+                  }
+                  placeholder={placeholder}
+                  name="newsletter"
+                  value={this.state.email}
+                  onChange={this.handleChangeEmail}
+                />
+                <div
+                  className={`${
+                    style.buttonContainer
+                  } pl4-ns flex-none pt3 pt0-ns`}
+                >
+                  <Button
+                    variation="primary"
+                    type="submit"
+                    onClick={this.handleSubmit}
+                    isLoading={this.state.loading}
+                  >
+                    {submit}
+                  </Button>
                 </div>
-                {this.state.error && (
-                  <div className={`${style.error} c-danger t-body pt5`}>
-                    {this.props.intl.formatMessage({ id: 'newsletter.error' })}
-                  </div>
-                )}
-              </form>
-            )
-          }
+              </div>
+              {this.state.error && (
+                <div className={`${style.error} c-danger t-body pt5`}>
+                  {this.props.intl.formatMessage({ id: 'newsletter.error' })}
+                </div>
+              )}
+            </form>
+          )}
         </div>
       </div>
     )
@@ -162,12 +193,12 @@ Newsletter.getSchema = () => {
         type: 'string',
         title: 'editor.newsletter.submit',
         isLayout: false,
-      }
-    }
+      },
+    },
   }
 }
 
 export default compose(
   graphql(SUBSCRIBE_NEWSLETTER, { name: 'subscribeNewsletter' }),
-  injectIntl,
+  injectIntl
 )(Newsletter)

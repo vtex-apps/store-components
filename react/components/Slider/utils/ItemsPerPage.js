@@ -13,7 +13,7 @@ function getItemWidth(slick, maxWidth) {
       attributes.map(attr => {
         if (attr.nodeName === 'data-index' && attr.nodeValue === '0') {
           itemWidth = path(['childNodes', '0', 'clientWidth'], slide)
-          if(maxWidth && maxWidth < itemWidth) itemWidth = maxWidth
+          if (maxWidth && maxWidth < itemWidth) itemWidth = maxWidth
         }
       })
     })
@@ -24,7 +24,12 @@ function getItemWidth(slick, maxWidth) {
 /**
  * Returns the correct number of items to be inside the slider without reduce the item width.
  */
-export default function getItemsPerPage(slick, slideWidth, defaultItemWidth, actualItemsPerPage) {
+export default function getItemsPerPage(
+  slick,
+  slideWidth,
+  defaultItemWidth,
+  actualItemsPerPage
+) {
   if (slideWidth) {
     const shelfItemWidth = getItemWidth(slick, defaultItemWidth)
     const maxItemsPerPage = Math.floor(slideWidth / shelfItemWidth)

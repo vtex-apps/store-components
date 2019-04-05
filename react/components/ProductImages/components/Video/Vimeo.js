@@ -12,7 +12,7 @@ class Vimeo extends Component {
         .then(response => {
           resolve(Vimeo.thumbUrlFromResp(response, thumbWidth))
         })
-    });
+    })
 
   static thumbUrlFromResp(response, thumbWidth) {
     const { height, width } = response
@@ -71,7 +71,7 @@ class Vimeo extends Component {
       vimeoCommand,
       'https://player.vimeo.com'
     )
-  };
+  }
 
   render() {
     const { iframe } = this.state

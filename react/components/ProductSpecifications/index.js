@@ -13,7 +13,6 @@ import styles from './styles.css'
  * Render the technical specifications of a product. Can be displayed in two views: Table view or Tabs view.
  */
 class ProductSpecifications extends Component {
-
   state = { currentTab: 0 }
 
   handleTabChange(tabIndex) {
@@ -22,32 +21,43 @@ class ProductSpecifications extends Component {
     })
   }
 
-  get specificationItems(){
+  get specificationItems() {
     return this.props.specifications.map(specification => {
-      return { property: specification.name, specifications: specification.values[0] }
+      return {
+        property: specification.name,
+        specifications: specification.values[0],
+      }
     })
   }
 
-  get specificationTitle(){
+  get specificationTitle() {
     return (
       <FormattedMessage id="technicalspecifications.title">
-        {(txt) => (
-          <h2 className={`${styles.specificationsTitle} t-heading-5 mb5 mt0`}>{HtmlParser(txt)}</h2>
+        {txt => (
+          <h2 className={`${styles.specificationsTitle} t-heading-5 mb5 mt0`}>
+            {HtmlParser(txt)}
+          </h2>
         )}
       </FormattedMessage>
     )
   }
 
-  get tableView(){
-    const { specifications } = this.props;
+  get tableView() {
+    const { specifications } = this.props
 
-    return(
+    return (
       <Fragment>
         {specifications.length > 0 && (
-          <div className={`${styles.specificationsTableContainer} mt9 mt0-l pl8-l`}>
+          <div
+            className={`${styles.specificationsTableContainer} mt9 mt0-l pl8-l`}
+          >
             {this.specificationTitle}
             <GradientCollapse collapseHeight={220}>
-              <table className={`${styles.specificationsTable} w-100 bg-base border-collapse`}>
+              <table
+                className={`${
+                  styles.specificationsTable
+                } w-100 bg-base border-collapse`}
+              >
                 <thead>
                   <tr>
                     <th className="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5">
@@ -61,8 +71,12 @@ class ProductSpecifications extends Component {
                 <tbody>
                   {this.specificationItems.map((specification, i) => (
                     <tr key={i}>
-                      <td className="w-50 b--muted-4 bb pa5">{HtmlParser(specification.property)}</td>
-                      <td className="w-50 b--muted-4 bb pa5">{HtmlParser(specification.specifications)}</td>
+                      <td className="w-50 b--muted-4 bb pa5">
+                        {HtmlParser(specification.property)}
+                      </td>
+                      <td className="w-50 b--muted-4 bb pa5">
+                        {HtmlParser(specification.specifications)}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -74,41 +88,40 @@ class ProductSpecifications extends Component {
     )
   }
 
-  get tabsView(){
-    const { currentTab } = this.state;
+  get tabsView() {
+    const { currentTab } = this.state
 
-    return(
+    return (
       <div className={`${styles.specificationsTabsContainer} pt8`}>
         {this.specificationTitle}
         <Tabs fullWidth>
-          {
-            this.specificationItems.map((specification, i) => (
-              <Tab
-                key={i}
-                label={HtmlParser(specification.property)}
-                active={currentTab === i}
-                onClick={() => this.handleTabChange(i)}>
-                <div className={`${styles.specificationsTab} pb8 c-muted-1 pv6`}>
-                  <GradientCollapse collapseHeight={220}>
-                    {HtmlParser(specification.specifications)}
-                  </GradientCollapse>
-                </div>
-              </Tab>
-            ))
-          }
+          {this.specificationItems.map((specification, i) => (
+            <Tab
+              key={i}
+              label={HtmlParser(specification.property)}
+              active={currentTab === i}
+              onClick={() => this.handleTabChange(i)}
+            >
+              <div className={`${styles.specificationsTab} pb8 c-muted-1 pv6`}>
+                <GradientCollapse collapseHeight={220}>
+                  {HtmlParser(specification.specifications)}
+                </GradientCollapse>
+              </div>
+            </Tab>
+          ))}
         </Tabs>
       </div>
     )
   }
 
-  render(){
+  render() {
     return this.props.tabsMode ? this.tabsView : this.tableView
   }
 }
 
 ProductSpecifications.defaultProps = {
   specifications: [],
-  tabsMode: false
+  tabsMode: false,
 }
 
 ProductSpecifications.propTypes = {
