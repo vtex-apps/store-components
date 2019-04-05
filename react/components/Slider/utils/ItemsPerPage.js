@@ -1,7 +1,10 @@
-import get from 'lodash.get'
+import { path } from 'ramda'
 
 function getItemWidth(slick, maxWidth) {
-  const slidesNodeList = get(slick, 'innerSlider.list.childNodes[0].childNodes')
+  const slidesNodeList = path(
+    ['innerSlider', 'list', 'childNodes', '0', 'childNodes'],
+    slick
+  )
   let itemWidth = null
   if (slidesNodeList) {
     const slidesArray = Array.prototype.slice.call(slidesNodeList)
@@ -9,7 +12,7 @@ function getItemWidth(slick, maxWidth) {
       const attributes = Array.prototype.slice.call(slide.attributes)
       attributes.map(attr => {
         if (attr.nodeName === 'data-index' && attr.nodeValue === '0') {
-          itemWidth = get(slide, 'childNodes[0].clientWidth')
+          itemWidth = path(['childNodes', '0', 'clientWidth'], slide)
           if(maxWidth && maxWidth < itemWidth) itemWidth = maxWidth
         }
       })
