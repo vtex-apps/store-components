@@ -229,9 +229,8 @@ class Carousel extends Component {
     const imageClasses = classNames(
       `w-100 border-box ${styles.carouselGaleryCursor}`,
       {
-        [`w-80-ns border-box ${imageClasses}`]: slides.length > 1,
-        'ml-20-ns': position === 'left',
-        'mr-20-ns': position === 'right',
+        'ml-20-ns w-80-ns': position === 'left' && slides.length > 1,
+        'mr-20-ns w-80-ns': position === 'right' && slides.length > 1,
       }
     )
 
