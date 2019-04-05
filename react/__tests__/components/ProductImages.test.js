@@ -31,4 +31,9 @@ describe('<ProductImages />', () => {
     const { asFragment } = renderComponent()
     expect(asFragment()).toMatchSnapshot()
   })
+
+  it('should match the snapshot with thumbnails in right position', () => {
+    const { asFragment } = renderComponent({ position: 'right' })
+    expect(asFragment()).toMatchSnapshot()
+  })
 })

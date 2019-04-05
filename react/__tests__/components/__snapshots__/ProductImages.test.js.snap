@@ -71,3 +71,54 @@ exports[`<ProductImages /> should match the snapshot with no images 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`<ProductImages /> should match the snapshot with thumbnails in right position 1`] = `
+<DocumentFragment>
+  <div
+    class="content w-100"
+  >
+    <div
+      class="w-100 aspect-ratio aspect-ratio--1x1"
+    >
+      <svg
+        class="content-loader-mock"
+      >
+        <rect
+          class="dn db-ns"
+          height="18%"
+          width="18%"
+        />
+        <rect
+          class="dn db-ns"
+          height="18%"
+          width="18%"
+          y="20%"
+        />
+        <rect
+          class="dn db-ns"
+          height="18%"
+          width="18%"
+          y="40%"
+        />
+        <rect
+          class="dn db-ns"
+          height="18%"
+          width="18%"
+          y="61%"
+        />
+        <rect
+          class="dn db-ns"
+          height="89%"
+          width="89%"
+          x="20%"
+        />
+        <rect
+          class="db dn-ns"
+          height="100%"
+          width="100%"
+        />
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;
