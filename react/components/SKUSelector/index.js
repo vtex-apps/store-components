@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import { withRuntimeContext } from 'vtex.render-runtime'
+import PropTypes from 'prop-types'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import { useRuntime } from 'vtex.render-runtime'
 
 import SKUSelector from './components/SKUSelector'
-import { SKUSelectorContainerPropTypes } from './utils/proptypes'
+import { skuShape } from './utils/proptypes'
 import {
   getMainVariationName,
   getVariationOptions,
@@ -13,112 +14,111 @@ import {
 /**
  * Display a list of SKU items of a product and its specifications.
  */
-class SKUSelectorContainer extends Component {
-  static defaultProps = {
-    alwaysShowSecondary: true,
-  }
+const SKUSelectorContainer = ({
+  alwaysShowSecondary = true,
+  skuItems = [],
+  skuSelected,
+  onSKUSelected,
+}) => {
+  const [mainVariation, setMainVariation] = useState(null)
+  const [secondaryVariation, setSecondaryVariation] = useState(null)
 
-  state = { mainVariation: null, secondaryVariation: null }
+  const { setQuery } = useRuntime()
 
-  buildVariations = rawSkuSelected => {
-    const skuSelected = rawSkuSelected && parseSku(rawSkuSelected)
-    const skuItems =
-      this.props.skuItems && this.props.skuItems.map(sku => parseSku(sku))
-    const itemId = skuSelected.itemId
-    const variations = skuSelected.variations
+  const parsedItems = useMemo(() => skuItems.map(parseSku), [skuItems])
 
-    const name = getMainVariationName(variations)
-    const mainVariation = {
-      name,
-      value: this.props.skuSelected ? skuSelected[name] : null,
-      options: getVariationOptions(name, skuItems),
-    }
+  const buildVariations = useCallback(
+    sku => {
+      const itemId = sku.itemId
+      const variations = sku.variations
 
-    const secondaryVariation = { value: this.props.skuSelected ? itemId : null }
+      const name = getMainVariationName(variations)
+      const mainVariation = {
+        name,
+        value: skuSelected ? sku[name] : null,
+        options: getVariationOptions(name, parsedItems),
+      }
 
-    const filteredSkus = skuItems.filter(sku => sku[name] === skuSelected[name])
+      const secondaryVariation = { value: skuSelected ? itemId : null }
 
-    if (variations.length > 1) {
-      secondaryVariation.name = variations.find(variation => variation !== name)
-      secondaryVariation.options = getVariationOptions(
-        secondaryVariation.name,
-        filteredSkus
-      )
-    }
+      const filteredSkus = parsedItems.filter(s => s[name] === sku[name])
 
-    return { mainVariation, secondaryVariation }
-  }
+      if (variations.length > 1) {
+        secondaryVariation.name = variations.find(
+          variation => variation !== name
+        )
+        secondaryVariation.options = getVariationOptions(
+          secondaryVariation.name,
+          filteredSkus
+        )
+      }
 
-  componentDidMount() {
-    this.setState(
-      this.buildVariations(this.props.skuSelected || this.props.skuItems[0])
+      return { mainVariation, secondaryVariation }
+    },
+    [parsedItems, skuSelected]
+  )
+
+  useEffect(() => {
+    const sku = (skuSelected && parseSku(skuSelected)) || parsedItems[0]
+
+    const { mainVariation, secondaryVariation } = buildVariations(sku)
+
+    setMainVariation(mainVariation)
+    setSecondaryVariation(secondaryVariation)
+  }, [skuSelected, parsedItems, buildVariations])
+
+  const redirectToSku = (skuId, isMainVariation) => {
+    setQuery(
+      { skuId },
+      {
+        replace: !isMainVariation,
+      }
     )
   }
 
-  handleSkuSelection = (isMainVariation, skuId) => {
-    const selectedSku = this.props.skuItems.find(
-      ({ itemId }) => itemId === skuId
-    )
-    const variations = this.buildVariations(selectedSku)
-
-    variations.mainVariation.value = selectedSku.variations[0].values[0]
-    variations.secondaryVariation.value = null
-    // If there is secondary variation and there is only one option, assign skuId value to it
-    if (
-      variations.secondaryVariation.options &&
-      variations.secondaryVariation.options.length === 1
-    ) {
-      variations.secondaryVariation.value = skuId
-    }
-    if (!isMainVariation) {
-      variations.secondaryVariation.value = skuId
-    }
-
-    this.setState(variations)
-
-    const isSecondaryPicked = !!variations.secondaryVariation.value
-
-    this.props.onSKUSelected
-      ? this.props.onSKUSelected(skuId, isMainVariation, isSecondaryPicked)
-      : this.redirectToSku(skuId, isMainVariation)
-  }
-
-  redirectToSku(skuId, isMainVariation) {
+  const handleSkuSelection = (isMainVariation, skuId) => {
+    const sku = parsedItems.find(({ itemId }) => itemId === skuId)
     const {
-      runtime: { navigate },
-    } = this.props
-    const slug = this.props.productSlug
+      secondaryVariation: { options },
+    } = buildVariations(sku)
 
-    navigate({
-      page: 'store.product',
-      params: { slug },
-      query: `skuId=${skuId}`,
-      scrollOptions: false,
-      replace: !isMainVariation,
-    })
-  }
+    const isSecondaryPicked =
+      !isMainVariation || (options && options.length === 1)
 
-  render() {
-    if (!this.props.skuItems || this.props.skuItems.length === 0) {
-      return null
+    if (onSKUSelected) {
+      onSKUSelected(skuId, isMainVariation, isSecondaryPicked)
+    } else {
+      redirectToSku(skuId, isMainVariation)
     }
-    const skuItems =
-      this.props.skuItems && this.props.skuItems.map(sku => parseSku(sku))
-
-    const maxSkuPrice = getMaxSkuPrice(skuItems)
-
-    return (
-      <SKUSelector
-        mainVariation={this.state.mainVariation}
-        secondaryVariation={this.state.secondaryVariation}
-        onSelectSku={this.handleSkuSelection}
-        maxSkuPrice={maxSkuPrice}
-        alwaysShowSecondary={this.props.alwaysShowSecondary}
-      />
-    )
   }
+
+  if (parsedItems.length === 0) {
+    return null
+  }
+
+  const maxSkuPrice = getMaxSkuPrice(parsedItems)
+
+  return (
+    <SKUSelector
+      mainVariation={mainVariation}
+      secondaryVariation={secondaryVariation}
+      onSelectSKU={handleSkuSelection}
+      maxSkuPrice={maxSkuPrice}
+      alwaysShowSecondary={alwaysShowSecondary}
+    />
+  )
 }
 
-SKUSelectorContainer.propTypes = SKUSelectorContainerPropTypes
+SKUSelectorContainer.propTypes = {
+  /** SKU selected */
+  skuSelected: skuShape,
+  /** List of SKU Items */
+  skuItems: PropTypes.arrayOf(skuShape).isRequired,
+  /** Callback that is called when an SKU is selected */
+  onSKUSelected: PropTypes.func,
+  /** If true, show secondary options (if present), even when main variation is not picked yet. Default to true */
+  shouldShowSecondary: PropTypes.bool,
+  alwaysShowSecondary: PropTypes.bool,
+}
 
-export default withRuntimeContext(SKUSelectorContainer)
+export default SKUSelectorContainer
