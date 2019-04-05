@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "lib": ["es2017", "dom", "es2018.promise"],
+    "allowJS": true,
     "module": "es6",
     "moduleResolution": "node",
     "noEmitOnError": true,
