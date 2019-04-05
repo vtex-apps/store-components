@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.22.1] - 2019-04-05
+
 ### Fixed
 
 - Remove margin when there is no thumbnails on `ProductImages`.
