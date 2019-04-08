@@ -47,7 +47,8 @@ export default class Installments extends Component {
     }
 
     const noInterestRateInstallments = installments.filter(
-      installment => !installment.InterestRate && installment.NumberOfInstallments > 1
+      installment =>
+        !installment.InterestRate && installment.NumberOfInstallments > 1
     )
 
     /*
@@ -57,11 +58,10 @@ export default class Installments extends Component {
     const installment = (isEmpty(noInterestRateInstallments)
       ? installments
       : noInterestRateInstallments
-    ).reduce(
-      (previous, current) =>
-        previous.NumberOfInstallments > current.NumberOfInstallments
-          ? previous
-          : current
+    ).reduce((previous, current) =>
+      previous.NumberOfInstallments > current.NumberOfInstallments
+        ? previous
+        : current
     )
 
     const formattedInstallmentPrice = formatNumber(
@@ -91,12 +91,18 @@ export default class Installments extends Component {
             }}
           />
         ) : (
-            <Fragment>
-              {installmentsElement}{timesElement} {installmentPriceElement}
-            </Fragment>
-          )}
+          <Fragment>
+            {installmentsElement}
+            {timesElement} {installmentPriceElement}
+          </Fragment>
+        )}
         {!installment.InterestRate && (
-          <div className={classNames(productPrice.interestRatePrice, interestRateClass)}>
+          <div
+            className={classNames(
+              productPrice.interestRatePrice,
+              interestRateClass
+            )}
+          >
             <FormattedMessage id="pricing.interest-free" />
           </div>
         )}

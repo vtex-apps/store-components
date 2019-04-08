@@ -19,7 +19,10 @@ export function Spinner(props) {
   return <div className="spinner-mock"> {props.children} </div>
 }
 
-export const Input = forwardRef(function Input({ label, error, errorMessage, isLoading, ...props }, ref) {
+export const Input = forwardRef(function Input(
+  { label, error, errorMessage, isLoading, ...props },
+  ref
+) {
   return (
     <label>
       {label}
@@ -28,16 +31,14 @@ export const Input = forwardRef(function Input({ label, error, errorMessage, isL
         data-error={error}
         data-errormessage={errorMessage}
         ref={ref}
-        {...props} />
+        {...props}
+      />
     </label>
   )
 })
 
 export const Button = jest.fn(({ isLoading, variation, ...props }) => {
   return (
-    <button
-      data-variation={variation}
-      data-isloading={isLoading}
-      {...props} />
+    <button data-variation={variation} data-isloading={isLoading} {...props} />
   )
 })

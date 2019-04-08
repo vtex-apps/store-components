@@ -48,7 +48,13 @@ class ProductName extends Component {
   }
 
   static Loader = (loaderProps = {}) => (
-    <div className={classNames(productName.productNameContainer, productName.productNameLoader, loaderProps.className)}>
+    <div
+      className={classNames(
+        productName.productNameContainer,
+        productName.productNameLoader,
+        loaderProps.className
+      )}
+    >
       <ContentLoader
         style={{
           width: '100%',
@@ -91,25 +97,36 @@ class ProductName extends Component {
       showBrandName,
       productReference,
       showProductReference,
-      tag:Wrapper,
+      tag: Wrapper,
     } = this.props
 
     if (!name) {
-      return (
-        <ProductName.Loader className={loaderClass} {...styles} />
-      )
+      return <ProductName.Loader className={loaderClass} {...styles} />
     }
 
     return (
-      <Wrapper className={classNames(productName.productNameContainer, 'mv0', className)}>
+      <Wrapper
+        className={classNames(
+          productName.productNameContainer,
+          'mv0',
+          className
+        )}
+      >
         <span className={classNames(productName.productBrand, brandNameClass)}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
         {showSku && skuName && (
-          <span className={classNames(productName.productBrand, skuNameClass)}>{skuName}</span>
+          <span className={classNames(productName.productBrand, skuNameClass)}>
+            {skuName}
+          </span>
         )}
         {showProductReference && productReference && (
-          <span className={classNames(productName.productReference, productReferenceClass)}>
+          <span
+            className={classNames(
+              productName.productReference,
+              productReferenceClass
+            )}
+          >
             {`REF: ${productReference}`}
           </span>
         )}

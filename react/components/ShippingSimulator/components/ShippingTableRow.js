@@ -7,13 +7,19 @@ import classNames from 'classnames'
 import styles from '../styles.css'
 
 const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
-  const etaClassName = classNames(`${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`, {
-    'tc': shippingEstimate === undefined,
-  })
+  const etaClassName = classNames(
+    `${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`,
+    {
+      tc: shippingEstimate === undefined,
+    }
+  )
 
-  const valueClassName = classNames(`${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`, {
-    'tc': price === undefined,
-  })
+  const valueClassName = classNames(
+    `${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`,
+    {
+      tc: price === undefined,
+    }
+  )
 
   let valueText
 
@@ -22,7 +28,10 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   } else if (price === 0) {
     valueText = intl.formatMessage({ id: 'shipping.free' })
   } else {
-    valueText = intl.formatNumber(price / 100, { style: 'currency', currency: 'BRL' })
+    valueText = intl.formatNumber(price / 100, {
+      style: 'currency',
+      currency: 'BRL',
+    })
   }
 
   return (
@@ -41,9 +50,7 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
       <td className={etaClassName}>
         <TranslateEstimate shippingEstimate={shippingEstimate} />
       </td>
-      <td className={valueClassName}>
-        {valueText}
-      </td>
+      <td className={valueClassName}>{valueText}</td>
     </tr>
   )
 }
@@ -56,4 +63,3 @@ ShippingTableRow.propTypes = {
 }
 
 export default injectIntl(ShippingTableRow)
-

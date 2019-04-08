@@ -14,7 +14,9 @@ exports[`<CategoriesHighlights /> should match snapshot Rectangular 1`] = `
         <div
           class="rectangularCard shadow-1 ma1"
         >
-          <a>
+          <a
+            href="dummy"
+          >
             <img
               alt=""
               class="rectangularCardImage"
@@ -25,7 +27,9 @@ exports[`<CategoriesHighlights /> should match snapshot Rectangular 1`] = `
         <div
           class="rectangularCard shadow-1 ma1"
         >
-          <a>
+          <a
+            href="dummy"
+          >
             <img
               alt=""
               class="rectangularCardImage"
@@ -53,7 +57,9 @@ exports[`<CategoriesHighlights /> should match snapshot Squared 1`] = `
         <div
           class="squaredCard shadow-1 ma1"
         >
-          <a>
+          <a
+            href="dummy"
+          >
             <img
               alt=""
               class="squaredCardImage"
@@ -64,7 +70,9 @@ exports[`<CategoriesHighlights /> should match snapshot Squared 1`] = `
         <div
           class="squaredCard shadow-1 ma1"
         >
-          <a>
+          <a
+            href="dummy"
+          >
             <img
               alt=""
               class="squaredCardImage"

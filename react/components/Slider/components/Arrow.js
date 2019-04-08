@@ -35,5 +35,5 @@ Arrow.propTypes = {
   /** Specifies wich css class the arrow will receive. */
   cssClass: PropTypes.string.isRequired,
   /** Custom classes */
-  customClasses: PropTypes.string
+  customClasses: PropTypes.string,
 }

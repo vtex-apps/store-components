@@ -4,15 +4,23 @@ import NotificationContent from './notificationContent'
 
 import styles from './styles.css'
 
-const NotificationBar = ({
-  content
-}) => {
-  return content && (
-    <div className={`${styles.notificationBarContainer} bg-base--inverted c-on-base--inverted`}>
-      <div className={`${styles.notificationBarInner} min-h-large flex items-center justify-center`}>
-        <NotificationContent content={content} />
+const NotificationBar = ({ content }) => {
+  return (
+    content && (
+      <div
+        className={`${
+          styles.notificationBarContainer
+        } bg-base--inverted c-on-base--inverted`}
+      >
+        <div
+          className={`${
+            styles.notificationBarInner
+          } min-h-large flex items-center justify-center`}
+        >
+          <NotificationContent content={content} />
+        </div>
       </div>
-    </div>
+    )
   )
 }
 

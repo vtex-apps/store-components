@@ -117,7 +117,7 @@ SearchBarContainer.propTypes = {
   /** Identify if the search input should autofocus or not */
   autoFocus: PropTypes.bool,
   /** Max width of the search bar */
-  maxWidth: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+  maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export default injectIntl(SearchBarContainer)

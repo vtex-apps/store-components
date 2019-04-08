@@ -25,7 +25,7 @@ class Logo extends Component {
     /** TODO: Remove this prop, as it doesn't make sense anymore
      * (previously, the placeholder was a VTEX logo. This prop
      * would switch between the logo with and without a VTEX label.
-     * Now the placeholder without label is generic, so the 
+     * Now the placeholder without label is generic, so the
      * semantics of this prop are lost)
      */
     showLabel: PropTypes.bool,
@@ -43,11 +43,8 @@ class Logo extends Component {
   }
 
   render() {
-    const {
-      href,
-      isMobile,
-    } = this.props
-    
+    const { href, isMobile } = this.props
+
     const logoClassNames = classNames('store-logo', styles.logoContainer, {
       [styles.sizeDesktop]: !isMobile,
       [styles.sizeMobile]: isMobile,
@@ -67,15 +64,7 @@ class Logo extends Component {
   }
 
   renderLogoImage() {
-    const {
-      width,
-      height,
-      color,
-      showLabel,
-      url,
-      title,
-      runtime,
-    } = this.props
+    const { width, height, color, showLabel, url, title, runtime } = this.props
 
     if (url) {
       return <img src={this.getUrl(url, runtime)} alt={title} />
@@ -84,22 +73,11 @@ class Logo extends Component {
     if (!showLabel) {
       /** TODO: Find out if this is even used and remove this. */
       return (
-        <LogoVTEX
-          width={width}
-          height={height}
-          color={color}
-          title={title}
-        />
+        <LogoVTEX width={width} height={height} color={color} title={title} />
       )
     }
 
-    return (
-      <Placeholder
-        width={width}
-        height={height}
-        title={title}
-      />
-    )
+    return <Placeholder width={width} height={height} title={title} />
   }
 }
 

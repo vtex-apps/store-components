@@ -22,9 +22,9 @@ class ProductDescription extends Component {
     return (
       <div className={styles.productDescriptionContainer}>
         <FormattedMessage id="product-description.title">
-          {(txt) => (<h2 className="t-heading-5 mb5 mt0">{txt}</h2>)}
+          {txt => <h2 className="t-heading-5 mb5 mt0">{txt}</h2>}
         </FormattedMessage>
-        
+
         <div className="c-muted-1">
           <GradientCollapse collapseHeight={220}>
             {HtmlParser(description)}
