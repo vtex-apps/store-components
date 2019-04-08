@@ -23,7 +23,8 @@ const ProductHighlights = ({ ...props }) => {
           <span
             className={`${styles.highlightTitle} t-body c-on-base fw7 pr3 `}
           >
-            {HtmlParser(item.name)}{': '}
+            {HtmlParser(item.name)}
+            {': '}
           </span>
           <span
             className={`${styles.highlightValue} t-body c-muted-1 lh-copy `}

@@ -1,2 +1,1 @@
-export { default as default } from './components/AvailabilitySubscriber'
-
+export { default } from './components/AvailabilitySubscriber'

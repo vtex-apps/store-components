@@ -1,48 +1,56 @@
-import React, { Component } from 'react'
-import { curry } from 'ramda'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import Variation from './Variation'
-import { SKUSelectorPropTypes } from '../utils/proptypes'
+import { variationShape } from '../utils/proptypes'
 
 import styles from '../styles.css'
 
 /** Renders the main and the secondary variation, if it exists. */
-export default class SKUSelector extends Component {
-  shouldShowSecondary = () => {
-    const { alwaysShowSecondary, secondaryVariation, mainVariation } = this.props
-    const hasSecondary = !!secondaryVariation.name
-    if (alwaysShowSecondary && hasSecondary) {
-      return true
-    }
-    return hasSecondary && !!mainVariation.value
-  }
+const SKUSelector = ({
+  onSelectSKU,
+  mainVariation,
+  secondaryVariation,
+  maxSkuPrice,
+  alwaysShowSecondary,
+}) => {
+  if (!mainVariation) return null
 
-  render() {
-    const { onSelectSku, mainVariation, secondaryVariation, maxSkuPrice } = this.props
+  const shouldShowSecondary =
+    (alwaysShowSecondary || mainVariation.value) && secondaryVariation.name
 
-    if (!mainVariation) return null
-
-    const onSkuSelected = curry(onSelectSku) 
-
-    return (
-      <div className={styles.skuSelectorContainer}>
+  return (
+    <div className={styles.skuSelectorContainer}>
+      <Variation
+        variation={mainVariation}
+        onSelectItem={skuId => onSelectSKU(true, skuId)}
+        isSelected={sku => sku[mainVariation.name] === mainVariation.value}
+        maxSkuPrice={maxSkuPrice}
+      />
+      {shouldShowSecondary && (
         <Variation
-          variation={mainVariation}
-          onSelectItem={onSkuSelected(true)}
-          isSelected={sku => sku[mainVariation.name] === mainVariation.value}
+          variation={secondaryVariation}
+          onSelectItem={skuId => onSelectSKU(false, skuId)}
+          isSelected={sku => sku.itemId === secondaryVariation.value}
           maxSkuPrice={maxSkuPrice}
         />
-        {
-          this.shouldShowSecondary() && <Variation
-            variation={secondaryVariation}
-            onSelectItem={onSkuSelected(false)}
-            isSelected={sku => sku.itemId === secondaryVariation.value}
-            maxSkuPrice={maxSkuPrice}
-          />
-        }
-      </div>
-    )
-  }
+      )}
+    </div>
+  )
 }
 
-SKUSelector.propTypes = SKUSelectorPropTypes
+SKUSelector.propTypes = {
+  /** Function to go to the product page of a given sku */
+  onSelectSKU: PropTypes.func.isRequired,
+  /** Name and list of options of the main variation */
+  mainVariation: variationShape,
+  /** Name and list of options of the secondary variation */
+  secondaryVariation: variationShape,
+  /** Max price find on the sku list */
+  maxSkuPrice: PropTypes.number.isRequired,
+  /** If true, show secondary options (if present), even when main variation is not picked yet */
+  shouldShowSecondary: PropTypes.bool,
+  alwaysShowSecondary: PropTypes.bool,
+}
+
+export default SKUSelector

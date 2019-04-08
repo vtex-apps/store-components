@@ -19,16 +19,23 @@ export default class SocialButton extends Component {
     /** Classes to be applied to social button */
     buttonClass: PropTypes.string,
     /** Classes to be applied to icon of the button */
-    iconClass: PropTypes.string
+    iconClass: PropTypes.string,
   }
 
   static defaultProps = {
     size: 32,
-    buttonClass: 'mh1 pointer outline-0 dim'
+    buttonClass: 'mh1 pointer outline-0 dim',
   }
 
   render() {
-    const { url, message, size, socialEnum, buttonClass, iconClass } = this.props
+    const {
+      url,
+      message,
+      size,
+      socialEnum,
+      buttonClass,
+      iconClass,
+    } = this.props
     const socialComponentName = SOCIAL_ENUM_TO_COMPONENT[socialEnum]
     const SocialComponent = ReactShare[`${socialComponentName}ShareButton`]
     const SocialIcon = ReactShare[`${socialComponentName}Icon`]
@@ -60,6 +67,6 @@ function resolveMessageProp(message, socialEnum) {
   return titlePropMessage.includes(socialEnum)
     ? { title: message }
     : socialEnum === SOCIAL_TO_ENUM.facebook
-      ? { quote: message }
-      : { body: message }
+    ? { quote: message }
+    : { body: message }
 }

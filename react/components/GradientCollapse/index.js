@@ -6,8 +6,9 @@ import { FormattedMessage } from 'react-intl'
 import classNames from 'classnames'
 import styles from './styles.css'
 
-
-const transitionStyle = (transitionTime) => ({ transition: `${transitionTime}ms ease-in-out` })
+const transitionStyle = transitionTime => ({
+  transition: `${transitionTime}ms ease-in-out`,
+})
 
 class GradientCollapse extends Component {
   constructor(props) {
@@ -45,34 +46,63 @@ class GradientCollapse extends Component {
     const transitionTime = 600
     const fadeOutTime = 400
 
-    const pointerEventsNoneClasses = classNames(styles.pointerEventsNone, { 'flex': isCollapseVisible, 'dn': !isCollapseVisible }, 'absolute bottom-0 w-100 h-100 flex-column justify-end')
-    const fadeBottomClasses = state => classNames(styles.fadeBottom, { 'o-0': state === 'entered' }, 'w-100 h-50')
-    const pointerEventsAutoClasses = state => classNames(styles.pointerEventsAuto, { 'bg-transparent': state === 'entered', 'bg-base': state != 'entered' }, 'tc w-100')
+    const pointerEventsNoneClasses = classNames(
+      styles.pointerEventsNone,
+      { flex: isCollapseVisible, dn: !isCollapseVisible },
+      'absolute bottom-0 w-100 h-100 flex-column justify-end'
+    )
+    const fadeBottomClasses = state =>
+      classNames(
+        styles.fadeBottom,
+        { 'o-0': state === 'entered' },
+        'w-100 h-50'
+      )
+    const pointerEventsAutoClasses = state =>
+      classNames(
+        styles.pointerEventsAuto,
+        {
+          'bg-transparent': state === 'entered',
+          'bg-base': state != 'entered',
+        },
+        'tc w-100'
+      )
 
     return (
       <Transition timeout={transitionTime} in={!collapsed}>
-        {(state) => (
+        {state => (
           <div
-            style={{ ...transitionStyle(transitionTime), height, overflow: 'hidden' }}
-            className="relative">
+            style={{
+              ...transitionStyle(transitionTime),
+              height,
+              overflow: 'hidden',
+            }}
+            className="relative"
+          >
             <div ref={this.wrapper} className="h-auto">
               {children}
             </div>
             <div className={pointerEventsNoneClasses}>
-              <div style={transitionStyle(fadeOutTime)}
-                className={fadeBottomClasses(state)} />
+              <div
+                style={transitionStyle(fadeOutTime)}
+                className={fadeBottomClasses(state)}
+              />
               <div className={pointerEventsAutoClasses(state)}>
                 <div
                   className="c-action-primary t-action pointer ma5"
-                  onClick={() => this.setState({ collapsed: !collapsed })}>
-                  {state === 'entered' || collapsed && state !== 'exited'
-                    ? <FormattedMessage id="product-description.collapse.showLess" />
-                    : <FormattedMessage id="product-description.collapse.showMore" />}
+                  onClick={() => this.setState({ collapsed: !collapsed })}
+                >
+                  {state === 'entered' || (collapsed && state !== 'exited') ? (
+                    <FormattedMessage id="product-description.collapse.showLess" />
+                  ) : (
+                    <FormattedMessage id="product-description.collapse.showMore" />
+                  )}
                 </div>
               </div>
             </div>
-          </div>)}
-      </Transition>)
+          </div>
+        )}
+      </Transition>
+    )
   }
 }
 
@@ -83,4 +113,3 @@ GradientCollapse.propTypes = {
 }
 
 export default GradientCollapse
-

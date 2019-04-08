@@ -24,32 +24,33 @@ export default class SelectorItem extends PureComponent {
     return (
       <div
         className={classNames(
-          `${styles.skuSelectorItem} relative di pointer flex items-center`, {
-            [styles.skuSelectorItemImage]: isImage
+          `${styles.skuSelectorItem} relative di pointer flex items-center`,
+          {
+            [styles.skuSelectorItemImage]: isImage,
           }
         )}
         onClick={onClick}
       >
         <div
           className={classNames(
-            `absolute ${styles.frameAround} b--action-primary br3 bw1`, {
-              'ba': isSelected
+            `absolute ${styles.frameAround} b--action-primary br3 bw1`,
+            {
+              ba: isSelected,
             }
           )}
         />
         <div
           className={classNames(
-            'w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden', {
-              'hover-b--muted-2': !isSelected
+            'w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden',
+            {
+              'hover-b--muted-2': !isSelected,
             }
           )}
         >
           <div
-            className={classNames(
-              'absolute absolute--fill', {
-                [styles.diagonalCross]: !isAvailable
-              }
-            )}
+            className={classNames('absolute absolute--fill', {
+              [styles.diagonalCross]: !isAvailable,
+            })}
           />
           <div
             className={classNames({ 'c-on-base center pl5 pr5 z-1': !isImage })}

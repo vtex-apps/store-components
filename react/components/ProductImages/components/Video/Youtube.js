@@ -20,7 +20,7 @@ class Youtube extends Component {
 
           resolve(response.thumbnails.default.url)
         })
-    });
+    })
 
   constructor(props) {
     super(props)
@@ -63,7 +63,7 @@ class Youtube extends Component {
     const match = url.match(regExp)
     if (match && match[7].length === 11) return match[7]
     return null
-  };
+  }
 
   componentDidMount() {
     this.iframeRef.onload = () => (this.frameReady = true)
@@ -77,7 +77,7 @@ class Youtube extends Component {
       youtubeCommand,
       'https://www.youtube.com'
     )
-  };
+  }
 
   render() {
     const { iframe } = this.state

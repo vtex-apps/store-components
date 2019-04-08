@@ -8,6 +8,7 @@ This Component can be imported and used by any VTEX app.
 :loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
 
 ## Table of Contents
+
 - [Product Specifications](#product-specifications)
   - [Description](#description)
   - [Table of Contents](#table-of-contents)
@@ -21,17 +22,17 @@ This Component can be imported and used by any VTEX app.
 
 You should follow the usage instruction in the main [README](/README.md#usage).
 
-Then, add `product-images` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
+Then, add `product-images` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json).
 
 ### Blocks API
 
 When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `ProductSpecifications` and describes if they are required or optional.
 
- ```json
-  "product-images":{
-    "component": "ProductImages"
-  }
-```	
+```json
+ "product-images":{
+   "component": "ProductImages"
+ }
+```
 
 For now this block does not have any required or optional blocks.
 
@@ -39,16 +40,17 @@ For now this block does not have any required or optional blocks.
 
 Specification:
 
-| Prop name | Type             | Description        | Default Value |
-| --------- | ---------------- | ------------------ | ------------- |
-| `images`  | `Array(Images)!` | An array of Images | []            |
-
+| Prop name  | Type             | Description                                           | Default Value |
+| ---------- | ---------------- | ----------------------------------------------------- | ------------- |
+| `images`   | `Array(Images)!` | An array of Images                                    | []            |
+| `position` | `Enum`           | Set the position of the thumbnails(`left` or `right`) | `left`        |
 
 ### Styles API
 
 You should follow the Styles API instruction in the main [README](/README.md#styles-api).
 
 #### CSS Namespaces
+
 Below, we describe the namespace that are defined in the `ProductImages`.
 
 | Class name                | Description                                                                             | Component Source                                                                   |

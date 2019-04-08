@@ -44,14 +44,44 @@ export default class SlickSlider extends Component {
   }
 
   getSettings(slideWidth) {
-    const { sliderSettings, adaptToScreen, scrollByPage, defaultItemWidth, children, leftArrowClasses, rightArrowClasses, dotsClasses } = this.props
-    const itemsPerPage = getItemsPerPage(this._slick, slideWidth, defaultItemWidth, sliderSettings.slidesToShow)
+    const {
+      sliderSettings,
+      adaptToScreen,
+      scrollByPage,
+      defaultItemWidth,
+      children,
+      leftArrowClasses,
+      rightArrowClasses,
+      dotsClasses,
+    } = this.props
+    const itemsPerPage = getItemsPerPage(
+      this._slick,
+      slideWidth,
+      defaultItemWidth,
+      sliderSettings.slidesToShow
+    )
     const settings = { ...sliderSettings }
     const numItems = children.length
 
-    settings.nextArrow = settings.nextArrow || <Arrow customClasses={rightArrowClasses} cssClass={VTEXClasses.ARROW_RIGHT_CLASS} />
-    settings.prevArrow = settings.prevArrow || <Arrow customClasses={leftArrowClasses} cssClass={VTEXClasses.ARROW_LEFT_CLASS} />
-    settings.appendDots = dots => <Dots dots={dots} customClass={dotsClasses} cssClass={VTEXClasses.DOTS_CLASS} />
+    settings.nextArrow = settings.nextArrow || (
+      <Arrow
+        customClasses={rightArrowClasses}
+        cssClass={VTEXClasses.ARROW_RIGHT_CLASS}
+      />
+    )
+    settings.prevArrow = settings.prevArrow || (
+      <Arrow
+        customClasses={leftArrowClasses}
+        cssClass={VTEXClasses.ARROW_LEFT_CLASS}
+      />
+    )
+    settings.appendDots = dots => (
+      <Dots
+        dots={dots}
+        customClass={dotsClasses}
+        cssClass={VTEXClasses.DOTS_CLASS}
+      />
+    )
 
     if (adaptToScreen) {
       settings.slidesToShow = itemsPerPage
@@ -69,21 +99,20 @@ export default class SlickSlider extends Component {
   render() {
     const component = (
       <ReactResizeDetector handleWidth>
-        {
-          width => (
-            <Slider {...this.getSettings(width)} ref={c => { this._slick = c }}>
-              {this.props.children}
-            </Slider>
-          )
-        }
+        {width => (
+          <Slider
+            {...this.getSettings(width)}
+            ref={c => {
+              this._slick = c
+            }}
+          >
+            {this.props.children}
+          </Slider>
+        )}
       </ReactResizeDetector>
     )
     if (this.props.ssrFallback) {
-      return (
-        <NoSSR onSSR={this.props.ssrFallback}>
-          {component}
-        </NoSSR>
-      )
+      return <NoSSR onSSR={this.props.ssrFallback}>{component}</NoSSR>
     }
     return component
   }
