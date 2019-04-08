@@ -4,9 +4,10 @@ import Vimeo from './Vimeo'
 import styles from '../../styles.css'
 
 class Video extends Component {
-
   static getThumbUrl(url, thumbWidth) {
-    if (url.search('vimeo') !== -1) { return Vimeo.getThumbUrl(url, thumbWidth) }
+    if (url.search('vimeo') !== -1) {
+      return Vimeo.getThumbUrl(url, thumbWidth)
+    }
   }
 
   render() {

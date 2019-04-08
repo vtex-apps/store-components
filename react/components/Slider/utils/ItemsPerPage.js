@@ -1,7 +1,10 @@
-import get from 'lodash.get'
+import { path } from 'ramda'
 
 function getItemWidth(slick, maxWidth) {
-  const slidesNodeList = get(slick, 'innerSlider.list.childNodes[0].childNodes')
+  const slidesNodeList = path(
+    ['innerSlider', 'list', 'childNodes', '0', 'childNodes'],
+    slick
+  )
   let itemWidth = null
   if (slidesNodeList) {
     const slidesArray = Array.prototype.slice.call(slidesNodeList)
@@ -9,8 +12,8 @@ function getItemWidth(slick, maxWidth) {
       const attributes = Array.prototype.slice.call(slide.attributes)
       attributes.map(attr => {
         if (attr.nodeName === 'data-index' && attr.nodeValue === '0') {
-          itemWidth = get(slide, 'childNodes[0].clientWidth')
-          if(maxWidth && maxWidth < itemWidth) itemWidth = maxWidth
+          itemWidth = path(['childNodes', '0', 'clientWidth'], slide)
+          if (maxWidth && maxWidth < itemWidth) itemWidth = maxWidth
         }
       })
     })
@@ -21,7 +24,12 @@ function getItemWidth(slick, maxWidth) {
 /**
  * Returns the correct number of items to be inside the slider without reduce the item width.
  */
-export default function getItemsPerPage(slick, slideWidth, defaultItemWidth, actualItemsPerPage) {
+export default function getItemsPerPage(
+  slick,
+  slideWidth,
+  defaultItemWidth,
+  actualItemsPerPage
+) {
   if (slideWidth) {
     const shelfItemWidth = getItemWidth(slick, defaultItemWidth)
     const maxItemsPerPage = Math.floor(slideWidth / shelfItemWidth)

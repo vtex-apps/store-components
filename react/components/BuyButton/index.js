@@ -83,7 +83,7 @@ export class BuyButton extends Component {
     onAddStart && onAddStart()
 
     let showToastMessage = null
-    
+
     try {
       const minicartItems = skuItems.map(this.skuItemToMinicartItem)
       const {
@@ -112,11 +112,13 @@ export class BuyButton extends Component {
         await orderFormContext.refetch().catch(() => null)
       }
 
-      success = success || (linkStateItems &&
-        skuItems.filter(
-          skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
-        ))
-      
+      success =
+        success ||
+        (linkStateItems &&
+          skuItems.filter(
+            skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
+          ))
+
       if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
       showToastMessage = () => this.toastMessage(success && success.length >= 1)
     } catch (err) {
@@ -232,5 +234,5 @@ export default compose(
   withMutation,
   withToast,
   injectIntl,
-  orderFormConsumer,
+  orderFormConsumer
 )(BuyButton)

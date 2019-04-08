@@ -2,12 +2,8 @@ import React, { memo } from 'react'
 import { string } from 'prop-types'
 import NotificationContent from './notificationContent'
 
-const NotificationInline = ({
-  content
-}) => {
-  return content && (
-    <NotificationContent content={content} />
-  )
+const NotificationInline = ({ content }) => {
+  return content && <NotificationContent content={content} />
 }
 
 NotificationInline.propTypes = {
