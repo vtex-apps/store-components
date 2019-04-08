@@ -101,7 +101,11 @@
   "editor.info-card.callAction.none": "None",
   "editor.info-card.callAction.button": "Button",
   "editor.info-card.callAction.link": "Link",
-  "user-address.pickup": "Pick up at",
+  "user-address.pickup": "Pick up at {name}",
   "user-address.order": "Order to",
-  "user-address.change": "Change"
+  "user-address.change": "Change",
+  "editor.notification-bar.title": "Notification bar",
+  "editor.notification-bar.description": "A component that show any text in a bar style",
+  "editor.notification-bar.content.title": "Content",
+  "editor.notification-bar.content.description": "Text of the bar"
 }

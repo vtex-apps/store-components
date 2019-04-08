@@ -9,10 +9,52 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Added
 - Add href to `CategoryCard` link.
 
-## [3.21.2] - 2019-03-28
+## [3.22.2] - 2019-04-05
 ### Fixed
 
-- Fix `BlurredLoader` not working properly.
+- SKU Selector not changing selected item.
+
+## [3.22.1] - 2019-04-05
+
+### Fixed
+
+- Remove margin when there is no thumbnails on `ProductImages`.
+
+## [3.22.0] - 2019-04-04
+
+### Added
+
+- Place thumbs according to position on `ProductImages`.
+
+## [3.21.8] - 2019-04-03
+
+### Fixed
+
+- Refactoring `Greeting`.
+
+## [3.21.7] - 2019-04-01
+
+### Changed
+
+- Use location-marker from `store-icons` on `UserAddress`.
+
+## [3.21.6] - 2019-04-01
+
+### Added
+
+- New blocks `notification.bar` and `notification.inline`.
+
+## [3.21.5] - 2019-04-01
+
+### Fixed
+
+- Parse local state order form.
+
+## [3.21.4] - 2019-03-29
+
+### Added
+
+- Implement query to get pickup point checkedIn name on `UserAddress`.
 
 ## [3.21.1] - 2019-03-28
 

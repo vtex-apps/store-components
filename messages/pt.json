@@ -101,7 +101,11 @@
   "editor.info-card.callAction.none": "Nenhum",
   "editor.info-card.callAction.button": "Botão",
   "editor.info-card.callAction.link": "Link",
-  "user-address.pickup": "Retirar em",
+  "user-address.pickup": "Retirar em {name}",
   "user-address.order": "Enviar para",
-  "user-address.change": "Alterar"
+  "user-address.change": "Alterar",
+  "editor.notification-bar.title": "Notification bar",
+  "editor.notification-bar.description": "Um componente que mostra qualquer texto em um estilo de barra",
+  "editor.notification-bar.content.title": "Conteúdo",
+  "editor.notification-bar.content.description": "Texto da barra"
 }

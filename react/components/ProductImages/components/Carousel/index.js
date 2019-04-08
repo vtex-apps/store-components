@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'debounce'
 import classNames from 'classnames'
-import { path, equals, isEmpty } from 'ramda'
+import { path, equals } from 'ramda'
 
 import { IconCaret } from 'vtex.store-icons'
 
@@ -153,10 +153,10 @@ class Carousel extends Component {
   }
 
   render() {
-    const { thumbSwiper, thumbsLoaded, loaded } = this.state
-    const { slides } = this.props
+    const { thumbSwiper, thumbsLoaded } = this.state
+    const { slides, position } = this.props
 
-    if ((!thumbsLoaded || Swiper == null) && isEmpty(loaded)) {
+    if (!thumbsLoaded || Swiper == null) {
       return <Loader slidesAmount={slides ? slides.length : 0} />
     }
 
@@ -226,16 +226,26 @@ class Carousel extends Component {
       shouldSwiperUpdate: true,
     }
 
+    const imageClasses = classNames(
+      `w-100 border-box ${styles.carouselGaleryCursor}`,
+      {
+        'ml-20-ns w-80-ns': position === 'left' && slides.length > 1,
+        'mr-20-ns w-80-ns': position === 'right' && slides.length > 1,
+      }
+    )
+
+    const thumbClasses = classNames(
+      `w-20 ${styles.carouselGaleryThumbs} bottom-0 top-0 absolute dn`,
+      {
+        'db-ns': slides.length > 1,
+        'left-0 pr5': position === 'left',
+        'right-0 pl5': position === 'right',
+      }
+    )
+
     return (
       <div className={'relative overflow-hidden'}>
-        <div
-          className={classNames(
-            `w-20 ${
-              styles.carouselGaleryThumbs
-            } bottom-0 top-0 left-0 absolute pr5 dn`,
-            { 'db-ns': slides.length > 1 }
-          )}
-        >
+        <div className={thumbClasses}>
           <Swiper {...thumbnailParams} ref={this.thumbSwiper}>
             {slides.map((slide, i) => (
               <div
@@ -257,14 +267,7 @@ class Carousel extends Component {
             ))}
           </Swiper>
         </div>
-        <div
-          className={classNames(
-            `w-100 border-box ${styles.carouselGaleryCursor}`,
-            {
-              'w-80-ns ml-20-ns': slides.length > 1,
-            }
-          )}
-        >
+        <div className={imageClasses}>
           <Swiper {...galleryParams} ref={this.gallerySwiper}>
             {slides.map((slide, i) => (
               <div key={i} className="swiper-slide center-all">

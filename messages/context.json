@@ -103,5 +103,9 @@
   "editor.info-card.callAction.link": "Name of enum value to make CTA a link",
   "user-address.pickup": "Pickup at <address>",
   "user-address.order": "Order to <address>",
-  "user-address.change": "Change address button label"
+  "user-address.change": "Change address button label",
+  "editor.notification-bar.title": "Notification bar",
+  "editor.notification-bar.description": "A component that show any text in a bar style",
+  "editor.notification-bar.content.title": "Content",
+  "editor.notification-bar.content.description": "Text of the bar"
 }

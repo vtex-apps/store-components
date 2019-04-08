@@ -29,20 +29,26 @@ class CategoryCard extends Component {
 
     return (
       <div
-        className={`${categoriesHighlights[`${shape}Card`]} shadow-1 ma1`}>
-
+        className={`${categoriesHighlights[`${shape}Card`]} shadow-1 ma1`}
+      >
         <Link page={page} params={params} query={query} to={to}>
           {image ? (
-            <img src={image} alt={name} className={`${categoriesHighlights[`${shape}CardImage`]}`}/>
+            <img
+              src={image}
+              alt={name}
+              className={`${categoriesHighlights[`${shape}CardImage`]}`}
+            />
           ) : (
-              <img
-                src={
-                  shape == SQUARED ? squaredPlaceholder : rectangularPlaceholder
-                }
-                alt=""
-                className={`${categoriesHighlights[`${shape}CardImage`]}`}
-              />
-            )}
+            <img
+              src={
+                shape == SQUARED
+                  ? squaredPlaceholder
+                  : rectangularPlaceholder
+              }
+              alt=""
+              className={`${categoriesHighlights[`${shape}CardImage`]}`}
+            />
+          )}
         </Link>
       </div>
     )

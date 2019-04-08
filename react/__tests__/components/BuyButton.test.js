@@ -1,5 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@vtex/test-tools/react'
+import { MockedProvider } from 'react-apollo/test-utils'
 
 import BuyButton from '../../BuyButton'
 
@@ -9,9 +10,13 @@ describe('<BuyButton />', () => {
       ...customProps,
     }
 
-    return render(<BuyButton {...props}>{text}</BuyButton>, {
-      graphql: { mocks: [] },
-    })
+    const comp = (
+      <MockedProvider resolvers={{}}>
+        <BuyButton {...props}>{text}</BuyButton>
+      </MockedProvider>
+    )
+
+    return render(comp)
   }
 
   it('should be rendered', () => {

@@ -36,7 +36,8 @@ class ShippingSimulator extends Component {
         width={500}
         height={40}
         preserveAspectRatio="xMinYMin meet"
-        {...loaderProps}>
+        {...loaderProps}
+      >
         <rect
           height="100%"
           width="7em"
@@ -129,7 +130,12 @@ class ShippingSimulator extends Component {
     return (
       <Fragment>
         <form className={`${styles.shippingContainer} t-small c-on-base`}>
-          <label className={`${styles.shippingZipcodeLabel} c-muted-2 db t-small mb3`} htmlFor="shipping-zipcode">
+          <label
+            className={`${
+              styles.shippingZipcodeLabel
+            } c-muted-2 db t-small mb3`}
+            htmlFor="shipping-zipcode"
+          >
             {this.formatMessage('shipping.label')}
           </label>
           <div className="flex">
@@ -146,7 +152,8 @@ class ShippingSimulator extends Component {
               disabled={zipcodeValue.length < 9 || zipcodeValue === prevZipcode}
               size="small"
               type="submit"
-              isLoading={loading}>
+              isLoading={loading}
+            >
               Ok
             </Button>
           </div>

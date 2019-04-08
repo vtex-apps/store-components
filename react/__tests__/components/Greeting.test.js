@@ -1,6 +1,5 @@
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import React from 'react'
-import { MockedProvider } from 'react-apollo/test-utils'
 import { render } from '@vtex/test-tools/react'
 
 import Greeting from '../../Greeting'
@@ -9,15 +8,16 @@ describe('<Greeting /> component', () => {
   const data = {
     minicart: {
       __typename: 'Minicart',
-      orderForm: {
+      orderForm: JSON.stringify({
         __typename: 'OrderFormClient',
         clientProfileData: {
           __typename: 'ClientProfileData',
           firstName: 'name',
         },
-      },
+      }),
     },
   }
+
   const cache = new InMemoryCache()
   cache.writeData({ data })
 
@@ -26,13 +26,7 @@ describe('<Greeting /> component', () => {
       ...customProps,
     }
 
-    const comp = (
-      <MockedProvider cache={cache} resolvers={{}}>
-        <Greeting {...props} />
-      </MockedProvider>
-    )
-
-    return render(comp)
+    return render(<Greeting {...props} />, { graphql: { cache: cache } })
   }
 
   it('should be rendered', () => {
@@ -42,7 +36,7 @@ describe('<Greeting /> component', () => {
 
   it('should match snapshot without loading', () => {
     const { asFragment } = renderComponent()
-    expect(asFragment()).toMatchSnapshot()
+    expect(asFragment({ loading: false })).toMatchSnapshot()
   })
 
   it('should match snapshot with loading', () => {
