@@ -7,7 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Pinterest share option on `Share`.
+
 ## [3.22.2] - 2019-04-05
+
 ### Fixed
 
 - SKU Selector not changing selected item.
