@@ -5,5 +5,8 @@
   },
   "devDependencies": {
     "@vtex/intl-equalizer": "^2.2.1"
+  },
+  "dependencies": {
+    "@vtex/test-tools": "^0.2.0"
   }
 }
