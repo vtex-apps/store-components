@@ -65,6 +65,7 @@
   "editor.categoriesHighlighted.cardShape": "Forma de la caja",
   "editor.categoriesHighlighted.cardShape.squared": "Cuadrada",
   "editor.categoriesHighlighted.cardShape.rectangular": "Rectangular",
+  "editor.categoriesHighlighted.fillRowWithEmptyCards": "Rellene la fila con tarjetas vacías",
   "searchBar.button.cancel.label": "Cancelar",
   "buyButton-label-unavailable": "Indisponible",
   "greeting": "Hola",

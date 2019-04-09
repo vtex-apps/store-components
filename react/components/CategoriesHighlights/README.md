@@ -39,6 +39,7 @@ You can use it in your code like a React component with the jsx tag: `<Categorie
 | `showCategoriesHighlighted`         | `Boolean!` | Flag which indicates if the categories highlighted should be displayed or not             | false
 | `quantityOfItems`                   | `Number!`  | Number of categories highlighted to be displayed (it should be 2 or 4)                    | 2
 | `boxShape`                          | `String!`  | Shape of the card box which wraps each category (it should be 'squared' or 'rectangular') | `squared`                              
+| `fillRowWithEmptyCards`         | `Boolean!` | Flag which indicates if the row should be filled with empty cards             | true
 
 Category Highlight:
 

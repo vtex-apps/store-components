@@ -65,6 +65,7 @@
   "editor.categoriesHighlighted.cardShape": "editor.categoriesHighlighted.cardShape",
   "editor.categoriesHighlighted.cardShape.squared": "editor.categoriesHighlighted.cardShape.squared",
   "editor.categoriesHighlighted.cardShape.rectangular": "editor.categoriesHighlighted.cardShape.rectangular",
+  "editor.categoriesHighlighted.fillRowWithEmptyCards": "editor.categoriesHighlighted.fillRowWithEmptyCards",
   "searchBar.button.cancel.label": "searchBar.button.cancel.label",
   "buyButton-label-unavailable": "buyButton-label-unavailable",
   "greeting": "greeting",

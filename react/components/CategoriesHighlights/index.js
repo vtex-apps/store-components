@@ -21,6 +21,8 @@ class CategoriesHighlights extends Component {
     quantityOfItems: PropTypes.number.isRequired,
     /** Shape of the card box which wraps each category (it should be 'squared' or 'rectangular')  */
     cardShape: PropTypes.oneOf([SQUARED, RECTANGULAR]).isRequired,
+    /** Flag which indicates if the row should be filled with empty cards */
+    fillRowWithEmptyCards: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -28,6 +30,7 @@ class CategoriesHighlights extends Component {
     showCategoriesHighlighted: false,
     quantityOfItems: ITEMS_PER_ROW,
     cardShape: SQUARED,
+    fillRowWithEmptyCards: true,
   }
 
   static uiSchema = {
@@ -112,6 +115,12 @@ class CategoriesHighlights extends Component {
           properties: categoriesHighlightedProps,
           isLayout: false,
         },
+        fillRowWithEmptyCards: {
+          type: 'boolean',
+          title: 'editor.categoriesHighlighted.fillRowWithEmptyCards',
+          default: true,
+          isLayout: true,
+        },
       },
     }
   }
@@ -122,17 +131,20 @@ class CategoriesHighlights extends Component {
       showCategoriesHighlighted,
       quantityOfItems,
       cardShape,
+      fillRowWithEmptyCards,
     } = this.props
 
     if (!showCategoriesHighlighted) return null
 
     let categories = values(categoriesHighlighted).map(category => category)
-    range(categories.length, quantityOfItems).forEach(() => {
-      categories.push({
-        name: '',
-        image: '',
+    if (fillRowWithEmptyCards) {
+      range(categories.length, quantityOfItems).forEach(() => {
+        categories.push({
+          name: '',
+          image: '',
+        })
       })
-    })
+    }
 
     return (
       <div
@@ -146,13 +158,16 @@ class CategoriesHighlights extends Component {
               key={`row${indexRow}`}
               className="flex flex-row flex-wrap items-center justify-center"
             >
-              {range(0, ITEMS_PER_ROW).map(indexCol => (
-                <CategoryCard
-                  key={2 * indexRow + indexCol}
-                  shape={cardShape}
-                  {...categories[2 * indexRow + indexCol]}
-                />
-              ))}
+              {range(0, ITEMS_PER_ROW).map(
+                indexCol =>
+                  categories[2 * indexRow + indexCol] && (
+                    <CategoryCard
+                      key={2 * indexRow + indexCol}
+                      shape={cardShape}
+                      {...categories[2 * indexRow + indexCol]}
+                    />
+                  )
+              )}
             </div>
           ))}
         </div>
