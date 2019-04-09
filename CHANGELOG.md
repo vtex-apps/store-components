@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - InfoCard schema.
+- InfoCard CMS labels.
 
 ## [3.23.0] - 2019-04-09
 
