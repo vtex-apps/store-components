@@ -56,5 +56,8 @@
   },
   "notification.bar": {
     "component": "NotificationBar"
+  },
+  "image": {
+    "component": "Image"
   }
 }
