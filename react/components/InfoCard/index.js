@@ -52,7 +52,8 @@ const safelyGetToken = (tokenMap, valueWanted, propName) =>
 const getImageUrl = (isMobile, imageUrl, mobileImageUrl) =>
   !!mobileImageUrl && isMobile ? mobileImageUrl : imageUrl
 
-const safelyGetBlockClass = blockClass => blockClass.split(' ')[0]
+const safelyGetBlockClass = blockClass =>
+  blockClass ? blockClass.split(' ')[0] : ''
 
 const InfoCard = ({
   blockClass,

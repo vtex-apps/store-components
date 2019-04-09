@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.24.1] - 2019-04-09
+
+### Fixed
+
+- Add safeguard to InfoCard `blockClass` prop
+
 ## [3.24.0] - 2019-04-09
 ### Fixed
 
