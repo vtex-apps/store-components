@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Fix propType name for `showCategoriesHighlighted` in `CategoriesHighlights`.
+- Fix SKUSelector displaying the wrong selected item.
 
 ### Added
 - InfoCard new property `blockClass`.

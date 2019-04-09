@@ -49,16 +49,12 @@ export const parseSku = sku => {
 export const getVariationOptions = (variation, skus) => {
   const hTable = {}
 
-  skus.map(sku => {
+  skus.reverse().map(sku => {
     const value = sku[variation]
     hTable[value] = sku
   })
 
-  return Object.values(hTable).sort((a, b) => {
-    if (a[variation] < b[variation]) return -1
-    if (a[variation] > b[variation]) return 1
-    return 0
-  })
+  return Object.values(hTable).sort((a, b) => a[variation] - b[variation])
 }
 
 /**
