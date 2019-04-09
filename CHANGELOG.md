@@ -6,9 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.24.0] - 2019-04-09
 ### Fixed
 
 - Fix propType name for `showCategoriesHighlighted` in `CategoriesHighlights`.
+
+### Added
+- InfoCard new property `blockClass`.
+
+### Fixed
+- InfoCard schema.
+- InfoCard CMS labels.
 
 ## [3.23.0] - 2019-04-09
 
