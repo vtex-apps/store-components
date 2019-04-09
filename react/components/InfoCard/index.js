@@ -52,7 +52,10 @@ const safelyGetToken = (tokenMap, valueWanted, propName) =>
 const getImageUrl = (isMobile, imageUrl, mobileImageUrl) =>
   !!mobileImageUrl && isMobile ? mobileImageUrl : imageUrl
 
+const safelyGetBlockClass = blockClass => blockClass.split(' ')[0]
+
 const InfoCard = ({
+  blockClass,
   isFullModeStyle,
   headline,
   subhead,
@@ -97,6 +100,9 @@ const InfoCard = ({
   const containerClasses = classNames(
     `${styles.infoCardContainer} items-center`,
     {
+      [`${styles.infoCardContainer}--${safelyGetBlockClass(
+        blockClass
+      )}`]: blockClass,
       [`flex-ns ${flexOrderToken} bg-base ph2-ns pb2 justify-between`]: !isFullModeStyle,
       [`bg-center bb b--muted-4 flex ${justifyToken}`]: isFullModeStyle,
     }
@@ -151,6 +157,7 @@ const InfoCard = ({
 const MemoizedInfoCard = memo(InfoCard)
 
 MemoizedInfoCard.propTypes = {
+  blockClass: string,
   isFullModeStyle: bool,
   textPosition: oneOf(getEnumValues(textPositionTypes)),
   headline: string,
@@ -246,6 +253,12 @@ MemoizedInfoCard.schema = {
       default: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
       enum: getEnumValues(textAlignmentTypes),
       enumNames: getEnumNames(textAlignmentTypes),
+    },
+    blockClass: {
+      title: 'editor.blockClass.title',
+      description: 'editor.blockClass.description',
+      type: 'string',
+      isLayout: true,
     },
   },
 }

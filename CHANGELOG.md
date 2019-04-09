@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Fix propType name for `showCategoriesHighlighted` in `CategoriesHighlights`.
 
+### Added
+- InfoCard new property `blockClass`.
+
 ### Fixed
 - InfoCard schema.
 - InfoCard CMS labels.
