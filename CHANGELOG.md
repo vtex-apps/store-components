@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Fix propType name for `showCategoriesHighlighted` in `CategoriesHighlights`.
 
+### Fixed
+- InfoCard schema.
+
 ## [3.23.0] - 2019-04-09
 
 ### Added
