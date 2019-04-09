@@ -148,7 +148,9 @@ const InfoCard = ({
   )
 }
 
-InfoCard.propTypes = {
+const MemoizedInfoCard = memo(InfoCard)
+
+MemoizedInfoCard.propTypes = {
   isFullModeStyle: bool,
   textPosition: oneOf(getEnumValues(textPositionTypes)),
   headline: string,
@@ -161,7 +163,7 @@ InfoCard.propTypes = {
   textAlignment: oneOf(getEnumValues(textAlignmentTypes)),
 }
 
-InfoCard.defaultProps = {
+MemoizedInfoCard.defaultProps = {
   isFullModeStyle: false,
   textPosition: textPositionTypes.TEXT_POSITION_LEFT.value,
   headline: null,
@@ -174,7 +176,7 @@ InfoCard.defaultProps = {
   textAlignment: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
 }
 
-InfoCard.schema = {
+MemoizedInfoCard.schema = {
   title: 'editor.info-card.title',
   description: 'editor.info-card.description',
   type: 'object',
@@ -248,4 +250,4 @@ InfoCard.schema = {
   },
 }
 
-export default memo(InfoCard)
+export default MemoizedInfoCard
