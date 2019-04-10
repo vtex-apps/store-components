@@ -97,6 +97,8 @@
   "editor.info-card.textAlignment.left": "Izquierda",
   "editor.info-card.textAlignment.center": "Centro",
   "editor.info-card.textAlignment.right": "Derecha",
+  "editor.info-card.imageActionUrl.title": "imageActionUrl",
+  "editor.info-card.imageActionUrl.description": "Pase la url para hacer de la imagen un enlace y poder redirigir al usuario",
   "editor.info-card.callAction.none": "Ninguno",
   "editor.info-card.callAction.button": "Botón",
   "editor.info-card.callAction.link": "Link",
