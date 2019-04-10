@@ -9,7 +9,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Show name at the bottom of the category card.
 
+## [3.24.2] - 2019-04-09
+
+## [3.24.1] - 2019-04-09
+
+### Fixed
+
+- Add safeguard to InfoCard `blockClass` prop
+
+## [3.24.0] - 2019-04-09
+### Fixed
+
+- Fix propType name for `showCategoriesHighlighted` in `CategoriesHighlights`.
+- Fix SKUSelector displaying the wrong selected item.
+
+### Added
+- InfoCard new property `blockClass`.
+
+### Fixed
+- InfoCard schema.
+- InfoCard CMS labels.
+
+## [3.23.0] - 2019-04-09
+
+### Added
+
+- Pinterest share option on `Share`.
+
 ## [3.22.2] - 2019-04-05
+
 ### Fixed
 
 - SKU Selector not changing selected item.

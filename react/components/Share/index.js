@@ -38,6 +38,8 @@ class Share extends Component {
     loaderContainerClass: PropTypes.string,
     /** Classes to be applied to the Content Loader */
     contentLoaderClass: PropTypes.string,
+    /** Image url for share in social medias */
+    imageUrl: PropTypes.string,
   }
 
   static Loader = (loaderProps = {}) => {
@@ -87,6 +89,7 @@ class Share extends Component {
       Facebook: true,
       Twitter: true,
       WhatsApp: true,
+      Pinterest: true,
     },
     options: {},
     className: 'flex flex-row flex-wrap w-100',
@@ -129,6 +132,7 @@ class Share extends Component {
       socialIconClass,
       loaderContainerClass,
       contentLoaderClass,
+      imageUrl,
     } = this.props
 
     if (loading) {
@@ -152,6 +156,7 @@ class Share extends Component {
               social[socialNetwork] && (
                 <SocialButton
                   key={index}
+                  imageUrl={imageUrl}
                   url={window.location && window.location.href}
                   message={title}
                   iconClass={socialIconClass}
