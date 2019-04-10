@@ -36,7 +36,7 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
               >
                 <img
                   alt=""
-                  src="sku-image-Black-url"
+                  src="sku-image-Yellow-url"
                 />
               </div>
             </div>
@@ -80,7 +80,7 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
               >
                 <img
                   alt=""
-                  src="sku-image-Yellow-url"
+                  src="sku-image-Black-url"
                 />
               </div>
             </div>

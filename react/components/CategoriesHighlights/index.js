@@ -16,7 +16,7 @@ class CategoriesHighlights extends Component {
     /** Categories highlighted in the department */
     categoriesHighlighted: PropTypes.object,
     /** Flag which indicates if the categories highlighted should be displayed or not */
-    showCategoriesHighlights: PropTypes.bool,
+    showCategoriesHighlighted: PropTypes.bool,
     /** Number of categories highlighted to be displayed (it should be 2 or 4) */
     quantityOfItems: PropTypes.number.isRequired,
     /** Shape of the card box which wraps each category (it should be 'squared' or 'rectangular')  */
