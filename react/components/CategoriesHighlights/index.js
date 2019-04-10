@@ -144,7 +144,9 @@ class CategoriesHighlights extends Component {
           {range(0, quantityOfItems / ITEMS_PER_ROW).map(indexRow => (
             <div
               key={`row${indexRow}`}
-              className="flex flex-row flex-wrap items-center justify-center"
+              className={`flex flex-row flex-wrap items-center justify-center ${
+                categoriesHighlights.rowBlock
+              }`}
             >
               {range(0, ITEMS_PER_ROW).map(indexCol => (
                 <CategoryCard

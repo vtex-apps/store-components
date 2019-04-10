@@ -26,11 +26,13 @@
   height: 80%;
 }
 
-.cardHeader {
+.cardName {
   height: 20%;
   margin: 0;
+}
+
+.cardLink {
   text-decoration: none;
-  text-align: center;
 }
 
 .squaredCardImage {
@@ -40,6 +42,8 @@
 .rectangularCardImage {
   width: 37.5rem;
 }
+
+.rowBlock {}
 
 @media only screen and (min-width: 20em) and (max-width: 50em) {
   :global(.vtex-carousel) + .squaredCategoriesHighlights {

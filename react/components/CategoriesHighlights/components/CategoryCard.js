@@ -26,10 +26,12 @@ class CategoryCard extends Component {
     const { name, image, shape } = this.props
 
     return (
-      <div className={`${categoriesHighlights[`${shape}Card`]} shadow-1 ma1`}>
+      <div
+        className={`${categoriesHighlights[`${shape}Card`]} shadow-1 ma1 tc`}
+      >
         {/* TODO: Redirect to the page of the category specified by its name */}
 
-        <Link>
+        <Link className={`${categoriesHighlights.cardLink}`}>
           {image ? (
             <img
               src={image}
@@ -45,7 +47,9 @@ class CategoryCard extends Component {
               className={`${categoriesHighlights[`${shape}CardImage`]}`}
             />
           )}
-          <h4 className={categoriesHighlights.cardHeader}>{name}</h4>
+          <span className={`c-muted-1 ${categoriesHighlights.cardName}`}>
+            {name}
+          </span>
         </Link>
       </div>
     )

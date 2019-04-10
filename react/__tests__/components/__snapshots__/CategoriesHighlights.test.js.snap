@@ -9,10 +9,10 @@ exports[`<CategoriesHighlights /> should match snapshot Rectangular 1`] = `
       class="flex flex-row flex-wrap items-center justify-center"
     >
       <div
-        class="flex flex-row flex-wrap items-center justify-center"
+        class="flex flex-row flex-wrap items-center justify-center rowBlock"
       >
         <div
-          class="rectangularCard shadow-1 ma1"
+          class="rectangularCard shadow-1 ma1 tc"
         >
           <a
             href="dummy"
@@ -22,13 +22,13 @@ exports[`<CategoriesHighlights /> should match snapshot Rectangular 1`] = `
               class="rectangularCardImage"
               src="rectangular-placeholder.svg"
             />
-            <h4
-              class="cardHeader"
+            <span
+              class="c-muted-1 cardName"
             />
           </a>
         </div>
         <div
-          class="rectangularCard shadow-1 ma1"
+          class="rectangularCard shadow-1 ma1 tc"
         >
           <a
             href="dummy"
@@ -38,8 +38,8 @@ exports[`<CategoriesHighlights /> should match snapshot Rectangular 1`] = `
               class="rectangularCardImage"
               src="rectangular-placeholder.svg"
             />
-            <h4
-              class="cardHeader"
+            <span
+              class="c-muted-1 cardName"
             />
           </a>
         </div>
@@ -58,10 +58,10 @@ exports[`<CategoriesHighlights /> should match snapshot Squared 1`] = `
       class="flex flex-row flex-wrap items-center justify-center"
     >
       <div
-        class="flex flex-row flex-wrap items-center justify-center"
+        class="flex flex-row flex-wrap items-center justify-center rowBlock"
       >
         <div
-          class="squaredCard shadow-1 ma1"
+          class="squaredCard shadow-1 ma1 tc"
         >
           <a
             href="dummy"
@@ -71,13 +71,13 @@ exports[`<CategoriesHighlights /> should match snapshot Squared 1`] = `
               class="squaredCardImage"
               src="squared-placeholder.svg"
             />
-            <h4
-              class="cardHeader"
+            <span
+              class="c-muted-1 cardName"
             />
           </a>
         </div>
         <div
-          class="squaredCard shadow-1 ma1"
+          class="squaredCard shadow-1 ma1 tc"
         >
           <a
             href="dummy"
@@ -87,8 +87,8 @@ exports[`<CategoriesHighlights /> should match snapshot Squared 1`] = `
               class="squaredCardImage"
               src="squared-placeholder.svg"
             />
-            <h4
-              class="cardHeader"
+            <span
+              class="c-muted-1 cardName"
             />
           </a>
         </div>
