@@ -6,10 +6,10 @@ exports[`<Title /> component should match snapshot with default center alignment
     class="titleContainer flex justify-between"
   >
     <div
-      class="titleBox w-100 ma1"
+      class="titleBox w-100 ma1 c-muted-1"
     >
       <h3
-        class="tc"
+        class="tc t-heading-3"
       >
         title
       </h3>
@@ -24,10 +24,10 @@ exports[`<Title /> component should match snapshot with left alignment 1`] = `
     class="titleContainer flex justify-between"
   >
     <div
-      class="titleBox w-100 ma1"
+      class="titleBox w-100 ma1 c-muted-1"
     >
       <h3
-        class="tl"
+        class="tl t-heading-3"
       >
         title
       </h3>
@@ -42,10 +42,10 @@ exports[`<Title /> component should match snapshot with right alignment 1`] = `
     class="titleContainer flex justify-between"
   >
     <div
-      class="titleBox w-100 ma1"
+      class="titleBox w-100 ma1 c-muted-1"
     >
       <h3
-        class="tr"
+        class="tr t-heading-3"
       >
         title
       </h3>
