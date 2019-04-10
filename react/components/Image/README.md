@@ -23,20 +23,22 @@ import { Image } from 'vtex.store-components'
 
 You can use it in your code like a React component with the jsx tag: `<Image />`.
 ```jsx
-<Image listPrice={commertialOffer.ListPrice}
-                sellingPrice={commertialOffer.Price}
-                label={badgeText}
+<Image src="https://via.placeholder.com/150"
+       alt="Nice photo"
+       maxWidth="150px"
 />
 ```
 
 ## Configuration
 
-| Prop name              | Type       | Description                                                                 |
-| ---------------------- | ---------- | --------------------------------------------------------------------------- |
-| `listPrice`            | `Number!`  | Product's default price                                                     |
-| `sellingPrice`         | `Number!`  | Product's price with discount                                               |
-| `label`                | `String`   | Label to track the discount percent                                         |
-| `children`             | `Node!`    | Element where the badge is displayed                                        |
+| Prop name     | Type       | Description                                                                |
+| ------------- | ---------- | -------------------------------------------------------------------------- |
+| `src`         | `String!`  | Specifies the URL of an image                                              |
+| `alt`         | `String`   | Specifies an alternate text for an image                                   |
+| `maxWidth`    | `String`   | Specifies the max width of an image                                        |
+| `maxHeight`   | `String`   | Specifies the max height of an image                                       |
+| `srcset`      | `String`   | Specifies the URL of the image to use in different situations              |
+| `sizes`       | `String`   | Specifies image sizes for different page layouts                           |
 
 ## Styles API
 
@@ -45,6 +47,6 @@ This app provides some CSS classes as an API for style customization. You should
 ### CSS namespaces
 Below, we describe the namespaces that are defined in the `Image`.
 
-Class name        | Description                    | Component Source        
------------------ | ------------------------------ | ------------------------
-`discountContainer`| The discount container | [index](/react/components/Image/index.js) |
+Class name    | Description        | Component Source                          |
+------------- | ------------------ | ----------------------------------------- |
+`imageElement`| Class of the image | [index](/react/components/Image/index.js) |
