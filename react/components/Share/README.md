@@ -42,7 +42,8 @@ Through the Storefront, you can change the `Share`'s behavior and interface. How
 | `shareLabelClass` | `String` | The share label classes | true |
 | `buttonsContainerClass` | `String` | The button container classes | true |
 | `options` | `Options` | Share button options, like "size" | {} |
-| `social` | `Social` | The possible social medias to be displayed | {Facebook: true, Twitter: true, WhatsApp: true} |
+| `social` | `Social` | The possible social medias to be displayed | {Facebook: true, Twitter: true, WhatsApp: true, Pinterest: true} |
+| `imageUrl` | `String` | Image url to share in social medias |
 
 Options:
 

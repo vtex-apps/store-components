@@ -113,5 +113,7 @@
   "editor.notification-bar.title": "Notification bar",
   "editor.notification-bar.description": "A component that show any text in a bar style",
   "editor.notification-bar.content.title": "Content",
-  "editor.notification-bar.content.description": "Text of the bar"
+  "editor.notification-bar.content.description": "Text of the bar",
+  "editor.blockClass.title": "CSS Block Class",
+  "editor.blockClass.description": "Adds an extra class name to ease styling"
 }

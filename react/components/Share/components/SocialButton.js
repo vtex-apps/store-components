@@ -20,6 +20,8 @@ export default class SocialButton extends Component {
     buttonClass: PropTypes.string,
     /** Classes to be applied to icon of the button */
     iconClass: PropTypes.string,
+    /** Image url to share in social medias */
+    imageUrl: PropTypes.string,
   }
 
   static defaultProps = {
@@ -35,16 +37,17 @@ export default class SocialButton extends Component {
       socialEnum,
       buttonClass,
       iconClass,
+      imageUrl,
     } = this.props
     const socialComponentName = SOCIAL_ENUM_TO_COMPONENT[socialEnum]
     const SocialComponent = ReactShare[`${socialComponentName}ShareButton`]
     const SocialIcon = ReactShare[`${socialComponentName}Icon`]
     const additionalProps = message && resolveMessageProp(message, socialEnum)
-
     return (
       <SocialComponent
         url={url}
         className={classNames(styles.shareSocialButton, buttonClass)}
+        media={imageUrl}
         {...additionalProps}
       >
         <SocialIcon
@@ -62,6 +65,7 @@ function resolveMessageProp(message, socialEnum) {
     SOCIAL_TO_ENUM.whatsapp,
     SOCIAL_TO_ENUM.twitter,
     SOCIAL_TO_ENUM.telegram,
+    SOCIAL_TO_ENUM.pinterest,
   ]
 
   return titlePropMessage.includes(socialEnum)
