@@ -4,8 +4,9 @@ const mockOrderForm = {
   orderForm: {
     orderFormId: '123',
   },
-  addItem: () => {},
-  refetch: () => {},
+  items: [],
+  addItem: ({ items = [] }) => new Promise(resolve => resolve({ data: { addItem: { ...mockOrderForm, items }}})),
+  refetch: () => new Promise(resolve => resolve({ data: { orderForm: mockOrderForm }}))
 }
 
 export function orderFormConsumer(Comp) {

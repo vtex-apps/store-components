@@ -217,12 +217,14 @@ BuyButton.propTypes = {
   addToCart: PropTypes.func.isRequired,
 }
 
+export const ADD_TO_CART_MUTATION = gql`
+  mutation addToCart($items: [MinicartItem]) {
+    addToCart(items: $items) @client
+  }
+  `
+
 const withMutation = graphql(
-  gql`
-    mutation addToCart($items: [MinicartItem]) {
-      addToCart(items: $items) @client
-    }
-  `,
+  ADD_TO_CART_MUTATION,
   {
     props: ({ mutate }) => ({
       addToCart: items => mutate({ variables: { items } }),
