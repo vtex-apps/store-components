@@ -119,25 +119,23 @@ const InfoCard = ({
     }
   )
 
+  const headlineClasses =
+    `${styles.infoCardHeadline} t-heading-2 mt6 ${alignToken} c-on-base`
+
+  const subheadClasses =
+    `${styles.infoCardSubhead} t-body mt6 c-on-base ${alignToken}`
+
   return (
     <LinkWrapper imageActionUrl={imageActionUrl} extraCondition={!isFullModeStyle} linkProps={{ className: 'no-underline' }}>
       <div className={containerClasses} style={containerStyle}>
         <div className={textContainerClasses}>
           {headline && (
-            <h1
-              className={`${
-                styles.infoCardHeadline
-              } t-heading-2 mt6 ${alignToken} c-on-base`}
-            >
+            <h1 className={headlineClasses}>
               {headline}
             </h1>
           )}
           {subhead && (
-            <p
-              className={`${
-                styles.infoCardSubhead
-              } t-body mt6 c-on-base ${alignToken}`}
-            >
+            <p className={subheadClasses}>
               {subhead}
             </p>
           )}
