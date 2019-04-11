@@ -108,5 +108,9 @@
   "editor.notification-bar.content.title": "Contenido",
   "editor.notification-bar.content.description": "Texto de la barra",
   "editor.blockClass.title": "CSS Block Class",
-  "editor.blockClass.description": "Agrega un nombre de clase extra para facilitar la estilización"
+  "editor.blockClass.description": "Agrega un nombre de clase extra para facilitar la estilización",
+  "editor.image.title": "Imagen",
+  "editor.image.description": "Mostrar cualquier imagen",
+  "editor.image.src.title": "Imagen",
+  "editor.image.alt.title": "Texto alternativo"
 }
