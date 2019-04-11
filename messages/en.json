@@ -100,6 +100,8 @@
   "editor.info-card.callAction.none": "None",
   "editor.info-card.callAction.button": "Button",
   "editor.info-card.callAction.link": "Link",
+  "editor.info-card.imageActionUrl.title": "Image Action URL",
+  "editor.info-card.imageActionUrl.description": "Pass URL to make image a link and able to redirect user",
   "user-address.pickup": "Pick up at {name}",
   "user-address.order": "Order to",
   "user-address.change": "Change",

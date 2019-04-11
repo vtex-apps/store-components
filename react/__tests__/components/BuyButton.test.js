@@ -1,8 +1,8 @@
 import React from 'react'
-import { render, fireEvent } from '@vtex/test-tools/react'
+import { render, fireEvent, waitForElement } from '@vtex/test-tools/react'
 import { MockedProvider } from 'react-apollo/test-utils'
 
-import BuyButton from '../../BuyButton'
+import BuyButton, { ADD_TO_CART_MUTATION } from '../../BuyButton'
 
 describe('<BuyButton />', () => {
   const renderComponent = (customProps, text = 'Test') => {
@@ -19,7 +19,7 @@ describe('<BuyButton />', () => {
     return render(comp)
   }
 
-  it('should be rendered', () => {
+  it('should be rendered', async () => {
     const { asFragment } = renderComponent()
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toBeTruthy()
@@ -40,7 +40,7 @@ describe('<BuyButton />', () => {
     expect(asFragment()).toMatchSnapshot()
   })
 
-  it('should call onAddStart and onAddFinish', () => {
+  it('should call onAddStart and onAddFinish', async () => {
     const onAddStart = jest.fn()
     const onAddFinish = jest.fn()
 
@@ -55,8 +55,8 @@ describe('<BuyButton />', () => {
       },
       buttonText
     )
-
     fireEvent.click(getByText(buttonText))
+    await new Promise(resolve => setTimeout(resolve, 0))
     const assertions = () => {
       expect(onAddStart).toBeCalledTimes(1)
       expect(onAddFinish).toBeCalledTimes(1)

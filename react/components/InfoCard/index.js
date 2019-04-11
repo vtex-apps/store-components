@@ -5,6 +5,7 @@ import { useRuntime } from 'vtex.render-runtime'
 import { values } from 'ramda'
 
 import CallToAction from './CallToAction'
+import LinkWrapper from './LinkWrapper'
 import {
   textPositionTypes,
   textAlignmentTypes,
@@ -67,6 +68,7 @@ const InfoCard = ({
   textAlignment,
   imageUrl,
   mobileImageUrl,
+  imageActionUrl,
 }) => {
   const {
     hints: { mobile },
@@ -117,41 +119,41 @@ const InfoCard = ({
     }
   )
 
+  const headlineClasses =
+    `${styles.infoCardHeadline} t-heading-2 mt6 ${alignToken} c-on-base`
+
+  const subheadClasses =
+    `${styles.infoCardSubhead} t-body mt6 c-on-base ${alignToken}`
+
   return (
-    <div className={containerClasses} style={containerStyle}>
-      <div className={textContainerClasses}>
-        {headline && (
-          <h1
-            className={`${
-              styles.infoCardHeadline
-            } t-heading-2 mt6 ${alignToken}`}
-          >
-            {headline}
-          </h1>
+    <LinkWrapper imageActionUrl={imageActionUrl} extraCondition={!isFullModeStyle} linkProps={{ className: 'no-underline' }}>
+      <div className={containerClasses} style={containerStyle} data-testid="container">
+        <div className={textContainerClasses}>
+          {headline && (
+            <h1 className={headlineClasses}>
+              {headline}
+            </h1>
+          )}
+          {subhead && (
+            <p className={subheadClasses}>
+              {subhead}
+            </p>
+          )}
+          <CallToAction
+            mode={callToActionMode}
+            text={callToActionText}
+            url={callToActionUrl}
+          />
+        </div>
+        {!isFullModeStyle && (
+          <div className="w-50-ns">
+            <LinkWrapper imageActionUrl={imageActionUrl}>
+              <img src={finalImageUrl} style={{ objectFit: 'cover' }} data-testid="half-image" />
+            </LinkWrapper>
+          </div>
         )}
-        {subhead && (
-          <p
-            className={`${
-              styles.infoCardSubhead
-            } t-body mt6 c-on-base ${alignToken}`}
-          >
-            {subhead}
-          </p>
-        )}
-        <CallToAction
-          mode={callToActionMode}
-          text={callToActionText}
-          url={callToActionUrl}
-        />
       </div>
-      {!isFullModeStyle && (
-        <img
-          className="w-50-ns"
-          src={finalImageUrl}
-          style={{ objectFit: 'cover' }}
-        />
-      )}
-    </div>
+    </LinkWrapper>
   )
 }
 
@@ -169,6 +171,7 @@ MemoizedInfoCard.propTypes = {
   imageUrl: string,
   mobileImageUrl: string,
   textAlignment: oneOf(getEnumValues(textAlignmentTypes)),
+  imageActionUrl: string,
 }
 
 MemoizedInfoCard.defaultProps = {
@@ -260,6 +263,12 @@ MemoizedInfoCard.schema = {
       description: 'editor.blockClass.description',
       type: 'string',
       isLayout: true,
+    },
+    imageActionUrl: {
+      title: 'editor.info-card.imageActionUrl.title',
+      description: 'editor.info-card.imageActionUrl.description',
+      type: 'string',
+      default: null,
     },
   },
 }

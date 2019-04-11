@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.25.2] - 2019-04-11
+### Added
+- Add `imageActionUrl` prop to `InfoCard`.
+
 ## [3.25.1] - 2019-04-10
 ### Changed
 - Limit width of Container
