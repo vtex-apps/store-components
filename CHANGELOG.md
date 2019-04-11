@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.25.3] - 2019-04-11
+### Changed
+- Use `insane` lib to sanitize HTML on `NotificationBar`.
+
 ## [3.25.2] - 2019-04-11
 ### Added
 - Add `imageActionUrl` prop to `InfoCard`.
