@@ -26,7 +26,7 @@ describe('<ShippingSimulator /> component', () => {
   it('should match snapshot with skuId and seller', () => {
     const props = {
       skuId: 'skuId',
-      seller: 1,
+      seller: '1',
     }
     const { asFragment } = renderComponent(props)
     expect(asFragment()).toMatchSnapshot()
