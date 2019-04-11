@@ -127,7 +127,7 @@ const InfoCard = ({
 
   return (
     <LinkWrapper imageActionUrl={imageActionUrl} extraCondition={!isFullModeStyle} linkProps={{ className: 'no-underline' }}>
-      <div className={containerClasses} style={containerStyle}>
+      <div className={containerClasses} style={containerStyle} data-testid="container">
         <div className={textContainerClasses}>
           {headline && (
             <h1 className={headlineClasses}>
@@ -148,7 +148,7 @@ const InfoCard = ({
         {!isFullModeStyle && (
           <div className="w-50-ns">
             <LinkWrapper imageActionUrl={imageActionUrl}>
-              <img src={finalImageUrl} style={{ objectFit: 'cover' }} />
+              <img src={finalImageUrl} style={{ objectFit: 'cover' }} data-testid="half-image" />
             </LinkWrapper>
           </div>
         )}

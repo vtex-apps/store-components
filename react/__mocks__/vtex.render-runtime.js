@@ -14,5 +14,5 @@ export const NoSSR = ({ children }) => (
 )
 
 export const useRuntime = () => {
-  return { setQuery: jest.fn(), account: 'account' }
+  return { setQuery: jest.fn(), account: 'account', hints: { mobile: false } }
 }

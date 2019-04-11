@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InfoCard /> should render with full mode style 1`] = `
+<DocumentFragment>
+  <div
+    class="infoCardContainer items-center bg-center bb b--muted-4 flex justify-start"
+    data-testid="container"
+    style="background-image: url(my-image.com/image.png); background-size: cover;"
+  >
+    <div
+      class="infoCardTextContainer flex flex-column mh8-ns mh4-s w-40-ns items-start"
+    >
+      <h1
+        class="infoCardHeadline t-heading-2 mt6 tl c-on-base"
+      >
+        MY HEADLINE
+      </h1>
+      <p
+        class="infoCardSubhead t-body mt6 c-on-base tl"
+      >
+        MY SUBHEAD
+      </p>
+      <a
+        href="dummy"
+      >
+        <button>
+          CLICK HERE
+        </button>
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<InfoCard /> should render with image and text side by side 1`] = `
+<DocumentFragment>
+  <div
+    class="infoCardContainer items-center flex-ns flex-row bg-base ph2-ns pb2 justify-between"
+    data-testid="container"
+  >
+    <div
+      class="infoCardTextContainer flex flex-column w-50-ns ph3-s items-start pr4-ns"
+    >
+      <h1
+        class="infoCardHeadline t-heading-2 mt6 tl c-on-base"
+      >
+        MY HEADLINE
+      </h1>
+      <p
+        class="infoCardSubhead t-body mt6 c-on-base tl"
+      >
+        MY SUBHEAD
+      </p>
+      <a
+        href="dummy"
+      >
+        <button>
+          CLICK HERE
+        </button>
+      </a>
+    </div>
+    <div
+      class="w-50-ns"
+    >
+      <img
+        data-testid="half-image"
+        src="my-image.com/image.png"
+        style="object-fit: cover;"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<InfoCard /> should render without a call to action 1`] = `
+<DocumentFragment>
+  <div
+    class="infoCardContainer items-center bg-center bb b--muted-4 flex justify-start"
+    data-testid="container"
+    style="background-image: url(my-image.com/image.png); background-size: cover;"
+  >
+    <div
+      class="infoCardTextContainer flex flex-column mh8-ns mh4-s w-40-ns items-start"
+    >
+      <h1
+        class="infoCardHeadline t-heading-2 mt6 tl c-on-base"
+      >
+        MY HEADLINE
+      </h1>
+      <p
+        class="infoCardSubhead t-body mt6 c-on-base tl"
+      >
+        MY SUBHEAD
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<InfoCard /> should wrap half image in a link with imageActionUrl 1`] = `
+<DocumentFragment>
+  <div
+    class="infoCardContainer items-center flex-ns flex-row bg-base ph2-ns pb2 justify-between"
+    data-testid="container"
+  >
+    <div
+      class="infoCardTextContainer flex flex-column w-50-ns ph3-s items-start pr4-ns"
+    >
+      <h1
+        class="infoCardHeadline t-heading-2 mt6 tl c-on-base"
+      >
+        MY HEADLINE
+      </h1>
+      <p
+        class="infoCardSubhead t-body mt6 c-on-base tl"
+      >
+        MY SUBHEAD
+      </p>
+    </div>
+    <div
+      class="w-50-ns"
+    >
+      <a
+        href="dummy"
+      >
+        <img
+          data-testid="half-image"
+          src="my-image.com/image.png"
+          style="object-fit: cover;"
+        />
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<InfoCard /> should wrap whole container in a link with imageActionUrl 1`] = `
+<DocumentFragment>
+  <a
+    href="dummy"
+  >
+    <div
+      class="infoCardContainer items-center bg-center bb b--muted-4 flex justify-center"
+      data-testid="container"
+      style="background-image: url(my-image.com/image.png); background-size: cover;"
+    >
+      <div
+        class="infoCardTextContainer flex flex-column mh8-ns mh4-s w-40-ns items-center"
+      >
+        <h1
+          class="infoCardHeadline t-heading-2 mt6 tc c-on-base"
+        >
+          MY HEADLINE
+        </h1>
+        <p
+          class="infoCardSubhead t-body mt6 c-on-base tc"
+        >
+          MY SUBHEAD
+        </p>
+      </div>
+    </div>
+  </a>
+</DocumentFragment>
+`;
