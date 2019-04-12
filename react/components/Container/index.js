@@ -2,8 +2,14 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import styles from './Container.css'
+
 const render = ({ className, children, ...props }, ref) => {
-  const classes = classNames('ph3 ph5-m ph8-l ph9-xl mw9 center', className)
+  const classes = classNames(
+    styles.container,
+    'ph3 ph5-m ph2-xl mw9 center',
+    className
+  )
 
   return (
     <section {...props} className={classes} ref={ref}>
