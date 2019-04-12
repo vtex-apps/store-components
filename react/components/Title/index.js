@@ -3,18 +3,18 @@ import React from 'react'
 import classNames from 'classnames'
 
 import { LEFT, RIGHT, CENTER } from './constants.js'
-import title from './title.css'
+import styles from './title.css'
 
 const Title = ({ content, alignment }) => {
-  const titleClasses = classNames(title.title, 't-heading-3', {
+  const titleClasses = classNames(styles.title, 't-heading-3', {
     tl: alignment === LEFT,
     tc: alignment === CENTER,
     tr: alignment === RIGHT,
   })
 
   return (
-    <div className={`${title.titleContainer} flex justify-between`}>
-      <div className={`${title.titleBox} w-100 ma1 c-muted-1`}>
+    <div className={`${styles.titleContainer} flex justify-between`}>
+      <div className={`${styles.titleBox} w-100 ma1 c-muted-1`}>
         <h3 className={titleClasses}>{content}</h3>
       </div>
     </div>
