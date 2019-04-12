@@ -5,7 +5,7 @@ import { LEFT, RIGHT, CENTER } from './constants.js'
 import title from './title.css'
 
 /**
- * Name component. Show name and relevant SKU information of the Product Summary
+ * Title component - Show text in an HTML heading
  */
 class Title extends Component {
   static propTypes = {
