@@ -100,6 +100,8 @@
   "editor.info-card.callAction.none": "Ninguno",
   "editor.info-card.callAction.button": "Botón",
   "editor.info-card.callAction.link": "Link",
+  "editor.info-card.imageActionUrl.title": "URL de acción de la imagen",
+  "editor.info-card.imageActionUrl.description": "Pase la URL para hacer de la imagen un enlace y poder redirigir al usuario",
   "editor.title.title": "Título",
   "editor.title.description": "Componente del título",
   "editor.title.content": "Contenido",
@@ -115,5 +117,9 @@
   "editor.notification-bar.content.title": "Contenido",
   "editor.notification-bar.content.description": "Texto de la barra",
   "editor.blockClass.title": "CSS Block Class",
-  "editor.blockClass.description": "Agrega un nombre de clase extra para facilitar la estilización"
+  "editor.blockClass.description": "Agrega un nombre de clase extra para facilitar la estilización",
+  "editor.image.title": "Imagen",
+  "editor.image.description": "Mostrar cualquier imagen",
+  "editor.image.src.title": "Imagen",
+  "editor.image.alt.title": "Texto alternativo"
 }

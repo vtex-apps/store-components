@@ -100,6 +100,8 @@
   "editor.info-card.callAction.none": "None",
   "editor.info-card.callAction.button": "Button",
   "editor.info-card.callAction.link": "Link",
+  "editor.info-card.imageActionUrl.title": "Image Action URL",
+  "editor.info-card.imageActionUrl.description": "Pass URL to make image a link and able to redirect user",
   "editor.title.title": "Title",
   "editor.title.description": "Title component",
   "editor.title.content": "Content",
@@ -115,5 +117,9 @@
   "editor.notification-bar.content.title": "Content",
   "editor.notification-bar.content.description": "Text of the bar",
   "editor.blockClass.title": "CSS Block Class",
-  "editor.blockClass.description": "Adds an extra class name to ease styling"
+  "editor.blockClass.description": "Adds an extra class name to ease styling",
+  "editor.image.title": "Image",
+  "editor.image.description": "Show any image",
+  "editor.image.src.title": "Image",
+  "editor.image.alt.title": "Alternative text"
 }

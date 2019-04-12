@@ -7,12 +7,14 @@
   },
   "dependencies": {
     "@material-ui/core": "^3.5.1",
+    "@vtex/css-handles": "^1.0.2",
     "apollo-client": "^2.5.1",
     "classnames": "^2.2.5",
     "debounce": "^1.2.0",
     "downshift": "^1.31.14",
     "graphql": "~0.13.2",
     "graphql-tag": "~2.8.0",
+    "insane": "^2.6.2",
     "prop-types": "^15.6.2",
     "ramda": "^0.25.0",
     "react": "^16.3.2",
@@ -25,7 +27,6 @@
     "react-resize-detector": "^3.0.1",
     "react-share": "^2.1.1",
     "react-slick": "^0.23.1",
-    "sanitize-html": "^1.20.0",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {

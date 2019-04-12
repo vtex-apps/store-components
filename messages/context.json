@@ -100,6 +100,8 @@
   "editor.info-card.callAction.none": "Name of enum value to make CTA disappear",
   "editor.info-card.callAction.button": "Name of enum value to make CTA a button",
   "editor.info-card.callAction.link": "Name of enum value to make CTA a link",
+  "editor.info-card.imageActionUrl.title": "Name of imageActionUrl property",
+  "editor.info-card.imageActionUrl.description": "Name of imageActionUrl description",
   "editor.title.title": "editor.title.title",
   "editor.title.description": "editor.title.description",
   "editor.title.content": "editor.title.content",
@@ -115,5 +117,9 @@
   "editor.notification-bar.content.title": "Content",
   "editor.notification-bar.content.description": "Text of the bar",
   "editor.blockClass.title": "CSS Block Class",
-  "editor.blockClass.description": "Adds an extra class name to ease styling"
+  "editor.blockClass.description": "Adds an extra class name to ease styling",
+  "editor.image.title": "Image",
+  "editor.image.description": "Show any image",
+  "editor.image.src.title": "Image",
+  "editor.image.alt.title": "Alternative text"
 }

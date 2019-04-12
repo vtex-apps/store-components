@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add `Title` component.
 
+## [3.25.3] - 2019-04-11
+### Changed
+- Use `insane` lib to sanitize HTML on `NotificationBar`.
+
+## [3.25.2] - 2019-04-11
+### Added
+- Add `imageActionUrl` prop to `InfoCard`.
+
+## [3.25.1] - 2019-04-10
+### Changed
+- Limit width of Container
+
+## [3.25.0] - 2019-04-10
+### Added
+- New block `image`.
+
+## [3.24.3] - 2019-04-10
+
 ## [3.24.2] - 2019-04-09
 
 ## [3.24.1] - 2019-04-09
@@ -18,15 +36,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add safeguard to InfoCard `blockClass` prop
 
 ## [3.24.0] - 2019-04-09
+
 ### Fixed
 
 - Fix propType name for `showCategoriesHighlighted` in `CategoriesHighlights`.
 - Fix SKUSelector displaying the wrong selected item.
 
 ### Added
+
 - InfoCard new property `blockClass`.
 
 ### Fixed
+
 - InfoCard schema.
 - InfoCard CMS labels.
 
@@ -53,6 +74,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Place thumbs according to position on `ProductImages`.
+
+### Fixed
+
+- Misplaced `Logo` position on mobile.
+
+### Changed
+
+- Changed `Logo` to be a functional component instead of a class.
+- Remove unused `VtexLogo` along with the props `color` and `showLabel` in `Logo`.
+- Replaced `withRuntime` HOC by `useRuntime` hook in `Logo`.
 
 ## [3.21.8] - 2019-04-03
 

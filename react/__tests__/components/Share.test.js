@@ -5,7 +5,7 @@ import Share from './../../Share'
 
 describe('<Share />', () => {
   const renderComponent = props => {
-    return render(<Share {...props} />)
+    return render(<Share imageUrl="" {...props} />)
   }
 
   it('should be mounted', () => {
