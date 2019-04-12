@@ -1,16 +1,21 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import classNames from 'classnames'
 
 import { LEFT, RIGHT, CENTER } from './constants.js'
 import title from './title.css'
 
 const Title = ({ content, alignment }) => {
+  const titleClasses = classNames(title.title, 't-heading-3', {
+    tl: alignment === LEFT,
+    tc: alignment === CENTER,
+    tr: alignment === RIGHT,
+  })
+
   return (
     <div className={`${title.titleContainer} flex justify-between`}>
       <div className={`${title.titleBox} w-100 ma1 c-muted-1`}>
-        {alignment == LEFT && <h3 className="tl t-heading-3">{content}</h3>}
-        {alignment == CENTER && <h3 className="tc t-heading-3">{content}</h3>}
-        {alignment == RIGHT && <h3 className="tr t-heading-3">{content}</h3>}
+        <h3 className={titleClasses}>{content}</h3>
       </div>
     </div>
   )

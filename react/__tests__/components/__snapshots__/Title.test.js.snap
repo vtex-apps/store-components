@@ -9,7 +9,7 @@ exports[`<Title /> component should match snapshot with default center alignment
       class="titleBox w-100 ma1 c-muted-1"
     >
       <h3
-        class="tc t-heading-3"
+        class="title t-heading-3 tc"
       >
         title
       </h3>
@@ -27,7 +27,7 @@ exports[`<Title /> component should match snapshot with left alignment 1`] = `
       class="titleBox w-100 ma1 c-muted-1"
     >
       <h3
-        class="tl t-heading-3"
+        class="title t-heading-3 tl"
       >
         title
       </h3>
@@ -45,7 +45,7 @@ exports[`<Title /> component should match snapshot with right alignment 1`] = `
       class="titleBox w-100 ma1 c-muted-1"
     >
       <h3
-        class="tr t-heading-3"
+        class="title t-heading-3 tr"
       >
         title
       </h3>
