@@ -33,4 +33,14 @@ describe('<Title /> component', () => {
     const { asFragment } = renderComponent({ alignment: 'right' })
     expect(asFragment()).toMatchSnapshot()
   })
+
+  it('should match snapshot with <h1>', () => {
+    const { asFragment } = renderComponent({ level: 1 })
+    expect(asFragment()).toMatchSnapshot()
+  })
+
+  it('should match snapshot with <h6> with right alignment', () => {
+    const { asFragment } = renderComponent({ level: 6, alignment: 'right' })
+    expect(asFragment()).toMatchSnapshot()
+  })
 })

@@ -105,6 +105,7 @@
   "editor.title.title": "Título",
   "editor.title.description": "Componente título",
   "editor.title.content": "Conteúdo",
+  "editor.title.level": "Nível de Cabeçalho",
   "editor.title.alignment": "Alinhamento",
   "editor.title.alignment.left": "Lado esquerdo",
   "editor.title.alignment.right": "Lado direito",

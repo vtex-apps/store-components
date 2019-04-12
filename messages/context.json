@@ -105,6 +105,7 @@
   "editor.title.title": "editor.title.title",
   "editor.title.description": "editor.title.description",
   "editor.title.content": "editor.title.content",
+  "editor.title.level": "editor.title.level",
   "editor.title.alignment": "editor.title.alignment",
   "editor.title.alignment.left": "editor.title.alignment.left",
   "editor.title.alignment.right": "editor.title.alignment.right",

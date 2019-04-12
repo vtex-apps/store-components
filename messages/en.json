@@ -105,6 +105,7 @@
   "editor.title.title": "Title",
   "editor.title.description": "Title component",
   "editor.title.content": "Content",
+  "editor.title.level": "Heading Level",
   "editor.title.alignment": "Alignment",
   "editor.title.alignment.left": "Left",
   "editor.title.alignment.right": "Right",
