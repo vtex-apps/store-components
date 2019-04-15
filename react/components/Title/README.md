@@ -36,6 +36,7 @@ Through the Storefront, you can change the `Title`'s behavior and interface. How
 | Prop name | Type | Description |
 | --- | --- | --- |
 | `content` | `String` | Text to be displayed |
+| `level` | `Number` | Heading level (1 to 6 inclusive) |
 | `alignment` | `String` | Title alignment (left, right or center) |
 
 ### Styles API
