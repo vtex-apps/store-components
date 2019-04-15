@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add `Title` component.
 
+## [3.25.5] - 2019-04-12
+### Added
+- Added `container` CSS handle to Container.
+
+### Changed
+- Reduced horizontal padding for Container on wide screen sizes.
+
+## [3.25.4] - 2019-04-12
+### Fixed
+- Ensure mutation to require acronym as String
+
 ## [3.25.3] - 2019-04-11
 ### Changed
 - Use `insane` lib to sanitize HTML on `NotificationBar`.

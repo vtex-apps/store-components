@@ -1,4 +1,4 @@
-mutation availabilitySubscribe($acronym: String, $document: DocumentInput) {
+mutation availabilitySubscribe($acronym: String!, $document: DocumentInput) {
   updateDocument(acronym: $acronym, document: $document) {
     cacheId
     id
