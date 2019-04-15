@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.25.6] - 2019-04-15
+### Changed
+- Remove sort of sku item variations.
+
 ## [3.25.5] - 2019-04-12
 ### Added
 - Added `container` CSS handle to Container.

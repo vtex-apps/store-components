@@ -42,22 +42,6 @@ export const parseSku = sku => {
 }
 
 /**
- * Retrieves a list of unique options of a given variation
- * @param {string} variation
- * @param {skus} skus
- */
-export const getVariationOptions = (variation, skus) => {
-  const hTable = {}
-
-  skus.reverse().map(sku => {
-    const value = sku[variation]
-    hTable[value] = sku
-  })
-
-  return Object.values(hTable).sort((a, b) => a[variation] - b[variation])
-}
-
-/**
  * Verifies if the variation is color
  * @param {string} variation
  */
