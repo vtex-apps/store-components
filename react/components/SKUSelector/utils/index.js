@@ -1,4 +1,4 @@
-import { clone } from 'ramda'
+import { clone, values, compose, map, nth, groupBy } from 'ramda'
 
 /**
  * Return the maximum sku price
@@ -40,6 +40,16 @@ export const parseSku = sku => {
 
   return result
 }
+
+/**
+ * Group the sku items by the variation name specified
+ */
+export const groupItemsByVariation = (name, items) =>
+  compose(
+    map(nth(0)),
+    values,
+    groupBy(sku => sku[name])
+  )(items)
 
 /**
  * Verifies if the variation is color
