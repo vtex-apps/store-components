@@ -22,8 +22,7 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected }) => {
         </span>
         <div className="inline-flex flex-wrap ml2">
           {variation.options.map(skuItem => {
-            if (!skuItem.images.length) return null
-            const [skuImage] = skuItem.images
+            const [skuImage] = skuItem.images || [null]
             const [seller] = skuItem.sellers
             return (
               <SelectorItem
@@ -36,7 +35,7 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected }) => {
                 onClick={() => onSelectItem(skuItem.itemId)}
                 isImage={displayImage}
               >
-                {displayImage ? (
+                {displayImage && skuImage ? (
                   <img
                     src={stripUrl(skuImage.imageUrl)}
                     alt={skuImage.imageLabel}
