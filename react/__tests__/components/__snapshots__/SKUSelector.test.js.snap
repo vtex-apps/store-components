@@ -98,7 +98,7 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
 </DocumentFragment>
 `;
 
-exports[`<SKUSelector /> should render only two main variations 1`] = `
+exports[`<SKUSelector /> should render only three main variations 1`] = `
 <DocumentFragment>
   <div
     class="skuSelectorContainer"
