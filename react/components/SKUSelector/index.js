@@ -4,7 +4,12 @@ import { useRuntime } from 'vtex.render-runtime'
 
 import SKUSelector from './components/SKUSelector'
 import { skuShape } from './utils/proptypes'
-import { getMainVariationName, getMaxSkuPrice, parseSku } from './utils'
+import {
+  groupItemsByVariation,
+  getMainVariationName,
+  getMaxSkuPrice,
+  parseSku,
+} from './utils'
 
 /**
  * Display a list of SKU items of a product and its specifications.
@@ -31,7 +36,7 @@ const SKUSelectorContainer = ({
       const mainVariation = {
         name,
         value: skuSelected ? sku[name] : null,
-        options: parsedItems,
+        options: groupItemsByVariation(name, parsedItems),
       }
 
       const secondaryVariation = { value: skuSelected ? itemId : null }
@@ -42,7 +47,10 @@ const SKUSelectorContainer = ({
         secondaryVariation.name = variations.find(
           variation => variation !== name
         )
-        secondaryVariation.options = filteredSkus
+        secondaryVariation.options = groupItemsByVariation(
+          secondaryVariation.name,
+          filteredSkus
+        )
       }
 
       return { mainVariation, secondaryVariation }
