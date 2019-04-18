@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.25.7] - 2019-04-18
+### Fixed
+- Blurred Loader image blinking.
+
 ## [3.25.6] - 2019-04-15
 ### Changed
 - Remove sort of sku item variations.
