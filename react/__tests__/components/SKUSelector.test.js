@@ -14,11 +14,6 @@ describe('<SKUSelector />', () => {
     return render(<SKUSelector {...props} />)
   }
 
-  it('should be mounted', () => {
-    const { asFragment } = renderComponent()
-    expect(asFragment()).toBeDefined()
-  })
-
   it('should match the snapshot', () => {
     const { asFragment } = renderComponent()
     expect(asFragment()).toMatchSnapshot()
@@ -81,10 +76,15 @@ describe('<SKUSelector />', () => {
     ]
     const skuSelected = skuItems[0]
 
-    const { asFragment } = render(
+    const { getByText, getAllByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
 
-    expect(asFragment()).toMatchSnapshot()
+    expect(getAllByText(/gray/i)).toHaveLength(1)
+    expect(getAllByText(/blue/i)).toHaveLength(1)
+    expect(getAllByText(/black/i)).toHaveLength(1)
+
+    expect(getByText(/color/i)).toBeInTheDocument()
+    expect(getByText(/size/i)).toBeInTheDocument()
   })
 })
