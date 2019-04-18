@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Fix variations not being grouped.
+- Variations not being grouped.
 
 ## [3.25.6] - 2019-04-15
 ### Changed
