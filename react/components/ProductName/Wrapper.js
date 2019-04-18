@@ -19,7 +19,8 @@ const styles = {
 }
 
 const PorductNameWrapper = () => {
-  const { product, selectedItem } = React.useContext(ProductContext)
+  const { component } = React.useContext(ProductContext.Context)
+  const { product, selectedItem } = component.props
 
   return (
     <div>
