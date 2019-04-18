@@ -32,7 +32,8 @@ const SelectorItem = ({
       role="button"
       tabIndex={0}
       className={classNames(
-        `${styles.skuSelectorItem} relative di pointer flex items-center`,
+        styles.skuSelectorItem,
+        'relative di pointer flex items-center outline-0',
         {
           [styles.skuSelectorItemImage]: isImage,
         }
@@ -42,7 +43,8 @@ const SelectorItem = ({
     >
       <div
         className={classNames(
-          `absolute ${styles.frameAround} b--action-primary br3 bw1`,
+          styles.frameAround,
+          'absolute b--action-primary br3 bw1',
           {
             ba: isSelected,
           }
