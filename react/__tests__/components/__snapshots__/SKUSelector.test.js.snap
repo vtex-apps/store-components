@@ -20,10 +20,12 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
           class="inline-flex flex-wrap ml2"
         >
           <div
-            class="skuSelectorItem relative di pointer flex items-center skuSelectorItemImage"
+            class="skuSelectorItem relative di pointer flex items-center outline-0 skuSelectorItemImage"
+            role="button"
+            tabindex="0"
           >
             <div
-              class="absolute frameAround b--action-primary br3 bw1"
+              class="frameAround absolute b--action-primary br3 bw1"
             />
             <div
               class="w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2"
@@ -42,10 +44,12 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="skuSelectorItem relative di pointer flex items-center skuSelectorItemImage"
+            class="skuSelectorItem relative di pointer flex items-center outline-0 skuSelectorItemImage"
+            role="button"
+            tabindex="0"
           >
             <div
-              class="absolute frameAround b--action-primary br3 bw1"
+              class="frameAround absolute b--action-primary br3 bw1"
             />
             <div
               class="w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2"
@@ -64,10 +68,12 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="skuSelectorItem relative di pointer flex items-center skuSelectorItemImage"
+            class="skuSelectorItem relative di pointer flex items-center outline-0 skuSelectorItemImage"
+            role="button"
+            tabindex="0"
           >
             <div
-              class="absolute frameAround b--action-primary br3 bw1"
+              class="frameAround absolute b--action-primary br3 bw1"
             />
             <div
               class="w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2"
