@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { FormattedNumber } from 'react-intl'
 import classNames from 'classnames'
@@ -95,4 +95,4 @@ SelectorItem.propTypes = {
   isImage: PropTypes.bool,
 }
 
-export default memo(SelectorItem)
+export default SelectorItem
