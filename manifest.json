@@ -19,6 +19,7 @@
     "vtex.store-graphql": "2.x",
     "vtex.store-resources": "0.x",
     "vtex.styleguide": "9.x",
-    "vtex.store-icons": "0.x"
+    "vtex.store-icons": "0.x",
+    "vtex.modal": "0.x"
   }
 }

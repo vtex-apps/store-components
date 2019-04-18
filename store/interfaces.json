@@ -42,6 +42,7 @@
     "component": "InfoCard"
   },
   "user-address": {
+    "allowed": ["modal"],
     "component": "UserAddress"
   },
   "product-services": {
