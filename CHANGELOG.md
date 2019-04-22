@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Make *`UserAddress`* use modal block.
+- Make `UserAddress` use modal block.
 
 ## [3.25.10] - 2019-04-22
 ### Added
