@@ -60,7 +60,7 @@ const safelyGetBlockClass = blockClass =>
 const sanitizerConfig = {
   allowedTags: ['p', 'span', 'a', 'div', 'br'],
   allowedAttributes: {
-    a: ['class', 'href', 'title'],
+    a: ['class', 'href', 'title', 'target'],
     span: ['class'],
     p: ['class'],
     div: ['class'],
