@@ -8,14 +8,8 @@
   "buy-button": {
     "component": "BuyButton"
   },
-  "buy-button.wrapper": {
-    "component": "BuyButtonWrapper"
-  },
   "product-name": {
     "component": "ProductName"
-  },
-  "product-name.wrapper": {
-    "component": "ProductNameWrapper"
   },
   "product-images": {
     "component": "ProductImages"
