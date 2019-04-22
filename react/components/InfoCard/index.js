@@ -57,17 +57,17 @@ const getImageUrl = (isMobile, imageUrl, mobileImageUrl) =>
 const safelyGetBlockClass = blockClass =>
   blockClass ? blockClass.split(' ')[0] : ''
 
-const sanitizerConfig = { 
-  allowedTags: ['p', 'span', 'a', 'div', 'br'], 
-  allowedAttributes:{
+const sanitizerConfig = {
+  allowedTags: ['p', 'span', 'a', 'div', 'br'],
+  allowedAttributes: {
     a: ['class', 'href', 'title'],
     span: ['class'],
     p: ['class'],
     div: ['class'],
-  }, 
+  },
 }
 
-const sanitizeHtml = input => input ? insane(input, sanitizerConfig) : null
+const sanitizeHtml = input => (input ? insane(input, sanitizerConfig) : null)
 
 const InfoCard = ({
   blockClass,
@@ -132,24 +132,40 @@ const InfoCard = ({
     }
   )
 
-  const headlineClasses =
-    `${styles.infoCardHeadline} t-heading-2 mt6 ${alignToken} c-on-base`
+  const headlineClasses = `${
+    styles.infoCardHeadline
+  } t-heading-2 mt6 ${alignToken} c-on-base`
 
-  const subheadClasses =
-    `${styles.infoCardSubhead} t-body mt6 c-on-base ${alignToken}`
+  const subheadClasses = `${
+    styles.infoCardSubhead
+  } t-body mt6 c-on-base ${alignToken}`
 
   const sanitizedHeadline = useMemo(() => sanitizeHtml(headline), [headline])
   const sanitizedSubhead = useMemo(() => sanitizeHtml(subhead), [subhead])
 
   return (
-    <LinkWrapper imageActionUrl={imageActionUrl} extraCondition={!isFullModeStyle} linkProps={{ className: 'no-underline' }}>
-      <div className={containerClasses} style={containerStyle} data-testid="container">
+    <LinkWrapper
+      imageActionUrl={imageActionUrl}
+      extraCondition={!isFullModeStyle}
+      linkProps={{ className: 'no-underline' }}
+    >
+      <div
+        className={containerClasses}
+        style={containerStyle}
+        data-testid="container"
+      >
         <div className={textContainerClasses}>
           {headline && (
-            <div className={headlineClasses} dangerouslySetInnerHTML={{ __html: sanitizedHeadline }} />
+            <div
+              className={headlineClasses}
+              dangerouslySetInnerHTML={{ __html: sanitizedHeadline }}
+            />
           )}
           {subhead && (
-            <div className={subheadClasses} dangerouslySetInnerHTML={{ __html: sanitizedSubhead }} />
+            <div
+              className={subheadClasses}
+              dangerouslySetInnerHTML={{ __html: sanitizedSubhead }}
+            />
           )}
           <CallToAction
             mode={callToActionMode}
@@ -160,7 +176,12 @@ const InfoCard = ({
         {!isFullModeStyle && (
           <div className="w-50-ns">
             <LinkWrapper imageActionUrl={imageActionUrl}>
-              <img className={styles.infoCardImage} src={finalImageUrl} style={{ objectFit: 'cover' }} data-testid="half-image" />
+              <img
+                className={styles.infoCardImage}
+                src={finalImageUrl}
+                style={{ objectFit: 'cover' }}
+                data-testid="half-image"
+              />
             </LinkWrapper>
           </div>
         )}
