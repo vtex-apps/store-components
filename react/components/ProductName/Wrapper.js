@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { path } from 'ramda'
+import { path, isEmpty } from 'ramda'
 import { ProductContext } from 'vtex.product-context'
 
 import ProductName from './index';
@@ -18,19 +18,26 @@ const styles = {
   },
 }
 
-const PorductNameWrapper = () => {
-  const { product, selectedItem } = React.useContext(ProductContext)
+const PorductNameWrapper = props => {
+  const valuesFromContext = React.useContext(ProductContext)
+
+  const productNameProps = () => {
+    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
+
+    const { product, selectedItem } = valuesFromContext
+    return {
+      tag: 'h1',
+      name: path(['productName'], product),
+      skuName: path(['name'], selectedItem),
+      productReference: path(['productReference'], product),
+      brandName: path(['brand'], product),
+      styles: styles,
+      className: 't-heading-4',
+    }
+  }
 
   return (
-    <ProductName 
-      tag='h1'
-      name={path(['productName'], product)}
-      skuName={path(['name'], selectedItem)}
-      productReference={path(['productReference'], product)}
-      brandName={path(['brand'], product)}
-      styles={styles}
-      className='t-heading-4'
-    />
+    <ProductName { ...productNameProps() } />
   )
 }
 
