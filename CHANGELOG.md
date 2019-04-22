@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.25.10] - 2019-04-22
+### Added
+- CSS class to `InfoCard` image.
+
+### Changed
+- Make `InfoCard` headline and subline now support HTML and are sanitized before being displayed.
+
 ## [3.25.9] - 2019-04-18
 
 ## [3.25.8] - 2019-04-18

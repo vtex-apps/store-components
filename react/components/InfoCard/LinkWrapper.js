@@ -2,11 +2,14 @@ import React, { Fragment } from 'react'
 import { bool, string, object, node } from 'prop-types'
 import { Link } from 'vtex.render-runtime'
 
-const LinkWrapper = ({ imageActionUrl, children, extraCondition, linkProps = {} }) => {
+const LinkWrapper = ({
+  imageActionUrl,
+  children,
+  extraCondition,
+  linkProps = {},
+}) => {
   if (!imageActionUrl || imageActionUrl.length === 0 || extraCondition) {
-    return (
-      <Fragment>{children}</Fragment>
-    )
+    return <Fragment>{children}</Fragment>
   }
 
   return (
