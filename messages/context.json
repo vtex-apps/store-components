@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "store/search.placeholder": "search.placeholder",
   "store/search.noMatches": "search.noMatches",
   "admin/editor.productName.title": "admin/editor.productName.title",
@@ -30,6 +31,7 @@
   "store/shipping.label": "shipping.label",
   "store/shipping.free": "shipping.free",
   "store/shipping.empty-sla": "shipping.empty-sla",
+  "store/buy-button.add-to-cart": "Add to cart",
   "store/buybutton.buy-success": "buybutton.buy-success",
   "store/buybutton.add-failure": "buybutton.add-failure",
   "store/technicalspecifications.title": "technicalspecifications.title",
