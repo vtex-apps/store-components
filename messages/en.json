@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "store/search.placeholder": "Search",
   "store/search.noMatches": "No matches",
   "admin/editor.productName.title": "Product name",
@@ -33,6 +34,7 @@
   "store/shipping.label": "Calculate shipping",
   "store/shipping.free": "Free",
   "store/shipping.empty-sla": "There's no shipping information available for the informed zip code",
+  "store/buy-button.add-to-cart": "Add to cart",
   "store/buybutton.buy-success": "Your product was added to the cart!",
   "store/buybutton.add-failure": "Something went wrong and the item wasn't added to your cart!",
   "store/technicalspecifications.title": "Technical Specifications",

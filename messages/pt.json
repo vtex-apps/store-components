@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "store/search.placeholder": "Buscar",
   "store/search.noMatches": "Sem resultado",
   "admin/editor.productName.title": "Nome do produto",
@@ -33,6 +34,7 @@
   "store/shipping.label": "Calcular o frete",
   "store/shipping.free": "Grátis",
   "store/shipping.empty-sla": "Não existe um frete disponível para o CEP informado",
+  "store/buy-button.add-to-cart": "Adicionar ao carrinho",
   "store/buybutton.buy-success": "Seu produto foi adicionado ao carrinho!",
   "store/buybutton.add-failure": "Algo deu errado e o item não pode ser adicionado ao seu carrinho!",
   "store/technicalspecifications.title": "Especificações Técnicas",

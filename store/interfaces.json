@@ -8,6 +8,9 @@
   "buy-button": {
     "component": "BuyButton"
   },
+  "buy-button.wrapper": {
+    "component": "BuyButtonWrapper"
+  },
   "product-name": {
     "component": "ProductName"
   },

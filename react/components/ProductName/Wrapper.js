@@ -19,21 +19,18 @@ const styles = {
 }
 
 const PorductNameWrapper = () => {
-  const { component } = React.useContext(ProductContext.Context)
-  const { product, selectedItem } = component.props
+  const { product, selectedItem } = React.useContext(ProductContext)
 
   return (
-    <div>
-      <ProductName 
-        tag='h1'
-        name={path(['productName'], product)}
-        skuName={path(['name'], selectedItem)}
-        productReference={path(['productReference'], product)}
-        brandName={path(['brand'], product)}
-        styles={styles}
-        className='t-heading-4'
-      />
-    </div>
+    <ProductName 
+      tag='h1'
+      name={path(['productName'], product)}
+      skuName={path(['name'], selectedItem)}
+      productReference={path(['productReference'], product)}
+      brandName={path(['brand'], product)}
+      styles={styles}
+      className='t-heading-4'
+    />
   )
 }
 
