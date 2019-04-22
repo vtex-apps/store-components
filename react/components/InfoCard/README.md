@@ -92,3 +92,6 @@ Below, we describe the namespace that are defined in the `ProductPrice`.
 | `infoCardHeadline` | The headline label | [index](/react/components/InfoCard/index.js) | 
 | `infoCardSubhead` | The subhead label | [index](/react/components/InfoCard/index.js) |
 | `infoCardCallActionContainer` | The Call to Action container | [index](/react/components/InfoCard/CallToAction.js) | 
+| `infoCardImage` | The image displayed on `InfoCard` (if `isFullModeStyle` is `false`) | [index](/react/components/InfoCard/index.js) | 
+
+

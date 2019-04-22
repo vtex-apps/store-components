@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- CSS class to `InfoCard` image.
+
+### Changed
+- Make `InfoCard` headline and subline now support HTML and are sanitized before being displayed.
 
 ## [3.25.9] - 2019-04-18
 
