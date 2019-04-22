@@ -71,10 +71,10 @@ class Newsletter extends Component {
   render() {
     const {
       placeholder = this.props.intl.formatMessage({
-        id: 'newsletter.placeholder',
+        id: 'store/newsletter.placeholder',
       }),
-      submit = this.props.intl.formatMessage({ id: 'newsletter.submit' }),
-      label = this.props.intl.formatMessage({ id: 'newsletter.label' }),
+      submit = this.props.intl.formatMessage({ id: 'store/newsletter.submit' }),
+      label = this.props.intl.formatMessage({ id: 'store/newsletter.label' }),
       hideLabel,
     } = this.props
 
@@ -89,12 +89,12 @@ class Newsletter extends Component {
             <Fragment>
               <div className={`${style.confirmationTitle} t-heading-3 pb4 tc`}>
                 {this.props.intl.formatMessage({
-                  id: 'newsletter.confirmationTitle',
+                  id: 'store/newsletter.confirmationTitle',
                 })}
               </div>
               <div className={`${style.confirmationText} t-body tc`}>
                 {this.props.intl.formatMessage({
-                  id: 'newsletter.confirmationText',
+                  id: 'store/newsletter.confirmationText',
                 })}
               </div>
             </Fragment>
@@ -115,7 +115,7 @@ class Newsletter extends Component {
                   errorMessage={
                     this.state.invalidEmail
                       ? this.props.intl.formatMessage({
-                          id: 'newsletter.invalidEmail',
+                          id: 'store/newsletter.invalidEmail',
                         })
                       : null
                   }
@@ -141,7 +141,7 @@ class Newsletter extends Component {
               </div>
               {this.state.error && (
                 <div className={`${style.error} c-danger t-body pt5`}>
-                  {this.props.intl.formatMessage({ id: 'newsletter.error' })}
+                  {this.props.intl.formatMessage({ id: 'store/newsletter.error' })}
                 </div>
               )}
             </form>
@@ -169,29 +169,29 @@ Newsletter.propTypes = {
 
 Newsletter.getSchema = () => {
   return {
-    title: 'editor.newsletter.title',
-    description: 'editor.newsletter.description',
+    title: 'admin/editor.newsletter.title',
+    description: 'admin/editor.newsletter.description',
     type: 'object',
     properties: {
       hideLabel: {
         type: 'boolean',
-        title: 'editor.newsletter.hideLabel',
+        title: 'admin/editor.newsletter.hideLabel',
         default: false,
         isLayout: true,
       },
       label: {
         type: 'string',
-        title: 'editor.newsletter.label',
+        title: 'admin/editor.newsletter.label',
         isLayout: false,
       },
       placeholder: {
         type: 'string',
-        title: 'editor.newsletter.placeholder',
+        title: 'admin/editor.newsletter.placeholder',
         isLayout: false,
       },
       submit: {
         type: 'string',
-        title: 'editor.newsletter.submit',
+        title: 'admin/editor.newsletter.submit',
         isLayout: false,
       },
     },

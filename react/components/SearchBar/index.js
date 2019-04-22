@@ -74,10 +74,10 @@ class SearchBarContainer extends Component {
     const { shouldSearch, inputValue } = this.state
 
     const placeholder = intl.formatMessage({
-      id: 'search.placeholder',
+      id: 'store/search.placeholder',
     })
     const emptyPlaceholder = intl.formatMessage({
-      id: 'search.noMatches',
+      id: 'store/search.noMatches',
     })
 
     return (

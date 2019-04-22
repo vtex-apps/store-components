@@ -136,7 +136,7 @@ class ShippingSimulator extends Component {
             } c-muted-2 db t-small mb3`}
             htmlFor="shipping-zipcode"
           >
-            {this.formatMessage('shipping.label')}
+            {this.formatMessage('store/shipping.label')}
           </label>
           <div className="flex">
             <Input

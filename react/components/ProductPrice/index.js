@@ -90,7 +90,7 @@ class Price extends Component {
                   'dib ph2 t-small-ns t-mini'
                 )}
               >
-                <FormattedMessage id="pricing.from" />
+                <FormattedMessage id="store/pricing.from" />
               </div>
             )}
             <span
@@ -116,7 +116,7 @@ class Price extends Component {
                 sellingPriceLabelClass
               )}
             >
-              {labelSellingPrice || <FormattedMessage id="pricing.to" />}
+              {labelSellingPrice || <FormattedMessage id="store/pricing.to" />}
             </div>
           )}
           <div
@@ -150,7 +150,7 @@ class Price extends Component {
               )}
             >
               <FormattedMessage
-                id="pricing.savings"
+                id="store/pricing.savings"
                 values={{
                   savings: formatNumber(
                     listPrice - sellingPrice,
@@ -215,37 +215,37 @@ Price.Loader.displayName = 'Price.Loader'
 const priceWithIntel = injectIntl(Price)
 
 priceWithIntel.schema = {
-  title: 'editor.productPrice.title',
-  description: 'editor.productPrice.description',
+  title: 'admin/editor.productPrice.title',
+  description: 'admin/editor.productPrice.description',
   type: 'object',
   properties: {
     labelSellingPrice: {
       type: 'string',
-      title: 'editor.productPrice.labelSellingPrice',
+      title: 'admin/editor.productPrice.labelSellingPrice',
       default: Price.defaultProps.labelSellingPrice,
       isLayout: true,
     },
     showListPrice: {
       type: 'boolean',
-      title: 'editor.productPrice.showListPrice',
+      title: 'admin/editor.productPrice.showListPrice',
       default: Price.defaultProps.showListPrice,
       isLayout: true,
     },
     showLabels: {
       type: 'boolean',
-      title: 'editor.productPrice.showLabels',
+      title: 'admin/editor.productPrice.showLabels',
       default: Price.defaultProps.showLabels,
       isLayout: true,
     },
     showInstallments: {
       type: 'boolean',
-      title: 'editor.productPrice.showInstallments',
+      title: 'admin/editor.productPrice.showInstallments',
       default: Price.defaultProps.showInstallments,
       isLayout: true,
     },
     showSavings: {
       type: 'boolean',
-      title: 'editor.productPrice.showSavings',
+      title: 'admin/editor.productPrice.showSavings',
       default: Price.defaultProps.showSavings,
       isLayout: true,
     },

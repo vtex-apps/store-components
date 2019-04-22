@@ -32,7 +32,7 @@ class ProductSpecifications extends Component {
 
   get specificationTitle() {
     return (
-      <FormattedMessage id="technicalspecifications.title">
+      <FormattedMessage id="store/technicalspecifications.title">
         {txt => (
           <h2 className={`${styles.specificationsTitle} t-heading-5 mb5 mt0`}>
             {HtmlParser(txt)}
@@ -61,10 +61,10 @@ class ProductSpecifications extends Component {
                 <thead>
                   <tr>
                     <th className="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5">
-                      <FormattedMessage id="product-description.property" />
+                      <FormattedMessage id="store/product-description.property" />
                     </th>
                     <th className="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5">
-                      <FormattedMessage id="product-description.specification" />
+                      <FormattedMessage id="store/product-description.specification" />
                     </th>
                   </tr>
                 </thead>

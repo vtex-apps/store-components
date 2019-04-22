@@ -33,13 +33,13 @@ NotificationBar.defaultProps = {
 }
 
 NotificationBar.schema = {
-  title: 'editor.notification-bar.title',
-  description: 'editor.notification-bar.description',
+  title: 'admin/editor.notification-bar.title',
+  description: 'admin/editor.notification-bar.description',
   type: 'object',
   properties: {
     content: {
-      title: 'editor.notification-bar.content.title',
-      description: 'editor.notification-bar.content.description',
+      title: 'admin/editor.notification-bar.content.title',
+      description: 'admin/editor.notification-bar.content.description',
       type: 'string',
       default: '',
     },

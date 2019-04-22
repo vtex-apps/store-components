@@ -40,7 +40,7 @@ class AvailabilitySubscriber extends Component {
     let error = ''
 
     if (!emailRegex.test(email.toLowerCase())) {
-      error = 'availability-subscriber.invalid-email'
+      error = 'store/availability-subscriber.invalid-email'
     }
 
     if (error !== emailError) {
@@ -131,7 +131,7 @@ class AvailabilitySubscriber extends Component {
     const event = new Event('message:success')
     event.details = {
       success: true,
-      message: this.translate('availability-subscriber.added-message'),
+      message: this.translate('store/availability-subscriber.added-message'),
     }
     document.dispatchEvent(event)
   }
@@ -169,10 +169,10 @@ class AvailabilitySubscriber extends Component {
         {client => (
           <div className={styles.subscriberContainer}>
             <div className={`${styles.title} t-body mb3`}>
-              {this.translate('availability-subscriber.title')}
+              {this.translate('store/availability-subscriber.title')}
             </div>
             <div className={`${styles.subscribeLabel} t-small fw3`}>
-              {this.translate('availability-subscriber.subscribe-label')}
+              {this.translate('store/availability-subscriber.subscribe-label')}
             </div>
             <form
               className={`${styles.form} mb4`}
@@ -190,7 +190,7 @@ class AvailabilitySubscriber extends Component {
                     name="name"
                     type="text"
                     placeholder={this.translate(
-                      'availability-subscriber.name-placeholder'
+                      'store/availability-subscriber.name-placeholder'
                     )}
                     value={name}
                     onChange={this.handleInputChange}
@@ -208,7 +208,7 @@ class AvailabilitySubscriber extends Component {
                     name="email"
                     type="text"
                     placeholder={this.translate(
-                      'availability-subscriber.email-placeholder'
+                      'store/availability-subscriber.email-placeholder'
                     )}
                     value={email}
                     onChange={this.handleInputChange}
@@ -228,18 +228,18 @@ class AvailabilitySubscriber extends Component {
                     disabled={isFormDisabled}
                     isLoading={isLoading}
                   >
-                    {this.translate('availability-subscriber.send-label')}
+                    {this.translate('store/availability-subscriber.send-label')}
                   </Button>
                 </div>
               </div>
               {sendStatus === 'success' && (
                 <div className={`${styles.success} t-body c-success`}>
-                  {this.translate('availability-subscriber.added-message')}
+                  {this.translate('store/availability-subscriber.added-message')}
                 </div>
               )}
               {sendStatus === 'error' && (
                 <div className={`${styles.error} c-danger`}>
-                  {this.translate('availability-subscriber.error-message')}
+                  {this.translate('store/availability-subscriber.error-message')}
                 </div>
               )}
             </form>
