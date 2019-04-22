@@ -60,4 +60,16 @@ describe('<InfoCard />', () => {
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toMatchSnapshot()
   })
+  it('should insert span with class on headline', () => {
+    const { asFragment } = renderComponent({
+      isFullModeStyle: true,
+      callToActionMode: 'none',
+      textAlignment: 'right',
+      textPosition: 'center',
+      headline:
+        'HEADLINE <span class="my-custom-class">THIS IS BOOOLD AND BLUE</span> HEADLINE STILL',
+    })
+    expect(asFragment()).toBeDefined()
+    expect(asFragment()).toMatchSnapshot()
+  })
 })

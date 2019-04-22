@@ -1,8 +1,9 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { bool, string, oneOf } from 'prop-types'
 import classNames from 'classnames'
 import { useRuntime } from 'vtex.render-runtime'
 import { values } from 'ramda'
+import insane from 'insane'
 
 import CallToAction from './CallToAction'
 import LinkWrapper from './LinkWrapper'
@@ -55,6 +56,18 @@ const getImageUrl = (isMobile, imageUrl, mobileImageUrl) =>
 
 const safelyGetBlockClass = blockClass =>
   blockClass ? blockClass.split(' ')[0] : ''
+
+const sanitizerConfig = { 
+  allowedTags: ['p', 'span', 'a', 'div', 'br'], 
+  allowedAttributes:{
+    a: ['class', 'href', 'title'],
+    span: ['class'],
+    p: ['class'],
+    div: ['class'],
+  }, 
+}
+
+const sanitizeHtml = input => input ? insane(input, sanitizerConfig) : null
 
 const InfoCard = ({
   blockClass,
@@ -125,19 +138,18 @@ const InfoCard = ({
   const subheadClasses =
     `${styles.infoCardSubhead} t-body mt6 c-on-base ${alignToken}`
 
+  const sanitizedHeadline = useMemo(() => sanitizeHtml(headline), [headline])
+  const sanitizedSubhead = useMemo(() => sanitizeHtml(subhead), [subhead])
+
   return (
     <LinkWrapper imageActionUrl={imageActionUrl} extraCondition={!isFullModeStyle} linkProps={{ className: 'no-underline' }}>
       <div className={containerClasses} style={containerStyle} data-testid="container">
         <div className={textContainerClasses}>
           {headline && (
-            <h1 className={headlineClasses}>
-              {headline}
-            </h1>
+            <div className={headlineClasses} dangerouslySetInnerHTML={{ __html: sanitizedHeadline }} />
           )}
           {subhead && (
-            <p className={subheadClasses}>
-              {subhead}
-            </p>
+            <div className={subheadClasses} dangerouslySetInnerHTML={{ __html: sanitizedSubhead }} />
           )}
           <CallToAction
             mode={callToActionMode}
@@ -148,7 +160,7 @@ const InfoCard = ({
         {!isFullModeStyle && (
           <div className="w-50-ns">
             <LinkWrapper imageActionUrl={imageActionUrl}>
-              <img src={finalImageUrl} style={{ objectFit: 'cover' }} data-testid="half-image" />
+              <img className={styles.infoCardImage} src={finalImageUrl} style={{ objectFit: 'cover' }} data-testid="half-image" />
             </LinkWrapper>
           </div>
         )}
