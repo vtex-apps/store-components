@@ -1,3 +1,3 @@
-import ProductHighlights from './components/ProductHighlights/index'
+import ProductHighlights from './components/ProductHighlights/Wrapper'
 
 export default ProductHighlights
