@@ -1,3 +1,3 @@
-import ShippingSimulator from './components/ShippingSimulator/index'
+import ShippingSimulator from './components/ShippingSimulator/Wrapper'
 
 export default ShippingSimulator
