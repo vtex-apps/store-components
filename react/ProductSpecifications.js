@@ -1,3 +1,3 @@
-import ProductSpecifications from './components/ProductSpecifications/index'
+import ProductSpecifications from './components/ProductSpecifications/Wrapper'
 
 export default ProductSpecifications
