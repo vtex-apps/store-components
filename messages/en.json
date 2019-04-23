@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "store/search.placeholder": "Search",
   "store/search.noMatches": "No matches",
   "admin/editor.productName.title": "Product name",
@@ -74,6 +73,7 @@
   "store/buyButton-label-unavailable": "Unavailable",
   "store/greeting": "Hello",
   "store/store-components.share.label": "Share",
+  "store/share.title": "{product} {sku} at {store}: ",
   "admin/editor.info-card.title": "InfoCard",
   "admin/editor.info-card.description": "A component with image and text that you can choose how to display them",
   "admin/editor.info-card.isFullModeStyle.title": "Image as background",

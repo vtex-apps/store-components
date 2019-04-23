@@ -1,3 +1,3 @@
-import Share from './components/Share/index'
+import Share from './components/Share/Wrapper'
 
 export default Share

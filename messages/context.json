@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "store/search.placeholder": "search.placeholder",
   "store/search.noMatches": "search.noMatches",
   "admin/editor.productName.title": "admin/editor.productName.title",
@@ -74,6 +73,7 @@
   "store/buyButton-label-unavailable": "buyButton-label-unavailable",
   "store/greeting": "greeting",
   "store/store-components.share.label": "store-components.share.label",
+  "store/share.title": "{product} {sku} at {store}: ",
   "admin/editor.info-card.title": "Title of InfoCard component",
   "admin/editor.info-card.description": "Description of InfoCard component",
   "admin/editor.info-card.isFullModeStyle.title": "Title of isFullModeStyle property",

@@ -1,1 +1,1 @@
-export { default } from './components/AvailabilitySubscriber'
+export { default } from './components/AvailabilitySubscriber/Wrapper'

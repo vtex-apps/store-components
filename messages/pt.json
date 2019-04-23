@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "store/search.placeholder": "Buscar",
   "store/search.noMatches": "Sem resultado",
   "admin/editor.productName.title": "Nome do produto",
@@ -53,6 +52,7 @@
   "store/newsletter.confirmationTitle": "Obrigado!",
   "store/newsletter.confirmationText": "Seu email foi registrado com sucesso.",
   "store/newsletter.error": "Algo deu errado, tente novamente mais tarde",
+  "store/share.title": "{product} {sku} na {store}: ",
   "admin/editor.newsletter.title": "Newsletter",
   "admin/editor.newsletter.description": "Formulário de Newsletter",
   "admin/editor.newsletter.label": "Título do formulário",
