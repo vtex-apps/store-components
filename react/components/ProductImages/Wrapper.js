@@ -48,6 +48,7 @@ const ProductImagesWrapper = ({ thumbnailPosition, ...props}) => {
 }
 
 ProductImagesWrapper.schema = {
+  // @TODO review title and description
   title: 'editor.product-details.title',
   description: 'editor.product-details.description',
   type: 'object',
