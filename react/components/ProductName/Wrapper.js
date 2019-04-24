@@ -18,11 +18,22 @@ const styles = {
   },
 }
 
-const PorductNameWrapper = props => {
+const PorductNameWrapper = ({
+  showBrandName,
+  showSku,
+  showProductReference,
+  ...props,
+}) => {
   const valuesFromContext = React.useContext(ProductContext)
 
   const productNameProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
+    if (!valuesFromContext || isEmpty(valuesFromContext)) 
+      return {
+        ...props,
+        showBrandName,
+        showSku,
+        showProductReference,      
+      }
 
     const { product, selectedItem } = valuesFromContext
     return {
@@ -33,12 +44,41 @@ const PorductNameWrapper = props => {
       brandName: path(['brand'], product),
       styles: styles,
       className: 't-heading-4',
+      showBrandName,
+      showSku,
+      showProductReference,
     }
   }
 
   return (
     <ProductName { ...productNameProps() } />
   )
+}
+
+PorductNameWrapper.schema = {
+  title: 'admin/editor.productName.title',
+  description: 'admin/editor.productName.description',
+  type: 'object',
+  properties: {
+    showBrandName: {
+      type: 'boolean',
+      title: 'admin/editor.productName.showBrandName.title',
+      default: false,
+      isLayout: true,
+    },
+    showSku: {
+      type: 'boolean',
+      title: 'admin/editor.productName.showSku.title',
+      default: false,
+      isLayout: true,
+    },
+    showProductReference: {
+      type: 'boolean',
+      title: 'admin/editor.productName.showProductReference.title',
+      default: false,
+      isLayout: true,
+    },
+  },
 }
 
 export default PorductNameWrapper
