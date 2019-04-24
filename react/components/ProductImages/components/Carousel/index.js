@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import { path, equals } from 'ramda'
 
 import { IconCaret } from 'vtex.store-icons'
+import { NoSSR } from 'vtex.render-runtime'
 
 import BlurredLoader from '../BlurredLoader'
 import Loader from './Loader.js'
@@ -12,6 +13,8 @@ import Video from '../Video'
 
 import styles from '../../styles.css'
 import './global.css'
+
+import Gallery from './Gallery'
 
 const Swiper = window.navigator ? require('react-id-swiper').default : null
 
@@ -96,8 +99,13 @@ class Carousel extends Component {
     this.setState({ loaded })
   }
 
+  openGallery = idx => {
+    this.setState({ selectedIndex: idx, isGalleryOpen: true })
+  }
+
   renderSlide = (slide, i) => {
     const { loaded } = this.state
+    const { isZoomGallery = true } = this.props
 
     switch (slide.type) {
       case 'image':
@@ -112,6 +120,7 @@ class Carousel extends Component {
               bestUrlIndex={slide.bestUrlIndex}
               alt={slide.alt}
               onload={this.onImageLoad(i)}
+              onclick={isZoomGallery && this.openGallery(i)}
             />
           </div>
         )
@@ -152,42 +161,40 @@ class Carousel extends Component {
     }
   }
 
-  render() {
-    const { thumbSwiper, thumbsLoaded } = this.state
-    const { slides, position } = this.props
-
-    if (!thumbsLoaded || Swiper == null) {
-      return <Loader slidesAmount={slides ? slides.length : 0} />
-    }
+  get galleryParams(){
+    const { thumbSwiper } = this.state
+    const { slides } = this.props
 
     const iconSize = 24
     const caretClassName =
       'pv7 absolute top-50 translate--50y z-2 pointer c-action-primary'
-    const galleryParams = {
+
+    return {
       containerClass: 'swiper-container',
-      pagination:
-        slides.length > 1
-          ? {
+        ...(slides.length > 1 && {
+          pagination: {
               el: '.swiper-pagination',
               clickable: true,
               bulletActiveClass:
                 'c-action-primary swiper-pagination-bullet-active',
             }
-          : {},
-      navigation:
-        slides.length > 1
-          ? {
+          }
+        ),
+        ...(slides.length > 1 && {
+            navigation: {
               prevEl: '.swiper-caret-prev',
               nextEl: '.swiper-caret-next',
               disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
             }
-          : {},
+          }
+        ),
       thumbs: {
         swiper: thumbSwiper,
       },
-      zoom: {
+      zoom:  {
         maxRatio: 2,
       },
+      
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       renderNextButton: () => (
         <span className={`swiper-caret-next pl7 right-1 ${caretClassName}`}>
@@ -211,6 +218,15 @@ class Carousel extends Component {
         slideChange: this.onSlideChange,
       },
     }
+  }
+
+  render() {
+    const { thumbsLoaded, isGalleryOpen, selectedIndex } = this.state
+    const { slides, position, isZoomGallery = true } = this.props
+
+    if (!thumbsLoaded || Swiper == null) {
+      return <Loader slidesAmount={slides ? slides.length : 0} />
+    }
 
     const thumbnailParams = {
       observer: true,
@@ -224,6 +240,7 @@ class Carousel extends Component {
       mousewheel: true,
       preloadImages: true,
       shouldSwiperUpdate: true,
+      zoom: false,
     }
 
     const imageClasses = classNames(
@@ -244,7 +261,7 @@ class Carousel extends Component {
     )
 
     return (
-      <div className={'relative overflow-hidden'}>
+      <div className="relative overflow-hidden" aria-hidden="true">
         <div className={thumbClasses}>
           <Swiper {...thumbnailParams} ref={this.thumbSwiper}>
             {slides.map((slide, i) => (
@@ -253,11 +270,14 @@ class Carousel extends Component {
                 className="swiper-slide w-100 h-auto mb5 pointer"
                 onClick={() => this.gallerySwiper.current.swiper.slideTo(i)}
               >
-                <img
-                  className="w-100 h-auto db"
-                  alt={slide.alt ? this.state.alt[i] : ''}
-                  src={slide.thumbUrl || this.state.thumbUrl[i]}
-                />
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                  <img
+                    className="w-100 h-auto db"
+                    itemprop="thumbnail"
+                    alt={slide.alt ? this.state.alt[i] : ''}
+                    src={slide.thumbUrl || this.state.thumbUrl[i]}
+                  />
+                </figure>
                 <div
                   className={`absolute absolute--fill b--solid b--muted-2 bw1 ${
                     styles.carouselThumbBorder
@@ -268,13 +288,18 @@ class Carousel extends Component {
           </Swiper>
         </div>
         <div className={imageClasses}>
-          <Swiper {...galleryParams} ref={this.gallerySwiper}>
+          <Swiper {...this.galleryParams} ref={this.gallerySwiper}>
             {slides.map((slide, i) => (
               <div key={i} className="swiper-slide center-all">
                 {this.renderSlide(slide, i)}
               </div>
             ))}
           </Swiper>
+          {isZoomGallery && 
+            <NoSSR>
+              <Gallery items={slides} index={selectedIndex} isOpen={isGalleryOpen}></Gallery>
+            </NoSSR>
+          }
         </div>
       </div>
     )
