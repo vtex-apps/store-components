@@ -55,7 +55,7 @@ const BuyButtonWrapper = props => {
 
   return (
     <BuyButton {...buyButtonProps()}>
-      <FormattedMessage id="buy-button.add-to-cart" />
+      <FormattedMessage id="store/buy-button.add-to-cart" />
     </BuyButton>
   )
 }
