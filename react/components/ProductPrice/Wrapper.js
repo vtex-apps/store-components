@@ -42,15 +42,26 @@ const ProductPriceWrapper = ({
   showInstallments,
   showLabels,
   showSavings,
-  ...props,
+  ...props
 }) => {
   const valuesFromContext = React.useContext(ProductContext)
 
   const productPriceProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
+    if (!valuesFromContext || isEmpty(valuesFromContext))
+      return {
+        ...props,
+        labelSellingPrice,
+        showListPrice,
+        showInstallments,
+        showLabels,
+        showSavings,
+      }
 
     const { selectedItem } = valuesFromContext
-    const commertialOffer = path(['sellers', 0, 'commertialOffer'], selectedItem)
+    const commertialOffer = path(
+      ['sellers', 0, 'commertialOffer'],
+      selectedItem
+    )
 
     return {
       styles: styles,
@@ -73,15 +84,67 @@ const ProductPriceWrapper = ({
       showLabels,
       showInstallments,
       showListPrice,
-      showSavings,    
+      showSavings,
     }
   }
 
-  return (
-    <ProductPrice { ...productPriceProps() } />
-  )
+  return <ProductPrice {...productPriceProps()} />
 }
 
-ProductPriceWrapper.schema = ProductPrice.schema
+ProductPriceWrapper.schema = {
+  title: 'admin/editor.productPrice.title',
+  description: 'admin/editor.productPrice.description',
+  type: 'object',
+  properties: {
+    labelSellingPrice: {
+      type: 'string',
+      title: 'admin/editor.productPrice.labelSellingPrice',
+      default: ProductPrice.defaultProps.labelSellingPrice,
+      isLayout: false,
+    },
+    labelListPrice: {
+      type: 'string',
+      title: 'admin/editor.productPrice.labelListPrice',
+      default: ProductPrice.defaultProps.labelListPrice,
+      isLayout: false,
+    },
+    showSellingPriceRange: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showSellingPriceRange',
+      default: ProductPrice.defaultProps.showSellingPriceRange,
+      isLayout: true,
+    },
+    showListPriceRange: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showListPriceRange',
+      default: ProductPrice.defaultProps.showListPriceRange,
+      isLayout: true,
+    },
+    showListPrice: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showListPrice',
+      default: ProductPrice.defaultProps.showListPrice,
+      isLayout: true,
+    },
+    showLabels: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showLabels',
+      default: ProductPrice.defaultProps.showLabels,
+      isLayout: true,
+    },
+    showInstallments: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showInstallments',
+      default: ProductPrice.defaultProps.showInstallments,
+      isLayout: true,
+    },
+    showSavings: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showSavings',
+      default: ProductPrice.defaultProps.showSavings,
+      isLayout: true,
+    },
+  },
+}
 
 export default ProductPriceWrapper

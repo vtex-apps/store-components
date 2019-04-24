@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types'
 import React, { useContext, useCallback, useState, Fragment } from 'react'
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+import { intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
-import { compose, pick } from 'ramda'
-import { orderFormConsumer } from 'vtex.store-resources/OrderFormContext'
+import { pick } from 'ramda'
 
 import { Button, ToastContext } from 'vtex.styleguide'
 
@@ -213,34 +210,4 @@ BuyButton.propTypes = {
   orderFormContext: PropTypes.object,
 }
 
-export const ADD_TO_CART_MUTATION = gql`
-  mutation addToCart($items: [MinicartItem]) {
-    addToCart(items: $items) @client
-  }
-`
-
-export const OPEN_CART_MUTATION = gql`
-  mutation setMinicartOpen($isOpen: Boolean!) {
-    setMinicartOpen(isOpen: $isOpen) @client
-  }
-`
-const withAddToCart = graphql(ADD_TO_CART_MUTATION, {
-  name: 'addToCart',
-  props: ({ addToCart }) => ({
-    addToCart: items => addToCart({ variables: { items } }),
-  }),
-})
-
-const withOpenMinicart = graphql(OPEN_CART_MUTATION, {
-  name: 'setMinicartOpen',
-  props: ({ setMinicartOpen }) => ({
-    setMinicartOpen: isOpen => setMinicartOpen({ variables: { isOpen } }),
-  }),
-})
-
-export default compose(
-  withAddToCart,
-  withOpenMinicart,
-  injectIntl,
-  orderFormConsumer
-)(BuyButton)
+export default BuyButton

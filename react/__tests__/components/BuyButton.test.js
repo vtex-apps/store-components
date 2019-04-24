@@ -44,7 +44,7 @@ describe('<BuyButton />', () => {
     const onAddStart = jest.fn()
     const onAddFinish = jest.fn()
 
-    const buttonText = 'Test inside button'
+    const buttonText = 'Add to cart'
 
     const { getByText } = renderComponent(
       {

@@ -19,10 +19,7 @@ const isValidPriceRange = priceRange => {
 
 const getPriceRange = prices => {
   const sortedPrices = sort((a, b) => a - b, prices)
-  return [
-    head(sortedPrices),            
-    last(sortedPrices)
-  ]
+  return [head(sortedPrices), last(sortedPrices)]
 }
 /**
  * The Price component. Shows the prices information of the Product Summary.
@@ -42,7 +39,7 @@ class ProductPrice extends Component {
     showInstallments: false,
     showSavings: false,
     labelSellingPrice: null,
-    labelListPrice: null
+    labelListPrice: null,
   }
 
   currencyOptions = {
@@ -53,7 +50,7 @@ class ProductPrice extends Component {
   }
 
   mayShowListPrice = () => {
-    const { 
+    const {
       sellingPriceList,
       sellingPrice,
       listPrice,
@@ -67,17 +64,22 @@ class ProductPrice extends Component {
       return false
     }
 
-    const sellingPriceRange = (sellingPriceList && getPriceRange(sellingPriceList)) || []
+    const sellingPriceRange =
+      (sellingPriceList && getPriceRange(sellingPriceList)) || []
     const listPriceRange = (listPriceList && getPriceRange(listPriceList)) || []
 
-    const showingSellingPriceRange = showSellingPriceRange && isValidPriceRange(sellingPriceRange)
-    const showingListPriceRange = showListPriceRange && isValidPriceRange(listPriceRange)
+    const showingSellingPriceRange =
+      showSellingPriceRange && isValidPriceRange(sellingPriceRange)
+    const showingListPriceRange =
+      showListPriceRange && isValidPriceRange(listPriceRange)
 
     if (showingSellingPriceRange && !showingListPriceRange) {
       return false
     }
 
-    const sellingPriceToShow = showingSellingPriceRange ? sellingPriceRange : sellingPrice
+    const sellingPriceToShow = showingSellingPriceRange
+      ? sellingPriceRange
+      : sellingPrice
     const listPriceToShow = showingListPriceRange ? listPriceRange : listPrice
 
     return !equals(listPriceToShow, sellingPriceToShow)
@@ -130,9 +132,10 @@ class ProductPrice extends Component {
 
     const mayShowListPrice = this.mayShowListPrice()
 
-    const sellingPriceRange = sellingPriceList && getPriceRange(sellingPriceList)
+    const sellingPriceRange =
+      sellingPriceList && getPriceRange(sellingPriceList)
     const listPriceRange = listPriceList && getPriceRange(listPriceList)
-    
+
     return (
       <div className={classNames(productPrice.priceContainer, className)}>
         {mayShowListPrice && (
@@ -194,7 +197,7 @@ class ProductPrice extends Component {
               sellingPriceRangeClass
             )}
             singleContainerClasses={classNames(
-              productPrice.sellingPrice, 
+              productPrice.sellingPrice,
               sellingPriceClass
             )}
             currencyOptions={this.currencyOptions}

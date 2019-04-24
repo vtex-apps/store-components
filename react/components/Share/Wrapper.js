@@ -11,7 +11,11 @@ const ShareWrapper = ({ intl, social, ...props }) => {
   const { account } = useRuntime()
 
   const shareProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
+    if (!valuesFromContext || isEmpty(valuesFromContext)) 
+      return {
+        ...props,
+        social,
+      }
 
     const { selectedItem, product } = valuesFromContext
 
