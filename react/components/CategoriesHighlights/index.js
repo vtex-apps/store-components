@@ -46,16 +46,16 @@ class CategoriesHighlights extends Component {
     range(0, quantityOfItems || ITEMS_PER_ROW).forEach(index => {
       categoriesHighlightedProps[`category${index}`] = {
         type: 'object',
-        title: 'editor.categoriesHighlighted.category',
+        title: 'admin/editor.categoriesHighlighted.category',
         properties: {
           name: {
             type: 'string',
             default: '',
-            title: 'editor.categoriesHighlighted.item.categoryName',
+            title: 'admin/editor.categoriesHighlighted.item.categoryName',
           },
           image: {
             type: 'string',
-            title: 'editor.categoriesHighlighted.item.categoryImage',
+            title: 'admin/editor.categoriesHighlighted.item.categoryImage',
             default: '',
             widget: {
               'ui:widget': 'image-uploader',
@@ -66,19 +66,19 @@ class CategoriesHighlights extends Component {
     })
 
     return {
-      title: 'editor.categoriesHighlighted.title',
-      description: 'editor.categoriesHighlighted.description',
+      title: 'admin/editor.categoriesHighlighted.title',
+      description: 'admin/editor.categoriesHighlighted.description',
       type: 'object',
       properties: {
         showCategoriesHighlighted: {
           type: 'boolean',
-          title: 'editor.categoriesHighlighted.showCategoriesHighlighted',
+          title: 'admin/editor.categoriesHighlighted.showCategoriesHighlighted',
           default: false,
           isLayout: true,
         },
         quantityOfItems: {
           type: 'number',
-          title: 'editor.categoriesHighlighted.quantityOfItems',
+          title: 'admin/editor.categoriesHighlighted.quantityOfItems',
           enum: [2, 4],
           default: 2,
           widget: {
@@ -91,11 +91,11 @@ class CategoriesHighlights extends Component {
         },
         cardShape: {
           type: 'string',
-          title: 'editor.categoriesHighlighted.cardShape',
+          title: 'admin/editor.categoriesHighlighted.cardShape',
           enum: [SQUARED, RECTANGULAR],
           enumNames: [
-            'editor.categoriesHighlighted.cardShape.squared',
-            'editor.categoriesHighlighted.cardShape.rectangular',
+            'admin/editor.categoriesHighlighted.cardShape.squared',
+            'admin/editor.categoriesHighlighted.cardShape.rectangular',
           ],
           default: SQUARED,
           widget: {
@@ -108,7 +108,7 @@ class CategoriesHighlights extends Component {
         },
         categoriesHighlighted: {
           type: 'object',
-          title: 'editor.categoriesHighlighted.categoriesHighlighted',
+          title: 'admin/editor.categoriesHighlighted.categoriesHighlighted',
           properties: categoriesHighlightedProps,
           isLayout: false,
         },

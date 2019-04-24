@@ -26,7 +26,7 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   if (price === undefined) {
     valueText = '-'
   } else if (price === 0) {
-    valueText = intl.formatMessage({ id: 'shipping.free' })
+    valueText = intl.formatMessage({ id: 'store/shipping.free' })
   } else {
     valueText = intl.formatNumber(price / 100, {
       style: 'currency',

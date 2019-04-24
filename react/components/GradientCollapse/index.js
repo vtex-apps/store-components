@@ -92,9 +92,9 @@ class GradientCollapse extends Component {
                   onClick={() => this.setState({ collapsed: !collapsed })}
                 >
                   {state === 'entered' || (collapsed && state !== 'exited') ? (
-                    <FormattedMessage id="product-description.collapse.showLess" />
+                    <FormattedMessage id="store/product-description.collapse.showLess" />
                   ) : (
-                    <FormattedMessage id="product-description.collapse.showMore" />
+                    <FormattedMessage id="store/product-description.collapse.showMore" />
                   )}
                 </div>
               </div>

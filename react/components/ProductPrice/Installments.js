@@ -83,7 +83,7 @@ export default class Installments extends Component {
       <div className={classNames(productPrice.installmentsPrice, className)}>
         {showLabels ? (
           <FormattedMessage
-            id="pricing.installment-display"
+            id="store/pricing.installment-display"
             values={{
               installments: installmentsElement,
               installmentPrice: installmentPriceElement,
@@ -103,7 +103,7 @@ export default class Installments extends Component {
               interestRateClass
             )}
           >
-            <FormattedMessage id="pricing.interest-free" />
+            <FormattedMessage id="store/pricing.interest-free" />
           </div>
         )}
       </div>

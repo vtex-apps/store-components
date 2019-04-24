@@ -51,11 +51,11 @@ const AddressInfo = ({ inverted, inline, orderForm, pickupPointQuery, intl }) =>
           >
             {isPickup ? (
               <FormattedMessage
-                id="user-address.pickup"
+                id="store/user-address.pickup"
                 values={{ name: friendlyName }}
               />
             ) : (
-              <FormattedMessage id="user-address.order" />
+              <FormattedMessage id="store/user-address.order" />
             )}
           </div>
           <div className="truncate">{displayAddress}</div>

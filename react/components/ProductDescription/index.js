@@ -21,7 +21,7 @@ class ProductDescription extends Component {
 
     return (
       <div className={styles.productDescriptionContainer}>
-        <FormattedMessage id="product-description.title">
+        <FormattedMessage id="store/product-description.title">
           {txt => <h2 className="t-heading-5 mb5 mt0">{txt}</h2>}
         </FormattedMessage>
 

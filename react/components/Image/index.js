@@ -34,24 +34,24 @@ Image.defaultProps = {
 }
 
 Image.schema = {
-  title: 'editor.image.title',
-  description: 'editor.image.description',
+  title: 'admin/editor.image.title',
+  description: 'admin/editor.image.description',
   type: 'object',
   properties: {
     src: {
       type: 'string',
-      title: 'editor.image.src.title',
+      title: 'admin/editor.image.src.title',
       widget: {
         'ui:widget': 'image-uploader',
       },
     },
     alt: {
       type: 'string',
-      title: 'editor.image.alt.title',
+      title: 'admin/editor.image.alt.title',
     },
     blockClass: {
-      title: 'editor.blockClass.title',
-      description: 'editor.blockClass.description',
+      title: 'admin/editor.blockClass.title',
+      description: 'admin/editor.blockClass.description',
       type: 'string',
       isLayout: true,
     },

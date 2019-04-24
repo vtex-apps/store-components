@@ -98,12 +98,12 @@ class Share extends Component {
   }
 
   static schema = {
-    title: 'editor.share.title',
-    description: 'editor.share.description',
+    title: 'admin/editor.share.title',
+    description: 'admin/editor.share.description',
     type: 'object',
     properties: {
       social: {
-        title: 'editor.share.social.title',
+        title: 'admin/editor.share.social.title',
         type: 'object',
         properties: {
           ...indexBy(
@@ -148,7 +148,7 @@ class Share extends Component {
     return (
       <div className={classNames(styles.shareContainer, className)}>
         <div className={classNames(styles.shareLabel, shareLabelClass)}>
-          <FormattedMessage id="store-components.share.label" />
+          <FormattedMessage id="store/store-components.share.label" />
         </div>
         <div className={classNames(styles.shareButtons, buttonsContainerClass)}>
           {Object.keys(social).map(

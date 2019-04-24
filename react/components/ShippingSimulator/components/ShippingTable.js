@@ -43,7 +43,7 @@ export default class ShippingTable extends Component {
 
     if (slaList.length === 0) {
       return (
-        <FormattedMessage id="shipping.empty-sla">
+        <FormattedMessage id="store/shipping.empty-sla">
           {text => (
             <span className={`${styles.shippingNoMessage} dib t-small mt4`}>
               {text}

@@ -10,8 +10,8 @@ import { orderFormConsumer } from 'vtex.store-resources/OrderFormContext'
 import { Button, withToast } from 'vtex.styleguide'
 
 const CONSTANTS = {
-  SUCCESS_MESSAGE_ID: 'buybutton.buy-success',
-  ERROR_MESSAGE_ID: 'buybutton.add-failure',
+  SUCCESS_MESSAGE_ID: 'store/buybutton.buy-success',
+  ERROR_MESSAGE_ID: 'store/buybutton.add-failure',
   CHECKOUT_URL: '/checkout/#/cart',
   TOAST_TIMEOUT: 3000,
 }
@@ -155,7 +155,7 @@ export class BuyButton extends Component {
             {available ? (
               children
             ) : (
-              <FormattedMessage id="buyButton-label-unavailable" />
+              <FormattedMessage id="store/buyButton-label-unavailable" />
             )}
           </Button>
         )}
