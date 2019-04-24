@@ -47,7 +47,15 @@ const ProductPriceWrapper = ({
   const valuesFromContext = React.useContext(ProductContext)
 
   const productPriceProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
+    if (!valuesFromContext || isEmpty(valuesFromContext)) 
+      return {
+        ...props,
+        labelSellingPrice,
+        showListPrice,
+        showInstallments,
+        showLabels,
+        showSavings,      
+      }
 
     const { selectedItem } = valuesFromContext
     const commertialOffer = path(['sellers', 0, 'commertialOffer'], selectedItem)
@@ -82,6 +90,42 @@ const ProductPriceWrapper = ({
   )
 }
 
-ProductPriceWrapper.schema = ProductPrice.schema
+ProductPriceWrapper.schema = {
+  title: 'admin/editor.productPrice.title',
+  description: 'admin/editor.productPrice.description',
+  type: 'object',
+  properties: {
+    labelSellingPrice: {
+      type: 'string',
+      title: 'admin/editor.productPrice.labelSellingPrice',
+      default: null,
+      isLayout: true,
+    },
+    showListPrice: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showListPrice',
+      default: true,
+      isLayout: true,
+    },
+    showLabels: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showLabels',
+      default: true,
+      isLayout: true,
+    },
+    showInstallments: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showInstallments',
+      default: false,
+      isLayout: true,
+    },
+    showSavings: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showSavings',
+      default: false,
+      isLayout: true,
+    },
+  },
+}
 
 export default ProductPriceWrapper

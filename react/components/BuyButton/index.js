@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types'
 import React, { Component, Fragment } from 'react'
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+import { intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
-import { compose, pick } from 'ramda'
-import { orderFormConsumer } from 'vtex.store-resources/OrderFormContext'
+import { pick } from 'ramda'
 
-import { Button, withToast } from 'vtex.styleguide'
+import { Button } from 'vtex.styleguide'
 
 const CONSTANTS = {
   SUCCESS_MESSAGE_ID: 'store/buybutton.buy-success',
@@ -217,24 +214,4 @@ BuyButton.propTypes = {
   addToCart: PropTypes.func.isRequired,
 }
 
-export const ADD_TO_CART_MUTATION = gql`
-  mutation addToCart($items: [MinicartItem]) {
-    addToCart(items: $items) @client
-  }
-  `
-
-const withMutation = graphql(
-  ADD_TO_CART_MUTATION,
-  {
-    props: ({ mutate }) => ({
-      addToCart: items => mutate({ variables: { items } }),
-    }),
-  }
-)
-
-export default compose(
-  withMutation,
-  withToast,
-  injectIntl,
-  orderFormConsumer
-)(BuyButton)
+export default BuyButton

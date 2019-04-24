@@ -212,44 +212,4 @@ Price.Loader = (loaderProps = {}) => (
 
 Price.Loader.displayName = 'Price.Loader'
 
-const priceWithIntel = injectIntl(Price)
-
-priceWithIntel.schema = {
-  title: 'admin/editor.productPrice.title',
-  description: 'admin/editor.productPrice.description',
-  type: 'object',
-  properties: {
-    labelSellingPrice: {
-      type: 'string',
-      title: 'admin/editor.productPrice.labelSellingPrice',
-      default: Price.defaultProps.labelSellingPrice,
-      isLayout: true,
-    },
-    showListPrice: {
-      type: 'boolean',
-      title: 'admin/editor.productPrice.showListPrice',
-      default: Price.defaultProps.showListPrice,
-      isLayout: true,
-    },
-    showLabels: {
-      type: 'boolean',
-      title: 'admin/editor.productPrice.showLabels',
-      default: Price.defaultProps.showLabels,
-      isLayout: true,
-    },
-    showInstallments: {
-      type: 'boolean',
-      title: 'admin/editor.productPrice.showInstallments',
-      default: Price.defaultProps.showInstallments,
-      isLayout: true,
-    },
-    showSavings: {
-      type: 'boolean',
-      title: 'admin/editor.productPrice.showSavings',
-      default: Price.defaultProps.showSavings,
-      isLayout: true,
-    },
-  },
-}
-
-export default priceWithIntel
+export default injectIntl(Price)

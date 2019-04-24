@@ -51,7 +51,6 @@ const ProductSpecificationsWrapper = ({ specificationsDefault, ...props }) => {
 }
 
 ProductSpecificationsWrapper.schema = {
-  // @TODO review title and description
   title: 'editor.product-details.title',
   description: 'editor.product-details.description',
   type: 'object',
@@ -64,7 +63,7 @@ ProductSpecificationsWrapper.schema = {
           title: 'Show specifications',
           type: 'boolean',
           enum: [true, false],
-          default: false,
+          default: true,
         },
       },
       required: ['showSpecifications'],

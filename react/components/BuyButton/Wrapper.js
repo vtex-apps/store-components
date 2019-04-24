@@ -1,11 +1,16 @@
 import * as React from 'react'
 import { ProductContext } from 'vtex.product-context'
-import { path, isEmpty } from 'ramda'
-import { FormattedMessage } from 'react-intl'
+import { path, isEmpty, compose } from 'ramda'
+import { FormattedMessage, injectIntl } from 'react-intl'
+import { withToast } from 'vtex.styleguide'
+import { orderFormConsumer } from 'vtex.store-resources/OrderFormContext'
+
+import gql from 'graphql-tag'
+import { graphql } from 'react-apollo'
 
 import { BuyButton } from './index';
 
-export default props => {
+const BuyButtonWrapper = props => {
   const valuesFromContext = React.useContext(ProductContext)
 
   const buyButtonProps = () => {
@@ -47,3 +52,27 @@ export default props => {
     </BuyButton>
   )
 }
+
+// export default BuyButtonWrapper
+
+export const ADD_TO_CART_MUTATION = gql`
+  mutation addToCart($items: [MinicartItem]) {
+    addToCart(items: $items) @client
+  }
+  `
+
+const withMutation = graphql(
+  ADD_TO_CART_MUTATION,
+  {
+    props: ({ mutate }) => ({
+      addToCart: items => mutate({ variables: { items } }),
+    }),
+  }
+)
+
+export default compose(
+  withMutation,
+  withToast,
+  injectIntl,
+  orderFormConsumer
+)(BuyButtonWrapper)
