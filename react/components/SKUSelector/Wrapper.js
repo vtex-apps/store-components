@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { ProductContext } from 'vtex.product-context'
-import { path, isEmpty } from 'ramda'
+import { path, isEmpty, pathOr } from 'ramda'
 
 import SKUSelector from './index';
 
@@ -13,7 +13,7 @@ export default (props) => {
     const { product, selectedItem } = valuesFromContext
 
     return {
-      skuItems: path(['items'], product),
+      skuItems: pathOr([], ['items'], product),
       skuSelected: selectedItem,
       productSlug: path(['linkText'], product),
     }
