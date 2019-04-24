@@ -18,7 +18,11 @@ const ProductImagesWrapper = ({ thumbnailPosition, ...props}) => {
   const valuesFromContext = React.useContext(ProductContext)
 
   const productImagesProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
+    if (!valuesFromContext || isEmpty(valuesFromContext)) 
+      return {
+        ...props,
+        position: thumbnailPosition,
+      }
 
     return {
       images: getImages(),

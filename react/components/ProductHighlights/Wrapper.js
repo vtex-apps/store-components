@@ -74,6 +74,7 @@ const ProductHighlightsWrapper = ({ conditional, showHighlight, ...props }) => {
 }
 
 ProductHighlightsWrapper.schema = {
+  // @TODO review title and description
   title: 'editor.product-details.title',
   description: 'editor.product-details.description',
   type: 'object',

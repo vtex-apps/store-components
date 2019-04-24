@@ -135,30 +135,4 @@ class ProductName extends Component {
   }
 }
 
-ProductName.schema = {
-  title: 'admin/editor.productName.title',
-  description: 'admin/editor.productName.description',
-  type: 'object',
-  properties: {
-    showBrandName: {
-      type: 'boolean',
-      title: 'admin/editor.productName.showBrandName.title',
-      default: false,
-      isLayout: true,
-    },
-    showSku: {
-      type: 'boolean',
-      title: 'admin/editor.productName.showSku.title',
-      default: false,
-      isLayout: true,
-    },
-    showProductReference: {
-      type: 'boolean',
-      title: 'admin/editor.productName.showProductReference.title',
-      default: false,
-      isLayout: true,
-    },
-  },
-}
-
 export default ProductName
