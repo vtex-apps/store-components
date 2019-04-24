@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.26.0] - 2019-04-24
+### Changed
+- Make `UserAddress` use modal block.
+
 ## [3.25.10] - 2019-04-22
 ### Added
 - CSS class to `InfoCard` image.
