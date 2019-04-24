@@ -10,7 +10,7 @@ const NotificationBar = ({ content }) => {
       <div
         className={`${
           styles.notificationBarContainer
-        } bg-base--inverted c-on-base--inverted`}
+        } bg-base--inverted c-on-base--inverted w-100`}
       >
         <div
           className={`${
