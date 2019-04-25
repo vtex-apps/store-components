@@ -1,4 +1,15 @@
-import { clone, values, compose, map, nth, groupBy } from 'ramda'
+import {
+  clone,
+  values,
+  compose,
+  map,
+  nth,
+  groupBy,
+  sortWith,
+  descend,
+  path,
+  prop,
+} from 'ramda'
 
 /**
  * Return the maximum sku price
@@ -41,14 +52,22 @@ export const parseSku = sku => {
   return result
 }
 
+const getQuantity = path([
+  'sellers',
+  '0',
+  'commertialOffer',
+  'AvailableQuantity',
+])
+
 /**
  * Group the sku items by the variation name specified
  */
 export const groupItemsByVariation = (name, items) =>
   compose(
     map(nth(0)),
+    map(sortWith([descend(getQuantity)])),
     values,
-    groupBy(sku => sku[name])
+    groupBy(prop(name))
   )(items)
 
 /**
