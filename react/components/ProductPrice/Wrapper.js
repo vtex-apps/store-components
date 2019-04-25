@@ -54,11 +54,15 @@ const ProductPriceWrapper = ({
         showListPrice,
         showInstallments,
         showLabels,
-        showSavings,      
+        showSavings,
+        showProductPrice: true,   
       }
 
     const { selectedItem } = valuesFromContext
     const commertialOffer = path(['sellers', 0, 'commertialOffer'], selectedItem)
+    const availableQuantity = path(['AvailableQuantity'], commertialOffer)
+    const showProductPrice =
+      Number.isNaN(+availableQuantity) || availableQuantity > 0
 
     return {
       styles: styles,
@@ -81,12 +85,17 @@ const ProductPriceWrapper = ({
       showLabels,
       showInstallments,
       showListPrice,
-      showSavings,    
+      showSavings,
+      showProductPrice,
     }
   }
 
+  const { showProductPrice, ...restProps } = productPriceProps()
+
+  if (!showProductPrice) return null
+
   return (
-    <ProductPrice { ...productPriceProps() } />
+    <ProductPrice { ...restProps } />
   )
 }
 

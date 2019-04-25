@@ -16,10 +16,15 @@ export default (props) => {
       skuItems: pathOr([], ['items'], product),
       skuSelected: selectedItem,
       productSlug: path(['linkText'], product),
+      variations: path(['variations'], selectedItem),
     }
   }
 
+  const { variations, ...restProps } = skuSelectorProps()
+
+  if (!variations || !variations.length) return null
+  
   return (
-    <SKUSelector { ...skuSelectorProps()} />
+    <SKUSelector { ...restProps } />
   )
 }
