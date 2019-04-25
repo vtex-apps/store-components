@@ -10,7 +10,15 @@ import { graphql } from 'react-apollo'
 
 import { BuyButton } from './index';
 
-const BuyButtonWrapper = props => {
+const BuyButtonWrapper = ({ 
+  intl,
+  addToCart,
+  showToast,
+  orderFormContext,
+  onAddStart,
+  onAddFinish,
+  ...props 
+}) => {
   const valuesFromContext = React.useContext(ProductContext)
 
   const buyButtonProps = () => {
@@ -47,13 +55,19 @@ const BuyButtonWrapper = props => {
   }
 
   return (
-    <BuyButton { ...buyButtonProps() }>
+    <BuyButton
+      intl={intl}
+      addToCart={addToCart}
+      onAddStart={onAddStart}
+      onAddFinish={onAddFinish}
+      showToast={showToast}
+      orderFormContext={orderFormContext}
+      { ...buyButtonProps() }
+    >
       <FormattedMessage id="store/buy-button.add-to-cart" />
     </BuyButton>
   )
 }
-
-// export default BuyButtonWrapper
 
 export const ADD_TO_CART_MUTATION = gql`
   mutation addToCart($items: [MinicartItem]) {
