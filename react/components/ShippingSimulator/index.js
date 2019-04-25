@@ -19,7 +19,7 @@ class ShippingSimulator extends Component {
     intl: intlShape.isRequired,
     client: PropTypes.object,
     skuId: PropTypes.string,
-    seller: PropTypes.number,
+    seller: PropTypes.string,
     country: PropTypes.string.isRequired,
     /** Component and content loader styles */
     styles: PropTypes.object,
