@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.29.2] - 2019-04-25
+### Fixed
+- Availability of a specific variation is based on all SKU's now.
+
 ## [3.29.1] - 2019-04-25
 ### Changed
 - Add isLayout to `InfoCard` props.
