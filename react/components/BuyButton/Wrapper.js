@@ -61,6 +61,10 @@ const BuyButtonWrapper = ({
     }
   }
 
+  const { available, ...restProps } = buyButtonProps()
+
+  if (!available) return null
+
   return (
     <BuyButton
       intl={intl}
@@ -69,7 +73,7 @@ const BuyButtonWrapper = ({
       onAddFinish={onAddFinish}
       showToast={showToast}
       orderFormContext={orderFormContext}
-      { ...buyButtonProps() }
+      { ...restProps }
     >
       <FormattedMessage id="store/buy-button.add-to-cart" />
     </BuyButton>

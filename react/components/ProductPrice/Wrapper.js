@@ -47,7 +47,7 @@ const ProductPriceWrapper = ({
   const valuesFromContext = React.useContext(ProductContext)
 
   const productPriceProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext))
+    if (!valuesFromContext || isEmpty(valuesFromContext)) {
       return {
         ...props,
         labelSellingPrice,
@@ -55,13 +55,14 @@ const ProductPriceWrapper = ({
         showInstallments,
         showLabels,
         showSavings,
+        showProductPrice: true,   
       }
+    }
 
     const { selectedItem } = valuesFromContext
-    const commertialOffer = path(
-      ['sellers', 0, 'commertialOffer'],
-      selectedItem
-    )
+    const commertialOffer = path(['sellers', 0, 'commertialOffer'], selectedItem)
+    const availableQuantity = path(['AvailableQuantity'], commertialOffer)
+    const showProductPrice = Number.isNaN(+availableQuantity) || availableQuantity > 0
 
     return {
       styles: styles,
@@ -85,10 +86,17 @@ const ProductPriceWrapper = ({
       showInstallments,
       showListPrice,
       showSavings,
+      showProductPrice,
     }
   }
 
-  return <ProductPrice {...productPriceProps()} />
+  const { showProductPrice, ...restProps } = productPriceProps()
+
+  if (!showProductPrice) return null
+
+  return (
+    <ProductPrice { ...restProps } />
+  )
 }
 
 ProductPriceWrapper.schema = {
