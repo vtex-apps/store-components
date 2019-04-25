@@ -11,7 +11,11 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected }) => {
   const displayImage = isColor(variation.name)
 
   return (
-    <div className={`${styles.skuSelectorSubcontainer} flex flex-column mb7`}>
+    <div
+      className={`${styles.skuSelectorSubcontainer} ${
+        styles.skuSelectorSubcontainer
+      }--${variation.name} flex flex-column mb7`}
+    >
       <div className={`${styles.skuSelectorNameContainer} ma1`}>
         <span
           className={`${
@@ -34,6 +38,7 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected }) => {
                 price={seller.commertialOffer.Price}
                 onClick={() => onSelectItem(skuItem.itemId)}
                 isImage={displayImage}
+                variationValue={skuItem[variation.name]}
               >
                 {displayImage && skuImage ? (
                   <img

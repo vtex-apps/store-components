@@ -24,6 +24,7 @@ const SelectorItem = ({
   price,
   onClick,
   isImage,
+  variationValue,
 }) => {
   const discount = getDiscount(maxPrice, price)
 
@@ -33,6 +34,7 @@ const SelectorItem = ({
       tabIndex={0}
       className={classNames(
         styles.skuSelectorItem,
+        `${styles.skuSelectorItem}--${variationValue}`,
         'relative di pointer flex items-center outline-0',
         {
           [styles.skuSelectorItemImage]: isImage,
@@ -95,6 +97,8 @@ SelectorItem.propTypes = {
   skuId: PropTypes.string,
   /** True if it's an image variation */
   isImage: PropTypes.bool,
+  /** Value of the variation */
+  variationValue: PropTypes.string.isRequired,
 }
 
 export default SelectorItem
