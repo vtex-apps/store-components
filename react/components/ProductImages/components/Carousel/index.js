@@ -24,6 +24,7 @@ const initialState = {
   alt: [],
   thumbsLoaded: false,
   activeIndex: 0,
+  isGalleryOpen: false,
 }
 
 class Carousel extends Component {
@@ -120,7 +121,7 @@ class Carousel extends Component {
               bestUrlIndex={slide.bestUrlIndex}
               alt={slide.alt}
               onload={this.onImageLoad(i)}
-              onclick={isZoomGallery && this.openGallery(i)}
+              onClick={isZoomGallery && (() => this.openGallery(i))}
             />
           </div>
         )
@@ -163,7 +164,7 @@ class Carousel extends Component {
 
   get galleryParams(){
     const { thumbSwiper } = this.state
-    const { slides } = this.props
+    const { slides, isZoomGallery = true } = this.props
 
     const iconSize = 24
     const caretClassName =
@@ -191,7 +192,7 @@ class Carousel extends Component {
       thumbs: {
         swiper: thumbSwiper,
       },
-      zoom:  {
+      zoom:  !isZoomGallery && {
         maxRatio: 2,
       },
       

@@ -136,7 +136,6 @@ class BlurredLoader extends React.Component {
           alt={alt}
           src={realUrls[realUrlIndex]}
           minRatio={imageMinRatio}
-          onclick={() => alert('clicksdede fckjsd  vj ')}
         />
         {!loaded && (
           <div className="relative w-100 db">

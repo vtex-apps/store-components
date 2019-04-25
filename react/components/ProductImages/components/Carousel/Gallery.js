@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { PhotoSwipe } from 'react-photoswipe'
 import classNames from 'classnames'
+import cs from 'react-photoswipe/dist/photoswipe.css'
 
 const Gallery = ({ slides, isOpen, index, handleClose }) => {
-  console.log(isOpen)
-  return null
   const [state, _] = useState({
     items: [
       {
@@ -29,7 +28,8 @@ const Gallery = ({ slides, isOpen, index, handleClose }) => {
     options: { index }
   })
 
-  const photoSwipeClasses = classNames({dn: !state.isOpen})
+  const photoSwipeClasses = classNames({})
+  console.log(PhotoSwipe, isOpen, state.items, photoSwipeClasses)
 
   return (
     <PhotoSwipe isOpen={isOpen} items={state.items} className={photoSwipeClasses}
