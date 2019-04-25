@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { PhotoSwipe } from 'react-photoswipe'
 import classNames from 'classnames'
-import cs from 'react-photoswipe/dist/photoswipe.css'
+
+import './global.css'
 
 const Gallery = ({ slides, isOpen, index, handleClose }) => {
   const [state, _] = useState({

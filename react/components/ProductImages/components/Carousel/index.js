@@ -14,7 +14,7 @@ import Video from '../Video'
 import styles from '../../styles.css'
 import './global.css'
 
-import Gallery from './Gallery'
+import Gallery from '../Gallery'
 
 const Swiper = window.navigator ? require('react-id-swiper').default : null
 
