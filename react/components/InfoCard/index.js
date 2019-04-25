@@ -230,6 +230,7 @@ MemoizedInfoCard.schema = {
       description: 'admin/editor.info-card.isFullModeStyle.description',
       type: 'boolean',
       default: false,
+      isLayout: true,
     },
     textPosition: {
       title: 'admin/editor.info-card.textPosition.title',
@@ -238,6 +239,7 @@ MemoizedInfoCard.schema = {
       enum: getEnumValues(textPositionTypes),
       enumNames: getEnumNames(textPositionTypes),
       default: textPositionTypes.TEXT_POSITION_LEFT.value,
+      isLayout: true,
     },
     headline: {
       title: 'admin/editor.info-card.headline.title',
@@ -258,6 +260,7 @@ MemoizedInfoCard.schema = {
       enum: getEnumValues(callToActionModeTypes),
       enumNames: getEnumNames(callToActionModeTypes),
       default: callToActionModeTypes.CALL_ACTION_BUTTON.value,
+      isLayout: true,
     },
     callToActionText: {
       title: 'admin/editor.info-card.callToActionText.title',
@@ -290,6 +293,7 @@ MemoizedInfoCard.schema = {
       default: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
       enum: getEnumValues(textAlignmentTypes),
       enumNames: getEnumNames(textAlignmentTypes),
+      isLayout: true,
     },
     blockClass: {
       title: 'admin/editor.blockClass.title',
