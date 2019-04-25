@@ -7,6 +7,7 @@ import BuyButton, { ADD_TO_CART_MUTATION } from '../../BuyButton'
 describe('<BuyButton />', () => {
   const renderComponent = (customProps, text = 'Test') => {
     const props = {
+      available: true,
       ...customProps,
     }
 
