@@ -4,7 +4,8 @@ import classNames from 'classnames'
 
 import './global.css'
 
-const Gallery = ({ slides, isOpen, index, handleClose }) => {
+const Gallery = ({ items, isOpen, index, handleClose }) => {
+  console.log(items)
   const [state, _] = useState({
     items: [
       {
@@ -29,11 +30,10 @@ const Gallery = ({ slides, isOpen, index, handleClose }) => {
     options: { index }
   })
 
-  const photoSwipeClasses = classNames({})
-  console.log(PhotoSwipe, isOpen, state.items, photoSwipeClasses)
+  const toPsItem = item => {return {src: item.urls[item.bestUrlIndex], w: 1280, h: 1280, title: 'dgldfkmg'}}
 
   return (
-    <PhotoSwipe isOpen={isOpen} items={state.items} className={photoSwipeClasses}
+    <PhotoSwipe isOpen={isOpen} items={items.map(toPsItem)}
       options={state.options}
       onClose={handleClose}
     />
