@@ -9,6 +9,10 @@ describe('<SKUSelector />', () => {
     const props = {
       skuSelected: getSKU(),
       skuItems: [getSKU('Black'), getSKU('Blue'), getSKU('Yellow')],
+      variations: [
+        { name: 'Size', values: ['1'] },
+        { name: 'Color', values: ['Blue'] },
+      ],
       ...customProps,
     }
     return render(<SKUSelector {...props} />)
@@ -77,7 +81,7 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems[0]
 
     const { getByText, getAllByText } = render(
-      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
+      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} variations={skuSelected.variations} />
     )
 
     expect(getAllByText(/gray/i)).toHaveLength(1)
