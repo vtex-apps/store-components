@@ -1,14 +1,14 @@
 import {
+  curry,
   clone,
   values,
   compose,
   map,
-  nth,
   groupBy,
-  sortWith,
-  descend,
+  gt,
   path,
   prop,
+  find,
 } from 'ramda'
 
 /**
@@ -59,13 +59,16 @@ const getQuantity = path([
   'AvailableQuantity',
 ])
 
+const findItem = a => {
+  return find(item => gt(getQuantity(item), 0), a) || a[0]
+}
+
 /**
  * Group the sku items by the variation name specified
  */
 export const groupItemsByVariation = (name, items) =>
   compose(
-    map(nth(0)),
-    map(sortWith([descend(getQuantity)])),
+    map(findItem),
     values,
     groupBy(prop(name))
   )(items)
