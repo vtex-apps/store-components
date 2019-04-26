@@ -60,6 +60,7 @@ export class BuyButton extends Component {
           'name',
           'options',
           'listPrice',
+          'brand'
         ],
         restSkuItem
       ),
