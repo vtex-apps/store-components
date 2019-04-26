@@ -3,11 +3,7 @@ import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty, values, map } from 'ramda'
 
 import ProductImages from './index'
-import { changeImageUrlSize } from './utils/generateUrl'
-
-const thresholds = [640]
-const imageSizes = [1280, 1920]
-const thumbnailSize = 160
+import generateImageConfig from './utils/generateImageConfig'
 
 const thumbnailsPosition = {
   DISPLAY_LEFT: {
@@ -30,26 +26,13 @@ const ProductImagesWrapper = ({ thumbnailPosition, ...props}) => {
         position: thumbnailPosition,
       }
 
-    return {
-      images: getImages(),
-      position: thumbnailPosition,
-    }
-  }
-
-  const getImages = () => {
     const { selectedItem } = valuesFromContext
-
     const images = path(['images'], selectedItem)
 
-    if (!images) return []
-    return images.map(image => ({
-      imageUrls: imageSizes.map(size =>
-        changeImageUrlSize(image.imageUrl, size)
-      ),
-      thresholds,
-      thumbnailUrl: changeImageUrlSize(image.imageUrl, thumbnailSize),
-      imageText: image.imageText,
-    }))
+    return {
+      images: map(generateImageConfig, images),
+      position: thumbnailPosition,
+    }
   }
 
   return (
