@@ -162,7 +162,7 @@ class Carousel extends Component {
     }
   }
 
-  get galleryParams(){
+  get galleryParams() {
     const { thumbSwiper } = this.state
     const { slides, isZoomGallery = true } = this.props
 
@@ -172,30 +172,30 @@ class Carousel extends Component {
 
     return {
       containerClass: 'swiper-container',
-        ...(slides.length > 1 && {
-          pagination: {
-              el: '.swiper-pagination',
-              clickable: true,
-              bulletActiveClass:
-                'c-action-primary swiper-pagination-bullet-active',
-            }
-          }
-        ),
-        ...(slides.length > 1 && {
-            navigation: {
-              prevEl: '.swiper-caret-prev',
-              nextEl: '.swiper-caret-next',
-              disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
-            }
-          }
-        ),
+      ...(slides.length > 1 && {
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          bulletActiveClass:
+            'c-action-primary swiper-pagination-bullet-active',
+        }
+      }
+      ),
+      ...(slides.length > 1 && {
+        navigation: {
+          prevEl: '.swiper-caret-prev',
+          nextEl: '.swiper-caret-next',
+          disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
+        }
+      }
+      ),
       thumbs: {
         swiper: thumbSwiper,
       },
-      zoom:  !isZoomGallery && {
+      zoom: !isZoomGallery && {
         maxRatio: 2,
       },
-      
+
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       renderNextButton: () => (
         <span className={`swiper-caret-next pl7 right-1 ${caretClassName}`}>
@@ -282,7 +282,7 @@ class Carousel extends Component {
                 <div
                   className={`absolute absolute--fill b--solid b--muted-2 bw1 ${
                     styles.carouselThumbBorder
-                  }`}
+                    }`}
                 />
               </div>
             ))}
@@ -296,9 +296,9 @@ class Carousel extends Component {
               </div>
             ))}
           </Swiper>
-          {isZoomGallery && 
+          {isZoomGallery &&
             <NoSSR>
-              <Gallery items={slides} index={selectedIndex} isOpen={isGalleryOpen}></Gallery>
+              <Gallery items={slides} index={selectedIndex} isOpen={isGalleryOpen} handleClose={() => this.setState({ isGalleryOpen: false })}></Gallery>
             </NoSSR>
           }
         </div>
