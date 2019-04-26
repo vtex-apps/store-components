@@ -1,11 +1,11 @@
-import * as React from 'react'
+import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty } from 'ramda'
 
 import ProductDescription from './index';
 
-export default (props) => {
-  const valuesFromContext = React.useContext(ProductContext)
+const ProductDescriptionWrapper = (props) => {
+  const valuesFromContext = useContext(ProductContext)
 
   const productDescriptionProps = () => {
     if (!valuesFromContext || isEmpty(valuesFromContext)) return props
@@ -21,3 +21,5 @@ export default (props) => {
     <ProductDescription { ...productDescriptionProps() } />
   )
 }
+
+export default ProductDescriptionWrapper

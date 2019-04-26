@@ -1,11 +1,11 @@
-import * as React from 'react'
+import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty, pathOr } from 'ramda'
 
 import SKUSelector from './index';
 
-export default (props) => {
-  const valuesFromContext = React.useContext(ProductContext)
+const SKUSelectorWrapper = (props) => {
+  const valuesFromContext = useContext(ProductContext)
 
   const skuSelectorProps = () => {
     if (!valuesFromContext || isEmpty(valuesFromContext)) return props
@@ -28,3 +28,5 @@ export default (props) => {
     <SKUSelector { ...restProps } />
   )
 }
+
+export default SKUSelectorWrapper

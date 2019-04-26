@@ -1,13 +1,13 @@
-import * as React from 'react'
+import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty } from 'ramda'
 
 import AvailabilitySubscriber from './index';
 
-export default (props) => {
-  const valuesFromContext = React.useContext(ProductContext)
+const AvailabilitySubscriberWrapper = (props) => {
+  const valuesFromContext = useContext(ProductContext)
 
-  const availabilitySuvscriberProps = () => {
+  const availabilitySubscriberProps = () => {
     if (!valuesFromContext || isEmpty(valuesFromContext)) return props
     
     const { selectedItem } = valuesFromContext
@@ -19,7 +19,7 @@ export default (props) => {
     }
   }
 
-  const { available, ...restProps } = availabilitySuvscriberProps()
+  const { available, ...restProps } = availabilitySubscriberProps()
 
   // Render component only if product is out of sales
   if (available) return null
@@ -28,3 +28,5 @@ export default (props) => {
     <AvailabilitySubscriber { ...restProps } />
   )
 }
+
+export default AvailabilitySubscriberWrapper

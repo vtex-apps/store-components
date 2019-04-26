@@ -1,11 +1,11 @@
-import * as React from 'react'
+import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty, prop, propOr } from 'ramda'
 
 import ProductSpecifications from './index';
 
 const ProductSpecificationsWrapper = ({ specificationsDefault, ...props }) => {
-  const valuesFromContext = React.useContext(ProductContext)
+  const valuesFromContext = useContext(ProductContext)
   const showSpecifications = prop('showSpecifications', specificationsDefault)
 
   const getSpecifications = () => {

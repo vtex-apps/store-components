@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty } from 'ramda'
 
@@ -44,7 +44,7 @@ const ProductPriceWrapper = ({
   showSavings,
   ...props,
 }) => {
-  const valuesFromContext = React.useContext(ProductContext)
+  const valuesFromContext = useContext(ProductContext)
 
   const productPriceProps = () => {
     if (!valuesFromContext || isEmpty(valuesFromContext)) 

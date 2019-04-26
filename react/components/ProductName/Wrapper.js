@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useContext } from 'react'
 import { path, isEmpty } from 'ramda'
 import { ProductContext } from 'vtex.product-context'
 
@@ -18,13 +18,13 @@ const styles = {
   },
 }
 
-const PorductNameWrapper = ({
+const ProductNameWrapper = ({
   showBrandName,
   showSku,
   showProductReference,
   ...props,
 }) => {
-  const valuesFromContext = React.useContext(ProductContext)
+  const valuesFromContext = useContext(ProductContext)
 
   const productNameProps = () => {
     if (!valuesFromContext || isEmpty(valuesFromContext)) 
@@ -55,7 +55,7 @@ const PorductNameWrapper = ({
   )
 }
 
-PorductNameWrapper.schema = {
+ProductNameWrapper.schema = {
   title: 'admin/editor.productName.title',
   description: 'admin/editor.productName.description',
   type: 'object',
@@ -81,4 +81,4 @@ PorductNameWrapper.schema = {
   },
 }
 
-export default PorductNameWrapper
+export default ProductNameWrapper

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty, compose } from 'ramda'
 import { FormattedMessage, injectIntl } from 'react-intl'
@@ -19,7 +19,7 @@ const BuyButtonWrapper = ({
   onAddFinish,
   ...props 
 }) => {
-  const valuesFromContext = React.useContext(ProductContext)
+  const valuesFromContext = useContext(ProductContext)
 
   const buyButtonProps = () => {
     if (!valuesFromContext || isEmpty(valuesFromContext)) return props
@@ -54,6 +54,10 @@ const BuyButtonWrapper = ({
     }
   }
 
+  const { available, ...restProps } = buyButtonProps()
+
+  if (!available) return null
+
   return (
     <BuyButton
       intl={intl}
@@ -62,7 +66,8 @@ const BuyButtonWrapper = ({
       onAddFinish={onAddFinish}
       showToast={showToast}
       orderFormContext={orderFormContext}
-      { ...buyButtonProps() }
+      available={available}
+      { ...restProps }
     >
       <FormattedMessage id="store/buy-button.add-to-cart" />
     </BuyButton>
