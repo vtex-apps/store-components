@@ -22,12 +22,38 @@ class ProductSpecifications extends Component {
   }
 
   get specificationItems() {
-    return this.props.specifications.map(specification => {
+    const {
+      hiddenSpecifications,
+      visibleSpecifications,
+      specifications,
+    } = this.props
+    const mappedSpecifications = specifications.map(specification => {
       return {
         property: specification.name,
         specifications: specification.values[0],
       }
     })
+
+    if (visibleSpecifications && hiddenSpecifications) {
+      console.warn(
+        'A product-specification block is using both visibleSpecifications and hiddenSpecifications props at the same time. Please choose only one of them.'
+      )
+
+      return mappedSpecifications
+    }
+
+    if (visibleSpecifications) {
+      return mappedSpecifications.filter(specification =>
+        visibleSpecifications.includes(specification.property)
+      )
+    }
+    if (hiddenSpecifications) {
+      return mappedSpecifications.filter(
+        specification => !hiddenSpecifications.includes(specification.property)
+      )
+    }
+
+    return mappedSpecifications
   }
 
   get specificationTitle() {
@@ -138,6 +164,10 @@ ProductSpecifications.propTypes = {
   ),
   /** Tabs mode view */
   tabsMode: PropTypes.bool,
+  /** Specifications which will be shown exclusively (optional) */
+  visibleSpecifications: PropTypes.array,
+  /** Specifications which will be hidden (optional) */
+  hiddenSpecifications: PropTypes.array,
 }
 
 export default injectIntl(ProductSpecifications)
