@@ -44,12 +44,19 @@ class ProductSpecifications extends Component {
 
     if (visibleSpecifications) {
       return mappedSpecifications.filter(specification =>
-        visibleSpecifications.includes(specification.property)
+        visibleSpecifications.find(
+          filter =>
+            specification.property.toLowerCase() === filter.toLowerCase()
+        )
       )
     }
     if (hiddenSpecifications) {
       return mappedSpecifications.filter(
-        specification => !hiddenSpecifications.includes(specification.property)
+        specification =>
+          !hiddenSpecifications.find(
+            filter =>
+              specification.property.toLowerCase() === filter.toLowerCase()
+          )
       )
     }
 
