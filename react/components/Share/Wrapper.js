@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty } from 'ramda'
 import { injectIntl } from 'react-intl'
@@ -7,7 +7,7 @@ import { useRuntime } from 'vtex.render-runtime'
 import Share from './index';
 
 const ShareWrapper = ({ intl, social, ...props }) => {
-  const valuesFromContext = React.useContext(ProductContext)
+  const valuesFromContext = useContext(ProductContext)
   const { account } = useRuntime()
 
   const shareProps = () => {

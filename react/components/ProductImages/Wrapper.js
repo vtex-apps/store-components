@@ -1,21 +1,27 @@
-import * as React from 'react'
+import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
-import { path, isEmpty } from 'ramda'
+import { path, isEmpty, values, map } from 'ramda'
 
 import ProductImages from './index'
 import { changeImageUrlSize } from './utils/generateUrl'
-import { 
-  getThumbnailsPositionNames, 
-  getThumbnailsPositionValues, 
-  thumbnailsPosition ,
-} from './utils/thumbnailPositionEnum'
 
 const thresholds = [640]
 const imageSizes = [1280, 1920]
 const thumbnailSize = 160
 
+const thumbnailsPosition = {
+  DISPLAY_LEFT: {
+    name: 'editor.product-details.thumbnailsPosition.left',
+    value: 'left',
+  },
+  DISPLAY_RIGHT: {
+    name: 'editor.product-details.thumbnailsPosition.right',
+    value: 'right',
+  },
+}
+
 const ProductImagesWrapper = ({ thumbnailPosition, ...props}) => {
-  const valuesFromContext = React.useContext(ProductContext)
+  const valuesFromContext = useContext(ProductContext)
 
   const productImagesProps = () => {
     if (!valuesFromContext || isEmpty(valuesFromContext)) 
@@ -60,8 +66,8 @@ ProductImagesWrapper.schema = {
     thumbnailPosition: {
       title: 'editor.product-details.thumbnailsPosition.title',
       type: 'string',
-      enum: getThumbnailsPositionValues(),
-      enumNames: getThumbnailsPositionNames(),
+      enum: map(opt => opt.value, values(thumbnailsPosition)),
+      enumNames: map(opt => opt.name, values(thumbnailsPosition)),
       default: thumbnailsPosition.DISPLAY_LEFT.value,
       isLayout: false,    
     },

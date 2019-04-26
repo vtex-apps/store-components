@@ -1,18 +1,18 @@
-import * as React from 'react'
+import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { isEmpty, propOr } from 'ramda'
 
 import ProductHighlights from './index'
 
 const ProductHighlightsWrapper = ({ conditional, showHighlight, ...props }) => {
-  const valuesFromContext = React.useContext(ProductContext)
+  const valuesFromContext = useContext(ProductContext)
 
   const getHighlights = () => {
     const { product } = valuesFromContext
 
     const choose = propOr('', 'highlight', conditional)
 
-    const highlightsFromGroup = () => {
+    if (choose === 'editor.product-details.highlights.chooseDefault') {
       const typeHighlight = propOr('', 'typeHighlight', conditional)
       const highlightName = typeHighlight.trim()
       const names = highlightName.split(',')
@@ -31,7 +31,7 @@ const ProductHighlightsWrapper = ({ conditional, showHighlight, ...props }) => {
       }, [])
     }
 
-    const highlightsFromSpecifications = () => {
+    if (choose === 'editor.product-details.highlights.chooseDefaultSpecification') {
       const typeSpecifications = propOr('', 'typeSpecifications', conditional)
       const specificationNames = typeSpecifications.trim().split(',')
       const allSpecifications = propOr([], 'properties', product)
@@ -44,17 +44,8 @@ const ProductHighlightsWrapper = ({ conditional, showHighlight, ...props }) => {
       }, [])
     }
 
-    const highlightsFromAllSpecifications = () => {
+    if (choose === 'editor.product-details.highlights.allSpecifications') {
       return propOr([], 'properties', product)
-    }
-
-    switch (choose) {
-      case 'editor.product-details.highlights.chooseDefault':
-        return highlightsFromGroup()
-      case 'editor.product-details.highlights.chooseDefaultSpecification':
-        return highlightsFromSpecifications()
-      case 'editor.product-details.highlights.allSpecifications':
-        return highlightsFromAllSpecifications()
     }
   }
 
