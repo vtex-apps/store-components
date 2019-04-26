@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Added props `hiddenSpecifications` and `visibleSpecifications` to `productSpecifications` block.
+- Added props `hiddenSpecifications` and `visibleSpecifications` to `productSpecifications` component.
 
 ## [3.29.2] - 2019-04-25
 ### Fixed
