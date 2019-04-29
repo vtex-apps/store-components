@@ -46,6 +46,25 @@ const ProductPriceWrapper = ({
 }) => {
   const valuesFromContext = useContext(ProductContext)
 
+  const {
+    className,
+    listPriceContainerClass,
+    listPriceLabelClass,
+    listPriceClass,
+    sellingPriceContainerClass,
+    sellingPriceLabelClass,
+    sellingPriceClass,
+    savingsContainerClass,
+    savingsClass,
+    interestRateClass,
+    installmentContainerClass,
+    installmentClass,
+    loaderClass,
+    listPrice,
+    sellingPrice,
+    installments,
+  } = props
+
   const productPriceProps = () => {
     if (!valuesFromContext || isEmpty(valuesFromContext)) 
       return {
@@ -65,22 +84,23 @@ const ProductPriceWrapper = ({
       Number.isNaN(+availableQuantity) || availableQuantity > 0
 
     return {
-      styles: styles,
-      listPriceContainerClass: 't-small-s t-small-ns c-muted-2 mb2',
-      sellingPriceLabelClass: 't-heading-6-s t-heading-5-ns dib',
-      listPriceLabelClass: 'dib strike',
-      listPriceClass: 'ph2 dib strike',
-      sellingPriceContainerClass: 'pv1 b c-on-base',
-      sellingPriceClass: 't-heading-2-s dib ph2',
-      installmentContainerClass: 't-mini-s t-small-ns c-on-base',
-      installmentClass: 't-body',
-      interestRateClass: 'dib ph2',
-      savingsContainerClass: 'c-success mt3',
-      savingsClass: 'dib t-small',
-      loaderClass: 'h4-s mw6-s pt2-s',
-      listPrice: path(['ListPrice'], commertialOffer),
-      sellingPrice: path(['Price'], commertialOffer),
-      installments: path(['Installments'], commertialOffer),
+      styles,
+      className: className || '',
+      listPriceContainerClass: listPriceContainerClass || 't-small-s t-small-ns c-muted-2 mb2',
+      sellingPriceLabelClass: sellingPriceLabelClass || 't-heading-6-s t-heading-5-ns dib',
+      listPriceLabelClass: listPriceLabelClass || 'dib strike',
+      listPriceClass: listPriceClass || 'ph2 dib strike',
+      sellingPriceContainerClass: sellingPriceContainerClass || 'pv1 b c-on-base',
+      sellingPriceClass: sellingPriceClass || 't-heading-2-s dib ph2',
+      installmentContainerClass: installmentContainerClass || 't-mini-s t-small-ns c-on-base',
+      installmentClass: installmentClass || 't-body',
+      interestRateClass: interestRateClass || 'dib ph2',
+      savingsContainerClass: savingsContainerClass || 'c-success mt3',
+      savingsClass:  savingsClass || 'dib t-small',
+      loaderClass: loaderClass || 'h4-s mw6-s pt2-s',
+      listPrice: listPrice || path(['ListPrice'], commertialOffer),
+      sellingPrice: sellingPrice || path(['Price'], commertialOffer),
+      installments: installments || path(['Installments'], commertialOffer),
       labelSellingPrice,
       showLabels,
       showInstallments,
