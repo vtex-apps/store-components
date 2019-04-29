@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty, values, map } from 'ramda'
 
@@ -22,7 +22,7 @@ const ProductImagesWrapper = ({ thumbnailPosition, ...props}) => {
   const productImagesProps = () => {
     if (!valuesFromContext || isEmpty(valuesFromContext)) 
       return {
-        ...props,
+        images: props.images,
         position: thumbnailPosition,
       }
 
