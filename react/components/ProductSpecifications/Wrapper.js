@@ -6,7 +6,6 @@ import ProductSpecifications from './index';
 
 const ProductSpecificationsWrapper = ({ specificationsDefault, ...props }) => {
   const valuesFromContext = useContext(ProductContext)
-  const showSpecifications = prop('showSpecifications', specificationsDefault)
 
   const getSpecifications = () => {
     const { product } = valuesFromContext
@@ -42,8 +41,6 @@ const ProductSpecificationsWrapper = ({ specificationsDefault, ...props }) => {
       specifications: getSpecifications(),
     }
   }
-
-  if (!showSpecifications) return null
 
   return (
     <ProductSpecifications { ...productSpecificationsProps() } />
