@@ -7,11 +7,11 @@ import generateImageConfig from './utils/generateImageConfig'
 
 const thumbnailsPosition = {
   DISPLAY_LEFT: {
-    name: 'editor.product-details.thumbnailsPosition.left',
+    name: 'admin/editor.product-details.thumbnailsPosition.left',
     value: 'left',
   },
   DISPLAY_RIGHT: {
-    name: 'editor.product-details.thumbnailsPosition.right',
+    name: 'admin/editor.product-details.thumbnailsPosition.right',
     value: 'right',
   },
 }
@@ -42,12 +42,12 @@ const ProductImagesWrapper = ({ thumbnailPosition, ...props}) => {
 
 ProductImagesWrapper.schema = {
   // @TODO review title and description
-  title: 'editor.product-details.title',
-  description: 'editor.product-details.description',
+  title: 'admin/editor.product-details.title',
+  description: 'admin/editor.product-details.description',
   type: 'object',
   properties: {
     thumbnailPosition: {
-      title: 'editor.product-details.thumbnailsPosition.title',
+      title: 'admin/editor.product-details.thumbnailsPosition.title',
       type: 'string',
       enum: map(opt => opt.value, values(thumbnailsPosition)),
       enumNames: map(opt => opt.name, values(thumbnailsPosition)),

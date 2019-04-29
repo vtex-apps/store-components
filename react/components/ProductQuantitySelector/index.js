@@ -65,13 +65,13 @@ ProductQuantitySelector.propTypes = {
 }
 
 ProductQuantitySelector.schema = {
-  title: 'editor.product-quantity-selector.title',
-  description: 'editor.product-quantity-selector.description',
+  title: 'admin/editor.product-quantity-selector.title',
+  description: 'admin/editor.product-quantity-selector.description',
   type: 'object',
   properties: {
     warningQuantityThreshold: {
-      title: 'editor.product-quantity-selector.warningQuantityThreshold.title',
-      description: 'editor.product-quantity-selector.warningQuantityThreshold.title',
+      title: 'admin/editor.product-quantity-selector.warningQuantityThreshold.title',
+      description: 'admin/editor.product-quantity-selector.warningQuantityThreshold.title',
       type: 'number',
       default: 0,
     },
