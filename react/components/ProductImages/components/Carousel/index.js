@@ -164,7 +164,7 @@ class Carousel extends Component {
 
   get galleryParams() {
     const { thumbSwiper } = this.state
-    const { slides, isZoomGallery = true } = this.props
+    const { slides, zoomProps: { zoomType } } = this.props
 
     const iconSize = 24
     const caretClassName =
@@ -192,7 +192,7 @@ class Carousel extends Component {
       thumbs: {
         swiper: thumbSwiper,
       },
-      zoom: !isZoomGallery && {
+      zoom: zoomType === 'in-page' && {
         maxRatio: 2,
       },
 
@@ -223,7 +223,7 @@ class Carousel extends Component {
 
   render() {
     const { thumbsLoaded, isGalleryOpen, selectedIndex } = this.state
-    const { slides, position, isZoomGallery = true } = this.props
+    const { slides, position, zoomProps: { zoomType, bgOpacity } } = this.props
 
     if (!thumbsLoaded || Swiper == null) {
       return <Loader slidesAmount={slides ? slides.length : 0} />
@@ -244,8 +244,14 @@ class Carousel extends Component {
       zoom: false,
     }
 
+    const galleryCursor = {
+      'gallery': !isGalleryOpen && 'pointer',
+      'in-page': styles.carouselGaleryCursor,
+      'no-zoom': '',
+    }
+
     const imageClasses = classNames(
-      `w-100 border-box ${styles.carouselGaleryCursor}`,
+      `w-100 border-box ${galleryCursor[zoomType]}`,
       {
         'ml-20-ns w-80-ns': position === 'left' && slides.length > 1,
         'mr-20-ns w-80-ns': position === 'right' && slides.length > 1,
@@ -296,9 +302,15 @@ class Carousel extends Component {
               </div>
             ))}
           </Swiper>
-          {isZoomGallery &&
+          {zoomType === 'gallery' &&
             <NoSSR>
-              <Gallery items={slides} index={selectedIndex} isOpen={isGalleryOpen} handleClose={() => this.setState({ isGalleryOpen: false })}></Gallery>
+              <Gallery
+                items={slides}
+                index={selectedIndex}
+                isOpen={isGalleryOpen}
+                handleClose={() => this.setState({ isGalleryOpen: false })}
+                bgOpacity={bgOpacity}
+              />
             </NoSSR>
           }
         </div>

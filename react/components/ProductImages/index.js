@@ -19,7 +19,7 @@ const getBestUrlIndex = thresholds => {
 
 const ProductImages = props => {
   const [_, setState] = useState(0)
-  const { position } = props
+  const { position, zoomProps } = props
 
   const debouncedGetBestUrl = debounce(() => {
     // force update
@@ -54,7 +54,7 @@ const ProductImages = props => {
 
   return (
     <div className={`${styles.content} w-100`}>
-      <Carousel slides={slides} position={position} />
+      <Carousel slides={slides} position={position} zoomProps={zoomProps} />
     </div>
   )
 }
@@ -80,6 +80,49 @@ ProductImages.propTypes = {
 ProductImages.defaultProps = {
   images: [],
   position: 'left',
+  zoomProps: { zoomType: 'in-page' }
+}
+
+ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
+  return {
+    title: 'admin/editor.product-images.title',
+    description: 'admin/editor.product-images.description',
+    type: 'object',
+    properties: {
+      zoomProps: {
+        title: 'admin/editor.product-images.zoomOptions.title',
+        type: 'object',
+        properties: {
+          zoomType: {
+            title: 'admin/editor.product-images.zoomType.title',
+            type: 'string',
+            enum: [
+              'gallery',
+              'in-page',
+              'no-zoom'
+            ],
+            widget: {
+              'ui:options': {
+                inline: false,
+              },
+              'ui:widget': 'radio',
+            },
+            default: 'in-page',
+          },
+          ...(zoomType === 'gallery' && {
+            bgOpacity: {
+              title: 'admin/editor.product-images.bgopacity.title',
+              type: 'number',
+              minimum: 0.0,
+              maximum: 1.0,
+              multipleOf: 0.01,
+              default: 1,
+            }
+          })
+        },
+      }
+    }
+  }
 }
 
 export default ProductImages

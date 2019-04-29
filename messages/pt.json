@@ -114,5 +114,10 @@
   "admin/editor.image.title": "Imagem",
   "admin/editor.image.description": "Exiba qualquer imagem",
   "admin/editor.image.src.title": "Imagem",
-  "admin/editor.image.alt.title": "Texto alternativo"
+  "admin/editor.image.alt.title": "Texto alternativo",
+  "admin/editor.product-images.title": "Imagems do produto",
+  "admin/editor.product-images.description": "Componente que permite personalizar propriedades das imagens do produto",
+  "admin/editor.product-images.zoomOptions.title": "Opções de zoom",
+  "admin/editor.product-images.zoomType.title": "Tipo de zoom",
+  "admin/editor.product-images.bgopacity.title": "Opacidade do fundo"
 }
