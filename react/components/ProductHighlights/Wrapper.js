@@ -12,7 +12,7 @@ const ProductHighlightsWrapper = ({ conditional, ...props }) => {
 
     const choose = propOr('', 'highlight', conditional)
 
-    if (choose === 'editor.product-details.highlights.chooseDefault') {
+    if (choose === 'admin/editor.product-details.highlights.chooseDefault') {
       const typeHighlight = propOr('', 'typeHighlight', conditional)
       const highlightName = typeHighlight.trim()
       const names = highlightName.split(',')
@@ -31,7 +31,7 @@ const ProductHighlightsWrapper = ({ conditional, ...props }) => {
       }, [])
     }
 
-    if (choose === 'editor.product-details.highlights.chooseDefaultSpecification') {
+    if (choose === 'admin/editor.product-details.highlights.chooseDefaultSpecification') {
       const typeSpecifications = propOr('', 'typeSpecifications', conditional)
       const specificationNames = typeSpecifications.trim().split(',')
       const allSpecifications = propOr([], 'properties', product)
@@ -44,7 +44,7 @@ const ProductHighlightsWrapper = ({ conditional, ...props }) => {
       }, [])
     }
 
-    if (choose === 'editor.product-details.highlights.allSpecifications') {
+    if (choose === 'admin/editor.product-details.highlights.allSpecifications') {
       return propOr([], 'properties', product)
     }
   }
@@ -64,8 +64,8 @@ const ProductHighlightsWrapper = ({ conditional, ...props }) => {
 
 ProductHighlightsWrapper.schema = {
   // @TODO review title and description
-  title: 'editor.product-details.title',
-  description: 'editor.product-details.description',
+  title: 'admin/editor.product-details.title',
+  description: 'admin/editor.product-details.description',
   type: 'object',
   definitions: {
     highlightGroupDefault: {
@@ -73,14 +73,14 @@ ProductHighlightsWrapper.schema = {
       type: 'object',
       properties: {
         highlight: {
-          title: 'editor.product-details.highlights.default',
+          title: 'admin/editor.product-details.highlights.default',
           type: 'string',
           enum: [
-            'editor.product-details.highlights.allSpecifications',
-            'editor.product-details.highlights.chooseDefault',
-            'editor.product-details.highlights.chooseDefaultSpecification',
+            'admin/editor.product-details.highlights.allSpecifications',
+            'admin/editor.product-details.highlights.chooseDefault',
+            'admin/editor.product-details.highlights.chooseDefaultSpecification',
           ],
-          default: 'editor.product-details.highlights.allSpecifications',
+          default: 'admin/editor.product-details.highlights.allSpecifications',
         },
       },
       required: ['highlight'],
@@ -91,7 +91,7 @@ ProductHighlightsWrapper.schema = {
               properties: {
                 highlight: {
                   enum: [
-                    'editor.product-details.highlights.allSpecifications',
+                    'admin/editor.product-details.highlights.allSpecifications',
                   ],
                 },
               },
@@ -99,11 +99,11 @@ ProductHighlightsWrapper.schema = {
             {
               properties: {
                 highlight: {
-                  enum: ['editor.product-details.highlights.chooseDefault'],
+                  enum: ['admin/editor.product-details.highlights.chooseDefault'],
                 },
                 typeHighlight: {
                   type: 'string',
-                  title: 'editor.product-details.highlights.title',
+                  title: 'admin/editor.product-details.highlights.title',
                 },
               },
               required: [''],
@@ -112,13 +112,13 @@ ProductHighlightsWrapper.schema = {
               properties: {
                 highlight: {
                   enum: [
-                    'editor.product-details.highlights.chooseDefaultSpecification',
+                    'admin/editor.product-details.highlights.chooseDefaultSpecification',
                   ],
                 },
                 typeSpecifications: {
                   type: 'string',
                   title:
-                    'editor.product-details.highlights.typeSpecifications.title',
+                    'admin/editor.product-details.highlights.typeSpecifications.title',
                 },
               },
               required: [''],
@@ -131,7 +131,7 @@ ProductHighlightsWrapper.schema = {
   properties: {
     showHighlight: {
       type: 'boolean',
-      title: 'editor.product-details.showHighlight.title',
+      title: 'admin/editor.product-details.showHighlight.title',
       default: false,
       isLayout: false,
     },

@@ -14,7 +14,7 @@ const ProductSpecificationsWrapper = ({ specificationsDefault, ...props }) => {
     const allSpecifications = propOr([], 'properties', product)
 
     switch (choose) {
-      case 'editor.product-details.product-specifications.chooseDefaultSpecification':
+      case 'admin/editor.product-details.product-specifications.chooseDefaultSpecification':
         const typedSpecifications = pathOr('', ['specificationGroups', 'typeSpecifications'], specificationsDefault)
         const specificationNames = typedSpecifications.trim().split(',')
 
@@ -25,7 +25,7 @@ const ProductSpecificationsWrapper = ({ specificationsDefault, ...props }) => {
           return acc.concat(specification)
         }, [])
 
-      case 'editor.product-details.product-specifications.allSpecifications': 
+      case 'admin/editor.product-details.product-specifications.allSpecifications': 
         return allSpecifications
       
       default:
@@ -49,8 +49,8 @@ const ProductSpecificationsWrapper = ({ specificationsDefault, ...props }) => {
 
 ProductSpecificationsWrapper.schema = {
   // @TODO review title and description
-  title: 'editor.product-details.title',
-  description: 'editor.product-details.description',
+  title: 'admin/editor.product-details.title',
+  description: 'admin/editor.product-details.description',
   type: 'object',
   definitions: {
     specificationsDefault: {
@@ -78,14 +78,14 @@ ProductSpecificationsWrapper.schema = {
                   type: 'object',
                   properties: {
                     specification: {
-                      title: 'editor.product-details.product-specifications.default',
+                      title: 'admin/editor.product-details.product-specifications.default',
                       type: 'string',
                       enum: [
-                        'editor.product-details.product-specifications.allSpecifications',
-                        'editor.product-details.product-specifications.chooseDefaultSpecification',
+                        'admin/editor.product-details.product-specifications.allSpecifications',
+                        'admin/editor.product-details.product-specifications.chooseDefaultSpecification',
                       ],
                       default:
-                        'editor.product-details.product-specifications.allSpecifications',
+                        'admin/editor.product-details.product-specifications.allSpecifications',
                     },
                   },
                   required: ['specification'],
@@ -96,7 +96,7 @@ ProductSpecificationsWrapper.schema = {
                           properties: {
                             specification: {
                               enum: [
-                                'editor.product-details.product-specifications.allSpecifications',
+                                'admin/editor.product-details.product-specifications.allSpecifications',
                               ],
                             },
                           },
@@ -105,13 +105,13 @@ ProductSpecificationsWrapper.schema = {
                           properties: {
                             specification: {
                               enum: [
-                                'editor.product-details.product-specifications.chooseDefaultSpecification',
+                                'admin/editor.product-details.product-specifications.chooseDefaultSpecification',
                               ],
                             },
                             typeSpecifications: {
                               type: 'string',
                               title:
-                                'editor.product-details.product-specifications.typeSpecifications.title',
+                                'admin/editor.product-details.product-specifications.typeSpecifications.title',
                             },
                           },
                           required: [''],
@@ -123,13 +123,13 @@ ProductSpecificationsWrapper.schema = {
                 viewMode: {
                   type: 'string',
                   title:
-                    'editor.product-specifications.displaySpecification.title',
+                    'admin/editor.product-specifications.displaySpecification.title',
                   enum: ['tab', 'table'],
                   enumNames: [
-                    'editor.product-specifications.displaySpecification.tabMode',
-                    'editor.product-specifications.displaySpecification.tableMode',
+                    'admin/editor.product-specifications.displaySpecification.tabMode',
+                    'admin/editor.product-specifications.displaySpecification.tableMode',
                   ],
-                  default: 'editor.product-specifications.displaySpecification.tabMode',
+                  default: 'admin/editor.product-specifications.displaySpecification.tabMode',
                   widget: {
                     'ui:options': {
                       inline: false,
