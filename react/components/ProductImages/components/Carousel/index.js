@@ -271,10 +271,10 @@ class Carousel extends Component {
                 className="swiper-slide w-100 h-auto mb5 pointer"
                 onClick={() => this.gallerySwiper.current.swiper.slideTo(i)}
               >
-                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                <figure itemProp="associatedMedia" itemScope itemType="http://schema.org/ImageObject">
                   <img
                     className="w-100 h-auto db"
-                    itemprop="thumbnail"
+                    itemProp="thumbnail"
                     alt={slide.alt ? this.state.alt[i] : ''}
                     src={slide.thumbUrl || this.state.thumbUrl[i]}
                   />

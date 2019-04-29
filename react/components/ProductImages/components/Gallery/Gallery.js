@@ -8,7 +8,8 @@ const Gallery = ({ items, isOpen, index, handleClose }) => {
     src: item.urls[item.bestUrlIndex],
     w: 1280,
     h: 1280,
-    title: item.alt
+    title: item.alt,
+    thumbnail: item.thumbUrl,
   })
 
   return (
