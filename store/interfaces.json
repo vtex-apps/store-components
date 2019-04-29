@@ -23,6 +23,9 @@
   "product-description": {
     "component": "ProductDescription"
   },
+  "product-quantity-selector": {
+    "component": "ProductQuantitySelector"
+  },
   "sku-selector": {
     "component": "SKUSelector"
   },
