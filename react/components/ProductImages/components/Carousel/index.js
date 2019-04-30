@@ -105,7 +105,6 @@ class Carousel extends Component {
   }
 
   renderSlide = (slide, i) => {
-    const { loaded } = this.state
     const {
       zoomProps: { zoomType },
     } = this.props
@@ -113,22 +112,18 @@ class Carousel extends Component {
     switch (slide.type) {
       case 'image':
         return (
-          <div
-            className={loaded[i] ? 'overflow-hidden' : ''}
-          >
-            <BlurredLoader
-              isZoomEnabled={zoomType === 'in-page'}
-              loaderType="SPINNER"
-              loaderUrl={slide.thumbUrl}
-              realUrls={slide.urls}
-              bestUrlIndex={slide.bestUrlIndex}
-              alt={slide.alt}
-              onload={this.onImageLoad(i)}
-              onClick={
-                zoomType === 'gallery' ? () => this.openGallery(i) : undefined
-              }
-            />
-          </div>
+          <BlurredLoader
+            isZoomEnabled={zoomType === 'in-page'}
+            loaderType="SPINNER"
+            loaderUrl={slide.thumbUrl}
+            realUrls={slide.urls}
+            bestUrlIndex={slide.bestUrlIndex}
+            alt={slide.alt}
+            onload={this.onImageLoad(i)}
+            onClick={
+              zoomType === 'gallery' ? () => this.openGallery(i) : undefined
+            }
+          />
         )
       case 'video':
         return (
