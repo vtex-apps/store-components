@@ -96,7 +96,6 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
           zoomType: {
             title: 'admin/editor.product-images.zoomType.title',
             type: 'string',
-            isLayout: true,
             enum: ['gallery', 'in-page', 'no-zoom'],
             enumNames: [
               'admin/editor.product-images.gallery',
@@ -115,7 +114,6 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
             bgOpacity: {
               title: 'admin/editor.product-images.bgopacity.title',
               type: 'number',
-              isLayout: true,
               minimum: 0.0,
               maximum: 1.0,
               multipleOf: 0.01,
