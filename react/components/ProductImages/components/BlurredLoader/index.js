@@ -120,7 +120,14 @@ class BlurredLoader extends React.Component {
 
   render() {
     const { Loader } = this
-    const { className, alt, loaderUrl, realUrls } = this.props
+    const {
+      className,
+      alt,
+      loaderUrl,
+      realUrls,
+      onClick,
+      isZoomEnabled,
+    } = this.props
     const { loadState, realUrlIndex } = this.state
     const loaded = loadState === LOAD_STATES.LOADED
     const loading = loadState === LOAD_STATES.LOADING
@@ -130,7 +137,12 @@ class BlurredLoader extends React.Component {
     })
 
     return (
-      <div className={styles.image}>
+      <div
+        className={classNames(styles.image, {
+          'swiper-zoom-container': isZoomEnabled,
+        })}
+        onClick={onClick}
+      >
         <ImageResizer
           className={`w-100 ${loaded ? 'db' : 'dn'}`}
           alt={alt}
