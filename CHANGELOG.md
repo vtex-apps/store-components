@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.30.2] - 2019-04-30
+### Fixed
+- Add `brand` props to send to minicart on `BuyButton`.
+
 ## [3.30.1] - 2019-04-29
 ### Added
 - Allow case insensitive product specifications filter.
