@@ -23,11 +23,7 @@ const ProductSpecificationsWrapper = ({ showSpecificationsTab = false, ...props 
   }
 
   const productSpecificationsProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) 
-      return {
-        ...props,
-        tabsMode: showSpecificationsTab,
-      }
+    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
 
     return {
       tabsMode: showSpecificationsTab,
