@@ -74,6 +74,8 @@
   "store/greeting": "greeting",
   "store/store-components.share.label": "store-components.share.label",
   "store/share.title": "{product} {sku} at {store}: ",
+  "store/product-details.quantity": "Quantity",
+  "store/product-details.quantity-available": "{availableQuantity, plural, one {# available} other {# available}}",
   "admin/editor.info-card.title": "Title of InfoCard component",
   "admin/editor.info-card.description": "Description of InfoCard component",
   "admin/editor.info-card.isFullModeStyle.title": "Title of isFullModeStyle property",

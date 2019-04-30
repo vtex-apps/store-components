@@ -35,7 +35,7 @@ const ProductQuantitySelector = ({ warningQuantityThreshold, ...props }) => {
   return (
     <div className={'flex flex-column mb4'}>
       <div className="mb3 c-muted-2 t-body">
-        <FormattedMessage id="product-details.quantity" />
+        <FormattedMessage id="store/product-details.quantity" />
       </div>
       <NumericStepper
         size="small"
@@ -46,7 +46,7 @@ const ProductQuantitySelector = ({ warningQuantityThreshold, ...props }) => {
       />
       {showAvailable && 
         <div className={'mv4 c-muted-2 t-small'}>
-          <FormattedMessage id="product-details.quantity-available" values={{ availableQuantity }} />
+          <FormattedMessage id="store/product-details.quantity-available" values={{ availableQuantity }} />
         </div>}
     </div>
   )
