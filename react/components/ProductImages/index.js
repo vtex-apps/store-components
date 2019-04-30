@@ -80,11 +80,10 @@ ProductImages.propTypes = {
 ProductImages.defaultProps = {
   images: [],
   position: 'left',
-  zoomProps: { zoomType: 'in-page' }
+  zoomProps: { zoomType: 'in-page' },
 }
 
 ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
-  console.log(zoomType)
   return {
     title: 'admin/editor.product-images.title',
     description: 'admin/editor.product-images.description',
@@ -97,11 +96,8 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
           zoomType: {
             title: 'admin/editor.product-images.zoomType.title',
             type: 'string',
-            enum: [
-              'gallery',
-              'in-page',
-              'no-zoom'
-            ],
+            isLayout: true,
+            enum: ['gallery', 'in-page', 'no-zoom'],
             enumNames: [
               'admin/editor.product-images.gallery',
               'admin/editor.product-images.in-page',
@@ -113,21 +109,22 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
               },
               'ui:widget': 'radio',
             },
-            default: 'in-page',
+            default: 'no-zoom',
           },
           ...(zoomType === 'gallery' && {
             bgOpacity: {
               title: 'admin/editor.product-images.bgopacity.title',
               type: 'number',
+              isLayout: true,
               minimum: 0.0,
               maximum: 1.0,
               multipleOf: 0.01,
-              default: 1,
-            }
-          })
+              default: 0.8,
+            },
+          }),
         },
-      }
-    }
+      },
+    },
   }
 }
 
