@@ -91,6 +91,7 @@ Below we have a README for each component of this project that explains how to u
 - [Product Name](/react/components/ProductName/README.md)
 - [Product Price](/react/components/ProductPrice/README.md)
 - [Product Specifications](/react/components/ProductSpecifications/README.md)
+- [Product Quantity Selector](/react/components/ProductQuantitySelector/README.md)
 - [SKU Selector](/react/components/SKUSelector/README.md)
 - [Search Bar](/react/components/SearchBar/README.md)
 - [Share](/react/components/Share/README.md)
