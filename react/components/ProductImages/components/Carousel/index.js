@@ -106,7 +106,9 @@ class Carousel extends Component {
 
   renderSlide = (slide, i) => {
     const { loaded } = this.state
-    const { isZoomGallery = true } = this.props
+    const {
+      zoomProps: { zoomType },
+    } = this.props
 
     switch (slide.type) {
       case 'image':
@@ -121,7 +123,9 @@ class Carousel extends Component {
               bestUrlIndex={slide.bestUrlIndex}
               alt={slide.alt}
               onload={this.onImageLoad(i)}
-              onClick={isZoomGallery && (() => this.openGallery(i))}
+              onClick={
+                zoomType === 'gallery' ? () => this.openGallery(i) : undefined
+              }
             />
           </div>
         )
@@ -164,7 +168,10 @@ class Carousel extends Component {
 
   get galleryParams() {
     const { thumbSwiper } = this.state
-    const { slides, zoomProps: { zoomType } } = this.props
+    const {
+      slides,
+      zoomProps: { zoomType },
+    } = this.props
 
     const iconSize = 24
     const caretClassName =
@@ -176,19 +183,16 @@ class Carousel extends Component {
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
-          bulletActiveClass:
-            'c-action-primary swiper-pagination-bullet-active',
-        }
-      }
-      ),
+          bulletActiveClass: 'c-action-primary swiper-pagination-bullet-active',
+        },
+      }),
       ...(slides.length > 1 && {
         navigation: {
           prevEl: '.swiper-caret-prev',
           nextEl: '.swiper-caret-next',
           disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
-        }
-      }
-      ),
+        },
+      }),
       thumbs: {
         swiper: thumbSwiper,
       },
@@ -223,7 +227,11 @@ class Carousel extends Component {
 
   render() {
     const { thumbsLoaded, isGalleryOpen, selectedIndex } = this.state
-    const { slides, position, zoomProps: { zoomType, bgOpacity } } = this.props
+    const {
+      slides,
+      position,
+      zoomProps: { zoomType, bgOpacity },
+    } = this.props
 
     if (!thumbsLoaded || Swiper == null) {
       return <Loader slidesAmount={slides ? slides.length : 0} />
@@ -245,7 +253,7 @@ class Carousel extends Component {
     }
 
     const galleryCursor = {
-      'gallery': !isGalleryOpen && 'pointer',
+      gallery: !isGalleryOpen && 'pointer',
       'in-page': styles.carouselGaleryCursor,
       'no-zoom': '',
     }
@@ -277,7 +285,11 @@ class Carousel extends Component {
                 className="swiper-slide w-100 h-auto mb5 pointer"
                 onClick={() => this.gallerySwiper.current.swiper.slideTo(i)}
               >
-                <figure itemProp="associatedMedia" itemScope itemType="http://schema.org/ImageObject">
+                <figure
+                  itemProp="associatedMedia"
+                  itemScope
+                  itemType="http://schema.org/ImageObject"
+                >
                   <img
                     className="w-100 h-auto db"
                     itemProp="thumbnail"
@@ -288,7 +300,7 @@ class Carousel extends Component {
                 <div
                   className={`absolute absolute--fill b--solid b--muted-2 bw1 ${
                     styles.carouselThumbBorder
-                    }`}
+                  }`}
                 />
               </div>
             ))}
@@ -302,7 +314,7 @@ class Carousel extends Component {
               </div>
             ))}
           </Swiper>
-          {zoomType === 'gallery' &&
+          {zoomType === 'gallery' && (
             <NoSSR>
               <Gallery
                 items={slides}
@@ -312,7 +324,7 @@ class Carousel extends Component {
                 bgOpacity={bgOpacity}
               />
             </NoSSR>
-          }
+          )}
         </div>
       </div>
     )

@@ -84,6 +84,7 @@ ProductImages.defaultProps = {
 }
 
 ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
+  console.log(zoomType)
   return {
     title: 'admin/editor.product-images.title',
     description: 'admin/editor.product-images.description',
@@ -100,6 +101,11 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
               'gallery',
               'in-page',
               'no-zoom'
+            ],
+            enumNames: [
+              'admin/editor.product-images.gallery',
+              'admin/editor.product-images.in-page',
+              'admin/editor.product-images.no-zoom',
             ],
             widget: {
               'ui:options': {

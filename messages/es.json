@@ -119,5 +119,8 @@
   "admin/editor.product-images.description": "El componente de imágenes del producto le permite personalizar las imágenes del producto",
   "admin/editor.product-images.zoomOptions.title": "Opciones de zoom",
   "admin/editor.product-images.zoomType.title": "Tipo de zoom",
-  "admin/editor.product-images.bgopacity.title": "opacidad de fondo"
+  "admin/editor.product-images.bgopacity.title": "Ppacidad de Fondo",
+  "admin/editor.product-images.gallery": "En Galerìa",
+  "admin/editor.product-images.in-page": "En la Página",
+  "admin/editor.product-images.no-zoom": "Sin Zoom"
 }

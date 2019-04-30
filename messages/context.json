@@ -119,5 +119,8 @@
   "admin/editor.product-images.description": "Description of ProductImages component",
   "admin/editor.product-images.zoomOptions.title": "Title of the Zoom options provided by the product images app",
   "admin/editor.product-images.zoomType.title": "Title of the zoomType option",
-  "admin/editor.product-images.bgopacity.title": "Title of the background opacity of the gallery when zoom is set to in gallery mode"
+  "admin/editor.product-images.bgopacity.title": "Title of the background opacity of the gallery when zoom is set to in gallery mode",
+  "admin/editor.product-images.gallery": "Used in 'gallery' zoom option",
+  "admin/editor.product-images.in-page": "Used in 'gallery' zoom option",
+  "admin/editor.product-images.no-zoom": "Used in 'gallery' zoom option"
 }
