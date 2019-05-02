@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.32.0] - 2019-05-02
+### Changed
+- Hide `InstallmentsPrice` when there's only _1x_ options.
+
 ## [3.31.0] - 2019-04-30
 ### Added
 - Add zoom types and implement zoom `ìn-gallery` in `ProductImages` component.
