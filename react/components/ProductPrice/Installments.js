@@ -42,7 +42,15 @@ export default class Installments extends Component {
       interestRateClass,
     } = this.props
 
-    if (!installments || isEmpty(installments)) {
+    if (
+      !installments ||
+      isEmpty(installments) ||
+      isEmpty(
+        installments.filter(
+          ({ NumberOfInstallments }) => NumberOfInstallments > 1
+        )
+      )
+    ) {
       return null
     }
 
