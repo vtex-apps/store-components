@@ -25,6 +25,7 @@ const initialState = {
   thumbsLoaded: false,
   activeIndex: 0,
   isGalleryOpen: false,
+  isZoomActive: false,
 }
 
 class Carousel extends Component {
@@ -74,6 +75,29 @@ class Carousel extends Component {
     window.removeEventListener('resize', this.debouncedRebuildOnUpdate)
 
     this.debouncedRebuildOnUpdate.clear()
+  }
+
+  componentDidUpdate(prevProps) {
+    const { loaded, activeIndex } = this.state
+    const isVideo = this.isVideo
+    const gallerySwiper = path(['swiper'], this.gallerySwiper.current)
+
+    if (!equals(prevProps.slides, this.props.slides)) {
+      this.setInitialVariablesState()
+      this.setState(initialState)
+      return
+    }
+
+    const paginationElement = path(['pagination', 'el'], gallerySwiper)
+    if (paginationElement) paginationElement.hidden = isVideo[activeIndex]
+
+    const gallerySwiperZoom = path(['zoom'], gallerySwiper)
+
+    if (gallerySwiperZoom) {
+      loaded[activeIndex]
+        ? gallerySwiperZoom.enable()
+        : gallerySwiperZoom.disable()
+    }
   }
 
   onSlideChange = () => {
@@ -139,29 +163,6 @@ class Carousel extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const { loaded, activeIndex } = this.state
-    const isVideo = this.isVideo
-    const gallerySwiper = path(['swiper'], this.gallerySwiper.current)
-
-    if (!equals(prevProps.slides, this.props.slides)) {
-      this.setInitialVariablesState()
-      this.setState(initialState)
-      return
-    }
-
-    const paginationElement = path(['pagination', 'el'], gallerySwiper)
-    if (paginationElement) paginationElement.hidden = isVideo[activeIndex]
-
-    const gallerySwiperZoom = path(['zoom'], gallerySwiper)
-
-    if (gallerySwiperZoom) {
-      loaded[activeIndex]
-        ? gallerySwiperZoom.enable()
-        : gallerySwiperZoom.disable()
-    }
-  }
-
   get galleryParams() {
     const { thumbSwiper } = this.state
     const {
@@ -194,6 +195,7 @@ class Carousel extends Component {
       },
       zoom: zoomType === 'in-page' && {
         maxRatio: 2,
+        toogle: true,
       },
 
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
@@ -223,6 +225,7 @@ class Carousel extends Component {
 
   render() {
     const { thumbsLoaded, isGalleryOpen, selectedIndex } = this.state
+
     const {
       slides,
       position,
@@ -271,6 +274,14 @@ class Carousel extends Component {
       }
     )
 
+    const setZoom = () => {
+      const gallerySwiperZoom = path(
+        ['swiper', 'zoom'],
+        this.gallerySwiper.current
+      )
+      gallerySwiperZoom.toggle()
+    }
+
     return (
       <div className="relative overflow-hidden" aria-hidden="true">
         <div className={thumbClasses}>
@@ -302,7 +313,11 @@ class Carousel extends Component {
             ))}
           </Swiper>
         </div>
-        <div className={imageClasses}>
+        <div
+          className={imageClasses}
+          onMouseUp={ event => console.log(event)}
+          onClick={zoomType === 'in-page' ? setZoom : undefined}
+        >
           <Swiper {...this.galleryParams} ref={this.gallerySwiper}>
             {slides.map((slide, i) => (
               <div key={i} className="swiper-slide center-all">
