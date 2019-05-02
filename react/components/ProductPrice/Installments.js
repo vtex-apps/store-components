@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import classNames from 'classnames'
-import { isEmpty } from 'ramda'
+import { is, isEmpty } from 'ramda'
 import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
 
@@ -9,18 +9,17 @@ import PricePropTypes from './propTypes'
 import productPrice from './styles.css'
 
 /** Installments component */
-const Installments = (
+const Installments = ({
   showLabels,
   formatNumber,
-  installments,
+  installments = [],
   currencyOptions,
   className,
   installmentClass,
-  interestRateClass
-) => {
+  interestRateClass,
+}) => {
   if (
     !installments ||
-    isEmpty(installments) ||
     isEmpty(
       installments.filter(
         ({ NumberOfInstallments }) => NumberOfInstallments > 1
