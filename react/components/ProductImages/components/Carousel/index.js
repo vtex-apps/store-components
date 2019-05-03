@@ -25,8 +25,6 @@ const initialState = {
   thumbsLoaded: false,
   activeIndex: 0,
   isGalleryOpen: false,
-  isZoomActive: false,
-  isDragging: false,
 }
 
 class Carousel extends Component {
