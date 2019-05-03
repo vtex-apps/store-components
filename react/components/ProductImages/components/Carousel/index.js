@@ -76,12 +76,35 @@ class Carousel extends Component {
     this.debouncedRebuildOnUpdate.clear()
   }
 
+  componentDidUpdate(prevProps) {
+    const { loaded, activeIndex } = this.state
+    const isVideo = this.isVideo
+    const gallerySwiper = path(['swiper'], this.gallerySwiper.current)
+
+    if (!equals(prevProps.slides, this.props.slides)) {
+      this.setInitialVariablesState()
+      this.setState(initialState)
+      return
+    }
+
+    const paginationElement = path(['pagination', 'el'], gallerySwiper)
+    if (paginationElement) paginationElement.hidden = isVideo[activeIndex]
+
+    const gallerySwiperZoom = path(['zoom'], gallerySwiper)
+
+    if (gallerySwiperZoom) {
+      loaded[activeIndex]
+        ? gallerySwiperZoom.enable()
+        : gallerySwiperZoom.disable()
+    }
+  }
+
   onSlideChange = () => {
     const activeIndex = path(
       ['swiper', 'activeIndex'],
       this.gallerySwiper.current
     )
-    this.setState({ activeIndex })
+    this.setState({ activeIndex, sliderChanged: true })
   }
 
   setVideoThumb = i => (url, title) => {
@@ -139,29 +162,6 @@ class Carousel extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    const { loaded, activeIndex } = this.state
-    const isVideo = this.isVideo
-    const gallerySwiper = path(['swiper'], this.gallerySwiper.current)
-
-    if (!equals(prevProps.slides, this.props.slides)) {
-      this.setInitialVariablesState()
-      this.setState(initialState)
-      return
-    }
-
-    const paginationElement = path(['pagination', 'el'], gallerySwiper)
-    if (paginationElement) paginationElement.hidden = isVideo[activeIndex]
-
-    const gallerySwiperZoom = path(['zoom'], gallerySwiper)
-
-    if (gallerySwiperZoom) {
-      loaded[activeIndex]
-        ? gallerySwiperZoom.enable()
-        : gallerySwiperZoom.disable()
-    }
-  }
-
   get galleryParams() {
     const { thumbSwiper } = this.state
     const {
@@ -172,6 +172,20 @@ class Carousel extends Component {
     const iconSize = 24
     const caretClassName =
       'pv7 absolute top-50 translate--50y z-2 pointer c-action-primary'
+
+    const setZoom = event => {
+      const { sliderChanged } = this.state
+      const gallerySwiperZoom = path(
+        ['swiper', 'zoom'],
+        this.gallerySwiper.current
+      )
+
+      if (sliderChanged) {
+        this.setState({ sliderChanged: false })
+      } else {
+        gallerySwiperZoom.toggle(event)
+      }
+    }
 
     return {
       containerClass: 'swiper-container',
@@ -194,6 +208,7 @@ class Carousel extends Component {
       },
       zoom: zoomType === 'in-page' && {
         maxRatio: 2,
+        toggle: false,
       },
 
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
@@ -217,12 +232,14 @@ class Carousel extends Component {
       ),
       on: {
         slideChange: this.onSlideChange,
+        click: zoomType === 'in-page' ? event => setZoom(event) : undefined,
       },
     }
   }
 
   render() {
     const { thumbsLoaded, isGalleryOpen, selectedIndex } = this.state
+
     const {
       slides,
       position,
