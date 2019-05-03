@@ -72,6 +72,10 @@ export class BuyButton extends Component {
     event.stopPropagation()
     event.preventDefault()
 
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.controller.postMessage('installPrompt')
+    }
+
     const {
       addToCart,
       skuItems,
