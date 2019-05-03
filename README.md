@@ -22,6 +22,7 @@ See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for mor
 - [Creating a new component](#creating-a-new-component)
   - [Project structure](#project-structure)
 - [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
 - [Tests](#tests)
 
 ## Usage
@@ -124,6 +125,10 @@ Also, all dependencies needed should be inserted inside the react/package.json.
 
 ## Troubleshooting
 You can check if others are passing through similar issues [here](https://github.com/vtex-apps/store-components/issues). Also feel free to [open issues](https://github.com/vtex-apps/store-components/issues/new) or contribute with pull requests.
+
+## Contributing
+
+Check it out [how to contribute](https://github.com/vtex-apps/awesome-io#contributing) with this project. 
 
 ## Tests
 
