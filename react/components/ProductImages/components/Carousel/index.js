@@ -26,6 +26,7 @@ const initialState = {
   activeIndex: 0,
   isGalleryOpen: false,
   isZoomActive: false,
+  isDragging: false,
 }
 
 class Carousel extends Component {
@@ -105,7 +106,7 @@ class Carousel extends Component {
       ['swiper', 'activeIndex'],
       this.gallerySwiper.current
     )
-    this.setState({ activeIndex })
+    this.setState({ activeIndex, sliderChanged: true })
   }
 
   setVideoThumb = i => (url, title) => {
@@ -174,6 +175,20 @@ class Carousel extends Component {
     const caretClassName =
       'pv7 absolute top-50 translate--50y z-2 pointer c-action-primary'
 
+    const setZoom = event => {
+      const { sliderChanged } = this.state
+      const gallerySwiperZoom = path(
+        ['swiper', 'zoom'],
+        this.gallerySwiper.current
+      )
+
+      if (sliderChanged) {
+        this.setState({ sliderChanged: false })
+      } else {
+        gallerySwiperZoom.toggle(event)
+      }
+    }
+
     return {
       containerClass: 'swiper-container',
       ...(slides.length > 1 && {
@@ -195,7 +210,7 @@ class Carousel extends Component {
       },
       zoom: zoomType === 'in-page' && {
         maxRatio: 2,
-        toogle: true,
+        toggle: false,
       },
 
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
@@ -219,6 +234,7 @@ class Carousel extends Component {
       ),
       on: {
         slideChange: this.onSlideChange,
+        click: zoomType === 'in-page' ? event => setZoom(event) : undefined,
       },
     }
   }
@@ -274,14 +290,6 @@ class Carousel extends Component {
       }
     )
 
-    const setZoom = () => {
-      const gallerySwiperZoom = path(
-        ['swiper', 'zoom'],
-        this.gallerySwiper.current
-      )
-      gallerySwiperZoom.toggle()
-    }
-
     return (
       <div className="relative overflow-hidden" aria-hidden="true">
         <div className={thumbClasses}>
@@ -313,11 +321,7 @@ class Carousel extends Component {
             ))}
           </Swiper>
         </div>
-        <div
-          className={imageClasses}
-          onMouseUp={ event => console.log(event)}
-          onClick={zoomType === 'in-page' ? setZoom : undefined}
-        >
+        <div className={imageClasses}>
           <Swiper {...this.galleryParams} ref={this.gallerySwiper}>
             {slides.map((slide, i) => (
               <div key={i} className="swiper-slide center-all">
