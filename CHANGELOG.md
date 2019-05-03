@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Enable zoom with one click instead of two in `ProductImages`.
 
-
 ## [3.32.1] - 2019-05-03
 ### Fixed
 - Instead of rendering a content loader when there is no image to be rendered in `Carousel`, it now renders a placeholder.
