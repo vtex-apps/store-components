@@ -64,5 +64,6 @@ Below, we describe the namespace that are defined in the `ProductImages`.
 | `carouselGaleryThumbs`    | The container of Thumbs area                                                            | [Carousel](/react/components/ProductImages/components/Carousel/index.js)           |
 | `carouselThumbBorder`     | Define the border of Thumb area                                                         | [Carousel](/react/components/ProductImages/components/Carousel/index.js)           |
 | `carouselGaleryCursor`    | Define the svg icon that will show when hover the `Carousel`                            | [Carousel](/react/components/ProductImages/components/Carousel/index.js)           |
+| `carouselImageUploader`   | Define the icon that will show when the user wants a custom placeholder                 | [ImagePlaceholder](/react/components/ProductImages/components/Carousel/ImagePlaceholder.js)       |
 | `imageBlur30`             | Blur of the Image                                                                       | [BlurredLoader](/react/components/ProductImages/components/BlurredLoader/index.js) |
 | `imageTransitionOpacity`  | Time transition between images                                                          | [BlurredLoader](/react/components/ProductImages/components/BlurredLoader/index.js) |
