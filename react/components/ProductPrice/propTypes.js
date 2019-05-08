@@ -16,6 +16,8 @@ export default {
   showSavings: PropTypes.bool,
   /** Text to the selling price's label */
   labelSellingPrice: PropTypes.string,
+  /** Text to the list price's label */
+  labelListPrice: PropTypes.string,
   /** Available installments */
   installments: PropTypes.arrayOf(
     PropTypes.shape({
