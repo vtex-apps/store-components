@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Add `labelListPrice` prop in `ProductPrice`.
+- `labelListPrice` prop in `ProductPrice`.
 
 ## [3.33.1] - 2019-05-09
 ### Fixed
