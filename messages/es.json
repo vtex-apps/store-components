@@ -123,5 +123,21 @@
   "admin/editor.product-images.bgopacity.title": "Ppacidad de Fondo",
   "admin/editor.product-images.gallery": "En Galerìa",
   "admin/editor.product-images.in-page": "En la Página",
-  "admin/editor.product-images.no-zoom": "Sin Zoom"
+  "admin/editor.product-images.no-zoom": "Sin Zoom",
+  "admin/editor.logo.title": "Logo",
+  "admin/editor.logo.description": "Componente para mostrar el logotipo de su tienda",
+  "admin/editor.logo.href.title": "Enlace para redirigir",
+  "admin/editor.logo.href.description": "El enlace se redirige cuando se hace clic en el logotipo. Deje en blanco para que no se pueda hacer clic.",
+  "admin/editor.logo.url.title": "URL de imagen",
+  "admin/editor.logo.url.description": "URL de la imagen del logotipo",
+  "admin/editor.logo.width.title": "Width",
+  "admin/editor.logo.width.description": "Ancho que se utilizará para el logotipo",
+  "admin/editor.logo.height.title": "Altura",
+  "admin/editor.logo.height.description": "Altura que se utilizará para el logotipo",
+  "admin/editor.logo.title.title": "Texto alternativo",
+  "admin/editor.logo.title.description": "Texto alternativo que se proporcionará a la imagen del logotipo",
+  "admin/editor.logo.mobileWidth.title": "Mobile Width",
+  "admin/editor.logo.mobileWidth.description": "Ancho que se utilizará en el dispositivo móvil. Si está vacío, utilizará el valor de ancho proporcionado",
+  "admin/editor.logo.mobileHeight.title": "Altura móvil",
+  "admin/editor.logo.mobileHeight.description": "Altura que se utilizará en el dispositivo móvil. Si está vacío, utilizará el valor de altura proporcionado"
 }
