@@ -226,13 +226,13 @@ priceWithIntel.schema = {
       type: 'string',
       title: 'admin/editor.productPrice.labelSellingPrice',
       default: Price.defaultProps.labelSellingPrice,
-      isLayout: true,
+      isLayout: false,
     },
     labelListPrice: {
       type: 'string',
       title: 'admin/editor.productPrice.labelListPrice',
       default: Price.defaultProps.labelListPrice,
-      isLayout: true,
+      isLayout: false,
     },
     showListPrice: {
       type: 'boolean',
