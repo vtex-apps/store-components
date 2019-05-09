@@ -464,7 +464,7 @@ button.swiper-pagination-bullet {
   object-fit: contain;
 }
 .swiper-slide-zoomed {
-  cursor: move;
+  cursor: crosshair;
 }
 /* Preloader */
 .swiper-lazy-preloader {

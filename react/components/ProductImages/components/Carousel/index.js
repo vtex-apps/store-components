@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import { path, equals } from 'ramda'
 
 import { IconCaret } from 'vtex.store-icons'
-import { NoSSR } from 'vtex.render-runtime'
+import { NoSSR, withRuntimeContext } from 'vtex.render-runtime'
 
 import BlurredLoader from '../BlurredLoader'
 import Loader from './Loader.js'
@@ -162,6 +162,10 @@ class Carousel extends Component {
     }
   }
 
+  get slideZoom() {
+    return path(['swiper', 'zoom'], this.gallerySwiper.current)
+  }
+
   get galleryParams() {
     const { thumbSwiper } = this.state
     const {
@@ -173,12 +177,9 @@ class Carousel extends Component {
     const caretClassName =
       'pv7 absolute top-50 translate--50y z-2 pointer c-action-primary'
 
-    const setZoom = event => {
+    const toogleZoom = event => {
       const { sliderChanged } = this.state
-      const gallerySwiperZoom = path(
-        ['swiper', 'zoom'],
-        this.gallerySwiper.current
-      )
+      const gallerySwiperZoom = this.slideZoom
 
       if (sliderChanged) {
         this.setState({ sliderChanged: false })
@@ -213,7 +214,7 @@ class Carousel extends Component {
 
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       renderNextButton: () => (
-        <span className={`swiper-caret-next pl7 right-1 ${caretClassName}`}>
+        <span className={`swiper-caret-next pl7 pr5 right-0 ${caretClassName}`}>
           <IconCaret
             orientation="right"
             size={iconSize}
@@ -222,7 +223,7 @@ class Carousel extends Component {
         </span>
       ),
       renderPrevButton: () => (
-        <span className={`swiper-caret-prev pr7 left-1 ${caretClassName}`}>
+        <span className={`swiper-caret-prev pr7 pl5 left-0 ${caretClassName}`}>
           <IconCaret
             orientation="left"
             size={iconSize}
@@ -232,7 +233,7 @@ class Carousel extends Component {
       ),
       on: {
         slideChange: this.onSlideChange,
-        click: zoomType === 'in-page' ? event => setZoom(event) : undefined,
+        click: zoomType === 'in-page' ? toogleZoom : undefined,
       },
     }
   }
@@ -244,6 +245,9 @@ class Carousel extends Component {
       slides,
       position,
       zoomProps: { zoomType, bgOpacity },
+      runtime: {
+        hints: { desktop },
+      },
     } = this.props
 
     if (!thumbsLoaded || Swiper == null) {
@@ -288,6 +292,11 @@ class Carousel extends Component {
       }
     )
 
+    const desktopZoom = desktop && {
+      onMouseMove: e => this.slideZoom.in(e),
+      onMouseLeave: () => this.slideZoom.out(),
+    }
+
     return (
       <div className="relative overflow-hidden" aria-hidden="true">
         <div className={thumbClasses}>
@@ -322,7 +331,7 @@ class Carousel extends Component {
         <div className={imageClasses}>
           <Swiper {...this.galleryParams} ref={this.gallerySwiper}>
             {slides.map((slide, i) => (
-              <div key={i} className="swiper-slide center-all">
+              <div key={i} className="swiper-slide center-all" {...desktopZoom}>
                 {this.renderSlide(slide, i)}
               </div>
             ))}
@@ -356,4 +365,4 @@ Carousel.propTypes = {
   ),
 }
 
-export default Carousel
+export default withRuntimeContext(Carousel)
