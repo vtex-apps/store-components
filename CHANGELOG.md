@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.33.1] - 2019-05-09
+### Fixed
+- Fix z-index issue on the search ResultList component.
+
 ## [3.33.0] - 2019-05-08
 ### Added
 - Add the `carouselImagePlaceholder` CSS handler to allow custom image placeholders.
