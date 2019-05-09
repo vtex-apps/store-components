@@ -13,6 +13,7 @@
   "admin/editor.productPrice.showInstallments": "Show product's payment installments",
   "admin/editor.productPrice.showSavings": "Show product's list and selling price difference",
   "admin/editor.productPrice.labelSellingPrice": "Selling price's label",
+  "admin/editor.productPrice.labelListPrice": "List price's label",
   "admin/editor.share.title": "Share",
   "admin/editor.share.description": "List of share buttons",
   "admin/editor.share.social.title": "Social Networks",
