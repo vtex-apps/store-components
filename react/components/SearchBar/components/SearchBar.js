@@ -5,10 +5,12 @@ import AutocompleteInput from './AutocompleteInput'
 import ResultsLists from './ResultsList'
 import DownshiftComponent from 'downshift'
 import { NoSSR } from 'vtex.render-runtime'
+import { Overlay } from 'vtex.react-portal'
 
 import styles from '../styles.css'
 
 export default class SearchBar extends Component {
+  container = React.createRef()
   render() {
     const {
       placeholder,
@@ -41,6 +43,7 @@ export default class SearchBar extends Component {
 
     return (
       <div
+        ref={this.container}
         className={classNames('w-100 mw7 pv4', styles.searchBarContainer)}
         style={{
           ...(maxWidth && {
@@ -79,16 +82,26 @@ export default class SearchBar extends Component {
                   })}
                 />
                 {shouldSearch && isOpen ? (
-                  <ResultsLists
-                    {...{
-                      inputValue,
-                      selectedItem,
-                      highlightedIndex,
-                      emptyPlaceholder,
-                      closeMenu,
-                      onClearInput,
-                    }}
-                  />
+                  <Overlay>
+                    <div
+                      style={{
+                        width:
+                          this.container.current &&
+                          this.container.current.offsetWidth,
+                      }}
+                    >
+                      <ResultsLists
+                        {...{
+                          inputValue,
+                          selectedItem,
+                          highlightedIndex,
+                          emptyPlaceholder,
+                          closeMenu,
+                          onClearInput,
+                        }}
+                      />
+                    </div>
+                  </Overlay>
                 ) : null}
               </div>
             )}
