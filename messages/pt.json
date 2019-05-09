@@ -123,5 +123,21 @@
   "admin/editor.product-images.bgopacity.title": "Opacidade do fundo",
   "admin/editor.product-images.gallery": "Em galeria",
   "admin/editor.product-images.in-page": "Na página",
-  "admin/editor.product-images.no-zoom": "Sem zoom"
+  "admin/editor.product-images.no-zoom": "Sem zoom",
+  "admin/editor.logo.title": "Logo",
+  "admin/editor.logo.description": "Componente para mostrar o logotipo da sua loja",
+  "admin/editor.logo.href.title": "Link para redirecionar",
+  "admin/editor.logo.href.description": "Link a ser redirecionado quando o logotipo é clicado. Deixe em branco para torná-lo não clicável.",
+  "admin/editor.logo.url.title": "Imagem",
+  "admin/editor.logo.url.description": "Imagem a ser utilizada",
+  "admin/editor.logo.width.title": "Largura",
+  "admin/editor.logo.width.description": "Largura a ser usada para o logotipo.",
+  "admin/editor.logo.height.title": "Altura",
+  "admin/editor.logo.height.description": "Altura a ser usada para o logotipo",
+  "admin/editor.logo.title.title": "Texto alternativo",
+  "admin/editor.logo.title.description": "Texto alternativo a ser fornecido à imagem do logotipo",
+  "admin/editor.logo.mobileWidth.title": "Mobile Width",
+  "admin/editor.logo.mobileWidth.description": "Largura a ser usada no celular. Se vazia, usará o valor de largura fornecido.",
+  "admin/editor.logo.mobileHeight.title": "Altura do celular",
+  "admin/editor.logo.mobileHeight.description": "Altura a ser usada no celular. Se vazia, usará o valor de altura fornecido."
 }

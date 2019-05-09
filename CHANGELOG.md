@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.35.0] - 2019-05-09
+### Added
+- Schema to `Logo` component.
+
 ## [3.34.0] - 2019-05-09
 ### Added
 - `labelListPrice` prop in `ProductPrice`.

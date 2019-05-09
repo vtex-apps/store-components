@@ -123,5 +123,23 @@
   "admin/editor.product-images.bgopacity.title": "Title of the background opacity of the gallery when zoom is set to in gallery mode",
   "admin/editor.product-images.gallery": "Used in 'gallery' zoom option",
   "admin/editor.product-images.in-page": "Used in 'gallery' zoom option",
-  "admin/editor.product-images.no-zoom": "Used in 'gallery' zoom option"
+  "admin/editor.product-images.no-zoom": "Used in 'gallery' zoom option",
+  "admin/editor.logo.title": "Name of Logo Component",
+  "admin/editor.logo.description": "Description of Logo Component",
+  "admin/editor.logo.href.title": "Title of href property of Logo",
+  "admin/editor.logo.href.description": "Description of href property of Logo",
+  "admin/editor.logo.url.title": "Title of url property of Logo",
+  "admin/editor.logo.url.description": "Description of url property of Logo",
+  "admin/editor.logo.width.title": "Title of width property of Logo",
+  "admin/editor.logo.width.description": "Description of width property of Logo",
+  "admin/editor.logo.height.title": "Title of height property of Logo",
+  "admin/editor.logo.height.description": "Description of height property of Logo",
+  "admin/editor.logo.title.title": "Title of title property of Logo",
+  "admin/editor.logo.title.description": "Description of title property of Logo",
+  "admin/editor.logo.mobileWidth.title": "Title of mobileWidth property of Logo",
+  "admin/editor.logo.mobileWidth.description": "Description of mobileWidth property of Logo",
+  "admin/editor.logo.mobileHeight.title": "Title of mobileHeight property of Logo",
+  "admin/editor.logo.mobileHeight.description": "Description of mobileHeight property of Logo"
+  
+
 }
