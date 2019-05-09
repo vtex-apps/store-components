@@ -39,6 +39,7 @@ Through the Storefront, you can change the `ProductPrice`'s behavior and interfa
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
 | `labelSellingPrice` | `String` | Product selling price label | null |
+| `labelListPrice` | `String` | Product list price label | null |
 | `showListPrice` | `Boolean` | Set visibility of list price | true |
 | `showLabels` | `Boolean` | Set visibility of labels | true |
 | `showInstallments` | `Boolean` | Set visibility of installments | false |

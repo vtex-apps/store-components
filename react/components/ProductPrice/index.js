@@ -25,6 +25,7 @@ class Price extends Component {
     showInstallments: false,
     showSavings: false,
     labelSellingPrice: null,
+    labelListPrice: null
   }
 
   currencyOptions = {
@@ -43,6 +44,7 @@ class Price extends Component {
       showLabels,
       showSavings,
       labelSellingPrice,
+      labelListPrice,
       className,
       loaderClass,
       listPriceContainerClass,
@@ -87,10 +89,11 @@ class Price extends Component {
               <div
                 className={classNames(
                   productPrice.listPriceLabel,
+                  listPriceLabelClass,
                   'dib ph2 t-small-ns t-mini'
                 )}
               >
-                <FormattedMessage id="store/pricing.from" />
+                {!isNil(labelListPrice) ? (labelListPrice ) : <FormattedMessage id="store/pricing.from" />}
               </div>
             )}
             <span
@@ -116,7 +119,7 @@ class Price extends Component {
                 sellingPriceLabelClass
               )}
             >
-              {labelSellingPrice || <FormattedMessage id="store/pricing.to" />}
+              {!isNil(labelSellingPrice) ? (labelSellingPrice ) : <FormattedMessage id="store/pricing.to" />}
             </div>
           )}
           <div
@@ -223,7 +226,13 @@ priceWithIntel.schema = {
       type: 'string',
       title: 'admin/editor.productPrice.labelSellingPrice',
       default: Price.defaultProps.labelSellingPrice,
-      isLayout: true,
+      isLayout: false,
+    },
+    labelListPrice: {
+      type: 'string',
+      title: 'admin/editor.productPrice.labelListPrice',
+      default: Price.defaultProps.labelListPrice,
+      isLayout: false,
     },
     showListPrice: {
       type: 'boolean',
