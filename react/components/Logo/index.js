@@ -70,6 +70,9 @@ Logo.schema = {
       title: 'admin/editor.logo.url.title',
       description: 'admin/editor.logo.url.description',
       type: 'string',
+      widget: {
+        'ui:widget': 'image-uploader',
+      },
     },
     width: {
       title: 'admin/editor.logo.width.title',
