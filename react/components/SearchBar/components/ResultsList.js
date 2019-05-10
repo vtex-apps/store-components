@@ -16,6 +16,7 @@ const ResultsList = ({
   inputValue,
   closeMenu,
   onClearInput,
+  getItemProps,
 }) => {
   const items = data.autocomplete ? data.autocomplete.itemsReturned : []
   const {
@@ -77,13 +78,18 @@ const ResultsList = ({
     )
   }
 
+  const handleItemClick = () => {
+    onClearInput()
+    closeMenu()
+  }
+
   return (
     <div className={listClassNames}>
       <Link
-        onClick={() => {
-          onClearInput()
-          closeMenu()
-        }}
+        {...getItemProps({
+          item: 'ft',
+          onClick: handleItemClick,
+        })}
         page="store.search"
         params={{ term: inputValue }}
         query="map=ft"
@@ -97,15 +103,16 @@ const ResultsList = ({
           <Fragment key={item.name + index}>
             <hr className="o-05 ma0 w-90 center" />
             <Link
-              onClick={() => {
-                onClearInput()
-                closeMenu()
-              }}
+              {...getItemProps({
+                item,
+                onClick: handleItemClick,
+              })}
               {...getLinkProps(item)}
               className={listItemClassNames}
             >
               {item.thumb && (
                 <img
+                  alt=""
                   className={`${styles.resultsItemImage} mr4`}
                   src={getImageUrl(item.thumb)}
                 />
@@ -150,6 +157,8 @@ ResultsList.propTypes = {
   closeMenu: PropTypes.func,
   /** Clears the input */
   onClearInput: PropTypes.func,
+  selectItem: PropTypes.func,
+  getItemProps: PropTypes.func,
 }
 
 const ResultsListWithData = graphql(autocomplete)(ResultsList)
