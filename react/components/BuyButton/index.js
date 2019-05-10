@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types'
-import React, { Component, Fragment } from 'react'
+import React, { useContext, useCallback, useState, Fragment } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
 import { compose, pick } from 'ramda'
 import { orderFormConsumer } from 'vtex.store-resources/OrderFormContext'
+import { usePWA } from 'vtex.store-resources/PWAContext'
 
-import { Button, withToast } from 'vtex.styleguide'
+import { Button, ToastContext } from 'vtex.styleguide'
 
 const CONSTANTS = {
   SUCCESS_MESSAGE_ID: 'store/buybutton.buy-success',
@@ -20,28 +21,26 @@ const CONSTANTS = {
  * BuyButton Component.
  * Adds a list of sku items to the cart.
  */
-export class BuyButton extends Component {
-  static defaultProps = {
-    isOneClickBuy: false,
-    available: true,
-  }
+export const BuyButton = ({
+  isOneClickBuy = false,
+  available = true,
+  intl,
+  addToCart,
+  skuItems,
+  onAddStart,
+  onAddFinish,
+  orderFormContext,
+  children,
+  large,
+}) => {
+  const [isAddingToCart, setAddingToCart] = useState(false)
+  const { showToast } = useContext(ToastContext)
+  const { showInstallPrompt } = usePWA()
+  const translateMessage = useCallback(id => intl.formatMessage({ id: id }), [
+    intl,
+  ])
 
-  state = {
-    isLoading: false,
-    isAddingToCart: false,
-    timeOut: null,
-  }
-
-  translateMessage = id => this.props.intl.formatMessage({ id: id })
-
-  toastMessage = success => {
-    const message = success
-      ? this.translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
-      : this.translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
-    this.props.showToast({ message })
-  }
-
-  skuItemToMinicartItem = ({
+  const skuItemToMinicartItem = ({
     skuId: id,
     variant: skuName,
     price: sellingPrice,
@@ -60,7 +59,7 @@ export class BuyButton extends Component {
           'name',
           'options',
           'listPrice',
-          'brand'
+          'brand',
         ],
         restSkuItem
       ),
@@ -68,29 +67,23 @@ export class BuyButton extends Component {
     }
   }
 
-  handleAddToCart = async event => {
+  const toastMessage = success => {
+    const message = success
+      ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
+      : translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
+    showToast({ message })
+  }
+
+  const handleAddToCart = async event => {
     event.stopPropagation()
     event.preventDefault()
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.controller.postMessage('installPrompt')
-    }
-
-    const {
-      addToCart,
-      skuItems,
-      isOneClickBuy,
-      onAddStart,
-      onAddFinish,
-      orderFormContext,
-    } = this.props
-    this.setState({ isAddingToCart: true })
+    setAddingToCart(true)
     onAddStart && onAddStart()
 
-    let showToastMessage = null
-
+    let showToastMessage
     try {
-      const minicartItems = skuItems.map(this.skuItemToMinicartItem)
+      const minicartItems = skuItems.map(skuItemToMinicartItem)
       const {
         data: { addToCart: linkStateItems },
       } = await addToCart(minicartItems)
@@ -124,49 +117,41 @@ export class BuyButton extends Component {
             skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
           ))
 
-      if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
-      showToastMessage = () => this.toastMessage(success && success.length >= 1)
+      showInstallPrompt()
+      showToastMessage = () => toastMessage(success && success.length >= 1)
     } catch (err) {
       console.error(err)
-      showToastMessage = () => this.toastMessage(false)
+      showToastMessage = () => toastMessage(false)
     }
 
-    setTimeout(
-      () =>
-        this.setState({ isAddingToCart: false }, () => {
-          showToastMessage()
-          onAddFinish && onAddFinish()
-        }),
-      500
-    )
+    setTimeout(() => {
+      setAddingToCart(false)
+      showToastMessage()
+      if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
+      onAddFinish && onAddFinish()
+    }, 500)
   }
 
-  render() {
-    const { children, skuItems, available, large } = this.props
-    const loading = this.state.isLoading || !skuItems
-    const { isAddingToCart } = this.state
-
-    return (
-      <Fragment>
-        {loading ? (
-          <ContentLoader />
-        ) : (
-          <Button
-            block={large}
-            disabled={!available}
-            onClick={this.handleAddToCart}
-            isLoading={isAddingToCart}
-          >
-            {available ? (
-              children
-            ) : (
-              <FormattedMessage id="store/buyButton-label-unavailable" />
-            )}
-          </Button>
-        )}
-      </Fragment>
-    )
-  }
+  return (
+    <Fragment>
+      {!skuItems ? (
+        <ContentLoader />
+      ) : (
+        <Button
+          block={large}
+          disabled={!available}
+          onClick={handleAddToCart}
+          isLoading={isAddingToCart}
+        >
+          {available ? (
+            children
+          ) : (
+            <FormattedMessage id="store/buyButton-label-unavailable" />
+          )}
+        </Button>
+      )}
+    </Fragment>
+  )
 }
 
 BuyButton.propTypes = {
@@ -220,26 +205,24 @@ BuyButton.propTypes = {
   onAddFinish: PropTypes.func,
   /** Add to cart mutation */
   addToCart: PropTypes.func.isRequired,
+  /** The orderFormContext object */
+  orderFormContext: PropTypes.object,
 }
 
 export const ADD_TO_CART_MUTATION = gql`
   mutation addToCart($items: [MinicartItem]) {
     addToCart(items: $items) @client
   }
-  `
+`
 
-const withMutation = graphql(
-  ADD_TO_CART_MUTATION,
-  {
-    props: ({ mutate }) => ({
-      addToCart: items => mutate({ variables: { items } }),
-    }),
-  }
-)
+const withMutation = graphql(ADD_TO_CART_MUTATION, {
+  props: ({ mutate }) => ({
+    addToCart: items => mutate({ variables: { items } }),
+  }),
+})
 
 export default compose(
   withMutation,
-  withToast,
   injectIntl,
   orderFormConsumer
 )(BuyButton)
