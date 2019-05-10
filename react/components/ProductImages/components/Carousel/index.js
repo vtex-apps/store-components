@@ -171,6 +171,7 @@ class Carousel extends Component {
     const {
       slides,
       zoomProps: { zoomType },
+      runtime: { hints: { mobile } }
     } = this.props
 
     const iconSize = 24
@@ -233,7 +234,7 @@ class Carousel extends Component {
       ),
       on: {
         slideChange: this.onSlideChange,
-        click: zoomType === 'in-page' ? toogleZoom : undefined,
+        click: mobile && zoomType === 'in-page' ? toogleZoom : undefined,
       },
     }
   }
@@ -292,8 +293,13 @@ class Carousel extends Component {
       }
     )
 
-    const desktopZoom = desktop && {
-      onMouseMove: e => this.slideZoom.in(e),
+    const zoomListeners = desktop && {
+      onMouseMove: e => {
+        this.slideZoom.in(e)
+        // I know this is is weird... But it was the only way I've found to
+        // prevent the locking of the zoom after a click.
+        this.slideZoom.disable()
+      },
       onMouseLeave: () => this.slideZoom.out(),
     }
 
@@ -322,7 +328,7 @@ class Carousel extends Component {
                 <div
                   className={`absolute absolute--fill b--solid b--muted-2 bw1 ${
                     styles.carouselThumbBorder
-                  }`}
+                    }`}
                 />
               </div>
             ))}
@@ -331,7 +337,7 @@ class Carousel extends Component {
         <div className={imageClasses}>
           <Swiper {...this.galleryParams} ref={this.gallerySwiper}>
             {slides.map((slide, i) => (
-              <div key={i} className="swiper-slide center-all" {...desktopZoom}>
+              <div key={i} className="swiper-slide center-all" {...zoomListeners}>
                 {this.renderSlide(slide, i)}
               </div>
             ))}
