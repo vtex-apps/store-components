@@ -11,7 +11,7 @@
     "apollo-client": "^2.5.1",
     "classnames": "^2.2.5",
     "debounce": "^1.2.0",
-    "downshift": "^1.31.14",
+    "downshift": "^3.2.10",
     "graphql": "~0.13.2",
     "graphql-tag": "~2.8.0",
     "insane": "^2.6.2",
