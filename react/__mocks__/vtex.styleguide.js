@@ -1,6 +1,8 @@
 /* eslint react/prop-types:0 */
 import React, { forwardRef } from 'react'
 
+export const ToastContext = React.createContext({ showToast: jest.fn() })
+
 export function withToast(Comp) {
   return function WrappedWithToast(props) {
     return <Comp {...props} showToast={jest.fn()} />
