@@ -3,7 +3,11 @@
     "alwaysStrict": true,
     "esModuleInterop": true,
     "jsx": "react",
-    "lib": ["es2017", "dom", "es2018.promise"],
+    "lib": [
+      "es2017",
+      "dom",
+      "es2018.promise"
+    ],
     "allowJS": true,
     "module": "es6",
     "moduleResolution": "node",
@@ -19,11 +23,22 @@
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
     "target": "es2017",
-    "typeRoots": ["node_modules/@types"],
-    "types": ["node", "jest", "graphql"]
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "types": [
+      "node",
+      "jest",
+      "graphql"
+    ]
   },
-  "exclude": ["node_modules"],
-  "include": ["./typings/*.d.ts", "./**/*.tsx"],
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "./typings/*.d.ts",
+    "./**/*.tsx"
+  ],
   "typeAcquisition": {
     "enable": false
   }
