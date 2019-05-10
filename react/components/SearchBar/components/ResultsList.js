@@ -157,7 +157,7 @@ ResultsList.propTypes = {
   closeMenu: PropTypes.func,
   /** Clears the input */
   onClearInput: PropTypes.func,
-  selectItem: PropTypes.func,
+  /** Downshift function */
   getItemProps: PropTypes.func,
 }
 
