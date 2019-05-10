@@ -33,18 +33,10 @@
   "devDependencies": {
     "@vtex/test-tools": "^0.1.2",
     "apollo-cache-inmemory": "^1.4.3",
-    "eslint": "^5.15.1",
-    "eslint-config-vtex": "^10.1.0",
+    "eslint": "^5.16.0",
     "eslint-config-vtex-react": "^4.0.0",
     "prettier": "^1.16.4",
-    "typescript": "^3.4.1",
-    "vtex.store-icons": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store-icons@0.10.0/public/_types/react",
-    "vtex.shipping-estimate-translator": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.shipping-estimate-translator@2.1.2/public/_types/react",
-    "vtex.store-graphql": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store-graphql@2.71.2/public/_types/react",
-    "vtex.styleguide": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.styleguide@9.38.0/public/_types/react",
-    "vtex.store-resources": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.store-resources@0.11.0/public/_types/react",
-    "vtex.render-runtime": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.render-runtime@8.25.0/public/_types/react",
-    "vtex.modal": "http://vtex.vteximg.com.br/_v/public/typings/v1/vtex.modal@0.1.4/public/_types/react"
+    "typescript": "^3.4.1"
   },
   "vtexTestTools": {
     "defaultLocale": "en"
