@@ -170,7 +170,7 @@ class Carousel extends Component {
     const { thumbSwiper } = this.state
     const {
       slides,
-      zoomProps: { zoomType },
+      zoomProps: { zoomType, desktopTrigger },
       runtime: { hints: { mobile } }
     } = this.props
 
@@ -234,7 +234,7 @@ class Carousel extends Component {
       ),
       on: {
         slideChange: this.onSlideChange,
-        click: mobile && zoomType === 'in-page' ? toogleZoom : undefined,
+        click: zoomType === 'in-page' && (mobile || desktopTrigger === 'on-hover') ? toogleZoom : undefined,
       },
     }
   }
@@ -245,7 +245,7 @@ class Carousel extends Component {
     const {
       slides,
       position,
-      zoomProps: { zoomType, bgOpacity },
+      zoomProps: { zoomType, bgOpacity, desktopTrigger },
       runtime: {
         hints: { desktop },
       },
@@ -293,7 +293,7 @@ class Carousel extends Component {
       }
     )
 
-    const zoomListeners = desktop && {
+    const zoomListeners = desktop && desktopTrigger === 'on-hover' && {
       onMouseMove: e => {
         this.slideZoom.in(e)
         // I know this is is weird... But it was the only way I've found to

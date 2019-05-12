@@ -83,7 +83,8 @@ ProductImages.defaultProps = {
   zoomProps: { zoomType: 'in-page' },
 }
 
-ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
+ProductImages.getSchema = ({ zoomProps: { zoomType } = {}, ...props }) => {
+  console.log(props)
   return {
     title: 'admin/editor.product-images.title',
     description: 'admin/editor.product-images.description',
@@ -118,6 +119,18 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
               maximum: 1.0,
               multipleOf: 0.01,
               default: 0.8,
+            },
+          }),
+          ...(zoomType === 'in-page' && {
+            desktopTrigger: {
+              title: 'admin/editor.product-images.zoom.desktopTrigger.title',
+              type: 'enum',
+              default: 'true',
+              enumNames: [
+                'admin/editor.product-images.zoom.desktopTrigger.hover',
+                'admin/editor.product-images.zoom.desktopTrigger.click'
+              ],
+              enum: ['on-hover', 'on-click']
             },
           }),
         },

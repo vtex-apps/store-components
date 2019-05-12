@@ -141,5 +141,8 @@
   "admin/editor.logo.mobileWidth.title": "Title of mobileWidth property of Logo",
   "admin/editor.logo.mobileWidth.description": "Description of mobileWidth property of Logo",
   "admin/editor.logo.mobileHeight.title": "Title of mobileHeight property of Logo",
-  "admin/editor.logo.mobileHeight.description": "Description of mobileHeight property of Logo"
+  "admin/editor.logo.mobileHeight.description": "Description of mobileHeight property of Logo",
+  "admin/editor.product-images.zoom.desktopTrigger.title": "Used in 'in-page' zoom option to choose the desktop trigger",
+  "admin/editor.product-images.zoom.desktopTrigger.hover": "Hover option to desktop trigger",
+  "admin/editor.product-images.zoom.desktopTrigger.click": "Click option to desktop trigger"
 }
