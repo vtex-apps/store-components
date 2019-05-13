@@ -83,8 +83,8 @@ ProductImages.defaultProps = {
   zoomProps: { zoomType: 'in-page' },
 }
 
-ProductImages.getSchema = ({ zoomProps: { zoomType } = {}, ...props }) => {
-  console.log(props)
+ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
+
   return {
     title: 'admin/editor.product-images.title',
     description: 'admin/editor.product-images.description',
