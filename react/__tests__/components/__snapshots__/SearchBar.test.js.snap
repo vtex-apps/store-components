@@ -9,7 +9,11 @@ exports[`<SearchBar /> should match snapshot 1`] = `
       class="NoSSR-mock"
     >
       <div
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-labelledby="downshift-1-label"
         class="relative-m w-100"
+        role="combobox"
       >
         <div
           class="flex"
@@ -20,11 +24,10 @@ exports[`<SearchBar /> should match snapshot 1`] = `
             <label>
               <input
                 aria-autocomplete="list"
-                aria-expanded="false"
+                aria-labelledby="downshift-1-label"
                 autocomplete="off"
                 id="downshift-1-input"
                 placeholder="Search"
-                role="combobox"
                 suffix="[object Object]"
                 value=""
               />
