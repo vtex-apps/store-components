@@ -55,6 +55,7 @@ export default class SearchBar extends Component {
           <DownshiftComponent>
             {({
               getInputProps,
+              getItemProps,
               selectedItem,
               highlightedIndex,
               isOpen,
@@ -93,6 +94,7 @@ export default class SearchBar extends Component {
                       <ResultsLists
                         {...{
                           inputValue,
+                          getItemProps,
                           selectedItem,
                           highlightedIndex,
                           emptyPlaceholder,
