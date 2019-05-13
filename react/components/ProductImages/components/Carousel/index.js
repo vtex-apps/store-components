@@ -234,7 +234,7 @@ class Carousel extends Component {
       ),
       on: {
         slideChange: this.onSlideChange,
-        click: zoomType === 'in-page' && (mobile || desktopTrigger === 'on-hover') ? toogleZoom : undefined,
+        click: zoomType === 'in-page' && (mobile || desktopTrigger === 'on-click') ? toogleZoom : undefined,
       },
     }
   }

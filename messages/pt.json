@@ -141,5 +141,8 @@
   "admin/editor.logo.mobileWidth.title": "Mobile Width",
   "admin/editor.logo.mobileWidth.description": "Largura a ser usada no celular. Se vazia, usará o valor de largura fornecido.",
   "admin/editor.logo.mobileHeight.title": "Altura do celular",
-  "admin/editor.logo.mobileHeight.description": "Altura a ser usada no celular. Se vazia, usará o valor de altura fornecido."
+  "admin/editor.logo.mobileHeight.description": "Altura a ser usada no celular. Se vazia, usará o valor de altura fornecido.",
+  "admin/editor.product-images.zoom.desktopTrigger.title": "Gatilho no Desktop",
+  "admin/editor.product-images.zoom.desktopTrigger.hover": "Ao Passar do Mouse",
+  "admin/editor.product-images.zoom.desktopTrigger.click": "Ao Clicar"
 }

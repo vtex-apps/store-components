@@ -124,13 +124,13 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {}, ...props }) => {
           ...(zoomType === 'in-page' && {
             desktopTrigger: {
               title: 'admin/editor.product-images.zoom.desktopTrigger.title',
-              type: 'enum',
-              default: 'true',
+              type: 'string',
+              default: 'on-hover',
+              enum: ['on-hover', 'on-click'],
               enumNames: [
                 'admin/editor.product-images.zoom.desktopTrigger.hover',
                 'admin/editor.product-images.zoom.desktopTrigger.click'
               ],
-              enum: ['on-hover', 'on-click']
             },
           }),
         },

@@ -141,5 +141,8 @@
   "admin/editor.logo.mobileWidth.title": "Mobile Width",
   "admin/editor.logo.mobileWidth.description": "Ancho que se utilizará en el dispositivo móvil. Si está vacío, utilizará el valor de ancho proporcionado",
   "admin/editor.logo.mobileHeight.title": "Altura móvil",
-  "admin/editor.logo.mobileHeight.description": "Altura que se utilizará en el dispositivo móvil. Si está vacío, utilizará el valor de altura proporcionado"
+  "admin/editor.logo.mobileHeight.description": "Altura que se utilizará en el dispositivo móvil. Si está vacío, utilizará el valor de altura proporcionado",
+  "admin/editor.product-images.zoom.desktopTrigger.title": "Gatillo en Desktop",
+  "admin/editor.product-images.zoom.desktopTrigger.hover": "Al pasar del ratón (web)",
+  "admin/editor.product-images.zoom.desktopTrigger.click": "Ao Clicar"
 }

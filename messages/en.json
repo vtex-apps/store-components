@@ -141,5 +141,8 @@
   "admin/editor.logo.mobileWidth.title": "Mobile Width",
   "admin/editor.logo.mobileWidth.description": "Width to be used on mobile. If empty, will use the provided width value.",
   "admin/editor.logo.mobileHeight.title": "Mobile Height",
-  "admin/editor.logo.mobileHeight.description": "Height to be used on mobile. If empty, will use the provided height value."
+  "admin/editor.logo.mobileHeight.description": "Height to be used on mobile. If empty, will use the provided height value.",
+  "admin/editor.product-images.zoom.desktopTrigger.title": "Desktop Trigger",
+  "admin/editor.product-images.zoom.desktopTrigger.hover": "On Mouse Over",
+  "admin/editor.product-images.zoom.desktopTrigger.click": "On click"
 }
