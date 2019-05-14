@@ -105,8 +105,11 @@ class Carousel extends Component {
       this.gallerySwiper.current
     )
     this.setState({ activeIndex, sliderChanged: true })
-    const currentSwiper = path(['swiper'], this.gallerySwiper.current)
-    currentSwiper.detachEvents()
+    
+    if (zoomType === 'in-page' && desktopTrigger === 'on-hover') {
+      const currentSwiper = path(['swiper'], this.gallerySwiper.current)
+      currentSwiper.detachEvents()
+    }
   }
 
   setVideoThumb = i => (url, title) => {
