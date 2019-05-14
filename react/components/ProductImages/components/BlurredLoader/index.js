@@ -142,6 +142,7 @@ class BlurredLoader extends React.Component {
           'swiper-zoom-container': isZoomEnabled,
         })}
         onClick={onClick}
+        style={{ transitionTimingFunction: 'ease-out' }}
       >
         <ImageResizer
           className={`w-100 ${loaded ? 'db' : 'dn'}`}

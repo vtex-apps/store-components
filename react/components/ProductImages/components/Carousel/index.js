@@ -105,6 +105,8 @@ class Carousel extends Component {
       this.gallerySwiper.current
     )
     this.setState({ activeIndex, sliderChanged: true })
+    const currentSwiper = path(['swiper'], this.gallerySwiper.current)
+    currentSwiper.detachEvents()
   }
 
   setVideoThumb = i => (url, title) => {
@@ -182,12 +184,11 @@ class Carousel extends Component {
 
     const toogleZoom = event => {
       const { sliderChanged } = this.state
-      const gallerySwiperZoom = this.slideZoom
 
       if (sliderChanged) {
         this.setState({ sliderChanged: false })
       } else {
-        gallerySwiperZoom.toggle(event)
+        this.slideZoom.toggle(event)
       }
     }
 
@@ -303,11 +304,12 @@ class Carousel extends Component {
       desktopTrigger === 'on-hover' && {
         onMouseMove: e => {
           this.slideZoom.in(e)
-          // I know this is is weird... But it was the only way I've found to
-          // prevent the locking of the zoom after a click.
+          // FIXME Won't be necessary to do this once we use a custom zoom and refactor this component.
           this.slideZoom.disable()
         },
-        onMouseLeave: () => this.slideZoom.out(),
+        onMouseLeave: () => {
+          this.slideZoom.out()
+        },
       }
 
     return (
