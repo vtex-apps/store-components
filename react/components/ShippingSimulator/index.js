@@ -4,22 +4,39 @@ import { compose, withApollo } from 'react-apollo'
 import ContentLoader from 'react-content-loader'
 import PropTypes from 'prop-types'
 import { Button, Input } from 'vtex.styleguide'
-import StyleguideInput from 'vtex.address-form/inputs/StyleguideInput'
-import { AddressRules, AddressContainer, PostalCodeGetter, helpers, AddressSummary } from 'vtex.address-form'
+import { StyleguideInput } from 'vtex.address-form/inputs'
+import { AddressRules, AddressContainer, PostalCodeGetter, helpers, AddressSubmitter } from 'vtex.address-form'
 
 import ShippingTable from './components/ShippingTable'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
 
 import styles from './styles.css'
 
-const { addValidation } = helpers
-
+const { addValidation, removeValidation } = helpers
 
 const ShippingSimulator = ({ intl, client, seller, country, styles }) => {
-  const [address, setAddress] = useState({ addressId: '1', country: country, postalCode: null })
+  const [address, setAddress] = useState(addValidation(
+    {
+      addressId: '1',
+      country: country,
+      postalCode: null,
+      number: '20',
+      addressQuery: null
+    }))
+
+  const [isValid, setIsValid] = useState(false)
 
   const handleAddressChange = newAddress => {
-    setAddress(newAddress)
+    setAddress({
+      ...address,
+      ...newAddress,
+    })
+    console.log(address)
+  }
+
+  const handleSubmit = (valid, address) => {
+    console.log(valid)
+    console.log(address)
   }
 
   return (
@@ -27,11 +44,21 @@ const ShippingSimulator = ({ intl, client, seller, country, styles }) => {
       <AddressRules
         country={country}
         shouldUseIOFetching>
-        <AddressContainer Input={StyleguideInput} address={addValidation(address)} onChangeAddress={handleAddressChange}>
-           <PostalCodeGetter/>
+        <AddressContainer
+          Input={StyleguideInput}
+          address={address}
+          onChangeAddress={handleAddressChange}
+          autoCompletePostalCode>
+          <PostalCodeGetter />
+          <AddressSubmitter onSubmit={handleSubmit}>
+            {handleSubmit => (
+              <Button size="small" type="submit" block onClick={handleSubmit}>
+                Ok
+              </Button>
+            )}
+          </AddressSubmitter>
         </AddressContainer>
       </AddressRules>
-
     </Fragment>
   )
 }
