@@ -1,29 +1,22 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import { compose, withApollo } from 'react-apollo'
-import ContentLoader from 'react-content-loader'
 import PropTypes from 'prop-types'
-import { Button, Input } from 'vtex.styleguide'
+import { Button } from 'vtex.styleguide'
 import { StyleguideInput } from 'vtex.address-form/inputs'
-import { AddressRules, AddressContainer, PostalCodeGetter, helpers, AddressSubmitter } from 'vtex.address-form'
+import { AddressRules, AddressContainer, PostalCodeGetter } from 'vtex.address-form'
+import { addValidation, removeValidation } from 'vtex.address-form/helpers'
 
 import ShippingTable from './components/ShippingTable'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
+import ShippingSimulatorLoader from './Loader'
+import shippingSimulator from './shippingSimulator.css'
+import { getNewAddress } from './utils'
 
-import styles from './styles.css'
-
-const { addValidation, removeValidation } = helpers
-
-const ShippingSimulator = ({ intl, client, seller, country, styles }) => {
-  const [address, setAddress] = useState(addValidation(
-    {
-      addressId: '1',
-      country: country,
-      postalCode: null,
-      number: '20',
-      addressQuery: null
-    }))
-
+const ShippingSimulator = ({ intl, client, skuId, seller, country, styles }) => {
+  const [address, setAddress] = useState(addValidation(getNewAddress(country)))
+  const [shipping, setShipping] = useState({})
+  const [loading, setLoading] = useState(false)
   const [isValid, setIsValid] = useState(false)
 
   const handleAddressChange = newAddress => {
@@ -31,34 +24,70 @@ const ShippingSimulator = ({ intl, client, seller, country, styles }) => {
       ...address,
       ...newAddress,
     })
-    console.log(address)
+    const { postalCode } = address
+    setIsValid(postalCode.valid)
   }
 
-  const handleSubmit = (valid, address) => {
-    console.log(valid)
-    console.log(address)
+  const handleClick = e => {
+    e.preventDefault()
+    setLoading(true)
+    const { postalCode } = removeValidation(address)
+    client.query({
+      query: getShippingEstimates,
+      variables: {
+        country,
+        postalCode: postalCode,
+        items: [
+          {
+            quantity: '1',
+            id: skuId,
+            seller,
+          },
+        ],
+      },
+      })
+      .then(result => {
+        setShipping(result.data.shipping)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }
+
+  if (!seller || !skuId) {
+    return <ShippingSimulatorLoader {...styles} />
   }
 
   return (
     <Fragment>
-      <AddressRules
-        country={country}
-        shouldUseIOFetching>
-        <AddressContainer
-          Input={StyleguideInput}
-          address={address}
-          onChangeAddress={handleAddressChange}
-          autoCompletePostalCode>
-          <PostalCodeGetter />
-          <AddressSubmitter onSubmit={handleSubmit}>
-            {handleSubmit => (
-              <Button size="small" type="submit" block onClick={handleSubmit}>
-                Ok
-              </Button>
-            )}
-          </AddressSubmitter>
-        </AddressContainer>
-      </AddressRules>
+      <div className={`${shippingSimulator.shippingContainer} t-small c-on-base`}>
+        <AddressRules
+          country={country}
+          shouldUseIOFetching>
+          <AddressContainer
+            Input={StyleguideInput}
+            address={address}
+            onChangeAddress={handleAddressChange}
+            autoCompletePostalCode>
+            <PostalCodeGetter />
+          </AddressContainer>
+        </AddressRules>
+        <Button
+          onClick={handleClick}
+          className={`${shippingSimulator.shippingCTA}`}
+          disabled={!isValid}
+          size="small"
+          type="submit"
+          block
+          isLoading={loading}
+        >
+          {intl.formatMessage({id: 'store/shipping.label'})}
+        </Button>
+      </div>
+      <ShippingTable shipping={shipping} />
     </Fragment>
   )
 }
