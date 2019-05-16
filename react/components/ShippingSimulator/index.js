@@ -3,13 +3,13 @@ import { injectIntl, intlShape } from 'react-intl'
 import { compose, withApollo } from 'react-apollo'
 import PropTypes from 'prop-types'
 import { Button } from 'vtex.styleguide'
-import { StyleguideInput } from 'vtex.address-form/inputs/'
+import { StyleguideInput } from 'vtex.address-form/inputs/StyleguideInput/index.js'
 import {
   AddressRules,
   AddressContainer,
-  PostalCodeGetter,
+  PostalCodeGetter
 } from 'vtex.address-form'
-import { addValidation, removeValidation } from 'vtex.address-form/helpers/'
+import { addValidation, removeValidation } from 'vtex.address-form/helpers/index.js'
 
 import ShippingTable from './components/ShippingTable'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
