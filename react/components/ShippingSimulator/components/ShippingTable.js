@@ -45,7 +45,11 @@ export default class ShippingTable extends Component {
       return (
         <FormattedMessage id="store/shipping.empty-sla">
           {text => (
-            <span className={`${shippingSimulator.shippingNoMessage} dib t-small mt4`}>
+            <span
+              className={`${
+                shippingSimulator.shippingNoMessage
+              } dib t-small mt4`}
+            >
               {text}
             </span>
           )}
