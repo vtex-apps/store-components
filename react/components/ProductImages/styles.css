@@ -17,6 +17,7 @@
 }
 
 .carouselGaleryCursor {
+  cursor: pointer;
 }
 
 .carouselGaleryThumbs :global(.swiper-slide) {

@@ -54,7 +54,7 @@ const ProductImages = props => {
 
   return (
     <div className={`${styles.content} w-100`}>
-      <Carousel slides={slides} position={position} zoomProps={zoomProps} />
+      <Carousel slides={slides} position={position} zoomProps={{zoomType: 'in-page', desktopTrigger: 'on-click'}} />
     </div>
   )
 }
