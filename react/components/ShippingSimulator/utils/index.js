@@ -1,8 +1,6 @@
 let addressId = 1
 
-const getRandomAddressId = () => {
-  return (addressId++ * new Date().getTime() * -1).toString().replace('-', '')
-}
+const getRandomAddressId = () => (addressId++ * new Date().getTime() * -1).toString().replace('-', '')
 
 export const getNewAddress = country => {
   const addressId = getRandomAddressId()

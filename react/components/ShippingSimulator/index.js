@@ -48,7 +48,7 @@ const ShippingSimulator = ({
         query: getShippingEstimates,
         variables: {
           country,
-          postalCode: postalCode,
+          postalCode,
           items: [
             {
               quantity: '1',
