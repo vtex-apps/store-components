@@ -10,20 +10,20 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   const etaClassName = classNames(
     `${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`,
     {
-      tc: typeof shippingEstimate === "undefined",
+      tc: typeof shippingEstimate === 'undefined',
     }
   )
 
   const valueClassName = classNames(
     `${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`,
     {
-      tc: typeof price === "undefined",
+      tc: typeof price === 'undefined',
     }
   )
 
   let valueText
 
-  if (typeof price === "undefined") {
+  if (typeof price === 'undefined') {
     valueText = '-'
   } else if (price === 0) {
     valueText = intl.formatMessage({ id: 'store/shipping.free' })

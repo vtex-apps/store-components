@@ -6,7 +6,7 @@ import { Button } from 'vtex.styleguide'
 import {
   AddressRules,
   AddressContainer,
-  PostalCodeGetter
+  PostalCodeGetter,
 } from 'vtex.address-form'
 import { StyleguideInput } from 'vtex.address-form/inputs'
 import { addValidation, removeValidation } from 'vtex.address-form/helpers'
@@ -25,7 +25,9 @@ const ShippingSimulator = ({
   country,
   loaderStyles,
 }) => {
-  const [address, setAddress] = useState(() => addValidation(getNewAddress(country)))
+  const [address, setAddress] = useState(() =>
+    addValidation(getNewAddress(country))
+  )
   const [shipping, setShipping] = useState(null)
   const [loading, setLoading] = useState(false)
   const [isValid, setIsValid] = useState(false)
@@ -75,9 +77,7 @@ const ShippingSimulator = ({
 
   return (
     <Fragment>
-      <div
-        className={`${styles.shippingContainer} t-small c-on-base`}
-      >
+      <div className={`${styles.shippingContainer} t-small c-on-base`}>
         <AddressRules country={country} shouldUseIOFetching>
           <AddressContainer
             Input={StyleguideInput}
