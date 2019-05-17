@@ -1,12 +1,12 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
 
-import shippingSimulator from './shippingSimulator.css'
+import styles from './styles.css'
 
 const ShippingSimulatorLoader = (loaderProps = {}) => (
-  <div className={`${shippingSimulator.shippingContainer}`}>
+  <div className={`${styles.shippingContainer}`}>
     <ContentLoader
-      className={`${shippingSimulator.shippingContainerLoader}`}
+      className={`${styles.shippingContainerLoader}`}
       style={{
         width: '100%',
         height: '100%',
@@ -19,13 +19,13 @@ const ShippingSimulatorLoader = (loaderProps = {}) => (
       <rect
         height="100%"
         width="7em"
-        {...loaderProps[`${shippingSimulator.shippingZipcodeLabelLoader}`]}
+        {...loaderProps[`${styles.shippingZipcodeLabelLoader}`]}
       />
       <rect
         height="100%"
         width="15em"
         x="8em"
-        {...loaderProps[`${shippingSimulator.shippingInputLoader}`]}
+        {...loaderProps[`${styles.shippingInputLoader}`]}
       />
     </ContentLoader>
   </div>

@@ -4,18 +4,18 @@ import { intlShape, injectIntl } from 'react-intl'
 import TranslateEstimate from 'vtex.shipping-estimate-translator/TranslateEstimate'
 import classNames from 'classnames'
 
-import shippingSimulator from '../shippingSimulator.css'
+import styles from '../styles.css'
 
 const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   const etaClassName = classNames(
-    `${shippingSimulator.shippingTableCell} pv1 ph3 t-small c-muted-2`,
+    `${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`,
     {
       tc: shippingEstimate === undefined,
     }
   )
 
   const valueClassName = classNames(
-    `${shippingSimulator.shippingTableCell} pv1 ph3 t-small c-muted-2`,
+    `${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`,
     {
       tc: price === undefined,
     }
@@ -36,10 +36,10 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
 
   return (
     <tr key={name}>
-      <td className={`${shippingSimulator.shippingTableCell} pv1 ph3 t-small`}>
-        <label className={`${shippingSimulator.shippingTableLabel}`}>
+      <td className={`${styles.shippingTableCell} pv1 ph3 t-small`}>
+        <label className={`${styles.shippingTableLabel}`}>
           <input
-            className={`${shippingSimulator.shippingTableRadioBtn} mr4`}
+            className={`${styles.shippingTableRadioBtn} mr4`}
             name="shipping-option"
             type="radio"
             value={name}

@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl'
 
 import ShippingTableRow from './ShippingTableRow'
 
-import shippingSimulator from '../shippingSimulator.css'
+import styles from '../styles.css'
 export default class ShippingTable extends Component {
   static propTypes = {
     /** Shipping informations */
@@ -47,7 +47,7 @@ export default class ShippingTable extends Component {
           {text => (
             <span
               className={`${
-                shippingSimulator.shippingNoMessage
+                styles.shippingNoMessage
               } dib t-small mt4`}
             >
               {text}
@@ -60,7 +60,7 @@ export default class ShippingTable extends Component {
     return (
       <table
         className={`${
-          shippingSimulator.shippingTable
+          styles.shippingTable
         } bt bb b--muted-4 c-muted-1 ph0 pv3 mt4 w-100`}
       >
         <tbody>

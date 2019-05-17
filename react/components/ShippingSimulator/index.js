@@ -14,7 +14,7 @@ import { addValidation, removeValidation } from 'vtex.address-form/helpers'
 import ShippingTable from './components/ShippingTable'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
 import ShippingSimulatorLoader from './Loader'
-import shippingSimulator from './shippingSimulator.css'
+import styles from './styles.css'
 import { getNewAddress } from './utils'
 
 const ShippingSimulator = ({
@@ -23,10 +23,10 @@ const ShippingSimulator = ({
   skuId,
   seller,
   country,
-  styles,
+  loaderStyles,
 }) => {
-  const [address, setAddress] = useState(addValidation(getNewAddress(country)))
-  const [shipping, setShipping] = useState({})
+  const [address, setAddress] = useState(() => addValidation(getNewAddress(country)))
+  const [shipping, setShipping] = useState(null)
   const [loading, setLoading] = useState(false)
   const [isValid, setIsValid] = useState(false)
 
@@ -70,13 +70,13 @@ const ShippingSimulator = ({
   }
 
   if (!seller || !skuId) {
-    return <ShippingSimulatorLoader {...styles} />
+    return <ShippingSimulatorLoader {...loaderStyles} />
   }
 
   return (
     <Fragment>
       <div
-        className={`${shippingSimulator.shippingContainer} t-small c-on-base`}
+        className={`${styles.shippingContainer} t-small c-on-base`}
       >
         <AddressRules country={country} shouldUseIOFetching>
           <AddressContainer
@@ -90,7 +90,7 @@ const ShippingSimulator = ({
         </AddressRules>
         <Button
           onClick={handleClick}
-          className={`${shippingSimulator.shippingCTA}`}
+          className={`${styles.shippingCTA}`}
           disabled={!isValid}
           size="small"
           type="submit"
