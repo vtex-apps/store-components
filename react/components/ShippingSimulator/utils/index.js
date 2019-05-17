@@ -7,7 +7,7 @@ const getRandomAddressId = () => {
 export const getNewAddress = country => {
   const addressId = getRandomAddressId()
   return {
-    addressId: addressId,
+    addressId,
     addressType: 'residential',
     city: null,
     complement: null,
