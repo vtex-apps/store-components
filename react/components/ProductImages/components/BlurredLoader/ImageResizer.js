@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect, useRef } from 'react'
+import useZoom from './Zoom'
+import { string, number } from 'prop-types'
 
-const ImageResizer = ({ alt, className, src, minRatio }) => {
-  const canvas = React.useRef()
+const ImageResizer = ({ alt, className, src, minRatio, maxScale = 2 }) => {
+  const canvas = useRef(null)
 
   useEffect(() => {
     if (!src) return
@@ -30,16 +31,31 @@ const ImageResizer = ({ alt, className, src, minRatio }) => {
       canvasContext.drawImage(image, (width - image.width) / 2, 0)
     }
     image.src = src
-  })
+  }, [minRatio, src])
 
-  return <canvas ref={canvas} alt={alt} className={className} />
+  const { zoom, out, pan, isActive, style } = useZoom(canvas, maxScale)
+
+  const zoomListeners = {
+    onClick: e => (!isActive ? zoom(e) : out()),
+  }
+
+  return (
+    <canvas
+      ref={canvas}
+      alt={alt}
+      className={className}
+      style={{ ...style }}
+      {...zoomListeners}
+    />
+  )
 }
 
 ImageResizer.propTypes = {
-  src: PropTypes.string,
-  alt: PropTypes.string,
-  className: PropTypes.string,
-  minRatio: PropTypes.number,
+  src: string,
+  alt: string,
+  className: string,
+  minRatio: number,
+  maxScale: number,
 }
 
 export default ImageResizer

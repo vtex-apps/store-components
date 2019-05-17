@@ -1,12 +1,12 @@
 import React from 'react'
-import BlurredLoader from  '../BlurredLoader'
+import BlurredLoader from '../BlurredLoader'
+import Video from '../Video'
 
-const Slide = ({ slide, onLoad, onClick, isZoomEnabled }) => {
+const Slide = ({ slide, onLoad, onClick }) => {
   switch (slide.type) {
     case 'image':
       return (
         <BlurredLoader
-          isZoomEnabled={isZoomEnabled}
           loaderType="SPINNER"
           loaderUrl={slide.thumbUrl}
           realUrls={slide.urls}
@@ -16,15 +16,8 @@ const Slide = ({ slide, onLoad, onClick, isZoomEnabled }) => {
           onClick={onClick}
         />
       )
-    case 'video':
-      return (
-        <Video
-          url={slide.src}
-          setThumb={this.setVideoThumb(i)}
-          playing={i === this.state.activeIndex}
-          id={i}
-        />
-      )
+    // case 'video':
+    // FIXME @rerisson
     default:
       return null
   }

@@ -54,7 +54,11 @@ const ProductImages = props => {
 
   return (
     <div className={`${styles.content} w-100`}>
-      <Carousel slides={slides} position={position} zoomProps={{zoomType: 'in-page', desktopTrigger: 'on-click'}} />
+      <Carousel
+        slides={slides}
+        position={position}
+        zoomProps={{ zoomType: 'in-page', desktopTrigger: 'on-click' }}
+      />
     </div>
   )
 }
@@ -84,7 +88,6 @@ ProductImages.defaultProps = {
 }
 
 ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
-
   return {
     title: 'admin/editor.product-images.title',
     description: 'admin/editor.product-images.description',
@@ -129,7 +132,7 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
               enum: ['on-hover', 'on-click'],
               enumNames: [
                 'admin/editor.product-images.zoom.desktopTrigger.hover',
-                'admin/editor.product-images.zoom.desktopTrigger.click'
+                'admin/editor.product-images.zoom.desktopTrigger.click',
               ],
             },
           }),

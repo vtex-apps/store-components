@@ -79,7 +79,7 @@ class Carousel extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { loaded, activeIndex } = this.state
+    const { activeIndex } = this.state
     const isVideo = this.isVideo
     const gallerySwiper = path(['swiper'], this.gallerySwiper.current)
 
@@ -91,14 +91,6 @@ class Carousel extends Component {
 
     const paginationElement = path(['pagination', 'el'], gallerySwiper)
     if (paginationElement) paginationElement.hidden = isVideo[activeIndex]
-
-    const gallerySwiperZoom = path(['zoom'], gallerySwiper)
-
-    if (gallerySwiperZoom) {
-      loaded[activeIndex]
-        ? gallerySwiperZoom.enable()
-        : gallerySwiperZoom.disable()
-    }
   }
 
   onSlideChange = () => {
@@ -176,10 +168,7 @@ class Carousel extends Component {
       thumbs: {
         swiper: thumbSwiper,
       },
-      zoom: zoomType === 'in-page' && {
-        maxRatio: 2,
-        toggle: false,
-      },
+      zoom: false,
 
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       renderNextButton: () => (
@@ -202,10 +191,6 @@ class Carousel extends Component {
       ),
       on: {
         slideChange: this.onSlideChange,
-        click:
-          zoomType === 'in-page' && (mobile || desktopTrigger === 'on-click')
-            ? toogleZoom
-            : undefined,
       },
     }
   }
@@ -270,7 +255,6 @@ class Carousel extends Component {
                 <Slide
                   slide={slide}
                   onLoad={() => this.onImageLoad(i)}
-                  isZoomEnabled={zoomType === 'in-page'}
                   onClick={
                     zoomType === 'gallery'
                       ? () => this.openGallery(i)
