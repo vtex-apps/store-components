@@ -23,9 +23,11 @@ const CONSTANTS = {
  */
 export const BuyButton = ({
   isOneClickBuy = false,
+  shouldOpenMinicart = false,
   available = true,
   intl,
   addToCart,
+  setMinicartOpen,
   skuItems,
   onAddStart,
   onAddFinish,
@@ -119,6 +121,7 @@ export const BuyButton = ({
 
       showInstallPrompt()
       showToastMessage = () => toastMessage(success && success.length >= 1)
+      shouldOpenMinicart && !isOneClickBuy && setMinicartOpen(true)
     } catch (err) {
       console.error(err)
       showToastMessage = () => toastMessage(false)
@@ -191,6 +194,8 @@ BuyButton.propTypes = {
   children: PropTypes.node.isRequired,
   /** Should redirect to checkout after adding to cart */
   isOneClickBuy: PropTypes.bool,
+  /** Should open the Minicart after click */
+  shouldOpenMinicart: PropTypes.bool,
   /** Set style to large */
   large: PropTypes.bool,
   /** Internationalization */
@@ -205,6 +210,8 @@ BuyButton.propTypes = {
   onAddFinish: PropTypes.func,
   /** Add to cart mutation */
   addToCart: PropTypes.func.isRequired,
+  /** Open Minicart mutation */
+  setMinicartOpen: PropTypes.func.isRequired,
   /** The orderFormContext object */
   orderFormContext: PropTypes.object,
 }
@@ -215,14 +222,28 @@ export const ADD_TO_CART_MUTATION = gql`
   }
 `
 
-const withMutation = graphql(ADD_TO_CART_MUTATION, {
-  props: ({ mutate }) => ({
-    addToCart: items => mutate({ variables: { items } }),
+export const OPEN_CART_MUTATION = gql`
+  mutation setMinicartOpen($isOpen: Boolean!) {
+    setMinicartOpen(isOpen: $isOpen) @client
+  }
+`
+const withAddToCart = graphql(ADD_TO_CART_MUTATION, {
+  name: 'addToCart',
+  props: ({ addToCart }) => ({
+    addToCart: items => addToCart({ variables: { items } }),
+  }),
+})
+
+const withOpenMinicart = graphql(OPEN_CART_MUTATION, {
+  name: 'setMinicartOpen',
+  props: ({ setMinicartOpen }) => ({
+    setMinicartOpen: isOpen => setMinicartOpen({ variables: { isOpen } }),
   }),
 })
 
 export default compose(
-  withMutation,
+  withAddToCart,
+  withOpenMinicart,
   injectIntl,
   orderFormConsumer
 )(BuyButton)

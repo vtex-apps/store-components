@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.37.0] - 2019-05-17
+### Added
+- 'Open Minicart' feature after click on `BuyButton`.
+
 ## [3.36.1] - 2019-05-13
 ### Fixed
 - Fixed bug where clicking on search result items would just close the search results list.
