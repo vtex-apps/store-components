@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Enable `ShippingSimulator` to accept and postal code format and validate using the country rules.
+- Enable `ShippingSimulator` to accept any postal code format and validate using the country rules.
 
 ## [3.37.0] - 2019-05-17
 ### Added
