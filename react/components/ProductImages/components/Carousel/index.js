@@ -129,21 +129,6 @@ class Carousel extends Component {
     this.setState({ selectedIndex: idx, isGalleryOpen: true })
   }
 
-  renderSlide = (slide, i) => {
-    const {
-      zoomProps: { zoomType },
-    } = this.props
-
-    return (
-      <Slide
-        slide={slide}
-        onLoad={() => this.onImageLoad(i)}
-        isZoomEnabled={zoomType === 'in-page'}
-        onClick={zoomType === 'gallery' ? () => this.openGallery(i) : undefined}
-      />
-    )
-  }
-
   get slideZoom() {
     return path(['swiper', 'zoom'], this.gallerySwiper.current)
   }
@@ -254,15 +239,6 @@ class Carousel extends Component {
       }
     )
 
-    const thumbClasses = classNames(
-      `w-20 ${styles.carouselGaleryThumbs} bottom-0 top-0 absolute dn`,
-      {
-        'db-ns': slides.length > 1,
-        'left-0 pr5': position === 'left',
-        'right-0 pl5': position === 'right',
-      }
-    )
-
     const zoomListeners = zoomType === 'in-page' &&
       desktop &&
       desktopTrigger === 'on-hover' && {
@@ -278,11 +254,11 @@ class Carousel extends Component {
 
     return (
       <div className="relative overflow-hidden" aria-hidden="true">
-          <Thumbnails
-            slides={slides}
-            onThumbClick={idx => this.gallerySwiper.current.swiper.slideTo(idx)}
-            ref={this.thumbSwiper}
-          />
+        <Thumbnails
+          slides={slides}
+          onThumbClick={idx => this.gallerySwiper.current.swiper.slideTo(idx)}
+          ref={this.thumbSwiper}
+        />
         <div className={imageClasses}>
           <Swiper {...this.galleryParams} ref={this.gallerySwiper}>
             {slides.map((slide, i) => (
@@ -331,6 +307,11 @@ Carousel.propTypes = {
       bestUrlIndex: PropTypes.number,
     })
   ),
+  zoomProps: PropTypes.shape({
+    zoomType: PropTypes.string.required,
+    desktopTrigger: PropTypes.string,
+    bgOpacity: PropTypes.number,
+  }),
 }
 
 export default withRuntimeContext(Carousel)
