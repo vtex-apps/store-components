@@ -14,7 +14,7 @@ import { addValidation, removeValidation } from 'vtex.address-form/helpers'
 import ShippingTable from './components/ShippingTable'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
 import ShippingSimulatorLoader from './Loader'
-import styles from './styles.css'
+import styles from './shippingSimulator.css'
 import { getNewAddress } from './utils'
 
 const ShippingSimulator = ({
@@ -90,7 +90,7 @@ const ShippingSimulator = ({
         </AddressRules>
         <Button
           onClick={handleClick}
-          className={`${styles.shippingCTA}`}
+          className={styles.shippingCTA}
           disabled={!isValid}
           size="small"
           type="submit"
