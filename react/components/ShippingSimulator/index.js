@@ -1,97 +1,56 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import { compose, withApollo } from 'react-apollo'
-import ContentLoader from 'react-content-loader'
 import PropTypes from 'prop-types'
-import { Button, Input } from 'vtex.styleguide'
+import { Button } from 'vtex.styleguide'
+import {
+  AddressRules,
+  AddressContainer,
+  PostalCodeGetter,
+} from 'vtex.address-form'
+import { StyleguideInput } from 'vtex.address-form/inputs'
+import { addValidation, removeValidation } from 'vtex.address-form/helpers'
 
 import ShippingTable from './components/ShippingTable'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
+import ShippingSimulatorLoader from './Loader'
+import styles from './shippingSimulator.css'
+import { getNewAddress } from './utils'
 
-import styles from './styles.css'
-/**
- * Shipping simulator component
- *
- * Display an input for the zipcode
- */
-class ShippingSimulator extends Component {
-  static propTypes = {
-    intl: intlShape.isRequired,
-    client: PropTypes.object,
-    skuId: PropTypes.string,
-    seller: PropTypes.string,
-    country: PropTypes.string.isRequired,
-    /** Component and content loader styles */
-    styles: PropTypes.object,
-  }
-
-  static Loader = (loaderProps = {}) => (
-    <div className={`${styles.shippingContainer}`}>
-      <ContentLoader
-        className={`${styles.shippingContainerLoader}`}
-        style={{
-          width: '100%',
-          height: '100%',
-        }}
-        width={500}
-        height={40}
-        preserveAspectRatio="xMinYMin meet"
-        {...loaderProps}
-      >
-        <rect
-          height="100%"
-          width="7em"
-          {...loaderProps[`${styles.shippingZipcodeLabelLoader}`]}
-        />
-        <rect
-          height="100%"
-          width="15em"
-          x="8em"
-          {...loaderProps[`${styles.shippingInputLoader}`]}
-        />
-      </ContentLoader>
-    </div>
+const ShippingSimulator = ({
+  intl,
+  client,
+  skuId,
+  seller,
+  country,
+  loaderStyles,
+}) => {
+  const [address, setAddress] = useState(() =>
+    addValidation(getNewAddress(country))
   )
+  const [shipping, setShipping] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [isValid, setIsValid] = useState(false)
 
-  state = {
-    zipcodeValue: '',
-    prevZipcode: '',
-    shipping: {},
-    loading: false,
+  const handleAddressChange = newAddress => {
+    setAddress({
+      ...address,
+      ...newAddress,
+    })
+    const { postalCode } = address
+    setIsValid(postalCode.valid)
   }
 
-  handleChange = e => {
-    let zipcodeValue = e.target.value || ''
-
-    zipcodeValue = zipcodeValue.replace(/\D/g, '')
-
-    if (zipcodeValue.length > 8) {
-      zipcodeValue = zipcodeValue.substring(0, 8)
-    }
-
-    if (zipcodeValue.length > 5) {
-      zipcodeValue = zipcodeValue.replace(/(\d{5})(\d+)/, '$1-$2')
-    }
-
-    this.setState({ zipcodeValue })
-  }
-
-  handleClick = e => {
+  const handleClick = e => {
     e.preventDefault()
-
-    const { skuId, seller, country } = this.props
-
-    this.setState(prevState => ({
-      loading: true,
-      prevZipcode: prevState.zipcodeValue,
-    }))
-
-    this.props.client
+    setLoading(true)
+    const { postalCode } = removeValidation(address)
+    client
       .query({
         query: getShippingEstimates,
         variables: {
           country,
-          postalCode: this.state.zipcodeValue,
+          postalCode,
           items: [
             {
               quantity: '1',
@@ -102,66 +61,58 @@ class ShippingSimulator extends Component {
         },
       })
       .then(result => {
-        this.setState({
-          shipping: result.data.shipping,
-        })
+        setShipping(result.data.shipping)
       })
       .catch(error => {
         console.error(error)
       })
       .finally(() => {
-        this.setState({
-          loading: false,
-        })
+        setLoading(false)
       })
   }
 
-  formatMessage = id => {
-    return this.props.intl.formatMessage({ id })
+  if (!seller || !skuId) {
+    return <ShippingSimulatorLoader {...loaderStyles} />
   }
 
-  render() {
-    const { shipping, zipcodeValue, loading, prevZipcode } = this.state
-
-    if (!this.props.seller || !this.props.skuId) {
-      return <ShippingSimulator.Loader {...this.props.styles} />
-    }
-
-    return (
-      <Fragment>
-        <form className={`${styles.shippingContainer} t-small c-on-base`}>
-          <label
-            className={`${
-              styles.shippingZipcodeLabel
-            } c-muted-2 db t-small mb3`}
-            htmlFor="shipping-zipcode"
+  return (
+    <Fragment>
+      <div className={`${styles.shippingContainer} t-small c-on-base`}>
+        <AddressRules country={country} shouldUseIOFetching>
+          <AddressContainer
+            Input={StyleguideInput}
+            address={address}
+            onChangeAddress={handleAddressChange}
+            autoCompletePostalCode
           >
-            {this.formatMessage('store/shipping.label')}
-          </label>
-          <div className="flex">
-            <Input
-              name="zipcode"
-              type="text"
-              id="shipping-zipcode"
-              onChange={this.handleChange}
-              value={zipcodeValue}
-            />
-            <Button
-              className={`${styles.shippingCTA}`}
-              onClick={this.handleClick}
-              disabled={zipcodeValue.length < 9 || zipcodeValue === prevZipcode}
-              size="small"
-              type="submit"
-              isLoading={loading}
-            >
-              Ok
-            </Button>
-          </div>
-        </form>
-        <ShippingTable shipping={shipping} />
-      </Fragment>
-    )
-  }
+            <PostalCodeGetter />
+          </AddressContainer>
+        </AddressRules>
+        <Button
+          onClick={handleClick}
+          className={styles.shippingCTA}
+          disabled={!isValid}
+          size="small"
+          type="submit"
+          block
+          isLoading={loading}
+        >
+          {intl.formatMessage({ id: 'store/shipping.label' })}
+        </Button>
+      </div>
+      <ShippingTable shipping={shipping} />
+    </Fragment>
+  )
+}
+
+ShippingSimulator.propTypes = {
+  intl: intlShape.isRequired,
+  client: PropTypes.object,
+  skuId: PropTypes.string,
+  seller: PropTypes.string,
+  country: PropTypes.string.isRequired,
+  /** Component and content loader styles */
+  styles: PropTypes.object,
 }
 
 export default compose(

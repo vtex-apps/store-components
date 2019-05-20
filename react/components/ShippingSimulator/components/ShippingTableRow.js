@@ -4,26 +4,26 @@ import { intlShape, injectIntl } from 'react-intl'
 import TranslateEstimate from 'vtex.shipping-estimate-translator/TranslateEstimate'
 import classNames from 'classnames'
 
-import styles from '../styles.css'
+import styles from '../shippingSimulator.css'
 
 const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   const etaClassName = classNames(
     `${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`,
     {
-      tc: shippingEstimate === undefined,
+      tc: typeof shippingEstimate === 'undefined',
     }
   )
 
   const valueClassName = classNames(
     `${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`,
     {
-      tc: price === undefined,
+      tc: typeof price === 'undefined',
     }
   )
 
   let valueText
 
-  if (price === undefined) {
+  if (typeof price === 'undefined') {
     valueText = '-'
   } else if (price === 0) {
     valueText = intl.formatMessage({ id: 'store/shipping.free' })
@@ -37,7 +37,7 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   return (
     <tr key={name}>
       <td className={`${styles.shippingTableCell} pv1 ph3 t-small`}>
-        <label className={`${styles.shippingTableLabel}`}>
+        <label className={styles.shippingTableLabel}>
           <input
             className={`${styles.shippingTableRadioBtn} mr4`}
             name="shipping-option"

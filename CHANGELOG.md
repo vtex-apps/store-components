@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.37.1] - 2019-05-20
+### Fixed
+- Enable `ShippingSimulator` to accept any postal code format and validate using the country rules.
+
 ## [3.37.0] - 2019-05-17
 ### Added
 - 'Open Minicart' feature after click on `BuyButton`.

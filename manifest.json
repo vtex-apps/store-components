@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store-components",
-  "version": "3.37.0",
+  "version": "3.37.1",
   "title": "VTEX Store Components",
   "defaultLocale": "pt-BR",
   "description": "The VTEX store components for that render apps can use",
@@ -21,6 +21,7 @@
     "vtex.styleguide": "9.x",
     "vtex.store-icons": "0.x",
     "vtex.modal": "0.x",
-    "vtex.react-portal": "0.x"
+    "vtex.react-portal": "0.x",
+    "vtex.address-form": "4.x"
   }
 }

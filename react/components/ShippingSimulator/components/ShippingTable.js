@@ -4,7 +4,8 @@ import { FormattedMessage } from 'react-intl'
 
 import ShippingTableRow from './ShippingTableRow'
 
-import styles from '../styles.css'
+import styles from '../shippingSimulator.css'
+
 export default class ShippingTable extends Component {
   static propTypes = {
     /** Shipping informations */
