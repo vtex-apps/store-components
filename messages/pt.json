@@ -9,6 +9,7 @@
   "admin/editor.productPrice.title": "Preço do produto",
   "admin/editor.productPrice.description": "Componente do preço do produto",
   "admin/editor.productPrice.showListPrice": "Mostrar preço de tabela",
+  "admin/editor.productPrice.showRangePrice": "Mostrar o intervalo de preços do produto",
   "admin/editor.productPrice.showLabels": "Mostrar legendas nos preços",
   "admin/editor.productPrice.showInstallments": "Mostrar opção de parcelamento",
   "admin/editor.productPrice.showSavings": "Mostrar diferença entre o preço tabelado e o de venda",
