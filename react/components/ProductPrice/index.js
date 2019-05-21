@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { isNil } from 'ramda'
+import { isNil, join, map } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { FormattedMessage, injectIntl } from 'react-intl'
 
@@ -20,6 +20,7 @@ class Price extends Component {
   static propTypes = PricePropTypes
 
   static defaultProps = {
+    showRangePrices: true,
     showListPrice: true,
     showLabels: true,
     showInstallments: false,
@@ -37,8 +38,10 @@ class Price extends Component {
 
   render() {
     const {
+      rangePrices,
       sellingPrice,
       listPrice,
+      showRangePrices,
       showListPrice,
       showInstallments,
       showLabels,
@@ -75,6 +78,15 @@ class Price extends Component {
     }
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
+
+    const formatRangePrice = (rangePrice) => {
+      return formatNumber(rangePrice, this.currencyOptions)
+    }
+  
+    const formatRangePrices = (rangePrices) => {
+      const rangePricesFormatted = map(formatRangePrice, rangePrices)
+      return join(' - ', rangePricesFormatted)
+    } 
 
     return (
       <div className={classNames(productPrice.priceContainer, className)}>
@@ -125,7 +137,9 @@ class Price extends Component {
           <div
             className={classNames(productPrice.sellingPrice, sellingPriceClass)}
           >
-            {formatNumber(sellingPrice, this.currencyOptions)}
+            {showRangePrices ? formatRangePrices(rangePrices) :
+            formatNumber(sellingPrice, this.currencyOptions)
+            }
           </div>
         </div>
         {showInstallments && (
@@ -233,6 +247,12 @@ priceWithIntel.schema = {
       title: 'admin/editor.productPrice.labelListPrice',
       default: Price.defaultProps.labelListPrice,
       isLayout: false,
+    },
+    showRangePrices: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showRangePrices',
+      default: Price.defaultProps.showRangePrices,
+      isLayout: true,
     },
     showListPrice: {
       type: 'boolean',
