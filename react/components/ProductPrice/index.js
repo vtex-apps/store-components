@@ -20,7 +20,7 @@ class Price extends Component {
   static propTypes = PricePropTypes
 
   static defaultProps = {
-    showRangePrices: false,
+    showPriceRange: false,
     showListPrice: true,
     showLabels: true,
     showInstallments: false,
@@ -38,10 +38,10 @@ class Price extends Component {
 
   render() {
     const {
-      rangePrices,
+      priceRange,
       sellingPrice,
       listPrice,
-      showRangePrices,
+      showPriceRange,
       showListPrice,
       showInstallments,
       showLabels,
@@ -53,6 +53,7 @@ class Price extends Component {
       listPriceContainerClass,
       listPriceLabelClass,
       listPriceClass,
+      priceRangeClass,
       sellingPriceContainerClass,
       sellingPriceLabelClass,
       sellingPriceClass,
@@ -79,13 +80,13 @@ class Price extends Component {
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
-    const formatRangePrice = (rangePrice) => {
-      return formatNumber(rangePrice, this.currencyOptions)
+    const formatPrice = (price) => {
+      return formatNumber(price, this.currencyOptions)
     }
   
-    const formatRangePrices = (rangePrices) => {
-      const rangePricesFormatted = map(formatRangePrice || [], rangePrices)
-      return join(' - ', rangePricesFormatted)
+    const formatPriceRange = (priceRange) => {
+      const priceRangeFormatted = map(formatPrice || [], priceRange)
+      return join(' - ', priceRangeFormatted)
     } 
 
     return (
@@ -134,7 +135,7 @@ class Price extends Component {
               {!isNil(labelSellingPrice) ? (labelSellingPrice ) : <FormattedMessage id="store/pricing.to" />}
             </div>
           )}
-          {!showRangePrices ? 
+          {!showPriceRange ? 
             <div
               className={classNames(
                 productPrice.sellingPrice, 
@@ -146,10 +147,10 @@ class Price extends Component {
             <div
               className={classNames(
                 productPrice.sellingPrice,
-                'dib ph2 t-small-ns'
+                priceRangeClass
               )}
             >
-              {formatRangePrices(rangePrices)}
+              {formatPriceRange(priceRange)}
             </div>
           }
         </div>
@@ -259,10 +260,10 @@ priceWithIntel.schema = {
       default: Price.defaultProps.labelListPrice,
       isLayout: false,
     },
-    showRangePrices: {
+    showPriceRange: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showRangePrices',
-      default: Price.defaultProps.showRangePrices,
+      title: 'admin/editor.productPrice.showPriceRange',
+      default: Price.defaultProps.showPriceRange,
       isLayout: true,
     },
     showListPrice: {

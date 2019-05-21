@@ -47,6 +47,8 @@ export default {
   listPriceLabelClass: PropTypes.string,
   /** Classes to be applied to price value */
   listPriceClass: PropTypes.string,
+  /** Classes to be applied to range prices value */
+  rangePricesClass: PropTypes.string,
   /** Classes to be applied to selling price container */
   sellingPriceContainerClass: PropTypes.string,
   /** Classes to be applied to selling price label */

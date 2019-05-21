@@ -9,7 +9,7 @@
   "admin/editor.productPrice.title": "Product price",
   "admin/editor.productPrice.description": "Product price Component",
   "admin/editor.productPrice.showListPrice": "Show product's list price",
-  "admin/editor.productPrice.showRangePrice": "Show product's prices' range",
+  "admin/editor.productPrice.showPriceRange": "Show product's prices' range",
   "admin/editor.productPrice.showLabels": "Show product's prices' labels",
   "admin/editor.productPrice.showInstallments": "Show product's payment installments",
   "admin/editor.productPrice.showSavings": "Show product's list and selling price difference",
