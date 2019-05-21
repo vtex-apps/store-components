@@ -84,7 +84,7 @@ class Price extends Component {
     }
   
     const formatRangePrices = (rangePrices) => {
-      const rangePricesFormatted = map(formatRangePrice, rangePrices)
+      const rangePricesFormatted = map(formatRangePrice || [], rangePrices)
       return join(' - ', rangePricesFormatted)
     } 
 
@@ -134,14 +134,24 @@ class Price extends Component {
               {!isNil(labelSellingPrice) ? (labelSellingPrice ) : <FormattedMessage id="store/pricing.to" />}
             </div>
           )}
-          <div
-            className={classNames(productPrice.sellingPrice, sellingPriceClass)}
-          >
-            {formatNumber(sellingPrice, this.currencyOptions)}
-          </div>
-        </div>
-        <div classNames='dib t-small-ns b'>
-          {showRangePrices && formatRangePrices(rangePrices)}
+          {!showRangePrices ? 
+            <div
+              className={classNames(
+                productPrice.sellingPrice, 
+                sellingPriceClass
+              )}
+            >
+              {formatNumber(sellingPrice, this.currencyOptions)}
+            </div> :             
+            <div
+              className={classNames(
+                productPrice.sellingPrice,
+                'dib ph2 t-small-ns'
+              )}
+            >
+              {formatRangePrices(rangePrices)}
+            </div>
+          }
         </div>
         {showInstallments && (
           <Installments
