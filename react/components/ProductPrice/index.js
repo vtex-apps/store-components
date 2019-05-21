@@ -85,7 +85,7 @@ class Price extends Component {
     }
   
     const formatPriceRange = (priceRange) => {
-      const priceRangeFormatted = map(formatPrice || [], priceRange)
+      const priceRangeFormatted = map(formatPrice, priceRange || [])
       return join(' - ', priceRangeFormatted)
     } 
 
