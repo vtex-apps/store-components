@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.37.2] - 2019-05-21
+### Fixed
+- Removed `w-100` from `DiscountBadge` to avoid it to pass the image width. 
+
 ## [3.37.1] - 2019-05-20
 ### Fixed
 - Enable `ShippingSimulator` to accept any postal code format and validate using the country rules.

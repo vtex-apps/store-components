@@ -17,7 +17,7 @@ class DiscountBadge extends Component {
     const { listPrice, sellingPrice, label } = this.props
     const percent = this.calculateDiscountTax(listPrice, sellingPrice)
     return (
-      <div className={`${styles.discountContainer} relative dib w-100`}>
+      <div className={`${styles.discountContainer} relative dib`}>
         {percent ? (
           <div className="t-mini white absolute right-0 pv2 ph3 bg-emphasis">
             {label === '' && '-'}
