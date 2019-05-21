@@ -33,10 +33,12 @@ const ImageResizer = ({ alt, className, src, minRatio, maxScale = 2 }) => {
     image.src = src
   }, [minRatio, src])
 
-  const { zoom, out, pan, isActive, style } = useZoom(canvas, maxScale)
+  const { zoom, out, pan, style } = useZoom(canvas, maxScale)
 
   const zoomListeners = {
-    onClick: e => (!isActive ? zoom(e) : out()),
+    onMouseEnter: zoom,
+    onMouseMove: pan,
+    onMouseLeave: out,
   }
 
   return (
