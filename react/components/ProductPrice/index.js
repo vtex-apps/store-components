@@ -20,7 +20,7 @@ class Price extends Component {
   static propTypes = PricePropTypes
 
   static defaultProps = {
-    showRangePrices: true,
+    showRangePrices: false,
     showListPrice: true,
     showLabels: true,
     showInstallments: false,
@@ -137,10 +137,11 @@ class Price extends Component {
           <div
             className={classNames(productPrice.sellingPrice, sellingPriceClass)}
           >
-            {showRangePrices ? formatRangePrices(rangePrices) :
-            formatNumber(sellingPrice, this.currencyOptions)
-            }
+            {formatNumber(sellingPrice, this.currencyOptions)}
           </div>
+        </div>
+        <div classNames='dib t-small-ns b'>
+          {showRangePrices && formatRangePrices(rangePrices)}
         </div>
         {showInstallments && (
           <Installments
