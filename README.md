@@ -84,8 +84,10 @@ Below we have a README for each component of this project that explains how to u
 - [Gradient Collapse](/react/components/GradientCollapse/README.md)
 - [Greeting](/react/components/Greeting/README.md)
 - [InfoCard](/react/components/InfoCard/README.md)
+- [Locale Switcher](/react/components/LocaleSwitcher/README.md)
 - [Logo](/react/components/Logo/README.md)
 - [Newsletter](/react/components/Newsletter/README.md)
+- [Notification](/react/components/Notification/README.md)
 - [Product Description](/react/components/ProductDescription/README.md)
 - [Product Images](/react/components/ProductImages/README.md)
 - [Product Name](/react/components/ProductName/README.md)
@@ -96,7 +98,6 @@ Below we have a README for each component of this project that explains how to u
 - [Share](/react/components/Share/README.md)
 - [Shipping Simulator](/react/components/ShippingSimulator/README.md)
 - [Slider](/react/components/Slider/README.md)
-- [Notification](/react/components/Notification/README.md)
 
 ## Creating a new component
 To start your development, create a new folder on react/components. Thats where your source code will be stored. Also create a new js file on /react, this file should be used to expose your component, like:
