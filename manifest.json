@@ -22,6 +22,7 @@
     "vtex.store-icons": "0.x",
     "vtex.modal": "0.x",
     "vtex.react-portal": "0.x",
-    "vtex.address-form": "4.x"
+    "vtex.address-form": "4.x",
+    "vtex.slider": "0.x"
   }
 }

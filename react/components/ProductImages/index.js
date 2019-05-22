@@ -2,8 +2,8 @@ import PropTypes from 'prop-types'
 import React, { useMemo, useEffect, useState } from 'react'
 import debounce from 'debounce'
 
-import Carousel from './components/Carousel'
 import styles from './styles.css'
+import { SliderNext } from 'vtex.slider'
 
 const getBestUrlIndex = thresholds => {
   const windowSize = window.innerWidth
@@ -54,7 +54,29 @@ const ProductImages = props => {
 
   return (
     <div className={`${styles.content} w-100`}>
-      <Carousel slides={slides} position={position} zoomProps={zoomProps} />
+      <SliderNext
+        infinite={false}
+        classNames={{
+          sliderContainer: 'br4',
+          dotList: 'bottom-1',
+        }}
+        thumbnails={{
+          items: slides.map((slide, i) => ({
+            url: slide.thumbUrl,
+            forSlide: i,
+          })),
+          position: 'left',
+          classNames: {
+            thumbnail: 'br4 ma3',
+          },
+        }}
+      >
+        {slides.map((slide, i) => (
+          <div key={i} className="center-all">
+            <img src={slide.urls[slide.bestUrlIndex]} />
+          </div>
+        ))}
+      </SliderNext>
     </div>
   )
 }
