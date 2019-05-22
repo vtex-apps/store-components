@@ -56,6 +56,8 @@
   "admin/editor.newsletter.placeholder": "Placeholder de la entrada de correo electrónico",
   "admin/editor.newsletter.submit": "Texto del botón",
   "admin/editor.newsletter.hideLabel": "Ocultar título",
+  "admin/editor.newsletter.renderFirstName": "Mostrar Nombre?",
+  "admin/editor.newsletter.namePlaceholder": "Placeholder de la entrada de el nombre",
   "admin/editor.categoriesHighlighted.title": "Categorías destacadas",
   "admin/editor.categoriesHighlighted.description": "Categorias destacadas de este departamento",
   "admin/editor.categoriesHighlighted.item.categoryName": "Nombre de la categoría",

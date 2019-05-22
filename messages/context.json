@@ -56,6 +56,8 @@
   "admin/editor.newsletter.placeholder": "Placeholder of the email input",
   "admin/editor.newsletter.submit": "Label of the submit button",
   "admin/editor.newsletter.hideLabel": "Hide label",
+  "admin/editor.newsletter.renderFirstName": "Show First Name?",
+  "admin/editor.newsletter.namePlaceholder": "Placeholder of the name input",
   "admin/editor.categoriesHighlighted.title": "admin/editor.categoriesHighlighted.title",
   "admin/editor.categoriesHighlighted.description": "admin/editor.categoriesHighlighted.description",
   "admin/editor.categoriesHighlighted.item.categoryName": "admin/editor.categoriesHighlighted.item.categoryName",
