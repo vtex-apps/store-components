@@ -67,6 +67,7 @@ const ProductImages = props => {
             forSlide: i,
           })),
           position: 'left',
+          width: '20%',
         }}
       >
         {slides.map((slide, i) => (
