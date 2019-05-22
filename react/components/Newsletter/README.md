@@ -41,6 +41,8 @@ Through the Storefront, you can change the `Newsletter`'s behavior and interface
 | `label` | `String` | Label of the form used by the component | `Subscribe to our newsletter` (translated text) |
 | `placeholder` | `String` | Placeholder of the email input | `Enter your email address` (translated text) |
 | `submit` | `String` | Label of the submit button | `Sign up` (translated text) |
+| `renderFirstName` | `Boolean` | Show FirstName | `false` |
+| `namePlaceholder` | `String` | Placeholder of the name input | `Enter your name` (translated text) |
 | `hideLabel` | `Boolean` | Hide label | `false` |
 
 ### Styles API
