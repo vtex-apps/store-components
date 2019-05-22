@@ -59,6 +59,7 @@ const ProductImages = props => {
         classNames={{
           sliderContainer: 'br4',
           dotList: 'bottom-1',
+          thumbnail: 'br4 ma3',
         }}
         thumbnails={{
           items: slides.map((slide, i) => ({
@@ -66,9 +67,6 @@ const ProductImages = props => {
             forSlide: i,
           })),
           position: 'left',
-          classNames: {
-            thumbnail: 'br4 ma3',
-          },
         }}
       >
         {slides.map((slide, i) => (
