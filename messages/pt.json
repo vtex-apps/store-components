@@ -44,6 +44,7 @@
   "store/availability-subscriber.error-message": "Falha ao se cadastrar, tente novamente",
   "store/newsletter.label": "Inscreva-se na nossa newsletter",
   "store/newsletter.placeholder": "Insira seu email",
+  "store/newsletter.placeholderName": "Insira seu nome",
   "store/newsletter.submit": "Enviar",
   "store/newsletter.invalidEmail": "Por favor, insira um email válido.",
   "store/newsletter.confirmationTitle": "Obrigado!",

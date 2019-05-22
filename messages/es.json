@@ -44,6 +44,7 @@
   "store/availability-subscriber.error-message": "No se pudo registrar, inténtelo de nuevo",
   "store/newsletter.label": "Suscríbete a nuestro boletín",
   "store/newsletter.placeholder": "Inserte su email",
+  "store/newsletter.placeholderName": "Inserte su nombre",
   "store/newsletter.submit": "Enviar",
   "store/newsletter.invalidEmail": "Por favor, ingrese un correo electrónico válido.",
   "store/newsletter.confirmationTitle": "Gracias!",

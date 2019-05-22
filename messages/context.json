@@ -44,6 +44,7 @@
   "store/availability-subscriber.error-message": "availability-subscriber.error-message",
   "store/newsletter.label": "Sign up for exclusive deals",
   "store/newsletter.placeholder": "Email address",
+  "store/newsletter.placeholderName": "Name",
   "store/newsletter.submit": "Sign up",
   "store/newsletter.invalidEmail": "Please enter a valid email.",
   "store/newsletter.confirmationTitle": "Thank you!",

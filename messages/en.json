@@ -44,6 +44,7 @@
   "store/availability-subscriber.error-message": "Failed, please try again",
   "store/newsletter.label": "Subscribe to our newsletter",
   "store/newsletter.placeholder": "Enter your email address",
+  "store/newsletter.placeholderName": "Enter your name",
   "store/newsletter.submit": "Sign up",
   "store/newsletter.invalidEmail": "Please, enter a valid email.",
   "store/newsletter.confirmationTitle": "Thank you!",
