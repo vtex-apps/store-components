@@ -172,6 +172,7 @@ class Newsletter extends Component {
 Newsletter.defaultProps = {
   hideLabel: false,
   showTerms: false,
+  renderFirstName: false
 }
 
 Newsletter.propTypes = {
@@ -180,6 +181,8 @@ Newsletter.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   submit: PropTypes.string,
+  renderFirstName: PropTypes.bool,
+  namePlaceholder: PropTypes.string,
   subscribeNewsletter: PropTypes.func.isRequired,
   intl: intlShape,
 }
@@ -204,6 +207,17 @@ Newsletter.getSchema = () => {
       placeholder: {
         type: 'string',
         title: 'admin/editor.newsletter.placeholder',
+        isLayout: false,
+      },
+      renderFirstName: {
+        type: 'boolean',
+        title: 'admin/editor.newsletter.renderFirstName',
+        default: false,
+        isLayout: false,
+      },
+      namePlaceholder: {
+        type: 'string',
+        title: 'admin/editor.newsletter.namePlaceholder',
         isLayout: false,
       },
       submit: {
