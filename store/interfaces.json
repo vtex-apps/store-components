@@ -32,7 +32,7 @@
   "availability-subscriber": {
     "component": "AvailabilitySubscriber"
   },
-  "product-specifications":{
+  "product-specifications": {
     "component": "ProductSpecifications"
   },
   "product-highlights": {
@@ -60,5 +60,8 @@
   },
   "image": {
     "component": "Image"
+  },
+  "locale-switcher": {
+    "component": "LocaleSwitcher"
   }
 }
