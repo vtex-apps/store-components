@@ -15,6 +15,7 @@ class Newsletter extends Component {
     error: null,
     success: null,
     invalidEmail: false,
+    firstName: ''
   }
 
   inputRef = React.createRef()
@@ -33,10 +34,9 @@ class Newsletter extends Component {
     }
   }
 
-  handleChangeEmail = e => {
-    this.setState({ email: e.target.value })
-  }
+  handleChange = ({target}) => this.setState({ [target.name]: target.value });
 
+  
   validateEmail = () => {
     return EMAIL_REGEX.test(this.state.email)
   }
@@ -59,7 +59,7 @@ class Newsletter extends Component {
     })
 
     this.props
-      .subscribeNewsletter({ variables: { email: this.state.email } })
+      .subscribeNewsletter({ variables: this.props.renderFirstName ? { firstName: this.state.firstName, email: this.state.email } : { email: this.state.email } })
       .then(() => {
         this.safeSetState({ success: true, loading: false })
       })
@@ -73,9 +73,13 @@ class Newsletter extends Component {
       placeholder = this.props.intl.formatMessage({
         id: 'store/newsletter.placeholder',
       }),
+      namePlaceholder = this.props.intl.formatMessage({
+        id: 'store/newsletter.placeholderName',
+      }),
       submit = this.props.intl.formatMessage({ id: 'store/newsletter.submit' }),
       label = this.props.intl.formatMessage({ id: 'store/newsletter.label' }),
       hideLabel,
+      renderFirstName
     } = this.props
 
     return (
@@ -109,6 +113,19 @@ class Newsletter extends Component {
                 {label}
               </label>
               <div className={`${style.inputGroup} flex-ns pt5`}>
+                {
+                  renderFirstName &&
+                  <div className="mr4-m mt4 mt0-l">
+                    <Input
+                      ref={this.inputRef}
+                      id="newsletter-input--firstName"
+                      placeholder={namePlaceholder}
+                      name="firstName"
+                      value={this.state.firstName}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                }
                 <Input
                   ref={this.inputRef}
                   id="newsletter-input"
@@ -120,9 +137,9 @@ class Newsletter extends Component {
                       : null
                   }
                   placeholder={placeholder}
-                  name="newsletter"
+                  name="email"
                   value={this.state.email}
-                  onChange={this.handleChangeEmail}
+                  onChange={this.handleChange}
                 />
                 <div
                   className={`${
