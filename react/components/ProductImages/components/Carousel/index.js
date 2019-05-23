@@ -25,13 +25,12 @@ const initialState = {
   thumbsLoaded: false,
   activeIndex: 0,
   isGalleryOpen: false,
+  thumbSwiper: null,
+  gallerySwiper: null,
 }
 
 class Carousel extends Component {
   state = initialState
-
-  thumbSwiper = React.createRef()
-  gallerySwiper = React.createRef()
 
   setInitialVariablesState() {
     const slides = this.props.slides || []
@@ -47,8 +46,15 @@ class Carousel extends Component {
     })
   }
 
-  debouncedRebuildOnUpdate = debounce(() => {
-    this.thumbSwiper.current && this.thumbSwiper.current.swiper.update()
+  updateSwiperSize = debounce(() => {
+    const { thumbSwiper, gallerySwiper } = this.state
+    if (thumbSwiper) {
+      thumbSwiper.update()
+    }
+
+    if (gallerySwiper) {
+      gallerySwiper.update()
+    }
   }, 500)
 
   getThumb = thumbUrl => {
@@ -64,22 +70,25 @@ class Carousel extends Component {
     image.src = thumbUrl
   }
 
+  handleResize = () => {
+    this.updateSwiperSize()
+  }
+
   componentDidMount() {
-    window.addEventListener('resize', this.debouncedRebuildOnUpdate)
+    window.addEventListener('resize', this.handleResize)
 
     this.setInitialVariablesState()
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.debouncedRebuildOnUpdate)
+    window.removeEventListener('resize', this.handleResize)
 
-    this.debouncedRebuildOnUpdate.clear()
+    this.updateSwiperSize.clear()
   }
 
   componentDidUpdate(prevProps) {
-    const { loaded, activeIndex } = this.state
+    const { loaded, activeIndex, gallerySwiper } = this.state
     const isVideo = this.isVideo
-    const gallerySwiper = path(['swiper'], this.gallerySwiper.current)
 
     if (!equals(prevProps.slides, this.props.slides)) {
       this.setInitialVariablesState()
@@ -100,10 +109,7 @@ class Carousel extends Component {
   }
 
   onSlideChange = () => {
-    const activeIndex = path(
-      ['swiper', 'activeIndex'],
-      this.gallerySwiper.current
-    )
+    const activeIndex = path(['activeIndex'], this.state.gallerySwiper)
     this.setState({ activeIndex, sliderChanged: true })
   }
 
@@ -174,11 +180,8 @@ class Carousel extends Component {
       'pv7 absolute top-50 translate--50y z-2 pointer c-action-primary'
 
     const setZoom = event => {
-      const { sliderChanged } = this.state
-      const gallerySwiperZoom = path(
-        ['swiper', 'zoom'],
-        this.gallerySwiper.current
-      )
+      const { sliderChanged, gallerySwiper } = this.state
+      const gallerySwiperZoom = path(['zoom'], gallerySwiper)
 
       if (sliderChanged) {
         this.setState({ sliderChanged: false })
@@ -234,11 +237,12 @@ class Carousel extends Component {
         slideChange: this.onSlideChange,
         click: zoomType === 'in-page' ? event => setZoom(event) : undefined,
       },
+      getSwiper: swiper => this.setState({ gallerySwiper: swiper }),
     }
   }
 
   render() {
-    const { thumbsLoaded, isGalleryOpen, selectedIndex } = this.state
+    const { thumbsLoaded, isGalleryOpen, selectedIndex, gallerySwiper } = this.state
 
     const {
       slides,
@@ -263,6 +267,7 @@ class Carousel extends Component {
       preloadImages: true,
       shouldSwiperUpdate: true,
       zoom: false,
+      getSwiper: swiper => this.setState({ thumbSwiper: swiper }),
     }
 
     const galleryCursor = {
@@ -289,16 +294,19 @@ class Carousel extends Component {
     )
 
     return (
-      <div className="relative overflow-hidden" aria-hidden="true">
+      <div className="relative overflow-hidden w-100" aria-hidden="true">
         <div className={thumbClasses}>
-          <Swiper {...thumbnailParams} ref={this.thumbSwiper}>
+          <Swiper
+            {...thumbnailParams}
+            rebuildOnUpdate={true}>
             {slides.map((slide, i) => (
               <div
                 key={i}
                 className="swiper-slide w-100 h-auto mb5 pointer"
-                onClick={() => this.gallerySwiper.current.swiper.slideTo(i)}
+                onClick={() => gallerySwiper && gallerySwiper.slideTo(i)}
               >
                 <figure
+                  className={styles.figure}
                   itemProp="associatedMedia"
                   itemScope
                   itemType="http://schema.org/ImageObject"
@@ -320,7 +328,9 @@ class Carousel extends Component {
           </Swiper>
         </div>
         <div className={imageClasses}>
-          <Swiper {...this.galleryParams} ref={this.gallerySwiper}>
+          <Swiper
+            {...this.galleryParams}
+            rebuildOnUpdate={true}>
             {slides.map((slide, i) => (
               <div key={i} className="swiper-slide center-all">
                 {this.renderSlide(slide, i)}
