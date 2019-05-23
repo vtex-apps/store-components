@@ -50,7 +50,7 @@ const LocaleSwitcher = () => {
       <button
         onClick={() => setOpenLocaleSelector(!openLocaleSelector)}
         onBlur={() => setOpenLocaleSelector(false)}
-        className={`link pa0 bg-transparent bn flex items-center pointer mr3 ${LocaleSwitcher.defaultProps.color} hover-${LocaleSwitcher.defaultProps.hoverColor}`}
+        className={`link pa0 bg-transparent bn flex items-center pointer mr3 c-on-base hover-c-emphasis`}
       >
         <IconGlobe />
         <span className="pl2 t-action--small order-1">{selectedLocale.text}</span>
@@ -75,16 +75,6 @@ const LocaleSwitcher = () => {
       </ul>
     </div>
   )
-}
-
-LocaleSwitcher.propTypes = {
-  color: PropTypes.string,
-  hoverColor: PropTypes.string,
-}
-
-LocaleSwitcher.defaultProps = {
-  color: 'near-black',
-  hoverColor: 'rebel-pink',
 }
 
 export default LocaleSwitcher
