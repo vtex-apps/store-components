@@ -26,6 +26,9 @@
   "product-quantity-selector": {
     "component": "ProductQuantitySelector"
   },
+  "product-separator": {
+    "component": "ProductSeparator"
+  },
   "sku-selector": {
     "component": "SKUSelector"
   },
