@@ -22,13 +22,14 @@
     "react-content-loader": "^3.1.2",
     "react-dom": "^16.8.3",
     "react-html-parser": "^2.0.2",
-    "react-id-swiper": "^1.6.8",
+    "react-id-swiper": "^2.1.2",
     "react-intl": "^2.8.0",
     "react-photoswipe": "^1.3.0",
     "react-resize-detector": "^3.0.1",
     "react-share": "^2.1.1",
     "react-slick": "^0.23.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "swiper": "^4.5.0"
   },
   "devDependencies": {
     "@vtex/test-tools": "^0.1.2",
