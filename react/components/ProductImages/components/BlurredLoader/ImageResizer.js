@@ -3,7 +3,7 @@ import useZoom from './Zoom'
 import { string, number } from 'prop-types'
 
 const ImageResizer = ({ alt, className, src, minRatio, maxScale = 2 }) => {
-  const canvas = useRef(null)
+  const canvas = useRef()
 
   useEffect(() => {
     if (!src) return
@@ -46,7 +46,7 @@ const ImageResizer = ({ alt, className, src, minRatio, maxScale = 2 }) => {
       ref={canvas}
       alt={alt}
       className={className}
-      style={{ ...style }}
+      // style={{ ...style }}
       {...zoomListeners}
     />
   )

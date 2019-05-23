@@ -1,20 +1,39 @@
-import { useState } from 'react'
-
-const clamp = (a, max) =>
-  Math.min(a, 0) === a ? Math.min(a, max) : Math.max(a, 0)
+import { useState, useRef } from 'react'
 
 const useZoom = (container, maxScale) => {
   const [style, setStyle] = useState({ x: 0, y: 0, scale: 1 })
   const [isActive, setIsActive] = useState(false)
 
+  const rect = useRef(null)
+
+  const getClientRect = () => {
+    if (rect.current) {
+      return rect.current
+    } else if (container.current) {
+      const {
+        left,
+        top,
+        width,
+        height,
+      } = container.current.getBoundingClientRect()
+
+      rect.current = {
+        left,
+        top,
+        width,
+        height,
+      }
+    }
+
+    return rect.current
+  }
+
   const getPointer = ({ pageX, pageY }) => {
-    const {
-      left,
-      top,
-      height,
-      width,
-    } = container.current.getBoundingClientRect()
-    return { x: clamp(left - pageX, width), y: clamp(top - pageY, height) }
+    const { left, top, width, height } = getClientRect()
+    return {
+      x: Math.max(left - pageX, -width),
+      y: Math.max(top - pageY, -height),
+    }
   }
 
   const zoom = e => {
@@ -32,14 +51,14 @@ const useZoom = (container, maxScale) => {
   }
 
   const pan = ({ movementX, movementY }) => {
-    const { height, width } = container.current.getBoundingClientRect()
+    const { width, height } = getClientRect()
     const { x, y } = style
 
     if (isActive) {
       setStyle({
         ...style,
-        x: clamp(x - movementX, width),
-        y: clamp(y - movementY, height),
+        x: Math.max(x - movementX, -width),
+        y: Math.max(y - movementY, -height),
       })
     }
   }
@@ -53,8 +72,9 @@ const useZoom = (container, maxScale) => {
     isActive,
     style: {
       transition: 'transform 100ms ease-out',
-      transform: `translate(${x}px, ${y}px) scale(${scale})`,
-      willChange: 'transform',
+      transform: `translate(${Math.floor(x)}px, ${Math.floor(
+        y
+      )}px) scale(${scale})`,
       transformOrigin: '0 0',
     },
   }
