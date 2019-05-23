@@ -174,7 +174,7 @@ const InfoCard = ({
           />
         </div>
         {!isFullModeStyle && (
-          <div className="w-50-ns">
+          <div className={`${styles.infoCardImageContainer} w-50-ns`} >
             <LinkWrapper imageActionUrl={imageActionUrl}>
               <img
                 className={styles.infoCardImage}
