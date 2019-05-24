@@ -42,6 +42,7 @@ class Price extends Component {
       sellingPrice,
       listPrice,
       showListPrice,
+      showSellingPriceRange,
       showInstallments,
       showLabels,
       showSavings,
@@ -94,17 +95,14 @@ class Price extends Component {
     }
 
     const getPriceRange = prices => {
-      const sortPrices = prices.sort(ascend)
-      const lowPrice = head(sortPrices)
-      const highPrice = last(sortPrices)
+      const sortedPrices = prices.sort(ascend)
       return [
-        lowPrice,            
-        highPrice,
+        head(sortedPrices),            
+        last(sortedPrices)
       ]
     }
 
     const sellingPriceRange = sellingPrices && getPriceRange(sellingPrices)
-    const showSellingPriceRange = isPriceRange(sellingPriceRange)
     
     return (
       <div className={classNames(productPrice.priceContainer, className)}>
@@ -152,7 +150,7 @@ class Price extends Component {
               {!isNil(labelSellingPrice) ? (labelSellingPrice ) : <FormattedMessage id="store/pricing.to" />}
             </div>
           )}
-          {!showSellingPriceRange ? 
+          {!showSellingPriceRange && sellingPriceRange && isPriceRange(sellingPriceRange) ? 
             <div
               className={classNames(
                 productPrice.sellingPrice, 

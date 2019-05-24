@@ -41,8 +41,8 @@ Through the Storefront, you can change the `ProductPrice`'s behavior and interfa
 | `labelSellingPrice` | `String` | Product selling price label | null |
 | `labelListPrice` | `String` | Product list price label | null |
 | `showListPrice` | `Boolean` | Set visibility of list price | true |
-| `priceRange` | `Array` | Product list of price range | [] |
-| `showPriceRange` | `Boolean` | Set visibility of price range | false |
+| `sellingPrices` | `Array` | Product list of selling prices | [] |
+| `showSellingPriceRange` | `Boolean` | Set visibility of selling price range | false |
 | `showLabels` | `Boolean` | Set visibility of labels | true |
 | `showInstallments` | `Boolean` | Set visibility of installments | false |
 | `showSavings` | `Boolean` | Set visibility of savings | false |
