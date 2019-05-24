@@ -103,7 +103,7 @@ class Price extends Component {
       ]
     }
 
-    const sellingPriceRange = getPriceRange(sellingPrices)
+    const sellingPriceRange = sellingPrices && getPriceRange(sellingPrices)
     const showSellingPriceRange = isPriceRange(sellingPriceRange)
     
     return (
