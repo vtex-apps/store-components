@@ -17,6 +17,7 @@ import './global.css'
 import Gallery from '../Gallery'
 
 const Swiper = window.navigator ? require('react-id-swiper').default : null
+import { Pagination, Navigation } from 'swiper/dist/js/swiper.esm'
 
 const initialState = {
   loaded: [],
@@ -191,6 +192,7 @@ class Carousel extends Component {
     }
 
     return {
+      modules: [Pagination, Navigation],
       containerClass: 'swiper-container',
       ...(slides.length > 1 && {
         pagination: {
