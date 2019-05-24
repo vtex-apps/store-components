@@ -50,7 +50,7 @@ const LocaleSwitcher = () => {
       <button
         onClick={() => setOpenLocaleSelector(!openLocaleSelector)}
         onBlur={() => setOpenLocaleSelector(false)}
-        className={`link pa0 bg-transparent bn flex items-center pointer mr3 c-on-base hover-c-emphasis`}
+        className="link pa0 bg-transparent bn flex items-center pointer mr3 c-on-base hover-c-emphasis"
       >
         <IconGlobe />
         <span className="pl2 t-action--small order-1">{selectedLocale.text}</span>
@@ -66,7 +66,6 @@ const LocaleSwitcher = () => {
             className="t-action--small pointer f5 pa3 hover-bg-muted-5 tc"
             onClick={() => handleLocaleClick(id)}
             onMouseDown={handleMouseDown}
-            id={id}
             key={id}
           >
             {text}
