@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react'
-import useZoom from './Zoom'
 import { string, number } from 'prop-types'
 
-const ImageResizer = ({ alt, className, src, minRatio, maxScale = 2 }) => {
+const ImageResizer = ({ alt, className, src, minRatio }) => {
   const canvas = useRef()
 
   useEffect(() => {
@@ -33,23 +32,7 @@ const ImageResizer = ({ alt, className, src, minRatio, maxScale = 2 }) => {
     image.src = src
   }, [minRatio, src])
 
-  const { zoom, out, pan, style } = useZoom(canvas, maxScale)
-
-  const zoomListeners = {
-    onMouseEnter: zoom,
-    onMouseMove: pan,
-    onMouseLeave: out,
-  }
-
-  return (
-    <canvas
-      ref={canvas}
-      alt={alt}
-      className={className}
-      // style={{ ...style }}
-      {...zoomListeners}
-    />
-  )
+  return <canvas ref={canvas} alt={alt} className={className} />
 }
 
 ImageResizer.propTypes = {

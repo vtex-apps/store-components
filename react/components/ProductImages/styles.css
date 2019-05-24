@@ -41,3 +41,7 @@
 }
 
 .carouselImagePlaceholder { }
+
+.slideZoomed {
+  cursor: crosshair
+}

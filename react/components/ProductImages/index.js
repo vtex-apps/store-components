@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import { arrayOf, shape, string, number, oneOf } from 'prop-types'
 import React, { useMemo, useEffect, useState } from 'react'
 import debounce from 'debounce'
 
@@ -54,92 +54,104 @@ const ProductImages = props => {
 
   return (
     <div className={`${styles.content} w-100`}>
-      <Carousel
-        slides={slides}
-        position={position}
-        zoomProps={{ zoomType: 'in-page', desktopTrigger: 'on-click' }}
-      />
+      <Carousel slides={slides} position={position} zoomProps={zoomProps} />
     </div>
   )
 }
 
 ProductImages.propTypes = {
   /** The position of the thumbs */
-  position: PropTypes.oneOf(['left', 'right']),
+  position: oneOf(['left', 'right']),
   /** Array of images to be passed for the Thumbnail Slider component as a props */
-  images: PropTypes.arrayOf(
-    PropTypes.shape({
+  images: arrayOf(
+    shape({
       /** URL of the image */
-      imageUrls: PropTypes.arrayOf(PropTypes.string.isRequired),
+      imageUrls: arrayOf(string.isRequired),
       /** Size thresholds used to choose each image */
-      thresholds: PropTypes.arrayOf(PropTypes.number),
+      thresholds: arrayOf(number),
       /** URL of the image thumbnail */
-      thumbnailUrl: PropTypes.string,
+      thumbnailUrl: string,
       /** Text that describes the image */
-      imageText: PropTypes.string,
+      imageText: string,
     })
   ),
+  zoomProps: {
+    zoomType: string,
+    zoomScale: number,
+    bgOpacity: number,
+    desktopTrigger: string,
+  },
 }
 
 ProductImages.defaultProps = {
   images: [],
   position: 'left',
-  zoomProps: { zoomType: 'in-page' },
+  zoomProps: {
+    zoomType: 'in-gallery',
+    zoomScale: 2,
+    bgOpacity: 0.8,
+  },
 }
 
-ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
-  return {
-    title: 'admin/editor.product-images.title',
-    description: 'admin/editor.product-images.description',
-    type: 'object',
-    properties: {
-      zoomProps: {
-        title: 'admin/editor.product-images.zoomOptions.title',
-        type: 'object',
-        properties: {
-          zoomType: {
-            title: 'admin/editor.product-images.zoomType.title',
-            type: 'string',
-            enum: ['gallery', 'in-page', 'no-zoom'],
-            enumNames: [
-              'admin/editor.product-images.gallery',
-              'admin/editor.product-images.in-page',
-              'admin/editor.product-images.no-zoom',
-            ],
-            widget: {
-              'ui:options': {
-                inline: false,
-              },
-              'ui:widget': 'radio',
+ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => ({
+  title: 'admin/editor.product-images.title',
+  description: 'admin/editor.product-images.description',
+  type: 'object',
+  properties: {
+    zoomProps: {
+      title: 'admin/editor.product-images.zoomOptions.title',
+      type: 'object',
+      properties: {
+        zoomType: {
+          title: 'admin/editor.product-images.zoomType.title',
+          type: 'string',
+          enum: ['in-gallery', 'in-page', 'no-zoom'],
+          enumNames: [
+            'admin/editor.product-images.gallery',
+            'admin/editor.product-images.in-page',
+            'admin/editor.product-images.no-zoom',
+          ],
+          widget: {
+            'ui:options': {
+              inline: false,
             },
-            default: 'no-zoom',
+            'ui:widget': 'radio',
           },
-          ...(zoomType === 'gallery' && {
-            bgOpacity: {
-              title: 'admin/editor.product-images.bgopacity.title',
-              type: 'number',
-              minimum: 0.0,
-              maximum: 1.0,
-              multipleOf: 0.01,
-              default: 0.8,
-            },
-          }),
-          ...(zoomType === 'in-page' && {
-            desktopTrigger: {
-              title: 'admin/editor.product-images.zoom.desktopTrigger.title',
-              type: 'string',
-              default: 'on-hover',
-              enum: ['on-hover', 'on-click'],
-              enumNames: [
-                'admin/editor.product-images.zoom.desktopTrigger.hover',
-                'admin/editor.product-images.zoom.desktopTrigger.click',
-              ],
-            },
-          }),
+          default: 'no-zoom',
         },
+        ...(zoomType === 'in-gallery' && {
+          bgOpacity: {
+            title: 'admin/editor.product-images.bgopacity.title',
+            type: 'number',
+            minimum: 0.0,
+            maximum: 1.0,
+            multipleOf: 0.01,
+            default: 0.8,
+          },
+        }),
+        ...(zoomType === 'in-page' && {
+          desktopTrigger: {
+            title: 'admin/editor.product-images.zoom.desktopTrigger.title',
+            type: 'string',
+            default: 'on-hover',
+            enum: ['on-hover', 'on-click'],
+            enumNames: [
+              'admin/editor.product-images.zoom.desktopTrigger.hover',
+              'admin/editor.product-images.zoom.desktopTrigger.click',
+            ],
+          },
+          zoomScale: {
+            title: 'admin/editor.product-images.zoom.zoomScale.title',
+            type: 'number',
+            default: 2,
+            minimum: 0.0,
+            maximum: 1.0,
+            multipleOf: 0.1,
+          },
+        }),
       },
     },
-  }
-}
+  },
+})
 
 export default ProductImages

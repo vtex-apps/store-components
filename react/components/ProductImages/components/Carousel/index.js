@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import { path, equals } from 'ramda'
 
 import { IconCaret } from 'vtex.store-icons'
-import { NoSSR, withRuntimeContext } from 'vtex.render-runtime'
+import { NoSSR } from 'vtex.render-runtime'
 
 import Loader from './Loader.js'
 import Video from '../Video'
@@ -17,8 +17,7 @@ import Gallery from '../Gallery'
 import Slide from './Slide'
 import Thumbnails from './Thumbnails'
 import Swiper from 'react-id-swiper'
-
-// const Swiper = window.navigator ? require('react-id-swiper').default : null
+import { withRuntimeContext } from 'vtex.render-runtime'
 
 const initialState = {
   loaded: [],
@@ -94,21 +93,12 @@ class Carousel extends Component {
   }
 
   onSlideChange = () => {
-    const {
-      zoomProps: { zoomType, desktopTrigger },
-    } = this.props
-
     const activeIndex = path(
       ['swiper', 'activeIndex'],
       this.gallerySwiper.current
     )
 
     this.setState({ activeIndex, sliderChanged: false })
-
-    if (zoomType === 'in-page' && desktopTrigger === 'on-hover') {
-      const currentSwiper = path(['swiper'], this.gallerySwiper.current)
-      currentSwiper.detachEvents()
-    }
   }
 
   onImageLoad = i => () => {
@@ -117,37 +107,17 @@ class Carousel extends Component {
     this.setState({ loaded })
   }
 
-  openGallery = idx => {
-    this.setState({ selectedIndex: idx, isGalleryOpen: true })
-  }
-
-  get slideZoom() {
-    return path(['swiper', 'zoom'], this.gallerySwiper.current)
+  openGallery = () => {
+    this.setState({ isGalleryOpen: true })
   }
 
   get galleryParams() {
     const { thumbSwiper } = this.state
-    const {
-      slides,
-      zoomProps: { zoomType, desktopTrigger },
-      runtime: {
-        hints: { mobile },
-      },
-    } = this.props
+    const { slides } = this.props
 
     const iconSize = 24
     const caretClassName =
       'pv7 absolute top-50 translate--50y z-2 pointer c-action-primary'
-
-    const toogleZoom = event => {
-      const { sliderChanged } = this.state
-
-      if (sliderChanged) {
-        this.setState({ sliderChanged: false })
-      } else {
-        this.slideZoom.toggle(event)
-      }
-    }
 
     return {
       containerClass: 'swiper-container',
@@ -196,13 +166,14 @@ class Carousel extends Component {
   }
 
   render() {
-    const { thumbsLoaded, isGalleryOpen, selectedIndex } = this.state
+    const { thumbsLoaded, isGalleryOpen, activeIndex } = this.state
     const {
       slides,
       position,
-      zoomProps: { zoomType, bgOpacity, desktopTrigger },
+      zoomProps: { zoomType, bgOpacity },
+      zoomProps,
       runtime: {
-        hints: { desktop },
+        hints: { mobile },
       },
     } = this.props
 
@@ -211,7 +182,7 @@ class Carousel extends Component {
     }
 
     const galleryCursor = {
-      gallery: !isGalleryOpen && 'pointer',
+      'in-gallery': !isGalleryOpen && 'pointer',
       'in-page': styles.carouselGaleryCursor,
       'no-zoom': '',
     }
@@ -224,19 +195,6 @@ class Carousel extends Component {
       }
     )
 
-    const zoomListeners = zoomType === 'in-page' &&
-      desktop &&
-      desktopTrigger === 'on-hover' && {
-        onMouseMove: e => {
-          this.slideZoom.in(e)
-          // FIXME Won't be necessary to do this once we use a custom zoom and refactor this component.
-          this.slideZoom.disable()
-        },
-        onMouseLeave: () => {
-          this.slideZoom.out()
-        },
-      }
-
     return (
       <div className="relative overflow-hidden" aria-hidden="true">
         <Thumbnails
@@ -247,28 +205,25 @@ class Carousel extends Component {
         <div className={imageClasses}>
           <Swiper {...this.galleryParams} ref={this.gallerySwiper}>
             {slides.map((slide, i) => (
-              <div
+              <Slide
                 key={i}
-                className="swiper-slide center-all"
-                {...zoomListeners}
-              >
-                <Slide
-                  slide={slide}
-                  onLoad={() => this.onImageLoad(i)}
-                  onClick={
-                    zoomType === 'gallery'
-                      ? () => this.openGallery(i)
-                      : undefined
-                  }
-                />
-              </div>
+                slide={slide}
+                onLoad={() => this.onImageLoad(i)}
+                isCurrent={i === activeIndex}
+                zoomProps={zoomProps}
+                onClick={
+                  zoomType === 'in-gallery' || mobile
+                    ? () => this.openGallery(i)
+                    : undefined
+                }
+              />
             ))}
           </Swiper>
-          {zoomType === 'gallery' && (
+          {(zoomType === 'in-gallery' || mobile) && (
             <NoSSR>
               <Gallery
                 items={slides}
-                index={selectedIndex}
+                index={activeIndex}
                 isOpen={isGalleryOpen}
                 handleClose={() => this.setState({ isGalleryOpen: false })}
                 bgOpacity={bgOpacity}
@@ -291,6 +246,7 @@ Carousel.propTypes = {
       bestUrlIndex: PropTypes.number,
     })
   ),
+  position: PropTypes.string,
   zoomProps: PropTypes.shape({
     zoomType: PropTypes.string.required,
     desktopTrigger: PropTypes.string,

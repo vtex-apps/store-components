@@ -144,5 +144,6 @@
   "admin/editor.logo.mobileHeight.description": "Height to be used on mobile. If empty, will use the provided height value.",
   "admin/editor.product-images.zoom.desktopTrigger.title": "Desktop Trigger",
   "admin/editor.product-images.zoom.desktopTrigger.hover": "On Mouse Over",
-  "admin/editor.product-images.zoom.desktopTrigger.click": "On click"
+  "admin/editor.product-images.zoom.desktopTrigger.click": "On click",
+  "admin/editor.product-images.zoom.zoomScale.title": "Zoom Scale"
 }

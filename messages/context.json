@@ -144,5 +144,6 @@
   "admin/editor.logo.mobileHeight.description": "Description of mobileHeight property of Logo",
   "admin/editor.product-images.zoom.desktopTrigger.title": "Used in 'in-page' zoom option to choose the desktop trigger",
   "admin/editor.product-images.zoom.desktopTrigger.hover": "Hover option to desktop trigger",
-  "admin/editor.product-images.zoom.desktopTrigger.click": "Click option to desktop trigger"
+  "admin/editor.product-images.zoom.desktopTrigger.click": "Click option to desktop trigger",
+  "admin/editor.product-images.zoom.zoomScale.title": "Title to the zoomScale prop"
 }

@@ -144,5 +144,6 @@
   "admin/editor.logo.mobileHeight.description": "Altura a ser usada no celular. Se vazia, usará o valor de altura fornecido.",
   "admin/editor.product-images.zoom.desktopTrigger.title": "Gatilho no Desktop",
   "admin/editor.product-images.zoom.desktopTrigger.hover": "Ao Passar do Mouse",
-  "admin/editor.product-images.zoom.desktopTrigger.click": "Ao Clicar"
+  "admin/editor.product-images.zoom.desktopTrigger.click": "Ao Clicar",
+  "admin/editor.product-images.zoom.zoomScale.title": "Escala de zoom"
 }

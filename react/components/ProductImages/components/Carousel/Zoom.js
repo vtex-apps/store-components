@@ -10,29 +10,21 @@ const useZoom = (container, maxScale) => {
     if (rect.current) {
       return rect.current
     } else if (container.current) {
-      const {
-        left,
-        top,
-        width,
-        height,
-      } = container.current.getBoundingClientRect()
-
-      rect.current = {
-        left,
-        top,
-        width,
-        height,
-      }
+      rect.current = container.current.getBoundingClientRect()
     }
 
     return rect.current
   }
 
+  const clamp = (val, bound) => {
+    return Math.min(0, Math.max(val, bound))
+  }
+
   const getPointer = ({ pageX, pageY }) => {
     const { left, top, width, height } = getClientRect()
     return {
-      x: Math.max(left - pageX, -width),
-      y: Math.max(top - pageY, -height),
+      x: clamp(left - pageX, -width),
+      y: clamp(top - pageY, -height),
     }
   }
 
@@ -57,8 +49,8 @@ const useZoom = (container, maxScale) => {
     if (isActive) {
       setStyle({
         ...style,
-        x: Math.max(x - movementX, -width),
-        y: Math.max(y - movementY, -height),
+        x: clamp(x - movementX, -width),
+        y: clamp(y - movementY, -height),
       })
     }
   }
@@ -76,6 +68,7 @@ const useZoom = (container, maxScale) => {
         y
       )}px) scale(${scale})`,
       transformOrigin: '0 0',
+      willChange: 'transform',
     },
   }
 }
