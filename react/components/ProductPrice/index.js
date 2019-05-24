@@ -80,16 +80,16 @@ class Price extends Component {
 
     const differentPrices = showListPrice && sellingPrice !== listPrice
 
-    const formatPrice = (price) => {
+    const formatPrice = price => {
       return formatNumber(price, this.currencyOptions)
     }
   
-    const formatPriceRange = (priceRange) => {
+    const formatPriceRange = priceRange => {
       const priceRangeFormatted = map(formatPrice, priceRange || [])
       return join(' - ', priceRangeFormatted)
     }
     
-    const isPriceRange = (priceRange) => {
+    const isPriceRange = priceRange => {
       const [lowPrice, highPrice] = priceRange
       return priceRange.length === 2 && lowPrice !== highPrice
     }
@@ -150,23 +150,23 @@ class Price extends Component {
               {!isNil(labelSellingPrice) ? (labelSellingPrice ) : <FormattedMessage id="store/pricing.to" />}
             </div>
           )}
-          {!showSellingPriceRange && sellingPriceRange && isPriceRange(sellingPriceRange) ? 
+          {showSellingPriceRange && sellingPriceRange && isPriceRange(sellingPriceRange) ?
             <div
-              className={classNames(
-                productPrice.sellingPrice, 
-                sellingPriceClass
-              )}
-            >
-              {formatNumber(sellingPrice, this.currencyOptions)}
-            </div> :             
-            <div
-              className={classNames(
-                productPrice.sellingPrice,
-                priceRangeClass
-              )}
-            >
-              {formatPriceRange(sellingPriceRange)}
-            </div>
+            className={classNames(
+              productPrice.sellingPrice,
+              priceRangeClass
+            )}
+          >
+            {formatPriceRange(sellingPriceRange)}
+          </div>:
+          <div
+           className={classNames(
+             productPrice.sellingPrice, 
+             sellingPriceClass
+           )}
+          >
+           {formatNumber(sellingPrice, this.currencyOptions)}
+          </div>
           }
         </div>
         {showInstallments && (
