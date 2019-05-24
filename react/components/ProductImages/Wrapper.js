@@ -27,10 +27,10 @@ const ProductImagesWrapper = ({ thumbnailPosition, ...props}) => {
       }
 
     const { selectedItem } = valuesFromContext
-    const images = path(['images'], selectedItem)
+    const images = path(['images'], selectedItem || {})
 
     return {
-      images: map(generateImageConfig, images),
+      images: map(generateImageConfig, images || []),
       position: thumbnailPosition,
     }
   }
@@ -49,8 +49,8 @@ ProductImagesWrapper.schema = {
     thumbnailPosition: {
       title: 'admin/editor.product-details.thumbnailsPosition.title',
       type: 'string',
-      enum: map(opt => opt.value, values(thumbnailsPosition)),
-      enumNames: map(opt => opt.name, values(thumbnailsPosition)),
+      enum: map(opt => opt.value, values(thumbnailsPosition) || []),
+      enumNames: map(opt => opt.name, values(thumbnailsPosition) || []),
       default: thumbnailsPosition.DISPLAY_LEFT.value,
       isLayout: false,    
     },
