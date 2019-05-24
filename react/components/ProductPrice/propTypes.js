@@ -2,14 +2,14 @@ import PropTypes from 'prop-types'
 import { intlShape } from 'react-intl'
 
 export default {
-  /** Product range of prices */
-  priceRange: PropTypes.arrayOf(PropTypes.number),
+  /** Product list of selling prices */
+  sellingPrices: PropTypes.arrayOf(PropTypes.number),
   /** Product selling price */
   sellingPrice: PropTypes.number,
   /** Product list price */
   listPrice: PropTypes.number,
-  /** Set visibility of prices' range */
-  showPriceRange: PropTypes.bool.isRequired,
+  /** Set visibility of selling prices range */
+  showSellingPriceRange: PropTypes.bool.isRequired,
   /** Set visibility of list price */
   showListPrice: PropTypes.bool.isRequired,
   /** Set visibility of labels */

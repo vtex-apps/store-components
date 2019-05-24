@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { isNil, join, map } from 'ramda'
+import { isNil, join, map, head, last, ascend } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { FormattedMessage, injectIntl } from 'react-intl'
 
@@ -20,7 +20,7 @@ class Price extends Component {
   static propTypes = PricePropTypes
 
   static defaultProps = {
-    showPriceRange: false,
+    showSellingPriceRange: false,
     showListPrice: true,
     showLabels: true,
     showInstallments: false,
@@ -38,10 +38,9 @@ class Price extends Component {
 
   render() {
     const {
-      priceRange,
+      sellingPrices,
       sellingPrice,
       listPrice,
-      showPriceRange,
       showListPrice,
       showInstallments,
       showLabels,
@@ -87,8 +86,26 @@ class Price extends Component {
     const formatPriceRange = (priceRange) => {
       const priceRangeFormatted = map(formatPrice, priceRange || [])
       return join(' - ', priceRangeFormatted)
-    } 
+    }
+    
+    const isPriceRange = (priceRange) => {
+      const [lowPrice, highPrice] = priceRange
+      return priceRange.length === 2 && lowPrice !== highPrice
+    }
 
+    const getPriceRange = prices => {
+      const sortPrices = prices.sort(ascend)
+      const lowPrice = head(sortPrices)
+      const highPrice = last(sortPrices)
+      return [
+        lowPrice,            
+        highPrice,
+      ]
+    }
+
+    const sellingPriceRange = getPriceRange(sellingPrices)
+    const showSellingPriceRange = isPriceRange(sellingPriceRange)
+    
     return (
       <div className={classNames(productPrice.priceContainer, className)}>
         {differentPrices && (
@@ -135,7 +152,7 @@ class Price extends Component {
               {!isNil(labelSellingPrice) ? (labelSellingPrice ) : <FormattedMessage id="store/pricing.to" />}
             </div>
           )}
-          {!showPriceRange ? 
+          {!showSellingPriceRange ? 
             <div
               className={classNames(
                 productPrice.sellingPrice, 
@@ -150,7 +167,7 @@ class Price extends Component {
                 priceRangeClass
               )}
             >
-              {formatPriceRange(priceRange)}
+              {formatPriceRange(sellingPriceRange)}
             </div>
           }
         </div>
@@ -241,9 +258,9 @@ Price.Loader = (loaderProps = {}) => (
 
 Price.Loader.displayName = 'Price.Loader'
 
-const priceWithIntel = injectIntl(Price)
+const priceWithIntl = injectIntl(Price)
 
-priceWithIntel.schema = {
+priceWithIntl.schema = {
   title: 'admin/editor.productPrice.title',
   description: 'admin/editor.productPrice.description',
   type: 'object',
@@ -260,10 +277,10 @@ priceWithIntel.schema = {
       default: Price.defaultProps.labelListPrice,
       isLayout: false,
     },
-    showPriceRange: {
+    showSellingPriceRange: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showPriceRange',
-      default: Price.defaultProps.showPriceRange,
+      title: 'admin/editor.productPrice.showSellingPriceRange',
+      default: Price.defaultProps.showSellingPriceRange,
       isLayout: true,
     },
     showListPrice: {
@@ -293,4 +310,4 @@ priceWithIntel.schema = {
   },
 }
 
-export default priceWithIntel
+export default priceWithIntl
