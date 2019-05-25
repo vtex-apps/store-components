@@ -54,6 +54,7 @@ exports[`<Logo /> component should match snapshot with url 1`] = `
   >
     <img
       alt="title"
+      class="logoImage"
       src="http://logourl.test"
     />
   </span>
