@@ -91,7 +91,7 @@ exports[`<InfoCard /> should render with image and text side by side 1`] = `
       </a>
     </div>
     <div
-      class="w-50-ns"
+      class="infoCardImageContainer w-50-ns"
     >
       <img
         class="infoCardImage"
@@ -150,7 +150,7 @@ exports[`<InfoCard /> should wrap half image in a link with imageActionUrl 1`] =
       </div>
     </div>
     <div
-      class="w-50-ns"
+      class="infoCardImageContainer w-50-ns"
     >
       <a
         href="dummy"

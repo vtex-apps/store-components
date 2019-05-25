@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.38.0] - 2019-05-25
+- Added some CSS overrides classes to infocard and logo. 
+
+
 ## [3.37.2] - 2019-05-21
 ### Fixed
 - Removed `w-100` from `DiscountBadge` to avoid it to pass the image width. 

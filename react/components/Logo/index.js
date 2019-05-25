@@ -35,7 +35,8 @@ const Logo = ({ href, url, width, height, title, mobileWidth, mobileHeight }) =>
           width={imgWidth}
           height={imgHeight}
           alt={title}
-        />
+          className={styles.logoImage}
+          />
       ) : (
         <Placeholder width={width} height={height} title={title} />
       )}

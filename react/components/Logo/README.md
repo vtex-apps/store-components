@@ -56,3 +56,4 @@ Below, we describe the namespace that are defined in the `Logo`.
 | `sizeDesktop` | Image min/max size when in desktop mode | [index](/react/components/Logo/index.js) |
 | `sizeMobile` | Image min/max size when in mobile mode | [index](/react/components/Logo/index.js) |
 | `logoContainer` | The main container of `Logo` | [index](/react/components/Logo/index.js) | 
+| `logoImage` | The image of `Logo` | [index](/react/components/Logo/index.js) | 
