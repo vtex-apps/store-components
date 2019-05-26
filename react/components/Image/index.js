@@ -4,14 +4,14 @@ import { generateBlockClass } from '@vtex/css-handles'
 
 import styles from './styles.css'
 
-const Image = ({ src, alt, maxWidth, maxHeight, srcset, sizes, blockClass }) => {
+const Image = ({ src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass }) => {
   const classes = generateBlockClass(styles.imageElement, blockClass)
   const maxDimensions = {
     maxWidth: maxWidth,
     maxHeight: maxHeight,
   }
   return (
-    <img src={src} srcset={srcset} sizes={sizes} alt={alt} style={maxDimensions} className={classes} />
+    <img src={src} srcSet={srcSet} sizes={sizes} alt={alt} style={maxDimensions} className={classes} />
   )
 }
 
@@ -20,7 +20,7 @@ Image.propTypes = {
   alt: PropTypes.string,
   maxWidth: PropTypes.string,
   maxHeight: PropTypes.string,
-  srcset: PropTypes.string,
+  srcSet: PropTypes.string,
   sizes: PropTypes.string,
   blockClass: PropTypes.string,
 }
@@ -29,7 +29,7 @@ Image.defaultProps = {
   alt: '',
   maxWidth: 'none',
   maxHeight: 'none',
-  srcset: '',
+  srcSet: '',
   sizes: '',
 }
 
