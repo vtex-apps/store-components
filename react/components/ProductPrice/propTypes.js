@@ -10,6 +10,8 @@ export default {
   listPrice: PropTypes.number,
   /** Set visibility of selling prices range */
   showSellingPriceRange: PropTypes.bool.isRequired,
+  /** Set visibility of list prices range */
+  showListPriceRange: PropTypes.bool.isRequired,
   /** Set visibility of list price */
   showListPrice: PropTypes.bool.isRequired,
   /** Set visibility of labels */

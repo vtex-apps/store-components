@@ -35,6 +35,7 @@ class ProductPrice extends Component {
 
   static defaultProps = {
     showSellingPriceRange: false,
+    showListPriceRange: false,
     showListPrice: true,
     showLabels: true,
     showInstallments: false,
@@ -308,6 +309,12 @@ priceWithIntl.schema = {
       type: 'boolean',
       title: 'admin/editor.productPrice.showSellingPriceRange',
       default: ProductPrice.defaultProps.showSellingPriceRange,
+      isLayout: true,
+    },
+    showListPriceRange: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showListPriceRange',
+      default: ProductPrice.defaultProps.showListPriceRange,
       isLayout: true,
     },
     showListPrice: {

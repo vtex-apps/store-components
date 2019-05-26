@@ -10,6 +10,7 @@
   "admin/editor.productPrice.description": "admin/editor.productPrice.description",
   "admin/editor.productPrice.showListPrice": "admin/editor.productPrice.showListPrice",
   "admin/editor.productPrice.showSellingPriceRange": "admin/editor.productPrice.showSellingPriceRange",
+  "admin/editor.productPrice.showListPriceRange": "admin/editor.productPrice.showListPriceRange",
   "admin/editor.productPrice.showLabels": "admin/editor.productPrice.showLabels",
   "admin/editor.productPrice.showInstallments": "admin/editor.productPrice.showInstallments",
   "admin/editor.productPrice.showSavings": "admin/editor.productPrice.showSavings",

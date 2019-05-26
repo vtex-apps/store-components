@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Added props `sellingPriceRange` and `showSellingPriceRange` to `productPrice` component.
+- Added props `sellingPriceRange, showListPriceRange` and `showSellingPriceRange, showListPriceRange` to `productPrice` component.
 
 ## [3.40.0] - 2019-05-27
 ### Added
