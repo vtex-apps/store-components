@@ -203,7 +203,7 @@ BuyButton.propTypes = {
   /** If the product is available or not*/
   available: PropTypes.bool.isRequired,
   /** Function used to show toasts (messages) to user */
-  showToast: PropTypes.func.isRequired,
+  showToast: PropTypes.func,
   /** Function to be called on the start of add to cart click event */
   onAddStart: PropTypes.func,
   /** Function to be called on the end of add to cart event */
