@@ -68,8 +68,15 @@ class ProductPrice extends Component {
     const sellingPriceRange = (sellingPriceList && getPriceRange(sellingPriceList)) || []
     const listPriceRange = (listPriceList && getPriceRange(listPriceList)) || []
 
-    const sellingPriceToShow = showSellingPriceRange && isValidPriceRange(sellingPriceRange) ? sellingPriceRange : sellingPrice
-    const listPriceToShow = showListPriceRange && isValidPriceRange(listPriceRange) ? listPriceRange : listPrice
+    const showingSellingPriceRange = showSellingPriceRange && isValidPriceRange(sellingPriceRange)
+    const showingListPriceRange = showListPriceRange && isValidPriceRange(listPriceRange)
+
+    if (showingSellingPriceRange && !showingListPriceRange) {
+      return false
+    }
+
+    const sellingPriceToShow = showingSellingPriceRange ? sellingPriceRange : sellingPrice
+    const listPriceToShow = showingListPriceRange ? listPriceRange : listPrice
 
     return !equals(listPriceToShow, sellingPriceToShow)
   }
