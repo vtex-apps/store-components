@@ -52,9 +52,9 @@ Logo.propTypes = {
   /** Title to be displayed as alt text */
   title: PropTypes.string.isRequired,
   /** Logo's width */
-  width: PropTypes.number,
+  width: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
   /** Logo's height */
-  height: PropTypes.number,
+  height: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
 }
 
 Logo.schema = {
