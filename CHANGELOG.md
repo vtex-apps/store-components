@@ -7,7 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.38.1] - 2019-05-26
+### Fixed
+- Fix warnings on the components `Image`, `BuyButton`, and `Logo`.
+
 ## [3.38.0] - 2019-05-25
+### Added
 - Added some CSS overrides classes to infocard and logo. 
 
 
