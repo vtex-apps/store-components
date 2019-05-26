@@ -23,5 +23,6 @@
     "vtex.modal": "0.x",
     "vtex.react-portal": "0.x",
     "vtex.address-form": "4.x"
-  }
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
