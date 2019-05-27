@@ -1,9 +1,11 @@
-import React, { memo, useMemo } from 'react'
-import { bool, string, oneOf } from 'prop-types'
 import classNames from 'classnames'
-import { useRuntime } from 'vtex.render-runtime'
-import { values } from 'ramda'
 import insane from 'insane'
+import { bool, string, oneOf } from 'prop-types'
+import { values } from 'ramda'
+import React, { memo, useMemo } from 'react'
+import { injectIntl, intlShape } from 'react-intl'
+import { useRuntime } from 'vtex.render-runtime'
+import { formatIOMessage } from 'vtex.native-types'
 
 import CallToAction from './CallToAction'
 import LinkWrapper from './LinkWrapper'
@@ -82,6 +84,7 @@ const InfoCard = ({
   imageUrl,
   mobileImageUrl,
   imageActionUrl,
+  intl,
 }) => {
   const {
     hints: { mobile },
@@ -107,7 +110,11 @@ const InfoCard = ({
     'textPosition'
   )
 
-  const finalImageUrl = getImageUrl(mobile, imageUrl, mobileImageUrl)
+  const finalImageUrl = getImageUrl(
+    mobile,
+    formatIOMessage({ id: imageUrl, intl }),
+    formatIOMessage({ id: mobileImageUrl, intl })
+  )
 
   const containerStyle = isFullModeStyle
     ? { backgroundImage: `url(${finalImageUrl})`, backgroundSize: 'cover' }
@@ -140,8 +147,15 @@ const InfoCard = ({
     styles.infoCardSubhead
   } t-body mt6 c-on-base ${alignToken}`
 
-  const sanitizedHeadline = useMemo(() => sanitizeHtml(headline), [headline])
-  const sanitizedSubhead = useMemo(() => sanitizeHtml(subhead), [subhead])
+  const sanitizedHeadline = useMemo(
+    () => sanitizeHtml(formatIOMessage({ id: headline, intl })),
+    [headline, intl]
+  )
+
+  const sanitizedSubhead = useMemo(
+    () => sanitizeHtml(formatIOMessage({ id: subhead, intl })),
+    [intl, subhead]
+  )
 
   return (
     <LinkWrapper
@@ -169,17 +183,20 @@ const InfoCard = ({
           )}
           <CallToAction
             mode={callToActionMode}
-            text={callToActionText}
-            url={callToActionUrl}
+            text={formatIOMessage({ id: callToActionText, intl })}
+            url={formatIOMessage({ id: callToActionUrl, intl })}
           />
         </div>
         {!isFullModeStyle && (
-          <div className={`${styles.infoCardImageContainer} w-50-ns`} >
-            <LinkWrapper imageActionUrl={imageActionUrl}>
+          <div className={`${styles.infoCardImageContainer} w-50-ns`}>
+            <LinkWrapper
+              imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
+            >
               <img
                 className={styles.infoCardImage}
                 src={finalImageUrl}
                 style={{ objectFit: 'cover' }}
+                alt=""
                 data-testid="half-image"
               />
             </LinkWrapper>
@@ -190,7 +207,7 @@ const InfoCard = ({
   )
 }
 
-const MemoizedInfoCard = memo(InfoCard)
+const MemoizedInfoCard = memo(injectIntl(InfoCard))
 
 MemoizedInfoCard.propTypes = {
   blockClass: string,
@@ -205,6 +222,7 @@ MemoizedInfoCard.propTypes = {
   mobileImageUrl: string,
   textAlignment: oneOf(getEnumValues(textAlignmentTypes)),
   imageActionUrl: string,
+  intl: intlShape,
 }
 
 MemoizedInfoCard.defaultProps = {
@@ -241,18 +259,6 @@ MemoizedInfoCard.schema = {
       default: textPositionTypes.TEXT_POSITION_LEFT.value,
       isLayout: true,
     },
-    headline: {
-      title: 'admin/editor.info-card.headline.title',
-      description: 'admin/editor.info-card.headline.description',
-      type: 'string',
-      default: null,
-    },
-    subhead: {
-      title: 'admin/editor.info-card.subhead.title',
-      description: 'admin/editor.info-card.subhead.description',
-      type: 'string',
-      default: null,
-    },
     callToActionMode: {
       title: 'admin/editor.info-card.callToActionMode.title',
       description: 'admin/editor.info-card.callToActionMode.description',
@@ -261,30 +267,6 @@ MemoizedInfoCard.schema = {
       enumNames: getEnumNames(callToActionModeTypes),
       default: callToActionModeTypes.CALL_ACTION_BUTTON.value,
       isLayout: true,
-    },
-    callToActionText: {
-      title: 'admin/editor.info-card.callToActionText.title',
-      description: 'admin/editor.info-card.callToActionText.description',
-      type: 'string',
-      default: '',
-    },
-    callToActionUrl: {
-      title: 'admin/editor.info-card.callToActionUrl.title',
-      description: 'admin/editor.info-card.callToActionUrl.description',
-      type: 'string',
-      default: '',
-    },
-    imageUrl: {
-      title: 'admin/editor.info-card.imageUrl.title',
-      description: 'admin/editor.info-card.imageUrl.description',
-      type: 'string',
-      default: '',
-    },
-    mobileImageUrl: {
-      title: 'admin/editor.info-card.mobileImageUrl.title',
-      description: 'admin/editor.info-card.mobileImageUrl.description',
-      type: 'string',
-      default: null,
     },
     textAlignment: {
       title: 'admin/editor.info-card.textAlignment.title',
@@ -300,12 +282,6 @@ MemoizedInfoCard.schema = {
       description: 'admin/editor.blockClass.description',
       type: 'string',
       isLayout: true,
-    },
-    imageActionUrl: {
-      title: 'admin/editor.info-card.imageActionUrl.title',
-      description: 'admin/editor.info-card.imageActionUrl.description',
-      type: 'string',
-      default: null,
     },
   },
 }
