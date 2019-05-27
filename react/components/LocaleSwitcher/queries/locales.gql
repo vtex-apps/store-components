@@ -1,0 +1,6 @@
+query Locales {
+  languages {
+    default
+    supported
+  }
+}

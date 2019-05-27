@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { graphql } from 'react-apollo'
 import { useRuntime } from 'vtex.render-runtime'
 import { IconGlobe } from 'vtex.store-icons'
+import Locales from './queries/locales.gql'
 
-const supportedLangs = [
+const supportedLanguages = [
   {
     text: 'EN',
     id: 'en-US',
@@ -21,19 +23,33 @@ function splitLocale(locale) {
   return locale.split('-')[0]
 }
 
-function findLocale(locale) {
-  const localeObj = supportedLangs.find(
-    ({ id }) => splitLocale(id) === splitLocale(locale)
-  )
-  return localeObj || supportedLangs[0]
+function getSupportedLangs(languages) {
+  let supported = []
+  languages.forEach(language => {
+    if (language.split("-").length > 1) {
+      supported.push({
+        text: splitLocale(language),
+        id: language
+      })
+    }
+  })
+  return supported
 }
 
-const LocaleSwitcher = () => {
+const LocaleSwitcher = ({ data }) => {
+  const supportedLangs = data.languages ? getSupportedLangs(data.languages.supported) : supportedLanguages
   const { culture, emitter } = useRuntime()
   const [openLocaleSelector, setOpenLocaleSelector] = useState(false)
   const [selectedLocale, setSelectedLocale] = useState(
     findLocale(culture.locale)
   )
+
+  function findLocale(locale) {
+    const localeObj = supportedLangs.find(
+      ({ id }) => splitLocale(id) === splitLocale(locale)
+    )
+    return localeObj || supportedLangs[0]
+  }
 
   const handleLocaleClick = id => {
     emitter.emit('localesChanged', id)
@@ -76,4 +92,4 @@ const LocaleSwitcher = () => {
   )
 }
 
-export default LocaleSwitcher
+export default graphql(Locales)(LocaleSwitcher)
