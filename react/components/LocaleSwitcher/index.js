@@ -66,10 +66,10 @@ const LocaleSwitcher = ({ data }) => {
       <button
         onClick={() => setOpenLocaleSelector(!openLocaleSelector)}
         onBlur={() => setOpenLocaleSelector(false)}
-        className="link pa0 bg-transparent bn flex items-center pointer mr3 c-on-base hover-c-emphasis"
+        className="link pa0 bg-transparent bn flex items-center pointer mr3 c-on-base"
       >
         <IconGlobe />
-        <span className="pl2 t-action--small order-1">{selectedLocale.text}</span>
+        <span className="pl2 t-action--small order-1 gray">{selectedLocale.text}</span>
       </button>
       <ul
         hidden={!openLocaleSelector}
