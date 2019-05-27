@@ -9,6 +9,8 @@
   "admin/editor.productPrice.title": "admin/editor.productPrice.title",
   "admin/editor.productPrice.description": "admin/editor.productPrice.description",
   "admin/editor.productPrice.showListPrice": "admin/editor.productPrice.showListPrice",
+  "admin/editor.productPrice.showSellingPriceRange": "admin/editor.productPrice.showSellingPriceRange",
+  "admin/editor.productPrice.showListPriceRange": "admin/editor.productPrice.showListPriceRange",
   "admin/editor.productPrice.showLabels": "admin/editor.productPrice.showLabels",
   "admin/editor.productPrice.showInstallments": "admin/editor.productPrice.showInstallments",
   "admin/editor.productPrice.showSavings": "admin/editor.productPrice.showSavings",
@@ -140,6 +142,4 @@
   "admin/editor.logo.mobileWidth.description": "Description of mobileWidth property of Logo",
   "admin/editor.logo.mobileHeight.title": "Title of mobileHeight property of Logo",
   "admin/editor.logo.mobileHeight.description": "Description of mobileHeight property of Logo"
-  
-
 }

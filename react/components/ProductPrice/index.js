@@ -1,18 +1,32 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { isNil } from 'ramda'
+import { isNil, head, last, sort, equals } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { FormattedMessage, injectIntl } from 'react-intl'
 
 import PricePropTypes from './propTypes'
 import Installments from './Installments'
+import Price from './Price'
 
 import productPrice from './styles.css'
+
+const isValidPriceRange = priceRange => {
+  const [lowPrice, highPrice] = priceRange
+  return priceRange.length === 2 && lowPrice !== highPrice
+}
+
+const getPriceRange = prices => {
+  const sortedPrices = sort((a, b) => a - b, prices)
+  return [
+    head(sortedPrices),            
+    last(sortedPrices)
+  ]
+}
 /**
  * The Price component. Shows the prices information of the Product Summary.
  */
-class Price extends Component {
+class ProductPrice extends Component {
   static contextTypes = {
     culture: PropTypes.object,
   }
@@ -20,6 +34,8 @@ class Price extends Component {
   static propTypes = PricePropTypes
 
   static defaultProps = {
+    showSellingPriceRange: false,
+    showListPriceRange: false,
     showListPrice: true,
     showLabels: true,
     showInstallments: false,
@@ -35,11 +51,46 @@ class Price extends Component {
     maximumFractionDigits: 2,
   }
 
-  render() {
-    const {
+  mayShowListPrice = () => {
+    const { 
+      sellingPriceList,
       sellingPrice,
       listPrice,
+      listPriceList,
       showListPrice,
+      showListPriceRange,
+      showSellingPriceRange,
+    } = this.props
+
+    if (!showListPrice) {
+      return false
+    }
+
+    const sellingPriceRange = (sellingPriceList && getPriceRange(sellingPriceList)) || []
+    const listPriceRange = (listPriceList && getPriceRange(listPriceList)) || []
+
+    const showingSellingPriceRange = showSellingPriceRange && isValidPriceRange(sellingPriceRange)
+    const showingListPriceRange = showListPriceRange && isValidPriceRange(listPriceRange)
+
+    if (showingSellingPriceRange && !showingListPriceRange) {
+      return false
+    }
+
+    const sellingPriceToShow = showingSellingPriceRange ? sellingPriceRange : sellingPrice
+    const listPriceToShow = showingListPriceRange ? listPriceRange : listPrice
+
+    return !equals(listPriceToShow, sellingPriceToShow)
+  }
+
+  render() {
+    const {
+      sellingPriceList,
+      sellingPrice,
+      listPrice,
+      listPriceList,
+      showListPrice,
+      showSellingPriceRange,
+      showListPriceRange,
       showInstallments,
       showLabels,
       showSavings,
@@ -50,6 +101,8 @@ class Price extends Component {
       listPriceContainerClass,
       listPriceLabelClass,
       listPriceClass,
+      listPriceRangeClass,
+      sellingPriceRangeClass,
       sellingPriceContainerClass,
       sellingPriceLabelClass,
       sellingPriceClass,
@@ -66,19 +119,22 @@ class Price extends Component {
     let { classes } = this.props
     // avoiding undefined verifications
     classes = {
-      ...Price.defaultProps.classes,
+      ...ProductPrice.defaultProps.classes,
       ...classes,
     }
 
     if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
-      return <Price.Loader loaderClass={loaderClass} {...styles} />
+      return <ProductPrice.Loader loaderClass={loaderClass} {...styles} />
     }
 
-    const differentPrices = showListPrice && sellingPrice !== listPrice
+    const mayShowListPrice = this.mayShowListPrice()
 
+    const sellingPriceRange = sellingPriceList && getPriceRange(sellingPriceList)
+    const listPriceRange = listPriceList && getPriceRange(listPriceList)
+    
     return (
       <div className={classNames(productPrice.priceContainer, className)}>
-        {differentPrices && (
+        {mayShowListPrice && (
           <div
             className={classNames(
               productPrice.listPrice,
@@ -96,14 +152,20 @@ class Price extends Component {
                 {!isNil(labelListPrice) ? (labelListPrice ) : <FormattedMessage id="store/pricing.from" />}
               </div>
             )}
-            <span
-              className={classNames(
+            <Price
+              showPriceRange={showListPriceRange}
+              priceRange={listPriceRange}
+              price={listPrice}
+              rangeContainerClasses={classNames(
+                productPrice.listPriceValue,
+                listPriceRangeClass
+              )}
+              singleContainerClasses={classNames(
                 productPrice.listPriceValue,
                 listPriceClass
               )}
-            >
-              {formatNumber(listPrice, this.currencyOptions)}
-            </span>
+              currencyOptions={this.currencyOptions}
+            />
           </div>
         )}
         <div
@@ -112,7 +174,7 @@ class Price extends Component {
             sellingPriceContainerClass
           )}
         >
-          {showLabels && listPrice !== sellingPrice && (
+          {showLabels && mayShowListPrice && (
             <div
               className={classNames(
                 productPrice.sellingPriceLabel,
@@ -122,11 +184,20 @@ class Price extends Component {
               {!isNil(labelSellingPrice) ? (labelSellingPrice ) : <FormattedMessage id="store/pricing.to" />}
             </div>
           )}
-          <div
-            className={classNames(productPrice.sellingPrice, sellingPriceClass)}
-          >
-            {formatNumber(sellingPrice, this.currencyOptions)}
-          </div>
+          <Price
+            showPriceRange={showSellingPriceRange}
+            priceRange={sellingPriceRange}
+            price={sellingPrice}
+            rangeContainerClasses={classNames(
+              productPrice.sellingPrice,
+              sellingPriceRangeClass
+            )}
+            singleContainerClasses={classNames(
+              productPrice.sellingPrice, 
+              sellingPriceClass
+            )}
+            currencyOptions={this.currencyOptions}
+          />
         </div>
         {showInstallments && (
           <Installments
@@ -139,7 +210,7 @@ class Price extends Component {
             installmentClass={installmentClass}
           />
         )}
-        {differentPrices && showSavings && (
+        {mayShowListPrice && showSavings && (
           <div
             className={classNames(
               productPrice.savingPrice,
@@ -169,7 +240,7 @@ class Price extends Component {
   }
 }
 
-Price.Loader = (loaderProps = {}) => (
+ProductPrice.Loader = (loaderProps = {}) => (
   <div
     className={classNames(
       productPrice.priceContainer,
@@ -213,11 +284,11 @@ Price.Loader = (loaderProps = {}) => (
   </div>
 )
 
-Price.Loader.displayName = 'Price.Loader'
+ProductPrice.Loader.displayName = 'ProductPrice.Loader'
 
-const priceWithIntel = injectIntl(Price)
+const priceWithIntl = injectIntl(ProductPrice)
 
-priceWithIntel.schema = {
+priceWithIntl.schema = {
   title: 'admin/editor.productPrice.title',
   description: 'admin/editor.productPrice.description',
   type: 'object',
@@ -225,40 +296,52 @@ priceWithIntel.schema = {
     labelSellingPrice: {
       type: 'string',
       title: 'admin/editor.productPrice.labelSellingPrice',
-      default: Price.defaultProps.labelSellingPrice,
+      default: ProductPrice.defaultProps.labelSellingPrice,
       isLayout: false,
     },
     labelListPrice: {
       type: 'string',
       title: 'admin/editor.productPrice.labelListPrice',
-      default: Price.defaultProps.labelListPrice,
+      default: ProductPrice.defaultProps.labelListPrice,
       isLayout: false,
+    },
+    showSellingPriceRange: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showSellingPriceRange',
+      default: ProductPrice.defaultProps.showSellingPriceRange,
+      isLayout: true,
+    },
+    showListPriceRange: {
+      type: 'boolean',
+      title: 'admin/editor.productPrice.showListPriceRange',
+      default: ProductPrice.defaultProps.showListPriceRange,
+      isLayout: true,
     },
     showListPrice: {
       type: 'boolean',
       title: 'admin/editor.productPrice.showListPrice',
-      default: Price.defaultProps.showListPrice,
+      default: ProductPrice.defaultProps.showListPrice,
       isLayout: true,
     },
     showLabels: {
       type: 'boolean',
       title: 'admin/editor.productPrice.showLabels',
-      default: Price.defaultProps.showLabels,
+      default: ProductPrice.defaultProps.showLabels,
       isLayout: true,
     },
     showInstallments: {
       type: 'boolean',
       title: 'admin/editor.productPrice.showInstallments',
-      default: Price.defaultProps.showInstallments,
+      default: ProductPrice.defaultProps.showInstallments,
       isLayout: true,
     },
     showSavings: {
       type: 'boolean',
       title: 'admin/editor.productPrice.showSavings',
-      default: Price.defaultProps.showSavings,
+      default: ProductPrice.defaultProps.showSavings,
       isLayout: true,
     },
   },
 }
 
-export default priceWithIntel
+export default priceWithIntl
