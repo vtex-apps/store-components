@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.40.0] - 2019-05-27
+### Added
+- Content schema to `InfoCard`.
+
 ## [3.39.0] - 2019-05-27
 ### Added
 - i18n using `vtex.native-types` to allow `DiscountBadge` to respond properly to content i18n.

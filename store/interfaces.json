@@ -39,7 +39,10 @@
     "component": "ProductHighlights"
   },
   "info-card": {
-    "component": "InfoCard"
+    "component": "InfoCard",
+    "content": {
+      "$ref": "#/definitions/InfoCard"
+    }
   },
   "user-address": {
     "allowed": ["modal"],
