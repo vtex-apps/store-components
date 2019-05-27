@@ -23,8 +23,7 @@ class DiscountBadge extends Component {
         {percent ? (
           <div className="t-mini white absolute right-0 pv2 ph3 bg-emphasis">
             {label === '' && '-'}
-            <FormattedNumber value={percent} style="percent" />
-            {label && ' '}
+            <FormattedNumber value={percent} style="percent" /> {label && ' '}
             <IOMessage id={label} />
           </div>
         ) : null}
