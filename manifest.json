@@ -15,6 +15,7 @@
     "postreleasy": "vtex publish --verbose"
   },
   "dependencies": {
+    "vtex.native-types": "0.x",
     "vtex.shipping-estimate-translator": "2.x",
     "vtex.store-graphql": "2.x",
     "vtex.store-resources": "0.x",
