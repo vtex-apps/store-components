@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { FormattedNumber } from 'react-intl'
 import PropTypes from 'prop-types'
 
+import { IOMessage } from 'vtex.native-types'
+
 import styles from './styles.css'
 
 /**
@@ -21,7 +23,8 @@ class DiscountBadge extends Component {
         {percent ? (
           <div className="t-mini white absolute right-0 pv2 ph3 bg-emphasis">
             {label === '' && '-'}
-            <FormattedNumber value={percent} style="percent" /> {label}
+            <FormattedNumber value={percent} style="percent" /> {label && ' '}
+            <IOMessage id={label} />
           </div>
         ) : null}
         {this.props.children}
