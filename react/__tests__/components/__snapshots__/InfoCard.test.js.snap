@@ -94,6 +94,7 @@ exports[`<InfoCard /> should render with image and text side by side 1`] = `
       class="infoCardImageContainer w-50-ns"
     >
       <img
+        alt=""
         class="infoCardImage"
         data-testid="half-image"
         src="my-image.com/image.png"
@@ -156,6 +157,7 @@ exports[`<InfoCard /> should wrap half image in a link with imageActionUrl 1`] =
         href="dummy"
       >
         <img
+          alt=""
           class="infoCardImage"
           data-testid="half-image"
           src="my-image.com/image.png"
