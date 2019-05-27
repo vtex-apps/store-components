@@ -3,7 +3,9 @@ import { intlShape } from 'react-intl'
 
 export default {
   /** Product list of selling prices */
-  sellingPrices: PropTypes.arrayOf(PropTypes.number),
+  sellingPriceList: PropTypes.arrayOf(PropTypes.number),
+  /** Product list of list prices */
+  listPriceList: PropTypes.arrayOf(PropTypes.number),
   /** Product selling price */
   sellingPrice: PropTypes.number,
   /** Product list price */
@@ -49,8 +51,10 @@ export default {
   listPriceLabelClass: PropTypes.string,
   /** Classes to be applied to price value */
   listPriceClass: PropTypes.string,
-  /** Classes to be applied to range prices value */
-  priceRangeClass: PropTypes.string,
+  /** Classes to be applied to range selling prices value */
+  sellingPriceRangeClass: PropTypes.string,
+  /** Classes to be applied to range list prices value */
+  listPriceRangeClass: PropTypes.string,
   /** Classes to be applied to selling price container */
   sellingPriceContainerClass: PropTypes.string,
   /** Classes to be applied to selling price label */
