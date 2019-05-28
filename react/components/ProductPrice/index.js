@@ -150,7 +150,7 @@ class ProductPrice extends Component {
                   'dib ph2 t-small-ns t-mini'
                 )}
               >
-                {!isNil(labelListPrice) ? (labelListPrice ) : <IOMessage id="store/pricing.from" />}
+                <IOMessage id={labelListPrice} />
               </div>
             )}
             <Price
@@ -182,7 +182,7 @@ class ProductPrice extends Component {
                 sellingPriceLabelClass
               )}
             >
-              {!isNil(labelSellingPrice) ? (labelSellingPrice ) : <IOMessage id="store/pricing.to" />}
+              <IOMessage id={labelSellingPrice} />
             </div>
           )}
           <Price
