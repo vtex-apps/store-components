@@ -20,11 +20,12 @@ const ProductImagesWrapper = ({ thumbnailPosition, ...props}) => {
   const valuesFromContext = useContext(ProductContext)
 
   const productImagesProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) 
+    if (!valuesFromContext || isEmpty(valuesFromContext)) {
       return {
-        images: props.images,
         position: thumbnailPosition,
+        ...props,
       }
+    }
 
     const { selectedItem } = valuesFromContext
     const images = path(['images'], selectedItem || {})
