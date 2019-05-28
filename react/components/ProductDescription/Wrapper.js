@@ -8,10 +8,13 @@ const ProductDescriptionWrapper = (props) => {
   const valuesFromContext = useContext(ProductContext)
 
   const productDescriptionProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
+    if (!valuesFromContext || isEmpty(valuesFromContext)) {
+      return props
+    }
 
     const { product, selectedItem } = valuesFromContext
     return {
+      ...props,
       description: path(['description'], product),
       skuName: path(['name'], selectedItem),
     }

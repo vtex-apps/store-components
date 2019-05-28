@@ -20,6 +20,7 @@ const ShareWrapper = props => {
     const { selectedItem, product } = valuesFromContext
 
     return {
+      ...props,
       social,
       shareLabelClass: 'c-muted-2 t-small mb3',
       className: 'db',

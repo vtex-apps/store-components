@@ -10,11 +10,14 @@ const ShippingSimulatorWrapper = (props) => {
   const valuesFromContext = useContext(ProductContext)
 
   const shippingSimultatorProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
+    if (!valuesFromContext || isEmpty(valuesFromContext)) {
+      return props
+    }
 
     const { selectedItem } = valuesFromContext
 
     return {
+      ...props,
       skuId: path(['itemId'], selectedItem),
       seller: path(['sellers', 0, 'sellerId'], selectedItem),
       country: culture.country,

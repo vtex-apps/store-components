@@ -84,6 +84,7 @@ const ProductPriceWrapper = ({
     const showProductPrice = Number.isNaN(+availableQuantity) || availableQuantity > 0
 
     return {
+      ...props,
       styles,
       className: className || '',
       listPriceContainerClass: listPriceContainerClass || 't-small-s t-small-ns c-muted-2 mb2',

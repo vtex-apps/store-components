@@ -4,7 +4,9 @@ import { isEmpty, propOr } from 'ramda'
 
 import ProductHighlights from './index'
 
-const ProductHighlightsWrapper = ({ conditional, ...props }) => {
+const ProductHighlightsWrapper = (props) => {
+  const { conditional } = props
+
   const valuesFromContext = useContext(ProductContext)
 
   const getHighlights = () => {
@@ -50,9 +52,12 @@ const ProductHighlightsWrapper = ({ conditional, ...props }) => {
   }
 
   const productHighlightsProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
+    if (!valuesFromContext || isEmpty(valuesFromContext)) {
+      return props
+    }
 
     return {
+      ...props,
       highlights: getHighlights(),
     }
   }

@@ -24,7 +24,9 @@ const BuyButtonWrapper = (props) => {
   const valuesFromContext = useContext(ProductContext)
 
   const buyButtonProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
+    if (!valuesFromContext || isEmpty(valuesFromContext)) {
+      return props
+    }
 
     const { product, selectedItem, selectedQuantity } = valuesFromContext
 
@@ -39,6 +41,7 @@ const BuyButtonWrapper = (props) => {
       path(['AvailableQuantity'], commertialOffer) > 0
 
     return {
+      ...props,
       skuItems: selectedItem &&
         sellerId && [
           {

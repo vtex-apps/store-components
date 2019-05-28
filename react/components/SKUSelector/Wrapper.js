@@ -8,11 +8,14 @@ const SKUSelectorWrapper = (props) => {
   const valuesFromContext = useContext(ProductContext)
 
   const skuSelectorProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
+    if (!valuesFromContext || isEmpty(valuesFromContext)) {
+      return props
+    }
 
     const { product, selectedItem } = valuesFromContext
 
     return {
+      ...props,
       skuItems: pathOr([], ['items'], product),
       skuSelected: selectedItem,
       productSlug: path(['linkText'], product),

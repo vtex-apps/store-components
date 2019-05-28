@@ -8,12 +8,15 @@ const AvailabilitySubscriberWrapper = (props) => {
   const valuesFromContext = useContext(ProductContext)
 
   const availabilitySubscriberProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
+    if (!valuesFromContext || isEmpty(valuesFromContext)) {
+      return props
+    }
     
     const { selectedItem } = valuesFromContext
     const commertialOffer = path(['sellers', 0, 'commertialOffer'], selectedItem)
 
     return {
+      ...props,
       skuId: path(['itemId'], selectedItem),
       available: Number.isNaN(+path(['AvailableQuantity'], commertialOffer)) || path(['AvailableQuantity'], commertialOffer) > 0,
     }

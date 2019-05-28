@@ -16,7 +16,8 @@ const thumbnailsPosition = {
   },
 }
 
-const ProductImagesWrapper = ({ thumbnailPosition, ...props}) => {
+const ProductImagesWrapper = (props) => {
+  const { thumbnailPosition } = props
   const valuesFromContext = useContext(ProductContext)
 
   const productImagesProps = () => {
@@ -31,6 +32,7 @@ const ProductImagesWrapper = ({ thumbnailPosition, ...props}) => {
     const images = path(['images'], selectedItem || {})
 
     return {
+      ...props,
       images: map(generateImageConfig, images || []),
       position: thumbnailPosition,
     }

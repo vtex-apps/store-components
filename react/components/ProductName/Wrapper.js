@@ -30,6 +30,7 @@ const ProductNameWrapper = props => {
 
     const { product, selectedItem } = valuesFromContext
     return {
+      ...props,
       tag: 'h1',
       name: path(['productName'], product),
       skuName: path(['name'], selectedItem),
