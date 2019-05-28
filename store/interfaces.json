@@ -23,7 +23,7 @@
   "product-description": {
     "component": "ProductDescription"
   },
-  "product-quantity-selector": {
+  "product-quantity": {
     "component": "ProductQuantitySelector"
   },
   "product-separator": {
