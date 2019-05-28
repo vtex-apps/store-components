@@ -4,7 +4,7 @@ import { compose, isEmpty, prop, propOr, reject, flip, map, contains } from 'ram
 
 import ProductSpecifications from './index';
 
-const ProductSpecificationsWrapper = ({ showSpecificationsTab = false, ...props }) => {
+const ProductSpecificationsWrapper = ({ showSpecificationsTab = false, ...rest }) => {
   const valuesFromContext = useContext(ProductContext)
 
   const getSpecifications = () => {
@@ -23,13 +23,19 @@ const ProductSpecificationsWrapper = ({ showSpecificationsTab = false, ...props 
   }
 
   const productSpecificationsProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) return props
+    if (!valuesFromContext || isEmpty(valuesFromContext)) {
+      return {
+        tabsMode: showSpecificationsTab,
+        ...rest,
+      }
+    } 
 
     return {
-      tabsMode: showSpecificationsTab,
+      tabsMode: rest && rest.tabsMode != null ? rest.tabsMode : showSpecificationsTab,
       specifications: getSpecifications(),
     }
   }
+
 
   return (
     <ProductSpecifications { ...productSpecificationsProps() } />
