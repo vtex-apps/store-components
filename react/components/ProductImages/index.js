@@ -87,7 +87,7 @@ ProductImages.defaultProps = {
   images: [],
   position: 'left',
   zoomProps: {
-    zoomType: 'in-gallery',
+    zoomType: 'gallery',
     zoomScale: 2,
     bgOpacity: 0.8,
   },
@@ -101,11 +101,12 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => ({
     zoomProps: {
       title: 'admin/editor.product-images.zoomOptions.title',
       type: 'object',
+      isLayout: true,
       properties: {
         zoomType: {
           title: 'admin/editor.product-images.zoomType.title',
           type: 'string',
-          enum: ['in-gallery', 'in-page', 'no-zoom'],
+          enum: ['gallery', 'in-page', 'no-zoom'],
           enumNames: [
             'admin/editor.product-images.gallery',
             'admin/editor.product-images.in-page',
@@ -119,7 +120,7 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => ({
           },
           default: 'no-zoom',
         },
-        ...(zoomType === 'in-gallery' && {
+        ...(zoomType === 'gallery' && {
           bgOpacity: {
             title: 'admin/editor.product-images.bgopacity.title',
             type: 'number',

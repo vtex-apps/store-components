@@ -107,10 +107,6 @@ class Carousel extends Component {
     this.setState({ loaded })
   }
 
-  openGallery = () => {
-    this.setState({ isGalleryOpen: true })
-  }
-
   get galleryParams() {
     const { thumbSwiper } = this.state
     const { slides } = this.props
@@ -182,7 +178,7 @@ class Carousel extends Component {
     }
 
     const galleryCursor = {
-      'in-gallery': !isGalleryOpen && 'pointer',
+      gallery: !isGalleryOpen && 'pointer',
       'in-page': styles.carouselGaleryCursor,
       'no-zoom': '',
     }
@@ -212,14 +208,14 @@ class Carousel extends Component {
                 isCurrent={i === activeIndex}
                 zoomProps={zoomProps}
                 onClick={
-                  zoomType === 'in-gallery' || mobile
-                    ? () => this.openGallery(i)
+                  zoomType === ('gallery' || mobile)
+                    ? () => this.setState({ isGalleryOpen: true })
                     : undefined
                 }
               />
             ))}
           </Swiper>
-          {(zoomType === 'in-gallery' || mobile) && (
+          {(zoomType === 'gallery' || mobile) && (
             <NoSSR>
               <Gallery
                 items={slides}
