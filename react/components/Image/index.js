@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { intlShape } from 'react-intl'
+import { injectIntl, intlShape } from 'react-intl'
 import { generateBlockClass } from '@vtex/css-handles'
 import { formatIOMessage } from 'vtex.native-types'
 
 import styles from './styles.css'
 
-const Image = ({ src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass}) => {
+const Image = ({ src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass, intl}) => {
   const classes = generateBlockClass(styles.imageElement, blockClass)
   const maxDimensions = {
     maxWidth: maxWidth,
     maxHeight: maxHeight,
   }
+
   return (
     <img src={src} 
     srcSet={srcSet}
     sizes={sizes}
-    alt={alt}
+    alt={formatIOMessage({id: alt, intl})}
     style={maxDimensions}
     className={classes} />
   )
@@ -55,4 +56,4 @@ Image.schema = {
   },
 }
 
-export default Image
+export default injectIntl(Image)
