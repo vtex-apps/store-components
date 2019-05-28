@@ -7,18 +7,27 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- i18n using `vtex.native-types` to allow `NewsLetter` to respond properly to content i18n.
+
 ## [3.42.5] - 2019-06-05
+
 ### Fixed
+
 - Hides SKU selector when there are no variations to be selected.
 - `BuyButton`: use given props over context, if set.
 
 ## [3.42.4] - 2019-06-05
+
 ### Fixed
 
 - Use props as default value instead of context.
 
 ## [3.42.3] - 2019-06-05
+
 ### Fixed
+
 - Remove `showProductPrice` rule from `ProductPrice` wrapper.
 
 ## [3.42.2] - 2019-06-05
