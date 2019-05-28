@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { NumericStepper } from 'vtex.styleguide'
 import { FormattedMessage } from 'react-intl'
@@ -15,7 +15,7 @@ const ProductQuantitySelector = ({ warningQuantityThreshold, ...props }) => {
       return {
         availableQuantity,
         selectedQuantity,
-        onChange: useCallback(e => onChange(e.value), []),
+        onChange: e => onChange(e.value),
       }
     }
 
@@ -23,7 +23,7 @@ const ProductQuantitySelector = ({ warningQuantityThreshold, ...props }) => {
     return {
       availableQuantity: path(['sellers', 0, 'commertialOffer', 'AvailableQuantity'], selectedItem),
       selectedQuantity,
-      onChange: useCallback(e => onChangeQuantity(e.value), []),
+      onChange: e => onChangeQuantity(e.value),
     }
   }
 
