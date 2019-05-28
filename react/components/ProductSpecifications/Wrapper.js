@@ -33,6 +33,7 @@ const ProductSpecificationsWrapper = (props) => {
     } 
 
     return {
+      ...props,
       tabsMode: props && props.tabsMode != null ? props.tabsMode : showSpecificationsTab,
       specifications: getSpecifications(),
     }
