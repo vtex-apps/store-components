@@ -16,8 +16,7 @@ import './global.css'
 
 import Gallery from '../Gallery'
 
-const Swiper = window.navigator ? require('react-id-swiper').default : null
-import { Pagination, Navigation } from 'swiper/dist/js/swiper.esm'
+import Swiper, { Pagination, Navigation } from 'react-id-swiper/lib/ReactIdSwiper.full'
 
 const initialState = {
   loaded: [],
