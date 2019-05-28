@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { isNil, head, last, sort, equals } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { FormattedMessage, injectIntl } from 'react-intl'
+import { IOMessage } from 'vtex.native-types'
 
 import PricePropTypes from './propTypes'
 import Installments from './Installments'
@@ -149,7 +150,7 @@ class ProductPrice extends Component {
                   'dib ph2 t-small-ns t-mini'
                 )}
               >
-                {!isNil(labelListPrice) ? (labelListPrice ) : <FormattedMessage id="store/pricing.from" />}
+                <IOMessage id={labelListPrice} />
               </div>
             )}
             <Price
@@ -181,7 +182,7 @@ class ProductPrice extends Component {
                 sellingPriceLabelClass
               )}
             >
-              {!isNil(labelSellingPrice) ? (labelSellingPrice ) : <FormattedMessage id="store/pricing.to" />}
+              <IOMessage id={labelSellingPrice} />
             </div>
           )}
           <Price
@@ -293,18 +294,6 @@ priceWithIntl.schema = {
   description: 'admin/editor.productPrice.description',
   type: 'object',
   properties: {
-    labelSellingPrice: {
-      type: 'string',
-      title: 'admin/editor.productPrice.labelSellingPrice',
-      default: ProductPrice.defaultProps.labelSellingPrice,
-      isLayout: false,
-    },
-    labelListPrice: {
-      type: 'string',
-      title: 'admin/editor.productPrice.labelListPrice',
-      default: ProductPrice.defaultProps.labelListPrice,
-      isLayout: false,
-    },
     showSellingPriceRange: {
       type: 'boolean',
       title: 'admin/editor.productPrice.showSellingPriceRange',
