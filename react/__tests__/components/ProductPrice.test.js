@@ -44,6 +44,8 @@ describe('<ProductPrice />', () => {
       listPrice: 50,
       showLabels: true,
       showListPrice: true,
+      labelSellingPrice: 'To',
+      labelListPrice: 'From'
     }
     const { getByText } = renderComponent(customProps)
     expect(getByText('From')).toBeDefined()
@@ -57,6 +59,8 @@ describe('<ProductPrice />', () => {
       listPrice: 50,
       showLabels: false,
       showListPrice: true,
+      labelSellingPrice: 'To',
+      labelListPrice: 'From'
     }
     const { getByText, queryByText } = renderComponent(customProps)
     expect(queryByText('From')).toBeNull()

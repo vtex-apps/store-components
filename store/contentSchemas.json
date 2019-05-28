@@ -50,11 +50,13 @@
       "properties": {
         "labelSellingPrice": {
           "title": "admin/editor.productPrice.labelSellingPrice",
-          "$ref": "app:vtex.native-types#/definitions/text"
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": "store/pricing.to"
         },
         "labelListPrice": {
           "title": "admin/editor.productPrice.labelListPrice",
-          "$ref": "app:vtex.native-types#/definitions/text"
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": "store/pricing.from"
         }
       }
     }
