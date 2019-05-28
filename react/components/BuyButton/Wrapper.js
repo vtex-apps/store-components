@@ -10,15 +10,17 @@ import { graphql } from 'react-apollo'
 
 import { BuyButton } from './index'
 
-const BuyButtonWrapper = ({ 
-  intl,
-  addToCart,
-  showToast,
-  orderFormContext,
-  onAddStart,
-  onAddFinish,
-  ...props 
-}) => {
+const BuyButtonWrapper = (props) => {
+  const { 
+    intl,
+    addToCart,
+    showToast,
+    orderFormContext,
+    onAddStart,
+    onAddFinish,
+    children,
+  } = props
+
   const valuesFromContext = useContext(ProductContext)
 
   const buyButtonProps = () => {
@@ -71,7 +73,9 @@ const BuyButtonWrapper = ({
       orderFormContext={orderFormContext}
       { ...buyButtonProps() }
     >
-      <FormattedMessage id="store/buy-button.add-to-cart" />
+      {children || (
+        <FormattedMessage id="store/buy-button.add-to-cart" />
+      )}
     </BuyButton>
   )
 }
