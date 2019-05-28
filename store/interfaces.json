@@ -58,7 +58,10 @@
     "component": "ProductServices"
   },
   "newsletter": {
-    "component": "Newsletter"
+    "component": "Newsletter",
+    "content": {
+      "$ref": "app:vtex.store-components#/definitions/Newsletter"
+    }
   },
   "notification": {},
   "notification.inline": {

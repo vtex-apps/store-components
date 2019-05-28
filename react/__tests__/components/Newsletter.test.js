@@ -3,21 +3,39 @@ import { render, fireEvent, waitForElement } from '@vtex/test-tools/react'
 import Newsletter from '../../components/Newsletter'
 import subscribeNewsletter from '../../components/Newsletter/mutations/subscribeNewsletter.graphql'
 
-test('should have label, input and submit', () => {
-  const { getByLabelText, getByText } = render(<Newsletter />)
+const placeholderTextId = 'store/newsletter.placeholder'
+const labelTextId = 'store/newsletter.label'
+const submitTextId = 'store/newsletter.submit'
+const thanksTextId = 'store/newsletter.confirmationTitle'
+const errorTextId = 'store/newsletter.error'
 
-  const input = getByLabelText(/subscribe to our newsletter/i)
-  const submit = getByText(/sign up/i)
+test('should have label, input and submit', () => {
+  const { getByLabelText, getByText } = render(
+    <Newsletter
+      placeholder={placeholderTextId}
+      label={labelTextId}
+      submit={submitTextId}
+    />
+  )
+
+  const input = getByLabelText(labelTextId)
+  const submit = getByText(submitTextId)
 
   expect(input).toBeTruthy()
   expect(submit).toBeTruthy()
 })
 
 test('should add error message when user types wrong email', () => {
-  const { getByLabelText, getByText } = render(<Newsletter />)
+  const { getByLabelText, getByText } = render(
+    <Newsletter
+      placeholder={placeholderTextId}
+      label={labelTextId}
+      submit={submitTextId}
+    />
+  )
 
-  const mockedInput = getByLabelText(/subscribe to our newsletter/i)
-  const submit = getByText(/sign up/i)
+  const mockedInput = getByLabelText(labelTextId)
+  const submit = getByText(submitTextId)
 
   const wrongEmail = 'foobar'
   fireEvent.change(mockedInput, { target: { value: wrongEmail } })
@@ -42,17 +60,24 @@ test('should call mutation', async () => {
     },
   ]
 
-  const { getByLabelText, getByText } = render(<Newsletter />, {
-    graphql: { mocks, addTypename: false },
-  })
+  const { getByLabelText, getByText } = render(
+    <Newsletter
+      placeholder={placeholderTextId}
+      label={labelTextId}
+      submit={submitTextId}
+    />,
+    {
+      graphql: { mocks, addTypename: false },
+    }
+  )
 
-  const input = getByLabelText(/subscribe to our newsletter/i)
-  const submit = getByText(/sign up/i)
+  const input = getByLabelText(labelTextId)
+  const submit = getByText(submitTextId)
 
   fireEvent.change(input, { target: { value: email } })
   fireEvent.click(submit)
 
-  const thanks = await waitForElement(() => getByText(/thank you/i))
+  const thanks = await waitForElement(() => getByText(thanksTextId))
 
   expect(thanks).toBeTruthy()
 })
@@ -69,17 +94,24 @@ test('should handle mutation error', async () => {
     },
   ]
 
-  const { getByLabelText, getByText } = render(<Newsletter />, {
-    graphql: { mocks, addTypename: false },
-  })
+  const { getByLabelText, getByText } = render(
+    <Newsletter
+      placeholder={placeholderTextId}
+      label={labelTextId}
+      submit={submitTextId}
+    />,
+    {
+      graphql: { mocks, addTypename: false },
+    }
+  )
 
-  const input = getByLabelText(/subscribe to our newsletter/i)
-  const submit = getByText(/sign up/i)
+  const input = getByLabelText(labelTextId)
+  const submit = getByText(submitTextId)
 
   fireEvent.change(input, { target: { value: email } })
   fireEvent.click(submit)
 
-  const error = await waitForElement(() => getByText(/something went wrong/i))
+  const error = await waitForElement(() => getByText(errorTextId))
 
   expect(error).toBeTruthy()
 })
