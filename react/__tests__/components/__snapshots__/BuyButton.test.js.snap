@@ -13,9 +13,7 @@ exports[`<BuyButton /> should match snapshot normal 1`] = `
   <button
     data-isloading="false"
   >
-    <span>
-      Add to cart
-    </span>
+    Test
   </button>
 </DocumentFragment>
 `;
