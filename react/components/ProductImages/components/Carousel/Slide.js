@@ -14,7 +14,7 @@ const Slide = ({
   isCurrent,
   setThumb,
   id,
-  zoomProps: { zoomType, desktopTrigger, zoomScale },
+  zoomProps: { desktopTrigger, zoomScale },
 }) => {
   const divref = useRef()
   const { zoom, out, pan, style, isActive: isZoomActive } = useZoom(
@@ -23,7 +23,7 @@ const Slide = ({
   )
 
   const {
-    hints: { desktop },
+    hints: { desktop, mobile },
   } = useRuntime()
 
   const desktopTriggers = {
@@ -40,12 +40,11 @@ const Slide = ({
     out()
   }
 
-  const zoomProps = slide.type === 'image' &&
-    desktop &&
-    zoomType === 'in-page' && {
-      ...desktopTriggers[desktopTrigger],
-      onMouseMove: pan,
-    }
+  const zoomProps = slide.type === 'image' && {
+    ...(desktop && desktopTriggers[desktopTrigger]),
+    ...(mobile && { onClick }),
+    onMouseMove: pan,
+  }
 
   const slideComp = {
     image: (
@@ -56,7 +55,6 @@ const Slide = ({
         bestUrlIndex={slide.bestUrlIndex}
         alt={slide.alt}
         onload={onLoad}
-        onClick={onClick}
       />
     ),
     video: (
@@ -79,7 +77,6 @@ const Slide = ({
       {...zoomProps}
       style={{ ...style }}
       ref={divref}
-      onClick={onClick}
     >
       {slideComp[slide.type]}
     </div>

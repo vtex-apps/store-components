@@ -2,6 +2,8 @@ import { arrayOf, shape, string, number, oneOf } from 'prop-types'
 import React, { useMemo, useEffect, useState } from 'react'
 import debounce from 'debounce'
 
+import { defineMessages } from 'react-intl'
+
 import Carousel from './components/Carousel'
 import styles from './styles.css'
 
@@ -54,7 +56,16 @@ const ProductImages = props => {
 
   return (
     <div className={`${styles.content} w-100`}>
-      <Carousel slides={slides} position={position} zoomProps={zoomProps} />
+      <Carousel
+        slides={slides}
+        position={position}
+        zoomProps={{
+          zoomType: 'in-page',
+          desktopTrigger: 'on-hover',
+          bgOpacity: 0.8,
+          zoomScale: 2,
+        }}
+      />
     </div>
   )
 }
@@ -87,31 +98,78 @@ ProductImages.defaultProps = {
   images: [],
   position: 'left',
   zoomProps: {
-    zoomType: 'gallery',
-    zoomScale: 2,
+    zoomType: 'in-page',
+    desktopTrigger: 'on-click',
     bgOpacity: 0.8,
+    zoomScale: 2,
   },
 }
 
+const messages = defineMessages({
+  productImagesTitle: {
+    id: 'admin/editor.product-images.title',
+    defaultMessage: '',
+  },
+  productImagesDescription: {
+    id: 'admin/editor.product-images.description',
+    defaultMessage: '',
+  },
+  zoomTitle: {
+    id: 'admin/editor.product-images.zoomOptions.title',
+    defaultMessage: '',
+  },
+  zoomTypeTitle: {
+    id: 'admin/editor.product-images.zoomType.title',
+    defaultMessage: '',
+  },
+  gallery: {
+    id: 'admin/editor.product-images.gallery',
+    defaultMessage: '',
+  },
+  inPage: {
+    id: 'admin/editor.product-images.in-page',
+    defaultMessage: '',
+  },
+  noZoom: {
+    id: 'admin/editor.product-images.no-zoom',
+    defaultMessage: '',
+  },
+  bgOpacityTitle: {
+    id: 'admin/editor.product-images.bgopacity.title',
+    defaultMessage: '',
+  },
+  desktopTriggerTitle: {
+    id: 'admin/editor.product-images.zoom.desktopTrigger.title',
+    defaultMessage: '',
+  },
+  hover: {
+    id: 'admin/editor.product-images.zoom.desktopTrigger.hover',
+    defaultMessage: '',
+  },
+  click: {
+    id: 'admin/editor.product-images.zoom.desktopTrigger.click',
+    defaultMessage: '',
+  },
+  zoomScaleTitle: {
+    id: 'admin/editor.product-images.zoom.zoomScale.title',
+    defaultMessage: '',
+  },
+})
+
 ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => ({
-  title: 'admin/editor.product-images.title',
-  description: 'admin/editor.product-images.description',
+  title: messages.productImagesTitle,
+  description: messages.productImagesDescription,
   type: 'object',
   properties: {
     zoomProps: {
-      title: 'admin/editor.product-images.zoomOptions.title',
+      title: messages.zoomTitle,
       type: 'object',
-      isLayout: true,
       properties: {
         zoomType: {
-          title: 'admin/editor.product-images.zoomType.title',
+          title: messages.zoomTypeTitle,
           type: 'string',
           enum: ['gallery', 'in-page', 'no-zoom'],
-          enumNames: [
-            'admin/editor.product-images.gallery',
-            'admin/editor.product-images.in-page',
-            'admin/editor.product-images.no-zoom',
-          ],
+          enumNames: [messages.gallery, messages.inPage, messages.noZoom],
           widget: {
             'ui:options': {
               inline: false,
@@ -120,29 +178,24 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => ({
           },
           default: 'no-zoom',
         },
-        ...(zoomType === 'gallery' && {
-          bgOpacity: {
-            title: 'admin/editor.product-images.bgopacity.title',
-            type: 'number',
-            minimum: 0.0,
-            maximum: 1.0,
-            multipleOf: 0.01,
-            default: 0.8,
-          },
-        }),
+        bgOpacity: {
+          title: messages.bgOpacityTitle,
+          type: 'number',
+          minimum: 0.0,
+          maximum: 1.0,
+          multipleOf: 0.01,
+          default: 0.8,
+        },
         ...(zoomType === 'in-page' && {
           desktopTrigger: {
-            title: 'admin/editor.product-images.zoom.desktopTrigger.title',
+            title: messages.desktopTriggerTitle,
             type: 'string',
             default: 'on-hover',
             enum: ['on-hover', 'on-click'],
-            enumNames: [
-              'admin/editor.product-images.zoom.desktopTrigger.hover',
-              'admin/editor.product-images.zoom.desktopTrigger.click',
-            ],
+            enumNames: [messages.hover, messages.click],
           },
           zoomScale: {
-            title: 'admin/editor.product-images.zoom.zoomScale.title',
+            title: messages.zoomScaleTitle,
             type: 'number',
             default: 2,
             minimum: 0.0,

@@ -208,7 +208,7 @@ class Carousel extends Component {
                 isCurrent={i === activeIndex}
                 zoomProps={zoomProps}
                 onClick={
-                  zoomType === ('gallery' || mobile)
+                  zoomType === 'gallery' || mobile
                     ? () => this.setState({ isGalleryOpen: true })
                     : undefined
                 }
