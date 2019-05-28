@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { path, isEmpty } from 'ramda'
 import { ProductContext } from 'vtex.product-context'
 
-import ProductName from './index';
+import ProductName from './index'
 
 const styles = {
   'vtex-product-name__brand--loader': {
@@ -18,22 +18,15 @@ const styles = {
   },
 }
 
-const ProductNameWrapper = ({
-  showBrandName,
-  showSku,
-  showProductReference,
-  ...props,
-}) => {
+const ProductNameWrapper = props => {
+  const { showBrandName, showSku, showProductReference } = props
+
   const valuesFromContext = useContext(ProductContext)
 
   const productNameProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) 
-      return {
-        ...props,
-        showBrandName,
-        showSku,
-        showProductReference,      
-      }
+    if (!valuesFromContext || isEmpty(valuesFromContext)) {
+      return props
+    }
 
     const { product, selectedItem } = valuesFromContext
     return {
@@ -50,9 +43,7 @@ const ProductNameWrapper = ({
     }
   }
 
-  return (
-    <ProductName { ...productNameProps() } />
-  )
+  return <ProductName {...productNameProps()} />
 }
 
 ProductNameWrapper.schema = {

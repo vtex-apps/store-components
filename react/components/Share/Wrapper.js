@@ -4,25 +4,25 @@ import { path, isEmpty } from 'ramda'
 import { injectIntl } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 
-import Share from './index';
+import Share from './index'
 
-const ShareWrapper = ({ intl, social, ...props }) => {
+const ShareWrapper = props => {
+  const { intl, social } = props
+
   const valuesFromContext = useContext(ProductContext)
   const { account } = useRuntime()
 
   const shareProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) 
-      return {
-        ...props,
-        social,
-      }
+    if (!valuesFromContext || isEmpty(valuesFromContext)) {
+      return props
+    }
 
     const { selectedItem, product } = valuesFromContext
 
     return {
       social,
-      shareLabelClass: "c-muted-2 t-small mb3",
-      className: "db",
+      shareLabelClass: 'c-muted-2 t-small mb3',
+      className: 'db',
       productImageUrl: path(['items', 0, 'images', 0, 'imageUrl'], product),
       loading: !path(['name'], selectedItem),
       title: intl.formatMessage(
@@ -32,13 +32,11 @@ const ShareWrapper = ({ intl, social, ...props }) => {
           sku: path(['name'], selectedItem),
           store: account,
         }
-      )
+      ),
     }
   }
 
-  return (
-    <Share { ...shareProps() } />
-  )
+  return <Share {...shareProps()} />
 }
 
 ShareWrapper.schema = Share.schema
