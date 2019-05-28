@@ -3,7 +3,7 @@ import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
 
-import ShippingSimulator from './index';
+import ShippingSimulator from './index'
 
 const ShippingSimulatorWrapper = (props) => {
   const { culture } = useRuntime()
