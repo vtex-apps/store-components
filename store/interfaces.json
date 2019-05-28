@@ -15,10 +15,7 @@
     "component": "ProductImages"
   },
   "product-price": {
-    "component": "ProductPrice",
-    "content": {
-      "$ref": "#/definitions/ProductPrice"
-    }
+    "component": "ProductPrice"
   },
   "product-description": {
     "component": "ProductDescription"
