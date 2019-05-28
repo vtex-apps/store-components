@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.41.1] - 2019-05-28
+### Fixed
+- Remove `showInstallPrompt` unused feature.
+
 ## [3.41.0] - 2019-05-27
 ### Added
 - Added props `sellingPriceRange, showListPriceRange` and `showSellingPriceRange, showListPriceRange` to `productPrice` component.
