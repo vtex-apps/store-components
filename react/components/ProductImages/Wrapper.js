@@ -55,7 +55,7 @@ ProductImagesWrapper.schema = {
       enum: map(opt => opt.value, values(thumbnailsPosition) || []),
       enumNames: map(opt => opt.name, values(thumbnailsPosition) || []),
       default: thumbnailsPosition.DISPLAY_LEFT.value,
-      isLayout: false,    
+      isLayout: true,
     },
   },
 }
