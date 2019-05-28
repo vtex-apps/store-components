@@ -297,9 +297,7 @@ class Carousel extends Component {
     return (
       <div className="relative overflow-hidden w-100" aria-hidden="true">
         <div className={thumbClasses}>
-          <Swiper
-            {...thumbnailParams}
-            rebuildOnUpdate={true}>
+          <Swiper {...thumbnailParams} rebuildOnUpdate>
             {slides.map((slide, i) => (
               <div
                 key={i}
@@ -329,9 +327,7 @@ class Carousel extends Component {
           </Swiper>
         </div>
         <div className={imageClasses}>
-          <Swiper
-            {...this.galleryParams}
-            rebuildOnUpdate={true}>
+          <Swiper {...this.galleryParams} rebuildOnUpdate>
             {slides.map((slide, i) => (
               <div key={i} className="swiper-slide center-all">
                 {this.renderSlide(slide, i)}
