@@ -54,13 +54,11 @@
           "$ref": "app:vtex.native-types#/definitions/text",
           "widget": {
             "ui:widget": "image-uploader"
-          },
-          "default": "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjq6OLL5b7iAhW5LLkGHeTcBGwQjRx6BAgBEAU&url=https%3A%2F%2Fwww.gospelgeral.com.br%2F2019%2F01%2Finternet-viraliza-imagens-no-ceu-no-dia-da-posse-de-bolsonaro-que-revelam-profecia%2F&psig=AOvVaw0IDYlEUwNYXxo3e8jsZgvt&ust=1559152425606849"
+          }
         },
         "alt": {
           "title": "admin/editor.image.alt.title",
-          "$ref": "app:vtex.native-types#/definitions/text",
-          "default": ""
+          "$ref": "app:vtex.native-types#/definitions/text"
         }
       }
     }
