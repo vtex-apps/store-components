@@ -65,6 +65,9 @@
     "component": "NotificationBar"
   },
   "image": {
-    "component": "Image"
+    "component": "Image",
+    "content": {
+      "$ref": "#/definitions/Image"
+    }
   }
 }

@@ -1,17 +1,24 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { intlShape } from 'react-intl'
 import { generateBlockClass } from '@vtex/css-handles'
+import { formatIOMessage } from 'vtex.native-types'
 
 import styles from './styles.css'
 
-const Image = ({ src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass }) => {
+const Image = ({ src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass}) => {
   const classes = generateBlockClass(styles.imageElement, blockClass)
   const maxDimensions = {
     maxWidth: maxWidth,
     maxHeight: maxHeight,
   }
   return (
-    <img src={src} srcSet={srcSet} sizes={sizes} alt={alt} style={maxDimensions} className={classes} />
+    <img src={src} 
+    srcSet={srcSet}
+    sizes={sizes}
+    alt={alt}
+    style={maxDimensions}
+    className={classes} />
   )
 }
 
@@ -23,6 +30,7 @@ Image.propTypes = {
   srcSet: PropTypes.string,
   sizes: PropTypes.string,
   blockClass: PropTypes.string,
+  intl: intlShape,
 }
 
 Image.defaultProps = {
@@ -38,17 +46,6 @@ Image.schema = {
   description: 'admin/editor.image.description',
   type: 'object',
   properties: {
-    src: {
-      type: 'string',
-      title: 'admin/editor.image.src.title',
-      widget: {
-        'ui:widget': 'image-uploader',
-      },
-    },
-    alt: {
-      type: 'string',
-      title: 'admin/editor.image.alt.title',
-    },
     blockClass: {
       title: 'admin/editor.blockClass.title',
       description: 'admin/editor.blockClass.description',
