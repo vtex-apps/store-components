@@ -67,7 +67,7 @@
   "image": {
     "component": "Image",
     "content": {
-      "$ref": "#/definitions/Image"
+      "$ref": "app:vtex.product-summary#/definitions/Image"
     }
   }
 }
