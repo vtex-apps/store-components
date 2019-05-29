@@ -14,10 +14,10 @@ const Image = ({ src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass, intl}
   }
 
   return (
-    <img src={src} 
+    <img src={formatIOMessage({ id: src, intl })}
     srcSet={srcSet}
     sizes={sizes}
-    alt={formatIOMessage({id: alt, intl})}
+    alt={formatIOMessage({ id: alt, intl })}
     style={maxDimensions}
     className={classes} />
   )
