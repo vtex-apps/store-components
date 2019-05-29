@@ -2,27 +2,18 @@ import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty } from 'ramda'
 
-import ProductDescription from './index';
+import ProductDescription from './index'
 
-const ProductDescriptionWrapper = (props) => {
+const ProductDescriptionWrapper = props => {
   const valuesFromContext = useContext(ProductContext)
 
-  const productDescriptionProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) {
-      return props
-    }
+  const isContextEmpty = !valuesFromContext || isEmpty(valuesFromContext)
 
-    const { product, selectedItem } = valuesFromContext
-    return {
-      ...props,
-      description: path(['description'], product),
-      skuName: path(['name'], selectedItem),
-    }
-  }
+  const description = isContextEmpty
+    ? props.description
+    : path(['product', 'description'], valuesFromContext)
 
-  return (
-    <ProductDescription { ...productDescriptionProps() } />
-  )
+  return <ProductDescription description={description} />
 }
 
 export default ProductDescriptionWrapper

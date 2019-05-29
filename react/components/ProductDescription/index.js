@@ -11,28 +11,24 @@ import styles from './styles.css'
  * Product Description Component.
  * Render the description of a product
  */
-class ProductDescription extends Component {
-  render() {
-    const { description } = this.props
-
-    if (!description) {
-      return null
-    }
-
-    return (
-      <div className={styles.productDescriptionContainer}>
-        <FormattedMessage id="store/product-description.title">
-          {txt => <h2 className="t-heading-5 mb5 mt0">{txt}</h2>}
-        </FormattedMessage>
-
-        <div className="c-muted-1">
-          <GradientCollapse collapseHeight={220}>
-            {HtmlParser(description)}
-          </GradientCollapse>
-        </div>
-      </div>
-    )
+const ProductDescription = ({ description }) => {
+  if (!description) {
+    return null
   }
+
+  return (
+    <div className={styles.productDescriptionContainer}>
+      <FormattedMessage id="store/product-description.title">
+        {txt => <h2 className="t-heading-5 mb5 mt0">{txt}</h2>}
+      </FormattedMessage>
+
+      <div className="c-muted-1">
+        <GradientCollapse collapseHeight={220}>
+          {HtmlParser(description)}
+        </GradientCollapse>
+      </div>
+    </div>
+  )
 }
 
 ProductDescription.propTypes = {

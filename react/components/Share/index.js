@@ -50,6 +50,7 @@ class Share extends Component {
       'vtex-share__button--loader-3': button3,
       containerClass,
       contentLoaderClass,
+      ...rest
     } = loaderProps
     const loaderStyles = {
       r: '1em',
@@ -74,7 +75,7 @@ class Share extends Component {
           }}
           height="100%"
           width="100%"
-          {...loaderProps}
+          {...rest}
         >
           <circle cx="1em" {...loaderStyles} {...button1} />
           <circle cx="3.5em" {...loaderStyles} {...button2} />

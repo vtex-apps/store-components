@@ -27,7 +27,7 @@ const ShareWrapper = props => {
       productImageUrl: path(['items', 0, 'images', 0, 'imageUrl'], product),
       loading: !path(['name'], selectedItem),
       title: intl.formatMessage(
-        { id: 'share.title' },
+        { id: 'store/share.title' },
         {
           product: path(['productName'], product),
           sku: path(['name'], selectedItem),

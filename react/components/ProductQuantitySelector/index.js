@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { NumericStepper } from 'vtex.styleguide'
 import { FormattedMessage } from 'react-intl'
@@ -8,26 +8,30 @@ import { path, isEmpty } from 'ramda'
 const ProductQuantitySelector = ({ warningQuantityThreshold, ...props }) => {
   const valuesFromContext = React.useContext(ProductContext)
 
-  const numericStepperProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) {
-      const { onChange, availableQuantity, selectedQuantity } = props
+  const isContextEmpty = !valuesFromContext || isEmpty(valuesFromContext)
 
-      return {
-        availableQuantity,
-        selectedQuantity,
-        onChange: e => onChange(e.value),
-      }
-    }
+  const onChangeCallback = isContextEmpty
+    ? props.onChange
+    : valuesFromContext.onChangeQuantity
 
-    const { selectedItem, selectedQuantity, onChangeQuantity } = valuesFromContext
-    return {
-      availableQuantity: path(['sellers', 0, 'commertialOffer', 'AvailableQuantity'], selectedItem),
-      selectedQuantity,
-      onChange: e => onChangeQuantity(e.value),
-    }
-  }
+  const onChange = useCallback(
+    e => {
+      onChangeCallback(e.value)
+    },
+    [onChangeCallback]
+  )
 
-  const { availableQuantity, onChange, selectedQuantity } = numericStepperProps()
+  const availableQuantity = isContextEmpty
+    ? props.availableQuantity
+    : path(
+        ['selectedItem', 'sellers', 0, 'commertialOffer', 'AvailableQuantity'],
+        valuesFromContext
+      )
+
+  const selectedQuantity = isContextEmpty
+    ? props.selectedQuantity
+    : valuesFromContext.selectedQuantity
+
   const showAvailable = availableQuantity <= warningQuantityThreshold
 
   if (availableQuantity < 1) return null
@@ -44,10 +48,14 @@ const ProductQuantitySelector = ({ warningQuantityThreshold, ...props }) => {
         maxValue={availableQuantity ? availableQuantity : undefined}
         onChange={onChange}
       />
-      {showAvailable && 
+      {showAvailable && (
         <div className={'mv4 c-muted-2 t-small'}>
-          <FormattedMessage id="store/product-details.quantity-available" values={{ availableQuantity }} />
-        </div>}
+          <FormattedMessage
+            id="store/product-details.quantity-available"
+            values={{ availableQuantity }}
+          />
+        </div>
+      )}
     </div>
   )
 }
@@ -58,10 +66,10 @@ ProductQuantitySelector.defaultProps = {
 }
 
 ProductQuantitySelector.propTypes = {
-  selectedQuantity: PropTypes.number.isRequired,
+  selectedQuantity: PropTypes.number,
   availableQuantity: PropTypes.number,
   onChange: PropTypes.func,
-  warningQuantityThreshold: PropTypes.number.isRequired
+  warningQuantityThreshold: PropTypes.number.isRequired,
 }
 
 ProductQuantitySelector.schema = {
@@ -70,8 +78,10 @@ ProductQuantitySelector.schema = {
   type: 'object',
   properties: {
     warningQuantityThreshold: {
-      title: 'admin/editor.product-quantity-selector.warningQuantityThreshold.title',
-      description: 'admin/editor.product-quantity-selector.warningQuantityThreshold.title',
+      title:
+        'admin/editor.product-quantity-selector.warningQuantityThreshold.title',
+      description:
+        'admin/editor.product-quantity-selector.warningQuantityThreshold.title',
       type: 'number',
       default: 0,
     },

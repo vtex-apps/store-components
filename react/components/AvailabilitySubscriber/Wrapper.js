@@ -2,33 +2,32 @@ import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty } from 'ramda'
 
-import AvailabilitySubscriber from './index';
+import AvailabilitySubscriber from './index'
 
-const AvailabilitySubscriberWrapper = (props) => {
+const AvailabilitySubscriberWrapper = props => {
   const valuesFromContext = useContext(ProductContext)
 
-  const availabilitySubscriberProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) {
-      return props
-    }
-    
-    const { selectedItem } = valuesFromContext
-    const commertialOffer = path(['sellers', 0, 'commertialOffer'], selectedItem)
+  const isContextEmpty = !valuesFromContext || isEmpty(valuesFromContext)
 
-    return {
-      ...props,
-      skuId: path(['itemId'], selectedItem),
-      available: Number.isNaN(+path(['AvailableQuantity'], commertialOffer)) || path(['AvailableQuantity'], commertialOffer) > 0,
-    }
-  }
+  const skuId = isContextEmpty
+    ? props.skuId
+    : path(['selectedItem', 'itemId'], valuesFromContext)
 
-  const { available, ...restProps } = availabilitySubscriberProps()
+  const commertialOffer = path(
+    ['selectedItem', 'sellers', 0, 'commertialOffer'],
+    valuesFromContext
+  )
+
+  const available = isContextEmpty
+    ? props.available
+    : Number.isNaN(+path(['AvailableQuantity'], commertialOffer)) ||
+      path(['AvailableQuantity'], commertialOffer) > 0
 
   // Render component only if product is out of sales
   if (available) return null
 
   return (
-    <AvailabilitySubscriber { ...restProps } />
+    <AvailabilitySubscriber {...props} skuId={skuId} available={available} />
   )
 }
 

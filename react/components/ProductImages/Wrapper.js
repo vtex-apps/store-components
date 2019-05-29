@@ -16,30 +16,24 @@ const thumbnailsPosition = {
   },
 }
 
-const ProductImagesWrapper = (props) => {
-  const { thumbnailPosition } = props
+const ProductImagesWrapper = props => {
   const valuesFromContext = useContext(ProductContext)
 
-  const productImagesProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) {
-      return {
-        position: thumbnailPosition,
-        ...props,
-      }
-    }
+  const isContextEmpty = !valuesFromContext || isEmpty(valuesFromContext)
 
-    const { selectedItem } = valuesFromContext
-    const images = path(['images'], selectedItem || {})
-
-    return {
-      ...props,
-      images: map(generateImageConfig, images || []),
-      position: thumbnailPosition,
-    }
-  }
+  const images = isContextEmpty
+    ? props.images
+    : map(
+        generateImageConfig,
+        path(['images'], valuesFromContext.selectedItem || {}) || []
+      )
 
   return (
-    <ProductImages { ...productImagesProps() } />
+    <ProductImages
+      {...props}
+      position={props.thumbnailPosition}
+      images={images}
+    />
   )
 }
 
