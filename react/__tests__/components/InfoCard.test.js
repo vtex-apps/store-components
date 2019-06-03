@@ -72,4 +72,17 @@ describe('<InfoCard />', () => {
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toMatchSnapshot()
   })
+  it('should not render subhead', () => {
+    const { asFragment } = renderComponent({
+      isFullModeStyle: true,
+      callToActionMode: 'none',
+      textAlignment: 'right',
+      textPosition: 'center',
+      headline:
+        'HEADLINE <span class="my-custom-class">THIS IS BOOOLD AND BLUE</span> HEADLINE STILL',
+      subhead: '',
+    })
+    expect(asFragment()).toBeDefined()
+    expect(asFragment()).toMatchSnapshot()
+  })
 })

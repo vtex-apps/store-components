@@ -31,6 +31,32 @@ exports[`<InfoCard /> should insert span with class on headline 1`] = `
 </DocumentFragment>
 `;
 
+exports[`<InfoCard /> should not render subhead 1`] = `
+<DocumentFragment>
+  <div
+    class="infoCardContainer items-center bg-center bb b--muted-4 flex justify-center"
+    data-testid="container"
+    style="background-image: url(my-image.com/image.png); background-size: cover;"
+  >
+    <div
+      class="infoCardTextContainer flex flex-column mh8-ns mh4-s w-40-ns items-center"
+    >
+      <div
+        class="infoCardHeadline t-heading-2 mt6 tc c-on-base"
+      >
+        HEADLINE 
+        <span
+          class="my-custom-class"
+        >
+          THIS IS BOOOLD AND BLUE
+        </span>
+         HEADLINE STILL
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`<InfoCard /> should render with full mode style 1`] = `
 <DocumentFragment>
   <div

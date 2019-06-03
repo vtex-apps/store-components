@@ -228,13 +228,13 @@ MemoizedInfoCard.propTypes = {
 MemoizedInfoCard.defaultProps = {
   isFullModeStyle: false,
   textPosition: textPositionTypes.TEXT_POSITION_LEFT.value,
-  headline: null,
-  subhead: null,
+  headline: '',
+  subhead: '',
   callToActionMode: callToActionModeTypes.CALL_ACTION_BUTTON.value,
   callToActionText: '',
   callToActionUrl: '',
   imageUrl: '',
-  mobileImageUrl: null,
+  mobileImageUrl: '',
   textAlignment: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
 }
 

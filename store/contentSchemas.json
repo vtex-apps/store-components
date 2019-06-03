@@ -6,13 +6,13 @@
           "title": "admin/editor.info-card.headline.title",
           "description": "admin/editor.info-card.headline.description",
           "$ref": "app:vtex.native-types#/definitions/text",
-          "default": null
+          "default": ""
         },
         "subhead": {
           "title": "admin/editor.info-card.subhead.title",
           "description": "admin/editor.info-card.subhead.description",
           "$ref": "app:vtex.native-types#/definitions/text",
-          "default": null
+          "default": ""
         },
         "callToActionText": {
           "title": "admin/editor.info-card.callToActionText.title",
@@ -36,13 +36,13 @@
           "title": "admin/editor.info-card.mobileImageUrl.title",
           "description": "admin/editor.info-card.mobileImageUrl.description",
           "$ref": "app:vtex.native-types#/definitions/url",
-          "default": null
+          "default": ""
         },
         "imageActionUrl": {
           "title": "admin/editor.info-card.imageActionUrl.title",
           "description": "admin/editor.info-card.imageActionUrl.description",
           "$ref": "app:vtex.native-types#/definitions/url",
-          "default": null
+          "default": ""
         }
       }
     },
