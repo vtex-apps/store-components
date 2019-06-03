@@ -148,7 +148,5 @@
   "admin/editor.skuSelector.title": "Title of SKU Selector component",
   "admin/editor.skuSelector.description": "Description of SKU Selector component",
   "admin/editor.skuSelector.seeMoreLabel.title": "Title of seeMoreLabel property",
-  "admin/editor.skuSelector.seeMoreLabel.description": "Description of seeMoreLabel property",
-  "admin/editor.skuSelector.maxItems.title": "Title of maxItems property",
-  "admin/editor.skuSelector.maxItems.description": "Description of maxItems property"
+  "admin/editor.skuSelector.seeMoreLabel.description": "Description of seeMoreLabel property"
 }

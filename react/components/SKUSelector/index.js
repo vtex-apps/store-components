@@ -133,16 +133,6 @@ SKUSelectorContainer.defaultProps = {
 SKUSelectorContainer.schema = {
   title: 'admin/editor.skuSelector.title',
   description: 'admin/editor.skuSelector.description',
-  type: 'object',
-  properties: {
-    maxItems: {
-      title: 'admin/editor.skuSelector.maxItems.title',
-      description: 'admin/editor.skuSelector.maxItems.description',
-      default: 10,
-      type: 'number',
-      isLayout: true,
-    }
-  }
 }
 
 export default SKUSelectorContainer

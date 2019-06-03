@@ -57,6 +57,21 @@ Image
 | imageUrl | String! | The URL of the image | - |
 | imageLabel | String | The label of the image | - |
 
+#### Layout API
+These are properties that you can customize in your `blocks.json` file.
+
+| Prop name | Type | Description | Default value |
+| --------- | ---- | ----------- | ------------- |
+| alwaysShowSecondary | Boolean | Show secondary variation options even if the main variation is not selected yet | `true` |
+| maxItems | Number | The maximum number of items to be displayed of a variation before showing the see more button. If the see more button should appear, it will be displayed `maxItems` - 2 options before the button | `10` |
+
+#### Content API
+These properties can be set via Storefront
+
+| Prop name | Type | Description | Default value |
+| --------- | ---- | ----------- | ------------- |
+| seeMoreLabel | String | Label of see more button that appears when more than `maxItems` items are available for one variation. The string must have a {quantity} placeholder to show the appropriate remaining items available. Example: \"See {quantity} more\" | `See {quantity} more` |
+
 ### Styles API
 
 You should follow the Styles API instruction in the main [README](/README.md#styles-api).
@@ -69,3 +84,4 @@ You should follow the Styles API instruction in the main [README](/README.md#sty
 | skuSelectorSubcontainer | `SKUSelector` inner container | [Variation](/react/components/SKUSelector/components/Variation.js) |
 | skuSelectorName | `SKUSelector` name | [Variation](/react/components/SKUSelector/components/Variation.js)|
 | skuSelectorNameContainer | `SKUSelector` name container| [Variation](/react/components/SKUSelector/components/Variation.js)|
+| seeMoreButton | `SKUSelector` see more button container | [Variation](/react/components/SKUSelector/components/Variation.js)|
