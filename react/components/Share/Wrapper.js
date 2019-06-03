@@ -24,7 +24,7 @@ const ShareWrapper = props => {
       social,
       shareLabelClass: 'c-muted-2 t-small mb3',
       className: 'db',
-      productImageUrl: path(['items', 0, 'images', 0, 'imageUrl'], product),
+      imageUrl: path(['items', 0, 'images', 0, 'imageUrl'], product),
       loading: !path(['name'], selectedItem),
       title: intl.formatMessage(
         { id: 'store/share.title' },

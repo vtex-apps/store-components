@@ -62,7 +62,7 @@ const BuyButtonWrapper = props => {
           },
         ],
       large: true,
-      available: showBuyButton,
+      available: showBuyButton == null ? true : showBuyButton,
     }
   }
 
