@@ -27,7 +27,10 @@
     "component": "ProductSeparator"
   },
   "sku-selector": {
-    "component": "SKUSelector"
+    "component": "SKUSelector",
+    "content": {
+      "$ref": "app:vtex.store-components#/definitions/SKUSelector"
+    }
   },
   "shipping-simulator": {
     "component": "ShippingSimulator"

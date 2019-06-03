@@ -84,6 +84,17 @@
           "default": "store/newsletter.submit"
         }
       }
+    },
+    "SKUSelector": {
+      "type": "object",
+      "properties": {
+        "seeMoreLabel": {
+          "title": "admin/editor.skuSelector.seeMoreLabel.title",
+          "description": "admin/editor.skuSelector.seeMoreLabel.description",
+          "default": "store/skuSelector.seeMore",
+          "$ref": "app:vtex.native-types#/definitions/text"
+        }
+      }
     }
   }
 }

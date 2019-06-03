@@ -143,5 +143,12 @@
   "admin/editor.logo.mobileWidth.title": "Mobile Width",
   "admin/editor.logo.mobileWidth.description": "Width to be used on mobile. If empty, will use the provided width value.",
   "admin/editor.logo.mobileHeight.title": "Mobile Height",
-  "admin/editor.logo.mobileHeight.description": "Height to be used on mobile. If empty, will use the provided height value."
+  "admin/editor.logo.mobileHeight.description": "Height to be used on mobile. If empty, will use the provided height value.",
+  "store/skuSelector.seeMore": "See {quantity} more",
+  "admin/editor.skuSelector.title": "SKU Selector",
+  "admin/editor.skuSelector.description": "Component that displays different given variations of an item for user to choose",
+  "admin/editor.skuSelector.seeMoreLabel.title": "See more label",
+  "admin/editor.skuSelector.seeMoreLabel.description": "Label of see more button that appears when more than 10 items are available for one variation. The string must have a {quantity} placeholder to show the appropriate remaining items available. Example: \"See {quantity} more\"",
+  "admin/editor.skuSelector.maxItems.title": "Maximum Items Displayed",
+  "admin/editor.skuSelector.maxItems.description": "The maximum number of items of a variation that should appear before showing the see more button. If the show more button appears, it will be shown the value set here minus throw."
 }

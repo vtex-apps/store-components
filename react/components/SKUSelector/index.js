@@ -19,6 +19,8 @@ const SKUSelectorContainer = ({
   skuItems = [],
   skuSelected,
   onSKUSelected,
+  seeMoreLabel,
+  maxItems,
 }) => {
   const [mainVariation, setMainVariation] = useState(null)
   const [secondaryVariation, setSecondaryVariation] = useState(null)
@@ -105,6 +107,8 @@ const SKUSelectorContainer = ({
       onSelectSKU={handleSkuSelection}
       maxSkuPrice={maxSkuPrice}
       alwaysShowSecondary={alwaysShowSecondary}
+      seeMoreLabel={seeMoreLabel}
+      maxItems={maxItems}
     />
   )
 }
@@ -119,6 +123,26 @@ SKUSelectorContainer.propTypes = {
   /** If true, show secondary options (if present), even when main variation is not picked yet. Default to true */
   shouldShowSecondary: PropTypes.bool,
   alwaysShowSecondary: PropTypes.bool,
+  seeMoreLabel: PropTypes.string,
+}
+
+SKUSelectorContainer.defaultProps = {
+  maxItems: 10,
+}
+
+SKUSelectorContainer.schema = {
+  title: 'admin/editor.skuSelector.title',
+  description: 'admin/editor.skuSelector.description',
+  type: 'object',
+  properties: {
+    maxItems: {
+      title: 'admin/editor.skuSelector.maxItems.title',
+      description: 'admin/editor.skuSelector.maxItems.description',
+      default: 10,
+      type: 'number',
+      isLayout: true,
+    }
+  }
 }
 
 export default SKUSelectorContainer

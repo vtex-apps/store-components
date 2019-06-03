@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useCallback } from 'react'
 
 import Variation from './Variation'
 import { variationShape } from '../utils/proptypes'
@@ -13,6 +13,8 @@ const SKUSelector = ({
   secondaryVariation,
   maxSkuPrice,
   alwaysShowSecondary,
+  seeMoreLabel,
+  maxItems,
 }) => {
   if (!mainVariation) return null
 
@@ -23,16 +25,20 @@ const SKUSelector = ({
     <div className={styles.skuSelectorContainer}>
       <Variation
         variation={mainVariation}
-        onSelectItem={skuId => onSelectSKU(true, skuId)}
+        onSelectItem={useCallback(skuId => onSelectSKU(true, skuId), [])}
         isSelected={sku => sku[mainVariation.name] === mainVariation.value}
         maxSkuPrice={maxSkuPrice}
+        seeMoreLabel={seeMoreLabel}
+        maxItems={maxItems}
       />
       {shouldShowSecondary && (
         <Variation
           variation={secondaryVariation}
-          onSelectItem={skuId => onSelectSKU(false, skuId)}
+          onSelectItem={useCallback(skuId => onSelectSKU(false, skuId), [])}
           isSelected={sku => sku.itemId === secondaryVariation.value}
           maxSkuPrice={maxSkuPrice}
+          seeMoreLabel={seeMoreLabel}
+          maxItems={maxItems}
         />
       )}
     </div>
@@ -51,6 +57,8 @@ SKUSelector.propTypes = {
   /** If true, show secondary options (if present), even when main variation is not picked yet */
   shouldShowSecondary: PropTypes.bool,
   alwaysShowSecondary: PropTypes.bool,
+  seeMoreLabel: PropTypes.string,
+  maxItems: PropTypes.number,
 }
 
 export default SKUSelector

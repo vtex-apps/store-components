@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useState, useCallback, memo } from 'react'
+import { Button } from 'vtex.styleguide'
+import { IOMessage } from 'vtex.native-types'
 
 import SelectorItem from './SelectorItem'
 import { stripUrl, isColor } from '../utils'
@@ -8,8 +10,21 @@ import { variationShape } from '../utils/proptypes'
 import styles from '../styles.css'
 import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 
-const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected }) => {
+const THRESHOLD = 2
+
+const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected, seeMoreLabel, maxItems }) => {
   const displayImage = isColor(variation.name)
+  const { options } = variation
+  const [showAll, setShowAll] = useState(false)
+  const maxItemsNoThreshold = maxItems - THRESHOLD
+
+  const shouldCollapse = !showAll && options.length > maxItems
+
+  const overflowQuantity = options.length - maxItemsNoThreshold
+
+  const displayOptions = options.slice(0, shouldCollapse ? maxItemsNoThreshold : options.length)
+
+  const showAllAction = useCallback(() => setShowAll(true), [])
 
   return (
     <div
@@ -26,7 +41,7 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected }) => {
           {variation.name}
         </span>
         <div className="inline-flex flex-wrap ml2">
-          {variation.options.map(skuItem => {
+          {displayOptions.map(skuItem => {
             const [skuImage] = skuItem.images || [null]
             const [seller] = skuItem.sellers
             return (
@@ -54,6 +69,13 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected }) => {
               </SelectorItem>
             )
           })}
+          {!showAll && shouldCollapse && (
+            <div className={styles.seeMoreButton}>
+              <Button variation="tertiary" onClick={showAllAction} size="small">
+                <IOMessage id={seeMoreLabel} values={{ quantity: overflowQuantity }} testId={'seeMoreLabel'} />
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -69,6 +91,8 @@ Variation.propTypes = {
   maxSkuPrice: PropTypes.number,
   /** Function to verify if this Variation is selected */
   isSelected: PropTypes.func,
+  seeMoreLabel: PropTypes.string,
+  maxItems: PropTypes.number,
 }
 
-export default Variation
+export default memo(Variation)
