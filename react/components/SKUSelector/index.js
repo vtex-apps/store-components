@@ -121,7 +121,6 @@ SKUSelectorContainer.propTypes = {
   /** Callback that is called when an SKU is selected */
   onSKUSelected: PropTypes.func,
   /** If true, show secondary options (if present), even when main variation is not picked yet. Default to true */
-  shouldShowSecondary: PropTypes.bool,
   alwaysShowSecondary: PropTypes.bool,
   seeMoreLabel: PropTypes.string,
 }

@@ -55,7 +55,6 @@ SKUSelector.propTypes = {
   /** Max price find on the sku list */
   maxSkuPrice: PropTypes.number.isRequired,
   /** If true, show secondary options (if present), even when main variation is not picked yet */
-  shouldShowSecondary: PropTypes.bool,
   alwaysShowSecondary: PropTypes.bool,
   seeMoreLabel: PropTypes.string,
   maxItems: PropTypes.number,
