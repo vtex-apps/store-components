@@ -23,9 +23,6 @@
   "product-description": {
     "component": "ProductDescription"
   },
-  "product-quantity": {
-    "component": "ProductQuantitySelector"
-  },
   "product-separator": {
     "component": "ProductSeparator"
   },
@@ -41,7 +38,7 @@
   "availability-subscriber": {
     "component": "AvailabilitySubscriber"
   },
-  "product-specifications":{
+  "product-specifications": {
     "component": "ProductSpecifications"
   },
   "product-highlights": {
@@ -63,7 +60,7 @@
   "newsletter": {
     "component": "Newsletter"
   },
-  "notification": { },
+  "notification": {},
   "notification.inline": {
     "component": "NotificationInline"
   },
