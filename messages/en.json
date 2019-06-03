@@ -74,8 +74,6 @@
   "store/greeting": "Hello",
   "store/store-components.share.label": "Share",
   "store/share.title": "{product} {sku} at {store}: ",
-  "store/product-details.quantity": "Quantity",
-  "store/product-details.quantity-available": "{availableQuantity, plural, one {# available} other {# available}}",
   "admin/editor.info-card.title": "InfoCard",
   "admin/editor.info-card.description": "A component with image and text that you can choose how to display them",
   "admin/editor.info-card.isFullModeStyle.title": "Image as background",
