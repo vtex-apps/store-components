@@ -195,7 +195,7 @@ BuyButton.propTypes = {
   /** Internationalization */
   intl: intlShape.isRequired,
   /** If the product is available or not*/
-  available: PropTypes.bool.isRequired,
+  available: PropTypes.bool,
   /** Function used to show toasts (messages) to user */
   showToast: PropTypes.func,
   /** Function to be called on the start of add to cart click event */
