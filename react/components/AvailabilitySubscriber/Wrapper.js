@@ -26,9 +26,7 @@ const AvailabilitySubscriberWrapper = props => {
   // Render component only if product is out of sales
   if (available) return null
 
-  return (
-    <AvailabilitySubscriber {...props} skuId={skuId} available={available} />
-  )
+  return <AvailabilitySubscriber skuId={skuId} />
 }
 
 export default AvailabilitySubscriberWrapper
