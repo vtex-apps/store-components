@@ -6,6 +6,7 @@ import { stripUrl, isColor } from '../utils'
 import { variationShape } from '../utils/proptypes'
 
 import styles from '../styles.css'
+import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 
 const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected }) => {
   const displayImage = isColor(variation.name)
@@ -41,8 +42,8 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected }) => {
                 variationValue={skuItem[variation.name]}
               >
                 {displayImage && skuImage ? (
-                  <img
-                    src={stripUrl(skuImage.imageUrl)}
+                  <img 
+                    src={imageUrlForSize(stripUrl(skuImage.imageUrl), VARIATION_IMG_SIZE)}
                     alt={skuImage.imageLabel}
                   />
                 ) : (

@@ -17,6 +17,7 @@ import './global.css'
 import Gallery from '../Gallery'
 
 import Swiper, { Pagination, Navigation } from 'react-id-swiper/lib/ReactIdSwiper.full'
+import { THUMB_SIZE, imageUrlForSize } from '../../../module/images'
 
 const initialState = {
   loaded: [],
@@ -314,7 +315,7 @@ class Carousel extends Component {
                     className="w-100 h-auto db"
                     itemProp="thumbnail"
                     alt={slide.alt ? this.state.alt[i] : ''}
-                    src={slide.thumbUrl || this.state.thumbUrl[i]}
+                    src={imageUrlForSize(slide.thumbUrl || this.state.thumbUrl[i], THUMB_SIZE)}
                   />
                 </figure>
                 <div
