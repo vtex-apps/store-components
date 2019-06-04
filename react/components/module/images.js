@@ -15,5 +15,5 @@ export const imageUrlForSize = (imageUrl, size) => {
 }
 
 export const VARIATION_IMG_SIZE = 40
-export const IMAGE_DEFAULT_SIZE = 800
+export const IMAGE_DEFAULT_SIZE = 900
 export const THUMB_SIZE = 150
