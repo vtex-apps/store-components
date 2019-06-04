@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles'
 import classNames from 'classnames'
 import ImageResizer from './ImageResizer'
 import styles from '../../styles.css'
+import { IMAGE_DEFAULT_SIZE, imageUrlForSize } from '../../../module/images'
 
 const stylesDefault = { barColorPrimary: { backgroundColor: 'currentColor' } }
 const LinearProgressWithStyle = withStyles(stylesDefault)(LinearProgress)
@@ -41,7 +42,7 @@ class BlurredLoader extends React.Component {
     }
 
     const hdImageLoader = new Image()
-    hdImageLoader.src = realUrls[bestUrlIndex]
+    hdImageLoader.src = imageUrlForSize(realUrls[bestUrlIndex], IMAGE_DEFAULT_SIZE)
 
     hdImageLoader.onerror = () => {
       let { realUrlIndex } = this.state
@@ -136,6 +137,8 @@ class BlurredLoader extends React.Component {
       'o-0': !loading,
     })
 
+    const fixedImage = imageUrlForSize(realUrls[realUrlIndex], IMAGE_DEFAULT_SIZE)
+
     return (
       <div
         className={classNames(styles.image, {
@@ -146,7 +149,7 @@ class BlurredLoader extends React.Component {
         <ImageResizer
           className={`w-100 ${loaded ? 'db' : 'dn'}`}
           alt={alt}
-          src={realUrls[realUrlIndex]}
+          src={fixedImage}
           minRatio={imageMinRatio}
         />
         {!loaded && (
@@ -154,7 +157,7 @@ class BlurredLoader extends React.Component {
             <Loader />
             <ImageResizer
               alt={alt}
-              src={loaderUrl}
+              src={imageUrlForSize(loaderUrl, IMAGE_DEFAULT_SIZE)}
               minRatio={imageMinRatio}
               className={`w-100 ${styles.imageBlur30} ${
                 styles.imageTransitionOpacity
@@ -162,7 +165,7 @@ class BlurredLoader extends React.Component {
             />
             <ImageResizer
               alt=""
-              src={realUrls[realUrlIndex]}
+              src={fixedImage}
               minRatio={imageMinRatio}
               className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 ${
                 styles.imageTransitionOpacity

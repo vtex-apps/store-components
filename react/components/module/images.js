@@ -1,8 +1,9 @@
-import React, { memo } from 'react'
-import { string, number } from 'prop-types'
 import { head } from 'ramda'
 
-const correctImageUrl = (imageUrl, size) => {
+export const imageUrlForSize = (imageUrl, size) => {
+  if (!imageUrl) {
+    return ''
+  }
   const urlSplitted = imageUrl.split('/')
   const idsStringIdx = urlSplitted.findIndex(content => content === 'ids')
   if (idsStringIdx < 0 || idsStringIdx === urlSplitted.length - 1) return imageUrl
@@ -13,19 +14,6 @@ const correctImageUrl = (imageUrl, size) => {
   return [...urlSplitted.slice(0, sizeStringIdx), newSizeString, ...urlSplitted.slice(sizeStringIdx+1)].join('/')
 }
 
-const ItemImage = ({ imageUrl, size, alt }) => (
-  <img
-    width={size}
-    height={size}
-    src={correctImageUrl(imageUrl, size)}
-    alt={alt}
-  />
-)
-
-ItemImage.propTypes = {
-  imageUrl: string.isRequired,
-  size: number.isRequired,
-  alt: string,
-}
-
-export default memo(ItemImage)
+export const VARIATION_IMG_SIZE = 40
+export const IMAGE_DEFAULT_SIZE = 800
+export const THUMB_SIZE = 150

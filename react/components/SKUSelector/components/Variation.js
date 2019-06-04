@@ -6,7 +6,7 @@ import { stripUrl, isColor } from '../utils'
 import { variationShape } from '../utils/proptypes'
 
 import styles from '../styles.css'
-import ItemImage from './ItemImage';
+import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 
 const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected }) => {
   const displayImage = isColor(variation.name)
@@ -42,7 +42,10 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected }) => {
                 variationValue={skuItem[variation.name]}
               >
                 {displayImage && skuImage ? (
-                  <ItemImage imageUrl={stripUrl(skuImage.imageUrl)} size={40} alt={skuImage.imageLabel} />
+                  <img 
+                    src={imageUrlForSize(stripUrl(skuImage.imageUrl), VARIATION_IMG_SIZE)}
+                    alt={skuImage.imageLabel}
+                  />
                 ) : (
                   <span className="c-on-base t-body">
                     {skuItem[variation.name]}
