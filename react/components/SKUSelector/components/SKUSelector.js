@@ -53,7 +53,7 @@ SKUSelector.propTypes = {
   /** Name and list of options of the secondary variation */
   secondaryVariation: variationShape,
   /** Max price find on the sku list */
-  maxSkuPrice: PropTypes.number.isRequired,
+  maxSkuPrice: PropTypes.number,
   /** If true, show secondary options (if present), even when main variation is not picked yet */
   alwaysShowSecondary: PropTypes.bool,
   seeMoreLabel: PropTypes.string,

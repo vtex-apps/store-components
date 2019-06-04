@@ -312,7 +312,7 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems[0]
 
     const { getByText, queryByText } = render(
-      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
+      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} variations={skuSelected.variations} />
     )
     expect(getByText('seeMoreLabel')).toBeDefined()
     expect(getByText('8')).toBeDefined()
@@ -539,7 +539,7 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems[0]
 
     const { getByText, queryByText } = render(
-      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />
+      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} variations={skuSelected.variations} />
     )
     expect(getByText('seeMoreLabel')).toBeDefined()
     expect(getByText('4')).toBeDefined()
@@ -714,7 +714,7 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems[0]
 
     const { getByText, queryByText } = render(
-      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
+      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} variations={skuSelected.variations} />
     )
     expect(queryByText('seeMoreLabel')).toBeNull()
     expect(getByText('10')).toBeDefined()
