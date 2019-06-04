@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Get image of smaller size for SKUSelector product images.
+- Get image of smaller size for `SKUSelector` and `ProductImages` images.
 
 ## [3.42.0] - 2019-06-04
 
