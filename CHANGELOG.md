@@ -7,174 +7,260 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.41.2] - 2019-05-28
+## [3.42.0] - 2019-06-04
+
 ### Added
+
+- Wrapper to components to consume product context.
+
+## [3.41.2] - 2019-05-28
+
+### Added
+
 - Content schema to `ProductPrice`.
 
 ## [3.41.1] - 2019-05-28
+
 ### Fixed
+
 - Remove `showInstallPrompt` unused feature.
 
 ## [3.41.0] - 2019-05-27
+
 ### Added
+
 - Added props `sellingPriceRange, showListPriceRange` and `showSellingPriceRange, showListPriceRange` to `productPrice` component.
 
 ## [3.40.0] - 2019-05-27
+
 ### Added
+
 - Content schema to `InfoCard`.
 
 ## [3.39.0] - 2019-05-27
+
 ### Added
+
 - i18n using `vtex.native-types` to allow `DiscountBadge` to respond properly to content i18n.
 
 ## [3.38.1] - 2019-05-26
+
 ### Fixed
+
 - Fix warnings on the components `Image`, `BuyButton`, and `Logo`.
 
 ## [3.38.0] - 2019-05-25
-### Added
-- Added some CSS overrides classes to infocard and logo. 
 
+### Added
+
+- Added some CSS overrides classes to infocard and logo.
 
 ## [3.37.2] - 2019-05-21
+
 ### Fixed
-- Removed `w-100` from `DiscountBadge` to avoid it to pass the image width. 
+
+- Removed `w-100` from `DiscountBadge` to avoid it to pass the image width.
 
 ## [3.37.1] - 2019-05-20
+
 ### Fixed
+
 - Enable `ShippingSimulator` to accept any postal code format and validate using the country rules.
 
 ## [3.37.0] - 2019-05-17
+
 ### Added
+
 - 'Open Minicart' feature after click on `BuyButton`.
 
 ## [3.36.1] - 2019-05-13
+
 ### Fixed
+
 - Fixed bug where clicking on search result items would just close the search results list.
 
 ## [3.36.0] - 2019-05-10
+
 ### Added
+
 - Send to the service worker a 'installPrompt' event when clicking the `BuyButton`.
 
 ## [3.35.0] - 2019-05-09
+
 ### Added
+
 - Schema to `Logo` component.
 
 ## [3.34.0] - 2019-05-09
+
 ### Added
+
 - `labelListPrice` prop in `ProductPrice`.
 
 ## [3.33.1] - 2019-05-09
+
 ### Fixed
+
 - Fix z-index issue on the search ResultList component.
 
 ## [3.33.0] - 2019-05-08
+
 ### Added
+
 - Add the `carouselImagePlaceholder` CSS handler to allow custom image placeholders.
 
 ## [3.32.2] - 2019-05-03
+
 ### Fixed
+
 - Enable zoom with one click instead of two in `ProductImages`.
 
 ## [3.32.1] - 2019-05-03
+
 ### Fixed
+
 - Instead of rendering a content loader when there is no image to be rendered in `Carousel`, it now renders a placeholder.
 
 ## [3.32.0] - 2019-05-02
+
 ### Changed
+
 - Hide `InstallmentsPrice` when there's only _1x_ options.
 
 ## [3.31.0] - 2019-04-30
+
 ### Added
+
 - Add zoom types and implement zoom `ìn-gallery` in `ProductImages` component.
 
 ## [3.30.2] - 2019-04-30
+
 ### Fixed
+
 - Add `brand` props to send to minicart on `BuyButton`.
 
 ## [3.30.1] - 2019-04-29
+
 ### Added
+
 - Allow case insensitive product specifications filter.
 
 ## [3.30.0] - 2019-04-26
+
 ### Added
+
 - Added props `hiddenSpecifications` and `visibleSpecifications` to `productSpecifications` component.
 
 ## [3.29.2] - 2019-04-25
+
 ### Fixed
+
 - Availability of a specific variation is based on all SKU's now.
 
 ## [3.29.1] - 2019-04-25
+
 ### Changed
+
 - Add isLayout to `InfoCard` props.
 
 ## [3.29.0] - 2019-04-25
 
 ### Added
+
 - CSS classes for reaching a sku variation name and value.
 
 ## [3.28.1] - 2019-04-25
+
 ### Fixed
+
 - Fix propType `ShippingSimulator` error, removed warning from console.
 
 ## [3.28.0] - 2019-04-24
+
 ### Changed
+
 - Scopes messages by domain (`admin/` and `store/`)
 
 ## [3.27.0] - 2019-04-24
+
 ### Fixed
+
 - Notification bar width is now 100%.
 
 ## [3.26.0] - 2019-04-24
+
 ### Changed
+
 - Make `UserAddress` use modal block.
 
 ## [3.25.10] - 2019-04-22
+
 ### Added
+
 - CSS class to `InfoCard` image.
 
 ### Changed
+
 - Make `InfoCard` headline and subline now support HTML and are sanitized before being displayed.
 
 ## [3.25.9] - 2019-04-18
 
 ## [3.25.8] - 2019-04-18
+
 ### Fixed
+
 - Variations not being grouped.
 
 ## [3.25.7] - 2019-04-18
+
 ### Fixed
+
 - Blurred Loader image blinking.
 
 ## [3.25.6] - 2019-04-15
+
 ### Changed
+
 - Remove sort of sku item variations.
 
 ## [3.25.5] - 2019-04-12
+
 ### Added
+
 - Added `container` CSS handle to Container.
 
 ### Changed
+
 - Reduced horizontal padding for Container on wide screen sizes.
 
 ## [3.25.4] - 2019-04-12
+
 ### Fixed
+
 - Ensure mutation to require acronym as String
 
 ## [3.25.3] - 2019-04-11
+
 ### Changed
+
 - Use `insane` lib to sanitize HTML on `NotificationBar`.
 
 ## [3.25.2] - 2019-04-11
+
 ### Added
+
 - Add `imageActionUrl` prop to `InfoCard`.
 
 ## [3.25.1] - 2019-04-10
+
 ### Changed
+
 - Limit width of Container
 
 ## [3.25.0] - 2019-04-10
+
 ### Added
+
 - New block `image`.
 
 ## [3.24.3] - 2019-04-10

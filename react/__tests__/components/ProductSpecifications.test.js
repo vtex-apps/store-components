@@ -5,7 +5,10 @@ import { render } from '@vtex/test-tools/react'
 
 describe('<ProductSpecifications /> component', () => {
   const renderComponent = customProps => {
-    const comp = <ProductSpecifications {...customProps} />
+    const props = {
+      ...customProps,
+    }
+    const comp = <ProductSpecifications {...props} />
 
     return render(comp)
   }

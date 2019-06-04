@@ -8,14 +8,15 @@ VTEX Store Components is a collection of components that can be used to create/e
 
 ## Release Schedule
 
-| Release  | Status              | Initial Release | Maintenance LTS Start | End-of-life | Store Compatibility
-| :--:     | :---:               |  :---:          | :---:                 | :---:       | :---:
-| [3.x]    | **Current Release** |  2018-11-29     |                       |             | 2.x
-| [2.x]    | **Maintenance LTS** |  2018-10-02     | 2018-12-01            | March 2019  | 1.x
+| Release |       Status        | Initial Release | Maintenance LTS Start | End-of-life | Store Compatibility |
+| :-----: | :-----------------: | :-------------: | :-------------------: | :---------: | :-----------------: |
+|  [3.x]  | **Current Release** |   2018-11-29    |                       |             |         2.x         |
+|  [2.x]  | **Maintenance LTS** |   2018-10-02    |      2018-12-01       | March 2019  |         1.x         |
 
 See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for more information.
 
 ## Table of Contents
+
 - [Usage](#usage)
   - [Styles API](#styles-api)
 - [Components Specs](#components-specs)
@@ -40,6 +41,7 @@ To use this app, you need to import in your dependencies on `manifest.json`.
 Then, you can add a component block into your app theme as we do with `product-price` in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json).
 
 For example, now you can change the behavior of `product-price` block that is in the product details. See an example of how to configure:
+
 ```json
 "product-price": {
   "props": {
@@ -50,6 +52,7 @@ For example, now you can change the behavior of `product-price` block that is in
 ```
 
 ### Styles API
+
 This app provides some CSS classes as an API for style customization.
 
 To use this CSS API, you must add the `styles` builder and create an app styling CSS file.
@@ -99,9 +102,11 @@ Below we have a README for each component of this project that explains how to u
 - [Notification](/react/components/Notification/README.md)
 
 ## Creating a new component
+
 To start your development, create a new folder on react/components. Thats where your source code will be stored. Also create a new js file on /react, this file should be used to expose your component, like:
 
 ### Project structure
+
 Inside your `react/components/<component_name>` you should have:
 
 - index.js
@@ -124,11 +129,12 @@ export default ProductPrice
 Also, all dependencies needed should be inserted inside the react/package.json.
 
 ## Troubleshooting
+
 You can check if others are passing through similar issues [here](https://github.com/vtex-apps/store-components/issues). Also feel free to [open issues](https://github.com/vtex-apps/store-components/issues/new) or contribute with pull requests.
 
 ## Contributing
 
-Check it out [how to contribute](https://github.com/vtex-apps/awesome-io#contributing) with this project. 
+Check it out [how to contribute](https://github.com/vtex-apps/awesome-io#contributing) with this project.
 
 ## Tests
 

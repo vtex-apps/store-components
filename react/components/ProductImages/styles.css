@@ -41,3 +41,9 @@
 }
 
 .carouselImagePlaceholder { }
+
+/** Overrides figure css declaration from vtex-tachyons, which
+ * for some reason adds margin to all figure elements */
+.figure {
+  margin: 0;
+}

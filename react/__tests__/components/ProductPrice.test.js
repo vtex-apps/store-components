@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { render } from '@vtex/test-tools/react'
 
 import ProductPrice from './../../ProductPrice'
-import { withContext } from 'contextUtils'
 
 describe('<ProductPrice />', () => {
   const defaultProps = {
@@ -13,15 +12,11 @@ describe('<ProductPrice />', () => {
   }
 
   const renderComponent = customProps => {
-    const context = { culture: { currency: 'USD' } }
     const props = {
       ...defaultProps,
       ...customProps,
     }
-    const Component = withContext(ProductPrice, context, {
-      culture: PropTypes.object,
-    })
-    return render(<Component {...props} />)
+    return render(<ProductPrice {...props} />)
   }
 
   it('should be mount', () => {

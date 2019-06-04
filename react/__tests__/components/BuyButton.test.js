@@ -7,6 +7,7 @@ import BuyButton, { ADD_TO_CART_MUTATION } from '../../BuyButton'
 describe('<BuyButton />', () => {
   const renderComponent = (customProps, text = 'Test') => {
     const props = {
+      available: true,
       ...customProps,
     }
 
@@ -44,7 +45,7 @@ describe('<BuyButton />', () => {
     const onAddStart = jest.fn()
     const onAddFinish = jest.fn()
 
-    const buttonText = 'Test inside button'
+    const buttonText = 'Add to cart'
 
     const { getByText } = renderComponent(
       {

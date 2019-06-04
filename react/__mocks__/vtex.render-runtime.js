@@ -2,9 +2,16 @@
 
 import React from 'react'
 
+const runtime = {
+  setQuery: jest.fn(),
+  account: 'account',
+  hints: { mobile: false },
+  culture: { currency: 'USD' }
+}
+
 export const withRuntimeContext = Comp =>
   function WrappedRuntimeContext(props) {
-    return <Comp {...props} runtime={{ hints: { mobile: false } }} />
+    return <Comp {...props} runtime={runtime} />
   }
 
 export const Link = ({ children }) => <a href="dummy">{children}</a>
@@ -13,6 +20,4 @@ export const NoSSR = ({ children }) => (
   <div className="NoSSR-mock">{children}</div>
 )
 
-export const useRuntime = () => {
-  return { setQuery: jest.fn(), account: 'account', hints: { mobile: false } }
-}
+export const useRuntime = () => runtime

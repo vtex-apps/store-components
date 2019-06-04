@@ -1,3 +1,3 @@
-import ProductPrice from './components/ProductPrice/index'
+import ProductPrice from './components/ProductPrice/Wrapper'
 
 export default ProductPrice
