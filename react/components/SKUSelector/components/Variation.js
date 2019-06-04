@@ -17,12 +17,13 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected, seeMoreLa
   const { options } = variation
   const [showAll, setShowAll] = useState(false)
   const maxItemsNoThreshold = maxItems - THRESHOLD
+  const options2 = [...options,...options,...options,...options,...options,...options,...options,...options,...options,...options,...options]
 
-  const shouldCollapse = !showAll && options.length > maxItems
+  const shouldCollapse = !showAll && options2.length > maxItems
 
-  const overflowQuantity = options.length - maxItemsNoThreshold
+  const overflowQuantity = options2.length - maxItemsNoThreshold
 
-  const displayOptions = options.slice(0, shouldCollapse ? maxItemsNoThreshold : options.length)
+  const displayOptions = options2.slice(0, shouldCollapse ? maxItemsNoThreshold : options2.length)
 
   const showAllAction = useCallback(() => setShowAll(true), [])
 
@@ -40,7 +41,7 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected, seeMoreLa
         >
           {variation.name}
         </span>
-        <div className="inline-flex flex-wrap ml2">
+        <div className="inline-flex flex-wrap ml2 flex items-center">
           {displayOptions.map(skuItem => {
             const [skuImage] = skuItem.images || [null]
             const [seller] = skuItem.sellers
@@ -71,7 +72,7 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected, seeMoreLa
           })}
           {!showAll && shouldCollapse && (
             <div className={styles.seeMoreButton}>
-              <Button variation="tertiary" onClick={showAllAction} size="small">
+              <Button variation="tertiary" onClick={showAllAction} size="small" collapseLeft>
                 <IOMessage id={seeMoreLabel} values={{ quantity: overflowQuantity }} testId={'seeMoreLabel'} />
               </Button>
             </div>
