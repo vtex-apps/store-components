@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.42.0] - 2019-06-04
+
 ### Added
 
 - Wrapper to components to consume product context.
