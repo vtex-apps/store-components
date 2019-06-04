@@ -25,7 +25,7 @@ const SKUSelector = ({
     <div className={styles.skuSelectorContainer}>
       <Variation
         variation={mainVariation}
-        onSelectItem={useCallback(skuId => onSelectSKU(true, skuId), [])}
+        onSelectItem={useCallback(skuId => onSelectSKU(true, skuId), [onSelectSKU])}
         isSelected={useCallback(sku => sku[mainVariation.name] === mainVariation.value, [mainVariation])}
         maxSkuPrice={maxSkuPrice}
         seeMoreLabel={seeMoreLabel}
@@ -34,7 +34,7 @@ const SKUSelector = ({
       {shouldShowSecondary && (
         <Variation
           variation={secondaryVariation}
-          onSelectItem={useCallback(skuId => onSelectSKU(false, skuId), [])}
+          onSelectItem={useCallback(skuId => onSelectSKU(false, skuId), [onSelectSKU])}
           isSelected={useCallback(sku => sku.itemId === secondaryVariation.value, [secondaryVariation])}
           maxSkuPrice={maxSkuPrice}
           seeMoreLabel={seeMoreLabel}
