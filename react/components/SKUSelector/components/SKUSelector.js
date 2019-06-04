@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useCallback } from 'react'
+import React, { useCallback, memo } from 'react'
 
 import Variation from './Variation'
 import { variationShape } from '../utils/proptypes'
@@ -26,7 +26,7 @@ const SKUSelector = ({
       <Variation
         variation={mainVariation}
         onSelectItem={useCallback(skuId => onSelectSKU(true, skuId), [])}
-        isSelected={sku => sku[mainVariation.name] === mainVariation.value}
+        isSelected={useCallback(sku => sku[mainVariation.name] === mainVariation.value, [mainVariation])}
         maxSkuPrice={maxSkuPrice}
         seeMoreLabel={seeMoreLabel}
         maxItems={maxItems}
@@ -35,7 +35,7 @@ const SKUSelector = ({
         <Variation
           variation={secondaryVariation}
           onSelectItem={useCallback(skuId => onSelectSKU(false, skuId), [])}
-          isSelected={sku => sku.itemId === secondaryVariation.value}
+          isSelected={useCallback(sku => sku.itemId === secondaryVariation.value, [secondaryVariation])}
           maxSkuPrice={maxSkuPrice}
           seeMoreLabel={seeMoreLabel}
           maxItems={maxItems}
@@ -60,4 +60,4 @@ SKUSelector.propTypes = {
   maxItems: PropTypes.number,
 }
 
-export default SKUSelector
+export default memo(SKUSelector)

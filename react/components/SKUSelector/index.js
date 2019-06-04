@@ -7,7 +7,6 @@ import { skuShape } from './utils/proptypes'
 import {
   groupItemsByVariation,
   getMainVariationName,
-  getMaxSkuPrice,
   parseSku,
 } from './utils'
 
@@ -78,7 +77,7 @@ const SKUSelectorContainer = ({
     )
   }
 
-  const handleSkuSelection = (isMainVariation, skuId) => {
+  const handleSkuSelection = useCallback((isMainVariation, skuId) => {
     const sku = parsedItems.find(({ itemId }) => itemId === skuId)
     const {
       secondaryVariation: { options },
@@ -92,20 +91,17 @@ const SKUSelectorContainer = ({
     } else {
       redirectToSku(skuId, isMainVariation)
     }
-  }
+  }, [parsedItems, onSKUSelected])
 
   if (parsedItems.length === 0) {
     return null
   }
-
-  const maxSkuPrice = getMaxSkuPrice(parsedItems)
 
   return (
     <SKUSelector
       mainVariation={mainVariation}
       secondaryVariation={secondaryVariation}
       onSelectSKU={handleSkuSelection}
-      maxSkuPrice={maxSkuPrice}
       alwaysShowSecondary={alwaysShowSecondary}
       seeMoreLabel={seeMoreLabel}
       maxItems={maxItems}

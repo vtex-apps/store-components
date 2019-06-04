@@ -26,7 +26,7 @@ export const getMaxSkuPrice = items => {
     ] = sku.sellers
 
     return Math.max(max, Price)
-  })
+  }, 0)
 }
 
 /**

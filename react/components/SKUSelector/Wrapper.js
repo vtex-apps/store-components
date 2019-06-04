@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { isEmpty, pathOr } from 'ramda'
 
