@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Hides SKU selector when there are no variations to be selected.
+- `BuyButton`: use given props over context, if set.
 
 ## [3.42.4] - 2019-06-05
 ### Fixed

@@ -36,33 +36,35 @@ const BuyButtonWrapper = props => {
       selectedItem
     )
 
-    const showBuyButton =
+    const available =
       Number.isNaN(+path(['AvailableQuantity'], commertialOffer)) ||
       path(['AvailableQuantity'], commertialOffer) > 0
 
+    const contextSkuItems = selectedItem &&
+      sellerId && [
+        {
+          skuId: selectedItem.itemId,
+          quantity: selectedQuantity,
+          seller: sellerId,
+          name: selectedItem.nameComplete,
+          price: commertialOffer.Price,
+          variant: selectedItem.name,
+          brand: product.brand,
+          index: 0,
+          detailUrl: `/${product.linkText}/p`,
+          imageUrl: path(['images', '0', 'imageUrl'], selectedItem),
+          listPrice: path(
+            ['sellers', '0', 'commertialOffer', 'ListPrice'],
+            selectedItem
+          ),
+        },
+      ]
+
     return {
       ...props,
-      skuItems: selectedItem &&
-        sellerId && [
-          {
-            skuId: selectedItem.itemId,
-            quantity: selectedQuantity,
-            seller: sellerId,
-            name: selectedItem.nameComplete,
-            price: commertialOffer.Price,
-            variant: selectedItem.name,
-            brand: product.brand,
-            index: 0,
-            detailUrl: `/${product.linkText}/p`,
-            imageUrl: path(['images', '0', 'imageUrl'], selectedItem),
-            listPrice: path(
-              ['sellers', '0', 'commertialOffer', 'ListPrice'],
-              selectedItem
-            ),
-          },
-        ],
-      large: true,
-      available: showBuyButton == null ? true : showBuyButton,
+      skuItems: props.skuItems == null ? contextSkuItems : props.skuItems,
+      large: props.large == null ? true : props.large,
+      available: props.available == null ? available : props.available,
     }
   }
 
