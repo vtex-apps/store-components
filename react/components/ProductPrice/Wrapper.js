@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty } from 'ramda'
 
@@ -80,8 +80,6 @@ const ProductPriceWrapper = ({
 
     const { selectedItem } = valuesFromContext
     const commertialOffer = path(['sellers', 0, 'commertialOffer'], selectedItem)
-    const availableQuantity = path(['AvailableQuantity'], commertialOffer)
-    const showProductPrice = Number.isNaN(+availableQuantity) || availableQuantity > 0
 
     return {
       ...props,
@@ -107,16 +105,13 @@ const ProductPriceWrapper = ({
       showInstallments,
       showListPrice,
       showSavings,
-      showProductPrice,
     }
   }
 
-  const { showProductPrice, ...restProps } = productPriceProps()
-
-  if (!showProductPrice) return null
+  const priceProps = useMemo(() => productPriceProps(), [valuesFromContext])
 
   return (
-    <ProductPrice { ...restProps } />
+    <ProductPrice { ...priceProps } />
   )
 }
 
