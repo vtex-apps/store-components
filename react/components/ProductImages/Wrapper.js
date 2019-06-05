@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react'
 import { ProductContext } from 'vtex.product-context'
-import { path, isEmpty, values, map } from 'ramda'
+import { path, values, map } from 'ramda'
 
 import ProductImages from './index'
 import generateImageConfig from './utils/generateImageConfig'
