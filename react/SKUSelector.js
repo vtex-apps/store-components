@@ -1,3 +1,3 @@
-import SKUSelector from './components/SKUSelector/Wrapper'
+import SKUSelector from './components/SKUSelector/index'
 
 export default SKUSelector
