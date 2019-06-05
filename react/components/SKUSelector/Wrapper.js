@@ -17,7 +17,12 @@ const SKUSelectorWrapper = props => {
       ? props.skuSelected
       : valuesFromContext.selectedItem
 
-  if (skuItems.length === 0) {
+  if (
+    skuItems.length <= 1 ||
+    !skuSelected ||
+    !skuSelected.variations ||
+    skuSelected.variations.length === 0
+  ) {
     return null
   }
 
