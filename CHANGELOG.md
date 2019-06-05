@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.42.1] - 2019-06-04
 ### Fixed
+
+- HOTFIX: Rollback SKUSelector and ProductImage do version without Wrapper.
+
+## [3.42.1] - 2019-06-04
+
+### Fixed
+
 - Get image of smaller size for `SKUSelector` and `ProductImages` images.
 
 ## [3.42.0] - 2019-06-04
