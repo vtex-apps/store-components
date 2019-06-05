@@ -1,6 +1,6 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
-import { path, isEmpty } from 'ramda'
+import { path, isEmpty, has } from 'ramda'
 
 import ProductPrice from './index'
 
@@ -36,6 +36,10 @@ const styles = {
   },
 }
 
+const isAvailable = commertialOffer =>
+  Number.isNaN(+path(['AvailableQuantity'], commertialOffer)) ||
+  path(['AvailableQuantity'], commertialOffer) > 0
+
 const ProductPriceWrapper = ({
   labelSellingPrice,
   showListPrice,
@@ -66,7 +70,7 @@ const ProductPriceWrapper = ({
   } = props
 
   const productPriceProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) {
+    if (!valuesFromContext || isEmpty(valuesFromContext) || (!has('query', props) && !has('params', props))) {
       return {
         ...props,
         labelSellingPrice,
@@ -74,7 +78,7 @@ const ProductPriceWrapper = ({
         showInstallments,
         showLabels,
         showSavings,
-        showProductPrice: true,   
+        showProductPrice: true,
       }
     }
 
@@ -83,7 +87,7 @@ const ProductPriceWrapper = ({
 
     return {
       ...props,
-      styles,
+      styles: props.styles || styles,
       className: className || '',
       listPriceContainerClass: listPriceContainerClass || 't-small-s t-small-ns c-muted-2 mb2',
       sellingPriceLabelClass: sellingPriceLabelClass || 't-heading-6-s t-heading-5-ns dib',
@@ -105,10 +109,15 @@ const ProductPriceWrapper = ({
       showInstallments,
       showListPrice,
       showSavings,
+      showProductPrice: isAvailable(commertialOffer),
     }
   }
 
-  const priceProps = useMemo(() => productPriceProps(), [valuesFromContext])
+  const { showProductPrice, ...priceProps } = productPriceProps()
+
+  if (!showProductPrice) {
+    return null
+  }
 
   return (
     <ProductPrice { ...priceProps } />

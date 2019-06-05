@@ -18,9 +18,9 @@ const ShippingSimulatorWrapper = (props) => {
 
     return {
       ...props,
-      skuId: path(['itemId'], selectedItem),
-      seller: path(['sellers', 0, 'sellerId'], selectedItem),
-      country: culture.country,
+      skuId: props.skuId || path(['itemId'], selectedItem),
+      seller: props.seller || path(['sellers', 0, 'sellerId'], selectedItem),
+      country: props.country || culture.country,
     }
   }
 

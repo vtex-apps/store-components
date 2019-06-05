@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, values, map } from 'ramda'
 
@@ -30,7 +30,7 @@ const ProductImagesWrapper = props => {
   return (
     <ProductImages
       {...props}
-      position={props.thumbnailPosition}
+      position={props.position || props.thumbnailPosition}
       images={images}
     />
   )
