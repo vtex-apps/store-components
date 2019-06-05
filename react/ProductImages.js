@@ -1,3 +1,3 @@
-import ProductImages from './components/ProductImages/index'
+import ProductImages from './components/ProductImages/Wrapper'
 
 export default ProductImages
