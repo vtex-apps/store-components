@@ -74,6 +74,22 @@ class Newsletter extends Component {
     const submitText = formatIOMessage({ id: submit, intl })
     const labelText = formatIOMessage({ id: label, intl })
     const placeholderText = formatIOMessage({ id: placeholder, intl })
+    const confirmationTitle = formatIOMessage({
+      id: 'store/newsletter.confirmationTitle',
+      intl,
+    })
+    const confirmationText = formatIOMessage({
+      id: 'store/newsletter.confirmationText',
+      intl,
+    })
+    const invalidEmailText = formatIOMessage({
+      id: 'store/newsletter.invalidEmail',
+      intl,
+    })
+    const errorMsg = formatIOMessage({
+      id: 'store/newsletter.error',
+      intl,
+    })
 
     return (
       <div
@@ -85,16 +101,10 @@ class Newsletter extends Component {
           {this.state.success ? (
             <Fragment>
               <div className={`${style.confirmationTitle} t-heading-3 pb4 tc`}>
-                {formatIOMessage({
-                  id: 'store/newsletter.confirmationTitle',
-                  intl,
-                })}
+                {confirmationTitle}
               </div>
               <div className={`${style.confirmationText} t-body tc`}>
-                {formatIOMessage({
-                  id: 'store/newsletter.confirmationText',
-                  intl,
-                })}
+                {confirmationText}
               </div>
             </Fragment>
           ) : (
@@ -112,12 +122,7 @@ class Newsletter extends Component {
                   ref={this.inputRef}
                   id="newsletter-input"
                   errorMessage={
-                    this.state.invalidEmail
-                      ? formatIOMessage({
-                          id: 'store/newsletter.invalidEmail',
-                          intl,
-                        })
-                      : null
+                    this.state.invalidEmail ? invalidEmailText : null
                   }
                   placeholder={placeholderText}
                   name="newsletter"
@@ -141,10 +146,7 @@ class Newsletter extends Component {
               </div>
               {this.state.error && (
                 <div className={`${style.error} c-danger t-body pt5`}>
-                  {formatIOMessage({
-                    id: 'store/newsletter.error',
-                    intl,
-                  })}
+                  {errorMsg}
                 </div>
               )}
             </form>
