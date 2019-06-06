@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import debounce from 'debounce'
 import classNames from 'classnames'
 import { path, equals } from 'ramda'
+import ReactResizeDetector from 'react-resize-detector'
 
 import { IconCaret } from 'vtex.store-icons'
 import { NoSSR } from 'vtex.render-runtime'
@@ -328,13 +329,15 @@ class Carousel extends Component {
           </Swiper>
         </div>
         <div className={imageClasses}>
-          <Swiper {...this.galleryParams} rebuildOnUpdate>
-            {slides.map((slide, i) => (
-              <div key={i} className="swiper-slide center-all">
-                {this.renderSlide(slide, i)}
-              </div>
-            ))}
-          </Swiper>
+          <ReactResizeDetector handleHeight onResize={this.updateSwiperSize}>
+            <Swiper {...this.galleryParams} rebuildOnUpdate>
+              {slides.map((slide, i) => (
+                <div key={i} className="swiper-slide center-all">
+                  {this.renderSlide(slide, i)}
+                </div>
+              ))}
+            </Swiper>
+          </ReactResizeDetector>
           {zoomType === 'gallery' && (
             <NoSSR>
               <Gallery

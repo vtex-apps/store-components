@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.42.6] - 2019-06-05
+### Fixed
+- Bug where the product images thumbnail gallery would scroll infinitely.
+
 ## [3.42.5] - 2019-06-05
 ### Fixed
 - Hides SKU selector when there are no variations to be selected.
