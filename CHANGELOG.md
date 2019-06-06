@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.42.8] - 2019-06-06
+
 ## [3.42.7] - 2019-06-06
 ### Fixed
 - Compatibility with custom non-flexible product-pages in all components used in ProductDetails.
