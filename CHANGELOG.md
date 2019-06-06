@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.43.0] - 2019-06-06
+
 ### Added
 
 - i18n using `vtex.native-types` to allow `NewsLetter` to respond properly to content i18n.
