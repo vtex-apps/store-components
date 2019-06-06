@@ -58,7 +58,7 @@ const ProductHighlightsWrapper = (props) => {
 
     return {
       ...props,
-      highlights: getHighlights(),
+      highlights: props.highlights || getHighlights(),
     }
   }
 

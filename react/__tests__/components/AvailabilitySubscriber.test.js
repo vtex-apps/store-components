@@ -7,6 +7,7 @@ describe('<AvailabilitySubscriber />', () => {
   function renderComponent(customProps = {}) {
     const props = {
       skuId: '111111',
+      available: false,
       ...customProps,
     }
 

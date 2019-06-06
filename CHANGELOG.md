@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.42.7] - 2019-06-06
+### Fixed
+- Compatibility with custom non-flexible product-pages in all components used in ProductDetails.
+
 ## [3.42.6] - 2019-06-05
 ### Fixed
 - Bug where the product images thumbnail gallery would scroll infinitely.

@@ -19,8 +19,6 @@ const styles = {
 }
 
 const ProductNameWrapper = props => {
-  const { showBrandName, showSku, showProductReference } = props
-
   const valuesFromContext = useContext(ProductContext)
 
   const productNameProps = () => {
@@ -31,16 +29,13 @@ const ProductNameWrapper = props => {
     const { product, selectedItem } = valuesFromContext
     return {
       ...props,
-      tag: 'h1',
-      name: path(['productName'], product),
-      skuName: path(['name'], selectedItem),
-      productReference: path(['productReference'], product),
-      brandName: path(['brand'], product),
-      styles: styles,
-      className: 't-heading-4',
-      showBrandName,
-      showSku,
-      showProductReference,
+      tag: props.tag || 'h1',
+      name: props.name || path(['productName'], product),
+      skuName: props.skuName || path(['name'], selectedItem),
+      productReference: props.productReference || path(['productReference'], product),
+      brandName: props.brandName || path(['brand'], product),
+      styles: props.styles || styles,
+      className: props.className || 't-heading-4',
     }
   }
 
