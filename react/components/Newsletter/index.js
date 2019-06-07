@@ -5,6 +5,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import { Input, Button } from 'vtex.styleguide'
 import SUBSCRIBE_NEWSLETTER from './mutations/subscribeNewsletter.graphql'
 import style from './style.css'
+import { formatIOMessage } from 'vtex.native-types'
 
 const EMAIL_REGEX = /^[A-z0-9+_-]+(?:\.[A-z0-9+_-]+)*@(?:[A-z0-9](?:[A-z0-9-]*[A-z0-9])?\.)+[A-z0-9](?:[A-z0-9-]*[A-z0-9])?$/
 
@@ -69,14 +70,26 @@ class Newsletter extends Component {
   }
 
   render() {
-    const {
-      placeholder = this.props.intl.formatMessage({
-        id: 'store/newsletter.placeholder',
-      }),
-      submit = this.props.intl.formatMessage({ id: 'store/newsletter.submit' }),
-      label = this.props.intl.formatMessage({ id: 'store/newsletter.label' }),
-      hideLabel,
-    } = this.props
+    const { hideLabel, intl, submit, label, placeholder } = this.props
+    const submitText = formatIOMessage({ id: submit, intl })
+    const labelText = formatIOMessage({ id: label, intl })
+    const placeholderText = formatIOMessage({ id: placeholder, intl })
+    const confirmationTitle = formatIOMessage({
+      id: 'store/newsletter.confirmationTitle',
+      intl,
+    })
+    const confirmationText = formatIOMessage({
+      id: 'store/newsletter.confirmationText',
+      intl,
+    })
+    const invalidEmailText = formatIOMessage({
+      id: 'store/newsletter.invalidEmail',
+      intl,
+    })
+    const errorMsg = formatIOMessage({
+      id: 'store/newsletter.error',
+      intl,
+    })
 
     return (
       <div
@@ -88,14 +101,10 @@ class Newsletter extends Component {
           {this.state.success ? (
             <Fragment>
               <div className={`${style.confirmationTitle} t-heading-3 pb4 tc`}>
-                {this.props.intl.formatMessage({
-                  id: 'store/newsletter.confirmationTitle',
-                })}
+                {confirmationTitle}
               </div>
               <div className={`${style.confirmationText} t-body tc`}>
-                {this.props.intl.formatMessage({
-                  id: 'store/newsletter.confirmationText',
-                })}
+                {confirmationText}
               </div>
             </Fragment>
           ) : (
@@ -106,20 +115,16 @@ class Newsletter extends Component {
                 }`}
                 htmlFor="newsletter-input"
               >
-                {label}
+                {labelText}
               </label>
               <div className={`${style.inputGroup} flex-ns pt5`}>
                 <Input
                   ref={this.inputRef}
                   id="newsletter-input"
                   errorMessage={
-                    this.state.invalidEmail
-                      ? this.props.intl.formatMessage({
-                          id: 'store/newsletter.invalidEmail',
-                        })
-                      : null
+                    this.state.invalidEmail ? invalidEmailText : null
                   }
-                  placeholder={placeholder}
+                  placeholder={placeholderText}
                   name="newsletter"
                   value={this.state.email}
                   onChange={this.handleChangeEmail}
@@ -135,13 +140,13 @@ class Newsletter extends Component {
                     onClick={this.handleSubmit}
                     isLoading={this.state.loading}
                   >
-                    {submit}
+                    {submitText}
                   </Button>
                 </div>
               </div>
               {this.state.error && (
                 <div className={`${style.error} c-danger t-body pt5`}>
-                  {this.props.intl.formatMessage({ id: 'store/newsletter.error' })}
+                  {errorMsg}
                 </div>
               )}
             </form>
@@ -178,21 +183,6 @@ Newsletter.getSchema = () => {
         title: 'admin/editor.newsletter.hideLabel',
         default: false,
         isLayout: true,
-      },
-      label: {
-        type: 'string',
-        title: 'admin/editor.newsletter.label',
-        isLayout: false,
-      },
-      placeholder: {
-        type: 'string',
-        title: 'admin/editor.newsletter.placeholder',
-        isLayout: false,
-      },
-      submit: {
-        type: 'string',
-        title: 'admin/editor.newsletter.submit',
-        isLayout: false,
       },
     },
   }

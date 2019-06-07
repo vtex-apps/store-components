@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.43.1] - 2019-06-07
+### Fixed
+- Fix bad release of 3.43.0 (no real change in code).
+
+## [3.43.0] - 2019-06-06
+
+### Added
+
+- i18n using `vtex.native-types` to allow `NewsLetter` to respond properly to content i18n.
+
 ## [3.42.8] - 2019-06-06
 
 ## [3.42.7] - 2019-06-06
@@ -18,17 +28,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Bug where the product images thumbnail gallery would scroll infinitely.
 
 ## [3.42.5] - 2019-06-05
+
 ### Fixed
+
 - Hides SKU selector when there are no variations to be selected.
 - `BuyButton`: use given props over context, if set.
 
 ## [3.42.4] - 2019-06-05
+
 ### Fixed
 
 - Use props as default value instead of context.
 
 ## [3.42.3] - 2019-06-05
+
 ### Fixed
+
 - Remove `showProductPrice` rule from `ProductPrice` wrapper.
 
 ## [3.42.2] - 2019-06-05

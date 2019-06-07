@@ -59,6 +59,25 @@
           "default": "store/pricing.from"
         }
       }
+    },
+    "Newsletter": {
+      "properties": {
+        "placeholder": {
+          "title": "admin/editor.newsletter.placeholder",
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": "store/newsletter.placeholder"
+        },
+        "label": {
+          "title": "admin/editor.newsletter.label",
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": "store/newsletter.label"
+        },
+        "submit": {
+          "title": "admin/editor.newsletter.submit",
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": "store/newsletter.submit"
+        }
+      }
     }
   }
 }
