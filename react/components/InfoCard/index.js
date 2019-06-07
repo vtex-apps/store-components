@@ -132,7 +132,7 @@ const InfoCard = ({
   )
 
   const textContainerClasses = classNames(
-    `${styles.infoCardTextContainer} flex flex-column`,
+    `${styles.infoCardTextContainer} flex flex-column mw-100`,
     {
       [`w-50-ns ph3-s ${itemsToken} ${paddingClass}`]: !isFullModeStyle,
       [`mh8-ns mh4-s w-40-ns ${itemsToken}`]: isFullModeStyle,
@@ -141,11 +141,11 @@ const InfoCard = ({
 
   const headlineClasses = `${
     styles.infoCardHeadline
-  } t-heading-2 mt6 ${alignToken} c-on-base`
+  } t-heading-2 mt6 ${alignToken} c-on-base mw-100`
 
   const subheadClasses = `${
     styles.infoCardSubhead
-  } t-body mt6 c-on-base ${alignToken}`
+  } t-body mt6 c-on-base ${alignToken} mw-100`
 
   const sanitizedHeadline = useMemo(
     () => sanitizeHtml(formatIOMessage({ id: headline, intl })),
