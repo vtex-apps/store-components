@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.43.3] - 2019-06-10
+### Fixed
+- `InfoCard`: change null default values to empty strings.
+
 ## [3.43.2] - 2019-06-07
 ### Fixed
 - Fixed issue that causes syntax error on IE11, due to the use of ES6 features.
