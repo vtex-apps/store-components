@@ -10,19 +10,19 @@ import { variationShape } from '../utils/proptypes'
 import styles from '../styles.css'
 import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 
-const THRESHOLD = 2
+const ITEMS_VISIBLE_THRESHOLD = 2
 
 const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected, seeMoreLabel, maxItems }) => {
   const displayImage = isColor(variation.name)
   const { options } = variation
   const [showAll, setShowAll] = useState(false)
-  const maxItemsNoThreshold = maxItems - THRESHOLD
+  const visibleItemsWhenCollapsed = maxItems - ITEMS_VISIBLE_THRESHOLD
 
   const shouldCollapse = !showAll && options.length > maxItems
 
-  const overflowQuantity = options.length - maxItemsNoThreshold
+  const overflowQuantity = options.length - visibleItemsWhenCollapsed
 
-  const displayOptions = options.slice(0, shouldCollapse ? maxItemsNoThreshold : options.length)
+  const displayOptions = options.slice(0, shouldCollapse ? visibleItemsWhenCollapsed : options.length)
 
   const showAllAction = useCallback(() => setShowAll(true), [])
 
@@ -72,7 +72,7 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected, seeMoreLa
           {!showAll && shouldCollapse && (
             <div className={styles.seeMoreButton}>
               <Button variation="tertiary" onClick={showAllAction} size="small" collapseLeft>
-                <IOMessage id={seeMoreLabel} values={{ quantity: overflowQuantity }} testId={'seeMoreLabel'} />
+                <IOMessage id={seeMoreLabel} values={{ quantity: overflowQuantity }} data-testid="seeMoreLabel" />
               </Button>
             </div>
           )}

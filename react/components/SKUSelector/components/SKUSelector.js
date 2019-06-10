@@ -21,12 +21,18 @@ const SKUSelector = ({
   const shouldShowSecondary =
     (alwaysShowSecondary || mainVariation.value) && secondaryVariation.name
 
+  const mainOnSelectItem = useCallback(skuId => onSelectSKU(true, skuId), [onSelectSKU])
+  const mainIsSelected = useCallback(sku => sku[mainVariation.name] === mainVariation.value, [mainVariation])
+
+  const secondaryOnSelectItem = useCallback(skuId => onSelectSKU(false, skuId), [onSelectSKU])
+  const secondaryIsSelected = useCallback(sku => sku.itemId === secondaryVariation.value, [secondaryVariation])
+
   return (
     <div className={styles.skuSelectorContainer}>
       <Variation
         variation={mainVariation}
-        onSelectItem={useCallback(skuId => onSelectSKU(true, skuId), [onSelectSKU])}
-        isSelected={useCallback(sku => sku[mainVariation.name] === mainVariation.value, [mainVariation])}
+        onSelectItem={mainOnSelectItem}
+        isSelected={mainIsSelected}
         maxSkuPrice={maxSkuPrice}
         seeMoreLabel={seeMoreLabel}
         maxItems={maxItems}
@@ -34,8 +40,8 @@ const SKUSelector = ({
       {shouldShowSecondary && (
         <Variation
           variation={secondaryVariation}
-          onSelectItem={useCallback(skuId => onSelectSKU(false, skuId), [onSelectSKU])}
-          isSelected={useCallback(sku => sku.itemId === secondaryVariation.value, [secondaryVariation])}
+          onSelectItem={secondaryOnSelectItem}
+          isSelected={secondaryIsSelected}
           maxSkuPrice={maxSkuPrice}
           seeMoreLabel={seeMoreLabel}
           maxItems={maxItems}

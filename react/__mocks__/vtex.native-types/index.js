@@ -7,8 +7,8 @@ export const IOMessage = props => {
   if (props.id) {
     return <FormattedMessage {...props} />
   }
-  if (props.testId) {
-    return <div>{props.testId}</div>
+  if (props["data-testid"]) {
+    return <div>{props["data-testid"]}</div>
   }
   return null
 }

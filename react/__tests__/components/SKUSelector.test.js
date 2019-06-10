@@ -542,7 +542,7 @@ describe('<SKUSelector />', () => {
     expect(queryByText('5')).toBeNull()
   })
 
-  it('should respect given maxItems prop set and dont show see more button', () => {
+  it('should show all variations when count is inside threshold', () => {
     const defaultSeller = { commertialOffer: { Price: 15 } }
     const skuItems = [
       {
