@@ -8,10 +8,10 @@ exports[`<InfoCard /> should insert span with class on headline 1`] = `
     style="background-image: url(my-image.com/image.png); background-size: cover;"
   >
     <div
-      class="infoCardTextContainer flex flex-column mh8-ns mh4-s w-40-ns items-center"
+      class="infoCardTextContainer flex flex-column mw-100 mh8-ns mh4-s w-40-ns items-center"
     >
       <div
-        class="infoCardHeadline t-heading-2 mt6 tc c-on-base"
+        class="infoCardHeadline t-heading-2 mt6 tc c-on-base mw-100"
       >
         HEADLINE 
         <span
@@ -22,7 +22,7 @@ exports[`<InfoCard /> should insert span with class on headline 1`] = `
          HEADLINE STILL
       </div>
       <div
-        class="infoCardSubhead t-body mt6 c-on-base tc"
+        class="infoCardSubhead t-body mt6 c-on-base tc mw-100"
       >
         MY SUBHEAD
       </div>
@@ -39,15 +39,15 @@ exports[`<InfoCard /> should render with full mode style 1`] = `
     style="background-image: url(my-image.com/image.png); background-size: cover;"
   >
     <div
-      class="infoCardTextContainer flex flex-column mh8-ns mh4-s w-40-ns items-start"
+      class="infoCardTextContainer flex flex-column mw-100 mh8-ns mh4-s w-40-ns items-start"
     >
       <div
-        class="infoCardHeadline t-heading-2 mt6 tl c-on-base"
+        class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
       >
         MY HEADLINE
       </div>
       <div
-        class="infoCardSubhead t-body mt6 c-on-base tl"
+        class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
       >
         MY SUBHEAD
       </div>
@@ -70,15 +70,15 @@ exports[`<InfoCard /> should render with image and text side by side 1`] = `
     data-testid="container"
   >
     <div
-      class="infoCardTextContainer flex flex-column w-50-ns ph3-s items-start pr4-ns"
+      class="infoCardTextContainer flex flex-column mw-100 w-50-ns ph3-s items-start pr4-ns"
     >
       <div
-        class="infoCardHeadline t-heading-2 mt6 tl c-on-base"
+        class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
       >
         MY HEADLINE
       </div>
       <div
-        class="infoCardSubhead t-body mt6 c-on-base tl"
+        class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
       >
         MY SUBHEAD
       </div>
@@ -113,15 +113,15 @@ exports[`<InfoCard /> should render without a call to action 1`] = `
     style="background-image: url(my-image.com/image.png); background-size: cover;"
   >
     <div
-      class="infoCardTextContainer flex flex-column mh8-ns mh4-s w-40-ns items-start"
+      class="infoCardTextContainer flex flex-column mw-100 mh8-ns mh4-s w-40-ns items-start"
     >
       <div
-        class="infoCardHeadline t-heading-2 mt6 tl c-on-base"
+        class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
       >
         MY HEADLINE
       </div>
       <div
-        class="infoCardSubhead t-body mt6 c-on-base tl"
+        class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
       >
         MY SUBHEAD
       </div>
@@ -137,15 +137,15 @@ exports[`<InfoCard /> should wrap half image in a link with imageActionUrl 1`] =
     data-testid="container"
   >
     <div
-      class="infoCardTextContainer flex flex-column w-50-ns ph3-s items-start pr4-ns"
+      class="infoCardTextContainer flex flex-column mw-100 w-50-ns ph3-s items-start pr4-ns"
     >
       <div
-        class="infoCardHeadline t-heading-2 mt6 tl c-on-base"
+        class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
       >
         MY HEADLINE
       </div>
       <div
-        class="infoCardSubhead t-body mt6 c-on-base tl"
+        class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
       >
         MY SUBHEAD
       </div>
@@ -180,15 +180,15 @@ exports[`<InfoCard /> should wrap whole container in a link with imageActionUrl 
       style="background-image: url(my-image.com/image.png); background-size: cover;"
     >
       <div
-        class="infoCardTextContainer flex flex-column mh8-ns mh4-s w-40-ns items-center"
+        class="infoCardTextContainer flex flex-column mw-100 mh8-ns mh4-s w-40-ns items-center"
       >
         <div
-          class="infoCardHeadline t-heading-2 mt6 tc c-on-base"
+          class="infoCardHeadline t-heading-2 mt6 tc c-on-base mw-100"
         >
           MY HEADLINE
         </div>
         <div
-          class="infoCardSubhead t-body mt6 c-on-base tc"
+          class="infoCardSubhead t-body mt6 c-on-base tc mw-100"
         >
           MY SUBHEAD
         </div>
