@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.43.5] - 2019-06-10
+### Fixed
+- Issue on the SearchBar suggestions where the user couldn't select items, on mobile devices.
+
 ## [3.43.4] - 2019-06-10
 ### Fixed
 - `InfoCard`: Make `imageUrl` and `mobileImageUrl` have image-uploader ui widget on storefront.
