@@ -17,6 +17,7 @@ const ResultsList = ({
   closeMenu,
   onClearInput,
   getItemProps,
+  getMenuProps,
 }) => {
   const items = data.autocomplete ? data.autocomplete.itemsReturned : []
   const {
@@ -25,7 +26,7 @@ const ResultsList = ({
 
   const listClassNames = classnames(
     styles.resultsList,
-    'z-max w-100 pb4 bl-ns bb br-ns bw1 b--muted-4 bg-white f5 left-0',
+    'z-max w-100 pb4 bl-ns bb br-ns bw1 b--muted-4 bg-white f5 left-0 list',
     mobile ? 'fixed' : 'absolute'
   )
 
@@ -84,45 +85,49 @@ const ResultsList = ({
   }
 
   return (
-    <div className={listClassNames}>
-      <Link
-        {...getItemProps({
-          item: 'ft',
-          onClick: handleItemClick,
-        })}
-        page="store.search"
-        params={{ term: inputValue }}
-        query="map=ft"
-        className={listItemClassNames}
-      >
-        {inputValue}
-      </Link>
+    <ul className={listClassNames} {...getMenuProps()}>
+      <li>
+        <Link
+          {...getItemProps({
+            item: 'ft',
+            onClick: handleItemClick,
+          })}
+          page="store.search"
+          params={{ term: inputValue }}
+          query="map=ft"
+          className={listItemClassNames}
+        >
+          {inputValue}
+        </Link>
+      </li>
 
       {items.map((item, index) => {
         return (
           <Fragment key={item.name + index}>
             <hr className="o-05 ma0 w-90 center" />
-            <Link
-              {...getItemProps({
-                item,
-                onClick: handleItemClick,
-              })}
-              {...getLinkProps(item)}
-              className={listItemClassNames}
-            >
-              {item.thumb && (
-                <img
-                  alt=""
-                  className={`${styles.resultsItemImage} mr4`}
-                  src={getImageUrl(item.thumb)}
-                />
-              )}
-              <div className="flex justify-start items-center">{item.name}</div>
-            </Link>
+            <li>
+              <Link
+                {...getItemProps({
+                  item,
+                  onClick: handleItemClick,
+                })}
+                {...getLinkProps(item)}
+                className={listItemClassNames}
+              >
+                {item.thumb && (
+                  <img
+                    alt=""
+                    className={`${styles.resultsItemImage} mr4`}
+                    src={getImageUrl(item.thumb)}
+                  />
+                )}
+                <div className="flex justify-start items-center">{item.name}</div>
+              </Link>
+            </li>
           </Fragment>
         )
       })}
-    </div>
+    </ul>
   )
 }
 

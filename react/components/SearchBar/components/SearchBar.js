@@ -56,6 +56,7 @@ export default class SearchBar extends Component {
             {({
               getInputProps,
               getItemProps,
+              getMenuProps,
               selectedItem,
               highlightedIndex,
               isOpen,
@@ -93,6 +94,7 @@ export default class SearchBar extends Component {
                     >
                       <ResultsLists
                         {...{
+                          getMenuProps,
                           inputValue,
                           getItemProps,
                           selectedItem,
