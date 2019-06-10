@@ -1,6 +1,6 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
-import { isEmpty, pathOr } from 'ramda'
+import { pathOr } from 'ramda'
 
 import SKUSelector from './index'
 
@@ -32,8 +32,15 @@ const SKUSelectorWrapper = props => {
       onSKUSelected={props.onSKUSelected}
       skuItems={skuItems}
       skuSelected={skuSelected}
+      maxItems={props.maxItems}
+      seeMoreLabel={props.seeMoreLabel}
     />
   )
+}
+
+SKUSelectorWrapper.schema = {
+  title: 'admin/editor.skuSelector.title',
+  description: 'admin/editor.skuSelector.description',
 }
 
 export default SKUSelectorWrapper

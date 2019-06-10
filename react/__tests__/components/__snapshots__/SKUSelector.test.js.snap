@@ -17,7 +17,7 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
           Color
         </span>
         <div
-          class="inline-flex flex-wrap ml2"
+          class="inline-flex flex-wrap ml2 flex items-center"
         >
           <div
             class="skuSelectorItem skuSelectorItem--Black relative di pointer flex items-center outline-0 skuSelectorItemImage"

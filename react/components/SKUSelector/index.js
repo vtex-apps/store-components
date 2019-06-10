@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import React, { useState, useEffect, useCallback, useMemo, memo } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 
 import SKUSelector from './components/SKUSelector'
@@ -125,9 +125,4 @@ SKUSelectorContainer.defaultProps = {
   maxItems: 10,
 }
 
-SKUSelectorContainer.schema = {
-  title: 'admin/editor.skuSelector.title',
-  description: 'admin/editor.skuSelector.description',
-}
-
-export default SKUSelectorContainer
+export default memo(SKUSelectorContainer)

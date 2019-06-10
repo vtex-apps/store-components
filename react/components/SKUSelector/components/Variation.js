@@ -17,13 +17,12 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected, seeMoreLa
   const { options } = variation
   const [showAll, setShowAll] = useState(false)
   const maxItemsNoThreshold = maxItems - THRESHOLD
-  const options2 = [...options,...options,...options,...options,...options,...options,...options,...options,...options,...options,...options]
 
-  const shouldCollapse = !showAll && options2.length > maxItems
+  const shouldCollapse = !showAll && options.length > maxItems
 
-  const overflowQuantity = options2.length - maxItemsNoThreshold
+  const overflowQuantity = options.length - maxItemsNoThreshold
 
-  const displayOptions = options2.slice(0, shouldCollapse ? maxItemsNoThreshold : options2.length)
+  const displayOptions = options.slice(0, shouldCollapse ? maxItemsNoThreshold : options.length)
 
   const showAllAction = useCallback(() => setShowAll(true), [])
 

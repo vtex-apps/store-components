@@ -9,10 +9,6 @@ describe('<SKUSelector />', () => {
     const props = {
       skuSelected: getSKU(),
       skuItems: [getSKU('Black'), getSKU('Blue'), getSKU('Yellow')],
-      variations: [
-        { name: 'Size', values: ['1'] },
-        { name: 'Color', values: ['Blue'] },
-      ],
       ...customProps,
     }
     return render(<SKUSelector {...props} />)
@@ -81,7 +77,7 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems[0]
 
     const { getByText, getAllByText } = render(
-      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} variations={skuSelected.variations} />
+      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
 
     expect(getAllByText(/gray/i)).toHaveLength(1)
@@ -312,7 +308,7 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems[0]
 
     const { getByText, queryByText } = render(
-      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} variations={skuSelected.variations} />
+      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
     expect(getByText('seeMoreLabel')).toBeDefined()
     expect(getByText('8')).toBeDefined()
@@ -539,14 +535,14 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems[0]
 
     const { getByText, queryByText } = render(
-      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} variations={skuSelected.variations} />
+      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />
     )
     expect(getByText('seeMoreLabel')).toBeDefined()
     expect(getByText('4')).toBeDefined()
     expect(queryByText('5')).toBeNull()
   })
 
-  it('should respect given maxItems prop set and show see more button', () => {
+  it('should respect given maxItems prop set and dont show see more button', () => {
     const defaultSeller = { commertialOffer: { Price: 15 } }
     const skuItems = [
       {
@@ -714,7 +710,7 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems[0]
 
     const { getByText, queryByText } = render(
-      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} variations={skuSelected.variations} />
+      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
     expect(queryByText('seeMoreLabel')).toBeNull()
     expect(getByText('10')).toBeDefined()
