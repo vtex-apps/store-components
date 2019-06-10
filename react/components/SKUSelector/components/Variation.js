@@ -12,7 +12,7 @@ import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 
 const ITEMS_VISIBLE_THRESHOLD = 2
 
-const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected, seeMoreLabel, maxItems }) => {
+const Variation = ({ variation, onSelectItem, maxSkuPrice, checkSelected, seeMoreLabel, maxItems }) => {
   const displayImage = isColor(variation.name)
   const { options } = variation
   const [showAll, setShowAll] = useState(false)
@@ -46,7 +46,7 @@ const Variation = ({ variation, onSelectItem, maxSkuPrice, isSelected, seeMoreLa
             const [seller] = skuItem.sellers
             return (
               <SelectorItem
-                isSelected={isSelected(skuItem)}
+                isSelected={checkSelected(skuItem)}
                 key={skuItem.itemId}
                 isAvailable={seller.commertialOffer.AvailableQuantity > 0}
                 maxPrice={maxSkuPrice}
@@ -90,7 +90,7 @@ Variation.propTypes = {
   /** Max price of SKU */
   maxSkuPrice: PropTypes.number,
   /** Function to verify if this Variation is selected */
-  isSelected: PropTypes.func,
+  checkSelected: PropTypes.func,
   seeMoreLabel: PropTypes.string,
   maxItems: PropTypes.number,
 }
