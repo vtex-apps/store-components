@@ -30,13 +30,19 @@
           "title": "admin/editor.info-card.imageUrl.title",
           "description": "admin/editor.info-card.imageUrl.description",
           "$ref": "app:vtex.native-types#/definitions/url",
-          "default": ""
+          "default": "",
+          "widget": {
+            "ui:widget": "image-uploader"
+          }
         },
         "mobileImageUrl": {
           "title": "admin/editor.info-card.mobileImageUrl.title",
           "description": "admin/editor.info-card.mobileImageUrl.description",
           "$ref": "app:vtex.native-types#/definitions/url",
-          "default": ""
+          "default": "",
+          "widget": {
+            "ui:widget": "image-uploader"
+          }
         },
         "imageActionUrl": {
           "title": "admin/editor.info-card.imageActionUrl.title",
