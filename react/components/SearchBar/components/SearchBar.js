@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import AutocompleteInput from './AutocompleteInput'
 import ResultsLists from './ResultsList'
-import DownshiftComponent from 'downshift'
+import Downshift from 'downshift'
 import { NoSSR } from 'vtex.render-runtime'
 import { Overlay } from 'vtex.react-portal'
 
@@ -52,7 +52,7 @@ export default class SearchBar extends Component {
         }}
       >
         <NoSSR onSSR={fallback}>
-          <DownshiftComponent>
+          <Downshift>
             {({
               getInputProps,
               getItemProps,
@@ -107,7 +107,7 @@ export default class SearchBar extends Component {
                 ) : null}
               </div>
             )}
-          </DownshiftComponent>
+          </Downshift>
         </NoSSR>
       </div>
     )
