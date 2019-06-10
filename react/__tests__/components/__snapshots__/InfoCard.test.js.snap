@@ -39,10 +39,10 @@ exports[`<InfoCard /> should not render subhead 1`] = `
     style="background-image: url(my-image.com/image.png); background-size: cover;"
   >
     <div
-      class="infoCardTextContainer flex flex-column mh8-ns mh4-s w-40-ns items-center"
+      class="infoCardTextContainer flex flex-column mw-100 mh8-ns mh4-s w-40-ns items-center"
     >
       <div
-        class="infoCardHeadline t-heading-2 mt6 tc c-on-base"
+        class="infoCardHeadline t-heading-2 mt6 tc c-on-base mw-100"
       >
         HEADLINE 
         <span
