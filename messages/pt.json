@@ -143,5 +143,10 @@
   "admin/editor.logo.mobileWidth.title": "Mobile Width",
   "admin/editor.logo.mobileWidth.description": "Largura a ser usada no celular. Se vazia, usará o valor de largura fornecido.",
   "admin/editor.logo.mobileHeight.title": "Altura do celular",
-  "admin/editor.logo.mobileHeight.description": "Altura a ser usada no celular. Se vazia, usará o valor de altura fornecido."
+  "admin/editor.logo.mobileHeight.description": "Altura a ser usada no celular. Se vazia, usará o valor de altura fornecido.",
+  "store/skuSelector.seeMore": "Ver mais {quantity}",
+  "admin/editor.skuSelector.title": "Seletor de SKU",
+  "admin/editor.skuSelector.description": "Componente que exibe diferentes variações dadas de um produto para o usuário escolher",
+  "admin/editor.skuSelector.seeMoreLabel.title": "Rótulo do botão ver mais",
+  "admin/editor.skuSelector.seeMoreLabel.description": "Rótulo do botão ver mais. A mensagem deve ter um espaço reservado {quantity} para mostrar os itens restantes apropriados disponíveis. Exemplo: \"Ver mais {quantity}\""
 }

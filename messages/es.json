@@ -143,5 +143,10 @@
   "admin/editor.logo.mobileWidth.title": "Mobile Width",
   "admin/editor.logo.mobileWidth.description": "Ancho que se utilizará en el dispositivo móvil. Si está vacío, utilizará el valor de ancho proporcionado",
   "admin/editor.logo.mobileHeight.title": "Altura móvil",
-  "admin/editor.logo.mobileHeight.description": "Altura que se utilizará en el dispositivo móvil. Si está vacío, utilizará el valor de altura proporcionado"
+  "admin/editor.logo.mobileHeight.description": "Altura que se utilizará en el dispositivo móvil. Si está vacío, utilizará el valor de altura proporcionado",
+  "store/skuSelector.seeMore": "Ver {quantity} más",
+  "admin/editor.skuSelector.title": "Selector de SKU",
+  "admin/editor.skuSelector.description": "Componente que muestra diferentes variaciones dadas de un elemento para que el usuario elija",
+  "admin/editor.skuSelector.seeMoreLabel.title": "Rótulo del botón ver más",
+  "admin/editor.skuSelector.seeMoreLabel.description": "Etiqueta del botón ver más. La cadena debe tener un marcador de posición {quantity} para mostrar los elementos restantes apropiados disponibles. Ejemplo: \"Ver {quantity} más\""
 }

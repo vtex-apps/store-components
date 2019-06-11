@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import React, { useState, useEffect, useCallback, useMemo, memo } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 
 import SKUSelector from './components/SKUSelector'
@@ -7,7 +7,6 @@ import { skuShape } from './utils/proptypes'
 import {
   groupItemsByVariation,
   getMainVariationName,
-  getMaxSkuPrice,
   parseSku,
 } from './utils'
 
@@ -19,6 +18,8 @@ const SKUSelectorContainer = ({
   skuItems = [],
   skuSelected,
   onSKUSelected,
+  seeMoreLabel,
+  maxItems,
 }) => {
   const [mainVariation, setMainVariation] = useState(null)
   const [secondaryVariation, setSecondaryVariation] = useState(null)
@@ -76,7 +77,7 @@ const SKUSelectorContainer = ({
     )
   }
 
-  const handleSkuSelection = (isMainVariation, skuId) => {
+  const handleSkuSelection = useCallback((isMainVariation, skuId) => {
     const sku = parsedItems.find(({ itemId }) => itemId === skuId)
     const {
       secondaryVariation: { options },
@@ -90,21 +91,20 @@ const SKUSelectorContainer = ({
     } else {
       redirectToSku(skuId, isMainVariation)
     }
-  }
+  }, [parsedItems, onSKUSelected])
 
   if (parsedItems.length === 0) {
     return null
   }
-
-  const maxSkuPrice = getMaxSkuPrice(parsedItems)
 
   return (
     <SKUSelector
       mainVariation={mainVariation}
       secondaryVariation={secondaryVariation}
       onSelectSKU={handleSkuSelection}
-      maxSkuPrice={maxSkuPrice}
       alwaysShowSecondary={alwaysShowSecondary}
+      seeMoreLabel={seeMoreLabel}
+      maxItems={maxItems}
     />
   )
 }
@@ -117,8 +117,12 @@ SKUSelectorContainer.propTypes = {
   /** Callback that is called when an SKU is selected */
   onSKUSelected: PropTypes.func,
   /** If true, show secondary options (if present), even when main variation is not picked yet. Default to true */
-  shouldShowSecondary: PropTypes.bool,
   alwaysShowSecondary: PropTypes.bool,
+  seeMoreLabel: PropTypes.string,
 }
 
-export default SKUSelectorContainer
+SKUSelectorContainer.defaultProps = {
+  maxItems: 10,
+}
+
+export default memo(SKUSelectorContainer)

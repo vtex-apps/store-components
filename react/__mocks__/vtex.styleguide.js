@@ -39,8 +39,10 @@ export const Input = forwardRef(function Input(
   )
 })
 
-export const Button = jest.fn(({ isLoading, variation, ...props }) => {
+export const Button = jest.fn(({ isLoading, variation, children, ...props }) => {
   return (
-    <button data-variation={variation} data-isloading={isLoading} {...props} />
+    <button data-variation={variation} data-isloading={isLoading} {...props}>
+      {children}
+    </button>
   )
 })

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.43.6] - 2019-06-11
+### Added
+- See more button for SKUSelector with a lot of items in a variation.
+- Schema for `SKUSelector` wtih `seeMoreLabel, maxItems` prop.
+
 ## [3.43.5] - 2019-06-10
 ### Fixed
 - Issue on the SearchBar suggestions where the user couldn't select items, on mobile devices.

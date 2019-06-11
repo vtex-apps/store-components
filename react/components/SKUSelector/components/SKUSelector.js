@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useCallback, memo } from 'react'
 
 import Variation from './Variation'
 import { variationShape } from '../utils/proptypes'
@@ -13,26 +13,38 @@ const SKUSelector = ({
   secondaryVariation,
   maxSkuPrice,
   alwaysShowSecondary,
+  seeMoreLabel,
+  maxItems,
 }) => {
   if (!mainVariation) return null
 
   const shouldShowSecondary =
     (alwaysShowSecondary || mainVariation.value) && secondaryVariation.name
 
+  const mainOnSelectItem = useCallback(skuId => onSelectSKU(true, skuId), [onSelectSKU])
+  const mainCheckSelected = useCallback(sku => sku[mainVariation.name] === mainVariation.value, [mainVariation])
+
+  const secondaryOnSelectItem = useCallback(skuId => onSelectSKU(false, skuId), [onSelectSKU])
+  const secondaryCheckSelected = useCallback(sku => sku.itemId === secondaryVariation.value, [secondaryVariation])
+
   return (
     <div className={styles.skuSelectorContainer}>
       <Variation
         variation={mainVariation}
-        onSelectItem={skuId => onSelectSKU(true, skuId)}
-        isSelected={sku => sku[mainVariation.name] === mainVariation.value}
+        onSelectItem={mainOnSelectItem}
+        checkSelected={mainCheckSelected}
         maxSkuPrice={maxSkuPrice}
+        seeMoreLabel={seeMoreLabel}
+        maxItems={maxItems}
       />
       {shouldShowSecondary && (
         <Variation
           variation={secondaryVariation}
-          onSelectItem={skuId => onSelectSKU(false, skuId)}
-          isSelected={sku => sku.itemId === secondaryVariation.value}
+          onSelectItem={secondaryOnSelectItem}
+          checkSelected={secondaryCheckSelected}
           maxSkuPrice={maxSkuPrice}
+          seeMoreLabel={seeMoreLabel}
+          maxItems={maxItems}
         />
       )}
     </div>
@@ -47,10 +59,11 @@ SKUSelector.propTypes = {
   /** Name and list of options of the secondary variation */
   secondaryVariation: variationShape,
   /** Max price find on the sku list */
-  maxSkuPrice: PropTypes.number.isRequired,
+  maxSkuPrice: PropTypes.number,
   /** If true, show secondary options (if present), even when main variation is not picked yet */
-  shouldShowSecondary: PropTypes.bool,
   alwaysShowSecondary: PropTypes.bool,
+  seeMoreLabel: PropTypes.string,
+  maxItems: PropTypes.number,
 }
 
-export default SKUSelector
+export default memo(SKUSelector)
