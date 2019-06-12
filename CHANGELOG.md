@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.43.7] - 2019-06-12
+### Fixed
+- Use require to conditionally import Swiper in `ProductImages` to not break SSR.
+
 ## [3.43.6] - 2019-06-11
 ### Added
 - See more button for SKUSelector with a lot of items in a variation.

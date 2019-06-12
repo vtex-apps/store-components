@@ -17,7 +17,10 @@ import './global.css'
 
 import Gallery from '../Gallery'
 
-import Swiper, { Pagination, Navigation } from 'react-id-swiper/lib/ReactIdSwiper.full'
+/** Swiper and its modules are imported using require to avoid breaking SSR */
+const Swiper = window.navigator ? require('react-id-swiper/lib/ReactIdSwiper.full').default : null
+const SwiperModules = window.navigator ? require('swiper/dist/js/swiper.esm') : null
+
 import { THUMB_SIZE, imageUrlForSize } from '../../../module/images'
 
 const initialState = {
@@ -193,7 +196,7 @@ class Carousel extends Component {
     }
 
     return {
-      modules: [Pagination, Navigation],
+      modules: [SwiperModules.Pagination, SwiperModules.Navigation],
       containerClass: 'swiper-container',
       ...(slides.length > 1 && {
         pagination: {
