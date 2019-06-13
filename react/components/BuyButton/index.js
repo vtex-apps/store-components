@@ -9,6 +9,7 @@ import { Button, ToastContext } from 'vtex.styleguide'
 const CONSTANTS = {
   SUCCESS_MESSAGE_ID: 'store/buybutton.buy-success',
   ERROR_MESSAGE_ID: 'store/buybutton.add-failure',
+  SEE_CART_ID: 'store/buybutton.see-cart',
   CHECKOUT_URL: '/checkout/#/cart',
   TOAST_TIMEOUT: 3000,
 }
@@ -68,7 +69,15 @@ export const BuyButton = ({
     const message = success
       ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
       : translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
-    showToast({ message })
+
+    const action = success
+      ? {
+        label: translateMessage(CONSTANTS.SEE_CART_ID),
+        href: '/checkout/#/cart',
+      }
+      : undefined
+
+    showToast({ message, action })
   }
 
   const handleAddToCart = async event => {
