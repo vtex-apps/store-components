@@ -36,6 +36,7 @@
   "store/buy-button.add-to-cart": "Add to cart",
   "store/buybutton.buy-success": "Your product was added to the cart!",
   "store/buybutton.add-failure": "Something went wrong and the item wasn't added to your cart!",
+  "store/buybutton.see-cart": "View cart",
   "store/technicalspecifications.title": "Technical Specifications",
   "store/availability-subscriber.title": "This product isn't available right now",
   "store/availability-subscriber.subscribe-label": "Let me know when this product is available again",
