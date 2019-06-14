@@ -35,7 +35,7 @@ const getAvailableVariations = ({ variations, selectedVariations, imagesMap, onS
         }
         const possibleItems = findListItemsWithSelectedVariations(skuItems, newSelectedVariation)
         if (possibleItems.length > 0) {
-          const [item] = possibleItems
+          const [item] = possibleItemsgd
           return {
             label: variationValue,
             onSelectItem: onSelectItemMemo(variationName, variationValue, item.itemId, false),
@@ -87,7 +87,7 @@ const SKUSelector = ({
     [onSelectItem]
   )
   useEffect(() => {
-    const promise = 
+    const promise =
       getAvailableVariations({variations, selectedVariations, imagesMap, onSelectItemMemo, skuItems, hideImpossibleCombinations})
     
     promise.then(availableVariations => setDisplayVariations(availableVariations))
