@@ -1,110 +1,127 @@
 import PropTypes from 'prop-types'
-import React, { useState, useEffect, useCallback, useMemo, memo } from 'react'
+import React, { useState, useEffect, useMemo, memo, useCallback } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
+import { filter, head, reject, omit } from 'ramda'
 
 import SKUSelector from './components/SKUSelector'
 import { skuShape } from './utils/proptypes'
 import {
-  groupItemsByVariation,
-  getMainVariationName,
-  parseSku,
+  parseSku, isColor, variationsWithUniquePossibilities,
 } from './utils'
+
+
+const buildEmptySelectedVariation = (variations) => {
+  return Object.keys(variations).reduce((acc, varName) => {
+    return {
+      ...acc,
+      [varName]: null,
+    }
+  }, {})
+}
+
+/** receives an item and the variations object, returns the selected variations for that item */
+const selectedVariationFromItem = (item, variations) => {
+  return Object.keys(variations).reduce((acc, varName) => {
+    return {
+      ...acc,
+      [varName]: item[varName],
+    }
+  },{})
+}
+
+
+//output: { color: [black: [imagelalala], blue: [image2lalala]]}
+const buildImagesMap = (items, variations) => {
+  return Object.keys(variations).reduce((acc, varName) => {
+    // Today, only "Color" variation should show image, need to find a more resilient way to tell this, waiting for backend
+    if (!isColor(varName)) {
+      return acc
+    }
+    const imageMap = {}
+    const variationValues = variations[varName]
+    variationValues.forEach(variationValue => {
+      const item = items.find(sku => sku[varName] === variationValue)
+      imageMap[variationValue] = item && head(item.images)
+    })
+    return {
+      ...acc,
+      [varName]: imageMap,
+    }
+  }, {})
+}
 
 /**
  * Display a list of SKU items of a product and its specifications.
  */
 const SKUSelectorContainer = ({
-  alwaysShowSecondary = true,
   skuItems = [],
-  skuSelected,
   onSKUSelected,
   seeMoreLabel,
   maxItems,
+  variations,
+  skuSelected,
+  hideImpossibleCombinations,
 }) => {
-  const [mainVariation, setMainVariation] = useState(null)
-  const [secondaryVariation, setSecondaryVariation] = useState(null)
-
-  const { setQuery } = useRuntime()
-
   const parsedItems = useMemo(() => skuItems.map(parseSku), [skuItems])
 
-  const buildVariations = useCallback(
-    sku => {
-      const itemId = sku.itemId
-      const variations = sku.variations
-
-      const name = getMainVariationName(variations)
-      const mainVariation = {
-        name,
-        value: skuSelected ? sku[name] : null,
-        options: groupItemsByVariation(name, parsedItems),
-      }
-
-      const secondaryVariation = { value: skuSelected ? itemId : null }
-
-      const filteredSkus = parsedItems.filter(s => s[name] === sku[name])
-
-      if (variations.length > 1) {
-        secondaryVariation.name = variations.find(
-          variation => variation !== name
-        )
-        secondaryVariation.options = groupItemsByVariation(
-          secondaryVariation.name,
-          filteredSkus
-        )
-      }
-
-      return { mainVariation, secondaryVariation }
-    },
-    [parsedItems, skuSelected]
-  )
-
-  useEffect(() => {
-    const sku = (skuSelected && parseSku(skuSelected)) || parsedItems[0]
-
-    const { mainVariation, secondaryVariation } = buildVariations(sku)
-
-    setMainVariation(mainVariation)
-    setSecondaryVariation(secondaryVariation)
-  }, [skuSelected, parsedItems, buildVariations])
-
-  const redirectToSku = (skuId, isMainVariation) => {
+  const { setQuery } = useRuntime()
+  const redirectToSku = (skuId) => {
     setQuery(
       { skuId },
       {
-        replace: !isMainVariation,
+        replace: true,
       }
     )
   }
 
-  const handleSkuSelection = useCallback((isMainVariation, skuId) => {
-    const sku = parsedItems.find(({ itemId }) => itemId === skuId)
-    const {
-      secondaryVariation: { options },
-    } = buildVariations(sku)
-
-    const isSecondaryPicked =
-      !isMainVariation || (options && options.length === 1)
-
-    if (onSKUSelected) {
-      onSKUSelected(skuId, isMainVariation, isSecondaryPicked)
-    } else {
-      redirectToSku(skuId, isMainVariation)
+  const [selectedVariations, setSelectedVariations] = useState(null)
+  useEffect(() => {
+    const initalVariations = skuSelected ? selectedVariationFromItem(parseSku(skuSelected), variations) : buildEmptySelectedVariation(variations)
+    setSelectedVariations(initalVariations)
+  }, [])
+  
+  const imagesMap = useMemo(() => buildImagesMap(parsedItems, variations), [parsedItems, variations])
+  
+  const onSelectItem = useCallback((variationName, variationValue, skuId) => {
+    const isRemoving = selectedVariations[variationName] === variationValue
+    const changedVariation = {
+      ...selectedVariations,
+      [variationName]: isRemoving ? null : variationValue,
     }
-  }, [parsedItems, onSKUSelected])
 
-  if (parsedItems.length === 0) {
+    const otherVariations = omit([variationName], selectedVariations)
+    const emptyVariations = reject(Boolean, otherVariations)
+
+    const onlyOptions = variationsWithUniquePossibilities(parsedItems, variations, Object.keys(emptyVariations), changedVariation)
+    const newSelectedVariation = { ...changedVariation, ...onlyOptions }
+    setSelectedVariations(newSelectedVariation)
+    const selectedNotNull = filter(Boolean, newSelectedVariation)
+    const selectedCount = Object.keys(selectedNotNull).length
+    const variationsCount = Object.keys(variations).length
+    const allSelected = selectedCount === variationsCount
+    if (onSKUSelected) {
+      onSKUSelected(skuId)
+    } else {
+      if (allSelected || (isColor(variationName) && !isRemoving)) {
+        redirectToSku(skuId)
+      }
+    }
+  }, [selectedVariations, variations, onSKUSelected])
+
+  if (!selectedVariations) {
     return null
   }
 
   return (
     <SKUSelector
-      mainVariation={mainVariation}
-      secondaryVariation={secondaryVariation}
-      onSelectSKU={handleSkuSelection}
-      alwaysShowSecondary={alwaysShowSecondary}
+      variations={variations}
       seeMoreLabel={seeMoreLabel}
       maxItems={maxItems}
+      skuItems={parsedItems}
+      selectedVariations={selectedVariations}
+      imagesMap={imagesMap}
+      onSelectItem={onSelectItem}
+      hideImpossibleCombinations={hideImpossibleCombinations}
     />
   )
 }
@@ -116,13 +133,22 @@ SKUSelectorContainer.propTypes = {
   skuItems: PropTypes.arrayOf(skuShape).isRequired,
   /** Callback that is called when an SKU is selected */
   onSKUSelected: PropTypes.func,
-  /** If true, show secondary options (if present), even when main variation is not picked yet. Default to true */
-  alwaysShowSecondary: PropTypes.bool,
   seeMoreLabel: PropTypes.string,
+  maxItems: PropTypes.number,
+
+  /** Object with dynamic keys, with keys being the name of variations and its values being an array of possible values.
+   * Example: { "size": ["small", "medium", "large"], "color": ["blue", "yellow"] }
+   */
+  variations: PropTypes.object,
+
+  skuSelected: skuShape,
+
+  hideImpossibleCombinations: PropTypes.bool,
 }
 
 SKUSelectorContainer.defaultProps = {
   maxItems: 10,
+  hideImpossibleCombinations: true,
 }
 
 export default memo(SKUSelectorContainer)
