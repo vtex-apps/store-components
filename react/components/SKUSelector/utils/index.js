@@ -1,9 +1,4 @@
-import {
-  prop,
-  filter,
-  isEmpty,
-  reject,
-} from 'ramda'
+import { prop, filter } from 'ramda'
 
 /**
  * Return the maximum sku price
@@ -103,44 +98,6 @@ export const findListItemsWithSelectedVariations = (items, selectedVariations) =
     return items
   }
   return items.filter(isSkuSelected(selectedNotNull))
-}
-
-/**
- * Finds unselected variations that for a new selected variations input, detects variations that have only one possible value with that combination
- * @param {*} variations - all possible variations object
- * @param {*} variationsToIterate - list of names of variations that are currently empty
- * @param {*} selectedVariations - selectedVariations format: { "color": "black", size: "small", fabric: null }
- * Output: a object with the keys of variations names and the value of the variation if with that new selection of selectedVariation.
- * If it sees it is adding new values, call it rescursively to check for new unique options for unselected variations
- */
-export const variationsWithUniquePossibilities = (items, variations, variationsToIterate, selectedVariations) => {
-  if (variationsToIterate.length === 0) {
-    return { onlyOptions: {}, possibleItems: items }
-  }
-  const possibleItems = findListItemsWithSelectedVariations(items, selectedVariations)
-  const onlyOptions = variationsToIterate.reduce((acc, emptyVarName) => {
-    const possibleVariationsWithItems = variations[emptyVarName].map(possibleValue => {
-      const potentialSelection = { ...selectedVariations, [emptyVarName]: possibleValue }
-      return findItemWithSelectedVariations(possibleItems, potentialSelection)
-    })
-    const withItemsCount = possibleVariationsWithItems.filter(Boolean).length
-    if (withItemsCount === 1) {
-      const valueIndex = possibleVariationsWithItems.findIndex(Boolean)
-      return {
-        ...acc,
-        [emptyVarName]: variations[emptyVarName][valueIndex],
-      }
-    }
-    return acc
-  }, {})
-  if (!isEmpty(onlyOptions)) {
-    const addedVariaitons = Object.keys(onlyOptions)
-    const newEmptyVariations = reject((varName) => addedVariaitons.includes(varName), variationsToIterate)
-    const recursiveOnlyOptions = variationsWithUniquePossibilities(possibleItems, variations, newEmptyVariations, { ...selectedVariations, ...onlyOptions })
-    const mergedOptions = { ...onlyOptions, ...recursiveOnlyOptions.onlyOptions }
-    return { onlyOptions: mergedOptions, possibleItems }
-  }
-  return { onlyOptions, possibleItems }
 }
 
 /** Private functions */
