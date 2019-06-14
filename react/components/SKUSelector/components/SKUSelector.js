@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useCallback, useMemo, memo } from 'react'
+import React, { useCallback, useMemo, memo, useState, useEffect } from 'react'
 
 import Variation from './Variation'
 
@@ -21,6 +21,55 @@ const showItemAsAvailable = (possibleItems, selectedVariations, variationCount, 
   return possibleItems.some(isSkuAvailable)
 }
 
+const getAvailableVariations = ({ variations, selectedVariations, imagesMap, onSelectItemMemo, skuItems, hideImpossibleCombinations }) => {
+  const variationCount = Object.keys(variations).length
+  return new Promise(resolve => {
+    const result = Object.keys(variations).map((variationName) => {
+      const name = variationName
+      const values = variations[variationName]
+      const options = values.map(variationValue => {
+        const isSelected = selectedVariations[variationName] === variationValue
+        const newSelectedVariation = {
+          ...selectedVariations,
+          [variationName]: isSelected ? null : variationValue,
+        }
+        const possibleItems = findListItemsWithSelectedVariations(skuItems, newSelectedVariation)
+        if (possibleItems.length > 0) {
+          const [item] = possibleItems
+          return {
+            label: variationValue,
+            onSelectItem: onSelectItemMemo(variationName, variationValue, item.itemId, false),
+            image: path([variationName, variationValue], imagesMap),
+            available: showItemAsAvailable(possibleItems, selectedVariations, variationCount, isSelected),
+            faded: false,
+          }
+        }
+        if (hideImpossibleCombinations && isColor(variationName)) {
+          return {
+            label: variationValue,
+            onSelectItem: onSelectItemMemo(variationName, variationValue, null, true),
+            image: path([variationName, variationValue], imagesMap),
+            available: true,
+            faded: false,
+          }
+        }
+        if (!hideImpossibleCombinations) {
+          return {
+            label: variationValue,
+            onSelectItem: () => {},
+            image: path([variationName, variationValue], imagesMap),
+            available: true,
+            faded: true,
+          }
+        }
+        return null
+      }).filter(Boolean)
+      return { name, options }
+    })
+    resolve(result)
+  })
+}
+
 /** Renders the main and the secondary variation, if it exists. */
 const SKUSelector = ({
   seeMoreLabel,
@@ -32,57 +81,24 @@ const SKUSelector = ({
   selectedVariations,
   hideImpossibleCombinations,
 }) => {
-  const variationCount = Object.keys(variations).length
+  const [displayVariations, setDisplayVariations] = useState(null)
   const onSelectItemMemo = useCallback(
     (name, value, skuId, isMainAndImpossible) => () => onSelectItem(name, value, skuId, isMainAndImpossible), 
     [onSelectItem]
   )
+  useEffect(() => {
+    const promise = 
+      getAvailableVariations({variations, selectedVariations, imagesMap, onSelectItemMemo, skuItems, hideImpossibleCombinations})
+    
+    promise.then(availableVariations => setDisplayVariations(availableVariations))
+  }, [variations, selectedVariations, imagesMap, onSelectItemMemo, skuItems, hideImpossibleCombinations])
 
-  const allVariations = useMemo(() => Object.keys(variations).map((variationName) => {
-    const name = variationName
-    const values = variations[variationName]
-    const options = values.map(variationValue => {
-      const isSelected = selectedVariations[variationName] === variationValue
-      const newSelectedVariation = {
-        ...selectedVariations,
-        [variationName]: isSelected ? null : variationValue,
-      }
-      const possibleItems = findListItemsWithSelectedVariations(skuItems, newSelectedVariation)
-      if (possibleItems.length > 0) {
-        const [item] = possibleItems
-        return {
-          label: variationValue,
-          onSelectItem: onSelectItemMemo(variationName, variationValue, item.itemId, false),
-          image: path([variationName, variationValue], imagesMap),
-          available: showItemAsAvailable(possibleItems, selectedVariations, variationCount, isSelected),
-          faded: false,
-        }
-      }
-      if (hideImpossibleCombinations && isColor(variationName)) {
-        return {
-          label: variationValue,
-          onSelectItem: onSelectItemMemo(variationName, variationValue, null, true),
-          image: path([variationName, variationValue], imagesMap),
-          available: true,
-          faded: false,
-        }
-      }
-      if (!hideImpossibleCombinations) {
-        return {
-          label: variationValue,
-          onSelectItem: () => {},
-          image: path([variationName, variationValue], imagesMap),
-          available: true,
-          faded: true,
-        }
-      }
-      return null
-    }).filter(Boolean)
-    return { name, options }
-  }), [variations, selectedVariations, imagesMap, onSelectItemMemo, skuItems, hideImpossibleCombinations])
+  if (!displayVariations) {
+    return null
+  }
   return (
     <div className={styles.skuSelectorContainer}>
-      {allVariations.map((variationOption, index) => {
+      {displayVariations.map((variationOption, index) => {
         const selectedItem = selectedVariations[variationOption.name]
         return (
           <Variation

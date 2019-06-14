@@ -99,7 +99,7 @@ const SKUSelectorContainer = ({
     const allSelected = selectedCount === variationsCount
     let skuIdToRedirect = skuId
     if (!skuId) {
-      const [newItem] = findListItemsWithSelectedVariations(possibleItems, newSelectedVariation)
+      const [newItem] = findListItemsWithSelectedVariations(parsedItems, newSelectedVariation)
       skuIdToRedirect = newItem.itemId
     }
 
