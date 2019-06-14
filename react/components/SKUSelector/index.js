@@ -109,7 +109,7 @@ const SKUSelectorContainer = ({
       onSKUSelected(skuIdToRedirect)
     } else {
       if (allSelected || (isColor(variationName) && !isRemoving)) {
-        redirectToSku(skuIdToRedirect)
+        setTimeout(() => redirectToSku(skuIdToRedirect), 0)
       }
     }
   }, [selectedVariations, variations, onSKUSelected])
