@@ -6,7 +6,7 @@ import { filter, head, reject, omit, isEmpty } from 'ramda'
 import SKUSelector from './components/SKUSelector'
 import { skuShape } from './utils/proptypes'
 import {
-  parseSku, isColor, variationsWithUniquePossibilities, findItemWithSelectedVariations,
+  parseSku, isColor, variationsWithUniquePossibilities, findItemWithSelectedVariations, findListItemsWithSelectedVariations,
 } from './utils'
 
 
@@ -82,14 +82,19 @@ const SKUSelectorContainer = ({
   
   const imagesMap = useMemo(() => buildImagesMap(parsedItems, variations), [parsedItems, variations])
   
-  const onSelectItem = useCallback((variationName, variationValue, skuId) => {
+  const onSelectItem = useCallback((variationName, variationValue, skuId, isMainAndImpossible) => {
     const isRemoving = selectedVariations[variationName] === variationValue
-    const changedVariation = {
+    const changedVariation = !isMainAndImpossible ? 
+      {
       ...selectedVariations,
       [variationName]: isRemoving ? null : variationValue,
-    }
+      } : 
+      { 
+        ...buildEmptySelectedVariation(variations),
+        [variationName]: variationValue 
+      }
 
-    const otherVariations = omit([variationName], selectedVariations)
+    const otherVariations = omit([variationName], !isMainAndImpossible ? selectedVariations : changedVariation)
     const emptyVariations = reject(Boolean, otherVariations)
 
     const { onlyOptions, possibleItems } = variationsWithUniquePossibilities(parsedItems, variations, Object.keys(emptyVariations), changedVariation)
@@ -102,6 +107,10 @@ const SKUSelectorContainer = ({
     let skuIdToRedirect = skuId
     if (!isEmpty(onlyOptions)) {
       const newItem = findItemWithSelectedVariations(possibleItems, newSelectedVariation)
+      skuIdToRedirect = newItem.itemId
+    }
+    if (!skuId) {
+      const [newItem] = findListItemsWithSelectedVariations(possibleItems, newSelectedVariation)
       skuIdToRedirect = newItem.itemId
     }
 

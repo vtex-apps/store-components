@@ -7,7 +7,7 @@ import { compose, flip, gt, filter, path } from 'ramda'
 
 import styles from '../styles.css'
 import { variationShape, skuShape } from '../utils/proptypes'
-import { findItemWithSelectedVariations, findListItemsWithSelectedVariations } from '../utils'
+import { findItemWithSelectedVariations, findListItemsWithSelectedVariations, isColor } from '../utils'
 
 const isSkuAvailable = compose(flip(gt)(0), path(['sellers', '0', 'commertialOffer', 'AvailableQuantity']))
 
@@ -33,7 +33,10 @@ const SKUSelector = ({
   hideImpossibleCombinations,
 }) => {
   const variationCount = Object.keys(variations).length
-  const onSelectItemMemo = useCallback((name, value, skuId) => () => onSelectItem(name, value, skuId), [onSelectItem])
+  const onSelectItemMemo = useCallback(
+    (name, value, skuId, isMainAndImpossible) => () => onSelectItem(name, value, skuId, isMainAndImpossible), 
+    [onSelectItem]
+  )
 
   const allVariations = useMemo(() => Object.keys(variations).map((variationName) => {
     const name = variationName
@@ -49,9 +52,18 @@ const SKUSelector = ({
         const [item] = possibleItems
         return {
           label: variationValue,
-          onSelectItem: onSelectItemMemo(variationName, variationValue, item.itemId),
+          onSelectItem: onSelectItemMemo(variationName, variationValue, item.itemId, false),
           image: path([variationName, variationValue], imagesMap),
           available: showItemAsAvailable(possibleItems, selectedVariations, variationCount, isSelected),
+          faded: false,
+        }
+      }
+      if (hideImpossibleCombinations && isColor(variationName)) {
+        return {
+          label: variationValue,
+          onSelectItem: onSelectItemMemo(variationName, variationValue, null, true),
+          image: path([variationName, variationValue], imagesMap),
+          available: true,
           faded: false,
         }
       }
