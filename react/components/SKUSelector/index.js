@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import React, { useState, useEffect, useMemo, memo, useCallback } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
-import { filter, head, reject, omit } from 'ramda'
+import { filter, head, reject, omit, isEmpty } from 'ramda'
 
 import SKUSelector from './components/SKUSelector'
 import { skuShape } from './utils/proptypes'
 import {
-  parseSku, isColor, variationsWithUniquePossibilities,
+  parseSku, isColor, variationsWithUniquePossibilities, findItemWithSelectedVariations,
 } from './utils'
 
 
@@ -92,18 +92,24 @@ const SKUSelectorContainer = ({
     const otherVariations = omit([variationName], selectedVariations)
     const emptyVariations = reject(Boolean, otherVariations)
 
-    const onlyOptions = variationsWithUniquePossibilities(parsedItems, variations, Object.keys(emptyVariations), changedVariation)
+    const { onlyOptions, possibleItems } = variationsWithUniquePossibilities(parsedItems, variations, Object.keys(emptyVariations), changedVariation)
     const newSelectedVariation = { ...changedVariation, ...onlyOptions }
     setSelectedVariations(newSelectedVariation)
     const selectedNotNull = filter(Boolean, newSelectedVariation)
     const selectedCount = Object.keys(selectedNotNull).length
     const variationsCount = Object.keys(variations).length
     const allSelected = selectedCount === variationsCount
+    let skuIdToRedirect = skuId
+    if (!isEmpty(onlyOptions)) {
+      const newItem = findItemWithSelectedVariations(possibleItems, newSelectedVariation)
+      skuIdToRedirect = newItem.itemId
+    }
+
     if (onSKUSelected) {
-      onSKUSelected(skuId)
+      onSKUSelected(skuIdToRedirect)
     } else {
       if (allSelected || (isColor(variationName) && !isRemoving)) {
-        redirectToSku(skuId)
+        redirectToSku(skuIdToRedirect)
       }
     }
   }, [selectedVariations, variations, onSKUSelected])

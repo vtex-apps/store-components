@@ -115,7 +115,7 @@ export const findListItemsWithSelectedVariations = (items, selectedVariations) =
  */
 export const variationsWithUniquePossibilities = (items, variations, variationsToIterate, selectedVariations) => {
   if (variationsToIterate.length === 0) {
-    return {}
+    return { onlyOptions: {}, possibleItems: items }
   }
   const possibleItems = findListItemsWithSelectedVariations(items, selectedVariations)
   const onlyOptions = variationsToIterate.reduce((acc, emptyVarName) => {
@@ -136,12 +136,11 @@ export const variationsWithUniquePossibilities = (items, variations, variationsT
   if (!isEmpty(onlyOptions)) {
     const addedVariaitons = Object.keys(onlyOptions)
     const newEmptyVariations = reject((varName) => addedVariaitons.includes(varName), variationsToIterate)
-    return { 
-      ...onlyOptions, 
-      ...variationsWithUniquePossibilities(possibleItems, variations, newEmptyVariations, { ...selectedVariations, ...onlyOptions })
-    }
+    const recursiveOnlyOptions = variationsWithUniquePossibilities(possibleItems, variations, newEmptyVariations, { ...selectedVariations, ...onlyOptions })
+    const mergedOptions = { ...onlyOptions, ...recursiveOnlyOptions.onlyOptions }
+    return { onlyOptions: mergedOptions, possibleItems }
   }
-  return onlyOptions
+  return { onlyOptions, possibleItems }
 }
 
 /** Private functions */
