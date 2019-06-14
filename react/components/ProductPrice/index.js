@@ -1,6 +1,5 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import classNames from 'classnames'
-import PropTypes from 'prop-types'
 import { isNil, head, last, sort, equals } from 'ramda'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { IOMessage } from 'vtex.native-types'
@@ -63,7 +62,7 @@ const canShowListPrice = props => {
 /**
  * The Price component. Shows the prices information of the Product Summary.
  */
-const ProductPrice = (props, context) => {
+const ProductPrice = (props) => {
   const {
     sellingPriceList,
     sellingPrice,
@@ -96,16 +95,7 @@ const ProductPrice = (props, context) => {
     styles,
     intl,
   } = props
-
   const { culture } = useRuntime()
-
-  let { classes } = props
-
-  // avoiding undefined verifications
-  classes = {
-    ...PriceWithIntl.defaultProps.classes,
-    ...classes,
-  }
 
   if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
     return <ProductPriceLoader loaderClass={loaderClass} {...styles} />

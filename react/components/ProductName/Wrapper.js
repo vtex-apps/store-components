@@ -4,42 +4,43 @@ import { ProductContext } from 'vtex.product-context'
 
 import ProductName from './index'
 
-const styles = {
-  'vtex-product-name__brand--loader': {
-    x: 0,
-    width: '100%',
-    height: '1.631em',
-  },
-  'vtex-product-name__sku--loader': {
-    x: 0,
-    y: '2.569em',
-    width: '10.311em',
-    height: '1.045em',
-  },
-}
-
 const ProductNameWrapper = props => {
   const valuesFromContext = useContext(ProductContext)
 
-  const productNameProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) {
-      return props
-    }
+  const name = props.name
+    ? props.name
+    : path(['product', 'productName'], valuesFromContext)
 
-    const { product, selectedItem } = valuesFromContext
-    return {
-      ...props,
-      tag: props.tag || 'h1',
-      name: props.name || path(['productName'], product),
-      skuName: props.skuName || path(['name'], selectedItem),
-      productReference: props.productReference || path(['productReference'], product),
-      brandName: props.brandName || path(['brand'], product),
-      styles: props.styles || styles,
-      className: props.className || 't-heading-4',
-    }
-  }
+  const skuName = props.skuName
+    ? props.skuName
+    : path(['selectedItem', 'name'], valuesFromContext)
 
-  return <ProductName {...productNameProps()} />
+  const productReference = props.productReference
+    ? props.productReference
+    : path(['product', 'productReference'], valuesFromContext)
+
+  const brandName = props.brandName
+    ? props.brandName
+    : path(['product', 'brand'], valuesFromContext)
+
+  return (
+    <ProductName
+      name={name}
+      skuName={skuName}
+      showSku={props.showSku}
+      productReference={productReference}
+      showProductReference={props.showProductReference}
+      brandName={brandName}
+      showBrandName={props.showBrandName}
+      styles={props.styles}
+      className={props.className || 't-heading-4'}
+      brandNameClass={props.brandNameClass}
+      skuNameClass={props.skuNameClass}
+      productReferenceClass={props.productReferenceClass}
+      loaderClass={props.loaderClass}
+      tag={props.tag || 'h1'}
+    />
+  )
 }
 
 ProductNameWrapper.schema = {

@@ -4,123 +4,100 @@ import { path, isEmpty, has } from 'ramda'
 
 import ProductPrice from './index'
 
-const styles = {
-  'vtex-price-list__container--loader': {
-    x: 0,
-    width: '7.219em',
-    height: '0.56em',
-  },
-  'vtex-price-selling__label--loader': {
-    x: 0,
-    y: '2em',
-    width: '2.85em',
-    height: '1.08em',
-  },
-  'vtex-price-selling--loader': {
-    x: '3.25em',
-    y: '0.86em',
-    width: '14.572em',
-    height: '2.176em',
-  },
-  'vtex-price-installments--loader': {
-    x: 0,
-    y: '3.75em',
-    width: '12em',
-    height: '0.825em',
-  },
-  'vtex-price-savings--loader': {
-    x: 0,
-    y: '5em',
-    width: '10em',
-    height: '0.686em',
-  },
-}
-
 const isAvailable = commertialOffer =>
   Number.isNaN(+path(['AvailableQuantity'], commertialOffer)) ||
   path(['AvailableQuantity'], commertialOffer) > 0
 
-const ProductPriceWrapper = ({
-  labelSellingPrice,
-  showListPrice,
-  showInstallments,
-  showLabels,
-  showSavings,
-  ...props
-}) => {
+const ProductPriceWrapper = props => {
   const valuesFromContext = useContext(ProductContext)
 
-  const {
-    className,
-    listPriceContainerClass,
-    listPriceLabelClass,
-    listPriceClass,
-    sellingPriceContainerClass,
-    sellingPriceLabelClass,
-    sellingPriceClass,
-    savingsContainerClass,
-    savingsClass,
-    interestRateClass,
-    installmentContainerClass,
-    installmentClass,
-    loaderClass,
-    listPrice,
-    sellingPrice,
-    installments,
-  } = props
+  const commertialOffer = path(
+    ['selectedItem', 'sellers', 0, 'commertialOffer'],
+    valuesFromContext
+  )
 
-  const productPriceProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext) || (!has('query', props) && !has('params', props))) {
-      return {
-        ...props,
-        labelSellingPrice,
-        showListPrice,
-        showInstallments,
-        showLabels,
-        showSavings,
-        showProductPrice: true,
-      }
-    }
+  const listPrice =
+    props.listPrice != null
+      ? props.listPrice
+      : path(['ListPrice'], commertialOffer)
 
-    const { selectedItem } = valuesFromContext
-    const commertialOffer = path(['sellers', 0, 'commertialOffer'], selectedItem)
+  const sellingPrice =
+    props.sellingPrice != null
+      ? props.sellingPrice
+      : path(['Price'], commertialOffer)
 
-    return {
-      ...props,
-      styles: props.styles || styles,
-      className: className || '',
-      listPriceContainerClass: listPriceContainerClass || 't-small-s t-small-ns c-muted-2 mb2',
-      sellingPriceLabelClass: sellingPriceLabelClass || 't-heading-6-s t-heading-5-ns dib',
-      listPriceLabelClass: listPriceLabelClass || 'dib strike',
-      listPriceClass: listPriceClass || 'ph2 dib strike',
-      sellingPriceContainerClass: sellingPriceContainerClass || 'pv1 b c-on-base',
-      sellingPriceClass: sellingPriceClass || 't-heading-2-s dib ph2',
-      installmentContainerClass: installmentContainerClass || 't-mini-s t-small-ns c-on-base',
-      installmentClass: installmentClass || 't-body',
-      interestRateClass: interestRateClass || 'dib ph2',
-      savingsContainerClass: savingsContainerClass || 'c-success mt3',
-      savingsClass:  savingsClass || 'dib t-small',
-      loaderClass: loaderClass || 'h4-s mw6-s pt2-s',
-      listPrice: listPrice || path(['ListPrice'], commertialOffer),
-      sellingPrice: sellingPrice || path(['Price'], commertialOffer),
-      installments: installments || path(['Installments'], commertialOffer),
-      labelSellingPrice,
-      showLabels,
-      showInstallments,
-      showListPrice,
-      showSavings,
-      showProductPrice: isAvailable(commertialOffer),
-    }
-  }
+  const installments =
+    props.installments != null
+      ? props.installments
+      : path(['Installments'], commertialOffer)
 
-  const { showProductPrice, ...priceProps } = productPriceProps()
+  const showProductPrice =
+    props.showProductPrice != null
+      ? props.showProductPrice
+      : isAvailable(commertialOffer)
+
+  const isNotPDP = !has('query', props) && !has('params', props)
+  const listPriceContainerClass = isNotPDP
+    ? listPriceContainerClass
+    : 't-small-s t-small-ns c-muted-2 mb2'
+  const sellingPriceLabelClass = isNotPDP
+    ? sellingPriceLabelClass
+    : 't-heading-6-s t-heading-5-ns dib'
+  const listPriceLabelClass = isNotPDP ? listPriceLabelClass : 'dib strike'
+  const listPriceClass = isNotPDP ? listPriceClass : 'ph2 dib strike'
+  const sellingPriceContainerClass = isNotPDP
+    ? sellingPriceContainerClass
+    : 'pv1 b c-on-base'
+  const sellingPriceClass = isNotPDP
+    ? sellingPriceClass
+    : 't-heading-2-s dib ph2'
+  const installmentContainerClass = isNotPDP
+    ? installmentContainerClass
+    : 't-mini-s t-small-ns c-on-base'
+  const installmentClass = isNotPDP ? installmentClass : 't-body'
+  const interestRateClass = isNotPDP ? interestRateClass : 'dib ph2'
+  const savingsContainerClass = isNotPDP
+    ? savingsContainerClass
+    : 'c-success mt3'
+  const savingsClass = isNotPDP ? savingsClass : 'dib t-small'
+  const loaderClass = isNotPDP ? loaderClass : 'h4-s mw6-s pt2-s'
 
   if (!showProductPrice) {
     return null
   }
 
   return (
-    <ProductPrice { ...priceProps } />
+    <ProductPrice
+      sellingPriceList={props.sellingPriceList}
+      sellingPrice={sellingPrice}
+      listPrice={listPrice}
+      listPriceList={props.listPriceList}
+      showListPrice={props.showListPrice}
+      showSellingPriceRange={props.showSellingPriceRange}
+      showListPriceRange={props.showListPriceRange}
+      showInstallments={props.showInstallments}
+      showLabels={props.showLabels}
+      showSavings={props.showSavings}
+      labelSellingPrice={props.labelSellingPrice}
+      labelListPrice={props.labelListPrice}
+      className={props.className}
+      loaderClass={loaderClass}
+      listPriceContainerClass={listPriceContainerClass}
+      listPriceLabelClass={listPriceLabelClass}
+      listPriceClass={listPriceClass}
+      listPriceRangeClass={props.listPriceRangeClass}
+      sellingPriceRangeClass={props.sellingPriceRangeClass}
+      sellingPriceContainerClass={sellingPriceContainerClass}
+      sellingPriceLabelClass={sellingPriceLabelClass}
+      sellingPriceClass={sellingPriceClass}
+      savingsContainerClass={savingsContainerClass}
+      savingsClass={savingsClass}
+      installments={installments}
+      installmentClass={installmentClass}
+      interestRateClass={interestRateClass}
+      installmentContainerClass={installmentContainerClass}
+      styles={props.styles}
+    />
   )
 }
 
