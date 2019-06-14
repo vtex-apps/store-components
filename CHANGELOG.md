@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.43.8-beta] - 2019-06-14
 ### Changed
 - `SKUSelector` now supports many variations for skus, not only 2.
 - Add layout prop `hideImpossibleCombinations` for `SKUSelector`, with docs.
