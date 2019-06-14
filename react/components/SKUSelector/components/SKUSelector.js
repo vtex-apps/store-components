@@ -35,7 +35,7 @@ const getAvailableVariations = ({ variations, selectedVariations, imagesMap, onS
         }
         const possibleItems = findListItemsWithSelectedVariations(skuItems, newSelectedVariation)
         if (possibleItems.length > 0) {
-          const [item] = possibleItemsgd
+          const [item] = possibleItems
           return {
             label: variationValue,
             onSelectItem: onSelectItemMemo(variationName, variationValue, item.itemId, false),
