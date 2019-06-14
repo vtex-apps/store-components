@@ -29,8 +29,6 @@ const selectedVariationFromItem = (item, variations) => {
   },{})
 }
 
-
-//output: { color: [black: [imagelalala], blue: [image2lalala]]}
 const buildImagesMap = (items, variations) => {
   return Object.keys(variations).reduce((acc, varName) => {
     // Today, only "Color" variation should show image, need to find a more resilient way to tell this, waiting for backend
