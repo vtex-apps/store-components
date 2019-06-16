@@ -96,10 +96,13 @@ export const findListItemsWithSelectedVariations = (items, selectedVariations) =
 }
 
 
-export const uniqueOptionToSelect = (possibleItems, selectedVariations) => {
+export const uniqueOptionToSelect = (items, selectedVariations, isMainAndImpossible) => {
+  const possibleItems = !isMainAndImpossible ? items : findListItemsWithSelectedVariations(items, selectedVariations)
   const unselected = reject(Boolean, selectedVariations)
   const unselectedNames = Object.keys(unselected)
   const availableOptions = buildAvailableVariations(possibleItems, unselectedNames)
+  console.log('teste availableOptions: ', availableOptions)
+  console.log('teste possibleItems: ', possibleItems)
   const variationsWithOne = filter(setValues => setValues.size === 1, availableOptions)
 
   const variationsNames = Object.keys(variationsWithOne)
@@ -108,6 +111,7 @@ export const uniqueOptionToSelect = (possibleItems, selectedVariations) => {
     const value = variationsWithOne[varName].values().next().value
     variationsWithOne[varName] = value
   }
+  console.log('teste variationsWithOne: ', variationsWithOne)
   return variationsWithOne
 }
 

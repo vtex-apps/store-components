@@ -96,7 +96,7 @@ const SKUSelectorContainer = ({
       }
     // Set here for a better response to user
     setSelectedVariations(newSelectedVariation)
-    const uniqueOptions = isRemoving ? {} : uniqueOptionToSelect(possibleItems, newSelectedVariation)
+    const uniqueOptions = isRemoving ? {} : uniqueOptionToSelect(possibleItems, newSelectedVariation, isMainAndImpossible)
     const finalSelected = {
       ...newSelectedVariation,
       ...uniqueOptions,
