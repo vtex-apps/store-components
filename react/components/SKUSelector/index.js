@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import React, { useState, useEffect, useMemo, memo, useCallback } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
-import { filter, head } from 'ramda'
+import { filter, head, isEmpty } from 'ramda'
 
 import SKUSelector from './components/SKUSelector'
 import { skuShape } from './utils/proptypes'
 import {
-  parseSku, isColor, findListItemsWithSelectedVariations,
+  parseSku, isColor, uniqueOptionToSelect, findItemWithSelectedVariations,
 } from './utils'
 
 
@@ -83,7 +83,7 @@ const SKUSelectorContainer = ({
   
   const imagesMap = useImagesMap(parsedItems, variations)
   
-  const onSelectItem = useCallback((variationName, variationValue, skuId, isMainAndImpossible) => {
+  const onSelectItem = useCallback(({ name: variationName, value: variationValue, skuId, isMainAndImpossible, possibleItems }) => {
     const isRemoving = selectedVariations[variationName] === variationValue
     const newSelectedVariation = !isMainAndImpossible ? 
       {
@@ -94,15 +94,24 @@ const SKUSelectorContainer = ({
         ...buildEmptySelectedVariation(variations),
         [variationName]: variationValue 
       }
-
+    // Set here for a better response to user
     setSelectedVariations(newSelectedVariation)
-    const selectedNotNull = filter(Boolean, newSelectedVariation)
+    const uniqueOptions = isRemoving ? {} : uniqueOptionToSelect(possibleItems, newSelectedVariation)
+    const finalSelected = {
+      ...newSelectedVariation,
+      ...uniqueOptions,
+    }
+    if (!isEmpty(uniqueOptions)) {
+      setSelectedVariations(finalSelected)
+    }
+    
+    const selectedNotNull = filter(Boolean, finalSelected)
     const selectedCount = Object.keys(selectedNotNull).length
     const variationsCount = Object.keys(variations).length
     const allSelected = selectedCount === variationsCount
     let skuIdToRedirect = skuId
-    if (!skuId) {
-      const [newItem] = findListItemsWithSelectedVariations(parsedItems, newSelectedVariation)
+    if (!skuIdToRedirect || !isEmpty(uniqueOptions)) {
+      const newItem = findItemWithSelectedVariations(possibleItems, finalSelected)
       skuIdToRedirect = newItem.itemId
     }
 

@@ -1,4 +1,4 @@
-import { prop, filter, clone } from 'ramda'
+import { prop, filter, clone, reject } from 'ramda'
 
 /**
  * Return the maximum sku price
@@ -95,6 +95,23 @@ export const findListItemsWithSelectedVariations = (items, selectedVariations) =
   return items.filter(isSkuSelected(selectedNotNull))
 }
 
+
+export const uniqueOptionToSelect = (possibleItems, selectedVariations) => {
+  const unselected = reject(Boolean, selectedVariations)
+  const unselectedNames = Object.keys(unselected)
+  const availableOptions = buildAvailableVariations(possibleItems, unselectedNames)
+  const variationsWithOne = filter(setValues => setValues.size === 1, availableOptions)
+
+  const variationsNames = Object.keys(variationsWithOne)
+  // Transform set to plain value
+  for (const varName of variationsNames) {
+    const value = variationsWithOne[varName].values().next().value
+    variationsWithOne[varName] = value
+  }
+  return variationsWithOne
+}
+
+
 /** Private functions */
 const isSkuSelected = (selectedNotNull) => (sku) => {
   const hasAll = Object.keys(selectedNotNull).every(variationName => {
@@ -102,4 +119,21 @@ const isSkuSelected = (selectedNotNull) => (sku) => {
     return sku[variationName] === selectedValue
   })
   return hasAll
+}
+
+const buildAvailableVariations = (items, variationNames) => {
+  const result = {}
+  for (const varName of variationNames) {
+    result[varName] = new Set()
+  }
+  for (const item of items) {
+    for (const varName of variationNames) {
+      const variationValue = item[varName]
+      const currentSet = result[varName]
+      if (variationValue) {
+        currentSet.add(variationValue)
+      }
+    }
+  }
+  return result
 }

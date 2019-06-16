@@ -29,23 +29,39 @@ const getAvailableVariations = ({ variations, selectedVariations, imagesMap, onS
       const values = variations[variationName]
       const options = values.map(variationValue => {
         const isSelected = selectedVariations[variationName] === variationValue
+
         const newSelectedVariation = clone(selectedVariations)
         newSelectedVariation[variationName] = isSelected ? null : variationValue
+
         const possibleItems = findListItemsWithSelectedVariations(skuItems, newSelectedVariation)
         if (possibleItems.length > 0) {
           const [item] = possibleItems
+          const callbackFn = onSelectItemMemo({ 
+            name: variationName,
+            value: variationValue,
+            skuId: item.itemId, 
+            isMainAndImpossible: false,
+            possibleItems,
+           })
           return {
             label: variationValue,
-            onSelectItem: onSelectItemMemo(variationName, variationValue, item.itemId, false),
+            onSelectItem: callbackFn,
             image: path([variationName, variationValue], imagesMap),
             available: showItemAsAvailable(possibleItems, selectedVariations, variationCount, isSelected),
             faded: false,
           }
         }
         if (hideImpossibleCombinations && isColor(variationName)) {
+          const callbackFn = onSelectItemMemo({ 
+            name: variationName,
+            value: variationValue,
+            skuId: null, 
+            isMainAndImpossible: true,
+            possibleItems: skuItems,
+           })
           return {
             label: variationValue,
-            onSelectItem: onSelectItemMemo(variationName, variationValue, null, true),
+            onSelectItem: callbackFn,
             image: path([variationName, variationValue], imagesMap),
             available: true,
             faded: false,
@@ -81,7 +97,7 @@ const SKUSelector = ({
 }) => {
   const [displayVariations, setDisplayVariations] = useState(null)
   const onSelectItemMemo = useCallback(
-    (name, value, skuId, isMainAndImpossible) => () => onSelectItem(name, value, skuId, isMainAndImpossible), 
+    ({ name, value, skuId, isMainAndImpossible, possibleItems }) => () => onSelectItem({ name, value, skuId, isMainAndImpossible, possibleItems}), 
     [onSelectItem]
   )
   useEffect(() => {
