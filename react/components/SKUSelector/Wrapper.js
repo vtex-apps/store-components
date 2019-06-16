@@ -14,12 +14,16 @@ const useVariations = (skuItems, shouldNotShow) => {
       for (const currentVariation of skuItem.variations) {
         const { name, values } = currentVariation
         const value = values[0]
-        const currentArray = variations[name] || []
-        if (!currentArray.includes(value)) {
-          currentArray.push(value)
-        }
-        variations[name] = currentArray
+        const currentSet = variations[name] || (new Set())
+        currentSet.add(value)
+        variations[name] = currentSet
       }
+    }
+    const variationsNames = Object.keys(variations)
+    // Transform set back to array
+    for (const varName of variationsNames) {
+      const set = variations[varName]
+      variations[varName] = Array.from(set)
     }
     return variations
   })
