@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.43.8-hkignore.1] - 2019-06-16
+
 ## [3.43.8-hkignore.0] - 2019-06-14
 ### Changed
 - `SKUSelector` now supports many variations for skus, not only 2.
