@@ -11,41 +11,43 @@ import {
 
 
 const buildEmptySelectedVariation = (variations) => {
-  return Object.keys(variations).reduce((acc, varName) => {
-    return {
-      ...acc,
-      [varName]: null,
-    }
-  }, {})
+  const variationNames = Object.keys(variations)
+  const result = {}
+  for (const varName of variationNames) {
+    result[varName] = null
+  }
+  return result
 }
 
 /** receives an item and the variations object, returns the selected variations for that item */
 const selectedVariationFromItem = (item, variations) => {
-  return Object.keys(variations).reduce((acc, varName) => {
-    return {
-      ...acc,
-      [varName]: item[varName],
-    }
-  },{})
+  const variationNames = Object.keys(variations)
+  const result = {}
+  for (const varName of variationNames) {
+    result[varName] = item[varName]
+  }
+  return result
 }
 
-const buildImagesMap = (items, variations) => {
-  return Object.keys(variations).reduce((acc, varName) => {
-    // Today, only "Color" variation should show image, need to find a more resilient way to tell this, waiting for backend
-    if (!isColor(varName)) {
-      return acc
+const useImagesMap = (items, variations) => {
+  return useMemo(() => {
+    const variationNames = Object.keys(variations)
+    const result = {}
+    for (const varName of variationNames) {
+      // Today, only "Color" variation should show image, need to find a more resilient way to tell this, waiting for backend
+      if (!isColor(varName)) {
+        continue
+      }
+      const imageMap = {}
+      const variationValues = variations[varName]
+      for (const variationValue of variationValues) {
+        const item = items.find(sku => sku[varName] === variationValue)
+        imageMap[variationValue] = item && head(item.images)
+      }
+      result[varName] = imageMap
     }
-    const imageMap = {}
-    const variationValues = variations[varName]
-    variationValues.forEach(variationValue => {
-      const item = items.find(sku => sku[varName] === variationValue)
-      imageMap[variationValue] = item && head(item.images)
-    })
-    return {
-      ...acc,
-      [varName]: imageMap,
-    }
-  }, {})
+    return result
+  }, [items, variations])
 }
 
 /**
@@ -71,14 +73,15 @@ const SKUSelectorContainer = ({
       }
     )
   }
-
+  const [selectedSkuId, setSelectedSkuId] = useState(null)
   const [selectedVariations, setSelectedVariations] = useState(null)
   useEffect(() => {
     const initalVariations = skuSelected ? selectedVariationFromItem(parseSku(skuSelected), variations) : buildEmptySelectedVariation(variations)
+    skuSelected && setSelectedSkuId(skuSelected.itemId)
     setSelectedVariations(initalVariations)
   }, [])
   
-  const imagesMap = useMemo(() => buildImagesMap(parsedItems, variations), [parsedItems, variations])
+  const imagesMap = useImagesMap(parsedItems, variations)
   
   const onSelectItem = useCallback((variationName, variationValue, skuId, isMainAndImpossible) => {
     const isRemoving = selectedVariations[variationName] === variationValue
@@ -103,10 +106,17 @@ const SKUSelectorContainer = ({
       skuIdToRedirect = newItem.itemId
     }
 
+    if (selectedSkuId === skuIdToRedirect || isRemoving) {
+      // do nothing
+      return
+    }
+
     if (onSKUSelected) {
+      setSelectedSkuId(skuIdToRedirect)
       onSKUSelected(skuIdToRedirect)
     } else {
-      if (allSelected || (isColor(variationName) && !isRemoving)) {
+      if (allSelected || (isColor(variationName))) {
+        setSelectedSkuId(skuIdToRedirect)
         setTimeout(() => redirectToSku(skuIdToRedirect), 0)
       }
     }

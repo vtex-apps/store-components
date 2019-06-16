@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
-import React, { useCallback, useMemo, memo, useState, useEffect } from 'react'
+import React, { useCallback, memo, useState, useEffect } from 'react'
 
 import Variation from './Variation'
 
-import { compose, flip, gt, filter, path } from 'ramda'
+import { compose, flip, gt, filter, path, clone } from 'ramda'
 
 import styles from '../styles.css'
 import { variationShape, skuShape } from '../utils/proptypes'
@@ -29,10 +29,8 @@ const getAvailableVariations = ({ variations, selectedVariations, imagesMap, onS
       const values = variations[variationName]
       const options = values.map(variationValue => {
         const isSelected = selectedVariations[variationName] === variationValue
-        const newSelectedVariation = {
-          ...selectedVariations,
-          [variationName]: isSelected ? null : variationValue,
-        }
+        const newSelectedVariation = clone(selectedVariations)
+        newSelectedVariation[variationName] = isSelected ? null : variationValue
         const possibleItems = findListItemsWithSelectedVariations(skuItems, newSelectedVariation)
         if (possibleItems.length > 0) {
           const [item] = possibleItems
