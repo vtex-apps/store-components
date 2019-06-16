@@ -50,7 +50,7 @@ const ProductImages = props => {
         bestUrlIndex: getBestUrlIndex(image.thresholds),
       }
     })
-  }, [props])
+  }, [props.images])
 
   return (
     <div className={`${styles.content} w-100`}>

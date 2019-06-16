@@ -1,4 +1,4 @@
-import { prop, filter } from 'ramda'
+import { prop, filter, clone } from 'ramda'
 
 /**
  * Return the maximum sku price
@@ -29,17 +29,12 @@ export const stripUrl = url => url.replace(/^https?:/, '')
  * @param {sku} sku
  */
 export const parseSku = sku => {
-  const variationsFields = sku.variations.reduce((acc, variation) => {
-    return {
-      ...acc,
-      [variation.name]: variation.values[0]
-    }
-  }, {})
-  return {
-    ...sku,
-    variations: sku.variations.map(prop('name')),
-    ...variationsFields,
+  const result = clone(sku)
+  for(const variation of sku.variations) {
+    result[variation.name] = variation.values[0];
   }
+  result.variations = sku.variations.map(prop('name'))
+  return result
 }
 
 /**

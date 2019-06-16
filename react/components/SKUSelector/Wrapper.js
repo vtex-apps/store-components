@@ -5,22 +5,25 @@ import { pathOr } from 'ramda'
 import SKUSelector from './index'
 
 const useVariations = (skuItems, shouldNotShow) => {
-  const variations = useMemo(() => shouldNotShow ? {} : skuItems.reduce((totalAcc, skuItem) => {
-    const indivVariations = skuItem.variations.reduce((indivAcc, currentVariation) => {
-      const { name, values } = currentVariation
-      const value = values[0]
-      const currentArray = totalAcc[name] || []
-      if (!currentArray.includes(value)) {
-        currentArray.push(value)
-      }
-      return { ...indivAcc, [name]: currentArray }
-    }, {})
-    return {
-      ...totalAcc,
-      ...indivVariations,
+  const result = useMemo(() => {
+    if (shouldNotShow) {
+      return {}
     }
-  }, {}), [skuItems, shouldNotShow])
-  return variations
+    const variations = {}
+    for (const skuItem of skuItems) {
+      for (const currentVariation of skuItem.variations) {
+        const { name, values } = currentVariation
+        const value = values[0]
+        const currentArray = variations[name] || []
+        if (!currentArray.includes(value)) {
+          currentArray.push(value)
+        }
+        variations[name] = currentArray
+      }
+    }
+    return variations
+  })
+  return result
 }
 
 const SKUSelectorWrapper = props => {

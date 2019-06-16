@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, values, map } from 'ramda'
 
@@ -19,17 +19,16 @@ const thumbnailsPosition = {
 const ProductImagesWrapper = props => {
   const valuesFromContext = useContext(ProductContext)
 
-  const images =
-    props.images != null
-      ? props.images
-      : map(
-          generateImageConfig,
-          path(['images'], valuesFromContext.selectedItem || {}) || []
-        )
+  const images = useMemo(() => props.images != null
+  ? props.images
+  : map(
+      generateImageConfig,
+      path(['images'], valuesFromContext.selectedItem || {}) || []
+    ), [props.images, valuesFromContext.selectedItem])    
 
   return (
     <ProductImages
-      {...props}
+      zoomProps={props.zoomProps}
       position={props.position || props.thumbnailPosition}
       images={images}
     />
