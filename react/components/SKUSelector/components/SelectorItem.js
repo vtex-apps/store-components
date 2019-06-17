@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedNumber } from 'react-intl'
 import classNames from 'classnames'
@@ -19,15 +19,16 @@ const getDiscount = (maxPrice, price) => {
 const SelectorItem = ({
   isAvailable = true,
   isSelected = false,
-  children = null,
   maxPrice,
   price,
   onClick,
   isImage,
   variationValue,
+  imageUrl,
+  imageLabel,
+  isImpossible,
 }) => {
   const discount = getDiscount(maxPrice, price)
-
   return (
     <div
       role="button"
@@ -38,6 +39,7 @@ const SelectorItem = ({
         'relative di pointer flex items-center outline-0',
         {
           [styles.skuSelectorItemImage]: isImage,
+          'o-20': isImpossible,
         }
       )}
       onClick={onClick}
@@ -56,7 +58,7 @@ const SelectorItem = ({
         className={classNames(
           'w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden',
           {
-            'hover-b--muted-2': !isSelected,
+            'hover-b--muted-2': !isSelected && !isImpossible,
           }
         )}
       >
@@ -66,9 +68,15 @@ const SelectorItem = ({
           })}
         />
         <div
-          className={classNames({ 'c-on-base center pl5 pr5 z-1': !isImage })}
+          className={classNames({
+            'c-on-base center pl5 pr5 z-1 t-body': !isImage,
+          })}
         >
-          {children}
+          {isImage && imageUrl ? (
+            <img src={imageUrl} alt={imageLabel} />
+          ) : (
+            variationValue
+          )}
         </div>
       </div>
       {discount > 0 && (
@@ -81,8 +89,6 @@ const SelectorItem = ({
 }
 
 SelectorItem.propTypes = {
-  /** Children components */
-  children: PropTypes.node,
   /** Function that is called when the item is clicked */
   onClick: PropTypes.func,
   /** Flag that indicates if the sku is available */
@@ -99,6 +105,9 @@ SelectorItem.propTypes = {
   isImage: PropTypes.bool,
   /** Value of the variation */
   variationValue: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string,
+  imageLabel: PropTypes.string,
+  isImpossible: PropTypes.bool,
 }
 
-export default SelectorItem
+export default memo(SelectorItem)

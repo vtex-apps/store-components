@@ -1,15 +1,4 @@
-import {
-  curry,
-  clone,
-  values,
-  compose,
-  map,
-  groupBy,
-  gt,
-  path,
-  prop,
-  find,
-} from 'ramda'
+import { prop, filter, clone, reject } from 'ramda'
 
 /**
  * Return the maximum sku price
@@ -41,37 +30,12 @@ export const stripUrl = url => url.replace(/^https?:/, '')
  */
 export const parseSku = sku => {
   const result = clone(sku)
-
-  const variations = sku.variations.map(variation => {
+  for (const variation of sku.variations) {
     result[variation.name] = variation.values[0]
-    return variation.name
-  })
-
-  result.variations = variations
-
+  }
+  result.variations = sku.variations.map(prop('name'))
   return result
 }
-
-const getQuantity = path([
-  'sellers',
-  '0',
-  'commertialOffer',
-  'AvailableQuantity',
-])
-
-const findItem = a => {
-  return find(item => gt(getQuantity(item), 0), a) || a[0]
-}
-
-/**
- * Group the sku items by the variation name specified
- */
-export const groupItemsByVariation = (name, items) =>
-  compose(
-    map(findItem),
-    values,
-    groupBy(prop(name))
-  )(items)
 
 /**
  * Verifies if the variation is color
@@ -95,4 +59,95 @@ export const getMainVariationName = variations => {
   }
 
   return variations[0]
+}
+
+/**
+ * Given a selectedVariations, find the first item that has those variations selected
+ * selectedVariations format: { "color": "black", size: "small", fabric: null }
+ * items: skuItems parsed with variations fields
+ * Output: item or null, if not present
+ */
+
+export const findItemWithSelectedVariations = (items, selectedVariations) => {
+  const selectedNotNull = filter(Boolean, selectedVariations)
+  const selectedCount = Object.keys(selectedNotNull).length
+  if (selectedCount === 0) {
+    // may return any item, return first element
+    return items[0]
+  }
+  return items.find(isSkuSelected(selectedNotNull))
+}
+
+/**
+ * Given a selectedVariations, find items that have those variations selected
+ * selectedVariations format: { "color": "black", size: "small", fabric: null }
+ * items: skuItems parsed with variations fields
+ * Output: list of items with those variations
+ */
+
+export const findListItemsWithSelectedVariations = (
+  items,
+  selectedVariations
+) => {
+  const selectedNotNull = filter(Boolean, selectedVariations)
+  const selectedCount = Object.keys(selectedNotNull).length
+  if (selectedCount === 0) {
+    // return all
+    return items
+  }
+  return items.filter(isSkuSelected(selectedNotNull))
+}
+
+export const uniqueOptionToSelect = (
+  items,
+  selectedVariations,
+  isMainAndImpossible
+) => {
+  const possibleItems = !isMainAndImpossible
+    ? items
+    : findListItemsWithSelectedVariations(items, selectedVariations)
+  const unselected = reject(Boolean, selectedVariations)
+  const unselectedNames = Object.keys(unselected)
+  const availableOptions = buildAvailableVariations(
+    possibleItems,
+    unselectedNames
+  )
+  const variationsWithOne = filter(
+    setValues => setValues.size === 1,
+    availableOptions
+  )
+
+  const variationsNames = Object.keys(variationsWithOne)
+  // Transform set to plain value
+  for (const variationName of variationsNames) {
+    const value = variationsWithOne[variationName].values().next().value
+    variationsWithOne[variationName] = value
+  }
+  return variationsWithOne
+}
+
+/** Private functions */
+const isSkuSelected = selectedNotNull => sku => {
+  const hasAll = Object.keys(selectedNotNull).every(variationName => {
+    const selectedValue = selectedNotNull[variationName]
+    return sku[variationName] === selectedValue
+  })
+  return hasAll
+}
+
+const buildAvailableVariations = (items, variationNames) => {
+  const result = {}
+  for (const variationName of variationNames) {
+    result[variationName] = new Set()
+  }
+  for (const item of items) {
+    for (const variationName of variationNames) {
+      const variationValue = item[variationName]
+      const currentSet = result[variationName]
+      if (variationValue) {
+        currentSet.add(variationValue)
+      }
+    }
+  }
+  return result
 }

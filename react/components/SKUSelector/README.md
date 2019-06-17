@@ -37,7 +37,6 @@ Through the Storefront, you can change the `SKUSelector` behavior and interface.
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| productSlug | String! | Product's slug | - | 
 | skuSelected | SKU! | SKU selected | - |
 | skuItems | Array(SKU)! | List of SKU Items | - |
 | onSKUSelected | Function! | Callback that is called when a SKU is selected | Function that redirects to the page with the product and the selected SKU |
@@ -62,7 +61,7 @@ These are properties that you can customize in your `blocks.json` file.
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| alwaysShowSecondary | Boolean | Show secondary variation options even if the main variation is not selected yet | `true` |
+| hideImpossibleCombinations | Boolean | If true, if a variation option leads to a combination that does not exist, that option won't appear. If false, it will appear but won't be pressable and will appear faded, will much less opacity. | `true` |
 | maxItems | Number | The maximum number of items to be displayed of a variation before showing the see more button. If the see more button should appear, it will be displayed `maxItems` - 2 options before the button | `10` |
 
 #### Content API

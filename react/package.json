@@ -37,7 +37,7 @@
     "eslint": "^5.16.0",
     "eslint-config-vtex-react": "^4.0.0",
     "prettier": "^1.16.4",
-    "typescript": "^3.4.1"
+    "typescript": "3.4.3"
   },
   "vtexTestTools": {
     "defaultLocale": "en"
