@@ -26,7 +26,7 @@ const useVariations = (skuItems, shouldNotShow) => {
       variations[varName] = Array.from(set)
     }
     return variations
-  })
+  }, [skuItems, shouldNotShow])
   return result
 }
 
