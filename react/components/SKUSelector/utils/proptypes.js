@@ -31,11 +31,14 @@ export const variationShape = PropTypes.shape({
   /** Options Array */
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      image: PropTypes.shape({ imageLabel: PropTypes.string, imageUrl: PropTypes.string }),
+      image: PropTypes.shape({
+        imageLabel: PropTypes.string,
+        imageUrl: PropTypes.string,
+      }),
       available: PropTypes.bool,
       label: PropTypes.string,
       onSelectItem: PropTypes.func,
-      faded: PropTypes.bool,
+      impossible: PropTypes.bool,
     })
   ),
 })
