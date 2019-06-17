@@ -146,7 +146,7 @@ const SKUSelectorContainer = ({
       } else {
         if (allSelected || isColor(variationName)) {
           setSelectedSkuId(skuIdToRedirect)
-          // The redirect
+          // Use setTimeout so the UI responsiveness on mobile is better, redirect causes heavy processing.
           setTimeout(() => redirectToSku(skuIdToRedirect), 0)
         }
       }
