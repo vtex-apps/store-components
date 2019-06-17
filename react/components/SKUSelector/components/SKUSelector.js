@@ -36,6 +36,7 @@ const showItemAsAvailable = (
   return possibleItems.some(isSkuAvailable)
 }
 
+// Parameters are explained on PropTypes
 const getAvailableVariations = ({
   variations,
   selectedVariations,
@@ -83,7 +84,7 @@ const getAvailableVariations = ({
                 variationCount,
                 isSelected
               ),
-              faded: false,
+              impossible: false,
             }
           }
           if (hideImpossibleCombinations && isColor(variationName)) {
@@ -101,7 +102,7 @@ const getAvailableVariations = ({
               onSelectItem: callbackFn,
               image: path([variationName, variationValue], imagesMap),
               available: true,
-              faded: false,
+              impossible: false,
             }
           }
           if (!hideImpossibleCombinations) {
@@ -111,7 +112,7 @@ const getAvailableVariations = ({
               onSelectItem: () => {},
               image: path([variationName, variationValue], imagesMap),
               available: true,
-              faded: true,
+              impossible: true,
             }
           }
           // This is a impossible combination and will be hidden.

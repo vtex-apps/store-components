@@ -136,7 +136,7 @@ const SKUSelectorContainer = ({
       }
 
       if (selectedSkuId === skuIdToRedirect || isRemoving) {
-        // do nothing
+        // If it is still the same SKU or we are removing a selection, no need to do anything.
         return
       }
 

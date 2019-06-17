@@ -58,7 +58,7 @@ const Variation = ({
                 key={`${option.label}-${variation.name}`}
                 isAvailable={option.available}
                 maxPrice={maxSkuPrice}
-                onClick={option.faded ? emptyAction : option.onSelectItem}
+                onClick={option.impossible ? emptyAction : option.onSelectItem}
                 isImage={displayImage}
                 variationValue={option.label}
                 imageUrl={
@@ -69,7 +69,7 @@ const Variation = ({
                   )
                 }
                 imageLabel={option.image && option.image.imageLabel}
-                isFaded={option.faded}
+                isImpossible={option.impossible}
               />
             )
           })}

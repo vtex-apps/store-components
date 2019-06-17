@@ -26,7 +26,7 @@ const SelectorItem = ({
   variationValue,
   imageUrl,
   imageLabel,
-  isFaded,
+  isImpossible,
 }) => {
   const discount = getDiscount(maxPrice, price)
   return (
@@ -39,7 +39,7 @@ const SelectorItem = ({
         'relative di pointer flex items-center outline-0',
         {
           [styles.skuSelectorItemImage]: isImage,
-          'o-20': isFaded,
+          'o-20': isImpossible,
         }
       )}
       onClick={onClick}
@@ -58,7 +58,7 @@ const SelectorItem = ({
         className={classNames(
           'w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden',
           {
-            'hover-b--muted-2': !isSelected && !isFaded,
+            'hover-b--muted-2': !isSelected && !isImpossible,
           }
         )}
       >
@@ -68,12 +68,14 @@ const SelectorItem = ({
           })}
         />
         <div
-          className={classNames({ 'c-on-base center pl5 pr5 z-1': !isImage })}
+          className={classNames({
+            'c-on-base center pl5 pr5 z-1 t-body': !isImage,
+          })}
         >
           {isImage && imageUrl ? (
             <img src={imageUrl} alt={imageLabel} />
           ) : (
-            <span className="c-on-base t-body">{variationValue}</span>
+            variationValue
           )}
         </div>
       </div>
@@ -105,7 +107,7 @@ SelectorItem.propTypes = {
   variationValue: PropTypes.string.isRequired,
   imageUrl: PropTypes.string,
   imageLabel: PropTypes.string,
-  isFaded: PropTypes.bool,
+  isImpossible: PropTypes.bool,
 }
 
 export default memo(SelectorItem)
