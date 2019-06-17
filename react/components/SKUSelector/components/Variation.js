@@ -12,7 +12,13 @@ import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 
 const ITEMS_VISIBLE_THRESHOLD = 2
 
-const Variation = ({ variation, maxSkuPrice, seeMoreLabel, maxItems, selectedItem }) => {
+const Variation = ({
+  variation,
+  maxSkuPrice,
+  seeMoreLabel,
+  maxItems,
+  selectedItem,
+}) => {
   const displayImage = isColor(variation.name)
   const { options } = variation
   const [showAll, setShowAll] = useState(false)
@@ -22,7 +28,10 @@ const Variation = ({ variation, maxSkuPrice, seeMoreLabel, maxItems, selectedIte
 
   const overflowQuantity = options.length - visibleItemsWhenCollapsed
 
-  const displayOptions = options.slice(0, shouldCollapse ? visibleItemsWhenCollapsed : options.length)
+  const displayOptions = options.slice(
+    0,
+    shouldCollapse ? visibleItemsWhenCollapsed : options.length
+  )
 
   const showAllAction = useCallback(() => setShowAll(true), [])
   const emptyAction = useCallback(() => {}, [])
@@ -52,7 +61,13 @@ const Variation = ({ variation, maxSkuPrice, seeMoreLabel, maxItems, selectedIte
                 onClick={option.faded ? emptyAction : option.onSelectItem}
                 isImage={displayImage}
                 variationValue={option.label}
-                imageUrl={option.image && imageUrlForSize(stripUrl(option.image.imageUrl), VARIATION_IMG_SIZE)}
+                imageUrl={
+                  option.image &&
+                  imageUrlForSize(
+                    stripUrl(option.image.imageUrl),
+                    VARIATION_IMG_SIZE
+                  )
+                }
                 imageLabel={option.image && option.image.imageLabel}
                 isFaded={option.faded}
               />
@@ -60,8 +75,17 @@ const Variation = ({ variation, maxSkuPrice, seeMoreLabel, maxItems, selectedIte
           })}
           {!showAll && shouldCollapse && (
             <div className={styles.seeMoreButton}>
-              <Button variation="tertiary" onClick={showAllAction} size="small" collapseLeft>
-                <IOMessage id={seeMoreLabel} values={{ quantity: overflowQuantity }} data-testid="seeMoreLabel" />
+              <Button
+                variation="tertiary"
+                onClick={showAllAction}
+                size="small"
+                collapseLeft
+              >
+                <IOMessage
+                  id={seeMoreLabel}
+                  values={{ quantity: overflowQuantity }}
+                  data-testid="seeMoreLabel"
+                />
               </Button>
             </div>
           )}

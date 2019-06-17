@@ -14,7 +14,7 @@ const useVariations = (skuItems, shouldNotShow) => {
       for (const currentVariation of skuItem.variations) {
         const { name, values } = currentVariation
         const value = values[0]
-        const currentSet = variations[name] || (new Set())
+        const currentSet = variations[name] || new Set()
         currentSet.add(value)
         variations[name] = currentSet
       }
@@ -41,8 +41,9 @@ const SKUSelectorWrapper = props => {
     props.skuSelected != null
       ? props.skuSelected
       : valuesFromContext.selectedItem
-  
-  const shouldNotShow = skuItems.length <= 1 ||
+
+  const shouldNotShow =
+    skuItems.length <= 1 ||
     !skuSelected ||
     !skuSelected.variations ||
     skuSelected.variations.length === 0

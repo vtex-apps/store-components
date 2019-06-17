@@ -30,8 +30,8 @@ export const stripUrl = url => url.replace(/^https?:/, '')
  */
 export const parseSku = sku => {
   const result = clone(sku)
-  for(const variation of sku.variations) {
-    result[variation.name] = variation.values[0];
+  for (const variation of sku.variations) {
+    result[variation.name] = variation.values[0]
   }
   result.variations = sku.variations.map(prop('name'))
   return result
@@ -61,12 +61,12 @@ export const getMainVariationName = variations => {
   return variations[0]
 }
 
-/** 
+/**
  * Given a selectedVariations, find the first item that has those variations selected
  * selectedVariations format: { "color": "black", size: "small", fabric: null }
  * items: skuItems parsed with variations fields
  * Output: item or null, if not present
-*/
+ */
 
 export const findItemWithSelectedVariations = (items, selectedVariations) => {
   const selectedNotNull = filter(Boolean, selectedVariations)
@@ -78,14 +78,17 @@ export const findItemWithSelectedVariations = (items, selectedVariations) => {
   return items.find(isSkuSelected(selectedNotNull))
 }
 
-/** 
+/**
  * Given a selectedVariations, find items that have those variations selected
  * selectedVariations format: { "color": "black", size: "small", fabric: null }
  * items: skuItems parsed with variations fields
  * Output: list of items with those variations
-*/
+ */
 
-export const findListItemsWithSelectedVariations = (items, selectedVariations) => {
+export const findListItemsWithSelectedVariations = (
+  items,
+  selectedVariations
+) => {
   const selectedNotNull = filter(Boolean, selectedVariations)
   const selectedCount = Object.keys(selectedNotNull).length
   if (selectedCount === 0) {
@@ -95,13 +98,24 @@ export const findListItemsWithSelectedVariations = (items, selectedVariations) =
   return items.filter(isSkuSelected(selectedNotNull))
 }
 
-
-export const uniqueOptionToSelect = (items, selectedVariations, isMainAndImpossible) => {
-  const possibleItems = !isMainAndImpossible ? items : findListItemsWithSelectedVariations(items, selectedVariations)
+export const uniqueOptionToSelect = (
+  items,
+  selectedVariations,
+  isMainAndImpossible
+) => {
+  const possibleItems = !isMainAndImpossible
+    ? items
+    : findListItemsWithSelectedVariations(items, selectedVariations)
   const unselected = reject(Boolean, selectedVariations)
   const unselectedNames = Object.keys(unselected)
-  const availableOptions = buildAvailableVariations(possibleItems, unselectedNames)
-  const variationsWithOne = filter(setValues => setValues.size === 1, availableOptions)
+  const availableOptions = buildAvailableVariations(
+    possibleItems,
+    unselectedNames
+  )
+  const variationsWithOne = filter(
+    setValues => setValues.size === 1,
+    availableOptions
+  )
 
   const variationsNames = Object.keys(variationsWithOne)
   // Transform set to plain value
@@ -112,9 +126,8 @@ export const uniqueOptionToSelect = (items, selectedVariations, isMainAndImpossi
   return variationsWithOne
 }
 
-
 /** Private functions */
-const isSkuSelected = (selectedNotNull) => (sku) => {
+const isSkuSelected = selectedNotNull => sku => {
   const hasAll = Object.keys(selectedNotNull).every(variationName => {
     const selectedValue = selectedNotNull[variationName]
     return sku[variationName] === selectedValue

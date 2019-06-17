@@ -71,14 +71,9 @@ const SelectorItem = ({
           className={classNames({ 'c-on-base center pl5 pr5 z-1': !isImage })}
         >
           {isImage && imageUrl ? (
-            <img 
-              src={imageUrl}
-              alt={imageLabel}
-            />
+            <img src={imageUrl} alt={imageLabel} />
           ) : (
-            <span className="c-on-base t-body">
-              {variationValue}
-            </span>
+            <span className="c-on-base t-body">{variationValue}</span>
           )}
         </div>
       </div>

@@ -6,11 +6,13 @@ import { filter, head, isEmpty } from 'ramda'
 import SKUSelector from './components/SKUSelector'
 import { skuShape } from './utils/proptypes'
 import {
-  parseSku, isColor, uniqueOptionToSelect, findItemWithSelectedVariations,
+  parseSku,
+  isColor,
+  uniqueOptionToSelect,
+  findItemWithSelectedVariations,
 } from './utils'
 
-
-const buildEmptySelectedVariation = (variations) => {
+const buildEmptySelectedVariation = variations => {
   const variationNames = Object.keys(variations)
   const result = {}
   for (const varName of variationNames) {
@@ -65,7 +67,7 @@ const SKUSelectorContainer = ({
   const parsedItems = useMemo(() => skuItems.map(parseSku), [skuItems])
 
   const { setQuery } = useRuntime()
-  const redirectToSku = (skuId) => {
+  const redirectToSku = skuId => {
     setQuery(
       { skuId },
       {
@@ -76,60 +78,81 @@ const SKUSelectorContainer = ({
   const [selectedSkuId, setSelectedSkuId] = useState(null)
   const [selectedVariations, setSelectedVariations] = useState(null)
   useEffect(() => {
-    const initalVariations = skuSelected ? selectedVariationFromItem(parseSku(skuSelected), variations) : buildEmptySelectedVariation(variations)
+    const initalVariations = skuSelected
+      ? selectedVariationFromItem(parseSku(skuSelected), variations)
+      : buildEmptySelectedVariation(variations)
     skuSelected && setSelectedSkuId(skuSelected.itemId)
     setSelectedVariations(initalVariations)
   }, [])
-  
+
   const imagesMap = useImagesMap(parsedItems, variations)
-  
-  const onSelectItem = useCallback(({ name: variationName, value: variationValue, skuId, isMainAndImpossible, possibleItems }) => {
-    const isRemoving = selectedVariations[variationName] === variationValue
-    const newSelectedVariation = !isMainAndImpossible ? 
-      {
-      ...selectedVariations,
-      [variationName]: isRemoving ? null : variationValue,
-      } : 
-      { 
-        ...buildEmptySelectedVariation(variations),
-        [variationName]: variationValue 
+
+  const onSelectItem = useCallback(
+    ({
+      name: variationName,
+      value: variationValue,
+      skuId,
+      isMainAndImpossible,
+      possibleItems,
+    }) => {
+      const isRemoving = selectedVariations[variationName] === variationValue
+      const newSelectedVariation = !isMainAndImpossible
+        ? {
+            ...selectedVariations,
+            [variationName]: isRemoving ? null : variationValue,
+          }
+        : {
+            ...buildEmptySelectedVariation(variations),
+            [variationName]: variationValue,
+          }
+      // Set here for a better response to user
+      setSelectedVariations(newSelectedVariation)
+      const uniqueOptions = isRemoving
+        ? {}
+        : uniqueOptionToSelect(
+            possibleItems,
+            newSelectedVariation,
+            isMainAndImpossible
+          )
+      const finalSelected = {
+        ...newSelectedVariation,
+        ...uniqueOptions,
       }
-    // Set here for a better response to user
-    setSelectedVariations(newSelectedVariation)
-    const uniqueOptions = isRemoving ? {} : uniqueOptionToSelect(possibleItems, newSelectedVariation, isMainAndImpossible)
-    const finalSelected = {
-      ...newSelectedVariation,
-      ...uniqueOptions,
-    }
-    if (!isEmpty(uniqueOptions)) {
-      setSelectedVariations(finalSelected)
-    }
-    
-    const selectedNotNull = filter(Boolean, finalSelected)
-    const selectedCount = Object.keys(selectedNotNull).length
-    const variationsCount = Object.keys(variations).length
-    const allSelected = selectedCount === variationsCount
-    let skuIdToRedirect = skuId
-    if (!skuIdToRedirect || !isEmpty(uniqueOptions)) {
-      const newItem = findItemWithSelectedVariations(possibleItems, finalSelected)
-      skuIdToRedirect = newItem.itemId
-    }
+      if (!isEmpty(uniqueOptions)) {
+        setSelectedVariations(finalSelected)
+      }
 
-    if (selectedSkuId === skuIdToRedirect || isRemoving) {
-      // do nothing
-      return
-    }
+      const selectedNotNull = filter(Boolean, finalSelected)
+      const selectedCount = Object.keys(selectedNotNull).length
+      const variationsCount = Object.keys(variations).length
+      const allSelected = selectedCount === variationsCount
+      let skuIdToRedirect = skuId
+      if (!skuIdToRedirect || !isEmpty(uniqueOptions)) {
+        const newItem = findItemWithSelectedVariations(
+          possibleItems,
+          finalSelected
+        )
+        skuIdToRedirect = newItem.itemId
+      }
 
-    if (onSKUSelected) {
-      setSelectedSkuId(skuIdToRedirect)
-      onSKUSelected(skuIdToRedirect)
-    } else {
-      if (allSelected || (isColor(variationName))) {
+      if (selectedSkuId === skuIdToRedirect || isRemoving) {
+        // do nothing
+        return
+      }
+
+      if (onSKUSelected) {
         setSelectedSkuId(skuIdToRedirect)
-        setTimeout(() => redirectToSku(skuIdToRedirect), 0)
+        onSKUSelected(skuIdToRedirect)
+      } else {
+        if (allSelected || isColor(variationName)) {
+          setSelectedSkuId(skuIdToRedirect)
+          // The redirect
+          setTimeout(() => redirectToSku(skuIdToRedirect), 0)
+        }
       }
-    }
-  }, [selectedVariations, variations, onSKUSelected])
+    },
+    [selectedVariations, variations, onSKUSelected]
+  )
 
   if (!selectedVariations) {
     return null

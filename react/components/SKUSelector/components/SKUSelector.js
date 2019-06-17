@@ -7,77 +7,112 @@ import { compose, flip, gt, filter, path, clone } from 'ramda'
 
 import styles from '../styles.css'
 import { variationShape, skuShape } from '../utils/proptypes'
-import { findItemWithSelectedVariations, findListItemsWithSelectedVariations, isColor } from '../utils'
+import {
+  findItemWithSelectedVariations,
+  findListItemsWithSelectedVariations,
+  isColor,
+} from '../utils'
 
-const isSkuAvailable = compose(flip(gt)(0), path(['sellers', '0', 'commertialOffer', 'AvailableQuantity']))
+const isSkuAvailable = compose(
+  flip(gt)(0),
+  path(['sellers', '0', 'commertialOffer', 'AvailableQuantity'])
+)
 
-const showItemAsAvailable = (possibleItems, selectedVariations, variationCount, isSelected) => {
+const showItemAsAvailable = (
+  possibleItems,
+  selectedVariations,
+  variationCount,
+  isSelected
+) => {
   const selectedNotNull = filter(Boolean, selectedVariations)
   const selectedCount = Object.keys(selectedNotNull).length
   if (selectedCount === variationCount && isSelected) {
-    const item = findItemWithSelectedVariations(possibleItems, selectedVariations)
+    const item = findItemWithSelectedVariations(
+      possibleItems,
+      selectedVariations
+    )
     return isSkuAvailable(item)
   }
   return possibleItems.some(isSkuAvailable)
 }
 
-const getAvailableVariations = ({ variations, selectedVariations, imagesMap, onSelectItemMemo, skuItems, hideImpossibleCombinations }) => {
+const getAvailableVariations = ({
+  variations,
+  selectedVariations,
+  imagesMap,
+  onSelectItemMemo,
+  skuItems,
+  hideImpossibleCombinations,
+}) => {
   const variationCount = Object.keys(variations).length
   return new Promise(resolve => {
-    const result = Object.keys(variations).map((variationName) => {
+    const result = Object.keys(variations).map(variationName => {
       const name = variationName
       const values = variations[variationName]
-      const options = values.map(variationValue => {
-        const isSelected = selectedVariations[variationName] === variationValue
+      const options = values
+        .map(variationValue => {
+          const isSelected =
+            selectedVariations[variationName] === variationValue
 
-        const newSelectedVariation = clone(selectedVariations)
-        newSelectedVariation[variationName] = isSelected ? null : variationValue
+          const newSelectedVariation = clone(selectedVariations)
+          newSelectedVariation[variationName] = isSelected
+            ? null
+            : variationValue
 
-        const possibleItems = findListItemsWithSelectedVariations(skuItems, newSelectedVariation)
-        if (possibleItems.length > 0) {
-          const [item] = possibleItems
-          const callbackFn = onSelectItemMemo({ 
-            name: variationName,
-            value: variationValue,
-            skuId: item.itemId, 
-            isMainAndImpossible: false,
-            possibleItems,
-           })
-          return {
-            label: variationValue,
-            onSelectItem: callbackFn,
-            image: path([variationName, variationValue], imagesMap),
-            available: showItemAsAvailable(possibleItems, selectedVariations, variationCount, isSelected),
-            faded: false,
+          const possibleItems = findListItemsWithSelectedVariations(
+            skuItems,
+            newSelectedVariation
+          )
+          if (possibleItems.length > 0) {
+            const [item] = possibleItems
+            const callbackFn = onSelectItemMemo({
+              name: variationName,
+              value: variationValue,
+              skuId: item.itemId,
+              isMainAndImpossible: false,
+              possibleItems,
+            })
+            return {
+              label: variationValue,
+              onSelectItem: callbackFn,
+              image: path([variationName, variationValue], imagesMap),
+              available: showItemAsAvailable(
+                possibleItems,
+                selectedVariations,
+                variationCount,
+                isSelected
+              ),
+              faded: false,
+            }
           }
-        }
-        if (hideImpossibleCombinations && isColor(variationName)) {
-          const callbackFn = onSelectItemMemo({ 
-            name: variationName,
-            value: variationValue,
-            skuId: null, 
-            isMainAndImpossible: true,
-            possibleItems: skuItems,
-           })
-          return {
-            label: variationValue,
-            onSelectItem: callbackFn,
-            image: path([variationName, variationValue], imagesMap),
-            available: true,
-            faded: false,
+          if (hideImpossibleCombinations && isColor(variationName)) {
+            const callbackFn = onSelectItemMemo({
+              name: variationName,
+              value: variationValue,
+              skuId: null,
+              isMainAndImpossible: true,
+              possibleItems: skuItems,
+            })
+            return {
+              label: variationValue,
+              onSelectItem: callbackFn,
+              image: path([variationName, variationValue], imagesMap),
+              available: true,
+              faded: false,
+            }
           }
-        }
-        if (!hideImpossibleCombinations) {
-          return {
-            label: variationValue,
-            onSelectItem: () => {},
-            image: path([variationName, variationValue], imagesMap),
-            available: true,
-            faded: true,
+          if (!hideImpossibleCombinations) {
+            return {
+              label: variationValue,
+              onSelectItem: () => {},
+              image: path([variationName, variationValue], imagesMap),
+              available: true,
+              faded: true,
+            }
           }
-        }
-        return null
-      }).filter(Boolean)
+          return null
+        })
+        .filter(Boolean)
       return { name, options }
     })
     resolve(result)
@@ -97,15 +132,31 @@ const SKUSelector = ({
 }) => {
   const [displayVariations, setDisplayVariations] = useState(null)
   const onSelectItemMemo = useCallback(
-    ({ name, value, skuId, isMainAndImpossible, possibleItems }) => () => onSelectItem({ name, value, skuId, isMainAndImpossible, possibleItems}), 
+    ({ name, value, skuId, isMainAndImpossible, possibleItems }) => () =>
+      onSelectItem({ name, value, skuId, isMainAndImpossible, possibleItems }),
     [onSelectItem]
   )
   useEffect(() => {
-    const promise =
-      getAvailableVariations({variations, selectedVariations, imagesMap, onSelectItemMemo, skuItems, hideImpossibleCombinations})
-    
-    promise.then(availableVariations => setDisplayVariations(availableVariations))
-  }, [variations, selectedVariations, imagesMap, onSelectItemMemo, skuItems, hideImpossibleCombinations])
+    const promise = getAvailableVariations({
+      variations,
+      selectedVariations,
+      imagesMap,
+      onSelectItemMemo,
+      skuItems,
+      hideImpossibleCombinations,
+    })
+
+    promise.then(availableVariations =>
+      setDisplayVariations(availableVariations)
+    )
+  }, [
+    variations,
+    selectedVariations,
+    imagesMap,
+    onSelectItemMemo,
+    skuItems,
+    hideImpossibleCombinations,
+  ])
 
   if (!displayVariations) {
     return null
@@ -140,12 +191,12 @@ SKUSelector.propTypes = {
    * Example: { "size": "small", "color": null }
    */
   selectedVariations: PropTypes.object,
-  /** Object with dynamic keys, with each key being a variation name (that can display image), 
-   * mapping to another object with keys of variation values that map to the image object of that variation value 
+  /** Object with dynamic keys, with each key being a variation name (that can display image),
+   * mapping to another object with keys of variation values that map to the image object of that variation value
    * Example: { "color": { "black": { imageUrl: x, imageLabel: y }, "blue": { ... } }*/
   imagesMap: PropTypes.object,
-  /** Function to be called when variation option is pressed. 
-   * Receives three args: 
+  /** Function to be called when variation option is pressed.
+   * Receives three args:
    * name (string) the name of the pressed variation, eg: color
    * value (string) the value of the selected variaiton, eg: "black"
    * skuId (string) skuId that is being selected when variation option is being pressed. Used to redirect page.
@@ -153,7 +204,6 @@ SKUSelector.propTypes = {
   onSelectItem: PropTypes.func,
   /** If true, if a variation option leads to a combination that does not exist, that option won't appear */
   hideImpossibleCombinations: PropTypes.bool,
-
 }
 
 export default memo(SKUSelector)
