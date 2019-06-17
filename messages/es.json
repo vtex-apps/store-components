@@ -1,6 +1,6 @@
 {
   "store/search.placeholder": "Buscar",
-  "store/search.noMatches": "Sin resultado",
+  "store/search.searchFor": "Buscar {term}",
   "admin/editor.productName.title": "Nombre del producto",
   "admin/editor.productName.description": "Componente del nombre del producto",
   "admin/editor.productName.showBrandName.title": "Mostrar la marca",

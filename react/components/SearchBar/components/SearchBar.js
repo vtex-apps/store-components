@@ -14,7 +14,6 @@ export default class SearchBar extends Component {
   render() {
     const {
       placeholder,
-      emptyPlaceholder,
       onEnterPress,
       onMakeSearch,
       onInputChange,
@@ -99,7 +98,6 @@ export default class SearchBar extends Component {
                           getItemProps,
                           selectedItem,
                           highlightedIndex,
-                          emptyPlaceholder,
                           closeMenu,
                           onClearInput,
                         }}
@@ -117,8 +115,6 @@ export default class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  /** Empty placeholder to be used on the input */
-  emptyPlaceholder: PropTypes.string.isRequired,
   /** Placeholder to be used on the input */
   placeholder: PropTypes.string.isRequired,
   /** Current value of the input */

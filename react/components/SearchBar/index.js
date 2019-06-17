@@ -76,15 +76,11 @@ class SearchBarContainer extends Component {
     const placeholder = intl.formatMessage({
       id: 'store/search.placeholder',
     })
-    const emptyPlaceholder = intl.formatMessage({
-      id: 'store/search.noMatches',
-    })
 
     return (
       <SearchBar
         autoFocus={autoFocus}
         placeholder={placeholder}
-        emptyPlaceholder={emptyPlaceholder}
         shouldSearch={shouldSearch}
         inputValue={inputValue}
         onClearInput={this.handleClearInput}

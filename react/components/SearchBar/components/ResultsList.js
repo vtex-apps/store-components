@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
+import { FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { Spinner } from 'vtex.styleguide'
 import { Link, useRuntime } from 'vtex.render-runtime'
@@ -9,10 +10,17 @@ import autocomplete from '../queries/autocomplete.gql'
 
 import styles from '../styles.css'
 
+const WrappedSpinner = () => (
+  <div className="w-100 flex justify-center">
+    <div className="w3 ma0">
+      <Spinner />
+    </div>
+  </div>
+)
+
 /** List of search results to be displayed*/
 const ResultsList = ({
   data,
-  emptyPlaceholder,
   inputValue,
   closeMenu,
   onClearInput,
@@ -55,26 +63,12 @@ const ResultsList = ({
     return { page, params, query }
   }
 
-  const renderSpinner = () => (
-    <div className="w-100 flex justify-center">
-      <div className="w3 ma0">
-        <Spinner />
-      </div>
-    </div>
-  )
-
   if (data.loading) {
     return (
       <div className={listClassNames}>
-        <div className={listItemClassNames}>{renderSpinner()}</div>
-      </div>
-    )
-  }
-
-  if (!items.length) {
-    return (
-      <div className={listClassNames}>
-        <div className={listItemClassNames}>{emptyPlaceholder}</div>
+        <div className={listItemClassNames}>
+          <WrappedSpinner />
+        </div>
       </div>
     )
   }
@@ -97,7 +91,16 @@ const ResultsList = ({
           query="map=ft"
           className={listItemClassNames}
         >
-          {inputValue}
+          <FormattedMessage
+            id="store/search.searchFor"
+            values={{
+              term: (
+                <span className={`${styles.searchTerm} ml1`}>
+                  "{inputValue}"
+                </span>
+              ),
+            }}
+          />
         </Link>
       </li>
 
@@ -121,7 +124,9 @@ const ResultsList = ({
                     src={getImageUrl(item.thumb)}
                   />
                 )}
-                <div className="flex justify-start items-center">{item.name}</div>
+                <div className="flex justify-start items-center">
+                  {item.name}
+                </div>
               </Link>
             </li>
           </Fragment>
@@ -152,8 +157,6 @@ ResultsList.propTypes = {
     }),
     loading: PropTypes.bool.isRequired,
   }),
-  /** Message that will be displayed when there is no result ot be shown */
-  emptyPlaceholder: PropTypes.string.isRequired,
   /** Downshift specific prop*/
   highlightedIndex: PropTypes.number,
   /** Search query*/
