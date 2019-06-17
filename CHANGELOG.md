@@ -7,8 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-
 - Show option to search for term instead of showing "no matches" in search autocomplete.
+
+### Fixed
+- Fix spaces in search autocomplete list.
 
 ## [3.47.0] - 2019-06-24
 ### Added

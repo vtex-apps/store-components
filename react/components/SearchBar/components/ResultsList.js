@@ -34,13 +34,13 @@ const ResultsList = ({
 
   const listClassNames = classnames(
     styles.resultsList,
-    'z-max w-100 pb4 bl-ns bb br-ns bw1 b--muted-4 bg-white f5 left-0 list',
+    'z-max w-100 bl-ns bb br-ns bw1 b--muted-4 bg-white f5 left-0 list pa3',
     mobile ? 'fixed' : 'absolute'
   )
 
   const listItemClassNames = classnames(
     styles.resultsItem,
-    'flex justify-start f5 pa4 pl6 outline-0'
+    'flex justify-start f5 pa4 outline-0'
   )
 
   const getImageUrl = image => {
