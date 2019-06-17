@@ -15,8 +15,8 @@ import {
 const buildEmptySelectedVariation = variations => {
   const variationNames = Object.keys(variations)
   const result = {}
-  for (const varName of variationNames) {
-    result[varName] = null
+  for (const variationName of variationNames) {
+    result[variationName] = null
   }
   return result
 }
@@ -25,8 +25,8 @@ const buildEmptySelectedVariation = variations => {
 const selectedVariationFromItem = (item, variations) => {
   const variationNames = Object.keys(variations)
   const result = {}
-  for (const varName of variationNames) {
-    result[varName] = item[varName]
+  for (const variationName of variationNames) {
+    result[variationName] = item[variationName]
   }
   return result
 }
@@ -35,18 +35,18 @@ const useImagesMap = (items, variations) => {
   return useMemo(() => {
     const variationNames = Object.keys(variations)
     const result = {}
-    for (const varName of variationNames) {
+    for (const variationName of variationNames) {
       // Today, only "Color" variation should show image, need to find a more resilient way to tell this, waiting for backend
-      if (!isColor(varName)) {
+      if (!isColor(variationName)) {
         continue
       }
       const imageMap = {}
-      const variationValues = variations[varName]
+      const variationValues = variations[variationName]
       for (const variationValue of variationValues) {
-        const item = items.find(sku => sku[varName] === variationValue)
+        const item = items.find(sku => sku[variationName] === variationValue)
         imageMap[variationValue] = item && head(item.images)
       }
-      result[varName] = imageMap
+      result[variationName] = imageMap
     }
     return result
   }, [items, variations])

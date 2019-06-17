@@ -21,9 +21,9 @@ const useVariations = (skuItems, shouldNotShow) => {
     }
     const variationsNames = Object.keys(variations)
     // Transform set back to array
-    for (const varName of variationsNames) {
-      const set = variations[varName]
-      variations[varName] = Array.from(set)
+    for (const variationName of variationsNames) {
+      const set = variations[variationName]
+      variations[variationName] = Array.from(set)
     }
     return variations
   }, [skuItems, shouldNotShow])

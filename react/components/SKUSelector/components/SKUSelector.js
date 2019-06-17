@@ -64,6 +64,7 @@ const getAvailableVariations = ({
             newSelectedVariation
           )
           if (possibleItems.length > 0) {
+            // This is a valid combination option
             const [item] = possibleItems
             const callbackFn = onSelectItemMemo({
               name: variationName,
@@ -86,6 +87,8 @@ const getAvailableVariations = ({
             }
           }
           if (hideImpossibleCombinations && isColor(variationName)) {
+            // This is a visual (with picture) variation and should not be hidden.
+            // If the hideImpossibleCombinations is true, we should display it as normal but when pressed it will reset the selected variations.
             const callbackFn = onSelectItemMemo({
               name: variationName,
               value: variationValue,
@@ -102,6 +105,7 @@ const getAvailableVariations = ({
             }
           }
           if (!hideImpossibleCombinations) {
+            // This is a impossible combination and will only appear if the prop allows.
             return {
               label: variationValue,
               onSelectItem: () => {},
@@ -110,6 +114,7 @@ const getAvailableVariations = ({
               faded: true,
             }
           }
+          // This is a impossible combination and will be hidden.
           return null
         })
         .filter(Boolean)
@@ -137,6 +142,7 @@ const SKUSelector = ({
     [onSelectItem]
   )
   useEffect(() => {
+    let isCurrent = true
     const promise = getAvailableVariations({
       variations,
       selectedVariations,
@@ -146,9 +152,14 @@ const SKUSelector = ({
       hideImpossibleCombinations,
     })
 
-    promise.then(availableVariations =>
-      setDisplayVariations(availableVariations)
-    )
+    promise.then(availableVariations => {
+      if (isCurrent) {
+        setDisplayVariations(availableVariations)
+      }
+    })
+    return () => {
+      isCurrent = false
+    }
   }, [
     variations,
     selectedVariations,

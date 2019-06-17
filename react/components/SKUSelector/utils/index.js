@@ -119,9 +119,9 @@ export const uniqueOptionToSelect = (
 
   const variationsNames = Object.keys(variationsWithOne)
   // Transform set to plain value
-  for (const varName of variationsNames) {
-    const value = variationsWithOne[varName].values().next().value
-    variationsWithOne[varName] = value
+  for (const variationName of variationsNames) {
+    const value = variationsWithOne[variationName].values().next().value
+    variationsWithOne[variationName] = value
   }
   return variationsWithOne
 }
@@ -137,13 +137,13 @@ const isSkuSelected = selectedNotNull => sku => {
 
 const buildAvailableVariations = (items, variationNames) => {
   const result = {}
-  for (const varName of variationNames) {
-    result[varName] = new Set()
+  for (const variationName of variationNames) {
+    result[variationName] = new Set()
   }
   for (const item of items) {
-    for (const varName of variationNames) {
-      const variationValue = item[varName]
-      const currentSet = result[varName]
+    for (const variationName of variationNames) {
+      const variationValue = item[variationName]
+      const currentSet = result[variationName]
       if (variationValue) {
         currentSet.add(variationValue)
       }
