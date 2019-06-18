@@ -14,20 +14,22 @@ describe('<SKUSelector />', () => {
     return render(<SKUSelector {...props} />)
   }
 
-  it('should match the snapshot', () => {
+  it('should match the snapshot', async () => {
     const { asFragment } = renderComponent()
+    await Promise.resolve()
     expect(asFragment()).toMatchSnapshot()
   })
 
-  it('should call onSKUSelected', () => {
+  it('should call onSKUSelected', async () => {
     const onSKUSelected = jest.fn()
     const { container } = renderComponent({ onSKUSelected })
+    await Promise.resolve()
     const selector = container.querySelector('.skuSelectorItem')
     fireEvent.click(selector)
     expect(onSKUSelected).toBeCalledTimes(1)
   })
 
-  it('should render only three main variations', () => {
+  it('should render only three main variations', async () => {
     const defaultSeller = { commertialOffer: { Price: 15 } }
     const skuItems = [
       {
@@ -79,6 +81,7 @@ describe('<SKUSelector />', () => {
     const { getByText, getAllByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
+    await Promise.resolve()
 
     expect(getAllByText(/gray/i)).toHaveLength(1)
     expect(getAllByText(/blue/i)).toHaveLength(1)
@@ -88,7 +91,7 @@ describe('<SKUSelector />', () => {
     expect(getByText(/size/i)).toBeInTheDocument()
   })
 
-  it('should render show 8 items for variation and see more button', () => {
+  it('should render show 8 items for variation and see more button', async () => {
     const defaultSeller = { commertialOffer: { Price: 15 } }
     const skuItems = [
       {
@@ -303,20 +306,22 @@ describe('<SKUSelector />', () => {
         sellers: [defaultSeller],
         images: [],
       },
-
     ]
     const skuSelected = skuItems[0]
 
     const { getByText, queryByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
+    await Promise.resolve()
     expect(getByText('seeMoreLabel')).toBeDefined()
     expect(getByText('8')).toBeDefined()
     expect(queryByText('9')).toBeNull()
   })
 
-  it('should respect given maxItems prop set and show see more button', () => {
-    const defaultSeller = { commertialOffer: { Price: 15 } }
+  it('should respect given maxItems prop set and show see more button', async () => {
+    const defaultSeller = {
+      commertialOffer: { Price: 15, AvailableQuantity: 1 },
+    }
     const skuItems = [
       {
         itemId: '1',
@@ -530,19 +535,19 @@ describe('<SKUSelector />', () => {
         sellers: [defaultSeller],
         images: [],
       },
-
     ]
     const skuSelected = skuItems[0]
 
     const { getByText, queryByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />
     )
-    expect(getByText('seeMoreLabel')).toBeDefined()
+    await Promise.resolve()
+    expect(getByText('seeMoreLabel'))
     expect(getByText('4')).toBeDefined()
     expect(queryByText('5')).toBeNull()
   })
 
-  it('should show all variations when count is inside threshold', () => {
+  it('should show all variations when count is inside threshold', async () => {
     const defaultSeller = { commertialOffer: { Price: 15 } }
     const skuItems = [
       {
@@ -705,15 +710,14 @@ describe('<SKUSelector />', () => {
         sellers: [defaultSeller],
         images: [],
       },
-
     ]
     const skuSelected = skuItems[0]
 
     const { getByText, queryByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
+    await Promise.resolve()
     expect(queryByText('seeMoreLabel')).toBeNull()
     expect(getByText('10')).toBeDefined()
   })
 })
-
