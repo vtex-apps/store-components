@@ -34,7 +34,7 @@
   "store/shipping.free": "Gratis",
   "store/shipping.empty-sla": "No hay información de envío disponible para el código postal informado",
   "store/buy-button.add-to-cart": "Incluir items en el carrito",
-  "store/buybutton.buy-success": "Su producto se ha agregado a la cesta!",
+  "store/buybutton.buy-success": "Ítem agregado a su carrito",
   "store/buybutton.add-failure": "¡Algo salió mal y el artículo no se agregó a tu carrito!",
   "store/buybutton.see-cart": "Ver carrito",
   "store/technicalspecifications.title": "Especificaciones Tecnicas",

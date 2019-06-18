@@ -34,7 +34,7 @@
   "store/shipping.free": "Grátis",
   "store/shipping.empty-sla": "Não existe um frete disponível para o CEP informado",
   "store/buy-button.add-to-cart": "Adicionar ao carrinho",
-  "store/buybutton.buy-success": "Seu produto foi adicionado ao carrinho!",
+  "store/buybutton.buy-success": "Item adicionado ao seu carrinho",
   "store/buybutton.add-failure": "Algo deu errado e o item não pode ser adicionado ao seu carrinho!",
   "store/buybutton.see-cart": "Ver carrinho",
   "store/technicalspecifications.title": "Especificações Técnicas",
