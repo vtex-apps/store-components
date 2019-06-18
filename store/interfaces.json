@@ -11,6 +11,9 @@
   "product-name": {
     "component": "ProductName"
   },
+  "product-brand": {
+    "component": "ProductBrand"
+  },
   "product-images": {
     "component": "ProductImages"
   },
