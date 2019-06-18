@@ -2,6 +2,16 @@ import React from 'react'
 import { render } from '@vtex/test-tools/react'
 import ProductImages from './../../ProductImages'
 
+jest.mock('react-id-swiper/lib/ReactIdSwiper.full', () => {
+  return {
+    default: jest.fn(),
+  }
+})
+
+jest.mock('swiper/dist/js/swiper.esm', () => {
+  return jest.fn()
+})
+
 describe('<ProductImages />', () => {
   const renderComponent = customProps => {
     return render(<ProductImages {...customProps} />)
