@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Custom thumb and main image position, direction and thumbs per row.
+
 ## [3.45.1] - 2019-06-18
 ### Changed
 - Wording on "added to cart" toast.
