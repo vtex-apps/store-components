@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
 import classNames from 'classnames'
+import TranslateEstimate from 'vtex.shipping-estimate-translator/TranslateEstimate'
 
 const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   const etaClassName = classNames('vtex-shipping-table__cell', {
@@ -12,16 +13,7 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
     'vtex-shipping-table__cell--center': price === undefined,
   })
 
-  let etaText, valueText
-
-  if (shippingEstimate === undefined) {
-    etaText = '-'
-  } else {
-    etaText = intl.formatMessage(
-      { id: 'shipping.eta' },
-      { eta: shippingEstimate }
-    )
-  }
+  let valueText
 
   if (price === undefined) {
     valueText = '-'
@@ -48,7 +40,9 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
           {name}
         </label>
       </td>
-      <td className={etaClassName}>{etaText}</td>
+      <td className={etaClassName}>
+        <TranslateEstimate shippingEstimate={shippingEstimate} />
+      </td>
       <td className={valueClassName}>{valueText}</td>
     </tr>
   )
