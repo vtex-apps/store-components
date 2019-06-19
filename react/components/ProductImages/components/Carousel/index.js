@@ -253,7 +253,7 @@ class Carousel extends Component {
     const {
       slides,
       position,
-      thumb: {direction, slidePerView},
+      thumb: {direction, slidesPerView},
       zoomProps: { zoomType, bgOpacity },
     } = this.props
 
@@ -267,8 +267,8 @@ class Carousel extends Component {
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
       freeMode: true,
-      direction: direction,
-      slidesPerView: slidePerView,
+      direction,
+      slidesPerView,
       touchRatio: 0.4,
       mousewheel: true,
       preloadImages: true,
