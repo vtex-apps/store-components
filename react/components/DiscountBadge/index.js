@@ -27,7 +27,7 @@ class DiscountBadge extends Component {
                 <>
                   {!labelValue && '-'}
                   <FormattedNumber value={percent} style="percent" /> {labelValue && ' '}
-                  {labelValue}
+                  {labelValue && <span>{labelValue}</span>}
                 </>
               )}
             </IOMessage>
