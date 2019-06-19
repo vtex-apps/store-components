@@ -8,8 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Fixed
-- Fixed read me of Availability subscriber. Explain that it doesn't warn users.
-- Adapted default text of component to make it less misleading.
+- Read me of Availability subscriber. Explain that it doesn't warn users.
+- Default text of component to make it less misleading.
 
 ## [3.47.5] - 2019-06-27
 
