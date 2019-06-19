@@ -288,8 +288,7 @@ class Carousel extends Component {
       {
         'ml-20-ns w-80-ns': position === 'left' && slides.length > 1,
         'mr-20-ns w-80-ns': position === 'right' && slides.length > 1,
-        'w-100': position === 'top' && slides.length > 1,
-        'w-100': position === 'bottom' && slides.length > 1
+        'w-100':(position === 'top' || position === 'bottom') && slides.length > 1
       }
     )
 
@@ -304,14 +303,14 @@ class Carousel extends Component {
       }
     )
 
-    const thumbReverse = classNames(
+    const thumbReverseClasses = classNames(
       {
         'flex flex-wrap-reverse': position === 'bottom'
       }
     )
 
     return (
-      <div className={`relative overflow-hidden w-100 ${thumbReverse}`} aria-hidden="true">
+      <div className={`relative overflow-hidden w-100 ${thumbReverseClasses}`} aria-hidden="true">
         <div className={thumbClasses}>
           <Swiper {...thumbnailParams} rebuildOnUpdate>
             {slides.map((slide, i) => (
