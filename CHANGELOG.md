@@ -7,50 +7,76 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.45.2] - 2019-06-19
 ### Fixed
+
+- Hardcoded "BRL" currency on Shipping Simulator component.
+
+## [3.45.2] - 2019-06-19
+
+### Fixed
+
 - Bug with vanishing `-` sign on DiscountLabel when it had empty labels.
 
 ## [3.45.1] - 2019-06-18
+
 ### Changed
+
 - Wording on "added to cart" toast.
 
 ## [3.45.0] - 2019-06-18
+
 ### Added
+
 - "View cart" button on "Added to cart" toast.
 
 ## [3.44.0] - 2019-06-17
+
 ### Changed
+
 - `SKUSelector` now supports many variations for skus, not only 2.
 - Add layout prop `hideImpossibleCombinations` for `SKUSelector`, with docs.
 
 ## [3.43.7] - 2019-06-12
+
 ### Fixed
+
 - Use require to conditionally import Swiper in `ProductImages` to not break SSR.
 
 ## [3.43.6] - 2019-06-11
+
 ### Added
+
 - See more button for SKUSelector with a lot of items in a variation.
 - Schema for `SKUSelector` wtih `seeMoreLabel, maxItems` prop.
 
 ## [3.43.5] - 2019-06-10
+
 ### Fixed
+
 - Issue on the SearchBar suggestions where the user couldn't select items, on mobile devices.
 
 ## [3.43.4] - 2019-06-10
+
 ### Fixed
+
 - `InfoCard`: Make `imageUrl` and `mobileImageUrl` have image-uploader ui widget on storefront.
 
 ## [3.43.3] - 2019-06-10
+
 ### Fixed
+
 - `InfoCard`: change null default values to empty strings.
 
 ## [3.43.2] - 2019-06-07
+
 ### Fixed
+
 - Fixed issue that causes syntax error on IE11, due to the use of ES6 features.
 
 ## [3.43.1] - 2019-06-07
+
 ### Fixed
+
 - Fix bad release of 3.43.0 (no real change in code).
 
 ## [3.43.0] - 2019-06-06
@@ -62,11 +88,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.42.8] - 2019-06-06
 
 ## [3.42.7] - 2019-06-06
+
 ### Fixed
+
 - Compatibility with custom non-flexible product-pages in all components used in ProductDetails.
 
 ## [3.42.6] - 2019-06-05
+
 ### Fixed
+
 - Bug where the product images thumbnail gallery would scroll infinitely.
 
 ## [3.42.5] - 2019-06-05
