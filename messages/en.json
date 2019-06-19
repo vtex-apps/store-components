@@ -39,7 +39,7 @@
   "store/buybutton.see-cart": "View cart",
   "store/technicalspecifications.title": "Technical Specifications",
   "store/availability-subscriber.title": "This product isn't available right now",
-  "store/availability-subscriber.subscribe-label": "I want to know when this product is available again",
+  "store/availability-subscriber.subscribe-label": "I want to know when this product becomes available",
   "store/availability-subscriber.email-placeholder": "Email",
   "store/availability-subscriber.name-placeholder": "Name",
   "store/availability-subscriber.send-label": "Send",
