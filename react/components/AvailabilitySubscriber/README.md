@@ -4,6 +4,10 @@
 
 `AvailabilitySubscriber` is a VTEX Component that shows the availability subscriber form that is shown when the product isn't available. This Component can be imported and used by any VTEX App.
 
+**Attention:**
+This component only **creates a list** of the users that subscribe to this product. Currently it **doesn't send an automatic email** to these users when the product becomes available. It only collects the emails of the users that show interest on the products.
+
+
 :loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
 
 ## Table of Contents
@@ -19,6 +23,20 @@
 You should follow the usage instruction in the main [README](/README.md#usage).
 
 Then, add `availability-subscriber` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
+
+In order to collect the emails correctly, this feature needs a special configurantion on **Master Data** as it is detailed below:
+
+The form is submitted to Master Data on the Entity: `AS`
+
+| Prop name          | Description                                                                            |
+| ------------------ | -------------------------------------------------------------------------------------- |
+| `skuId`            | The id of the product sku to which will be watched for changes in the product quantity |
+| `name`             | The name of the user                                                                   |
+| `email`            | The email of the user                                                                 |
+| `notificationSend` | If the notification has been sent already                                              |
+| `createdAt`        | When the document was created                                                          |
+| `sendAt`           | When the user was notificated                                                          |
+
 
 ### Blocks API
 
@@ -57,16 +75,3 @@ Below, we describe the namespace that are defined in the `AvailabilitySubscriber
 | `submit` | `AvailabilitySubscriber` form submit button | [index](/react/components/AvailabilitySubscriber/index.js) |
 | `success` | `AvailabilitySubscriber` success feedback message | [index](/react/components/AvailabilitySubscriber/index.js) |
 | `error` | `AvailabilitySubscriber` error feedback message | [index](/react/components/AvailabilitySubscriber/index.js) |
-
-## Data
-
-The form is submitted to Master Data on the Entity: `AS`
-
-| Prop name          | Description                                                                            |
-| ------------------ | -------------------------------------------------------------------------------------- |
-| `skuId`            | The id of the product sku to which will be watched for changes in the product quantity |
-| `name`             | The name of the user                                                                   |
-| `email`            | The email of the user                                                                 |
-| `notificationSend` | If the notification has been sent already                                              |
-| `createdAt`        | When the document was created                                                          |
-| `sendAt`           | When the user was notificated                                                          |
