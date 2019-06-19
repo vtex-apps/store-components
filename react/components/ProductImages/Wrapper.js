@@ -14,6 +14,14 @@ const thumbnailsPosition = {
     name: 'admin/editor.product-details.thumbnailsPosition.right',
     value: 'right',
   },
+  DISPLAY_BOTTOM: {
+    name: 'admin/editor.product-details.thumbnailsPosition.bottom',
+    value: 'bottom',
+  },
+  DISPLAY_TOP: {
+    name: 'admin/editor.product-details.thumbnailsPosition.top',
+    value: 'top',
+  },
 }
 
 const ProductImagesWrapper = props => {
@@ -30,6 +38,7 @@ const ProductImagesWrapper = props => {
     <ProductImages
       zoomProps={props.zoomProps}
       position={props.position || props.thumbnailPosition}
+      thumb={props.thumb}
       images={images}
     />
   )

@@ -19,7 +19,7 @@ const getBestUrlIndex = thresholds => {
 
 const ProductImages = props => {
   const [_, setState] = useState(0)
-  const { position, zoomProps } = props
+  const { position, zoomProps, thumb } = props
 
   const debouncedGetBestUrl = debounce(() => {
     // force update
@@ -54,14 +54,14 @@ const ProductImages = props => {
 
   return (
     <div className={`${styles.content} w-100`}>
-      <Carousel slides={slides} position={position} zoomProps={zoomProps} />
+      <Carousel slides={slides} position={position} zoomProps={zoomProps} thumb={thumb} />
     </div>
   )
 }
 
 ProductImages.propTypes = {
   /** The position of the thumbs */
-  position: PropTypes.oneOf(['left', 'right']),
+  position: PropTypes.oneOf(['left', 'right', 'bottom', 'top']),
   /** Array of images to be passed for the Thumbnail Slider component as a props */
   images: PropTypes.arrayOf(
     PropTypes.shape({
@@ -81,6 +81,7 @@ ProductImages.defaultProps = {
   images: [],
   position: 'left',
   zoomProps: { zoomType: 'in-page' },
+  thumb: {direction: 'vertical', slidePerView: 'auto'}
 }
 
 ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
@@ -120,6 +121,61 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
               default: 0.8,
             },
           }),
+        },
+      },
+    },
+  }
+}
+
+ProductImages.getSchema = ({ thumb: { direction } = {} }) => {
+  return {
+    title: 'admin/editor.product-images.title',
+    description: 'admin/editor.product-images.description',
+    type: 'object',
+    properties: {
+      thumb: {
+        title: 'admin/editor.product-images.thumbOptions.title',
+        type: 'object',
+        properties: {
+          direction: {
+            title: 'admin/editor.product-images.direction.title',
+            type: 'string',
+            enum: ['vertical', 'horizontal'],
+            enumNames: [
+              'admin/editor.product-images.vertical',
+              'admin/editor.product-images.horizontal'
+            ],
+            widget: {
+              'ui:options': {
+                inline: false,
+              },
+              'ui:widget': 'radio',
+            },
+            default: 'vertical',
+          },
+          ...(direction),
+        },
+      },
+    },
+  }
+}
+
+ProductImages.getSchema = ({ thumb: { slidePerView } = {} }) => {
+  return {
+    title: 'admin/editor.product-images.title',
+    description: 'admin/editor.product-images.description',
+    type: 'object',
+    properties: {
+      thumb: {
+        title: 'admin/editor.product-images.thumbOptions.title',
+        type: 'object',
+        properties: {
+          slidePerView: {
+            title: 'admin/editor.product-images.slidePerView.title',
+            type: 'string',
+            default: 'auto',
+          },
+          ...(slidePerView),
         },
       },
     },
