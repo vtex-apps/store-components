@@ -253,6 +253,7 @@ class Carousel extends Component {
     const {
       slides,
       position,
+      thumb: {direction, slidePerView},
       zoomProps: { zoomType, bgOpacity },
     } = this.props
 
@@ -266,8 +267,8 @@ class Carousel extends Component {
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
       freeMode: true,
-      direction: 'vertical',
-      slidesPerView: 'auto',
+      direction: direction,
+      slidesPerView: slidePerView,
       touchRatio: 0.4,
       mousewheel: true,
       preloadImages: true,
@@ -287,20 +288,30 @@ class Carousel extends Component {
       {
         'ml-20-ns w-80-ns': position === 'left' && slides.length > 1,
         'mr-20-ns w-80-ns': position === 'right' && slides.length > 1,
+        'w-100': position === 'top' && slides.length > 1,
+        'w-100': position === 'bottom' && slides.length > 1
       }
     )
 
     const thumbClasses = classNames(
-      `w-20 ${styles.carouselGaleryThumbs} bottom-0 top-0 absolute dn`,
+      `w-20 ${styles.carouselGaleryThumbs} dn`,
       {
         'db-ns': slides.length > 1,
-        'left-0 pr5': position === 'left',
-        'right-0 pl5': position === 'right',
+        'absolute bottom-0 top-0 left-0 pr5': position === 'left',
+        'absolute bottom-0 top-0 right-0 pl5': position === 'right',
+        'w-100 pb5': position === 'top',
+        'w-100 pt5': position === 'bottom'
+      }
+    )
+
+    const thumbReverse = classNames(
+      {
+        'flex flex-wrap-reverse': position === 'bottom'
       }
     )
 
     return (
-      <div className="relative overflow-hidden w-100" aria-hidden="true">
+      <div className={`relative overflow-hidden w-100 ${thumbReverse}`} aria-hidden="true">
         <div className={thumbClasses}>
           <Swiper {...thumbnailParams} rebuildOnUpdate>
             {slides.map((slide, i) => (
