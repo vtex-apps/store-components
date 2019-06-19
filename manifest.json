@@ -21,5 +21,6 @@
     "vtex.store": "1.x",
     "vtex.store-graphql": "2.x",
     "vtex.styleguide": "7.x"
-  }
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

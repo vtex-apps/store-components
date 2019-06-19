@@ -24,13 +24,6 @@
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/@types/zen-observable/-/zen-observable-0.5.3.tgz#91b728599544efbb7386d8b6633693a3c2e7ade5"
 
-"@vtex/styleguide@~2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@vtex/styleguide/-/styleguide-2.3.0.tgz#2f43d9c5aef58af56457c12d069c839c0497f0e0"
-  dependencies:
-    react-responsive-modal "^2.0.1"
-    vtex-tachyons "^2.3.0"
-
 apollo-cache@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/apollo-cache/-/apollo-cache-1.1.8.tgz#b078d33dec876d52b5a81a325d3c254d4e362d3c"

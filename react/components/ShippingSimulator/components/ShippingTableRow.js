@@ -17,7 +17,10 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   if (shippingEstimate === undefined) {
     etaText = '-'
   } else {
-    etaText = intl.formatMessage({ id: 'shipping.eta' }, { eta: shippingEstimate })
+    etaText = intl.formatMessage(
+      { id: 'shipping.eta' },
+      { eta: shippingEstimate }
+    )
   }
 
   if (price === undefined) {
@@ -25,7 +28,10 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   } else if (price === 0) {
     valueText = intl.formatMessage({ id: 'shipping.free' })
   } else {
-    valueText = intl.formatNumber(price, { style: 'currency', currency: 'BRL' })
+    valueText = intl.formatNumber(parseInt(price, 10) / 100, {
+      style: 'currency',
+      currency: 'BRL',
+    })
   }
 
   return (
@@ -42,12 +48,8 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
           {name}
         </label>
       </td>
-      <td className={etaClassName}>
-        {etaText}
-      </td>
-      <td className={valueClassName}>
-        {valueText}
-      </td>
+      <td className={etaClassName}>{etaText}</td>
+      <td className={valueClassName}>{valueText}</td>
     </tr>
   )
 }
@@ -60,4 +62,3 @@ ShippingTableRow.propTypes = {
 }
 
 export default injectIntl(ShippingTableRow)
-

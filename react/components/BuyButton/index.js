@@ -1,18 +1,21 @@
-import find from 'lodash/find'
-import PropTypes from 'prop-types'
-import React, { Component, Fragment } from 'react'
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
-import ContentLoader from 'react-content-loader'
+import PropTypes from "prop-types";
+import React, { Component, Fragment } from "react";
+import { injectIntl, intlShape, FormattedMessage } from "react-intl";
+import ContentLoader from "react-content-loader";
+import { find, propEq } from "ramda";
 
-import { contextPropTypes, orderFormConsumer } from 'vtex.store/OrderFormContext'
-import { Button } from 'vtex.styleguide'
+import {
+  contextPropTypes,
+  orderFormConsumer
+} from "vtex.store/OrderFormContext";
+import { Button } from "vtex.styleguide";
 
 const CONSTANTS = {
-  SUCCESS_MESSAGE_ID: 'buybutton.buy-success',
-  ERROR_MESSAGE_ID: 'buybutton.add-failure',
-  CHECKOUT_URL: '/checkout/#/cart',
-  TOAST_TIMEOUT: 3000,
-}
+  SUCCESS_MESSAGE_ID: "buybutton.buy-success",
+  ERROR_MESSAGE_ID: "buybutton.add-failure",
+  CHECKOUT_URL: "/checkout/#/cart",
+  TOAST_TIMEOUT: 3000
+};
 
 /**
  * BuyButton Component.
@@ -21,92 +24,99 @@ const CONSTANTS = {
 export class BuyButton extends Component {
   static defaultProps = {
     isOneClickBuy: false,
-    available: true,
-  }
+    available: true
+  };
 
   state = {
     isLoading: false,
     isAddingToCart: false,
-    timeOut: null,
-  }
+    timeOut: null
+  };
 
-  translateMessage = id => this.props.intl.formatMessage({ id: id })
+  translateMessage = id => this.props.intl.formatMessage({ id: id });
 
   toastMessage = success => {
-    const { orderFormContext } = this.props
+    const { orderFormContext } = this.props;
     const text = success
       ? this.translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
-      : this.translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
+      : this.translateMessage(CONSTANTS.ERROR_MESSAGE_ID);
 
     const message = {
       isSuccess: success,
-      text,
-    }
+      text
+    };
 
-    orderFormContext.updateToastMessage(message)
+    orderFormContext.updateToastMessage(message);
 
     window.setTimeout(() => {
-      orderFormContext.updateToastMessage({ isSuccess: null, text: null })
-      this.setState({ timeOut: null })
-    }, CONSTANTS.TOAST_TIMEOUT)
-  }
+      orderFormContext.updateToastMessage({ isSuccess: null, text: null });
+      this.setState({ timeOut: null });
+    }, CONSTANTS.TOAST_TIMEOUT);
+  };
 
   handleAddToCart = async () => {
-    const { skuItems, isOneClickBuy, orderFormContext } = this.props
-    this.setState({ isAddingToCart: true })
+    const { skuItems, isOneClickBuy, orderFormContext } = this.props;
+    this.setState({ isAddingToCart: true });
 
     const variables = {
       items: skuItems.map(skuItem => {
-        const { skuId, quantity, seller } = skuItem
+        const { skuId, quantity, seller } = skuItem;
         return {
           id: parseInt(skuId),
           index: 1,
           quantity,
-          seller,
-        }
-      }),
-    }
+          seller
+        };
+      })
+    };
 
-    variables.orderFormId = orderFormContext.orderForm.orderFormId
+    variables.orderFormId = orderFormContext.orderForm.orderFormId;
 
-    if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
+    if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL);
 
-    await orderFormContext.addItem({ variables })
-      .then(
-        mutationRes => {
-          const { items } = mutationRes.data.addItem
-          const success = skuItems.map(skuItem =>
-            find(items, { id: skuItem.skuId })
-          )
+    await orderFormContext.addItem({ variables }).then(
+      mutationRes => {
+        const { items } = mutationRes.data.addItem;
+        const success = skuItems.map(skuItem =>
+          find(propEq("id", skuItem.skuId), items)
+        );
 
-          orderFormContext.refetch()
-          this.toastMessage(success.length >= 1)
-        },
-        () => {
-          this.toastMessage(false)
-        }
-      )
-    this.setState({ isAddingToCart: false })
-  }
+        orderFormContext.refetch();
+        this.toastMessage(success.length >= 1);
+      },
+      () => {
+        this.toastMessage(false);
+      }
+    );
+    this.setState({ isAddingToCart: false });
+  };
 
   render() {
-    const { children, skuItems, available } = this.props
-    const loading = this.state.isLoading || !skuItems
-    const { isAddingToCart } = this.state
+    const { children, skuItems, available } = this.props;
+    const loading = this.state.isLoading || !skuItems;
+    const { isAddingToCart } = this.state;
 
     return (
       <Fragment>
         {loading ? (
           <ContentLoader />
         ) : (
-          <Button primary size="small" disabled={!available} onClick={() => this.handleAddToCart()} isLoading={isAddingToCart}>
-            {available ? children : (
+          <Button
+            primary
+            size="small"
+            disabled={!available}
+            onClick={() => this.handleAddToCart()}
+            isLoading={isAddingToCart}
+          >
+            {available ? (
+              children
+            ) : (
               <FormattedMessage id="buyButton-label-unavailable" />
             )}
           </Button>
         )}
       </Fragment>
-    )
+    );
   }
 }
 
@@ -119,7 +129,7 @@ BuyButton.propTypes = {
       /** Quantity of the product sku to be added to the cart */
       quantity: PropTypes.number.isRequired,
       /** Which seller is being referenced by the button */
-      seller: PropTypes.number.isRequired,
+      seller: PropTypes.number.isRequired
     })
   ),
   /** Context used to call the add to cart mutation and retrieve the orderFormId **/
@@ -131,7 +141,7 @@ BuyButton.propTypes = {
   /** Internationalization */
   intl: intlShape.isRequired,
   /** If the product is available or not*/
-  available: PropTypes.bool.isRequired,
-}
+  available: PropTypes.bool.isRequired
+};
 
-export default orderFormConsumer(injectIntl(BuyButton))
+export default orderFormConsumer(injectIntl(BuyButton));
