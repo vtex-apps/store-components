@@ -49,6 +49,7 @@ ProductImagesWrapper.schema = {
   title: 'admin/editor.product-details.title',
   description: 'admin/editor.product-details.description',
   type: 'object',
+  isLayout: true,
   properties: {
     thumbnailPosition: {
       title: 'admin/editor.product-details.thumbnailsPosition.title',
@@ -57,6 +58,27 @@ ProductImagesWrapper.schema = {
       enumNames: map(opt => opt.name, values(thumbnailsPosition) || []),
       default: thumbnailsPosition.DISPLAY_LEFT.value,
       isLayout: true,
+    },
+    direction: {
+      title: 'admin/editor.product-images.direction.title',
+      type: 'string',
+      enum: ['vertical', 'horizontal'],
+      enumNames: [
+        'admin/editor.product-images.vertical',
+        'admin/editor.product-images.horizontal'
+      ],
+      widget: {
+        'ui:options': {
+          inline: false,
+        },
+        'ui:widget': 'radio',
+      },
+      default: 'vertical',
+    },
+    slidesPerView: {
+      title: 'admin/editor.product-images.slidesPerView.title',
+      type: 'string',
+      default: 'auto',
     },
   },
 }
