@@ -18,14 +18,40 @@ const WrappedSpinner = () => (
   </div>
 )
 
+const getImageUrl = image => {
+  const imageUrl = (image.match(/https?:(.*?)"/g) || [''])[0]
+  return imageUrl.replace(/https?:/, '').replace(/-25-25/g, '-50-50')
+}
+
+const getLinkProps = element => {
+  let page = 'store.product'
+  let params = { slug: element.slug }
+  let query = ''
+  const terms = element.slug.split('/')
+
+  if (element.criteria) {
+    page = 'store.search'
+    params = { term: terms[0] }
+    query = `map=c,ft&rest=${terms.slice(1).join(',')}`
+  }
+
+  return { page, params, query }
+}
+
+const highlightClass = (highlightedIndex, index) => {
+  return highlightedIndex === index ? 'bg-muted-5' : ''
+}
+
 /** List of search results to be displayed*/
 const ResultsList = ({
+  isOpen,
   data,
   inputValue,
   closeMenu,
   onClearInput,
   getItemProps,
   getMenuProps,
+  highlightedIndex,
 }) => {
   const items = data.autocomplete ? data.autocomplete.itemsReturned : []
   const {
@@ -34,44 +60,12 @@ const ResultsList = ({
 
   const listClassNames = classnames(
     styles.resultsList,
-    'z-max w-100 bl-ns bb br-ns bw1 b--muted-4 bg-white f5 left-0 list pa3',
-    mobile ? 'fixed' : 'absolute'
+    'z-max w-100 bl-ns bb br-ns bw1 b--muted-4 bg-white f5 left-0 list pv4 ph0 mv0',
+    mobile ? 'fixed' : 'absolute',
+    { dn: !isOpen || !inputValue }
   )
 
-  const listItemClassNames = classnames(
-    styles.resultsItem,
-    'flex justify-start f5 pa4 outline-0'
-  )
-
-  const getImageUrl = image => {
-    const imageUrl = (image.match(/https?:(.*?)"/g) || [''])[0]
-    return imageUrl.replace(/https?:/, '').replace(/-25-25/g, '-50-50')
-  }
-
-  const getLinkProps = element => {
-    let page = 'store.product'
-    let params = { slug: element.slug }
-    let query = ''
-    const terms = element.slug.split('/')
-
-    if (element.criteria) {
-      page = 'store.search'
-      params = { term: terms[0] }
-      query = `map=c,ft&rest=${terms.slice(1).join(',')}`
-    }
-
-    return { page, params, query }
-  }
-
-  if (data.loading) {
-    return (
-      <div className={listClassNames}>
-        <div className={listItemClassNames}>
-          <WrappedSpinner />
-        </div>
-      </div>
-    )
-  }
+  const listItemClassNames = classnames(styles.resultsItem, 'f5 pa4 outline-0')
 
   const handleItemClick = () => {
     onClearInput()
@@ -80,58 +74,75 @@ const ResultsList = ({
 
   return (
     <ul className={listClassNames} {...getMenuProps()}>
-      <li>
-        <Link
-          {...getItemProps({
-            item: 'ft',
-            onClick: handleItemClick,
-          })}
-          page="store.search"
-          params={{ term: inputValue }}
-          query="map=ft"
-          className={listItemClassNames}
-        >
-          <FormattedMessage
-            id="store/search.searchFor"
-            values={{
-              term: (
-                <span className={`${styles.searchTerm} ml1`}>
-                  "{inputValue}"
-                </span>
-              ),
-            }}
-          />
-        </Link>
-      </li>
-
-      {items.map((item, index) => {
-        return (
-          <Fragment key={item.name + index}>
-            <hr className="o-05 ma0 w-90 center" />
-            <li>
+      {isOpen ? (
+        data.loading ? (
+          <div className={listItemClassNames}>
+            <WrappedSpinner />
+          </div>
+        ) : (
+          <Fragment>
+            <li
+              {...getItemProps({
+                key: 'ft' + inputValue,
+                item: { term: inputValue },
+                index: 0,
+                onClick: handleItemClick,
+              })}
+            >
               <Link
-                {...getItemProps({
-                  item,
-                  onClick: handleItemClick,
-                })}
-                {...getLinkProps(item)}
-                className={listItemClassNames}
+                page="store.search"
+                params={{ term: inputValue }}
+                query="map=ft"
+                className={`${listItemClassNames} pointer db w-100 ${highlightClass(
+                  highlightedIndex,
+                  0
+                )}`}
               >
-                {item.thumb && (
-                  <img
-                    alt=""
-                    className={`${styles.resultsItemImage} mr4`}
-                    src={getImageUrl(item.thumb)}
-                  />
-                )}
-                <div className="flex justify-start items-center">
-                  {item.name}
-                </div>
+                <FormattedMessage
+                  id="store/search.searchFor"
+                  values={{
+                    term: (
+                      <span className={styles.searchTerm}>"{inputValue}"</span>
+                    ),
+                  }}
+                />
               </Link>
             </li>
+
+            {items.map((item, index) => {
+              return (
+                <li
+                  {...getItemProps({
+                    key: item.name + index,
+                    index: index + 1,
+                    item,
+                    onClick: handleItemClick,
+                  })}
+                >
+                  <Link
+                    {...getLinkProps(item)}
+                    className={`${listItemClassNames} pointer ${highlightClass(
+                      highlightedIndex,
+                      index + 1
+                    )} ${item.thumb ? 'flex justify-start' : ' db w-100'}`}
+                  >
+                    {item.thumb && (
+                      <img
+                        alt={item.name}
+                        className={`${styles.resultsItemImage} mr4`}
+                        src={getImageUrl(item.thumb)}
+                      />
+                    )}
+                    <div className="flex justify-start items-center">
+                      {item.name}
+                    </div>
+                  </Link>
+                </li>
+              )
+            })}
           </Fragment>
         )
-      })}
+      ) : null}
     </ul>
   )
 }

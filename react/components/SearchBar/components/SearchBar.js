@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useRef, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import AutocompleteInput from './AutocompleteInput'
@@ -6,112 +6,138 @@ import ResultsLists from './ResultsList'
 import Downshift from 'downshift'
 import { NoSSR } from 'vtex.render-runtime'
 import { Overlay } from 'vtex.react-portal'
+import { useRuntime } from 'vtex.render-runtime'
 
 import styles from '../styles.css'
 
-export default class SearchBar extends Component {
-  container = React.createRef()
-  render() {
-    const {
-      placeholder,
-      onEnterPress,
-      onMakeSearch,
-      onInputChange,
-      onGoToSearchPage,
-      onClearInput,
-      shouldSearch,
-      inputValue,
-      compactMode,
-      hasIconLeft,
-      iconClasses,
-      autoFocus,
-      maxWidth,
-    } = this.props
+const SearchBar = ({
+  placeholder,
+  onEnterPress,
+  onMakeSearch,
+  onInputChange,
+  onGoToSearchPage,
+  onClearInput,
+  shouldSearch,
+  inputValue,
+  compactMode,
+  hasIconLeft,
+  iconClasses,
+  autoFocus,
+  maxWidth,
+}) => {
+  const container = useRef()
+  const { navigate } = useRuntime()
 
-    const fallback = (
-      <AutocompleteInput
-        placeholder={placeholder}
-        onMakeSearch={onMakeSearch}
-        onInputChange={onInputChange}
-        onGoToSearchPage={onGoToSearchPage}
-        inputValue={inputValue}
-        hasIconLeft={hasIconLeft}
-        iconClasses={iconClasses}
-      />
-    )
+  const menuStyle = useMemo(
+    () => ({
+      width: container.current && container.current.offsetWidth,
+    }),
+    [container.current]
+  )
 
-    return (
-      <div
-        ref={this.container}
-        className={classNames('w-100 mw7 pv4', styles.searchBarContainer)}
-        style={{
-          ...(maxWidth && {
-            maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
-          }),
-        }}
-      >
-        <NoSSR onSSR={fallback}>
-          <Downshift>
-            {({
-              getInputProps,
-              getItemProps,
-              getMenuProps,
-              selectedItem,
-              highlightedIndex,
-              isOpen,
-              closeMenu,
-            }) => (
-              <div className="relative-m w-100">
-                <AutocompleteInput
-                  autoFocus={autoFocus}
-                  compactMode={compactMode}
-                  onClearInput={onClearInput}
-                  hasIconLeft={hasIconLeft}
-                  iconClasses={iconClasses}
-                  onGoToSearchPage={() => {
-                    closeMenu()
-                    onGoToSearchPage()
-                  }}
-                  {...getInputProps({
-                    placeholder,
-                    value: inputValue,
-                    onChange: onInputChange,
-                    onKeyDown: event => {
-                      closeMenu()
-                      onEnterPress(event)
-                    },
-                  })}
-                />
-                {shouldSearch && isOpen ? (
-                  <Overlay>
-                    <div
-                      style={{
-                        width:
-                          this.container.current &&
-                          this.container.current.offsetWidth,
-                      }}
-                    >
-                      <ResultsLists
-                        {...{
-                          getMenuProps,
-                          inputValue,
-                          getItemProps,
-                          selectedItem,
-                          highlightedIndex,
-                          closeMenu,
-                          onClearInput,
-                        }}
-                      />
-                    </div>
-                  </Overlay>
-                ) : null}
-              </div>
-            )}
-          </Downshift>
-        </NoSSR>
-      </div>
-    )
-  }
+  const onSelect = useCallback(
+    element => {
+      if (!element) {
+        return
+      }
+
+      if (element.term) {
+        navigate({
+          page: 'store.search',
+          params: { term: element.term },
+          query: 'map=ft',
+        })
+        return
+      }
+
+      let page = 'store.product'
+      let params = { slug: element.slug }
+      let query = ''
+      const terms = element.slug.split('/')
+
+      if (element.criteria) {
+        page = 'store.search'
+        params = { term: terms[0] }
+        query = `map=c,ft&rest=${terms.slice(1).join(',')}`
+      }
+
+      navigate({ page, params, query })
+    },
+    [navigate]
+  )
+
+  const fallback = (
+    <AutocompleteInput
+      placeholder={placeholder}
+      onMakeSearch={onMakeSearch}
+      onInputChange={onInputChange}
+      onGoToSearchPage={onGoToSearchPage}
+      inputValue={inputValue}
+      hasIconLeft={hasIconLeft}
+      iconClasses={iconClasses}
+    />
+  )
+
+  return (
+    <div
+      ref={container}
+      className={classNames('w-100 mw7 pv4', styles.searchBarContainer)}
+      style={{
+        ...(maxWidth && {
+          maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
+        }),
+      }}
+    >
+      <NoSSR onSSR={fallback}>
+        <Downshift onSelect={onSelect}>
+          {({
+            getInputProps,
+            getItemProps,
+            getMenuProps,
+            selectedItem,
+            highlightedIndex,
+            isOpen,
+            closeMenu,
+          }) => (
+            <div className="relative-m w-100">
+              <AutocompleteInput
+                autoFocus={autoFocus}
+                compactMode={compactMode}
+                onClearInput={onClearInput}
+                hasIconLeft={hasIconLeft}
+                iconClasses={iconClasses}
+                onGoToSearchPage={() => {
+                  closeMenu()
+                  onGoToSearchPage()
+                }}
+                {...getInputProps({
+                  placeholder,
+                  value: inputValue,
+                  onChange: onInputChange,
+                })}
+              />
+              <Overlay>
+                <div style={menuStyle}>
+                  <ResultsLists
+                    {...{
+                      isOpen,
+                      getMenuProps,
+                      inputValue,
+                      getItemProps,
+                      selectedItem,
+                      highlightedIndex,
+                      closeMenu,
+                      onClearInput,
+                    }}
+                  />
+                </div>
+              </Overlay>
+            </div>
+          )}
+        </Downshift>
+      </NoSSR>
+    </div>
+  )
 }
 
 SearchBar.propTypes = {
@@ -142,3 +168,5 @@ SearchBar.propTypes = {
   /** Max width of the search bar */
   maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
+
+export default SearchBar
