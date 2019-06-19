@@ -152,5 +152,7 @@
   "admin/editor.skuSelector.seeMoreLabel.description": "Description of seeMoreLabel property",
   "vtex.native-types::store/native-types.text": "native types",
   "vtex.native-types::store/native-types.richText": "Rich text field",
-  "vtex.native-types::store/native-types.url": "URL field"
+  "vtex.native-types::store/native-types.url": "URL field",
+  "vtex.address-form::address-form.field.postalCode": "address-form.field.postalCode",
+  "vtex.address-form::address-form.dontKnowPostalCode": "address-form.dontKnowPostalCode"
 }
