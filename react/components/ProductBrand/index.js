@@ -37,6 +37,10 @@ const ProductBrand = ({
 }) => {
   const productContext = useContext(ProductContext)
 
+  if (!productContext || !productContext.product) {
+    return null
+  }
+
   const {
     product: { brand: brandName, brandId },
   } = productContext
