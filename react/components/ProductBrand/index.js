@@ -154,9 +154,9 @@ ProductBrand.propTypes = {
   brandName: PropTypes.string,
   /** Whether it should be displayed as a logo or as a text */
   displayMode: PropTypes.oneOf(Object.values(DISPLAY_MODE)),
-  /** Whether the loading placeholder should have the size of the logo or the text*/
+  /** Whether the loading placeholder should have the size of the logo or the text */
   loadingPlaceholder: PropTypes.oneOf(Object.values(DISPLAY_MODE)),
-  /** Whether it should display the name of the brand if there is no logo*/
+  /** Whether it should display the name of the brand if there is no logo */
   fallbackToText: PropTypes.bool,
   /** List of brands that should be hidden, if any */
   excludeBrands: PropTypes.arrayOf(
