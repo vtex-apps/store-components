@@ -30,7 +30,6 @@ const ProductBrand = ({
    * It makes sense at surface, but setting both width and height
    * messes with the alignment of the logo, due to how our image
    * server handles resizing. */
-  // width,
   height = 100,
   excludeBrands,
   blockClass,
@@ -87,7 +86,6 @@ const ProductBrand = ({
               <BrandContainer>
                 <div
                   style={{
-                    // width,
                     height,
                   }}
                 >
@@ -99,12 +97,10 @@ const ProductBrand = ({
                     )}
                     src={changeImageUrlSize(
                       `/arquivos/ids${imageUrl}`,
-                      // width ? width * dpi : undefined,
                       undefined,
                       height ? height * dpi : undefined
                     )}
                     style={{
-                      // width: width || 'auto',
                       height: height || 'auto',
                     }}
                   />
@@ -132,7 +128,6 @@ const ProductBrand = ({
             <BrandContainer>
               <div
                 style={{
-                  // width,
                   height,
                 }}
               />
