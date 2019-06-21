@@ -71,7 +71,9 @@ const ProductBrand = ({
   }
 
   if (!height) {
-    console.warn("ProductBrand: It is strongly recommended that the height of the logo should be set, to avoid shifting positions of elements while the logo is loading.")
+    console.warn(
+      'ProductBrand: It is strongly recommended that the height of the logo should be set, to avoid shifting positions of elements while the logo is loading.'
+    )
   }
 
   return (
@@ -81,14 +83,16 @@ const ProductBrand = ({
         if (data && data.brand) {
           const { imageUrl } = data.brand
           if (imageUrl) {
-            const dpi = window && window.devicePixelRatio || 1
+            const dpi = (window && window.devicePixelRatio) || 1
 
             return (
               <BrandContainer>
-                <div style={{
-                  // width,
-                  height,
-                }}>
+                <div
+                  style={{
+                    // width,
+                    height,
+                  }}
+                >
                   {/** TODO: Use a smarter Image component that handles VTEX image resizing etc. */}
                   <img
                     className={generateBlockClass(
@@ -99,7 +103,7 @@ const ProductBrand = ({
                       `/arquivos/ids${imageUrl}`,
                       // width ? width * dpi : undefined,
                       undefined,
-                      height ? height * dpi : undefined,
+                      height ? height * dpi : undefined
                     )}
                     style={{
                       // width: width || 'auto',
@@ -128,10 +132,12 @@ const ProductBrand = ({
         if (loadingPlaceholder === DISPLAY_MODE.LOGO) {
           return (
             <BrandContainer>
-              <div style={{
-                // width,
-                height,
-              }} />
+              <div
+                style={{
+                  // width,
+                  height,
+                }}
+              />
             </BrandContainer>
           )
         }
