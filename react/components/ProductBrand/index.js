@@ -167,7 +167,7 @@ ProductBrand.propTypes = {
     PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   ),
   /** Height of the logo */
-  height: PropTypes.nuber,
+  height: PropTypes.number,
   /** CSS Handler */
   blockClass: PropTypes.string,
 }
