@@ -94,7 +94,7 @@ const ProductBrand = ({
                   {/** TODO: Use a smarter Image component that handles VTEX image resizing etc. */}
                   <img
                     className={generateBlockClass(
-                      styles.productBrandImage,
+                      styles.productBrandLogo,
                       blockClass
                     )}
                     src={changeImageUrlSize(
