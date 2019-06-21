@@ -1,4 +1,4 @@
-# Product Name
+# Product Brand
 
 ## Description
 
