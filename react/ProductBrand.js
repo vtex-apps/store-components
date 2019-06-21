@@ -1,3 +1,3 @@
-import ProductBrand from './components/ProductBrand/Wrapper'
+import ProductBrand from './components/ProductBrand'
 
 export default ProductBrand
