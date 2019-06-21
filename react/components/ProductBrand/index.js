@@ -8,13 +8,7 @@ import { changeImageUrlSize } from './urlHelpers'
 
 import styles from './productBrand.css'
 
-const BRAND_LOGO_QUERY = gql`
-  query Brand($id: Int) {
-    brand(id: $id) {
-      imageUrl
-    }
-  }
-`
+import brandLogoQuery from './productBrand.gql'
 
 const DISPLAY_MODE = {
   LOGO: 'logo',
@@ -77,7 +71,7 @@ const ProductBrand = ({
   }
 
   return (
-    <Query query={BRAND_LOGO_QUERY} ssr={false} variables={{ id: brandId }}>
+    <Query query={brandLogoQuery} ssr={false} variables={{ id: brandId }}>
       {query => {
         const { data } = query
         if (data && data.brand) {
