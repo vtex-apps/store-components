@@ -22,6 +22,12 @@ const shouldExcludeBrand = (brandName, brandId, excludeList) => {
   return false
 }
 
+const BrandContainer = ({ children, blockClass }) => (
+  <div className={generateBlockClass(styles.productBrandContainer, blockClass)}>
+    {children}
+  </div>
+)
+
 const ProductBrand = ({
   displayMode = DISPLAY_MODE.LOGO,
   fallbackToText = true,
@@ -49,14 +55,6 @@ const ProductBrand = ({
     return null
   }
 
-  const BrandContainer = ({ children }) => (
-    <div
-      className={generateBlockClass(styles.productBrandContainer, blockClass)}
-    >
-      {children}
-    </div>
-  )
-
   const brandNameElement = (
     <span className={generateBlockClass(styles.productBrandName, blockClass)}>
       {brandName}
@@ -64,7 +62,11 @@ const ProductBrand = ({
   )
 
   if (displayMode === DISPLAY_MODE.TEXT) {
-    return <BrandContainer>{brandNameElement}</BrandContainer>
+    return (
+      <BrandContainer blockClass={blockClass}>
+        {brandNameElement}
+      </BrandContainer>
+    )
   }
 
   if (!height) {
@@ -83,7 +85,7 @@ const ProductBrand = ({
             const dpi = (window && window.devicePixelRatio) || 1
 
             return (
-              <BrandContainer>
+              <BrandContainer blockClass={blockClass}>
                 <div
                   style={{
                     height,
@@ -113,7 +115,11 @@ const ProductBrand = ({
            * logo was uploaded. So it falls back to the brand name,
            * if said fallback is enabled. */
           if (imageUrl === null && fallbackToText) {
-            return <BrandContainer>{brandNameElement}</BrandContainer>
+            return (
+              <BrandContainer blockClass={blockClass}>
+                {brandNameElement}
+              </BrandContainer>
+            )
           }
         }
 
@@ -125,7 +131,7 @@ const ProductBrand = ({
          */
         if (loadingPlaceholder === DISPLAY_MODE.LOGO) {
           return (
-            <BrandContainer>
+            <BrandContainer blockClass={blockClass}>
               <div
                 style={{
                   height,
@@ -136,7 +142,7 @@ const ProductBrand = ({
         }
         if (loadingPlaceholder === DISPLAY_MODE.TEXT && fallbackToText) {
           return (
-            <BrandContainer>
+            <BrandContainer blockClass={blockClass}>
               <span className="o-0">{brandNameElement}</span>
             </BrandContainer>
           )
