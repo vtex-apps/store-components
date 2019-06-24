@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { string } from 'prop-types'
 import NotificationContent from './notificationContent'
+import hoistNonReactStatics from 'hoist-non-react-statics'
 
 import styles from './styles.css'
 
@@ -46,4 +47,4 @@ NotificationBar.schema = {
   },
 }
 
-export default memo(NotificationBar)
+export default hoistNonReactStatics(NotificationBar, memo(NotificationBar))
