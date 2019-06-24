@@ -128,6 +128,8 @@ const ResultsList = ({
                   >
                     {item.thumb && (
                       <img
+                        width={50}
+                        height={50}
                         alt={item.name}
                         className={`${styles.resultsItemImage} mr4`}
                         src={getImageUrl(item.thumb)}
