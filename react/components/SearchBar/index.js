@@ -37,12 +37,6 @@ class SearchBarContainer extends Component {
     })
   }
 
-  handleEnterPress = event => {
-    if (event.key === 'Enter') {
-      this.handleGoToSearchPage()
-    }
-  }
-
   handleMakeSearch = () => {
     this.handleClearSearchResults()
 
@@ -85,7 +79,6 @@ class SearchBarContainer extends Component {
         inputValue={inputValue}
         onClearInput={this.handleClearInput}
         onGoToSearchPage={this.handleGoToSearchPage}
-        onEnterPress={this.handleEnterPress}
         onMakeSearch={this.handleMakeSearch}
         onInputChange={this.handleInputChange}
         compactMode={compactMode}

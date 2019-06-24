@@ -12,7 +12,6 @@ import styles from '../styles.css'
 
 const SearchBar = ({
   placeholder,
-  onEnterPress,
   onMakeSearch,
   onInputChange,
   onGoToSearchPage,
@@ -71,7 +70,6 @@ const SearchBar = ({
       placeholder={placeholder}
       onMakeSearch={onMakeSearch}
       onInputChange={onInputChange}
-      onGoToSearchPage={onGoToSearchPage}
       inputValue={inputValue}
       hasIconLeft={hasIconLeft}
       iconClasses={iconClasses}
@@ -106,10 +104,6 @@ const SearchBar = ({
                 onClearInput={onClearInput}
                 hasIconLeft={hasIconLeft}
                 iconClasses={iconClasses}
-                onGoToSearchPage={() => {
-                  closeMenu()
-                  onGoToSearchPage()
-                }}
                 {...getInputProps({
                   placeholder,
                   value: inputValue,
@@ -149,8 +143,6 @@ SearchBar.propTypes = {
   shouldSearch: PropTypes.bool.isRequired,
   /** Function that controls when the search should be executed */
   onMakeSearch: PropTypes.func.isRequired,
-  /** Function that controls the action when the enter key is pressed */
-  onEnterPress: PropTypes.func.isRequired,
   /** Function to handle input changes */
   onInputChange: PropTypes.func.isRequired,
   /** Function to direct the user to the searchPage */

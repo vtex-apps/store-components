@@ -30,7 +30,6 @@ class AutocompleteInput extends Component {
 
   render() {
     const {
-      onGoToSearchPage,
       onClearInput,
       compactMode,
       value,
@@ -94,8 +93,6 @@ AutocompleteInput.propTypes = {
   value: PropTypes.string,
   /** Placeholder to be used on the input */
   placeholder: PropTypes.string,
-  /** Function to direct the user to the searchPage */
-  onGoToSearchPage: PropTypes.func.isRequired,
   compactMode: PropTypes.bool,
   /** Clears the input */
   onClearInput: PropTypes.func,
