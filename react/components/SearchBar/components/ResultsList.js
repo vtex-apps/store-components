@@ -102,7 +102,7 @@ const ResultsList = ({
                   id="store/search.searchFor"
                   values={{
                     term: (
-                      <span className={styles.searchTerm}>"{inputValue}"</span>
+                      <span className={styles.searchTerm}> "{inputValue}"</span>
                     ),
                   }}
                 />
