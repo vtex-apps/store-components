@@ -105,6 +105,13 @@ const SearchBar = ({
                 hasIconLeft={hasIconLeft}
                 iconClasses={iconClasses}
                 {...getInputProps({
+                  onKeyDown: event => {
+                    // Only call default search function if user doesn't
+                    // have any item highlighted in the menu options
+                    if (event.key === 'Enter' && highlightedIndex === null) {
+                      onGoToSearchPage()
+                    }
+                  },
                   placeholder,
                   value: inputValue,
                   onChange: onInputChange,
