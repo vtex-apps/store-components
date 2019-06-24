@@ -10,7 +10,7 @@ import { useRuntime } from 'vtex.render-runtime'
 
 import styles from '../styles.css'
 
-const MIN_RESULTS_WIDTH = 400
+const MIN_RESULTS_WIDTH = 320
 
 const SearchBar = ({
   placeholder,
