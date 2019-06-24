@@ -60,12 +60,12 @@ const ResultsList = ({
 
   const listClassNames = classnames(
     styles.resultsList,
-    'z-max w-100 bl-ns bb br-ns bw1 b--muted-4 bg-white f5 left-0 list pv4 ph0 mv0',
+    'z-max w-100 bl-ns bb br-ns bw1 b--muted-4 bg-base c-on-base t-body left-0 list pv4 ph0 mv0',
     mobile ? 'fixed' : 'absolute',
     { dn: !isOpen || !inputValue }
   )
 
-  const listItemClassNames = classnames(styles.resultsItem, 'f5 pa4 outline-0')
+  const listItemClassNames = classnames(styles.resultsItem, 'pa4 outline-0')
 
   const handleItemClick = () => {
     onClearInput()
