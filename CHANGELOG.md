@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Show option to search for term instead of showing "no matches" in search autocomplete.
+
+### Fixed
+- Fix spaces in search autocomplete list.
 
 ## [3.47.0] - 2019-06-24
 ### Added
@@ -20,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.46.0] - 2019-06-21
 
 ### Added
+
 - Added support for rootPath in one click buy mode.
 
 ## [3.45.3] - 2019-06-19

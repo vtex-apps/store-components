@@ -37,12 +37,6 @@ class SearchBarContainer extends Component {
     })
   }
 
-  handleEnterPress = event => {
-    if (event.key === 'Enter') {
-      this.handleGoToSearchPage()
-    }
-  }
-
   handleMakeSearch = () => {
     this.handleClearSearchResults()
 
@@ -76,20 +70,15 @@ class SearchBarContainer extends Component {
     const placeholder = intl.formatMessage({
       id: 'store/search.placeholder',
     })
-    const emptyPlaceholder = intl.formatMessage({
-      id: 'store/search.noMatches',
-    })
 
     return (
       <SearchBar
         autoFocus={autoFocus}
         placeholder={placeholder}
-        emptyPlaceholder={emptyPlaceholder}
         shouldSearch={shouldSearch}
         inputValue={inputValue}
         onClearInput={this.handleClearInput}
         onGoToSearchPage={this.handleGoToSearchPage}
-        onEnterPress={this.handleEnterPress}
         onMakeSearch={this.handleMakeSearch}
         onInputChange={this.handleInputChange}
         compactMode={compactMode}

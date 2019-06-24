@@ -50,6 +50,9 @@
   border: none;
 }
 
+.searchTerm {
+}
+
 @media only screen and (max-width: 49rem) {
   .searchBarContainer input {
     box-shadow: none;
