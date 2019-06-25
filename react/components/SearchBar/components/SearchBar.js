@@ -10,6 +10,8 @@ import { useRuntime } from 'vtex.render-runtime'
 
 import styles from '../styles.css'
 
+const MIN_RESULTS_WIDTH = 320
+
 const SearchBar = ({
   placeholder,
   onMakeSearch,
@@ -29,7 +31,10 @@ const SearchBar = ({
 
   const menuStyle = useMemo(
     () => ({
-      width: container.current && container.current.offsetWidth,
+      width: Math.max(
+        MIN_RESULTS_WIDTH,
+        container.current && container.current.offsetWidth
+      ),
     }),
     [container.current]
   )
@@ -117,7 +122,7 @@ const SearchBar = ({
                   onChange: onInputChange,
                 })}
               />
-              <Overlay>
+              <Overlay alignment="right">
                 <div style={menuStyle}>
                   <ResultsLists
                     {...{
