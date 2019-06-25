@@ -128,7 +128,9 @@ export const uniqueOptionToSelect = (
 }
 
 export function slug(str) {
-  return slugify(str, { lower: true, remove: /[*+~.()'"!:@]/g })
+  const replaced = (str && str.replace(/[*+~.()'"!:@&\[\]]/g, '')) || ''
+  const slugified = slugify(replaced, { lower: true }) || ''
+  return slugified
 }
 
 /** Private functions */

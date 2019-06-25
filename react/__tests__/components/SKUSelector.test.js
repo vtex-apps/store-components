@@ -949,4 +949,61 @@ describe('<SKUSelector />', () => {
     expect(getByText('4')).toBeDefined()
     expect(getByText('12')).toBeDefined()
   })
+  it('remove accent from names on slugify methods', async () => {
+    const defaultSeller = {
+      commertialOffer: { Price: 15, AvailableQuantity: 1 },
+    }
+    const skuItems = [
+      {
+        itemId: '1',
+        name: 'Gray Shoe',
+        variations: [
+          { name: 'Size', values: ['[Square Brackets]'] },
+          { name: 'Color', values: ['Jácó'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '2',
+        name: 'Black Shoe',
+        variations: [
+          { name: 'Size', values: ['[Square Brackets]'] },
+          { name: 'Color', values: ['@@Testing&&'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '3',
+        name: 'Black Shoe',
+        variations: [
+          { name: 'Size', values: ['[Square Brackets]'] },
+          { name: 'Color', values: ["John's"] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '4',
+        name: 'Black Shoe',
+        variations: [
+          { name: 'Size', values: ['[Square Brackets]'] },
+          { name: 'Color', values: ['Feijão'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+    ]
+
+    const { queryByText } = render(
+      <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
+    )
+    await Promise.resolve()
+    expect(queryByText('skuSelectorItem--feijao')).toBeDefined()
+    expect(queryByText('skuSelectorItem--square-brackets')).toBeDefined()
+    expect(queryByText('skuSelectorItem--johns')).toBeDefined()
+    expect(queryByText('skuSelectorItem--testing')).toBeDefined()
+    expect(queryByText('skuSelectorItem--jaco')).toBeDefined()
+  })
 })
