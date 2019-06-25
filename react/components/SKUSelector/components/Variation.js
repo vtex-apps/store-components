@@ -3,6 +3,7 @@ import React, { useCallback, memo, useState, useEffect } from 'react'
 import { Button } from 'vtex.styleguide'
 import { IOMessage } from 'vtex.native-types'
 import useProduct from 'vtex.product-context/useProduct'
+import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 import { path, findIndex, propEq, compose } from 'ramda'
 
 import SelectorItem from './SelectorItem'
@@ -21,7 +22,8 @@ const seeMoreState = name =>
   )
 
 const useShowAll = name => {
-  const { state, dispatch } = useProduct()
+  const { state } = useProduct()
+  const { dispatch } = useProductDispatch()
   const contextValue = seeMoreState(name)(state)
   const [showAll, setShowAll] = useState(contextValue)
   const showAllAction = useCallback(() => {

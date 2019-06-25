@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, { useState, useEffect, useMemo, memo, useCallback } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 import { filter, head, isEmpty, compose, keys, length } from 'ramda'
-import useProduct from 'vtex.product-context/useProduct'
+import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 import SKUSelector from './components/SKUSelector'
 import { skuShape } from './utils/proptypes'
@@ -60,7 +60,7 @@ const useImagesMap = (items, variations) => {
 }
 
 const useAllSelectedEvent = (selectedVariations, variationsCount) => {
-  const { dispatch } = useProduct()
+  const { dispatch } = useProductDispatch()
   useEffect(() => {
     if (dispatch && selectedVariations) {
       const selectedNotNull = filterSelected(selectedVariations)
