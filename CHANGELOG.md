@@ -7,23 +7,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Slugify variation option name added to the variation item.
+
 ## [3.47.2] - 2019-06-25
+
 ### Fixed
+
 - Sets min width to search results box.
 
 ## [3.47.1] - 2019-06-24
+
 ### Changed
+
 - Show option to search for term instead of showing "no matches" in search autocomplete.
 
 ### Fixed
+
 - Fix spaces in search autocomplete list.
 
 ## [3.47.0] - 2019-06-24
+
 ### Added
+
 - **ProductBrand** component, along with **product-brand** block.
 
 ## [3.46.2] - 2019-06-24
+
 ### Fixed
+
 - **NotificationBar** is now editable via Storefront.
 
 ## [3.46.1] - 2019-06-21
