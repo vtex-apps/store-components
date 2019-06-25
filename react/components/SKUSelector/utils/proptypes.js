@@ -25,6 +25,12 @@ export const skuShape = PropTypes.shape({
   ),
 })
 
+export const parsedSkuShape = PropTypes.shape({
+  ...skuShape,
+  /** List of products specifications names */
+  variations: PropTypes.arrayOf(PropTypes.string),
+})
+
 export const variationShape = PropTypes.shape({
   /** Variation Name */
   name: PropTypes.string,

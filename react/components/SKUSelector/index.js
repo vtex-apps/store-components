@@ -1,7 +1,15 @@
 import PropTypes from 'prop-types'
-import React, { useState, useEffect, useMemo, memo, useCallback } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  memo,
+  useCallback,
+  useContext,
+} from 'react'
 import { useRuntime } from 'vtex.render-runtime'
-import { filter, head, isEmpty } from 'ramda'
+import { filter, head, isEmpty, compose, keys, length } from 'ramda'
+import { ProductContext } from 'vtex.product-context'
 
 import SKUSelector from './components/SKUSelector'
 import { skuShape } from './utils/proptypes'
@@ -11,6 +19,12 @@ import {
   uniqueOptionToSelect,
   findItemWithSelectedVariations,
 } from './utils'
+
+const keyCount = compose(
+  length,
+  keys
+)
+const filterSelected = filter(Boolean)
 
 const buildEmptySelectedVariation = variations => {
   const variationNames = Object.keys(variations)
@@ -52,6 +66,21 @@ const useImagesMap = (items, variations) => {
   }, [items, variations])
 }
 
+const useAllSelectedEvent = (selectedVariations, variationsCount) => {
+  const { dispatch } = useContext(ProductContext)
+  useEffect(() => {
+    if (dispatch && selectedVariations) {
+      const selectedNotNull = filterSelected(selectedVariations)
+      const selectedCount = keyCount(selectedNotNull)
+      const allSelected = selectedCount === variationsCount
+      dispatch({
+        type: 'SKU_SELECTOR_SET_VARIATIONS_SELECTED',
+        allSelected,
+      })
+    }
+  }, [dispatch, selectedVariations, variationsCount])
+}
+
 /**
  * Display a list of SKU items of a product and its specifications.
  */
@@ -64,6 +93,12 @@ const SKUSelectorContainer = ({
   skuSelected,
   hideImpossibleCombinations,
 }) => {
+  const variationsCount = keyCount(variations)
+  const [selectedSkuId, setSelectedSkuId] = useState(null)
+  const [selectedVariations, setSelectedVariations] = useState(null)
+
+  useAllSelectedEvent(selectedVariations, variationsCount)
+
   const parsedItems = useMemo(() => skuItems.map(parseSku), [skuItems])
 
   const { setQuery } = useRuntime()
@@ -75,8 +110,7 @@ const SKUSelectorContainer = ({
       }
     )
   }
-  const [selectedSkuId, setSelectedSkuId] = useState(null)
-  const [selectedVariations, setSelectedVariations] = useState(null)
+
   useEffect(() => {
     const initalVariations = skuSelected
       ? selectedVariationFromItem(parseSku(skuSelected), variations)
@@ -122,9 +156,8 @@ const SKUSelectorContainer = ({
         setSelectedVariations(finalSelected)
       }
 
-      const selectedNotNull = filter(Boolean, finalSelected)
-      const selectedCount = Object.keys(selectedNotNull).length
-      const variationsCount = Object.keys(variations).length
+      const selectedNotNull = filterSelected(finalSelected)
+      const selectedCount = keyCount(selectedNotNull)
       const allSelected = selectedCount === variationsCount
       let skuIdToRedirect = skuId
       if (!skuIdToRedirect || !isEmpty(uniqueOptions)) {
@@ -186,8 +219,6 @@ SKUSelectorContainer.propTypes = {
    * Example: { "size": ["small", "medium", "large"], "color": ["blue", "yellow"] }
    */
   variations: PropTypes.object,
-
-  skuSelected: skuShape,
 
   hideImpossibleCombinations: PropTypes.bool,
 }

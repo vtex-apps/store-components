@@ -28,7 +28,7 @@ const BuyButtonWrapper = props => {
       return props
     }
 
-    const { product, selectedItem, selectedQuantity } = valuesFromContext
+    const { product, selectedItem, state } = valuesFromContext
 
     const sellerId = path(['sellers', 0, 'sellerId'], selectedItem)
     const commertialOffer = path(
@@ -44,7 +44,7 @@ const BuyButtonWrapper = props => {
       sellerId && [
         {
           skuId: selectedItem.itemId,
-          quantity: selectedQuantity,
+          quantity: state.selectedQuantity,
           seller: sellerId,
           name: selectedItem.nameComplete,
           price: commertialOffer.Price,

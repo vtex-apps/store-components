@@ -1,16 +1,49 @@
 import PropTypes from 'prop-types'
-import React, { useState, useCallback, memo } from 'react'
+import React, {
+  useCallback,
+  memo,
+  useContext,
+  useState,
+  useEffect,
+} from 'react'
 import { Button } from 'vtex.styleguide'
 import { IOMessage } from 'vtex.native-types'
+import { ProductContext } from 'vtex.product-context'
+import { path, findIndex, propEq, compose } from 'ramda'
 
 import SelectorItem from './SelectorItem'
-import { stripUrl, isColor } from '../utils'
+import { stripUrl, isColor, slug } from '../utils'
 import { variationShape } from '../utils/proptypes'
 
 import styles from '../styles.css'
 import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 
 const ITEMS_VISIBLE_THRESHOLD = 2
+
+const seeMoreState = name =>
+  compose(
+    Boolean,
+    path(['skuSelector', name, 'seeMore'])
+  )
+
+const useShowAll = name => {
+  const { state, dispatch } = useContext(ProductContext)
+  const contextValue = seeMoreState(name)(state)
+  const [showAll, setShowAll] = useState(contextValue)
+  const showAllAction = useCallback(() => {
+    if (dispatch) {
+      dispatch({
+        type: 'SKU_SELECTOR_SEE_MORE',
+        args: { name },
+      })
+    }
+    setShowAll(true)
+  }, [dispatch, name, setShowAll])
+  return [showAll, showAllAction]
+}
+
+const findSelectedOption = selectedItem =>
+  findIndex(propEq('label', selectedItem))
 
 const Variation = ({
   variation,
@@ -19,10 +52,17 @@ const Variation = ({
   maxItems,
   selectedItem,
 }) => {
-  const displayImage = isColor(variation.name)
-  const { options } = variation
-  const [showAll, setShowAll] = useState(false)
+  const { name, options } = variation
+  const [showAll, showAllAction] = useShowAll(name)
   const visibleItemsWhenCollapsed = maxItems - ITEMS_VISIBLE_THRESHOLD
+  useEffect(() => {
+    const selectedOptionPosition = findSelectedOption(selectedItem)(options)
+    if (selectedOptionPosition >= visibleItemsWhenCollapsed) {
+      showAllAction()
+    }
+  }, [])
+
+  const displayImage = isColor(name)
 
   const shouldCollapse = !showAll && options.length > maxItems
 
@@ -32,15 +72,13 @@ const Variation = ({
     0,
     shouldCollapse ? visibleItemsWhenCollapsed : options.length
   )
-
-  const showAllAction = useCallback(() => setShowAll(true), [])
   const emptyAction = useCallback(() => {}, [])
 
   return (
     <div
       className={`${styles.skuSelectorSubcontainer} ${
         styles.skuSelectorSubcontainer
-      }--${variation.name} flex flex-column mb7`}
+      }--${slug(name)} flex flex-column mb7`}
     >
       <div className={`${styles.skuSelectorNameContainer} ma1`}>
         <span
@@ -48,14 +86,14 @@ const Variation = ({
             styles.skuSelectorName
           } c-muted-2 db t-small overflow-hidden mb3`}
         >
-          {variation.name}
+          {name}
         </span>
         <div className="inline-flex flex-wrap ml2 flex items-center">
           {displayOptions.map(option => {
             return (
               <SelectorItem
                 isSelected={option.label === selectedItem}
-                key={`${option.label}-${variation.name}`}
+                key={`${option.label}-${name}`}
                 isAvailable={option.available}
                 maxPrice={maxSkuPrice}
                 onClick={option.impossible ? emptyAction : option.onSelectItem}
