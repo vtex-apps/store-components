@@ -2,6 +2,11 @@ import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedNumber } from 'react-intl'
 import classNames from 'classnames'
+import slugify from 'slugify'
+
+function slug(str) {
+  return slugify(str, { lower: true, remove: /[*+~.()'"!:@]/g })
+}
 
 import styles from '../styles.css'
 
@@ -35,7 +40,7 @@ const SelectorItem = ({
       tabIndex={0}
       className={classNames(
         styles.skuSelectorItem,
-        `${styles.skuSelectorItem}--${variationValue}`,
+        `${styles.skuSelectorItem}--${slug(variationValue)}`,
         'relative di pointer flex items-center outline-0',
         {
           [styles.skuSelectorItemImage]: isImage,
