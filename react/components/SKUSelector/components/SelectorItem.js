@@ -2,13 +2,9 @@ import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedNumber } from 'react-intl'
 import classNames from 'classnames'
-import slugify from 'slugify'
-
-function slug(str) {
-  return slugify(str, { lower: true, remove: /[*+~.()'"!:@]/g })
-}
 
 import styles from '../styles.css'
+import { slug } from '../utils'
 
 const getDiscount = (maxPrice, price) => {
   let discount = 0

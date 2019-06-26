@@ -6,7 +6,7 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
     class="skuSelectorContainer"
   >
     <div
-      class="skuSelectorSubcontainer skuSelectorSubcontainer--Color flex flex-column mb7"
+      class="skuSelectorSubcontainer skuSelectorSubcontainer--color flex flex-column mb7"
     >
       <div
         class="skuSelectorNameContainer ma1"

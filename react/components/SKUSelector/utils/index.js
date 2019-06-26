@@ -1,4 +1,5 @@
 import { prop, filter, clone, reject } from 'ramda'
+import slugify from 'slugify'
 
 /**
  * Return the maximum sku price
@@ -124,6 +125,12 @@ export const uniqueOptionToSelect = (
     variationsWithOne[variationName] = value
   }
   return variationsWithOne
+}
+
+export function slug(str) {
+  const replaced = (str && str.replace(/[*+~.()'"!:@&\[\]]/g, '')) || ''
+  const slugified = slugify(replaced, { lower: true }) || ''
+  return slugified
 }
 
 /** Private functions */

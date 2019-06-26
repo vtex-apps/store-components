@@ -6,7 +6,7 @@ import Variation from './Variation'
 import { compose, flip, gt, filter, path, clone } from 'ramda'
 
 import styles from '../styles.css'
-import { variationShape, skuShape } from '../utils/proptypes'
+import { variationShape, parsedSkuShape } from '../utils/proptypes'
 import {
   findItemWithSelectedVariations,
   findListItemsWithSelectedVariations,
@@ -192,13 +192,11 @@ const SKUSelector = ({
 }
 
 SKUSelector.propTypes = {
-  /** Function to go to the product page of a given sku */
-  onSelectSKU: PropTypes.func,
   seeMoreLabel: PropTypes.string,
   maxItems: PropTypes.number,
   // Variations object
   variations: variationShape,
-  skuItems: PropTypes.arrayOf(skuShape),
+  skuItems: PropTypes.arrayOf(parsedSkuShape),
   /** Object with dynamic keys, with keys being the name of variations its values being value of the selected variation for that variation name.
    * Example: { "size": "small", "color": null }
    */
