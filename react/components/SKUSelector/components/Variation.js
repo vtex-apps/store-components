@@ -2,9 +2,7 @@ import PropTypes from 'prop-types'
 import React, { useCallback, memo, useState, useEffect } from 'react'
 import { Button } from 'vtex.styleguide'
 import { IOMessage } from 'vtex.native-types'
-import useProduct from 'vtex.product-context/useProduct'
-import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
-import { path, findIndex, propEq, compose } from 'ramda'
+import { findIndex, propEq } from 'ramda'
 
 import SelectorItem from './SelectorItem'
 import { stripUrl, isColor, slug } from '../utils'
@@ -14,29 +12,6 @@ import styles from '../styles.css'
 import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 
 const ITEMS_VISIBLE_THRESHOLD = 2
-
-const seeMoreState = name =>
-  compose(
-    Boolean,
-    path(['skuSelector', name, 'seeMore'])
-  )
-
-const useShowAll = name => {
-  const { state } = useProduct()
-  const { dispatch } = useProductDispatch()
-  const contextValue = seeMoreState(name)(state)
-  const [showAll, setShowAll] = useState(contextValue)
-  const showAllAction = useCallback(() => {
-    if (dispatch) {
-      dispatch({
-        type: 'SKU_SELECTOR_SEE_MORE',
-        args: { name },
-      })
-    }
-    setShowAll(true)
-  }, [dispatch, name, setShowAll])
-  return [showAll, showAllAction]
-}
 
 const findSelectedOption = selectedItem =>
   findIndex(propEq('label', selectedItem))
@@ -49,12 +24,13 @@ const Variation = ({
   selectedItem,
 }) => {
   const { name, options } = variation
-  const [showAll, showAllAction] = useShowAll(name)
+  const [showAll, setShowAll] = useState(false)
   const visibleItemsWhenCollapsed = maxItems - ITEMS_VISIBLE_THRESHOLD
+
   useEffect(() => {
     const selectedOptionPosition = findSelectedOption(selectedItem)(options)
     if (selectedOptionPosition >= visibleItemsWhenCollapsed) {
-      showAllAction()
+      setShowAll(true)
     }
   }, [])
 
@@ -68,6 +44,7 @@ const Variation = ({
     0,
     shouldCollapse ? visibleItemsWhenCollapsed : options.length
   )
+  const showAllAction = useCallback(() => setShowAll(true), [setShowAll])
   const emptyAction = useCallback(() => {}, [])
 
   return (

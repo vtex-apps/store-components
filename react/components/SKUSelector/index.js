@@ -87,13 +87,11 @@ const SKUSelectorContainer = ({
   hideImpossibleCombinations,
 }) => {
   const variationsCount = keyCount(variations)
-  const [selectedSkuId, setSelectedSkuId] = useState(null)
   const [selectedVariations, setSelectedVariations] = useState(null)
 
   useAllSelectedEvent(selectedVariations, variationsCount)
 
   const parsedItems = useMemo(() => skuItems.map(parseSku), [skuItems])
-
   const { setQuery } = useRuntime()
   const redirectToSku = skuId => {
     setQuery(
@@ -108,7 +106,6 @@ const SKUSelectorContainer = ({
     const initalVariations = skuSelected
       ? selectedVariationFromItem(parseSku(skuSelected), variations)
       : buildEmptySelectedVariation(variations)
-    skuSelected && setSelectedSkuId(skuSelected.itemId)
     setSelectedVariations(initalVariations)
   }, [])
 
@@ -161,19 +158,16 @@ const SKUSelectorContainer = ({
         skuIdToRedirect = newItem.itemId
       }
 
-      if (selectedSkuId === skuIdToRedirect || isRemoving) {
-        // If it is still the same SKU or we are removing a selection, no need to do anything.
+      if (isRemoving) {
+        // If its just removing, no need to do anything.
         return
       }
 
       if (onSKUSelected) {
-        setSelectedSkuId(skuIdToRedirect)
         onSKUSelected(skuIdToRedirect)
       } else {
         if (allSelected || isColor(variationName)) {
-          setSelectedSkuId(skuIdToRedirect)
-          // Use setTimeout so the UI responsiveness on mobile is better, redirect causes heavy processing.
-          setTimeout(() => redirectToSku(skuIdToRedirect), 0)
+          redirectToSku(skuIdToRedirect)
         }
       }
     },
