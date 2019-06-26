@@ -35,7 +35,9 @@ exports[`<SearchBar /> should match snapshot 1`] = `
           </div>
         </div>
         <div>
-          <div>
+          <div
+            style="width: 320px;"
+          >
             <ul
               aria-labelledby="downshift-1-label"
               class="resultsList z-max w-100 bl-ns bb br-ns bw1 b--muted-4 bg-base c-on-base t-body left-0 list pv4 ph0 mv0 absolute dn"
