@@ -40,7 +40,8 @@ const BuyButtonWrapper = props => {
       Number.isNaN(+path(['AvailableQuantity'], commertialOffer)) ||
       path(['AvailableQuantity'], commertialOffer) > 0
 
-    const contextSkuItems = selectedItem &&
+    const contextSkuItems = product &&
+      selectedItem &&
       sellerId && [
         {
           skuId: selectedItem.itemId,
