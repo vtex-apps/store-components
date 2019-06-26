@@ -33,7 +33,7 @@ const SearchBar = ({
     () => ({
       width: Math.max(
         MIN_RESULTS_WIDTH,
-        container.current && container.current.offsetWidth
+        container.current && container.current.offsetWidth || 0
       ),
     }),
     [container.current]
