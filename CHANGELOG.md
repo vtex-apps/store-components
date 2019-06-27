@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Prop `attemptPageTypeSearch` on `search-bar`; if `true`, Uses the term the user has inputted to try to navigate to the proper page type (e.g. a department, a brand, a category)
+- Prop `attemptPageTypeSearch` on `search-bar`; if `true`, uses the term the user has inputted to try to navigate to the proper page type (e.g. a department, a brand, a category)
 
 ## [3.47.5] - 2019-06-27
 
