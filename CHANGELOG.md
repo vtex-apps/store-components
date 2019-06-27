@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Build assets with new builder hub.
+
 ## [3.47.4] - 2019-06-26
 ### Fixed
 - Fixes NaN being sent to search result width.
