@@ -33,7 +33,7 @@ const SearchBar = ({
     () => ({
       width: Math.max(
         MIN_RESULTS_WIDTH,
-        container.current && container.current.offsetWidth || 0
+        (container.current && container.current.offsetWidth) || 0
       ),
     }),
     [container.current]
@@ -115,6 +115,7 @@ const SearchBar = ({
                     // have any item highlighted in the menu options
                     if (event.key === 'Enter' && highlightedIndex === null) {
                       onGoToSearchPage()
+                      closeMenu()
                     }
                   },
                   placeholder,
