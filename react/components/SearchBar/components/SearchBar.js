@@ -115,6 +115,7 @@ const SearchBar = ({
                     // have any item highlighted in the menu options
                     if (event.key === 'Enter' && highlightedIndex === null) {
                       onGoToSearchPage()
+                      closeMenu()
                     }
                   },
                   placeholder,
