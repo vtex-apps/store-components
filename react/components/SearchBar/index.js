@@ -28,6 +28,11 @@ class SearchBarContainer extends Component {
   handleGoToSearchPage = () => {
     const search = this.state.inputValue
 
+    if (this.props.attemptPageTypeSearch) {
+      window.location.href = `/${search}`
+      return
+    }
+
     this.setState({ inputValue: '' })
     this.context.navigate({
       page: 'store.search',
@@ -107,6 +112,10 @@ SearchBarContainer.propTypes = {
   autoFocus: PropTypes.bool,
   /** Max width of the search bar */
   maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Uses the term the user has inputted to try to navigate to the proper
+   * page type (e.g. a department, a brand, a category)
+   */
+  attemptPageTypeSearch: PropTypes.bool,
 }
 
 export default injectIntl(SearchBarContainer)
