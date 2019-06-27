@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.47.5] - 2019-06-27
+
 ### Fixed
 - Build assets with new builder hub.
 
