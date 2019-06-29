@@ -37,6 +37,16 @@ Through the Storefront, you can change the `ProductDescription`'s behavior and i
 | ------------------------ | ---------- |--------------------- |
 | `description`            | `String`   | Product description  |
 
+Content API
+
+You can customize your `product-description` block inside your product page by passing available props in your `blocks.json` file.
+
+Here are the props for this component:
+
+| Prop name                | Type       | Description          | Default          |
+| ------------------------ | ---------- |--------------------- |--------------------- |
+| `showShowMoreButton`            | `Boolean`   | If true, whenever the product description is too big, it will collapse and show a "Show More" button. When false, it will never collapse and will always show the whole description.  |  `True`  |
+
 ### Styles API
 You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api).
 
