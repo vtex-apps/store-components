@@ -16,7 +16,9 @@ const ProductDescription = ({ description, showShowMoreButton }) => {
     return null
   }
 
-  const descriptionParsed = useMemo(() => HtmlParser(description), [description])
+  const descriptionParsed = useMemo(() => HtmlParser(description), [
+    description,
+  ])
 
   return (
     <div className={styles.productDescriptionContainer}>
@@ -26,13 +28,11 @@ const ProductDescription = ({ description, showShowMoreButton }) => {
 
       <div className="c-muted-1">
         {showShowMoreButton ? (
-        <GradientCollapse collapseHeight={220}>
-          {descriptionParsed}
-        </GradientCollapse>
-        ) : (
-          <Fragment>
+          <GradientCollapse collapseHeight={220}>
             {descriptionParsed}
-          </Fragment>
+          </GradientCollapse>
+        ) : (
+          descriptionParsed
         )}
       </div>
     </div>

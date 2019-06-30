@@ -6,9 +6,17 @@ import ProductDescription from './index'
 
 const ProductDescriptionWrapper = props => {
   const valuesFromContext = useContext(ProductContext)
-  const description = props.description != null ? props.description : path(['product', 'description'], valuesFromContext)
+  const description =
+    props.description != null
+      ? props.description
+      : path(['product', 'description'], valuesFromContext)
 
-  return <ProductDescription description={description} showShowMoreButton={props.showShowMoreButton} />
+  return (
+    <ProductDescription
+      description={description}
+      showShowMoreButton={props.showShowMoreButton}
+    />
+  )
 }
 
 ProductDescriptionWrapper.defaultProps = {
