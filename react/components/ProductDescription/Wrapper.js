@@ -14,7 +14,7 @@ const ProductDescriptionWrapper = props => {
   return (
     <ProductDescription
       description={description}
-      showShowMoreButton={props.showShowMoreButton}
+      showMoreVisible={props.showShowMoreButton}
     />
   )
 }

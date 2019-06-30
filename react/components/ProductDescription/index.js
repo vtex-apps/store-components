@@ -11,7 +11,7 @@ import styles from './styles.css'
  * Product Description Component.
  * Render the description of a product
  */
-const ProductDescription = ({ description, showShowMoreButton }) => {
+const ProductDescription = ({ description, showMoreVisible }) => {
   if (!description) {
     return null
   }
@@ -27,7 +27,7 @@ const ProductDescription = ({ description, showShowMoreButton }) => {
       </FormattedMessage>
 
       <div className="c-muted-1">
-        {showShowMoreButton ? (
+        {showMoreVisible ? (
           <GradientCollapse collapseHeight={220}>
             {descriptionParsed}
           </GradientCollapse>
@@ -42,6 +42,7 @@ const ProductDescription = ({ description, showShowMoreButton }) => {
 ProductDescription.propTypes = {
   /** Product description string */
   description: PropTypes.string,
+  showMoreVisible: PropTypes.bool,
 }
 
 export default memo(ProductDescription)
