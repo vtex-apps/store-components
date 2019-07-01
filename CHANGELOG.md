@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `ProductDescription` - Add `showShowMoreButton` prop.
+- `ProductDescription` - Add `collapseContent` prop.
 
 ## [3.48.0] - 2019-06-27
 ### Added

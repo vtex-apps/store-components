@@ -1,4 +1,4 @@
-import React, { Component, memo, useMemo, Fragment } from 'react'
+import React, { memo, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import HtmlParser from 'react-html-parser'
@@ -11,7 +11,7 @@ import styles from './styles.css'
  * Product Description Component.
  * Render the description of a product
  */
-const ProductDescription = ({ description, showMoreVisible }) => {
+const ProductDescription = ({ description, collapseContent }) => {
   if (!description) {
     return null
   }
@@ -27,7 +27,7 @@ const ProductDescription = ({ description, showMoreVisible }) => {
       </FormattedMessage>
 
       <div className="c-muted-1">
-        {showMoreVisible ? (
+        {collapseContent ? (
           <GradientCollapse collapseHeight={220}>
             {descriptionParsed}
           </GradientCollapse>
@@ -42,7 +42,7 @@ const ProductDescription = ({ description, showMoreVisible }) => {
 ProductDescription.propTypes = {
   /** Product description string */
   description: PropTypes.string,
-  showMoreVisible: PropTypes.bool,
+  collapseContent: PropTypes.bool,
 }
 
 export default memo(ProductDescription)

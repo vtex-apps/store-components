@@ -14,13 +14,13 @@ const ProductDescriptionWrapper = props => {
   return (
     <ProductDescription
       description={description}
-      showMoreVisible={props.showShowMoreButton}
+      collapseContent={props.collapseContent}
     />
   )
 }
 
 ProductDescriptionWrapper.defaultProps = {
-  showShowMoreButton: true,
+  collapseContent: true,
 }
 
 export default ProductDescriptionWrapper
