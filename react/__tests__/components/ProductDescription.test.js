@@ -17,7 +17,14 @@ describe('<ProductDescription />', () => {
   })
 
   it('should match the snapshot with description', () => {
-    const { asFragment } = renderComponent()
+    const { asFragment, getByText } = renderComponent()
     expect(asFragment()).toMatchSnapshot()
+    getByText('Show more')
+  })
+
+  it('should not show show more button', () => {
+    const { debug, queryByText } = renderComponent({ collapseContent: false })
+    debug()
+    expect(queryByText('Show more')).toBeNull()
   })
 })
