@@ -25,7 +25,7 @@ const getImageUrl = image => {
 
 const getLinkProps = element => {
   let page = 'store.product'
-  let params = { slug: element.slug }
+  let params = { slug: element.slug, id: element.productId }
   let query = ''
   const terms = element.slug.split('/')
 

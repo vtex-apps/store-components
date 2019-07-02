@@ -4,6 +4,7 @@ query Autocomplete($maxRows: Int, $inputValue: String) {
       thumb
       name
       href
+      productId
       criteria
       slug
     }
