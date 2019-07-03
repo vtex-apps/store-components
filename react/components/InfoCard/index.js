@@ -85,6 +85,7 @@ const InfoCard = ({
   mobileImageUrl,
   imageActionUrl,
   intl,
+  htmlId
 }) => {
   const {
     hints: { mobile },
@@ -167,6 +168,7 @@ const InfoCard = ({
         className={containerClasses}
         style={containerStyle}
         data-testid="container"
+        id={htmlId}
       >
         <div className={textContainerClasses}>
           {headline && (
@@ -223,6 +225,7 @@ MemoizedInfoCard.propTypes = {
   textAlignment: oneOf(getEnumValues(textAlignmentTypes)),
   imageActionUrl: string,
   intl: intlShape,
+  htmlId: string
 }
 
 MemoizedInfoCard.defaultProps = {
