@@ -88,7 +88,6 @@ const AddressInfo = ({ inverted, inline, orderForm, intl }) => {
 }
 
 const UserAddress = ({ variation, intl, addressQuery }) => {
-  console.log('teste addressQuery: ', addressQuery)
   const { orderForm } = addressQuery
   const { shippingData } = orderForm || {}
 
