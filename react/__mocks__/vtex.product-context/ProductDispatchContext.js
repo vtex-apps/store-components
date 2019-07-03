@@ -1,1 +1,1 @@
-export const useProductDispatch = () => ({ dispatch: jest.fn })
+export const useProductDispatch = () => jest.fn
