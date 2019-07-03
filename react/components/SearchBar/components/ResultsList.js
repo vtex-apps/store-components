@@ -25,7 +25,9 @@ const getImageUrl = image => {
 
 const getLinkProps = element => {
   let page = 'store.product'
-  let params = { slug: element.slug, id: element.productId }
+  // WARNING: this enables links with translatable slugs
+  // let params = { slug: element.slug, id: element.productId }
+  let params = { slug: element.slug }
   let query = ''
   const terms = element.slug.split('/')
 
