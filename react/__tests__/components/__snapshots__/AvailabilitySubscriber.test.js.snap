@@ -13,7 +13,7 @@ exports[`<AvailabilitySubscriber /> should match snapshot 1`] = `
     <div
       class="subscribeLabel t-small fw3"
     >
-      Let me know when this product is available again
+      I want to know when this product becomes available
     </div>
     <form
       class="form mb4"
