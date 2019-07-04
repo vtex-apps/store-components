@@ -60,7 +60,7 @@ const useImagesMap = (items, variations) => {
 }
 
 const useAllSelectedEvent = (selectedVariations, variationsCount) => {
-  const { dispatch } = useProductDispatch()
+  const dispatch = useProductDispatch()
   useEffect(() => {
     if (dispatch && selectedVariations) {
       const selectedNotNull = filterSelected(selectedVariations)

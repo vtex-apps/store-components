@@ -33,7 +33,7 @@ const SearchBar = ({
     () => ({
       width: Math.max(
         MIN_RESULTS_WIDTH,
-        container.current && container.current.offsetWidth || 0
+        (container.current && container.current.offsetWidth) || 0
       ),
     }),
     [container.current]
@@ -55,7 +55,11 @@ const SearchBar = ({
       }
 
       let page = 'store.product'
-      let params = { slug: element.slug }
+      let params = { 
+        slug: element.slug, 
+        // WARNING: this enables links with translatable slugs
+        // id: element.productId
+      }
       let query = ''
       const terms = element.slug.split('/')
 
@@ -115,6 +119,7 @@ const SearchBar = ({
                     // have any item highlighted in the menu options
                     if (event.key === 'Enter' && highlightedIndex === null) {
                       onGoToSearchPage()
+                      closeMenu()
                     }
                   },
                   placeholder,

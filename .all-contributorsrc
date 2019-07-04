@@ -1,0 +1,23 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "hapoza",
+      "name": "Dan",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/27775611?v=4",
+      "profile": "https://github.com/hapoza",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "store-components",
+  "projectOwner": "vtex-apps",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}

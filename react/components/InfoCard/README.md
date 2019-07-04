@@ -52,7 +52,8 @@ Through the Storefront, you can change the `InfoCard`'s behavior and interface. 
 | `callToActionUrl` | `String` | URL to be redirected when CTA component is clicked | `""` |
 | `imageUrl` | `String` | URL of the image to be used on desktop | `""` |
 | `mobileImageUrl` | `String` |  URL of the image to be used on desktop. If you do not provide any, the desktop image url will be used | `null` |
-| `blockClass` | `String` | Adds an extra class name to ease styling | `null`
+| `blockClass` | `String` | Adds an extra class name to ease styling | `null` |
+| `htmlId` | `String` | Adds an id to the container element | `null` |
 
 
 Here are the possible values of `TextPostionEnum`

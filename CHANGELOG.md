@@ -11,6 +11,30 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Read me of Availability subscriber. Explain that it doesn't warn users.
 - Default text of component to make it less misleading.
 
+## [3.51.0] - 2019-07-04
+### Added
+- `htmlId` prop on InfoCard
+
+## [3.50.1] - 2019-07-03
+### Removed
+- Deprecated the usage of `productId` to navigate to product urls
+
+## [3.50.0] - 2019-07-02
+### Changed
+- Uses `productId` to navigate to product urls
+
+## [3.49.1] - 2019-07-02
+### Fixed
+- Issue with updating state of SKUSelector on ProductContext.
+
+## [3.49.0] - 2019-07-01
+### Added
+- `ProductDescription` - Add `collapseContent` prop.
+
+## [3.48.0] - 2019-06-27
+### Added
+- Prop `attemptPageTypeSearch` on `search-bar`; if `true`, uses the term the user has inputted to try to navigate to the proper page type (e.g. a department, a brand, a category)
+
 ## [3.47.5] - 2019-06-27
 
 ### Fixed
