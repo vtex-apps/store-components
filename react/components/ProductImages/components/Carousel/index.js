@@ -18,8 +18,12 @@ import './global.css'
 import Gallery from '../Gallery'
 
 /** Swiper and its modules are imported using require to avoid breaking SSR */
-const Swiper = window.navigator ? require('react-id-swiper/lib/ReactIdSwiper.full').default : null
-const SwiperModules = window.navigator ? require('swiper/dist/js/swiper.esm') : null
+const Swiper = window.navigator
+  ? require('react-id-swiper/lib/ReactIdSwiper.full').default
+  : null
+const SwiperModules = window.navigator
+  ? require('swiper/dist/js/swiper.esm')
+  : null
 
 import { THUMB_SIZE, imageUrlForSize } from '../../../module/images'
 
@@ -288,29 +292,28 @@ class Carousel extends Component {
       {
         'ml-20-ns w-80-ns': position === 'left' && slides.length > 1,
         'mr-20-ns w-80-ns': position === 'right' && slides.length > 1,
-        'w-100':(position === 'top' || position === 'bottom') && slides.length > 1
+        'w-100':
+          (position === 'top' || position === 'bottom') && slides.length > 1,
       }
     )
 
-    const thumbClasses = classNames(
-      `w-20 ${styles.carouselGaleryThumbs} dn`,
-      {
-        'db-ns': slides.length > 1,
-        'absolute bottom-0 top-0 left-0 pr5': position === 'left',
-        'absolute bottom-0 top-0 right-0 pl5': position === 'right',
-        'w-100 pb5': position === 'top',
-        'w-100 pt5': position === 'bottom'
-      }
-    )
+    const thumbClasses = classNames(`w-20 ${styles.carouselGaleryThumbs} dn`, {
+      'db-ns': slides.length > 1,
+      'absolute bottom-0 top-0 left-0 pr5': position === 'left',
+      'absolute bottom-0 top-0 right-0 pl5': position === 'right',
+      'w-100 pb5': position === 'top',
+      'w-100 pt5': position === 'bottom',
+    })
 
-    const thumbReverseClasses = classNames(
-      {
-        'flex flex-wrap-reverse': position === 'bottom'
-      }
-    )
+    const thumbReverseClasses = classNames({
+      'flex flex-wrap-reverse': position === 'bottom',
+    })
 
     return (
-      <div className={`relative overflow-hidden w-100 ${thumbReverseClasses}`} aria-hidden="true">
+      <div
+        className={`relative overflow-hidden w-100 ${thumbReverseClasses}`}
+        aria-hidden="true"
+      >
         <div className={thumbClasses}>
           <Swiper {...thumbnailParams} rebuildOnUpdate>
             {slides.map((slide, i) => (
@@ -329,7 +332,10 @@ class Carousel extends Component {
                     className="w-100 h-auto db"
                     itemProp="thumbnail"
                     alt={slide.alt ? this.state.alt[i] : ''}
-                    src={imageUrlForSize(slide.thumbUrl || this.state.thumbUrl[i], THUMB_SIZE)}
+                    src={imageUrlForSize(
+                      slide.thumbUrl || this.state.thumbUrl[i],
+                      THUMB_SIZE
+                    )}
                   />
                 </figure>
                 <div

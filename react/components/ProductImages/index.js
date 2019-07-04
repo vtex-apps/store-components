@@ -37,8 +37,6 @@ const ProductImages = props => {
   }, [debouncedGetBestUrl])
 
   const slides = useMemo(() => {
-    const { images } = props
-
     if (images.length === 0) return
 
     return images.map(image => {
@@ -50,7 +48,7 @@ const ProductImages = props => {
         bestUrlIndex: getBestUrlIndex(image.thresholds),
       }
     })
-  }, [props.images])
+  }, [images])
 
   return (
     <div className={`${styles.content} w-100`}>
