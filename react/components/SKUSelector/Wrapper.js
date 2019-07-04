@@ -43,7 +43,7 @@ const SKUSelectorWrapper = props => {
       : valuesFromContext.selectedItem
 
   const shouldNotShow =
-    skuItems.length < 1 ||
+    skuItems.length === 0 ||
     !skuSelected ||
     !skuSelected.variations ||
     skuSelected.variations.length === 0
