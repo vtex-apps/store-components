@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Custom thumb and main image position, direction and thumbs per row.
+- Prop `direction` to ProductImages.
+- Prop `slidesPerView` to ProductImages.
 
 ## [3.51.0] - 2019-07-04
 ### Added
