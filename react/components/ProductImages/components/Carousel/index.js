@@ -252,12 +252,18 @@ class Carousel extends Component {
   }
 
   render() {
-    const { thumbsLoaded, isGalleryOpen, selectedIndex, gallerySwiper } = this.state
+    const {
+      thumbsLoaded,
+      isGalleryOpen,
+      selectedIndex,
+      gallerySwiper,
+    } = this.state
 
     const {
       slides,
       position,
-      thumb: {direction, slidesPerView},
+      thumbsDirection,
+      slidesPerView,
       zoomProps: { zoomType, bgOpacity },
     } = this.props
 
@@ -271,7 +277,7 @@ class Carousel extends Component {
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
       freeMode: true,
-      direction,
+      direction: thumbsDirection,
       slidesPerView,
       touchRatio: 0.4,
       mousewheel: true,
@@ -375,6 +381,8 @@ class Carousel extends Component {
 }
 
 Carousel.propTypes = {
+  thumbsDirection: PropTypes.string,
+  slidesPerView: PropTypes.string,
   slides: PropTypes.arrayOf(
     PropTypes.shape({
       type: PropTypes.string,

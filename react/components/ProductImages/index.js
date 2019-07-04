@@ -19,7 +19,7 @@ const getBestUrlIndex = thresholds => {
 
 const ProductImages = props => {
   const [_, setState] = useState(0)
-  const { position, zoomProps, thumb } = props
+  const { images, position, zoomProps, slidesPerView, direction } = props
 
   const debouncedGetBestUrl = debounce(() => {
     // force update
@@ -52,7 +52,13 @@ const ProductImages = props => {
 
   return (
     <div className={`${styles.content} w-100`}>
-      <Carousel slides={slides} position={position} zoomProps={zoomProps} thumb={thumb} />
+      <Carousel
+        slides={slides}
+        position={position}
+        zoomProps={zoomProps}
+        slidesPerView={slidesPerView}
+        thumbsDirection={direction}
+      />
     </div>
   )
 }
@@ -73,13 +79,16 @@ ProductImages.propTypes = {
       imageText: PropTypes.string.isRequired,
     })
   ),
+  slidesPerView: PropTypes.string,
+  direction: PropTypes.oneOf(['vertical', 'horizontal']),
 }
 
 ProductImages.defaultProps = {
   images: [],
   position: 'left',
   zoomProps: { zoomType: 'in-page' },
-  thumb: {direction: 'vertical', slidesPerView: 'auto'}
+  direction: 'vertical',
+  slidesPerView: 'auto',
 }
 
 ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
