@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Documentation on Product Brand props.
+- Product Brand and Product Image on the list of components of the main Read Me.
+
 ## [3.51.2] - 2019-07-04
 ### Fixed
 - Show SKUSelector even when SKU items is one.
