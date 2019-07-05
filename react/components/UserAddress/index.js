@@ -79,6 +79,7 @@ const AddressInfo = ({ inverted, inline, orderForm, intl }) => {
               buttonClass={
                 inverted ? 'c-on-base--inverted' : 'c-action-primary'
               }
+              showTopBar={false}
             />
           </div>
         </React.Fragment>
