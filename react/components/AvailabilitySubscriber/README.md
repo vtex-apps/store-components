@@ -28,14 +28,14 @@ In order to collect the emails correctly, this feature needs a special configura
 
 The form is submitted to Master Data on the Entity: `AS`
 
-| Prop name          | Description                                                                            |
-| ------------------ | -------------------------------------------------------------------------------------- |
-| `skuId`            | The id of the product sku to which will be watched for changes in the product quantity |
-| `name`             | The name of the user                                                                   |
-| `email`            | The email of the user                                                                 |
-| `notificationSend` | If the notification has been sent already                                              |
-| `createdAt`        | When the document was created                                                          |
-| `sendAt`           | When the user was notificated                                                          |
+| Prop name | Type | Description|
+| ------| ------ | ------ |
+| `skuId`            | String | The id of the product sku to which will be watched for changes in the product quantity |
+| `name`             | String | The name of the user                                                                   |
+| `email`            | String | The email of the user                                                                 |
+| `notificationSend` | Boolean | If the notification has been sent already                                              |
+| `createdAt`        | String - ISO format | When the document was created  Ex.: ISO (2011-10-05T14:48:00.000Z)                                                     |
+| `sendAt`           | String - ISO format | When the user was notificated  Ex.: ISO (2011-10-05T14:48:00.000Z)                                                        |
 
 
 ### Blocks API
