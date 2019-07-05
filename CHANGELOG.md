@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Types of props on Availability Subscriber documentation.
+
 ## [3.51.3] - 2019-07-05
 
 ### Added
