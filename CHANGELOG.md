@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.51.3] - 2019-07-05
+
 ### Added
 - Documentation on Product Brand props.
 - Product Brand and Product Image on the list of components of the main Read Me.
