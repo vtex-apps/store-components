@@ -4,6 +4,7 @@ import { FormattedNumber } from 'react-intl'
 import classNames from 'classnames'
 
 import styles from '../styles.css'
+import { slug } from '../utils'
 
 const getDiscount = (maxPrice, price) => {
   let discount = 0
@@ -35,7 +36,7 @@ const SelectorItem = ({
       tabIndex={0}
       className={classNames(
         styles.skuSelectorItem,
-        `${styles.skuSelectorItem}--${variationValue}`,
+        `${styles.skuSelectorItem}--${slug(variationValue)}`,
         'relative di pointer flex items-center outline-0',
         {
           [styles.skuSelectorItemImage]: isImage,

@@ -3,6 +3,7 @@ import React, { useContext, useCallback, useState, Fragment } from 'react'
 import { intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
 import { pick } from 'ramda'
+import { useRuntime } from 'vtex.render-runtime'
 
 import { Button, ToastContext } from 'vtex.styleguide'
 
@@ -80,6 +81,9 @@ export const BuyButton = ({
     showToast({ message, action })
   }
 
+  const { rootPath = '' } = useRuntime()
+  const checkoutUrl = rootPath + CONSTANTS.CHECKOUT_URL
+
   const handleAddToCart = async event => {
     event.stopPropagation()
     event.preventDefault()
@@ -133,7 +137,9 @@ export const BuyButton = ({
     setTimeout(() => {
       setAddingToCart(false)
       showToastMessage()
-      if (isOneClickBuy) location.assign(CONSTANTS.CHECKOUT_URL)
+      if (isOneClickBuy) {
+        location.assign(checkoutUrl)
+      }
       onAddFinish && onAddFinish()
     }, 500)
   }

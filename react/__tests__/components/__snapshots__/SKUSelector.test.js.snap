@@ -6,7 +6,7 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
     class="skuSelectorContainer"
   >
     <div
-      class="skuSelectorSubcontainer skuSelectorSubcontainer--Color flex flex-column mb7"
+      class="skuSelectorSubcontainer skuSelectorSubcontainer--color flex flex-column mb7"
     >
       <div
         class="skuSelectorNameContainer ma1"
@@ -20,7 +20,7 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
           class="inline-flex flex-wrap ml2 flex items-center"
         >
           <div
-            class="skuSelectorItem skuSelectorItem--Black relative di pointer flex items-center outline-0 skuSelectorItemImage"
+            class="skuSelectorItem skuSelectorItem--black relative di pointer flex items-center outline-0 skuSelectorItemImage"
             role="button"
             tabindex="0"
           >
@@ -44,7 +44,7 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="skuSelectorItem skuSelectorItem--Blue relative di pointer flex items-center outline-0 skuSelectorItemImage"
+            class="skuSelectorItem skuSelectorItem--blue relative di pointer flex items-center outline-0 skuSelectorItemImage"
             role="button"
             tabindex="0"
           >
@@ -68,7 +68,7 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
             </div>
           </div>
           <div
-            class="skuSelectorItem skuSelectorItem--Yellow relative di pointer flex items-center outline-0 skuSelectorItemImage"
+            class="skuSelectorItem skuSelectorItem--yellow relative di pointer flex items-center outline-0 skuSelectorItemImage"
             role="button"
             tabindex="0"
           >

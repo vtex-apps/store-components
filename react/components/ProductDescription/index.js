@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { memo, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import HtmlParser from 'react-html-parser'
 
 import GradientCollapse from '../GradientCollapse/index'
@@ -11,10 +11,14 @@ import styles from './styles.css'
  * Product Description Component.
  * Render the description of a product
  */
-const ProductDescription = ({ description }) => {
+const ProductDescription = ({ description, collapseContent }) => {
   if (!description) {
     return null
   }
+
+  const descriptionParsed = useMemo(() => HtmlParser(description), [
+    description,
+  ])
 
   return (
     <div className={styles.productDescriptionContainer}>
@@ -23,9 +27,13 @@ const ProductDescription = ({ description }) => {
       </FormattedMessage>
 
       <div className="c-muted-1">
-        <GradientCollapse collapseHeight={220}>
-          {HtmlParser(description)}
-        </GradientCollapse>
+        {collapseContent ? (
+          <GradientCollapse collapseHeight={220}>
+            {descriptionParsed}
+          </GradientCollapse>
+        ) : (
+          descriptionParsed
+        )}
       </div>
     </div>
   )
@@ -34,8 +42,7 @@ const ProductDescription = ({ description }) => {
 ProductDescription.propTypes = {
   /** Product description string */
   description: PropTypes.string,
-  /** Intl object to provides internationalization */
-  intl: intlShape.isRequired,
+  collapseContent: PropTypes.bool,
 }
 
-export default injectIntl(ProductDescription)
+export default memo(ProductDescription)

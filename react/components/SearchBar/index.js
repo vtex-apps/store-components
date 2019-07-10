@@ -28,6 +28,11 @@ class SearchBarContainer extends Component {
   handleGoToSearchPage = () => {
     const search = this.state.inputValue
 
+    if (this.props.attemptPageTypeSearch) {
+      window.location.href = `/${search}`
+      return
+    }
+
     this.setState({ inputValue: '' })
     this.context.navigate({
       page: 'store.search',
@@ -35,12 +40,6 @@ class SearchBarContainer extends Component {
       query: 'map=ft',
       fallbackToWindowLocation: false,
     })
-  }
-
-  handleEnterPress = event => {
-    if (event.key === 'Enter') {
-      this.handleGoToSearchPage()
-    }
   }
 
   handleMakeSearch = () => {
@@ -76,20 +75,15 @@ class SearchBarContainer extends Component {
     const placeholder = intl.formatMessage({
       id: 'store/search.placeholder',
     })
-    const emptyPlaceholder = intl.formatMessage({
-      id: 'store/search.noMatches',
-    })
 
     return (
       <SearchBar
         autoFocus={autoFocus}
         placeholder={placeholder}
-        emptyPlaceholder={emptyPlaceholder}
         shouldSearch={shouldSearch}
         inputValue={inputValue}
         onClearInput={this.handleClearInput}
         onGoToSearchPage={this.handleGoToSearchPage}
-        onEnterPress={this.handleEnterPress}
         onMakeSearch={this.handleMakeSearch}
         onInputChange={this.handleInputChange}
         compactMode={compactMode}
@@ -118,6 +112,10 @@ SearchBarContainer.propTypes = {
   autoFocus: PropTypes.bool,
   /** Max width of the search bar */
   maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Uses the term the user has inputted to try to navigate to the proper
+   * page type (e.g. a department, a brand, a category)
+   */
+  attemptPageTypeSearch: PropTypes.bool,
 }
 
 export default injectIntl(SearchBarContainer)
