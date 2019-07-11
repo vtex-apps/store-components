@@ -54,6 +54,7 @@ UserAddress.propTypes = {
 
 const withAddressQuery = graphql(addressQuery, {
   name: 'addressQuery',
+  options: () => ({ ssr: false }),
 })
 
 export default withAddressQuery(UserAddress)
