@@ -39,6 +39,8 @@ export const BuyButton = ({
     intl,
   ])
 
+  console.log('teste skuItems: ', skuItems)
+
   const skuItemToMinicartItem = ({
     skuId: id,
     variant: skuName,
@@ -59,6 +61,7 @@ export const BuyButton = ({
           'options',
           'listPrice',
           'brand',
+          'assemblyOptions',
         ],
         restSkuItem
       ),
@@ -73,9 +76,9 @@ export const BuyButton = ({
 
     const action = success
       ? {
-        label: translateMessage(CONSTANTS.SEE_CART_ID),
-        href: '/checkout/#/cart',
-      }
+          label: translateMessage(CONSTANTS.SEE_CART_ID),
+          href: '/checkout/#/cart',
+        }
       : undefined
 
     showToast({ message, action })
@@ -94,6 +97,7 @@ export const BuyButton = ({
     let showToastMessage
     try {
       const minicartItems = skuItems.map(skuItemToMinicartItem)
+      console.log('teste minicartItems: ', minicartItems)
       const {
         data: { addToCart: linkStateItems },
       } = await addToCart(minicartItems)

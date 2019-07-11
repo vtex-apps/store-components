@@ -1,14 +1,108 @@
 import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
-import { path, isEmpty, compose } from 'ramda'
+import { path, isEmpty, compose, filter, pathOr } from 'ramda'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { withToast } from 'vtex.styleguide'
 import { orderFormConsumer } from 'vtex.store-resources/OrderFormContext'
+import ProductPrice from '../ProductPrice'
 
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 
 import { BuyButton } from './index'
+
+const filterAssembliesWithItem = filter(items => items.length > 0)
+
+const transformAssemblyOptions = (assemblyOptions, parentPrice) => {
+  const cleanAssemblies = filterAssembliesWithItem(assemblyOptions)
+  if (isEmpty(cleanAssemblies)) {
+    return {}
+  }
+  const assembliesKeys = Object.keys(cleanAssemblies)
+  const options = []
+  const added = []
+  const removed = []
+  for (const groupId of assembliesKeys) {
+    const items = cleanAssemblies[groupId]
+    for (const item of items) {
+      const {
+        id,
+        quantity,
+        seller,
+        initialQuantity,
+        choiceType,
+        name,
+        price,
+      } = item
+      options.push({
+        assemblyId: groupId,
+        id,
+        quantity,
+        seller,
+      })
+
+      if (quantity > initialQuantity) {
+        added.push({
+          normalizedQuantity: quantity,
+          extraQuantity: quantity - initialQuantity,
+          choiceType,
+          item: {
+            name,
+            sellingPrice: price,
+            quantity,
+            id,
+          },
+        })
+      }
+      if (quantity <= initialQuantity) {
+        removed.push({
+          name,
+          initialQuantity,
+          removedQuantity: initialQuantity - quantity,
+        })
+      }
+    }
+  }
+  return {
+    options,
+    assemblyOptions: {
+      added,
+      removed,
+      parentPrice,
+    },
+  }
+}
+
+const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
+  if (!showItemsPrice) {
+    return <FormattedMessage id="store/buy-button.add-to-cart" />
+  }
+
+  const totalPrice = skuItems.reduce((acc, item) => {
+    const itemPrice = item.price * item.quantity
+    const addedAssemblyOptions = pathOr([], ['assemblyOptions', 'added'], item)
+    return (
+      acc +
+      addedAssemblyOptions.reduce(
+        (childAcc, option) =>
+          childAcc +
+          option.item.sellingPrice * option.normalizedQuantity * item.quantity,
+        itemPrice
+      )
+    )
+  }, 0)
+
+  return (
+    <div className="flex w-100 justify-between items-center">
+      <FormattedMessage id="store/buy-button.add-to-cart" />
+      <ProductPrice
+        showLabels={false}
+        showListPrice={false}
+        sellingPrice={totalPrice}
+      />
+    </div>
+  )
+}
 
 const BuyButtonWrapper = props => {
   const {
@@ -28,7 +122,12 @@ const BuyButtonWrapper = props => {
       return props
     }
 
-    const { product, selectedItem, selectedQuantity } = valuesFromContext
+    const {
+      product,
+      selectedItem,
+      selectedQuantity,
+      assemblyOptions,
+    } = valuesFromContext
 
     const sellerId = path(['sellers', 0, 'sellerId'], selectedItem)
     const commertialOffer = path(
@@ -58,6 +157,7 @@ const BuyButtonWrapper = props => {
             ['sellers', '0', 'commertialOffer', 'ListPrice'],
             selectedItem
           ),
+          ...transformAssemblyOptions(assemblyOptions, commertialOffer.Price),
         },
       ]
 
@@ -68,7 +168,7 @@ const BuyButtonWrapper = props => {
       available: props.available == null ? available : props.available,
     }
   }
-
+  const buttonProps = buyButtonProps()
   return (
     <BuyButton
       intl={intl}
@@ -77,9 +177,14 @@ const BuyButtonWrapper = props => {
       onAddFinish={onAddFinish}
       showToast={showToast}
       orderFormContext={orderFormContext}
-      {...buyButtonProps()}
+      {...buttonProps}
     >
-      {children || <FormattedMessage id="store/buy-button.add-to-cart" />}
+      {children || (
+        <BuyButtonMessage
+          showItemsPrice={props.showItemsPrice}
+          skuItems={buttonProps.skuItems}
+        />
+      )}
     </BuyButton>
   )
 }
