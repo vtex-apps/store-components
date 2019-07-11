@@ -49,7 +49,7 @@ const UserAddress = ({ variation, addressQuery }) => {
 
 UserAddress.propTypes = {
   variation: PropTypes.oneOf(['inline', 'bar']).isRequired,
-  orderForm: PropTypes.object.isRequired,
+  addressQuery: PropTypes.object.isRequired,
 }
 
 const withAddressQuery = graphql(addressQuery, {
