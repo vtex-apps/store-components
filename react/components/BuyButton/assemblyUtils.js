@@ -3,7 +3,7 @@ import { filter, isEmpty } from 'ramda'
 const filterAssembliesWithItem = filter(items => items.length > 0)
 
 export const transformAssemblyOptions = (assemblyOptions, parentPrice) => {
-  const cleanAssemblies = filterAssembliesWithItem(assemblyOptions)
+  const cleanAssemblies = filterAssembliesWithItem(assemblyOptions || {})
   if (isEmpty(cleanAssemblies)) {
     return {}
   }
