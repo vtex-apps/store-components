@@ -1,8 +1,8 @@
 import React from 'react'
-import { render, fireEvent, waitForElement } from '@vtex/test-tools/react'
+import { render, fireEvent } from '@vtex/test-tools/react'
 import { MockedProvider } from 'react-apollo/test-utils'
 
-import BuyButton, { ADD_TO_CART_MUTATION } from '../../BuyButton'
+import BuyButton from '../../BuyButton'
 
 describe('<BuyButton />', () => {
   const renderComponent = (customProps, text = 'Test') => {

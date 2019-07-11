@@ -1,77 +1,16 @@
 import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
-import { path, isEmpty, compose, filter, pathOr } from 'ramda'
+import { path, isEmpty, compose, pathOr } from 'ramda'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { withToast } from 'vtex.styleguide'
 import { orderFormConsumer } from 'vtex.store-resources/OrderFormContext'
 import ProductPrice from '../ProductPrice'
-
-import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 
 import { BuyButton } from './index'
-
-const filterAssembliesWithItem = filter(items => items.length > 0)
-
-const transformAssemblyOptions = (assemblyOptions, parentPrice) => {
-  const cleanAssemblies = filterAssembliesWithItem(assemblyOptions)
-  if (isEmpty(cleanAssemblies)) {
-    return {}
-  }
-  const assembliesKeys = Object.keys(cleanAssemblies)
-  const options = []
-  const added = []
-  const removed = []
-  for (const groupId of assembliesKeys) {
-    const items = cleanAssemblies[groupId]
-    for (const item of items) {
-      const {
-        id,
-        quantity,
-        seller,
-        initialQuantity,
-        choiceType,
-        name,
-        price,
-      } = item
-      options.push({
-        assemblyId: groupId,
-        id,
-        quantity,
-        seller,
-      })
-
-      if (quantity > initialQuantity) {
-        added.push({
-          normalizedQuantity: quantity,
-          extraQuantity: quantity - initialQuantity,
-          choiceType,
-          item: {
-            name,
-            sellingPrice: price,
-            quantity,
-            id,
-          },
-        })
-      }
-      if (quantity <= initialQuantity) {
-        removed.push({
-          name,
-          initialQuantity,
-          removedQuantity: initialQuantity - quantity,
-        })
-      }
-    }
-  }
-  return {
-    options,
-    assemblyOptions: {
-      added,
-      removed,
-      parentPrice,
-    },
-  }
-}
+import { transformAssemblyOptions } from './assemblyUtils'
+import addToCartMutation from './mutations/addToCart.gql'
+import setOpenMinicartMutation from './mutations/setOpenMinicart.gql'
 
 const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
   if (!showItemsPrice) {
@@ -189,40 +128,21 @@ const BuyButtonWrapper = props => {
   )
 }
 
-export const ADD_TO_CART_MUTATION = gql`
-  mutation addToCart($items: [MinicartItem]) {
-    addToCart(items: $items) @client
-  }
-`
-
-export const OPEN_CART_MUTATION = gql`
-  mutation setMinicartOpen($isOpen: Boolean!) {
-    setMinicartOpen(isOpen: $isOpen) @client
-  }
-`
-
-const withAddToCart = graphql(ADD_TO_CART_MUTATION, {
+const withAddToCart = graphql(addToCartMutation, {
   name: 'addToCart',
   props: ({ addToCart }) => ({
     addToCart: items => addToCart({ variables: { items } }),
   }),
 })
 
-const withOpenMinicart = graphql(OPEN_CART_MUTATION, {
+const withOpenMinicart = graphql(setOpenMinicartMutation, {
   name: 'setMinicartOpen',
   props: ({ setMinicartOpen }) => ({
     setMinicartOpen: isOpen => setMinicartOpen({ variables: { isOpen } }),
   }),
 })
 
-const withMutation = graphql(ADD_TO_CART_MUTATION, {
-  props: ({ mutate }) => ({
-    addToCart: items => mutate({ variables: { items } }),
-  }),
-})
-
 export default compose(
-  withMutation,
   withAddToCart,
   withOpenMinicart,
   withToast,

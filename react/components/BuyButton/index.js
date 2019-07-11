@@ -39,8 +39,6 @@ export const BuyButton = ({
     intl,
   ])
 
-  console.log('teste skuItems: ', skuItems)
-
   const skuItemToMinicartItem = ({
     skuId: id,
     variant: skuName,
@@ -97,7 +95,6 @@ export const BuyButton = ({
     let showToastMessage
     try {
       const minicartItems = skuItems.map(skuItemToMinicartItem)
-      console.log('teste minicartItems: ', minicartItems)
       const {
         data: { addToCart: linkStateItems },
       } = await addToCart(minicartItems)
