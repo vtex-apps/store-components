@@ -1,8 +1,8 @@
 import React from 'react'
-import { render, fireEvent, waitForElement } from '@vtex/test-tools/react'
+import { render, fireEvent } from '@vtex/test-tools/react'
 import { MockedProvider } from 'react-apollo/test-utils'
 
-import BuyButton, { ADD_TO_CART_MUTATION } from '../../BuyButton'
+import BuyButton from '../../BuyButton'
 
 describe('<BuyButton />', () => {
   const renderComponent = (customProps, text = 'Test') => {
@@ -63,5 +63,59 @@ describe('<BuyButton />', () => {
       expect(onAddFinish).toBeCalledTimes(1)
     }
     expect.assertions(assertions)
+  })
+
+  it('should show items prices', () => {
+    const skuItems = [
+      {
+        skuId: '1',
+        quantity: 2,
+        seller: '1',
+        name: 'Item',
+        price: 100,
+        options: [
+          { assemblyId: '1', id: '2', quantity: 2, seller: '1' },
+          { assemblyId: '1', id: '3', quantity: 1, seller: '1' },
+        ],
+        assemblyOptions: {
+          added: [
+            {
+              normalizedQuantity: 2,
+              extraQuantity: 2,
+              choiceType: 'MULTIPLE',
+              item: {
+                name: 'Assembly One',
+                sellingPrice: 5,
+                quantity: 2,
+                id: '1',
+              },
+            },
+            {
+              normalizedQuantity: 1,
+              extraQuantity: 1,
+              choiceType: 'MULTIPLE',
+              item: {
+                name: 'Assembly Two',
+                sellingPrice: 3,
+                quantity: 1,
+                id: '2',
+              },
+            },
+          ],
+          removed: [],
+          parentPrice: 100,
+        },
+      },
+    ]
+    const { getByText } = renderComponent(
+      {
+        available: true,
+        skuItems,
+        showItemsPrice: true,
+      },
+      null
+    )
+    const priceRegex = /226.00/
+    getByText(priceRegex)
   })
 })

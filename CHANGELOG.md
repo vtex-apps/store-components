@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Add support for adding to cart Assembly Options in buy button.
+- Add prop to show total price on buy button.
 
 ## [3.52.3] - 2019-07-11
 ### Fixed

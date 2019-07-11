@@ -59,6 +59,7 @@ export const BuyButton = ({
           'options',
           'listPrice',
           'brand',
+          'assemblyOptions',
         ],
         restSkuItem
       ),
@@ -73,9 +74,9 @@ export const BuyButton = ({
 
     const action = success
       ? {
-        label: translateMessage(CONSTANTS.SEE_CART_ID),
-        href: '/checkout/#/cart',
-      }
+          label: translateMessage(CONSTANTS.SEE_CART_ID),
+          href: '/checkout/#/cart',
+        }
       : undefined
 
     showToast({ message, action })
