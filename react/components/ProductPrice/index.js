@@ -5,6 +5,7 @@ import { isNil, head, last, sort, equals } from 'ramda'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { IOMessage } from 'vtex.native-types'
 import { useRuntime } from 'vtex.render-runtime'
+import { formatCurrency } from 'vtex.format-currency'
 
 import ProductPriceLoader from './Loader'
 import PricePropTypes from './propTypes'
@@ -59,22 +60,6 @@ const canShowListPrice = props => {
   return !equals(listPriceToShow, sellingPriceToShow)
 }
 
-const useCurrencyOptions = () => {
-  const {
-    culture: { currency },
-  } = useRuntime()
-
-  return useMemo(
-    () => ({
-      style: 'currency',
-      currency,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }),
-    [currency]
-  )
-}
-
 /**
  * The Price component. Shows the prices information of the Product Summary.
  */
@@ -109,12 +94,12 @@ const ProductPrice = (props, context) => {
     interestRateClass,
     installmentContainerClass,
     styles,
-    intl: { formatNumber },
+    intl,
   } = props
 
-  let { classes } = props
+  const { culture } = useRuntime()
 
-  const currencyOptions = useCurrencyOptions()
+  let { classes } = props
 
   // avoiding undefined verifications
   classes = {
@@ -163,7 +148,6 @@ const ProductPrice = (props, context) => {
               productPrice.listPriceValue,
               listPriceClass
             )}
-            currencyOptions={currencyOptions}
           />
         </div>
       )}
@@ -195,15 +179,12 @@ const ProductPrice = (props, context) => {
             productPrice.sellingPrice,
             sellingPriceClass
           )}
-          currencyOptions={currencyOptions}
         />
       </div>
       {showInstallments && (
         <Installments
           installments={installments}
           showLabels={showLabels}
-          formatNumber={formatNumber}
-          currencyOptions={currencyOptions}
           className={installmentContainerClass}
           interestRateClass={interestRateClass}
           installmentClass={installmentClass}
@@ -222,10 +203,11 @@ const ProductPrice = (props, context) => {
             <FormattedMessage
               id="store/pricing.savings"
               values={{
-                savings: formatNumber(
-                  listPrice - sellingPrice,
-                  currencyOptions
-                ),
+                savings: formatCurrency({
+                  intl,
+                  culture,
+                  value: listPrice - sellingPrice,
+                }),
               }}
             />
           </div>

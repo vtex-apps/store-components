@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react'
+import { useRuntime } from 'vtex.render-runtime'
+import { injectIntl } from 'react-intl'
 import classNames from 'classnames'
 import { isEmpty } from 'ramda'
 import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
+import { formatCurrency } from 'vtex.format-currency'
 
 import PricePropTypes from './propTypes'
 
@@ -11,13 +14,14 @@ import productPrice from './styles.css'
 /** Installments component */
 const Installments = ({
   showLabels,
-  formatNumber,
   installments = [],
-  currencyOptions,
   className,
   installmentClass,
   interestRateClass,
+  intl,
 }) => {
+  const { culture } = useRuntime()
+
   if (
     !installments ||
     isEmpty(
@@ -47,10 +51,11 @@ const Installments = ({
       : current
   )
 
-  const formattedInstallmentPrice = formatNumber(
-    installment.Value,
-    currencyOptions
-  )
+  const formattedInstallmentPrice = formatCurrency({
+    intl,
+    culture,
+    value: installment.Value,
+  })
 
   const [installmentsElement, installmentPriceElement, timesElement] = [
     installment.NumberOfInstallments,
@@ -104,15 +109,6 @@ Installments.propTypes = {
   installments: PricePropTypes.installments,
   /** Pages editor config to display labels */
   showLabels: PropTypes.bool.isRequired,
-  /** react-intl function to format the prices*/
-  formatNumber: PropTypes.func.isRequired,
-  /** Options to be passe to the formatNumber function*/
-  currencyOptions: PropTypes.shape({
-    style: PropTypes.string.isRequired,
-    currency: PropTypes.string.isRequired,
-    minimumFractionDigits: PropTypes.number.isRequired,
-    maximumFractionDigits: PropTypes.number.isRequired,
-  }).isRequired,
 }
 
-export default Installments
+export default injectIntl(Installments)
