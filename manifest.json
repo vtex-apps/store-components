@@ -24,7 +24,8 @@
     "vtex.modal": "0.x",
     "vtex.react-portal": "0.x",
     "vtex.address-form": "4.x",
-    "vtex.product-context": "0.x"
+    "vtex.product-context": "0.x",
+    "vtex.format-currency": "0.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

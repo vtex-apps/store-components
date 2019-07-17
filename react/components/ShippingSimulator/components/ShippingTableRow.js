@@ -4,14 +4,11 @@ import { intlShape, injectIntl } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 import TranslateEstimate from 'vtex.shipping-estimate-translator/TranslateEstimate'
 import classNames from 'classnames'
+import { FormattedCurrency } from 'vtex.format-currency'
 
 import styles from '../shippingSimulator.css'
 
 const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
-  const {
-    culture: { currency },
-  } = useRuntime()
-
   const etaClassName = classNames(
     `${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`,
     {
@@ -33,13 +30,7 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   } else if (price === 0) {
     valueText = intl.formatMessage({ id: 'store/shipping.free' })
   } else {
-    // TODO: get Fraction digits from segment when data is available
-    valueText = intl.formatNumber(price / 100, {
-      style: 'currency',
-      currency,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })
+    valueText = <FormattedCurrency value={price / 100} />
   }
 
   return (
