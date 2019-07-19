@@ -107,7 +107,7 @@ const SKUSelectorContainer = ({
       ? selectedVariationFromItem(parseSku(skuSelected), variations)
       : buildEmptySelectedVariation(variations)
     setSelectedVariations(initialVariations)
-  }, [variations, skuSelected])
+  }, [variations])
 
   const imagesMap = useImagesMap(parsedItems, variations)
 
