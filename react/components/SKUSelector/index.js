@@ -103,11 +103,11 @@ const SKUSelectorContainer = ({
   }
 
   useEffect(() => {
-    const initalVariations = skuSelected
+    const initialVariations = skuSelected
       ? selectedVariationFromItem(parseSku(skuSelected), variations)
       : buildEmptySelectedVariation(variations)
-    setSelectedVariations(initalVariations)
-  }, [])
+    setSelectedVariations(initialVariations)
+  }, [variations])
 
   const imagesMap = useImagesMap(parsedItems, variations)
 
