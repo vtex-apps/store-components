@@ -39,6 +39,7 @@ You can use it in your code like a React component with the jsx tag: `<Image />`
 | `maxHeight`   | `String`   | Specifies the max height of an image                                       |
 | `srcset`      | `String`   | Specifies the URL of the image to use in different situations              |
 | `sizes`       | `String`   | Specifies image sizes for different page layouts                           |
+| `href`        | `String`   | Specifies the URL that the image will redirect on click                    |
 
 ## Styles API
 
