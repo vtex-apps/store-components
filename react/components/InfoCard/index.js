@@ -85,7 +85,7 @@ const InfoCard = ({
   mobileImageUrl,
   imageActionUrl,
   intl,
-  htmlId
+  htmlId,
 }) => {
   const {
     hints: { mobile },
@@ -160,7 +160,7 @@ const InfoCard = ({
 
   return (
     <LinkWrapper
-      imageActionUrl={imageActionUrl}
+      imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
       extraCondition={!isFullModeStyle}
       linkProps={{ className: 'no-underline' }}
     >
@@ -225,7 +225,7 @@ MemoizedInfoCard.propTypes = {
   textAlignment: oneOf(getEnumValues(textAlignmentTypes)),
   imageActionUrl: string,
   intl: intlShape,
-  htmlId: string
+  htmlId: string,
 }
 
 MemoizedInfoCard.defaultProps = {
