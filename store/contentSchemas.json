@@ -95,6 +95,25 @@
           "$ref": "app:vtex.native-types#/definitions/text"
         }
       }
+    },
+    "Image": { 
+      "properties": {
+        "src": {
+          "title": "admin/editor.image.src.title",
+          "$ref": "app:vtex.native-types#/definitions/url",
+          "default": ""
+        },
+        "href": {
+          "title": "admin/editor.image.href.title",
+          "$ref": "app:vtex.native-types#/definitions/url",
+          "default": ""
+        },
+        "alt": {
+          "title": "admin/editor.image.alt.title",
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": ""
+        }
+      }
     }
   }
 }

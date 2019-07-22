@@ -46,21 +46,6 @@ Image.schema = {
   description: 'admin/editor.image.description',
   type: 'object',
   properties: {
-    src: {
-      type: 'string',
-      title: 'admin/editor.image.src.title',
-      widget: {
-        'ui:widget': 'image-uploader',
-      },
-    },
-    href: {
-      type: 'string',
-      title: 'admin/editor.image.href.title',
-    },
-    alt: {
-      type: 'string',
-      title: 'admin/editor.image.alt.title',
-    },
     blockClass: {
       title: 'admin/editor.blockClass.title',
       description: 'admin/editor.blockClass.description',
