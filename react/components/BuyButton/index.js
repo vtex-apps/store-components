@@ -15,6 +15,29 @@ const CONSTANTS = {
   TOAST_TIMEOUT: 3000,
 }
 
+const skuItemToMinicartItem = item => {
+  return {
+    // Important for the mutation
+    id: item.skuId,
+    seller: item.seller,
+    options: item.options,
+    quantity: item.quantity,
+
+    // Fields for optmistic cart
+    sellingPrice: item.price,
+    skuName: item.variant,
+    detailUrl: item.detailUrl,
+    imageUrl: item.imageUrl,
+    name: item.name,
+    listPrice: item.listPrice,
+    assemblyOptions: item.assemblyOptions,
+    // Fields for Analytics
+    brand: item.brand,
+    category: item.category,
+    productRefId: item.productRefId,
+  }
+}
+
 /**
  * BuyButton Component.
  * Adds a list of sku items to the cart.
@@ -38,34 +61,6 @@ export const BuyButton = ({
   const translateMessage = useCallback(id => intl.formatMessage({ id: id }), [
     intl,
   ])
-
-  const skuItemToMinicartItem = ({
-    skuId: id,
-    variant: skuName,
-    price: sellingPrice,
-    ...restSkuItem
-  }) => {
-    return {
-      id,
-      sellingPrice,
-      skuName,
-      ...pick(
-        [
-          'detailUrl',
-          'imageUrl',
-          'quantity',
-          'seller',
-          'name',
-          'options',
-          'listPrice',
-          'brand',
-          'assemblyOptions',
-        ],
-        restSkuItem
-      ),
-      index: 1,
-    }
-  }
 
   const toastMessage = success => {
     const message = success
@@ -104,14 +99,12 @@ export const BuyButton = ({
         // minicart does not have link state implemented, calling graphql directly
         const variables = {
           orderFormId: orderFormContext.orderForm.orderFormId,
-          items: skuItems.map(skuItem => {
-            const { skuId } = skuItem
-            return {
-              id: parseInt(skuId),
-              index: 1,
-              ...pick(['quantity', 'seller', 'options'], skuItem),
-            }
-          }),
+          items: skuItems.map(item => ({
+            id: item.skuId,
+            seller: item.seller,
+            options: item.options,
+            quantity: item.quantity,
+          })),
         }
         const mutationRes = await orderFormContext.addItem({ variables })
         const { items } = mutationRes.data.addItem
