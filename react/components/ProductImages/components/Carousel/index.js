@@ -265,7 +265,7 @@ class Carousel extends Component {
       containerClass: 'swiper-container h-100',
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
-      freeMode: true,
+      freeMode: false,
       direction: 'vertical',
       slidesPerView: 'auto',
       touchRatio: 0.4,
