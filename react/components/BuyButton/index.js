@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import React, { useContext, useCallback, useState, Fragment } from 'react'
 import { intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
-import { pick } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
 
 import { Button, ToastContext } from 'vtex.styleguide'
@@ -31,6 +30,8 @@ const skuItemToMinicartItem = item => {
     name: item.name,
     listPrice: item.listPrice,
     assemblyOptions: item.assemblyOptions,
+    sellingPriceWithAssemblies: item.sellingPriceWithAssemblies,
+
     // Fields for Analytics
     brand: item.brand,
     category: item.category,
@@ -55,6 +56,7 @@ export const BuyButton = ({
   orderFormContext,
   children,
   large,
+  disabled,
 }) => {
   const [isAddingToCart, setAddingToCart] = useState(false)
   const { showToast } = useContext(ToastContext)
@@ -137,6 +139,7 @@ export const BuyButton = ({
       onAddFinish && onAddFinish()
     }, 500)
   }
+  console.log('teste disabled:', disabled)
 
   return (
     <Fragment>
@@ -145,7 +148,7 @@ export const BuyButton = ({
       ) : (
         <Button
           block={large}
-          disabled={!available}
+          disabled={disabled || !available}
           onClick={handleAddToCart}
           isLoading={isAddingToCart}
         >

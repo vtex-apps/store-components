@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
-import { path, isEmpty, compose, pathOr } from 'ramda'
+import { path, isEmpty, compose } from 'ramda'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { withToast } from 'vtex.styleguide'
 import { orderFormConsumer } from 'vtex.store-resources/OrderFormContext'
@@ -8,7 +8,7 @@ import ProductPrice from '../ProductPrice'
 import { graphql } from 'react-apollo'
 
 import { BuyButton } from './index'
-import { transformAssemblyOptions } from './assemblyUtils'
+import { transformAssemblyOptions, sumAssembliesPrice } from './assemblyUtils'
 import addToCartMutation from './mutations/addToCart.gql'
 import setOpenMinicartMutation from './mutations/setOpenMinicart.gql'
 
@@ -18,17 +18,12 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
   }
 
   const totalPrice = skuItems.reduce((acc, item) => {
-    const itemPrice = item.price * item.quantity
-    const addedAssemblyOptions = pathOr([], ['assemblyOptions', 'added'], item)
-    return (
-      acc +
-      addedAssemblyOptions.reduce(
-        (childAcc, option) =>
-          childAcc +
-          option.item.sellingPrice * option.normalizedQuantity * item.quantity,
-        itemPrice
-      )
-    )
+    const itemPrice =
+      item.sellingPriceWithAssemblies != null
+        ? item.sellingPriceWithAssemblies
+        : item.price
+    const itemCost = itemPrice * item.quantity
+    return acc + itemCost
   }, 0)
 
   return (
@@ -58,6 +53,7 @@ const BuyButtonWrapper = ({
   available: propAvailable,
   skuItems: propSkuItems,
   large: propLarge,
+  disabled: propDisabled,
 }) => {
   const valuesFromContext = useContext(ProductContext)
 
@@ -92,6 +88,11 @@ const BuyButtonWrapper = ({
         selectedSeller.commertialOffer &&
         selectedSeller.commertialOffer.AvailableQuantity > 0
 
+  const disabled =
+    isEmptyContext || propDisabled != null
+      ? propDisabled
+      : !path(['isValid'], assemblyOptions)
+
   return (
     <BuyButton
       intl={intl}
@@ -106,6 +107,7 @@ const BuyButtonWrapper = ({
       isOneClickBuy={isOneClickBuy}
       shouldOpenMinicart={shouldOpenMinicart}
       setMinicartOpen={setMinicartOpen}
+      disabled={disabled}
     >
       {children || (
         <BuyButtonMessage showItemsPrice={showItemsPrice} skuItems={skuItems} />
@@ -168,9 +170,13 @@ EnhancedBuyButton.mapCatalogItemToCart = function mapCatalogItemToCart({
         skuId: selectedItem.itemId,
         imageUrl: path(['images', '0', 'imageUrl'], selectedItem),
         ...transformAssemblyOptions(
-          assemblyOptions,
-          selectedSeller.commertialOffer.Price
+          path(['items'], assemblyOptions),
+          selectedSeller.commertialOffer.Price,
+          selectedQuantity
         ),
+        sellingPriceWithAssemblies:
+          selectedSeller.commertialOffer.Price +
+          sumAssembliesPrice(path(['items'], assemblyOptions) || {}),
       },
     ]
   )
