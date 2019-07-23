@@ -44,6 +44,7 @@ Specification:
 | ---------- | ---------------- | ----------------------------------------------------- | ------------- |
 | `images`   | `Array(Images)!` | An array of Images                                    | []            |
 | `position` | `Enum`           | Set the position of the thumbnails(`left` or `right`) | `left`        |
+| `displayThumbnailsArrows` | `boolean` | Displays navigation arrows on the thumbnails if there are enough thumbnails for them to scroll | `false` |
 
 ### Styles API
 
