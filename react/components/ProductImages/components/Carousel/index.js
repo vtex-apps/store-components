@@ -247,26 +247,17 @@ class Carousel extends Component {
     }
   }
 
-  render() {
-    const { thumbsLoaded, isGalleryOpen, selectedIndex, gallerySwiper } = this.state
-
+  get thumbnailsParams() {
     const {
-      slides,
-      position,
       displayThumbnailsArrows,
-      zoomProps: { zoomType, bgOpacity },
     } = this.props
-
-    if (!thumbsLoaded || Swiper == null) {
-      return <Loader slidesAmount={slides ? slides.length : 0} />
-    }
 
     const caretSize = 24
     const caretClassName =
       'absolute z-2 left-0 pointer c-action-primary w-100 flex justify-center pv2'
     const caretStyle = { transition: 'opacity 200ms' }
 
-    const thumbnailParams = {
+    return {
       modules: [SwiperModules.Navigation],
       ...(displayThumbnailsArrows && {
         navigation: {
@@ -325,6 +316,21 @@ class Carousel extends Component {
       slidesPerGroup: displayThumbnailsArrows ? 4 : 1,
       getSwiper: swiper => this.setState({ thumbSwiper: swiper }),
     }
+  }
+
+  render() {
+    const { thumbsLoaded, isGalleryOpen, selectedIndex, gallerySwiper } = this.state
+
+    const {
+      slides,
+      position,
+      zoomProps: { zoomType, bgOpacity },
+    } = this.props
+
+    if (!thumbsLoaded || Swiper == null) {
+      return <Loader slidesAmount={slides ? slides.length : 0} />
+    }
+
 
     const galleryCursor = {
       gallery: !isGalleryOpen && 'pointer',
@@ -352,7 +358,7 @@ class Carousel extends Component {
     return (
       <div className="relative overflow-hidden w-100" aria-hidden="true">
         <div className={thumbClasses}>
-          <Swiper {...thumbnailParams} rebuildOnUpdate>
+          <Swiper {...this.thumbnailsParams} rebuildOnUpdate>
             {slides.map((slide, i) => (
               <div
                 key={i}
