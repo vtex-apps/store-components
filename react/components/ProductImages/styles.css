@@ -47,3 +47,13 @@
 .figure {
   margin: 0;
 }
+
+.gradientBaseBottom {
+  /** TODO: use the actual bg-base token instead of a hardcoded color */
+  background: linear-gradient(transparent, white)
+}
+
+.gradientBaseTop {
+  /** TODO: use the actual bg-base token instead of a hardcoded color */
+  background: linear-gradient(white, transparent)
+}
