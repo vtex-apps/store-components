@@ -43,71 +43,55 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
   )
 }
 
-const BuyButtonWrapper = props => {
-  const {
-    intl,
-    addToCart,
-    showToast,
-    orderFormContext,
-    onAddStart,
-    onAddFinish,
-    children,
-  } = props
-
+const BuyButtonWrapper = ({
+  intl,
+  addToCart,
+  showToast,
+  orderFormContext,
+  onAddStart,
+  onAddFinish,
+  children,
+  isOneClickBuy,
+  shouldOpenMinicart,
+  setMinicartOpen,
+  showItemsPrice,
+  available: propAvailable,
+  skuItems: propSkuItems,
+  large: propLarge,
+}) => {
   const valuesFromContext = useContext(ProductContext)
 
-  const buyButtonProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) {
-      return props
-    }
+  const isEmptyContext = !valuesFromContext || isEmpty(valuesFromContext)
 
-    const {
-      product,
-      selectedItem,
-      selectedQuantity,
-      assemblyOptions,
-    } = valuesFromContext
+  const product = valuesFromContext && valuesFromContext.product
+  const selectedItem = valuesFromContext && valuesFromContext.selectedItem
+  const assemblyOptions = valuesFromContext && valuesFromContext.assemblyOptions
+  const selectedSeller = path(['selectedItem', 'sellers', 0], valuesFromContext)
+  const selectedQuantity =
+    valuesFromContext && valuesFromContext.selectedQuantity != null
+      ? valuesFromContext.selectedQuantity
+      : 1
 
-    const sellerId = path(['sellers', 0, 'sellerId'], selectedItem)
-    const commertialOffer = path(
-      ['sellers', 0, 'commertialOffer'],
-      selectedItem
-    )
+  const skuItems =
+    isEmptyContext || propSkuItems != null
+      ? propSkuItems
+      : EnhancedBuyButton.mapCatalogItemToCart({
+          product,
+          selectedItem,
+          selectedQuantity,
+          selectedSeller,
+          assemblyOptions,
+        })
 
-    const available =
-      Number.isNaN(+path(['AvailableQuantity'], commertialOffer)) ||
-      path(['AvailableQuantity'], commertialOffer) > 0
+  const large = isEmptyContext || propLarge != null ? propLarge : true
 
-    const contextSkuItems = product &&
-      selectedItem &&
-      sellerId && [
-        {
-          skuId: selectedItem.itemId,
-          quantity: selectedQuantity,
-          seller: sellerId,
-          name: selectedItem.nameComplete,
-          price: commertialOffer.Price,
-          variant: selectedItem.name,
-          brand: product.brand,
-          index: 0,
-          detailUrl: `/${product.linkText}/p`,
-          imageUrl: path(['images', '0', 'imageUrl'], selectedItem),
-          listPrice: path(
-            ['sellers', '0', 'commertialOffer', 'ListPrice'],
-            selectedItem
-          ),
-          ...transformAssemblyOptions(assemblyOptions, commertialOffer.Price),
-        },
-      ]
+  const available =
+    isEmptyContext || propAvailable != null
+      ? propAvailable
+      : selectedSeller &&
+        selectedSeller.commertialOffer &&
+        selectedSeller.commertialOffer.AvailableQuantity > 0
 
-    return {
-      ...props,
-      skuItems: props.skuItems == null ? contextSkuItems : props.skuItems,
-      large: props.large == null ? true : props.large,
-      available: props.available == null ? available : props.available,
-    }
-  }
-  const buttonProps = buyButtonProps()
   return (
     <BuyButton
       intl={intl}
@@ -116,13 +100,15 @@ const BuyButtonWrapper = props => {
       onAddFinish={onAddFinish}
       showToast={showToast}
       orderFormContext={orderFormContext}
-      {...buttonProps}
+      skuItems={skuItems}
+      large={large}
+      available={available}
+      isOneClickBuy={isOneClickBuy}
+      shouldOpenMinicart={shouldOpenMinicart}
+      setMinicartOpen={setMinicartOpen}
     >
       {children || (
-        <BuyButtonMessage
-          showItemsPrice={props.showItemsPrice}
-          skuItems={buttonProps.skuItems}
-        />
+        <BuyButtonMessage showItemsPrice={showItemsPrice} skuItems={skuItems} />
       )}
     </BuyButton>
   )
@@ -142,10 +128,52 @@ const withOpenMinicart = graphql(setOpenMinicartMutation, {
   }),
 })
 
-export default compose(
+const EnhancedBuyButton = compose(
   withAddToCart,
   withOpenMinicart,
   withToast,
   injectIntl,
   orderFormConsumer
 )(BuyButtonWrapper)
+
+// This function is public available to be used only by vtex.product-summary.
+// We do not garantee this API will not change and might happen breaking change anytime.
+EnhancedBuyButton.mapCatalogItemToCart = function mapCatalogItemToCart({
+  product,
+  selectedItem,
+  selectedQuantity,
+  selectedSeller,
+  assemblyOptions,
+}) {
+  return (
+    product &&
+    selectedItem &&
+    selectedSeller &&
+    selectedSeller.commertialOffer && [
+      {
+        index: 0,
+        quantity: selectedQuantity,
+        detailUrl: `/${product.linkText}/p`,
+        name: product.productName,
+        brand: product.brand,
+        category:
+          product.categories && product.categories.length > 0
+            ? product.categories[0]
+            : '',
+        productRefId: product.productReference,
+        seller: selectedSeller.sellerId,
+        price: selectedSeller.commertialOffer.Price,
+        listPrice: selectedSeller.commertialOffer.ListPrice,
+        variant: selectedItem.name,
+        skuId: selectedItem.itemId,
+        imageUrl: path(['images', '0', 'imageUrl'], selectedItem),
+        ...transformAssemblyOptions(
+          assemblyOptions,
+          selectedSeller.commertialOffer.Price
+        ),
+      },
+    ]
+  )
+}
+
+export default EnhancedBuyButton
