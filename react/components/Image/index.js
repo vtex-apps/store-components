@@ -4,9 +4,16 @@ import { generateBlockClass } from '@vtex/css-handles'
 
 import styles from './styles.css'
 
-const Image = ({ src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass, href }) => {
+const Image = ({ src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass, link }) => {
+  console.log(link)
   const img = renderImg({src, alt, maxHeight, maxWidth, srcSet, sizes, blockClass})
-  return href? (<a href={href}>{img}</a>) : img;
+  return link? 
+    (<a href={link.url} 
+        rel={link.attributeNofollow? 'nofollow' : ''} 
+        target={link.newTab? '_blank' : ''}
+        title={link.attributeTitle}>
+        {img}
+      </a>) : img;
 }
 
 const renderImg = ({src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass}) => {
@@ -26,7 +33,7 @@ Image.propTypes = {
   alt: PropTypes.string,
   maxWidth: PropTypes.string,
   maxHeight: PropTypes.string,
-  href: PropTypes.string,
+  link: PropTypes.object,
   srcSet: PropTypes.string,
   sizes: PropTypes.string,
   blockClass: PropTypes.string,
@@ -36,7 +43,6 @@ Image.defaultProps = {
   alt: '',
   maxWidth: 'none',
   maxHeight: 'none',
-  href: '',
   srcSet: '',
   sizes: '',
 }

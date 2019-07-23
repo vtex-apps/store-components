@@ -103,9 +103,8 @@
           "$ref": "app:vtex.native-types#/definitions/url",
           "default": ""
         },
-        "href": {
-          "title": "admin/editor.image.href.title",
-          "$ref": "app:vtex.native-types#/definitions/url",
+        "link": {
+          "$ref": "app:vtex.native-types#/definitions/link",
           "default": ""
         },
         "alt": {
