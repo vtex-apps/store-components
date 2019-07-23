@@ -268,11 +268,13 @@ class Carousel extends Component {
       freeMode: false,
       direction: 'vertical',
       slidesPerView: 'auto',
-      touchRatio: 0.4,
-      mousewheel: true,
+      touchRatio: 1,
+      mousewheel: false,
       preloadImages: true,
       shouldSwiperUpdate: true,
       zoom: false,
+      threshold: 8,
+      slidesPerGroup: 4,
       getSwiper: swiper => this.setState({ thumbSwiper: swiper }),
     }
 
