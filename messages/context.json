@@ -120,7 +120,6 @@
   "admin/editor.image.title": "Image",
   "admin/editor.image.description": "Show any image",
   "admin/editor.image.src.title": "Image",
-  "admin/editor.image.href.title": "Link to",
   "admin/editor.image.alt.title": "Alternative text",
   "admin/editor.product-images.title": "ProductImages component title on storefront",
   "admin/editor.product-images.description": "Description of ProductImages component",
