@@ -260,7 +260,18 @@ class Carousel extends Component {
       return <Loader slidesAmount={slides ? slides.length : 0} />
     }
 
+    const iconSize = 24
+    const caretClassName =
+      'absolute z-2 left-0 pointer c-action-primary w-100 flex justify-center pv2'
+
     const thumbnailParams = {
+      modules: [SwiperModules.Navigation],
+      navigation: {
+        prevEl: '.swiper-thumbnails-caret-prev',
+        nextEl: '.swiper-thumbnails-caret-next',
+        disabledClass: `c-disabled o-0 pointer-events-none ${styles.carouselCursorDefault}`,
+        hiddenClass: 'dn',
+      },
       observer: true,
       containerClass: 'swiper-container h-100',
       watchSlidesVisibility: true,
@@ -276,6 +287,24 @@ class Carousel extends Component {
       threshold: 8,
       slidesPerGroup: 4,
       getSwiper: swiper => this.setState({ thumbSwiper: swiper }),
+      renderNextButton: () => (
+        <span className={`swiper-thumbnails-caret-next bottom-0 pt7 ${caretClassName} ${styles.gradientBaseBottom}`} style={{ transition: 'opacity 200ms' }}>
+          <IconCaret
+            orientation="down"
+            size={iconSize}
+            className={styles.carouselIconCaretRight}
+          />
+        </span>
+      ),
+      renderPrevButton: () => (
+        <span className={`swiper-thumbnails-caret-prev top-0 pb7 ${caretClassName} ${styles.gradientBaseTop}`} style={{ transition: 'opacity 200ms'}}>
+          <IconCaret
+            orientation="up"
+            size={iconSize}
+            className={styles.carouselIconCaretLeft}
+          />
+        </span>
+      ),
     }
 
     const galleryCursor = {
