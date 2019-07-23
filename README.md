@@ -87,7 +87,7 @@ Below we have a README for each component of this project that explains how to u
 - [Discount Badge](/react/components/DiscountBadge/README.md)
 - [Gradient Collapse](/react/components/GradientCollapse/README.md)
 - [Greeting](/react/components/Greeting/README.md)
-- [Image](//react/components/Image/README.md)
+- [Image](/react/components/Image/README.md)
 - [InfoCard](/react/components/InfoCard/README.md)
 - [Logo](/react/components/Logo/README.md)
 - [Newsletter](/react/components/Newsletter/README.md)
