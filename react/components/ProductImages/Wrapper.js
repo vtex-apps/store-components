@@ -30,6 +30,7 @@ const ProductImagesWrapper = props => {
     <ProductImages
       zoomProps={props.zoomProps}
       position={props.position || props.thumbnailPosition}
+      displayThumbnailsArrows={props.displayThumbnailsArrows}
       images={images}
     />
   )
