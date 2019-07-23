@@ -19,7 +19,7 @@ const getBestUrlIndex = thresholds => {
 
 const ProductImages = props => {
   const [_, setState] = useState(0)
-  const { position, zoomProps } = props
+  const { position, zoomProps, displayThumbnailsArrows } = props
 
   const debouncedGetBestUrl = debounce(() => {
     // force update
@@ -54,7 +54,7 @@ const ProductImages = props => {
 
   return (
     <div className={`${styles.content} w-100`}>
-      <Carousel slides={slides} position={position} zoomProps={zoomProps} />
+      <Carousel slides={slides} position={position} displayThumbnailsArrows={displayThumbnailsArrows} zoomProps={zoomProps} />
     </div>
   )
 }

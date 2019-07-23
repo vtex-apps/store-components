@@ -639,3 +639,7 @@ button.swiper-pagination-bullet {
 .translate--50y{
   transform: translate(0, -50%);
 }
+
+.pointer-events-none {
+  pointer-events: none;
+}

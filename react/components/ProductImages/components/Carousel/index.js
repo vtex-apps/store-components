@@ -247,6 +247,77 @@ class Carousel extends Component {
     }
   }
 
+  get thumbnailsParams() {
+    const {
+      displayThumbnailsArrows,
+    } = this.props
+
+    const caretSize = 24
+    const caretClassName =
+      'absolute z-2 left-0 pointer c-action-primary w-100 flex justify-center pv2'
+    const caretStyle = { transition: 'opacity 200ms' }
+
+    return {
+      modules: [SwiperModules.Navigation],
+      ...(displayThumbnailsArrows && {
+        navigation: {
+          prevEl: '.swiper-thumbnails-caret-prev',
+          nextEl: '.swiper-thumbnails-caret-next',
+          disabledClass: `c-disabled o-0 pointer-events-none ${
+            styles.carouselCursorDefault
+          }`,
+          hiddenClass: 'dn',
+        },
+        renderNextButton: () => (
+          <span
+            className={`swiper-thumbnails-caret-next bottom-0 pt7 ${caretClassName} ${
+              styles.gradientBaseBottom
+            }`}
+            style={caretStyle}
+          >
+            <IconCaret
+              orientation="down"
+              size={caretSize}
+              className={styles.carouselIconCaretRight}
+            />
+          </span>
+        ),
+        renderPrevButton: () => (
+          <span
+            className={`swiper-thumbnails-caret-prev top-0 pb7 ${caretClassName} ${
+              styles.gradientBaseTop
+            }`}
+            style={caretStyle}
+          >
+            <IconCaret
+              orientation="up"
+              size={caretSize}
+              className={styles.carouselIconCaretLeft}
+            />
+          </span>
+        ),
+      }),
+      observer: true,
+      containerClass: 'swiper-container h-100',
+      watchSlidesVisibility: true,
+      watchSlidesProgress: true,
+      freeMode: false,
+      direction: 'vertical',
+      slidesPerView: 'auto',
+      touchRatio: 1,
+      mousewheel: false,
+      preloadImages: true,
+      shouldSwiperUpdate: true,
+      zoom: false,
+      threshold: 8,
+      /* Slides are grouped when thumbnails arrows are enabled
+       * so that clicking on next/prev will scroll more than 
+       * one thumbnail */
+      slidesPerGroup: displayThumbnailsArrows ? 4 : 1,
+      getSwiper: swiper => this.setState({ thumbSwiper: swiper }),
+    }
+  }
+
   render() {
     const { thumbsLoaded, isGalleryOpen, selectedIndex, gallerySwiper } = this.state
 
@@ -260,21 +331,6 @@ class Carousel extends Component {
       return <Loader slidesAmount={slides ? slides.length : 0} />
     }
 
-    const thumbnailParams = {
-      observer: true,
-      containerClass: 'swiper-container h-100',
-      watchSlidesVisibility: true,
-      watchSlidesProgress: true,
-      freeMode: true,
-      direction: 'vertical',
-      slidesPerView: 'auto',
-      touchRatio: 0.4,
-      mousewheel: true,
-      preloadImages: true,
-      shouldSwiperUpdate: true,
-      zoom: false,
-      getSwiper: swiper => this.setState({ thumbSwiper: swiper }),
-    }
 
     const galleryCursor = {
       gallery: !isGalleryOpen && 'pointer',
@@ -302,7 +358,7 @@ class Carousel extends Component {
     return (
       <div className="relative overflow-hidden w-100" aria-hidden="true">
         <div className={thumbClasses}>
-          <Swiper {...thumbnailParams} rebuildOnUpdate>
+          <Swiper {...this.thumbnailsParams} rebuildOnUpdate>
             {slides.map((slide, i) => (
               <div
                 key={i}
@@ -368,6 +424,7 @@ Carousel.propTypes = {
       bestUrlIndex: PropTypes.number,
     })
   ),
+  displayThumbnailsArrows: PropTypes.bool,
 }
 
 export default Carousel
