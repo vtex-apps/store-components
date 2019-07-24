@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## [3.56.0] - 2019-07-23
 ### Added
 - **ProductImages:** Prop `displayThumbnailsArrows`.
@@ -16,6 +17,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Pass more data down to Minicart addToCart to fulfill analytics data.
 =======
+=======
+### Added
+>>>>>>> PR fixes: changelog, prettier and console.log removal
 - Added link prop to image component
 >>>>>>> Changes on documentation and refactor on context.json
 
