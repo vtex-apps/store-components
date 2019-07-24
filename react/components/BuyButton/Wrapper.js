@@ -88,10 +88,17 @@ const BuyButtonWrapper = ({
         selectedSeller.commertialOffer &&
         selectedSeller.commertialOffer.AvailableQuantity > 0
 
+  const groupsValidArray =
+    (assemblyOptions &&
+      assemblyOptions.areGroupsValid &&
+      Object.values(assemblyOptions.areGroupsValid)) ||
+    []
+
+  const areAssemblyGroupsValid = groupsValidArray.every(Boolean)
   const disabled =
     isEmptyContext || propDisabled != null
       ? propDisabled
-      : !path(['isValid'], assemblyOptions)
+      : !areAssemblyGroupsValid
 
   return (
     <BuyButton
