@@ -57,7 +57,7 @@ export const transformAssemblyOptions = (
         assemblyOptions: childrenAssemblyOptions,
       } = childrenAddedData || {}
 
-      if (quantity >= initialQuantity) {
+      if (quantity >= initialQuantity && quantity > 0) {
         added.push({
           normalizedQuantity: quantity,
           extraQuantity: quantity - initialQuantity,
@@ -76,7 +76,7 @@ export const transformAssemblyOptions = (
         })
       }
 
-      if (quantity < initialQuantity) {
+      if (quantity < initialQuantity && choiceType === 'TOGGLE') {
         removed.push({
           name,
           initialQuantity,
@@ -84,7 +84,7 @@ export const transformAssemblyOptions = (
         })
       }
 
-      if (quantity !== initialQuantity) {
+      if (quantity !== initialQuantity || addedChildrenCount > 0) {
         options.push({
           assemblyId: groupId,
           id,
