@@ -77,6 +77,9 @@
     "component": "NotificationBar"
   },
   "image": {
-    "component": "Image"
+    "component": "Image",
+    "content": {
+      "$ref": "app:vtex.store-components#/definitions/Image"
+    }
   }
 }
