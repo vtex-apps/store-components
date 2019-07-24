@@ -100,8 +100,6 @@ const BuyButtonWrapper = ({
       ? propDisabled
       : !areAssemblyGroupsValid
 
-  console.log('teste skuItems: ', skuItems)
-
   return (
     <BuyButton
       intl={intl}

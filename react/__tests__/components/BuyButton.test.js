@@ -88,6 +88,20 @@ describe('<BuyButton />', () => {
                 sellingPrice: 5,
                 quantity: 2,
                 id: '1',
+                sellingPriceWithAssemblies: 6,
+                assemblyOptions: {
+                  added: [
+                    {
+                      item: {
+                        sellingPrice: 1,
+                        id: '3',
+                        quantity: 1,
+                        name: 'Recursive',
+                        sellingPriceWithAssemblies: 1,
+                      },
+                    },
+                  ],
+                },
               },
             },
             {
@@ -99,12 +113,14 @@ describe('<BuyButton />', () => {
                 sellingPrice: 3,
                 quantity: 1,
                 id: '2',
+                sellingPriceWithAssemblies: 3,
               },
             },
           ],
           removed: [],
           parentPrice: 100,
         },
+        sellingPriceWithAssemblies: 115,
       },
     ]
     const { getByText } = renderComponent(
@@ -115,7 +131,7 @@ describe('<BuyButton />', () => {
       },
       null
     )
-    const priceRegex = /226.00/
+    const priceRegex = /230.00/
     getByText(priceRegex)
   })
 })
