@@ -139,7 +139,6 @@ export const BuyButton = ({
       onAddFinish && onAddFinish()
     }, 500)
   }
-  console.log('teste disabled:', disabled)
 
   return (
     <Fragment>
