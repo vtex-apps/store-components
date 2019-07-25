@@ -39,6 +39,7 @@ const ProductBrand = ({
   height = 100,
   excludeBrands,
   blockClass,
+  logoWithLink,
 }) => {
   const productContext = useContext(ProductContext)
 
@@ -83,6 +84,21 @@ const ProductBrand = ({
           const { imageUrl } = data.brand
           if (imageUrl) {
             const dpi = (window && window.devicePixelRatio) || 1
+            const logoLink = '/' + brandName + '/b'
+            const logoImage = <img
+              className={generateBlockClass(
+                styles.productBrandLogo,
+                blockClass
+              )}
+              src={changeImageUrlSize(
+                `/arquivos/ids${imageUrl}`,
+                undefined,
+                height ? height * dpi : undefined
+              )}
+              style={{
+                height: height || 'auto',
+              }}
+            />
 
             return (
               <BrandContainer blockClass={blockClass}>
@@ -92,20 +108,11 @@ const ProductBrand = ({
                   }}
                 >
                   {/** TODO: Use a smarter Image component that handles VTEX image resizing etc. */}
-                  <img
-                    className={generateBlockClass(
-                      styles.productBrandLogo,
-                      blockClass
-                    )}
-                    src={changeImageUrlSize(
-                      `/arquivos/ids${imageUrl}`,
-                      undefined,
-                      height ? height * dpi : undefined
-                    )}
-                    style={{
-                      height: height || 'auto',
-                    }}
-                  />
+                  {
+                    logoWithLink
+                    ? <a href={logoLink} data-testid="logo-redirect"> {logoImage} </a>
+                    : logoImage
+                  }
                 </div>
               </BrandContainer>
             )

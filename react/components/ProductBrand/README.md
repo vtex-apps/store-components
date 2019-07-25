@@ -36,6 +36,7 @@ This component has an interface that describes which rules must be implemented b
 | `fallbackToText` | `Boolean` |  This prop should only be used when displayMode is set to logo. It defines what should be done when the Brand Component should have displayed a brand logo but no image was registered in the VTEX Catalog. This prop is set as true by default, allowing the logo to be replaced with the brand name in those cases. When set as false, the store will not show the brand name instead of the brand logo |
 | `height` | `Number` | It sets the logo height. It should only be used when displaymode is set to “logo”. |
 | `excludeBrands` | `Array` | The brand names or brand IDs that are listed in the array will never be displayed by the Brand component. It is usually useful to hide default brand names/logos or test brand names/logos on the store front. |
+| `logoWithLink` | `boolean` | If the brand logo will have a link that leads to the store's brand page |
 
 
 ### Styles API
