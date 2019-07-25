@@ -34,7 +34,7 @@
     "swiper": "^4.5.0"
   },
   "devDependencies": {
-    "@vtex/test-tools": "^0.2.0",
+    "@vtex/test-tools": "^1.1.0",
     "apollo-cache-inmemory": "^1.4.3",
     "eslint": "^5.16.0",
     "eslint-config-vtex-react": "^4.0.0",
