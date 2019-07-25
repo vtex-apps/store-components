@@ -2,46 +2,36 @@
 
 exports[`<ProductName /> should match the snapshot Loader 1`] = `
 <DocumentFragment>
-  <div
-    class="productNameContainer productNameLoader"
+  <h1
+    class="productNameContainer mv0 t-heading-4"
   >
-    <svg
-      class="content-loader-mock"
+    <span
+      class="productBrand"
     >
-      <rect
-        height="1.125em"
-        width="75%"
-        x="15%"
-      />
-      <rect
-        height="1.125em"
-        width="50%"
-        x="25%"
-        y="1.75em"
-      />
-    </svg>
-  </div>
+      Billabong Die Cut Loose Fit Short Sleeve Rashguard - Men's 
+    </span>
+  </h1>
 </DocumentFragment>
 `;
 
 exports[`<ProductName /> should match the snapshot with Name and Brand 1`] = `
 <DocumentFragment>
-  <div
-    class="productNameContainer mv0"
+  <h1
+    class="productNameContainer mv0 t-heading-4"
   >
     <span
       class="productBrand"
     >
       ProductTest - ProductBrandName
     </span>
-  </div>
+  </h1>
 </DocumentFragment>
 `;
 
 exports[`<ProductName /> should match the snapshot with Name and Product Reference 1`] = `
 <DocumentFragment>
-  <div
-    class="productNameContainer mv0"
+  <h1
+    class="productNameContainer mv0 t-heading-4"
   >
     <span
       class="productBrand"
@@ -53,14 +43,14 @@ exports[`<ProductName /> should match the snapshot with Name and Product Referen
     >
       REF: productReferenceTest
     </span>
-  </div>
+  </h1>
 </DocumentFragment>
 `;
 
 exports[`<ProductName /> should match the snapshot with Name and SkuName 1`] = `
 <DocumentFragment>
-  <div
-    class="productNameContainer mv0"
+  <h1
+    class="productNameContainer mv0 t-heading-4"
   >
     <span
       class="productBrand"
@@ -72,14 +62,14 @@ exports[`<ProductName /> should match the snapshot with Name and SkuName 1`] = `
     >
       ProductSkuName
     </span>
-  </div>
+  </h1>
 </DocumentFragment>
 `;
 
 exports[`<ProductName /> should match the snapshot with all options 1`] = `
 <DocumentFragment>
-  <div
-    class="productNameContainer mv0"
+  <h1
+    class="productNameContainer mv0 t-heading-4"
   >
     <span
       class="productBrand"
@@ -96,20 +86,20 @@ exports[`<ProductName /> should match the snapshot with all options 1`] = `
     >
       REF: productReferenceTest
     </span>
-  </div>
+  </h1>
 </DocumentFragment>
 `;
 
 exports[`<ProductName /> should match the snapshot with only Name 1`] = `
 <DocumentFragment>
-  <div
-    class="productNameContainer mv0"
+  <h1
+    class="productNameContainer mv0 t-heading-4"
   >
     <span
       class="productBrand"
     >
       ProductTest 
     </span>
-  </div>
+  </h1>
 </DocumentFragment>
 `;
