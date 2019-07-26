@@ -5,27 +5,23 @@ import { useRuntime } from 'vtex.render-runtime'
 
 import ShippingSimulator from './index'
 
-const ShippingSimulatorWrapper = (props) => {
+const ShippingSimulatorWrapper = props => {
   const { culture } = useRuntime()
-  const valuesFromContext = useContext(ProductContext)
+  const productContext = useContext(ProductContext)
 
-  const shippingSimultatorProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) {
-      return props
-    }
-
-    const { selectedItem } = valuesFromContext
-
-    return {
-      ...props,
-      skuId: props.skuId || path(['itemId'], selectedItem),
-      seller: props.seller || path(['sellers', 0, 'sellerId'], selectedItem),
-      country: props.country || culture.country,
-    }
-  }
+  const country = props.country || culture.country
+  const skuId = props.skuId || path(['selectedItem', 'itemId'], productContext)
+  const seller =
+    props.seller ||
+    path(['selectedItem', 'sellers', 0, 'sellerId'], productContext)
 
   return (
-    <ShippingSimulator { ...shippingSimultatorProps() } />
+    <ShippingSimulator
+      skuId={skuId}
+      seller={seller}
+      country={country}
+      loaderStyles={props.loaderStyles}
+    />
   )
 }
 
