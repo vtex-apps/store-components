@@ -33,12 +33,12 @@ const ShippingSimulator = ({
   const [isValid, setIsValid] = useState(false)
 
   const handleAddressChange = newAddress => {
-    setAddress({
+    const updatedAddress = {
       ...address,
       ...newAddress,
-    })
-    const { postalCode } = address
-    setIsValid(postalCode.valid)
+    }
+    setAddress(updatedAddress)
+    setIsValid(updatedAddress.postalCode.valid)
   }
 
   const handleClick = e => {
