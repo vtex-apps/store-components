@@ -1,28 +1,30 @@
-import React, { useContext, useMemo } from 'react'
-import { ProductContext } from 'vtex.product-context'
+import React, { useMemo } from 'react'
+import useProduct from 'vtex.product-context/useProduct'
 import { pathOr } from 'ramda'
 
 import SKUSelector from './index'
+import { ProductItem, Variations } from './types'
 
-const useVariations = (skuItems, shouldNotShow) => {
+const useVariations = (skuItems: ProductItem[], shouldNotShow: boolean) => {
   const result = useMemo(() => {
     if (shouldNotShow) {
       return {}
     }
-    const variations = {}
+    const variations = {} as Variations
+    const variationsSet = {} as Record<string, Set<string>>
     for (const skuItem of skuItems) {
       for (const currentVariation of skuItem.variations) {
         const { name, values } = currentVariation
         const value = values[0]
-        const currentSet = variations[name] || new Set()
+        const currentSet = variationsSet[name] || new Set()
         currentSet.add(value)
-        variations[name] = currentSet
+        variationsSet[name] = currentSet
       }
     }
-    const variationsNames = Object.keys(variations)
+    const variationsNames = Object.keys(variationsSet)
     // Transform set back to array
     for (const variationName of variationsNames) {
-      const set = variations[variationName]
+      const set = variationsSet[variationName]
       variations[variationName] = Array.from(set)
     }
     return variations
@@ -30,17 +32,26 @@ const useVariations = (skuItems, shouldNotShow) => {
   return result
 }
 
-const SKUSelectorWrapper = props => {
-  const valuesFromContext = useContext(ProductContext)
+interface Props {
+  skuItems: ProductItem[]
+  skuSelected: ProductItem
+  onSKUSelected?: (skuId: string) => void
+  maxItems?: number
+  seeMoreLabel: string
+  hideImpossibleCombinations?: boolean
+}
+
+const SKUSelectorWrapper: StorefrontFC<Props> = props => {
+  const valuesFromContext = useProduct()
   const skuItems =
     props.skuItems != null
       ? props.skuItems
-      : pathOr([], ['product', 'items'], valuesFromContext)
+      : pathOr<ProductItem[]>([], ['product', 'items'], valuesFromContext)
 
   const skuSelected =
     props.skuSelected != null
       ? props.skuSelected
-      : valuesFromContext.selectedItem
+      : (valuesFromContext.selectedItem as ProductItem)
 
   const shouldNotShow =
     skuItems.length === 0 ||

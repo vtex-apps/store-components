@@ -1,5 +1,5 @@
 {
-  "extends": "eslint-config-vtex-react",
+  "extends": "vtex-react",
   "env": {
     "browser": true,
     "es6": true,

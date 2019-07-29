@@ -1,22 +1,29 @@
-import PropTypes from 'prop-types'
-import React, { useCallback, memo, useState, useEffect } from 'react'
+import React, { useCallback, memo, useState, useEffect, FC } from 'react'
 import { Button } from 'vtex.styleguide'
 import { IOMessage } from 'vtex.native-types'
 import { findIndex, propEq } from 'ramda'
 
 import SelectorItem from './SelectorItem'
 import { stripUrl, isColor, slug } from '../utils'
-import { variationShape } from '../utils/proptypes'
 
 import styles from '../styles.css'
 import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
+import { DisplayVariation } from '../types'
+
+interface Props {
+  variation: DisplayVariation
+  maxSkuPrice?: number | null
+  seeMoreLabel: string
+  maxItems: number
+  selectedItem: string | null
+}
 
 const ITEMS_VISIBLE_THRESHOLD = 2
 
-const findSelectedOption = selectedItem =>
+const findSelectedOption = (selectedItem: string | null) =>
   findIndex(propEq('label', selectedItem))
 
-const Variation = ({
+const Variation: FC<Props> = ({
   variation,
   maxSkuPrice,
   seeMoreLabel,
@@ -104,17 +111,6 @@ const Variation = ({
       </div>
     </div>
   )
-}
-
-Variation.propTypes = {
-  /** Variation Object */
-  variation: variationShape,
-  /** Max price of SKU */
-  maxSkuPrice: PropTypes.number,
-  seeMoreLabel: PropTypes.string,
-  maxItems: PropTypes.number,
-  /** Label of selected option in this variation. Example: "Small" */
-  selectedItem: PropTypes.string,
 }
 
 export default memo(Variation)

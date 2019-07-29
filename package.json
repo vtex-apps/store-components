@@ -4,6 +4,12 @@
     "lint:locales": "intl-equalizer"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.9",
+    "@types/ramda": "^0.26.18",
+    "@types/react": "^16.8.23",
     "@vtex/intl-equalizer": "^2.2.1"
+  },
+  "dependencies": {
+    "react": "^16.8.6"
   }
 }

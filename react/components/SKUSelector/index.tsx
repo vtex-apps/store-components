@@ -1,17 +1,30 @@
-import PropTypes from 'prop-types'
-import React, { useState, useEffect, useMemo, memo, useCallback } from 'react'
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  memo,
+  useCallback,
+  FC,
+} from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 import { filter, head, isEmpty, compose, keys, length } from 'ramda'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 import SKUSelector from './components/SKUSelector'
-import { skuShape } from './utils/proptypes'
 import {
   parseSku,
   isColor,
   uniqueOptionToSelect,
   findItemWithSelectedVariations,
 } from './utils'
+import {
+  ProductItem,
+  SelectedVariations,
+  SelectorProductItem,
+  ImageMap,
+  Image,
+  Variations,
+} from './types'
 
 const keyCount = compose(
   length,
@@ -19,9 +32,9 @@ const keyCount = compose(
 )
 const filterSelected = filter(Boolean)
 
-const buildEmptySelectedVariation = variations => {
+const buildEmptySelectedVariation = (variations: Variations) => {
   const variationNames = Object.keys(variations)
-  const result = {}
+  const result = {} as Record<string, null>
   for (const variationName of variationNames) {
     result[variationName] = null
   }
@@ -29,28 +42,33 @@ const buildEmptySelectedVariation = variations => {
 }
 
 /** receives an item and the variations object, returns the selected variations for that item */
-const selectedVariationFromItem = (item, variations) => {
+const selectedVariationFromItem = (
+  item: SelectorProductItem,
+  variations: Variations
+) => {
   const variationNames = Object.keys(variations)
-  const result = {}
+  const result = {} as Record<string, string>
   for (const variationName of variationNames) {
-    result[variationName] = item[variationName]
+    result[variationName] = item.variationValues[variationName]
   }
   return result
 }
 
-const useImagesMap = (items, variations) => {
+const useImagesMap = (items: SelectorProductItem[], variations: Variations) => {
   return useMemo(() => {
     const variationNames = Object.keys(variations)
-    const result = {}
+    const result = {} as ImageMap
     for (const variationName of variationNames) {
       // Today, only "Color" variation should show image, need to find a more resilient way to tell this, waiting for backend
       if (!isColor(variationName)) {
         continue
       }
-      const imageMap = {}
+      const imageMap = {} as Record<string, Image | undefined>
       const variationValues = variations[variationName]
       for (const variationValue of variationValues) {
-        const item = items.find(sku => sku[variationName] === variationValue)
+        const item = items.find(
+          sku => sku.variationValues[variationName] === variationValue
+        )
         imageMap[variationValue] = item && head(item.images)
       }
       result[variationName] = imageMap
@@ -59,7 +77,10 @@ const useImagesMap = (items, variations) => {
   }, [items, variations])
 }
 
-const useAllSelectedEvent = (selectedVariations, variationsCount) => {
+const useAllSelectedEvent = (
+  selectedVariations: SelectedVariations | null,
+  variationsCount: number
+) => {
   const dispatch = useProductDispatch()
   useEffect(() => {
     if (dispatch && selectedVariations) {
@@ -68,32 +89,45 @@ const useAllSelectedEvent = (selectedVariations, variationsCount) => {
       const allSelected = selectedCount === variationsCount
       dispatch({
         type: 'SKU_SELECTOR_SET_VARIATIONS_SELECTED',
-        allSelected,
+        args: { allSelected },
       })
     }
   }, [dispatch, selectedVariations, variationsCount])
 }
 
+interface Props {
+  skuItems: ProductItem[]
+  onSKUSelected?: (skuId: string) => void
+  seeMoreLabel: string
+  maxItems?: number
+  variations: Variations
+  skuSelected?: ProductItem
+  hideImpossibleCombinations?: boolean
+}
+
 /**
  * Display a list of SKU items of a product and its specifications.
  */
-const SKUSelectorContainer = ({
+const SKUSelectorContainer: FC<Props> = ({
   skuItems = [],
   onSKUSelected,
   seeMoreLabel,
-  maxItems,
+  maxItems = 10,
   variations,
   skuSelected,
-  hideImpossibleCombinations,
+  hideImpossibleCombinations = true,
 }) => {
   const variationsCount = keyCount(variations)
-  const [selectedVariations, setSelectedVariations] = useState(null)
+  const [
+    selectedVariations,
+    setSelectedVariations,
+  ] = useState<SelectedVariations | null>(null)
 
   useAllSelectedEvent(selectedVariations, variationsCount)
 
   const parsedItems = useMemo(() => skuItems.map(parseSku), [skuItems])
   const { setQuery } = useRuntime()
-  const redirectToSku = skuId => {
+  const redirectToSku = (skuId: string) => {
     setQuery(
       { skuId },
       {
@@ -119,7 +153,7 @@ const SKUSelectorContainer = ({
       isMainAndImpossible,
       possibleItems,
     }) => {
-      const isRemoving = selectedVariations[variationName] === variationValue
+      const isRemoving = selectedVariations![variationName] === variationValue
       const newSelectedVariation = !isMainAndImpossible
         ? {
             ...selectedVariations,
@@ -155,7 +189,7 @@ const SKUSelectorContainer = ({
           possibleItems,
           finalSelected
         )
-        skuIdToRedirect = newItem.itemId
+        skuIdToRedirect = newItem!.itemId
       }
 
       if (isRemoving) {
@@ -190,29 +224,6 @@ const SKUSelectorContainer = ({
       hideImpossibleCombinations={hideImpossibleCombinations}
     />
   )
-}
-
-SKUSelectorContainer.propTypes = {
-  /** SKU selected */
-  skuSelected: skuShape,
-  /** List of SKU Items */
-  skuItems: PropTypes.arrayOf(skuShape).isRequired,
-  /** Callback that is called when an SKU is selected */
-  onSKUSelected: PropTypes.func,
-  seeMoreLabel: PropTypes.string,
-  maxItems: PropTypes.number,
-
-  /** Object with dynamic keys, with keys being the name of variations and its values being an array of possible values.
-   * Example: { "size": ["small", "medium", "large"], "color": ["blue", "yellow"] }
-   */
-  variations: PropTypes.object,
-
-  hideImpossibleCombinations: PropTypes.bool,
-}
-
-SKUSelectorContainer.defaultProps = {
-  maxItems: 10,
-  hideImpossibleCombinations: true,
 }
 
 export default memo(SKUSelectorContainer)

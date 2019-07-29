@@ -1,12 +1,24 @@
-import React, { memo } from 'react'
-import PropTypes from 'prop-types'
+import React, { memo, FC, SyntheticEvent } from 'react'
 import { FormattedNumber } from 'react-intl'
 import classNames from 'classnames'
 
 import styles from '../styles.css'
 import { slug } from '../utils'
 
-const getDiscount = (maxPrice, price) => {
+interface Props {
+  isAvailable: boolean
+  isSelected: boolean
+  maxPrice?: number | null
+  price?: number | null
+  onClick: (e: SyntheticEvent<HTMLDivElement>) => void
+  isImage: boolean
+  variationValue: string
+  imageUrl?: string
+  imageLabel?: string | null
+  isImpossible: boolean
+}
+
+const getDiscount = (maxPrice?: number | null, price?: number | null) => {
   let discount = 0
   if (maxPrice && price) {
     discount = 1 - price / maxPrice
@@ -17,7 +29,7 @@ const getDiscount = (maxPrice, price) => {
 /**
  * Inherits the components that should be displayed inside the Selector component.
  */
-const SelectorItem = ({
+const SelectorItem: FC<Props> = ({
   isAvailable = true,
   isSelected = false,
   maxPrice,
@@ -74,7 +86,7 @@ const SelectorItem = ({
           })}
         >
           {isImage && imageUrl ? (
-            <img src={imageUrl} alt={imageLabel} />
+            <img src={imageUrl} alt={imageLabel as string | undefined} />
           ) : (
             variationValue
           )}
@@ -87,28 +99,6 @@ const SelectorItem = ({
       )}
     </div>
   )
-}
-
-SelectorItem.propTypes = {
-  /** Function that is called when the item is clicked */
-  onClick: PropTypes.func,
-  /** Flag that indicates if the sku is available */
-  isAvailable: PropTypes.bool,
-  /** Flag that indicates if the current item is selected */
-  isSelected: PropTypes.bool,
-  /** Max sku price */
-  maxPrice: PropTypes.number,
-  /** Price of the current sku */
-  price: PropTypes.number,
-  /** SKU's ID */
-  skuId: PropTypes.string,
-  /** True if it's an image variation */
-  isImage: PropTypes.bool,
-  /** Value of the variation */
-  variationValue: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string,
-  imageLabel: PropTypes.string,
-  isImpossible: PropTypes.bool,
 }
 
 export default memo(SelectorItem)
