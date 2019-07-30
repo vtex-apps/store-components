@@ -45,7 +45,7 @@ const highlightClass = (highlightedIndex, index) => {
 /** List of search results to be displayed*/
 const ResultsList = ({
   isOpen,
-  data,
+  data = {}, // when inputValue is '', query is skipped and value is undefined
   inputValue,
   closeMenu,
   onClearInput,
@@ -182,6 +182,13 @@ ResultsList.propTypes = {
   getItemProps: PropTypes.func,
 }
 
-const ResultsListWithData = graphql(autocomplete)(ResultsList)
+const ResultsListWithData = graphql(autocomplete, {
+  skip: ({ inputValue }) => !inputValue,
+  options: props => ({
+    variables: {
+      inputValue: props.inputValue,
+    },
+  }),
+})(ResultsList)
 
 export default ResultsListWithData
