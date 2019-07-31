@@ -67,7 +67,7 @@ const Variation: FC<Props> = ({
           <span
             className={`${
               styles.skuSelectorName
-            } c-muted-2 t-small overflow-hidden`}
+            } c-muted-1 t-small overflow-hidden`}
           >
             {name}
           </span>
@@ -75,7 +75,7 @@ const Variation: FC<Props> = ({
             <span
               className={`${
                 styles.skuSelectorSelectorImageValue
-              } ml4 c-muted-3 t-small`}
+              } ml4 c-muted-2 t-small`}
             >
               {selectedItem}
             </span>
