@@ -117,7 +117,7 @@ const SKUSelectorContainer: FC<Props> = ({
   variations,
   skuSelected,
   hideImpossibleCombinations = true,
-  showValueNameForImageVariation = true,
+  showValueNameForImageVariation = false,
 }) => {
   const variationsCount = keyCount(variations)
   const [
