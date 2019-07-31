@@ -63,7 +63,7 @@ const Variation: FC<Props> = ({
       }--${slug(name)} flex flex-column mb7`}
     >
       <div className={`${styles.skuSelectorNameContainer} ma1`}>
-        <div className="db mb3 teste">
+        <div className={`${styles.skuSelectorTextContainer} db mb3`}>
           <span
             className={`${
               styles.skuSelectorName
@@ -81,46 +81,46 @@ const Variation: FC<Props> = ({
             </span>
           )}
         </div>
-        <div className="inline-flex flex-wrap ml2 flex items-center">
-          {displayOptions.map(option => {
-            return (
-              <SelectorItem
-                isSelected={option.label === selectedItem}
-                key={`${option.label}-${name}`}
-                isAvailable={option.available}
-                maxPrice={maxSkuPrice}
-                onClick={option.impossible ? emptyAction : option.onSelectItem}
-                isImage={displayImage}
-                variationValue={option.label}
-                imageUrl={
-                  option.image &&
-                  imageUrlForSize(
-                    stripUrl(option.image.imageUrl),
-                    VARIATION_IMG_SIZE
-                  )
-                }
-                imageLabel={option.image && option.image.imageLabel}
-                isImpossible={option.impossible}
+      </div>
+      <div className="inline-flex flex-wrap ml2 flex items-center">
+        {displayOptions.map(option => {
+          return (
+            <SelectorItem
+              isSelected={option.label === selectedItem}
+              key={`${option.label}-${name}`}
+              isAvailable={option.available}
+              maxPrice={maxSkuPrice}
+              onClick={option.impossible ? emptyAction : option.onSelectItem}
+              isImage={displayImage}
+              variationValue={option.label}
+              imageUrl={
+                option.image &&
+                imageUrlForSize(
+                  stripUrl(option.image.imageUrl),
+                  VARIATION_IMG_SIZE
+                )
+              }
+              imageLabel={option.image && option.image.imageLabel}
+              isImpossible={option.impossible}
+            />
+          )
+        })}
+        {!showAll && shouldCollapse && (
+          <div className={styles.seeMoreButton}>
+            <Button
+              variation="tertiary"
+              onClick={showAllAction}
+              size="small"
+              collapseLeft
+            >
+              <IOMessage
+                id={seeMoreLabel}
+                values={{ quantity: overflowQuantity }}
+                data-testid="seeMoreLabel"
               />
-            )
-          })}
-          {!showAll && shouldCollapse && (
-            <div className={styles.seeMoreButton}>
-              <Button
-                variation="tertiary"
-                onClick={showAllAction}
-                size="small"
-                collapseLeft
-              >
-                <IOMessage
-                  id={seeMoreLabel}
-                  values={{ quantity: overflowQuantity }}
-                  data-testid="seeMoreLabel"
-                />
-              </Button>
-            </div>
-          )}
-        </div>
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   )

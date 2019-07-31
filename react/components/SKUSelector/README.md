@@ -81,11 +81,12 @@ You should follow the Styles API instruction in the main [README](/README.md#sty
 
 #### CSS Namespaces
 
-| ClassName                     | Description                                                | Component Source                                                                |
-| ----------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| skuSelectorContainer          | `SKUSelector` container                                    | [SKUSelectorContainer](/react/components/SKUSelector/components/SKUSelector.js) |
-| skuSelectorSubcontainer       | `SKUSelector` inner container                              | [Variation](/react/components/SKUSelector/components/Variation.js)              |
-| skuSelectorName               | `SKUSelector` name                                         | [Variation](/react/components/SKUSelector/components/Variation.js)              |
-| skuSelectorNameContainer      | `SKUSelector` name container                               | [Variation](/react/components/SKUSelector/components/Variation.js)              |
-| seeMoreButton                 | `SKUSelector` see more button container                    | [Variation](/react/components/SKUSelector/components/Variation.js)              |
-| skuSelectorSelectorImageValue | Name of selected image variation beside the variation name | [Variation](/react/components/SKUSelector/components/Variation.js)              |
+| ClassName                     | Description                                                                   | Component Source                                                                |
+| ----------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| skuSelectorContainer          | `SKUSelector` container                                                       | [SKUSelectorContainer](/react/components/SKUSelector/components/SKUSelector.js) |
+| skuSelectorSubcontainer       | `SKUSelector` inner container                                                 | [Variation](/react/components/SKUSelector/components/Variation.js)              |
+| skuSelectorName               | `SKUSelector` name                                                            | [Variation](/react/components/SKUSelector/components/Variation.js)              |
+| skuSelectorNameContainer      | `SKUSelector` name container                                                  | [Variation](/react/components/SKUSelector/components/Variation.js)              |
+| skuSelectorTextContainer      | `SKUSelector` Text container, containing name and selected item, if requested | [Variation](/react/components/SKUSelector/components/Variation.js)              |
+| seeMoreButton                 | `SKUSelector` see more button container                                       | [Variation](/react/components/SKUSelector/components/Variation.js)              |
+| skuSelectorSelectorImageValue | Name of selected image variation beside the variation name                    | [Variation](/react/components/SKUSelector/components/Variation.js)              |
