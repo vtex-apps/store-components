@@ -16,6 +16,7 @@ interface Props {
   seeMoreLabel: string
   maxItems: number
   selectedItem: string | null
+  showValueNameForImageVariation: boolean
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
@@ -29,6 +30,7 @@ const Variation: FC<Props> = ({
   seeMoreLabel,
   maxItems,
   selectedItem,
+  showValueNameForImageVariation,
 }) => {
   const { name, options } = variation
   const [showAll, setShowAll] = useState(false)
@@ -61,13 +63,24 @@ const Variation: FC<Props> = ({
       }--${slug(name)} flex flex-column mb7`}
     >
       <div className={`${styles.skuSelectorNameContainer} ma1`}>
-        <span
-          className={`${
-            styles.skuSelectorName
-          } c-muted-2 db t-small overflow-hidden mb3`}
-        >
-          {name}
-        </span>
+        <div className="db mb3 teste">
+          <span
+            className={`${
+              styles.skuSelectorName
+            } c-muted-2 t-small overflow-hidden`}
+          >
+            {name}
+          </span>
+          {displayImage && selectedItem && showValueNameForImageVariation && (
+            <span
+              className={`${
+                styles.skuSelectorSelectorImageValue
+              } ml4 c-muted-3 t-small`}
+            >
+              {selectedItem}
+            </span>
+          )}
+        </div>
         <div className="inline-flex flex-wrap ml2 flex items-center">
           {displayOptions.map(option => {
             return (

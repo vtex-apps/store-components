@@ -103,6 +103,7 @@ interface Props {
   variations: Variations
   skuSelected?: ProductItem
   hideImpossibleCombinations?: boolean
+  showValueNameForImageVariation?: boolean
 }
 
 /**
@@ -116,6 +117,7 @@ const SKUSelectorContainer: FC<Props> = ({
   variations,
   skuSelected,
   hideImpossibleCombinations = true,
+  showValueNameForImageVariation = true,
 }) => {
   const variationsCount = keyCount(variations)
   const [
@@ -222,6 +224,7 @@ const SKUSelectorContainer: FC<Props> = ({
       imagesMap={imagesMap}
       onSelectItem={onSelectItem}
       hideImpossibleCombinations={hideImpossibleCombinations}
+      showValueNameForImageVariation={showValueNameForImageVariation}
     />
   )
 }

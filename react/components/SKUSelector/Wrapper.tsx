@@ -39,6 +39,7 @@ interface Props {
   maxItems?: number
   seeMoreLabel: string
   hideImpossibleCombinations?: boolean
+  showValueNameForImageVariation?: boolean
 }
 
 const SKUSelectorWrapper: StorefrontFC<Props> = props => {
@@ -74,6 +75,7 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
       seeMoreLabel={props.seeMoreLabel}
       variations={variations}
       hideImpossibleCombinations={props.hideImpossibleCombinations}
+      showValueNameForImageVariation={props.showValueNameForImageVariation}
     />
   )
 }

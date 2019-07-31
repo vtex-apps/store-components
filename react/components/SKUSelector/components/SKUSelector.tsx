@@ -29,6 +29,7 @@ interface Props {
   imagesMap: ImageMap
   selectedVariations: Record<string, string | null>
   hideImpossibleCombinations: boolean
+  showValueNameForImageVariation: boolean
 }
 
 const isSkuAvailable = compose<
@@ -219,6 +220,7 @@ const SKUSelector: FC<Props> = ({
   imagesMap,
   selectedVariations,
   hideImpossibleCombinations,
+  showValueNameForImageVariation,
 }) => {
   const [displayVariations, setDisplayVariations] = useState<
     DisplayVariation[] | null
@@ -276,6 +278,7 @@ const SKUSelector: FC<Props> = ({
             selectedItem={selectedItem}
             maxItems={maxItems}
             seeMoreLabel={seeMoreLabel}
+            showValueNameForImageVariation={showValueNameForImageVariation}
           />
         )
       })}
