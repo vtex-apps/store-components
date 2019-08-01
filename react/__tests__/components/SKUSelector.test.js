@@ -1008,4 +1008,50 @@ describe('<SKUSelector />', () => {
     expect(queryByText('skuSelectorItem--testing')).toBeDefined()
     expect(queryByText('skuSelectorItem--jaco')).toBeDefined()
   })
+
+  it('should show the selected variation name', async () => {
+    const defaultSeller = {
+      commertialOffer: { Price: 15, AvailableQuantity: 1 },
+    }
+
+    const skuItems = [
+      {
+        itemId: '1',
+        name: 'Gray Shoe',
+        variations: [
+          { name: 'Size', values: ['41'] },
+          { name: 'Color', values: ['Gray'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '2',
+        name: 'Black Shoe',
+        variations: [
+          { name: 'Size', values: ['41'] },
+          { name: 'Color', values: ['Black'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+    ]
+
+    const { debug, container } = render(
+      <SKUSelector
+        skuSelected={skuItems[0]}
+        skuItems={skuItems}
+        maxItems={6}
+        showValueNameForImageVariation={true}
+      />
+    )
+
+    await Promise.resolve()
+
+    const variationValue = container.querySelector(
+      '.skuSelectorSelectorImageValue'
+    )
+
+    expect(variationValue).toHaveTextContent('Gray')
+  })
 })
