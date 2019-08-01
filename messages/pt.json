@@ -36,6 +36,7 @@
   "store/buy-button.add-to-cart": "Adicionar ao carrinho",
   "store/buybutton.buy-success": "Item adicionado ao seu carrinho",
   "store/buybutton.add-failure": "Algo deu errado e o item não pode ser adicionado ao seu carrinho!",
+  "store/buybutton.buy-offline-success": "Item adicionado ao seu carrinho offline.",
   "store/buybutton.see-cart": "Ver carrinho",
   "store/technicalspecifications.title": "Especificações Técnicas",
   "store/availability-subscriber.title": "Este produto não está disponível no momento",

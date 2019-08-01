@@ -8,6 +8,7 @@ import { Button, ToastContext } from 'vtex.styleguide'
 
 const CONSTANTS = {
   SUCCESS_MESSAGE_ID: 'store/buybutton.buy-success',
+  OFFLINE_BUY_MESSAGE_ID: 'store/buybutton.buy-offline-success',
   ERROR_MESSAGE_ID: 'store/buybutton.add-failure',
   SEE_CART_ID: 'store/buybutton.see-cart',
   CHECKOUT_URL: '/checkout/#/cart',
@@ -65,8 +66,11 @@ export const BuyButton = ({
   ])
 
   const toastMessage = success => {
+    const isOffline = window && window.navigator && !window.navigator.onLine
     const message = success
-      ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
+      ? ( !isOffline ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
+          : translateMessage(CONSTANTS.OFFLINE_BUY_MESSAGE_ID)
+      )
       : translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
 
     const action = success
