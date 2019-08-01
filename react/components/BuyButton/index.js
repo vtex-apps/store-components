@@ -66,9 +66,9 @@ export const BuyButton = ({
   ])
 
   const toastMessage = success => {
-    const isOnline = window && window.navigator && window.navigator.onLine
+    const isOffline = window && window.navigator && !window.navigator.onLine
     const message = success
-      ? ( isOnline ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
+      ? ( !isOffline ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
           : translateMessage(CONSTANTS.OFFLINE_BUY_MESSAGE_ID)
       )
       : translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
