@@ -36,7 +36,7 @@
   "store/buy-button.add-to-cart": "Add to cart",
   "store/buybutton.buy-success": "Item added to your cart",
   "store/buybutton.add-failure": "Something went wrong and the item wasn't added to your cart!",
-  "store/buybutton.buy-offline-success": "Item added offline to your cart",
+  "store/buybutton.buy-offline-success": "Item added to your offline cart",
   "store/buybutton.see-cart": "View cart",
   "store/technicalspecifications.title": "Technical Specifications",
   "store/availability-subscriber.title": "This product isn't available right now",
