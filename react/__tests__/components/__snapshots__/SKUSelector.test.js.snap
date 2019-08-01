@@ -11,11 +11,15 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
       <div
         class="skuSelectorNameContainer ma1"
       >
-        <span
-          class="skuSelectorName c-muted-2 db t-small overflow-hidden mb3"
+        <div
+          class="skuSelectorTextContainer db mb3"
         >
-          Color
-        </span>
+          <span
+            class="skuSelectorName c-muted-1 t-small overflow-hidden"
+          >
+            Color
+          </span>
+        </div>
         <div
           class="inline-flex flex-wrap ml2 flex items-center"
         >

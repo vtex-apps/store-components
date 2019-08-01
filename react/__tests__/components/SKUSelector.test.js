@@ -720,6 +720,7 @@ describe('<SKUSelector />', () => {
     expect(queryByText('seeMoreLabel')).toBeNull()
     expect(getByText('10')).toBeDefined()
   })
+
   it('should show all options if a sku selected variations appears later on the array than in the cut', async () => {
     const defaultSeller = {
       commertialOffer: { Price: 15, AvailableQuantity: 1 },
@@ -949,6 +950,7 @@ describe('<SKUSelector />', () => {
     expect(getByText('4')).toBeDefined()
     expect(getByText('12')).toBeDefined()
   })
+
   it('remove accent from names on slugify methods', async () => {
     const defaultSeller = {
       commertialOffer: { Price: 15, AvailableQuantity: 1 },
