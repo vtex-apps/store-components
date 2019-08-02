@@ -1048,10 +1048,12 @@ describe('<SKUSelector />', () => {
 
     await Promise.resolve()
 
+    const separator = container.querySelector('.skuSelectorNameSeparator')
     const variationValue = container.querySelector(
       '.skuSelectorSelectorImageValue'
     )
 
+    expect(separator).toHaveTextContent(':')
     expect(variationValue).toHaveTextContent('Gray')
   })
 })

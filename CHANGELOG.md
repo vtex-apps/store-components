@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - New prop `showValueNameForImageVariation` to `sku-selector`.
+- New CSS handle `skuSelectorNameSeparator`.
 - New CSS handle `skuSelectorSelectorImageValue`.
 - New CSS handle `skuSelectorTextContainer`.
 

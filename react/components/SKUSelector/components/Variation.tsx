@@ -1,4 +1,11 @@
-import React, { useCallback, memo, useState, useEffect, FC } from 'react'
+import React, {
+  useCallback,
+  memo,
+  useState,
+  useEffect,
+  FC,
+  Fragment,
+} from 'react'
 import { Button } from 'vtex.styleguide'
 import { IOMessage } from 'vtex.native-types'
 import { findIndex, propEq } from 'ramda'
@@ -72,13 +79,16 @@ const Variation: FC<Props> = ({
             {name}
           </span>
           {displayImage && selectedItem && showValueNameForImageVariation && (
-            <span
-              className={`${
-                styles.skuSelectorSelectorImageValue
-              } ml4 c-muted-2 t-small`}
-            >
-              {selectedItem}
-            </span>
+            <Fragment>
+              <span className={styles.skuSelectorNameSeparator}>: </span>
+              <span
+                className={`${
+                  styles.skuSelectorSelectorImageValue
+                } c-muted-1 t-small`}
+              >
+                {selectedItem}
+              </span>
+            </Fragment>
           )}
         </div>
         <div className="inline-flex flex-wrap ml2 flex items-center">
