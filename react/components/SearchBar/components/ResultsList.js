@@ -68,6 +68,8 @@ const ResultsList = ({
         (parentContainer.current && parentContainer.current.offsetWidth) || 0
       ),
     }),
+    /* with the isOpen here this will be called 
+    only when you open or close the ResultList */
     [parentContainer.current, isOpen]
   )
 
