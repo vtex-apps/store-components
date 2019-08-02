@@ -86,79 +86,81 @@ const ResultsList = ({
   }
 
   return (
-    <ul className={listClassNames} {...getMenuProps()}>
-      {isOpen ? (
-        data.loading ? (
-          <div className={listItemClassNames}>
-            <WrappedSpinner />
-          </div>
-        ) : (
-          <Fragment>
-            <li
-              {...getItemProps({
-                key: 'ft' + inputValue,
-                item: { term: inputValue },
-                index: 0,
-                onClick: handleItemClick,
-              })}
-            >
-              <Link
-                page="store.search"
-                params={{ term: inputValue }}
-                query="map=ft"
-                className={`${listItemClassNames} pointer db w-100 ${highlightClass(
-                  highlightedIndex,
-                  0
-                )}`}
+    <div style={listStyle}>
+      <ul className={listClassNames} {...getMenuProps()}>
+        {isOpen ? (
+          data.loading ? (
+            <div className={listItemClassNames}>
+              <WrappedSpinner />
+            </div>
+          ) : (
+            <Fragment>
+              <li
+                {...getItemProps({
+                  key: 'ft' + inputValue,
+                  item: { term: inputValue },
+                  index: 0,
+                  onClick: handleItemClick,
+                })}
               >
-                <FormattedMessage
-                  id="store/search.searchFor"
-                  values={{
-                    term: (
-                      <span className={styles.searchTerm}> "{inputValue}"</span>
-                    ),
-                  }}
-                />
-              </Link>
-            </li>
-
-            {items.map((item, index) => {
-              return (
-                <li
-                  {...getItemProps({
-                    key: item.name + index,
-                    index: index + 1,
-                    item,
-                    onClick: handleItemClick,
-                  })}
+                <Link
+                  page="store.search"
+                  params={{ term: inputValue }}
+                  query="map=ft"
+                  className={`${listItemClassNames} pointer db w-100 ${highlightClass(
+                    highlightedIndex,
+                    0
+                  )}`}
                 >
-                  <Link
-                    {...getLinkProps(item)}
-                    className={`${listItemClassNames} pointer ${highlightClass(
-                      highlightedIndex,
-                      index + 1
-                    )} ${item.thumb ? 'flex justify-start' : ' db w-100'}`}
+                  <FormattedMessage
+                    id="store/search.searchFor"
+                    values={{
+                      term: (
+                        <span className={styles.searchTerm}> "{inputValue}"</span>
+                      ),
+                    }}
+                  />
+                </Link>
+              </li>
+
+              {items.map((item, index) => {
+                return (
+                  <li
+                    {...getItemProps({
+                      key: item.name + index,
+                      index: index + 1,
+                      item,
+                      onClick: handleItemClick,
+                    })}
                   >
-                    {item.thumb && (
-                      <img
-                        width={50}
-                        height={50}
-                        alt={item.name}
-                        className={`${styles.resultsItemImage} mr4`}
-                        src={getImageUrl(item.thumb)}
-                      />
-                    )}
-                    <div className="flex justify-start items-center">
-                      {item.name}
-                    </div>
-                  </Link>
-                </li>
-              )
-            })}
-          </Fragment>
-        )
-      ) : null}
-    </ul>
+                    <Link
+                      {...getLinkProps(item)}
+                      className={`${listItemClassNames} pointer ${highlightClass(
+                        highlightedIndex,
+                        index + 1
+                      )} ${item.thumb ? 'flex justify-start' : ' db w-100'}`}
+                    >
+                      {item.thumb && (
+                        <img
+                          width={50}
+                          height={50}
+                          alt={item.name}
+                          className={`${styles.resultsItemImage} mr4`}
+                          src={getImageUrl(item.thumb)}
+                        />
+                      )}
+                      <div className="flex justify-start items-center">
+                        {item.name}
+                      </div>
+                    </Link>
+                  </li>
+                )
+              })}
+            </Fragment>
+          )
+        ) : null}
+      </ul>
+    </div>
   )
 }
 

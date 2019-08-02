@@ -116,6 +116,7 @@ const SearchBar = ({
               />
               <Overlay alignment="right">
                 <ResultsLists
+                  key={inputValue || 'x'}
                   parentContainer={container}
                   {...{
                     isOpen,
