@@ -6,9 +6,11 @@
 .listPriceLabel {}
 .listPriceValue {}
 
-.sellingPrice {}
+.sellingPriceContainer {}
+.sellingPrice {} /* deprecated */
 .sellingPriceLabel {}
 .sellingPriceValue {}
+.sellingPriceValue--range {}
 
 .savingPrice {}
 .savingPriceValue {}
