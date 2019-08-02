@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `discountInsideContainer` class to DiscountBadge.
 
 ## [3.59.1] - 2019-08-05
 ### Fixed
