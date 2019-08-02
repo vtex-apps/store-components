@@ -6,10 +6,10 @@ exports[`<ProductPrice /> should match snapshot 1`] = `
     class="priceContainer"
   >
     <div
-      class="sellingPrice"
+      class="sellingPrice sellingPriceContainer"
     >
       <span
-        class="sellingPrice"
+        class="sellingPrice sellingPriceValue"
       >
         $40.00
       </span>

@@ -154,6 +154,7 @@ const ProductPrice = (props, context) => {
       <div
         className={classNames(
           productPrice.sellingPrice,
+          productPrice.sellingPriceContainer,
           sellingPriceContainerClass
         )}
       >
@@ -173,10 +174,13 @@ const ProductPrice = (props, context) => {
           price={sellingPrice}
           rangeContainerClasses={classNames(
             productPrice.sellingPrice,
+            productPrice.sellingPriceValue,
+            productPrice['sellingPriceValue--range'],
             sellingPriceRangeClass
           )}
           singleContainerClasses={classNames(
             productPrice.sellingPrice,
+            productPrice.sellingPriceValue,
             sellingPriceClass
           )}
         />
