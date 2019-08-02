@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useMemo } from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
@@ -9,6 +9,8 @@ import { Link, useRuntime } from 'vtex.render-runtime'
 import autocomplete from '../queries/autocomplete.gql'
 
 import styles from '../styles.css'
+
+const MIN_RESULTS_WIDTH = 320
 
 const WrappedSpinner = () => (
   <div className="w-100 flex justify-center">
@@ -44,6 +46,7 @@ const highlightClass = (highlightedIndex, index) => {
 
 /** List of search results to be displayed*/
 const ResultsList = ({
+  parentContainer,
   isOpen,
   data = {}, // when inputValue is '', query is skipped and value is undefined
   inputValue,
@@ -57,6 +60,16 @@ const ResultsList = ({
   const {
     hints: { mobile },
   } = useRuntime()
+
+  const listStyle = useMemo(
+    () => ({
+      width: Math.max(
+        MIN_RESULTS_WIDTH,
+        (parentContainer.current && parentContainer.current.offsetWidth) || 0
+      ),
+    }),
+    [parentContainer.current, isOpen]
+  )
 
   const listClassNames = classnames(
     styles.resultsList,
