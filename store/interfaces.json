@@ -3,7 +3,8 @@
     "component": "Logo"
   },
   "search-bar": {
-    "component": "SearchBar"
+    "component": "SearchBar",
+    "render": "lazy"
   },
   "buy-button": {
     "component": "BuyButton"
