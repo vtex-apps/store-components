@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.58.1-beta] - 2019-08-04
+
 ## [3.58.0] - 2019-08-01
 ### Added
 - Toast message in `BuyButton` when an item is added offline to minicart.
