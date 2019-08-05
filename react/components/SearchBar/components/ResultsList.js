@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useMemo } from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
@@ -9,6 +9,8 @@ import { Link, useRuntime } from 'vtex.render-runtime'
 import autocomplete from '../queries/autocomplete.gql'
 
 import styles from '../styles.css'
+
+const MIN_RESULTS_WIDTH = 320
 
 const WrappedSpinner = () => (
   <div className="w-100 flex justify-center">
@@ -44,6 +46,7 @@ const highlightClass = (highlightedIndex, index) => {
 
 /** List of search results to be displayed*/
 const ResultsList = ({
+  parentContainer,
   isOpen,
   data = {}, // when inputValue is '', query is skipped and value is undefined
   inputValue,
@@ -57,6 +60,18 @@ const ResultsList = ({
   const {
     hints: { mobile },
   } = useRuntime()
+
+  const listStyle = useMemo(
+    () => ({
+      width: Math.max(
+        MIN_RESULTS_WIDTH,
+        (parentContainer.current && parentContainer.current.offsetWidth) || 0
+      ),
+    }),
+    /* with the isOpen here this will be called 
+    only when you open or close the ResultList */
+    [parentContainer.current, isOpen]
+  )
 
   const listClassNames = classnames(
     styles.resultsList,
@@ -73,79 +88,81 @@ const ResultsList = ({
   }
 
   return (
-    <ul className={listClassNames} {...getMenuProps()}>
-      {isOpen ? (
-        data.loading ? (
-          <div className={listItemClassNames}>
-            <WrappedSpinner />
-          </div>
-        ) : (
-          <Fragment>
-            <li
-              {...getItemProps({
-                key: 'ft' + inputValue,
-                item: { term: inputValue },
-                index: 0,
-                onClick: handleItemClick,
-              })}
-            >
-              <Link
-                page="store.search"
-                params={{ term: inputValue }}
-                query="map=ft"
-                className={`${listItemClassNames} pointer db w-100 ${highlightClass(
-                  highlightedIndex,
-                  0
-                )}`}
+    <div style={listStyle}>
+      <ul className={listClassNames} {...getMenuProps()}>
+        {isOpen ? (
+          data.loading ? (
+            <div className={listItemClassNames}>
+              <WrappedSpinner />
+            </div>
+          ) : (
+            <Fragment>
+              <li
+                {...getItemProps({
+                  key: 'ft' + inputValue,
+                  item: { term: inputValue },
+                  index: 0,
+                  onClick: handleItemClick,
+                })}
               >
-                <FormattedMessage
-                  id="store/search.searchFor"
-                  values={{
-                    term: (
-                      <span className={styles.searchTerm}> "{inputValue}"</span>
-                    ),
-                  }}
-                />
-              </Link>
-            </li>
-
-            {items.map((item, index) => {
-              return (
-                <li
-                  {...getItemProps({
-                    key: item.name + index,
-                    index: index + 1,
-                    item,
-                    onClick: handleItemClick,
-                  })}
+                <Link
+                  page="store.search"
+                  params={{ term: inputValue }}
+                  query="map=ft"
+                  className={`${listItemClassNames} pointer db w-100 ${highlightClass(
+                    highlightedIndex,
+                    0
+                  )}`}
                 >
-                  <Link
-                    {...getLinkProps(item)}
-                    className={`${listItemClassNames} pointer ${highlightClass(
-                      highlightedIndex,
-                      index + 1
-                    )} ${item.thumb ? 'flex justify-start' : ' db w-100'}`}
+                  <FormattedMessage
+                    id="store/search.searchFor"
+                    values={{
+                      term: (
+                        <span className={styles.searchTerm}> "{inputValue}"</span>
+                      ),
+                    }}
+                  />
+                </Link>
+              </li>
+
+              {items.map((item, index) => {
+                return (
+                  <li
+                    {...getItemProps({
+                      key: item.name + index,
+                      index: index + 1,
+                      item,
+                      onClick: handleItemClick,
+                    })}
                   >
-                    {item.thumb && (
-                      <img
-                        width={50}
-                        height={50}
-                        alt={item.name}
-                        className={`${styles.resultsItemImage} mr4`}
-                        src={getImageUrl(item.thumb)}
-                      />
-                    )}
-                    <div className="flex justify-start items-center">
-                      {item.name}
-                    </div>
-                  </Link>
-                </li>
-              )
-            })}
-          </Fragment>
-        )
-      ) : null}
-    </ul>
+                    <Link
+                      {...getLinkProps(item)}
+                      className={`${listItemClassNames} pointer ${highlightClass(
+                        highlightedIndex,
+                        index + 1
+                      )} ${item.thumb ? 'flex justify-start' : ' db w-100'}`}
+                    >
+                      {item.thumb && (
+                        <img
+                          width={50}
+                          height={50}
+                          alt={item.name}
+                          className={`${styles.resultsItemImage} mr4`}
+                          src={getImageUrl(item.thumb)}
+                        />
+                      )}
+                      <div className="flex justify-start items-center">
+                        {item.name}
+                      </div>
+                    </Link>
+                  </li>
+                )
+              })}
+            </Fragment>
+          )
+        ) : null}
+      </ul>
+    </div>
   )
 }
 

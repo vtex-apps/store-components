@@ -10,8 +10,6 @@ import { useRuntime } from 'vtex.render-runtime'
 
 import styles from '../styles.css'
 
-const MIN_RESULTS_WIDTH = 320
-
 const SearchBar = ({
   placeholder,
   onMakeSearch,
@@ -28,16 +26,6 @@ const SearchBar = ({
 }) => {
   const container = useRef()
   const { navigate } = useRuntime()
-
-  const menuStyle = useMemo(
-    () => ({
-      width: Math.max(
-        MIN_RESULTS_WIDTH,
-        (container.current && container.current.offsetWidth) || 0
-      ),
-    }),
-    [container.current]
-  )
 
   const onSelect = useCallback(
     element => {
@@ -127,20 +115,19 @@ const SearchBar = ({
                 })}
               />
               <Overlay alignment="right">
-                <div style={menuStyle}>
-                  <ResultsLists
-                    {...{
-                      isOpen,
-                      getMenuProps,
-                      inputValue,
-                      getItemProps,
-                      selectedItem,
-                      highlightedIndex,
-                      closeMenu,
-                      onClearInput,
-                    }}
-                  />
-                </div>
+                <ResultsLists
+                  parentContainer={container}
+                  {...{
+                    isOpen,
+                    getMenuProps,
+                    inputValue,
+                    getItemProps,
+                    selectedItem,
+                    highlightedIndex,
+                    closeMenu,
+                    onClearInput,
+                  }}
+                />
               </Overlay>
             </div>
           )}
