@@ -19,12 +19,16 @@ const thumbnailsPosition = {
 const ProductImagesWrapper = props => {
   const valuesFromContext = useContext(ProductContext)
 
-  const images = useMemo(() => props.images != null
-  ? props.images
-  : map(
-      generateImageConfig,
-      path(['images'], valuesFromContext.selectedItem || {}) || []
-    ), [props.images, valuesFromContext.selectedItem])    
+  const images = useMemo(
+    () =>
+      props.images != null
+        ? props.images
+        : map(
+            generateImageConfig,
+            path(['images'], valuesFromContext.selectedItem || {}) || []
+          ),
+    [props.images, valuesFromContext.selectedItem]
+  )
 
   return (
     <ProductImages
@@ -32,6 +36,7 @@ const ProductImagesWrapper = props => {
       position={props.position || props.thumbnailPosition}
       displayThumbnailsArrows={props.displayThumbnailsArrows}
       images={images}
+      direction={props.direction}
     />
   )
 }

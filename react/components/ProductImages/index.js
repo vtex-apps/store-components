@@ -17,9 +17,14 @@ const getBestUrlIndex = thresholds => {
   return bestUrlIndex
 }
 
-const ProductImages = props => {
+const ProductImages = ({
+  position,
+  zoomProps,
+  displayThumbnailsArrows,
+  images,
+  direction,
+}) => {
   const [_, setState] = useState(0)
-  const { position, zoomProps, displayThumbnailsArrows } = props
 
   const debouncedGetBestUrl = debounce(() => {
     // force update
@@ -37,8 +42,6 @@ const ProductImages = props => {
   }, [debouncedGetBestUrl])
 
   const slides = useMemo(() => {
-    const { images } = props
-
     if (images.length === 0) return
 
     return images.map(image => {
@@ -50,11 +53,17 @@ const ProductImages = props => {
         bestUrlIndex: getBestUrlIndex(image.thresholds),
       }
     })
-  }, [props.images])
+  }, [images])
 
   return (
     <div className={`${styles.content} w-100`}>
-      <Carousel slides={slides} position={position} displayThumbnailsArrows={displayThumbnailsArrows} zoomProps={zoomProps} />
+      <Carousel
+        slides={slides}
+        position={position}
+        displayThumbnailsArrows={displayThumbnailsArrows}
+        zoomProps={zoomProps}
+        direction={direction}
+      />
     </div>
   )
 }
@@ -81,6 +90,7 @@ ProductImages.defaultProps = {
   images: [],
   position: 'left',
   zoomProps: { zoomType: 'in-page' },
+  direction: 'horizontal',
 }
 
 ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
