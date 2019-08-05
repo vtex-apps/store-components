@@ -6,10 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- New prop `showValueNameForImageVariation` to `sku-selector`.
+- New CSS handle `skuSelectorNameSeparator`.
+- New CSS handle `skuSelectorSelectorImageValue`.
+- New CSS handle `skuSelectorTextContainer`.
+
+### Changed
+- Migrate SKUSelector to Typescript.
 
 ## [3.58.1] - 2019-08-02
 ### Fixed
-- Product Price classes in sellingPrice. Added `sellingPriceRangeValue` and `sellingPriceValue` to value element. Also added `sellingPriceContainer` as a replacement to the `sellingPrice` in the parent element.
+- Product Price classes in sellingPrice. Added `sellingPriceValue` and `sellingPriceValue--range`  to value element. Also added `sellingPriceContainer` as a replacement to the `sellingPrice` in the parent element.
 
 ## [3.58.0] - 2019-08-01
 ### Added

@@ -720,6 +720,7 @@ describe('<SKUSelector />', () => {
     expect(queryByText('seeMoreLabel')).toBeNull()
     expect(getByText('10')).toBeDefined()
   })
+
   it('should show all options if a sku selected variations appears later on the array than in the cut', async () => {
     const defaultSeller = {
       commertialOffer: { Price: 15, AvailableQuantity: 1 },
@@ -949,6 +950,7 @@ describe('<SKUSelector />', () => {
     expect(getByText('4')).toBeDefined()
     expect(getByText('12')).toBeDefined()
   })
+
   it('remove accent from names on slugify methods', async () => {
     const defaultSeller = {
       commertialOffer: { Price: 15, AvailableQuantity: 1 },
@@ -1005,5 +1007,53 @@ describe('<SKUSelector />', () => {
     expect(queryByText('skuSelectorItem--johns')).toBeDefined()
     expect(queryByText('skuSelectorItem--testing')).toBeDefined()
     expect(queryByText('skuSelectorItem--jaco')).toBeDefined()
+  })
+
+  it('should show the selected variation name', async () => {
+    const defaultSeller = {
+      commertialOffer: { Price: 15, AvailableQuantity: 1 },
+    }
+
+    const skuItems = [
+      {
+        itemId: '1',
+        name: 'Gray Shoe',
+        variations: [
+          { name: 'Size', values: ['41'] },
+          { name: 'Color', values: ['Gray'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '2',
+        name: 'Black Shoe',
+        variations: [
+          { name: 'Size', values: ['41'] },
+          { name: 'Color', values: ['Black'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+    ]
+
+    const { debug, container } = render(
+      <SKUSelector
+        skuSelected={skuItems[0]}
+        skuItems={skuItems}
+        maxItems={6}
+        showValueNameForImageVariation={true}
+      />
+    )
+
+    await Promise.resolve()
+
+    const separator = container.querySelector('.skuSelectorNameSeparator')
+    const variationValue = container.querySelector(
+      '.skuSelectorSelectorImageValue'
+    )
+
+    expect(separator).toHaveTextContent(':')
+    expect(variationValue).toHaveTextContent('Gray')
   })
 })

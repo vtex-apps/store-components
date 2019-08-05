@@ -1,11 +1,12 @@
 import { prop, filter, clone, reject } from 'ramda'
 import slugify from 'slugify'
+import { SelectorProductItem, ProductItem, SelectedVariations } from '../types'
 
 /**
  * Return the maximum sku price
  * @param {array of sku's} items
  */
-export const getMaxSkuPrice = items => {
+export const getMaxSkuPrice = (items: SelectorProductItem[]) => {
   if (!items) return 0
 
   return items.reduce((max, sku) => {
@@ -23,26 +24,30 @@ export const getMaxSkuPrice = items => {
  * Remove the 'https' from the given url
  * @param {string} url
  */
-export const stripUrl = url => url.replace(/^https?:/, '')
+export const stripUrl = (url: string) => url.replace(/^https?:/, '')
 
 /**
  * Parse the variations field in the sku object
  * @param {sku} sku
  */
-export const parseSku = sku => {
-  const result = clone(sku)
+export const parseSku = (sku: ProductItem) => {
+  const result = clone(sku) as any
+  const variationValues = {} as Record<string, string>
   for (const variation of sku.variations) {
-    result[variation.name] = variation.values[0]
+    variationValues[variation.name] = variation.values[0]
   }
-  result.variations = sku.variations.map(prop('name'))
-  return result
+  const variations = sku.variations.map(prop('name'))
+
+  result.variationValues = variationValues
+  result.variations = variations
+  return result as SelectorProductItem
 }
 
 /**
  * Verifies if the variation is color
  * @param {string} variation
  */
-export const isColor = variation => {
+export const isColor = (variation: string) => {
   if (!variation) return false
 
   return (
@@ -54,7 +59,7 @@ export const isColor = variation => {
  * Choose wich variation will be the main one.
  * @param {Array[string]} variations
  */
-export const getMainVariationName = variations => {
+export const getMainVariationName = (variations: string[]) => {
   for (let i = 0; i < variations.length; i++) {
     if (isColor(variations[i])) return variations[i]
   }
@@ -69,8 +74,14 @@ export const getMainVariationName = variations => {
  * Output: item or null, if not present
  */
 
-export const findItemWithSelectedVariations = (items, selectedVariations) => {
-  const selectedNotNull = filter(Boolean, selectedVariations)
+export const findItemWithSelectedVariations = (
+  items: SelectorProductItem[],
+  selectedVariations: SelectedVariations
+) => {
+  const selectedNotNull = filter(
+    Boolean,
+    selectedVariations
+  ) as SelectedVariationsNotNull
   const selectedCount = Object.keys(selectedNotNull).length
   if (selectedCount === 0) {
     // may return any item, return first element
@@ -87,10 +98,13 @@ export const findItemWithSelectedVariations = (items, selectedVariations) => {
  */
 
 export const findListItemsWithSelectedVariations = (
-  items,
-  selectedVariations
+  items: SelectorProductItem[],
+  selectedVariations: SelectedVariations
 ) => {
-  const selectedNotNull = filter(Boolean, selectedVariations)
+  const selectedNotNull = filter(
+    Boolean,
+    selectedVariations
+  ) as SelectedVariationsNotNull
   const selectedCount = Object.keys(selectedNotNull).length
   if (selectedCount === 0) {
     // return all
@@ -100,9 +114,9 @@ export const findListItemsWithSelectedVariations = (
 }
 
 export const uniqueOptionToSelect = (
-  items,
-  selectedVariations,
-  isMainAndImpossible
+  items: SelectorProductItem[],
+  selectedVariations: SelectedVariations,
+  isMainAndImpossible: boolean
 ) => {
   const possibleItems = !isMainAndImpossible
     ? items
@@ -119,37 +133,44 @@ export const uniqueOptionToSelect = (
   )
 
   const variationsNames = Object.keys(variationsWithOne)
+  const finalUniqueVariations = {} as Record<string, string>
   // Transform set to plain value
   for (const variationName of variationsNames) {
     const value = variationsWithOne[variationName].values().next().value
-    variationsWithOne[variationName] = value
+    finalUniqueVariations[variationName] = value
   }
-  return variationsWithOne
+  return finalUniqueVariations
 }
 
-export function slug(str) {
+export function slug(str: string) {
   const replaced = (str && str.replace(/[*+~.()'"!:@&\[\]]/g, '')) || ''
   const slugified = slugify(replaced, { lower: true }) || ''
   return slugified
 }
+type SelectedVariationsNotNull = Record<string, string>
 
 /** Private functions */
-const isSkuSelected = selectedNotNull => sku => {
+const isSkuSelected = (selectedNotNull: SelectedVariationsNotNull) => (
+  sku: SelectorProductItem
+) => {
   const hasAll = Object.keys(selectedNotNull).every(variationName => {
     const selectedValue = selectedNotNull[variationName]
-    return sku[variationName] === selectedValue
+    return sku.variationValues[variationName] === selectedValue
   })
   return hasAll
 }
 
-const buildAvailableVariations = (items, variationNames) => {
-  const result = {}
+const buildAvailableVariations = (
+  items: SelectorProductItem[],
+  variationNames: string[]
+) => {
+  const result = {} as Record<string, Set<string>>
   for (const variationName of variationNames) {
     result[variationName] = new Set()
   }
   for (const item of items) {
     for (const variationName of variationNames) {
-      const variationValue = item[variationName]
+      const variationValue = item.variationValues[variationName]
       const currentSet = result[variationName]
       if (variationValue) {
         currentSet.add(variationValue)

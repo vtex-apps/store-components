@@ -1,27 +1,43 @@
-import PropTypes from 'prop-types'
-import React, { useCallback, memo, useState, useEffect } from 'react'
+import React, {
+  useCallback,
+  memo,
+  useState,
+  useEffect,
+  FC,
+  Fragment,
+} from 'react'
 import { Button } from 'vtex.styleguide'
 import { IOMessage } from 'vtex.native-types'
 import { findIndex, propEq } from 'ramda'
 
 import SelectorItem from './SelectorItem'
 import { stripUrl, isColor, slug } from '../utils'
-import { variationShape } from '../utils/proptypes'
 
 import styles from '../styles.css'
 import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
+import { DisplayVariation } from '../types'
+
+interface Props {
+  variation: DisplayVariation
+  maxSkuPrice?: number | null
+  seeMoreLabel: string
+  maxItems: number
+  selectedItem: string | null
+  showValueNameForImageVariation: boolean
+}
 
 const ITEMS_VISIBLE_THRESHOLD = 2
 
-const findSelectedOption = selectedItem =>
+const findSelectedOption = (selectedItem: string | null) =>
   findIndex(propEq('label', selectedItem))
 
-const Variation = ({
+const Variation: FC<Props> = ({
   variation,
   maxSkuPrice,
   seeMoreLabel,
   maxItems,
   selectedItem,
+  showValueNameForImageVariation,
 }) => {
   const { name, options } = variation
   const [showAll, setShowAll] = useState(false)
@@ -54,13 +70,27 @@ const Variation = ({
       }--${slug(name)} flex flex-column mb7`}
     >
       <div className={`${styles.skuSelectorNameContainer} ma1`}>
-        <span
-          className={`${
-            styles.skuSelectorName
-          } c-muted-2 db t-small overflow-hidden mb3`}
-        >
-          {name}
-        </span>
+        <div className={`${styles.skuSelectorTextContainer} db mb3`}>
+          <span
+            className={`${
+              styles.skuSelectorName
+            } c-muted-1 t-small overflow-hidden`}
+          >
+            {name}
+          </span>
+          {displayImage && selectedItem && showValueNameForImageVariation && (
+            <Fragment>
+              <span className={styles.skuSelectorNameSeparator}>: </span>
+              <span
+                className={`${
+                  styles.skuSelectorSelectorImageValue
+                } c-muted-1 t-small`}
+              >
+                {selectedItem}
+              </span>
+            </Fragment>
+          )}
+        </div>
         <div className="inline-flex flex-wrap ml2 flex items-center">
           {displayOptions.map(option => {
             return (
@@ -104,17 +134,6 @@ const Variation = ({
       </div>
     </div>
   )
-}
-
-Variation.propTypes = {
-  /** Variation Object */
-  variation: variationShape,
-  /** Max price of SKU */
-  maxSkuPrice: PropTypes.number,
-  seeMoreLabel: PropTypes.string,
-  maxItems: PropTypes.number,
-  /** Label of selected option in this variation. Example: "Small" */
-  selectedItem: PropTypes.string,
 }
 
 export default memo(Variation)
