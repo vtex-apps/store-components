@@ -14,7 +14,6 @@ import styles from '../../styles.css'
 import './global.css'
 import { changeImageUrlSize } from '../../utils/generateUrl'
 
-
 /** Swiper and its modules are imported using require to avoid breaking SSR */
 const Swiper = window.navigator
   ? require('react-id-swiper/lib/ReactIdSwiper.full').default
@@ -49,6 +48,12 @@ class Carousel extends Component {
     slides.forEach(async (slide, i) => {
       if (slide.type === 'video') {
         const thumbUrl = await Video.getThumbUrl(slide.src, slide.thumbWidth)
+        // this.setState({
+        //   thumbUrl: {
+        //     ...this.state.thumbUrl,
+        //     [i]: thumbUrl,
+        //   },
+        // })
         this.isVideo[i] = true
         this.setVideoThumb(i)(thumbUrl)
         this.thumbLoadFinish()
@@ -166,12 +171,12 @@ class Carousel extends Component {
 
               // WIP
               // This means: if the window has at most 64rem of width,
-              // the image will be of a widht of 100vw. Otherwise, the 
+              // the image will be of a width of 100vw. Otherwise, the 
               // image will be 50vw wide.
               // This size is used for picking the best available size
               // given the ones from the srcset above.
               sizes="(max-width: 64rem) 100vw, 50vw"
-          />
+            />
           </div>
         )
       case 'video':
