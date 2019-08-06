@@ -25,8 +25,7 @@ const SwiperModules = window.navigator
   ? require('swiper/dist/js/swiper.esm')
   : null
 
-import { THUMB_SIZE, imageUrlForSize } from '../../../module/images'
-import Thumbnails from './Thumbnails'
+import ThumbnailSwiper from './ThumbnailSwiper'
 
 const initialState = {
   loaded: [],
@@ -358,32 +357,21 @@ class Carousel extends Component {
       }
     )
 
-    const thumbClasses = classNames(`${styles.carouselGaleryThumbs} dn`, {
-      'db-ns': hasThumbs,
-      'w-20 bottom-0 top-0 absolute dn': isVertical,
-      'left-0 pr5': isVertical && position === 'left',
-      'right-0 pl5': isVertical && position === 'right',
-    })
+    const thumbnailSwiper = (
+      <ThumbnailSwiper
+        thumbsDirection={thumbsDirection}
+        slides={slides}
+        swiperParams={this.thumbnailsParams}
+        alts={this.state.alt}
+        thumbUrls={this.state.thumbUrl}
+        position={position}
+        gallerySwiper={gallerySwiper}
+      />
+    )
 
     return (
       <div className={`relative overflow-hidden w-100`} aria-hidden="true">
-        {thumbsDirection === 'vertical' && (
-          <div className={thumbClasses}>
-            <Swiper {...this.thumbnailsParams} rebuildOnUpdate>
-              {slides.map((slide, i) => (
-                <Thumbnails
-                  key={i}
-                  itemContainerClasses="swiper-slide w-100 mb5 pointer"
-                  index={i}
-                  height="auto"
-                  gallerySwiper={gallerySwiper}
-                  alt={slide.alt ? this.state.alt[i] : ''}
-                  thumbUrl={slide.thumbUrl || this.state.thumbUrl[i]}
-                />
-              ))}
-            </Swiper>
-          </div>
-        )}
+        {thumbsDirection === 'vertical' && thumbnailSwiper}
         <div className={imageClasses}>
           <ReactResizeDetector handleHeight onResize={this.updateSwiperSize}>
             <Swiper {...this.galleryParams} rebuildOnUpdate>
@@ -394,23 +382,7 @@ class Carousel extends Component {
               ))}
             </Swiper>
           </ReactResizeDetector>
-          {thumbsDirection === 'horizontal' && (
-            <div className={thumbClasses}>
-              <Swiper {...this.thumbnailsParams} rebuildOnUpdate>
-                {slides.map((slide, i) => (
-                  <Thumbnails
-                    key={i}
-                    index={i}
-                    itemContainerClasses="swiper-slide w-20 mb5 pointer"
-                    height="115px"
-                    gallerySwiper={gallerySwiper}
-                    alt={slide.alt ? this.state.alt[i] : ''}
-                    thumbUrl={slide.thumbUrl || this.state.thumbUrl[i]}
-                  />
-                ))}
-              </Swiper>
-            </div>
-          )}
+          {thumbsDirection === 'horizontal' && thumbnailSwiper}
           {zoomType === 'gallery' && (
             <NoSSR>
               <Gallery

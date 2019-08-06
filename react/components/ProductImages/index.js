@@ -90,7 +90,7 @@ ProductImages.defaultProps = {
   images: [],
   position: 'left',
   zoomProps: { zoomType: 'in-page' },
-  direction: 'horizontal',
+  direction: 'vertical',
 }
 
 ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
@@ -131,6 +131,23 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
             },
           }),
         },
+      },
+      direction: {
+        title: 'admin/editor.product-images.direction.title',
+        type: 'string',
+        enum: ['vertical', 'horizontal'],
+        enumNames: [
+          'admin/editor.product-images.vertical',
+          'admin/editor.product-images.horizontal',
+        ],
+        widget: {
+          'ui:options': {
+            inline: false,
+          },
+          'ui:widget': 'radio',
+        },
+        default: 'vertical',
+        isLayout: true,
       },
     },
   }
