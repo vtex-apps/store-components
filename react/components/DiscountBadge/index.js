@@ -21,12 +21,17 @@ class DiscountBadge extends Component {
     return (
       <div className={`${styles.discountContainer} relative dib`}>
         {percent ? (
-          <div className="t-mini white absolute right-0 pv2 ph3 bg-emphasis">
+          <div
+            className={`${
+              styles.discountInsideContainer
+            } t-mini white absolute right-0 pv2 ph3 bg-emphasis`}
+          >
             <IOMessage id={label}>
               {labelValue => (
                 <>
                   {!labelValue && '-'}
-                  <FormattedNumber value={percent} style="percent" /> {labelValue && ' '}
+                  <FormattedNumber value={percent} style="percent" />{' '}
+                  {labelValue && ' '}
                   {labelValue && <span>{labelValue}</span>}
                 </>
               )}
