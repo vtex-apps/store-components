@@ -13,7 +13,6 @@ const Thumbnails = ({
 }) => {
   return (
     <div
-      key={index}
       className={itemContainerClasses}
       style={{ height }}
       onClick={() => gallerySwiper && gallerySwiper.slideTo(index)}

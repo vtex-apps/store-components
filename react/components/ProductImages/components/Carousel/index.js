@@ -372,6 +372,7 @@ class Carousel extends Component {
             <Swiper {...this.thumbnailsParams} rebuildOnUpdate>
               {slides.map((slide, i) => (
                 <Thumbnails
+                  key={i}
                   itemContainerClasses="swiper-slide w-100 mb5 pointer"
                   index={i}
                   height="auto"
@@ -398,6 +399,7 @@ class Carousel extends Component {
               <Swiper {...this.thumbnailsParams} rebuildOnUpdate>
                 {slides.map((slide, i) => (
                   <Thumbnails
+                    key={i}
                     index={i}
                     itemContainerClasses="swiper-slide w-20 mb5 pointer"
                     height="115px"
