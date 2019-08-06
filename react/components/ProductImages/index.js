@@ -35,6 +35,7 @@ const ProductImages = ({
         type: 'image',
         url: image.imageUrl,
         alt: image.imageText,
+        thumbUrl: image.thumbnailUrl || image.imageUrl,
       })),
       ...videos.map(video => ({
         type: 'video',
