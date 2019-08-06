@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useMemo, useEffect, useState } from 'react'
-import debounce from 'debounce'
+import React, { useMemo } from 'react'
 
 import Carousel from './components/Carousel'
 import styles from './styles.css'
@@ -9,18 +8,6 @@ import {
   THUMBS_POSITION_HORIZONTAL,
   DEFAULT_EXCLUDE_IMAGE_WITH,
 } from './utils/enums'
-
-const getBestUrlIndex = thresholds => {
-  const windowSize = window.innerWidth
-
-  let bestUrlIndex = 0
-
-  thresholds.forEach((threshold, i) => {
-    if (windowSize > threshold) bestUrlIndex = i + 1
-  })
-
-  return bestUrlIndex
-}
 
 const ProductImages = ({
   videos,
@@ -31,12 +18,6 @@ const ProductImages = ({
   thumbnailsOrientation,
   displayThumbnailsArrows,
 }) => {
-  const [, setState] = useState(0)
-
-  if (!Array.isArray(hiddenImages)) {
-    hiddenImages = [hiddenImages]
-  }
-
   const excludeImageRegexes = hiddenImages.map(text => new RegExp(text, 'i'))
 
   const images = allImages.filter(image => {
@@ -46,31 +27,14 @@ const ProductImages = ({
     return !excludeImageRegexes.some(regex => regex.test(image.imageText))
   })
 
-  const debouncedGetBestUrl = debounce(() => {
-    // force update
-    setState(c => c + 1)
-  }, 500)
-
-  useEffect(() => {
-    window.addEventListener('resize', debouncedGetBestUrl)
-
-    return () => {
-      window.removeEventListener('resize', debouncedGetBestUrl)
-
-      debouncedGetBestUrl.clear()
-    }
-  }, [debouncedGetBestUrl])
-
   const slides = useMemo(() => {
     if (!images.length && !videos.length) return []
 
     return [
       ...images.map(image => ({
         type: 'image',
-        urls: image.imageUrls,
+        url: image.imageUrl,
         alt: image.imageText,
-        thumbUrl: image.thumbnailUrl || image.imageUrls[0],
-        bestUrlIndex: getBestUrlIndex(image.thresholds),
       })),
       ...videos.map(video => ({
         type: 'video',
