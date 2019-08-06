@@ -6,16 +6,14 @@ import { path, equals } from 'ramda'
 import ReactResizeDetector from 'react-resize-detector'
 
 import { IconCaret } from 'vtex.store-icons'
-import { NoSSR } from 'vtex.render-runtime'
 
-import BlurredLoader from '../BlurredLoader'
 import Loader from './Loader.js'
 import Video from '../Video'
 
 import styles from '../../styles.css'
 import './global.css'
+import { changeImageUrlSize } from '../../utils/generateUrl'
 
-import Gallery from '../Gallery'
 
 /** Swiper and its modules are imported using require to avoid breaking SSR */
 const Swiper = window.navigator
@@ -35,7 +33,6 @@ const initialState = {
   alt: [],
   thumbsLoaded: false,
   activeIndex: 0,
-  isGalleryOpen: false,
   thumbSwiper: null,
   gallerySwiper: null,
 }
@@ -149,30 +146,33 @@ class Carousel extends Component {
     this.setState({ loaded })
   }
 
-  openGallery = idx => {
-    this.setState({ selectedIndex: idx, isGalleryOpen: true })
-  }
-
   renderSlide = (slide, i) => {
-    const {
-      zoomProps: { zoomType },
-    } = this.props
-
     switch (slide.type) {
       case 'image':
         return (
-          <BlurredLoader
-            isZoomEnabled={zoomType === 'in-page'}
-            loaderType="SPINNER"
-            loaderUrl={slide.thumbUrl}
-            realUrls={slide.urls}
-            bestUrlIndex={slide.bestUrlIndex}
-            alt={slide.alt}
-            onload={this.onImageLoad(i)}
-            onClick={
-              zoomType === 'gallery' ? () => this.openGallery(i) : undefined
-            }
+          <div>
+            <img
+              className="w-100"
+              src={changeImageUrlSize(slide.url, 800, 800)}
+              // WIP
+              // This should clearly be a bit smarter
+              // (Though still have a couple of pre-defined sizes,
+              // for better caching and better handling by our image server)
+              srcSet={[
+                `${changeImageUrlSize(slide.url, 600, 600)} 600w`,
+                `${changeImageUrlSize(slide.url, 800, 800)} 800w`,
+                `${changeImageUrlSize(slide.url, 1200, 1200)} 1200w`,
+              ].join(',')}
+
+              // WIP
+              // This means: if the window has at most 64rem of width,
+              // the image will be of a widht of 100vw. Otherwise, the 
+              // image will be 50vw wide.
+              // This size is used for picking the best available size
+              // given the ones from the srcset above.
+              sizes="(max-width: 64rem) 100vw, 50vw"
           />
+          </div>
         )
       case 'video':
         return (
@@ -339,17 +339,12 @@ class Carousel extends Component {
   }
 
   render() {
-    const {
-      thumbsLoaded,
-      isGalleryOpen,
-      selectedIndex,
-      gallerySwiper,
-    } = this.state
+    const { thumbsLoaded, gallerySwiper } = this.state
 
     const {
       slides,
       position,
-      zoomProps: { zoomType, bgOpacity },
+      zoomProps: { zoomType },
       thumbnailsOrientation,
     } = this.props
 
@@ -362,7 +357,6 @@ class Carousel extends Component {
     const hasThumbs = slides.length > 1
 
     const galleryCursor = {
-      gallery: !isGalleryOpen && 'pointer',
       'in-page': styles.carouselGaleryCursor,
       'no-zoom': '',
     }
@@ -406,17 +400,6 @@ class Carousel extends Component {
             </Swiper>
           </ReactResizeDetector>
           {!isThumbsVertical && thumbnailSwiper}
-          {zoomType === 'gallery' && (
-            <NoSSR>
-              <Gallery
-                items={slides}
-                index={selectedIndex}
-                isOpen={isGalleryOpen}
-                handleClose={() => this.setState({ isGalleryOpen: false })}
-                bgOpacity={bgOpacity}
-              />
-            </NoSSR>
-          )}
         </div>
       </div>
     )
@@ -427,7 +410,7 @@ Carousel.propTypes = {
   slides: PropTypes.arrayOf(
     PropTypes.shape({
       type: PropTypes.string,
-      urls: PropTypes.arrayOf(PropTypes.string),
+      url: PropTypes.string,
       alt: PropTypes.string,
       thumbUrl: PropTypes.string,
       bestUrlIndex: PropTypes.number,
