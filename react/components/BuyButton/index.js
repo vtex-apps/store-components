@@ -3,7 +3,7 @@ import React, { useContext, useCallback, useState, Fragment } from 'react'
 import { intlShape, FormattedMessage } from 'react-intl'
 import ContentLoader from 'react-content-loader'
 import { useRuntime } from 'vtex.render-runtime'
-
+import { usePWA } from 'vtex.store-resources/PWAContext'	
 import { Button, ToastContext } from 'vtex.styleguide'
 
 const CONSTANTS = {
@@ -61,6 +61,8 @@ export const BuyButton = ({
 }) => {
   const [isAddingToCart, setAddingToCart] = useState(false)
   const { showToast } = useContext(ToastContext)
+  const { settings: { addToHomeScreenPrompt }, showInstallPrompt } = usePWA()	
+  console.log(addToHomeScreenPrompt)
   const translateMessage = useCallback(id => intl.formatMessage({ id: id }), [
     intl,
   ])
@@ -126,6 +128,9 @@ export const BuyButton = ({
           skuItems.filter(
             skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
           ))
+      
+      if (addToHomeScreenPrompt === "addToCart")   
+        showInstallPrompt()
 
       showToastMessage = () => toastMessage(success && success.length >= 1)
       shouldOpenMinicart && !isOneClickBuy && setMinicartOpen(true)
