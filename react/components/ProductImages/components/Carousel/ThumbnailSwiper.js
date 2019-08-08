@@ -59,6 +59,7 @@ const ThumbnailSwiper = ({
 
   const thumbClasses = classNames(`${styles.carouselGaleryThumbs} dn`, {
     'db-ns': hasThumbs,
+    mt3: !isThumbsVertical,
     'w-20 bottom-0 top-0 absolute dn': isThumbsVertical,
     'left-0 pr5':
       isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.LEFT,
