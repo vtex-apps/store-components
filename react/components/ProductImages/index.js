@@ -96,9 +96,10 @@ ProductImages.propTypes = {
 
 ProductImages.defaultProps = {
   images: [],
-  position: 'left',
+  position: THUMBS_POSITION_HORIZONTAL.LEFT,
   zoomProps: { zoomType: 'in-page' },
-  thumbnailsOrientation: THUMBS_ORIENTATION.HORIZONTAL,
+  thumbnailsOrientation: THUMBS_ORIENTATION.VERTICAL,
+  displayThumbnailsArrows: false,
 }
 
 export default ProductImages
