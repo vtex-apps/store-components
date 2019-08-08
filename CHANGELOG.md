@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- `addToAvailabilitySubscriberMutation`'s mutation to `createDocument`
+
 ## [3.60.0] - 2019-08-06
 ### Added
 - `discountInsideContainer` class to DiscountBadge.
