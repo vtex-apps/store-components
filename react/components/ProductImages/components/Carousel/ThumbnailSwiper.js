@@ -3,6 +3,7 @@ import { THUMB_SIZE, imageUrlForSize } from '../../../module/images'
 import classNames from 'classnames'
 
 import styles from '../../styles.css'
+import { THUMBS_POSITION_HORIZONTAL } from '../../utils/enums'
 
 /** Swiper and its modules are imported using require to avoid breaking SSR */
 const Swiper = window.navigator
@@ -46,7 +47,7 @@ const Thumbnail = ({
 }
 
 const ThumbnailSwiper = ({
-  thumbsDirection,
+  isThumbsVertical,
   slides,
   swiperParams,
   alts,
@@ -54,19 +55,20 @@ const ThumbnailSwiper = ({
   position,
   gallerySwiper,
 }) => {
-  const isVertical = thumbsDirection === 'vertical'
   const hasThumbs = slides.length > 1
 
   const thumbClasses = classNames(`${styles.carouselGaleryThumbs} dn`, {
     'db-ns': hasThumbs,
-    'w-20 bottom-0 top-0 absolute dn': isVertical,
-    'left-0 pr5': isVertical && position === 'left',
-    'right-0 pl5': isVertical && position === 'right',
+    'w-20 bottom-0 top-0 absolute dn': isThumbsVertical,
+    'left-0 pr5':
+      isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.LEFT,
+    'right-0 pl5':
+      isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.RIGHT,
   })
 
   const itemContainerClasses = classNames('swiper-slide mb5 pointer', {
-    'w-20': !isVertical,
-    'w-100': isVertical,
+    'w-20': !isThumbsVertical,
+    'w-100': isThumbsVertical,
   })
 
   return (
@@ -77,7 +79,7 @@ const ThumbnailSwiper = ({
             key={i}
             itemContainerClasses={itemContainerClasses}
             index={i}
-            height={isVertical ? 'auto' : '115px'}
+            height={isThumbsVertical ? 'auto' : '115px'}
             gallerySwiper={gallerySwiper}
             alt={slide.alt ? alts[i] : ''}
             thumbUrl={slide.thumbUrl || thumbUrls[i]}

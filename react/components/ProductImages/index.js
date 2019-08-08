@@ -4,6 +4,7 @@ import debounce from 'debounce'
 
 import Carousel from './components/Carousel'
 import styles from './styles.css'
+import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
 
 const getBestUrlIndex = thresholds => {
   const windowSize = window.innerWidth
@@ -22,7 +23,7 @@ const ProductImages = ({
   zoomProps,
   displayThumbnailsArrows,
   images,
-  direction,
+  thumbnailsOrientation,
 }) => {
   const [_, setState] = useState(0)
 
@@ -62,7 +63,7 @@ const ProductImages = ({
         position={position}
         displayThumbnailsArrows={displayThumbnailsArrows}
         zoomProps={zoomProps}
-        direction={direction}
+        thumbnailsOrientation={thumbnailsOrientation}
       />
     </div>
   )
@@ -70,7 +71,14 @@ const ProductImages = ({
 
 ProductImages.propTypes = {
   /** The position of the thumbs */
-  position: PropTypes.oneOf(['left', 'right']),
+  position: PropTypes.oneOf([
+    THUMBS_POSITION_HORIZONTAL.LEFT,
+    THUMBS_POSITION_HORIZONTAL.RIGHT,
+  ]),
+  thumbnailsOrientation: PropTypes.oneOf([
+    THUMBS_ORIENTATION.VERTICAL,
+    THUMBS_ORIENTATION.HORIZONTAL,
+  ]),
   /** Array of images to be passed for the Thumbnail Slider component as a props */
   images: PropTypes.arrayOf(
     PropTypes.shape({
@@ -90,7 +98,7 @@ ProductImages.defaultProps = {
   images: [],
   position: 'left',
   zoomProps: { zoomType: 'in-page' },
-  direction: 'vertical',
+  thumbnailsOrientation: THUMBS_ORIENTATION.HORIZONTAL,
 }
 
 ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
@@ -132,10 +140,10 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
           }),
         },
       },
-      direction: {
-        title: 'admin/editor.product-images.direction.title',
+      thumbnailsOrientation: {
+        title: 'admin/editor.product-images.thumbnailsOrientation.title',
         type: 'string',
-        enum: ['vertical', 'horizontal'],
+        enum: [THUMBS_ORIENTATION.VERTICAL, THUMBS_ORIENTATION.HORIZONTAL],
         enumNames: [
           'admin/editor.product-images.vertical',
           'admin/editor.product-images.horizontal',
@@ -146,7 +154,7 @@ ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
           },
           'ui:widget': 'radio',
         },
-        default: 'vertical',
+        default: THUMBS_ORIENTATION.VERTICAL,
         isLayout: true,
       },
     },
