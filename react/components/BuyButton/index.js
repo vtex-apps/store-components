@@ -62,7 +62,7 @@ export const BuyButton = ({
   const [isAddingToCart, setAddingToCart] = useState(false)
   const { showToast } = useContext(ToastContext)
   const { settings: { addToHomeScreenPrompt }, showInstallPrompt } = usePWA()	
-  console.log(addToHomeScreenPrompt)
+
   const translateMessage = useCallback(id => intl.formatMessage({ id: id }), [
     intl,
   ])
@@ -129,6 +129,7 @@ export const BuyButton = ({
             skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
           ))
       
+      /* PWA */
       if (addToHomeScreenPrompt === "addToCart")   
         showInstallPrompt()
 
