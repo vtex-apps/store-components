@@ -6,21 +6,23 @@ const youtubeApiKey = null
 // Author: @samuraiexx
 
 class Youtube extends Component {
-  static getThumbUrl = (url, thumbWidth) =>
-    new Promise(resolve => {
-      const videoId = Youtube.extractVideoID(url)
-      const getUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${youtubeApiKey}`
-      fetch(getUrl)
-        .then(responseonse => {
-          return responseonse.json()
-        })
-        .then(response => {
-          if (response.items.length === 0) return
-          response = response.items[0].snippet
-
-          resolve(response.thumbnails.default.url)
-        })
-    })
+  static getThumbUrl = (url, thumbWidth) => {
+    const videoId = Youtube.extractVideoID(url)
+    return `https://img.youtube.com/vi/${videoId}/default.jpg`
+    // new Promise(resolve => {
+    //   const videoId = Youtube.extractVideoID(url)
+    //   const getUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${youtubeApiKey}`
+    //   fetch(getUrl)
+    //     .then(response => {
+    //       return response.json()
+    //     })
+    //     .then(response => {
+    //       console.log('---- response:', response)
+    //       if (response.error || response.items.length === 0) return ''
+    //       resolve(response.items[0].snippet.thumbnails.default.url)
+    //     })
+    // })
+  }
 
   constructor(props) {
     super(props)
@@ -34,28 +36,28 @@ class Youtube extends Component {
 
     this.iframeRef = React.createRef()
 
-    fetch(getUrl)
-      .then(responseonse => {
-        return responseonse.json()
-      })
-      .then(response => {
-        if (response.items.length === 0) return
-        response = response.items[0].snippet
+    // fetch(getUrl)
+    //   .then(responseonse => {
+    //     return responseonse.json()
+    //   })
+    //   .then(response => {
+    //     if (response.items.length === 0) return
+    //     response = response.items[0].snippet
 
-        const { title } = response
-        const { width, height } = response.thumbnails.default
-        const thumbUrl = response.thumbnails.default.url
-        props.setThumb && props.setThumb(thumbUrl, title)
+    //     const { title } = response
+    //     const { width, height } = response.thumbnails.default
+    //     const thumbUrl = response.thumbnails.default.url
+    //     props.setThumb && props.setThumb(thumbUrl, title)
 
-        const src = `https://www.youtube.com/embed/${videoId}?${params}`
+    //     const src = `https://www.youtube.com/embed/${videoId}?${params}`
 
-        this.setState({
-          iframe: {
-            divStyle: { padding: `${(100 * height) / width}% 0 0 0` },
-            src: src,
-          },
-        })
-      })
+    //     this.setState({
+    //       iframe: {
+    //         divStyle: { padding: `${(100 * height) / width}% 0 0 0` },
+    //         src: src,
+    //       },
+    //     })
+    //   })
   }
 
   static extractVideoID = url => {
@@ -66,7 +68,7 @@ class Youtube extends Component {
   }
 
   componentDidMount() {
-    this.iframeRef.onload = () => (this.frameReady = true)
+    // this.iframeRef.onload = () => (this.frameReady = true)
   }
 
   executeCommand = command => () => {
