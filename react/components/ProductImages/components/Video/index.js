@@ -13,9 +13,7 @@ class Video extends Component {
     }
 
     else if (url.search('youtube') !== -1) {
-      const thumb = YouTube.getThumbUrl(url, thumbWidth)
-      console.log('--- thumb:', thumb)
-      return thumb
+      return YouTube.getThumbUrl(url, thumbWidth)
     }
   }
 

@@ -57,9 +57,9 @@ const ProductImages = ({
       })),
       ...videos.map(video => ({
         type: 'video',
-        src: video.videoUri,
+        src: video.videoUrl,
         thumbWidth: 300,
-        thumbUrl: Video.getThumbUrl(video.videoUri, 300),
+        thumbUrl: Video.getThumbUrl(video.videoUrl, 300),
       }))
     ]
   }, [images, videos])

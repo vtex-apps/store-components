@@ -29,12 +29,6 @@ class Youtube extends Component {
     return null
   }
 
-  static embeddedVideoUri = () => {
-    const { loop, autoplay, title } = this.props
-    const params = `autoplay=${autoplay}&loop=${loop}&title=${title}&enablejsapi=1&iv_load_policy=3&modestbranding=1`
-    return `https://www.youtube.com/embed/${videoId}?${params}`
-  }
-
   executeCommand = command => () => {
     if (!this.frameReady) return
 
