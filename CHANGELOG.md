@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.62.0] - 2019-08-12
+
 ### Added
 - Support to videos (YouTube and Vimeo) in `ProductImages` carousel
 
