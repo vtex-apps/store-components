@@ -19,7 +19,7 @@ class Youtube extends Component {
 
   static getThumbUrl = (url, thumbWidth) => {
     const videoId = Youtube.extractVideoID(url)
-    return `https://img.youtube.com/vi/${videoId}/default.jpg`
+    return Promise.resolve(`https://img.youtube.com/vi/${videoId}/default.jpg`)
   }
 
   static extractVideoID = url => {

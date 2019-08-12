@@ -59,7 +59,6 @@ const ProductImages = ({
         type: 'video',
         src: video.videoUrl,
         thumbWidth: 300,
-        thumbUrl: Video.getThumbUrl(video.videoUrl, 300),
       }))
     ]
   }, [images, videos])

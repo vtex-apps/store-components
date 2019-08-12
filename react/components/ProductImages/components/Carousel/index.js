@@ -45,17 +45,24 @@ const initialState = {
 class Carousel extends Component {
   state = initialState
 
-  setInitialVariablesState() {
+  async setInitialVariablesState() {
     const slides = this.props.slides || []
 
     this.isVideo = []
     this.thumbLoadCount = 0
 
-    slides.forEach((slide, i) => {
+    slides.forEach(async (slide, i) => {
       if (slide.type === 'video') {
+        const thumbUrl = await Video.getThumbUrl(slide.src, slide.thumbWidth)
+        this.setState({
+          thumbUrl: {
+            ...this.state.thumbUrl,
+            [i]: thumbUrl,
+          }
+        })
         this.isVideo[i] = true
-        this.getThumb(slides.thumbUrl)
-        this.setVideoThumb(slides.thumbUrl)
+        this.getThumb(thumbUrl)
+        this.setVideoThumb(thumbUrl)
       } else {
         this.getThumb(slide.thumbUrl)
       }
