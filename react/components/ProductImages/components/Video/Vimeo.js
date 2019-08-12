@@ -33,13 +33,10 @@ class Vimeo extends Component {
   }
 
   static getThumbUrl = (url, thumbWidth) => {
-    // return `"https://i.vimeocdn.com/video/${}_295x166.jpg"`
     const getUrl = `https://vimeo.com/api/oembed.json?url=${url}`
     return fetch(getUrl)
       .then(response => response.json())
-      .then(response => {
-        this.thumbUrlFromResp(response, thumbWidth)
-      })
+      .then(response => response.thumbnail_url)
   }
 
   static thumbUrlFromResp(response, thumbWidth) {
@@ -53,10 +50,6 @@ class Vimeo extends Component {
       /_[0123456789]*x[0123456789]*./,
       `_${thumbWidth}x${thumbHeight}.`
     )
-  }
-
-  componentDidMount() {
-    this.iframeRef.onload = () => (this.frameReady = true)
   }
 
   executeCommand = command => () => {

@@ -54,9 +54,8 @@ class Carousel extends Component {
     slides.forEach((slide, i) => {
       if (slide.type === 'video') {
         this.isVideo[i] = true
-        // Video.getThumbUrl(slide.src, slide.thumbWidth).then(this.getThumb)
-        this.getThumb(Video.getThumbUrl(slide.src, slide.thumbWidth))
-        this.setVideoThumb(Video.getThumbUrl(slide.src, slide.thumbWidth))
+        this.getThumb(slides.thumbUrl)
+        this.setVideoThumb(slides.thumbUrl)
       } else {
         this.getThumb(slide.thumbUrl)
       }
