@@ -20,12 +20,18 @@ const ProductImagesWrapper = props => {
     [props.images, valuesFromContext.selectedItem]
   )
 
+  const videos = useMemo(() => props.videos != null
+    ? props.videos
+    : path(['videos'], valuesFromContext.selectedItem || {}) || [],
+  [props.videos, valuesFromContext.videos])
+
   return (
     <ProductImages
       zoomProps={props.zoomProps}
       position={props.position || props.thumbnailPosition} //thumbnailPosition is a legacy prop from product-details
       displayThumbnailsArrows={props.displayThumbnailsArrows}
       images={images}
+      videos={videos}
       thumbnailsOrientation={props.thumbnailsOrientation}
     />
   )

@@ -2,31 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class Vimeo extends Component {
-  static getThumbUrl = (url, thumbWidth) =>
-    new Promise(resolve => {
-      const getUrl = `https://vimeo.com/api/oembed.json?url=${url}`
-      fetch(getUrl)
-        .then(response => {
-          return response.json()
-        })
-        .then(response => {
-          resolve(Vimeo.thumbUrlFromResp(response, thumbWidth))
-        })
-    })
-
-  static thumbUrlFromResp(response, thumbWidth) {
-    const { height, width } = response
-    const thumb = response.thumbnail_url_with_play_button
-
-    thumbWidth = thumbWidth || response.thumbnail_width
-    const thumbHeight = Math.ceil((thumbWidth * height) / width)
-
-    return thumb.replace(
-      /_[0123456789]*x[0123456789]*./,
-      `_${thumbWidth}x${thumbHeight}.`
-    )
-  }
-
   constructor(props) {
     super(props)
 
@@ -39,9 +14,7 @@ class Vimeo extends Component {
     this.iframeRef = React.createRef()
 
     fetch(getUrl)
-      .then(response => {
-        return response.json()
-      })
+      .then(response => response.json())
       .then(response => {
         const { height, width, html, title } = response
 
@@ -59,8 +32,24 @@ class Vimeo extends Component {
       })
   }
 
-  componentDidMount() {
-    this.iframeRef.onload = () => (this.frameReady = true)
+  static getThumbUrl = (url, thumbWidth) => {
+    const getUrl = `https://vimeo.com/api/oembed.json?url=${url}`
+    return fetch(getUrl)
+      .then(response => response.json())
+      .then(response => response.thumbnail_url)
+  }
+
+  static thumbUrlFromResp(response, thumbWidth) {
+    const { height, width } = response
+    const thumb = response.thumbnail_url_with_play_button
+
+    thumbWidth = thumbWidth || response.thumbnail_width
+    const thumbHeight = Math.ceil((thumbWidth * height) / width)
+
+    return thumb.replace(
+      /_[0123456789]*x[0123456789]*./,
+      `_${thumbWidth}x${thumbHeight}.`
+    )
   }
 
   executeCommand = command => () => {

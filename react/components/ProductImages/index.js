@@ -3,6 +3,7 @@ import React, { useMemo, useEffect, useState } from 'react'
 import debounce from 'debounce'
 
 import Carousel from './components/Carousel'
+import Video from './components/Video/index'
 import styles from './styles.css'
 import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
 
@@ -23,6 +24,7 @@ const ProductImages = ({
   zoomProps,
   displayThumbnailsArrows,
   images,
+  videos,
   thumbnailsOrientation,
 }) => {
   const [_, setState] = useState(0)
@@ -43,18 +45,23 @@ const ProductImages = ({
   }, [debouncedGetBestUrl])
 
   const slides = useMemo(() => {
-    if (images.length === 0) return
+    if (!images.length && !videos.length) return
 
-    return images.map(image => {
-      return {
+    return [
+      ...images.map(image => ({
         type: 'image',
         urls: image.imageUrls,
         alt: image.imageText,
         thumbUrl: image.thumbnailUrl || image.imageUrls[0],
         bestUrlIndex: getBestUrlIndex(image.thresholds),
-      }
-    })
-  }, [images])
+      })),
+      ...videos.map(video => ({
+        type: 'video',
+        src: video.videoUrl,
+        thumbWidth: 300,
+      }))
+    ]
+  }, [images, videos])
 
   return (
     <div className={`${styles.content} w-100`}>
