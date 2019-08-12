@@ -4,6 +4,7 @@ import debounce from 'debounce'
 
 import Carousel from './components/Carousel'
 import styles from './styles.css'
+import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
 
 const getBestUrlIndex = thresholds => {
   const windowSize = window.innerWidth
@@ -17,9 +18,14 @@ const getBestUrlIndex = thresholds => {
   return bestUrlIndex
 }
 
-const ProductImages = props => {
+const ProductImages = ({
+  position,
+  zoomProps,
+  displayThumbnailsArrows,
+  images,
+  thumbnailsOrientation,
+}) => {
   const [_, setState] = useState(0)
-  const { position, zoomProps, displayThumbnailsArrows } = props
 
   const debouncedGetBestUrl = debounce(() => {
     // force update
@@ -37,8 +43,6 @@ const ProductImages = props => {
   }, [debouncedGetBestUrl])
 
   const slides = useMemo(() => {
-    const { images } = props
-
     if (images.length === 0) return
 
     return images.map(image => {
@@ -50,18 +54,31 @@ const ProductImages = props => {
         bestUrlIndex: getBestUrlIndex(image.thresholds),
       }
     })
-  }, [props.images])
+  }, [images])
 
   return (
     <div className={`${styles.content} w-100`}>
-      <Carousel slides={slides} position={position} displayThumbnailsArrows={displayThumbnailsArrows} zoomProps={zoomProps} />
+      <Carousel
+        slides={slides}
+        position={position}
+        displayThumbnailsArrows={displayThumbnailsArrows}
+        zoomProps={zoomProps}
+        thumbnailsOrientation={thumbnailsOrientation}
+      />
     </div>
   )
 }
 
 ProductImages.propTypes = {
   /** The position of the thumbs */
-  position: PropTypes.oneOf(['left', 'right']),
+  position: PropTypes.oneOf([
+    THUMBS_POSITION_HORIZONTAL.LEFT,
+    THUMBS_POSITION_HORIZONTAL.RIGHT,
+  ]),
+  thumbnailsOrientation: PropTypes.oneOf([
+    THUMBS_ORIENTATION.VERTICAL,
+    THUMBS_ORIENTATION.HORIZONTAL,
+  ]),
   /** Array of images to be passed for the Thumbnail Slider component as a props */
   images: PropTypes.arrayOf(
     PropTypes.shape({
@@ -79,51 +96,10 @@ ProductImages.propTypes = {
 
 ProductImages.defaultProps = {
   images: [],
-  position: 'left',
+  position: THUMBS_POSITION_HORIZONTAL.LEFT,
   zoomProps: { zoomType: 'in-page' },
-}
-
-ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
-  return {
-    title: 'admin/editor.product-images.title',
-    description: 'admin/editor.product-images.description',
-    type: 'object',
-    properties: {
-      zoomProps: {
-        title: 'admin/editor.product-images.zoomOptions.title',
-        type: 'object',
-        properties: {
-          zoomType: {
-            title: 'admin/editor.product-images.zoomType.title',
-            type: 'string',
-            enum: ['gallery', 'in-page', 'no-zoom'],
-            enumNames: [
-              'admin/editor.product-images.gallery',
-              'admin/editor.product-images.in-page',
-              'admin/editor.product-images.no-zoom',
-            ],
-            widget: {
-              'ui:options': {
-                inline: false,
-              },
-              'ui:widget': 'radio',
-            },
-            default: 'no-zoom',
-          },
-          ...(zoomType === 'gallery' && {
-            bgOpacity: {
-              title: 'admin/editor.product-images.bgopacity.title',
-              type: 'number',
-              minimum: 0.0,
-              maximum: 1.0,
-              multipleOf: 0.01,
-              default: 0.8,
-            },
-          }),
-        },
-      },
-    },
-  }
+  thumbnailsOrientation: THUMBS_ORIENTATION.VERTICAL,
+  displayThumbnailsArrows: false,
 }
 
 export default ProductImages

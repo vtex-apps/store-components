@@ -18,10 +18,18 @@ import './global.css'
 import Gallery from '../Gallery'
 
 /** Swiper and its modules are imported using require to avoid breaking SSR */
-const Swiper = window.navigator ? require('react-id-swiper/lib/ReactIdSwiper.full').default : null
-const SwiperModules = window.navigator ? require('swiper/dist/js/swiper.esm') : null
+const Swiper = window.navigator
+  ? require('react-id-swiper/lib/ReactIdSwiper.full').default
+  : null
+const SwiperModules = window.navigator
+  ? require('swiper/dist/js/swiper.esm')
+  : null
 
-import { THUMB_SIZE, imageUrlForSize } from '../../../module/images'
+import ThumbnailSwiper from './ThumbnailSwiper'
+import {
+  THUMBS_ORIENTATION,
+  THUMBS_POSITION_HORIZONTAL,
+} from '../../utils/enums'
 
 const initialState = {
   loaded: [],
@@ -248,9 +256,7 @@ class Carousel extends Component {
   }
 
   get thumbnailsParams() {
-    const {
-      displayThumbnailsArrows,
-    } = this.props
+    const { displayThumbnailsArrows, thumbnailsOrientation } = this.props
 
     const caretSize = 24
     const caretClassName =
@@ -302,7 +308,7 @@ class Carousel extends Component {
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
       freeMode: false,
-      direction: 'vertical',
+      direction: thumbnailsOrientation,
       slidesPerView: 'auto',
       touchRatio: 1,
       mousewheel: false,
@@ -311,7 +317,7 @@ class Carousel extends Component {
       zoom: false,
       threshold: 8,
       /* Slides are grouped when thumbnails arrows are enabled
-       * so that clicking on next/prev will scroll more than 
+       * so that clicking on next/prev will scroll more than
        * one thumbnail */
       slidesPerGroup: displayThumbnailsArrows ? 4 : 1,
       getSwiper: swiper => this.setState({ thumbSwiper: swiper }),
@@ -319,18 +325,27 @@ class Carousel extends Component {
   }
 
   render() {
-    const { thumbsLoaded, isGalleryOpen, selectedIndex, gallerySwiper } = this.state
+    const {
+      thumbsLoaded,
+      isGalleryOpen,
+      selectedIndex,
+      gallerySwiper,
+    } = this.state
 
     const {
       slides,
       position,
       zoomProps: { zoomType, bgOpacity },
+      thumbnailsOrientation,
     } = this.props
 
     if (!thumbsLoaded || Swiper == null) {
       return <Loader slidesAmount={slides ? slides.length : 0} />
     }
 
+    const isThumbsVertical =
+      thumbnailsOrientation === THUMBS_ORIENTATION.VERTICAL
+    const hasThumbs = slides.length > 1
 
     const galleryCursor = {
       gallery: !isGalleryOpen && 'pointer',
@@ -341,52 +356,32 @@ class Carousel extends Component {
     const imageClasses = classNames(
       `w-100 border-box ${galleryCursor[zoomType]}`,
       {
-        'ml-20-ns w-80-ns': position === 'left' && slides.length > 1,
-        'mr-20-ns w-80-ns': position === 'right' && slides.length > 1,
+        'ml-20-ns w-80-ns':
+          isThumbsVertical &&
+          position === THUMBS_POSITION_HORIZONTAL.LEFT &&
+          hasThumbs,
+        'mr-20-ns w-80-ns':
+          isThumbsVertical &&
+          position === THUMBS_POSITION_HORIZONTAL.RIGHT &&
+          hasThumbs,
       }
     )
 
-    const thumbClasses = classNames(
-      `w-20 ${styles.carouselGaleryThumbs} bottom-0 top-0 absolute dn`,
-      {
-        'db-ns': slides.length > 1,
-        'left-0 pr5': position === 'left',
-        'right-0 pl5': position === 'right',
-      }
+    const thumbnailSwiper = (
+      <ThumbnailSwiper
+        isThumbsVertical={isThumbsVertical}
+        slides={slides}
+        swiperParams={this.thumbnailsParams}
+        alts={this.state.alt}
+        thumbUrls={this.state.thumbUrl}
+        position={position}
+        gallerySwiper={gallerySwiper}
+      />
     )
 
     return (
-      <div className="relative overflow-hidden w-100" aria-hidden="true">
-        <div className={thumbClasses}>
-          <Swiper {...this.thumbnailsParams} rebuildOnUpdate>
-            {slides.map((slide, i) => (
-              <div
-                key={i}
-                className="swiper-slide w-100 h-auto mb5 pointer"
-                onClick={() => gallerySwiper && gallerySwiper.slideTo(i)}
-              >
-                <figure
-                  className={styles.figure}
-                  itemProp="associatedMedia"
-                  itemScope
-                  itemType="http://schema.org/ImageObject"
-                >
-                  <img
-                    className="w-100 h-auto db"
-                    itemProp="thumbnail"
-                    alt={slide.alt ? this.state.alt[i] : ''}
-                    src={imageUrlForSize(slide.thumbUrl || this.state.thumbUrl[i], THUMB_SIZE)}
-                  />
-                </figure>
-                <div
-                  className={`absolute absolute--fill b--solid b--muted-2 bw1 ${
-                    styles.carouselThumbBorder
-                  }`}
-                />
-              </div>
-            ))}
-          </Swiper>
-        </div>
+      <div className={`relative overflow-hidden w-100`} aria-hidden="true">
+        {isThumbsVertical && thumbnailSwiper}
         <div className={imageClasses}>
           <ReactResizeDetector handleHeight onResize={this.updateSwiperSize}>
             <Swiper {...this.galleryParams} rebuildOnUpdate>
@@ -397,6 +392,7 @@ class Carousel extends Component {
               ))}
             </Swiper>
           </ReactResizeDetector>
+          {!isThumbsVertical && thumbnailSwiper}
           {zoomType === 'gallery' && (
             <NoSSR>
               <Gallery
