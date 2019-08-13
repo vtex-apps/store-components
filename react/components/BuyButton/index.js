@@ -68,9 +68,9 @@ export const BuyButton = ({
   const toastMessage = success => {
     const isOffline = window && window.navigator && !window.navigator.onLine
     const message = success
-      ? ( !isOffline ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
-          : translateMessage(CONSTANTS.OFFLINE_BUY_MESSAGE_ID)
-      )
+      ? !isOffline
+        ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
+        : translateMessage(CONSTANTS.OFFLINE_BUY_MESSAGE_ID)
       : translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
 
     const action = success
@@ -96,13 +96,15 @@ export const BuyButton = ({
     let showToastMessage
     try {
       const minicartItems = skuItems.map(skuItemToMinicartItem)
-      const {
-        data: { addToCart: linkStateItems },
-      } = await addToCart(minicartItems)
+      const localStateMutationResult = !isOneClickBuy
+        ? await addToCart(minicartItems)
+        : null
+      const linkStateItems =
+        localStateMutationResult && localStateMutationResult.data.addToCart
+      const callOrderFormDirectly = !linkStateItems
 
       let success = null
-      if (!linkStateItems) {
-        // minicart does not have link state implemented, calling graphql directly
+      if (callOrderFormDirectly) {
         const variables = {
           orderFormId: orderFormContext.orderForm.orderFormId,
           items: skuItems.map(item => ({
