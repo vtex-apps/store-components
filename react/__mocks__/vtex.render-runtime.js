@@ -3,10 +3,10 @@
 import React from 'react'
 
 const runtime = {
-  setQuery: jest.fn(),
+  setQuery: () => {},
   account: 'account',
   hints: { mobile: false },
-  culture: { currency: 'USD' }
+  culture: { currency: 'USD' },
 }
 
 export const withRuntimeContext = Comp =>
