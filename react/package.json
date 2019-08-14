@@ -3,7 +3,9 @@
   "scripts": {
     "pretest": "yarn",
     "test": "vtex-test-tools test",
-    "lint": "eslint --ext js,jsx,ts,tsx ."
+    "lint": "eslint --ext js,jsx,ts,tsx .",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@material-ui/core": "^3.5.1",
@@ -34,15 +36,29 @@
     "swiper": "^4.5.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@storybook/addon-actions": "^5.1.11",
+    "@storybook/addon-info": "^5.1.11",
+    "@storybook/addon-jest": "^5.1.10",
+    "@storybook/addon-links": "^5.1.10",
+    "@storybook/addons": "^5.1.10",
+    "@storybook/react": "^5.1.10",
     "@types/classnames": "^2.2.9",
     "@types/ramda": "^0.26.18",
     "@types/react": "^16.8.23",
+    "@types/storybook__react": "^4.0.2",
+    "@vtex/styleguide": "^v9.72.7",
     "@vtex/test-tools": "^1.1.0",
     "apollo-cache-inmemory": "^1.4.3",
+    "apollo-storybook-react": "^0.2.1",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.6",
     "eslint": "^5.16.0",
     "eslint-config-vtex-react": "^4.0.0",
     "prettier": "^1.16.4",
-    "typescript": "3.5.2"
+    "react-docgen-typescript-loader": "^3.1.1",
+    "react-testing-library": "^8.0.1",
+    "typescript": "^3.5.3"
   },
   "vtexTestTools": {
     "defaultLocale": "en"
