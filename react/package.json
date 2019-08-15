@@ -42,6 +42,7 @@
     "@storybook/addon-actions": "^5.1.11",
     "@storybook/addon-info": "^5.1.11",
     "@storybook/addon-jest": "^5.1.10",
+    "@storybook/addon-knobs": "^5.1.11",
     "@storybook/addon-links": "^5.1.10",
     "@storybook/addons": "^5.1.10",
     "@storybook/react": "^5.1.10",
@@ -66,7 +67,8 @@
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
     "react-docgen-typescript-loader": "^3.1.1",
-    "react-testing-library": "^8.0.1"
+    "react-testing-library": "^8.0.1",
+    "storybook-addon-i18n": "^5.1.9"
   },
   "vtexTestTools": {
     "defaultLocale": "en"
