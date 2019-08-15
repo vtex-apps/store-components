@@ -2,6 +2,7 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 import { actions } from '@storybook/addon-actions'
+import { withKnobs, text, boolean } from '@storybook/addon-knobs'
 
 import BuyButton from '../BuyButton'
 import Container from '../Container'
@@ -13,11 +14,6 @@ const buyButtonActions = actions(
   'addToCart',
   'setMinicartOpen'
 )
-
-const buyButtonProps = {
-  skuItems: [],
-  large: false,
-}
 
 storiesOf('Conainter', module).add('default', () => (
   <Container>
@@ -37,22 +33,16 @@ storiesOf('Conainter', module).add('default', () => (
 ))
 
 storiesOf('BuyButton', module)
-  .addDecorator(storyFn => <Container>{storyFn()}</Container>)
+  .addDecorator(withKnobs)
   .addDecorator(storyFn => <p className={`t-body lh-copy`}>{storyFn()}</p>)
-  .add('default', () => <BuyButton {...buyButtonActions} {...buyButtonProps} />)
-  .add('normal', () => (
-    <BuyButton {...buyButtonActions} {...buyButtonProps}>
-      Add to Cart
-    </BuyButton>
-  ))
-  .add('disabled', () => (
-    <BuyButton {...buyButtonProps} disabled={true}>
-      Disabled
-    </BuyButton>
-  ))
-  .add('unavailable', () => <BuyButton {...buyButtonProps} available={false} />)
-  .add('large', () => (
-    <BuyButton {...buyButtonProps} large={true}>
-      Large
-    </BuyButton>
+  .addDecorator(storyFn => <Container>{storyFn()}</Container>)
+  .add('default', () => (
+    <BuyButton
+      {...buyButtonActions}
+      skuItems={[]}
+      large={boolean('Large', false)}
+      available={!boolean('Unavailable', false)}
+      disabled={boolean('Disable', false)}
+      children={text('Label')}
+    />
   ))
