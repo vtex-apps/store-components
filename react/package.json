@@ -40,6 +40,7 @@
     "@storybook/addon-actions": "^5.1.11",
     "@storybook/addon-info": "^5.1.11",
     "@storybook/addon-jest": "^5.1.10",
+    "@storybook/addon-knobs": "^5.1.11",
     "@storybook/addon-links": "^5.1.10",
     "@storybook/addons": "^5.1.10",
     "@storybook/react": "^5.1.10",
@@ -58,6 +59,7 @@
     "prettier": "^1.16.4",
     "react-docgen-typescript-loader": "^3.1.1",
     "react-testing-library": "^8.0.1",
+    "storybook-addon-i18n": "^5.1.9",
     "typescript": "^3.5.3"
   },
   "vtexTestTools": {
