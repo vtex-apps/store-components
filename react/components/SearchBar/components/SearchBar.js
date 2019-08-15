@@ -21,6 +21,7 @@ const SearchBar = ({
   compactMode,
   hasIconLeft,
   iconClasses,
+  iconBlockClass,
   autoFocus,
   maxWidth,
 }) => {
@@ -73,6 +74,7 @@ const SearchBar = ({
       inputValue={inputValue}
       hasIconLeft={hasIconLeft}
       iconClasses={iconClasses}
+      iconBlockClass={iconBlockClass}
     />
   )
 
