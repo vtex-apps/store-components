@@ -68,13 +68,12 @@ class SearchBarContainer extends Component {
       iconClasses,
       autoFocus,
       maxWidth,
+      placeholder = intl.formatMessage({
+        id: 'store/search.placeholder',
+      }),
     } = this.props
 
     const { shouldSearch, inputValue } = this.state
-
-    const placeholder = intl.formatMessage({
-      id: 'store/search.placeholder',
-    })
 
     return (
       <SearchBar
