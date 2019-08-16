@@ -64,8 +64,12 @@ export const BuyButton = ({
   const translateMessage = useCallback(id => intl.formatMessage({ id: id }), [
     intl,
   ])
+  const orderFormItems =
+    orderFormContext &&
+    orderFormContext.orderForm &&
+    orderFormContext.orderForm.items
 
-  const toastMessage = success => {
+  const toastMessage = ({ success, newItem }) => {
     const isOffline = window && window.navigator && !window.navigator.onLine
     const message = success
       ? !isOffline
@@ -80,7 +84,7 @@ export const BuyButton = ({
         }
       : undefined
 
-    showToast({ message, action })
+    newItem && showToast({ message, action })
   }
 
   const { rootPath = '' } = useRuntime()
@@ -116,20 +120,36 @@ export const BuyButton = ({
         }
         const mutationRes = await orderFormContext.addItem({ variables })
         const { items } = mutationRes.data.addItem
+
         success = skuItems.filter(
           skuItem => !!items.find(({ id }) => id === skuItem.skuId)
         )
         await orderFormContext.refetch().catch(() => null)
       }
 
-      success =
-        success ||
-        (linkStateItems &&
-          skuItems.filter(
-            skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
-          ))
+      const addedItem =
+        linkStateItems &&
+        skuItems.filter(
+          skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
+        )
 
-      showToastMessage = () => toastMessage(success && success.length >= 1)
+      const foundItem =
+        orderFormItems &&
+        orderFormItems.filter(item => item.id === addedItem[0].skuId).length > 0
+
+      success = success || addedItem
+
+      showToastMessage = foundItem
+        ? () =>
+            toastMessage({
+              success: success && success.length >= 1,
+              newItem: false,
+            })
+        : () =>
+            toastMessage({
+              success: success && success.length >= 1,
+              newItem: true,
+            })
       shouldOpenMinicart && !isOneClickBuy && setMinicartOpen(true)
     } catch (err) {
       console.error(err)
@@ -225,6 +245,8 @@ BuyButton.propTypes = {
   setMinicartOpen: PropTypes.func.isRequired,
   /** The orderFormContext object */
   orderFormContext: PropTypes.object,
+  /** If the button is disabled or not */
+  disabled: PropTypes.bool,
 }
 
 export default BuyButton
