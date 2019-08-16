@@ -4685,10 +4685,10 @@ react-html-parser@^2.0.2:
   dependencies:
     htmlparser2 "^3.9.0"
 
-react-id-swiper@^2.1.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/react-id-swiper/-/react-id-swiper-2.3.2.tgz#acd35e51f1068b94a8066829b121ff9b29febaaa"
-  integrity sha512-lxlASsBok+M8YmwYICEXUaVj44AyCaGfSc+YGZX5vWCqKLnVj3ceUbFFBfO+G8Glrya7WJhrfvzMae0r77MCSQ==
+react-id-swiper@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-id-swiper/-/react-id-swiper-2.1.2.tgz#57dfb0e8b8703dfe544ea5af94b74663822a2b63"
+  integrity sha512-7VLfDUNsY3Mb3lYtltiuyWHb/BMF8YH8+JotpHNuoORFqaj2FER82xHPQdb90HyJ+I3+wL1443suyE2KdAC6aw==
   dependencies:
     object-assign "^4.1.1"
 
