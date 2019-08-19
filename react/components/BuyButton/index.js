@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useContext, useCallback, useState, Fragment } from 'react'
 import { intlShape, FormattedMessage } from 'react-intl'
+import { path } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { useRuntime } from 'vtex.render-runtime'
 
@@ -65,11 +66,8 @@ export const BuyButton = ({
   const translateMessage = useCallback(id => intl.formatMessage({ id: id }), [
     intl,
   ])
-  const orderFormItems =
-    orderFormContext &&
-    orderFormContext.orderForm &&
-    orderFormContext.orderForm.items
-  
+  const orderFormItems = path(['orderForm', 'items'], orderFormContext)
+
   const resolveToastMessage = (success, isNewItem) => {
     if (!success) return translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
 
