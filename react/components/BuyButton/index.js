@@ -9,6 +9,7 @@ import { Button, ToastContext } from 'vtex.styleguide'
 const CONSTANTS = {
   SUCCESS_MESSAGE_ID: 'store/buybutton.buy-success',
   OFFLINE_BUY_MESSAGE_ID: 'store/buybutton.buy-offline-success',
+  DUPLICATE_CART_ITEM_ID: 'store/buybutton.buy-success-duplicate',
   ERROR_MESSAGE_ID: 'store/buybutton.add-failure',
   SEE_CART_ID: 'store/buybutton.see-cart',
   CHECKOUT_URL: '/checkout/#/cart',
@@ -68,14 +69,21 @@ export const BuyButton = ({
     orderFormContext &&
     orderFormContext.orderForm &&
     orderFormContext.orderForm.items
+  
+  const resolveToastMessage = (success, isNewItem) => {
+    if (!success) return translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
 
-  const toastMessage = ({ success, newItem }) => {
     const isOffline = window && window.navigator && !window.navigator.onLine
-    const message = success
-      ? !isOffline
-        ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
-        : translateMessage(CONSTANTS.OFFLINE_BUY_MESSAGE_ID)
-      : translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
+    const checkForOffline = (!isOffline)
+      ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
+      : translateMessage(CONSTANTS.OFFLINE_BUY_MESSAGE_ID)
+    const checkForDuplicateItem = !isNewItem && translateMessage(CONSTANTS.DUPLICATE_CART_ITEM_ID)
+
+    return checkForDuplicateItem || checkForOffline 
+  }
+
+  const toastMessage = ({ success, isNewItem }) => {
+    const message = resolveToastMessage(success, isNewItem)
 
     const action = success
       ? {
@@ -84,7 +92,7 @@ export const BuyButton = ({
         }
       : undefined
 
-    newItem && showToast({ message, action })
+    showToast({ message, action })
   }
 
   const { rootPath = '' } = useRuntime()
@@ -143,12 +151,12 @@ export const BuyButton = ({
         ? () =>
             toastMessage({
               success: success && success.length >= 1,
-              newItem: false,
+              isNewItem: false,
             })
         : () =>
             toastMessage({
               success: success && success.length >= 1,
-              newItem: true,
+              isNewItem: true,
             })
       shouldOpenMinicart && !isOneClickBuy && setMinicartOpen(true)
     } catch (err) {
