@@ -145,17 +145,11 @@ export const BuyButton = ({
 
       success = success || addedItem
 
-      showToastMessage = foundItem
-        ? () =>
-            toastMessage({
-              success: success && success.length >= 1,
-              isNewItem: false,
-            })
-        : () =>
-            toastMessage({
-              success: success && success.length >= 1,
-              isNewItem: true,
-            })
+      showToastMessage = () => toastMessage({
+        success: success && success.length >= 1,
+        isNewItem: !foundItem,
+      })
+      
       shouldOpenMinicart && !isOneClickBuy && setMinicartOpen(true)
     } catch (err) {
       console.error(err)
