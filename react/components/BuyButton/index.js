@@ -70,14 +70,14 @@ export const BuyButton = ({
 
   const resolveToastMessage = (success, isNewItem) => {
     if (!success) return translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
+    if (!isNewItem) return translateMessage(CONSTANTS.DUPLICATE_CART_ITEM_ID)
 
     const isOffline = window && window.navigator && !window.navigator.onLine
     const checkForOffline = (!isOffline)
       ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
       : translateMessage(CONSTANTS.OFFLINE_BUY_MESSAGE_ID)
-    const checkForDuplicateItem = !isNewItem && translateMessage(CONSTANTS.DUPLICATE_CART_ITEM_ID)
 
-    return checkForDuplicateItem || checkForOffline 
+    return checkForOffline 
   }
 
   const toastMessage = ({ success, isNewItem }) => {
