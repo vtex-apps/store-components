@@ -7,20 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [3.65.1] - 2019-08-21
 ### Added
+
+- Add new message to be shown in the Toast when the user tries to add an item to the minicart that is already there.
+
+## [3.65.1] - 2019-08-21
+
+### Added
+
 - Added spec `colour` for UK
 
 ## [3.65.0] - 2019-08-21
+
 ### Added
+
 - Add CSS Handle to target the search bar icon (`searchBarIcon`).
 
 ## [3.64.0] - 2019-08-21
+
 ### Added
+
 - Query params `_q` and `_c` so it's possible to Google Analytics to track the searched terms and category
 
 ## [3.63.1] - 2019-08-21
+
 ### Fixed
+
 - Search Bar height CSS.
 
 ## [3.63.0] - 2019-08-20
@@ -30,16 +42,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - How `ProductBrand` can get the brand information. It is now possible to get this data through props, but if the props are `undefined` the value will still be obtained through the product context
 
 ## [3.62.2] - 2019-08-15
+
 ### Fixed
+
 - `SearchBar`: the `placeholder` property was not working
 
 ## [3.62.1] - 2019-08-13
+
 ### Changed
+
 - `BuyButton`: if isOneClickBuy, call graphql directly, skip optimistic add.
 
 ## [3.62.0] - 2019-08-12
 
 ### Added
+
 - Support to videos (YouTube and Vimeo) in `ProductImages` carousel
 
 ## [3.61.0] - 2019-08-12
@@ -51,149 +68,213 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `addToAvailabilitySubscriberMutation`'s mutation to `createDocument`
 
 ## [3.60.0] - 2019-08-06
+
 ### Added
+
 - `discountInsideContainer` class to DiscountBadge.
 
 ## [3.59.1] - 2019-08-05
+
 ### Fixed
+
 - The `ResultList` now have the correct size when the `SearchBar` is bigger than 320px
 
 ## [3.59.0] - 2019-08-05
+
 ### Added
+
 - New prop `showValueNameForImageVariation` to `sku-selector`.
 - New CSS handle `skuSelectorNameSeparator`.
 - New CSS handle `skuSelectorSelectorImageValue`.
 - New CSS handle `skuSelectorTextContainer`.
 
 ### Changed
+
 - Migrate SKUSelector to Typescript.
 
 ## [3.58.1] - 2019-08-02
+
 ### Fixed
-- Product Price classes in sellingPrice. Added `sellingPriceValue` and `sellingPriceValue--range`  to value element. Also added `sellingPriceContainer` as a replacement to the `sellingPrice` in the parent element.
+
+- Product Price classes in sellingPrice. Added `sellingPriceValue` and `sellingPriceValue--range` to value element. Also added `sellingPriceContainer` as a replacement to the `sellingPrice` in the parent element.
 
 ## [3.58.0] - 2019-08-01
+
 ### Added
+
 - Toast message in `BuyButton` when an item is added offline to minicart.
 
 ## [3.57.3] - 2019-07-30
+
 ### Fixed
+
 - Remove unnecessary autcomplete query when input value is empty.
 
 ## [3.57.2] - 2019-07-26
+
 ### Fixed
+
 - Postal code validation in ShippingSimulator.
 
 ## [3.57.1] - 2019-07-26
+
 ### Fixed
+
 - Correctly add logic to parse assembly options state from productContext in BuyButton.
 
 ## [3.57.0] - 2019-07-25
+
 ### Added
+
 - Added the `logoWithLink` prop to the `ProductBrand`
 
 ## [3.56.1] - 2019-07-24
+
 ### Added
+
 - Added link prop to image component
 
 ## [3.56.0] - 2019-07-23
+
 ### Added
+
 - **ProductImages:** Prop `displayThumbnailsArrows`.
 
 ## [3.55.0] - 2019-07-23
+
 ### Added
+
 - Pass more data down to Minicart addToCart to fulfill analytics data.
 
 ## [3.54.2] - 2019-07-19
+
 ### Fixed
+
 - InfoCard missing to use formatIOMessage in a localized url.
 
 ## [3.54.1] - 2019-07-19
+
 ### Fixed
+
 - Issue where going back to a product with variations would render empty variations.
 
 ## [3.54.0] - 2019-07-17
+
 ### Added
+
 - Format currency based on sales channel configuration.
 
 ## [3.53.1] - 2019-07-11
+
 ### Fixed
+
 - Protect against undefined assemblyOptions in state.
 
 ## [3.53.0] - 2019-07-11
+
 ### Added
+
 - Add support for adding to cart Assembly Options in buy button.
 - Add prop to show total price on buy button.
 
 ## [3.52.3] - 2019-07-11
+
 ### Fixed
+
 - Fix UserAddress Proptype.
 
 ## [3.52.2] - 2019-07-11
+
 ### Fixed
+
 - Make addressQuery query have ssr: false, because it has scope private.
 
 ## [3.52.1] - 2019-07-11
+
 ### Changed
+
 - Use new address query on `UserAddress`.
 
 ## [3.52.0] - 2019-07-08
+
 ### Changed
+
 - Uses product id as internal url
 
 ### Added
+
 - Types of props on Availability Subscriber documentation.
 
 ## [3.51.3] - 2019-07-05
 
 ### Added
+
 - Documentation on Product Brand props.
 - Product Brand and Product Image on the list of components of the main Read Me.
 
 ## [3.51.2] - 2019-07-04
+
 ### Fixed
+
 - Show SKUSelector even when SKU items is one.
 
 ## [3.51.1] - 2019-07-04
 
 ### Fixed
+
 - Read me of Availability subscriber. Explain that it doesn't warn users.
 - Default text of component to make it less misleading.
 
 ## [3.51.0] - 2019-07-04
+
 ### Added
+
 - `htmlId` prop on InfoCard
 
 ## [3.50.1] - 2019-07-03
+
 ### Removed
+
 - Deprecated the usage of `productId` to navigate to product urls
 
 ## [3.50.0] - 2019-07-02
+
 ### Changed
+
 - Uses `productId` to navigate to product urls
 
 ## [3.49.1] - 2019-07-02
+
 ### Fixed
+
 - Issue with updating state of SKUSelector on ProductContext.
 
 ## [3.49.0] - 2019-07-01
+
 ### Added
+
 - `ProductDescription` - Add `collapseContent` prop.
 
 ## [3.48.0] - 2019-06-27
+
 ### Added
+
 - Prop `attemptPageTypeSearch` on `search-bar`; if `true`, uses the term the user has inputted to try to navigate to the proper page type (e.g. a department, a brand, a category)
 
 ## [3.47.5] - 2019-06-27
 
 ### Fixed
+
 - Build assets with new builder hub.
 
 ## [3.47.4] - 2019-06-26
+
 ### Fixed
+
 - Fixes NaN being sent to search result width.
 
 ## [3.47.3] - 2019-06-26
+
 ### Changed
 
 - Slugify variation option name added to the variation item.
