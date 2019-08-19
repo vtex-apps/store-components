@@ -35,6 +35,7 @@
   "store/shipping.empty-sla": "shipping.empty-sla",
   "store/buy-button.add-to-cart": "Add to cart",
   "store/buybutton.buy-success": "buybutton.buy-success",
+  "store/buybutton.buy-success-duplicate": "buybutton.buy-success-duplicate",
   "store/buybutton.add-failure": "buybutton.add-failure",
   "store/buybutton.buy-offline-success": "buybutton.buy-offline-success",
   "store/buybutton.see-cart": "Button label on the notification that pops up when the user adds an item to the cart, prompting the user to see said cart",
