@@ -28,6 +28,15 @@ const BrandContainer = ({ children, blockClass }) => (
   </div>
 )
 
+const useBrandInfoProps = (brandName, brandId) => {
+  const productContext = useContext(ProductContext)
+  const product = productContext && productContext.product
+  if ((brandName && brandId) || !product) {
+    return { brandName, brandId }
+  }
+  return { brandName: product.brand, brandId: product.brandId}
+ }
+
 const ProductBrand = ({
   displayMode = DISPLAY_MODE.LOGO,
   fallbackToText = true,
@@ -40,18 +49,13 @@ const ProductBrand = ({
   excludeBrands,
   blockClass,
   logoWithLink,
-  brandName,
-  brandId
+  brandName: brandNameProp,
+  brandId: brandIdProp,
 }) => {
-  const productContext = useContext(ProductContext)
 
-  if(!brandName || !brandId) {
-    if (!productContext || !productContext.product) {
-      return null
-    } else {
-      brandName = productContext.product.brand
-      brandId = productContext.product.brandId
-    }
+  const {brandName, brandId } = useBrandInfoProps(brandNameProp, brandIdProp)
+  if (!brandName || !brandId) {
+    return null
   }
 
   /** Certain brands (e.g. placeholder brands) can be filtered out via theme config */
