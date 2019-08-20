@@ -40,16 +40,19 @@ const ProductBrand = ({
   excludeBrands,
   blockClass,
   logoWithLink,
+  brandName,
+  brandId
 }) => {
   const productContext = useContext(ProductContext)
 
-  if (!productContext || !productContext.product) {
-    return null
+  if(!brandName || !brandId) {
+    if (!productContext || !productContext.product) {
+      return null
+    } else {
+      brandName = productContext.product.brand
+      brandId = productContext.product.brandId
+    }
   }
-
-  const {
-    product: { brand: brandName, brandId },
-  } = productContext
 
   /** Certain brands (e.g. placeholder brands) can be filtered out via theme config */
   if (shouldExcludeBrand(brandName, brandId, excludeBrands)) {
@@ -164,6 +167,8 @@ const ProductBrand = ({
 ProductBrand.propTypes = {
   /** Brand name */
   brandName: PropTypes.string,
+  /** Brand id */
+  brandId: PropTypes.number,
   /** Whether it should be displayed as a logo or as a text */
   displayMode: PropTypes.oneOf(Object.values(DISPLAY_MODE)),
   /** Whether the loading placeholder should have the size of the logo or the text */

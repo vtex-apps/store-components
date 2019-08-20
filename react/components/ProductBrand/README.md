@@ -37,6 +37,8 @@ This component has an interface that describes which rules must be implemented b
 | `height` | `Number` | It sets the logo height. It should only be used when displaymode is set to “logo”. |
 | `excludeBrands` | `Array` | The brand names or brand IDs that are listed in the array will never be displayed by the Brand component. It is usually useful to hide default brand names/logos or test brand names/logos on the store front. |
 | `logoWithLink` | `boolean` | If the brand logo will have a link that leads to the store's brand page |
+| `brandName` | `String` | The brand name. If this value is not passed, it will be obtained through the product context. |
+| `brandId` | `Number` | The brand id. If this value is not passed, it will be obtained through the product context. |
 
 
 ### Styles API
