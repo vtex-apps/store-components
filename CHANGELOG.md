@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- How `ProductBrand` can get the brand information. It is now possible to get this data through props, but if the props are `undefined` the value will still be obtained through the product context
+
 ## [3.62.2] - 2019-08-15
 ### Fixed
 - `SearchBar`: the `placeholder` property was not working
