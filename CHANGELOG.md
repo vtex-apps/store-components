@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.66.0] - 2019-08-21
+
 ### Added
 
 - Add new message to be shown in the Toast when the user tries to add an item to the minicart that is already there.
