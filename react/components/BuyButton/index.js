@@ -134,16 +134,16 @@ export const BuyButton = ({
       }
 
       const addedItem =
-        linkStateItems &&
+        (linkStateItems &&
         skuItems.filter(
           skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
-        )
+        )) || success
 
       const foundItem =
         orderFormItems &&
         orderFormItems.filter(item => item.id === addedItem[0].skuId).length > 0
 
-      success = success || addedItem
+      success = addedItem
 
       showToastMessage = () => toastMessage({
         success: success && success.length >= 1,
