@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useContext, useCallback, useState, Fragment } from 'react'
 import { intlShape, FormattedMessage } from 'react-intl'
+import { path } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { useRuntime } from 'vtex.render-runtime'
 
@@ -9,6 +10,7 @@ import { Button, ToastContext } from 'vtex.styleguide'
 const CONSTANTS = {
   SUCCESS_MESSAGE_ID: 'store/buybutton.buy-success',
   OFFLINE_BUY_MESSAGE_ID: 'store/buybutton.buy-offline-success',
+  DUPLICATE_CART_ITEM_ID: 'store/buybutton.buy-success-duplicate',
   ERROR_MESSAGE_ID: 'store/buybutton.add-failure',
   SEE_CART_ID: 'store/buybutton.see-cart',
   CHECKOUT_URL: '/checkout/#/cart',
@@ -64,14 +66,22 @@ export const BuyButton = ({
   const translateMessage = useCallback(id => intl.formatMessage({ id: id }), [
     intl,
   ])
+  const orderFormItems = path(['orderForm', 'items'], orderFormContext)
 
-  const toastMessage = success => {
+  const resolveToastMessage = (success, isNewItem) => {
+    if (!success) return translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
+    if (!isNewItem) return translateMessage(CONSTANTS.DUPLICATE_CART_ITEM_ID)
+
     const isOffline = window && window.navigator && !window.navigator.onLine
-    const message = success
-      ? !isOffline
-        ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
-        : translateMessage(CONSTANTS.OFFLINE_BUY_MESSAGE_ID)
-      : translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
+    const checkForOffline = (!isOffline)
+      ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
+      : translateMessage(CONSTANTS.OFFLINE_BUY_MESSAGE_ID)
+
+    return checkForOffline 
+  }
+
+  const toastMessage = ({ success, isNewItem }) => {
+    const message = resolveToastMessage(success, isNewItem)
 
     const action = success
       ? {
@@ -116,20 +126,30 @@ export const BuyButton = ({
         }
         const mutationRes = await orderFormContext.addItem({ variables })
         const { items } = mutationRes.data.addItem
+
         success = skuItems.filter(
           skuItem => !!items.find(({ id }) => id === skuItem.skuId)
         )
         await orderFormContext.refetch().catch(() => null)
       }
 
-      success =
-        success ||
+      const addedItem =
         (linkStateItems &&
-          skuItems.filter(
-            skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
-          ))
+        skuItems.filter(
+          skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
+        )) || success
 
-      showToastMessage = () => toastMessage(success && success.length >= 1)
+      const foundItem =
+        orderFormItems &&
+        orderFormItems.filter(item => item.id === addedItem[0].skuId).length > 0
+
+      success = addedItem
+
+      showToastMessage = () => toastMessage({
+        success: success && success.length >= 1,
+        isNewItem: !foundItem,
+      })
+      
       shouldOpenMinicart && !isOneClickBuy && setMinicartOpen(true)
     } catch (err) {
       console.error(err)
@@ -225,6 +245,8 @@ BuyButton.propTypes = {
   setMinicartOpen: PropTypes.func.isRequired,
   /** The orderFormContext object */
   orderFormContext: PropTypes.object,
+  /** If the button is disabled or not */
+  disabled: PropTypes.bool,
 }
 
 export default BuyButton

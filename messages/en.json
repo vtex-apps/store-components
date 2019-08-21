@@ -35,6 +35,7 @@
   "store/shipping.empty-sla": "There's no shipping information available for the informed zip code",
   "store/buy-button.add-to-cart": "Add to cart",
   "store/buybutton.buy-success": "Item added to your cart",
+  "store/buybutton.buy-success-duplicate": "Item already in your cart",
   "store/buybutton.add-failure": "Something went wrong and the item wasn't added to your cart!",
   "store/buybutton.buy-offline-success": "Item added to your offline cart",
   "store/buybutton.see-cart": "View cart",
