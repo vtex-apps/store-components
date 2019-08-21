@@ -28,9 +28,19 @@ exports[`<SearchBar /> should match snapshot 1`] = `
                 autocomplete="off"
                 id="downshift-1-input"
                 placeholder="Search"
-                suffix="[object Object]"
                 value=""
               />
+              <span
+                class=" searchBarIcon flex items-center pointer"
+              >
+                <svg
+                  class="  IconSearch"
+                >
+                  <rect
+                    style="fill: rgb(0,0,255); stroke-width: 3; stroke: rgb(0,0,0);"
+                  />
+                </svg>
+              </span>
             </label>
           </div>
         </div>

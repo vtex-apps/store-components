@@ -32,4 +32,12 @@ describe('<SearchBar />', () => {
     const { asFragment } = renderComponent()
     expect(asFragment()).toMatchSnapshot()
   })
+
+  it('should have CSS handle searchBarIcon', () => {
+    const { container } = renderComponent()
+
+    const element = container.querySelector('.searchBarIcon')
+
+    expect(element).toBeTruthy()
+  })
 })

@@ -11,6 +11,7 @@ exports[`<BuyButton /> should match snapshot loading 1`] = `
 exports[`<BuyButton /> should match snapshot normal 1`] = `
 <DocumentFragment>
   <button
+    data-block="true"
     data-isloading="false"
   >
     Test
@@ -21,6 +22,7 @@ exports[`<BuyButton /> should match snapshot normal 1`] = `
 exports[`<BuyButton /> should match snapshot unavailable 1`] = `
 <DocumentFragment>
   <button
+    data-block="true"
     data-isloading="false"
     disabled=""
   >

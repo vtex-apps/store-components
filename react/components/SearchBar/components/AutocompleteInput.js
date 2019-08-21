@@ -34,13 +34,14 @@ class AutocompleteInput extends Component {
       compactMode,
       value,
       hasIconLeft,
+      iconBlockClass,
       iconClasses,
       ...restProps
     } = this.props
 
     const suffix = (
       <span
-        className={`${iconClasses} flex items-center pointer`}
+        className={`${iconClasses || ''} ${styles.searchBarIcon} flex items-center pointer`}
         onClick={() => value && onClearInput()}
       >
         {value ? (
@@ -52,7 +53,7 @@ class AutocompleteInput extends Component {
     )
 
     const prefix = (
-      <span className={iconClasses}>
+      <span className={`${iconClasses} ${styles.searchBarIcon}`}>
         <IconSearch />
       </span>
     )
@@ -100,6 +101,8 @@ AutocompleteInput.propTypes = {
   hasIconLeft: PropTypes.bool,
   /** Custom classes for the search icon */
   iconClasses: PropTypes.string,
+  /** Block class for the search icon */
+  iconBlockClass: PropTypes.string,
   /** Identify if the search input should autofocus or not */
   autoFocus: PropTypes.bool,
 }

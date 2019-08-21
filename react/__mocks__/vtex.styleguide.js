@@ -22,12 +22,13 @@ export function Spinner(props) {
 }
 
 export const Input = forwardRef(function Input(
-  { label, error, errorMessage, isLoading, ...props },
+  { label, error, errorMessage, isLoading, prefix, suffix, ...props },
   ref
 ) {
   return (
     <label>
       {label}
+      {prefix}
       <input
         data-isloading={isLoading}
         data-error={error}
@@ -35,13 +36,18 @@ export const Input = forwardRef(function Input(
         ref={ref}
         {...props}
       />
+      {suffix}
     </label>
   )
 })
 
-export const Button = jest.fn(({ isLoading, variation, children, ...props }) => {
+export const Button = jest.fn(({ isLoading, variation, block, children, ...props }) => {
   return (
-    <button data-variation={variation} data-isloading={isLoading} {...props}>
+    <button
+      data-variation={variation}
+      data-isloading={isLoading}
+      data-block={block}
+      {...props}>
       {children}
     </button>
   )
