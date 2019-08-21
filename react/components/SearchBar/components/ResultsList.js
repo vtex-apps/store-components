@@ -32,9 +32,13 @@ const getLinkProps = element => {
   const terms = element.slug.split('/')
 
   if (element.criteria) {
+    // This param is only useful to track terms searched
+    // See: https://support.google.com/analytics/answer/1012264
+    const paramForSearchTracking = '&_c=' + terms[0]
+
     page = 'store.search'
     params = { term: terms[0] }
-    query = `map=c,ft&rest=${terms.slice(1).join(',')}`
+    query = `map=c,ft&rest=${terms.slice(1).join(',')}` + paramForSearchTracking
   }
 
   return { page, params, query }
