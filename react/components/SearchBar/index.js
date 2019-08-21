@@ -33,11 +33,15 @@ class SearchBarContainer extends Component {
       return
     }
 
+    // This param is only useful to track terms searched
+    // See: https://support.google.com/analytics/answer/1012264
+    const paramForSearchTracking = '&_q=' + search
+
     this.setState({ inputValue: '' })
     this.context.navigate({
       page: 'store.search',
       params: { term: search },
-      query: 'map=ft',
+      query: 'map=ft' + paramForSearchTracking,
       fallbackToWindowLocation: false,
     })
   }
