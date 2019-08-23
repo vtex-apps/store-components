@@ -77,7 +77,7 @@ export const BuyButton = ({
       ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
       : translateMessage(CONSTANTS.OFFLINE_BUY_MESSAGE_ID)
 
-    return checkForOffline 
+    return checkForOffline
   }
 
   const toastMessage = ({ success, isNewItem }) => {
@@ -149,7 +149,7 @@ export const BuyButton = ({
         success: success && success.length >= 1,
         isNewItem: !foundItem,
       })
-      
+
       shouldOpenMinicart && !isOneClickBuy && setMinicartOpen(true)
     } catch (err) {
       console.error(err)
@@ -173,7 +173,7 @@ export const BuyButton = ({
       ) : (
         <Button
           block={large}
-          disabled={disabled || !available}
+          disabled={disabled || !available || orderFormContext.loading}
           onClick={handleAddToCart}
           isLoading={isAddingToCart}
         >

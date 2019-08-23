@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Prevent addToCart while orderForm is loading.
+
 ## [3.66.0] - 2019-08-21
 
 ### Added
