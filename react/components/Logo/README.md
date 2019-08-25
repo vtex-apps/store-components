@@ -44,6 +44,7 @@ Through the Storefront, you can change the `Logo`'s behavior and interface. Howe
 | `width` | `Number` | The logo image width | `493` |
 | `height` | `Number` | The logo image height | `177` |
 | `url` | `String` | The image url | - |
+| `href` | `String` | Image link | - |
 
 ### Styles API
 You should follow the Styles API instruction in the main [README](/README.md#styles-api).
