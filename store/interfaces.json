@@ -74,7 +74,10 @@
     "component": "NotificationInline"
   },
   "notification.bar": {
-    "component": "NotificationBar"
+    "component": "NotificationBar",
+    "content": {
+      "$ref": "app:vtex.store-components#/definitions/NotificationBar"
+    }
   },
   "image": {
     "component": "Image",
