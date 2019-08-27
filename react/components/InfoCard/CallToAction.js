@@ -11,7 +11,7 @@ const ActionWrapper = ({ mode, text }) => {
   }
 
   // Mode is link
-  return <p className="link t-body b underline c-action-primary">{text}</p>
+  return <p className="link t-body b underline c-action-primary" dangerouslySetInnerHTML={{ __html: text }}></p>
 }
 
 const CallToAction = ({ mode, text, url }) => {
