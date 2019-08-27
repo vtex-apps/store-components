@@ -21,9 +21,7 @@ import Gallery from '../Gallery'
 const Swiper = window.navigator
   ? require('react-id-swiper/lib/ReactIdSwiper.full').default
   : null
-const SwiperModules = window.navigator
-  ? require('swiper/dist/js/swiper.esm')
-  : null
+const SwiperModules = window.navigator ? require('swiper/dist/js/swiper') : null
 
 import ThumbnailSwiper from './ThumbnailSwiper'
 import {
