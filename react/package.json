@@ -49,7 +49,6 @@
     "defaultLocale": "en"
   },
   "resolutions": {
-    "dom7": "github:vtex/dom7#2.1.4",
-    "swiper": "github:vtex/swiper#4.5.1"
+    "dom7": "github:vtex/dom7#2.1.4"
   }
 }
