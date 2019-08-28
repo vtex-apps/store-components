@@ -112,6 +112,17 @@
           "$ref": "app:vtex.native-types#/definitions/text",
           "default": ""
         }
+    }
+  },
+  "NotificationBar": {
+    "type": "object",
+    "description": "admin/editor.notification-bar.description",
+    "properties": {
+      "content": {
+        "title": "admin/editor.notification-bar.content.title",
+        "description": "admin/editor.notification-bar.content.description",
+        "$ref": "app:vtex.native-types#/definitions/text"
+        }
       }
     }
   }
