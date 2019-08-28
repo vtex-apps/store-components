@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from 'react'
+import React, { Fragment, useMemo, useCallback } from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
@@ -44,7 +44,7 @@ const getLinkProps = element => {
   return { page, params, query }
 }
 
-const highlightClass = (highlightedIndex, index) => {
+const getHighlightClass = (highlightedIndex, index) => {
   return highlightedIndex === index ? 'bg-muted-5' : ''
 }
 
@@ -59,6 +59,7 @@ const ResultsList = ({
   getItemProps,
   getMenuProps,
   highlightedIndex,
+  attemptPageTypeSearch,
 }) => {
   const items = data.autocomplete ? data.autocomplete.itemsReturned : []
   const {
@@ -86,10 +87,26 @@ const ResultsList = ({
 
   const listItemClassNames = classnames(styles.resultsItem, 'pa4 outline-0')
 
+  const getListItemClassNames = useCallback(({itemIndex, highlightedIndex, hasThumb}) => {
+    const highlightClass = getHighlightClass(highlightedIndex, itemIndex)
+    return `pointer ${hasThumb ? 'flex justify-start' : 'db w-100'} ${highlightClass} ${listItemClassNames}`
+  }, [listItemClassNames])
+
   const handleItemClick = () => {
     onClearInput()
     closeMenu()
   }
+
+  const fullTextSearchLabel = (
+    <FormattedMessage
+      id="store/search.searchFor"
+      values={{
+        term: (
+          <span className={styles.searchTerm}> "{inputValue}"</span>
+        ),
+      }}
+    />
+  )
 
   return (
     <div style={listStyle}>
@@ -109,24 +126,29 @@ const ResultsList = ({
                   onClick: handleItemClick,
                 })}
               >
-                <Link
-                  page="store.search"
-                  params={{ term: inputValue }}
-                  query="map=ft"
-                  className={`${listItemClassNames} pointer db w-100 ${highlightClass(
-                    highlightedIndex,
-                    0
-                  )}`}
-                >
-                  <FormattedMessage
-                    id="store/search.searchFor"
-                    values={{
-                      term: (
-                        <span className={styles.searchTerm}> "{inputValue}"</span>
-                      ),
-                    }}
-                  />
-                </Link>
+                {attemptPageTypeSearch ? (
+                  <a
+                    href={`/${inputValue}`}
+                    className={getListItemClassNames({
+                      itemIndex: 0,
+                      highlightedIndex,
+                    })}
+                  >
+                    {fullTextSearchLabel}
+                  </a>
+                ) : (
+                  <Link
+                    page="store.search"
+                    params={{ term: inputValue }}
+                    query="map=ft"
+                    className={getListItemClassNames({
+                      itemIndex: 0,
+                      highlightedIndex,
+                    })}
+                  >
+                    {fullTextSearchLabel}
+                  </Link>
+                )}
               </li>
 
               {items.map((item, index) => {
@@ -141,10 +163,11 @@ const ResultsList = ({
                   >
                     <Link
                       {...getLinkProps(item)}
-                      className={`${listItemClassNames} pointer ${highlightClass(
+                      className={getListItemClassNames({
+                        itemIndex: index + 1,
                         highlightedIndex,
-                        index + 1
-                      )} ${item.thumb ? 'flex justify-start' : ' db w-100'}`}
+                        hasThumb: !!item.thumb,
+                      })}
                     >
                       {item.thumb && (
                         <img
