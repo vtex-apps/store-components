@@ -48,10 +48,6 @@ const canShowListPrice = props => {
   const showingListPriceRange =
     showListPriceRange && isValidPriceRange(listPriceRange)
 
-  if (showingSellingPriceRange && !showingListPriceRange) {
-    return false
-  }
-
   const sellingPriceToShow = showingSellingPriceRange
     ? sellingPriceRange
     : sellingPrice
