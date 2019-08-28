@@ -128,7 +128,8 @@ const ResultsList = ({
               >
                 {attemptPageTypeSearch ? (
                   <a
-                    href={`/${inputValue}`}
+                    href="#"
+                    onClick={event => event.preventDefault()}
                     className={getListItemClassNames({
                       itemIndex: 0,
                       highlightedIndex,

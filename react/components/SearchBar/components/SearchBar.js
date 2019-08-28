@@ -37,6 +37,7 @@ const SearchBar = ({
 
       if (element.term) {
         if (attemptPageTypeSearch) {
+          window.location.href = `/${element.term}`
           return
         }
 
