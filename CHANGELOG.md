@@ -6,8 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- `Image`: properly use CMS translatable props with formatIOMessage.
 
-## [3.66.3] - 2019-08-28
 ### Changed
 
 - `ProductPrice`: show list price even if selling price is a range and list price is not.

@@ -1,17 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { generateBlockClass } from '@vtex/css-handles'
+import { injectIntl, intlShape } from 'react-intl'
+import { formatIOMessage } from 'vtex.native-types'
 
 import styles from './styles.css'
 
-const Image = ({ src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass, link }) => {
-  const img = renderImg({src, alt, maxHeight, maxWidth, srcSet, sizes, blockClass})
+const Image = ({ src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass, link, intl }) => {
+  const img = renderImg({src, alt, maxHeight, maxWidth, srcSet, sizes, blockClass, intl})
   return link ? (
     <a
-      href={link.url}
+      href={formatIOMessage({ id: link.url, intl })}
       rel={link.attributeNofollow ? 'nofollow' : ''}
       target={link.newTab ? '_blank' : ''}
-      title={link.attributeTitle}
+      title={formatIOMessage({ id: link.attributeTitle, intl })}
     >
       {img}
     </a>
@@ -20,15 +22,17 @@ const Image = ({ src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass, link 
   )
 }
 
-const renderImg = ({src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass}) => {
+const renderImg = ({src, alt, maxWidth, maxHeight, srcSet, sizes, blockClass, intl}) => {
   const classes = generateBlockClass(styles.imageElement, blockClass)
   const maxDimensions = {
     maxWidth: maxWidth,
     maxHeight: maxHeight,
   }
-  
+
+  const formattedSrc = formatIOMessage({ id: src, intl })
+  const formattedAlt = formatIOMessage({ id: alt, intl })
   return (
-    <img src={src} srcSet={srcSet} sizes={sizes} alt={alt} style={maxDimensions} className={classes} />
+    <img src={formattedSrc} srcSet={srcSet} sizes={sizes} alt={formattedAlt} style={maxDimensions} className={classes} />
   )
 }
 
@@ -41,6 +45,7 @@ Image.propTypes = {
   srcSet: PropTypes.string,
   sizes: PropTypes.string,
   blockClass: PropTypes.string,
+  intl: intlShape,
 }
 
 Image.defaultProps = {
@@ -65,4 +70,4 @@ Image.schema = {
   },
 }
 
-export default Image
+export default injectIntl(Image)
