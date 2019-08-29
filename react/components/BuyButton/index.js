@@ -4,6 +4,7 @@ import { intlShape, FormattedMessage } from 'react-intl'
 import { path } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { useRuntime } from 'vtex.render-runtime'
+import { usePWA } from 'vtex.store-resources/PWAContext'
 
 import { Button, ToastContext } from 'vtex.styleguide'
 
@@ -63,6 +64,7 @@ export const BuyButton = ({
 }) => {
   const [isAddingToCart, setAddingToCart] = useState(false)
   const { showToast } = useContext(ToastContext)
+  const { settings: { promptOnCustomEvent }, showInstallPrompt } = usePWA()
   const translateMessage = useCallback(id => intl.formatMessage({ id: id }), [
     intl,
   ])
@@ -150,6 +152,11 @@ export const BuyButton = ({
         isNewItem: !foundItem,
       })
 
+      /* PWA */
+      if (promptOnCustomEvent === "addToCart") {
+        showInstallPrompt()
+      }
+  
       shouldOpenMinicart && !isOneClickBuy && setMinicartOpen(true)
     } catch (err) {
       console.error(err)
