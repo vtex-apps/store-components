@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.67.3] - 2019-08-29
 ### Fixed
 - `SearchBar`: Issue where clicking on the search term would not work properly when `attemptPageTypeSearch` is enabled.
 
