@@ -51,7 +51,9 @@ export const isColor = (variation: string) => {
   if (!variation) return false
 
   return (
-    variation.toLowerCase() === 'cor' || variation.toLowerCase() === 'color' || variation.toLowerCase() === 'colour'
+    variation.toLowerCase() === 'cor' ||
+    variation.toLowerCase() === 'color' ||
+    variation.toLowerCase() === 'colour'
   )
 }
 
