@@ -65,7 +65,7 @@ export const BuyButton = ({
   const [isAddingToCart, setAddingToCart] = useState(false)
   const { showToast } = useContext(ToastContext)
   const { settings = {}, showInstallPrompt } = usePWA() || {}
-  const { promptOnCustomEvent = ""} = settings
+  const { promptOnCustomEvent } = settings
   const translateMessage = useCallback(id => intl.formatMessage({ id: id }), [
     intl,
   ])
