@@ -78,31 +78,31 @@ To use this CSS API, you must add the `styles` builder and create an app styling
 
 Below we have a README for each component of this project that explains how to use them.
 
-- [Animation](/react/components/Animation/README.md)
-- [Availability Subscriber](/react/components/AvailabilitySubscriber/README.md)
-- [Buy Button](/react/components/BuyButton/README.md)
-- [Categories Highlights](/react/components/CategoriesHighlights/README.md)
-- [Collection Badges](/react/components/CollectionBadges/README.md)
-- [Container](/react/components/Container/README.md)
-- [Discount Badge](/react/components/DiscountBadge/README.md)
-- [Gradient Collapse](/react/components/GradientCollapse/README.md)
-- [Greeting](/react/components/Greeting/README.md)
-- [Image](/react/components/Image/README.md)
-- [InfoCard](/react/components/InfoCard/README.md)
-- [Logo](/react/components/Logo/README.md)
-- [Newsletter](/react/components/Newsletter/README.md)
-- [Product Brand](/react/components/ProductBrand/README.md)
-- [Product Description](/react/components/ProductDescription/README.md)
-- [Product Images](/react/components/ProductImages/README.md)
-- [Product Name](/react/components/ProductName/README.md)
-- [Product Price](/react/components/ProductPrice/README.md)
-- [Product Specifications](/react/components/ProductSpecifications/README.md)
-- [SKU Selector](/react/components/SKUSelector/README.md)
-- [Search Bar](/react/components/SearchBar/README.md)
-- [Share](/react/components/Share/README.md)
-- [Shipping Simulator](/react/components/ShippingSimulator/README.md)
-- [Slider](/react/components/Slider/README.md)
-- [Notification](/react/components/Notification/README.md)
+- [Animation](/docs/Animation.md)
+- [Availability Subscriber](/docs/AvailabilitySubscriber.md)
+- [Buy Button](/docs/BuyButton.md)
+- [Categories Highlights](/docs/CategoriesHighlights.md)
+- [Collection Badges](/docs/CollectionBadges.md)
+- [Container](/docs/Container.md)
+- [Discount Badge](/docs/DiscountBadge.md)
+- [Gradient Collapse](/docs/GradientCollapse.md)
+- [Greeting](/docs/Greeting.md)
+- [Image](/docs/Image.md)
+- [InfoCard](/docs/InfoCard.md)
+- [Logo](/docs/Logo.md)
+- [Newsletter](/docs/Newsletter.md)
+- [Product Brand](/docs/ProductBrand.md)
+- [Product Description](/docs/ProductDescription.md)
+- [Product Images](/docs/ProductImages.md)
+- [Product Name](/docs/ProductName.md)
+- [Product Price](/docs/ProductPrice.md)
+- [Product Specifications](/docs/ProductSpecifications.md)
+- [SKU Selector](/docs/SKUSelector.md)
+- [Search Bar](/docs/SearchBar.md)
+- [Share](/docs/Share.md)
+- [Shipping Simulator](/docs/ShippingSimulator.md)
+- [Slider](/docs/Slider.md)
+- [Notification](/docs/Notification.md)
 
 ## Creating a new component
 
@@ -110,7 +110,7 @@ To start your development, create a new folder on react/components. Thats where 
 
 ### Project structure
 
-Inside your `react/components/<component_name>` you should have:
+Inside your `docs/<component_name>` you should have:
 
 - index.js
 - README.md
