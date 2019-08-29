@@ -173,7 +173,7 @@ export const BuyButton = ({
       ) : (
         <Button
           block={large}
-          disabled={disabled || !available || orderFormContext.loading}
+          disabled={disabled || !available || (orderFormContext && orderFormContext.loading)}
           onClick={handleAddToCart}
           isLoading={isAddingToCart}
         >
