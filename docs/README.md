@@ -78,31 +78,31 @@ To use this CSS API, you must add the `styles` builder and create an app styling
 
 Below we have a README for each component of this project that explains how to use them.
 
-- [Animation](/docs/Animation.md)
-- [Availability Subscriber](/docs/AvailabilitySubscriber.md)
-- [Buy Button](/docs/BuyButton.md)
-- [Categories Highlights](/docs/CategoriesHighlights.md)
-- [Collection Badges](/docs/CollectionBadges.md)
-- [Container](/docs/Container.md)
-- [Discount Badge](/docs/DiscountBadge.md)
-- [Gradient Collapse](/docs/GradientCollapse.md)
-- [Greeting](/docs/Greeting.md)
-- [Image](/docs/Image.md)
-- [InfoCard](/docs/InfoCard.md)
-- [Logo](/docs/Logo.md)
-- [Newsletter](/docs/Newsletter.md)
-- [Product Brand](/docs/ProductBrand.md)
-- [Product Description](/docs/ProductDescription.md)
-- [Product Images](/docs/ProductImages.md)
-- [Product Name](/docs/ProductName.md)
-- [Product Price](/docs/ProductPrice.md)
-- [Product Specifications](/docs/ProductSpecifications.md)
-- [SKU Selector](/docs/SKUSelector.md)
-- [Search Bar](/docs/SearchBar.md)
-- [Share](/docs/Share.md)
-- [Shipping Simulator](/docs/ShippingSimulator.md)
-- [Slider](/docs/Slider.md)
-- [Notification](/docs/Notification.md)
+- [Animation](Animation.md)
+- [Availability Subscriber](AvailabilitySubscriber.md)
+- [Buy Button](BuyButton.md)
+- [Categories Highlights](CategoriesHighlights.md)
+- [Collection Badges](CollectionBadges.md)
+- [Container](Container.md)
+- [Discount Badge](DiscountBadge.md)
+- [Gradient Collapse](GradientCollapse.md)
+- [Greeting](Greeting.md)
+- [Image](Image.md)
+- [InfoCard](InfoCard.md)
+- [Logo](Logo.md)
+- [Newsletter](Newsletter.md)
+- [Product Brand](ProductBrand.md)
+- [Product Description](ProductDescription.md)
+- [Product Images](ProductImages.md)
+- [Product Name](ProductName.md)
+- [Product Price](ProductPrice.md)
+- [Product Specifications](ProductSpecifications.md)
+- [SKU Selector](SKUSelector.md)
+- [Search Bar](SearchBar.md)
+- [Share](Share.md)
+- [Shipping Simulator](ShippingSimulator.md)
+- [Slider](Slider.md)
+- [Notification](Notification.md)
 
 ## Creating a new component
 
@@ -110,7 +110,7 @@ To start your development, create a new folder on react/components. Thats where 
 
 ### Project structure
 
-Inside your `docs/<component_name>` you should have:
+Inside your `react/components/<component_name>` you should have:
 
 - index.js
 - README.md
