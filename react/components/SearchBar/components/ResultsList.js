@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo, useCallback } from 'react'
+import React, { Fragment, useMemo } from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
@@ -44,8 +44,9 @@ const getLinkProps = element => {
   return { page, params, query }
 }
 
-const getHighlightClass = (highlightedIndex, index) => {
-  return highlightedIndex === index ? 'bg-muted-5' : ''
+const getListItemClassNames = ({itemIndex = -1, highlightedIndex, hasThumb} = {}) => {
+  const highlightClass = highlightedIndex === itemIndex ? 'bg-muted-5' : ''
+  return `pointer pa4 outline-0 ${styles.resultsItem} ${highlightClass} ${hasThumb ? 'flex justify-start' : 'db w-100'}`
 }
 
 /** List of search results to be displayed*/
@@ -85,13 +86,6 @@ const ResultsList = ({
     { dn: !isOpen || !inputValue }
   )
 
-  const listItemClassNames = classnames(styles.resultsItem, 'pa4 outline-0')
-
-  const getListItemClassNames = useCallback(({itemIndex, highlightedIndex, hasThumb}) => {
-    const highlightClass = getHighlightClass(highlightedIndex, itemIndex)
-    return `pointer ${hasThumb ? 'flex justify-start' : 'db w-100'} ${highlightClass} ${listItemClassNames}`
-  }, [listItemClassNames])
-
   const handleItemClick = () => {
     onClearInput()
     closeMenu()
@@ -113,7 +107,7 @@ const ResultsList = ({
       <ul className={listClassNames} {...getMenuProps()}>
         {isOpen ? (
           data.loading ? (
-            <div className={listItemClassNames}>
+            <div className={getListItemClassNames()}>
               <WrappedSpinner />
             </div>
           ) : (
