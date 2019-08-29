@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.67.1] - 2019-08-29
+
 ## [3.67.0] - 2019-08-28
 ### Added
 - Notification bar content schema for i18n support
