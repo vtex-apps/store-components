@@ -72,6 +72,7 @@ class SearchBarContainer extends Component {
       iconClasses,
       autoFocus,
       maxWidth,
+      attemptPageTypeSearch,
       placeholder = intl.formatMessage({
         id: 'store/search.placeholder',
       }),
@@ -93,6 +94,7 @@ class SearchBarContainer extends Component {
         hasIconLeft={hasIconLeft}
         iconClasses={iconClasses}
         maxWidth={maxWidth}
+        attemptPageTypeSearch={attemptPageTypeSearch}
       />
     )
   }

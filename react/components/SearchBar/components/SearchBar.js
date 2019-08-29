@@ -24,6 +24,7 @@ const SearchBar = ({
   iconBlockClass,
   autoFocus,
   maxWidth,
+  attemptPageTypeSearch,
 }) => {
   const container = useRef()
   const { navigate } = useRuntime()
@@ -35,6 +36,11 @@ const SearchBar = ({
       }
 
       if (element.term) {
+        if (attemptPageTypeSearch) {
+          window.location.href = `/${element.term}`
+          return
+        }
+
         navigate({
           page: 'store.search',
           params: { term: element.term },
@@ -124,6 +130,7 @@ const SearchBar = ({
                 <ResultsLists
                   parentContainer={container}
                   {...{
+                    attemptPageTypeSearch,
                     isOpen,
                     getMenuProps,
                     inputValue,
