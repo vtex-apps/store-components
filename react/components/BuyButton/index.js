@@ -64,7 +64,8 @@ export const BuyButton = ({
 }) => {
   const [isAddingToCart, setAddingToCart] = useState(false)
   const { showToast } = useContext(ToastContext)
-  const { settings: { promptOnCustomEvent }, showInstallPrompt } = usePWA()
+  const { settings = {}, showInstallPrompt  } = usePWA() || {}
+  const { promptOnCustomEvent = ""} = settings
   const translateMessage = useCallback(id => intl.formatMessage({ id: id }), [
     intl,
   ])
@@ -153,7 +154,7 @@ export const BuyButton = ({
       })
 
       /* PWA */
-      if (promptOnCustomEvent === "addToCart") {
+      if (promptOnCustomEvent === "addToCart" && showInstallPrompt) {
         showInstallPrompt()
       }
   
