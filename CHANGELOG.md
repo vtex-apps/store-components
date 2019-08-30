@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.68.2] - 2019-08-30
+
 ## [3.68.1] - 2019-08-30
 ### Fixed
 - Default parameter when `usePWA()` is undefined.
