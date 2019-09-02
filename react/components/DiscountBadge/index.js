@@ -6,42 +6,39 @@ import { IOMessage } from 'vtex.native-types'
 
 import styles from './styles.css'
 
+const calculateDiscountTax = (listPrice, sellingPrice) => {
+  return (listPrice - sellingPrice) / listPrice
+}
+
 /**
  * The discount badge component. It receives the product's list and selling prices
  * and calculates the discount percent to show it in the product's sumary.
  */
-class DiscountBadge extends Component {
-  calculateDiscountTax(listPrice, sellingPrice) {
-    return (listPrice - sellingPrice) / listPrice
-  }
-
-  render() {
-    const { listPrice, sellingPrice, label } = this.props
-    const percent = this.calculateDiscountTax(listPrice, sellingPrice)
-    return (
-      <div className={`${styles.discountContainer} relative dib`}>
-        {percent ? (
-          <div
-            className={`${
-              styles.discountInsideContainer
-            } t-mini white absolute right-0 pv2 ph3 bg-emphasis`}
-          >
-            <IOMessage id={label}>
-              {labelValue => (
-                <>
-                  {!labelValue && '-'}
-                  <FormattedNumber value={percent} style="percent" />{' '}
-                  {labelValue && ' '}
-                  {labelValue && <span>{labelValue}</span>}
-                </>
-              )}
-            </IOMessage>
-          </div>
-        ) : null}
-        {this.props.children}
-      </div>
-    )
-  }
+const DiscountBadge = ({ listPrice, sellingPrice, label = '', children }) => {
+  const percent = calculateDiscountTax(listPrice, sellingPrice)
+  return (
+    <div className={`${styles.discountContainer} relative dib`}>
+      {percent ? (
+        <div
+          className={`${
+            styles.discountInsideContainer
+          } t-mini white absolute right-0 pv2 ph3 bg-emphasis`}
+        >
+          <IOMessage id={label}>
+            {labelValue => (
+              <>
+                {!labelValue && '-'}
+                <FormattedNumber value={percent} style="percent" />{' '}
+                {labelValue && ' '}
+                {labelValue && <span>{labelValue}</span>}
+              </>
+            )}
+          </IOMessage>
+        </div>
+      ) : null}
+      {children}
+    </div>
+  )
 }
 
 DiscountBadge.propTypes = {
@@ -53,10 +50,6 @@ DiscountBadge.propTypes = {
   label: PropTypes.string,
   /** Image element */
   children: PropTypes.node.isRequired,
-}
-
-DiscountBadge.defaultProps = {
-  label: '',
 }
 
 export default DiscountBadge
