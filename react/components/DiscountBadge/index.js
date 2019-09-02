@@ -22,7 +22,7 @@ const DiscountBadge = ({ listPrice, sellingPrice, label = '', children }) => {
         <div
           className={`${
             styles.discountInsideContainer
-          } t-mini white absolute right-0 pv2 ph3 bg-emphasis`}
+          } t-mini white absolute right-0 pv2 ph3 bg-emphasis z-1`}
         >
           <IOMessage id={label}>
             {labelValue => (
