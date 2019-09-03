@@ -74,9 +74,9 @@ class Carousel extends Component {
 
   thumbLoadFinish = () => {
     this.thumbLoadCount++
-      if (this.thumbLoadCount === this.props.slides.length) {
-        this.setState({ thumbsLoaded: true })
-      }
+    if (this.thumbLoadCount === this.props.slides.length) {
+      this.setState({ thumbsLoaded: true })
+    }
   }
 
   getThumb = thumbUrl => {
