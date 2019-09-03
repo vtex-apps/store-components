@@ -1,18 +1,24 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { match, compose, isEmpty, complement } from 'ramda'
 
 import Vimeo from './Vimeo'
 import YouTube from './Youtube'
 
 import styles from '../../styles.css'
 
+const isNotEmpty = complement(isEmpty)
+
+const isVimeo = compose(isNotEmpty, match(/vimeo/))
+const isYoutube = compose(isNotEmpty, match(/youtube|youtu.be/)) 
+
 class Video extends Component {
   static getThumbUrl(url, thumbWidth) {
-    if (url.search('vimeo') !== -1) {
+    if (isVimeo(url)) {
       return Vimeo.getThumbUrl(url, thumbWidth)
     }
 
-    else if (url.search('youtube') !== -1) {
+    else if (isYoutube(url)) {
       return YouTube.getThumbUrl(url, thumbWidth)
     }
   }
@@ -22,8 +28,8 @@ class Video extends Component {
 
     return (
       <div className={styles.video}>
-        {url.search('vimeo') !== -1 && <Vimeo {...this.props} />}
-        {url.search('youtube') !== -1 && <YouTube {...this.props} />}
+        {isVimeo(url) && <Vimeo {...this.props} />}
+        {isYoutube(url) && <YouTube {...this.props} />}
       </div>
     )
   }

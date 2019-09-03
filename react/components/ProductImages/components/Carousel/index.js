@@ -52,15 +52,9 @@ class Carousel extends Component {
     slides.forEach(async (slide, i) => {
       if (slide.type === 'video') {
         const thumbUrl = await Video.getThumbUrl(slide.src, slide.thumbWidth)
-        this.setState({
-          thumbUrl: {
-            ...this.state.thumbUrl,
-            [i]: thumbUrl,
-          }
-        })
         this.isVideo[i] = true
-        this.getThumb(thumbUrl)
-        this.setVideoThumb(thumbUrl)
+        this.setVideoThumb(i)(thumbUrl)
+        this.thumbLoadFinish()
       } else {
         this.getThumb(slide.thumbUrl)
       }
@@ -78,15 +72,21 @@ class Carousel extends Component {
     }
   }, 500)
 
-  getThumb = thumbUrl => {
-    if (!window.navigator) return // Image object doesn't exist when it's being rendered in the server side
-
-    const image = new Image()
-    image.onload = () => {
-      this.thumbLoadCount++
+  thumbLoadFinish = () => {
+    this.thumbLoadCount++
       if (this.thumbLoadCount === this.props.slides.length) {
         this.setState({ thumbsLoaded: true })
       }
+  }
+
+  getThumb = thumbUrl => {
+    if (!window.navigator) return // Image object doesn't exist when it's being rendered in the server side
+    const image = new Image()
+    image.onload = () => {
+      this.thumbLoadFinish()
+    }
+    image.onerror = () => {
+      this.thumbLoadFinish()
     }
     image.src = thumbUrl
   }

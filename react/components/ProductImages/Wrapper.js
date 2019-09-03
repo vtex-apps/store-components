@@ -7,7 +7,8 @@ import generateImageConfig from './utils/generateImageConfig'
 import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
 
 const ProductImagesWrapper = props => {
-  const valuesFromContext = useContext(ProductContext)
+  const valuesFromContext = useContext(ProductContext) || {}
+  const { selectedItem } = valuesFromContext
 
   const images = useMemo(
     () =>
@@ -15,15 +16,15 @@ const ProductImagesWrapper = props => {
         ? props.images
         : map(
             generateImageConfig,
-            path(['images'], valuesFromContext.selectedItem || {}) || []
+            path(['images'], selectedItem) || []
           ),
-    [props.images, valuesFromContext.selectedItem]
+    [props.images, selectedItem]
   )
 
   const videos = useMemo(() => props.videos != null
     ? props.videos
-    : path(['videos'], valuesFromContext.selectedItem || {}) || [],
-  [props.videos, valuesFromContext.videos])
+    : path(['videos'], selectedItem) || [],
+  [props.videos, selectedItem])
 
   return (
     <ProductImages
