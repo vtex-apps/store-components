@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.68.6] - 2019-09-05
+
 ### Fixed
 - Remove percentual width/height from `ContentLoader`
 
