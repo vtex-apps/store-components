@@ -73,8 +73,8 @@ class Share extends Component {
             width: '100%',
             height: '100%',
           }}
-          height="100%"
-          width="100%"
+          height="100"
+          width="100"
           {...rest}
         >
           <circle cx="1em" {...loaderStyles} {...button1} />

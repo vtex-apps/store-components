@@ -3,7 +3,7 @@ import React from 'react'
 
 import ImagePlaceholder from './ImagePlaceholder'
 
-export default props => {
+const Loader = props => {
   if (props.slidesAmount === 0) {
     return <ImagePlaceholder />
   }
@@ -16,8 +16,8 @@ export default props => {
             width: '100%',
             height: '100%',
           }}
-          height="100%"
-          width="100%"
+          height="100"
+          width="100"
         >
           <rect width="100%" height="100%" />
         </ContentLoader>
@@ -33,8 +33,8 @@ export default props => {
           width: '100%',
           height: '100%',
         }}
-        height="100%"
-        width="100%"
+        height="100"
+        width="100"
       >
         <rect className="dn db-ns" width="18%" height="18%" />
         <rect className="dn db-ns" width="18%" height="18%" y="20%" />
@@ -46,3 +46,5 @@ export default props => {
     </div>
   )
 }
+
+export default Loader
