@@ -16,7 +16,7 @@ export default class ShippingTable extends Component {
           slas: PropTypes.arrayOf(
             PropTypes.shape({
               id: PropTypes.string,
-              name: PropTypes.string,
+              friendlyName: PropTypes.string,
               price: PropTypes.number,
               shippingEstimate: PropTypes.string,
             })
@@ -62,7 +62,12 @@ export default class ShippingTable extends Component {
       >
         <tbody>
           {slaList.map(shipping => (
-            <ShippingTableRow key={shipping.id} {...shipping} />
+            <ShippingTableRow
+              key={shipping.id}
+              name={shipping.friendlyName}
+              shippingEstimate={shipping.shippingEstimate}
+              price={shipping.price}
+            />
           ))}
         </tbody>
       </table>
