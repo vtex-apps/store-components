@@ -62,7 +62,12 @@ export default class ShippingTable extends Component {
       >
         <tbody>
           {slaList.map(shipping => (
-            <ShippingTableRow key={shipping.id} {...shipping} />
+            <ShippingTableRow
+              key={shipping.id}
+              name={shipping.friendlyName}
+              shippingEstimate={shipping.shippingEstimate}
+              price={shipping.price}
+            />
           ))}
         </tbody>
       </table>

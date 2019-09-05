@@ -7,7 +7,7 @@ import { FormattedCurrency } from 'vtex.format-currency'
 
 import styles from '../shippingSimulator.css'
 
-const ShippingTableRow = ({ friendlyName, shippingEstimate, price, intl }) => {
+const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   const etaClassName = classNames(
     `${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`,
     {
@@ -33,16 +33,16 @@ const ShippingTableRow = ({ friendlyName, shippingEstimate, price, intl }) => {
   }
 
   return (
-    <tr key={friendlyName}>
+    <tr key={name}>
       <td className={`${styles.shippingTableCell} pv1 ph3 t-small`}>
         <label className={styles.shippingTableLabel}>
           <input
             className={`${styles.shippingTableRadioBtn} mr4`}
             name="shipping-option"
             type="radio"
-            value={friendlyName}
+            value={name}
           />
-          {friendlyName}
+          {name}
         </label>
       </td>
       <td className={etaClassName}>
@@ -54,7 +54,7 @@ const ShippingTableRow = ({ friendlyName, shippingEstimate, price, intl }) => {
 }
 
 ShippingTableRow.propTypes = {
-  friendlyName: PropTypes.string,
+  name: PropTypes.string,
   shippingEstimate: PropTypes.string,
   price: PropTypes.number,
   intl: intlShape.isRequired,
