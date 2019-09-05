@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { intlShape, injectIntl } from 'react-intl'
-import { useRuntime } from 'vtex.render-runtime'
 import TranslateEstimate from 'vtex.shipping-estimate-translator/TranslateEstimate'
 import classNames from 'classnames'
 import { FormattedCurrency } from 'vtex.format-currency'
 
 import styles from '../shippingSimulator.css'
 
-const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
+const ShippingTableRow = ({ friendlyName, shippingEstimate, price, intl }) => {
   const etaClassName = classNames(
     `${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`,
     {
@@ -34,16 +33,16 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   }
 
   return (
-    <tr key={name}>
+    <tr key={friendlyName}>
       <td className={`${styles.shippingTableCell} pv1 ph3 t-small`}>
         <label className={styles.shippingTableLabel}>
           <input
             className={`${styles.shippingTableRadioBtn} mr4`}
             name="shipping-option"
             type="radio"
-            value={name}
+            value={friendlyName}
           />
-          {name}
+          {friendlyName}
         </label>
       </td>
       <td className={etaClassName}>
@@ -55,7 +54,7 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
 }
 
 ShippingTableRow.propTypes = {
-  name: PropTypes.string,
+  friendlyName: PropTypes.string,
   shippingEstimate: PropTypes.string,
   price: PropTypes.number,
   intl: intlShape.isRequired,

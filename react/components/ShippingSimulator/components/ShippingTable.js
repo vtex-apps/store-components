@@ -16,7 +16,7 @@ export default class ShippingTable extends Component {
           slas: PropTypes.arrayOf(
             PropTypes.shape({
               id: PropTypes.string,
-              name: PropTypes.string,
+              friendlyName: PropTypes.string,
               price: PropTypes.number,
               shippingEstimate: PropTypes.string,
             })
