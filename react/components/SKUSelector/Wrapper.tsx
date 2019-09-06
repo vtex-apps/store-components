@@ -5,7 +5,7 @@ import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 import SKUSelector from './index'
 import { useResponsiveValues } from 'vtex.responsive-values'
-import { ProductItem, Variations, InitialSelectedModes } from './types'
+import { ProductItem, Variations, InitialSelectionType } from './types'
 
 const useVariations = (skuItems: ProductItem[], shouldNotShow: boolean, visibleVariations?: string[]) => {
   const result = useMemo(() => {
@@ -55,7 +55,7 @@ interface Props {
   visibleVariations?: string[]
   showVariationsLabels?: boolean
   variationsSpacing?: number
-  initialSelectedMode?: InitialSelectedModes
+  initialSelection?: InitialSelectionType
 }
 
 const SKUSelectorWrapper: StorefrontFC<Props> = props => {
@@ -105,8 +105,8 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
       seeMoreLabel={props.seeMoreLabel}
       onSKUSelected={props.onSKUSelected}
       thumbnailImage={props.thumbnailImage}
+      initialSelection={props.initialSelection}
       variationsSpacing={props.variationsSpacing}
-      initialSelectedMode={props.initialSelectedMode}
       showVariationsLabels={props.showVariationsLabels}
       hideImpossibleCombinations={props.hideImpossibleCombinations}
       showValueNameForImageVariation={props.showValueNameForImageVariation}

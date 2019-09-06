@@ -55,7 +55,7 @@ export interface DisplayVariation {
 
 export type Variations = Record<string, string[]>
 
-export enum InitialSelectedModes {
+export enum InitialSelectionType {
   complete = 'complete',
   image = 'image',
   empty = 'empty'

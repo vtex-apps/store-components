@@ -24,7 +24,7 @@ import {
   ImageMap,
   Image,
   Variations,
-  InitialSelectedModes,
+  InitialSelectionType,
 } from './types'
 
 const keyCount = compose(
@@ -111,14 +111,14 @@ const useAllSelectedEvent = (
   }, [dispatch, selectedVariations, variationsCount])
 }
 
-const useInitialMode = ({
+const useInitialSelection = ({
   skuSelected,
   variations,
-  initialSelectedMode,
+  initialSelection,
 }: {
   skuSelected?: ProductItem
   variations: Variations
-  initialSelectedMode: InitialSelectedModes
+  initialSelection: InitialSelectionType
 }) => {
   const { query } = useRuntime()
   const hasSkuInQuery = !!(query && query.skuId)
@@ -129,26 +129,28 @@ const useInitialMode = ({
     }
     const parsedSku = parseSku(skuSelected)
 
-    if (initialSelectedMode === InitialSelectedModes.complete) {
+    if (hasSkuInQuery) {
       return selectedVariationFromItem(parsedSku, variations)
     }
-    if (initialSelectedMode === InitialSelectedModes.image) {
+
+    if (initialSelection === InitialSelectionType.complete) {
+      return selectedVariationFromItem(parsedSku, variations)
+    }
+    if (initialSelection === InitialSelectionType.image) {
       const colorVariationName = parsedSku.variations.find(isColor)
       return {
         ...emptyVariations,
         ...(colorVariationName
           ? {
-              [colorVariationName]:
-                parsedSku.variationValues[colorVariationName],
-            }
+            [colorVariationName]:
+              parsedSku.variationValues[colorVariationName],
+          }
           : {}),
       }
     }
-    // if here, is value 'empty', check for hasSkuInQuery
-    return hasSkuInQuery
-      ? selectedVariationFromItem(parsedSku, variations)
-      : emptyVariations
-  }, [skuSelected, variations, initialSelectedMode, hasSkuInQuery])
+    // if here, is value 'empty'
+    return emptyVariations
+  }, [skuSelected, variations, initialSelection, hasSkuInQuery])
 }
 
 interface Props {
@@ -165,7 +167,7 @@ interface Props {
   thumbnailImage?: string
   showVariationsLabels?: boolean
   variationsSpacing?: number
-  initialSelectedMode?: InitialSelectedModes
+  initialSelection?: InitialSelectionType
 }
 
 /**
@@ -185,7 +187,7 @@ const SKUSelectorContainer: FC<Props> = ({
   imageWidth,
   variationsSpacing,
   showVariationsLabels = true,
-  initialSelectedMode = InitialSelectedModes.complete,
+  initialSelection = InitialSelectionType.empty,
 }) => {
   const variationsCount = keyCount(variations)
   const [
@@ -205,10 +207,10 @@ const SKUSelectorContainer: FC<Props> = ({
     )
   }
 
-  const initialVariations = useInitialMode({
+  const initialVariations = useInitialSelection({
     skuSelected,
     variations,
-    initialSelectedMode,
+    initialSelection,
   })
 
   useEffect(() => {
@@ -234,22 +236,22 @@ const SKUSelectorContainer: FC<Props> = ({
       const isRemoving = selectedVariations![variationName] === variationValue
       const newSelectedVariation = !isMainAndImpossible
         ? {
-            ...selectedVariations,
-            [variationName]: isRemoving ? null : variationValue,
-          }
+          ...selectedVariations,
+          [variationName]: isRemoving ? null : variationValue,
+        }
         : {
-            ...buildEmptySelectedVariation(variations),
-            [variationName]: variationValue,
-          }
+          ...buildEmptySelectedVariation(variations),
+          [variationName]: variationValue,
+        }
       // Set here for a better response to user
       setSelectedVariations(newSelectedVariation)
       const uniqueOptions = isRemoving
         ? {}
         : uniqueOptionToSelect(
-            possibleItems,
-            newSelectedVariation,
-            isMainAndImpossible
-          )
+          possibleItems,
+          newSelectedVariation,
+          isMainAndImpossible
+        )
       const finalSelected = {
         ...newSelectedVariation,
         ...uniqueOptions,
