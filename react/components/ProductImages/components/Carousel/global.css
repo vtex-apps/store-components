@@ -303,7 +303,8 @@
 .swiper-pagination-fraction,
 .swiper-pagination-custom,
 .swiper-container-horizontal > .swiper-pagination-bullets {
-  bottom: 10px;
+  bottom: 0;
+  padding-bottom: 10px;
   left: 0;
   width: 100%;
 }
