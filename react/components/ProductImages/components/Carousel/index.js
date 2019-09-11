@@ -241,7 +241,7 @@ class Carousel extends Component {
 
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       renderNextButton: () => (
-        <span className={`swiper-caret-next pl7 right-1 ${caretClassName}`}>
+        <span className={`swiper-caret-next pl7 pr2 right-0 ${caretClassName}`}>
           <IconCaret
             orientation="right"
             size={iconSize}
@@ -250,7 +250,7 @@ class Carousel extends Component {
         </span>
       ),
       renderPrevButton: () => (
-        <span className={`swiper-caret-prev pr7 left-1 ${caretClassName}`}>
+        <span className={`swiper-caret-prev pr7 pl2 left-0 ${caretClassName}`}>
           <IconCaret
             orientation="left"
             size={iconSize}
