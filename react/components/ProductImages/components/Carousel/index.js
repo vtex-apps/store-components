@@ -7,7 +7,6 @@ import ReactResizeDetector from 'react-resize-detector'
 
 import { IconCaret } from 'vtex.store-icons'
 
-import Loader from './Loader.js'
 import Video from '../Video'
 
 import styles from '../../styles.css'
@@ -354,7 +353,7 @@ class Carousel extends Component {
     } = this.props
 
     if (!thumbsLoaded || Swiper == null) {
-      return <Loader slidesAmount={slides ? slides.length : 0} />
+      return null
     }
 
     const isThumbsVertical =
