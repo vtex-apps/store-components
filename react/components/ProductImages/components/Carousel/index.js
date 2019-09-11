@@ -75,7 +75,7 @@ class Carousel extends Component {
 
   thumbLoadFinish = () => {
     this.thumbLoadCount++
-    if (this.thumbLoadCount === this.props.slides.length) {
+    if (!this.props.slides || this.thumbLoadCount === this.props.slides.length) {
       this.setState({ thumbsLoaded: true })
     }
   }
@@ -346,7 +346,7 @@ class Carousel extends Component {
     const { thumbsLoaded, gallerySwiper } = this.state
 
     const {
-      slides,
+      slides = [],
       position,
       zoomProps: { zoomType },
       thumbnailsOrientation,
@@ -358,7 +358,7 @@ class Carousel extends Component {
 
     const isThumbsVertical =
       thumbnailsOrientation === THUMBS_ORIENTATION.VERTICAL
-    const hasThumbs = slides.length > 1
+    const hasThumbs = slides && slides.length > 1
 
     const galleryCursor = {
       'in-page': styles.carouselGaleryCursor,
@@ -379,7 +379,7 @@ class Carousel extends Component {
       }
     )
 
-    const thumbnailSwiper = (
+    const thumbnailSwiper = slides && (
       <ThumbnailSwiper
         isThumbsVertical={isThumbsVertical}
         slides={slides}
