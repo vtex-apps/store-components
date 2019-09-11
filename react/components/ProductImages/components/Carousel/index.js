@@ -8,10 +8,10 @@ import ReactResizeDetector from 'react-resize-detector'
 import { IconCaret } from 'vtex.store-icons'
 
 import Video from '../Video'
+import ProductImage from '../ProductImage'
 
 import styles from '../../styles.css'
 import './global.css'
-import { changeImageUrlSize } from '../../utils/generateUrl'
 
 /** Swiper and its modules are imported using require to avoid breaking SSR */
 const Swiper = window.navigator
@@ -144,39 +144,21 @@ class Carousel extends Component {
     this.setState({ thumbUrl, alt })
   }
 
-  onImageLoad = i => () => {
-    const loaded = { ...this.state.loaded }
-    loaded[i] = true
-    this.setState({ loaded })
-  }
-
   renderSlide = (slide, i) => {
+    const { aspectRatio, zoomMode, zoomFactor, zoomProps: legacyZoomProps } = this.props
+    const { zoomType: legacyZoomType } = legacyZoomProps || {}
+    const isZoomDisabled = legacyZoomType === 'no-zoom' || zoomMode === 'disabled'
+
     switch (slide.type) {
       case 'image':
         return (
-          <div>
-            <img
-              className="w-100"
-              src={changeImageUrlSize(slide.url, 800, 800)}
-              // WIP
-              // This should clearly be a bit smarter
-              // (Though still have a couple of pre-defined sizes,
-              // for better caching and better handling by our image server)
-              srcSet={[
-                `${changeImageUrlSize(slide.url, 600, 600)} 600w`,
-                `${changeImageUrlSize(slide.url, 800, 800)} 800w`,
-                `${changeImageUrlSize(slide.url, 1200, 1200)} 1200w`,
-              ].join(',')}
-
-              // WIP
-              // This means: if the window has at most 64.1rem of width,
-              // the image will be of a width of 100vw. Otherwise, the
-              // image will be 50vw wide.
-              // This size is used for picking the best available size
-              // given the ones from the srcset above.
-              sizes="(max-width: 64.1rem) 100vw, 50vw"
-            />
-          </div>
+          <ProductImage
+            src={slide.url}
+            alt={slide.alt}
+            aspectRatio={aspectRatio}
+            zoomFactor={zoomFactor}
+            zoomMode={isZoomDisabled ? 'disabled' : zoomMode}
+          />
         )
       case 'video':
         return (
@@ -194,25 +176,11 @@ class Carousel extends Component {
 
   get galleryParams() {
     const { thumbSwiper } = this.state
-    const {
-      slides,
-      zoomProps: { zoomType },
-    } = this.props
+    const { slides = [] } = this.props
 
     const iconSize = 24
     const caretClassName =
-      'pv7 absolute top-50 translate--50y z-2 pointer c-action-primary'
-
-    const setZoom = event => {
-      const { sliderChanged, gallerySwiper } = this.state
-      const gallerySwiperZoom = path(['zoom'], gallerySwiper)
-
-      if (sliderChanged) {
-        this.setState({ sliderChanged: false })
-      } else {
-        gallerySwiperZoom.toggle(event)
-      }
-    }
+      'pv8 absolute top-50 translate--50y z-2 pointer c-action-primary'
 
     return {
       modules: [SwiperModules.Pagination, SwiperModules.Navigation],
@@ -228,18 +196,14 @@ class Carousel extends Component {
         navigation: {
           prevEl: '.swiper-caret-prev',
           nextEl: '.swiper-caret-next',
-          disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
+          disabledClass: `c-disabled pointer-events-none ${styles.carouselCursorDefault}`,
         },
       }),
       thumbs: {
         swiper: thumbSwiper,
       },
-      zoom: zoomType === 'in-page' && {
-        maxRatio: 2,
-        toggle: false,
-      },
-
-      resistanceRatio: slides.length > 1 ? 0.85 : 0,
+      threshold: 10,
+      resistanceRatio: slides.length > 1 ? 1 : 0,
       renderNextButton: () => (
         <span className={`swiper-caret-next pl7 pr2 right-0 ${caretClassName}`}>
           <IconCaret
@@ -260,7 +224,6 @@ class Carousel extends Component {
       ),
       on: {
         slideChange: this.onSlideChange,
-        click: zoomType === 'in-page' ? event => setZoom(event) : undefined,
       },
       getSwiper: swiper => this.setState({ gallerySwiper: swiper }),
     }

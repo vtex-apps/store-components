@@ -35,6 +35,11 @@ const ProductImagesWrapper = props => {
       position={props.position || props.thumbnailPosition} //thumbnailPosition is a legacy prop from product-details
       displayThumbnailsArrows={props.displayThumbnailsArrows}
       thumbnailsOrientation={props.thumbnailsOrientation}
+      zoomMode={props.zoomMode}
+      zoomFactor={props.zoomFactor}
+      aspectRatio={props.aspectRatio}
+      // Deprecated
+      zoomProps={props.zoomProps}
     />
   )
 }

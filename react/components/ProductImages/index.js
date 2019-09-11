@@ -12,11 +12,16 @@ import {
 const ProductImages = ({
   videos,
   position,
-  zoomProps,
+  displayThumbnailsArrows,
   hiddenImages,
   images: allImages,
+  videos,
   thumbnailsOrientation,
-  displayThumbnailsArrows,
+  aspectRatio,
+  zoomMode,
+  zoomFactor,
+  // Deprecated
+  zoomProps,
 }) => {
   const excludeImageRegexes = hiddenImages.map(text => new RegExp(text, 'i'))
 
@@ -50,9 +55,13 @@ const ProductImages = ({
       <Carousel
         slides={slides}
         position={position}
-        zoomProps={zoomProps}
-        thumbnailsOrientation={thumbnailsOrientation}
         displayThumbnailsArrows={displayThumbnailsArrows}
+        thumbnailsOrientation={thumbnailsOrientation}
+        aspectRatio={aspectRatio}
+        zoomMode={zoomMode}
+        zoomFactor={zoomFactor}
+        // Deprecated
+        zoomProps={zoomProps}
       />
     </div>
   )
