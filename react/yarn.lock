@@ -1102,7 +1102,7 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-11.13.7.tgz#85dbb71c510442d00c0631f99dae957ce44fd104"
   integrity sha512-suFHr6hcA9mp8vFrZTgrmqW2ZU3mbWsryQtQlY/QvwTISCw7nw/j+bCQPPohqmskhmqa5wLNuMHTTsc+xf1MQg==
 
-"@types/node@^12.7.5":
+"@types/node@^12.7.2", "@types/node@^12.7.5":
   version "12.7.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.5.tgz#e19436e7f8e9b4601005d73673b6dc4784ffcc2f"
   integrity sha512-9fq4jZVhPNW8r+UYKnxF1e2HkDWOWKM5bC2/7c9wPV835I0aOrVbS/Hw/pWPk2uKrNXQqg9Z959Kz+IYDd5p3w==
@@ -1206,6 +1206,15 @@
     react-intl "^2.8.0"
     regenerator-runtime "^0.13.1"
     typescript "^3.3.3333"
+
+"@vtex/tsconfig@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@vtex/tsconfig/-/tsconfig-0.2.0.tgz#b4bc6492bb9a0fade8a2950b3d0073cfe24950b3"
+  integrity sha512-Aluq/DbAS/pRHVMqRF7EFOTRG1oNZJO/3naS7LrZzdhOJCA6MT1k7GD0DgKHyZnnkGlm42BysT9C1VpQc0QhyA==
+  dependencies:
+    "@types/graphql" "^14.5.0"
+    "@types/jest" "^24.0.18"
+    "@types/node" "^12.7.2"
 
 abab@^2.0.0:
   version "2.0.0"
