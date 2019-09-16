@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useRuntime } from 'vtex.render-runtime'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import * as Amp from 'react-amphtml'
 
 import Placeholder from './Placeholder'
 
@@ -16,8 +17,20 @@ const wrapWithLink = (href, element) =>
 /**
  * Logo of the store
  */
-const Logo = ({ href, url, width, height, title, mobileWidth, mobileHeight }) => {
-  const { account, hints: { mobile } } = useRuntime()
+const Logo = ({
+  url,
+  href,
+  width,
+  height,
+  title,
+  mobileWidth,
+  mobileHeight,
+}) => {
+  const {
+    amp,
+    account,
+    hints: { mobile },
+  } = useRuntime()
 
   const logoClassNames = classNames('store-logo', styles.logoContainer, {
     [styles.sizeDesktop]: !mobile,
@@ -27,16 +40,37 @@ const Logo = ({ href, url, width, height, title, mobileWidth, mobileHeight }) =>
   const imgWidth = mobile && mobileWidth ? mobileWidth : width
   const imgHeight = mobile && mobileHeight ? mobileHeight : height
 
+  const imageUrl = url.replace(/{{account}}/g, account)
+
+  let image = null
+
+  if (amp && url) {
+    image = (
+      <Amp.AmpImg
+        specName="default"
+        width={imgWidth}
+        height={imgHeight}
+        alt={title}
+        src={imageUrl}
+        className={styles.logoImage}
+      />
+    )
+  } else if (url) {
+    image = (
+      <img
+        src={imageUrl}
+        width={imgWidth}
+        height={imgHeight}
+        alt={title}
+        className={styles.logoImage}
+      />
+    )
+  }
+
   const logo = (
     <span className={`${logoClassNames} pv4 ph6`}>
       {url ? (
-        <img
-          src={url.replace(/{{account}}/g, account)}
-          width={imgWidth}
-          height={imgHeight}
-          alt={title}
-          className={styles.logoImage}
-          />
+        image
       ) : (
         <Placeholder width={width} height={height} title={title} />
       )}
@@ -52,9 +86,9 @@ Logo.propTypes = {
   /** Title to be displayed as alt text */
   title: PropTypes.string.isRequired,
   /** Logo's width */
-  width: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /** Logo's height */
-  height: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
 
 Logo.schema = {
@@ -104,7 +138,7 @@ Logo.schema = {
       type: 'number',
       isLayout: true,
     },
-  }
+  },
 }
 
 export default Logo

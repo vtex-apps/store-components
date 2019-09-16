@@ -1,0 +1,7 @@
+{
+  "extends": "vtex",
+  "env": {
+    "browser": true,
+    "jest": true
+  }
+}

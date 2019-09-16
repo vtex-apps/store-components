@@ -6,10 +6,7 @@ node_js:
   - "8"
 install:
   - yarn install
-  - cd react
-  - yarn install
-  - cd ..
+  - yarn --cwd react install
 script:
   - yarn lint:locales
-  - cd react
-  - yarn test
+  - yarn --cwd react test
