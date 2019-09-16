@@ -40,7 +40,7 @@ const Logo = ({
   const imgWidth = mobile && mobileWidth ? mobileWidth : width
   const imgHeight = mobile && mobileHeight ? mobileHeight : height
 
-  const imageUrl = url.replace(/{{account}}/g, account)
+  const imageUrl = url && url.replace(/{{account}}/g, account)
 
   let image = null
 
