@@ -19,6 +19,7 @@
     "prop-types": "^15.6.2",
     "ramda": "^0.25.0",
     "react": "^16.3.2",
+    "react-amphtml": "^4.0.1",
     "react-apollo": "~2.5.2",
     "react-content-loader": "^3.1.2",
     "react-dom": "^16.8.3",
@@ -35,15 +36,15 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.9",
+    "@types/graphql": "^14.5.0",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.5",
     "@types/ramda": "^0.26.18",
     "@types/react": "^16.8.23",
     "@types/swiper": "^4.4.4",
     "@vtex/test-tools": "^1.1.0",
-    "apollo-cache-inmemory": "^1.4.3",
-    "eslint": "^6.0.0",
-    "eslint-config-vtex-react": "^4.0.0",
-    "prettier": "^1.16.4",
-    "typescript": "3.5.2"
+    "@vtex/tsconfig": "^0.2.0",
+    "apollo-cache-inmemory": "^1.4.3"
   },
   "vtexTestTools": {
     "defaultLocale": "en"

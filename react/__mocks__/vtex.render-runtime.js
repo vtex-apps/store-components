@@ -3,6 +3,7 @@
 import React from 'react'
 
 const runtime = {
+  amp: false,
   setQuery: jest.fn(),
   account: 'account',
   hints: { mobile: false },

@@ -1,4 +1,6 @@
 # VTEX Store Components
+
+[![Build Status](https://api.travis-ci.org/vtex-apps/store-components.svg?branch=master)](https://travis-ci.org/vtex-apps/store-components)
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 ## Description
@@ -142,10 +144,6 @@ Check it out [how to contribute](https://github.com/vtex-apps/awesome-io#contrib
 ## Tests
 
 To execute our tests go to `react/` folder and run `yarn test`
-
-### Travis CI
-
-[![Build Status](https://api.travis-ci.org/vtex-apps/store-components.svg?branch=master)](https://travis-ci.org/vtex-apps/store-components)
 
 ## Contributors
 

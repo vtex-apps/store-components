@@ -14,11 +14,6 @@ describe('<Logo /> component', () => {
     return render(comp)
   }
 
-  it('should be rendered', () => {
-    const { asFragment } = renderComponent()
-    expect(asFragment()).toBeTruthy()
-  })
-
   it('should match snapshot with link', () => {
     const { asFragment } = renderComponent({ href: 'http://logotest.test' })
     expect(asFragment()).toMatchSnapshot()
