@@ -53,6 +53,7 @@
   transition-property: transform, -webkit-transform;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
+  align-items: center;
 }
 .swiper-container-android .swiper-slide,
 .swiper-wrapper {
