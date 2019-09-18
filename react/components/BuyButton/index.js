@@ -61,6 +61,7 @@ export const BuyButton = ({
   children,
   large,
   disabled,
+  customToastURL = CONSTANTS.CHECKOUT_URL,
 }) => {
   const [isAddingToCart, setAddingToCart] = useState(false)
   const { showToast } = useContext(ToastContext)
@@ -76,7 +77,7 @@ export const BuyButton = ({
     if (!isNewItem) return translateMessage(CONSTANTS.DUPLICATE_CART_ITEM_ID)
 
     const isOffline = window && window.navigator && !window.navigator.onLine
-    const checkForOffline = (!isOffline)
+    const checkForOffline = !isOffline
       ? translateMessage(CONSTANTS.SUCCESS_MESSAGE_ID)
       : translateMessage(CONSTANTS.OFFLINE_BUY_MESSAGE_ID)
 
@@ -89,7 +90,7 @@ export const BuyButton = ({
     const action = success
       ? {
           label: translateMessage(CONSTANTS.SEE_CART_ID),
-          href: '/checkout/#/cart',
+          href: customToastURL,
         }
       : undefined
 
@@ -138,9 +139,10 @@ export const BuyButton = ({
 
       const addedItem =
         (linkStateItems &&
-        skuItems.filter(
-          skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
-        )) || success
+          skuItems.filter(
+            skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
+          )) ||
+        success
 
       const foundItem =
         orderFormItems &&
@@ -148,16 +150,17 @@ export const BuyButton = ({
 
       success = addedItem
 
-      showToastMessage = () => toastMessage({
-        success: success && success.length >= 1,
-        isNewItem: !foundItem,
-      })
+      showToastMessage = () =>
+        toastMessage({
+          success: success && success.length >= 1,
+          isNewItem: !foundItem,
+        })
 
       /* PWA */
-      if (promptOnCustomEvent === "addToCart" && showInstallPrompt) {
+      if (promptOnCustomEvent === 'addToCart' && showInstallPrompt) {
         showInstallPrompt()
       }
-  
+
       shouldOpenMinicart && !isOneClickBuy && setMinicartOpen(true)
     } catch (err) {
       console.error(err)
@@ -181,7 +184,11 @@ export const BuyButton = ({
       ) : (
         <Button
           block={large}
-          disabled={disabled || !available || (orderFormContext && orderFormContext.loading)}
+          disabled={
+            disabled ||
+            !available ||
+            (orderFormContext && orderFormContext.loading)
+          }
           onClick={handleAddToCart}
           isLoading={isAddingToCart}
         >
@@ -255,6 +262,8 @@ BuyButton.propTypes = {
   orderFormContext: PropTypes.object,
   /** If the button is disabled or not */
   disabled: PropTypes.bool,
+  /** A custom URL for the `VIEW CART` button inside the toast */
+  customToastURL: PropTypes.string,
 }
 
 export default BuyButton
