@@ -19,8 +19,6 @@ test('should transform assemblyOptions', () => {
   expect(addonOption.quantity).toBe(1)
   expect(addonOption.seller).toBe('1')
 
-  expect(resultBell).toMatchSnapshot()
-
   const resultPizza = transformAssemblyOptions(
     comboPizza.items,
     {},
@@ -38,8 +36,6 @@ test('should transform assemblyOptions', () => {
 
   const drinksOptions = resultPizza.options[1] as ItemOption
   expect(drinksOptions.options).toBeUndefined()
-
-  expect(resultPizza).toMatchSnapshot()
 })
 
 test('input values', () => {
