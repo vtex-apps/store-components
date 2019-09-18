@@ -137,11 +137,11 @@ const ZoomInPlace: FC<Props> = ({ children, zoomContent, type, factor }) => {
       ref={containerRef}
       onMouseOver={type === 'hover' ? handleMouseOver : undefined}
       onClick={type === 'click' ? handleClick : undefined}
-      className="overflow-hidden relative">
+      className="relative">
       <div ref={contentRef} style={{ transformOrigin: '0 0' }}>
         {children}
         {zoomContent && isZoomedIn && (
-          <div className="absolute top-0 left-0" style={{ transformOrigin: '0 0', transform: `scale(${1/factor})`}}>
+          <div className="absolute top-0 left-0 right-0 bottom-0" style={{ transformOrigin: '0 0', transform: `scale(${1/factor})`}}>
             {zoomContent}
           </div>
         )}
