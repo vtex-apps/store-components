@@ -72,6 +72,7 @@ describe('<BuyButton />', () => {
         quantity: 2,
         seller: '1',
         name: 'Item',
+        brand: 'fo',
         price: 100,
         options: [
           { assemblyId: '1', id: '2', quantity: 2, seller: '1' },

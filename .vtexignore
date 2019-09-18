@@ -5,7 +5,10 @@ react/node_modules/
 package.json
 README.md
 CHANGELOG.md
+
 react/**/__tests__/**
 react/**/__mocks__/**
+react/**/__snapshots__/**
 react/**/*.test.js
-react/testUtils/**
+react/**/*.test.ts
+react/**/*.test.tsx
