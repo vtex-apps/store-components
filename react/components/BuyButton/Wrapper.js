@@ -177,6 +177,7 @@ EnhancedBuyButton.mapCatalogItemToCart = function mapCatalogItemToCart({
         imageUrl: path(['images', '0', 'imageUrl'], selectedItem),
         ...transformAssemblyOptions(
           path(['items'], assemblyOptions),
+          path(['inputValues'], assemblyOptions),
           selectedSeller.commertialOffer.Price,
           selectedQuantity
         ),
