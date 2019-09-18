@@ -4,4 +4,5 @@ declare module 'vtex.styleguide' {
   export const NumericStepper: any
   export const Button: any
   export const Modal: any
+  export const withToast: any
 }

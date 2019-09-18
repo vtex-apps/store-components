@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { ProductContext } from 'vtex.product-context'
+import React from 'react'
+import useProduct from 'vtex.product-context/useProduct'
 import { path, isEmpty, compose } from 'ramda'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { withToast } from 'vtex.styleguide'
@@ -37,7 +37,6 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
     </div>
   )
 }
-
 const BuyButtonWrapper = ({
   intl,
   addToCart,
@@ -55,7 +54,7 @@ const BuyButtonWrapper = ({
   large: propLarge,
   disabled: propDisabled,
 }) => {
-  const valuesFromContext = useContext(ProductContext)
+  const valuesFromContext = useProduct()
 
   const isEmptyContext = !valuesFromContext || isEmpty(valuesFromContext)
 
