@@ -44,7 +44,8 @@
     "@types/swiper": "^4.4.4",
     "@vtex/test-tools": "^1.1.0",
     "@vtex/tsconfig": "^0.2.0",
-    "apollo-cache-inmemory": "^1.4.3"
+    "apollo-cache-inmemory": "^1.4.3",
+    "typescript": "3.5.2"
   },
   "vtexTestTools": {
     "defaultLocale": "en"
