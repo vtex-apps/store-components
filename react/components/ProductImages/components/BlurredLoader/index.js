@@ -1,15 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Spinner } from 'vtex.styleguide'
-import LinearProgress from '@material-ui/core/LinearProgress'
-import { withStyles } from '@material-ui/core/styles'
 import classNames from 'classnames'
 import ImageResizer from './ImageResizer'
 import styles from '../../styles.css'
 import { IMAGE_DEFAULT_SIZE, imageUrlForSize } from '../../../module/images'
-
-const stylesDefault = { barColorPrimary: { backgroundColor: 'currentColor' } }
-const LinearProgressWithStyle = withStyles(stylesDefault)(LinearProgress)
 
 const LOAD_STATES = {
   LOADING: 'LOADING',
@@ -84,16 +79,8 @@ class BlurredLoader extends React.Component {
       'o-0': !stateLoader,
     })
     switch (loaderType) {
+      // Deprecated, will fallback to spinner
       case LOADER_TYPES.LINEAR:
-        return (
-          <div
-            className={`w-100 top-0 z-2 absolute ${
-              styles.imageTransitionOpacity
-            } ${loadStateClass}`}
-          >
-            <LinearProgressWithStyle className="c-action-primary" />
-          </div>
-        )
       case LOADER_TYPES.SPINNER:
         return (
           <div
