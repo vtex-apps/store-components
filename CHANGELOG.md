@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Cleaned up some extraneous dependencies.
 
 ### Removed
-- Removed loader type "linear" from product images, falls back into spinner loader.
+- Loader type "linear" from product images, falls back into spinner loader.
 
 ## [3.69.0] - 2019-09-18
 ### Added
