@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Cleaned up some extraneous dependencies.
+
+### Removed
+- Loader type "linear" from product images, falls back into spinner loader.
 
 ## [3.70.0] - 2019-09-19
 ### Added
