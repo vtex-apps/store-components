@@ -46,6 +46,7 @@ interface Props {
 const SKUSelectorWrapper: StorefrontFC<Props> = props => {
   const valuesFromContext = useProduct()
   const dispatch = useProductDispatch()
+
   const skuItems =
     props.skuItems != null
       ? props.skuItems
@@ -67,7 +68,7 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
   useEffect(() => {
     if (!shouldNotShow && dispatch) {
       dispatch({
-        type: 'SKU_SELECTOR_IS_VISIBLE',
+        type: 'SKU_SELECTOR_SET_IS_VISIBLE',
         args: { isVisible: !shouldNotShow },
       })
     }
