@@ -66,7 +66,7 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
   const variations = useVariations(skuItems, shouldNotShow)
 
   useEffect(() => {
-    if (!shouldNotShow && dispatch) {
+    if (dispatch) {
       dispatch({
         type: 'SKU_SELECTOR_SET_IS_VISIBLE',
         args: { isVisible: !shouldNotShow },
