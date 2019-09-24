@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect } from 'react'
 import useProduct from 'vtex.product-context/useProduct'
 import { pathOr } from 'ramda'
+import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 import SKUSelector from './index'
 import { ProductItem, Variations } from './types'
@@ -44,6 +45,8 @@ interface Props {
 
 const SKUSelectorWrapper: StorefrontFC<Props> = props => {
   const valuesFromContext = useProduct()
+  const dispatch = useProductDispatch()
+
   const skuItems =
     props.skuItems != null
       ? props.skuItems
@@ -61,6 +64,15 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
     skuSelected.variations.length === 0
 
   const variations = useVariations(skuItems, shouldNotShow)
+
+  useEffect(() => {
+    if (dispatch) {
+      dispatch({
+        type: 'SKU_SELECTOR_SET_IS_VISIBLE',
+        args: { isVisible: !shouldNotShow },
+      })
+    }
+  }, [shouldNotShow, dispatch])
 
   if (shouldNotShow) {
     return null
