@@ -1,1 +1,33 @@
 .container {}
+
+/* S */
+@media screen and (min-width: 37em) and (max-width: 40em) {
+  .container {
+    margin: 0 auto;
+    width: 35em;
+  }
+}
+
+/* M */
+@media screen and (min-width: 61em) and (max-width: 64em) {
+  .container {
+    margin: 0 auto;
+    width: 58em;
+  }
+}
+
+/* L */
+@media screen and (min-width: 75em) and (max-width: 80em) {
+  .container {
+    margin: 0 auto;
+    width: 72em;
+  }
+}
+
+/* XL */
+@media screen and (min-width: 104em) {
+  .container {
+    margin: 0 auto;
+    width: 96em;
+  }
+}

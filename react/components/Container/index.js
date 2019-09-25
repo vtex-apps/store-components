@@ -7,7 +7,7 @@ import styles from './Container.css'
 const render = ({ className, children, ...props }, ref) => {
   const classes = classNames(
     styles.container,
-    'ph3 ph5-m ph2-xl mw9 center',
+    'mh5 mh6-m mh7-l mh8-xl',
     className
   )
 
