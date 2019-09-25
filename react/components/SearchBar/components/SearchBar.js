@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useMemo } from 'react'
+import React, { useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import AutocompleteInput from './AutocompleteInput'
@@ -25,6 +25,7 @@ const SearchBar = ({
   autoFocus,
   maxWidth,
   attemptPageTypeSearch,
+  customSearchPageUrl,
 }) => {
   const container = useRef()
   const { navigate } = useRuntime()
@@ -41,6 +42,14 @@ const SearchBar = ({
           return
         }
 
+        if (customSearchPageUrl) {
+          navigate({
+            to: customSearchPageUrl.replace(/\$\{term\}/g, element.term),
+          })
+
+          return
+        }
+
         navigate({
           page: 'store.search',
           params: { term: element.term },
@@ -50,9 +59,9 @@ const SearchBar = ({
       }
 
       let page = 'store.product'
-      let params = { 
-        slug: element.slug, 
-        id: element.productId
+      let params = {
+        slug: element.slug,
+        id: element.productId,
       }
       let query = ''
       const terms = element.slug.split('/')
@@ -64,12 +73,13 @@ const SearchBar = ({
 
         page = 'store.search'
         params = { term: terms[0] }
-        query = `map=c,ft&rest=${terms.slice(1).join(',')}` + paramForSearchTracking
+        query =
+          `map=c,ft&rest=${terms.slice(1).join(',')}` + paramForSearchTracking
       }
 
       navigate({ page, params, query })
     },
-    [navigate]
+    [attemptPageTypeSearch, navigate, customSearchPageUrl]
   )
 
   const fallback = (
@@ -171,10 +181,16 @@ SearchBar.propTypes = {
   hasIconLeft: PropTypes.bool,
   /** Custom classes for the search icon */
   iconClasses: PropTypes.string,
+  /** Block class for the search icon */
+  iconBlockClass: PropTypes.string,
   /** Identify if the search input should autofocus or not */
   autoFocus: PropTypes.bool,
   /** Max width of the search bar */
   maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** if true, uses the term the user has inputed to try to navigate to the proper page type (e.g. a department, a brand, a category) */
+  attemptPageTypeSearch: PropTypes.bool,
+  /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
+  customSearchPageUrl: PropTypes.string,
 }
 
 export default SearchBar

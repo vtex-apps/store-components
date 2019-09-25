@@ -27,9 +27,18 @@ class SearchBarContainer extends Component {
 
   handleGoToSearchPage = () => {
     const search = this.state.inputValue
+    const { customSearchPageUrl } = this.props
 
     if (this.props.attemptPageTypeSearch) {
       window.location.href = `/${search}`
+      return
+    }
+
+    if (customSearchPageUrl) {
+      this.context.navigate({
+        to: customSearchPageUrl.replace(/\$\{term\}/g, search),
+      })
+
       return
     }
 
@@ -73,6 +82,7 @@ class SearchBarContainer extends Component {
       autoFocus,
       maxWidth,
       attemptPageTypeSearch,
+      customSearchPageUrl,
       placeholder = intl.formatMessage({
         id: 'store/search.placeholder',
       }),
@@ -95,6 +105,7 @@ class SearchBarContainer extends Component {
         iconClasses={iconClasses}
         maxWidth={maxWidth}
         attemptPageTypeSearch={attemptPageTypeSearch}
+        customSearchPageUrl={customSearchPageUrl}
       />
     )
   }
@@ -117,10 +128,12 @@ SearchBarContainer.propTypes = {
   autoFocus: PropTypes.bool,
   /** Max width of the search bar */
   maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** Uses the term the user has inputted to try to navigate to the proper
+  /** Uses the term the user has inputed to try to navigate to the proper
    * page type (e.g. a department, a brand, a category)
    */
   attemptPageTypeSearch: PropTypes.bool,
+  /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
+  customSearchPageUrl: PropTypes.string,
 }
 
 export default injectIntl(SearchBarContainer)
