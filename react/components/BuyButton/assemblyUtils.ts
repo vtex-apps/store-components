@@ -1,19 +1,24 @@
 type GroupId = string
 type GroupTypes = 'SINGLE' | 'TOGGLE' | 'MULTIPLE'
 
-export const sumAssembliesPrice = (assemblyOptions: Record<GroupId, AssemblyOptionItem[]>) => {
+export const sumAssembliesPrice = (
+  assemblyOptions: Record<GroupId, AssemblyOptionItem[]>
+) => {
   const cleanAssemblies = assemblyOptions || {}
   const assembliesGroupItems = Object.values(cleanAssemblies)
-  return assembliesGroupItems.reduce<number>((sum: number, groupItems: AssemblyOptionItem[]) => {
-    const groupPrice = groupItems.reduce<number>((groupSum, item) => {
-      const childrenPrice: number = item.children
-        ? sumAssembliesPrice(item.children)
-        : 0
-      const itemCost = item.price * item.quantity
-      return groupSum + itemCost + childrenPrice * item.quantity
-    }, 0)
-    return groupPrice + sum
-  }, 0)
+  return assembliesGroupItems.reduce<number>(
+    (sum: number, groupItems: AssemblyOptionItem[]) => {
+      const groupPrice = groupItems.reduce<number>((groupSum, item) => {
+        const childrenPrice: number = item.children
+          ? sumAssembliesPrice(item.children)
+          : 0
+        const itemCost = item.price * item.quantity
+        return groupSum + itemCost + childrenPrice * item.quantity
+      }, 0)
+      return groupPrice + sum
+    },
+    0
+  )
 }
 
 interface AssemblyOptionItem {
@@ -27,7 +32,7 @@ interface AssemblyOptionItem {
   seller: string
 }
 
-type InputValue = Record<string, string|boolean>
+type InputValue = Record<string, string | boolean>
 
 export interface AssemblyOptions {
   items: Record<GroupId, AssemblyOptionItem[]>
@@ -87,7 +92,7 @@ export const transformAssemblyOptions = (
   assemblyOptionsItems: Record<GroupId, AssemblyOptionItem[]> = {},
   inputValues: Record<GroupId, InputValue> = {},
   parentPrice: number,
-  parentQuantity: number,
+  parentQuantity: number
 ): ParsedAssemblyOptions => {
   // contains options sent as arguments to graphql mutation
   const options: Option[] = []
@@ -115,12 +120,12 @@ export const transformAssemblyOptions = (
       const {
         options: childrenOptions,
         assemblyOptions: childrenAssemblyOptions,
-      } = childrenAddedData || { options: undefined, assemblyOptions: undefined }
+      } = childrenAddedData || {
+        options: undefined,
+        assemblyOptions: undefined,
+      }
 
-      const {
-        quantity,
-        initialQuantity,
-      } = item
+      const { quantity, initialQuantity } = item
 
       if (quantity >= initialQuantity && quantity > 0) {
         added.push({
@@ -170,10 +175,13 @@ export const transformAssemblyOptions = (
   const assemblyInputValuesKeys: GroupId[] = Object.keys(inputValues)
 
   for (const groupId of assemblyInputValuesKeys) {
-    options.push({
-      assemblyId: groupId,
-      inputValues: inputValues[groupId],
-    })
+    const inputValuesObject = inputValues[groupId] || {}
+    if (Object.keys(inputValuesObject).length > 0) {
+      options.push({
+        assemblyId: groupId,
+        inputValues: inputValues[groupId],
+      })
+    }
   }
 
   return {
