@@ -16,7 +16,7 @@ const calculateDiscountTax = (listPrice, sellingPrice) => {
  */
 const DiscountBadge = ({ listPrice, sellingPrice, label = '', children }) => {
   const percent = calculateDiscountTax(listPrice, sellingPrice)
-  const shouldShowPercentage = percent && percent >= 0.1
+  const shouldShowPercentage = percent && percent >= 0.01
 
   return (
     <div className={`${styles.discountContainer} relative dib`}>
