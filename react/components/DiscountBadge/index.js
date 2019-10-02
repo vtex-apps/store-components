@@ -16,13 +16,13 @@ const calculateDiscountTax = (listPrice, sellingPrice) => {
  */
 const DiscountBadge = ({ listPrice, sellingPrice, label = '', children }) => {
   const percent = calculateDiscountTax(listPrice, sellingPrice)
+  const shouldShowPercentage = percent && percent >= 0.1
+
   return (
     <div className={`${styles.discountContainer} relative dib`}>
-      {percent ? (
+      {shouldShowPercentage ? (
         <div
-          className={`${
-            styles.discountInsideContainer
-          } t-mini white absolute right-0 pv2 ph3 bg-emphasis z-1`}
+          className={`${styles.discountInsideContainer} t-mini white absolute right-0 pv2 ph3 bg-emphasis z-1`}
         >
           <IOMessage id={label}>
             {labelValue => (
