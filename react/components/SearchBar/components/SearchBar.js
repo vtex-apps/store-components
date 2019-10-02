@@ -169,6 +169,7 @@ const SearchBar = ({
                     highlightedIndex,
                     closeMenu,
                     onClearInput,
+                    customSearchPageUrl,
                   }}
                 />
               </Overlay>
