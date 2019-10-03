@@ -6,6 +6,7 @@ import React, { memo, useMemo } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 import { formatIOMessage } from 'vtex.native-types'
+import { useCssHandles } from 'vtex.css-handles'
 
 import CallToAction from './CallToAction'
 import LinkWrapper from './LinkWrapper'
@@ -16,8 +17,6 @@ import {
   textPostionValues,
   textAlignmentValues,
 } from './SchemaTypes'
-
-import styles from './infoCard.css'
 
 const justifyTokens = {
   [textPostionValues.LEFT]: 'justify-start',
@@ -56,9 +55,6 @@ const safelyGetToken = (tokenMap, valueWanted, propName) =>
 const getImageUrl = (isMobile, imageUrl, mobileImageUrl) =>
   !!mobileImageUrl && isMobile ? mobileImageUrl : imageUrl
 
-const safelyGetBlockClass = blockClass =>
-  blockClass ? blockClass.split(' ')[0] : ''
-
 const sanitizerConfig = {
   allowedTags: ['p', 'span', 'a', 'div', 'br'],
   allowedAttributes: {
@@ -71,8 +67,16 @@ const sanitizerConfig = {
 
 const sanitizeHtml = input => (input ? insane(input, sanitizerConfig) : null)
 
+const CSS_HANDLES = [
+  'infoCardContainer',
+  'infoCardTextContainer',
+  'infoCardHeadline',
+  'infoCardSubhead',
+  'infoCardImageContainer',
+  'infoCardImage',
+]
+
 const InfoCard = ({
-  blockClass,
   isFullModeStyle,
   headline,
   subhead,
@@ -90,6 +94,7 @@ const InfoCard = ({
   const {
     hints: { mobile },
   } = useRuntime()
+  const handles = useCssHandles(CSS_HANDLES)
   const paddingClass =
     textPosition === textPostionValues.LEFT ? 'pr4-ns' : 'pl4-ns'
 
@@ -122,31 +127,24 @@ const InfoCard = ({
     : {}
 
   const containerClasses = classNames(
-    `${styles.infoCardContainer} items-center`,
+    `${handles.infoCardContainer} items-center`,
     {
-      [`${styles.infoCardContainer}--${safelyGetBlockClass(
-        blockClass
-      )}`]: blockClass,
       [`flex-ns ${flexOrderToken} bg-base ph2-ns pb2 justify-between`]: !isFullModeStyle,
       [`bg-center bb b--muted-4 flex ${justifyToken}`]: isFullModeStyle,
     }
   )
 
   const textContainerClasses = classNames(
-    `${styles.infoCardTextContainer} flex flex-column mw-100`,
+    `${handles.infoCardTextContainer} flex flex-column mw-100`,
     {
       [`w-50-ns ph3-s ${itemsToken} ${paddingClass}`]: !isFullModeStyle,
       [`mh8-ns mh4-s w-40-ns ${itemsToken}`]: isFullModeStyle,
     }
   )
 
-  const headlineClasses = `${
-    styles.infoCardHeadline
-  } t-heading-2 mt6 ${alignToken} c-on-base mw-100`
+  const headlineClasses = `${handles.infoCardHeadline} t-heading-2 mt6 ${alignToken} c-on-base mw-100`
 
-  const subheadClasses = `${
-    styles.infoCardSubhead
-  } t-body mt6 c-on-base ${alignToken} mw-100`
+  const subheadClasses = `${handles.infoCardSubhead} t-body mt6 c-on-base ${alignToken} mw-100`
 
   const sanitizedHeadline = useMemo(
     () => sanitizeHtml(formatIOMessage({ id: headline, intl })),
@@ -190,12 +188,12 @@ const InfoCard = ({
           />
         </div>
         {!isFullModeStyle && (
-          <div className={`${styles.infoCardImageContainer} w-50-ns`}>
+          <div className={`${handles.infoCardImageContainer} w-50-ns`}>
             <LinkWrapper
               imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
             >
               <img
-                className={styles.infoCardImage}
+                className={handles.infoCardImage}
                 src={finalImageUrl}
                 style={{ objectFit: 'cover' }}
                 alt=""
