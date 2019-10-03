@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - New `resultsItemName`, `searchBarInnerContainer`, `autoCompleteOuterContainer`, `spinnerInnerContainer` and `spinnerContainer` CSS handles to `SearchBar`.
 - New `specificationsTablePropertyHeading`, `specificationsTableSpecificationHeading`, `specificationItemProperty` and `specificationItemSpecifications` CSS handles to `ProductSpecifications`.
+- New `infoCardCallActionText` CSS handle to `InfoCard`.
 
 ## [3.71.2] - 2019-10-03
 ### Fixed
