@@ -1,19 +1,26 @@
 import PropTypes from 'prop-types'
 import React, { useContext } from 'react'
-import { ProductContext } from 'vtex.product-context'
-import { generateBlockClass } from '@vtex/css-handles'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
+import { ProductContext } from 'vtex.product-context'
+import { useCssHandles } from 'vtex.css-handles'
+
 import { changeImageUrlSize } from './urlHelpers'
-
-import styles from './productBrand.css'
-
 import brandLogoQuery from './productBrand.gql'
 
 const DISPLAY_MODE = {
   LOGO: 'logo',
   TEXT: 'text',
 }
+
+const CSS_HANDLES = [
+  'productBrandContainer',
+  'productBrandName',
+  'productBrandLogo',
+  'productBrandLogoWrapper',
+  'productBrandLogoLink',
+  'productBrandLogoSpacer',
+  'productBrandNameSpacer',
+]
 
 const shouldExcludeBrand = (brandName, brandId, excludeList) => {
   if (Array.isArray(excludeList)) {
@@ -22,20 +29,14 @@ const shouldExcludeBrand = (brandName, brandId, excludeList) => {
   return false
 }
 
-const BrandContainer = ({ children, blockClass }) => (
-  <div className={generateBlockClass(styles.productBrandContainer, blockClass)}>
-    {children}
-  </div>
-)
-
 const useBrandInfoProps = (brandName, brandId) => {
   const productContext = useContext(ProductContext)
   const product = productContext && productContext.product
   if ((brandName && brandId) || !product) {
     return { brandName, brandId }
   }
-  return { brandName: product.brand, brandId: product.brandId}
- }
+  return { brandName: product.brand, brandId: product.brandId }
+}
 
 const ProductBrand = ({
   displayMode = DISPLAY_MODE.LOGO,
@@ -47,13 +48,13 @@ const ProductBrand = ({
    * server handles resizing. */
   height = 100,
   excludeBrands,
-  blockClass,
   logoWithLink,
   brandName: brandNameProp,
   brandId: brandIdProp,
 }) => {
+  const { brandName, brandId } = useBrandInfoProps(brandNameProp, brandIdProp)
+  const handles = useCssHandles(CSS_HANDLES)
 
-  const {brandName, brandId } = useBrandInfoProps(brandNameProp, brandIdProp)
   if (!brandName || !brandId) {
     return null
   }
@@ -64,17 +65,15 @@ const ProductBrand = ({
   }
 
   const brandNameElement = (
-    <span className={generateBlockClass(styles.productBrandName, blockClass)}>
-      {brandName}
-    </span>
+    <span className={`${handles.productBrandName}`}>{brandName}</span>
+  )
+
+  const BrandContainer = ({ children }) => (
+    <div className={`${handles.productBrandContainer}`}>{children}</div>
   )
 
   if (displayMode === DISPLAY_MODE.TEXT) {
-    return (
-      <BrandContainer blockClass={blockClass}>
-        {brandNameElement}
-      </BrandContainer>
-    )
+    return <BrandContainer>{brandNameElement}</BrandContainer>
   }
 
   if (!height) {
@@ -92,34 +91,42 @@ const ProductBrand = ({
           if (imageUrl) {
             const dpi = (window && window.devicePixelRatio) || 1
             const logoLink = '/' + brandName + '/b'
-            const logoImage = <img
-              className={generateBlockClass(
-                styles.productBrandLogo,
-                blockClass
-              )}
-              src={changeImageUrlSize(
-                `/arquivos/ids${imageUrl}`,
-                undefined,
-                height ? height * dpi : undefined
-              )}
-              style={{
-                height: height || 'auto',
-              }}
-            />
+            const logoImage = (
+              <img
+                className={`${handles.productBrandLogo}`}
+                src={changeImageUrlSize(
+                  `/arquivos/ids${imageUrl}`,
+                  undefined,
+                  height ? height * dpi : undefined
+                )}
+                alt={brandName}
+                style={{
+                  height: height || 'auto',
+                }}
+              />
+            )
 
             return (
-              <BrandContainer blockClass={blockClass}>
+              <BrandContainer>
                 <div
                   style={{
                     height,
                   }}
+                  className={`${handles.productBrandLogoWrapper}`}
                 >
                   {/** TODO: Use a smarter Image component that handles VTEX image resizing etc. */}
-                  {
-                    logoWithLink
-                    ? <a href={logoLink} data-testid="logo-redirect"> {logoImage} </a>
-                    : logoImage
-                  }
+                  {logoWithLink ? (
+                    <a
+                      href={logoLink}
+                      className={`${handles.productBrandLogoLink}`}
+                      data-testid="logo-redirect"
+                    >
+                      {' '}
+                      {logoImage}{' '}
+                    </a>
+                  ) : (
+                    logoImage
+                  )}
                 </div>
               </BrandContainer>
             )
@@ -129,11 +136,7 @@ const ProductBrand = ({
            * logo was uploaded. So it falls back to the brand name,
            * if said fallback is enabled. */
           if (imageUrl === null && fallbackToText) {
-            return (
-              <BrandContainer blockClass={blockClass}>
-                {brandNameElement}
-              </BrandContainer>
-            )
+            return <BrandContainer>{brandNameElement}</BrandContainer>
           }
         }
 
@@ -145,19 +148,22 @@ const ProductBrand = ({
          */
         if (loadingPlaceholder === DISPLAY_MODE.LOGO) {
           return (
-            <BrandContainer blockClass={blockClass}>
+            <BrandContainer>
               <div
                 style={{
                   height,
                 }}
+                className={`${handles.productBrandLogoSpacer}`}
               />
             </BrandContainer>
           )
         }
         if (loadingPlaceholder === DISPLAY_MODE.TEXT && fallbackToText) {
           return (
-            <BrandContainer blockClass={blockClass}>
-              <span className="o-0">{brandNameElement}</span>
+            <BrandContainer>
+              <span className={`${handles.productBrandNameSpacer} o-0`}>
+                {brandNameElement}
+              </span>
             </BrandContainer>
           )
         }
@@ -187,6 +193,7 @@ ProductBrand.propTypes = {
   height: PropTypes.number,
   /** CSS Handler */
   blockClass: PropTypes.string,
+  logoWithLink: PropTypes.bool,
 }
 
 export default ProductBrand
