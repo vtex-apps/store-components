@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - New `productBrandLogoWrapper`, `productBrandLogoLink`, `productBrandLogoSpacer` and `productBrandNameSpacer` CSS handles to `ProductBrand`.
 - New `infoCardCallActionText` CSS handle to `InfoCard`.
 - New `productBrandLogoWrapper`, `productBrandLogoLink`, `productBrandLogoSpacer` and `productBrandNameSpacer` CSS handles to `ProductBrand`.
+- New `productDescriptionTitle` and `productDescriptionText` CSS handles to `ProductDescription`.
 
 ### Changed
 - Added the new `css-handles` on the following components: Icon & Newsletter
