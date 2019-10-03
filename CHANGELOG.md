@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - New `specificationsTablePropertyHeading`, `specificationsTableSpecificationHeading`, `specificationItemProperty` and `specificationItemSpecifications` CSS handles to `ProductSpecifications`.
 - New `resultsItemName`, `searchBarInnerContainer`, `autoCompleteOuterContainer`, `spinnerInnerContainer` and `spinnerContainer` CSS handles to `SearchBar`.
 - New `infoCardCallActionText` CSS handle to `InfoCard`.
+- New `productBrandLogoWrapper`, `productBrandLogoLink`, `productBrandLogoSpacer` and `productBrandNameSpacer` CSS handles to `ProductBrand`.
 
 ### Changed
 - Added the new `css-handles` on the following components: Icon & Newsletter
