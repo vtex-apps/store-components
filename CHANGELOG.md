@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- `DiscountBadge` would show negative percentages when the actual selling price of a product is higher then it's original one.
 
 ## [3.71.2] - 2019-10-03
 ### Fixed
