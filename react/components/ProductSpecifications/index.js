@@ -36,7 +36,7 @@ const ProductSpecifications = ({
     setCurrentTab(tabIndex)
   }
 
-  const specificationItems = () => {
+  const getSpecificationItems = () => {
     const mappedSpecifications = specifications.map(specification => {
       return {
         property: specification.name,
@@ -73,7 +73,9 @@ const ProductSpecifications = ({
     return mappedSpecifications
   }
 
-  const specificationTitle = () => (
+  const specificationItems = getSpecificationItems()
+
+  const specificationTitle = (
     <FormattedMessage id="store/technicalspecifications.title">
       {txt => (
         <h2 className={`${handles.specificationsTitle} t-heading-5 mb5 mt0`}>
@@ -83,7 +85,7 @@ const ProductSpecifications = ({
     </FormattedMessage>
   )
 
-  const tableView = () => (
+  const tableView = (
     <Fragment>
       {specifications.length > 0 && (
         <div
@@ -131,7 +133,7 @@ const ProductSpecifications = ({
     </Fragment>
   )
 
-  const tabsView = () => (
+  const tabsView = (
     <div className={`${handles.specificationsTabsContainer} pt8`}>
       {specificationTitle}
       <Tabs fullWidth>
