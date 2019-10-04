@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
@@ -11,81 +11,74 @@ const CSS_HANDLES = [
   'searchBarIcon',
   'compactMode',
   'autoCompleteOuterContainer',
+  'paddingInput',
 ]
 
-class AutocompleteInput extends Component {
-  constructor(props) {
-    super(props)
-    this.inputRef = React.createRef()
-  }
+const AutocompleteInput = ({
+  onClearInput,
+  compactMode,
+  value,
+  hasIconLeft,
+  iconBlockClass,
+  iconClasses,
+  autoFocus,
+  ...restProps
+}) => {
+  const inputRef = useRef(null)
+  const handles = useCssHandles(CSS_HANDLES)
 
-  changeClassInput = () => {
-    const { compactMode } = this.props
-    if (compactMode) {
-      this.inputRef.current.placeholder = ''
-      this.inputRef.current.classList.add(styles.paddingInput)
+  useEffect(() => {
+    const changeClassInput = () => {
+      if (compactMode) {
+        inputRef.current.placeholder = ''
+        inputRef.current.classList.add(handles.paddingInput)
+      }
     }
-  }
 
-  componentDidMount() {
-    const { autoFocus } = this.props
-    this.changeClassInput()
-    autoFocus && this.inputRef.current.focus()
-  }
+    changeClassInput()
+    autoFocus && inputRef.current.focus()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  render() {
-    const {
-      onClearInput,
-      compactMode,
-      value,
-      hasIconLeft,
-      iconBlockClass,
-      iconClasses,
-      ...restProps
-    } = this.props
+  const suffix = (
+    <span
+      className={`${iconClasses || ''} ${
+        handles.searchBarIcon
+      } flex items-center pointer`}
+      onClick={() => value && onClearInput()}
+    >
+      {value ? (
+        <IconClose type="line" size={22} />
+      ) : (
+        !hasIconLeft && <IconSearch />
+      )}
+    </span>
+  )
 
-    const handles = useCssHandles(CSS_HANDLES)
+  const prefix = (
+    <span className={`${iconClasses} ${handles.searchBarIcon}`}>
+      <IconSearch />
+    </span>
+  )
 
-    const suffix = (
-      <span
-        className={`${iconClasses || ''} ${
-          handles.searchBarIcon
-        } flex items-center pointer`}
-        onClick={() => value && onClearInput()}
-      >
-        {value ? (
-          <IconClose type="line" size={22} />
-        ) : (
-          !hasIconLeft && <IconSearch />
-        )}
-      </span>
-    )
+  const classContainer = classNames('w-100', {
+    [handles.compactMode]: compactMode,
+  })
 
-    const prefix = (
-      <span className={`${iconClasses} ${handles.searchBarIcon}`}>
-        <IconSearch />
-      </span>
-    )
-
-    const classContainer = classNames('w-100', {
-      [handles.compactMode]: compactMode,
-    })
-
-    return (
-      <div className={`${handles.autoCompleteOuterContainer} flex`}>
-        <div className={classContainer}>
-          <Input
-            ref={this.inputRef}
-            size="large"
-            value={value}
-            prefix={hasIconLeft && prefix}
-            suffix={suffix}
-            {...restProps}
-          />
-        </div>
+  return (
+    <div className={`${handles.autoCompleteOuterContainer} flex`}>
+      <div className={classContainer}>
+        <Input
+          ref={inputRef}
+          size="large"
+          value={value}
+          prefix={hasIconLeft && prefix}
+          suffix={suffix}
+          {...restProps}
+        />
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 AutocompleteInput.propTypes = {
