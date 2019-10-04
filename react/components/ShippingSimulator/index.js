@@ -88,17 +88,21 @@ const ShippingSimulator = ({
             <PostalCodeGetter />
           </AddressContainer>
         </AddressRules>
-        <Button
-          onClick={handleClick}
-          className={styles.shippingCTA}
-          disabled={!isValid}
-          size="small"
-          type="submit"
-          block
-          isLoading={loading}
-        >
-          {intl.formatMessage({ id: 'store/shipping.label' })}
-        </Button>
+        <div className={styles.shippingButton}>
+          <Button
+            onClick={handleClick}
+            className={styles.shippingCTA}
+            disabled={!isValid}
+            size="small"
+            type="submit"
+            block
+            isLoading={loading}
+          >
+            <div className={styles.shippingButtonText}>
+              {intl.formatMessage({ id: 'store/shipping.label' })}
+            </div>
+          </Button>
+        </div>
       </div>
       <ShippingTable shipping={shipping} />
     </Fragment>
