@@ -46,6 +46,9 @@
     "@vtex/test-tools": "^1.1.0",
     "@vtex/tsconfig": "^0.2.0",
     "apollo-cache-inmemory": "^1.4.3",
+    "eslint": "^6.5.1",
+    "eslint-config-vtex-react": "^5.0.1",
+    "prettier": "^1.18.2",
     "typescript": "3.5.2"
   },
   "vtexTestTools": {
