@@ -61,20 +61,20 @@ const Variation: FC<Props> = ({
     shouldCollapse ? visibleItemsWhenCollapsed : options.length
   )
   const showAllAction = useCallback(() => setShowAll(true), [setShowAll])
-  const emptyAction = useCallback(() => {}, [])
+  const emptyAction = useCallback(() => { }, [])
 
   return (
     <div
       className={`${styles.skuSelectorSubcontainer} ${
         styles.skuSelectorSubcontainer
-      }--${slug(name)} flex flex-column mb7`}
+        }--${slug(name)} flex flex-column mb7`}
     >
       <div className={`${styles.skuSelectorNameContainer} ma1`}>
         <div className={`${styles.skuSelectorTextContainer} db mb3`}>
           <span
             className={`${
               styles.skuSelectorName
-            } c-muted-1 t-small overflow-hidden`}
+              } c-muted-1 t-small overflow-hidden`}
           >
             {name}
           </span>
@@ -84,14 +84,14 @@ const Variation: FC<Props> = ({
               <span
                 className={`${
                   styles.skuSelectorSelectorImageValue
-                } c-muted-1 t-small`}
+                  } c-muted-1 t-small`}
               >
                 {selectedItem}
               </span>
             </Fragment>
           )}
         </div>
-        <div className="inline-flex flex-wrap ml2 flex items-center">
+        <div className={`${styles.skuSelectorOptionsList} inline-flex flex-wrap ml2 flex items-center`}>
           {displayOptions.map(option => {
             return (
               <SelectorItem
