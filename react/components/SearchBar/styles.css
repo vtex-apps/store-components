@@ -2,9 +2,6 @@
   width: 50px;
 }
 
-.resultsItemName {
-}
-
 .resultsList {
   list-style-type: none;
   max-height: 60vh;
@@ -28,18 +25,6 @@
 .searchBarContainer input {
   color: #727273;
   border-radius: 1px;
-}
-
-.searchBarInnerContainer {
-}
-
-.autoCompleteOuterContainer {
-}
-
-.spinnerContainer {
-}
-
-.spinnerInnerContainer {
 }
 
 .compactMode input {
@@ -66,12 +51,6 @@
 
 .searchMobile input {
   border: none;
-}
-
-.searchTerm {
-}
-
-.searchBarIcon {
 }
 
 @media only screen and (max-width: 49rem) {
