@@ -2,6 +2,9 @@
   width: 50px;
 }
 
+.resultsItemName {
+}
+
 .resultsList {
   list-style-type: none;
   max-height: 60vh;
@@ -18,13 +21,25 @@
   background-color: #f2f4f5;
 }
 
-.searchBarContainer :global(.vtex-input-prefix__group){
+.searchBarContainer :global(.vtex-input-prefix__group) {
   height: 38px;
 }
 
 .searchBarContainer input {
   color: #727273;
   border-radius: 1px;
+}
+
+.searchBarInnerContainer {
+}
+
+.autoCompleteOuterContainer {
+}
+
+.spinnerContainer {
+}
+
+.spinnerInnerContainer {
 }
 
 .compactMode input {
