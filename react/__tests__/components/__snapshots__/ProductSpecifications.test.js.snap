@@ -25,14 +25,14 @@ exports[`<ProductSpecifications /> component should match snapshot with table vi
           <thead>
             <tr>
               <th
-                class="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5"
+                class="specificationsTablePropertyHeading w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5"
               >
                 <span>
                   Property
                 </span>
               </th>
               <th
-                class="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5"
+                class="specificationsTableSpecificationHeading w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5"
               >
                 <span>
                   Specification
@@ -43,12 +43,12 @@ exports[`<ProductSpecifications /> component should match snapshot with table vi
           <tbody>
             <tr>
               <td
-                class="w-50 b--muted-4 bb pa5"
+                class="specificationItemProperty w-50 b--muted-4 bb pa5"
               >
                 test
               </td>
               <td
-                class="w-50 b--muted-4 bb pa5"
+                class="specificationItemSpecifications w-50 b--muted-4 bb pa5"
               >
                 value
               </td>
