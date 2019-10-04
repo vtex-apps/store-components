@@ -5,20 +5,20 @@ import { FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
 import { Spinner } from 'vtex.styleguide'
 import { Link, useRuntime } from 'vtex.render-runtime'
+import { useCssHandles } from 'vtex.css-handles'
 
 import autocomplete from '../queries/autocomplete.gql'
 
-import styles from '../styles.css'
-
 const MIN_RESULTS_WIDTH = 320
-
-const WrappedSpinner = () => (
-  <div className="w-100 flex justify-center">
-    <div className="w3 ma0">
-      <Spinner />
-    </div>
-  </div>
-)
+const CSS_HANDLES = [
+  'resultsItem',
+  'resultsList',
+  'searchTerm',
+  'resultsItemImage',
+  'spinnerContainer',
+  'spinnerInnerContainer',
+  'resultsItemName',
+]
 
 const getImageUrl = image => {
   const imageUrl = (image.match(/https?:(.*?)"/g) || [''])[0]
@@ -44,11 +44,6 @@ const getLinkProps = element => {
   return { page, params, query }
 }
 
-const getListItemClassNames = ({itemIndex = -1, highlightedIndex, hasThumb} = {}) => {
-  const highlightClass = highlightedIndex === itemIndex ? 'bg-muted-5' : ''
-  return `pointer pa4 outline-0 ${styles.resultsItem} ${highlightClass} ${hasThumb ? 'flex justify-start' : 'db w-100'}`
-}
-
 /** List of search results to be displayed*/
 const ResultsList = ({
   parentContainer,
@@ -66,6 +61,7 @@ const ResultsList = ({
   const {
     hints: { mobile },
   } = useRuntime()
+  const handles = useCssHandles(CSS_HANDLES)
 
   const listStyle = useMemo(
     () => ({
@@ -76,11 +72,11 @@ const ResultsList = ({
     }),
     /* with the isOpen here this will be called 
     only when you open or close the ResultList */
-    [parentContainer.current, isOpen]
+    [parentContainer]
   )
 
   const listClassNames = classnames(
-    styles.resultsList,
+    handles.resultsList,
     'z-max w-100 bl-ns bb br-ns bw1 b--muted-4 bg-base c-on-base t-body left-0 list pv4 ph0 mv0',
     mobile ? 'fixed' : 'absolute',
     { dn: !isOpen || !inputValue }
@@ -91,13 +87,30 @@ const ResultsList = ({
     closeMenu()
   }
 
+  const getListItemClassNames = ({
+    itemIndex = -1,
+    highlightedIndex,
+    hasThumb,
+  } = {}) => {
+    const highlightClass = highlightedIndex === itemIndex ? 'bg-muted-5' : ''
+    return `pointer pa4 outline-0 ${handles.resultsItem} ${highlightClass} ${
+      hasThumb ? 'flex justify-start' : 'db w-100'
+    }`
+  }
+
+  const WrappedSpinner = () => (
+    <div className={`w-100 flex justify-center ${handles.spinnerContainer}`}>
+      <div className={`${handles.spinnerInnerContainer} w3 ma0`}>
+        <Spinner />
+      </div>
+    </div>
+  )
+
   const fullTextSearchLabel = (
     <FormattedMessage
       id="store/search.searchFor"
       values={{
-        term: (
-          <span className={styles.searchTerm}> "{inputValue}"</span>
-        ),
+        term: <span className={handles.searchTerm}>{`"${inputValue}"`}</span>,
       }}
     />
   )
@@ -107,7 +120,7 @@ const ResultsList = ({
       <ul className={listClassNames} {...getMenuProps()}>
         {isOpen ? (
           data.loading ? (
-            <div className={getListItemClassNames()}>
+            <div className={getListItemClassNames({})}>
               <WrappedSpinner />
             </div>
           ) : (
@@ -169,11 +182,13 @@ const ResultsList = ({
                           width={50}
                           height={50}
                           alt={item.name}
-                          className={`${styles.resultsItemImage} mr4`}
+                          className={`${handles.resultsItemImage} mr4`}
                           src={getImageUrl(item.thumb)}
                         />
                       )}
-                      <div className="flex justify-start items-center">
+                      <div
+                        className={`${handles.resultsItemName} flex justify-start items-center`}
+                      >
                         {item.name}
                       </div>
                     </Link>
@@ -219,6 +234,9 @@ ResultsList.propTypes = {
   onClearInput: PropTypes.func,
   /** Downshift function */
   getItemProps: PropTypes.func,
+  isOpen: PropTypes.bool,
+  getMenuProps: PropTypes.func,
+  attemptPageTypeSearch: PropTypes.bool,
 }
 
 const ResultsListWithData = graphql(autocomplete, {

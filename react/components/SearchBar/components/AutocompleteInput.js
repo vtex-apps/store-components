@@ -4,10 +4,15 @@ import classNames from 'classnames'
 
 import { Input } from 'vtex.styleguide'
 import { IconClose, IconSearch } from 'vtex.store-icons'
-
-import styles from '../styles.css'
+import { useCssHandles } from 'vtex.css-handles'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
+const CSS_HANDLES = [
+  'searchBarIcon',
+  'compactMode',
+  'autoCompleteOuterContainer',
+]
+
 class AutocompleteInput extends Component {
   constructor(props) {
     super(props)
@@ -39,9 +44,13 @@ class AutocompleteInput extends Component {
       ...restProps
     } = this.props
 
+    const handles = useCssHandles(CSS_HANDLES)
+
     const suffix = (
       <span
-        className={`${iconClasses || ''} ${styles.searchBarIcon} flex items-center pointer`}
+        className={`${iconClasses || ''} ${
+          handles.searchBarIcon
+        } flex items-center pointer`}
         onClick={() => value && onClearInput()}
       >
         {value ? (
@@ -53,17 +62,17 @@ class AutocompleteInput extends Component {
     )
 
     const prefix = (
-      <span className={`${iconClasses} ${styles.searchBarIcon}`}>
+      <span className={`${iconClasses} ${handles.searchBarIcon}`}>
         <IconSearch />
       </span>
     )
 
     const classContainer = classNames('w-100', {
-      [styles.compactMode]: compactMode,
+      [handles.compactMode]: compactMode,
     })
 
     return (
-      <div className="flex">
+      <div className={`${handles.autoCompleteOuterContainer} flex`}>
         <div className={classContainer}>
           <Input
             ref={this.inputRef}

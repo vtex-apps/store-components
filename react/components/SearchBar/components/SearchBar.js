@@ -1,14 +1,16 @@
-import React, { useRef, useCallback, useMemo } from 'react'
+import React, { useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import AutocompleteInput from './AutocompleteInput'
-import ResultsLists from './ResultsList'
 import Downshift from 'downshift'
 import { NoSSR } from 'vtex.render-runtime'
 import { Overlay } from 'vtex.react-portal'
 import { useRuntime } from 'vtex.render-runtime'
+import { useCssHandles } from 'vtex.css-handles'
 
-import styles from '../styles.css'
+import AutocompleteInput from './AutocompleteInput'
+import ResultsLists from './ResultsList'
+
+const CSS_HANDLES = ['searchBarContainer', 'searchBarInnerContainer']
 
 const SearchBar = ({
   placeholder,
@@ -16,7 +18,6 @@ const SearchBar = ({
   onInputChange,
   onGoToSearchPage,
   onClearInput,
-  shouldSearch,
   inputValue,
   compactMode,
   hasIconLeft,
@@ -28,6 +29,7 @@ const SearchBar = ({
 }) => {
   const container = useRef()
   const { navigate } = useRuntime()
+  const handles = useCssHandles(CSS_HANDLES)
 
   const onSelect = useCallback(
     element => {
@@ -50,9 +52,9 @@ const SearchBar = ({
       }
 
       let page = 'store.product'
-      let params = { 
-        slug: element.slug, 
-        id: element.productId
+      let params = {
+        slug: element.slug,
+        id: element.productId,
       }
       let query = ''
       const terms = element.slug.split('/')
@@ -64,12 +66,13 @@ const SearchBar = ({
 
         page = 'store.search'
         params = { term: terms[0] }
-        query = `map=c,ft&rest=${terms.slice(1).join(',')}` + paramForSearchTracking
+        query =
+          `map=c,ft&rest=${terms.slice(1).join(',')}` + paramForSearchTracking
       }
 
       navigate({ page, params, query })
     },
-    [navigate]
+    [navigate, attemptPageTypeSearch]
   )
 
   const fallback = (
@@ -87,7 +90,7 @@ const SearchBar = ({
   return (
     <div
       ref={container}
-      className={classNames('w-100 mw7 pv4', styles.searchBarContainer)}
+      className={classNames('w-100 mw7 pv4', handles.searchBarContainer)}
       style={{
         ...(maxWidth && {
           maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
@@ -105,7 +108,12 @@ const SearchBar = ({
             isOpen,
             closeMenu,
           }) => (
-            <div className="relative-m w-100">
+            <div
+              className={classNames(
+                'relative-m w-100',
+                handles.searchBarInnerContainer
+              )}
+            >
               <AutocompleteInput
                 autoFocus={autoFocus}
                 compactMode={compactMode}
@@ -175,6 +183,8 @@ SearchBar.propTypes = {
   autoFocus: PropTypes.bool,
   /** Max width of the search bar */
   maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  iconBlockClass: PropTypes.string,
+  attemptPageTypeSearch: PropTypes.bool,
 }
 
 export default SearchBar
