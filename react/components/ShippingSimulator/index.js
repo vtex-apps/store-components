@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
-import { injectIntl, intlShape } from 'react-intl'
-import { compose, withApollo } from 'react-apollo'
+import { FormattedMessage } from 'react-intl'
+import { withApollo } from 'react-apollo'
 import PropTypes from 'prop-types'
 import { Button } from 'vtex.styleguide'
 import {
@@ -18,7 +18,6 @@ import styles from './shippingSimulator.css'
 import { getNewAddress } from './utils'
 
 const ShippingSimulator = ({
-  intl,
   client,
   skuId,
   seller,
@@ -99,7 +98,7 @@ const ShippingSimulator = ({
             isLoading={loading}
           >
             <div className={styles.shippingButtonText}>
-              {intl.formatMessage({ id: 'store/shipping.label' })}
+              <FormattedMessage id="store/shipping.label" />
             </div>
           </Button>
         </div>
@@ -110,7 +109,6 @@ const ShippingSimulator = ({
 }
 
 ShippingSimulator.propTypes = {
-  intl: intlShape.isRequired,
   client: PropTypes.object,
   skuId: PropTypes.string,
   seller: PropTypes.string,
@@ -119,7 +117,4 @@ ShippingSimulator.propTypes = {
   styles: PropTypes.object,
 }
 
-export default compose(
-  withApollo,
-  injectIntl
-)(ShippingSimulator)
+export default withApollo(ShippingSimulator)
