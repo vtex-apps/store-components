@@ -31,6 +31,8 @@ const ITEMS_VISIBLE_THRESHOLD = 2
 const findSelectedOption = (selectedItem: string | null) =>
   findIndex(propEq('label', selectedItem))
 
+const noop = () => { }
+
 const Variation: FC<Props> = ({
   variation,
   maxSkuPrice,
@@ -61,7 +63,6 @@ const Variation: FC<Props> = ({
     shouldCollapse ? visibleItemsWhenCollapsed : options.length
   )
   const showAllAction = useCallback(() => setShowAll(true), [setShowAll])
-  const emptyAction = useCallback(() => { }, [])
 
   return (
     <div
@@ -99,7 +100,7 @@ const Variation: FC<Props> = ({
                 key={`${option.label}-${name}`}
                 isAvailable={option.available}
                 maxPrice={maxSkuPrice}
-                onClick={option.impossible ? emptyAction : option.onSelectItem}
+                onClick={option.impossible ? noop : option.onSelectItem}
                 isImage={displayImage}
                 variationValue={option.label}
                 imageUrl={
