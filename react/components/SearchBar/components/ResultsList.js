@@ -9,6 +9,9 @@ import { useCssHandles } from 'vtex.css-handles'
 
 import autocomplete from '../queries/autocomplete.gql'
 
+// This import should NOT be removed
+import styles from '../styles.css'
+
 const MIN_RESULTS_WIDTH = 320
 const CSS_HANDLES = [
   'resultsItem',
