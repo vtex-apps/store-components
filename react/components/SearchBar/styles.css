@@ -18,7 +18,7 @@
   background-color: #f2f4f5;
 }
 
-.searchBarContainer :global(.vtex-input-prefix__group){
+.searchBarContainer :global(.vtex-input-prefix__group) {
   height: 38px;
 }
 
@@ -51,12 +51,6 @@
 
 .searchMobile input {
   border: none;
-}
-
-.searchTerm {
-}
-
-.searchBarIcon {
 }
 
 @media only screen and (max-width: 49rem) {
