@@ -87,7 +87,7 @@ const ShippingSimulator = ({
             <PostalCodeGetter />
           </AddressContainer>
         </AddressRules>
-        <div className={styles.shippingButton}>
+        <div className={styles.shippingButtonContainer}>
           <Button
             onClick={handleClick}
             className={styles.shippingCTA}
