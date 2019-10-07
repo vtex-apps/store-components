@@ -5,6 +5,7 @@ import { path } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { useRuntime } from 'vtex.render-runtime'
 import { usePWA } from 'vtex.store-resources/PWAContext'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 
 import { Button, ToastContext } from 'vtex.styleguide'
 
@@ -17,6 +18,8 @@ const CONSTANTS = {
   CHECKOUT_URL: '/checkout/#/cart',
   TOAST_TIMEOUT: 3000,
 }
+
+const CSS_HANDLES = ['buyButtonContainer', 'buyButtonText']
 
 const skuItemToMinicartItem = item => {
   return {
@@ -63,6 +66,7 @@ export const BuyButton = ({
   disabled,
   customToastURL = CONSTANTS.CHECKOUT_URL,
 }) => {
+  const handles = useCssHandles(CSS_HANDLES)
   const [isAddingToCart, setAddingToCart] = useState(false)
   const { showToast } = useContext(ToastContext)
   const { settings = {}, showInstallPrompt } = usePWA() || {}
@@ -177,27 +181,35 @@ export const BuyButton = ({
     }, 500)
   }
 
+  const buttonModifier = available ? '' : 'unavailable'
+
   return (
     <Fragment>
       {!skuItems ? (
         <ContentLoader />
       ) : (
-        <Button
-          block={large}
-          disabled={
-            disabled ||
-            !available ||
-            (orderFormContext && orderFormContext.loading)
-          }
-          onClick={handleAddToCart}
-          isLoading={isAddingToCart}
+        <div
+          className={applyModifiers(handles.buyButtonContainer, buttonModifier)}
         >
-          {available ? (
-            children
-          ) : (
-            <FormattedMessage id="store/buyButton-label-unavailable" />
-          )}
-        </Button>
+          <Button
+            block={large}
+            disabled={
+              disabled ||
+              !available ||
+              (orderFormContext && orderFormContext.loading)
+            }
+            onClick={handleAddToCart}
+            isLoading={isAddingToCart}
+          >
+            {available ? (
+              children
+            ) : (
+              <div className={handles.buyButtonText}>
+                <FormattedMessage id="store/buyButton-label-unavailable" />
+              </div>
+            )}
+          </Button>
+        </div>
       )}
     </Fragment>
   )
