@@ -1,10 +1,19 @@
 import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
-import { compose, isEmpty, prop, propOr, reject, flip, map, contains } from 'ramda'
+import {
+  compose,
+  isEmpty,
+  prop,
+  propOr,
+  reject,
+  flip,
+  map,
+  contains,
+} from 'ramda'
 
-import ProductSpecifications from './index';
+import ProductSpecifications from './index'
 
-const ProductSpecificationsWrapper = (props) => {
+const ProductSpecificationsWrapper = props => {
   const { showSpecificationsTab = false } = props
 
   const valuesFromContext = useContext(ProductContext)
@@ -30,19 +39,19 @@ const ProductSpecificationsWrapper = (props) => {
         tabsMode: showSpecificationsTab,
         ...props,
       }
-    } 
+    }
 
     return {
       ...props,
-      tabsMode: props && props.tabsMode != null ? props.tabsMode : showSpecificationsTab,
+      tabsMode:
+        props && props.tabsMode != null
+          ? props.tabsMode
+          : showSpecificationsTab,
       specifications: props.specifications || getSpecifications(),
     }
   }
 
-
-  return (
-    <ProductSpecifications { ...productSpecificationsProps() } />
-  )
+  return <ProductSpecifications {...productSpecificationsProps()} />
 }
 
 export default ProductSpecificationsWrapper
