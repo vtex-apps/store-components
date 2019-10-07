@@ -181,7 +181,7 @@ export const BuyButton = ({
     }, 500)
   }
 
-  const buttonModifier = available ? '' : 'unavailable'
+  const buttonModifier = available ? 'available' : 'unavailable'
 
   return (
     <Fragment>
