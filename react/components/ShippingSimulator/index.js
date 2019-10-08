@@ -90,7 +90,6 @@ const ShippingSimulator = ({
         <div className={styles.shippingButtonContainer}>
           <Button
             onClick={handleClick}
-            className={styles.shippingCTA}
             disabled={!isValid}
             size="small"
             type="submit"
