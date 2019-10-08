@@ -16,15 +16,24 @@ exports[`<ShippingSimulator /> component should match snapshot with skuId and se
         />
       </div>
     </div>
-    <button
-      class="shippingCTA"
-      data-block="true"
-      data-isloading="false"
-      disabled=""
-      type="submit"
+    <div
+      class="shippingButtonContainer"
     >
-      Calculate shipping
-    </button>
+      <button
+        data-block="true"
+        data-isloading="false"
+        disabled=""
+        type="submit"
+      >
+        <div
+          class="shippingButtonText"
+        >
+          <span>
+            Calculate shipping
+          </span>
+        </div>
+      </button>
+    </div>
   </div>
 </DocumentFragment>
 `;
