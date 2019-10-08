@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import HtmlParser from 'react-html-parser'
 import GradientCollapse from '../GradientCollapse/index'
 
@@ -158,8 +158,6 @@ ProductSpecifications.defaultProps = {
 }
 
 ProductSpecifications.propTypes = {
-  /** Intl object to provides internationalization */
-  intl: intlShape.isRequired,
   /** Specifications that will be displayed on the table */
   specifications: PropTypes.arrayOf(
     PropTypes.shape({
@@ -177,4 +175,4 @@ ProductSpecifications.propTypes = {
   hiddenSpecifications: PropTypes.array,
 }
 
-export default injectIntl(ProductSpecifications)
+export default ProductSpecifications
