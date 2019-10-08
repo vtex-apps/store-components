@@ -56,4 +56,6 @@ Below, we describe the tokens, their explanation and the component where it is l
 
 | Token name                    | Component                                                                                                                    | Description                                |
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| `productDescriptionContainer` | [ProductDescription](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductDescription/index.js) | The main container of `ProductDescription` |
+| `productDescriptionContainer` | [ProductDescription](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductDescription/index.js) | The main container of `ProductDescription`. |
+| `productDescriptionTitle` | [ProductDescription](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductDescription/index.js) | The title of the description. |
+| `productDescriptionText` | [ProductDescription](https://github.com/vtex-apps/store-components/blob/master/react/components/ProductDescription/index.js) | The text of the description. |
