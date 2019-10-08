@@ -1,47 +1,41 @@
-import React, { useContext } from 'react'
-import { ProductContext } from 'vtex.product-context'
-import { compose, isEmpty, prop, propOr, reject, flip, map, contains } from 'ramda'
+import React from 'react'
+import useProduct from 'vtex.product-context/useProduct'
+import { isEmpty, propOr, propEq } from 'ramda'
 
-import ProductSpecifications from './index';
+import ProductSpecifications from './index'
 
-const ProductSpecificationsWrapper = (props) => {
-  const { showSpecificationsTab = false } = props
-
-  const valuesFromContext = useContext(ProductContext)
-
-  const getSpecifications = () => {
-    const { product } = valuesFromContext
-
-    const allSpecifications = propOr([], 'properties', product)
-    const generalSpecifications = propOr([], 'generalProperties', product)
-
-    return reject(
-      compose(
-        flip(contains)(map(x => x.name, generalSpecifications)),
-        prop('name')
-      ),
-      allSpecifications
-    )
+const getSpecifications = productContext => {
+  if (!productContext || isEmpty(productContext)) {
+    return []
   }
+  const { product } = productContext
+  const specificationGroups = propOr([], 'specificationGroups', product)
+  const groupWithAll = specificationGroups.find(
+    propEq('name', 'allSpecifications')
+  )
+  const allSpecifications = groupWithAll ? groupWithAll.specifications : []
+  return allSpecifications
+}
 
-  const productSpecificationsProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) {
-      return {
-        tabsMode: showSpecificationsTab,
-        ...props,
-      }
-    } 
+const ProductSpecificationsWrapper = ({
+  hiddenSpecifications,
+  visibleSpecifications,
+  specifications: propsSpecifications,
+  tabsMode,
+  showSpecificationsTab = false,
+}) => {
+  const productContext = useProduct()
 
-    return {
-      ...props,
-      tabsMode: props && props.tabsMode != null ? props.tabsMode : showSpecificationsTab,
-      specifications: props.specifications || getSpecifications(),
-    }
-  }
-
+  const specifications =
+    propsSpecifications || getSpecifications(productContext)
 
   return (
-    <ProductSpecifications { ...productSpecificationsProps() } />
+    <ProductSpecifications
+      hiddenSpecifications={hiddenSpecifications}
+      visibleSpecifications={visibleSpecifications}
+      tabsMode={tabsMode != null ? tabsMode : showSpecificationsTab}
+      specifications={specifications}
+    />
   )
 }
 
