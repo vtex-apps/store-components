@@ -6,12 +6,12 @@ exports[`<ProductDescription /> should match the snapshot with description 1`] =
     class="productDescriptionContainer"
   >
     <h2
-      class="t-heading-5 mb5 mt0"
+      class="productDescriptionTitle t-heading-5 mb5 mt0"
     >
       Product Description
     </h2>
     <div
-      class="c-muted-1"
+      class="productDescriptionText c-muted-1"
     >
       <div
         class="relative"
