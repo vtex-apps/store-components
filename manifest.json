@@ -24,6 +24,7 @@
     "vtex.store-icons": "0.x",
     "vtex.modal": "0.x",
     "vtex.react-portal": "0.x",
+    "vtex.responsive-values": "0.x",
     "vtex.address-form": "4.x",
     "vtex.product-context": "0.x",
     "vtex.format-currency": "0.x",

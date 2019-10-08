@@ -16,6 +16,8 @@ interface Props {
   imageUrl?: string
   imageLabel?: string | null
   isImpossible: boolean
+  imageHeight?: number | string
+  imageWidth?: number | string
 }
 
 const getDiscount = (maxPrice?: number | null, price?: number | null) => {
@@ -40,22 +42,31 @@ const SelectorItem: FC<Props> = ({
   imageUrl,
   imageLabel,
   isImpossible,
+  imageHeight,
+  imageWidth,
 }) => {
   const discount = getDiscount(maxPrice, price)
+
+  const rootClasses = classNames(
+    styles.skuSelectorItem,
+    `${styles.skuSelectorItem}--${slug(variationValue)}`,
+    'relative di pointer flex items-center outline-0',
+    {
+      [styles.skuSelectorItemImage]: isImage,
+      'o-20': isImpossible,
+    }
+  )
+
+  const passedAnyDimension = Boolean(imageHeight || imageWidth)
+  const rootStyles = isImage && passedAnyDimension ? { height: imageHeight || 'auto', width: imageWidth || 'auto', padding: 0 } : {}
+
   return (
     <div
       role="button"
       tabIndex={0}
-      className={classNames(
-        styles.skuSelectorItem,
-        `${styles.skuSelectorItem}--${slug(variationValue)}`,
-        'relative di pointer flex items-center outline-0',
-        {
-          [styles.skuSelectorItemImage]: isImage,
-          'o-20': isImpossible,
-        }
-      )}
       onClick={onClick}
+      style={rootStyles}
+      className={rootClasses}
       onKeyDown={e => e.key === 'Enter' && onClick(e)}
     >
       <div

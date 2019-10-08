@@ -1,10 +1,11 @@
 import React, { useMemo, useEffect } from 'react'
 import useProduct from 'vtex.product-context/useProduct'
-import { pathOr } from 'ramda'
+import { pathOr, pick } from 'ramda'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 import SKUSelector from './index'
 import { ProductItem, Variations } from './types'
+import { useResponsiveValues } from 'vtex.responsive-values'
 
 const useVariations = (skuItems: ProductItem[], shouldNotShow: boolean) => {
   const result = useMemo(() => {
@@ -13,6 +14,7 @@ const useVariations = (skuItems: ProductItem[], shouldNotShow: boolean) => {
     }
     const variations = {} as Variations
     const variationsSet = {} as Record<string, Set<string>>
+
     for (const skuItem of skuItems) {
       for (const currentVariation of skuItem.variations) {
         const { name, values } = currentVariation
@@ -41,11 +43,15 @@ interface Props {
   seeMoreLabel: string
   hideImpossibleCombinations?: boolean
   showValueNameForImageVariation?: boolean
+  imageHeight?: string | number | object
+  imageWidth?: string | number | object
 }
 
 const SKUSelectorWrapper: StorefrontFC<Props> = props => {
   const valuesFromContext = useProduct()
   const dispatch = useProductDispatch()
+
+  const { imageHeight, imageWidth } = useResponsiveValues(pick(['imageHeight', 'imageWidth'], props))
 
   const skuItems =
     props.skuItems != null
@@ -86,6 +92,8 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
       maxItems={props.maxItems}
       seeMoreLabel={props.seeMoreLabel}
       variations={variations}
+      imageHeight={imageHeight}
+      imageWidth={imageWidth}
       hideImpossibleCombinations={props.hideImpossibleCombinations}
       showValueNameForImageVariation={props.showValueNameForImageVariation}
     />
