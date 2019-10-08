@@ -287,10 +287,13 @@ class Carousel extends Component {
           const classes = classNames(
             'swiper-thumbnails-caret-next',
             caretClassName,
-            styles.gradientBaseBottom,
             {
-              ['bottom-0 pt7 left-0 justify-center w-100']: isThumbsVertical,
-              ['right-0 top-0 items-center h-100 pl6']: !isThumbsVertical,
+              [`bottom-0 pt7 left-0 justify-center w-100 ${
+                styles.gradientBaseBottom
+              }`]: isThumbsVertical,
+              [`right-0 top-0 items-center h-100 pl6 ${
+                styles.gradientBaseRight
+              }`]: !isThumbsVertical,
             }
           )
           return (
@@ -306,10 +309,13 @@ class Carousel extends Component {
           const classes = classNames(
             'swiper-thumbnails-caret-prev top-0 left-0',
             caretClassName,
-            styles.gradientBaseBottom,
             {
-              ['pb7 justify-center w-100']: isThumbsVertical,
-              ['items-center h-100 pr6']: !isThumbsVertical,
+              [`pb7 justify-center w-100 ${
+                styles.gradientBaseTop
+              }`]: isThumbsVertical,
+              [`items-center h-100 pr6 ${
+                styles.gradientBaseLeft
+              }`]: !isThumbsVertical,
             }
           )
           return (
