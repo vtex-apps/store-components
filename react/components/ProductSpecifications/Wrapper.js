@@ -21,7 +21,7 @@ const ProductSpecificationsWrapper = ({
   hiddenSpecifications,
   visibleSpecifications,
   specifications: propsSpecifications,
-  tabsMode,
+  tabsMode, // This is a legacy prop passed by product-details
   showSpecificationsTab = false,
 }) => {
   const productContext = useProduct()
