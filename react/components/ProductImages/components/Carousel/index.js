@@ -97,7 +97,6 @@ class Carousel extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize)
-
     this.setInitialVariablesState()
   }
 
@@ -397,7 +396,6 @@ class Carousel extends Component {
         isThumbsVertical={isThumbsVertical}
         slides={slides}
         swiperParams={this.thumbnailsParams}
-        alts={this.state.alt}
         thumbUrls={this.state.thumbUrl}
         position={position}
         gallerySwiper={gallerySwiper}

@@ -50,7 +50,6 @@ const ThumbnailSwiper = ({
   isThumbsVertical,
   slides,
   swiperParams,
-  alts,
   thumbUrls,
   position,
   gallerySwiper,
@@ -60,7 +59,7 @@ const ThumbnailSwiper = ({
   const thumbClasses = classNames(`${styles.carouselGaleryThumbs} dn`, {
     'db-ns': hasThumbs,
     mt3: !isThumbsVertical,
-    'w-20 bottom-0 top-0 absolute dn': isThumbsVertical,
+    'w-20 bottom-0 top-0 absolute': isThumbsVertical,
     'left-0 pr5':
       isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.LEFT,
     'right-0 pl5':
@@ -73,16 +72,16 @@ const ThumbnailSwiper = ({
   })
 
   return (
-    <div className={thumbClasses}>
+    <div className={thumbClasses} data-testid="thumbnail-swiper">
       <Swiper {...swiperParams} rebuildOnUpdate>
         {slides.map((slide, i) => (
           <Thumbnail
-            key={i}
+            key={`${i}-${slide.alt}`}
             itemContainerClasses={itemContainerClasses}
             index={i}
             height={isThumbsVertical ? 'auto' : '115px'}
             gallerySwiper={gallerySwiper}
-            alt={slide.alt ? alts[i] : ''}
+            alt={slide.alt}
             thumbUrl={slide.thumbUrl || thumbUrls[i]}
           />
         ))}
