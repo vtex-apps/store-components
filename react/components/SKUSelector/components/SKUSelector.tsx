@@ -30,8 +30,8 @@ interface Props {
   selectedVariations: Record<string, string | null>
   hideImpossibleCombinations: boolean
   showValueNameForImageVariation: boolean
-  imageHeight?: string | number
-  imageWidth?: string | number
+  imageHeight?: number
+  imageWidth?: number
 }
 
 const isSkuAvailable = compose<

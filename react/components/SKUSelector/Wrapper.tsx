@@ -43,8 +43,8 @@ interface Props {
   seeMoreLabel: string
   hideImpossibleCombinations?: boolean
   showValueNameForImageVariation?: boolean
-  imageHeight?: string | number | object
-  imageWidth?: string | number | object
+  imageHeight?: number | object
+  imageWidth?: number | object
 }
 
 const SKUSelectorWrapper: StorefrontFC<Props> = props => {

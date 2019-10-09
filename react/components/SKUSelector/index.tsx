@@ -104,8 +104,8 @@ interface Props {
   skuSelected?: ProductItem
   hideImpossibleCombinations?: boolean
   showValueNameForImageVariation?: boolean
-  imageHeight?: string | number
-  imageWidth?: string | number
+  imageHeight?: number
+  imageWidth?: number
 }
 
 /**

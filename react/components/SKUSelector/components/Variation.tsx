@@ -24,8 +24,8 @@ interface Props {
   maxItems: number
   selectedItem: string | null
   showValueNameForImageVariation: boolean
-  imageHeight?: number | string
-  imageWidth?: number | string
+  imageHeight?: number
+  imageWidth?: number
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
