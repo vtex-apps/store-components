@@ -24,6 +24,8 @@ interface Props {
   maxItems: number
   selectedItem: string | null
   showValueNameForImageVariation: boolean
+  imageHeight?: number
+  imageWidth?: number
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
@@ -38,6 +40,8 @@ const Variation: FC<Props> = ({
   maxItems,
   selectedItem,
   showValueNameForImageVariation,
+  imageHeight,
+  imageWidth,
 }) => {
   const { name, options } = variation
   const [showAll, setShowAll] = useState(false)
@@ -102,6 +106,8 @@ const Variation: FC<Props> = ({
                 onClick={option.impossible ? emptyAction : option.onSelectItem}
                 isImage={displayImage}
                 variationValue={option.label}
+                imageHeight={imageHeight}
+                imageWidth={imageWidth}
                 imageUrl={
                   option.image &&
                   imageUrlForSize(

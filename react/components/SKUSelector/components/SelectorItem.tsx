@@ -3,7 +3,7 @@ import { FormattedNumber } from 'react-intl'
 import classNames from 'classnames'
 
 import styles from '../styles.css'
-import { slug } from '../utils'
+import { slug, changeImageUrlSize } from '../utils'
 
 interface Props {
   isAvailable: boolean
@@ -16,6 +16,8 @@ interface Props {
   imageUrl?: string
   imageLabel?: string | null
   isImpossible: boolean
+  imageHeight?: number | string
+  imageWidth?: number | string
 }
 
 const getDiscount = (maxPrice?: number | null, price?: number | null) => {
@@ -40,22 +42,35 @@ const SelectorItem: FC<Props> = ({
   imageUrl,
   imageLabel,
   isImpossible,
+  imageHeight,
+  imageWidth,
 }) => {
   const discount = getDiscount(maxPrice, price)
+
+  const containerClasses = classNames(
+    styles.skuSelectorItem,
+    `${styles.skuSelectorItem}--${slug(variationValue)}`,
+    'relative di pointer flex items-center outline-0',
+    {
+      [styles.skuSelectorItemImage]: isImage,
+      'o-20': isImpossible,
+    }
+  )
+
+  const passedAnyDimension = Boolean(imageHeight || imageWidth)
+  let containerStyles = {}
+  if (isImage && passedAnyDimension && imageUrl) {
+    containerStyles = { height: imageHeight || 'auto', width: imageWidth || 'auto', padding: 0 }
+    imageUrl = changeImageUrlSize(imageUrl, imageWidth, imageHeight)
+  }
+
   return (
     <div
       role="button"
       tabIndex={0}
-      className={classNames(
-        styles.skuSelectorItem,
-        `${styles.skuSelectorItem}--${slug(variationValue)}`,
-        'relative di pointer flex items-center outline-0',
-        {
-          [styles.skuSelectorItemImage]: isImage,
-          'o-20': isImpossible,
-        }
-      )}
       onClick={onClick}
+      style={containerStyles}
+      className={containerClasses}
       onKeyDown={e => e.key === 'Enter' && onClick(e)}
     >
       <div

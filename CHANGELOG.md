@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `imageHeight` and `imageWidth` to `SkuSelector`.
+
 ## [3.71.3] - 2019-10-03
 ### Fixed
 - `DiscountBadge` would show negative percentages when the actual selling price of a product is higher then it's original one.
