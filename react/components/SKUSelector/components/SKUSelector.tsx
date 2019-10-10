@@ -229,6 +229,7 @@ const SKUSelector: FC<Props> = ({
   const [displayVariations, setDisplayVariations] = useState<
     DisplayVariation[] | null
   >(null)
+
   const onSelectItemMemo = useCallback(
     ({
       name,

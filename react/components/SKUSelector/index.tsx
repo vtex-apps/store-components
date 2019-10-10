@@ -54,10 +54,23 @@ const selectedVariationFromItem = (
   return result
 }
 
-const useImagesMap = (items: SelectorProductItem[], variations: Variations) => {
+const COLOR_IMAGE_REGEX = /sku-variation/i
+
+function keepOrExcludeColorImages(items: SelectorProductItem[], keep = true) {
+  return items.map(item => ({ ...item, images: item.images.filter(image => {
+    if (!image.imageText) {
+      return true
+    }
+    return COLOR_IMAGE_REGEX.test(image.imageText) ? keep : !keep;
+  }) }))
+}
+
+const useImagesMap = (items: SelectorProductItem[], variations: Variations, showColorImages = false) => {
   return useMemo(() => {
+    items = keepOrExcludeColorImages(items, showColorImages)
+
     const variationNames = Object.keys(variations)
-    const result = {} as ImageMap
+    const result: ImageMap = {}
     for (const variationName of variationNames) {
       // Today, only "Color" variation should show image, need to find a more resilient way to tell this, waiting for backend
       if (!isColor(variationName)) {
@@ -106,6 +119,7 @@ interface Props {
   showValueNameForImageVariation?: boolean
   imageHeight?: number
   imageWidth?: number
+  showColorImages?: boolean
 }
 
 /**
@@ -120,6 +134,7 @@ const SKUSelectorContainer: FC<Props> = ({
   skuSelected,
   hideImpossibleCombinations = true,
   showValueNameForImageVariation = false,
+  showColorImages = false,
   imageHeight,
   imageWidth,
 }) => {
@@ -149,7 +164,7 @@ const SKUSelectorContainer: FC<Props> = ({
     setSelectedVariations(initialVariations)
   }, [variations])
 
-  const imagesMap = useImagesMap(parsedItems, variations)
+  const imagesMap = useImagesMap(parsedItems, variations, showColorImages)
 
   const onSelectItem = useCallback(
     ({
