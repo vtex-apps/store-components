@@ -3,7 +3,6 @@ import React, { useMemo, useEffect, useState } from 'react'
 import debounce from 'debounce'
 
 import Carousel from './components/Carousel'
-import Video from './components/Video/index'
 import styles from './styles.css'
 import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
 
@@ -19,6 +18,8 @@ const getBestUrlIndex = thresholds => {
   return bestUrlIndex
 }
 
+const COLOR_IMAGE_REGEX = /sku-variation/i
+
 const ProductImages = ({
   position,
   zoomProps,
@@ -27,7 +28,15 @@ const ProductImages = ({
   videos,
   thumbnailsOrientation,
 }) => {
-  const [_, setState] = useState(0)
+  const [, setState] = useState(0)
+
+  // remove color images
+  images = images.filter(image => {
+    if (!image.imageText) {
+      return true
+    }
+    return !COLOR_IMAGE_REGEX.test(image.imageText)
+  })
 
   const debouncedGetBestUrl = debounce(() => {
     // force update
@@ -59,7 +68,7 @@ const ProductImages = ({
         type: 'video',
         src: video.videoUrl,
         thumbWidth: 300,
-      }))
+      })),
     ]
   }, [images, videos])
 
@@ -99,6 +108,15 @@ ProductImages.propTypes = {
       imageText: PropTypes.string.isRequired,
     })
   ),
+  videos: PropTypes.arrayOf(
+    PropTypes.shape({
+      videoUrl: PropTypes.string,
+    })
+  ),
+  zoomProps: PropTypes.shape({
+    zoomType: PropTypes.string,
+  }),
+  displayThumbnailsArrows: PropTypes.bool,
 }
 
 ProductImages.defaultProps = {

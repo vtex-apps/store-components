@@ -61,7 +61,7 @@ function keepOrExcludeColorImages(items: SelectorProductItem[], keep = true) {
     if (!image.imageText) {
       return true
     }
-    return COLOR_IMAGE_REGEX.test(image.imageText) ? keep : !keep;
+    return COLOR_IMAGE_REGEX.test(image.imageText) ? keep : !keep
   }) }))
 }
 
