@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.72.0] - 2019-10-10
+
 ### Added
 - `imageHeight` and `imageWidth` to `SkuSelector`.
 
