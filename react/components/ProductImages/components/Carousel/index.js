@@ -266,9 +266,10 @@ class Carousel extends Component {
   get thumbnailsParams() {
     const { displayThumbnailsArrows, thumbnailsOrientation } = this.props
 
+    const isThumbsVertical =
+      thumbnailsOrientation === THUMBS_ORIENTATION.VERTICAL
     const caretSize = 24
-    const caretClassName =
-      'absolute z-2 left-0 pointer c-action-primary w-100 flex justify-center pv2'
+    const caretClassName = 'absolute z-2 pointer c-action-primary flex pv2'
     const caretStyle = { transition: 'opacity 200ms' }
 
     return {
@@ -282,34 +283,50 @@ class Carousel extends Component {
           }`,
           hiddenClass: 'dn',
         },
-        renderNextButton: () => (
-          <span
-            className={`swiper-thumbnails-caret-next bottom-0 pt7 ${caretClassName} ${
-              styles.gradientBaseBottom
-            }`}
-            style={caretStyle}
-          >
-            <IconCaret
-              orientation="down"
-              size={caretSize}
-              className={styles.carouselIconCaretRight}
-            />
-          </span>
-        ),
-        renderPrevButton: () => (
-          <span
-            className={`swiper-thumbnails-caret-prev top-0 pb7 ${caretClassName} ${
-              styles.gradientBaseTop
-            }`}
-            style={caretStyle}
-          >
-            <IconCaret
-              orientation="up"
-              size={caretSize}
-              className={styles.carouselIconCaretLeft}
-            />
-          </span>
-        ),
+        renderNextButton: () => {
+          const classes = classNames(
+            'swiper-thumbnails-caret-next',
+            caretClassName,
+            {
+              [`bottom-0 pt7 left-0 justify-center w-100 ${
+                styles.gradientBaseBottom
+              }`]: isThumbsVertical,
+              [`right-0 top-0 items-center h-100 pl6 ${
+                styles.gradientBaseRight
+              }`]: !isThumbsVertical,
+            }
+          )
+          return (
+            <span className={classes} style={caretStyle}>
+              <IconCaret
+                orientation={isThumbsVertical ? 'down' : 'right'}
+                size={caretSize}
+              />
+            </span>
+          )
+        },
+        renderPrevButton: () => {
+          const classes = classNames(
+            'swiper-thumbnails-caret-prev top-0 left-0',
+            caretClassName,
+            {
+              [`pb7 justify-center w-100 ${
+                styles.gradientBaseTop
+              }`]: isThumbsVertical,
+              [`items-center h-100 pr6 ${
+                styles.gradientBaseLeft
+              }`]: !isThumbsVertical,
+            }
+          )
+          return (
+            <span className={classes} style={caretStyle}>
+              <IconCaret
+                orientation={isThumbsVertical ? 'up' : 'left'}
+                size={caretSize}
+              />
+            </span>
+          )
+        },
       }),
       observer: true,
       containerClass: 'swiper-container h-100',
