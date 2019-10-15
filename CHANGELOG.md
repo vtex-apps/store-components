@@ -42,10 +42,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Update `react-share`.
 
 ### Added
-- `showColorImages`to `SkuSelector`.
+- `showColorImages` and `bottomMargin` to `SKUSelector`.
+- `shouldAddToCart` to `BuyButton`.
 
 ### Changed
-- Remove images that has `sku-variation`on it's name.
+- Remove images that has `sku-variation`on it's name from `SKUSelector` and `ProductImages`.
+- `SKUSelector` will just add spaces between variations instead of adding a spacing at the end of all variations.
+
+### Fixed
+- Not calling `onSKUSelected` at second render when `SKUSelector` sets an SKU.
 
 ## [3.72.0] - 2019-10-10
 ### Added

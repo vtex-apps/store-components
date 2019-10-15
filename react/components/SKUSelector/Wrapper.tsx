@@ -7,21 +7,27 @@ import SKUSelector from './index'
 import { ProductItem, Variations } from './types'
 import { useResponsiveValues } from 'vtex.responsive-values'
 
-const useVariations = (skuItems: ProductItem[], shouldNotShow: boolean) => {
+const useVariations = (skuItems: ProductItem[], shouldNotShow: boolean, variationsToShow?: string[]) => {
   const result = useMemo(() => {
-    if (shouldNotShow) {
+    if (shouldNotShow || variationsToShow && variationsToShow.length === 0) {
       return {}
     }
-    const variations = {} as Variations
-    const variationsSet = {} as Record<string, Set<string>>
+    const variations: Variations = {}
+    const variationsSet: Record<string, Set<string>> = {}
+    if (variationsToShow) {
+      variationsToShow = variationsToShow.map(variation => variation.toLowerCase().trim())
+    }
 
     for (const skuItem of skuItems) {
       for (const currentVariation of skuItem.variations) {
         const { name, values } = currentVariation
-        const value = values[0]
-        const currentSet = variationsSet[name] || new Set()
-        currentSet.add(value)
-        variationsSet[name] = currentSet
+          if (!variationsToShow || variationsToShow.includes(name.toLowerCase().trim())) {
+
+            const value = values[0]
+            const currentSet = variationsSet[name] || new Set()
+            currentSet.add(value)
+            variationsSet[name] = currentSet
+        }
       }
     }
     const variationsNames = Object.keys(variationsSet)
@@ -45,6 +51,10 @@ interface Props {
   showValueNameForImageVariation?: boolean
   imageHeight?: number | object
   imageWidth?: number | object
+  showColorImages?: boolean
+  variationsToShow?: string[]
+  showVariationsLabels?: boolean
+  bottomMargin?: 'default' | 'none'
 }
 
 const SKUSelectorWrapper: StorefrontFC<Props> = props => {
@@ -69,7 +79,7 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
     !skuSelected.variations ||
     skuSelected.variations.length === 0
 
-  const variations = useVariations(skuItems, shouldNotShow)
+  const variations = useVariations(skuItems, shouldNotShow, props.variationsToShow)
 
   useEffect(() => {
     if (dispatch) {
@@ -86,14 +96,17 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
 
   return (
     <SKUSelector
-      onSKUSelected={props.onSKUSelected}
       skuItems={skuItems}
+      variations={variations}
+      imageWidth={imageWidth}
       skuSelected={skuSelected}
       maxItems={props.maxItems}
-      seeMoreLabel={props.seeMoreLabel}
-      variations={variations}
       imageHeight={imageHeight}
-      imageWidth={imageWidth}
+      seeMoreLabel={props.seeMoreLabel}
+      bottomMargin={props.bottomMargin}
+      onSKUSelected={props.onSKUSelected}
+      showColorImages={props.showColorImages}
+      showVariationsLabels={props.showVariationsLabels}
       hideImpossibleCombinations={props.hideImpossibleCombinations}
       showValueNameForImageVariation={props.showValueNameForImageVariation}
     />

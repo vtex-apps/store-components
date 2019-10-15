@@ -45,6 +45,7 @@ Through the Storefront, you can change the `BuyButton`'s behavior and interface.
 | `showToast`          | `Boolean` | If toast with feedback should be shown after add item request is processed       | -                  |
 | `showItemsPrice`     | `Boolean` | If you want to show the total price of items to be added to cart                 | false              |
 | `customToastURL`     | `String`  | Set the link associated with the Toast created when adding an item to your cart. | `/checkout/#/cart` |
+| `shouldAddToCart`    | `Boolean` | If it should add to cart when clicked                                             | true          |
 
 ### Styles API
 
