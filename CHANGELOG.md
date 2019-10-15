@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `matchedImagesProps` and `bottomMargin` to `SKUSelector`.
+- `shouldAddToCart` to `BuyButton`.
+
+### Changed
+- Remove images that has the value of prop `excludeImageWith` on it's property `imageText` from `ProductImages`.
+- Remove or keep only the images that has the value of prop `imageTextMatch` on it's property `imageText` from `SKUSelector`.
+- `SKUSelector` will just add spaces between variations instead of adding a spacing at the end of all variations.
+
+### Fixed
+- Not calling `onSKUSelected` at second render when `SKUSelector` sets an SKU.
 
 ## [3.74.1] - 2019-10-18
 ### Fixed
@@ -40,18 +51,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.72.1] - 2019-10-11
 ### Changed
 - Update `react-share`.
-
-### Added
-- `showColorImages` and `bottomMargin` to `SKUSelector`.
-- `shouldAddToCart` to `BuyButton`.
-
-### Changed
-- Remove images that has the value of prop `excludeImageWith` on it's property `imageText` from `ProductImages`.
-- Remove or keep only the images that has the value of prop `imageTextMatch` on it's property `imageText` from `SKUSelector`.
-- `SKUSelector` will just add spaces between variations instead of adding a spacing at the end of all variations.
-
-### Fixed
-- Not calling `onSKUSelected` at second render when `SKUSelector` sets an SKU.
 
 ## [3.72.0] - 2019-10-10
 ### Added
