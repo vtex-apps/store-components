@@ -73,6 +73,7 @@ const BuyButtonWrapper = ({
   skuItems: propSkuItems,
   large: propLarge,
   disabled: propDisabled,
+  shouldAddToCart,
   customToastURL,
 }) => {
   const valuesFromContext = useProduct()
@@ -136,6 +137,7 @@ const BuyButtonWrapper = ({
       setMinicartOpen={setMinicartOpen}
       disabled={disabled}
       customToastURL={customToastURL}
+      shouldAddToCart={shouldAddToCart}
     >
       {children || (
         <BuyButtonMessage showItemsPrice={showItemsPrice} skuItems={skuItems} />

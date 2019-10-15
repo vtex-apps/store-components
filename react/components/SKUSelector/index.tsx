@@ -120,6 +120,8 @@ interface Props {
   imageHeight?: number
   imageWidth?: number
   showColorImages?: boolean
+  showVariationsLabels?: boolean
+  bottomMargin?: 'default'| 'none'
 }
 
 /**
@@ -137,13 +139,14 @@ const SKUSelectorContainer: FC<Props> = ({
   showColorImages = false,
   imageHeight,
   imageWidth,
+  bottomMargin,
+  showVariationsLabels = true,
 }) => {
   const variationsCount = keyCount(variations)
   const [
     selectedVariations,
     setSelectedVariations,
   ] = useState<SelectedVariations | null>(null)
-
   useAllSelectedEvent(selectedVariations, variationsCount)
 
   const parsedItems = useMemo(() => skuItems.map(parseSku), [skuItems])
@@ -161,8 +164,13 @@ const SKUSelectorContainer: FC<Props> = ({
     const initialVariations = skuSelected
       ? selectedVariationFromItem(parseSku(skuSelected), variations)
       : buildEmptySelectedVariation(variations)
+    if (skuSelected && onSKUSelected) {
+      onSKUSelected(skuSelected.itemId)
+    }
+
     setSelectedVariations(initialVariations)
-  }, [variations])
+    
+  }, [variations, skuSelected])
 
   const imagesMap = useImagesMap(parsedItems, variations, showColorImages)
 
@@ -244,6 +252,8 @@ const SKUSelectorContainer: FC<Props> = ({
       imageHeight={imageHeight}
       imageWidth={imageWidth}
       onSelectItem={onSelectItem}
+      bottomMargin={bottomMargin}
+      showVariationsLabels={showVariationsLabels}
       hideImpossibleCombinations={hideImpossibleCombinations}
       showValueNameForImageVariation={showValueNameForImageVariation}
     />

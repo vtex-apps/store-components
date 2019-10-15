@@ -226,3 +226,6 @@ export function changeImageUrlSize(
 
   return `${normalizedImageUrl}${queryStringSeparator}width=${width}&height=${height}&aspect=true`
 }
+
+export const DEFAULT_BOTTOM_MARGIN = 'default'
+export const NO_BOTTOM_MARGIN = 'none'

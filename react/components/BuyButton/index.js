@@ -64,6 +64,7 @@ export const BuyButton = ({
   children,
   large,
   disabled,
+  shouldAddToCart = true,
   customToastURL = CONSTANTS.CHECKOUT_URL,
 }) => {
   const handles = useCssHandles(CSS_HANDLES)
@@ -193,14 +194,16 @@ export const BuyButton = ({
             !available ||
             (orderFormContext && orderFormContext.loading)
           }
-          onClick={handleAddToCart}
           isLoading={isAddingToCart}
+          onClick={e => shouldAddToCart && handleAddToCart(e)}
         >
           {available ? (
             children
           ) : (
             <FormattedMessage id="store/buyButton-label-unavailable">
-              {message => <span className={handles.buyButtonText}>{message}</span>}
+              {message => (
+                <span className={handles.buyButtonText}>{message}</span>
+              )}
             </FormattedMessage>
           )}
         </Button>
@@ -248,6 +251,8 @@ BuyButton.propTypes = {
   isOneClickBuy: PropTypes.bool,
   /** Should open the Minicart after click */
   shouldOpenMinicart: PropTypes.bool,
+  /** If it should add to cart when clicked */
+  shouldAddToCart: PropTypes.bool,
   /** Set style to large */
   large: PropTypes.bool,
   /** Internationalization */

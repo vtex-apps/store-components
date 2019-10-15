@@ -18,6 +18,7 @@ interface Props {
   isImpossible: boolean
   imageHeight?: number | string
   imageWidth?: number | string
+  showBorders?: boolean
 }
 
 const getDiscount = (maxPrice?: number | null, price?: number | null) => {
@@ -44,6 +45,7 @@ const SelectorItem: FC<Props> = ({
   isImpossible,
   imageHeight,
   imageWidth,
+  showBorders = true,
 }) => {
   const discount = getDiscount(maxPrice, price)
 
@@ -84,9 +86,10 @@ const SelectorItem: FC<Props> = ({
       />
       <div
         className={classNames(
-          'w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden',
+          'w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden',
           {
             'hover-b--muted-2': !isSelected && !isImpossible,
+            'ba': showBorders,
           }
         )}
       >
@@ -98,6 +101,7 @@ const SelectorItem: FC<Props> = ({
         <div
           className={classNames({
             [`${styles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
+            'h-100': isImage,
           })}
         >
           {isImage && imageUrl ? (

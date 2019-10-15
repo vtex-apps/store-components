@@ -66,7 +66,9 @@ These are properties that you can customize in your `blocks.json` file.
 | hideImpossibleCombinations     | Boolean | If true, if a variation option leads to a combination that does not exist, that option won't appear. If false, it will appear but won't be pressable and will appear faded, will much less opacity. | `true`        |
 | maxItems                       | Number  | The maximum number of items to be displayed of a variation before showing the see more button. If the see more button should appear, it will be displayed `maxItems` - 2 options before the button  | `10`          |
 | showValueNameForImageVariation | Boolean | If true, show the name for the selected image variation to the right of the variation name. For example: `Color Red`, if the red color variation is selected.                                       | `false`       |
-showColorImages | Boolean | If true, it will remove all images that don't have `sku-variation` in the name, if false it will remove all images that has it. | `false` |
+| showColorImages | Boolean | If true, it will remove all images that don't have `sku-variation` in the name, if false it will remove all images that has it. | `false` |
+| variationsToShow | string[] | If you pass this array it will only display the passed names, if you pass a name that doesn't represent a variation it just doesn't show anything, which means that passing a empty array doesn't display any variation | Is `undefined, but shows every variation |
+| bottomMargin | Enum | What kind of margin should add to the last variation element (`default`, `none`), if you pass `default` it will add the same margin that is used between variations, if you pass `none` no margin will be added | `default` |
 
 #### Content API
 
