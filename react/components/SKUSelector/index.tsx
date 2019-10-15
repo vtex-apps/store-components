@@ -16,7 +16,6 @@ import {
   isColor,
   uniqueOptionToSelect,
   findItemWithSelectedVariations,
-  DEFAULT_COLOR_IMAGE_TEXT,
 } from './utils'
 import {
   ProductItem,
@@ -55,20 +54,22 @@ const selectedVariationFromItem = (
   return result
 }
 
-function keepOrExcludeColorImages(items: SelectorProductItem[], imageText: string, keep = true) {
+function useColorImages(items: SelectorProductItem[], imageText: string) {
   const imageRegex = new RegExp(imageText, 'i')
 
   return items.map(item => ({ ...item, images: item.images.filter(image => {
     if (!image.imageText) {
       return true
     }
-    return imageRegex.test(image.imageText) ? keep : !keep
+    return imageRegex.test(image.imageText)
   }) }))
 }
 
-const useImagesMap = (allItems: SelectorProductItem[], variations: Variations, imageTextMatch: string, showMatchedImages = false) => {
+const useImagesMap = (items: SelectorProductItem[], variations: Variations, thumbnailImage?: string) => {
   return useMemo(() => {
-    const items = keepOrExcludeColorImages(allItems, imageTextMatch, showMatchedImages)
+    if (thumbnailImage) {
+      items = useColorImages(items, thumbnailImage)
+    }
 
     const variationNames = Object.keys(variations)
     const result: ImageMap = {}
@@ -88,7 +89,7 @@ const useImagesMap = (allItems: SelectorProductItem[], variations: Variations, i
       result[variationName] = imageMap
     }
     return result
-  }, [allItems, variations])
+  }, [items, variations])
 }
 
 const useAllSelectedEvent = (
@@ -120,10 +121,9 @@ interface Props {
   showValueNameForImageVariation?: boolean
   imageHeight?: number
   imageWidth?: number
-  showMatchedImages?: boolean
-  imageTextMatch?: string
+  thumbnailImage?: string
   showVariationsLabels?: boolean
-  bottomMargin?: 'default'| 'none'
+  variationsSpacing?: number
 }
 
 /**
@@ -138,11 +138,10 @@ const SKUSelectorContainer: FC<Props> = ({
   skuSelected,
   hideImpossibleCombinations = true,
   showValueNameForImageVariation = false,
-  showMatchedImages = false,
-  imageTextMatch = DEFAULT_COLOR_IMAGE_TEXT,
+  thumbnailImage,
   imageHeight,
   imageWidth,
-  bottomMargin,
+  variationsSpacing,
   showVariationsLabels = true,
 }) => {
   const variationsCount = keyCount(variations)
@@ -175,7 +174,7 @@ const SKUSelectorContainer: FC<Props> = ({
     
   }, [variations, skuSelected])
 
-  const imagesMap = useImagesMap(parsedItems, variations, imageTextMatch, showMatchedImages)
+  const imagesMap = useImagesMap(parsedItems, variations, thumbnailImage)
 
   const onSelectItem = useCallback(
     ({
@@ -255,7 +254,7 @@ const SKUSelectorContainer: FC<Props> = ({
       imageHeight={imageHeight}
       imageWidth={imageWidth}
       onSelectItem={onSelectItem}
-      bottomMargin={bottomMargin}
+      variationsSpacing={variationsSpacing}
       showVariationsLabels={showVariationsLabels}
       hideImpossibleCombinations={hideImpossibleCombinations}
       showValueNameForImageVariation={showValueNameForImageVariation}

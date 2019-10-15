@@ -227,6 +227,16 @@ export function changeImageUrlSize(
   return `${normalizedImageUrl}${queryStringSeparator}width=${width}&height=${height}&aspect=true`
 }
 
-export const DEFAULT_BOTTOM_MARGIN = 'default'
+export const DEFAULT_BOTTOM_MARGIN = 7
+const MAX_POSSIBLE_MARGIN = 11
+const MIN_POSSIBLE_MARGIN = 0
+
+export function getValidMarginBottom(variationsSpacing?: number) {
+  if (typeof variationsSpacing === 'undefined') {
+    return DEFAULT_BOTTOM_MARGIN
+  }
+
+  return Math.max(Math.min(MAX_POSSIBLE_MARGIN, variationsSpacing), MIN_POSSIBLE_MARGIN)
+}
+
 export const NO_BOTTOM_MARGIN = 'none'
-export const DEFAULT_COLOR_IMAGE_TEXT = 'sku-variation'

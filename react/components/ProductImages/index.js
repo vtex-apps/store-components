@@ -26,21 +26,24 @@ const ProductImages = ({
   videos,
   position,
   zoomProps,
-  excludeImageWith,
+  hiddenImages,
   images: allImages,
   thumbnailsOrientation,
   displayThumbnailsArrows,
 }) => {
   const [, setState] = useState(0)
 
-  const excludeImageRegex = new RegExp(excludeImageWith, 'i')
+  if (!Array.isArray(hiddenImages)) {
+    hiddenImages = [hiddenImages]
+  }
 
-  // remove color images
+  const excludeImageRegexes = hiddenImages.map(text => new RegExp(text, 'i'))
+
   const images = allImages.filter(image => {
     if (!image.imageText) {
       return true
     }
-    return !excludeImageRegex.test(image.imageText)
+    return !excludeImageRegexes.some(regex => regex.test(image.imageText))
   })
 
   const debouncedGetBestUrl = debounce(() => {
@@ -83,7 +86,6 @@ const ProductImages = ({
         slides={slides}
         position={position}
         zoomProps={zoomProps}
-        excludeImageWith={excludeImageWith}
         thumbnailsOrientation={thumbnailsOrientation}
         displayThumbnailsArrows={displayThumbnailsArrows}
       />
@@ -105,7 +107,10 @@ ProductImages.propTypes = {
    * (like a image with only green to represent an SKU of something green) and you
    * want to not display this image in the ProductImages component, to do this you
    * just have to upload the image in the catalog with the value of this prop inside the imageText property */
-  excludeImageWith: PropTypes.string,
+  hiddenImages: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   /** Array of images to be passed for the Thumbnail Slider component as a props */
   images: PropTypes.arrayOf(
     PropTypes.shape({
@@ -136,7 +141,7 @@ ProductImages.defaultProps = {
   zoomProps: { zoomType: 'in-page' },
   thumbnailsOrientation: THUMBS_ORIENTATION.VERTICAL,
   displayThumbnailsArrows: false,
-  excludeImageWith: DEFAULT_EXCLUDE_IMAGE_WITH,
+  hiddenImages: DEFAULT_EXCLUDE_IMAGE_WITH,
 }
 
 export default ProductImages

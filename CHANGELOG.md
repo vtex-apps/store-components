@@ -7,12 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `matchedImagesProps` and `bottomMargin` to `SKUSelector`.
+- `matchedImagesProps`, `variationsSpacing` and `variationsSpacing` to `SKUSelector`.
 - `shouldAddToCart` to `BuyButton`.
 
 ### Changed
-- Remove images that has the value of prop `excludeImageWith` on it's property `imageText` from `ProductImages`.
-- Remove or keep only the images that has the value of prop `imageTextMatch` on it's property `imageText` from `SKUSelector`.
+- Remove images that has the value of prop `hiddenImages` on it's property `imageText` from `ProductImages`.
+- Remove or keep only the images that has the value of prop `thumbnailImage` on it's property `imageText` from `SKUSelector`.
 - `SKUSelector` will just add spaces between variations instead of adding a spacing at the end of all variations.
 
 ### Fixed
