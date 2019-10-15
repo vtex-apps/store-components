@@ -7,11 +7,10 @@ import { compose, flip, gt, filter, path, pathOr, clone } from 'ramda'
 import styles from '../styles.css'
 import {
   isColor,
-  DEFAULT_BOTTOM_MARGIN,
+  getValidMarginBottom,
   findItemWithSelectedVariations,
   findListItemsWithSelectedVariations,
 } from '../utils'
-import classnames from 'classnames'
 import {
   SelectorProductItem,
   CallbackItem,
@@ -36,7 +35,7 @@ interface Props {
   imageHeight?: number
   imageWidth?: number
   showVariationsLabels: boolean,
-  bottomMargin?: 'default'| 'none'
+  variationsSpacing?: number
 }
 
 const isSkuAvailable = compose<
@@ -229,7 +228,7 @@ const SKUSelector: FC<Props> = ({
   imageWidth,
   selectedVariations,
   showBorders,
-  bottomMargin = DEFAULT_BOTTOM_MARGIN,
+  variationsSpacing: marginBottomProp,
   showVariationsLabels,
   hideImpossibleCombinations,
   showValueNameForImageVariation,
@@ -238,6 +237,7 @@ const SKUSelector: FC<Props> = ({
     DisplayVariation[] | null
   >(null)
 
+  const variationsSpacing = getValidMarginBottom(marginBottomProp)
   const onSelectItemMemo = useCallback(
     ({
       name,
@@ -281,13 +281,11 @@ const SKUSelector: FC<Props> = ({
     return null
   }
 
+  const variationClasses = `mb${variationsSpacing}`
   return (
     <div className={styles.skuSelectorContainer}>
       {displayVariations.map((variationOption, index) => {
         const selectedItem = selectedVariations[variationOption.name]
-        const variationClasses = classnames({
-          'mb7': bottomMargin === DEFAULT_BOTTOM_MARGIN || index < displayVariations.length - 1,
-        })
 
         return (
           <Variation
@@ -300,7 +298,7 @@ const SKUSelector: FC<Props> = ({
             seeMoreLabel={seeMoreLabel}
             showLabel={showVariationsLabels}
             containerClasses={variationClasses}
-            key={`${variationOption.name}-${index}`}
+            key={`${variationOption.name}-${index}`}
             showValueNameForImageVariation={showValueNameForImageVariation}
           />
         )
