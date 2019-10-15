@@ -121,6 +121,7 @@ SearchBarContainer.propTypes = {
    * page type (e.g. a department, a brand, a category)
    */
   attemptPageTypeSearch: PropTypes.bool,
+  placeholder: PropTypes.string,
 }
 
 export default injectIntl(SearchBarContainer)
