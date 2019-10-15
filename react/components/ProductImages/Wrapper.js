@@ -28,11 +28,12 @@ const ProductImagesWrapper = props => {
 
   return (
     <ProductImages
+      images={images}
+      videos={videos}
+      excludeImageWith={props.excludeImageWith}
       zoomProps={props.zoomProps}
       position={props.position || props.thumbnailPosition} //thumbnailPosition is a legacy prop from product-details
       displayThumbnailsArrows={props.displayThumbnailsArrows}
-      images={images}
-      videos={videos}
       thumbnailsOrientation={props.thumbnailsOrientation}
     />
   )

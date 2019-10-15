@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from 'react'
 import useProduct from 'vtex.product-context/useProduct'
-import { pathOr, pick } from 'ramda'
+import { pathOr, pick, path } from 'ramda'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 import SKUSelector from './index'
@@ -41,6 +41,11 @@ const useVariations = (skuItems: ProductItem[], shouldNotShow: boolean, variatio
   return result
 }
 
+interface MatchingImagesProps {
+  showMatchedImages?: boolean
+  imageTextMatch?: string
+}
+
 interface Props {
   skuItems: ProductItem[]
   skuSelected: ProductItem
@@ -51,7 +56,7 @@ interface Props {
   showValueNameForImageVariation?: boolean
   imageHeight?: number | object
   imageWidth?: number | object
-  showColorImages?: boolean
+  matchedImagesProps?: MatchingImagesProps
   variationsToShow?: string[]
   showVariationsLabels?: boolean
   bottomMargin?: 'default' | 'none'
@@ -105,10 +110,11 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
       seeMoreLabel={props.seeMoreLabel}
       bottomMargin={props.bottomMargin}
       onSKUSelected={props.onSKUSelected}
-      showColorImages={props.showColorImages}
       showVariationsLabels={props.showVariationsLabels}
       hideImpossibleCombinations={props.hideImpossibleCombinations}
       showValueNameForImageVariation={props.showValueNameForImageVariation}
+      imageTextMatch={path(['matchedImagesProps', 'imageTextMatch'], props)}
+      showMatchedImages={pathOr(false, ['matchedImagesProps', 'showMatchedImages'], props)}
     />
   )
 }

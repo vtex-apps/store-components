@@ -16,6 +16,7 @@ import {
   isColor,
   uniqueOptionToSelect,
   findItemWithSelectedVariations,
+  DEFAULT_COLOR_IMAGE_TEXT,
 } from './utils'
 import {
   ProductItem,
@@ -54,20 +55,20 @@ const selectedVariationFromItem = (
   return result
 }
 
-const COLOR_IMAGE_REGEX = /sku-variation/i
+function keepOrExcludeColorImages(items: SelectorProductItem[], imageText: string, keep = true) {
+  const imageRegex = new RegExp(imageText, 'i')
 
-function keepOrExcludeColorImages(items: SelectorProductItem[], keep = true) {
   return items.map(item => ({ ...item, images: item.images.filter(image => {
     if (!image.imageText) {
       return true
     }
-    return COLOR_IMAGE_REGEX.test(image.imageText) ? keep : !keep
+    return imageRegex.test(image.imageText) ? keep : !keep
   }) }))
 }
 
-const useImagesMap = (items: SelectorProductItem[], variations: Variations, showColorImages = false) => {
+const useImagesMap = (allItems: SelectorProductItem[], variations: Variations, imageTextMatch: string, showMatchedImages = false) => {
   return useMemo(() => {
-    items = keepOrExcludeColorImages(items, showColorImages)
+    const items = keepOrExcludeColorImages(allItems, imageTextMatch, showMatchedImages)
 
     const variationNames = Object.keys(variations)
     const result: ImageMap = {}
@@ -87,7 +88,7 @@ const useImagesMap = (items: SelectorProductItem[], variations: Variations, show
       result[variationName] = imageMap
     }
     return result
-  }, [items, variations])
+  }, [allItems, variations])
 }
 
 const useAllSelectedEvent = (
@@ -119,7 +120,8 @@ interface Props {
   showValueNameForImageVariation?: boolean
   imageHeight?: number
   imageWidth?: number
-  showColorImages?: boolean
+  showMatchedImages?: boolean
+  imageTextMatch?: string
   showVariationsLabels?: boolean
   bottomMargin?: 'default'| 'none'
 }
@@ -136,7 +138,8 @@ const SKUSelectorContainer: FC<Props> = ({
   skuSelected,
   hideImpossibleCombinations = true,
   showValueNameForImageVariation = false,
-  showColorImages = false,
+  showMatchedImages = false,
+  imageTextMatch = DEFAULT_COLOR_IMAGE_TEXT,
   imageHeight,
   imageWidth,
   bottomMargin,
@@ -172,7 +175,7 @@ const SKUSelectorContainer: FC<Props> = ({
     
   }, [variations, skuSelected])
 
-  const imagesMap = useImagesMap(parsedItems, variations, showColorImages)
+  const imagesMap = useImagesMap(parsedItems, variations, imageTextMatch, showMatchedImages)
 
   const onSelectItem = useCallback(
     ({

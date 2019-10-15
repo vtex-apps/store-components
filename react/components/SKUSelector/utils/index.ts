@@ -229,3 +229,4 @@ export function changeImageUrlSize(
 
 export const DEFAULT_BOTTOM_MARGIN = 'default'
 export const NO_BOTTOM_MARGIN = 'none'
+export const DEFAULT_COLOR_IMAGE_TEXT = 'sku-variation'
