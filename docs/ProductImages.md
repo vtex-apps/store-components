@@ -48,6 +48,7 @@ Specification:
 | `position`                | `Enum`    | Set the position of the thumbnails(`left` or `right`). Only used when `thumbnailsOrientation` is `vertical` | `left`        |
 | `displayThumbnailsArrows` | `boolean` | Displays navigation arrows on the thumbnails if there are enough thumbnails for them to scroll              | `false`       |
 | `zoomProps`               | `Zoom`    | Configure the zoom behaviour of the main image                                                              | NA            |
+| `excludeImageRegex`       | `string`  | This is a necessary prop if you're using `SKUSelector` to display color images (like a image with only green to represent an SKU of something green) and you want to not display this image in the ProductImages component, to do this you just have to upload the image in the catalog with the value of this prop inside the imageText property | `sku-variation` |
 
 `Zoom` type:
 | Prop name | Type | Description | Default Value |

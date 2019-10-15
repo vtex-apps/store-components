@@ -46,7 +46,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `shouldAddToCart` to `BuyButton`.
 
 ### Changed
-- Remove images that has `sku-variation`on it's name from `SKUSelector` and `ProductImages`.
+- Remove images that has the value of prop `excludeImageWith` on it's property `imageText` from `ProductImages`.
+- Remove or keep only the images that has the value of prop `imageTextMatch` on it's property `imageText` from `SKUSelector`.
 - `SKUSelector` will just add spaces between variations instead of adding a spacing at the end of all variations.
 
 ### Fixed

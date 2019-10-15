@@ -4,7 +4,11 @@ import debounce from 'debounce'
 
 import Carousel from './components/Carousel'
 import styles from './styles.css'
-import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
+import {
+  THUMBS_ORIENTATION,
+  THUMBS_POSITION_HORIZONTAL,
+  DEFAULT_EXCLUDE_IMAGE_WITH,
+} from './utils/enums'
 
 const getBestUrlIndex = thresholds => {
   const windowSize = window.innerWidth
@@ -18,24 +22,25 @@ const getBestUrlIndex = thresholds => {
   return bestUrlIndex
 }
 
-const COLOR_IMAGE_REGEX = /sku-variation/i
-
 const ProductImages = ({
+  videos,
   position,
   zoomProps,
-  displayThumbnailsArrows,
-  images,
-  videos,
+  excludeImageWith,
+  images: allImages,
   thumbnailsOrientation,
+  displayThumbnailsArrows,
 }) => {
   const [, setState] = useState(0)
 
+  const excludeImageRegex = new RegExp(excludeImageWith, 'i')
+
   // remove color images
-  images = images.filter(image => {
+  const images = allImages.filter(image => {
     if (!image.imageText) {
       return true
     }
-    return !COLOR_IMAGE_REGEX.test(image.imageText)
+    return !excludeImageRegex.test(image.imageText)
   })
 
   const debouncedGetBestUrl = debounce(() => {
@@ -77,9 +82,10 @@ const ProductImages = ({
       <Carousel
         slides={slides}
         position={position}
-        displayThumbnailsArrows={displayThumbnailsArrows}
         zoomProps={zoomProps}
+        excludeImageWith={excludeImageWith}
         thumbnailsOrientation={thumbnailsOrientation}
+        displayThumbnailsArrows={displayThumbnailsArrows}
       />
     </div>
   )
@@ -95,6 +101,11 @@ ProductImages.propTypes = {
     THUMBS_ORIENTATION.VERTICAL,
     THUMBS_ORIENTATION.HORIZONTAL,
   ]),
+  /** This is a necessary prop if you're using SKUSelector to display color images
+   * (like a image with only green to represent an SKU of something green) and you
+   * want to not display this image in the ProductImages component, to do this you
+   * just have to upload the image in the catalog with the value of this prop inside the imageText property */
+  excludeImageWith: PropTypes.string,
   /** Array of images to be passed for the Thumbnail Slider component as a props */
   images: PropTypes.arrayOf(
     PropTypes.shape({
@@ -125,6 +136,7 @@ ProductImages.defaultProps = {
   zoomProps: { zoomType: 'in-page' },
   thumbnailsOrientation: THUMBS_ORIENTATION.VERTICAL,
   displayThumbnailsArrows: false,
+  excludeImageWith: DEFAULT_EXCLUDE_IMAGE_WITH,
 }
 
 export default ProductImages
