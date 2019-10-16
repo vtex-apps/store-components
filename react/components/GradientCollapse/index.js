@@ -23,11 +23,22 @@ const pointerEventsAutoClasses = state =>
   )
 
 function GradientCollapse(props) {
-  const { children, collapseHeight } = props
-  const [collapsed, setCollapsed] = useState(true)
+  const {
+    children,
+    collapseHeight,
+    onCollapsedChange,
+    collapsed: collapsedProp,
+  } = props
+  const [collapsed, setCollapsed] = useState(collapsedProp)
+  const [prevCollapsedProp, setPrevCollapsedProp] = useState(collapsedProp)
   const [maxHeight, setMaxHeight] = useState('auto')
   const [collapseVisible, setCollapseVisible] = useState(true)
   const wrapper = useRef()
+
+  if (prevCollapsedProp !== collapsedProp) {
+    setCollapsed(collapsedProp)
+    setPrevCollapsedProp(collapsedProp)
+  }
 
   const calcMaxHeight = () => {
     const wrapperEl = wrapper.current
@@ -40,6 +51,15 @@ function GradientCollapse(props) {
     }
   }
 
+  const handleCollapsedChange = (e, newValue) => {
+    setCollapsed(newValue)
+    setPrevCollapsedProp(newValue)
+
+    if (onCollapsedChange) {
+      onCollapsedChange(e, newValue)
+    }
+  }
+  console.log({ collapsedProp, prevCollapsedProp })
   const debouncedCalcMaxHeight = debounce(calcMaxHeight, 500)
   useEffect(() => {
     window.addEventListener('resize', debouncedCalcMaxHeight)
@@ -81,7 +101,7 @@ function GradientCollapse(props) {
             />
             <div className={pointerEventsAutoClasses(state)}>
               <button
-                onClick={() => setCollapsed(!collapsed)}
+                onClick={e => handleCollapsedChange(e, !collapsed)}
                 className="c-action-primary t-action pointer ma5 bn outline-0"
               >
                 {state === 'entered' || (collapsed && state !== 'exited') ? (
@@ -101,7 +121,13 @@ function GradientCollapse(props) {
 GradientCollapse.propTypes = {
   /** Maximum height collapsed */
   collapseHeight: PropTypes.number.isRequired,
+  collapsed: PropTypes.boolean,
   children: PropTypes.node,
+  onCollapsedChange: PropTypes.func,
+}
+
+GradientCollapse.defaultProps = {
+  collapsed: true,
 }
 
 export default GradientCollapse
