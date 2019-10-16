@@ -59,7 +59,7 @@ function GradientCollapse(props) {
       onCollapsedChange(e, newValue)
     }
   }
-  console.log({ collapsedProp, prevCollapsedProp })
+
   const debouncedCalcMaxHeight = debounce(calcMaxHeight, 500)
   useEffect(() => {
     window.addEventListener('resize', debouncedCalcMaxHeight)

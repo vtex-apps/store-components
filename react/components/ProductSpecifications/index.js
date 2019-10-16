@@ -30,10 +30,12 @@ const ProductSpecifications = ({
   specifications,
 }) => {
   const [currentTab, setCurrentTab] = useState(0)
+  const [collapsed, setCollapsed] = useState(true)
   const handles = useCssHandles(CSS_HANDLES)
 
   const handleTabChange = tabIndex => {
     setCurrentTab(tabIndex)
+    setCollapsed(true)
   }
 
   const getSpecificationItems = () => {
@@ -92,7 +94,11 @@ const ProductSpecifications = ({
           className={`${handles.specificationsTableContainer} mt9 mt0-l pl8-l`}
         >
           {specificationTitle}
-          <GradientCollapse collapseHeight={220}>
+          <GradientCollapse
+            collapseHeight={220}
+            collapsed={collapsed}
+            onCollapsedChange={(_, newValue) => setCollapsed(newValue)}
+          >
             <table
               className={`${handles.specificationsTable} w-100 bg-base border-collapse`}
             >
@@ -145,7 +151,11 @@ const ProductSpecifications = ({
             onClick={() => handleTabChange(i)}
           >
             <div className={`${handles.specificationsTab} pb8 c-muted-1 pv6`}>
-              <GradientCollapse collapseHeight={220}>
+              <GradientCollapse
+                collapseHeight={220}
+                collapsed={collapsed}
+                onCollapsedChange={(_, newValue) => setCollapsed(newValue)}
+              >
                 {HtmlParser(specification.specifications)}
               </GradientCollapse>
             </div>
