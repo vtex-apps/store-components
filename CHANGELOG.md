@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Make `GradientCollapse` as a Funcional Component.
+- The "See more" button from `GradientCollapse`is now a `button` instead of a `div`.
+
+### Fixed
+- `GradientCollapse` not changing the size of the container when children change.
 
 ## [3.75.1] - 2019-10-23
 ### Fixed

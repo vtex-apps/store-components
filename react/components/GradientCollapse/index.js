@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import debounce from 'debounce'
@@ -10,100 +10,93 @@ const transitionStyle = transitionTime => ({
   transition: `${transitionTime}ms ease-in-out`,
 })
 
-class GradientCollapse extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { isCollapseVisible: true, collapsed: true, maxHeight: 'auto' }
+const fadeBottomClasses = state =>
+  classNames(styles.fadeBottom, { 'o-0': state === 'entered' }, 'w-100 h-50')
+const pointerEventsAutoClasses = state =>
+  classNames(
+    styles.pointerEventsAuto,
+    {
+      'bg-transparent': state === 'entered',
+      'bg-base': state != 'entered',
+    },
+    'tc w-100'
+  )
 
-    this.wrapper = React.createRef()
-  }
+function GradientCollapse(props) {
+  const { children, collapseHeight } = props
+  const [collapsed, setCollapsed] = useState(true)
+  const [maxHeight, setMaxHeight] = useState('auto')
+  const [collapseVisible, setCollapseVisible] = useState(true)
+  const wrapper = useRef()
 
-  calcMaxHeight = () => {
-    const { collapseHeight } = this.props
-    const wrapper = this.wrapper.current
+  const calcMaxHeight = useCallback(() => {
+    const wrapperEl = wrapper.current
+    if (wrapperEl.scrollHeight > collapseHeight) {
+      setMaxHeight(wrapperEl.scrollHeight + 60)
+      setCollapseVisible(true)
+    } else {
+      setCollapseVisible(false)
+      setMaxHeight('auto')
+    }
+  }, [collapseHeight])
 
-    if (wrapper.scrollHeight > collapseHeight) {
-      const maxHeight = wrapper.scrollHeight + 60
-      this.setState({ isCollapseVisible: true, maxHeight })
-    } else this.setState({ isCollapseVisible: false, maxHeight: 'auto' })
-  }
+  const debouncedCalcMaxHeight = useCallback(debounce(calcMaxHeight, 500), [
+    calcMaxHeight,
+  ])
+  useEffect(() => {
+    window.addEventListener('resize', debouncedCalcMaxHeight)
+    calcMaxHeight()
+    return () => {
+      window.removeEventListener('resize', debouncedCalcMaxHeight)
+    }
+  }, [debouncedCalcMaxHeight, calcMaxHeight])
 
-  debouncedCalcMaxHeight = debounce(this.calcMaxHeight, 500)
+  const height = collapseVisible && collapsed ? collapseHeight : maxHeight
+  const transitionTime = 600
+  const fadeOutTime = 400
 
-  componentDidMount() {
-    window.addEventListener('resize', this.debouncedCalcMaxHeight)
-    this.calcMaxHeight()
-  }
+  const pointerEventsNoneClasses = classNames(
+    styles.pointerEventsNone,
+    { flex: collapseVisible, dn: !collapseVisible },
+    'absolute bottom-0 w-100 h-100 flex-column justify-end'
+  )
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.debouncedCalcMaxHeight)
-  }
-
-  render() {
-    const { children, collapseHeight } = this.props
-    const { collapsed, isCollapseVisible, maxHeight } = this.state
-    const height = isCollapseVisible && collapsed ? collapseHeight : maxHeight
-    const transitionTime = 600
-    const fadeOutTime = 400
-
-    const pointerEventsNoneClasses = classNames(
-      styles.pointerEventsNone,
-      { flex: isCollapseVisible, dn: !isCollapseVisible },
-      'absolute bottom-0 w-100 h-100 flex-column justify-end'
-    )
-    const fadeBottomClasses = state =>
-      classNames(
-        styles.fadeBottom,
-        { 'o-0': state === 'entered' },
-        'w-100 h-50'
-      )
-    const pointerEventsAutoClasses = state =>
-      classNames(
-        styles.pointerEventsAuto,
-        {
-          'bg-transparent': state === 'entered',
-          'bg-base': state != 'entered',
-        },
-        'tc w-100'
-      )
-
-    return (
-      <Transition timeout={transitionTime} in={!collapsed}>
-        {state => (
-          <div
-            style={{
-              ...transitionStyle(transitionTime),
-              height,
-              overflow: 'hidden',
-            }}
-            className="relative"
-          >
-            <div ref={this.wrapper} className="h-auto">
-              {children}
-            </div>
-            <div className={pointerEventsNoneClasses}>
-              <div
-                style={transitionStyle(fadeOutTime)}
-                className={fadeBottomClasses(state)}
-              />
-              <div className={pointerEventsAutoClasses(state)}>
-                <div
-                  className="c-action-primary t-action pointer ma5"
-                  onClick={() => this.setState({ collapsed: !collapsed })}
-                >
-                  {state === 'entered' || (collapsed && state !== 'exited') ? (
-                    <FormattedMessage id="store/product-description.collapse.showLess" />
-                  ) : (
-                    <FormattedMessage id="store/product-description.collapse.showMore" />
-                  )}
-                </div>
-              </div>
+  return (
+    <Transition timeout={transitionTime} in={!collapsed}>
+      {state => (
+        <div
+          style={{
+            ...transitionStyle(transitionTime),
+            height,
+            overflow: 'hidden',
+          }}
+          className="relative"
+        >
+          <div ref={wrapper} className="h-auto">
+            {children}
+          </div>
+          <div className={pointerEventsNoneClasses}>
+            <div
+              style={transitionStyle(fadeOutTime)}
+              className={fadeBottomClasses(state)}
+            />
+            <div className={pointerEventsAutoClasses(state)}>
+              <button
+                onClick={() => setCollapsed(!collapsed)}
+                className="c-action-primary t-action pointer ma5 bn"
+              >
+                {state === 'entered' || (collapsed && state !== 'exited') ? (
+                  <FormattedMessage id="store/product-description.collapse.showLess" />
+                ) : (
+                  <FormattedMessage id="store/product-description.collapse.showMore" />
+                )}
+              </button>
             </div>
           </div>
-        )}
-      </Transition>
-    )
-  }
+        </div>
+      )}
+    </Transition>
+  )
 }
 
 GradientCollapse.propTypes = {
