@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import debounce from 'debounce'
@@ -29,7 +29,7 @@ function GradientCollapse(props) {
   const [collapseVisible, setCollapseVisible] = useState(true)
   const wrapper = useRef()
 
-  const calcMaxHeight = useCallback(() => {
+  const calcMaxHeight = () => {
     const wrapperEl = wrapper.current
     if (wrapperEl.scrollHeight > collapseHeight) {
       setMaxHeight(wrapperEl.scrollHeight + 60)
@@ -38,18 +38,16 @@ function GradientCollapse(props) {
       setCollapseVisible(false)
       setMaxHeight('auto')
     }
-  }, [collapseHeight])
+  }
 
-  const debouncedCalcMaxHeight = useCallback(debounce(calcMaxHeight, 500), [
-    calcMaxHeight,
-  ])
+  const debouncedCalcMaxHeight = debounce(calcMaxHeight, 500)
   useEffect(() => {
     window.addEventListener('resize', debouncedCalcMaxHeight)
     calcMaxHeight()
     return () => {
       window.removeEventListener('resize', debouncedCalcMaxHeight)
     }
-  }, [debouncedCalcMaxHeight, calcMaxHeight])
+  })
 
   const height = collapseVisible && collapsed ? collapseHeight : maxHeight
   const transitionTime = 600
@@ -70,6 +68,7 @@ function GradientCollapse(props) {
             height,
             overflow: 'hidden',
           }}
+          onTransitionEnd={calcMaxHeight}
           className="relative"
         >
           <div ref={wrapper} className="h-auto">
@@ -83,7 +82,7 @@ function GradientCollapse(props) {
             <div className={pointerEventsAutoClasses(state)}>
               <button
                 onClick={() => setCollapsed(!collapsed)}
-                className="c-action-primary t-action pointer ma5 bn"
+                className="c-action-primary t-action pointer ma5 bn outline-0"
               >
                 {state === 'entered' || (collapsed && state !== 'exited') ? (
                   <FormattedMessage id="store/product-description.collapse.showLess" />
