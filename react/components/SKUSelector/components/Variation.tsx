@@ -33,6 +33,8 @@ const ITEMS_VISIBLE_THRESHOLD = 2
 const findSelectedOption = (selectedItem: string | null) =>
   findIndex(propEq('label', selectedItem))
 
+const noop = () => { }
+
 const Variation: FC<Props> = ({
   variation,
   maxSkuPrice,
@@ -65,20 +67,19 @@ const Variation: FC<Props> = ({
     shouldCollapse ? visibleItemsWhenCollapsed : options.length
   )
   const showAllAction = useCallback(() => setShowAll(true), [setShowAll])
-  const emptyAction = useCallback(() => {}, [])
 
   return (
     <div
       className={`${styles.skuSelectorSubcontainer} ${
         styles.skuSelectorSubcontainer
-      }--${slug(name)} flex flex-column mb7`}
+        }--${slug(name)} flex flex-column mb7`}
     >
       <div className={`${styles.skuSelectorNameContainer} ma1`}>
         <div className={`${styles.skuSelectorTextContainer} db mb3`}>
           <span
             className={`${
               styles.skuSelectorName
-            } c-muted-1 t-small overflow-hidden`}
+              } c-muted-1 t-small overflow-hidden`}
           >
             {name}
           </span>
@@ -88,14 +89,14 @@ const Variation: FC<Props> = ({
               <span
                 className={`${
                   styles.skuSelectorSelectorImageValue
-                } c-muted-1 t-small`}
+                  } c-muted-1 t-small`}
               >
                 {selectedItem}
               </span>
             </Fragment>
           )}
         </div>
-        <div className="inline-flex flex-wrap ml2 flex items-center">
+        <div className={`${styles.skuSelectorOptionsList} inline-flex flex-wrap ml2 flex items-center`}>
           {displayOptions.map(option => {
             return (
               <SelectorItem
@@ -103,7 +104,7 @@ const Variation: FC<Props> = ({
                 key={`${option.label}-${name}`}
                 isAvailable={option.available}
                 maxPrice={maxSkuPrice}
-                onClick={option.impossible ? emptyAction : option.onSelectItem}
+                onClick={option.impossible ? noop : option.onSelectItem}
                 isImage={displayImage}
                 variationValue={option.label}
                 imageHeight={imageHeight}

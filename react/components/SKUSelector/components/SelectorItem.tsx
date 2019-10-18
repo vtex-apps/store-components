@@ -97,14 +97,14 @@ const SelectorItem: FC<Props> = ({
         />
         <div
           className={classNames({
-            'c-on-base center pl5 pr5 z-1 t-body': !isImage,
+            [`${styles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
           })}
         >
           {isImage && imageUrl ? (
-            <img src={imageUrl} alt={imageLabel as string | undefined} />
+            <img className={styles.skuSelectorItemImageValue} src={imageUrl} alt={imageLabel as string | undefined} />
           ) : (
-            variationValue
-          )}
+              variationValue
+            )}
         </div>
       </div>
       {discount > 0 && (

@@ -91,3 +91,6 @@ You should follow the Styles API instruction in the main [README](/README.md#sty
 | seeMoreButton                 | `SKUSelector` see more button container                                         | [Variation](/react/components/SKUSelector/components/Variation.js)              |
 | skuSelectorSelectorImageValue | Name of selected image variation beside the variation name                      | [Variation](/react/components/SKUSelector/components/Variation.js)              |
 | skuSelectorNameSeparator      | Separator of between skuSelectorTextContainer and skuSelectorSelectorImageValue | [Variation](/react/components/SKUSelector/components/Variation.js)              |
+| skuSelectorOptionsList        | [Variation](/react/components/SKUSelector/components/Variation.js)              |
+| skuSelectorItemTextValue      | [SelectorItem](/react/components/SKUSelector/components/SelectorItem.js)        |
+| skuSelectorItemImageValue     | [SelectorItem](/react/components/SKUSelector/components/SelectorItem.js)        |
