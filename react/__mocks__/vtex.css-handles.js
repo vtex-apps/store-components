@@ -9,6 +9,10 @@ export const useCssHandles = cssHandles => {
   return handles
 }
 
+export function applyModifiers(baseClass, modifier) {
+  return `${baseClass}--${modifier}`
+}
+
 export const withCssHandles = () => Comp => {
   return class extends React.Component {
     static displayName = 'withCssHandles'

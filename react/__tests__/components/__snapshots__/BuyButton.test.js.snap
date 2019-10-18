@@ -10,23 +10,35 @@ exports[`<BuyButton /> should match snapshot loading 1`] = `
 
 exports[`<BuyButton /> should match snapshot normal 1`] = `
 <DocumentFragment>
-  <button
-    data-isloading="false"
+  <div
+    class="buyButtonContainer--available"
   >
-    Test
-  </button>
+    <button
+      data-isloading="false"
+    >
+      Test
+    </button>
+  </div>
 </DocumentFragment>
 `;
 
 exports[`<BuyButton /> should match snapshot unavailable 1`] = `
 <DocumentFragment>
-  <button
-    data-isloading="false"
-    disabled=""
+  <div
+    class="buyButtonContainer--unavailable"
   >
-    <span>
-      Unavailable
-    </span>
-  </button>
+    <button
+      data-isloading="false"
+      disabled=""
+    >
+      <div
+        class="buyButtonText"
+      >
+        <span>
+          Unavailable
+        </span>
+      </div>
+    </button>
+  </div>
 </DocumentFragment>
 `;
