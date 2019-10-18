@@ -5,7 +5,7 @@ import { path } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { useRuntime } from 'vtex.render-runtime'
 import { usePWA } from 'vtex.store-resources/PWAContext'
-import { useCssHandles, applyModifiers } from 'vtex.css-handles'
+import { useCssHandles } from 'vtex.css-handles'
 
 import { Button, ToastContext } from 'vtex.styleguide'
 
@@ -181,35 +181,29 @@ export const BuyButton = ({
     }, 500)
   }
 
-  const buttonModifier = available ? 'available' : 'unavailable'
-
   return (
     <Fragment>
       {!skuItems ? (
         <ContentLoader />
       ) : (
-        <div
-          className={applyModifiers(handles.buyButtonContainer, buttonModifier)}
+        <Button
+          block={large}
+          disabled={
+            disabled ||
+            !available ||
+            (orderFormContext && orderFormContext.loading)
+          }
+          onClick={handleAddToCart}
+          isLoading={isAddingToCart}
         >
-          <Button
-            block={large}
-            disabled={
-              disabled ||
-              !available ||
-              (orderFormContext && orderFormContext.loading)
-            }
-            onClick={handleAddToCart}
-            isLoading={isAddingToCart}
-          >
-            {available ? (
-              children
-            ) : (
-              <div className={handles.buyButtonText}>
-                <FormattedMessage id="store/buyButton-label-unavailable" />
-              </div>
-            )}
-          </Button>
-        </div>
+          {available ? (
+            children
+          ) : (
+            <FormattedMessage id="store/buyButton-label-unavailable">
+              {message => <span className={handles.buyButtonText}>{message}</span>}
+            </FormattedMessage>
+          )}
+        </Button>
       )}
     </Fragment>
   )
