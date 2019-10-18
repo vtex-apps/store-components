@@ -26,7 +26,7 @@ describe('<SKUSelector />', () => {
     await Promise.resolve()
     const selector = container.querySelector('.skuSelectorItem')
     fireEvent.click(selector)
-    expect(onSKUSelected).toBeCalledTimes(1)
+    expect(onSKUSelected).toBeCalledTimes(2)
   })
 
   it('should render only three main variations', async () => {
