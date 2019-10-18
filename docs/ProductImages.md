@@ -48,7 +48,7 @@ Specification:
 | `position`                | `Enum`    | Set the position of the thumbnails(`left` or `right`). Only used when `thumbnailsOrientation` is `vertical` | `left`        |
 | `displayThumbnailsArrows` | `boolean` | Displays navigation arrows on the thumbnails if there are enough thumbnails for them to scroll              | `false`       |
 | `zoomProps`               | `Zoom`    | Configure the zoom behaviour of the main image                                                              | NA            |
-| `hiddenImages`       | `string`  | Hides images whose labels match the values listed in this prop. Intended to be used along with the `product-summary-sku-selector` block. |
+| `hiddenImages`       | `string`  | Hides images whose labels match the values listed in this prop. Intended to be used along with the `product-summary-sku-selector` block. You can have more information at the [SKUSelector docs](/docs/SKUSelector.md) |
 
 `Zoom` type:
 | Prop name | Type | Description | Default Value |
