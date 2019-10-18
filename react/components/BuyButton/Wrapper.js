@@ -23,9 +23,9 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
   const handles = useCssHandles(MESSAGE_CSS_HANDLES)
   if (!showItemsPrice) {
     return (
-      <div className={handles.buyButtonText}>
-        <FormattedMessage id="store/buy-button.add-to-cart" />
-      </div>
+      <FormattedMessage id="store/buy-button.add-to-cart">
+        {message => <span className={handles.buyButtonText}>{message}</span>}
+      </FormattedMessage>
     )
     return
   }
@@ -45,16 +45,15 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
         handles.buttonDataContainer
       } flex w-100 justify-between items-center`}
     >
-      <div className={handles.buyButtonText}>
-        <FormattedMessage id="store/buy-button.add-to-cart" />
-      </div>
-      <div className={handles.buttonItemsPrice}>
-        <ProductPrice
-          showLabels={false}
-          showListPrice={false}
-          sellingPrice={totalPrice}
-        />
-      </div>
+      <FormattedMessage id="store/buy-button.add-to-cart">
+        {message => <span className={handles.buyButtonText}>{message}</span>}
+      </FormattedMessage>
+      <ProductPrice
+        showLabels={false}
+        showListPrice={false}
+        sellingPrice={totalPrice}
+        className={handles.buttonItemsPrice}
+      />
     </div>
   )
 }
