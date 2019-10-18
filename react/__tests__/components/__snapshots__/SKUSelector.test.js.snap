@@ -6,7 +6,7 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
     class="skuSelectorContainer"
   >
     <div
-      class="skuSelectorSubcontainer skuSelectorSubcontainer--color flex flex-column mb7"
+      class="flex flex-column mb7 skuSelectorSubcontainer skuSelectorSubcontainer--color"
     >
       <div
         class="skuSelectorNameContainer ma1"
@@ -32,13 +32,13 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
               class="frameAround absolute b--action-primary br3 bw1"
             />
             <div
-              class="w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2"
+              class="w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
             >
               <div
                 class="absolute absolute--fill"
               />
               <div
-                class=""
+                class="h-100"
               >
                 <img
                   alt=""
@@ -57,13 +57,13 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
               class="frameAround absolute b--action-primary br3 bw1"
             />
             <div
-              class="w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2"
+              class="w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
             >
               <div
                 class="absolute absolute--fill"
               />
               <div
-                class=""
+                class="h-100"
               >
                 <img
                   alt=""
@@ -82,13 +82,13 @@ exports[`<SKUSelector /> should match the snapshot 1`] = `
               class="frameAround absolute b--action-primary br3 bw1"
             />
             <div
-              class="w-100 h-100 ba br2 b b--muted-4 z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2"
+              class="w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
             >
               <div
                 class="absolute absolute--fill"
               />
               <div
-                class=""
+                class="h-100"
               >
                 <img
                   alt=""
