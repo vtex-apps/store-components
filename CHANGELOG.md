@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- problem causing the "Compras API" bot to break
+- Problem causing the "Compras API" bot to break.
 
 ## [3.74.0] - 2019-10-18
 ### Added
