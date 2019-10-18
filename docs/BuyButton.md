@@ -54,7 +54,6 @@ You should follow the Styles API instruction in the main [README](/README.md#sty
 
 | Class Name            | Description                                   | Note                                            | Modifiers                  |
 | --------------------- | --------------------------------------------- | ----------------------------------------------- | -------------------------- |
-| `buyButtonContainer`  | Container that wraps the buy button           | Modifiers appear depending on buy button state  | `available`, `unavailable` |
 | `buyButtonText`       | Contains the text displayed inside buy button |                                                 |                            |
 | `buttonDataContainer` | Wraps data inside the buy button              | Only appears when `showItemsPrice` prop is true |                            |
 | `buttonItemsPrice`    | Wraps the price displayed inside buy button   | Only appears when `showItemsPrice` prop is true |                            |
