@@ -8,6 +8,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - CSS Handles to some views in `SKUSelector`.
+- CSS classes to BuyButton.
+
+## [3.73.1] - 2019-10-18
+
+## [3.73.0] - 2019-10-15
+### Added
+- New `specificationsTablePropertyHeading`, `specificationsTableSpecificationHeading`, `specificationItemProperty` and `specificationItemSpecifications` CSS handles to `ProductSpecifications`.
+- New `resultsItemName`, `searchBarInnerContainer`, `autoCompleteOuterContainer`, `spinnerInnerContainer` and `spinnerContainer` CSS handles to `SearchBar`.
+- New `infoCardCallActionText` CSS handle to `InfoCard`.
+- New `productBrandLogoWrapper`, `productBrandLogoLink`, `productBrandLogoSpacer` and `productBrandNameSpacer` CSS handles to `ProductBrand`.
+- New `productDescriptionTitle` and `productDescriptionText` CSS handles to `ProductDescription`.
+
+### Changed
+- Added the new `css-handles` on the following components: Icon & Newsletter
+
+## [3.72.3] - 2019-10-14
+### Changed
+- In `ProductSpecifications`, use specificationGroups resolver to get translated values.
+
+## [3.72.2] - 2019-10-14
+### Fixed
+- `ProductImages`: fix thumbnails arrows when orientation is horizontal.
+
+## [3.72.1] - 2019-10-11
+### Changed
+- Update `react-share`.
+
+## [3.72.0] - 2019-10-10
+### Added
+- `imageHeight` and `imageWidth` to `SkuSelector`.
 
 ## [3.71.3] - 2019-10-03
 ### Fixed

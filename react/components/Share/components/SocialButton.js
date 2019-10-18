@@ -43,6 +43,21 @@ export default class SocialButton extends Component {
     const SocialComponent = ReactShare[`${socialComponentName}ShareButton`]
     const SocialIcon = ReactShare[`${socialComponentName}Icon`]
     const additionalProps = message && resolveMessageProp(message, socialEnum)
+
+    const icon = (
+      <SocialIcon
+        round
+        size={size}
+        className={classNames(styles.shareSocialIcon, iconClass)}
+      />
+    )
+
+    /* Pinterest requires imageUrl for the "media" prop, but
+     * it might not be loaded yet */
+    if (socialComponentName === SOCIAL_TO_ENUM.pinterest && !imageUrl) {
+      return icon
+    }
+
     return (
       <SocialComponent
         url={url}
@@ -50,11 +65,7 @@ export default class SocialButton extends Component {
         media={imageUrl}
         {...additionalProps}
       >
-        <SocialIcon
-          round
-          size={size}
-          className={classNames(styles.shareSocialIcon, iconClass)}
-        />
+        {icon}
       </SocialComponent>
     )
   }

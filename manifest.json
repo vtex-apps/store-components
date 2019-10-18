@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store-components",
-  "version": "3.71.3",
+  "version": "3.73.1",
   "title": "VTEX Store Components",
   "defaultLocale": "pt-BR",
   "description": "The VTEX store components for that render apps can use",
@@ -24,10 +24,12 @@
     "vtex.store-icons": "0.x",
     "vtex.modal": "0.x",
     "vtex.react-portal": "0.x",
+    "vtex.responsive-values": "0.x",
     "vtex.address-form": "4.x",
     "vtex.product-context": "0.x",
     "vtex.format-currency": "0.x",
-    "vtex.search-graphql": "0.x"
+    "vtex.search-graphql": "0.x",
+    "vtex.css-handles": "0.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

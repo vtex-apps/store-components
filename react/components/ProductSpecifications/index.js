@@ -1,32 +1,42 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
-import { FormattedMessage, injectIntl, intlShape } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import HtmlParser from 'react-html-parser'
-import GradientCollapse from '../GradientCollapse/index'
-
+import { useCssHandles } from 'vtex.css-handles'
 import { Tabs, Tab } from 'vtex.styleguide'
 
-import styles from './styles.css'
+import GradientCollapse from '../GradientCollapse/index'
+
+const CSS_HANDLES = [
+  'specificationsTableContainer',
+  'specificationsTabsContainer',
+  'specificationsTitle',
+  'specificationsTable',
+  'specificationsTab',
+  'specificationsTablePropertyHeading',
+  'specificationsTableSpecificationHeading',
+  'specificationItemProperty',
+  'specificationItemSpecifications',
+]
 
 /**
  * Product Specification Component.
  * Render the technical specifications of a product. Can be displayed in two views: Table view or Tabs view.
  */
-class ProductSpecifications extends Component {
-  state = { currentTab: 0 }
+const ProductSpecifications = ({
+  hiddenSpecifications,
+  visibleSpecifications,
+  tabsMode,
+  specifications,
+}) => {
+  const [currentTab, setCurrentTab] = useState(0)
+  const handles = useCssHandles(CSS_HANDLES)
 
-  handleTabChange(tabIndex) {
-    this.setState({
-      currentTab: tabIndex,
-    })
+  const handleTabChange = tabIndex => {
+    setCurrentTab(tabIndex)
   }
 
-  get specificationItems() {
-    const {
-      hiddenSpecifications,
-      visibleSpecifications,
-      specifications,
-    } = this.props
+  const getSpecificationItems = () => {
     const mappedSpecifications = specifications.map(specification => {
       return {
         property: specification.name,
@@ -63,93 +73,89 @@ class ProductSpecifications extends Component {
     return mappedSpecifications
   }
 
-  get specificationTitle() {
-    return (
-      <FormattedMessage id="store/technicalspecifications.title">
-        {txt => (
-          <h2 className={`${styles.specificationsTitle} t-heading-5 mb5 mt0`}>
-            {HtmlParser(txt)}
-          </h2>
-        )}
-      </FormattedMessage>
-    )
-  }
+  const specificationItems = getSpecificationItems()
 
-  get tableView() {
-    const { specifications } = this.props
+  const specificationTitle = (
+    <FormattedMessage id="store/technicalspecifications.title">
+      {txt => (
+        <h2 className={`${handles.specificationsTitle} t-heading-5 mb5 mt0`}>
+          {HtmlParser(txt)}
+        </h2>
+      )}
+    </FormattedMessage>
+  )
 
-    return (
-      <Fragment>
-        {specifications.length > 0 && (
-          <div
-            className={`${styles.specificationsTableContainer} mt9 mt0-l pl8-l`}
-          >
-            {this.specificationTitle}
-            <GradientCollapse collapseHeight={220}>
-              <table
-                className={`${
-                  styles.specificationsTable
-                } w-100 bg-base border-collapse`}
-              >
-                <thead>
-                  <tr>
-                    <th className="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5">
-                      <FormattedMessage id="store/product-description.property" />
-                    </th>
-                    <th className="w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5">
-                      <FormattedMessage id="store/product-description.specification" />
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.specificationItems.map((specification, i) => (
-                    <tr key={i}>
-                      <td className="w-50 b--muted-4 bb pa5">
-                        {HtmlParser(specification.property)}
-                      </td>
-                      <td className="w-50 b--muted-4 bb pa5">
-                        {HtmlParser(specification.specifications)}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </GradientCollapse>
-          </div>
-        )}
-      </Fragment>
-    )
-  }
-
-  get tabsView() {
-    const { currentTab } = this.state
-
-    return (
-      <div className={`${styles.specificationsTabsContainer} pt8`}>
-        {this.specificationTitle}
-        <Tabs fullWidth>
-          {this.specificationItems.map((specification, i) => (
-            <Tab
-              key={i}
-              label={HtmlParser(specification.property)}
-              active={currentTab === i}
-              onClick={() => this.handleTabChange(i)}
+  const tableView = (
+    <Fragment>
+      {specifications.length > 0 && (
+        <div
+          className={`${handles.specificationsTableContainer} mt9 mt0-l pl8-l`}
+        >
+          {specificationTitle}
+          <GradientCollapse collapseHeight={220}>
+            <table
+              className={`${handles.specificationsTable} w-100 bg-base border-collapse`}
             >
-              <div className={`${styles.specificationsTab} pb8 c-muted-1 pv6`}>
-                <GradientCollapse collapseHeight={220}>
-                  {HtmlParser(specification.specifications)}
-                </GradientCollapse>
-              </div>
-            </Tab>
-          ))}
-        </Tabs>
-      </div>
-    )
-  }
+              <thead>
+                <tr>
+                  <th
+                    className={`${handles.specificationsTablePropertyHeading} w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5`}
+                  >
+                    <FormattedMessage id="store/product-description.property" />
+                  </th>
+                  <th
+                    className={`${handles.specificationsTableSpecificationHeading} w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5`}
+                  >
+                    <FormattedMessage id="store/product-description.specification" />
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {specificationItems.map((specification, i) => (
+                  <tr key={i}>
+                    <td
+                      className={`${handles.specificationItemProperty} w-50 b--muted-4 bb pa5`}
+                    >
+                      {HtmlParser(specification.property)}
+                    </td>
+                    <td
+                      className={`${handles.specificationItemSpecifications} w-50 b--muted-4 bb pa5`}
+                    >
+                      {HtmlParser(specification.specifications)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </GradientCollapse>
+        </div>
+      )}
+    </Fragment>
+  )
 
-  render() {
-    return this.props.tabsMode ? this.tabsView : this.tableView
-  }
+  const tabsView = (
+    <div className={`${handles.specificationsTabsContainer} pt8`}>
+      {specificationTitle}
+      <Tabs fullWidth>
+        {specificationItems.map((specification, i) => (
+          <Tab
+            key={i}
+            label={HtmlParser(specification.property)}
+            active={currentTab === i}
+            onClick={() => handleTabChange(i)}
+          >
+            <div className={`${handles.specificationsTab} pb8 c-muted-1 pv6`}>
+              <GradientCollapse collapseHeight={220}>
+                {HtmlParser(specification.specifications)}
+              </GradientCollapse>
+            </div>
+          </Tab>
+        ))}
+      </Tabs>
+    </div>
+  )
+
+  return tabsMode ? tabsView : tableView
 }
 
 ProductSpecifications.defaultProps = {
@@ -158,8 +164,6 @@ ProductSpecifications.defaultProps = {
 }
 
 ProductSpecifications.propTypes = {
-  /** Intl object to provides internationalization */
-  intl: intlShape.isRequired,
   /** Specifications that will be displayed on the table */
   specifications: PropTypes.arrayOf(
     PropTypes.shape({
@@ -177,4 +181,4 @@ ProductSpecifications.propTypes = {
   hiddenSpecifications: PropTypes.array,
 }
 
-export default injectIntl(ProductSpecifications)
+export default ProductSpecifications
