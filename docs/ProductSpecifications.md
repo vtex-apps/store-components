@@ -48,6 +48,7 @@ Through the Storefront, you can change the `ProductSpecifications`'s behavior an
 | hiddenSpecifications  | `String[]` | Type names of specifications you want to hide                                                                          | `[]`          |
 | visibleSpecifications | `String[]` | Type names of specifications you want to appear. Only provide one of `hiddenSpecifications` or `visibleSpecifications` | `[]`          |
 | showSpecificationsTab | `Boolean`  | Choose if you want to show the component with tabs mode                                                                | `false`       |
+| shoudCollapseOnTabChange | `Boolean` | If it should collapse if you change the tab | `false` |
 
 ### Styles API
 
