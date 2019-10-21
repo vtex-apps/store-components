@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import debounce from 'debounce'
@@ -61,7 +61,7 @@ function GradientCollapse(props) {
   }
 
   const debouncedCalcMaxHeight = debounce(calcMaxHeight, 500)
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener('resize', debouncedCalcMaxHeight)
     calcMaxHeight()
     return () => {
