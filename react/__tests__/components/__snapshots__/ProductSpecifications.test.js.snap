@@ -66,13 +66,13 @@ exports[`<ProductSpecifications /> component should match snapshot with table vi
         <div
           class="pointerEventsAuto bg-base tc w-100"
         >
-          <div
-            class="c-action-primary t-action pointer ma5"
+          <button
+            class="c-action-primary t-action pointer ma5 bn outline-0"
           >
             <span>
               Show more
             </span>
-          </div>
+          </button>
         </div>
       </div>
     </div>
@@ -120,13 +120,13 @@ exports[`<ProductSpecifications /> component should match snapshot with tabs vie
               <div
                 class="pointerEventsAuto bg-base tc w-100"
               >
-                <div
-                  class="c-action-primary t-action pointer ma5"
+                <button
+                  class="c-action-primary t-action pointer ma5 bn outline-0"
                 >
                   <span>
                     Show more
                   </span>
-                </div>
+                </button>
               </div>
             </div>
           </div>
