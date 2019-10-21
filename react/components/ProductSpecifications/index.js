@@ -24,10 +24,11 @@ const CSS_HANDLES = [
  * Render the technical specifications of a product. Can be displayed in two views: Table view or Tabs view.
  */
 const ProductSpecifications = ({
-  hiddenSpecifications,
-  visibleSpecifications,
   tabsMode,
   specifications,
+  hiddenSpecifications,
+  visibleSpecifications,
+  shouldCollapseInTabChange,
 }) => {
   const [currentTab, setCurrentTab] = useState(0)
   const [collapsed, setCollapsed] = useState(true)
@@ -35,7 +36,9 @@ const ProductSpecifications = ({
 
   const handleTabChange = tabIndex => {
     setCurrentTab(tabIndex)
-    setCollapsed(true)
+    if (shouldCollapseInTabChange) {
+      setCollapsed(true)
+    }
   }
 
   const getSpecificationItems = () => {
@@ -171,6 +174,7 @@ const ProductSpecifications = ({
 ProductSpecifications.defaultProps = {
   specifications: [],
   tabsMode: false,
+  shouldCollapseInTabChange: false,
 }
 
 ProductSpecifications.propTypes = {
@@ -183,6 +187,8 @@ ProductSpecifications.propTypes = {
       values: PropTypes.arrayOf(PropTypes.string).isRequired,
     })
   ),
+  /** If should collapse when a tab is changed */
+  shouldCollapseInTabChange: PropTypes.bool,
   /** Tabs mode view */
   tabsMode: PropTypes.bool,
   /** Specifications which will be shown exclusively (optional) */
