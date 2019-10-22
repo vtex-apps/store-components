@@ -42,6 +42,8 @@ function GradientCollapse(props) {
 
   const calcMaxHeight = () => {
     const wrapperEl = wrapper.current
+    // check if the content is smaller than the passed
+    // height to collapse
     if (wrapperEl.scrollHeight > collapseHeight) {
       setMaxHeight(wrapperEl.scrollHeight + 60)
       setCollapseVisible(true)
