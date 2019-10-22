@@ -6,6 +6,7 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import { IOMessage } from 'vtex.native-types'
 import { useRuntime } from 'vtex.render-runtime'
 import { formatCurrency } from 'vtex.format-currency'
+import { useCssHandles } from 'vtex.css-handles'
 
 import ProductPriceLoader from './Loader'
 import PricePropTypes from './propTypes'
@@ -13,6 +14,22 @@ import Installments from './Installments'
 import Price from './Price'
 
 import productPrice from './styles.css'
+
+const CSS_HANDLES = ['price_className',
+  'price_loader',
+  'price_listPriceContainer',
+  'price_listPriceLabel',
+  'price_listPrice',
+  'price_listPriceRange',
+  'price_sellingPriceRange',
+  'price_sellingPriceContainer',
+  'price_sellingPriceLabel',
+  'price_sellingPrice',
+  'price_savingsContainer',
+  'price_savings',
+  'price_installment',
+  'price_interestRate',
+  'price_installmentContainer']
 
 const isValidPriceRange = priceRange => {
   const [lowPrice, highPrice] = priceRange
@@ -95,6 +112,8 @@ const ProductPrice = (props, context) => {
 
   const { culture } = useRuntime()
 
+  const handles = useCssHandles(CSS_HANDLES)
+
   let { classes } = props
 
   // avoiding undefined verifications
@@ -104,7 +123,7 @@ const ProductPrice = (props, context) => {
   }
 
   if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
-    return <ProductPriceLoader loaderClass={loaderClass} {...styles} />
+    return <ProductPriceLoader loaderClass={`${loaderClass} ${handles.price_loader}`} {...styles} />
   }
 
   const mayShowListPrice = canShowListPrice(props)
@@ -113,12 +132,13 @@ const ProductPrice = (props, context) => {
   const listPriceRange = listPriceList && getPriceRange(listPriceList)
 
   return (
-    <div className={classNames(productPrice.priceContainer, className)}>
+    <div className={classNames(productPrice.priceContainer, className, handles.price_className)}>
       {mayShowListPrice && (
         <div
           className={classNames(
             productPrice.listPrice,
-            listPriceContainerClass
+            listPriceContainerClass,
+            handles.price_listPriceContainer
           )}
         >
           {showLabels && (
@@ -126,6 +146,7 @@ const ProductPrice = (props, context) => {
               className={classNames(
                 productPrice.listPriceLabel,
                 listPriceLabelClass,
+                handles.price_listPriceLabel,
                 'dib ph2 t-small-ns t-mini'
               )}
             >
@@ -138,11 +159,13 @@ const ProductPrice = (props, context) => {
             price={listPrice}
             rangeContainerClasses={classNames(
               productPrice.listPriceValue,
-              listPriceRangeClass
+              listPriceRangeClass,
+              handles.price_listPriceRange,
             )}
             singleContainerClasses={classNames(
               productPrice.listPriceValue,
-              listPriceClass
+              listPriceClass,
+              handles.price_listPrice
             )}
           />
         </div>
@@ -151,14 +174,16 @@ const ProductPrice = (props, context) => {
         className={classNames(
           productPrice.sellingPrice,
           productPrice.sellingPriceContainer,
-          sellingPriceContainerClass
+          sellingPriceContainerClass,
+          handles.price_sellingPriceContainer
         )}
       >
         {showLabels && mayShowListPrice && (
           <div
             className={classNames(
               productPrice.sellingPriceLabel,
-              sellingPriceLabelClass
+              sellingPriceLabelClass,
+              handles.price_sellingPriceLabel
             )}
           >
             <IOMessage id={labelSellingPrice} />
@@ -172,12 +197,14 @@ const ProductPrice = (props, context) => {
             productPrice.sellingPrice,
             productPrice.sellingPriceValue,
             productPrice['sellingPriceValue--range'],
-            sellingPriceRangeClass
+            sellingPriceRangeClass,
+            handles.price_sellingPriceRange
           )}
           singleContainerClasses={classNames(
             productPrice.sellingPrice,
             productPrice.sellingPriceValue,
-            sellingPriceClass
+            sellingPriceClass,
+            handles.price_sellingPrice
           )}
         />
       </div>
@@ -185,20 +212,21 @@ const ProductPrice = (props, context) => {
         <Installments
           installments={installments}
           showLabels={showLabels}
-          className={installmentContainerClass}
-          interestRateClass={interestRateClass}
-          installmentClass={installmentClass}
+          className={`${installmentContainerClass} ${handles.price_installmentContainer}`}
+          interestRateClass={`${interestRateClass} ${handles.price_interestRate}`}
+          installmentClass={`${installmentClass} ${handles.price_installment}`}
         />
       )}
       {mayShowListPrice && showSavings && (
         <div
           className={classNames(
             productPrice.savingPrice,
-            savingsContainerClass
+            savingsContainerClass,
+            handles.price_savingsContainer
           )}
         >
           <div
-            className={classNames(productPrice.savingPriceValue, savingsClass)}
+            className={classNames(productPrice.savingPriceValue, savingsClass, handles.price_savings)}
           >
             <FormattedMessage
               id="store/pricing.savings"
