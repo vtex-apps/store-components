@@ -1,7 +1,8 @@
-import React, { useRef, useCallback } from 'react'
+import React, { useRef, useCallback, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import Downshift from 'downshift'
+import debounce from 'debounce'
 import { NoSSR } from 'vtex.render-runtime'
 import { Overlay } from 'vtex.react-portal'
 import { useRuntime } from 'vtex.render-runtime'
@@ -11,10 +12,10 @@ import AutocompleteInput from './AutocompleteInput'
 import ResultsLists from './ResultsList'
 
 const CSS_HANDLES = ['searchBarContainer', 'searchBarInnerContainer']
+const SEARCH_DELAY_TIME = 500
 
 const SearchBar = ({
   placeholder,
-  onMakeSearch,
   onInputChange,
   onGoToSearchPage,
   onClearInput,
@@ -30,6 +31,18 @@ const SearchBar = ({
   const container = useRef()
   const { navigate } = useRuntime()
   const handles = useCssHandles(CSS_HANDLES)
+  const [searchTerm, setSearchTerm] = useState(inputValue)
+
+  const debouncedSetSearchTerm = useCallback(
+    debounce(newValue => {
+      setSearchTerm(newValue)
+    }, SEARCH_DELAY_TIME),
+    []
+  )
+
+  useEffect(() => {
+    debouncedSetSearchTerm(inputValue)
+  }, [debouncedSetSearchTerm, inputValue])
 
   const onSelect = useCallback(
     element => {
@@ -78,7 +91,6 @@ const SearchBar = ({
   const fallback = (
     <AutocompleteInput
       placeholder={placeholder}
-      onMakeSearch={onMakeSearch}
       onInputChange={onInputChange}
       inputValue={inputValue}
       hasIconLeft={hasIconLeft}
@@ -115,6 +127,7 @@ const SearchBar = ({
               )}
             >
               <AutocompleteInput
+                // eslint-disable-next-line jsx-a11y/no-autofocus
                 autoFocus={autoFocus}
                 compactMode={compactMode}
                 onClearInput={onClearInput}
@@ -141,7 +154,7 @@ const SearchBar = ({
                     attemptPageTypeSearch,
                     isOpen,
                     getMenuProps,
-                    inputValue,
+                    inputValue: searchTerm,
                     getItemProps,
                     selectedItem,
                     highlightedIndex,
@@ -163,10 +176,6 @@ SearchBar.propTypes = {
   placeholder: PropTypes.string.isRequired,
   /** Current value of the input */
   inputValue: PropTypes.string.isRequired,
-  /** Variable that controls when the search should be made */
-  shouldSearch: PropTypes.bool.isRequired,
-  /** Function that controls when the search should be executed */
-  onMakeSearch: PropTypes.func.isRequired,
   /** Function to handle input changes */
   onInputChange: PropTypes.func.isRequired,
   /** Function to direct the user to the searchPage */
