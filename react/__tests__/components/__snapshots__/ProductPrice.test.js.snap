@@ -3,13 +3,13 @@
 exports[`<ProductPrice /> should match snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="priceContainer"
+    class="priceContainer price_className"
   >
     <div
-      class="sellingPrice sellingPriceContainer"
+      class="sellingPrice sellingPriceContainer price_sellingPriceContainer"
     >
       <span
-        class="sellingPrice sellingPriceValue"
+        class="sellingPrice sellingPriceValue price_sellingPrice"
       >
         $40.00
       </span>
@@ -21,7 +21,7 @@ exports[`<ProductPrice /> should match snapshot 1`] = `
 exports[`<ProductPrice /> should match snapshot Loader 1`] = `
 <DocumentFragment>
   <div
-    class="priceContainer priceLoaderContainer"
+    class="priceContainer priceLoaderContainer  price_loader"
   >
     <svg
       class="content-loader-mock"

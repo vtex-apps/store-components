@@ -57,24 +57,20 @@ You should follow the Styles API instruction in the main [README](/README.md#sty
 
 Below, we describe the namespace that are defined in the `ProductPrice`.
 
-| Class name                 | Description                                         | Component Source                                               |
-| -------------------------- | --------------------------------------------------- | -------------------------------------------------------------- |
-| `priceContainer`           | The main container of `ProductPrice`                | [index](/react/components/ProductPrice/index.js)               |
-| `listPrice`                | The list price container                            | [index](/react/components/ProductPrice/index.js)               |
-| `listPriceLabel`           | The list price label                                | [index](/react/components/ProductPrice/index.js)               |
-| `listPriceValue`           | The list price value                                | [index](/react/components/ProductPrice/index.js)               |
-| `sellingPrice`             | **DEPRECATED** Use `sellingPriceContainer` instead  | [index](/react/components/ProductPrice/index.js)               |
-| `sellingPriceContainer`    | The selling price container                         | [index](/react/components/ProductPrice/index.js)               |
-| `sellingPriceLabel`        | The selling price label                             | [index](/react/components/ProductPrice/index.js)               |
-| `sellingPriceValue`        | The selling price value                             | [index](/react/components/ProductPrice/index.js)               |
-| `sellingPriceValue--range` | Class added when is showing the selling price range | [index](/react/components/ProductPrice/index.js)               |
-| `savingPrice`              | The saving price container                          | [index](/react/components/ProductPrice/index.js)               |
-| `savingPriceValue`         | The saving price value                              | [index](/react/components/ProductPrice/index.js)               |
-| `installmentsPrice`        | The installments price container                    | [Installments](/react/components/ProductPrice/Installments.js) |
-| `interestRatePrice`        | The interest rate price                             | [Installments](/react/components/ProductPrice/Installments.js) |
-| `priceLoaderContainer`     | The container of the `ProductPrice` loader          | [index](/react/components/ProductPrice/index.js)               |
-| `listPriceLoader`          | The list price loader                               | [index](/react/components/ProductPrice/index.js)               |
-| `sellingPriceLabelLoader`  | The selling price loader label                      | [index](/react/components/ProductPrice/index.js)               |
-| `sellingPriceLoader`       | The selling price loader                            | [index](/react/components/ProductPrice/index.js)               |
-| `installmentsPriceLoader`  | The installments price loader                       | [index](/react/components/ProductPrice/index.js)               |
-| `savingsPriceLoader`       | The savings price loader                            | [index](/react/components/ProductPrice/index.js)               |
+| Class name                 | 
+| -------------------------- |
+| `price_className` |
+| `price_loader` |
+| `price_listPriceContainer` |
+| `price_listPriceLabel` |
+| `price_listPrice` |
+| `price_listPriceRange` |
+| `price_sellingPriceRange` |
+| `price_sellingPriceContainer` |
+| `price_sellingPriceLabel` |
+| `price_sellingPrice` |
+| `price_savingsContainer` |
+| `price_savings` |
+| `price_installment` |
+| `price_interestRate` |
+| `price_installmentContainer` |
