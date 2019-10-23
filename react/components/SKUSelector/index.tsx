@@ -7,7 +7,7 @@ import React, {
   FC,
 } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
-import { filter, head, isEmpty, compose, keys, length } from 'ramda'
+import { filter, head, isEmpty, compose, keys, length, path } from 'ramda'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 import SKUSelector from './components/SKUSelector'
@@ -166,13 +166,15 @@ const SKUSelectorContainer: FC<Props> = ({
     const initialVariations = skuSelected
       ? selectedVariationFromItem(parseSku(skuSelected), variations)
       : buildEmptySelectedVariation(variations)
+
+      setSelectedVariations(initialVariations)
+    }, [variations])
+
+  useEffect(() => {
     if (skuSelected && onSKUSelected) {
       onSKUSelected(skuSelected.itemId)
     }
-
-    setSelectedVariations(initialVariations)
-    
-  }, [variations, skuSelected])
+  }, [path(['itemId'], skuSelected)])
 
   const imagesMap = useImagesMap(parsedItems, variations, thumbnailImage)
 
