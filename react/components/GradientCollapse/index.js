@@ -89,6 +89,7 @@ function GradientCollapse(props) {
             ...transitionStyle(transitionTime),
             height,
             overflow: 'hidden',
+            display: 'block',
           }}
           onTransitionEnd={calcMaxHeight}
           className="relative"
