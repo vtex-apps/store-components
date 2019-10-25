@@ -62,7 +62,7 @@ const ProductImages = ({
   }, [debouncedGetBestUrl])
 
   const slides = useMemo(() => {
-    if (!images.length && !videos.length) return
+    if (!images.length && !videos.length) return []
 
     return [
       ...images.map(image => ({
