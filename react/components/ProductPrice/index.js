@@ -217,7 +217,7 @@ const ProductPrice = (props, context) => {
           installmentClass={`${installmentClass} ${handles.price_installment}`}
         />
       )}
-      {mayShowListPrice && showSavings && (
+      {mayShowListPrice && showSavings && (listPrice - sellingPrice > 0) && (
         <div
           className={classNames(
             productPrice.savingPrice,
