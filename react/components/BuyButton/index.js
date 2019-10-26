@@ -148,7 +148,7 @@ export const BuyButton = ({
         const { items } = mutationRes.data.addItem
 
         success = skuItems.filter(
-          skuItem => !!items.find(({ id }) => id === skuItem.skuId)
+          skuItem => !!items.find(({ id, seller }) => id === skuItem.skuId && seller === skuItem.seller)
         )
         await orderFormContext.refetch().catch(() => null)
       }
@@ -156,13 +156,12 @@ export const BuyButton = ({
       const addedItem =
         (linkStateItems &&
           skuItems.filter(
-            skuItem => !!linkStateItems.find(({ id }) => id === skuItem.skuId)
+            skuItem => !!linkStateItems.find(({ id, seller }) => id === skuItem.skuId && seller === skuItem.seller)
           )) ||
         success
 
-      const foundItem =
-        orderFormItems &&
-        orderFormItems.filter(item => item.id === addedItem[0].skuId).length > 0
+      const foundItem = addedItem.length && orderFormItems && orderFormItems
+        .filter(item => item.id === addedItem[0].skuId && item.seller === addedItem[0].seller).length > 0
 
       success = addedItem
 

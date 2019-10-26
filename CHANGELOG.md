@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Support to block class.
 
+### Fixed
+- Verify that the item has been added to the cart by filtering `skuId` and `seller` in the BuyButton.
+
 ## [3.85.0] - 2019-11-12
 ### Added
 - Option to edit `visibleSpecifications` and `hiddenSpecifications` in Site Editor.
