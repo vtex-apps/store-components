@@ -27,6 +27,7 @@ const SearchBar = ({
   autoFocus,
   maxWidth,
   attemptPageTypeSearch,
+  customSearchPageUrl,
 }) => {
   const container = useRef()
   const { navigate } = useRuntime()
@@ -53,6 +54,14 @@ const SearchBar = ({
       if (element.term) {
         if (attemptPageTypeSearch) {
           window.location.href = `/${element.term}`
+          return
+        }
+
+        if (customSearchPageUrl) {
+          navigate({
+            to: customSearchPageUrl.replace(/\$\{term\}/g, element.term),
+          })
+
           return
         }
 
@@ -85,7 +94,7 @@ const SearchBar = ({
 
       navigate({ page, params, query })
     },
-    [navigate, attemptPageTypeSearch]
+    [navigate, attemptPageTypeSearch, customSearchPageUrl]
   )
 
   const fallback = (
@@ -160,6 +169,7 @@ const SearchBar = ({
                     highlightedIndex,
                     closeMenu,
                     onClearInput,
+                    customSearchPageUrl,
                   }}
                 />
               </Overlay>
@@ -188,10 +198,14 @@ SearchBar.propTypes = {
   hasIconLeft: PropTypes.bool,
   /** Custom classes for the search icon */
   iconClasses: PropTypes.string,
+  /** Block class for the search icon */
+  iconBlockClass: PropTypes.string,
   /** Identify if the search input should autofocus or not */
   autoFocus: PropTypes.bool,
   /** Max width of the search bar */
   maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
+  customSearchPageUrl: PropTypes.string,
   iconBlockClass: PropTypes.string,
   attemptPageTypeSearch: PropTypes.bool,
 }

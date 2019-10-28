@@ -59,6 +59,7 @@ const ResultsList = ({
   getMenuProps,
   highlightedIndex,
   attemptPageTypeSearch,
+  customSearchPageUrl,
 }) => {
   const items = data.autocomplete ? data.autocomplete.itemsReturned : []
   const {
@@ -118,6 +119,31 @@ const ResultsList = ({
     />
   )
 
+  const renderSearchByClick = inputValue => {
+    return customSearchPageUrl ? (
+      <Link
+        className={getListItemClassNames({
+          itemIndex: 0,
+          highlightedIndex,
+        })}
+        to={customSearchPageUrl.replace(/\$\{term\}/g, inputValue)}>
+        {fullTextSearchLabel}
+      </Link>
+    ) : (
+      <Link
+        page="store.search"
+        params={{ term: inputValue }}
+        query="map=ft"
+        className={getListItemClassNames({
+          itemIndex: 0,
+          highlightedIndex,
+        })}
+      >
+        {fullTextSearchLabel}
+      </Link>
+    )
+  }
+
   return (
     <div style={listStyle}>
       <ul className={listClassNames} {...getMenuProps()}>
@@ -148,17 +174,7 @@ const ResultsList = ({
                     {fullTextSearchLabel}
                   </a>
                 ) : (
-                  <Link
-                    page="store.search"
-                    params={{ term: inputValue }}
-                    query="map=ft"
-                    className={getListItemClassNames({
-                      itemIndex: 0,
-                      highlightedIndex,
-                    })}
-                  >
-                    {fullTextSearchLabel}
-                  </Link>
+                  renderSearchByClick(inputValue)
                 )}
               </li>
 
@@ -237,6 +253,8 @@ ResultsList.propTypes = {
   onClearInput: PropTypes.func,
   /** Downshift function */
   getItemProps: PropTypes.func,
+  /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
+  customSearchPageUrl: PropTypes.string,
   isOpen: PropTypes.bool,
   getMenuProps: PropTypes.func,
   attemptPageTypeSearch: PropTypes.bool,
