@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
--  `GradientCollapse` not working if it's parent doesn't control the `collapse` state.
+-  `GradientCollapse` not working if its parent doesn't control the `collapse` state.
 
 ## [3.79.0] - 2019-10-28
 ### Added
