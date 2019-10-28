@@ -82,7 +82,7 @@
   "image": {
     "component": "Image",
     "content": {
-      "$ref": "app:vtex.store-components#/definitions/Image"
+      "$ref": "app:vtex.store-image#/definitions/Image"
     }
   }
 }

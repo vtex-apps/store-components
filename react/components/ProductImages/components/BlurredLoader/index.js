@@ -37,7 +37,10 @@ class BlurredLoader extends React.Component {
     }
 
     const hdImageLoader = new Image()
-    hdImageLoader.src = imageUrlForSize(realUrls[bestUrlIndex], IMAGE_DEFAULT_SIZE)
+    hdImageLoader.src = imageUrlForSize(
+      realUrls[bestUrlIndex],
+      IMAGE_DEFAULT_SIZE
+    )
 
     hdImageLoader.onerror = () => {
       let { realUrlIndex } = this.state
@@ -124,7 +127,10 @@ class BlurredLoader extends React.Component {
       'o-0': !loading,
     })
 
-    const fixedImage = imageUrlForSize(realUrls[realUrlIndex], IMAGE_DEFAULT_SIZE)
+    const fixedImage = imageUrlForSize(
+      realUrls[realUrlIndex],
+      IMAGE_DEFAULT_SIZE
+    )
 
     return (
       <div
@@ -148,10 +154,10 @@ class BlurredLoader extends React.Component {
               minRatio={imageMinRatio}
               className={`w-100 ${styles.imageBlur30} ${
                 styles.imageTransitionOpacity
-              } db z-2 ${loadingClass} ${className}`}
+              } db z-2 ${loadingClass} ${className ? className : ''}`}
             />
             <ImageResizer
-              alt=""
+              alt={alt}
               src={fixedImage}
               minRatio={imageMinRatio}
               className={`absolute z-1 w-100 center left-0 right-0 bottom-0 top-0 ${

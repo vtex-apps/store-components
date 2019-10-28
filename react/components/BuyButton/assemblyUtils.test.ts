@@ -1,4 +1,8 @@
-import { transformAssemblyOptions, ItemOption, InputValuesOption } from './assemblyUtils'
+import {
+  transformAssemblyOptions,
+  ItemOption,
+  InputValuesOption,
+} from './assemblyUtils'
 import { customBell, comboPizza, starColor } from './__mocks__/assemblyOptions'
 
 test('should transform assemblyOptions', () => {
@@ -9,7 +13,7 @@ test('should transform assemblyOptions', () => {
     customBell.items,
     {},
     parentPrice,
-    parentQuantity,
+    parentQuantity
   )
 
   expect(resultBell.options).toHaveLength(5)
@@ -23,7 +27,7 @@ test('should transform assemblyOptions', () => {
     comboPizza.items,
     {},
     parentPrice,
-    parentQuantity,
+    parentQuantity
   )
 
   expect(resultPizza.options).toHaveLength(2)
@@ -46,7 +50,7 @@ test('input values', () => {
     starColor.items,
     starColor.inputValues,
     parentPrice,
-    parentQuantity,
+    parentQuantity
   )
 
   expect(resultStar.options).toHaveLength(1)
@@ -58,4 +62,19 @@ test('input values', () => {
     'Back text': 'Verso',
     'Glossy print': true,
   })
+})
+
+test('empty input values should result in empty options', () => {
+  const parentPrice = 450
+  const parentQuantity = 1
+
+  const resultStar = transformAssemblyOptions(
+    starColor.items,
+    {
+      Customization: {},
+    },
+    parentPrice,
+    parentQuantity
+  )
+  expect(resultStar.options.length).toBe(0)
 })

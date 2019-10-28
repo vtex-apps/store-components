@@ -9,6 +9,105 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `customSearchPageUrl` prop to `SearchBar`.
 
+## [3.78.3] - 2019-10-25
+### Fixed
+- Case where slides prop would be undefined and cause crash on ProductImages.
+
+## [3.78.2] - 2019-10-25
+### Fixed
+- Price savings to prevent it from showing `Save 0`.
+
+## [3.78.1] - 2019-10-24
+### Fixed
+- `GradientCollapse` in safari not giving the full size to it's children.
+
+## [3.78.0] - 2019-10-24
+### Fixed
+- `SearchBar` making a request in every change of `inputValue`.
+
+## [3.77.0] - 2019-10-23
+### Added
+- More css handles to the `ProductPrice`
+
+## [3.76.1] - 2019-10-23
+### Fixed
+- Infinity loop in product page because of calling `onSKUSelected`.
+
+## [3.76.0] - 2019-10-23
+### Added
+- `collapsed` and `onCollapsedChange` props to `GradientCollapse` in order to be possible control if the component is collapsed or not from outsize of `GradientCollapsed`.
+- `shouldCollapseOnTabChange` to `ProductSpecifications`.
+
+### Changed
+- Make `GradientCollapse` as a Funcional Component.
+- The "See more" button from `GradientCollapse`is now a `button` instead of a `div`.
+
+### Fixed
+- `GradientCollapse` not changing the size of the container when children change.
+
+## [3.75.1] - 2019-10-23
+### Fixed
+- Spanish translations.
+
+## [3.75.0] - 2019-10-23
+### Added
+- `matchedImagesProps`, `variationsSpacing` and `variationsSpacing` to `SKUSelector`.
+- `shouldAddToCart` to `BuyButton`.
+
+### Changed
+- Remove images that has the value of prop `hiddenImages` on it's property `imageText` from `ProductImages`.
+- Remove or keep only the images that has the value of prop `thumbnailImage` on it's property `imageText` from `SKUSelector`.
+- `SKUSelector` will just add spaces between variations instead of adding a spacing at the end of all variations.
+
+### Fixed
+- Not calling `onSKUSelected` at second render when `SKUSelector` sets an SKU.
+
+## [3.74.1] - 2019-10-18
+### Fixed
+- Problem causing the "Compras API" bot to break.
+
+## [3.74.0] - 2019-10-18
+### Added
+- CSS Handles to some views in `SKUSelector`.
+- CSS classes to BuyButton.
+
+## [3.73.1] - 2019-10-18
+
+## [3.73.0] - 2019-10-15
+### Added
+- New `specificationsTablePropertyHeading`, `specificationsTableSpecificationHeading`, `specificationItemProperty` and `specificationItemSpecifications` CSS handles to `ProductSpecifications`.
+- New `resultsItemName`, `searchBarInnerContainer`, `autoCompleteOuterContainer`, `spinnerInnerContainer` and `spinnerContainer` CSS handles to `SearchBar`.
+- New `infoCardCallActionText` CSS handle to `InfoCard`.
+- New `productBrandLogoWrapper`, `productBrandLogoLink`, `productBrandLogoSpacer` and `productBrandNameSpacer` CSS handles to `ProductBrand`.
+- New `productDescriptionTitle` and `productDescriptionText` CSS handles to `ProductDescription`.
+
+### Changed
+- Added the new `css-handles` on the following components: Icon & Newsletter
+
+## [3.72.3] - 2019-10-14
+### Changed
+- In `ProductSpecifications`, use specificationGroups resolver to get translated values.
+
+## [3.72.2] - 2019-10-14
+### Fixed
+- `ProductImages`: fix thumbnails arrows when orientation is horizontal.
+
+## [3.72.1] - 2019-10-11
+### Changed
+- Update `react-share`.
+
+## [3.72.0] - 2019-10-10
+### Added
+- `imageHeight` and `imageWidth` to `SkuSelector`.
+
+## [3.71.3] - 2019-10-03
+### Fixed
+- `DiscountBadge` would show negative percentages when the actual selling price of a product is higher then it's original one.
+
+## [3.71.2] - 2019-10-03
+### Fixed
+- dont add input value to options in add to cart, if object is empty.
+
 ## [3.71.1] - 2019-09-24
 ### Changed
 - Release with fixed `builder-hub`.

@@ -6,15 +6,28 @@ import { withToast } from 'vtex.styleguide'
 import { orderFormConsumer } from 'vtex.store-resources/OrderFormContext'
 import ProductPrice from '../ProductPrice'
 import { graphql } from 'react-apollo'
+import { useCssHandles } from 'vtex.css-handles'
 
 import { BuyButton } from './index'
 import { transformAssemblyOptions, sumAssembliesPrice } from './assemblyUtils'
 import addToCartMutation from './mutations/addToCart.gql'
 import setOpenMinicartMutation from './mutations/setOpenMinicart.gql'
 
+const MESSAGE_CSS_HANDLES = [
+  'buyButtonText',
+  'buttonDataContainer',
+  'buttonItemsPrice',
+]
+
 const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
+  const handles = useCssHandles(MESSAGE_CSS_HANDLES)
   if (!showItemsPrice) {
-    return <FormattedMessage id="store/buy-button.add-to-cart" />
+    return (
+      <FormattedMessage id="store/buy-button.add-to-cart">
+        {message => <span className={handles.buyButtonText}>{message}</span>}
+      </FormattedMessage>
+    )
+    return
   }
 
   const totalPrice = skuItems.reduce((acc, item) => {
@@ -27,12 +40,19 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
   }, 0)
 
   return (
-    <div className="flex w-100 justify-between items-center">
-      <FormattedMessage id="store/buy-button.add-to-cart" />
+    <div
+      className={`${
+        handles.buttonDataContainer
+      } flex w-100 justify-between items-center`}
+    >
+      <FormattedMessage id="store/buy-button.add-to-cart">
+        {message => <span className={handles.buyButtonText}>{message}</span>}
+      </FormattedMessage>
       <ProductPrice
         showLabels={false}
         showListPrice={false}
         sellingPrice={totalPrice}
+        className={handles.buttonItemsPrice}
       />
     </div>
   )
@@ -53,6 +73,7 @@ const BuyButtonWrapper = ({
   skuItems: propSkuItems,
   large: propLarge,
   disabled: propDisabled,
+  shouldAddToCart,
   customToastURL,
 }) => {
   const valuesFromContext = useProduct()
@@ -116,6 +137,7 @@ const BuyButtonWrapper = ({
       setMinicartOpen={setMinicartOpen}
       disabled={disabled}
       customToastURL={customToastURL}
+      shouldAddToCart={shouldAddToCart}
     >
       {children || (
         <BuyButtonMessage showItemsPrice={showItemsPrice} skuItems={skuItems} />

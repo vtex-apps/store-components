@@ -7,7 +7,7 @@ import React, {
   FC,
 } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
-import { filter, head, isEmpty, compose, keys, length } from 'ramda'
+import { filter, head, isEmpty, compose, keys, length, path } from 'ramda'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 import SKUSelector from './components/SKUSelector'
@@ -54,10 +54,25 @@ const selectedVariationFromItem = (
   return result
 }
 
-const useImagesMap = (items: SelectorProductItem[], variations: Variations) => {
+function useColorImages(items: SelectorProductItem[], imageText: string) {
+  const imageRegex = new RegExp(imageText, 'i')
+
+  return items.map(item => ({ ...item, images: item.images.filter(image => {
+    if (!image.imageText) {
+      return true
+    }
+    return imageRegex.test(image.imageText)
+  }) }))
+}
+
+const useImagesMap = (items: SelectorProductItem[], variations: Variations, thumbnailImage?: string) => {
   return useMemo(() => {
+    if (thumbnailImage) {
+      items = useColorImages(items, thumbnailImage)
+    }
+
     const variationNames = Object.keys(variations)
-    const result = {} as ImageMap
+    const result: ImageMap = {}
     for (const variationName of variationNames) {
       // Today, only "Color" variation should show image, need to find a more resilient way to tell this, waiting for backend
       if (!isColor(variationName)) {
@@ -104,6 +119,11 @@ interface Props {
   skuSelected?: ProductItem
   hideImpossibleCombinations?: boolean
   showValueNameForImageVariation?: boolean
+  imageHeight?: number
+  imageWidth?: number
+  thumbnailImage?: string
+  showVariationsLabels?: boolean
+  variationsSpacing?: number
 }
 
 /**
@@ -118,13 +138,17 @@ const SKUSelectorContainer: FC<Props> = ({
   skuSelected,
   hideImpossibleCombinations = true,
   showValueNameForImageVariation = false,
+  thumbnailImage,
+  imageHeight,
+  imageWidth,
+  variationsSpacing,
+  showVariationsLabels = true,
 }) => {
   const variationsCount = keyCount(variations)
   const [
     selectedVariations,
     setSelectedVariations,
   ] = useState<SelectedVariations | null>(null)
-
   useAllSelectedEvent(selectedVariations, variationsCount)
 
   const parsedItems = useMemo(() => skuItems.map(parseSku), [skuItems])
@@ -142,10 +166,17 @@ const SKUSelectorContainer: FC<Props> = ({
     const initialVariations = skuSelected
       ? selectedVariationFromItem(parseSku(skuSelected), variations)
       : buildEmptySelectedVariation(variations)
-    setSelectedVariations(initialVariations)
-  }, [variations])
 
-  const imagesMap = useImagesMap(parsedItems, variations)
+      setSelectedVariations(initialVariations)
+    }, [variations])
+
+  useEffect(() => {
+    if (skuSelected && onSKUSelected) {
+      onSKUSelected(skuSelected.itemId)
+    }
+  }, [path(['itemId'], skuSelected)])
+
+  const imagesMap = useImagesMap(parsedItems, variations, thumbnailImage)
 
   const onSelectItem = useCallback(
     ({
@@ -222,7 +253,11 @@ const SKUSelectorContainer: FC<Props> = ({
       skuItems={parsedItems}
       selectedVariations={selectedVariations}
       imagesMap={imagesMap}
+      imageHeight={imageHeight}
+      imageWidth={imageWidth}
       onSelectItem={onSelectItem}
+      variationsSpacing={variationsSpacing}
+      showVariationsLabels={showVariationsLabels}
       hideImpossibleCombinations={hideImpossibleCombinations}
       showValueNameForImageVariation={showValueNameForImageVariation}
     />

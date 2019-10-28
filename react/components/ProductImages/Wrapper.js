@@ -1,5 +1,5 @@
-import React, { useContext, useMemo } from 'react'
-import { ProductContext } from 'vtex.product-context'
+import React, { useMemo } from 'react'
+import useProduct from 'vtex.product-context/useProduct'
 import { path, map } from 'ramda'
 
 import ProductImages from './index'
@@ -7,32 +7,33 @@ import generateImageConfig from './utils/generateImageConfig'
 import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
 
 const ProductImagesWrapper = props => {
-  const valuesFromContext = useContext(ProductContext) || {}
+  const valuesFromContext = useProduct() || {}
   const { selectedItem } = valuesFromContext
 
   const images = useMemo(
     () =>
       props.images != null
         ? props.images
-        : map(
-            generateImageConfig,
-            path(['images'], selectedItem) || []
-          ),
+        : map(generateImageConfig, path(['images'], selectedItem) || []),
     [props.images, selectedItem]
   )
 
-  const videos = useMemo(() => props.videos != null
-    ? props.videos
-    : path(['videos'], selectedItem) || [],
-  [props.videos, selectedItem])
+  const videos = useMemo(
+    () =>
+      props.videos != null
+        ? props.videos
+        : path(['videos'], selectedItem) || [],
+    [props.videos, selectedItem]
+  )
 
   return (
     <ProductImages
-      zoomProps={props.zoomProps}
-      position={props.position || props.thumbnailPosition} //thumbnailPosition is a legacy prop from product-details
-      displayThumbnailsArrows={props.displayThumbnailsArrows}
       images={images}
       videos={videos}
+      zoomProps={props.zoomProps}
+      hiddenImages={props.hiddenImages}
+      position={props.position || props.thumbnailPosition} //thumbnailPosition is a legacy prop from product-details
+      displayThumbnailsArrows={props.displayThumbnailsArrows}
       thumbnailsOrientation={props.thumbnailsOrientation}
     />
   )

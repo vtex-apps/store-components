@@ -51,7 +51,14 @@ class ImageResizer extends React.Component {
 
   render() {
     const { alt, className } = this.props
-    return <canvas ref={this.canvas} alt={alt} className={className} />
+    return (
+      <canvas
+        ref={this.canvas}
+        alt={alt}
+        className={className}
+        data-testid={'canvas-' + alt}
+      />
+    )
   }
 }
 

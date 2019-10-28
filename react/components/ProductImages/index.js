@@ -3,9 +3,12 @@ import React, { useMemo, useEffect, useState } from 'react'
 import debounce from 'debounce'
 
 import Carousel from './components/Carousel'
-import Video from './components/Video/index'
 import styles from './styles.css'
-import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
+import {
+  THUMBS_ORIENTATION,
+  THUMBS_POSITION_HORIZONTAL,
+  DEFAULT_EXCLUDE_IMAGE_WITH,
+} from './utils/enums'
 
 const getBestUrlIndex = thresholds => {
   const windowSize = window.innerWidth
@@ -20,14 +23,28 @@ const getBestUrlIndex = thresholds => {
 }
 
 const ProductImages = ({
+  videos,
   position,
   zoomProps,
-  displayThumbnailsArrows,
-  images,
-  videos,
+  hiddenImages,
+  images: allImages,
   thumbnailsOrientation,
+  displayThumbnailsArrows,
 }) => {
-  const [_, setState] = useState(0)
+  const [, setState] = useState(0)
+
+  if (!Array.isArray(hiddenImages)) {
+    hiddenImages = [hiddenImages]
+  }
+
+  const excludeImageRegexes = hiddenImages.map(text => new RegExp(text, 'i'))
+
+  const images = allImages.filter(image => {
+    if (!image.imageText) {
+      return true
+    }
+    return !excludeImageRegexes.some(regex => regex.test(image.imageText))
+  })
 
   const debouncedGetBestUrl = debounce(() => {
     // force update
@@ -45,7 +62,7 @@ const ProductImages = ({
   }, [debouncedGetBestUrl])
 
   const slides = useMemo(() => {
-    if (!images.length && !videos.length) return
+    if (!images.length && !videos.length) return []
 
     return [
       ...images.map(image => ({
@@ -59,7 +76,7 @@ const ProductImages = ({
         type: 'video',
         src: video.videoUrl,
         thumbWidth: 300,
-      }))
+      })),
     ]
   }, [images, videos])
 
@@ -68,9 +85,9 @@ const ProductImages = ({
       <Carousel
         slides={slides}
         position={position}
-        displayThumbnailsArrows={displayThumbnailsArrows}
         zoomProps={zoomProps}
         thumbnailsOrientation={thumbnailsOrientation}
+        displayThumbnailsArrows={displayThumbnailsArrows}
       />
     </div>
   )
@@ -86,6 +103,14 @@ ProductImages.propTypes = {
     THUMBS_ORIENTATION.VERTICAL,
     THUMBS_ORIENTATION.HORIZONTAL,
   ]),
+  /** This is a necessary prop if you're using SKUSelector to display color images
+   * (like a image with only green to represent an SKU of something green) and you
+   * want to not display this image in the ProductImages component, to do this you
+   * just have to upload the image in the catalog with the value of this prop inside the imageText property */
+  hiddenImages: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   /** Array of images to be passed for the Thumbnail Slider component as a props */
   images: PropTypes.arrayOf(
     PropTypes.shape({
@@ -99,6 +124,15 @@ ProductImages.propTypes = {
       imageText: PropTypes.string.isRequired,
     })
   ),
+  videos: PropTypes.arrayOf(
+    PropTypes.shape({
+      videoUrl: PropTypes.string,
+    })
+  ),
+  zoomProps: PropTypes.shape({
+    zoomType: PropTypes.string,
+  }),
+  displayThumbnailsArrows: PropTypes.bool,
 }
 
 ProductImages.defaultProps = {
@@ -107,6 +141,7 @@ ProductImages.defaultProps = {
   zoomProps: { zoomType: 'in-page' },
   thumbnailsOrientation: THUMBS_ORIENTATION.VERTICAL,
   displayThumbnailsArrows: false,
+  hiddenImages: DEFAULT_EXCLUDE_IMAGE_WITH,
 }
 
 export default ProductImages

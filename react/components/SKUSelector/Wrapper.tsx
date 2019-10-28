@@ -1,25 +1,33 @@
 import React, { useMemo, useEffect } from 'react'
 import useProduct from 'vtex.product-context/useProduct'
-import { pathOr } from 'ramda'
+import { pathOr, pick } from 'ramda'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 import SKUSelector from './index'
 import { ProductItem, Variations } from './types'
+import { useResponsiveValues } from 'vtex.responsive-values'
 
-const useVariations = (skuItems: ProductItem[], shouldNotShow: boolean) => {
+const useVariations = (skuItems: ProductItem[], shouldNotShow: boolean, visibleVariations?: string[]) => {
   const result = useMemo(() => {
-    if (shouldNotShow) {
+    if (shouldNotShow || visibleVariations && visibleVariations.length === 0) {
       return {}
     }
-    const variations = {} as Variations
-    const variationsSet = {} as Record<string, Set<string>>
+    const variations: Variations = {}
+    const variationsSet: Record<string, Set<string>> = {}
+    if (visibleVariations) {
+      visibleVariations = visibleVariations.map(variation => variation.toLowerCase().trim())
+    }
+
     for (const skuItem of skuItems) {
       for (const currentVariation of skuItem.variations) {
         const { name, values } = currentVariation
-        const value = values[0]
-        const currentSet = variationsSet[name] || new Set()
-        currentSet.add(value)
-        variationsSet[name] = currentSet
+          if (!visibleVariations || visibleVariations.includes(name.toLowerCase().trim())) {
+
+            const value = values[0]
+            const currentSet = variationsSet[name] || new Set()
+            currentSet.add(value)
+            variationsSet[name] = currentSet
+        }
       }
     }
     const variationsNames = Object.keys(variationsSet)
@@ -41,11 +49,18 @@ interface Props {
   seeMoreLabel: string
   hideImpossibleCombinations?: boolean
   showValueNameForImageVariation?: boolean
+  imageHeight?: number | object
+  imageWidth?: number | object
+  thumbnailImage?: string
+  visibleVariations?: string[]
+  showVariationsLabels?: boolean
+  variationsSpacing?: number
 }
 
 const SKUSelectorWrapper: StorefrontFC<Props> = props => {
   const valuesFromContext = useProduct()
   const dispatch = useProductDispatch()
+  const { imageHeight, imageWidth } = useResponsiveValues(pick(['imageHeight', 'imageWidth'], props))
 
   const skuItems =
     props.skuItems != null
@@ -63,7 +78,7 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
     !skuSelected.variations ||
     skuSelected.variations.length === 0
 
-  const variations = useVariations(skuItems, shouldNotShow)
+  const variations = useVariations(skuItems, shouldNotShow, props.visibleVariations)
 
   useEffect(() => {
     if (dispatch) {
@@ -80,14 +95,19 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
 
   return (
     <SKUSelector
-      onSKUSelected={props.onSKUSelected}
       skuItems={skuItems}
+      variations={variations}
+      imageWidth={imageWidth}
       skuSelected={skuSelected}
       maxItems={props.maxItems}
+      imageHeight={imageHeight}
       seeMoreLabel={props.seeMoreLabel}
-      variations={variations}
+      variationsSpacing={props.variationsSpacing}
+      onSKUSelected={props.onSKUSelected}
+      showVariationsLabels={props.showVariationsLabels}
       hideImpossibleCombinations={props.hideImpossibleCombinations}
       showValueNameForImageVariation={props.showValueNameForImageVariation}
+      thumbnailImage={props.thumbnailImage}
     />
   )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useRuntime } from 'vtex.render-runtime'
+import { useCssHandles } from 'vtex.css-handles'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import * as Amp from 'react-amphtml'
@@ -7,6 +8,8 @@ import * as Amp from 'react-amphtml'
 import Placeholder from './Placeholder'
 
 import styles from './styles.css'
+
+const CSS_HANDLES = ['logoImage', 'logoContainer']
 
 /**
  * Wraps element with link, if exists
@@ -31,8 +34,8 @@ const Logo = ({
     account,
     hints: { mobile },
   } = useRuntime()
-
-  const logoClassNames = classNames('store-logo', styles.logoContainer, {
+  const handles = useCssHandles(CSS_HANDLES)
+  const logoClassNames = classNames('store-logo', handles.logoContainer, {
     [styles.sizeDesktop]: !mobile,
     [styles.sizeMobile]: mobile,
   })
@@ -52,7 +55,7 @@ const Logo = ({
         height={imgHeight}
         alt={title}
         src={imageUrl}
-        className={styles.logoImage}
+        className={handles.logoImage}
       />
     )
   } else if (url) {
@@ -62,7 +65,7 @@ const Logo = ({
         width={imgWidth}
         height={imgHeight}
         alt={title}
-        className={styles.logoImage}
+        className={handles.logoImage}
       />
     )
   }

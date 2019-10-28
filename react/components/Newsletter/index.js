@@ -3,11 +3,23 @@ import { compose, graphql } from 'react-apollo'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import { Input, Button } from 'vtex.styleguide'
+import { withCssHandles } from 'vtex.css-handles'
 import SUBSCRIBE_NEWSLETTER from './mutations/subscribeNewsletter.graphql'
-import style from './style.css'
 import { formatIOMessage } from 'vtex.native-types'
 
 const EMAIL_REGEX = /^[A-z0-9+_-]+(?:\.[A-z0-9+_-]+)*@(?:[A-z0-9](?:[A-z0-9-]*[A-z0-9])?\.)+[A-z0-9](?:[A-z0-9-]*[A-z0-9])?$/
+const CSS_HANDLES = [
+  'newsletter',
+  'confirmation',
+  'container',
+  'confirmationTitle',
+  'confirmationText',
+  'form',
+  'inputGroup',
+  'buttonContainer',
+  'label',
+  'error',
+]
 
 class Newsletter extends Component {
   state = {
@@ -70,7 +82,7 @@ class Newsletter extends Component {
   }
 
   render() {
-    const { hideLabel, intl, submit, label, placeholder } = this.props
+    const { hideLabel, intl, submit, label, placeholder, cssHandles } = this.props
     const submitText = formatIOMessage({ id: submit, intl })
     const labelText = formatIOMessage({ id: label, intl })
     const placeholderText = formatIOMessage({ id: placeholder, intl })
@@ -93,31 +105,31 @@ class Newsletter extends Component {
 
     return (
       <div
-        className={`${style.newsletter} ${
-          this.state.success ? style.confirmation : ''
+        className={`${cssHandles.newsletter} ${
+          this.state.success ? cssHandles.confirmation : ''
         } w-100`}
       >
-        <div className={`${style.container} mw9 mr-auto ml-auto pv9`}>
+        <div className={`${cssHandles.container} mw9 mr-auto ml-auto pv9`}>
           {this.state.success ? (
             <Fragment>
-              <div className={`${style.confirmationTitle} t-heading-3 pb4 tc`}>
+              <div className={`${cssHandles.confirmationTitle} t-heading-3 pb4 tc`}>
                 {confirmationTitle}
               </div>
-              <div className={`${style.confirmationText} t-body tc`}>
+              <div className={`${cssHandles.confirmationText} t-body tc`}>
                 {confirmationText}
               </div>
             </Fragment>
           ) : (
-            <form className={`${style.form} mw6 center tc ph5 ph0-ns`}>
+            <form className={`${cssHandles.form} mw6 center tc ph5 ph0-ns`}>
               <label
-                className={`${style.label} t-heading-3 tc ${
+                className={`${cssHandles.label} t-heading-3 tc ${
                   hideLabel ? 'dn' : ''
                 }`}
                 htmlFor="newsletter-input"
               >
                 {labelText}
               </label>
-              <div className={`${style.inputGroup} flex-ns pt5`}>
+              <div className={`${cssHandles.inputGroup} flex-ns pt5`}>
                 <Input
                   ref={this.inputRef}
                   id="newsletter-input"
@@ -131,7 +143,7 @@ class Newsletter extends Component {
                 />
                 <div
                   className={`${
-                    style.buttonContainer
+                    cssHandles.buttonContainer
                   } pl4-ns flex-none pt3 pt0-ns`}
                 >
                   <Button
@@ -145,7 +157,7 @@ class Newsletter extends Component {
                 </div>
               </div>
               {this.state.error && (
-                <div className={`${style.error} c-danger t-body pt5`}>
+                <div className={`${cssHandles.error} c-danger t-body pt5`}>
                   {errorMsg}
                 </div>
               )}
@@ -190,5 +202,6 @@ Newsletter.getSchema = () => {
 
 export default compose(
   graphql(SUBSCRIBE_NEWSLETTER, { name: 'subscribeNewsletter' }),
+  withCssHandles(CSS_HANDLES),
   injectIntl
 )(Newsletter)

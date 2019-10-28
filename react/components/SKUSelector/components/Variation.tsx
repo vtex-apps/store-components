@@ -9,6 +9,7 @@ import React, {
 import { Button } from 'vtex.styleguide'
 import { IOMessage } from 'vtex.native-types'
 import { findIndex, propEq } from 'ramda'
+import classnames from 'classnames'
 
 import SelectorItem from './SelectorItem'
 import { stripUrl, isColor, slug } from '../utils'
@@ -24,6 +25,11 @@ interface Props {
   maxItems: number
   selectedItem: string | null
   showValueNameForImageVariation: boolean
+  imageHeight?: number
+  imageWidth?: number
+  showBorders?: boolean
+  showLabel: boolean
+  containerClasses?: string
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
@@ -31,13 +37,20 @@ const ITEMS_VISIBLE_THRESHOLD = 2
 const findSelectedOption = (selectedItem: string | null) =>
   findIndex(propEq('label', selectedItem))
 
+const noop = () => { }
+
 const Variation: FC<Props> = ({
+  maxItems,
+  showLabel,
   variation,
   maxSkuPrice,
   seeMoreLabel,
-  maxItems,
   selectedItem,
+  imageHeight,
+  imageWidth,
+  showBorders,
   showValueNameForImageVariation,
+  containerClasses: containerClassesProp,
 }) => {
   const { name, options } = variation
   const [showAll, setShowAll] = useState(false)
@@ -61,37 +74,38 @@ const Variation: FC<Props> = ({
     shouldCollapse ? visibleItemsWhenCollapsed : options.length
   )
   const showAllAction = useCallback(() => setShowAll(true), [setShowAll])
-  const emptyAction = useCallback(() => {}, [])
+  const containerClasses = classnames(
+    'flex flex-column',
+    containerClassesProp,
+    styles.skuSelectorSubcontainer,
+    `${styles.skuSelectorSubcontainer}--${slug(name)}`, 
+  )
 
   return (
-    <div
-      className={`${styles.skuSelectorSubcontainer} ${
-        styles.skuSelectorSubcontainer
-      }--${slug(name)} flex flex-column mb7`}
-    >
+    <div className={containerClasses}>
       <div className={`${styles.skuSelectorNameContainer} ma1`}>
         <div className={`${styles.skuSelectorTextContainer} db mb3`}>
-          <span
+          {showLabel && (<span
             className={`${
               styles.skuSelectorName
-            } c-muted-1 t-small overflow-hidden`}
+              } c-muted-1 t-small overflow-hidden`}
           >
             {name}
-          </span>
+          </span>)}
           {displayImage && selectedItem && showValueNameForImageVariation && (
             <Fragment>
               <span className={styles.skuSelectorNameSeparator}>: </span>
               <span
                 className={`${
                   styles.skuSelectorSelectorImageValue
-                } c-muted-1 t-small`}
+                  } c-muted-1 t-small`}
               >
                 {selectedItem}
               </span>
             </Fragment>
           )}
         </div>
-        <div className="inline-flex flex-wrap ml2 flex items-center">
+        <div className={`${styles.skuSelectorOptionsList} inline-flex flex-wrap ml2 flex items-center`}>
           {displayOptions.map(option => {
             return (
               <SelectorItem
@@ -99,9 +113,12 @@ const Variation: FC<Props> = ({
                 key={`${option.label}-${name}`}
                 isAvailable={option.available}
                 maxPrice={maxSkuPrice}
-                onClick={option.impossible ? emptyAction : option.onSelectItem}
+                onClick={option.impossible ? noop : option.onSelectItem}
                 isImage={displayImage}
                 variationValue={option.label}
+                imageHeight={imageHeight}
+                imageWidth={imageWidth}
+                showBorders={showBorders}
                 imageUrl={
                   option.image &&
                   imageUrlForSize(

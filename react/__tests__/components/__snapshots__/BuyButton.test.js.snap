@@ -24,7 +24,9 @@ exports[`<BuyButton /> should match snapshot unavailable 1`] = `
     data-isloading="false"
     disabled=""
   >
-    <span>
+    <span
+      class="buyButtonText"
+    >
       Unavailable
     </span>
   </button>

@@ -6,9 +6,10 @@ import { compose, flip, gt, filter, path, pathOr, clone } from 'ramda'
 
 import styles from '../styles.css'
 import {
+  isColor,
+  getValidMarginBottom,
   findItemWithSelectedVariations,
   findListItemsWithSelectedVariations,
-  isColor,
 } from '../utils'
 import {
   SelectorProductItem,
@@ -30,6 +31,11 @@ interface Props {
   selectedVariations: Record<string, string | null>
   hideImpossibleCombinations: boolean
   showValueNameForImageVariation: boolean
+  showBorders?: boolean
+  imageHeight?: number
+  imageWidth?: number
+  showVariationsLabels: boolean,
+  variationsSpacing?: number
 }
 
 const isSkuAvailable = compose<
@@ -218,13 +224,20 @@ const SKUSelector: FC<Props> = ({
   skuItems,
   onSelectItem,
   imagesMap,
+  imageHeight,
+  imageWidth,
   selectedVariations,
+  showBorders,
+  variationsSpacing: marginBottomProp,
+  showVariationsLabels,
   hideImpossibleCombinations,
   showValueNameForImageVariation,
 }) => {
   const [displayVariations, setDisplayVariations] = useState<
     DisplayVariation[] | null
   >(null)
+
+  const variationsSpacing = getValidMarginBottom(marginBottomProp)
   const onSelectItemMemo = useCallback(
     ({
       name,
@@ -267,17 +280,25 @@ const SKUSelector: FC<Props> = ({
   if (!displayVariations) {
     return null
   }
+
+  const variationClasses = `mb${variationsSpacing}`
   return (
     <div className={styles.skuSelectorContainer}>
       {displayVariations.map((variationOption, index) => {
         const selectedItem = selectedVariations[variationOption.name]
+
         return (
           <Variation
-            key={`${variationOption.name}-${index}`}
+            maxItems={maxItems}
+            imageWidth={imageWidth}
+            imageHeight={imageHeight}
+            showBorders={showBorders}
             variation={variationOption}
             selectedItem={selectedItem}
-            maxItems={maxItems}
             seeMoreLabel={seeMoreLabel}
+            showLabel={showVariationsLabels}
+            containerClasses={variationClasses}
+            key={`${variationOption.name}-${index}`}
             showValueNameForImageVariation={showValueNameForImageVariation}
           />
         )

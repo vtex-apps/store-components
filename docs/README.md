@@ -163,3 +163,4 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 **Upcoming documentation:**
 
  - [Render logo as amp-img if in AMP page](https://github.com/vtex-apps/store-components/pull/580)
+ - [Update CSS handles on ProductSpecification](https://github.com/vtex-apps/store-components/pull/599)

@@ -66,6 +66,9 @@ These are properties that you can customize in your `blocks.json` file.
 | hideImpossibleCombinations     | Boolean | If true, if a variation option leads to a combination that does not exist, that option won't appear. If false, it will appear but won't be pressable and will appear faded, will much less opacity. | `true`        |
 | maxItems                       | Number  | The maximum number of items to be displayed of a variation before showing the see more button. If the see more button should appear, it will be displayed `maxItems` - 2 options before the button  | `10`          |
 | showValueNameForImageVariation | Boolean | If true, show the name for the selected image variation to the right of the variation name. For example: `Color Red`, if the red color variation is selected.                                       | `false`       |
+| thumbnailImage | If you pass this prop it will show the first image that has this text on the image's attribute `imageText` | `undefined` |
+| visibleVariations | string[] | If you pass this array it will only display the passed names, if you pass a name that doesn't represent a variation it just doesn't show anything, which means that passing a empty array doesn't display any variation | Is `undefined`, but shows every variation |
+| variationsSpacing | number | This prop represents how much `margin-bottom` you want to put in all variation blocks. The value is not in px, every value represent a tachyons class, so the value numbers are from 0-11  | `7` |
 
 #### Content API
 
@@ -91,3 +94,6 @@ You should follow the Styles API instruction in the main [README](/README.md#sty
 | seeMoreButton                 | `SKUSelector` see more button container                                         | [Variation](/react/components/SKUSelector/components/Variation.js)              |
 | skuSelectorSelectorImageValue | Name of selected image variation beside the variation name                      | [Variation](/react/components/SKUSelector/components/Variation.js)              |
 | skuSelectorNameSeparator      | Separator of between skuSelectorTextContainer and skuSelectorSelectorImageValue | [Variation](/react/components/SKUSelector/components/Variation.js)              |
+| skuSelectorOptionsList        | [Variation](/react/components/SKUSelector/components/Variation.js)              |
+| skuSelectorItemTextValue      | [SelectorItem](/react/components/SKUSelector/components/SelectorItem.js)        |
+| skuSelectorItemImageValue     | [SelectorItem](/react/components/SKUSelector/components/SelectorItem.js)        |
