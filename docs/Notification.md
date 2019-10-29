@@ -1,4 +1,4 @@
-# Info Card
+# Notification
 
 ## Description
 
