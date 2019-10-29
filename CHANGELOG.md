@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.79.3] - 2019-10-29
+
 ## [3.79.2] - 2019-10-29
 ### Added
 - Missing docs of `SKUSelector`.
