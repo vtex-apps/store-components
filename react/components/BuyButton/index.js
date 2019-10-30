@@ -6,6 +6,9 @@ import ContentLoader from 'react-content-loader'
 import { useRuntime } from 'vtex.render-runtime'
 import { usePWA } from 'vtex.store-resources/PWAContext'
 import { useCssHandles } from 'vtex.css-handles'
+import useProduct from 'vtex.product-context/useProduct'
+import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
+
 
 import { Button, ToastContext } from 'vtex.styleguide'
 
@@ -70,6 +73,8 @@ export const BuyButton = ({
   const handles = useCssHandles(CSS_HANDLES)
   const [isAddingToCart, setAddingToCart] = useState(false)
   const { showToast } = useContext(ToastContext)
+  const { skuSelector } = useProduct()
+  const dispatch = useProductDispatch()
   const { settings = {}, showInstallPrompt } = usePWA() || {}
   const { promptOnCustomEvent } = settings
   const translateMessage = useCallback(id => intl.formatMessage({ id: id }), [
@@ -182,6 +187,16 @@ export const BuyButton = ({
     }, 500)
   }
 
+  const handleClick = e => {
+    dispatch({ type: 'SET_BUY_BUTTON_CLICKED', args: { clicked: true } })
+    if (!skuSelector.areAllVariationsSelected) {
+      // TODO show toast or something
+      return
+    } else if (shouldAddToCart) {
+      handleAddToCart(e)
+    }
+  }
+
   return (
     <Fragment>
       {!skuItems ? (
@@ -195,7 +210,7 @@ export const BuyButton = ({
             (orderFormContext && orderFormContext.loading)
           }
           isLoading={isAddingToCart}
-          onClick={e => shouldAddToCart && handleAddToCart(e)}
+          onClick={handleClick}
         >
           {available ? (
             children
