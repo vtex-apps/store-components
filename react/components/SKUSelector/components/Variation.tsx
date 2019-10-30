@@ -17,6 +17,8 @@ import { stripUrl, isColor, slug } from '../utils'
 import styles from '../styles.css'
 import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 import { DisplayVariation } from '../types'
+import useProduct from 'vtex.product-context/useProduct'
+import ErrorMessage from './ErrorMessage'
 
 interface Props {
   variation: DisplayVariation
@@ -55,6 +57,7 @@ const Variation: FC<Props> = ({
   const { name, options } = variation
   const [showAll, setShowAll] = useState(false)
   const visibleItemsWhenCollapsed = maxItems - ITEMS_VISIBLE_THRESHOLD
+  const { buyButton } = useProduct()
 
   useEffect(() => {
     const selectedOptionPosition = findSelectedOption(selectedItem)(options)
@@ -90,7 +93,7 @@ const Variation: FC<Props> = ({
               styles.skuSelectorName
               } c-muted-1 t-small overflow-hidden`}
           >
-            {name}
+            {name} {buyButton.clicked && !selectedItem && (<ErrorMessage />)}
           </span>)}
           {displayImage && selectedItem && showValueNameForImageVariation && (
             <Fragment>

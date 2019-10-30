@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - `BuyButton` now only add a product to the cart if all variations have one options selected.
+- Show an error next to the variation name of the `SKUSelector` if you try to add to the cart before selecting all variations of the product.
 
 ## [3.81.1] - 2019-11-06
 ### Changed

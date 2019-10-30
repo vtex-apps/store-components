@@ -156,6 +156,7 @@
   "admin/editor.logo.mobileHeight.title": "Mobile Height",
   "admin/editor.logo.mobileHeight.description": "Height to be used on mobile. If empty, will use the provided height value.",
   "store/skuSelector.seeMore": "See {quantity} more",
+  "store/sku-selector.variation.select-an-option": "Select an option",
   "admin/editor.skuSelector.title": "SKU Selector",
   "admin/editor.skuSelector.description": "Component that displays different given variations of an item for user to choose",
   "admin/editor.skuSelector.seeMoreLabel.title": "See more label",
