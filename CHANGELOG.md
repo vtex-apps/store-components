@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `initialSelection` to `SKUSelector`.
+
+### Changed
+- `BuyButton` now only add a product to the cart if all variations have one options selected.
 
 ## [3.81.1] - 2019-11-06
 ### Changed
