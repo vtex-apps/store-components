@@ -4,11 +4,10 @@ import React from 'react'
 
 import styles from './Container.css'
 
-const render = ({ className, children, ...props }, ref) => {
+const render = ({ children, ...props }, ref) => {
   const classes = classNames(
     styles.container,
-    'mh5 mh6-m mh8-l mh9-xl',
-    className
+    'mh5 mh6-m mh8-l mh9-xl'
   )
 
   return (
