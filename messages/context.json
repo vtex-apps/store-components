@@ -156,6 +156,7 @@
   "admin/editor.logo.mobileHeight.title": "Title of mobileHeight property of Logo",
   "admin/editor.logo.mobileHeight.description": "Description of mobileHeight property of Logo",
   "store/skuSelector.seeMore": "Press button to see remaining items",
+  "store/sku-selector.variation.select-an-option": "You have to select an option",
   "admin/editor.skuSelector.title": "Title of SKU Selector component",
   "admin/editor.skuSelector.description": "Description of SKU Selector component",
   "admin/editor.skuSelector.seeMoreLabel.title": "Title of seeMoreLabel property",
