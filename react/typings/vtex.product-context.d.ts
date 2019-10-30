@@ -37,6 +37,9 @@ declare module 'vtex.product-context/useProduct' {
       isVisible: boolean
       areAllVariationsSelected: boolean
     }
+    buyButton: {
+      clicked: boolean
+    }
     assemblyOptions: {
       items: Record<GroupId, AssemblyOptionItem[]>
       inputValues: Record<GroupId, InputValues>
