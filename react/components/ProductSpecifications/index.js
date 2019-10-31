@@ -216,7 +216,12 @@ ProductSpecifications.propTypes = {
   visibleSpecifications: PropTypes.array,
   /** Specifications which will be hidden (optional) */
   hiddenSpecifications: PropTypes.array,
-  collapsable: PropTypes.oneOf('always', 'never', 'desktopOnly', 'mobileOnly'),
+  collapsable: PropTypes.oneOf([
+    'always',
+    'never',
+    'desktopOnly',
+    'mobileOnly',
+  ]),
 }
 
 export default ProductSpecifications
