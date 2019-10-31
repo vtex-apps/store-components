@@ -32,6 +32,7 @@ interface Props {
   showBorders?: boolean
   showLabel: boolean
   containerClasses?: string
+  showErrorMessage: boolean
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
@@ -45,12 +46,13 @@ const Variation: FC<Props> = ({
   maxItems,
   showLabel,
   variation,
+  imageWidth,
+  imageHeight,
+  showBorders,
   maxSkuPrice,
   seeMoreLabel,
   selectedItem,
-  imageHeight,
-  imageWidth,
-  showBorders,
+  showErrorMessage,
   showValueNameForImageVariation,
   containerClasses: containerClassesProp,
 }) => {
@@ -93,7 +95,7 @@ const Variation: FC<Props> = ({
               styles.skuSelectorName
               } c-muted-1 t-small overflow-hidden`}
           >
-            {name} {buyButton.clicked && !selectedItem && (<ErrorMessage />)}
+            {name} {showErrorMessage && buyButton.clicked && !selectedItem && (<ErrorMessage />)}
           </span>)}
           {displayImage && selectedItem && showValueNameForImageVariation && (
             <Fragment>

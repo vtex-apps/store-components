@@ -124,6 +124,7 @@ interface Props {
   thumbnailImage?: string
   showVariationsLabels?: boolean
   variationsSpacing?: number
+  showVariationsErrorMessage?: boolean
 }
 
 /**
@@ -136,13 +137,14 @@ const SKUSelectorContainer: FC<Props> = ({
   maxItems = 10,
   variations,
   skuSelected,
-  hideImpossibleCombinations = true,
-  showValueNameForImageVariation = false,
-  thumbnailImage,
-  imageHeight,
   imageWidth,
+  imageHeight,
+  thumbnailImage,
   variationsSpacing,
   showVariationsLabels = true,
+  hideImpossibleCombinations = true,
+  showVariationsErrorMessage = false,
+  showValueNameForImageVariation = false,
 }) => {
   const variationsCount = keyCount(variations)
   const [
@@ -259,6 +261,7 @@ const SKUSelectorContainer: FC<Props> = ({
       variationsSpacing={variationsSpacing}
       showVariationsLabels={showVariationsLabels}
       hideImpossibleCombinations={hideImpossibleCombinations}
+      showVariationsErrorMessage={showVariationsErrorMessage}
       showValueNameForImageVariation={showValueNameForImageVariation}
     />
   )

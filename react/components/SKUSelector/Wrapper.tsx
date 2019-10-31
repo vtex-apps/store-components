@@ -55,6 +55,7 @@ interface Props {
   visibleVariations?: string[]
   showVariationsLabels?: boolean
   variationsSpacing?: number
+  showVariationsErrorMessage?: boolean
 }
 
 const SKUSelectorWrapper: StorefrontFC<Props> = props => {
@@ -106,6 +107,7 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
       onSKUSelected={props.onSKUSelected}
       showVariationsLabels={props.showVariationsLabels}
       hideImpossibleCombinations={props.hideImpossibleCombinations}
+      showVariationsErrorMessage={props.showVariationsErrorMessage}
       showValueNameForImageVariation={props.showValueNameForImageVariation}
       thumbnailImage={props.thumbnailImage}
     />

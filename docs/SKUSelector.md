@@ -72,6 +72,15 @@ These are properties that you can customize in your `blocks.json` file.
 | imageHeight | `number | object` | Height of the thumbnail, if you pass an object it expects two attributes, `desktop` and `mobile`, and the value of both is the height on each type of device | `'auto'` |
 | imageWidth | `number | object` | It works same way as `imageHeight` | `'auto'` |
 | showVariationsLabels | `boolean` | If should show the variations name | `true` |
+| initialSelection | `InitialSelectionEnum` | Control the initial selection chosen for the variations when page is loaded. | `complete` |
+| showVariationsErrorMessage | `boolean`| If should show an error message when you click in the `BuyButton` but didn't select an option of each variation | `false` |
+
+Values and description for `InitialSelectionEnum`:
+| Value | Name | Description |
+| ------------------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `complete` | Complete | It will selected the variations values for the first SKU available in the product possible items |
+| `image` | Image | It will select the variation for variations with images (like Color). All other variations will be unselected |
+| `empty` | Empty | All variations will appear as unselected on first load |
 
 #### Content API
 
