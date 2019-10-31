@@ -38,14 +38,15 @@ Through the Storefront, you can change the `BuyButton`'s behavior and interface.
 
 | Prop name            | Type      | Description                                                                      | Default value      |
 | -------------------- | --------- | -------------------------------------------------------------------------------- | ------------------ |
-| `isOneClickBuy`      | `Boolean` | Should redirect to the checkout page or not                                      | false              |
-| `shouldOpenMinicart` | `Boolean` | Should open the Minicart after clicking the button                               | false              |
+| `isOneClickBuy`      | `Boolean` | Should redirect to the checkout page or not                                      | `false`              |
+| `shouldOpenMinicart` | `Boolean` | Should open the Minicart after clicking the button                               | `false`              |
 | `large`              | `Boolean` | Sets button to large style, filling whole width (like a `block`)                 | -                  |
-| `available`          | `Boolean` | If component is available or not                                                 | true               |
+| `available`          | `Boolean` | If component is available or not                                                 | `true`               |
 | `showToast`          | `Boolean` | If toast with feedback should be shown after add item request is processed       | -                  |
-| `showItemsPrice`     | `Boolean` | If you want to show the total price of items to be added to cart                 | false              |
+| `showItemsPrice`     | `Boolean` | If you want to show the total price of items to be added to cart                 | `false`              |
 | `customToastURL`     | `String`  | Set the link associated with the Toast created when adding an item to your cart. | `/checkout/#/cart` |
 | `shouldAddToCart`    | `Boolean` | If it should add to cart when clicked                                             | true          |
+| `showTooltipOnSkuNotSelected` | `Boolean` | If it should a tooltip when you click the button but there's no SKU selected | `false` |
 
 ### Styles API
 

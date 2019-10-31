@@ -75,6 +75,7 @@ const BuyButtonWrapper = ({
   disabled: propDisabled,
   shouldAddToCart,
   customToastURL,
+  showTooltipOnSkuNotSelected,
 }) => {
   const valuesFromContext = useProduct()
 
@@ -138,6 +139,7 @@ const BuyButtonWrapper = ({
       disabled={disabled}
       customToastURL={customToastURL}
       shouldAddToCart={shouldAddToCart}
+      showTooltipOnSkuNotSelected={showTooltipOnSkuNotSelected}
     >
       {children || (
         <BuyButtonMessage showItemsPrice={showItemsPrice} skuItems={skuItems} />
