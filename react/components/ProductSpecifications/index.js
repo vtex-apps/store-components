@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl'
 import HtmlParser from 'react-html-parser'
 import { useCssHandles } from 'vtex.css-handles'
 import { Tabs, Tab } from 'vtex.styleguide'
+import { useDevice } from 'vtex.device-detector'
 
 import GradientCollapse from '../GradientCollapse/index'
 
@@ -26,6 +27,7 @@ const CSS_HANDLES = [
 const ProductSpecifications = ({
   tabsMode,
   specifications,
+  collapsable = 'always',
   hiddenSpecifications,
   visibleSpecifications,
   shouldCollapseInTabChange,
@@ -33,6 +35,13 @@ const ProductSpecifications = ({
   const [currentTab, setCurrentTab] = useState(0)
   const [collapsed, setCollapsed] = useState(true)
   const handles = useCssHandles(CSS_HANDLES)
+  const { isMobile } = useDevice()
+
+  const shouldBeCollapsable = !!(
+    collapsable === 'always' ||
+    (collapsable === 'mobileOnly' && isMobile) ||
+    (collapsable === 'desktopOnly' && !isMobile)
+  )
 
   const handleTabChange = tabIndex => {
     setCurrentTab(tabIndex)
@@ -90,6 +99,43 @@ const ProductSpecifications = ({
     </FormattedMessage>
   )
 
+  const specificationsTable = (
+    <table
+      className={`${handles.specificationsTable} w-100 bg-base border-collapse`}
+    >
+      <thead>
+        <tr>
+          <th
+            className={`${handles.specificationsTablePropertyHeading} w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5`}
+          >
+            <FormattedMessage id="store/product-description.property" />
+          </th>
+          <th
+            className={`${handles.specificationsTableSpecificationHeading} w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5`}
+          >
+            <FormattedMessage id="store/product-description.specification" />
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {specificationItems.map((specification, i) => (
+          <tr key={i}>
+            <td
+              className={`${handles.specificationItemProperty} w-50 b--muted-4 bb pa5`}
+            >
+              {HtmlParser(specification.property)}
+            </td>
+            <td
+              className={`${handles.specificationItemSpecifications} w-50 b--muted-4 bb pa5`}
+            >
+              {HtmlParser(specification.specifications)}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+
   const tableView = (
     <Fragment>
       {specifications.length > 0 && (
@@ -97,46 +143,17 @@ const ProductSpecifications = ({
           className={`${handles.specificationsTableContainer} mt9 mt0-l pl8-l`}
         >
           {specificationTitle}
-          <GradientCollapse
-            collapseHeight={220}
-            collapsed={collapsed}
-            onCollapsedChange={(_, newValue) => setCollapsed(newValue)}
-          >
-            <table
-              className={`${handles.specificationsTable} w-100 bg-base border-collapse`}
+          {shouldBeCollapsable ? (
+            <GradientCollapse
+              collapseHeight={220}
+              collapsed={collapsed}
+              onCollapsedChange={(_, newValue) => setCollapsed(newValue)}
             >
-              <thead>
-                <tr>
-                  <th
-                    className={`${handles.specificationsTablePropertyHeading} w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5`}
-                  >
-                    <FormattedMessage id="store/product-description.property" />
-                  </th>
-                  <th
-                    className={`${handles.specificationsTableSpecificationHeading} w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5`}
-                  >
-                    <FormattedMessage id="store/product-description.specification" />
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {specificationItems.map((specification, i) => (
-                  <tr key={i}>
-                    <td
-                      className={`${handles.specificationItemProperty} w-50 b--muted-4 bb pa5`}
-                    >
-                      {HtmlParser(specification.property)}
-                    </td>
-                    <td
-                      className={`${handles.specificationItemSpecifications} w-50 b--muted-4 bb pa5`}
-                    >
-                      {HtmlParser(specification.specifications)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </GradientCollapse>
+              {specificationsTable}
+            </GradientCollapse>
+          ) : (
+            specificationsTable
+          )}
         </div>
       )}
     </Fragment>
@@ -154,13 +171,17 @@ const ProductSpecifications = ({
             onClick={() => handleTabChange(i)}
           >
             <div className={`${handles.specificationsTab} pb8 c-muted-1 pv6`}>
-              <GradientCollapse
-                collapseHeight={220}
-                collapsed={collapsed}
-                onCollapsedChange={(_, newValue) => setCollapsed(newValue)}
-              >
-                {HtmlParser(specification.specifications)}
-              </GradientCollapse>
+              {shouldBeCollapsable ? (
+                <GradientCollapse
+                  collapseHeight={220}
+                  collapsed={collapsed}
+                  onCollapsedChange={(_, newValue) => setCollapsed(newValue)}
+                >
+                  {HtmlParser(specification.specifications)}
+                </GradientCollapse>
+              ) : (
+                HtmlParser(specification.specifications)
+              )}
             </div>
           </Tab>
         ))}
@@ -195,6 +216,7 @@ ProductSpecifications.propTypes = {
   visibleSpecifications: PropTypes.array,
   /** Specifications which will be hidden (optional) */
   hiddenSpecifications: PropTypes.array,
+  collapsable: PropTypes.oneOf('always', 'never', 'desktopOnly', 'mobileOnly'),
 }
 
 export default ProductSpecifications
