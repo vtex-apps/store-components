@@ -5,4 +5,5 @@ declare module 'vtex.styleguide' {
   export const Button: any
   export const Modal: any
   export const withToast: any
+  export const Tooltip: any
 }
