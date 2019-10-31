@@ -1,2 +1,9 @@
-const useProduct = jest.fn()
+const useProduct = jest.fn(() => {
+  return {
+    buyButton: {
+      clicked: false,
+    },
+  }
+})
+
 export default useProduct
