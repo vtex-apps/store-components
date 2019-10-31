@@ -55,20 +55,21 @@ const skuItemToMinicartItem = item => {
  * Adds a list of sku items to the cart.
  */
 export const BuyButton = ({
-  isOneClickBuy = false,
-  shouldOpenMinicart = false,
-  available = true,
   intl,
+  large,
   addToCart,
-  setMinicartOpen,
   skuItems,
   onAddStart,
   onAddFinish,
+  setMinicartOpen,
+  available = true,
   orderFormContext,
+  isOneClickBuy = false,
   children: childrenProp,
-  large,
   disabled: disabledProp,
   shouldAddToCart = true,
+  shouldOpenMinicart = false,
+  showTooltipOnSkuNotSelected = false,
   customToastURL = CONSTANTS.CHECKOUT_URL,
 }) => {
   const handles = useCssHandles(CSS_HANDLES)
@@ -222,7 +223,7 @@ export const BuyButton = ({
     </FormattedMessage>
   )
 
-  return skuSelector.areAllVariationsSelected ? (
+  return !showTooltipOnSkuNotSelected || skuSelector.areAllVariationsSelected ? (
     <Button
       block={large}
       disabled={disabled}
