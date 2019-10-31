@@ -37,10 +37,10 @@ const ProductSpecifications = ({
   const handles = useCssHandles(CSS_HANDLES)
   const { isMobile } = useDevice()
 
-  const shouldBeCollapsable = !!(
+  const shouldBeCollapsable = Boolean(
     collapsable === 'always' ||
-    (collapsable === 'mobileOnly' && isMobile) ||
-    (collapsable === 'desktopOnly' && !isMobile)
+      (collapsable === 'mobileOnly' && isMobile) ||
+      (collapsable === 'desktopOnly' && !isMobile)
   )
 
   const handleTabChange = tabIndex => {
