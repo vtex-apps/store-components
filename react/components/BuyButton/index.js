@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useContext, useCallback, useState, Fragment } from 'react'
+import React, { useContext, useCallback, useState } from 'react'
 import { intlShape, FormattedMessage } from 'react-intl'
 import { path } from 'ramda'
 import ContentLoader from 'react-content-loader'
@@ -10,10 +10,11 @@ import useProduct from 'vtex.product-context/useProduct'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 
-import { Button, ToastContext } from 'vtex.styleguide'
+import { Button, ToastContext, Tooltip } from 'vtex.styleguide'
 
 const CONSTANTS = {
   SUCCESS_MESSAGE_ID: 'store/buybutton.buy-success',
+  TOOLTIP_ERROR_MESSAGE_ID: 'store/buybutton.select-sku-variations',
   OFFLINE_BUY_MESSAGE_ID: 'store/buybutton.buy-offline-success',
   DUPLICATE_CART_ITEM_ID: 'store/buybutton.buy-success-duplicate',
   ERROR_MESSAGE_ID: 'store/buybutton.add-failure',
@@ -64,9 +65,9 @@ export const BuyButton = ({
   onAddStart,
   onAddFinish,
   orderFormContext,
-  children,
+  children: childrenProp,
   large,
-  disabled,
+  disabled: disabledProp,
   shouldAddToCart = true,
   customToastURL = CONSTANTS.CHECKOUT_URL,
 }) => {
@@ -197,33 +198,50 @@ export const BuyButton = ({
     }
   }
 
-  return (
-    <Fragment>
-      {!skuItems ? (
-        <ContentLoader />
-      ) : (
-        <Button
-          block={large}
-          disabled={
-            disabled ||
-            !available ||
-            (orderFormContext && orderFormContext.loading)
-          }
-          isLoading={isAddingToCart}
-          onClick={handleClick}
-        >
-          {available ? (
-            children
-          ) : (
-            <FormattedMessage id="store/buyButton-label-unavailable">
-              {message => (
-                <span className={handles.buyButtonText}>{message}</span>
-              )}
-            </FormattedMessage>
+  if (!skuItems) {
+    return <ContentLoader />
+  }
+
+  const disabled = disabledProp || !available || (orderFormContext && orderFormContext.loading)
+  let children = childrenProp
+  if (!available) {
+    children = (
+      <FormattedMessage id="store/buyButton-label-unavailable">
+          {message => (
+            <span className={handles.buyButtonText}>{message}</span>
           )}
-        </Button>
+      </FormattedMessage>
+    )
+  }
+
+  const tooltipLabel = (
+    <FormattedMessage id={CONSTANTS.TOOLTIP_ERROR_MESSAGE_ID}>
+      {message => (
+        <span className={handles.errorMessage}>{message}</span>
       )}
-    </Fragment>
+    </FormattedMessage>
+  )
+
+  return skuSelector.areAllVariationsSelected ? (
+    <Button
+      block={large}
+      disabled={disabled}
+      onClick={handleClick}
+      isLoading={isAddingToCart}
+    >
+      {children}
+    </Button>
+  ) : (
+    <Tooltip trigger="click" label={tooltipLabel}>
+      <Button
+        block={large}
+        disabled={disabled}
+        onClick={handleClick}
+        isLoading={isAddingToCart}
+        >
+        {children}
+      </Button>
+    </Tooltip>
   )
 }
 
@@ -274,6 +292,8 @@ BuyButton.propTypes = {
   intl: intlShape.isRequired,
   /** If the product is available or not*/
   available: PropTypes.bool,
+  /** If it should a tooltip when you click the button but there's no SKU selected */
+  showTooltipOnSkuNotSelected: PropTypes.bool,
   /** Function used to show toasts (messages) to user */
   showToast: PropTypes.func,
   /** Function to be called on the start of add to cart click event */
