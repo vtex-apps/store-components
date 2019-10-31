@@ -34,8 +34,9 @@ interface Props {
   showBorders?: boolean
   imageHeight?: number
   imageWidth?: number
-  showVariationsLabels: boolean,
+  showVariationsLabels: boolean
   variationsSpacing?: number
+  showVariationsErrorMessage: boolean
 }
 
 const isSkuAvailable = compose<
@@ -232,6 +233,7 @@ const SKUSelector: FC<Props> = ({
   showVariationsLabels,
   hideImpossibleCombinations,
   showValueNameForImageVariation,
+  showVariationsErrorMessage,
 }) => {
   const [displayVariations, setDisplayVariations] = useState<
     DisplayVariation[] | null
@@ -299,6 +301,7 @@ const SKUSelector: FC<Props> = ({
             showLabel={showVariationsLabels}
             containerClasses={variationClasses}
             key={`${variationOption.name}-${index}`}
+            showErrorMessage={showVariationsErrorMessage}
             showValueNameForImageVariation={showValueNameForImageVariation}
           />
         )
