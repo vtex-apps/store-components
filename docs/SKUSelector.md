@@ -73,6 +73,7 @@ These are properties that you can customize in your `blocks.json` file.
 | imageWidth | `number | object` | It works same way as `imageHeight` | `'auto'` |
 | showVariationsLabels | `boolean` | If should show the variations name | `true` |
 | initialSelection | `InitialSelectionEnum` | Control the initial selection chosen for the variations when page is loaded. | `complete` |
+| showVariationsErrorMessage | `boolean`| If should show an error message when you click in the `BuyButton` but didn't select an option of each variation | `false` |
 
 Values and description for `InitialSelectionEnum`:
 | Value | Name | Description |
