@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.80.1] - 2019-11-01
+
 ## [3.80.0] - 2019-10-31
 ### Added
 - New `collapsable` prop to `ProductSpecifications`.
