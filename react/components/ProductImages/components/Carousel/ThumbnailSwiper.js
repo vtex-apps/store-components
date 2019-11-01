@@ -38,9 +38,7 @@ const Thumbnail = ({
         />
       </figure>
       <div
-        className={`absolute absolute--fill b--solid b--muted-2 bw1 ${
-          styles.carouselThumbBorder
-        }`}
+        className={`absolute absolute--fill b--solid b--muted-2 bw1 ${styles.carouselThumbBorder}`}
       />
     </div>
   )
