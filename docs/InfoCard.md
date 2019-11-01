@@ -51,7 +51,7 @@ Through the Storefront, you can change the `InfoCard`'s behavior and interface. 
 | `callToActionText` | `String` | Text to be displayed inside the CTA component | `""` |
 | `callToActionUrl` | `String` | URL to be redirected when CTA component is clicked | `""` |
 | `imageUrl` | `String` | URL of the image to be used on desktop | `""` |
-| `mobileImageUrl` | `String` |  URL of the image to be used on desktop. If you do not provide any, the desktop image url will be used | `null` |
+| `mobileImageUrl` | `String` |  URL of the image to be used on mobile. If you do not provide any, the desktop image url will be used | `null` |
 | `blockClass` | `String` | Adds an extra class name to ease styling | `null` |
 | `htmlId` | `String` | Adds an id to the container element | `null` |
 
