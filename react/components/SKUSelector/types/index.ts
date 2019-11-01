@@ -15,6 +15,12 @@ export interface ProductItem {
   }[]
 }
 
+export enum InitialSelectionType {
+  complete = 'complete',
+  image = 'image',
+  empty = 'empty'
+}
+
 export interface SelectorProductItem extends Omit<ProductItem, 'variations'> {
   variations: string[]
   variationValues: Record<string, string>

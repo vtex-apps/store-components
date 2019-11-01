@@ -18,12 +18,13 @@ import {
   findItemWithSelectedVariations,
 } from './utils'
 import {
+  Image,
+  ImageMap,
+  Variations,
   ProductItem,
   SelectedVariations,
   SelectorProductItem,
-  ImageMap,
-  Image,
-  Variations,
+  InitialSelectionType
 } from './types'
 
 const keyCount = compose(
@@ -116,7 +117,7 @@ interface Props {
   seeMoreLabel: string
   maxItems?: number
   variations: Variations
-  skuSelected?: ProductItem
+  skuSelected: ProductItem
   hideImpossibleCombinations?: boolean
   showValueNameForImageVariation?: boolean
   imageHeight?: number
@@ -125,6 +126,7 @@ interface Props {
   showVariationsLabels?: boolean
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
+  initialSelection?: InitialSelectionType
 }
 
 /**
@@ -145,8 +147,10 @@ const SKUSelectorContainer: FC<Props> = ({
   hideImpossibleCombinations = true,
   showVariationsErrorMessage = false,
   showValueNameForImageVariation = false,
+  initialSelection = InitialSelectionType.complete,
 }) => {
   const variationsCount = keyCount(variations)
+  const { query } = useRuntime()
   const [
     selectedVariations,
     setSelectedVariations,
@@ -164,13 +168,32 @@ const SKUSelectorContainer: FC<Props> = ({
     )
   }
 
-  useEffect(() => {
-    const initialVariations = skuSelected
-      ? selectedVariationFromItem(parseSku(skuSelected), variations)
-      : buildEmptySelectedVariation(variations)
+  const getNewSelectedVariations = useCallback(() => {
+    const hasSkuInquery = Boolean(query && query.skuId)
+    const parsedSku = parseSku(skuSelected)
+    const emptyVariations = buildEmptySelectedVariation(variations)
+  
+    if (hasSkuInquery || initialSelection === InitialSelectionType.complete) {
+       return selectedVariationFromItem(parsedSku, variations)
+    } else if (initialSelection === InitialSelectionType.image) {
+      const colorVariationName = parsedSku.variations.find(isColor)
+      return {
+        ...emptyVariations,
+        ...(colorVariationName
+          ? {
+            [colorVariationName]:
+              parsedSku.variationValues[colorVariationName],
+          }
+          : {}),
+      }
+    }
 
-      setSelectedVariations(initialVariations)
-    }, [variations])
+    return emptyVariations
+  }, [variations, skuSelected, query, initialSelection])
+
+  useEffect(() => {
+    setSelectedVariations(getNewSelectedVariations())
+  }, [variations])
 
   useEffect(() => {
     if (skuSelected && onSKUSelected) {
