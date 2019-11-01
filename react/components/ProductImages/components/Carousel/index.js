@@ -277,9 +277,7 @@ class Carousel extends Component {
         navigation: {
           prevEl: '.swiper-thumbnails-caret-prev',
           nextEl: '.swiper-thumbnails-caret-next',
-          disabledClass: `c-disabled o-0 pointer-events-none ${
-            styles.carouselCursorDefault
-          }`,
+          disabledClass: `c-disabled o-0 pointer-events-none ${styles.carouselCursorDefault}`,
           hiddenClass: 'dn',
         },
         renderNextButton: () => {
@@ -287,12 +285,8 @@ class Carousel extends Component {
             'swiper-thumbnails-caret-next',
             caretClassName,
             {
-              [`bottom-0 pt7 left-0 justify-center w-100 ${
-                styles.gradientBaseBottom
-              }`]: isThumbsVertical,
-              [`right-0 top-0 items-center h-100 pl6 ${
-                styles.gradientBaseRight
-              }`]: !isThumbsVertical,
+              [`bottom-0 pt7 left-0 justify-center w-100 ${styles.gradientBaseBottom}`]: isThumbsVertical,
+              [`right-0 top-0 items-center h-100 pl6 ${styles.gradientBaseRight}`]: !isThumbsVertical,
             }
           )
           return (
@@ -309,12 +303,8 @@ class Carousel extends Component {
             'swiper-thumbnails-caret-prev top-0 left-0',
             caretClassName,
             {
-              [`pb7 justify-center w-100 ${
-                styles.gradientBaseTop
-              }`]: isThumbsVertical,
-              [`items-center h-100 pr6 ${
-                styles.gradientBaseLeft
-              }`]: !isThumbsVertical,
+              [`pb7 justify-center w-100 ${styles.gradientBaseTop}`]: isThumbsVertical,
+              [`items-center h-100 pr6 ${styles.gradientBaseLeft}`]: !isThumbsVertical,
             }
           )
           return (
