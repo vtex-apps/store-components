@@ -191,10 +191,7 @@ export const BuyButton = ({
 
   const handleClick = e => {
     dispatch({ type: 'SET_BUY_BUTTON_CLICKED', args: { clicked: true } })
-    if (!skuSelector.areAllVariationsSelected) {
-      // TODO show toast or something
-      return
-    } else if (shouldAddToCart) {
+    if (skuSelector.areAllVariationsSelected && shouldAddToCart) {
       handleAddToCart(e)
     }
   }

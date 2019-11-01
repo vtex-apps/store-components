@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `initialSelection` and `showVariationsErrorMessage` to `SKUSelector`.
--  `showTooltipOnSkuNotSelected`to `BuyButton`.
+-  `showTooltipOnSkuNotSelected` to `BuyButton`.
 
 ### Changed
 - `BuyButton` now only add a product to the cart if all variations have one options selected.
