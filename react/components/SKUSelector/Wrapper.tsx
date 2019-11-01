@@ -4,7 +4,7 @@ import { pathOr, pick } from 'ramda'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 import SKUSelector from './index'
-import { ProductItem, Variations } from './types'
+import { ProductItem, Variations, InitialSelectionType } from './types'
 import { useResponsiveValues } from 'vtex.responsive-values'
 
 const useVariations = (skuItems: ProductItem[], shouldNotShow: boolean, visibleVariations?: string[]) => {
@@ -56,6 +56,7 @@ interface Props {
   showVariationsLabels?: boolean
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
+  initialSelection?: InitialSelectionType
 }
 
 const SKUSelectorWrapper: StorefrontFC<Props> = props => {
@@ -103,13 +104,14 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
       maxItems={props.maxItems}
       imageHeight={imageHeight}
       seeMoreLabel={props.seeMoreLabel}
-      variationsSpacing={props.variationsSpacing}
       onSKUSelected={props.onSKUSelected}
+      thumbnailImage={props.thumbnailImage}
+      variationsSpacing={props.variationsSpacing}
+      initialSelection={props.initialSelection}
       showVariationsLabels={props.showVariationsLabels}
       hideImpossibleCombinations={props.hideImpossibleCombinations}
       showVariationsErrorMessage={props.showVariationsErrorMessage}
       showValueNameForImageVariation={props.showValueNameForImageVariation}
-      thumbnailImage={props.thumbnailImage}
     />
   )
 }
