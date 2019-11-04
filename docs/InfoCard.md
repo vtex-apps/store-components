@@ -84,7 +84,7 @@ Here are the possible values of `TextAlignmentEnum`
 You should follow the Styles API instruction in the main [README](/README.md#styles-api).
 
 #### CSS Namespaces
-Below, we describe the namespace that are defined in the `ProductPrice`.
+Below, we describe the namespace that are defined in the `InfoCard`.
 
 | Class name | Description | Component Source |
 | ---------- | ----------- | ---------------- |
