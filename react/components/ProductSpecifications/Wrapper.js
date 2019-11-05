@@ -23,6 +23,7 @@ const ProductSpecificationsWrapper = ({
   specifications: propsSpecifications,
   tabsMode, // This is a legacy prop passed by product-details
   showSpecificationsTab = false,
+  collapsable = 'always',
 }) => {
   const productContext = useProduct()
 
@@ -35,6 +36,7 @@ const ProductSpecificationsWrapper = ({
       visibleSpecifications={visibleSpecifications}
       tabsMode={tabsMode != null ? tabsMode : showSpecificationsTab}
       specifications={specifications}
+      collapsable={collapsable}
     />
   )
 }
