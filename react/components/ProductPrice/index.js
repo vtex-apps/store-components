@@ -27,6 +27,7 @@ const CSS_HANDLES = ['price_className',
   'price_sellingPrice',
   'price_savingsContainer',
   'price_savings',
+  'price_savings_value',
   'price_installment',
   'price_interestRate',
   'price_installmentContainer']
@@ -90,6 +91,7 @@ const ProductPrice = (props, context) => {
     showSavings,
     labelSellingPrice,
     labelListPrice,
+    labelSavings,
     className,
     loaderClass,
     listPriceContainerClass,
@@ -231,11 +233,15 @@ const ProductPrice = (props, context) => {
             <FormattedMessage
               id="store/pricing.savings"
               values={{
-                savings: formatCurrency({
-                  intl,
-                  culture,
-                  value: listPrice - sellingPrice,
-                }),
+                savings: 
+                <span 
+                  className={handles.price_savings_value}>
+                    {formatCurrency({
+                      intl,
+                      culture,
+                      value: listPrice - sellingPrice,
+                  })}
+                </span>
               }}
             />
           </div>
