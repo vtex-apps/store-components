@@ -27,7 +27,7 @@ const CSS_HANDLES = [
 const ProductSpecifications = ({
   tabsMode,
   specifications,
-  collapsable = 'always',
+  collapsible = 'always',
   hiddenSpecifications,
   visibleSpecifications,
   shouldCollapseInTabChange,
@@ -37,10 +37,10 @@ const ProductSpecifications = ({
   const handles = useCssHandles(CSS_HANDLES)
   const { isMobile } = useDevice()
 
-  const shouldBeCollapsable = Boolean(
-    collapsable === 'always' ||
-      (collapsable === 'mobileOnly' && isMobile) ||
-      (collapsable === 'desktopOnly' && !isMobile)
+  const shouldBeCollapsible = Boolean(
+    collapsible === 'always' ||
+      (collapsible === 'mobileOnly' && isMobile) ||
+      (collapsible === 'desktopOnly' && !isMobile)
   )
 
   const handleTabChange = tabIndex => {
@@ -143,7 +143,7 @@ const ProductSpecifications = ({
           className={`${handles.specificationsTableContainer} mt9 mt0-l pl8-l`}
         >
           {specificationTitle}
-          {shouldBeCollapsable ? (
+          {shouldBeCollapsible ? (
             <GradientCollapse
               collapseHeight={220}
               collapsed={collapsed}
@@ -171,7 +171,7 @@ const ProductSpecifications = ({
             onClick={() => handleTabChange(i)}
           >
             <div className={`${handles.specificationsTab} pb8 c-muted-1 pv6`}>
-              {shouldBeCollapsable ? (
+              {shouldBeCollapsible ? (
                 <GradientCollapse
                   collapseHeight={220}
                   collapsed={collapsed}
@@ -216,7 +216,7 @@ ProductSpecifications.propTypes = {
   visibleSpecifications: PropTypes.array,
   /** Specifications which will be hidden (optional) */
   hiddenSpecifications: PropTypes.array,
-  collapsable: PropTypes.oneOf([
+  collapsible: PropTypes.oneOf([
     'always',
     'never',
     'desktopOnly',
