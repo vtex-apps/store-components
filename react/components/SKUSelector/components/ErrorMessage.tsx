@@ -1,25 +1,22 @@
 import React from 'react'
 import { useCssHandles } from 'vtex.css-handles'
-import { injectIntl, InjectedIntlProps, defineMessages } from 'react-intl'
-
-const messages = defineMessages({
-  selectOption: {
-    id: 'store/sku-selector.variation.select-an-option',
-    defaultMessage: ''
-  },
-})
+import { FormattedMessage } from 'react-intl'
 
 const CSS_HANDLES = ['errorMessage'] as const
 
-function ErrorMessage({ intl }: InjectedIntlProps) {
+function ErrorMessage() {
   const handles = useCssHandles(CSS_HANDLES)
   const className = `${handles.errorMessage} c-danger`
 
   return (
-    <span className={className}>
-      {intl.formatMessage(messages.selectOption)}
-    </span>
+    <FormattedMessage id="store/sku-selector.variation.select-an-option">
+      {message => (
+      <span className={className}>
+        {message}
+      </span>
+      )}
+    </FormattedMessage>
   )
 }
 
-export default injectIntl(ErrorMessage)
+export default ErrorMessage

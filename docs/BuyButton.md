@@ -46,7 +46,7 @@ Through the Storefront, you can change the `BuyButton`'s behavior and interface.
 | `showItemsPrice`     | `Boolean` | If you want to show the total price of items to be added to cart                 | `false`              |
 | `customToastURL`     | `String`  | Set the link associated with the Toast created when adding an item to your cart. | `/checkout/#/cart` |
 | `shouldAddToCart`    | `Boolean` | If it should add to cart when clicked                                             | true          |
-| `showTooltipOnSkuNotSelected` | `Boolean` | If it should a tooltip when you click the button but there's no SKU selected | `false` |
+| `showTooltipOnSkuNotSelected` | `Boolean` | If it should show a tooltip when you click the button but there's no SKU selected | `true` |
 
 ### Styles API
 
