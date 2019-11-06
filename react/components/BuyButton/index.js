@@ -65,11 +65,11 @@ export const BuyButton = ({
   available = true,
   orderFormContext,
   isOneClickBuy = false,
-  children: childrenProp,
+  children,
   disabled: disabledProp,
   shouldAddToCart = true,
   shouldOpenMinicart = false,
-  showTooltipOnSkuNotSelected = false,
+  showTooltipOnSkuNotSelected = true,
   customToastURL = CONSTANTS.CHECKOUT_URL,
 }) => {
   const handles = useCssHandles(CSS_HANDLES)
@@ -201,16 +201,13 @@ export const BuyButton = ({
   }
 
   const disabled = disabledProp || !available || (orderFormContext && orderFormContext.loading)
-  let children = childrenProp
-  if (!available) {
-    children = (
-      <FormattedMessage id="store/buyButton-label-unavailable">
-          {message => (
-            <span className={handles.buyButtonText}>{message}</span>
-          )}
-      </FormattedMessage>
-    )
-  }
+  const unavailableLabel = (
+    <FormattedMessage id="store/buyButton-label-unavailable">
+        {message => (
+          <span className={handles.buyButtonText}>{message}</span>
+        )}
+    </FormattedMessage>
+  )
 
   const tooltipLabel = (
     <FormattedMessage id={CONSTANTS.TOOLTIP_ERROR_MESSAGE_ID}>
@@ -227,7 +224,7 @@ export const BuyButton = ({
       onClick={handleClick}
       isLoading={isAddingToCart}
     >
-      {children}
+      {available ? children : unavailableLabel}
     </Button>
   ) : (
     <Tooltip trigger="click" label={tooltipLabel}>
@@ -237,7 +234,7 @@ export const BuyButton = ({
         onClick={handleClick}
         isLoading={isAddingToCart}
         >
-        {children}
+        {available ? children : unavailableLabel}
       </Button>
     </Tooltip>
   )

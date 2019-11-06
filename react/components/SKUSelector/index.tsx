@@ -145,7 +145,7 @@ const SKUSelectorContainer: FC<Props> = ({
   variationsSpacing,
   showVariationsLabels = true,
   hideImpossibleCombinations = true,
-  showVariationsErrorMessage = false,
+  showVariationsErrorMessage = true,
   showValueNameForImageVariation = false,
   initialSelection = InitialSelectionType.complete,
 }) => {
@@ -169,11 +169,11 @@ const SKUSelectorContainer: FC<Props> = ({
   }
 
   const getNewSelectedVariations = useCallback(() => {
-    const hasSkuInquery = Boolean(query && query.skuId)
+    const hasSKuInQuery = Boolean(query && query.skuId)
     const parsedSku = parseSku(skuSelected)
     const emptyVariations = buildEmptySelectedVariation(variations)
   
-    if (hasSkuInquery || initialSelection === InitialSelectionType.complete) {
+    if (hasSKuInQuery || initialSelection === InitialSelectionType.complete) {
        return selectedVariationFromItem(parsedSku, variations)
     } else if (initialSelection === InitialSelectionType.image) {
       const colorVariationName = parsedSku.variations.find(isColor)
