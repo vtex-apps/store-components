@@ -138,10 +138,20 @@ const ZoomInPlace: FC<Props> = ({ children, zoomContent, type, factor }) => {
       onMouseOver={type === 'hover' ? handleMouseOver : undefined}
       onClick={type === 'click' ? handleClick : undefined}
       className="relative">
-      <div ref={contentRef} style={{ transformOrigin: '0 0' }}>
+      <div ref={contentRef} style={{
+        transformOrigin: '0 0',
+        fontSize: 0, /** Prevents accidental whitespaces on the content from stretching
+                       * the container, and consequently the zoomed image */
+      }}>
         {children}
         {zoomContent && isZoomedIn && (
-          <div className="absolute top-0 left-0 right-0 bottom-0" style={{ transformOrigin: '0 0', transform: `scale(${1/factor})`}}>
+          <div
+            className="absolute top-0 left-0 right-0 bottom-0"
+            style={{
+              transformOrigin: '0 0',
+              transform: `scale(${1/factor})`,
+              fontSize: 0
+            }}>
             {zoomContent}
           </div>
         )}
