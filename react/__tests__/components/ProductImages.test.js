@@ -1,7 +1,6 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
 import ProductImages from './../../ProductImages'
-import 'jest-canvas-mock'
 import useProduct from 'vtex.product-context/useProduct'
 import { createItem } from '../../__mocks__/productMock'
 
@@ -32,9 +31,6 @@ class FakeImage {
 
 beforeEach(() => {
   window.Image = FakeImage
-  window.HTMLCanvasElement.prototype.getContext = () => ({
-    drawImage: jest.fn(),
-  })
 })
 
 describe('<ProductImages />', () => {
@@ -42,7 +38,7 @@ describe('<ProductImages />', () => {
     return render(<ProductImages {...customProps} />)
   }
 
-  it('should render three canvas for each image', () => {
+  it('should render two images (thumb and main image) for each product image', () => {
     const props = {
       images: [
         {
@@ -59,9 +55,9 @@ describe('<ProductImages />', () => {
         },
       ],
     }
-    const { queryAllByTestId } = renderComponent(props)
-    expect(queryAllByTestId('canvas-imageText').length).toBe(3)
-    expect(queryAllByTestId('canvas-imageText2').length).toBe(3)
+    const { getAllByAltText } = renderComponent(props)
+    expect(getAllByAltText('imageText').length).toBe(2)
+    expect(getAllByAltText('imageText2').length).toBe(2)
   })
   it('should show thumbs when there is more than one image', () => {
     const props = {
@@ -80,11 +76,11 @@ describe('<ProductImages />', () => {
         },
       ],
     }
-    const { queryByTestId, getByAltText } = renderComponent(props)
+    const { queryByTestId, getAllByAltText } = renderComponent(props)
     const swiper = queryByTestId('thumbnail-swiper')
     expect(swiper.className.includes('db-ns')).toBeTruthy()
-    getByAltText('imageText')
-    getByAltText('imageText2')
+    getAllByAltText('imageText')
+    getAllByAltText('imageText2')
   })
   it('should NOT show thumbs when there is one image', () => {
     const props = {
@@ -237,10 +233,10 @@ describe('<ProductImages />', () => {
       mockUseProduct.mockImplementation(() => ({
         selectedItem: createItem({}),
       }))
-      const { queryAllByTestId } = renderComponent({})
-      expect(queryAllByTestId('canvas-imageText').length).toBe(3)
-      expect(queryAllByTestId('canvas-imageText2').length).toBe(3)
-      expect(queryAllByTestId('canvas-imageText3').length).toBe(3)
+      const { queryAllByAltText } = renderComponent({})
+      expect(queryAllByAltText('imageText').length).toBe(2)
+      expect(queryAllByAltText('imageText2').length).toBe(2)
+      expect(queryAllByAltText('imageText3').length).toBe(2)
     })
     it('give priority to prop items if product in context', () => {
       mockUseProduct.mockImplementation(() => ({
@@ -262,9 +258,9 @@ describe('<ProductImages />', () => {
           },
         ],
       }
-      const { queryAllByTestId } = renderComponent(props)
-      expect(queryAllByTestId('canvas-propImageText').length).toBe(3)
-      expect(queryAllByTestId('canvas-propImageText2').length).toBe(3)
+      const { queryAllByAltText } = renderComponent(props)
+      expect(queryAllByAltText('propImageText').length).toBe(2)
+      expect(queryAllByAltText('propImageText2').length).toBe(2)
     })
   })
 })
