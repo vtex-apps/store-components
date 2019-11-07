@@ -206,7 +206,7 @@ class Carousel extends Component {
         swiper: thumbSwiper,
       },
       threshold: 10,
-      resistanceRatio: slides.length > 1 ? 1 : 0,
+      resistanceRatio: slides.length > 1 ? 0.85 : 0,
       renderNextButton: () => (
         <span className={`swiper-caret-next pl7 pr2 right-0 ${caretClassName}`}>
           <IconCaret
