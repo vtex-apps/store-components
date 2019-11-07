@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import useProduct from 'vtex.product-context/useProduct'
-import { path, map } from 'ramda'
+import { useResponsiveValues } from 'vtex.responsive-values'
+import { path, map, pick } from 'ramda'
 
 import ProductImages from './index'
 import generateImageConfig from './utils/generateImageConfig'
@@ -8,6 +9,9 @@ import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
 
 const ProductImagesWrapper = props => {
   const valuesFromContext = useProduct() || {}
+  const { aspectRatio, maxHeight } = useResponsiveValues(
+    pick(['aspectRatio', 'maxHeight'], props)
+  )
   const { selectedItem } = valuesFromContext
 
   const images = useMemo(
@@ -37,7 +41,8 @@ const ProductImagesWrapper = props => {
       thumbnailsOrientation={props.thumbnailsOrientation}
       zoomMode={props.zoomMode}
       zoomFactor={props.zoomFactor}
-      aspectRatio={props.aspectRatio}
+      aspectRatio={aspectRatio}
+      maxHeight={maxHeight}
       // Deprecated
       zoomProps={props.zoomProps}
     />
