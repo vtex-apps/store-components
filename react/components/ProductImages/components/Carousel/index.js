@@ -47,12 +47,6 @@ class Carousel extends Component {
     slides.forEach(async (slide, i) => {
       if (slide.type === 'video') {
         const thumbUrl = await Video.getThumbUrl(slide.src, slide.thumbWidth)
-        // this.setState({
-        //   thumbUrl: {
-        //     ...this.state.thumbUrl,
-        //     [i]: thumbUrl,
-        //   },
-        // })
         this.isVideo[i] = true
         this.setVideoThumb(i)(thumbUrl)
         this.thumbLoadFinish()

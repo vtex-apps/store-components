@@ -121,9 +121,10 @@ const ProductImage: FC<Props> = ({ src, alt, zoomMode = ZoomMode.InPlaceClick, z
               srcSet={srcSet}
               alt={alt}
               title={alt}
+              loading="lazy"
 
               // WIP
-              // This sizes value means: if the window has at most 64.1rem of width,
+              // The value of the "sizes" attribute means: if the window has at most 64.1rem of width,
               // the image will be of a width of 100vw. Otherwise, the
               // image will be 50vw wide.
               // This size is used for picking the best available size
