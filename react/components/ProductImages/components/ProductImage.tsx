@@ -79,7 +79,14 @@ const imageUrl = (src: string, size: number, aspectRatio?: AspectRatio) => {
   return changeImageUrlSize(src, width, height)
 }
 
-const ProductImage: FC<Props> = ({ src, alt, zoomMode = ZoomMode.InPlaceClick, zoomFactor = 2, aspectRatio="4:6", maxHeight = 600 }) => {
+const ProductImage: FC<Props> = ({
+  src,
+  alt,
+  zoomMode = ZoomMode.InPlaceClick,
+  zoomFactor = 2,
+  aspectRatio="1:1",
+  maxHeight = 600,
+}) => {
   const srcSet = useMemo(() => (
     IMAGE_SIZES
       .map(size => `${imageUrl(src, size, aspectRatio)} ${size}w`)
