@@ -1,3 +1,6 @@
 {
-  "extends": "@vtex/tsconfig"
+  "extends": "@vtex/tsconfig",
+  "compilerOptions": {
+    "lib": ["es2017", "dom", "es2018.promise", "esnext.asynciterable"]
+  }
 }
