@@ -84,7 +84,7 @@ const ProductImage: FC<Props> = ({
   alt,
   zoomMode = ZoomMode.InPlaceClick,
   zoomFactor = 2,
-  aspectRatio="1:1",
+  aspectRatio='auto',
   maxHeight = 600,
 }) => {
   const srcSet = useMemo(() => (
