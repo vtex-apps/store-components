@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.82.2] - 2019-11-07
+
 ## [3.82.1] - 2019-11-07
 ### Fixed
 - `BuyButton` crashing if there is no component above it that provide the context of product.
