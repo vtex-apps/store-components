@@ -10,7 +10,6 @@ import {
 } from './utils/enums'
 
 const ProductImages = ({
-  videos,
   position,
   displayThumbnailsArrows,
   hiddenImages,
@@ -24,7 +23,10 @@ const ProductImages = ({
   // Deprecated
   zoomProps,
 }) => {
-  const excludeImageRegexes = hiddenImages.map(text => new RegExp(text, 'i'))
+  if (hiddenImages && !Array.isArray(hiddenImages)) {
+    hiddenImages = [hiddenImages]
+  }
+  const excludeImageRegexes = hiddenImages && hiddenImages.map(text => new RegExp(text, 'i'))
 
   const images = allImages.filter(image => {
     if (!image.imageText) {
@@ -39,7 +41,7 @@ const ProductImages = ({
     return [
       ...images.map(image => ({
         type: 'image',
-        url: image.imageUrl,
+        url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
         alt: image.imageText,
         thumbUrl: image.thumbnailUrl || image.imageUrl,
       })),
