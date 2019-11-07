@@ -75,7 +75,11 @@ export const BuyButton = ({
   const handles = useCssHandles(CSS_HANDLES)
   const [isAddingToCart, setAddingToCart] = useState(false)
   const { showToast } = useContext(ToastContext)
-  const { skuSelector } = useProduct()
+  const {
+    skuSelector = {
+      areAllVariationsSelected: true,
+    },
+  } = useProduct()
   const dispatch = useProductDispatch()
   const { settings = {}, showInstallPrompt } = usePWA() || {}
   const { promptOnCustomEvent } = settings
@@ -190,7 +194,10 @@ export const BuyButton = ({
   }
 
   const handleClick = e => {
-    dispatch({ type: 'SET_BUY_BUTTON_CLICKED', args: { clicked: true } })
+    if (dispatch) {
+      dispatch({ type: 'SET_BUY_BUTTON_CLICKED', args: { clicked: true } })
+    }
+
     if (skuSelector.areAllVariationsSelected && shouldAddToCart) {
       handleAddToCart(e)
     }
