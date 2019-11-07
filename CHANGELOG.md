@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.82.1] - 2019-11-07
 ### Fixed
 - `BuyButton` crashing if there is no component above it that provide the context of product.
 
