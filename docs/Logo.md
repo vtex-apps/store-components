@@ -1,5 +1,7 @@
 # Logo
 
+[![AMP compatible](https://img.shields.io/badge/amp-compatible-%230058f0)](https://img.shields.io/badge/amp-compatible-%230058f0)
+
 ## Description
 
 `Logo` is a VTEX component that displays a image logo.
