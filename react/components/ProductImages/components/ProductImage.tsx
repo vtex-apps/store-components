@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react'
+import React, { FC, useMemo, useRef } from 'react'
 import { changeImageUrlSize } from '../utils/generateUrl'
 import Zoomable, { ZoomMode } from './Zoomable'
 import styles from '../styles.css'
@@ -7,13 +7,13 @@ const IMAGE_SIZES = [600, 800, 1200]
 const DEFAULT_SIZE = 800
 const MAX_SIZE = 2048
 
-
 interface Props {
   src: string
   alt: string
   zoomMode: ZoomMode
   zoomFactor: number
   aspectRatio?: AspectRatio
+  maxHeight?: number
 }
 
 type AspectRatio = string | number
@@ -22,19 +22,25 @@ type AspectRatio = string | number
  * For example, turns "3:4" into 1.333, so the image height will be 
  * 1.333 times its width.
 */
-const parseAspectRatio = (input: AspectRatio) => {
+const parseAspectRatio = (input?: AspectRatio | null) => {
+  if (!input) {
+    return null
+  }
   if (typeof input === 'string') {
+    if (input === 'auto') { 
+      return null
+    }
     const separator = ':'
     const data = input.split(separator)
     if (data.length !== 2) {
-      return 1
+      return null
     }
 
     const [ width, height ] = data
     const ratio = parseFloat(height) / parseFloat(width)
 
     if (typeof ratio !== 'number' || isNaN(ratio)) {
-      return 1
+      return null
     }
 
     return ratio
@@ -44,39 +50,46 @@ const parseAspectRatio = (input: AspectRatio) => {
     return input
   }
 
-  return 1
+  return null
 }
 
-const imageUrl = (src: string, size: number, aspectRatio: AspectRatio) => {
-  const parsedRatio = parseAspectRatio(aspectRatio)
+const imageUrl = (src: string, size: number, aspectRatio?: AspectRatio) => {
+  let width = size
+  let height: number | string = 'auto'
 
-  let [width, height] = [ size, size * parsedRatio]
+  if (aspectRatio && aspectRatio !== 'auto') {
+    height = size * (parseAspectRatio(aspectRatio) || 1)
 
-  if (width > MAX_SIZE) {
-    height = height / (width / MAX_SIZE)
-    width = MAX_SIZE
+    if (width > MAX_SIZE) {
+      height = height / (width / MAX_SIZE) 
+      width = MAX_SIZE
+    }
+
+    if (height > MAX_SIZE) {
+      width = width / (height / MAX_SIZE)
+      height = MAX_SIZE
+    }
+
+    width = Math.round(width)
+    height = Math.round(height)
+  } else {
+    width = Math.min(MAX_SIZE, width)
   }
-
-  if (height > MAX_SIZE) {
-    width = width / (height / MAX_SIZE)
-    height = MAX_SIZE
-  }
-
-  width = Math.round(width)
-  height = Math.round(height)
 
   return changeImageUrlSize(src, width, height)
 }
 
-const ProductImage: FC<Props> = ({ src, alt, zoomMode = ZoomMode.InPlaceClick, zoomFactor = 2, aspectRatio = 1 }) => {
+const ProductImage: FC<Props> = ({ src, alt, zoomMode = ZoomMode.InPlaceClick, zoomFactor = 2, aspectRatio="4:6", maxHeight = 600 }) => {
   const srcSet = useMemo(() => (
     IMAGE_SIZES
       .map(size => `${imageUrl(src, size, aspectRatio)} ${size}w`)
       .join(',')
-  ), [src, IMAGE_SIZES])
+  ), [src, aspectRatio, IMAGE_SIZES])
+
+  const imageRef = useRef(null)
 
   return (
-    <div className={styles.image}>
+    <div className={styles.productImage}>
       <Zoomable
         mode={zoomMode}
         factor={zoomFactor}
@@ -88,31 +101,39 @@ const ProductImage: FC<Props> = ({ src, alt, zoomMode = ZoomMode.InPlaceClick, z
               // Resets possible resizing done via CSS
               maxWidth: 'unset',
               width: `${zoomFactor * 100}%`,
+              height: `${zoomFactor * 100}%`,
+              objectFit: 'contain',
             }}
 
             // See comment regarding sizes below
             sizes="(max-width: 64.1rem) 100vw, 50vw"
           />
         )}>
-        <img
-          className="w-100"
-          src={imageUrl(src, DEFAULT_SIZE, aspectRatio)}
-          srcSet={srcSet}
-          alt={alt}
-          title={alt}
+            <img
+              ref={imageRef}
+              style={{
+                width: '100%',
+                height: '100%',
+                maxHeight: maxHeight || 'unset',
+                objectFit: 'contain',
+              }}
+              src={imageUrl(src, DEFAULT_SIZE, aspectRatio)}
+              srcSet={srcSet}
+              alt={alt}
+              title={alt}
 
-          // WIP
-          // This sizes value means: if the window has at most 64.1rem of width,
-          // the image will be of a width of 100vw. Otherwise, the
-          // image will be 50vw wide.
-          // This size is used for picking the best available size
-          // given the ones from the srcset above.
-          //
-          // This is WIP because it is a guess: we are assuming
-          // the image will be of a certain size, but it should be
-          // probably be gotten from flex-layout or something.
-          sizes="(max-width: 64.1rem) 100vw, 50vw"
-        />
+              // WIP
+              // This sizes value means: if the window has at most 64.1rem of width,
+              // the image will be of a width of 100vw. Otherwise, the
+              // image will be 50vw wide.
+              // This size is used for picking the best available size
+              // given the ones from the srcset above.
+              //
+              // This is WIP because it is a guess: we are assuming
+              // the image will be of a certain size, but it should be
+              // probably be gotten from flex-layout or something.
+              sizes="(max-width: 64.1rem) 100vw, 50vw"
+            />
       </Zoomable>
     </div>
   )

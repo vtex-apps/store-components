@@ -18,6 +18,7 @@ const ProductImages = ({
   videos,
   thumbnailsOrientation,
   aspectRatio,
+  maxHeight,
   zoomMode,
   zoomFactor,
   // Deprecated
@@ -58,6 +59,7 @@ const ProductImages = ({
         displayThumbnailsArrows={displayThumbnailsArrows}
         thumbnailsOrientation={thumbnailsOrientation}
         aspectRatio={aspectRatio}
+        maxHeight={maxHeight}
         zoomMode={zoomMode}
         zoomFactor={zoomFactor}
         // Deprecated

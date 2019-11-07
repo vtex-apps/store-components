@@ -145,7 +145,9 @@ class Carousel extends Component {
   }
 
   renderSlide = (slide, i) => {
-    const { aspectRatio, zoomMode, zoomFactor, zoomProps: legacyZoomProps } = this.props
+    const { aspectRatio, maxHeight, zoomMode, zoomFactor, zoomProps: legacyZoomProps } = this.props
+
+    // Backwards compatibility
     const { zoomType: legacyZoomType } = legacyZoomProps || {}
     const isZoomDisabled = legacyZoomType === 'no-zoom' || zoomMode === 'disabled'
 
@@ -156,6 +158,7 @@ class Carousel extends Component {
             src={slide.url}
             alt={slide.alt}
             aspectRatio={aspectRatio}
+            maxHeight={maxHeight}
             zoomFactor={zoomFactor}
             zoomMode={isZoomDisabled ? 'disabled' : zoomMode}
           />
