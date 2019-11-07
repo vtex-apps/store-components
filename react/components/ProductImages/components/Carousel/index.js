@@ -193,7 +193,7 @@ class Carousel extends Component {
         navigation: {
           prevEl: '.swiper-caret-prev',
           nextEl: '.swiper-caret-next',
-          disabledClass: `c-disabled pointer-events-none ${styles.carouselCursorDefault}`,
+          disabledClass: `c-disabled ${styles.carouselCursorDefault}`,
         },
       }),
       thumbs: {
