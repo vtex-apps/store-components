@@ -51,6 +51,7 @@ const ThumbnailSwiper = ({
   thumbUrls,
   position,
   gallerySwiper,
+  activeIndex,
 }) => {
   const hasThumbs = slides.length > 1
 
@@ -64,25 +65,29 @@ const ThumbnailSwiper = ({
       isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.RIGHT,
   })
 
-  const itemContainerClasses = classNames('swiper-slide mb5 pointer', {
-    'w-20': !isThumbsVertical,
-    'w-100': isThumbsVertical,
-  })
-
+  
   return (
     <div className={thumbClasses} data-testid="thumbnail-swiper">
       <Swiper {...swiperParams} rebuildOnUpdate>
-        {slides.map((slide, i) => (
-          <Thumbnail
-            key={`${i}-${slide.alt}`}
-            itemContainerClasses={itemContainerClasses}
-            index={i}
-            height={isThumbsVertical ? 'auto' : '115px'}
-            gallerySwiper={gallerySwiper}
-            alt={slide.alt}
-            thumbUrl={slide.thumbUrl || thumbUrls[i]}
-          />
-        ))}
+        {slides.map((slide, i) => {
+          const itemContainerClasses = classNames('swiper-slide mb5 pointer', {
+            'w-20': !isThumbsVertical,
+            'w-100': isThumbsVertical,
+            'swiper-slide-active': activeIndex === i,
+          })
+
+          return (
+            <Thumbnail
+              key={`${i}-${slide.alt}`}
+              itemContainerClasses={itemContainerClasses}
+              index={i}
+              height={isThumbsVertical ? 'auto' : '115px'}
+              gallerySwiper={gallerySwiper}
+              alt={slide.alt}
+              thumbUrl={slide.thumbUrl || thumbUrls[i]}
+            />
+          )
+        })}
       </Swiper>
     </div>
   )
