@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Default value of `hiddenImages` from `ProductImages`.
 - `SKUSelector` and `ProductImages` now uses `imageLabel` instead of `imageText` to hide or show an image of the SKU.
 
+### Fixed
+- `SKUSelector` using objects of product's context that might be undefined.
+
 ## [3.83.1] - 2019-11-07
 ### Changed
 - Default aspect ratio of `ProductImages` to `auto`.
