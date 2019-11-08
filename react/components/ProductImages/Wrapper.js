@@ -13,7 +13,6 @@ const ProductImagesWrapper = props => {
     pick(['aspectRatio', 'maxHeight'], props)
   )
   const { selectedItem } = valuesFromContext
-
   const images = useMemo(
     () =>
       props.images != null

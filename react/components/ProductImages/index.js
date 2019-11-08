@@ -26,14 +26,12 @@ const ProductImages = ({
   if (hiddenImages && !Array.isArray(hiddenImages)) {
     hiddenImages = [hiddenImages]
   }
+
   const excludeImageRegexes = hiddenImages && hiddenImages.map(text => new RegExp(text, 'i'))
 
-  const images = allImages.filter(image => {
-    if (!image.imageText) {
-      return true
-    }
-    return !excludeImageRegexes.some(regex => regex.test(image.imageText))
-  })
+  const images = allImages.filter(image =>
+    !image.imageLabel || !excludeImageRegexes.some(regex => regex.test(image.imageLabel))
+  )
 
   const slides = useMemo(() => {
     if (!images.length && !videos.length) return []
