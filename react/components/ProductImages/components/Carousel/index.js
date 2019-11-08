@@ -102,7 +102,7 @@ class Carousel extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { loaded, activeIndex, gallerySwiper } = this.state
+    const { loaded, activeIndex, gallerySwiper, thumbSwiper } = this.state
     const isVideo = this.isVideo
 
     if (!equals(prevProps.slides, this.props.slides)) {
@@ -110,6 +110,12 @@ class Carousel extends Component {
       this.setState(initialState)
       return
     }
+
+    if (gallerySwiper && gallerySwiper !== prevProps.gallerySwiper && gallerySwiper.controller
+      && thumbSwiper && thumbSwiper !== prevProps.thumbSwiper && thumbSwiper.controller) {
+        gallerySwiper.controller.control = thumbSwiper
+        thumbSwiper.controller.control = gallerySwiper
+      }
 
     const paginationElement = path(['pagination', 'el'], gallerySwiper)
     if (paginationElement) paginationElement.hidden = isVideo[activeIndex]
@@ -303,7 +309,7 @@ class Carousel extends Component {
   }
 
   render() {
-    const { thumbsLoaded, gallerySwiper } = this.state
+    const { thumbsLoaded, gallerySwiper, activeIndex } = this.state
 
     const {
       slides = [],
@@ -343,6 +349,7 @@ class Carousel extends Component {
       <ThumbnailSwiper
         isThumbsVertical={isThumbsVertical}
         slides={slides}
+        activeIndex={activeIndex}
         swiperParams={this.thumbnailsParams}
         thumbUrls={this.state.thumbUrl}
         position={position}
