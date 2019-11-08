@@ -55,14 +55,14 @@ const selectedVariationFromItem = (
   return result
 }
 
-function useColorImages(items: SelectorProductItem[], imageText: string) {
-  const imageRegex = new RegExp(imageText, 'i')
+function useColorImages(items: SelectorProductItem[], imageRegexText: string) {
+  const imageRegex = new RegExp(imageRegexText, 'i')
 
   return items.map(item => ({ ...item, images: item.images.filter(image => {
-    if (!image.imageText) {
+    if (!image.imageLabel) {
       return true
     }
-    return imageRegex.test(image.imageText)
+    return imageRegex.test(image.imageLabel)
   }) }))
 }
 

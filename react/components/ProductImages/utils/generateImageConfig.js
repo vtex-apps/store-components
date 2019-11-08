@@ -7,5 +7,6 @@ export default function generateImageConfig (image) {
     imageUrl: image.imageUrl,
     thumbnailUrl: changeImageUrlSize(image.imageUrl, thumbnailSize),
     imageText: image.imageText,
+    imageLabel: image.imageLabel,
   }
 }

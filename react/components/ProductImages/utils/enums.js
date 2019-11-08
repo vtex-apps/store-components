@@ -8,4 +8,4 @@ export const THUMBS_ORIENTATION = {
   HORIZONTAL: 'horizontal',
 }
 
-export const DEFAULT_EXCLUDE_IMAGE_WITH = 'sku-variation'
+export const DEFAULT_EXCLUDE_IMAGE_WITH = 'skuvariation'
