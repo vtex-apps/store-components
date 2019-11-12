@@ -61,8 +61,9 @@ You should follow the Styles API instruction in the main [README](/README.md#sty
 Below, we describe the namespace that are defined in the `ProductImages`.
 
 | Class name                | Description                                                                             | Component Source                                                                            |
-| ------------------------- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `.content`                | The wrapper of `Carousel` scope                                                         | [index](/react/components/ProductImages/index.js)                                           |
+| ------------------------ | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `.content (deprecated)`  | Use `productImagesContainer` instead | [index](/react/components/ProductImages/index.js) |
+| `.productImagesContainer` | The wrapper of `Carousel` scope | [index](/react/components/ProductImages/index.js) |
 | `.video`                  | The wrapper of `Video` scope                                                            | [Video](/react/components/ProductImages/components/Video/index.js)                          |
 | `.image`                  | The wrapper container to `ProductImage` component                                      | [ProductImage](/react/components/ProductImages/components/ProductImage.tsx)          |
 | `carouselCursorDefault`   | Specification that define the default customization for the cursor in `Swipe` Component | [Carousel](/react/components/ProductImages/components/Carousel/index.js)                    |

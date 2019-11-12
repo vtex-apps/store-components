@@ -2,12 +2,14 @@ import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
 
 import Carousel from './components/Carousel'
-import styles from './styles.css'
 import {
   THUMBS_ORIENTATION,
   THUMBS_POSITION_HORIZONTAL,
   DEFAULT_EXCLUDE_IMAGE_WITH,
 } from './utils/enums'
+import { useCssHandles } from 'vtex.css-handles'
+
+const CSS_HANDLES = ['content', 'productImagesContainer']
 
 const ProductImages = ({
   position,
@@ -28,6 +30,7 @@ const ProductImages = ({
   }
 
   const excludeImageRegexes = hiddenImages && hiddenImages.map(text => new RegExp(text, 'i'))
+  const handles = useCssHandles(CSS_HANDLES)
 
   const images = allImages.filter(image =>
     !image.imageLabel || !excludeImageRegexes.some(regex => regex.test(image.imageLabel))
@@ -52,7 +55,7 @@ const ProductImages = ({
   }, [images, videos])
 
   return (
-    <div className={`${styles.content} w-100`}>
+    <div className={`${handles.productImagesContainer} ${handles.content} w-100`}>
       <Carousel
         slides={slides}
         position={position}
