@@ -59,6 +59,10 @@ function useColorImages(items: SelectorProductItem[], imageRegexText: string) {
   const imageRegex = new RegExp(imageRegexText, 'i')
 
   return items.map(item => {
+    if (!item.images) {
+      return item
+    }
+
     const hasVariationImage = item.images.some(image => image.imageLabel && imageRegex.test(image.imageLabel))
     return { ...item, images: item.images.filter(image => {
       if (!image.imageLabel) {
