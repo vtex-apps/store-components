@@ -58,12 +58,16 @@ const selectedVariationFromItem = (
 function useColorImages(items: SelectorProductItem[], imageRegexText: string) {
   const imageRegex = new RegExp(imageRegexText, 'i')
 
-  return items.map(item => ({ ...item, images: item.images.filter(image => {
-    if (!image.imageLabel) {
-      return true
-    }
-    return imageRegex.test(image.imageLabel)
-  }) }))
+  return items.map(item => {
+    const hasVariationImage = item.images.some(image => image.imageLabel && imageRegex.test(image.imageLabel))
+    return { ...item, images: item.images.filter(image => {
+      if (!image.imageLabel) {
+        // if it doesn't have a variation image, it wont remove images without a label
+        return !hasVariationImage
+      }
+      return imageRegex.test(image.imageLabel)
+    })}
+  })
 }
 
 const useImagesMap = (items: SelectorProductItem[], variations: Variations, thumbnailImage?: string) => {
