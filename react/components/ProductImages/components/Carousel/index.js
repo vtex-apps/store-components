@@ -292,6 +292,11 @@ class Carousel extends Component {
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
       freeMode: false,
+      // It seems crazy but this is just
+      // an workaround to make it work the thumbnails with the carousel
+      slideActiveClass: 'undefined',
+      slideNextClass: 'undefined',
+      slidePrevClass: 'undefined',
       direction: thumbnailsOrientation,
       slidesPerView: 'auto',
       touchRatio: 1,
