@@ -9,8 +9,8 @@ import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
 
 const ProductImagesWrapper = props => {
   const valuesFromContext = useProduct() || {}
-  const { aspectRatio, maxHeight } = useResponsiveValues(
-    pick(['aspectRatio', 'maxHeight'], props)
+  const { aspectRatio, maxHeight, showNavigationArrows, showPaginationDots } = useResponsiveValues(
+    pick(['aspectRatio', 'maxHeight', 'showNavigationArrows', 'showPaginationDots'], props)
   )
   const { selectedItem } = valuesFromContext
   const images = useMemo(
@@ -42,6 +42,8 @@ const ProductImagesWrapper = props => {
       zoomFactor={props.zoomFactor}
       aspectRatio={aspectRatio}
       maxHeight={maxHeight}
+      showNavigationArrows={showNavigationArrows}
+      showPaginationDots={showPaginationDots}
       // Deprecated
       zoomProps={props.zoomProps}
     />

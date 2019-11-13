@@ -20,6 +20,8 @@ const ProductImages = ({
   thumbnailsOrientation,
   aspectRatio,
   maxHeight,
+  showNavigationArrows,
+  showPaginationDots,
   zoomMode,
   zoomFactor,
   // Deprecated
@@ -63,6 +65,8 @@ const ProductImages = ({
         thumbnailsOrientation={thumbnailsOrientation}
         aspectRatio={aspectRatio}
         maxHeight={maxHeight}
+        showNavigationArrows={showNavigationArrows}
+        showPaginationDots={showPaginationDots}
         zoomMode={zoomMode}
         zoomFactor={zoomFactor}
         // Deprecated

@@ -179,7 +179,7 @@ class Carousel extends Component {
 
   get galleryParams() {
     const { thumbSwiper } = this.state
-    const { slides = [] } = this.props
+    const { slides = [], showNavigationArrows = true, showPaginationDots = true } = this.props
 
     const iconSize = 24
     const caretClassName =
@@ -188,7 +188,7 @@ class Carousel extends Component {
     return {
       modules: [SwiperModules.Pagination, SwiperModules.Navigation],
       containerClass: 'swiper-container',
-      ...(slides.length > 1 && {
+      ...(slides.length > 1 && showPaginationDots && {
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
@@ -207,24 +207,26 @@ class Carousel extends Component {
       },
       threshold: 10,
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
-      renderNextButton: () => (
-        <span className={`swiper-caret-next pl7 pr2 right-0 ${caretClassName}`}>
-          <IconCaret
-            orientation="right"
-            size={iconSize}
-            className={styles.carouselIconCaretRight}
-          />
-        </span>
-      ),
-      renderPrevButton: () => (
-        <span className={`swiper-caret-prev pr7 pl2 left-0 ${caretClassName}`}>
-          <IconCaret
-            orientation="left"
-            size={iconSize}
-            className={styles.carouselIconCaretLeft}
-          />
-        </span>
-      ),
+      ...(showNavigationArrows && {
+        renderNextButton: () => (
+          <span className={`swiper-caret-next pl7 pr2 right-0 ${caretClassName}`}>
+            <IconCaret
+              orientation="right"
+              size={iconSize}
+              className={styles.carouselIconCaretRight}
+            />
+          </span>
+        ),
+        renderPrevButton: () => (
+          <span className={`swiper-caret-prev pr7 pl2 left-0 ${caretClassName}`}>
+            <IconCaret
+              orientation="left"
+              size={iconSize}
+              className={styles.carouselIconCaretLeft}
+            />
+          </span>
+        ),
+      }),
       on: {
         slideChange: this.onSlideChange,
       },
