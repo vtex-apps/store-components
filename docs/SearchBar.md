@@ -20,16 +20,17 @@ Then, add `search-bar` block into your app theme, as we do in our [Store Header]
 
 ### Props
 
-| Prop name             | Type                 | Description                                                                                                                                       | Default value |
-| --------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `placeholder`         | `String!`            | Placeholder to be used on the input                                                                                                               | -             |
-| `emptyPlaceholder`    | `String!`            | Shows a placeholder when the ResultList hasn't results to displayed                                                                               | -             |
-| `compactMode`         | `Boolean`            | Identify when to use the compact version of the component                                                                                         | -             |
-| `hasIconLeft`         | `Boolean`            | Identify if the search icon is on left or right position                                                                                          | -             |
-| `autoFocus`           | `Boolean`            | Identify if the search input should autofocus or not                                                                                              | -             |
-| `maxWidth`            | `Number` \| `String` | Max width of the search bar                                                                                                                       | -             |
-| `customSearchPageUrl` | `string`             | Template for a custom url. It can have a substring `${term}` used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) | -             |
-| ~`iconClasses`~       | `String`             | **DEPRECATED** ~Custom classes for the search icon~ Use the CSS handle `searchBarIcon`.                                                           | -             |
+| Prop name             | Type                                    | Description                                                                                                                                       | Default value |
+| --------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `placeholder`         | `String!`                               | Placeholder to be used on the input                                                                                                               | -             |
+| `emptyPlaceholder`    | `String!`                               | Shows a placeholder when the ResultList hasn't results to displayed                                                                               | -             |
+| `compactMode`         | `Boolean`                               | Identify when to use the compact version of the component                                                                                         | -             |
+| `hasIconLeft`         | `Boolean`                               | Identify if the search icon is on left or right position                                                                                          | -             |
+| `autoFocus`           | `Boolean`                               | Identify if the search input should autofocus or not                                                                                              | -             |
+| `maxWidth`            | `Number` \| `String`                    | Max width of the search bar                                                                                                                       | -             |
+| `customSearchPageUrl` | `string`                                | Template for a custom url. It can have a substring `${term}` used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) | -             |
+| ~`iconClasses`~       | `String`                                | **DEPRECATED** ~Custom classes for the search icon~ Use the CSS handle `searchBarIcon`.                                                           | -             |
+| ~`iconsProps`~        | `{ "viewBox": String, "size": Number }` | Props to be passed down to the icons from `store-icons` being used by SearchBar.                                                                  | -             |
 
 ### CSS Handles
 
