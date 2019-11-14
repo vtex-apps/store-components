@@ -1,10 +1,10 @@
 import React, {
-  useCallback,
+  FC,
   memo,
   useState,
-  useEffect,
-  FC,
   Fragment,
+  useEffect,
+  useCallback,
 } from 'react'
 import { Button } from 'vtex.styleguide'
 import { IOMessage } from 'vtex.native-types'
@@ -12,13 +12,14 @@ import { findIndex, propEq } from 'ramda'
 import classnames from 'classnames'
 
 import SelectorItem from './SelectorItem'
+import SelectModeVariation from './SelectVariationMode'
 import { stripUrl, isColor, slug } from '../utils'
 
 import styles from '../styles.css'
-import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
-import { DisplayVariation } from '../types'
-import useProduct from 'vtex.product-context/useProduct'
 import ErrorMessage from './ErrorMessage'
+import { DisplayVariation, DisplayMode } from '../types'
+import useProduct from 'vtex.product-context/useProduct'
+import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 
 interface Props {
   variation: DisplayVariation
@@ -33,6 +34,7 @@ interface Props {
   showLabel: boolean
   containerClasses?: string
   showErrorMessage: boolean
+  mode?: string
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
@@ -43,6 +45,7 @@ const findSelectedOption = (selectedItem: string | null) =>
 const noop = () => { }
 
 const Variation: FC<Props> = ({
+  mode = 'default',
   maxItems,
   showLabel,
   variation,
@@ -114,7 +117,12 @@ const Variation: FC<Props> = ({
           )}
         </div>
         <div className={`${styles.skuSelectorOptionsList} inline-flex flex-wrap ml2 flex items-center`}>
-          {displayOptions.map(option => {
+          {mode === DisplayMode.select && !displayImage ? (
+            <SelectModeVariation
+              selectedItem={selectedItem}
+              displayOptions={displayOptions}
+            />
+          ) : displayOptions.map(option => {
             return (
               <SelectorItem
                 isSelected={option.label === selectedItem}

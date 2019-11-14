@@ -21,6 +21,11 @@ export enum InitialSelectionType {
   empty = 'empty'
 }
 
+export enum DisplayMode {
+  select = 'select',
+  default = 'default'
+}
+
 export interface SelectorProductItem extends Omit<ProductItem, 'variations'> {
   variations: string[]
   variationValues: Record<string, string>
