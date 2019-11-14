@@ -24,7 +24,8 @@ import {
   ProductItem,
   SelectedVariations,
   SelectorProductItem,
-  InitialSelectionType
+  InitialSelectionType,
+  DisplayMode
 } from './types'
 
 const keyCount = compose(
@@ -135,6 +136,7 @@ interface Props {
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
   initialSelection?: InitialSelectionType
+  displayMode?: DisplayMode
 }
 
 /**
@@ -152,6 +154,7 @@ const SKUSelectorContainer: FC<Props> = ({
   thumbnailImage,
   variationsSpacing,
   showVariationsLabels = true,
+  displayMode = DisplayMode.default,
   hideImpossibleCombinations = true,
   showVariationsErrorMessage = true,
   showValueNameForImageVariation = false,
@@ -280,16 +283,17 @@ const SKUSelectorContainer: FC<Props> = ({
 
   return (
     <SKUSelector
-      variations={variations}
-      seeMoreLabel={seeMoreLabel}
       maxItems={maxItems}
-      skuItems={parsedItems}
-      selectedVariations={selectedVariations}
       imagesMap={imagesMap}
-      imageHeight={imageHeight}
+      skuItems={parsedItems}
+      variations={variations}
       imageWidth={imageWidth}
+      displayMode={displayMode}
+      imageHeight={imageHeight}
+      seeMoreLabel={seeMoreLabel}
       onSelectItem={onSelectItem}
       variationsSpacing={variationsSpacing}
+      selectedVariations={selectedVariations}
       showVariationsLabels={showVariationsLabels}
       hideImpossibleCombinations={hideImpossibleCombinations}
       showVariationsErrorMessage={showVariationsErrorMessage}

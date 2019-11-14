@@ -74,6 +74,13 @@ These are properties that you can customize in your `blocks.json` file.
 | showVariationsLabels | `boolean` | If should show the variations name | `true` |
 | initialSelection | `InitialSelectionEnum` | Control the initial selection chosen for the variations when page is loaded. | `complete` |
 | showVariationsErrorMessage | `boolean`| If should show an error message when you click in the `BuyButton` but didn't select an option of each variation | `true` |
+| displayMode | `DisplayMode` | How the variations will be displayed. Doesn't apply to variations of images | `default` |
+
+Values and description for `DisplayMode`:
+| Value | Name | Description |
+| --- | --- | --- |
+| `default` | default | Shows all variations like the images variations |
+| `select` | select | Shoes all variations that are not variations that render images in a `Select` component |
 
 Values and description for `InitialSelectionEnum`:
 | Value | Name | Description |

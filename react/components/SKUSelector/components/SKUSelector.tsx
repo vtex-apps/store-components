@@ -19,6 +19,7 @@ import {
   DisplayOption,
   DisplayVariation,
   Variations,
+  DisplayMode,
 } from '../types'
 
 interface Props {
@@ -37,6 +38,7 @@ interface Props {
   showVariationsLabels: boolean
   variationsSpacing?: number
   showVariationsErrorMessage: boolean
+  displayMode: DisplayMode
 }
 
 const isSkuAvailable = compose<
@@ -229,6 +231,7 @@ const SKUSelector: FC<Props> = ({
   imageWidth,
   selectedVariations,
   showBorders,
+  displayMode,
   variationsSpacing: marginBottomProp,
   showVariationsLabels,
   hideImpossibleCombinations,
@@ -291,6 +294,7 @@ const SKUSelector: FC<Props> = ({
 
         return (
           <Variation
+            mode={displayMode}
             maxItems={maxItems}
             imageWidth={imageWidth}
             imageHeight={imageHeight}

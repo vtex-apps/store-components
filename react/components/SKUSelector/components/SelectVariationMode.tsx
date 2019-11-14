@@ -1,0 +1,57 @@
+import React from 'react'
+import styles from '../styles.css'
+import { DisplayOption } from '../types'
+import { Dropdown } from 'vtex.styleguide'
+import { injectIntl, InjectedIntlProps, defineMessages } from 'react-intl'
+
+interface VariationSelectModeProps extends InjectedIntlProps {
+  selectedItem: string | null
+  displayOptions: DisplayOption[]
+}
+
+const messages = defineMessages({
+  selectPlaceholder: {
+    id: 'store/sku-selector.select.placeholder',
+    defaultMessage: '',
+  }
+})
+
+function SelectVariationMode(props: VariationSelectModeProps) {
+  const {
+    intl,
+    selectedItem,
+    displayOptions,
+  } = props
+
+  const options = displayOptions.map(op => ({
+    label: op.label,
+    value: op.label,
+  }))
+
+  const mapOptions = () => 
+    displayOptions
+      .reduce<Record<string, DisplayOption>>((acc, cur) => {
+        acc[cur.label] = cur
+        return acc
+      }, {})
+
+  const handleClick = (_: React.MouseEvent, value: string) => {
+    const displayOptions = mapOptions()
+    if (displayOptions && displayOptions[value] && displayOptions[value].onSelectItem) {
+      displayOptions[value].onSelectItem()
+    }
+  }
+
+  return (
+    <div className={styles.skuSelectorSelectContainer}>
+      <Dropdown
+        options={options}
+        value={selectedItem}
+        onChange={handleClick}
+        placeholder={intl.formatMessage(messages.selectPlaceholder)}
+      />
+    </div>
+  )
+}
+
+export default injectIntl(SelectVariationMode)
