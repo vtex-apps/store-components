@@ -42,6 +42,8 @@ const ProductImagesWrapper = props => {
       zoomFactor={props.zoomFactor}
       aspectRatio={aspectRatio}
       maxHeight={maxHeight}
+      thumbnailAspectRatio={props.thumbnailAspectRatio}
+      thumbnailMaxHeight={props.thumbnailMaxHeight}
       showNavigationArrows={showNavigationArrows}
       showPaginationDots={showPaginationDots}
       // Deprecated

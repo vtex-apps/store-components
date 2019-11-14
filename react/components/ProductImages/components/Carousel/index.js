@@ -323,6 +323,8 @@ class Carousel extends Component {
       position,
       zoomProps: { zoomType },
       thumbnailsOrientation,
+      thumbnailAspectRatio,
+      thumbnailMaxHeight
     } = this.props
 
     if (!thumbsLoaded || Swiper == null) {
@@ -361,6 +363,8 @@ class Carousel extends Component {
         thumbUrls={this.state.thumbUrl}
         position={position}
         gallerySwiper={gallerySwiper}
+        thumbnailAspectRatio={thumbnailAspectRatio}
+        thumbnailMaxHeight={thumbnailMaxHeight}
       />
     )
 
