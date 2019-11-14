@@ -22,6 +22,7 @@ const AutocompleteInput = ({
   iconBlockClass,
   iconClasses,
   autoFocus,
+  iconsProps,
   ...restProps
 }) => {
   const inputRef = useRef(null)
@@ -48,16 +49,16 @@ const AutocompleteInput = ({
       onClick={() => value && onClearInput()}
     >
       {value ? (
-        <IconClose type="line" size={22} />
+        <IconClose type="line" size={22} {...iconsProps} />
       ) : (
-        !hasIconLeft && <IconSearch />
+        !hasIconLeft && <IconSearch {...iconsProps} />
       )}
     </span>
   )
 
   const prefix = (
     <span className={`${iconClasses} ${handles.searchBarIcon}`}>
-      <IconSearch />
+      <IconSearch {...iconsProps} />
     </span>
   )
 
@@ -107,6 +108,18 @@ AutocompleteInput.propTypes = {
   iconBlockClass: PropTypes.string,
   /** Identify if the search input should autofocus or not */
   autoFocus: PropTypes.bool,
+  iconsProps: PropTypes.shape({
+    /** Icon size, aspect ratio 1:1 */
+    size: PropTypes.number,
+    /** Icon viewBox. Default 0, 0, 16, 16 */
+    viewBox: PropTypes.string,
+    /** Define if will be used a active or muted className */
+    isActive: PropTypes.bool,
+    /** Active color class */
+    activeClassName: PropTypes.string,
+    /** Muted color class */
+    mutedClassName: PropTypes.string,
+  }),
 }
 
 export default AutocompleteInput
