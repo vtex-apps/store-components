@@ -4,7 +4,9 @@ import classNames from 'classnames'
 
 import styles from '../../styles.css'
 import { THUMBS_POSITION_HORIZONTAL } from '../../utils/enums'
-import { imageUrl } from './ThumbnailUtils'
+import { imageUrl } from '../../utils/aspectRatioUtil'
+
+const THUMB_MAX_SIZE = 256
 
 /** Swiper and its modules are imported using require to avoid breaking SSR */
 const Swiper = window.navigator
@@ -18,11 +20,9 @@ const Thumbnail = ({
   thumbUrl,
   height,
   index,
-  aspectRatio='auto',
+  aspectRatio = 'auto',
   maxHeight = 150,
 }) => {
-  console.log('aspectRatio', aspectRatio)
-  console.log('maxHeight', maxHeight)
   return (
     <div
       className={itemContainerClasses}
@@ -39,7 +39,7 @@ const Thumbnail = ({
           className="w-100 h-auto db"
           itemProp="thumbnail"
           alt={alt}
-          src={imageUrl(thumbUrl, THUMB_SIZE, aspectRatio)}
+          src={imageUrl(thumbUrl, THUMB_SIZE, THUMB_MAX_SIZE, aspectRatio)}
         />
       </figure>
       <div

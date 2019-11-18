@@ -1,7 +1,7 @@
-import { changeImageUrlSize } from '../../utils/generateUrl'
+import { changeImageUrlSize } from './generateUrl'
 
 type AspectRatio = string | number
-const MAX_SIZE = 256
+// const MAX_SIZE = 256
 
 /** Parses ratio values into a multiplier to set the image height.
  * For example, turns "3:4" into 1.333, so the image height will be 
@@ -38,27 +38,27 @@ const parseAspectRatio = (input?: AspectRatio | null) => {
   return null
 }
 
-export const imageUrl = (src: string, size: number, aspectRatio?: AspectRatio) => {
+export const imageUrl = (src: string, size: number, maxSize: number, aspectRatio?: AspectRatio) => {
   let width = size
   let height: number | string = 'auto'
 
   if (aspectRatio && aspectRatio !== 'auto') {
     height = size * (parseAspectRatio(aspectRatio) || 1)
 
-    if (width > MAX_SIZE) {
-      height = height / (width / MAX_SIZE) 
-      width = MAX_SIZE
+    if (width > maxSize) {
+      height = height / (width / maxSize) 
+      width = maxSize
     }
 
-    if (height > MAX_SIZE) {
-      width = width / (height / MAX_SIZE)
-      height = MAX_SIZE
+    if (height > maxSize) {
+      width = width / (height / maxSize)
+      height = maxSize
     }
 
     width = Math.round(width)
     height = Math.round(height)
   } else {
-    width = Math.min(MAX_SIZE, width)
+    width = Math.min(maxSize, width)
   }
 
   return changeImageUrlSize(src, width, height)
