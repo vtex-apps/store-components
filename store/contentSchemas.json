@@ -52,6 +52,16 @@
         }
       }
     },
+    "ProductDescription": {
+      "title": "admin/editor.product-description.title",
+      "type": "object",
+      "properties": {
+        "title": {
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "title": "admin/editor.product-description.title-prop.title"
+        }
+      }
+    },
     "ProductPrice": {
       "properties": {
         "labelSellingPrice": {
