@@ -24,7 +24,10 @@
     }
   },
   "product-description": {
-    "component": "ProductDescription"
+    "component": "ProductDescription",
+    "content": {
+      "$ref": "#/definitions/ProductDescription"
+    }
   },
   "product-separator": {
     "component": "ProductSeparator"

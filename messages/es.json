@@ -167,5 +167,7 @@
   "admin/editor.skuSelector.title": "Selector de SKU",
   "admin/editor.skuSelector.description": "Componente que muestra diferentes variaciones dadas de un elemento para que el usuario elija",
   "admin/editor.skuSelector.seeMoreLabel.title": "Rótulo del botón ver más",
-  "admin/editor.skuSelector.seeMoreLabel.description": "Etiqueta del botón ver más. La cadena debe tener un marcador de posición {quantity} para mostrar los elementos restantes apropiados disponibles. Ejemplo: \"Ver {quantity} más\""
+  "admin/editor.skuSelector.seeMoreLabel.description": "Etiqueta del botón ver más. La cadena debe tener un marcador de posición {quantity} para mostrar los elementos restantes apropiados disponibles. Ejemplo: \"Ver {quantity} más\"",
+  "admin/editor.product-description.title": "Descripción del producto",
+  "admin/editor.product-description.title-prop.title": "Título"
 }

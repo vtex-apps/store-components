@@ -167,5 +167,7 @@
   "admin/editor.skuSelector.title": "Title of SKU Selector component",
   "admin/editor.skuSelector.description": "Description of SKU Selector component",
   "admin/editor.skuSelector.seeMoreLabel.title": "Title of seeMoreLabel property",
-  "admin/editor.skuSelector.seeMoreLabel.description": "Description of seeMoreLabel property"
+  "admin/editor.skuSelector.seeMoreLabel.description": "Description of seeMoreLabel property",
+  "admin/editor.product-description.title": "Product description",
+  "admin/editor.product-description.title-prop.title": "Title"
 }

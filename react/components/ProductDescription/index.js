@@ -1,8 +1,9 @@
 import React, { memo, useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, injectIntl } from 'react-intl'
 import HtmlParser from 'react-html-parser'
 import { useCssHandles } from 'vtex.css-handles'
+import { formatIOMessage } from 'vtex.native-types'
 
 import GradientCollapse from '../GradientCollapse/index'
 
@@ -16,7 +17,7 @@ const CSS_HANDLES = [
  * Product Description Component.
  * Render the description of a product
  */
-const ProductDescription = ({ description, collapseContent }) => {
+const ProductDescription = ({ description, collapseContent, title, intl }) => {
   if (!description) {
     return null
   }
@@ -34,7 +35,7 @@ const ProductDescription = ({ description, collapseContent }) => {
           <h2
             className={`${handles.productDescriptionTitle} t-heading-5 mb5 mt0`}
           >
-            {txt}
+            {title ? formatIOMessage({ id: title, intl }) : txt}
           </h2>
         )}
       </FormattedMessage>
@@ -53,9 +54,10 @@ const ProductDescription = ({ description, collapseContent }) => {
 }
 
 ProductDescription.propTypes = {
+  title: PropTypes.string,
   /** Product description string */
   description: PropTypes.string,
   collapseContent: PropTypes.bool,
 }
 
-export default memo(ProductDescription)
+export default injectIntl(memo(ProductDescription))
