@@ -169,5 +169,7 @@
   "admin/editor.skuSelector.seeMoreLabel.title": "Rótulo del botón ver más",
   "admin/editor.skuSelector.seeMoreLabel.description": "Etiqueta del botón ver más. La cadena debe tener un marcador de posición {quantity} para mostrar los elementos restantes apropiados disponibles. Ejemplo: \"Ver {quantity} más\"",
   "admin/editor.product-description.title": "Descripción del producto",
-  "admin/editor.product-description.title-prop.title": "Título"
+  "admin/editor.product-description.title-prop.title": "Título",
+  "admin/editor.search-bar.title": "Barra de búsqueda",
+  "admin/editor.search-bar.placeholder.title": "Texto de búsqueda"
 }

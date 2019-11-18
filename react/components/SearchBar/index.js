@@ -88,6 +88,10 @@ SearchBarContainer.contextTypes = {
   navigate: PropTypes.func,
 }
 
+SearchBarContainer.schema = {
+  title: 'admin/editor.search-bar.title',
+}
+
 SearchBarContainer.propTypes = {
   /* Internationalization */
   intl: intlShape.isRequired,

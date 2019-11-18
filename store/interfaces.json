@@ -3,7 +3,10 @@
     "component": "Logo"
   },
   "search-bar": {
-    "component": "SearchBar"
+    "component": "SearchBar",
+    "content": {
+      "$ref": "#/definitions/SearchBar"
+    }
   },
   "buy-button": {
     "component": "BuyButton"

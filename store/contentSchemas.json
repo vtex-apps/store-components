@@ -62,6 +62,16 @@
         }
       }
     },
+    "SearchBar": {
+      "title": "admin/editor.search-bar.title",
+      "type": "object",
+      "properties": {
+        "placeholder": {
+          "type": "string",
+          "title": "admin/editor.search-bar.placeholder.title"
+        }
+      }
+    },
     "ProductPrice": {
       "properties": {
         "labelSellingPrice": {
