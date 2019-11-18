@@ -4,6 +4,9 @@ import classNames from 'classnames'
 
 import styles from '../../styles.css'
 import { THUMBS_POSITION_HORIZONTAL } from '../../utils/enums'
+import { imageUrl } from '../../utils/aspectRatioUtil'
+
+const THUMB_MAX_SIZE = 256
 
 /** Swiper and its modules are imported using require to avoid breaking SSR */
 const Swiper = window.navigator
@@ -17,11 +20,13 @@ const Thumbnail = ({
   thumbUrl,
   height,
   index,
+  aspectRatio = 'auto',
+  maxHeight = 150,
 }) => {
   return (
     <div
       className={itemContainerClasses}
-      style={{ height }}
+      style={{ height, maxHeight: maxHeight || 'unset' }}
       onClick={() => gallerySwiper && gallerySwiper.slideTo(index)}
     >
       <figure
@@ -34,7 +39,7 @@ const Thumbnail = ({
           className="w-100 h-auto db"
           itemProp="thumbnail"
           alt={alt}
-          src={imageUrlForSize(thumbUrl, THUMB_SIZE)}
+          src={imageUrl(thumbUrl, THUMB_SIZE, THUMB_MAX_SIZE, aspectRatio)}
         />
       </figure>
       <div
@@ -52,6 +57,8 @@ const ThumbnailSwiper = ({
   position,
   gallerySwiper,
   activeIndex,
+  thumbnailAspectRatio,
+  thumbnailMaxHeight,
 }) => {
   const hasThumbs = slides.length > 1
 
@@ -85,6 +92,8 @@ const ThumbnailSwiper = ({
               gallerySwiper={gallerySwiper}
               alt={slide.alt}
               thumbUrl={slide.thumbUrl || thumbUrls[i]}
+              aspectRatio={thumbnailAspectRatio}
+              maxHeight={thumbnailMaxHeight}
             />
           )
         })}

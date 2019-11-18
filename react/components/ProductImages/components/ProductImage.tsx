@@ -1,7 +1,7 @@
 import React, { FC, useMemo, useRef } from 'react'
-import { changeImageUrlSize } from '../utils/generateUrl'
 import Zoomable, { ZoomMode } from './Zoomable'
 import styles from '../styles.css'
+import { imageUrl } from '../utils/aspectRatioUtil'
 
 const IMAGE_SIZES = [600, 800, 1200]
 const DEFAULT_SIZE = 800
@@ -18,67 +18,6 @@ interface Props {
 
 type AspectRatio = string | number
 
-/** Parses ratio values into a multiplier to set the image height.
- * For example, turns "3:4" into 1.333, so the image height will be 
- * 1.333 times its width.
-*/
-const parseAspectRatio = (input?: AspectRatio | null) => {
-  if (!input) {
-    return null
-  }
-  if (typeof input === 'string') {
-    if (input === 'auto') { 
-      return null
-    }
-    const separator = ':'
-    const data = input.split(separator)
-    if (data.length !== 2) {
-      return null
-    }
-
-    const [ width, height ] = data
-    const ratio = parseFloat(height) / parseFloat(width)
-
-    if (typeof ratio !== 'number' || isNaN(ratio)) {
-      return null
-    }
-
-    return ratio
-  }
-
-  if (typeof input === 'number') {
-    return input
-  }
-
-  return null
-}
-
-const imageUrl = (src: string, size: number, aspectRatio?: AspectRatio) => {
-  let width = size
-  let height: number | string = 'auto'
-
-  if (aspectRatio && aspectRatio !== 'auto') {
-    height = size * (parseAspectRatio(aspectRatio) || 1)
-
-    if (width > MAX_SIZE) {
-      height = height / (width / MAX_SIZE) 
-      width = MAX_SIZE
-    }
-
-    if (height > MAX_SIZE) {
-      width = width / (height / MAX_SIZE)
-      height = MAX_SIZE
-    }
-
-    width = Math.round(width)
-    height = Math.round(height)
-  } else {
-    width = Math.min(MAX_SIZE, width)
-  }
-
-  return changeImageUrlSize(src, width, height)
-}
-
 const ProductImage: FC<Props> = ({
   src,
   alt,
@@ -89,7 +28,7 @@ const ProductImage: FC<Props> = ({
 }) => {
   const srcSet = useMemo(() => (
     IMAGE_SIZES
-      .map(size => `${imageUrl(src, size, aspectRatio)} ${size}w`)
+      .map(size => `${imageUrl(src, size, MAX_SIZE, aspectRatio)} ${size}w`)
       .join(',')
   ), [src, aspectRatio, IMAGE_SIZES])
 
@@ -102,7 +41,7 @@ const ProductImage: FC<Props> = ({
         factor={zoomFactor}
         zoomContent={(
           <img
-            src={imageUrl(src, DEFAULT_SIZE * zoomFactor, aspectRatio)}
+            src={imageUrl(src, DEFAULT_SIZE * zoomFactor, MAX_SIZE, aspectRatio)}
           
             style={{
               // Resets possible resizing done via CSS
@@ -124,7 +63,7 @@ const ProductImage: FC<Props> = ({
                 maxHeight: maxHeight || 'unset',
                 objectFit: 'contain',
               }}
-              src={imageUrl(src, DEFAULT_SIZE, aspectRatio)}
+              src={imageUrl(src, DEFAULT_SIZE, MAX_SIZE, aspectRatio)}
               srcSet={srcSet}
               alt={alt}
               title={alt}
