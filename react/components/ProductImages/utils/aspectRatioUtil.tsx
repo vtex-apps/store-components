@@ -1,7 +1,6 @@
 import { changeImageUrlSize } from './generateUrl'
 
 type AspectRatio = string | number
-// const MAX_SIZE = 256
 
 /** Parses ratio values into a multiplier to set the image height.
  * For example, turns "3:4" into 1.333, so the image height will be 
