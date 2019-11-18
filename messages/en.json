@@ -169,5 +169,7 @@
   "admin/editor.skuSelector.seeMoreLabel.title": "See more label",
   "admin/editor.skuSelector.seeMoreLabel.description": "Label of see more button. The string must have a {quantity} placeholder to show the appropriate remaining items available. Example: \"See {quantity} more\"",
   "admin/editor.product-description.title": "Product description",
-  "admin/editor.product-description.title-prop.title": "Title"
+  "admin/editor.product-description.title-prop.title": "Title",
+  "admin/editor.search-bar.title": "Search bar",
+  "admin/editor.search-bar.placeholder.title": "Placeholder"
 }
