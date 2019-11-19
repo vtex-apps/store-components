@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `minSearchTermLength` prop to `SearchBar`.
+
 ## [3.87.0] - 2019-11-13
 ### Added
 - `showNavigationArrows` and `showPaginationDots` props on `product-images`.

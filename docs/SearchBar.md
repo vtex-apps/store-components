@@ -30,6 +30,8 @@ Then, add `search-bar` block into your app theme, as we do in our [Store Header]
 | `maxWidth`            | `Number` \| `String` | Max width of the search bar                                                                                                                       | -             |
 | `customSearchPageUrl` | `string`             | Template for a custom url. It can have a substring `${term}` used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) | -             |
 | ~`iconClasses`~       | `String`             | **DEPRECATED** ~Custom classes for the search icon~ Use the CSS handle `searchBarIcon`.                                                           | -             |
+|`minSearchTermLength`       | `Number`             | If defined, it will block searches where the term length is lesser than `minSearchTermLength`.                                                           | -             |
+
 
 ### CSS Handles
 

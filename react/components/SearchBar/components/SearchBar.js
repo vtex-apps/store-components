@@ -3,16 +3,17 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import Downshift from 'downshift'
 import debounce from 'debounce'
-import { NoSSR } from 'vtex.render-runtime'
+import { NoSSR, useRuntime } from 'vtex.render-runtime'
 import { Overlay } from 'vtex.react-portal'
-import { useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
+import { intlShape } from 'react-intl'
 
 import AutocompleteInput from './AutocompleteInput'
 import ResultsLists from './ResultsList'
 
 const CSS_HANDLES = ['searchBarContainer', 'searchBarInnerContainer']
 const SEARCH_DELAY_TIME = 500
+const INPUT_ERROR_MESSAGE_DELAY = 2000
 
 const SearchBar = ({
   placeholder,
@@ -28,11 +29,15 @@ const SearchBar = ({
   maxWidth,
   attemptPageTypeSearch,
   customSearchPageUrl,
+  minSearchTermLength,
+  intl,
 }) => {
   const container = useRef()
   const { navigate } = useRuntime()
   const handles = useCssHandles(CSS_HANDLES)
   const [searchTerm, setSearchTerm] = useState(inputValue)
+  const [inputErrorMessage, setInputErrorMessage] = useState()
+  const inputErrorMessageTimeRef = useRef()
 
   const debouncedSetSearchTerm = useCallback(
     debounce(newValue => {
@@ -97,6 +102,36 @@ const SearchBar = ({
     [navigate, attemptPageTypeSearch, customSearchPageUrl]
   )
 
+  const validateInput = () => {
+    if (minSearchTermLength && inputValue.length < minSearchTermLength) {
+      return intl.formatMessage({
+        id: 'store/search.searchTermTooShort',
+      })
+    }
+
+    return undefined
+  }
+
+  const showInputErrorMessageTemporarily = inputErrorMessage => {
+    setInputErrorMessage(inputErrorMessage)
+
+    if (inputErrorMessageTimeRef.current) {
+      clearTimeout(inputErrorMessageTimeRef.current)
+    }
+
+    inputErrorMessageTimeRef.current = setTimeout(() => {
+      setInputErrorMessage()
+    }, INPUT_ERROR_MESSAGE_DELAY)
+  }
+
+  const hideInputErrorMessage = () => {
+    if (inputErrorMessageTimeRef.current) {
+      clearTimeout(inputErrorMessageTimeRef.current)
+    }
+
+    setInputErrorMessage()
+  }
+
   const fallback = (
     <AutocompleteInput
       placeholder={placeholder}
@@ -105,6 +140,7 @@ const SearchBar = ({
       hasIconLeft={hasIconLeft}
       iconClasses={iconClasses}
       iconBlockClass={iconBlockClass}
+      inputErrorMessage={inputErrorMessage}
     />
   )
 
@@ -142,13 +178,23 @@ const SearchBar = ({
                 onClearInput={onClearInput}
                 hasIconLeft={hasIconLeft}
                 iconClasses={iconClasses}
+                inputErrorMessage={inputErrorMessage}
                 {...getInputProps({
                   onKeyDown: event => {
                     // Only call default search function if user doesn't
                     // have any item highlighted in the menu options
                     if (event.key === 'Enter' && highlightedIndex === null) {
+                      const errorMessage = validateInput()
+
+                      if (errorMessage) {
+                        showInputErrorMessageTemporarily(errorMessage)
+                        return
+                      }
+
                       onGoToSearchPage()
                       closeMenu()
+                    } else {
+                      hideInputErrorMessage()
                     }
                   },
                   placeholder,
@@ -206,8 +252,14 @@ SearchBar.propTypes = {
   maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
   customSearchPageUrl: PropTypes.string,
-  iconBlockClass: PropTypes.string,
+  /** Uses the term the user has inputed to try to navigate to the proper
+   * page type (e.g. a department, a brand, a category)
+   */
   attemptPageTypeSearch: PropTypes.bool,
+  /** Minimum search term length allowed */
+  minSearchTermLength: PropTypes.number,
+  /* Internationalization */
+  intl: intlShape.isRequired,
 }
 
 export default SearchBar

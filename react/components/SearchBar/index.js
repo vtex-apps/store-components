@@ -60,6 +60,7 @@ class SearchBarContainer extends Component {
       placeholder = intl.formatMessage({
         id: 'store/search.placeholder',
       }),
+      minSearchTermLength,
     } = this.props
 
     const { inputValue } = this.state
@@ -79,6 +80,8 @@ class SearchBarContainer extends Component {
         maxWidth={maxWidth}
         attemptPageTypeSearch={attemptPageTypeSearch}
         customSearchPageUrl={customSearchPageUrl}
+        minSearchTermLength={minSearchTermLength}
+        intl={intl}
       />
     )
   }
@@ -108,6 +111,8 @@ SearchBarContainer.propTypes = {
   /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
   customSearchPageUrl: PropTypes.string,
   placeholder: PropTypes.string,
+  /** Minimum search term length allowed */
+  minSearchTermLength: PropTypes.number,
 }
 
 export default injectIntl(SearchBarContainer)

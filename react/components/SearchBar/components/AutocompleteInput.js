@@ -22,6 +22,7 @@ const AutocompleteInput = ({
   iconBlockClass,
   iconClasses,
   autoFocus,
+  inputErrorMessage,
   ...restProps
 }) => {
   const inputRef = useRef(null)
@@ -75,6 +76,8 @@ const AutocompleteInput = ({
           prefix={hasIconLeft && prefix}
           suffix={suffix}
           {...restProps}
+          error={!!inputErrorMessage}
+          errorMessage={inputErrorMessage}
         />
       </div>
     </div>
@@ -107,6 +110,8 @@ AutocompleteInput.propTypes = {
   iconBlockClass: PropTypes.string,
   /** Identify if the search input should autofocus or not */
   autoFocus: PropTypes.bool,
+  /** Error message showed in search input */
+  inputErrorMessage: PropTypes.string,
 }
 
 export default AutocompleteInput

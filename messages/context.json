@@ -1,6 +1,7 @@
 {
   "store/search.placeholder": "search.placeholder",
   "store/search.searchFor": "search.searchFor",
+  "store/search.searchTermTooShort": "search.searchTermTooShort",
   "admin/editor.productName.title": "admin/editor.productName.title",
   "admin/editor.productName.description": "admin/editor.productName.description",
   "admin/editor.productName.showBrandName.title": "admin/editor.productName.showBrandName.title",
