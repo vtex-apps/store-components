@@ -21,6 +21,20 @@ export function Spinner(props) {
   return <div className="spinner-mock"> {props.children} </div>
 }
 
+export function Dropdown(props) {
+  const { value, onChange, options } = props
+
+  return (
+    <select value={value} onChange={onChange}>
+      {options.map(op => (
+        <option key={op.value} value={op.value}>
+          {op.label}
+        </option>
+      ))}
+    </select>
+  )
+}
+
 export const Input = forwardRef(function Input(
   { label, error, errorMessage, isLoading, prefix, suffix, ...props },
   ref
