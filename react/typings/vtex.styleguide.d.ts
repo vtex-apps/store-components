@@ -7,5 +7,5 @@ declare module 'vtex.styleguide' {
   export const withToast: any
   export const Tooltip: any
   export const EXPERIMENTAL_Select: any
-  exprot const Dropdown: any
+  export const Dropdown: any
 }

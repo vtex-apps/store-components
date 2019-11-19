@@ -25,8 +25,85 @@ describe('<SKUSelector />', () => {
     const { container } = renderComponent({ onSKUSelected })
     await Promise.resolve()
     const selector = container.querySelector('.skuSelectorItem')
-    fireEvent.click(selector)
+    act(() => {
+      fireEvent.click(selector)
+    })
     expect(onSKUSelected).toBeCalledTimes(2)
+  })
+
+  it('should render the options an select one', async () => {
+    const defaultSeller = { commertialOffer: { Price: 15 } }
+    const skuItems = [
+      {
+        itemId: '1',
+        name: 'Gray Shoe',
+        variations: [
+          { name: 'Size', values: ['1'] },
+          { name: 'Color', values: ['Gray'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '2',
+        name: 'Black Shoe',
+        variations: [
+          { name: 'Size', values: ['1', '2', '3'] },
+          { name: 'Color', values: ['Black'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '3',
+        name: 'Blue Shoe',
+        variations: [
+          { name: 'Size', values: ['1', '2', '3'] },
+          { name: 'Color', values: ['Blue', 'Black'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '4',
+        name: 'Gray Shoe',
+        variations: [
+          {
+            name: 'Size',
+            values: ['2'],
+          },
+          { name: 'Color', values: ['Gray'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+    ]
+    const skuSelected = skuItems[0]
+    const onSKUSelected = jest.fn()
+    const { getByText } = render(
+      <SKUSelector
+        skuItems={skuItems}
+        displayMode="select"
+        skuSelected={skuSelected}
+        initialSelection="empty"
+        onSKUSelected={onSKUSelected}
+      />
+    )
+    await Promise.resolve()
+    act(() => {
+      getByText('Gray').click()
+    })
+    await Promise.resolve()
+
+    act(() => {})
+    act(() => {
+      expect(getByText('2')).toBeDefined()
+      getByText('2').click()
+    })
+    
+    await Promise.resolve()
+    expect(onSKUSelected).toBeCalledTimes(2)
+    expect(getByText('1')).toBeDefined()
   })
 
   it('should render only three main variations', async () => {
