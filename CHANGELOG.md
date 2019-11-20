@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- SKUSelector documentation
+
 ## [3.88.0] - 2019-11-18
 ### Added
 - `thumbnailAspectRatio` and `thumbnailMaxHeight` props on `product-images`.
