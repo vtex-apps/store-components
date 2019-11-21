@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from '../styles.css'
-import { DisplayOption } from '../types'
 import { Dropdown } from 'vtex.styleguide'
 import { injectIntl, InjectedIntlProps, defineMessages } from 'react-intl'
+import styles from '../styles.css'
+import { DisplayOption } from '../types'
 
 interface VariationSelectModeProps extends InjectedIntlProps {
   selectedItem: string | null

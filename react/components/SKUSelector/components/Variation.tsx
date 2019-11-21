@@ -10,6 +10,7 @@ import { Button } from 'vtex.styleguide'
 import { IOMessage } from 'vtex.native-types'
 import { findIndex, propEq } from 'ramda'
 import classnames from 'classnames'
+import useProduct from 'vtex.product-context/useProduct'
 
 import SelectorItem from './SelectorItem'
 import SelectModeVariation from './SelectVariationMode'
@@ -18,7 +19,6 @@ import { stripUrl, isColor, slug } from '../utils'
 import styles from '../styles.css'
 import ErrorMessage from './ErrorMessage'
 import { DisplayVariation, DisplayMode } from '../types'
-import useProduct from 'vtex.product-context/useProduct'
 import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 
 interface Props {
