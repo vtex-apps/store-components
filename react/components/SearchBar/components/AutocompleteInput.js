@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import { Input } from 'vtex.styleguide'
-import { IconClose, IconSearch } from 'vtex.store-icons'
+import { ExtensionPoint } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
@@ -49,16 +49,16 @@ const AutocompleteInput = ({
       onClick={() => value && onClearInput()}
     >
       {value ? (
-        <IconClose type="line" size={22} {...iconsProps} />
+        <ExtensionPoint id="icon-close" />
       ) : (
-        !hasIconLeft && <IconSearch {...iconsProps} />
+        !hasIconLeft && <ExtensionPoint id="icon-search" />
       )}
     </span>
   )
 
   const prefix = (
     <span className={`${iconClasses} ${handles.searchBarIcon}`}>
-      <IconSearch {...iconsProps} />
+      <ExtensionPoint id="icon-search" />
     </span>
   )
 
