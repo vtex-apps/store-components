@@ -28,7 +28,6 @@ const SearchBar = ({
   maxWidth,
   attemptPageTypeSearch,
   customSearchPageUrl,
-  iconsProps,
 }) => {
   const container = useRef()
   const { navigate } = useRuntime()
@@ -106,7 +105,6 @@ const SearchBar = ({
       hasIconLeft={hasIconLeft}
       iconClasses={iconClasses}
       iconBlockClass={iconBlockClass}
-      iconsProps={iconsProps}
     />
   )
 
@@ -144,7 +142,6 @@ const SearchBar = ({
                 onClearInput={onClearInput}
                 hasIconLeft={hasIconLeft}
                 iconClasses={iconClasses}
-                iconsProps={iconsProps}
                 {...getInputProps({
                   onKeyDown: event => {
                     // Only call default search function if user doesn't
@@ -211,12 +208,6 @@ SearchBar.propTypes = {
   customSearchPageUrl: PropTypes.string,
   iconBlockClass: PropTypes.string,
   attemptPageTypeSearch: PropTypes.bool,
-  iconsProps: PropTypes.shape({
-    /** Icon size, aspect ratio 1:1 */
-    size: PropTypes.number,
-    /** Icon viewBox. Default 0, 0, 16, 16 */
-    viewBox: PropTypes.string,
-  }),
 }
 
 export default SearchBar

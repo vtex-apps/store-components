@@ -57,7 +57,6 @@ class SearchBarContainer extends Component {
       maxWidth,
       attemptPageTypeSearch,
       customSearchPageUrl,
-      iconsProps,
       placeholder = intl.formatMessage({
         id: 'store/search.placeholder',
       }),
@@ -80,7 +79,6 @@ class SearchBarContainer extends Component {
         maxWidth={maxWidth}
         attemptPageTypeSearch={attemptPageTypeSearch}
         customSearchPageUrl={customSearchPageUrl}
-        iconsProps={iconsProps}
       />
     )
   }
@@ -114,12 +112,6 @@ SearchBarContainer.propTypes = {
   /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
   customSearchPageUrl: PropTypes.string,
   placeholder: PropTypes.string,
-  iconsProps: PropTypes.shape({
-    /** Icon size, aspect ratio 1:1 */
-    size: PropTypes.number,
-    /** Icon viewBox. Default 0, 0, 16, 16 */
-    viewBox: PropTypes.string,
-  }),
 }
 
 export default injectIntl(SearchBarContainer)

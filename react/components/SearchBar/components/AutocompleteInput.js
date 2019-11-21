@@ -22,7 +22,6 @@ const AutocompleteInput = ({
   iconBlockClass,
   iconClasses,
   autoFocus,
-  iconsProps,
   ...restProps
 }) => {
   const inputRef = useRef(null)
@@ -108,12 +107,6 @@ AutocompleteInput.propTypes = {
   iconBlockClass: PropTypes.string,
   /** Identify if the search input should autofocus or not */
   autoFocus: PropTypes.bool,
-  iconsProps: PropTypes.shape({
-    /** Icon size, aspect ratio 1:1 */
-    size: PropTypes.number,
-    /** Icon viewBox. Default 0, 0, 16, 16 */
-    viewBox: PropTypes.string,
-  }),
 }
 
 export default AutocompleteInput
