@@ -49,7 +49,7 @@ const AutocompleteInput = ({
       onClick={() => value && onClearInput()}
     >
       {value ? (
-        <ExtensionPoint id="icon-close" />
+        <ExtensionPoint id="icon-close" size={22} type="line" />
       ) : (
         !hasIconLeft && <ExtensionPoint id="icon-search" />
       )}
