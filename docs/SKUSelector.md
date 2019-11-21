@@ -80,7 +80,7 @@ Values and description for `DisplayMode`:
 | Value | Name | Description |
 | --- | --- | --- |
 | `default` | default | Shows all variations like the images variations |
-| `select` | select | Shoes all variations that are not variations that render images in a `Select` component |
+| `select` | select | Shows all variations except for image ones as `Select`components |
 
 Values and description for `InitialSelectionEnum`:
 | Value | Name | Description |
