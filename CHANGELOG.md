@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `iconsProps` prop to `SearchBar` components.
+- Support for `icon-search` and `icon-close` blocks to be received by `SearchBar` components.
 
 ## [3.92.7] - 2019-12-06
 ### Fixed
