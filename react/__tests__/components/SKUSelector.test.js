@@ -38,7 +38,7 @@ describe('<SKUSelector />', () => {
         itemId: '1',
         name: 'Gray Shoe',
         variations: [
-          { name: 'Size', values: ['1'] },
+          { name: 'Size', values: ['41'] },
           { name: 'Color', values: ['Gray'] },
         ],
         sellers: [defaultSeller],
@@ -48,7 +48,7 @@ describe('<SKUSelector />', () => {
         itemId: '2',
         name: 'Black Shoe',
         variations: [
-          { name: 'Size', values: ['1', '2', '3'] },
+          { name: 'Size', values: ['41', '42', '43'] },
           { name: 'Color', values: ['Black'] },
         ],
         sellers: [defaultSeller],
@@ -58,7 +58,7 @@ describe('<SKUSelector />', () => {
         itemId: '3',
         name: 'Blue Shoe',
         variations: [
-          { name: 'Size', values: ['1', '2', '3'] },
+          { name: 'Size', values: ['41', '42', '43'] },
           { name: 'Color', values: ['Blue', 'Black'] },
         ],
         sellers: [defaultSeller],
@@ -70,7 +70,7 @@ describe('<SKUSelector />', () => {
         variations: [
           {
             name: 'Size',
-            values: ['2'],
+            values: ['42'],
           },
           { name: 'Color', values: ['Gray'] },
         ],
@@ -90,20 +90,17 @@ describe('<SKUSelector />', () => {
       />
     )
     await Promise.resolve()
-    act(() => {
-      getByText('Gray').click()
-    })
+
+    getByText('Gray').click()
+
     await Promise.resolve()
 
-    act(() => {})
-    act(() => {
-      expect(getByText('2')).toBeDefined()
-      getByText('2').click()
-    })
-    
+    expect(getByText('42')).toBeDefined()
+    getByText('42').click()
+
     await Promise.resolve()
     expect(onSKUSelected).toBeCalledTimes(2)
-    expect(getByText('1')).toBeDefined()
+    expect(getByText('41')).toBeDefined()
   })
 
   it('should render only three main variations', async () => {
@@ -113,7 +110,7 @@ describe('<SKUSelector />', () => {
         itemId: '1',
         name: 'Gray Shoe',
         variations: [
-          { name: 'Size', values: ['1'] },
+          { name: 'Size', values: ['41'] },
           { name: 'Color', values: ['Gray'] },
         ],
         sellers: [defaultSeller],
@@ -123,7 +120,7 @@ describe('<SKUSelector />', () => {
         itemId: '2',
         name: 'Black Shoe',
         variations: [
-          { name: 'Size', values: ['1'] },
+          { name: 'Size', values: ['41'] },
           { name: 'Color', values: ['Black'] },
         ],
         sellers: [defaultSeller],
@@ -133,7 +130,7 @@ describe('<SKUSelector />', () => {
         itemId: '3',
         name: 'Blue Shoe',
         variations: [
-          { name: 'Size', values: ['1'] },
+          { name: 'Size', values: ['41'] },
           { name: 'Color', values: ['Blue'] },
         ],
         sellers: [defaultSeller],
@@ -145,7 +142,7 @@ describe('<SKUSelector />', () => {
         variations: [
           {
             name: 'Size',
-            values: ['2'],
+            values: ['42'],
           },
           { name: 'Color', values: ['Gray'] },
         ],
@@ -175,7 +172,7 @@ describe('<SKUSelector />', () => {
         itemId: '1',
         name: 'Gray Shoe',
         variations: [
-          { name: 'Size', values: ['1'] },
+          { name: 'Size', values: ['41'] },
           { name: 'Color', values: ['Gray'] },
         ],
         sellers: [defaultSeller],
@@ -185,7 +182,7 @@ describe('<SKUSelector />', () => {
         itemId: '2',
         name: 'Black Shoe',
         variations: [
-          { name: 'Size', values: ['1'] },
+          { name: 'Size', values: ['41'] },
           { name: 'Color', values: ['Black'] },
         ],
         sellers: [defaultSeller],
@@ -195,7 +192,7 @@ describe('<SKUSelector />', () => {
         itemId: '3',
         name: 'Blue Shoe',
         variations: [
-          { name: 'Size', values: ['1'] },
+          { name: 'Size', values: ['41'] },
           { name: 'Color', values: ['Blue'] },
         ],
         sellers: [defaultSeller],
@@ -207,7 +204,7 @@ describe('<SKUSelector />', () => {
         variations: [
           {
             name: 'Size',
-            values: ['2'],
+            values: ['42'],
           },
           { name: 'Color', values: ['Gray'] },
         ],
@@ -220,7 +217,7 @@ describe('<SKUSelector />', () => {
         variations: [
           {
             name: 'Size',
-            values: ['3'],
+            values: ['43'],
           },
           { name: 'Color', values: ['Gray'] },
         ],
@@ -233,7 +230,7 @@ describe('<SKUSelector />', () => {
         variations: [
           {
             name: 'Size',
-            values: ['4'],
+            values: ['44'],
           },
           { name: 'Color', values: ['Gray'] },
         ],
@@ -246,7 +243,7 @@ describe('<SKUSelector />', () => {
         variations: [
           {
             name: 'Size',
-            values: ['5'],
+            values: ['45'],
           },
           { name: 'Color', values: ['Gray'] },
         ],
@@ -259,7 +256,7 @@ describe('<SKUSelector />', () => {
         variations: [
           {
             name: 'Size',
-            values: ['6'],
+            values: ['46'],
           },
           { name: 'Color', values: ['Gray'] },
         ],
@@ -272,7 +269,7 @@ describe('<SKUSelector />', () => {
         variations: [
           {
             name: 'Size',
-            values: ['7'],
+            values: ['47'],
           },
           { name: 'Color', values: ['Gray'] },
         ],
@@ -285,7 +282,7 @@ describe('<SKUSelector />', () => {
         variations: [
           {
             name: 'Size',
-            values: ['1'],
+            values: ['41'],
           },
           { name: 'Color', values: ['Gray'] },
         ],
@@ -298,7 +295,7 @@ describe('<SKUSelector />', () => {
         variations: [
           {
             name: 'Size',
-            values: ['8'],
+            values: ['38'],
           },
           { name: 'Color', values: ['Gray'] },
         ],
@@ -311,7 +308,7 @@ describe('<SKUSelector />', () => {
         variations: [
           {
             name: 'Size',
-            values: ['9'],
+            values: ['39'],
           },
           { name: 'Color', values: ['Gray'] },
         ],
@@ -391,8 +388,8 @@ describe('<SKUSelector />', () => {
     )
     await Promise.resolve()
     expect(getByText('seeMoreLabel')).toBeDefined()
-    expect(getByText('8')).toBeDefined()
-    expect(queryByText('9')).toBeNull()
+    expect(getByText('38')).toBeDefined()
+    expect(queryByText('39')).toBeNull()
   })
 
   it('should respect given maxItems prop set and show see more button', async () => {
