@@ -22,7 +22,12 @@ export function Spinner(props) {
 }
 
 export function Dropdown(props) {
-  const { value, onChange, options } = props
+  const { onChange, options } = props
+  let { value } = props
+
+  if (value === null) {
+    value = undefined
+  }
 
   return (
     <select value={value} onChange={onChange}>
