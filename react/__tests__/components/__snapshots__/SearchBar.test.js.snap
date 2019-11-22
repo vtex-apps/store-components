@@ -33,13 +33,9 @@ exports[`<SearchBar /> should match snapshot 1`] = `
               <span
                 class=" searchBarIcon flex items-center pointer"
               >
-                <svg
-                  class="  IconSearch"
-                >
-                  <rect
-                    style="fill: rgb(0,0,255); stroke-width: 3; stroke: rgb(0,0,0);"
-                  />
-                </svg>
+                <div
+                  class="extension-point-icon-search"
+                />
               </span>
             </label>
           </div>
