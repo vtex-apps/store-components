@@ -24,7 +24,14 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
   if (!showItemsPrice) {
     return (
       <FormattedMessage id="store/buy-button.add-to-cart">
-        {message => <span className={handles.buyButtonText}>{message}</span>}
+        {message => (
+          <span
+            data-testid="store-components__buy-button-message"
+            className={handles.buyButtonText}
+          >
+            {message}
+          </span>
+        )}
       </FormattedMessage>
     )
     return
@@ -41,12 +48,17 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
 
   return (
     <div
-      className={`${
-        handles.buttonDataContainer
-      } flex w-100 justify-between items-center`}
+      className={`${handles.buttonDataContainer} flex w-100 justify-between items-center`}
     >
       <FormattedMessage id="store/buy-button.add-to-cart">
-        {message => <span className={handles.buyButtonText}>{message}</span>}
+        {message => (
+          <span
+            data-testid="store-components__buy-button-message"
+            className={handles.buyButtonText}
+          >
+            {message}
+          </span>
+        )}
       </FormattedMessage>
       <ProductPrice
         showLabels={false}
