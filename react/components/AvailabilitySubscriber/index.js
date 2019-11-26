@@ -90,7 +90,7 @@ class AvailabilitySubscriber extends Component {
           },
           {
             key: 'notificationSend',
-            value: false,
+            value: 'false',
           },
           {
             key: 'createdAt',

@@ -33,7 +33,7 @@ The form is submitted to Master Data on the Entity: `AS`
 | `skuId`            | String | The id of the product sku to which will be watched for changes in the product quantity |
 | `name`             | String | The name of the user                                                                   |
 | `email`            | String | The email of the user                                                                 |
-| `notificationSend` | Boolean | If the notification has been sent already                                              |
+| `notificationSend` | String | If the notification has been sent already, use "true" or "false".                                              |
 | `createdAt`        | String - ISO format | When the document was created  Ex.: ISO (2011-10-05T14:48:00.000Z)                                                     |
 | `sendAt`           | String - ISO format | When the user was notificated  Ex.: ISO (2011-10-05T14:48:00.000Z)                                                        |
 
