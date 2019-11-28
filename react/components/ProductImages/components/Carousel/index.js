@@ -42,7 +42,7 @@ const CSS_HANDLES = [
   'productImagesGallerySwiperContainer',
   'productImagesGallerySlide',
   'swiperCaret',
-  'prodcutImagesThumbCaret',
+  'productImagesThumbCaret',
 ]
 
 class Carousel extends Component {
@@ -255,7 +255,7 @@ class Carousel extends Component {
     const isThumbsVertical =
       thumbnailsOrientation === THUMBS_ORIENTATION.VERTICAL
     const caretSize = 24
-    const caretClassName = `${cssHandles.prodcutImagesThumbCaret} absolute z-2 pointer c-action-primary flex pv2`
+    const caretClassName = `${cssHandles.productImagesThumbCaret} absolute z-2 pointer c-action-primary flex pv2`
     const caretStyle = { transition: 'opacity 200ms' }
 
     return {
