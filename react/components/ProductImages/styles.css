@@ -14,12 +14,6 @@
   height: auto;
 }
 
-.carouselGaleryThumbs
-  :global(.swiper-slide):not(:global(.swiper-slide-thumb-active))
-  .carouselThumbBorder {
-  border-width: 0px;
-}
-
 .carouselIconCaretRight,
 .carouselIconCaretLeft {
   stroke: white;

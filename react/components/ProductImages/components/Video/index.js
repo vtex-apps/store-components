@@ -5,12 +5,14 @@ import { match, compose, isEmpty, complement } from 'ramda'
 import Vimeo from './Vimeo'
 import YouTube from './Youtube'
 
-import styles from '../../styles.css'
+import { withCssHandles } from 'vtex.css-handles'
 
 const isNotEmpty = complement(isEmpty)
 
 const isVimeo = compose(isNotEmpty, match(/vimeo/))
 const isYoutube = compose(isNotEmpty, match(/youtube|youtu.be/)) 
+
+const CSS_HANDLES = ['productVideo', 'iframeContainer', 'iframe']
 
 class Video extends Component {
   static getThumbUrl(url, thumbWidth) {
@@ -24,10 +26,10 @@ class Video extends Component {
   }
 
   render() {
-    const { url } = this.props
+    const { url, cssHandles } = this.props
 
     return (
-      <div className={styles.video}>
+      <div className={cssHandles.productVideo}>
         {isVimeo(url) && <Vimeo {...this.props} />}
         {isYoutube(url) && <YouTube {...this.props} />}
       </div>
@@ -44,4 +46,4 @@ Video.propsTypes = {
   play: PropTypes.bool,
 }
 
-export default Video
+export default withCssHandles(CSS_HANDLES)(Video)

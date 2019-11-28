@@ -64,18 +64,18 @@ class Vimeo extends Component {
 
   render() {
     const { iframe } = this.state
-    const { className, id } = this.props
+    const { className, id, cssHandles } = this.props
 
     this.props.playing
       ? this.executeCommand('play')()
       : this.executeCommand('pause')()
 
     return (
-      <div style={iframe.divStyle} className={`relative ${className}`}>
+      <div style={iframe.divStyle} className={`relative ${className} ${cssHandles.iframeContainer}`}>
         <iframe
           ref={this.iframeRef}
           title={id}
-          className="absolute top-0 left-0 w-100 h-100"
+          className={`${cssHandles.iframe} absolute top-0 left-0 w-100 h-100`}
           src={iframe.src}
           frameBorder="0"
           allowFullScreen
