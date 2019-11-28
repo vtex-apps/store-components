@@ -50,19 +50,38 @@
 | `zoomMode`                | `Enum` | Sets the zoom behavior. It can be `disabled\`, `in-place-click\` or `in-place-hover`                                             | `in-place-click` |
 | `zoomFactor`              | `number`                                   | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large)  | `2`                |
 
-## Customization
+### Styles API
 
-In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
+You should follow the Styles API instruction in the main [README](/README.md#styles-api).
 
-| CSS Handles |
+#### CSS Namespaces
+
+Below, we describe the namespace that are defined in the `ProductImages`.
+
+| Handle |
 | --- |
-| `productImagesContainer` |
-| `video`                  |
-| `image`                  |
-| `carouselCursorDefault`   |
+| `.content (deprecated)` use `productImagesContainer` instead |
+| `.productImagesContainer` |
+| `carouselContainer` |
+| `productImagesThumbsSwiperContainer` |
+| `productImagesGallerySwiperContainer` |
+| `productImagesGallerySlide` |
+| `swiperCaret` |
+| `productImagesThumbCaret` |
+| `productImageImg`|
+| `iframe`|
+| `iframeContainer` |
+| `productVideo` |
+| `.figure` |
+| `.thumbImg` |
+| `.video` |
+| `.image` |
+| `.productImagesThumb` |
+| `.productImagesThumbActive` |
+| `carouselCursorDefault` |
 | `carouselInconCaretRight` |
-| `carouselIconCaretLeft`   |
-| `carouselGaleryThumbs`    |
-| `carouselThumbBorder`     |
-| `carouselGaleryCursor`    |
-| `carouselImagePlaceholder`   |
+| `carouselIconCaretLeft` |
+| `carouselGaleryThumbs` |
+| `carouselThumbBorder` |
+| `carouselGaleryCursor` |
+| `carouselImagePlaceholder` |
