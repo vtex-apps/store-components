@@ -8,7 +8,7 @@ import ReactResizeDetector from 'react-resize-detector'
 import { IconCaret } from 'vtex.store-icons'
 import { withCssHandles } from 'vtex.css-handles'
 
-import Video from '../Video'
+import Video, { getThumbUrl } from '../Video'
 import ProductImage from '../ProductImage'
 
 import styles from '../../styles.css'
@@ -56,7 +56,7 @@ class Carousel extends Component {
 
     slides.forEach(async (slide, i) => {
       if (slide.type === 'video') {
-        const thumbUrl = await Video.getThumbUrl(slide.src, slide.thumbWidth)
+        const thumbUrl = await getThumbUrl(slide.src, slide.thumbWidth)
         this.isVideo[i] = true
         this.setVideoThumb(i)(thumbUrl)
         this.thumbLoadFinish()
