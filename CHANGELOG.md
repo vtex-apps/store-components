@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Use `withCssHandles` instead of using styles to generate the CSS handles of the `Container` compenent.
 
 ## [3.93.0] - 2019-12-09
 ### Changed
