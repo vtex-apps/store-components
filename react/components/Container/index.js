@@ -1,12 +1,13 @@
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
 import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { withCssHandles } from 'vtex.css-handles'
 
-import styles from './Container.css'
+const CSS_HANDLES = ['container']
 
-const render = ({ className, children, ...props }, ref) => {
+const render = ({ className, cssHandles, children, ...props }, ref) => {
   const classes = classNames(
-    styles.container,
+    cssHandles.container,
     'ph3 ph5-m ph2-xl mw9 center',
     className
   )
@@ -27,4 +28,6 @@ Container.propTypes = {
   className: PropTypes.string,
 }
 
-export default Container
+export default withCssHandles(CSS_HANDLES, {
+  migrationFrom: 'vtex.store-components@3.x'
+})(Container)
