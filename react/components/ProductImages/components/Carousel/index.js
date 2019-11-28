@@ -6,6 +6,7 @@ import { path, equals } from 'ramda'
 import ReactResizeDetector from 'react-resize-detector'
 
 import { IconCaret } from 'vtex.store-icons'
+import { withCssHandles } from 'vtex.css-handles'
 
 import Video from '../Video'
 import ProductImage from '../ProductImage'
@@ -34,6 +35,15 @@ const initialState = {
   thumbSwiper: null,
   gallerySwiper: null,
 }
+
+const CSS_HANDLES = [
+  'carouselContainer',
+  'productImagesThumbsSwiperContainer',
+  'productImagesGallerySwiperContainer',
+  'productImagesGallerySlide',
+  'swiperCaret',
+  'prodcutImagesThumbCaret',
+]
 
 class Carousel extends Component {
   state = initialState
@@ -179,7 +189,12 @@ class Carousel extends Component {
 
   get galleryParams() {
     const { thumbSwiper } = this.state
-    const { slides = [], showNavigationArrows = true, showPaginationDots = true } = this.props
+    const {
+      cssHandles,
+      slides = [],
+      showPaginationDots = true,
+      showNavigationArrows = true,
+    } = this.props
 
     const iconSize = 24
     const caretClassName =
@@ -187,7 +202,7 @@ class Carousel extends Component {
 
     return {
       modules: [SwiperModules.Pagination, SwiperModules.Navigation],
-      containerClass: 'swiper-container',
+      containerClass: `swiper-container ${cssHandles.productImagesGallerySwiperContainer}`,
       ...(slides.length > 1 && showPaginationDots && {
         pagination: {
           el: '.swiper-pagination',
@@ -209,7 +224,7 @@ class Carousel extends Component {
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       ...(showNavigationArrows && {
         renderNextButton: () => (
-          <span className={`swiper-caret-next pl7 pr2 right-0 ${caretClassName}`}>
+          <span className={`swiper-caret-next pl7 pr2 right-0 ${caretClassName} ${cssHandles.swiperCaret}`}>
             <IconCaret
               orientation="right"
               size={iconSize}
@@ -218,7 +233,7 @@ class Carousel extends Component {
           </span>
         ),
         renderPrevButton: () => (
-          <span className={`swiper-caret-prev pr7 pl2 left-0 ${caretClassName}`}>
+          <span className={`swiper-caret-prev pr7 pl2 left-0 ${caretClassName} ${cssHandles.swiperCaret}`}>
             <IconCaret
               orientation="left"
               size={iconSize}
@@ -235,12 +250,12 @@ class Carousel extends Component {
   }
 
   get thumbnailsParams() {
-    const { displayThumbnailsArrows, thumbnailsOrientation } = this.props
+    const { displayThumbnailsArrows, thumbnailsOrientation, cssHandles } = this.props
 
     const isThumbsVertical =
       thumbnailsOrientation === THUMBS_ORIENTATION.VERTICAL
     const caretSize = 24
-    const caretClassName = 'absolute z-2 pointer c-action-primary flex pv2'
+    const caretClassName = `${cssHandles.prodcutImagesThumbCaret} absolute z-2 pointer c-action-primary flex pv2`
     const caretStyle = { transition: 'opacity 200ms' }
 
     return {
@@ -290,7 +305,7 @@ class Carousel extends Component {
         },
       }),
       observer: true,
-      containerClass: 'swiper-container h-100',
+      containerClass: `swiper-container h-100 ${cssHandles.productImagesThumbsSwiperContainer}`,
       watchSlidesVisibility: true,
       watchSlidesProgress: true,
       freeMode: false,
@@ -319,12 +334,13 @@ class Carousel extends Component {
     const { thumbsLoaded, gallerySwiper, activeIndex } = this.state
 
     const {
-      slides = [],
       position,
-      zoomProps: { zoomType },
-      thumbnailsOrientation,
+      cssHandles,
+      slides = [],
+      thumbnailMaxHeight,
       thumbnailAspectRatio,
-      thumbnailMaxHeight
+      thumbnailsOrientation,
+      zoomProps: { zoomType },
     } = this.props
 
     if (!thumbsLoaded || Swiper == null) {
@@ -341,7 +357,8 @@ class Carousel extends Component {
     }
 
     const imageClasses = classNames(
-      `w-100 border-box ${galleryCursor[zoomType]}`,
+      'w-100 border-box',
+      galleryCursor[zoomType],
       {
         'ml-20-ns w-80-ns':
           isThumbsVertical &&
@@ -369,13 +386,13 @@ class Carousel extends Component {
     )
 
     return (
-      <div className={`relative overflow-hidden w-100`} aria-hidden="true">
+      <div className={`${cssHandles.carouselContainer} relative overflow-hidden w-100`} aria-hidden="true">
         {isThumbsVertical && thumbnailSwiper}
         <div className={imageClasses}>
           <ReactResizeDetector handleHeight onResize={this.updateSwiperSize}>
             <Swiper {...this.galleryParams} rebuildOnUpdate>
               {slides.map((slide, i) => (
-                <div key={i} className="swiper-slide center-all">
+                <div key={i} className={`${cssHandles.productImagesGallerySlide} swiper-slide center-all`}>
                   {this.renderSlide(slide, i)}
                 </div>
               ))}
@@ -401,4 +418,4 @@ Carousel.propTypes = {
   displayThumbnailsArrows: PropTypes.bool,
 }
 
-export default Carousel
+export default withCssHandles(CSS_HANDLES)(Carousel)

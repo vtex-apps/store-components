@@ -1,10 +1,10 @@
 import React from 'react'
-import { THUMB_SIZE, imageUrlForSize } from '../../../module/images'
+import { THUMB_SIZE } from '../../../module/images'
 import classNames from 'classnames'
 
-import styles from '../../styles.css'
 import { THUMBS_POSITION_HORIZONTAL } from '../../utils/enums'
 import { imageUrl } from '../../utils/aspectRatioUtil'
+import { useCssHandles } from 'vtex.css-handles'
 
 const THUMB_MAX_SIZE = 256
 
@@ -14,14 +14,15 @@ const Swiper = window.navigator
   : null
 
 const Thumbnail = ({
-  itemContainerClasses,
-  gallerySwiper,
   alt,
-  thumbUrl,
-  height,
   index,
-  aspectRatio = 'auto',
+  height,
+  thumbUrl,
+  handles,
+  gallerySwiper,
   maxHeight = 150,
+  aspectRatio = 'auto',
+  itemContainerClasses,
 }) => {
   return (
     <div
@@ -30,24 +31,26 @@ const Thumbnail = ({
       onClick={() => gallerySwiper && gallerySwiper.slideTo(index)}
     >
       <figure
-        className={styles.figure}
+        className={handles.figure}
         itemProp="associatedMedia"
         itemScope
         itemType="http://schema.org/ImageObject"
       >
         <img
-          className="w-100 h-auto db"
+          className={`${handles.thumbImg} w-100 h-auto db`}
           itemProp="thumbnail"
           alt={alt}
           src={imageUrl(thumbUrl, THUMB_SIZE, THUMB_MAX_SIZE, aspectRatio)}
         />
       </figure>
       <div
-        className={`absolute absolute--fill b--solid b--muted-2 bw1 ${styles.carouselThumbBorder}`}
+        className={`absolute absolute--fill b--solid b--muted-2 bw0 ${handles.carouselThumbBorder}`}
       />
     </div>
   )
 }
+
+const CSS_HANDLES = ['productImagesThumb', 'productImagesThumbActive', 'figure', 'thumbImg', 'carouselThumbBorder', 'carouselGaleryThumbs']
 
 const ThumbnailSwiper = ({
   isThumbsVertical,
@@ -61,8 +64,9 @@ const ThumbnailSwiper = ({
   thumbnailMaxHeight,
 }) => {
   const hasThumbs = slides.length > 1
+  const handles = useCssHandles(CSS_HANDLES)
 
-  const thumbClasses = classNames(`${styles.carouselGaleryThumbs} dn`, {
+  const thumbClasses = classNames(`${handles.carouselGaleryThumbs} dn h-auto`, {
     'db-ns': hasThumbs,
     mt3: !isThumbsVertical,
     'w-20 bottom-0 top-0 absolute': isThumbsVertical,
@@ -77,17 +81,22 @@ const ThumbnailSwiper = ({
     <div className={thumbClasses} data-testid="thumbnail-swiper">
       <Swiper {...swiperParams} rebuildOnUpdate>
         {slides.map((slide, i) => {
-          const itemContainerClasses = classNames('swiper-slide mb5 pointer', {
-            'w-20': !isThumbsVertical,
-            'w-100': isThumbsVertical,
-            'swiper-slide-active': activeIndex === i,
-          })
+          const itemContainerClasses = classNames('swiper-slide mb5 pointer',
+            handles.productImagesThumb,
+            {
+              'w-20': !isThumbsVertical,
+              'w-100': isThumbsVertical,
+              'swiper-slide-active': activeIndex === i,
+              [handles.productImagesThumbActive]: activeIndex === i,
+            }
+          )
 
           return (
             <Thumbnail
               key={`${i}-${slide.alt}`}
               itemContainerClasses={itemContainerClasses}
               index={i}
+              handles={handles}
               height={isThumbsVertical ? 'auto' : '115px'}
               gallerySwiper={gallerySwiper}
               alt={slide.alt}

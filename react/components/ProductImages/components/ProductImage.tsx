@@ -1,7 +1,7 @@
 import React, { FC, useMemo, useRef } from 'react'
 import Zoomable, { ZoomMode } from './Zoomable'
-import styles from '../styles.css'
 import { imageUrl } from '../utils/aspectRatioUtil'
+import { useCssHandles } from 'vtex.css-handles'
 
 const IMAGE_SIZES = [600, 800, 1200]
 const DEFAULT_SIZE = 800
@@ -18,6 +18,11 @@ interface Props {
 
 type AspectRatio = string | number
 
+const CSS_HANDLES = [
+  'productImage',
+  'productImageImg'
+]
+
 const ProductImage: FC<Props> = ({
   src,
   alt,
@@ -31,18 +36,19 @@ const ProductImage: FC<Props> = ({
       .map(size => `${imageUrl(src, size, MAX_SIZE, aspectRatio)} ${size}w`)
       .join(',')
   ), [src, aspectRatio, IMAGE_SIZES])
+  const handles = useCssHandles(CSS_HANDLES)
 
   const imageRef = useRef(null)
 
   return (
-    <div className={styles.productImage}>
+    <div className={handles.productImage}>
       <Zoomable
         mode={zoomMode}
         factor={zoomFactor}
         zoomContent={(
           <img
             src={imageUrl(src, DEFAULT_SIZE * zoomFactor, MAX_SIZE, aspectRatio)}
-          
+            className={handles.productImageImg}
             style={{
               // Resets possible resizing done via CSS
               maxWidth: 'unset',
@@ -57,6 +63,7 @@ const ProductImage: FC<Props> = ({
         )}>
             <img
               ref={imageRef}
+              className={handles.productImageImg}
               style={{
                 width: '100%',
                 height: '100%',
