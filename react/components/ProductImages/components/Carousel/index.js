@@ -26,6 +26,17 @@ import {
   THUMBS_POSITION_HORIZONTAL,
 } from '../../utils/enums'
 
+const CSS_HANDLES = [
+  'carouselContainer',
+  'productImagesThumbsSwiperContainer',
+  'productImagesGallerySwiperContainer',
+  'productImagesGallerySlide',
+  'swiperCaret',
+  'swiperCaretNext',
+  'swiperCaretPrev',
+  'productImagesThumbCaret',
+]
+
 const initialState = {
   loaded: [],
   thumbUrl: [],
@@ -35,15 +46,6 @@ const initialState = {
   thumbSwiper: null,
   gallerySwiper: null,
 }
-
-const CSS_HANDLES = [
-  'carouselContainer',
-  'productImagesThumbsSwiperContainer',
-  'productImagesGallerySwiperContainer',
-  'productImagesGallerySlide',
-  'swiperCaret',
-  'productImagesThumbCaret',
-]
 
 class Carousel extends Component {
   state = initialState
@@ -224,7 +226,7 @@ class Carousel extends Component {
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       ...(showNavigationArrows && {
         renderNextButton: () => (
-          <span className={`swiper-caret-next pl7 pr2 right-0 ${caretClassName} ${cssHandles.swiperCaret}`}>
+          <span className={`swiper-caret-next pl7 pr2 right-0 ${caretClassName} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretNext}`}>
             <IconCaret
               orientation="right"
               size={iconSize}
@@ -233,7 +235,7 @@ class Carousel extends Component {
           </span>
         ),
         renderPrevButton: () => (
-          <span className={`swiper-caret-prev pr7 pl2 left-0 ${caretClassName} ${cssHandles.swiperCaret}`}>
+          <span className={`swiper-caret-prev pr7 pl2 left-0 ${caretClassName} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretPrev}`}>
             <IconCaret
               orientation="left"
               size={iconSize}

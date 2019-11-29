@@ -20,7 +20,7 @@ type AspectRatio = string | number
 
 const CSS_HANDLES = [
   'productImage',
-  'productImageImg'
+  'productImageTag'
 ]
 
 const ProductImage: FC<Props> = ({
@@ -48,7 +48,7 @@ const ProductImage: FC<Props> = ({
         zoomContent={(
           <img
             src={imageUrl(src, DEFAULT_SIZE * zoomFactor, MAX_SIZE, aspectRatio)}
-            className={handles.productImageImg}
+            className={handles.productImageTag}
             style={{
               // Resets possible resizing done via CSS
               maxWidth: 'unset',
@@ -63,7 +63,7 @@ const ProductImage: FC<Props> = ({
         )}>
             <img
               ref={imageRef}
-              className={handles.productImageImg}
+              className={handles.productImageTag}
               style={{
                 width: '100%',
                 height: '100%',

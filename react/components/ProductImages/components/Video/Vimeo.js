@@ -32,7 +32,7 @@ class Vimeo extends Component {
       })
   }
 
-  static getThumbUrl = (url, thumbWidth) => {
+  static getThumbUrl = (url) => {
     const getUrl = `https://vimeo.com/api/oembed.json?url=${url}`
     return fetch(getUrl)
       .then(response => response.json())
@@ -71,11 +71,11 @@ class Vimeo extends Component {
       : this.executeCommand('pause')()
 
     return (
-      <div style={iframe.divStyle} className={`relative ${className} ${cssHandles.iframeContainer}`}>
+      <div style={iframe.divStyle} className={`relative ${className} ${cssHandles.videoContainer}`}>
         <iframe
           ref={this.iframeRef}
           title={id}
-          className={`${cssHandles.iframe} absolute top-0 left-0 w-100 h-100`}
+          className={`${cssHandles.video} absolute top-0 left-0 w-100 h-100`}
           src={iframe.src}
           frameBorder="0"
           allowFullScreen

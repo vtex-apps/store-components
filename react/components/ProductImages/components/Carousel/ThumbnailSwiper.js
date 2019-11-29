@@ -13,6 +13,15 @@ const Swiper = window.navigator
   ? require('react-id-swiper/lib/ReactIdSwiper.full').default
   : null
 
+const CSS_HANDLES = [
+  'figure',
+  'thumbImg',
+  'productImagesThumb',
+  'carouselThumbBorder',
+  'carouselGaleryThumbs',
+  'productImagesThumbActive',
+]
+
 const Thumbnail = ({
   alt,
   index,
@@ -49,8 +58,6 @@ const Thumbnail = ({
     </div>
   )
 }
-
-const CSS_HANDLES = ['productImagesThumb', 'productImagesThumbActive', 'figure', 'thumbImg', 'carouselThumbBorder', 'carouselGaleryThumbs']
 
 const ThumbnailSwiper = ({
   isThumbsVertical,

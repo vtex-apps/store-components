@@ -49,13 +49,13 @@ class Youtube extends Component {
 
     return (
       <div
-        className={`relative ${className} ${cssHandles.iframeContainer}`}
+        className={`relative ${className} ${cssHandles.videoContainer}`}
         style={{ padding: '30%' }}
       >
         <iframe
           ref={this.iframeRef}
           title={id}
-          className={`${cssHandles.iframe} absolute top-0 left-0 w-100 h-100`}
+          className={`${cssHandles.video} absolute top-0 left-0 w-100 h-100`}
           src={iframe.src}
           frameBorder="0"
           allowFullScreen
