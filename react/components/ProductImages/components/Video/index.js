@@ -12,7 +12,7 @@ const isNotEmpty = complement(isEmpty)
 const isVimeo = compose(isNotEmpty, match(/vimeo/))
 const isYoutube = compose(isNotEmpty, match(/youtube|youtu.be/)) 
 
-const CSS_HANDLES = ['productVideo', 'iframeContainer', 'iframe']
+const CSS_HANDLES = ['productVideo', 'videoContainer', 'video']
 
 export function getThumbUrl(url, thumbWidth) {
   if (isVimeo(url)) {

@@ -47,37 +47,32 @@
 | `showPaginationDots`             | `boolean`                                   | Controls if the pagination dots should appear | `true`          |
 | `thumbnailAspectRatio`             | `string`                                   | Sets the aspect ratio of the thumbnail image; For more information about aspect ratio, check the `aspectRatio` prop | `"auto"`          |
 | `thumbnailMaxHeight`             | `number`                                   | The max height for the thumbnail image | `true`          |
-| `zoomMode`                | `Enum` | Sets the zoom behavior. It can be `disabled\`, `in-place-click\` or `in-place-hover`                                             | `in-place-click` |
-| `zoomFactor`              | `number`                                   | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large)  | `2`                |
+| `zoomMode` | `disabled\|in-place-click\|in-place-hover` | Sets the zoom behavior. | `in-place-click` |
+| `zoomFactor` | `number` | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large) | 2 |
 
-### Styles API
+#### Customization
 
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+In order to apply CSS customizations on this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-#### CSS Namespaces
-
-Below, we describe the namespace that are defined in the `ProductImages`.
-
-| Handle |
+| CSS Handles |
 | --- |
-| `.content (deprecated)` use `productImagesContainer` instead |
-| `.productImagesContainer` |
+| `productImagesContainer` (`content` is deprecated) |
 | `carouselContainer` |
 | `productImagesThumbsSwiperContainer` |
 | `productImagesGallerySwiperContainer` |
 | `productImagesGallerySlide` |
 | `swiperCaret` |
 | `productImagesThumbCaret` |
-| `productImageImg`|
-| `iframe`|
-| `iframeContainer` |
+| `productImageTag`|
+| `video`|
+| `videoContainer` |
 | `productVideo` |
-| `.figure` |
-| `.thumbImg` |
-| `.video` |
-| `.image` |
-| `.productImagesThumb` |
-| `.productImagesThumbActive` |
+| `figure` |
+| `thumbImg` |
+| `video` |
+| `image` |
+| `productImagesThumb` |
+| `productImagesThumbActive` |
 | `carouselCursorDefault` |
 | `carouselInconCaretRight` |
 | `carouselIconCaretLeft` |
