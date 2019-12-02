@@ -12,12 +12,18 @@ import { BuyButton } from './index'
 import { transformAssemblyOptions, sumAssembliesPrice } from './assemblyUtils'
 import addToCartMutation from './mutations/addToCart.gql'
 import setOpenMinicartMutation from './mutations/setOpenMinicart.gql'
+import installedApp from './queries/installedApp.gql'
 
 const MESSAGE_CSS_HANDLES = [
   'buyButtonText',
   'buttonDataContainer',
   'buttonItemsPrice',
 ]
+
+const CHECKOUT_URL = {
+  V0: '/checkout/#/cart',
+  V1: '/cart',
+}
 
 const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
   const handles = useCssHandles(MESSAGE_CSS_HANDLES)
@@ -41,9 +47,7 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
 
   return (
     <div
-      className={`${
-        handles.buttonDataContainer
-      } flex w-100 justify-between items-center`}
+      className={`${handles.buttonDataContainer} flex w-100 justify-between items-center`}
     >
       <FormattedMessage id="store/buy-button.add-to-cart">
         {message => <span className={handles.buyButtonText}>{message}</span>}
@@ -76,6 +80,7 @@ const BuyButtonWrapper = ({
   shouldAddToCart,
   customToastURL,
   showTooltipOnSkuNotSelected,
+  checkoutVersion,
 }) => {
   const valuesFromContext = useProduct()
 
@@ -122,6 +127,15 @@ const BuyButtonWrapper = ({
       ? propDisabled
       : !areAssemblyGroupsValid
 
+  const version =
+    checkoutVersion &&
+    checkoutVersion.installedApp &&
+    checkoutVersion.installedApp.version
+  const checkoutUrl =
+    version && parseInt(version.split('.')[0]) > 0
+      ? CHECKOUT_URL.V1
+      : CHECKOUT_URL.V0
+
   return (
     <BuyButton
       intl={intl}
@@ -140,6 +154,7 @@ const BuyButtonWrapper = ({
       customToastURL={customToastURL}
       shouldAddToCart={shouldAddToCart}
       showTooltipOnSkuNotSelected={showTooltipOnSkuNotSelected}
+      checkoutUrl={checkoutUrl}
     >
       {children || (
         <BuyButtonMessage showItemsPrice={showItemsPrice} skuItems={skuItems} />
@@ -162,9 +177,19 @@ const withOpenMinicart = graphql(setOpenMinicartMutation, {
   }),
 })
 
+const withCheckoutVersion = graphql(installedApp, {
+  name: 'checkoutVersion',
+  options: {
+    variables: {
+      slug: 'vtex.checkout',
+    },
+  },
+})
+
 const EnhancedBuyButton = compose(
   withAddToCart,
   withOpenMinicart,
+  withCheckoutVersion,
   withToast,
   injectIntl,
   orderFormConsumer

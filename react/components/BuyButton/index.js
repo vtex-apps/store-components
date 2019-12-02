@@ -9,7 +9,6 @@ import { useCssHandles } from 'vtex.css-handles'
 import useProduct from 'vtex.product-context/useProduct'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
-
 import { Button, ToastContext, Tooltip } from 'vtex.styleguide'
 
 const CONSTANTS = {
@@ -19,7 +18,6 @@ const CONSTANTS = {
   DUPLICATE_CART_ITEM_ID: 'store/buybutton.buy-success-duplicate',
   ERROR_MESSAGE_ID: 'store/buybutton.add-failure',
   SEE_CART_ID: 'store/buybutton.see-cart',
-  CHECKOUT_URL: '/checkout/#/cart',
   TOAST_TIMEOUT: 3000,
 }
 
@@ -70,7 +68,8 @@ export const BuyButton = ({
   shouldAddToCart = true,
   shouldOpenMinicart = false,
   showTooltipOnSkuNotSelected = true,
-  customToastURL = CONSTANTS.CHECKOUT_URL,
+  checkoutUrl,
+  customToastURL = checkoutUrl,
 }) => {
   const handles = useCssHandles(CSS_HANDLES)
   const [isAddingToCart, setAddingToCart] = useState(false)
@@ -114,7 +113,7 @@ export const BuyButton = ({
   }
 
   const { rootPath = '' } = useRuntime()
-  const checkoutUrl = rootPath + CONSTANTS.CHECKOUT_URL
+  const fullCheckoutUrl = rootPath + checkoutUrl
 
   const handleAddToCart = async event => {
     event.stopPropagation()
@@ -148,7 +147,11 @@ export const BuyButton = ({
         const { items } = mutationRes.data.addItem
 
         success = skuItems.filter(
-          skuItem => !!items.find(({ id, seller }) => id === skuItem.skuId && seller === skuItem.seller)
+          skuItem =>
+            !!items.find(
+              ({ id, seller }) =>
+                id === skuItem.skuId && seller === skuItem.seller
+            )
         )
         await orderFormContext.refetch().catch(() => null)
       }
@@ -156,12 +159,22 @@ export const BuyButton = ({
       const addedItem =
         (linkStateItems &&
           skuItems.filter(
-            skuItem => !!linkStateItems.find(({ id, seller }) => id === skuItem.skuId && seller === skuItem.seller)
+            skuItem =>
+              !!linkStateItems.find(
+                ({ id, seller }) =>
+                  id === skuItem.skuId && seller === skuItem.seller
+              )
           )) ||
         success
 
-      const foundItem = addedItem.length && orderFormItems && orderFormItems
-        .filter(item => item.id === addedItem[0].skuId && item.seller === addedItem[0].seller).length > 0
+      const foundItem =
+        addedItem.length &&
+        orderFormItems &&
+        orderFormItems.filter(
+          item =>
+            item.id === addedItem[0].skuId &&
+            item.seller === addedItem[0].seller
+        ).length > 0
 
       success = addedItem
 
@@ -186,7 +199,7 @@ export const BuyButton = ({
       setAddingToCart(false)
       showToastMessage()
       if (isOneClickBuy) {
-        location.assign(checkoutUrl)
+        location.assign(fullCheckoutUrl)
       }
       onAddFinish && onAddFinish()
     }, 500)
@@ -206,24 +219,22 @@ export const BuyButton = ({
     return <ContentLoader />
   }
 
-  const disabled = disabledProp || !available || (orderFormContext && orderFormContext.loading)
+  const disabled =
+    disabledProp || !available || (orderFormContext && orderFormContext.loading)
   const unavailableLabel = (
     <FormattedMessage id="store/buyButton-label-unavailable">
-        {message => (
-          <span className={handles.buyButtonText}>{message}</span>
-        )}
+      {message => <span className={handles.buyButtonText}>{message}</span>}
     </FormattedMessage>
   )
 
   const tooltipLabel = (
     <FormattedMessage id={CONSTANTS.TOOLTIP_ERROR_MESSAGE_ID}>
-      {message => (
-        <span className={handles.errorMessage}>{message}</span>
-      )}
+      {message => <span className={handles.errorMessage}>{message}</span>}
     </FormattedMessage>
   )
 
-  return !showTooltipOnSkuNotSelected || skuSelector.areAllVariationsSelected ? (
+  return !showTooltipOnSkuNotSelected ||
+    skuSelector.areAllVariationsSelected ? (
     <Button
       block={large}
       disabled={disabled}
@@ -239,7 +250,7 @@ export const BuyButton = ({
         disabled={disabled}
         onClick={handleClick}
         isLoading={isAddingToCart}
-        >
+      >
         {available ? children : unavailableLabel}
       </Button>
     </Tooltip>
@@ -311,6 +322,8 @@ BuyButton.propTypes = {
   disabled: PropTypes.bool,
   /** A custom URL for the `VIEW CART` button inside the toast */
   customToastURL: PropTypes.string,
+  /** The URL to the cart **/
+  checkoutUrl: PropTypes.string,
 }
 
 export default BuyButton
