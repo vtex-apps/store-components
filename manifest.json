@@ -31,7 +31,8 @@
     "vtex.search-graphql": "0.x",
     "vtex.css-handles": "0.x",
     "vtex.store-image": "0.x",
-    "vtex.device-detector": "0.x"
+    "vtex.device-detector": "0.x",
+    "vtex.apps-graphql": "2.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
