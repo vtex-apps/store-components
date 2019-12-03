@@ -42,17 +42,17 @@ You should follow the Styles API instruction in the main [README](/README.md#sty
 
 #### Customization
 
-| CSS Handle                   | Description                                                | Component Source                                                                       |
-| ---------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `shippingContainer`          | The main container of the `shippingCalculator`             | [index](/react/components/ShippingSimulator/index.js)                                  |
-| `shippingContainerLoader`    | The container for the spinner loader                       | [index](/react/components/ShippingSimulator/index.js)                                  |
-| `shippingZipcodeLabelLoader` | The container for the ZIP code loader                      | [index](/react/components/ShippingSimulator/index.js)                                  |
-| `shippingInputLoader`        | The container for the ZIP code input loader                | [index](/react/components/ShippingSimulator/index.js)                                  |
-| `shippingZipcodeLabel`       | The shipping label                                         | [index](/react/components/ShippingSimulator/index.js)                                  |
-| `shippingNoMessage`          | The message when the store does not have a shipping method | [ShippingTable](/react/components/ShippingSimulator/components/ShippingTable.js)       |
-| `shippingTable`              | The table for the shipping methods                         | [ShippingTable](/react/components/ShippingSimulator/components/ShippingTable.js)       |
-| `shippingTableCell`          | The cell of a table                                        | [ShippingTableRow](/react/components/ShippingSimulator/components/ShippingTableRow.js) |
-| `shippingTableLabel`         | The label describing a shipping method                     | [ShippingTableRow](/react/components/ShippingSimulator/components/ShippingTableRow.js) |
-| `shippingTableRadioBtn`      | The radio button to select a shipping method               | [ShippingTableRow](/react/components/ShippingSimulator/components/ShippingTableRow.js) |
+| CSS Handle                   | Description                                                |
+| ---------------------------- | ---------------------------------------------------------- |
+| `shippingContainer`          | The main container of the `shippingCalculator`             |
+| `shippingContainerLoader`    | The container for the spinner loader                       |
+| `shippingZipcodeLabelLoader` | The container for the ZIP code loader                      |
+| `shippingInputLoader`        | The container for the ZIP code input loader                |
+| `shippingZipcodeLabel`       | The shipping label                                         |
+| `shippingNoMessage`          | The message when the store does not have a shipping method |
+| `shippingTable`              | The table for the shipping methods                         |
+| `shippingTableCell`          | The cell of a table                                        |
+| `shippingTableLabel`         | The label describing a shipping method                     |
+| `shippingTableRadioBtn`      | The radio button to select a shipping method               |
 
 In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization). 
