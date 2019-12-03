@@ -40,11 +40,9 @@ You can use it in your code like a React component with the jsx tag: `<ShippingS
 
 You should follow the Styles API instruction in the main [README](/README.md#styles-api).
 
-#### CSS Namespaces
+#### Customization
 
-Below, we describe the namespace that are defined in the `ShippingSimulator`.
-
-| Class name                   | Description                                                | Component Source                                                                       |
+| CSS Handle                   | Description                                                | Component Source                                                                       |
 | ---------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `shippingContainer`          | The main container of the `shippingCalculator`             | [index](/react/components/ShippingSimulator/index.js)                                  |
 | `shippingContainerLoader`    | The container for the spinner loader                       | [index](/react/components/ShippingSimulator/index.js)                                  |
@@ -56,3 +54,5 @@ Below, we describe the namespace that are defined in the `ShippingSimulator`.
 | `shippingTableCell`          | The cell of a table                                        | [ShippingTableRow](/react/components/ShippingSimulator/components/ShippingTableRow.js) |
 | `shippingTableLabel`         | The label describing a shipping method                     | [ShippingTableRow](/react/components/ShippingSimulator/components/ShippingTableRow.js) |
 | `shippingTableRadioBtn`      | The radio button to select a shipping method               | [ShippingTableRow](/react/components/ShippingSimulator/components/ShippingTableRow.js) |
+
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization). 
