@@ -180,6 +180,7 @@ const withOpenMinicart = graphql(setOpenMinicartMutation, {
 const withCheckoutVersion = graphql(installedApp, {
   name: 'checkoutVersion',
   options: {
+    ssr: false,
     variables: {
       slug: 'vtex.checkout',
     },
