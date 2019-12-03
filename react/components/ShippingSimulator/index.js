@@ -10,12 +10,14 @@ import {
 } from 'vtex.address-form'
 import { StyleguideInput } from 'vtex.address-form/inputs'
 import { addValidation, removeValidation } from 'vtex.address-form/helpers'
+import { useCssHandles } from 'vtex.css-handles'
 
 import ShippingTable from './components/ShippingTable'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
 import ShippingSimulatorLoader from './Loader'
-import styles from './shippingSimulator.css'
 import { getNewAddress } from './utils'
+
+const CSS_HANDLES = ['shippingContainer', 'shippingButtonContainer', 'shippingButtonText']
 
 const ShippingSimulator = ({
   client,
@@ -24,6 +26,7 @@ const ShippingSimulator = ({
   country,
   loaderStyles,
 }) => {
+  const handles = useCssHandles(CSS_HANDLES)
   const [address, setAddress] = useState(() =>
     addValidation(getNewAddress(country))
   )
@@ -76,7 +79,7 @@ const ShippingSimulator = ({
 
   return (
     <Fragment>
-      <div className={`${styles.shippingContainer} t-small c-on-base`}>
+      <div className={`${handles.shippingContainer} t-small c-on-base`}>
         <AddressRules country={country} shouldUseIOFetching>
           <AddressContainer
             Input={StyleguideInput}
@@ -87,7 +90,7 @@ const ShippingSimulator = ({
             <PostalCodeGetter />
           </AddressContainer>
         </AddressRules>
-        <div className={styles.shippingButtonContainer}>
+        <div className={handles.shippingButtonContainer}>
           <Button
             onClick={handleClick}
             disabled={!isValid}
@@ -96,7 +99,7 @@ const ShippingSimulator = ({
             block
             isLoading={loading}
           >
-            <div className={styles.shippingButtonText}>
+            <div className={handles.shippingButtonText}>
               <FormattedMessage id="store/shipping.label" />
             </div>
           </Button>

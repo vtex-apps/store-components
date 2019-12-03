@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
-import { path, isEmpty } from 'ramda'
+import { path } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
 
 import ShippingSimulator from './index'

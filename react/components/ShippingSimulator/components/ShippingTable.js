@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
+import { withCssHandles } from 'vtex.css-handles'
 
 import ShippingTableRow from './ShippingTableRow'
 
-import styles from '../shippingSimulator.css'
-
-export default class ShippingTable extends Component {
+class ShippingTable extends Component {
   static propTypes = {
     /** Shipping informations */
     shipping: PropTypes.shape({
@@ -27,7 +26,7 @@ export default class ShippingTable extends Component {
   }
 
   render() {
-    const { shipping } = this.props
+    const { shipping, cssHandles } = this.props
 
     if (
       !shipping ||
@@ -46,7 +45,7 @@ export default class ShippingTable extends Component {
       return (
         <FormattedMessage id="store/shipping.empty-sla">
           {text => (
-            <span className={`${styles.shippingNoMessage} dib t-small mt4`}>
+            <span className={`${cssHandles.shippingNoMessage} dib t-small mt4`}>
               {text}
             </span>
           )}
@@ -57,7 +56,7 @@ export default class ShippingTable extends Component {
     return (
       <table
         className={`${
-          styles.shippingTable
+          cssHandles.shippingTable
         } bt bb b--muted-4 c-muted-1 ph0 pv3 mt4 w-100`}
       >
         <tbody>
@@ -74,3 +73,7 @@ export default class ShippingTable extends Component {
     )
   }
 }
+
+const CSS_HANDLES = ['shippingNoMessage', 'shippingTable']
+
+export default withCssHandles(CSS_HANDLES)(ShippingTable)
