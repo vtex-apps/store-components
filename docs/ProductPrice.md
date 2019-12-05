@@ -1,41 +1,34 @@
-# Product Price
+📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing), or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-## Description
+# Product Price
 
 `ProductPrice` is a VTEX component that shows the price of a product.
 This Component can be imported and used by any VTEX app.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+## Configuration
 
-## Table of Contents
-
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-    - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespaces](#css-namespaces)
-
-## Usage
-
-You should follow the usage instruction in the main [README](/README.md#usage).
-
-Then, add `product-price` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json).
-
-### Blocks API
-
-When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `ProductPrice` and describes if they are required or optional.
+1. Import the vtex.store-component's app to your theme's dependencies in the manifest.json, for example:
 
 ```json
-  "product-price": {
-    "component": "ProductPrice"
+  dependencies: {
+    "vtex.store-components": "3.x"
   }
 ```
 
-For now this block does not have any required or optional blocks.
+2. Add the `product-price` block to any block bellow `store.product`. For example:
 
-#### Configuration
-
-Through the Storefront, you can change the `ProductPrice`'s behavior and interface. However, you also can make in your theme app, as Store theme does. However, you also can make in your theme app, as Store theme does.
+```json
+  "store.product": {
+    "children": [
+      "flex-layout.row#product",
+    ]
+  },
+  "flex-layout.row#product": {
+    "children": [
+      "product-price"
+    ]
+  }
+```
 
 | Prop name               | Type      | Description                           | Default value |
 | ----------------------- | --------- | ------------------------------------- | ------------- |
@@ -49,15 +42,9 @@ Through the Storefront, you can change the `ProductPrice`'s behavior and interfa
 | `showInstallments`      | `Boolean` | Set visibility of installments        | false         |
 | `showSavings`           | `Boolean` | Set visibility of savings             | false         |
 
-### Styles API
+## Customization
 
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
-
-#### CSS Namespaces
-
-Below, we describe the namespace that are defined in the `ProductPrice`.
-
-| Class name                 | 
+| CSS Handles                 |
 | -------------------------- |
 | `price_className` |
 | `price_loader` |
