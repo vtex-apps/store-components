@@ -57,7 +57,7 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 
 | CSS Handles |
 | --- |
-| `productImagesContainer` (previously `content`, which is deprecated) |
+| `productImagesContainer` |
 | `video`                  |
 | `image`                  |
 | `carouselCursorDefault`   |
