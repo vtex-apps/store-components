@@ -38,7 +38,7 @@ Options for `InitialSelectionEnum`:
 
 | Value | Name | Description |
 | ------------------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `complete` | Complete | It will selected the variations values for the first SKU available in the product possible items |
+| `complete` | Complete | It will select the variations values for the first SKU available in the product possible items |
 | `image` | Image | It will select the variation for variations with images (like Color). All other variations will be unselected |
 | `empty` | Empty | All variations will appear as unselected on first load |
 
