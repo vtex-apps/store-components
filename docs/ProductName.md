@@ -28,7 +28,7 @@ The `ProductName` is a block responsible for **displaying the product name** alo
     "children": [
       "product-name"
     ]
-  }be
+  }
 ```
 
 | Prop name | Type | Description | Default value |
