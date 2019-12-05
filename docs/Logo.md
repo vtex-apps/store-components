@@ -18,7 +18,7 @@
   
 2. Add the `logo` block into your [Header](https://vtex.io/docs/components/all/vtex.store-header/). For example:
 
-```json
+```diff
 "header.full": {
   "blocks": [
     "login",
