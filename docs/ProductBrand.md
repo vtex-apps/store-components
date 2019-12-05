@@ -20,7 +20,7 @@ The `ProductBrand` is a VTEX block that displays either the **name** or the **lo
 2. Add the `product-brand` block to any block below `store.product`(Product template). For example:
 
 
-```json
+```diff
 {
   "product-details": {
     "blocks": [
