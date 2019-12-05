@@ -26,10 +26,10 @@ The `BuyButton` block allows users to **add products in the minicart**.
   },
   "flex-layout.row#product": {
     "children": [
-      "buy-button"
+      "buy-button#product"
     ]
   },
-   "buy-button": {
+   "buy-button#product": {
     "props": {
       "isOneClickBuy": true,
       "showTooltipOnSkuNotSelected": false
