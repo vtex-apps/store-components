@@ -4,6 +4,8 @@
 
 `BuyButton` is a VTEX Component that is resposible to handle events of adding products in the minicart. This Component can be imported and used by any VTEX App.
 
+![image](https://user-images.githubusercontent.com/284515/70233985-69e13700-173e-11ea-91f7-6675a6a0e73b.png)
+
 ## Configuration
 
 1. Import the vtex.store-component's app to your theme's dependencies in the manifest.json, for example:

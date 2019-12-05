@@ -5,6 +5,8 @@
 `ProductPrice` is a VTEX component that shows the price of a product.
 This Component can be imported and used by any VTEX app.
 
+![image](https://user-images.githubusercontent.com/284515/70233684-d3ad1100-173d-11ea-8582-4acf52263521.png)
+
 ## Configuration
 
 1. Import the vtex.store-component's app to your theme's dependencies in the manifest.json, for example:

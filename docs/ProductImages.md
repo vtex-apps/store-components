@@ -5,6 +5,8 @@
 `ProductImages` is a VTEX component that render a set of Image or Video of a product.
 This Component can be imported and used by any VTEX app.
 
+![image](https://user-images.githubusercontent.com/284515/70234551-a5c8cc00-173f-11ea-87d9-9f95c79761c8.png)
+
 ## Configuration
 
 1. Import the vtex.store-component's app to your theme's dependencies in the manifest.json, for example:
@@ -55,9 +57,9 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 
 | CSS Handles |
 | --- |
-| `.productImagesContainer` (previously `.content`, which is deprecated) |
-| `.video`                  |
-| `.image`                  |
+| `productImagesContainer` (previously `content`, which is deprecated) |
+| `video`                  |
+| `image`                  |
 | `carouselCursorDefault`   |
 | `carouselInconCaretRight` |
 | `carouselIconCaretLeft`   |
