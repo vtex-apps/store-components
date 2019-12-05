@@ -28,7 +28,13 @@ The `ProductName` is a block responsible for **displaying the product name** alo
     "children": [
       "product-name"
     ]
-  }
+  },
+  "product-name": {
+    "props": {
+      "showSKU": `true`,
+      "showBrandName": `true`
+    }
+  },
 ```
 
 | Prop name | Type | Description | Default value |
