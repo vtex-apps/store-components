@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - More CSS Handles for `ShippingSimulator`.
 
+	### Changed
+- Use `vtex.css-handles` for `ShippingSimulator`.
+
 ## [3.92.3] - 2019-12-05
 
 ## [3.92.2] - 2019-12-05
