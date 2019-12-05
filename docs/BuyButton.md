@@ -34,7 +34,7 @@ The `BuyButton` block handles events of adding products in the minicart.
 | Prop name            | Type      | Description                                                                      | Default value      |
 | -------------------- | --------- | -------------------------------------------------------------------------------- | ------------------ |
 | `isOneClickBuy`      | `Boolean` | If the block should redirect the user to the Checkout page or not                                      | `false`              |
-| `shouldOpenMinicart` | `Boolean` | If the Minicart should be opened after the user clicks on the Buy Button                               | `false`              |
+| `shouldOpenMinicart` | `Boolean` | If the Minicart should open after the user clicks on the Buy Button                               | `false`              |
 | `large`              | `Boolean` | Sets button to large style, filling whole width (like a `block`)                 | -                  |
 | `available`          | `Boolean` | If the block is available or not                                                 | `true`               |
 | `showToast`          | `Boolean` | If a Toast with feedback should be displayed after an item is added to the cart       | -                  |
