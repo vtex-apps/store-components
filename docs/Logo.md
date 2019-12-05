@@ -8,8 +8,6 @@
 
 ## Configuration
 
-Add the image block in any template from your theme. For example:
-
 1. Import the `vtex.store-component` app to your theme's dependencies in the manifest.json;
 
 ```json
