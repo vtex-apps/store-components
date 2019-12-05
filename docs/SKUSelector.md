@@ -3,7 +3,9 @@
 
 # SKU Selector
 
-`SKUSelector` is a VTEX Component that is resposible to handle events of sku selection for a product. This component can be imported and used by any VTEX App.
+`SKUSelector` is a block that shows every sku specification available for a product in its product page.
+
+![image](https://user-images.githubusercontent.com/12139385/70264113-931db980-1776-11ea-9a7e-6d4c8f122ad8.png)
 
 ## Configuration
 
