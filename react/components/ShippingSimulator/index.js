@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
-import { compose, withApollo } from 'react-apollo'
+import { useApolloClient } from 'react-apollo'
 import PropTypes from 'prop-types'
 import { Button } from 'vtex.styleguide'
 import {
@@ -19,12 +19,12 @@ import { getNewAddress } from './utils'
 
 const ShippingSimulator = ({
   intl,
-  client,
   skuId,
   seller,
   country,
   loaderStyles,
 }) => {
+  const client = useApolloClient();
   const [address, setAddress] = useState(() =>
     addValidation(getNewAddress(country))
   )
@@ -107,7 +107,6 @@ const ShippingSimulator = ({
 
 ShippingSimulator.propTypes = {
   intl: intlShape.isRequired,
-  client: PropTypes.object,
   skuId: PropTypes.string,
   seller: PropTypes.string,
   country: PropTypes.string.isRequired,
@@ -115,7 +114,4 @@ ShippingSimulator.propTypes = {
   styles: PropTypes.object,
 }
 
-export default compose(
-  withApollo,
-  injectIntl
-)(ShippingSimulator)
+export default injectIntl(ShippingSimulator)

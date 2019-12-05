@@ -2,6 +2,7 @@ import React from 'react'
 
 import ProductBrand from '../../ProductBrand'
 import { render, flushPromises } from '@vtex/test-tools/react'
+import { MockedProvider } from '@apollo/react-testing'
 import brandLogoQuery from '../../components/ProductBrand/productBrand.gql'
 
 const mocks = [
@@ -35,7 +36,7 @@ describe('<ProductBrand /> component', () => {
     }
     const comp = <ProductBrand {...props} />
 
-    return render(comp, {graphql: {mocks}})
+    return render(comp, {graphql: {mocks}, MockedProvider})
   }
 
   beforeEach(() => {

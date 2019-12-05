@@ -27,7 +27,10 @@ const withWrapper = Component => props => (
 )
 
 const Greeting = ({ orderForm }) => {
-  const firstName = path(['clientProfileData', 'firstName'], orderForm)
+  console.log('teste GREETING')
+  const firstName = path(['clientProfileData', 'firstName'], orderForm) || null
+  console.log('teste firstName: ', firstName)
+  console.log('teste orderForm: ', orderForm)
   return (
     firstName && (
       <Wrapper>
