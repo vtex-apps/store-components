@@ -1,37 +1,36 @@
-# Product Name
+📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing), or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-## Description
+# Product Name
 
 `ProductName` is a VTEX Component that shows the name of the product with other informations such as SKU or brand.
 This Component can be imported and used by any VTEX App.
 
-:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
+![image](https://user-images.githubusercontent.com/284515/70231165-8f6b4200-1738-11ea-9f06-3583c08fc693.png)
 
-## Table of Contents
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-  - [Configuration](#configuration)
-  - [Styles API](#styles-api)
+## Configuration
 
-## Usage
-
-You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
-
-Then, add `product-name` block into our app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
-
-### Blocks API
-
-This component has an interface that describes which rules must be implemented by a block when you want to use the `ProductName`.
+1. Import the vtex.store-component's app to your theme's dependencies in the manifest.json, for example:
 
 ```json
-  "product-name": {
-    "component": "ProductName"
+  dependencies: {
+    "vtex.store-components": "3.x"
   }
 ```
 
-### Configuration
+2. Add the `product-name` block to any block bellow `store.product`. For example:
 
-Through the Storefront, you can change the `ProductName`'s behavior and interface. However, you also can make in your theme app, as Dreamstore does.
+```json
+  "store.product": {
+    "children": [
+      "flex-layout.row#product",
+    ]
+  },
+  "flex-layout.row#product": {
+    "children": [
+      "product-name"
+    ]
+  }
+```
 
 | Prop name | Type | Description |
 | --- | --- | --- |
@@ -39,5 +38,14 @@ Through the Storefront, you can change the `ProductName`'s behavior and interfac
 | `showProductReference` | `Boolean` | Show product reference |
 | `showBrandName` | `Boolean` | Show brand name |
 
-### Styles API
-:construction: :construction: :construction:
+## Customization
+
+| CSS Handles |
+| --- |
+| `productNameContainer` |
+| `productBrand` |
+| `productSku` |
+| `productReference` |
+| `productNameLoader` |
+| `productNameBrandLoader` |
+| `productNameSkuLoader` |

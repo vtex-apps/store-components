@@ -1,35 +1,31 @@
-## Image
+📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing), or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-## Description
+# Image
 
 `Image` is a VTEX component that allow to add any image on the store. This component can be imported and used by any VTEX App.
 
-:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
-
-## Table of Contents
-- [Usage](#usage)
-  - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS namespaces](#css-namespaces)
-
-## Usage
-
-You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
-
-To import it into your code:
-```js
-import { Image } from 'vtex.store-components'
-```
-
-You can use it in your code like a React component with the jsx tag: `<Image />`.
-```jsx
-<Image src="https://via.placeholder.com/150"
-       alt="Nice photo"
-       maxWidth="150px"
-/>
-```
+![image](https://user-images.githubusercontent.com/284515/70230392-f982e780-1736-11ea-921b-e83208e80620.png)
 
 ## Configuration
+
+1. Import the vtex.store-component's app to your theme's dependencies in the manifest.json, for example:
+
+```json
+  dependencies: {
+    "vtex.store-components": "3.x"
+  }
+```
+
+2. Add the image block. For example:
+
+```json
+  "image#example": {
+    "props": {
+      "src": "https://storecomponents.vteximg.com.br/arquivos/box.png",
+      "maxHeight": "24px"
+    }
+  },
+```
 
 | Prop name     | Type       | Description                                                                |
 | ------------- | ---------- | -------------------------------------------------------------------------- |
@@ -41,13 +37,10 @@ You can use it in your code like a React component with the jsx tag: `<Image />`
 | `sizes`       | `String`   | Specifies image sizes for different page layouts                           |
 | `link`        | [`Link`](https://github.com/vtex-apps/native-types/blob/f63aeeb8f6e62f4a9aaec052a8be34973be7389b/pages/contentSchemas.json#L52-L74)| Specifies the link the image will redirect when clicked on                 |
 
-## Styles API
+## Customization
 
-This app provides some CSS classes as an API for style customization. You should follow the Styles API instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#styles-api).
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-### CSS namespaces
-Below, we describe the namespaces that are defined in the `Image`.
-
-Class name    | Description        | Component Source                          |
-------------- | ------------------ | ----------------------------------------- |
-`imageElement`| Class of the image | [index](/react/components/Image/index.js) |
+| CSS Handles |
+| --- |
+| `imageElement` |

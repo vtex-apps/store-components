@@ -1,44 +1,39 @@
-# Info Card
+📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing), or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-## Description
+# Info Card
 
 `InfoCard` is a VTEX component allows you to display content combining image and text.
 This Component can be imported and used by any VTEX app.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+![image](https://user-images.githubusercontent.com/284515/70229574-4239a100-1735-11ea-9e30-00b286e03f7c.png)
 
-## Table of Contents
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-    - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespaces](#css-namespaces)
+## Configuration
 
-## Usage
+1. Import the vtex.store-component's app to your theme's dependencies in the manifest.json, for example:
 
-You should follow the usage instruction in the main [README](/README.md#usage).
-
-`info-card` is a block allowed in the [store] interface(https://github.com/vtex-apps/store).
-
-You can use it by adding it to the blocks of your store sections, for example:
 ```json
-"store.home": {
-    "blocks": [
-      "info-card",
-      "carousel#home",
-      "shelf#home"
-    ]
-  },
+  dependencies: {
+    "vtex.store-components": "3.x"
+  }
 ```
 
-### Blocks API
+2. Add the info-card block. For example:
 
-When implementing this component as a block, various inner blocks may be available.
-For now this block does not have any required or optional blocks.
-
-#### Configuration
-
-Through the Storefront, you can change the `InfoCard`'s behavior and interface. However, you also can make in your theme app, as Store theme does.
+```json
+  "info-card#example": {
+    "props": {
+      "id": "info-card-example",
+      "isFullModeStyle": false,
+      "textPosition": "left",
+      "imageUrl": "https://storecomponents.vteximg.com.br/arquivos/banner-infocard2.png",
+      "headline": "Clearance Sale",
+      "callToActionText": "DISCOVER",
+      "callToActionUrl": "/sale/d",
+      "blockClass": "info-card-example",
+      "textAlignment": "center"
+    }
+  },
+```
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
@@ -80,21 +75,19 @@ Here are the possible values of `TextAlignmentEnum`
 | Center | 'center' | Text alignment will be to the center. |
 | Right | 'right' | Text alignment will be to the right. |
 
-### Styles API
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+## Customization
 
-#### CSS Namespaces
-Below, we describe the namespace that are defined in the `InfoCard`.
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| Class name | Description | Component Source |
-| ---------- | ----------- | ---------------- |
-| `infoCardContainer` | The main container of `InfoCard` | [index](/react/components/InfoCard/index.js) |
-| `infoCardTextContainer` | The text container | [index](/react/components/InfoCard/index.js) |
-| `infoCardHeadline` | The headline label | [index](/react/components/InfoCard/index.js) | 
-| `infoCardSubhead` | The subhead label | [index](/react/components/InfoCard/index.js) |
-| `infoCardCallActionContainer` | The Call to Action container | [index](/react/components/InfoCard/CallToAction.js) | 
-| `infoCardCallActionText` | The Call to Action text | [index](/react/components/InfoCard/CallToAction.js) | 
-| `infoCardImageContainer` | The container of the image displayed on `InfoCard` (if `isFullModeStyle` is `false`) | [index](/react/components/InfoCard/index.js) | 
-| `infoCardImage` | The image displayed on `InfoCard` (if `isFullModeStyle` is `false`) | [index](/react/components/InfoCard/index.js) | 
+| CSS Handles |
+| ---------- |
+| `infoCardContainer` |
+| `infoCardTextContainer` |
+| `infoCardHeadline` |
+| `infoCardSubhead` |
+| `infoCardCallActionContainer` |
+| `infoCardCallActionText` |
+| `infoCardImageContainer` |
+| `infoCardImage` |
 
 
