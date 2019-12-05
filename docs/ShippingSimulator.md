@@ -11,7 +11,7 @@ The Shipping Simulator block **estimates the shipping fee** based on a zip code 
 1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
 
 ```json
-  dependencies: {
+  "dependencies": {
     "vtex.store-components": "3.x"
   }
 ```
@@ -28,7 +28,12 @@ The Shipping Simulator block **estimates the shipping fee** based on a zip code 
     "children": [
       "shipping-simulator"
     ]
-  }
+  },
+   "shipping-simulator": {
+    "props": {
+      "skuID": 342
+    }
+  },
 ```
 
 | Prop name          | Type      | Description                   | Default value |
