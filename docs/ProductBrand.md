@@ -12,7 +12,7 @@ The `ProductBrand` is a VTEX block that displays either the **name** or the **lo
 1. Import the `vtex.product-summary` app to your theme's dependencies in the `manifest.json`, for example:
 
 ```json
-  dependencies: {
+  "dependencies: {
     "vtex.product-summary": "2.x"
   }
 ```
