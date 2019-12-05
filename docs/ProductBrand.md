@@ -33,7 +33,7 @@ The `ProductBrand` is a VTEX block that displays either the **name** or the **lo
   },
   "product-brand": {
     "props": {
-      "displayMode": `text`
+      "displayMode": "text"
     }
   },
 ```
