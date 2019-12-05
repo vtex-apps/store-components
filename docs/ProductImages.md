@@ -16,7 +16,7 @@
   }
 ```
 
-2. Add the `product-images` block to any block bellow `store.product`. For example:
+2. Add the `product-images` block to any block below `store.product` (Product template). For example:
 
 ```json
   "store.product": {
