@@ -16,7 +16,7 @@ The `BuyButton` block allows users to **add products in the minicart**.
   }
 ```
 
-2. Add the `buy-button` block to any block bellow `store.product`. For example:
+2. Add the `buy-button` block to any block bellow `store.product` (Product template). For example:
 
 ```json
   "store.product": {
