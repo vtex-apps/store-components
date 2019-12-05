@@ -18,12 +18,12 @@
   
 2. Add the `logo` block into your [Header](https://vtex.io/docs/components/all/vtex.store-header/). For example:
 
-```diff
+```json
 "header.full": {
   "blocks": [
     "login",
     "minicart",
-+    "logo",
+    "logo",
     "search-bar",
     "menu-link",
     "telemarketing",
