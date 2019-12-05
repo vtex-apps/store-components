@@ -4,6 +4,9 @@
 
 The `ProductBrand` is a VTEX block that displays either the **name** or the **logo** of a **product's brand**.
 
+![product-brand](https://user-images.githubusercontent.com/52087100/70259346-bb081f80-176c-11ea-84db-5785c45829ce.png)
+
+
 ## Configuration
 
 1. Import the `vtex.product-summary` app to your theme's dependencies in the `manifest.json`, for example:
