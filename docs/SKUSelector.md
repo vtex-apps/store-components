@@ -1,17 +1,14 @@
-# SKU Selector
-
 📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing), or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-## Description
+
+# SKU Selector
 
 `SKUSelector` is a VTEX Component that is resposible to handle events of sku selection for a product. This component can be imported and used by any VTEX App.
 
-## Usage
+## Configuration
 
 Add `sku-selector` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json).
 
-
-#### Configuration
 
 | Prop name                      | Type    | Description                                                                                                                                                                                         | Default value |
 | ------------------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
@@ -28,13 +25,17 @@ Add `sku-selector` block into your app theme, as we do in our [Product Details a
 | showVariationsErrorMessage | `boolean`| If should show an error message when you click in the `BuyButton` but didn't select an option of each variation | `true` |
 | displayMode | See `DisplayMode` options | How the variations will be displayed. Doesn't apply to variations of images | `default` |
 
+
 Options for `DisplayMode`:
+
 | Value | Name | Description |
 | --- | --- | --- |
 | `default` | default | Shows all variations like the images variations |
 | `select` | select | Shows all variations except for image ones as `Select`components |
 
+
 Options for `InitialSelectionEnum`:
+
 | Value | Name | Description |
 | ------------------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `complete` | Complete | It will selected the variations values for the first SKU available in the product possible items |
@@ -51,9 +52,9 @@ These properties can be set via Storefront
 | seeMoreLabel | String | Label of see more button that appears when more than `maxItems` items are available for one variation. The string must have a {quantity} placeholder to show the appropriate remaining items available. Example: \"See {quantity} more\" | `See {quantity} more` |
 
 
-#### CSS Namespaces
+## Customization
 
-| ClassName                     | Description                                                                     | Component Source                                                                |
+| CSS Handles                     | Description                                                                     | Component Source                                                                |
 | ----------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | skuSelectorContainer          | `SKUSelector` container                                                         | [SKUSelectorContainer](/react/components/SKUSelector/components/SKUSelector.js) |
 | skuSelectorSubcontainer       | `SKUSelector` inner container                                                   | [Variation](/react/components/SKUSelector/components/Variation.js)              |
