@@ -28,7 +28,13 @@ The `BuyButton` block allows users to **add products in the minicart**.
     "children": [
       "buy-button"
     ]
-  }
+  },
+   "buy-button": {
+    "props": {
+      "isOneClickBuy": "true",
+      "showTooltipOnSkuNotSelected": "false"
+    }
+  },
 ```
 
 | Prop name            | Type      | Description                                                                      | Default value      |
