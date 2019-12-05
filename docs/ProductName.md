@@ -2,14 +2,13 @@
 
 # Product Name
 
-`ProductName` is a VTEX Component that shows the name of the product with other informations such as SKU or brand.
-This Component can be imported and used by any VTEX App.
+The `ProductName` is a block responsible for **displaying the product name** along other informations such as **SKU** or **brand**.
 
 ![image](https://user-images.githubusercontent.com/284515/70231165-8f6b4200-1738-11ea-9f06-3583c08fc693.png)
 
 ## Configuration
 
-1. Import the vtex.store-component's app to your theme's dependencies in the manifest.json, for example:
+1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json`, for example:
 
 ```json
   dependencies: {
