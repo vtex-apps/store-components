@@ -16,7 +16,7 @@ The `ProductName` is a block responsible for **displaying the product name** alo
   }
 ```
 
-2. Add the `product-name` block to any block bellow `store.product`. For example:
+2. Add the `product-name` block to any block below `store.product` (Product template). For example:
 
 ```json
   "store.product": {
@@ -28,7 +28,7 @@ The `ProductName` is a block responsible for **displaying the product name** alo
     "children": [
       "product-name"
     ]
-  }
+  }be
 ```
 
 | Prop name | Type | Description | Default value |
