@@ -1,8 +1,8 @@
-📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing), or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
+📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing) or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
 # Shipping Simulator
 
-The Shipping Simulator block estimates the shipping fee based on a zip code input. 
+The Shipping Simulator block **estimates the shipping fee** based on a zip code input. 
 
 ![shipping](https://user-images.githubusercontent.com/52087100/70262606-6ddb7c00-1773-11ea-91af-ededfd27aa95.png)
 
