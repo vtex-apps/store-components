@@ -31,7 +31,7 @@ The Shipping Simulator block **estimates the shipping fee** based on a zip code 
   },
    "shipping-simulator": {
     "props": {
-      "skuID": 342
+      "skuID": "342"
     }
   },
 ```
