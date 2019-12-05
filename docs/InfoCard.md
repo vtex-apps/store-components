@@ -23,7 +23,7 @@ The `infoCard` block allows you to **display content combining image and text** 
     "props": {
       "id": "info-card-example",
       "isFullModeStyle": false,
-      "textPosition": "left,
+      "textPosition": "left",
       "imageUrl": "https://storecomponents.vteximg.com.br/arquivos/banner-infocard2.png",
       "headline": "Clearance Sale",
       "callToActionText": "DISCOVER",
