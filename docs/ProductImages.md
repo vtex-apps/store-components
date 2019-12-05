@@ -2,7 +2,7 @@
 
 # Product Images
 
-`ProductImages` is a VTEX component that render a product image or video.
+`ProductImages` is a VTEX block responsible for rendering a product image or video.
 
 ![image](https://user-images.githubusercontent.com/284515/70234551-a5c8cc00-173f-11ea-87d9-9f95c79761c8.png)
 
