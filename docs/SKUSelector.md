@@ -1,65 +1,17 @@
 # SKU Selector
 
+📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing), or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
+
 ## Description
 
 `SKUSelector` is a VTEX Component that is resposible to handle events of sku selection for a product. This component can be imported and used by any VTEX App.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
-
-## Table of Contents
-
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-    - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespaces](#css-namespaces)
-
 ## Usage
 
-You should follow the usage instruction in the main [README](/README.md#usage).
+Add `sku-selector` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json).
 
-Then, add `sku-selector` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json).
-
-### Blocks API
-
-When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `SKUSelector` and describes if they are required or optional.
-
-```json
-  "sku-selector": {
-    "component": "SKUSelector"
-  }
-```
-
-For now this block does not have any required or optional blocks.
 
 #### Configuration
-
-Through the Storefront, you can change the `SKUSelector` behavior and interface. However, you also can make in your theme app, as Store theme does.
-
-| Prop name     | Type        | Description                                    | Default value                                                             |
-| ------------- | ----------- | ---------------------------------------------- | ------------------------------------------------------------------------- |
-| skuSelected   | SKU!        | SKU selected                                   | -                                                                         |
-| skuItems      | Array(SKU)! | List of SKU Items                              | -                                                                         |
-| onSKUSelected | Function!   | Callback that is called when a SKU is selected | Function that redirects to the page with the product and the selected SKU |
-
-SKU
-
-| Prop name | Type          | Description           | Default value |
-| --------- | ------------- | --------------------- | ------------- |
-| name      | String!       | Name of the sku       | -             |
-| itemId    | String!       | The SKU id            | -             |
-| images    | Array(Image)! | The images of the SKU | -             |
-
-Image
-
-| Prop name  | Type    | Description            | Default value |
-| ---------- | ------- | ---------------------- | ------------- |
-| imageUrl   | String! | The URL of the image   | -             |
-| imageLabel | String  | The label of the image | -             |
-
-#### Layout API
-
-These are properties that you can customize in your `blocks.json` file.
 
 | Prop name                      | Type    | Description                                                                                                                                                                                         | Default value |
 | ------------------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
@@ -72,22 +24,23 @@ These are properties that you can customize in your `blocks.json` file.
 | imageHeight | `number | object` | Height of the thumbnail, if you pass an object it expects two attributes, `desktop` and `mobile`, and the value of both is the height on each type of device | `'auto'` |
 | imageWidth | `number | object` | It works same way as `imageHeight` | `'auto'` |
 | showVariationsLabels | `boolean` | If should show the variations name | `true` |
-| initialSelection | `InitialSelectionEnum` | Control the initial selection chosen for the variations when page is loaded. | `complete` |
+| initialSelection | See `InitialSelectionEnum` options | Control the initial selection chosen for the variations when page is loaded. | `complete` |
 | showVariationsErrorMessage | `boolean`| If should show an error message when you click in the `BuyButton` but didn't select an option of each variation | `true` |
-| displayMode | `DisplayMode` | How the variations will be displayed. Doesn't apply to variations of images | `default` |
+| displayMode | See `DisplayMode` options | How the variations will be displayed. Doesn't apply to variations of images | `default` |
 
-Values and description for `DisplayMode`:
+Options for `DisplayMode`:
 | Value | Name | Description |
 | --- | --- | --- |
 | `default` | default | Shows all variations like the images variations |
 | `select` | select | Shows all variations except for image ones as `Select`components |
 
-Values and description for `InitialSelectionEnum`:
+Options for `InitialSelectionEnum`:
 | Value | Name | Description |
 | ------------------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `complete` | Complete | It will selected the variations values for the first SKU available in the product possible items |
 | `image` | Image | It will select the variation for variations with images (like Color). All other variations will be unselected |
 | `empty` | Empty | All variations will appear as unselected on first load |
+
 
 #### Content API
 
@@ -97,9 +50,6 @@ These properties can be set via Storefront
 | --- | --- | --- | --- |
 | seeMoreLabel | String | Label of see more button that appears when more than `maxItems` items are available for one variation. The string must have a {quantity} placeholder to show the appropriate remaining items available. Example: \"See {quantity} more\" | `See {quantity} more` |
 
-### Styles API
-
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
 
 #### CSS Namespaces
 
