@@ -11,7 +11,7 @@ The `ProductName` is a block responsible for **displaying the product name** alo
 1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json`, for example:
 
 ```json
-  dependencies: {
+  "dependencies: {
     "vtex.store-components": "3.x"
   }
 ```
