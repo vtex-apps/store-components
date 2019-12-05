@@ -31,11 +31,11 @@ The `ProductName` is a block responsible for **displaying the product name** alo
   }
 ```
 
-| Prop name | Type | Description |
-| --- | --- | --- |
-| `showSku` | `Boolean` | Show product SKU |
-| `showProductReference` | `Boolean` | Show product reference |
-| `showBrandName` | `Boolean` | Show brand name |
+| Prop name | Type | Description | Default value |
+| --- | --- | --- | ---| 
+| `showSku` | `Boolean` | Show product SKU | `false` |
+| `showProductReference` | `Boolean` | Show product reference | `false`| 
+| `showBrandName` | `Boolean` | Show brand name | `false`| 
 
 ## Customization
 
