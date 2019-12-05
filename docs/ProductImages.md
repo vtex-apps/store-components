@@ -1,4 +1,4 @@
-📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing), or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
+📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing) or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
 # Product Images
 
@@ -8,7 +8,7 @@
 
 ## Configuration
 
-1. Import the vtex.store-component's app to your theme's dependencies in the `manifest.json`;
+1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
 
 ```json
   dependencies: {
