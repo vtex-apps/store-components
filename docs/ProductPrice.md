@@ -2,16 +2,16 @@
 
 # Product Price
 
-`ProductPrice` is a VTEX component that **displays the price** of a given product.
+The `ProductPrice` is responsible for **displaying the price** of a given product.
 
 ![image](https://user-images.githubusercontent.com/284515/70233684-d3ad1100-173d-11ea-8582-4acf52263521.png)
 
 ## Configuration
 
-1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`, for example:
+1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
 
 ```json
-  dependencies: {
+  "dependencies": {
     "vtex.store-components": "3.x"
   }
 ```
@@ -28,7 +28,13 @@
     "children": [
       "product-price"
     ]
-  }
+  },
+   "product-price": {
+    "props": {
+      "showSavings": true,
+      "showListPrice": false
+    }
+  },
 ```
 
 | Prop name               | Type      | Description                           | Default value |
