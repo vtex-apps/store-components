@@ -2,8 +2,7 @@
 
 # Info Card
 
-`InfoCard` is a VTEX component allows you to display content combining image and text.
-This Component can be imported and used by any VTEX app.
+The `infoCard` block allows you to **display content combining image and text** in your store.
 
 ![image](https://user-images.githubusercontent.com/284515/70229574-4239a100-1735-11ea-9e30-00b286e03f7c.png)
 
@@ -12,15 +11,15 @@ This Component can be imported and used by any VTEX app.
 1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
 
 ```json
-  dependencies: {
+  "dependencies": {
     "vtex.store-components": "3.x"
   }
 ```
 
-2. Add the `info-card` block. For example:
+2. Add the `info-card` block in your Home page template. Then, declare it in the same file. For example:
 
 ```json
-  "info-card#example": {
+  "info-card": {
     "props": {
       "id": "info-card-example",
       "isFullModeStyle": false,
