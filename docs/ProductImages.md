@@ -1,46 +1,41 @@
-# Product Images
+📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing), or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-## Description
+# Product Images
 
 `ProductImages` is a VTEX component that render a set of Image or Video of a product.
 This Component can be imported and used by any VTEX app.
 
-:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
+![image](https://user-images.githubusercontent.com/284515/70234551-a5c8cc00-173f-11ea-87d9-9f95c79761c8.png)
 
-## Table of Contents
+## Configuration
 
-- [Product Images](#product-images)
-  - [Description](#description)
-  - [Table of Contents](#table-of-contents)
-  - [Usage](#usage)
-    - [Blocks API](#blocks-api)
-    - [Layout API](#layout-api)
-    - [Styles API](#styles-api)
-      - [CSS Namespaces](#css-namespaces)
-
-## Usage
-
-You should follow the usage instruction in the main [README](/README.md#usage).
-
-Then, add `product-images` block into your app theme, as we do in our [default store-theme](https://github.com/vtex-apps/store-theme/blob/master/store/blocks/product.json).
-
-### Blocks API
-
-When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `ProductImages` and describes if they are required or optional.
+1. Import the vtex.store-component's app to your theme's dependencies in the manifest.json, for example:
 
 ```json
- "product-images":{
-   "component": "ProductImages"
- }
+  dependencies: {
+    "vtex.store-components": "3.x"
+  }
 ```
 
-For now this block does not have any required or optional blocks.
+2. Add the `product-images` block to any block bellow `store.product`. For example:
 
-### Layout API
-
-This component accepts props to be configured through storefront or blocks.json
-
-Specification:
+```json
+  "store.product": {
+    "children": [
+      "flex-layout.row#product",
+    ]
+  },
+  "flex-layout.row#product": {
+    "children": [
+      "product-images"
+    ]
+  },
+  "product-images": {
+    "props": {
+      "displayThumbnailsArrows": true
+    }
+  },
+```
 
 | Prop name                 | Type      | Description                                                                                                 | Default Value |
 | ------------------------- | --------- | ----------------------------------------------------------------------------------------------------------- | ------------- |
@@ -56,24 +51,19 @@ Specification:
 | `zoomMode`                | `disabled\|in-place-click\|in-place-hover` | Sets the zoom behavior.                                                                                                                                                                                                                                                                                                                                         | `in-place-click` |
 | `zoomFactor`              | `number`                                   | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large)                                                                                                                                                                                                                                                              | 2                |
 
-### Styles API
+## Customization
 
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-#### CSS Namespaces
-
-Below, we describe the namespace that are defined in the `ProductImages`.
-
-| Class name                | Description                                                                             | Component Source                                                                            |
-| ------------------------ | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `.content (deprecated)`  | Use `productImagesContainer` instead | [index](/react/components/ProductImages/index.js) |
-| `.productImagesContainer` | The wrapper of `Carousel` scope | [index](/react/components/ProductImages/index.js) |
-| `.video`                  | The wrapper of `Video` scope                                                            | [Video](/react/components/ProductImages/components/Video/index.js)                          |
-| `.image`                  | The wrapper container to `ProductImage` component                                      | [ProductImage](/react/components/ProductImages/components/ProductImage.tsx)          |
-| `carouselCursorDefault`   | Specification that define the default customization for the cursor in `Swipe` Component | [Carousel](/react/components/ProductImages/components/Carousel/index.js)                    |
-| `carouselInconCaretRight` | Customization to the right caret icon in `IconCaret` component                          | [Carousel](/react/components/ProductImages/components/Carousel/index.js)                    |
-| `carouselIconCaretLeft`   | Customization to the left caret icon in `IconCaret` component                           | [Carousel](/react/components/ProductImages/components/Carousel/index.js)                    |
-| `carouselGaleryThumbs`    | The container of Thumbs area                                                            | [Carousel](/react/components/ProductImages/components/Carousel/index.js)                    |
-| `carouselThumbBorder`     | Define the border of Thumb area                                                         | [Carousel](/react/components/ProductImages/components/Carousel/index.js)                    |
-| `carouselGaleryCursor`    | Define the svg icon that will show when hover the `Carousel`                            | [Carousel](/react/components/ProductImages/components/Carousel/index.js)                    |
-| `carouselImagePlaceholder`   | Define the icon that will show when the user wants a custom placeholder                 | [ImagePlaceholder](/react/components/ProductImages/components/Carousel/ImagePlaceholder.js) |
+| CSS Handles |
+| --- |
+| `productImagesContainer` (previously `content`, which is deprecated) |
+| `video`                  |
+| `image`                  |
+| `carouselCursorDefault`   |
+| `carouselInconCaretRight` |
+| `carouselIconCaretLeft`   |
+| `carouselGaleryThumbs`    |
+| `carouselThumbBorder`     |
+| `carouselGaleryCursor`    |
+| `carouselImagePlaceholder`   |

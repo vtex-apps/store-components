@@ -40,6 +40,8 @@ This Component can be imported and used by any VTEX App.
 
 ## Customization
 
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
+
 | CSS Handles |
 | --- |
 | `productNameContainer` |

@@ -1,40 +1,35 @@
-# Buy Button
+📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing), or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-## Description
+# Buy Button
 
 `BuyButton` is a VTEX Component that is resposible to handle events of adding products in the minicart. This Component can be imported and used by any VTEX App.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+![image](https://user-images.githubusercontent.com/284515/70233985-69e13700-173e-11ea-91f7-6675a6a0e73b.png)
 
-## Table of Contents
+## Configuration
 
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-    - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespaces](#css-namespaces)
-
-## Usage
-
-You should follow the usage instruction in the main [README](/README.md#usage).
-
-Then, add `buy-button` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json).
-
-### Blocks API
-
-When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `BuyButton` and describes if they are required or optional.
+1. Import the vtex.store-component's app to your theme's dependencies in the manifest.json, for example:
 
 ```json
-  "buy-button": {
-    "component": "BuyButton"
+  dependencies: {
+    "vtex.store-components": "3.x"
   }
 ```
 
-For now this block does not have any required or optional blocks.
+2. Add the `buy-button` block to any block bellow `store.product`. For example:
 
-#### Configuration
-
-Through the Storefront, you can change the `BuyButton`'s behavior and interface. However, you also can make in your theme app, as Store theme does.
+```json
+  "store.product": {
+    "children": [
+      "flex-layout.row#product",
+    ]
+  },
+  "flex-layout.row#product": {
+    "children": [
+      "buy-button"
+    ]
+  }
+```
 
 | Prop name            | Type      | Description                                                                      | Default value      |
 | -------------------- | --------- | -------------------------------------------------------------------------------- | ------------------ |
@@ -48,14 +43,10 @@ Through the Storefront, you can change the `BuyButton`'s behavior and interface.
 | `shouldAddToCart`    | `Boolean` | If it should add to cart when clicked                                             | true          |
 | `showTooltipOnSkuNotSelected` | `Boolean` | If it should show a tooltip when you click the button but there's no SKU selected | `true` |
 
-### Styles API
+## Customization
 
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
-
-#### CSS Namespaces
-
-| Class Name            | Description                                   | Note                                            | Modifiers                  |
-| --------------------- | --------------------------------------------- | ----------------------------------------------- | -------------------------- |
-| `buyButtonText`       | Contains the text displayed inside buy button |                                                 |                            |
-| `buttonDataContainer` | Wraps data inside the buy button              | Only appears when `showItemsPrice` prop is true |                            |
-| `buttonItemsPrice`    | Wraps the price displayed inside buy button   | Only appears when `showItemsPrice` prop is true |                            |
+| CSS Handles |
+| --- |
+| `buyButtonText`       |
+| `buttonDataContainer` |
+| `buttonItemsPrice`    |
