@@ -2,7 +2,7 @@
 
 # Image
 
-`Image` is a VTEX block that allows to **add any image** in the store. 
+The `Image` is a VTEX block that allows to **add any image** in the store. 
 
 ![image](https://user-images.githubusercontent.com/284515/70230392-f982e780-1736-11ea-921b-e83208e80620.png)
 
