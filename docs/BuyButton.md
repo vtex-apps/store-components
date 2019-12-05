@@ -11,7 +11,7 @@ The `BuyButton` block allows users to **add products in the minicart**.
 1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
 
 ```json
-  "dependencies: {
+  "dependencies": {
     "vtex.store-components": "3.x"
   }
 ```
