@@ -1409,8 +1409,10 @@
   resolved "https://registry.yarnpkg.com/@vtex/css-handles/-/css-handles-1.1.3.tgz#30bd1010f2907443188738f74dd11d3b6b4ac624"
   integrity sha512-DkqnzMf5jW6lQ1L8wYb9fnXyh0FqZym8qEokGYjeLUqBLBAiVK8XbI4U0ezFswWTOJ3iHZUkUjqPt5WodxR29w==
 
-"@vtex/test-tools@file:../../test-tools":
-  version "2.1.0"
+"@vtex/test-tools@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@vtex/test-tools/-/test-tools-2.1.1.tgz#b507fba75d942779441633c86e189ad389d98475"
+  integrity sha512-QeysVNIDtaas42vD5V2KABSzjhPqzFHUC/3GPiYXr0hclTn8951eFBqQ5XFdBTdUWUkMAkPRIVzNf3XyqXylBQ==
   dependencies:
     "@apollo/react-testing" "^3.1.3"
     "@babel/core" "^7.7.4"
