@@ -20,26 +20,22 @@ The `ProductBrand` is a VTEX block that displays either the **name** or the **lo
 2. Add the `product-brand` block to any block below `store.product`(Product template). For example:
 
 
-```diff
-{
-  "product-details": {
-    "blocks": [
-      "breadcrumb",
-      "product-name",
-+     "product-brand",
-      "product-images",
-      "product-price",
-      "product-description",
-      "buy-button",
-      "sku-selector",
-      "shipping-simulator",
-      "availability-subscriber",
-      "share",
-      "product-specifications",
-      "product-highlights"
+```json
+  "store.product": {
+    "children": [
+      "flex-layout.row#product",
     ]
-  }
-}
+  },
+  "flex-layout.row#product": {
+    "children": [
+      "product-brand"
+    ]
+  },
+  "product-brand": {
+    "props": {
+      "displayMode": `text`
+    }
+  },
 ```
 
 
