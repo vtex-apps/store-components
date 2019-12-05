@@ -17,7 +17,7 @@ import getShippingEstimates from './queries/getShippingEstimates.gql'
 import ShippingSimulatorLoader from './Loader'
 import { getNewAddress } from './utils'
 
-const CSS_HANDLES = ['shippingContainer', 'shippingButtonContainer', 'shippingButtonText']
+const CSS_HANDLES = ['shippingContainer', 'shippingButtonText']
 
 const ShippingSimulator = ({
   client,
@@ -90,20 +90,18 @@ const ShippingSimulator = ({
             <PostalCodeGetter />
           </AddressContainer>
         </AddressRules>
-        <div className={handles.shippingButtonContainer}>
-          <Button
-            onClick={handleClick}
-            disabled={!isValid}
-            size="small"
-            type="submit"
-            block
-            isLoading={loading}
-          >
-            <div className={handles.shippingButtonText}>
-              <FormattedMessage id="store/shipping.label" />
-            </div>
-          </Button>
-        </div>
+        <Button
+          onClick={handleClick}
+          disabled={!isValid}
+          size="small"
+          type="submit"
+          block
+          isLoading={loading}
+        >
+          <span className={handles.shippingButtonText}>
+            <FormattedMessage id="store/shipping.label" />
+          </span>
+        </Button>
       </div>
       <ShippingTable shipping={shipping} />
     </Fragment>
