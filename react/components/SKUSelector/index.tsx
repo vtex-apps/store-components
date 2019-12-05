@@ -181,7 +181,7 @@ const SKUSelectorContainer: FC<Props> = ({
   }
 
   const getNewSelectedVariations = useCallback(() => {
-    const hasSkuInQuery = Boolean(query && query.skuId)
+    const hasSkuInQuery = Boolean(query?.skuId)
     const parsedSku = parseSku(skuSelected)
     const emptyVariations = buildEmptySelectedVariation(variations)
 
