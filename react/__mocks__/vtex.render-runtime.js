@@ -26,3 +26,5 @@ export const ExtensionPoint = ({ id }) => (
 )
 
 export const useRuntime = () => runtime
+
+export const useChildBlock = () => true

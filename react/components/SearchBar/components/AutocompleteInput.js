@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import { Input } from 'vtex.styleguide'
-import { ExtensionPoint } from 'vtex.render-runtime'
+import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
