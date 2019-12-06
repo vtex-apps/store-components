@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import { Input } from 'vtex.styleguide'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
+import { IconSearch, IconClose } from 'vtex.store-icons'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 const CSS_HANDLES = [
