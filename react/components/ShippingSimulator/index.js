@@ -24,7 +24,7 @@ const ShippingSimulator = ({
   country,
   loaderStyles,
 }) => {
-  const client = useApolloClient();
+  const client = useApolloClient()
   const [address, setAddress] = useState(() =>
     addValidation(getNewAddress(country))
   )
