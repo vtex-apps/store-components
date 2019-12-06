@@ -2,7 +2,7 @@ import React, { useCallback, memo, useState, useEffect, FC } from 'react'
 
 import Variation from './Variation'
 
-import { compose, flip, gt, filter, path, pathOr, clone } from 'ramda'
+import { compose, flip, gt, filter, pathOr, clone } from 'ramda'
 
 import styles from '../styles.css'
 import {
@@ -95,6 +95,7 @@ const parseOptionNameToDisplayOption = ({
   hideImpossibleCombinations: boolean
 }) => (variationValue: string): DisplayOption | null => {
   const isSelected = selectedVariations[variationName] === variationValue
+  const image = imagesMap?.[variationName]?.[variationValue]
 
   const newSelectedVariation = clone(selectedVariations)
   newSelectedVariation[variationName] = isSelected ? null : variationValue
@@ -116,7 +117,7 @@ const parseOptionNameToDisplayOption = ({
     return {
       label: variationValue,
       onSelectItem: callbackFn,
-      image: path([variationName, variationValue], imagesMap),
+      image,
       available: showItemAsAvailable(
         possibleItems,
         selectedVariations,
@@ -139,7 +140,7 @@ const parseOptionNameToDisplayOption = ({
     return {
       label: variationValue,
       onSelectItem: callbackFn,
-      image: path([variationName, variationValue], imagesMap),
+      image,
       available: true,
       impossible: false,
     }
@@ -148,8 +149,8 @@ const parseOptionNameToDisplayOption = ({
     // This is a impossible combination and will only appear if the prop allows.
     return {
       label: variationValue,
-      onSelectItem: () => {},
-      image: path([variationName, variationValue], imagesMap),
+      onSelectItem: () => { },
+      image,
       available: true,
       impossible: true,
     }
@@ -251,7 +252,7 @@ const SKUSelector: FC<Props> = ({
       isMainAndImpossible,
       possibleItems,
     }: CallbackItem) => () =>
-      onSelectItem({ name, value, skuId, isMainAndImpossible, possibleItems }),
+        onSelectItem({ name, value, skuId, isMainAndImpossible, possibleItems }),
     [onSelectItem]
   )
   useEffect(() => {

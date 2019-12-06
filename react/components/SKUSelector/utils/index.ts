@@ -1,6 +1,6 @@
 import { prop, filter, clone, reject } from 'ramda'
 import slugify from 'slugify'
-import { SelectorProductItem, ProductItem, SelectedVariations } from '../types'
+import { SelectorProductItem, SelectedVariations } from '../types'
 
 /**
  * Return the maximum sku price

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import { compose, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
+import { compose } from 'ramda'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import { Input, Button } from 'vtex.styleguide'

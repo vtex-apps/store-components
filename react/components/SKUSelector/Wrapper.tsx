@@ -1,10 +1,10 @@
 import React, { useMemo, useEffect } from 'react'
 import useProduct from 'vtex.product-context/useProduct'
-import { pathOr, pick } from 'ramda'
+import { pick } from 'ramda'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 import SKUSelector from './index'
-import { ProductItem, Variations, InitialSelectionType, DisplayMode } from './types'
+import { Variations, InitialSelectionType, DisplayMode } from './types'
 import { useResponsiveValues } from 'vtex.responsive-values'
 
 const useVariations = (skuItems: ProductItem[], shouldNotShow: boolean, visibleVariations?: string[]) => {
@@ -21,12 +21,12 @@ const useVariations = (skuItems: ProductItem[], shouldNotShow: boolean, visibleV
     for (const skuItem of skuItems) {
       for (const currentVariation of skuItem.variations) {
         const { name, values } = currentVariation
-          if (!visibleVariations || visibleVariations.includes(name.toLowerCase().trim())) {
+        if (!visibleVariations || visibleVariations.includes(name.toLowerCase().trim())) {
 
-            const value = values[0]
-            const currentSet = variationsSet[name] || new Set()
-            currentSet.add(value)
-            variationsSet[name] = currentSet
+          const value = values[0]
+          const currentSet = variationsSet[name] || new Set()
+          currentSet.add(value)
+          variationsSet[name] = currentSet
         }
       }
     }
@@ -68,17 +68,16 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
   const skuItems =
     props.skuItems != null
       ? props.skuItems
-      : pathOr<ProductItem[]>([], ['product', 'items'], valuesFromContext)
+      : valuesFromContext?.product?.items ?? []
 
   const skuSelected =
     props.skuSelected != null
       ? props.skuSelected
-      : (valuesFromContext.selectedItem as ProductItem)
+      : valuesFromContext.selectedItem
 
   const shouldNotShow =
     skuItems.length === 0 ||
-    !skuSelected ||
-    !skuSelected.variations ||
+    !skuSelected?.variations ||
     skuSelected.variations.length === 0
 
   const variations = useVariations(skuItems, shouldNotShow, props.visibleVariations)
@@ -92,7 +91,7 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
     }
   }, [shouldNotShow, dispatch])
 
-  if (shouldNotShow) {
+  if (shouldNotShow || !skuSelected) {
     return null
   }
 

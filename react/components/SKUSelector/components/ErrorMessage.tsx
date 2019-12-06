@@ -11,9 +11,9 @@ function ErrorMessage() {
   return (
     <FormattedMessage id="store/sku-selector.variation.select-an-option">
       {message => (
-      <span className={className}>
-        {message}
-      </span>
+        <span className={className}>
+          {message}
+        </span>
       )}
     </FormattedMessage>
   )

@@ -790,7 +790,7 @@ describe('<SKUSelector />', () => {
     const { getByText, queryByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
-    await Promise.resolve()
+    await act(async () => await Promise.resolve())
     expect(queryByText('seeMoreLabel')).toBeNull()
     expect(getByText('10')).toBeDefined()
   })
@@ -1018,9 +1018,10 @@ describe('<SKUSelector />', () => {
     const { getByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />
     )
-    await Promise.resolve()
-    act(() => {})
-    await Promise.resolve()
+
+    await act(async () => await Promise.resolve())
+    await act(async () => await Promise.resolve())
+
     expect(getByText('4')).toBeDefined()
     expect(getByText('12')).toBeDefined()
   })
@@ -1111,7 +1112,7 @@ describe('<SKUSelector />', () => {
       },
     ]
 
-    const { debug, container } = render(
+    const { container } = render(
       <SKUSelector
         skuSelected={skuItems[0]}
         skuItems={skuItems}

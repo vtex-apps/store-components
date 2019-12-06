@@ -83,14 +83,14 @@ const Variation: FC<Props> = ({
   const displayOptions = options.slice(
     0,
     shouldCollapse ? visibleItemsWhenCollapsed : options.length
-    )
-    const showAllAction = useCallback(() => setShowAll(true), [setShowAll])
-    const containerClasses = classnames(
-      'flex flex-column',
-      containerClassesProp,
-      styles.skuSelectorSubcontainer,
-      `${styles.skuSelectorSubcontainer}--${slug(name)}`, 
-      )
+  )
+  const showAllAction = useCallback(() => setShowAll(true), [setShowAll])
+  const containerClasses = classnames(
+    'flex flex-column',
+    containerClassesProp,
+    styles.skuSelectorSubcontainer,
+    `${styles.skuSelectorSubcontainer}--${slug(name)}`,
+  )
 
   return (
     <div className={containerClasses}>

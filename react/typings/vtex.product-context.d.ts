@@ -1,16 +1,29 @@
-interface SKU {
-  itemId: string
-  sellers: Seller[]
-}
-
 interface Seller {
   commertialOffer: {
     AvailableQuantity: number
   }
 }
 
+interface ProductItem {
+  itemId: string
+  name: string
+  images: Image[]
+  variations: {
+    name: string
+    values: string[]
+  }[]
+  sellers: {
+    commertialOffer: {
+      Price: number
+      ListPrice: number
+      AvailableQuantity: number
+    }
+  }[]
+}
+
 interface Product {
   itemMetadata: ItemMetadata
+  items: ProductItem[]
 }
 
 declare module 'vtex.product-context/useProduct' {
@@ -31,7 +44,7 @@ declare module 'vtex.product-context/useProduct' {
 
   export interface ProductContext {
     product?: Product,
-    selectedItem: SKU | null,
+    selectedItem: ProductItem | null,
     selectedQuantity: number
     skuSelector: {
       isVisible: boolean
