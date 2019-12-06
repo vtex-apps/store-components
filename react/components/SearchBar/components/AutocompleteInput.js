@@ -14,6 +14,26 @@ const CSS_HANDLES = [
   'paddingInput',
 ]
 
+const CloseIcon = () => {
+  const hasIconBlock = Boolean(useChildBlock({ id: 'icon-close' }))
+
+  if (hasIconBlock) {
+    return <ExtensionPoint id="icon-close" size={22} type="line" />
+  }
+
+  return <IconClose type="line" size={22} />
+}
+
+const SearchIcon = () => {
+  const hasIconBlock = Boolean(useChildBlock({ id: 'icon-search' }))
+
+  if (hasIconBlock) {
+    return <ExtensionPoint id="icon-search" />
+  }
+
+  return <IconSearch />
+}
+
 const AutocompleteInput = ({
   onClearInput,
   compactMode,
@@ -47,17 +67,13 @@ const AutocompleteInput = ({
       } flex items-center pointer`}
       onClick={() => value && onClearInput()}
     >
-      {value ? (
-        <ExtensionPoint id="icon-close" size={22} type="line" />
-      ) : (
-        !hasIconLeft && <ExtensionPoint id="icon-search" />
-      )}
+      {value ? <CloseIcon /> : !hasIconLeft && <SearchIcon />}
     </span>
   )
 
   const prefix = (
     <span className={`${iconClasses} ${handles.searchBarIcon}`}>
-      <ExtensionPoint id="icon-search" />
+      <SearchIcon />
     </span>
   )
 
