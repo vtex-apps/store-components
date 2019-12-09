@@ -1,58 +1,60 @@
+📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing) or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
+
 # Shipping Simulator
 
-## Description
+The Shipping Simulator block **estimates the shipping fee** based on a zip code input. 
 
-Shipping Simulator is a VTEX component that estimates the shipping fee based on the zip code. This component can be imported and used by any VTEX app.
+![shipping](https://user-images.githubusercontent.com/52087100/70262606-6ddb7c00-1773-11ea-91af-ededfd27aa95.png)
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+## Configuration
 
-## Table of Contents
-- [Usage](#usage)
-  - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespaces](#css-namespaces)
+1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
 
-## Usage
-You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
-
-To import it into your code: 
-```js
-import { ShippingSimulator } from 'vtex.store-components'
+```json
+  "dependencies": {
+    "vtex.store-components": "3.x"
+  }
 ```
 
-You can use it in your code like a React component with the jsx tag: `<ShippingSimulator />`. 
+2. Add the `shipping-simulator` block to any block bellow store.product. For example:
 
-```jsx
-<ShippingSimulator
-  skuId="3"
-  seller="1"
-/>
+```json
+  "store.product": {
+    "children": [
+      "flex-layout.row#product",
+    ]
+  },
+  "flex-layout.row#product": {
+    "children": [
+      "shipping-simulator"
+    ]
+  },
+   "shipping-simulator": {
+    "props": {
+      "skuID": "342"
+    }
+  },
 ```
-
-### Configuration
 
 | Prop name          | Type      | Description                   | Default value |
 | ------------------ | --------- | ----------------------------- | ------------- |
-| `skuId`            | `String!` | Id of the current product SKU | - |
-| `seller`           | `String!` | Id of the product seller      | - |
+| `skuId`            | `String` | ID of the current product SKU | - |
+| `seller`           | `String` | ID of the product seller      | - |
 
-### Styles API
+## Customization
 
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-#### CSS Namespaces
-Below, we describe the namespace that are defined in the `ShippingSimulator`.
-
-| Class name | Description | Component Source |
-| ---------- | ----------- | ---------------- |
-| `shippingContainer` | The main container of the `shippingCalculator` | [index](/react/components/ShippingSimulator/index.js) |
-| `shippingContainerLoader` | The container for the spinner loader | [index](/react/components/ShippingSimulator/index.js) |
-| `shippingZipcodeLabelLoader` | The container for the ZIP code loader | [index](/react/components/ShippingSimulator/index.js) |
-| `shippingInputLoader` | The container for the ZIP code input loader | [index](/react/components/ShippingSimulator/index.js) |
-| `shippingZipcodeLabel` | The shipping label | [index](/react/components/ShippingSimulator/index.js) |
-| `shippingCTA` | The calculate shipping button | [index](/react/components/ShippingSimulator/index.js) |
-| `shippingNoMessage` | The message when the store does not have a shipping method | [ShippingTable](/react/components/ShippingSimulator/components/ShippingTable.js) |
-| `shippingTable` | The table for the shipping methods | [ShippingTable](/react/components/ShippingSimulator/components/ShippingTable.js) |
-| `shippingTableCell` | The cell of a table | [ShippingTableRow](/react/components/ShippingSimulator/components/ShippingTableRow.js) |
-| `shippingTableLabel` | The label describing a shipping method | [ShippingTableRow](/react/components/ShippingSimulator/components/ShippingTableRow.js) |
-| `shippingTableRadioBtn` | The radio button to select a shipping method | [ShippingTableRow](/react/components/ShippingSimulator/components/ShippingTableRow.js) |
+| CSS Handles |
+| ---------- | 
+| `shippingContainer` |
+| `shippingContainerLoader` | 
+| `shippingZipcodeLabelLoader` |
+| `shippingInputLoader` |
+| `shippingZipcodeLabel` | 
+| `shippingCTA` |
+| `shippingNoMessage` |
+| `shippingTable` |
+| `shippingTableCell` |
+| `shippingTableLabel` |
+| `shippingTableRadioBtn` |

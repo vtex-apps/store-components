@@ -1,26 +1,25 @@
-📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing), or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
+📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing) or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
 # Info Card
 
-`InfoCard` is a VTEX component allows you to display content combining image and text.
-This Component can be imported and used by any VTEX app.
+The `infoCard` block allows you to **display content combining image and text** in your store.
 
 ![image](https://user-images.githubusercontent.com/284515/70229574-4239a100-1735-11ea-9e30-00b286e03f7c.png)
 
 ## Configuration
 
-1. Import the vtex.store-component's app to your theme's dependencies in the manifest.json, for example:
+1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
 
 ```json
-  dependencies: {
+  "dependencies": {
     "vtex.store-components": "3.x"
   }
 ```
 
-2. Add the info-card block. For example:
+2. Add the `info-card` block in your Home page template. Then, declare it in the same file. For example:
 
 ```json
-  "info-card#example": {
+  "info-card": {
     "props": {
       "id": "info-card-example",
       "isFullModeStyle": false,
@@ -48,10 +47,10 @@ This Component can be imported and used by any VTEX app.
 | `imageUrl` | `String` | URL of the image to be used on desktop | `""` |
 | `mobileImageUrl` | `String` |  URL of the image to be used on mobile. If you do not provide any, the desktop image url will be used | `null` |
 | `blockClass` | `String` | Adds an extra class name to ease styling | `null` |
-| `htmlId` | `String` | Adds an id to the container element | `null` |
+| `htmlId` | `String` | Adds an ID to the container element | `null` |
 
 
-Here are the possible values of `TextPostionEnum`
+- Possible values of `TextPostionEnum`:
 
 | Enum name | Enum value | Description |
 | --------- | ---- | ----------- |
@@ -59,7 +58,7 @@ Here are the possible values of `TextPostionEnum`
 | Center | 'center' | Text will be in the center. Not applicable if `isFullModeStyle` is false. |
 | Right | 'right' | Text will be to the right. If `isFullModeStyle` is false, image will be on the left |
 
-Here are the possible values of `CallToActionEnum`
+- Possible values of `CallToActionEnum`:
 
 | Enum name | Enum value | Description |
 | --------- | ---- | ----------- |
@@ -67,7 +66,7 @@ Here are the possible values of `CallToActionEnum`
 | Button | 'button' | Call to Action component will be a button |
 | Link | 'link' | Call to Action component will be a text in a link format |
 
-Here are the possible values of `TextAlignmentEnum`
+- Possible values of `TextAlignmentEnum`:
 
 | Enum name | Enum value | Description |
 | --------- | ---- | ----------- |

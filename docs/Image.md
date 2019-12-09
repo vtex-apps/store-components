@@ -1,41 +1,41 @@
-📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing), or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
+📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing) or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
 # Image
 
-`Image` is a VTEX component that allow to add any image on the store. This component can be imported and used by any VTEX App.
+The `Image` is a VTEX block that allows to **add any image** in the store. 
 
 ![image](https://user-images.githubusercontent.com/284515/70230392-f982e780-1736-11ea-921b-e83208e80620.png)
 
 ## Configuration
 
-1. Import the vtex.store-component's app to your theme's dependencies in the manifest.json, for example:
+1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
 
 ```json
-  dependencies: {
+  "dependencies": {
     "vtex.store-components": "3.x"
   }
 ```
 
-2. Add the image block. For example:
+2. Add the `image` block in any template from your theme. For example:
 
 ```json
   "image#example": {
     "props": {
       "src": "https://storecomponents.vteximg.com.br/arquivos/box.png",
-      "maxHeight": "24px"
+      "maxHeight": 24
     }
   },
 ```
 
-| Prop name     | Type       | Description                                                                |
-| ------------- | ---------- | -------------------------------------------------------------------------- |
-| `src`         | `String!`  | Specifies the URL of an image                                              |
-| `alt`         | `String`   | Specifies an alternate text for an image                                   |
-| `maxWidth`    | `String`   | Specifies the max width of an image                                        |
-| `maxHeight`   | `String`   | Specifies the max height of an image                                       |
-| `srcset`      | `String`   | Specifies the URL of the image to use in different situations              |
-| `sizes`       | `String`   | Specifies image sizes for different page layouts                           |
-| `link`        | [`Link`](https://github.com/vtex-apps/native-types/blob/f63aeeb8f6e62f4a9aaec052a8be34973be7389b/pages/contentSchemas.json#L52-L74)| Specifies the link the image will redirect when clicked on                 |
+| Prop name     | Type       | Description                                                                | Default value | 
+| ------------- | ---------- | -------------------------------------------------------------------------- | - |
+| `src`         | `String!`  | Specifies the URL of an image                                              | - |
+| `alt`         | `String`   | Specifies an alternate text for an image                                   | - |
+| `maxWidth`    | `String`   | Specifies the max width of an image                                        | - |
+| `maxHeight`   | `String`   | Specifies the max height of an image                                       | - |
+| `srcset`      | `String`   | Specifies the URL of the image to use in different situations              | - |
+| `sizes`       | `String`   | Specifies image sizes for different page layouts                           | - |
+| `link`        | [`Link`](https://github.com/vtex-apps/native-types/blob/f63aeeb8f6e62f4a9aaec052a8be34973be7389b/pages/contentSchemas.json#L52-L74)| Specifies the link the image will redirect when clicked on                 | - |
 
 ## Customization
 
