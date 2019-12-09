@@ -1,8 +1,23 @@
 import React from 'react'
-import { render, fireEvent } from '@vtex/test-tools/react'
+import { render, fireEvent, wait } from '@vtex/test-tools/react'
 import { MockedProvider } from '@apollo/react-testing'
 
 import BuyButton from '../../BuyButton'
+import addToCartMutation from '../../components/BuyButton/mutations/addToCart.gql'
+
+const mocks = [
+  {
+    request: {
+      query: addToCartMutation,
+      variables: { items: [] },
+    },
+    result: {
+      data: {
+        addToCart: {}
+      }
+    }
+  }
+]
 
 describe('<BuyButton />', () => {
   const renderComponent = (customProps, text = 'Test') => {
@@ -11,27 +26,31 @@ describe('<BuyButton />', () => {
       ...customProps,
     }
 
-    return render(<BuyButton {...props}>{text}</BuyButton>, { MockedProvider })
+    return render(<BuyButton {...props}>{text}</BuyButton>, { graphql: { mocks }, MockedProvider })
   }
 
   it('should be rendered', async () => {
     const { asFragment } = renderComponent()
+    await wait()
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toBeTruthy()
   })
 
-  it('should match snapshot normal', () => {
+  it('should match snapshot normal', async () => {
     const { asFragment } = renderComponent({ available: true, skuItems: [] })
+    await wait()
     expect(asFragment()).toMatchSnapshot()
   })
 
-  it('should match snapshot unavailable', () => {
+  it('should match snapshot unavailable', async () => {
     const { asFragment } = renderComponent({ available: false, skuItems: [] })
+    await wait()
     expect(asFragment()).toMatchSnapshot()
   })
 
-  it('should match snapshot loading', () => {
+  it('should match snapshot loading', async () => {
     const { asFragment } = renderComponent({ available: false })
+    await wait()
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -50,8 +69,11 @@ describe('<BuyButton />', () => {
       },
       buttonText
     )
-    fireEvent.click(getByText(buttonText))
-    await new Promise(resolve => setTimeout(resolve, 0))
+    
+    await wait(() => {
+      fireEvent.click(getByText(buttonText))
+    })
+
     const assertions = () => {
       expect(onAddStart).toBeCalledTimes(1)
       expect(onAddFinish).toBeCalledTimes(1)
@@ -59,7 +81,7 @@ describe('<BuyButton />', () => {
     expect.assertions(assertions)
   })
 
-  it('should show items prices', () => {
+  it('should show items prices', async () => {
     const skuItems = [
       {
         skuId: '1',
@@ -127,6 +149,7 @@ describe('<BuyButton />', () => {
       null
     )
     const priceRegex = /230.00/
+    await wait()
     getByText(priceRegex)
   })
 })
