@@ -1,20 +1,3 @@
-export interface ProductItem {
-  itemId: string
-  name: string
-  images: Image[]
-  variations: {
-    name: string
-    values: string[]
-  }[]
-  sellers: {
-    commertialOffer: {
-      Price: number
-      ListPrice: number
-      AvailableQuantity: number
-    }
-  }[]
-}
-
 export enum InitialSelectionType {
   complete = 'complete',
   image = 'image',

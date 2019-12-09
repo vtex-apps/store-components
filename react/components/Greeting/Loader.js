@@ -9,6 +9,7 @@ const GreetingLoading = props => (
     primaryColor="#f3f3f3"
     secondaryColor="#ecebeb"
     className="v-mid"
+    data-testid="greeting-loader"
     {...props}
   >
     <rect rx="1" ry="1" width="300" height="32" />

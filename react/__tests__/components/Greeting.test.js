@@ -1,46 +1,52 @@
-import { InMemoryCache } from 'apollo-cache-inmemory'
 import React from 'react'
-import { render } from '@vtex/test-tools/react'
+import { render, flushPromises } from '@vtex/test-tools/react'
+import { MockedProvider } from '@apollo/react-testing'
+
+import orderFormQuery from '../../components/Greeting/queries/orderForm.gql'
 
 import Greeting from '../../Greeting'
 
-describe('<Greeting /> component', () => {
-  const data = {
-    minicart: {
-      __typename: 'Minicart',
-      orderForm: JSON.stringify({
-        __typename: 'OrderFormClient',
-        clientProfileData: {
-          __typename: 'ClientProfileData',
-          firstName: 'name',
-        },
-      }),
+const mocks = [
+  {
+    request: {
+      query: orderFormQuery,
     },
-  }
+    result: {
+      data: {
+        minicart: {
+          orderForm: '{ "clientProfileData": { "firstName": "Adam" } }'
+        }
+      },
+    },
+  },
+]
 
-  const cache = new InMemoryCache()
-  cache.writeData({ data })
+describe('<Greeting /> component', () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
 
   const renderComponent = customProps => {
     const props = {
       ...customProps,
     }
 
-    return render(<Greeting {...props} />, { graphql: { cache: cache } })
+    return render(<Greeting {...props} />, { graphql: { mocks }, MockedProvider })
   }
 
-  it('should be rendered', () => {
-    const { asFragment } = renderComponent()
-    expect(asFragment()).toBeTruthy()
+  it('should render name in orderForm', async () => {
+    const { getByText } = renderComponent()
+    await flushPromises()
+    jest.runAllTimers()
+    getByText('Adam')
   })
 
-  it('should match snapshot without loading', () => {
-    const { asFragment } = renderComponent()
-    expect(asFragment({ loading: false })).toMatchSnapshot()
+  it('should render name in orderForm', async () => {
+    const { getByTestId } = renderComponent({ loading: true })
+    await flushPromises()
+    jest.runAllTimers()
+    getByTestId('greeting-loader')
   })
 
-  it('should match snapshot with loading', () => {
-    const { asFragment } = renderComponent({ loading: true })
-    expect(asFragment()).toMatchSnapshot()
-  })
+
 })

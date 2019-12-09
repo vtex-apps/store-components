@@ -7,7 +7,7 @@ import React, {
   FC,
 } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
-import { filter, head, isEmpty, compose, keys, length, path } from 'ramda'
+import { filter, head, isEmpty, compose, keys, length } from 'ramda'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 import SKUSelector from './components/SKUSelector'
@@ -21,7 +21,6 @@ import {
   Image,
   ImageMap,
   Variations,
-  ProductItem,
   SelectedVariations,
   SelectorProductItem,
   InitialSelectionType,
@@ -65,13 +64,15 @@ function useColorImages(items: SelectorProductItem[], imageRegexText: string) {
     }
 
     const hasVariationImage = item.images.some(image => image.imageLabel && imageRegex.test(image.imageLabel))
-    return { ...item, images: item.images.filter(image => {
-      if (!image.imageLabel) {
-        // if it doesn't have a variation image, it wont remove images without a label
-        return !hasVariationImage
-      }
-      return imageRegex.test(image.imageLabel)
-    })}
+    return {
+      ...item, images: item.images.filter(image => {
+        if (!image.imageLabel) {
+          // if it doesn't have a variation image, it wont remove images without a label
+          return !hasVariationImage
+        }
+        return imageRegex.test(image.imageLabel)
+      })
+    }
   })
 }
 
@@ -180,12 +181,12 @@ const SKUSelectorContainer: FC<Props> = ({
   }
 
   const getNewSelectedVariations = useCallback(() => {
-    const hasSKuInQuery = Boolean(query && query.skuId)
+    const hasSkuInQuery = Boolean(query?.skuId)
     const parsedSku = parseSku(skuSelected)
     const emptyVariations = buildEmptySelectedVariation(variations)
-  
-    if (hasSKuInQuery || initialSelection === InitialSelectionType.complete) {
-       return selectedVariationFromItem(parsedSku, variations)
+
+    if (hasSkuInQuery || initialSelection === InitialSelectionType.complete) {
+      return selectedVariationFromItem(parsedSku, variations)
     } else if (initialSelection === InitialSelectionType.image) {
       const colorVariationName = parsedSku.variations.find(isColor)
       return {
@@ -210,7 +211,7 @@ const SKUSelectorContainer: FC<Props> = ({
     if (skuSelected && onSKUSelected) {
       onSKUSelected(skuSelected.itemId)
     }
-  }, [path(['itemId'], skuSelected)])
+  }, [skuSelected.itemId])
 
   const imagesMap = useImagesMap(parsedItems, variations, thumbnailImage)
 
@@ -225,22 +226,22 @@ const SKUSelectorContainer: FC<Props> = ({
       const isRemoving = selectedVariations![variationName] === variationValue
       const newSelectedVariation = !isMainAndImpossible
         ? {
-            ...selectedVariations,
-            [variationName]: isRemoving ? null : variationValue,
-          }
+          ...selectedVariations,
+          [variationName]: isRemoving ? null : variationValue,
+        }
         : {
-            ...buildEmptySelectedVariation(variations),
-            [variationName]: variationValue,
-          }
+          ...buildEmptySelectedVariation(variations),
+          [variationName]: variationValue,
+        }
       // Set here for a better response to user
       setSelectedVariations(newSelectedVariation)
       const uniqueOptions = isRemoving
         ? {}
         : uniqueOptionToSelect(
-            possibleItems,
-            newSelectedVariation,
-            isMainAndImpossible
-          )
+          possibleItems,
+          newSelectedVariation,
+          isMainAndImpossible
+        )
       const finalSelected = {
         ...newSelectedVariation,
         ...uniqueOptions,

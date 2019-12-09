@@ -1,15 +1,24 @@
 {
-  "version": "3.47.3",
+  "name": "store-components",
+  "private": true,
+  "license": "UNLICENSED",
   "scripts": {
+    "lint": "eslint --ext js,jsx,ts,tsx .",
     "lint:locales": "intl-equalizer"
   },
+  "version": "3.47.3",
   "devDependencies": {
     "@types/classnames": "^2.2.9",
+    "@types/node": "^12.7.12",
     "@types/ramda": "^0.26.18",
     "@types/react": "^16.8.23",
     "@vtex/intl-equalizer": "^2.2.1",
     "@vtex/tsconfig": "^0.2.0",
-    "typescript": "^3.6.3"
+    "eslint": "^6.4.0",
+    "eslint-config-vtex": "^11.0.0",
+    "eslint-config-vtex-react": "^5.0.1",
+    "prettier": "^1.18.2",
+    "typescript": "^3.7.3"
   },
   "dependencies": {
     "react": "^16.8.6"

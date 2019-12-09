@@ -6,9 +6,27 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
 ### Changed
 - Updated documentation for the following `store-components` blocks: Image, Info Card, Buy Button, Logo, Product Brand, Product Image, Product Name, Product Price and Shipping Simulator. 
+
+## [3.92.7] - 2019-12-06
+### Fixed
+- Some tests that were breaking since migration to react-apollo@3.x.
+
+### Changed
+- Improved some tests.
+- Upgrade TS version.
+- Use optional chaining in SKUSelector, code improvements.
+
+## [3.92.6] - 2019-12-06
+
+## [3.92.5] - 2019-12-05
+### Added
+- Image to SKU selector documentation
+
+## [3.92.4] - 2019-12-05
+### Changed
+- Documentation format
 
 ## [3.92.3] - 2019-12-05
 
