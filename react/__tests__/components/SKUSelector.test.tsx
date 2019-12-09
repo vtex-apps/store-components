@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, act } from '@vtex/test-tools/react'
+import { render, fireEvent, wait } from '@vtex/test-tools/react'
 
 import SKUSelector from './../../SKUSelector'
 import { getSKU } from 'sku-helper'
@@ -14,19 +14,14 @@ describe('<SKUSelector />', () => {
     return render(<SKUSelector {...props} />)
   }
 
-  it('should match the snapshot', async () => {
-    const { asFragment } = renderComponent()
-    await Promise.resolve()
-    expect(asFragment()).toMatchSnapshot()
-  })
-
   it('should call onSKUSelected', async () => {
     const onSKUSelected = jest.fn()
     const { container } = renderComponent({ onSKUSelected })
-    await Promise.resolve()
+
+    await wait()
     const selector = container.querySelector('.skuSelectorItem')
-    act(() => {
-      fireEvent.click(selector)
+    await wait (() => {
+      fireEvent.click(selector!)
     })
     expect(onSKUSelected).toBeCalledTimes(2)
   })
@@ -89,16 +84,19 @@ describe('<SKUSelector />', () => {
         onSKUSelected={onSKUSelected}
       />
     )
-    await Promise.resolve()
 
-    getByText('Gray').click()
+    await wait()
 
-    await Promise.resolve()
+    await wait(() => {
+      getByText('Gray').click()
+    })
 
     expect(getByText('42')).toBeDefined()
-    getByText('42').click()
 
-    await Promise.resolve()
+    await wait(() => {
+      getByText('42').click()
+    })
+
     expect(onSKUSelected).toBeCalledTimes(2)
     expect(getByText('41')).toBeDefined()
   })
@@ -155,7 +153,7 @@ describe('<SKUSelector />', () => {
     const { getByText, getAllByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
-    await Promise.resolve()
+    await wait()
 
     expect(getAllByText(/gray/i)).toHaveLength(1)
     expect(getAllByText(/blue/i)).toHaveLength(1)
@@ -386,7 +384,8 @@ describe('<SKUSelector />', () => {
     const { getByText, queryByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
-    await Promise.resolve()
+    await wait()
+    // await Promise.resolve()
     expect(getByText('seeMoreLabel')).toBeDefined()
     expect(getByText('38')).toBeDefined()
     expect(queryByText('39')).toBeNull()
@@ -615,7 +614,9 @@ describe('<SKUSelector />', () => {
     const { getByText, queryByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />
     )
-    await Promise.resolve()
+
+    await wait()
+
     expect(getByText('seeMoreLabel'))
     expect(getByText('4')).toBeDefined()
     expect(queryByText('5')).toBeNull()
@@ -790,7 +791,8 @@ describe('<SKUSelector />', () => {
     const { getByText, queryByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
-    await act(async () => await Promise.resolve())
+
+    await wait()
     expect(queryByText('seeMoreLabel')).toBeNull()
     expect(getByText('10')).toBeDefined()
   })
@@ -1019,8 +1021,7 @@ describe('<SKUSelector />', () => {
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />
     )
 
-    await act(async () => await Promise.resolve())
-    await act(async () => await Promise.resolve())
+    await wait()
 
     expect(getByText('4')).toBeDefined()
     expect(getByText('12')).toBeDefined()
@@ -1076,7 +1077,7 @@ describe('<SKUSelector />', () => {
     const { queryByText } = render(
       <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
     )
-    await Promise.resolve()
+    await wait()
     expect(queryByText('skuSelectorItem--feijao')).toBeDefined()
     expect(queryByText('skuSelectorItem--square-brackets')).toBeDefined()
     expect(queryByText('skuSelectorItem--johns')).toBeDefined()
@@ -1121,7 +1122,7 @@ describe('<SKUSelector />', () => {
       />
     )
 
-    await Promise.resolve()
+    await wait()
 
     const separator = container.querySelector('.skuSelectorNameSeparator')
     const variationValue = container.querySelector(
