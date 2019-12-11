@@ -7,10 +7,9 @@ import { Spinner } from 'vtex.styleguide'
 import { Link, useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
-import autocomplete from '../queries/autocomplete.gql'
-
 // This import should NOT be removed
-import styles from '../styles.css'
+import styles from './styles.css'
+import autocomplete from './queries/autocomplete.gql'
 
 const MIN_RESULTS_WIDTH = 320
 const CSS_HANDLES = [
@@ -126,7 +125,8 @@ const ResultsList = ({
           itemIndex: 0,
           highlightedIndex,
         })}
-        to={customSearchPageUrl.replace(/\$\{term\}/g, inputValue)}>
+        to={customSearchPageUrl.replace(/\$\{term\}/g, inputValue)}
+      >
         {fullTextSearchLabel}
       </Link>
     ) : (

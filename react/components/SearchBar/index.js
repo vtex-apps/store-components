@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import SearchBar from './components/SearchBar'
 import { injectIntl, intlShape } from 'react-intl'
+
+import SearchBar from './components/SearchBar'
 
 /** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
 class SearchBarContainer extends Component {
@@ -60,6 +61,12 @@ class SearchBarContainer extends Component {
       placeholder = intl.formatMessage({
         id: 'store/search.placeholder',
       }),
+      autocompleteAlignment = 'right',
+      openAutocompleteOnFocus = false,
+      blurOnSubmit = false,
+      submitOnIconClick = false,
+      minSearchTermLength,
+      autocompleteFullWindow = false,
     } = this.props
 
     const { inputValue } = this.state
@@ -79,6 +86,13 @@ class SearchBarContainer extends Component {
         maxWidth={maxWidth}
         attemptPageTypeSearch={attemptPageTypeSearch}
         customSearchPageUrl={customSearchPageUrl}
+        autocompleteAlignment={autocompleteAlignment}
+        openAutocompleteOnFocus={openAutocompleteOnFocus}
+        blurOnSubmit={blurOnSubmit}
+        submitOnIconClick={submitOnIconClick}
+        minSearchTermLength={minSearchTermLength}
+        autocompleteFullWindow={autocompleteFullWindow}
+        intl={intl}
       />
     )
   }
@@ -112,6 +126,18 @@ SearchBarContainer.propTypes = {
   /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
   customSearchPageUrl: PropTypes.string,
   placeholder: PropTypes.string,
+  /* Autocomplete Horizontal alignment */
+  autocompleteAlignment: PropTypes.string,
+  /** Identify if autocomplete should be open on input focus or not */
+  openAutocompleteOnFocus: PropTypes.bool,
+  /** Identify if input should blur on submit */
+  blurOnSubmit: PropTypes.bool,
+  /** Identify if icon should submit on click */
+  submitOnIconClick: PropTypes.bool,
+  /** Minimum search term length allowed */
+  minSearchTermLength: PropTypes.number,
+  /** If true, the autocomplete will fill the whole window horizontally */
+  autocompleteFullWindow: PropTypes.bool,
 }
 
 export default injectIntl(SearchBarContainer)

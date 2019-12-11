@@ -4,10 +4,13 @@
   },
   "search-bar": {
     "component": "SearchBar",
-    "allowed": ["icon-search", "icon-close"],
+    "allowed": ["autocomplete-result-list", "icon-search", "icon-close"],
     "content": {
       "$ref": "#/definitions/SearchBar"
     }
+  },
+  "autocomplete-result-list": {
+    "component": "ResultsList"
   },
   "buy-button": {
     "component": "BuyButton"
