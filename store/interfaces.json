@@ -4,6 +4,7 @@
   },
   "search-bar": {
     "component": "SearchBar",
+    "allowed": ["icon-search", "icon-close"],
     "content": {
       "$ref": "#/definitions/SearchBar"
     }

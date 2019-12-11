@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import { Input } from 'vtex.styleguide'
-import { IconClose, IconSearch } from 'vtex.store-icons'
+import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
+import { IconSearch, IconClose } from 'vtex.store-icons'
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 const CSS_HANDLES = [
@@ -13,6 +14,26 @@ const CSS_HANDLES = [
   'autoCompleteOuterContainer',
   'paddingInput',
 ]
+
+const CloseIcon = () => {
+  const hasIconBlock = Boolean(useChildBlock({ id: 'icon-close' }))
+
+  if (hasIconBlock) {
+    return <ExtensionPoint id="icon-close" size={22} type="line" />
+  }
+
+  return <IconClose type="line" size={22} />
+}
+
+const SearchIcon = () => {
+  const hasIconBlock = Boolean(useChildBlock({ id: 'icon-search' }))
+
+  if (hasIconBlock) {
+    return <ExtensionPoint id="icon-search" />
+  }
+
+  return <IconSearch />
+}
 
 const AutocompleteInput = ({
   onClearInput,
@@ -47,17 +68,13 @@ const AutocompleteInput = ({
       } flex items-center pointer`}
       onClick={() => value && onClearInput()}
     >
-      {value ? (
-        <IconClose type="line" size={22} />
-      ) : (
-        !hasIconLeft && <IconSearch />
-      )}
+      {value ? <CloseIcon /> : !hasIconLeft && <SearchIcon />}
     </span>
   )
 
   const prefix = (
     <span className={`${iconClasses} ${handles.searchBarIcon}`}>
-      <IconSearch />
+      <SearchIcon />
     </span>
   )
 

@@ -7,7 +7,7 @@ const runtime = {
   setQuery: jest.fn(),
   account: 'account',
   hints: { mobile: false },
-  culture: { currency: 'USD' }
+  culture: { currency: 'USD' },
 }
 
 export const withRuntimeContext = Comp =>
@@ -21,4 +21,10 @@ export const NoSSR = ({ children }) => (
   <div className="NoSSR-mock">{children}</div>
 )
 
+export const ExtensionPoint = ({ id }) => (
+  <div className={`extension-point-${id}`} />
+)
+
 export const useRuntime = () => runtime
+
+export const useChildBlock = () => true
