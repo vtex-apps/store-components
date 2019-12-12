@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
--  Problemativc issue with the container css handle.
+-  Problematic issue with the container css handle.
 
 ## [3.95.0] - 2019-12-11
 ### Added
