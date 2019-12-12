@@ -26,31 +26,25 @@ exports[`<SearchBar /> should match snapshot 1`] = `
                 aria-autocomplete="list"
                 aria-labelledby="downshift-1-label"
                 autocomplete="off"
+                data-error="false"
                 id="downshift-1-input"
                 placeholder="Search"
                 value=""
               />
-              <span
-                class=" searchBarIcon flex items-center pointer"
+              <button
+                class=" searchBarIcon flex items-center pointer bn bg-transparent outline-0"
               >
                 <div
                   class="extension-point-icon-search"
                 />
-              </span>
+              </button>
             </label>
           </div>
         </div>
         <div>
           <div
-            style="width: 320px;"
-          >
-            <ul
-              aria-labelledby="downshift-1-label"
-              class="resultsList z-max w-100 bl-ns bb br-ns bw1 b--muted-4 bg-base c-on-base t-body left-0 list pv4 ph0 mv0 absolute dn"
-              id="downshift-1-menu"
-              role="listbox"
-            />
-          </div>
+            class="extension-point-autocomplete-result-list"
+          />
         </div>
       </div>
     </div>

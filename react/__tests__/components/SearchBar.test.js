@@ -3,7 +3,7 @@ import { render } from '@vtex/test-tools/react'
 import { MockedProvider } from '@apollo/react-testing'
 
 import SearchBar from '../../SearchBar'
-import autocomplete from '../../components/SearchBar/queries/autocomplete.gql'
+import autocomplete from '../../components/ResultsList/queries/autocomplete.gql'
 
 describe('<SearchBar />', () => {
   const mockedResult = {
