@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useState, useEffect } from 'react'
+import React, { useRef, useCallback, useState, useEffect, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import Downshift from 'downshift'
@@ -156,9 +156,15 @@ const SearchBar = ({
     />
   )
 
-  const SelectedResultsList = useChildBlock({ id: AUTCOMPLETE_EXTENSION_ID })
-    ? props => <ExtensionPoint id={AUTCOMPLETE_EXTENSION_ID} {...props} />
-    : props => <ResultsList {...props} />
+  const isAutocompleteDeclared = Boolean(
+    useChildBlock({ id: AUTCOMPLETE_EXTENSION_ID })
+  )
+
+  const SelectedResultsList = useMemo(() => {
+    return isAutocompleteDeclared
+      ? props => <ExtensionPoint id={AUTCOMPLETE_EXTENSION_ID} {...props} />
+      : props => <ResultsList {...props} />
+  }, [isAutocompleteDeclared])
 
   return (
     <div
