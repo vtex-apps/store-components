@@ -369,7 +369,7 @@ class Carousel extends Component {
       'w-100 border-box',
       galleryCursor[zoomType],
       {
-        'ml-20-ns w-80-ns pl5 justify-end':
+        'ml-20-ns w-80-ns pl5':
           isThumbsVertical &&
           position === THUMBS_POSITION_HORIZONTAL.LEFT &&
           hasThumbs,
