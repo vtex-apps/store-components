@@ -3,7 +3,7 @@ import useProduct from 'vtex.product-context/useProduct'
 import { path, isEmpty, compose } from 'ramda'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { withToast } from 'vtex.styleguide'
-import { orderFormConsumer } from 'vtex.store-resources/OrderFormContext'
+import { useOrderForm } from 'vtex.store-resources/OrderFormContext'
 import ProductPrice from '../ProductPrice'
 import { graphql } from 'react-apollo'
 import { useCssHandles } from 'vtex.css-handles'
@@ -65,7 +65,6 @@ const BuyButtonWrapper = ({
   intl,
   addToCart,
   showToast,
-  orderFormContext,
   onAddStart,
   onAddFinish,
   children,
@@ -82,6 +81,7 @@ const BuyButtonWrapper = ({
   showTooltipOnSkuNotSelected,
   checkoutVersion,
 }) => {
+  const orderFormContext = useOrderForm()
   const valuesFromContext = useProduct()
 
   const isEmptyContext = !valuesFromContext || isEmpty(valuesFromContext)
@@ -192,8 +192,7 @@ const EnhancedBuyButton = compose(
   withOpenMinicart,
   withCheckoutVersion,
   withToast,
-  injectIntl,
-  orderFormConsumer
+  injectIntl
 )(BuyButtonWrapper)
 
 // This function is public available to be used only by vtex.product-summary.

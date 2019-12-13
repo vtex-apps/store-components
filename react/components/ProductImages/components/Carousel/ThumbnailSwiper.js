@@ -77,13 +77,12 @@ const ThumbnailSwiper = ({
     'db-ns': hasThumbs,
     mt3: !isThumbsVertical,
     'w-20 bottom-0 top-0 absolute': isThumbsVertical,
-    'left-0 pr5':
+    'left-0':
       isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.LEFT,
-    'right-0 pl5':
+    'right-0':
       isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.RIGHT,
   })
 
-  
   return (
     <div className={thumbClasses} data-testid="thumbnail-swiper">
       <Swiper {...swiperParams} rebuildOnUpdate>

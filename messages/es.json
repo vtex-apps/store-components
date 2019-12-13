@@ -39,6 +39,7 @@
   "store/buybutton.add-failure": "¡Algo salió mal y el artículo no se agregó a tu carrito!",
   "store/buybutton.buy-offline-success": "Ítem agregado a su carrito offline",
   "store/buybutton.select-sku-variations": "Por favor seleccione una opción de cada variación",
+  "store/buybutton.cart-not-ready": "El carrito aún no está cargado. Vuelva a intentarlo en un momento",
   "store/buybutton.see-cart": "Ver carrito",
   "store/technicalspecifications.title": "Especificaciones Técnicas",
   "store/availability-subscriber.title": "Este producto no está disponible actualmente",

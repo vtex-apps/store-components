@@ -14,11 +14,22 @@ import ProductImage from '../ProductImage'
 import styles from '../../styles.css'
 import './global.css'
 
+const FakeSwiper = ({ children, containerClass }) => {
+  return (
+    <div className={containerClass}>
+      <div className="swiper-wrapper">
+        {React.Children.toArray(children)[0]}
+      </div>
+    </div>
+  )
+}
+
 /** Swiper and its modules are imported using require to avoid breaking SSR */
 const Swiper = window.navigator
   ? require('react-id-swiper/lib/ReactIdSwiper.full').default
-  : null
-const SwiperModules = window.navigator ? require('swiper/dist/js/swiper') : null
+  : FakeSwiper
+
+const SwiperModules = window.navigator ? require('swiper/dist/js/swiper') : {}
 
 import ThumbnailSwiper from './ThumbnailSwiper'
 import {
@@ -125,9 +136,9 @@ class Carousel extends Component {
 
     if (gallerySwiper && gallerySwiper !== prevProps.gallerySwiper && gallerySwiper.controller
       && thumbSwiper && thumbSwiper !== prevProps.thumbSwiper && thumbSwiper.controller) {
-        gallerySwiper.controller.control = thumbSwiper
-        thumbSwiper.controller.control = gallerySwiper
-      }
+      gallerySwiper.controller.control = thumbSwiper
+      thumbSwiper.controller.control = gallerySwiper
+    }
 
     const paginationElement = path(['pagination', 'el'], gallerySwiper)
     if (paginationElement) paginationElement.hidden = isVideo[activeIndex]
@@ -345,10 +356,6 @@ class Carousel extends Component {
       zoomProps: { zoomType },
     } = this.props
 
-    if (!thumbsLoaded || Swiper == null) {
-      return null
-    }
-
     const isThumbsVertical =
       thumbnailsOrientation === THUMBS_ORIENTATION.VERTICAL
     const hasThumbs = slides && slides.length > 1
@@ -362,18 +369,18 @@ class Carousel extends Component {
       'w-100 border-box',
       galleryCursor[zoomType],
       {
-        'ml-20-ns w-80-ns':
+        'ml-20-ns w-80-ns pl5 justify-end':
           isThumbsVertical &&
           position === THUMBS_POSITION_HORIZONTAL.LEFT &&
           hasThumbs,
-        'mr-20-ns w-80-ns':
+        'mr-20-ns w-80-ns pr5':
           isThumbsVertical &&
           position === THUMBS_POSITION_HORIZONTAL.RIGHT &&
           hasThumbs,
       }
     )
 
-    const thumbnailSwiper = slides && (
+    const thumbnailSwiper = thumbsLoaded && slides && (
       <ThumbnailSwiper
         isThumbsVertical={isThumbsVertical}
         slides={slides}
@@ -387,8 +394,17 @@ class Carousel extends Component {
       />
     )
 
+    const containerClasses = classNames(cssHandles.carouselContainer, 'relative overflow-hidden w-100', {
+      'flex justify-end': isThumbsVertical &&
+        position === THUMBS_POSITION_HORIZONTAL.LEFT &&
+        hasThumbs,
+      'flex justify-start': isThumbsVertical &&
+        position === THUMBS_POSITION_HORIZONTAL.RIGHT &&
+        hasThumbs,
+    })
+
     return (
-      <div className={`${cssHandles.carouselContainer} relative overflow-hidden w-100`} aria-hidden="true">
+      <div className={containerClasses} aria-hidden="true">
         {isThumbsVertical && thumbnailSwiper}
         <div className={imageClasses}>
           <ReactResizeDetector handleHeight onResize={this.updateSwiperSize}>
