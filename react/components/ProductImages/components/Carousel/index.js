@@ -395,10 +395,10 @@ class Carousel extends Component {
     )
 
     const containerClasses = classNames(cssHandles.carouselContainer, 'relative overflow-hidden w-100', {
-      'flex justify-end': isThumbsVertical &&
+      'flex-ns justify-end-ns': isThumbsVertical &&
         position === THUMBS_POSITION_HORIZONTAL.LEFT &&
         hasThumbs,
-      'flex justify-start': isThumbsVertical &&
+      'flex-ns justify-start-ns': isThumbsVertical &&
         position === THUMBS_POSITION_HORIZONTAL.RIGHT &&
         hasThumbs,
     })
