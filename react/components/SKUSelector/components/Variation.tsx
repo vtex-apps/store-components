@@ -3,7 +3,6 @@ import React, {
   memo,
   useState,
   Fragment,
-  useEffect,
   useCallback,
 } from 'react'
 import { Button } from 'vtex.styleguide'
@@ -60,20 +59,18 @@ const Variation: FC<Props> = ({
   containerClasses: containerClassesProp,
 }) => {
   const { name, options } = variation
-  const [showAll, setShowAll] = useState(false)
+  
+  const [showAll, setShowAll] = useState(() => {
+    const selectedOptionPosition = findSelectedOption(selectedItem)(options)
+    return selectedOptionPosition >= visibleItemsWhenCollapsed
+  })
+  
   const visibleItemsWhenCollapsed = maxItems - ITEMS_VISIBLE_THRESHOLD
   const {
     buyButton = {
       clicked: false,
     }
   } = useProduct()
-
-  useEffect(() => {
-    const selectedOptionPosition = findSelectedOption(selectedItem)(options)
-    if (selectedOptionPosition >= visibleItemsWhenCollapsed) {
-      setShowAll(true)
-    }
-  }, [])
 
   const displayImage = isColor(name)
 

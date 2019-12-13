@@ -1,4 +1,4 @@
-import React, { useCallback, memo, useState, useEffect, FC } from 'react'
+import React, { useCallback, memo, useState, useEffect, FC, useMemo } from 'react'
 
 import Variation from './Variation'
 
@@ -202,20 +202,24 @@ const getAvailableVariations = ({
   onSelectItemMemo,
   skuItems,
   hideImpossibleCombinations,
-}: AvailableVariationParams): Promise<DisplayVariation[]> => {
+}: AvailableVariationParams): DisplayVariation[] => {
   const variationCount = Object.keys(variations).length
+  return Object.keys(variations).map(
+    variationNameToDisplayVariation({
+      variations,
+      selectedVariations,
+      skuItems,
+      onSelectItemMemo,
+      imagesMap,
+      variationCount,
+      hideImpossibleCombinations,
+    })
+  )
+}
+
+const getAvailableVariationsPromise = (params: AvailableVariationParams): Promise<DisplayVariation[]> => {
   return new Promise(resolve => {
-    const result = Object.keys(variations).map(
-      variationNameToDisplayVariation({
-        variations,
-        selectedVariations,
-        skuItems,
-        onSelectItemMemo,
-        imagesMap,
-        variationCount,
-        hideImpossibleCombinations,
-      })
-    )
+    const result = getAvailableVariations(params)
     resolve(result)
   })
 }
@@ -239,10 +243,6 @@ const SKUSelector: FC<Props> = ({
   showValueNameForImageVariation,
   showVariationsErrorMessage,
 }) => {
-  const [displayVariations, setDisplayVariations] = useState<
-    DisplayVariation[] | null
-  >(null)
-
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
   const onSelectItemMemo = useCallback(
     ({
@@ -255,17 +255,26 @@ const SKUSelector: FC<Props> = ({
         onSelectItem({ name, value, skuId, isMainAndImpossible, possibleItems }),
     [onSelectItem]
   )
+  const availableVariationsPayload = useMemo(() => ({
+    variations,
+    selectedVariations,
+    imagesMap,
+    onSelectItemMemo,
+    skuItems,
+    hideImpossibleCombinations,
+  }), [
+    variations,
+    selectedVariations,
+    imagesMap,
+    onSelectItemMemo,
+    skuItems,
+    hideImpossibleCombinations,
+  ])
+  const [displayVariations, setDisplayVariations] = useState<DisplayVariation[]>(() => getAvailableVariations(availableVariationsPayload))
+
   useEffect(() => {
     let isCurrent = true
-    const promise = getAvailableVariations({
-      variations,
-      selectedVariations,
-      imagesMap,
-      onSelectItemMemo,
-      skuItems,
-      hideImpossibleCombinations,
-    })
-
+    const promise = getAvailableVariationsPromise(availableVariationsPayload)
     promise.then(availableVariations => {
       if (isCurrent) {
         setDisplayVariations(availableVariations)
@@ -274,18 +283,7 @@ const SKUSelector: FC<Props> = ({
     return () => {
       isCurrent = false
     }
-  }, [
-    variations,
-    selectedVariations,
-    imagesMap,
-    onSelectItemMemo,
-    skuItems,
-    hideImpossibleCombinations,
-  ])
-
-  if (!displayVariations) {
-    return null
-  }
+  }, [availableVariationsPayload])
 
   const variationClasses = `mb${variationsSpacing}`
   return (
