@@ -26,6 +26,7 @@ import {
   InitialSelectionType,
   DisplayMode
 } from './types'
+import useEffectSkipMount from './components/hooks/useEffectSkipMount'
 
 const keyCount = compose(
   length,
@@ -140,6 +141,29 @@ interface Props {
   displayMode?: DisplayMode
 }
 
+const getNewSelectedVariations = (query: any, skuSelected: ProductItem, variations: Variations, initialSelection?: InitialSelectionType) => {
+  const hasSkuInQuery = Boolean(query?.skuId)
+  const parsedSku = parseSku(skuSelected)
+  const emptyVariations = buildEmptySelectedVariation(variations)
+
+  if (hasSkuInQuery || initialSelection === InitialSelectionType.complete) {
+    return selectedVariationFromItem(parsedSku, variations)
+  } else if (initialSelection === InitialSelectionType.image) {
+    const colorVariationName = parsedSku.variations.find(isColor)
+    return {
+      ...emptyVariations,
+      ...(colorVariationName
+        ? {
+          [colorVariationName]:
+            parsedSku.variationValues[colorVariationName],
+        }
+        : {}),
+    }
+  }
+
+  return emptyVariations
+}
+
 /**
  * Display a list of SKU items of a product and its specifications.
  */
@@ -163,11 +187,6 @@ const SKUSelectorContainer: FC<Props> = ({
 }) => {
   const variationsCount = keyCount(variations)
   const { query } = useRuntime()
-  const [
-    selectedVariations,
-    setSelectedVariations,
-  ] = useState<SelectedVariations | null>(null)
-  useAllSelectedEvent(selectedVariations, variationsCount)
 
   const parsedItems = useMemo(() => skuItems.map(parseSku), [skuItems])
   const { setQuery } = useRuntime()
@@ -180,31 +199,14 @@ const SKUSelectorContainer: FC<Props> = ({
     )
   }
 
-  const getNewSelectedVariations = useCallback(() => {
-    const hasSkuInQuery = Boolean(query?.skuId)
-    const parsedSku = parseSku(skuSelected)
-    const emptyVariations = buildEmptySelectedVariation(variations)
+  const [
+    selectedVariations,
+    setSelectedVariations,
+  ] = useState<SelectedVariations>(() => getNewSelectedVariations(query, skuSelected, variations, initialSelection))
+  useAllSelectedEvent(selectedVariations, variationsCount)
 
-    if (hasSkuInQuery || initialSelection === InitialSelectionType.complete) {
-      return selectedVariationFromItem(parsedSku, variations)
-    } else if (initialSelection === InitialSelectionType.image) {
-      const colorVariationName = parsedSku.variations.find(isColor)
-      return {
-        ...emptyVariations,
-        ...(colorVariationName
-          ? {
-            [colorVariationName]:
-              parsedSku.variationValues[colorVariationName],
-          }
-          : {}),
-      }
-    }
-
-    return emptyVariations
-  }, [variations, skuSelected, query, initialSelection])
-
-  useEffect(() => {
-    setSelectedVariations(getNewSelectedVariations())
+  useEffectSkipMount(() => {
+    setSelectedVariations(getNewSelectedVariations(query, skuSelected, variations, initialSelection))
   }, [variations])
 
   useEffect(() => {
@@ -277,10 +279,6 @@ const SKUSelectorContainer: FC<Props> = ({
     },
     [selectedVariations, variations, onSKUSelected]
   )
-
-  if (!selectedVariations) {
-    return null
-  }
 
   return (
     <SKUSelector

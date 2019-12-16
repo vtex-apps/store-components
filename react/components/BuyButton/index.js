@@ -13,15 +13,39 @@ import { Button, ToastContext, Tooltip } from 'vtex.styleguide'
 
 const CONSTANTS = {
   SUCCESS_MESSAGE_ID: 'store/buybutton.buy-success',
-  TOOLTIP_ERROR_MESSAGE_ID: 'store/buybutton.select-sku-variations',
+  SELECT_SKU_ERROR_ID: 'store/buybutton.select-sku-variations',
   OFFLINE_BUY_MESSAGE_ID: 'store/buybutton.buy-offline-success',
   DUPLICATE_CART_ITEM_ID: 'store/buybutton.buy-success-duplicate',
   ERROR_MESSAGE_ID: 'store/buybutton.add-failure',
   SEE_CART_ID: 'store/buybutton.see-cart',
+  CART_NOT_READY_ID: 'store/buybutton.cart-not-ready',
   TOAST_TIMEOUT: 3000,
 }
 
 const CSS_HANDLES = ['buyButtonContainer', 'buyButtonText']
+
+const isTooltipNeeded = ({
+  showTooltipOnSkuNotSelected,
+  skuSelector,
+  orderFormContext,
+}) => {
+  if (orderFormContext && orderFormContext.loading) {
+    return {
+      showTooltip: true,
+      labelId: CONSTANTS.CART_NOT_READY_ID,
+    }
+  }
+
+  if (showTooltipOnSkuNotSelected && !skuSelector.areAllVariationsSelected) {
+    return {
+      showTooltip: true,
+      labelId: CONSTANTS.SELECT_SKU_ERROR_ID,
+    }
+  }
+  return {
+    showTooltip: false,
+  }
+}
 
 const skuItemToMinicartItem = item => {
   return {
@@ -104,9 +128,9 @@ export const BuyButton = ({
 
     const action = success
       ? {
-          label: translateMessage(CONSTANTS.SEE_CART_ID),
-          href: customToastURL,
-        }
+        label: translateMessage(CONSTANTS.SEE_CART_ID),
+        href: customToastURL,
+      }
       : undefined
 
     showToast({ message, action })
@@ -219,42 +243,40 @@ export const BuyButton = ({
     return <ContentLoader />
   }
 
-  const disabled =
-    disabledProp || !available || (orderFormContext && orderFormContext.loading)
+  const disabled = disabledProp || !available
   const unavailableLabel = (
     <FormattedMessage id="store/buyButton-label-unavailable">
       {message => <span className={handles.buyButtonText}>{message}</span>}
     </FormattedMessage>
   )
 
-  const tooltipLabel = (
-    <FormattedMessage id={CONSTANTS.TOOLTIP_ERROR_MESSAGE_ID}>
-      {message => <span className={handles.errorMessage}>{message}</span>}
-    </FormattedMessage>
-  )
+  const ButtonWithLabel = <Button
+    block={large}
+    disabled={disabled}
+    onClick={handleClick}
+    isLoading={isAddingToCart}
+  >
+    {available ? children : unavailableLabel}
+  </Button>
 
-  return !showTooltipOnSkuNotSelected ||
-    skuSelector.areAllVariationsSelected ? (
-    <Button
-      block={large}
-      disabled={disabled}
-      onClick={handleClick}
-      isLoading={isAddingToCart}
-    >
-      {available ? children : unavailableLabel}
-    </Button>
+  const { showTooltip, labelId } = isTooltipNeeded({
+    showTooltipOnSkuNotSelected,
+    skuSelector,
+    orderFormContext,
+  })
+
+  const tooltipLabel = showTooltip &&
+    <span className={handles.errorMessage}>
+      <FormattedMessage id={labelId} />
+    </span>
+
+  return !showTooltip ? (
+    ButtonWithLabel
   ) : (
-    <Tooltip trigger="click" label={tooltipLabel}>
-      <Button
-        block={large}
-        disabled={disabled}
-        onClick={handleClick}
-        isLoading={isAddingToCart}
-      >
-        {available ? children : unavailableLabel}
-      </Button>
-    </Tooltip>
-  )
+      <Tooltip trigger="click" label={tooltipLabel}>
+        {ButtonWithLabel}
+      </Tooltip>
+    )
 }
 
 BuyButton.propTypes = {

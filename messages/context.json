@@ -39,6 +39,7 @@
   "store/buybutton.add-failure": "buybutton.add-failure",
   "store/buybutton.buy-offline-success": "buybutton.buy-offline-success",
   "store/buybutton.select-sku-variations": "Please select an option of each variation",
+  "store/buybutton.cart-not-ready": "Message showed when user presses buy button but order form is not loaded yet",
   "store/buybutton.see-cart": "Button label on the notification that pops up when the user adds an item to the cart, prompting the user to see said cart",
   "store/technicalspecifications.title": "technicalspecifications.title",
   "store/availability-subscriber.title": "availability-subscriber.title",
