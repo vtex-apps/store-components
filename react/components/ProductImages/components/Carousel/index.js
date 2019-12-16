@@ -25,7 +25,7 @@ const FakeSwiper = ({ children, containerClass, direction = THUMBS_ORIENTATION.H
   }
   const child = childrenArray[0]
   const childClass = path(['props', 'className'], child)
-  const newChildClass = childClass ? `${childrenClass} swiper-slide-active` : childClass
+  const newChildClass = childClass ? `${childClass} swiper-slide-active` : childClass
   return (
     <div className={`${containerClass} swiper-container-initialized ${swiperContainerDirection}`}>
       <div className="swiper-wrapper">
