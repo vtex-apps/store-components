@@ -1,4 +1,4 @@
-import React, { useCallback, memo, useState, useEffect, FC, useMemo } from 'react'
+import React, { useCallback, memo, useState, FC, useMemo } from 'react'
 
 import Variation from './Variation'
 
@@ -21,6 +21,7 @@ import {
   Variations,
   DisplayMode,
 } from '../types'
+import useEffectSkipMount from './hooks/useEffectSkipMount'
 
 interface Props {
   seeMoreLabel: string
@@ -272,7 +273,7 @@ const SKUSelector: FC<Props> = ({
   ])
   const [displayVariations, setDisplayVariations] = useState<DisplayVariation[]>(() => getAvailableVariations(availableVariationsPayload))
 
-  useEffect(() => {
+  useEffectSkipMount(() => {
     let isCurrent = true
     const promise = getAvailableVariationsPromise(availableVariationsPayload)
     promise.then(availableVariations => {

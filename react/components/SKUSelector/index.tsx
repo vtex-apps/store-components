@@ -26,6 +26,7 @@ import {
   InitialSelectionType,
   DisplayMode
 } from './types'
+import useEffectSkipMount from './components/hooks/useEffectSkipMount'
 
 const keyCount = compose(
   length,
@@ -204,7 +205,7 @@ const SKUSelectorContainer: FC<Props> = ({
   ] = useState<SelectedVariations>(() => getNewSelectedVariations(query, skuSelected, variations, initialSelection))
   useAllSelectedEvent(selectedVariations, variationsCount)
 
-  useEffect(() => {
+  useEffectSkipMount(() => {
     setSelectedVariations(getNewSelectedVariations(query, skuSelected, variations, initialSelection))
   }, [variations])
 
