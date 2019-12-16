@@ -14,11 +14,24 @@ import ProductImage from '../ProductImage'
 import styles from '../../styles.css'
 import './global.css'
 
-const FakeSwiper = ({ children, containerClass }) => {
+/**
+ * ReactIdSwiper cannot be SSRendered, so this is a fake swiper that copies some of its classes and HTML layout and render only the first image of the children array.
+ */
+const FakeSwiper = ({ children, containerClass, direction = THUMBS_ORIENTATION.HORIZONTAL }) => {
+  const swiperContainerDirection = direction === THUMBS_ORIENTATION.HORIZONTAL ? 'swiper-container-horizontal' : direction === THUMBS_ORIENTATION.VERTICAL ? 'swiper-container-vertical' : ''
+  const childrenArray = React.Children.toArray(children)
+  if (childrenArray.length === 0) {
+    return null
+  }
+  const child = childrenArray[0]
+  const childClass = path(['props', 'className'], child)
+  const newChildClass = childClass ? `${childrenClass} swiper-slide-active` : childClass
   return (
-    <div className={containerClass}>
+    <div className={`${containerClass} swiper-container-initialized ${swiperContainerDirection}`}>
       <div className="swiper-wrapper">
-        {React.Children.toArray(children)[0]}
+        {React.cloneElement(child, {
+          className: newChildClass,
+        })}
       </div>
     </div>
   )
