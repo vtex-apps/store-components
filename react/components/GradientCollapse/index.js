@@ -124,7 +124,7 @@ function GradientCollapse(props) {
 GradientCollapse.propTypes = {
   /** Maximum height collapsed */
   collapseHeight: PropTypes.number.isRequired,
-  collapsed: PropTypes.boolean,
+  collapsed: PropTypes.bool,
   children: PropTypes.node,
   onCollapsedChange: PropTypes.func,
 }

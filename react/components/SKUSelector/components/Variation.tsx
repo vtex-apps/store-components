@@ -60,12 +60,13 @@ const Variation: FC<Props> = ({
 }) => {
   const { name, options } = variation
   
+  const visibleItemsWhenCollapsed = maxItems - ITEMS_VISIBLE_THRESHOLD
+
   const [showAll, setShowAll] = useState(() => {
     const selectedOptionPosition = findSelectedOption(selectedItem)(options)
     return selectedOptionPosition >= visibleItemsWhenCollapsed
   })
   
-  const visibleItemsWhenCollapsed = maxItems - ITEMS_VISIBLE_THRESHOLD
   const {
     buyButton = {
       clicked: false,
