@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.95.2] - 2019-12-16
 - Added spec `farbe` for DE
 
 ## [3.95.1] - 2019-12-12
