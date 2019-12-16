@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, EffectCallback } from 'react'
 
-const useEffectSkipMount = (func: Function, deps: any[]) => {
+const useEffectSkipMount = (func: EffectCallback, deps: any[]) => {
   const isFirstRender = useRef(true)
   useEffect(() => {
     if (isFirstRender.current) {
