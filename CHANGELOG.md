@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## Changed
+- Updated documentation: added `blockClass` prop to the Product Price docs and updated the fork disclaimer
+
 ## [3.95.3] - 2019-12-16
 
 ## [3.95.2] - 2019-12-16

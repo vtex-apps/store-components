@@ -1,4 +1,4 @@
-📢 Don't fork this project. Use, [contribute](https://github.com/vtex-apps/awesome-io#contributing) or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion).
+📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion). 
 
 # Product Price
 
@@ -48,6 +48,7 @@ The `ProductPrice` is responsible for **displaying the price** of a given produc
 | `showLabels`            | `Boolean` | Set visibility of labels              | `true`          |
 | `showInstallments`      | `Boolean` | Set visibility of installments        | `false`         |
 | `showSavings`           | `Boolean` | Set visibility of savings             | `false`         |
+| `blockClass`            | `String`  | The set value functions as a customization identifier for any CSS specified in the block | null | 
 
 ## Customization
 
