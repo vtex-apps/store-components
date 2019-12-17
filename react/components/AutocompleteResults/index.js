@@ -47,7 +47,7 @@ const getLinkProps = element => {
 }
 
 /** List of search results to be displayed*/
-const ResultsList = ({
+const AutocompleteResults = ({
   parentContainer,
   isOpen,
   data = {}, // when inputValue is '', query is skipped and value is undefined
@@ -235,7 +235,7 @@ const itemProps = PropTypes.shape({
   criteria: PropTypes.string,
 })
 
-ResultsList.propTypes = {
+AutocompleteResults.propTypes = {
   /** Graphql data response. */
   data: PropTypes.shape({
     autocomplete: PropTypes.shape({
@@ -260,13 +260,13 @@ ResultsList.propTypes = {
   attemptPageTypeSearch: PropTypes.bool,
 }
 
-const ResultsListWithData = graphql(autocomplete, {
+const AutocompleteResultsWithData = graphql(autocomplete, {
   skip: ({ inputValue }) => !inputValue,
   options: props => ({
     variables: {
       inputValue: props.inputValue,
     },
   }),
-})(ResultsList)
+})(AutocompleteResults)
 
-export default ResultsListWithData
+export default AutocompleteResultsWithData

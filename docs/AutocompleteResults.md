@@ -1,24 +1,26 @@
-# Search Bar
+📢 Use, [contribute](https://github.com/vtex-apps/store-components) or open issues for this project through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-## Description
+# AutocompleteResults
 
-`ResultsList` is a VTEX Component that represents the autocomplete from the search bar. This component can be imported and used by any VTEX App.
+`autocomplete-result-list` is a VTEX Component that represents the autocomplete from the search bar. This component can be imported and used by any VTEX App.
 
-:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
+## Configuration
 
-## Table of Contents
+1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json`, for example:
 
-- [Usage](#usage)
-  - [Props](#props)
-  - [CSS Handles](#css-handles)
+```json
+  dependencies: {
+    "vtex.store-components": "3.x"
+  }
+```
 
-## Usage
+2. Add the `autocomplete-result-list` block into the `search-bar` blocks, for example:
 
-You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
-
-Then, add `autocomplete-result-list` block into your app theme.
-
-### Props
+```json
+"search-bar#my-search-bar": {
+    "blocks": ["autocomplete-result-list.v2#my-autocomplete"]
+}
+```
 
 This autocomplete is commonly used with [Downshift](https://github.com/downshift-js/downshift). Some of its props are directly related to it.
 
@@ -35,9 +37,9 @@ This autocomplete is commonly used with [Downshift](https://github.com/downshift
 | `isOpen`                       | `Boolean`  | Identify if autocomplete should be open                                                                                                           | -             |
 | `attemptPageTypeSearch`        | `Boolean`  | if `true`, uses the term the user has inputted to try to navigate to the proper page type (e.g. a department, a brand, a category)                | -             |
 
-### CSS Handles
+## Customization
 
-Below, we describe the namespace that are defined in the `ResultsList`.
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
 | Class name         | Description                                     | Component Source                                                     |
 | ------------------ | ----------------------------------------------- | -------------------------------------------------------------------- |

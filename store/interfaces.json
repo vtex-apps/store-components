@@ -10,7 +10,7 @@
     }
   },
   "autocomplete-result-list": {
-    "component": "ResultsList"
+    "component": "AutocompleteResults"
   },
   "buy-button": {
     "component": "BuyButton"

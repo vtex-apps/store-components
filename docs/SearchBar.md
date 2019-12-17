@@ -34,7 +34,7 @@ Then, add `search-bar` block into your app theme, as we do in our [Store Header]
 | `autocompleteAlignment`   | [`HorizontalAlignment`](#horizontalalignment) | Autocomplete Horizontal alignment.                                                                                                                | `left`        |
 | `openAutocompleteOnFocus` | `Boolean`                                     | Identify if autocomplete should be open on input focus or not.                                                                                    | `false`       |
 | `blurOnSubmit`            | `Boolean`                                     | Identify if input should blur on submit.                                                                                                          | `false`       |
-| `autocompleteFullWindow`  | `Boolean`                                     | If true, the autocomplete will fill the whole window horizontally.                                                                                | `false`       |
+| `autocompleteFullWidth`  | `Boolean`                                     | If true, the autocomplete will fill the whole window horizontally.                                                                                | `false`       |
 | `submitOnIconClick`       | `Boolean`                                     | Identify if search icon should submit on click.                                                                                                   | `false`       |
 
 ### `HorizontalAlignment`

@@ -13,14 +13,13 @@ import { Overlay } from 'vtex.react-portal'
 import { useCssHandles } from 'vtex.css-handles'
 import { intlShape } from 'react-intl'
 
-import ResultsList from '../../ResultsList'
+import AutocompleteResults from '../../AutocompleteResults'
 
 import AutocompleteInput from './AutocompleteInput'
 
 const CSS_HANDLES = ['searchBarContainer', 'searchBarInnerContainer']
 const SEARCH_DELAY_TIME = 500
 const AUTCOMPLETE_EXTENSION_ID = 'autocomplete-result-list'
-const INPUT_ERROR_MESSAGE_DELAY = 2000
 
 const SearchBar = ({
   placeholder,
@@ -41,7 +40,7 @@ const SearchBar = ({
   blurOnSubmit,
   submitOnIconClick,
   minSearchTermLength,
-  autocompleteFullWindow,
+  autocompleteFullWidth,
   intl,
 }) => {
   const container = useRef()
@@ -49,7 +48,6 @@ const SearchBar = ({
   const handles = useCssHandles(CSS_HANDLES)
   const [searchTerm, setSearchTerm] = useState(inputValue)
   const [inputErrorMessage, setInputErrorMessage] = useState()
-  const inputErrorMessageTimeRef = useRef()
 
   const debouncedSetSearchTerm = useCallback(
     debounce(newValue => {
@@ -124,23 +122,11 @@ const SearchBar = ({
     return undefined
   }
 
-  const showInputErrorMessageTemporarily = inputErrorMessage => {
+  const showInputErrorMessag = inputErrorMessage => {
     setInputErrorMessage(inputErrorMessage)
-
-    if (inputErrorMessageTimeRef.current) {
-      clearTimeout(inputErrorMessageTimeRef.current)
-    }
-
-    inputErrorMessageTimeRef.current = setTimeout(() => {
-      setInputErrorMessage()
-    }, INPUT_ERROR_MESSAGE_DELAY)
   }
 
   const hideInputErrorMessage = () => {
-    if (inputErrorMessageTimeRef.current) {
-      clearTimeout(inputErrorMessageTimeRef.current)
-    }
-
     setInputErrorMessage()
   }
 
@@ -160,10 +146,10 @@ const SearchBar = ({
     useChildBlock({ id: AUTCOMPLETE_EXTENSION_ID })
   )
 
-  const SelectedResultsList = useMemo(() => {
+  const SelectedAutocompleteResults = useMemo(() => {
     return isAutocompleteDeclared
       ? props => <ExtensionPoint id={AUTCOMPLETE_EXTENSION_ID} {...props} />
-      : props => <ResultsList {...props} />
+      : props => <AutocompleteResults {...props} />
   }, [isAutocompleteDeclared])
 
   return (
@@ -214,7 +200,7 @@ const SearchBar = ({
                       const errorMessage = validateInput()
 
                       if (errorMessage) {
-                        showInputErrorMessageTemporarily(errorMessage)
+                        showInputErrorMessag(errorMessage)
                         return
                       }
 
@@ -236,9 +222,9 @@ const SearchBar = ({
               />
               <Overlay
                 alignment={autocompleteAlignment}
-                fullWindow={autocompleteFullWindow}
+                fullWindow={autocompleteFullWidth}
               >
-                <SelectedResultsList
+                <SelectedAutocompleteResults
                   parentContainer={container}
                   {...{
                     attemptPageTypeSearch,
@@ -302,7 +288,7 @@ SearchBar.propTypes = {
   /** Minimum search term length allowed */
   minSearchTermLength: PropTypes.number,
   /** If true, the autocomplete will fill the whole window horizontally */
-  autocompleteFullWindow: PropTypes.bool,
+  autocompleteFullWidth: PropTypes.bool,
   /* Internationalization */
   intl: intlShape.isRequired,
 }

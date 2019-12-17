@@ -66,7 +66,7 @@ class SearchBarContainer extends Component {
       blurOnSubmit = false,
       submitOnIconClick = false,
       minSearchTermLength,
-      autocompleteFullWindow = false,
+      autocompleteFullWidth = false,
     } = this.props
 
     const { inputValue } = this.state
@@ -91,7 +91,7 @@ class SearchBarContainer extends Component {
         blurOnSubmit={blurOnSubmit}
         submitOnIconClick={submitOnIconClick}
         minSearchTermLength={minSearchTermLength}
-        autocompleteFullWindow={autocompleteFullWindow}
+        autocompleteFullWidth={autocompleteFullWidth}
         intl={intl}
       />
     )
@@ -137,7 +137,7 @@ SearchBarContainer.propTypes = {
   /** Minimum search term length allowed */
   minSearchTermLength: PropTypes.number,
   /** If true, the autocomplete will fill the whole window horizontally */
-  autocompleteFullWindow: PropTypes.bool,
+  autocompleteFullWidth: PropTypes.bool,
 }
 
 export default injectIntl(SearchBarContainer)
