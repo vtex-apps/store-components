@@ -230,6 +230,9 @@ export const BuyButton = ({
   }
 
   const handleClick = e => {
+    if (orderFormContext && orderFormContext.loading) {
+      return
+    }
     if (dispatch) {
       dispatch({ type: 'SET_BUY_BUTTON_CLICKED', args: { clicked: true } })
     }
