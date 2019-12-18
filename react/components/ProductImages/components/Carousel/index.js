@@ -433,7 +433,7 @@ class Carousel extends Component {
           </ReactResizeDetector>
           {!isThumbsVertical && thumbnailSwiper}
         </div>
-      </div >
+      </div>
     )
   }
 }

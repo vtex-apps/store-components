@@ -96,8 +96,7 @@ describe('<ProductImages />', () => {
     const { queryByTestId } = renderComponent(props)
 
     const swiper = queryByTestId('thumbnail-swiper')
-    expect(swiper.className.includes('db-ns')).toBeFalsy()
-    expect(swiper.className.includes('dn')).toBeTruthy()
+    expect(swiper).toBe(null)
   })
 
   describe('test logic to thumbnail orientation', () => {
