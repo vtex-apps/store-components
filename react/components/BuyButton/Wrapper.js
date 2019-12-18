@@ -129,8 +129,9 @@ const BuyButtonWrapper = ({
 
   const version =
     checkoutVersion &&
-    checkoutVersion.installedApp &&
-    checkoutVersion.installedApp.version
+    checkoutVersion.installedAppPublic &&
+    checkoutVersion.installedAppPublic.version
+
   const checkoutUrl =
     version && parseInt(version.split('.')[0]) > 0
       ? CHECKOUT_URL.V1
