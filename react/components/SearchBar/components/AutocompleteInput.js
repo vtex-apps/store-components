@@ -70,9 +70,7 @@ const AutocompleteInput = ({
         handles.searchBarIcon
       } flex items-center pointer bn bg-transparent outline-0`}
       onClick={
-        submitOnIconClick
-          ? onGoToSearchPage
-          : () => value && onClearInput()
+        submitOnIconClick ? onGoToSearchPage : () => value && onClearInput()
       }
     >
       {value && !submitOnIconClick ? (

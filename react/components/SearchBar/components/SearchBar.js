@@ -21,6 +21,13 @@ const CSS_HANDLES = ['searchBarContainer', 'searchBarInnerContainer']
 const SEARCH_DELAY_TIME = 500
 const AUTCOMPLETE_EXTENSION_ID = 'autocomplete-result-list'
 
+const messages = defineMessages({
+  searchTermTooShort: {
+    id: 'store/search.search-term-too-short',
+    defaultMessage: '',
+  },
+})
+
 const SearchBar = ({
   placeholder,
   onInputChange,
@@ -48,13 +55,6 @@ const SearchBar = ({
   const handles = useCssHandles(CSS_HANDLES)
   const [searchTerm, setSearchTerm] = useState(inputValue)
   const [inputErrorMessage, setInputErrorMessage] = useState()
-
-  const messages = defineMessages({
-    searchTermTooShort: {
-      id: 'store/search.search-term-too-short',
-      defaultMessage: '',
-    },
-  })
 
   const debouncedSetSearchTerm = useCallback(
     debounce(newValue => {
