@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Problem with ProductImages scroll when selecting other SKUs.
 
 ## [3.95.5] - 2019-12-18
 ### Fixed
@@ -17,6 +19,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated documentation: added `blockClass` prop to the Product Price docs and updated the fork disclaimer
 
 ## [3.95.3] - 2019-12-16
+### Changed
+- Render SKUSelector on server.
+- Render first product image on server.
 
 ## [3.95.2] - 2019-12-16
 - Added spec `farbe` for DE

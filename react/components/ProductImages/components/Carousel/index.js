@@ -67,12 +67,14 @@ const initialState = {
   alt: [],
   thumbsLoaded: false,
   activeIndex: 0,
-  thumbSwiper: null,
-  gallerySwiper: null,
 }
 
 class Carousel extends Component {
-  state = initialState
+  state = {
+    ...initialState,
+    thumbSwiper: null,
+    gallerySwiper: null,
+  }
 
   async setInitialVariablesState() {
     const slides = this.props.slides || []
@@ -144,13 +146,11 @@ class Carousel extends Component {
     if (!equals(prevProps.slides, this.props.slides)) {
       this.setInitialVariablesState()
       this.setState(initialState)
+      if (this.props.slides && this.props.slides.length > 1) {
+        gallerySwiper && gallerySwiper.slideTo(0)
+        thumbSwiper && thumbSwiper.slideTo(0)
+      }
       return
-    }
-
-    if (gallerySwiper && gallerySwiper !== prevProps.gallerySwiper && gallerySwiper.controller
-      && thumbSwiper && thumbSwiper !== prevProps.thumbSwiper && thumbSwiper.controller) {
-      gallerySwiper.controller.control = thumbSwiper
-      thumbSwiper.controller.control = gallerySwiper
     }
 
     const paginationElement = path(['pagination', 'el'], gallerySwiper)
@@ -393,7 +393,7 @@ class Carousel extends Component {
       }
     )
 
-    const thumbnailSwiper = thumbsLoaded && slides && (
+    const thumbnailSwiper = thumbsLoaded && hasThumbs && (
       <ThumbnailSwiper
         isThumbsVertical={isThumbsVertical}
         slides={slides}
@@ -416,18 +416,20 @@ class Carousel extends Component {
         hasThumbs,
     })
 
+    const SliderComponent = slides.length === 1 ? FakeSwiper : Swiper
+
     return (
       <div className={containerClasses} aria-hidden="true">
         {isThumbsVertical && thumbnailSwiper}
         <div className={imageClasses}>
           <ReactResizeDetector handleHeight onResize={this.updateSwiperSize}>
-            <Swiper {...this.galleryParams} rebuildOnUpdate>
+            <SliderComponent {...this.galleryParams} rebuildOnUpdate>
               {slides.map((slide, i) => (
                 <div key={i} className={`${cssHandles.productImagesGallerySlide} swiper-slide center-all`}>
                   {this.renderSlide(slide, i)}
                 </div>
               ))}
-            </Swiper>
+            </SliderComponent>
           </ReactResizeDetector>
           {!isThumbsVertical && thumbnailSwiper}
         </div>
