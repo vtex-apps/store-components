@@ -103,7 +103,7 @@ const AutocompleteInput = ({
           prefix={hasIconLeft && prefix}
           suffix={suffix}
           {...restProps}
-          error={!!inputErrorMessage}
+          error={Boolean(inputErrorMessage)}
           errorMessage={inputErrorMessage}
         />
       </div>

@@ -80,7 +80,7 @@ const AutocompleteResults = ({
 
   const listClassNames = classnames(
     handles.resultsList,
-    'z-max w-100 bl-ns bb br-ns bw1 b--muted-4 bg-base c-on-base t-body left-0 list pv4 ph0 mv0',
+    'z-max w-100 bl-ns bb br-ns bw1 b--muted-4 bg-base c-on-base t-body left-0 list pv4 ph0 mv0 list overflow-y-auto',
     mobile ? 'fixed' : 'absolute',
     { dn: !isOpen || !inputValue }
   )

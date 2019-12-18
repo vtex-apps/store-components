@@ -1,7 +1,7 @@
 {
   "store/search.placeholder": "Search",
   "store/search.searchFor": "Search for {term}",
-  "store/search.searchTermTooShort": "Search term is too short",
+  "store/search.search-term-too-short": "Search term is too short",
   "admin/editor.productName.title": "Product name",
   "admin/editor.productName.description": "Product name Component",
   "admin/editor.productName.showBrandName.title": "Shows the brand name",

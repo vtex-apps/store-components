@@ -1,7 +1,5 @@
 .resultsList {
-  list-style-type: none;
   max-height: 60vh;
-  overflow-y: auto;
   top: 100%;
 }
 

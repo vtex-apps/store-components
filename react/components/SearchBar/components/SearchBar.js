@@ -11,7 +11,7 @@ import {
 } from 'vtex.render-runtime'
 import { Overlay } from 'vtex.react-portal'
 import { useCssHandles } from 'vtex.css-handles'
-import { intlShape } from 'react-intl'
+import { intlShape, defineMessages } from 'react-intl'
 
 import AutocompleteResults from '../../AutocompleteResults'
 
@@ -48,6 +48,13 @@ const SearchBar = ({
   const handles = useCssHandles(CSS_HANDLES)
   const [searchTerm, setSearchTerm] = useState(inputValue)
   const [inputErrorMessage, setInputErrorMessage] = useState()
+
+  const messages = defineMessages({
+    searchTermTooShort: {
+      id: 'store/search.search-term-too-short',
+      defaultMessage: '',
+    },
+  })
 
   const debouncedSetSearchTerm = useCallback(
     debounce(newValue => {
@@ -114,15 +121,13 @@ const SearchBar = ({
 
   const validateInput = () => {
     if (minSearchTermLength && inputValue.length < minSearchTermLength) {
-      return intl.formatMessage({
-        id: 'store/search.searchTermTooShort',
-      })
+      return intl.formatMessage(messages.searchTermTooShort)
     }
 
-    return undefined
+    return null
   }
 
-  const showInputErrorMessag = inputErrorMessage => {
+  const showInputErrorMessage = inputErrorMessage => {
     setInputErrorMessage(inputErrorMessage)
   }
 
@@ -200,7 +205,7 @@ const SearchBar = ({
                       const errorMessage = validateInput()
 
                       if (errorMessage) {
-                        showInputErrorMessag(errorMessage)
+                        showInputErrorMessage(errorMessage)
                         return
                       }
 
