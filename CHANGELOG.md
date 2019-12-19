@@ -6,8 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Handle buy button click while order form is loading by handling it gracefully and not showing the tooltip.
 
 ## [3.95.7] - 2019-12-19
+### Changed
+- Update `react-id-swiper` dependency to 3.3.2, fixes issues in ProductImages.
 
 ## [3.95.6] - 2019-12-18
 ### Fixed

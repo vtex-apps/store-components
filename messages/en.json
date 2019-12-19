@@ -39,7 +39,6 @@
   "store/buybutton.add-failure": "Something went wrong and the item wasn't added to your cart!",
   "store/buybutton.buy-offline-success": "Item added to your offline cart",
   "store/buybutton.select-sku-variations": "Please select an option of each variation",
-  "store/buybutton.cart-not-ready": "Cart not loaded yet. Please try again in a moment.",
   "store/buybutton.see-cart": "View cart",
   "store/technicalspecifications.title": "Technical Specifications",
   "store/availability-subscriber.title": "This product isn't available right now",
