@@ -23,6 +23,17 @@ import {
 } from '../types'
 import useEffectSkipMount from './hooks/useEffectSkipMount'
 
+export enum ShowValueForVariation {
+  none = 'none',
+  image = 'image',
+  all = 'all'
+}
+
+function getShowValueForVariation(showValueForVariation: ShowValueForVariation, variationName: string) {
+  const isImage = isColor(variationName)
+  return showValueForVariation === ShowValueForVariation.all || showValueForVariation === ShowValueForVariation.image && isImage
+}
+
 interface Props {
   seeMoreLabel: string
   maxItems: number
@@ -32,7 +43,7 @@ interface Props {
   imagesMap: ImageMap
   selectedVariations: Record<string, string | null>
   hideImpossibleCombinations: boolean
-  showValueNameForImageVariation: boolean
+  showValueForVariation: ShowValueForVariation
   showBorders?: boolean
   imageHeight?: number
   imageWidth?: number
@@ -235,14 +246,14 @@ const SKUSelector: FC<Props> = ({
   imagesMap,
   imageHeight,
   imageWidth,
-  selectedVariations,
   showBorders,
   displayMode,
-  variationsSpacing: marginBottomProp,
+  selectedVariations,
   showVariationsLabels,
+  showValueForVariation,
   hideImpossibleCombinations,
-  showValueNameForImageVariation,
   showVariationsErrorMessage,
+  variationsSpacing: marginBottomProp,
 }) => {
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
   const onSelectItemMemo = useCallback(
@@ -306,7 +317,7 @@ const SKUSelector: FC<Props> = ({
             containerClasses={variationClasses}
             key={`${variationOption.name}-${index}`}
             showErrorMessage={showVariationsErrorMessage}
-            showValueNameForImageVariation={showValueNameForImageVariation}
+            showValueForVariation={getShowValueForVariation(showValueForVariation, variationOption.name)}
           />
         )
       })}

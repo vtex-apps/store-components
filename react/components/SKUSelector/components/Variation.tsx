@@ -26,7 +26,7 @@ interface Props {
   seeMoreLabel: string
   maxItems: number
   selectedItem: string | null
-  showValueNameForImageVariation: boolean
+  showValueForVariation: boolean
   imageHeight?: number
   imageWidth?: number
   showBorders?: boolean
@@ -55,7 +55,7 @@ const Variation: FC<Props> = ({
   seeMoreLabel,
   selectedItem,
   showErrorMessage,
-  showValueNameForImageVariation,
+  showValueForVariation,
   containerClasses: containerClassesProp,
 }) => {
   const { name, options } = variation
@@ -101,7 +101,7 @@ const Variation: FC<Props> = ({
           >
             {name}{showErrorMessage && buyButton.clicked && !selectedItem && (<ErrorMessage />)}
           </span>)}
-          {displayImage && selectedItem && showValueNameForImageVariation && (
+          {selectedItem && showValueForVariation && (
             <Fragment>
               <span className={styles.skuSelectorNameSeparator}>: </span>
               <span
