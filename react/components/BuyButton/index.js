@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useContext, useCallback, useState } from 'react'
+import React, { useContext, useCallback, useState, useEffect } from 'react'
 import { intlShape, FormattedMessage } from 'react-intl'
 import { path } from 'ramda'
 import ContentLoader from 'react-content-loader'
@@ -18,7 +18,6 @@ const CONSTANTS = {
   DUPLICATE_CART_ITEM_ID: 'store/buybutton.buy-success-duplicate',
   ERROR_MESSAGE_ID: 'store/buybutton.add-failure',
   SEE_CART_ID: 'store/buybutton.see-cart',
-  CART_NOT_READY_ID: 'store/buybutton.cart-not-ready',
   TOAST_TIMEOUT: 3000,
 }
 
@@ -27,15 +26,7 @@ const CSS_HANDLES = ['buyButtonContainer', 'buyButtonText']
 const isTooltipNeeded = ({
   showTooltipOnSkuNotSelected,
   skuSelector,
-  orderFormContext,
 }) => {
-  if (orderFormContext && orderFormContext.loading) {
-    return {
-      showTooltip: true,
-      labelId: CONSTANTS.CART_NOT_READY_ID,
-    }
-  }
-
   if (showTooltipOnSkuNotSelected && !skuSelector.areAllVariationsSelected) {
     return {
       showTooltip: true,
@@ -70,6 +61,15 @@ const skuItemToMinicartItem = item => {
     category: item.category,
     productRefId: item.productRefId,
   }
+}
+
+const useCallCartFinishIfPending = (orderFormContext, isAddingToCart, addToCartAndFinish) => {
+  const orderFormLoading = orderFormContext && orderFormContext.loading
+  useEffect(() => {
+    if (!orderFormLoading && isAddingToCart) {
+      addToCartAndFinish()
+    }
+  }, [orderFormLoading])
 }
 
 /**
@@ -139,13 +139,15 @@ export const BuyButton = ({
   const { rootPath = '' } = useRuntime()
   const fullCheckoutUrl = rootPath + checkoutUrl
 
-  const handleAddToCart = async event => {
+  const beforeAddToCart = event => {
     event.stopPropagation()
     event.preventDefault()
 
     setAddingToCart(true)
     onAddStart && onAddStart()
+  }
 
+  const addToCartAndFinish = async () => {
     let showToastMessage
     try {
       const minicartItems = skuItems.map(skuItemToMinicartItem)
@@ -229,16 +231,25 @@ export const BuyButton = ({
     }, 500)
   }
 
+  const handleAddToCart = async event => {
+    beforeAddToCart(event)
+    await addToCartAndFinish()
+  }
+
+  useCallCartFinishIfPending(orderFormContext, isAddingToCart, addToCartAndFinish)
+
   const handleClick = e => {
-    if (orderFormContext && orderFormContext.loading) {
-      return
-    }
     if (dispatch) {
       dispatch({ type: 'SET_BUY_BUTTON_CLICKED', args: { clicked: true } })
     }
 
     if (skuSelector.areAllVariationsSelected && shouldAddToCart) {
-      handleAddToCart(e)
+      if (orderFormContext && orderFormContext.loading) {
+        // Just call the before add to cart function and the useEffect hook will call the finish part when apropriate
+        beforeAddToCart(e)
+      } else {
+        handleAddToCart(e)
+      }
     }
   }
 
@@ -265,7 +276,6 @@ export const BuyButton = ({
   const { showTooltip, labelId } = isTooltipNeeded({
     showTooltipOnSkuNotSelected,
     skuSelector,
-    orderFormContext,
   })
 
   const tooltipLabel = showTooltip &&
