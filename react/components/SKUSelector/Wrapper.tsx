@@ -6,6 +6,7 @@ import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 import SKUSelector from './index'
 import { Variations, InitialSelectionType, DisplayMode } from './types'
 import { useResponsiveValues } from 'vtex.responsive-values'
+import { ShowValueForVariation } from './components/SKUSelector'
 
 const useVariations = (skuItems: ProductItem[], shouldNotShow: boolean, visibleVariations?: string[]) => {
   const result = useMemo(() => {
@@ -49,6 +50,7 @@ interface Props {
   seeMoreLabel: string
   hideImpossibleCombinations?: boolean
   showValueNameForImageVariation?: boolean
+  showValueForVariation?: ShowValueForVariation
   imageHeight?: number | object
   imageWidth?: number | object
   thumbnailImage?: string
@@ -95,6 +97,13 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
     return null
   }
 
+  let showValueForVariation = ShowValueForVariation.none
+  if (props.showValueForVariation) {
+    showValueForVariation = props.showValueForVariation
+  } else if (props.showValueNameForImageVariation) {
+    showValueForVariation = ShowValueForVariation.image
+  }
+
   return (
     <SKUSelector
       skuItems={skuItems}
@@ -109,10 +118,10 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
       thumbnailImage={props.thumbnailImage}
       initialSelection={props.initialSelection}
       variationsSpacing={props.variationsSpacing}
+      showValueForVariation={showValueForVariation}
       showVariationsLabels={props.showVariationsLabels}
       hideImpossibleCombinations={props.hideImpossibleCombinations}
       showVariationsErrorMessage={props.showVariationsErrorMessage}
-      showValueNameForImageVariation={props.showValueNameForImageVariation}
     />
   )
 }

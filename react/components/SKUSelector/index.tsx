@@ -10,7 +10,7 @@ import { useRuntime } from 'vtex.render-runtime'
 import { filter, head, isEmpty, compose, keys, length } from 'ramda'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
-import SKUSelector from './components/SKUSelector'
+import SKUSelector, { ShowValueForVariation } from './components/SKUSelector'
 import {
   parseSku,
   isColor,
@@ -130,7 +130,7 @@ interface Props {
   variations: Variations
   skuSelected: ProductItem
   hideImpossibleCombinations?: boolean
-  showValueNameForImageVariation?: boolean
+  showValueForVariation?: ShowValueForVariation
   imageHeight?: number
   imageWidth?: number
   thumbnailImage?: string
@@ -182,7 +182,7 @@ const SKUSelectorContainer: FC<Props> = ({
   displayMode = DisplayMode.default,
   hideImpossibleCombinations = true,
   showVariationsErrorMessage = true,
-  showValueNameForImageVariation = false,
+  showValueForVariation = ShowValueForVariation.none,
   initialSelection = InitialSelectionType.complete,
 }) => {
   const variationsCount = keyCount(variations)
@@ -294,9 +294,9 @@ const SKUSelectorContainer: FC<Props> = ({
       variationsSpacing={variationsSpacing}
       selectedVariations={selectedVariations}
       showVariationsLabels={showVariationsLabels}
+      showValueForVariation={showValueForVariation}
       hideImpossibleCombinations={hideImpossibleCombinations}
       showVariationsErrorMessage={showVariationsErrorMessage}
-      showValueNameForImageVariation={showValueNameForImageVariation}
     />
   )
 }
