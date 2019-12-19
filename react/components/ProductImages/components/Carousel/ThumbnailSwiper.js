@@ -10,7 +10,7 @@ const THUMB_MAX_SIZE = 256
 
 /** Swiper and its modules are imported using require to avoid breaking SSR */
 const Swiper = window.navigator
-  ? require('react-id-swiper/lib/ReactIdSwiper.full').default
+  ? require('react-id-swiper/lib/ReactIdSwiper').default
   : null
 
 const CSS_HANDLES = [
@@ -85,7 +85,7 @@ const ThumbnailSwiper = ({
 
   return (
     <div className={thumbClasses} data-testid="thumbnail-swiper">
-      <Swiper {...swiperParams} rebuildOnUpdate>
+      <Swiper {...swiperParams} shouldSwiperUpdate>
         {slides.map((slide, i) => {
           const itemContainerClasses = classNames('swiper-slide mb5 pointer',
             handles.productImagesThumb,

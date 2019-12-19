@@ -6,7 +6,7 @@ import { createItem } from '../../__mocks__/productMock'
 
 const mockUseProduct = useProduct
 
-jest.mock('react-id-swiper/lib/ReactIdSwiper.full', () => {
+jest.mock('react-id-swiper/lib/ReactIdSwiper', () => {
   return {
     default: ({ children }) => {
       return <div>{children}</div>

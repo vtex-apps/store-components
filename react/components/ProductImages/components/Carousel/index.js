@@ -39,7 +39,7 @@ const FakeSwiper = ({ children, containerClass, direction = THUMBS_ORIENTATION.H
 
 /** Swiper and its modules are imported using require to avoid breaking SSR */
 const Swiper = window.navigator
-  ? require('react-id-swiper/lib/ReactIdSwiper.full').default
+  ? require('react-id-swiper/lib/ReactIdSwiper').default
   : FakeSwiper
 
 const SwiperModules = window.navigator ? require('swiper/dist/js/swiper') : {}
@@ -423,7 +423,7 @@ class Carousel extends Component {
         {isThumbsVertical && thumbnailSwiper}
         <div className={imageClasses}>
           <ReactResizeDetector handleHeight onResize={this.updateSwiperSize}>
-            <SliderComponent {...this.galleryParams} rebuildOnUpdate>
+            <SliderComponent {...this.galleryParams} shouldSwiperUpdate>
               {slides.map((slide, i) => (
                 <div key={i} className={`${cssHandles.productImagesGallerySlide} swiper-slide center-all`}>
                   {this.renderSlide(slide, i)}
