@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.95.7] - 2019-12-19
+
 ## [3.95.6] - 2019-12-18
 ### Fixed
 - Problem with ProductImages scroll when selecting other SKUs.
