@@ -99,7 +99,7 @@ const Variation: FC<Props> = ({
               styles.skuSelectorName
               } c-muted-1 t-small overflow-hidden`}
           >
-            {name} {showErrorMessage && buyButton.clicked && !selectedItem && (<ErrorMessage />)}
+            {name}{showErrorMessage && buyButton.clicked && !selectedItem && (<ErrorMessage />)}
           </span>)}
           {displayImage && selectedItem && showValueNameForImageVariation && (
             <Fragment>
