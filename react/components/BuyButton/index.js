@@ -8,8 +8,8 @@ import { usePWA } from 'vtex.store-resources/PWAContext'
 import { useCssHandles } from 'vtex.css-handles'
 import useProduct from 'vtex.product-context/useProduct'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
-
 import { Button, ToastContext, Tooltip } from 'vtex.styleguide'
+import useMarketingSessionParams from './hooks/useMarketingSessionParams'
 
 const CONSTANTS = {
   SUCCESS_MESSAGE_ID: 'store/buybutton.buy-success',
@@ -110,6 +110,7 @@ export const BuyButton = ({
     intl,
   ])
   const orderFormItems = path(['orderForm', 'items'], orderFormContext)
+  const { utmParams, utmiParams } = useMarketingSessionParams()
 
   const resolveToastMessage = (success, isNewItem) => {
     if (!success) return translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
@@ -168,6 +169,8 @@ export const BuyButton = ({
             options: item.options,
             quantity: item.quantity,
           })),
+          ...(utmParams ? {utmParams} : {}),
+          ...(utmiParams ? {utmiParams} : {}),
         }
         const mutationRes = await orderFormContext.addItem({ variables })
         const { items } = mutationRes.data.addItem
