@@ -144,6 +144,7 @@ const SearchBar = ({
       iconClasses={iconClasses}
       iconBlockClass={iconBlockClass}
       inputErrorMessage={inputErrorMessage}
+      onGoToSearchPage={onGoToSearchPage}
     />
   )
 

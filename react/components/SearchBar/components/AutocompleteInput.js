@@ -123,7 +123,7 @@ AutocompleteInput.propTypes = {
   /** Downshift prop to be passed to the input */
   value: PropTypes.string,
   /** Downshift func to open the menu */
-  openMenu: PropTypes.func.isRequired,
+  openMenu: PropTypes.func,
   /** Placeholder to be used on the input */
   placeholder: PropTypes.string,
   compactMode: PropTypes.bool,
