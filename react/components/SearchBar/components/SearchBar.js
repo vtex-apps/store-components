@@ -12,12 +12,13 @@ import {
 import { Overlay } from 'vtex.react-portal'
 import { useCssHandles } from 'vtex.css-handles'
 import { intlShape, defineMessages } from 'react-intl'
+import styles from '../styles.css'
 
 import AutocompleteResults from '../../AutocompleteResults'
 
 import AutocompleteInput from './AutocompleteInput'
 
-const CSS_HANDLES = ['searchBarContainer', 'searchBarInnerContainer']
+const CSS_HANDLES = ['searchBarInnerContainer']
 const SEARCH_DELAY_TIME = 500
 const AUTCOMPLETE_EXTENSION_ID = 'autocomplete-result-list'
 
@@ -161,7 +162,7 @@ const SearchBar = ({
   return (
     <div
       ref={container}
-      className={classNames('w-100 mw7 pv4', handles.searchBarContainer)}
+      className={classNames('w-100 mw7 pv4', styles.searchBarContainer)}
       style={{
         ...(maxWidth && {
           maxWidth: typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth,
