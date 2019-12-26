@@ -1,8 +1,7 @@
 import React, { useCallback, memo, useState, FC, useMemo } from 'react'
-
-import Variation from './Variation'
 import { compose, flip, gt, filter, pathOr, clone } from 'ramda'
 
+import Variation from './Variation'
 import styles from '../styles.css'
 import {
   isColor,
@@ -25,12 +24,18 @@ import useEffectSkipMount from './hooks/useEffectSkipMount'
 export enum ShowValueForVariation {
   none = 'none',
   image = 'image',
-  all = 'all'
+  all = 'all',
 }
 
-function getShowValueForVariation(showValueForVariation: ShowValueForVariation, variationName: string) {
+function getShowValueForVariation(
+  showValueForVariation: ShowValueForVariation,
+  variationName: string
+) {
   const isImage = isColor(variationName)
-  return showValueForVariation === ShowValueForVariation.all || showValueForVariation === ShowValueForVariation.image && isImage
+  return (
+    showValueForVariation === ShowValueForVariation.all ||
+    (showValueForVariation === ShowValueForVariation.image && isImage)
+  )
 }
 
 interface Props {
@@ -160,7 +165,8 @@ const parseOptionNameToDisplayOption = ({
     // This is a impossible combination and will only appear if the prop allows.
     return {
       label: variationValue,
-      onSelectItem: () => { },
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      onSelectItem: () => {},
       image,
       available: true,
       impossible: true,
@@ -228,7 +234,9 @@ const getAvailableVariations = ({
   )
 }
 
-const getAvailableVariationsPromise = (params: AvailableVariationParams): Promise<DisplayVariation[]> => {
+const getAvailableVariationsPromise = (
+  params: AvailableVariationParams
+): Promise<DisplayVariation[]> => {
   return new Promise(resolve => {
     const result = getAvailableVariations(params)
     resolve(result)
@@ -263,25 +271,30 @@ const SKUSelector: FC<Props> = ({
       isMainAndImpossible,
       possibleItems,
     }: CallbackItem) => () =>
-        onSelectItem({ name, value, skuId, isMainAndImpossible, possibleItems }),
+      onSelectItem({ name, value, skuId, isMainAndImpossible, possibleItems }),
     [onSelectItem]
   )
-  const availableVariationsPayload = useMemo(() => ({
-    variations,
-    selectedVariations,
-    imagesMap,
-    onSelectItemMemo,
-    skuItems,
-    hideImpossibleCombinations,
-  }), [
-    variations,
-    selectedVariations,
-    imagesMap,
-    onSelectItemMemo,
-    skuItems,
-    hideImpossibleCombinations,
-  ])
-  const [displayVariations, setDisplayVariations] = useState<DisplayVariation[]>(() => getAvailableVariations(availableVariationsPayload))
+  const availableVariationsPayload = useMemo(
+    () => ({
+      variations,
+      selectedVariations,
+      imagesMap,
+      onSelectItemMemo,
+      skuItems,
+      hideImpossibleCombinations,
+    }),
+    [
+      variations,
+      selectedVariations,
+      imagesMap,
+      onSelectItemMemo,
+      skuItems,
+      hideImpossibleCombinations,
+    ]
+  )
+  const [displayVariations, setDisplayVariations] = useState<
+    DisplayVariation[]
+  >(() => getAvailableVariations(availableVariationsPayload))
 
   useEffectSkipMount(() => {
     let isCurrent = true
@@ -316,7 +329,10 @@ const SKUSelector: FC<Props> = ({
             containerClasses={variationClasses}
             key={`${variationOption.name}-${index}`}
             showErrorMessage={showVariationsErrorMessage}
-            showValueForVariation={getShowValueForVariation(showValueForVariation, variationOption.name)}
+            showValueForVariation={getShowValueForVariation(
+              showValueForVariation,
+              variationOption.name
+            )}
           />
         )
       })}
