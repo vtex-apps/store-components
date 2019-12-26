@@ -1,6 +1,7 @@
 {
   "store/search.placeholder": "Buscar",
   "store/search.searchFor": "Buscar {term}",
+  "store/search.search-term-too-short": "El término de búsqueda es demasiado corto",
   "admin/editor.productName.title": "Nombre del producto",
   "admin/editor.productName.description": "Componente del nombre del producto",
   "admin/editor.productName.showBrandName.title": "Mostrar la marca",

@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-
 import { Input } from 'vtex.styleguide'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
@@ -43,6 +42,10 @@ const AutocompleteInput = ({
   iconBlockClass,
   iconClasses,
   autoFocus,
+  onGoToSearchPage,
+  submitOnIconClick,
+  openMenu,
+  inputErrorMessage,
   ...restProps
 }) => {
   const inputRef = useRef(null)
@@ -62,14 +65,20 @@ const AutocompleteInput = ({
   }, [])
 
   const suffix = (
-    <span
+    <button
       className={`${iconClasses || ''} ${
         handles.searchBarIcon
-      } flex items-center pointer`}
-      onClick={() => value && onClearInput()}
+      } flex items-center pointer bn bg-transparent outline-0`}
+      onClick={
+        submitOnIconClick ? onGoToSearchPage : () => value && onClearInput()
+      }
     >
-      {value ? <CloseIcon /> : !hasIconLeft && <SearchIcon />}
-    </span>
+      {value && !submitOnIconClick ? (
+        <CloseIcon />
+      ) : (
+        !hasIconLeft && <SearchIcon />
+      )}
+    </button>
   )
 
   const prefix = (
@@ -92,6 +101,8 @@ const AutocompleteInput = ({
           prefix={hasIconLeft && prefix}
           suffix={suffix}
           {...restProps}
+          error={Boolean(inputErrorMessage)}
+          errorMessage={inputErrorMessage}
         />
       </div>
     </div>
@@ -111,6 +122,8 @@ AutocompleteInput.propTypes = {
   onKeyDown: PropTypes.func,
   /** Downshift prop to be passed to the input */
   value: PropTypes.string,
+  /** Downshift func to open the menu */
+  openMenu: PropTypes.func,
   /** Placeholder to be used on the input */
   placeholder: PropTypes.string,
   compactMode: PropTypes.bool,
@@ -124,6 +137,12 @@ AutocompleteInput.propTypes = {
   iconBlockClass: PropTypes.string,
   /** Identify if the search input should autofocus or not */
   autoFocus: PropTypes.bool,
+  /** Function to direct the user to the searchPage */
+  onGoToSearchPage: PropTypes.func.isRequired,
+  /** Identify if icon should submit on click */
+  submitOnIconClick: PropTypes.bool,
+  /** Error message showed in search input */
+  inputErrorMessage: PropTypes.string,
 }
 
 export default AutocompleteInput

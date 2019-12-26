@@ -7,10 +7,9 @@ import { Spinner } from 'vtex.styleguide'
 import { Link, useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
-import autocomplete from '../queries/autocomplete.gql'
-
 // This import should NOT be removed
-import styles from '../styles.css'
+import styles from './styles.css'
+import autocomplete from './queries/autocomplete.gql'
 
 const MIN_RESULTS_WIDTH = 320
 const CSS_HANDLES = [
@@ -48,7 +47,7 @@ const getLinkProps = element => {
 }
 
 /** List of search results to be displayed*/
-const ResultsList = ({
+const AutocompleteResults = ({
   parentContainer,
   isOpen,
   data = {}, // when inputValue is '', query is skipped and value is undefined
@@ -81,7 +80,7 @@ const ResultsList = ({
 
   const listClassNames = classnames(
     handles.resultsList,
-    'z-max w-100 bl-ns bb br-ns bw1 b--muted-4 bg-base c-on-base t-body left-0 list pv4 ph0 mv0',
+    'z-max w-100 bl-ns bb br-ns bw1 b--muted-4 bg-base c-on-base t-body left-0 list pv4 ph0 mv0 list overflow-y-auto',
     mobile ? 'fixed' : 'absolute',
     { dn: !isOpen || !inputValue }
   )
@@ -126,7 +125,8 @@ const ResultsList = ({
           itemIndex: 0,
           highlightedIndex,
         })}
-        to={customSearchPageUrl.replace(/\$\{term\}/g, inputValue)}>
+        to={customSearchPageUrl.replace(/\$\{term\}/g, inputValue)}
+      >
         {fullTextSearchLabel}
       </Link>
     ) : (
@@ -235,7 +235,7 @@ const itemProps = PropTypes.shape({
   criteria: PropTypes.string,
 })
 
-ResultsList.propTypes = {
+AutocompleteResults.propTypes = {
   /** Graphql data response. */
   data: PropTypes.shape({
     autocomplete: PropTypes.shape({
@@ -260,13 +260,13 @@ ResultsList.propTypes = {
   attemptPageTypeSearch: PropTypes.bool,
 }
 
-const ResultsListWithData = graphql(autocomplete, {
+const AutocompleteResultsWithData = graphql(autocomplete, {
   skip: ({ inputValue }) => !inputValue,
   options: props => ({
     variables: {
       inputValue: props.inputValue,
     },
   }),
-})(ResultsList)
+})(AutocompleteResults)
 
-export default ResultsListWithData
+export default AutocompleteResultsWithData

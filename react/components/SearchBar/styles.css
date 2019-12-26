@@ -1,23 +1,3 @@
-.resultsItemImage {
-  width: 50px;
-}
-
-.resultsList {
-  list-style-type: none;
-  max-height: 60vh;
-  overflow-y: auto;
-}
-
-.resultsList a,
-.resultsList div {
-  text-decoration: none;
-  color: #727273;
-}
-
-.resultsList a:hover {
-  background-color: #f2f4f5;
-}
-
 .searchBarContainer :global(.vtex-input-prefix__group) {
   height: 38px;
 }
@@ -39,10 +19,6 @@
   padding-left: 40px !important;
 }
 
-.searchBarContainer .resultsList {
-  top: 100%;
-}
-
 .searchMobile .vtex-button {
   padding: 0.9rem;
   font-weight: 400;
@@ -56,9 +32,5 @@
 @media only screen and (max-width: 49rem) {
   .searchBarContainer input {
     box-shadow: none;
-  }
-  .resultsList {
-    margin: 0px;
-    max-height: calc(100vh - 6.2rem);
   }
 }
