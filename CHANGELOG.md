@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `showValueForVariation` to `SKUSelector`.
 
+### Changed
+- Deprecate `showValueNameForImageVariation` prop from `SKUSelector.
+
 ## [3.97.1] - 2019-12-30
 ### Fixed
 - Fix problem of swiper breaking when updating in a infinite loop.
