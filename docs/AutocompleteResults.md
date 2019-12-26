@@ -1,8 +1,8 @@
 📢 Use, [contribute](https://github.com/vtex-apps/store-components) or open issues for this project through [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-# AutocompleteResults
+# Autocomplete Result List
 
-`autocomplete-result-list` is a VTEX Component that represents the autocomplete from the search bar. This component can be imported and used by any VTEX App.
+`autocomplete-result-list` is a VTEX Component that represents the autocomplete from the search bar. This components serves mostly to ease the creation of custom autocomplete components by search engines.
 
 ## Configuration
 
@@ -17,10 +17,12 @@
 2. Add the `autocomplete-result-list` block into the `search-bar` blocks, for example:
 
 ```json
-"search-bar#my-search-bar": {
-    "blocks": ["autocomplete-result-list.v2#my-autocomplete"]
-}
+  "search-bar": {
+    "blocks": ["autocomplete-result-list"]
+  }
 ```
+
+## JavaScript API (advanced)
 
 This autocomplete is commonly used with [Downshift](https://github.com/downshift-js/downshift). Some of its props are directly related to it.
 
