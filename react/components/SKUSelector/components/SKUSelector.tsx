@@ -1,7 +1,6 @@
 import React, { useCallback, memo, useState, FC, useMemo } from 'react'
 
 import Variation from './Variation'
-
 import { compose, flip, gt, filter, pathOr, clone } from 'ramda'
 
 import styles from '../styles.css'

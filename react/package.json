@@ -45,7 +45,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/swiper": "^4.4.4",
     "@vtex/test-tools": "^2.1.1",
-    "@vtex/tsconfig": "^0.2.0",
+    "@vtex/tsconfig": "^0.3.0",
     "apollo-cache-inmemory": "^1.4.3",
     "eslint": "^6.5.1",
     "eslint-config-vtex-react": "^5.0.1",
