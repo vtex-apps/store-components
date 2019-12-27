@@ -27,7 +27,7 @@ This component is meant to be used inside the `store.product` block and consume 
   },
   "flex-layout.row#product": {
     "children": [
-      "buy-button#product"
+      "product-specifications#product"
     ]
   },
    "product-specifications#product": {
