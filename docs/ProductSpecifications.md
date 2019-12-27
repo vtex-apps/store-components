@@ -2,8 +2,7 @@
 
 # Product Specifications
 
-`ProductSpecifications` is a VTEX component that shows the technical specifications of a product.
-This component is meant to be used inside the `store.product` block and consume data from the `product-context`.
+`ProductSpecifications` is a VTEX component that shows the technical [specifications](https://help.vtex.com/tutorial/what-are-fields-or-specifications--2lB4AgibEseceMggKE2k2m) of a product.
 
 ![Screen Shot 2019-12-27 at 14 07 30](https://user-images.githubusercontent.com/27777263/71525823-4bd8a380-28b2-11ea-8d5c-7678426ec1ab.png)
 
@@ -37,6 +36,8 @@ This component is meant to be used inside the `store.product` block and consume 
     }
   },
 ```
+
+⚠️ The block consumes data from the product-context therefore it should only be used in the store.product block i.e. in the product template.
 
 | Prop name                | Type                                                       | Description                                                                                                            | Default value |
 | ------------------------ | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------- |
