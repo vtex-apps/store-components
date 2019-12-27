@@ -1,68 +1,63 @@
-# Product Specifications
+📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion). 
 
-## Description
+# Product Specifications
 
 `ProductSpecifications` is a VTEX component that shows the technical specifications of a product.
 This component is meant to be used inside the `store.product` block and consume data from the `product-context`.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+![Screen Shot 2019-12-27 at 14 07 30](https://user-images.githubusercontent.com/27777263/71525823-4bd8a380-28b2-11ea-8d5c-7678426ec1ab.png)
 
-## Table of Contents
+## Configuration
 
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-    - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespaces](#css-namespaces)
+1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
 
-## Usage
-
-You should follow the usage instruction in the main [README](/README.md#usage).
-
-Just add this component to your `store.product` block:
-
-```js
-"store.product": {
-  "children": ["product-specifications"]
-}
+```json
+  "dependencies": {
+    "vtex.store-components": "3.x"
+  }
 ```
 
-### Blocks API
+2. Add the `product-specifications` block to any block bellow `store.product` (Product template). For example:
 
-When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `ProductSpecifications` and describes if they are required or optional.
-
-```js
- "product-specifications":{
-   "component": "ProductSpecifications"
- }
+```json
+  "store.product": {
+    "children": [
+      "flex-layout.row#product",
+    ]
+  },
+  "flex-layout.row#product": {
+    "children": [
+      "buy-button#product"
+    ]
+  },
+   "product-specifications#product": {
+    "props": {
+      "shoudCollapseOnTabChange": true,
+      "collapsible": "desktopOnly"
+    }
+  },
 ```
 
-For now this block does not have any required or optional blocks.
+| Prop name                | Type                                                       | Description                                                                                                            | Default value |
+| ------------------------ | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------- |
+| hiddenSpecifications     | `String[]`                                                 | Type names of specifications you want to hide                                                                          | `[]`          |
+| visibleSpecifications    | `String[]`                                                 | Type names of specifications you want to appear. Only provide one of `hiddenSpecifications` or `visibleSpecifications` | `[]`          |
+| showSpecificationsTab    | `Boolean`                                                  | Choose if you want to show the component with tabs mode                                                                | `false`       |
+| shoudCollapseOnTabChange | `Boolean`                                                  | If it should collapse if you change the tab                                                                            | `false`       |
+| collapsible              | `mobileOnly`&#124;`desktopOnly`&#124;`always`&#124;`never` | Control when should the content of the specifications be collapsible                                                   | `always`      |
 
-### Configuration
+## Customization
 
-Through the Storefront, you can change the `ProductSpecifications`'s behavior and interface. However, you also can make in your theme app, as Store theme does.
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| Prop name             | Type       | Description                                                                                                            | Default value |
-| --------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------- | ------------- |
-| hiddenSpecifications  | `String[]` | Type names of specifications you want to hide                                                                          | `[]`          |
-| visibleSpecifications | `String[]` | Type names of specifications you want to appear. Only provide one of `hiddenSpecifications` or `visibleSpecifications` | `[]`          |
-| showSpecificationsTab | `Boolean`  | Choose if you want to show the component with tabs mode                                                                | `false`       |
-| shoudCollapseOnTabChange | `Boolean` | If it should collapse if you change the tab | `false` |
-| collapsible | `mobileOnly`&#124;`desktopOnly`&#124;`always`&#124;`never` | Control when should the content of the specifications be collapsible   | `always` |
-
-### Styles API
-
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
-
-#### CSS Namespaces
-
-Below, we describe the namespace that are defined in the `ProductSpecifications`.
-
-| Class name                     | Description                                                                                                                     | Component Source                                          |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| `specificationsTitle`          | The title of the specifications section                                                                                         | [index](/react/components/ProductSpecifications/index.js) |
-| `specificationsTableContainer` | The main container of the product specifications in table view including the `specificationsTable` and the `specificationTitle` | [index](/react/components/ProductSpecifications/index.js) |
-| `specificationsTable`          | The table of specifications                                                                                                     | [index](/react/components/ProductSpecifications/index.js) |
-| `specificationsTabsContainer`  | The main container of the product specifications in tabs view including the `specificationsTable` and the `specificationTitle`  | [index](/react/components/ProductSpecifications/index.js) |
-| `specificationsTab`            | The content inside a tab of the product                                                                                         | [index](/react/components/ProductSpecifications/index.js) |
+| Class name                                |
+| ----------------------------------------- |
+| `specificationsTitle`                     |
+| `specificationsTableContainer`            |
+| `specificationsTable`                     |
+| `specificationsTabsContainer`             |
+| `specificationsTab`                       |
+| `specificationsTablePropertyHeading`      |
+| `specificationsTableSpecificationHeading` |
+| `specificationItemProperty`               |
+| `specificationItemSpecifications`         |
