@@ -2,13 +2,13 @@
 
 # Product Specifications
 
-`ProductSpecifications` is a VTEX component that shows the technical [specifications](https://help.vtex.com/tutorial/what-are-fields-or-specifications--2lB4AgibEseceMggKE2k2m) of a product.
+`ProductSpecifications` is a block that shows the technical [specifications](https://help.vtex.com/tutorial/what-are-fields-or-specifications--2lB4AgibEseceMggKE2k2m) of a product.
 
 ![Screen Shot 2019-12-27 at 14 07 30](https://user-images.githubusercontent.com/27777263/71525823-4bd8a380-28b2-11ea-8d5c-7678426ec1ab.png)
 
 ## Configuration
 
-1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
+1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json`;
 
 ```json
   "dependencies": {
