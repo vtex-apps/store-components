@@ -25,10 +25,10 @@ const CSS_HANDLES = [
 const Thumbnail = ({
   alt,
   index,
+  onThumbClick,
   height,
   thumbUrl,
   handles,
-  gallerySwiper,
   maxHeight = 150,
   aspectRatio = 'auto',
   itemContainerClasses,
@@ -37,7 +37,7 @@ const Thumbnail = ({
     <div
       className={itemContainerClasses}
       style={{ height, maxHeight: maxHeight || 'unset' }}
-      onClick={() => gallerySwiper && gallerySwiper.slideTo(index)}
+      onClick={() => onThumbClick(index)}
     >
       <figure
         className={handles.figure}
@@ -65,7 +65,7 @@ const ThumbnailSwiper = ({
   swiperParams,
   thumbUrls,
   position,
-  gallerySwiper,
+  onThumbClick,
   activeIndex,
   thumbnailAspectRatio,
   thumbnailMaxHeight,
@@ -104,7 +104,7 @@ const ThumbnailSwiper = ({
               index={i}
               handles={handles}
               height={isThumbsVertical ? 'auto' : '115px'}
-              gallerySwiper={gallerySwiper}
+              onThumbClick={onThumbClick}
               alt={slide.alt}
               thumbUrl={slide.thumbUrl || thumbUrls[i]}
               aspectRatio={thumbnailAspectRatio}
