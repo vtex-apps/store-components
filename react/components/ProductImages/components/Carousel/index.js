@@ -70,11 +70,9 @@ const initialState = {
 }
 
 class Carousel extends Component {
-  state = {
-    ...initialState,
-    thumbSwiper: null,
-    gallerySwiper: null,
-  }
+  thumbSwiper = null
+  gallerySwiper = null
+  state = initialState
 
   async setInitialVariablesState() {
     const slides = this.props.slides || []
@@ -95,13 +93,12 @@ class Carousel extends Component {
   }
 
   updateSwiperSize = debounce(() => {
-    const { thumbSwiper, gallerySwiper } = this.state
-    if (thumbSwiper) {
-      thumbSwiper.update()
+    if (this.thumbSwiper) {
+      this.thumbSwiper.update()
     }
 
-    if (gallerySwiper) {
-      gallerySwiper.update()
+    if (this.gallerySwiper) {
+      this.gallerySwiper.update()
     }
   }, 500)
 
@@ -140,23 +137,23 @@ class Carousel extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { loaded, activeIndex, gallerySwiper, thumbSwiper } = this.state
+    const { loaded, activeIndex } = this.state
     const isVideo = this.isVideo
 
     if (!equals(prevProps.slides, this.props.slides)) {
       this.setInitialVariablesState()
       this.setState(initialState)
       if (this.props.slides && this.props.slides.length > 1) {
-        gallerySwiper && gallerySwiper.slideTo(0)
-        thumbSwiper && thumbSwiper.slideTo(0)
+        this.gallerySwiper && this.gallerySwiper.slideTo(0)
+        this.thumbSwiper && this.thumbSwiper.slideTo(0)
       }
       return
     }
 
-    const paginationElement = path(['pagination', 'el'], gallerySwiper)
+    const paginationElement = path(['pagination', 'el'], this.gallerySwiper)
     if (paginationElement) paginationElement.hidden = isVideo[activeIndex]
 
-    const gallerySwiperZoom = path(['zoom'], gallerySwiper)
+    const gallerySwiperZoom = path(['zoom'], this.gallerySwiper)
 
     if (gallerySwiperZoom) {
       loaded[activeIndex]
@@ -166,7 +163,7 @@ class Carousel extends Component {
   }
 
   onSlideChange = () => {
-    const activeIndex = path(['activeIndex'], this.state.gallerySwiper)
+    const activeIndex = path(['activeIndex'], this.gallerySwiper)
     this.setState({ activeIndex, sliderChanged: true })
   }
 
@@ -214,7 +211,6 @@ class Carousel extends Component {
   }
 
   get galleryParams() {
-    const { thumbSwiper } = this.state
     const {
       cssHandles,
       slides = [],
@@ -244,7 +240,7 @@ class Carousel extends Component {
         },
       }),
       thumbs: {
-        swiper: thumbSwiper,
+        swiper: this.thumbSwiper,
       },
       threshold: 10,
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
@@ -271,7 +267,11 @@ class Carousel extends Component {
       on: {
         slideChange: this.onSlideChange,
       },
-      getSwiper: swiper => this.setState({ gallerySwiper: swiper }),
+      getSwiper: swiper => {
+        if (this.gallerySwiper !== swiper) {
+          this.gallerySwiper = swiper
+        }
+      }
     }
   }
 
@@ -352,12 +352,16 @@ class Carousel extends Component {
        * so that clicking on next/prev will scroll more than
        * one thumbnail */
       slidesPerGroup: displayThumbnailsArrows ? 4 : 1,
-      getSwiper: swiper => this.setState({ thumbSwiper: swiper }),
+      getSwiper: swiper => {
+        if (this.thumbSwiper !== swiper) {
+          this.thumbSwiper = swiper
+        }
+      }
     }
   }
 
   render() {
-    const { thumbsLoaded, gallerySwiper, activeIndex } = this.state
+    const { thumbsLoaded, activeIndex } = this.state
 
     const {
       position,
@@ -401,7 +405,7 @@ class Carousel extends Component {
         swiperParams={this.thumbnailsParams}
         thumbUrls={this.state.thumbUrl}
         position={position}
-        gallerySwiper={gallerySwiper}
+        onThumbClick={index => this.gallerySwiper && this.gallerySwiper.slideTo(index)}
         thumbnailAspectRatio={thumbnailAspectRatio}
         thumbnailMaxHeight={thumbnailMaxHeight}
       />
