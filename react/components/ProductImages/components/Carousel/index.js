@@ -271,7 +271,11 @@ class Carousel extends Component {
       on: {
         slideChange: this.onSlideChange,
       },
-      getSwiper: swiper => this.setState({ gallerySwiper: swiper }),
+      getSwiper: swiper => {
+        if (this.state.gallerySwiper !== swiper) {
+          this.setState({ gallerySwiper: swiper })
+        }
+      }
     }
   }
 
@@ -352,7 +356,11 @@ class Carousel extends Component {
        * so that clicking on next/prev will scroll more than
        * one thumbnail */
       slidesPerGroup: displayThumbnailsArrows ? 4 : 1,
-      getSwiper: swiper => this.setState({ thumbSwiper: swiper }),
+      getSwiper: swiper => {
+        if (this.state.thumbSwiper !== swiper) {
+          this.setState({ thumbSwiper: swiper })
+        }
+      }
     }
   }
 
