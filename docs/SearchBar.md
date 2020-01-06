@@ -1,3 +1,4 @@
+
 # Search Bar
 
 ## Description
@@ -36,6 +37,7 @@ Then, add `search-bar` block into your app theme, as we do in our [Store Header]
 | `blurOnSubmit`            | `Boolean`                                     | Identify if input should blur on submit.                                                                                                          | `false`       |
 | `autocompleteFullWidth`  | `Boolean`                                     | If true, the autocomplete will fill the whole window horizontally.                                                                                | `false`       |
 | `submitOnIconClick`       | `Boolean`                                     | Identify if search icon should submit on click.                                                                                                   | `false`       |
+| `toggleableInput`       | `Boolean`                                     | Identify if search input should toggle on click on the search icon.                                                                                                   | `false`       |
 
 ### `HorizontalAlignment`
 
