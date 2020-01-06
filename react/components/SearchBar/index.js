@@ -56,6 +56,7 @@ class SearchBarContainer extends Component {
       iconClasses,
       autoFocus,
       maxWidth,
+      toggleableInput,
       attemptPageTypeSearch,
       customSearchPageUrl,
       placeholder = intl.formatMessage({
@@ -83,6 +84,7 @@ class SearchBarContainer extends Component {
         compactMode={compactMode}
         hasIconLeft={hasIconLeft}
         iconClasses={iconClasses}
+        toggleableInput={toggleableInput}
         maxWidth={maxWidth}
         attemptPageTypeSearch={attemptPageTypeSearch}
         customSearchPageUrl={customSearchPageUrl}
@@ -138,6 +140,8 @@ SearchBarContainer.propTypes = {
   minSearchTermLength: PropTypes.number,
   /** If true, the autocomplete will fill the whole window horizontally */
   autocompleteFullWidth: PropTypes.bool,
+  /** If true, the autocomplete will be able to toggle between clicks */
+  toggleableInput: PropTypes.bool,
 }
 
 export default injectIntl(SearchBarContainer)

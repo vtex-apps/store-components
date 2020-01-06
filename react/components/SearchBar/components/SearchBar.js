@@ -49,6 +49,7 @@ const SearchBar = ({
   submitOnIconClick,
   minSearchTermLength,
   autocompleteFullWidth,
+  toggleableInput,
   intl,
 }) => {
   const container = useRef()
@@ -146,6 +147,7 @@ const SearchBar = ({
       iconBlockClass={iconBlockClass}
       inputErrorMessage={inputErrorMessage}
       onGoToSearchPage={onGoToSearchPage}
+      toggleableInput={toggleableInput}
     />
   )
 
@@ -198,6 +200,7 @@ const SearchBar = ({
                 submitOnIconClick={submitOnIconClick}
                 openAutocompleteOnFocus={openAutocompleteOnFocus}
                 openMenu={openMenu}
+                toggleableInput={toggleableInput}
                 inputErrorMessage={inputErrorMessage}
                 {...getInputProps({
                   onKeyDown: event => {
@@ -296,6 +299,8 @@ SearchBar.propTypes = {
   minSearchTermLength: PropTypes.number,
   /** If true, the autocomplete will fill the whole window horizontally */
   autocompleteFullWidth: PropTypes.bool,
+  /** If true, the autocomplete will be able to toggle between clicks */
+  toggleableInput: PropTypes.bool,
   /* Internationalization */
   intl: intlShape.isRequired,
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Input } from 'vtex.styleguide'
@@ -46,10 +46,12 @@ const AutocompleteInput = ({
   submitOnIconClick,
   openMenu,
   inputErrorMessage,
+  toggleableInput,
   ...restProps
 }) => {
   const inputRef = useRef(null)
   const handles = useCssHandles(CSS_HANDLES)
+  const [showInput, setShowInput] = useState(false)
 
   useEffect(() => {
     const changeClassInput = () => {
@@ -64,13 +66,20 @@ const AutocompleteInput = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const toggleInput = () => {
+    if (toggleableInput) {
+      setShowInput(!showInput)
+    }
+    submitOnIconClick ? onGoToSearchPage() : value && onClearInput()
+  }
+
   const suffix = (
     <button
       className={`${iconClasses || ''} ${
         handles.searchBarIcon
       } flex items-center pointer bn bg-transparent outline-0`}
       onClick={
-        submitOnIconClick ? onGoToSearchPage : () => value && onClearInput()
+        toggleInput
       }
     >
       {value && !submitOnIconClick ? (
@@ -94,16 +103,30 @@ const AutocompleteInput = ({
   return (
     <div className={`${handles.autoCompleteOuterContainer} flex`}>
       <div className={classContainer}>
-        <Input
-          ref={inputRef}
-          size="large"
-          value={value}
-          prefix={hasIconLeft && prefix}
-          suffix={suffix}
-          {...restProps}
-          error={Boolean(inputErrorMessage)}
-          errorMessage={inputErrorMessage}
-        />
+        {
+          toggleableInput ?
+            showInput ? <Input
+              ref={inputRef}
+              size="large"
+              value={value}
+              prefix={hasIconLeft && prefix}
+              suffix={suffix}
+              {...restProps}
+              error={Boolean(inputErrorMessage)}
+              errorMessage={inputErrorMessage}
+            /> : suffix
+            :
+            <Input
+              ref={inputRef}
+              size="large"
+              value={value}
+              prefix={hasIconLeft && prefix}
+              suffix={suffix}
+              {...restProps}
+              error={Boolean(inputErrorMessage)}
+              errorMessage={inputErrorMessage}
+            />
+        }
       </div>
     </div>
   )
@@ -143,6 +166,8 @@ AutocompleteInput.propTypes = {
   submitOnIconClick: PropTypes.bool,
   /** Error message showed in search input */
   inputErrorMessage: PropTypes.string,
+  /** If true, the autocomplete will be able to toggle between clicks */
+  toggleableInput: PropTypes.bool,
 }
 
 export default AutocompleteInput
