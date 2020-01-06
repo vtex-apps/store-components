@@ -4,7 +4,6 @@ import classNames from 'classnames'
 import Downshift from 'downshift'
 import debounce from 'debounce'
 import {
-  NoSSR,
   useRuntime,
   ExtensionPoint,
   useChildBlock,
@@ -136,19 +135,6 @@ const SearchBar = ({
     setInputErrorMessage()
   }
 
-  const fallback = (
-    <AutocompleteInput
-      placeholder={placeholder}
-      onInputChange={onInputChange}
-      inputValue={inputValue}
-      hasIconLeft={hasIconLeft}
-      iconClasses={iconClasses}
-      iconBlockClass={iconBlockClass}
-      inputErrorMessage={inputErrorMessage}
-      onGoToSearchPage={onGoToSearchPage}
-    />
-  )
-
   const isAutocompleteDeclared = Boolean(
     useChildBlock({ id: AUTCOMPLETE_EXTENSION_ID })
   )
@@ -169,88 +155,86 @@ const SearchBar = ({
         }),
       }}
     >
-      <NoSSR onSSR={fallback}>
-        <Downshift onSelect={onSelect}>
-          {({
-            getInputProps,
-            getItemProps,
-            getMenuProps,
-            selectedItem,
-            highlightedIndex,
-            isOpen,
-            closeMenu,
-            openMenu,
-          }) => (
-            <div
-              className={classNames(
-                'relative-m w-100',
-                handles.searchBarInnerContainer
-              )}
-            >
-              <AutocompleteInput
-                // eslint-disable-next-line jsx-a11y/no-autofocus
-                autoFocus={autoFocus}
-                compactMode={compactMode}
-                onClearInput={onClearInput}
-                hasIconLeft={hasIconLeft}
-                iconClasses={iconClasses}
-                onGoToSearchPage={onGoToSearchPage}
-                submitOnIconClick={submitOnIconClick}
-                openAutocompleteOnFocus={openAutocompleteOnFocus}
-                openMenu={openMenu}
-                inputErrorMessage={inputErrorMessage}
-                {...getInputProps({
-                  onKeyDown: event => {
-                    // Only call default search function if user doesn't
-                    // have any item highlighted in the menu options
-                    if (event.key === 'Enter' && highlightedIndex === null) {
-                      const errorMessage = validateInput()
+      <Downshift onSelect={onSelect}>
+        {({
+          getInputProps,
+          getItemProps,
+          getMenuProps,
+          selectedItem,
+          highlightedIndex,
+          isOpen,
+          closeMenu,
+          openMenu,
+        }) => (
+          <div
+            className={classNames(
+              'relative-m w-100',
+              handles.searchBarInnerContainer
+            )}
+          >
+            <AutocompleteInput
+              // eslint-disable-next-line jsx-a11y/no-autofocus
+              autoFocus={autoFocus}
+              compactMode={compactMode}
+              onClearInput={onClearInput}
+              hasIconLeft={hasIconLeft}
+              iconClasses={iconClasses}
+              onGoToSearchPage={onGoToSearchPage}
+              submitOnIconClick={submitOnIconClick}
+              openAutocompleteOnFocus={openAutocompleteOnFocus}
+              openMenu={openMenu}
+              inputErrorMessage={inputErrorMessage}
+              {...getInputProps({
+                onKeyDown: event => {
+                  // Only call default search function if user doesn't
+                  // have any item highlighted in the menu options
+                  if (event.key === 'Enter' && highlightedIndex === null) {
+                    const errorMessage = validateInput()
 
-                      if (errorMessage) {
-                        showInputErrorMessage(errorMessage)
-                        return
-                      }
-
-                      if (blurOnSubmit) {
-                        event.currentTarget.blur()
-                      }
-
-                      onGoToSearchPage()
-                      closeMenu()
-                    } else {
-                      hideInputErrorMessage()
+                    if (errorMessage) {
+                      showInputErrorMessage(errorMessage)
+                      return
                     }
-                  },
-                  placeholder,
-                  value: inputValue,
-                  onChange: onInputChange,
-                  onFocus: openAutocompleteOnFocus ? openMenu : undefined,
-                })}
+
+                    if (blurOnSubmit) {
+                      event.currentTarget.blur()
+                    }
+
+                    onGoToSearchPage()
+                    closeMenu()
+                  } else {
+                    hideInputErrorMessage()
+                  }
+                },
+                placeholder,
+                value: inputValue,
+                onChange: onInputChange,
+                onFocus: openAutocompleteOnFocus ? openMenu : undefined,
+              })}
+            />
+            <Overlay
+              alignment={autocompleteAlignment}
+              fullWindow={autocompleteFullWidth}
+            >
+              <SelectedAutocompleteResults
+                parentContainer={container}
+                {...{
+                  attemptPageTypeSearch,
+                  isOpen,
+                  getMenuProps,
+                  inputValue: searchTerm,
+                  getItemProps,
+                  selectedItem,
+                  highlightedIndex,
+                  closeMenu,
+                  onClearInput,
+                  customSearchPageUrl,
+                }}
               />
-              <Overlay
-                alignment={autocompleteAlignment}
-                fullWindow={autocompleteFullWidth}
-              >
-                <SelectedAutocompleteResults
-                  parentContainer={container}
-                  {...{
-                    attemptPageTypeSearch,
-                    isOpen,
-                    getMenuProps,
-                    inputValue: searchTerm,
-                    getItemProps,
-                    selectedItem,
-                    highlightedIndex,
-                    closeMenu,
-                    onClearInput,
-                    customSearchPageUrl,
-                  }}
-                />
-              </Overlay>
-            </div>
-          )}
-        </Downshift>
-      </NoSSR>
+            </Overlay>
+          </div>
+        )}
+      </Downshift>
     </div>
   )
 }
