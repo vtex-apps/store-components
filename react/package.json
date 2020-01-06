@@ -10,7 +10,7 @@
     "apollo-client": "^2.5.1",
     "classnames": "^2.2.5",
     "debounce": "^1.2.0",
-    "downshift": "^3.2.10",
+    "downshift": "^4.0.1",
     "graphql": "~0.13.2",
     "graphql-tag": "~2.8.0",
     "hoist-non-react-statics": "^3.3.0",
