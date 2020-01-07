@@ -79,7 +79,7 @@ const AutocompleteInput = ({
         handles.searchBarIcon
       } flex items-center pointer bn bg-transparent outline-0`}
       onClick={
-        toggleInput
+        handleClick
       }
     >
       {value && !submitOnIconClick ? (
