@@ -66,7 +66,7 @@ const AutocompleteInput = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const toggleInput = () => {
+  const handleClick = () => {
     if (toggleableInput) {
       setShowInput(!showInput)
     }
