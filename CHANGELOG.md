@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-- Added possibility to toggle search bar input via search icon
+### Added
+- New prop `toggleableInput` to toggle search bar input via search icon
 
 ## [3.98.0] - 2020-01-02
 ### Added
