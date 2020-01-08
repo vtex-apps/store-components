@@ -56,7 +56,7 @@ class SearchBarContainer extends Component {
       iconClasses,
       autoFocus,
       maxWidth,
-      toggleableInput,
+      toggleableInput = false,
       attemptPageTypeSearch,
       customSearchPageUrl,
       placeholder = intl.formatMessage({
