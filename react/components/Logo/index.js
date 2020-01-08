@@ -14,8 +14,8 @@ const CSS_HANDLES = ['logoImage', 'logoContainer']
 /**
  * Wraps element with link, if exists
  */
-const wrapWithLink = (href, element) =>
-  href ? <Link className={linkClass} to={href}>{element}</Link> : element
+const wrapWithLink = (href, element, linkClass) =>
+  href ? <Link className={linkClass || ''} to={href}>{element}</Link> : element
 
 /**
  * Logo of the store
@@ -81,7 +81,7 @@ const Logo = ({
     </span>
   )
 
-  return wrapWithLink(href, logo)
+  return wrapWithLink(href, logo, linkClass)
 }
 
 Logo.propTypes = {
