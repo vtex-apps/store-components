@@ -1,4 +1,3 @@
-
 # Search Bar
 
 ## Description
