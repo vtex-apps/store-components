@@ -12,6 +12,7 @@ const CSS_HANDLES = [
   'compactMode',
   'autoCompleteOuterContainer',
   'paddingInput',
+  'fadeIn'
 ]
 
 const CloseIcon = () => {
@@ -105,16 +106,19 @@ const AutocompleteInput = ({
       <div className={classContainer}>
         {
           toggleableInput ?
-            showInput ? <Input
-              ref={inputRef}
-              size="large"
-              value={value}
-              prefix={hasIconLeft && prefix}
-              suffix={suffix}
-              {...restProps}
-              error={Boolean(inputErrorMessage)}
-              errorMessage={inputErrorMessage}
-            /> : suffix
+            showInput ?
+              <div className={handles.fadeIn}>
+                <Input
+                  ref={inputRef}
+                  size="large"
+                  value={value}
+                  prefix={hasIconLeft && prefix}
+                  suffix={suffix}
+                  {...restProps}
+                  error={Boolean(inputErrorMessage)}
+                  errorMessage={inputErrorMessage}
+                />
+              </div> : suffix
             :
             <Input
               ref={inputRef}
