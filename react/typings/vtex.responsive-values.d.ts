@@ -1,5 +1,5 @@
 declare module 'vtex.responsive-values' {
-  const useResponsiveValues: <U>(input: U) => U
+  const useResponsiveValues: (input: any) => any
   const useResponsiveValue: <T>(input: MaybeResponsiveInput<T>) => T
 
   enum InputDevices {
