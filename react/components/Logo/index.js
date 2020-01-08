@@ -15,7 +15,7 @@ const CSS_HANDLES = ['logoImage', 'logoContainer']
  * Wraps element with link, if exists
  */
 const wrapWithLink = (href, element) =>
-  href ? <Link to={href}>{element}</Link> : element
+  href ? <Link className={linkClass} to={href}>{element}</Link> : element
 
 /**
  * Logo of the store
@@ -28,6 +28,7 @@ const Logo = ({
   title,
   mobileWidth,
   mobileHeight,
+  linkClass
 }) => {
   const {
     amp,
@@ -92,6 +93,8 @@ Logo.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /** Logo's height */
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /** Logo's link className */
+  linkClass: PropTypes.string
 }
 
 Logo.schema = {
