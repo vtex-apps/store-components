@@ -103,6 +103,7 @@ const Variation: FC<Props> = ({
     showNavigationArrows: 'always',
     showPaginationDots: 'never',
     arrowIconSize: sliderArrowIconSize,
+    fullWidth: false,
   }
 
   const selectorItemsArray = displayOptions.map(option => {
