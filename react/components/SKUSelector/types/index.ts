@@ -1,12 +1,13 @@
 export enum InitialSelectionType {
   complete = 'complete',
   image = 'image',
-  empty = 'empty'
+  empty = 'empty',
 }
 
 export enum DisplayMode {
   select = 'select',
-  default = 'default'
+  default = 'default',
+  slider = 'slider',
 }
 
 export interface SelectorProductItem extends Omit<ProductItem, 'variations'> {
@@ -20,7 +21,7 @@ export interface CallbackItem {
   name: string
   value: string
   skuId: string | null
-  isMainAndImpossible: Boolean
+  isMainAndImpossible: boolean
   possibleItems: SelectorProductItem[]
 }
 
