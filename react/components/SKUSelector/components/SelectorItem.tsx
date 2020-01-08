@@ -52,6 +52,7 @@ const SelectorItem: FC<Props> = ({
   const containerClasses = classNames(
     styles.skuSelectorItem,
     `${styles.skuSelectorItem}--${slug(variationValue)}`,
+    !isAvailable && styles.unavailable,
     'relative di pointer flex items-center outline-0',
     {
       [styles.skuSelectorItemImage]: isImage,
