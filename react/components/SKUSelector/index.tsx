@@ -236,6 +236,7 @@ const SKUSelectorContainer: FC<Props> = ({
     )
   }, [variations])
 
+  // No need to add skuSelected and onSKUSelected to dependency array since that would result in infinite loops
   useEffect(() => {
     if (skuSelected && onSKUSelected) {
       onSKUSelected(skuSelected.itemId)
@@ -305,6 +306,7 @@ const SKUSelectorContainer: FC<Props> = ({
         }
       }
     },
+    // Adding selectedVariations, variationsCount and onSKUSelected causes an infinite loop
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [selectedVariations, variations, onSKUSelected]
   )
