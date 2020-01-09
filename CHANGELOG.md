@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - New `"slider"` value for `displayMode` from SKU Selector.
-- New props `sliderDisplayThreshold`, `sliderArrowIconSize` and `sliderItemsPerPage` to configure the `slider-layout` used by SKU Selector when `displayMode` is set to `"slider"`.
+- New props `sliderDisplayThreshold`, `sliderArrowSize` and `sliderItemsPerPage` to configure the `slider-layout` used by SKU Selector when `displayMode` is set to `"slider"`.
 
 ## [3.98.0] - 2020-01-02
 ### Added

@@ -76,7 +76,7 @@ interface Props {
   initialSelection?: InitialSelectionType
   displayMode?: MaybeResponsiveInput<DisplayMode>
   sliderDisplayThreshold?: number
-  sliderArrowIconSize?: number
+  sliderArrowSize?: number
   sliderItemsPerPage?: ResponsiveInput<number>
 }
 
@@ -147,7 +147,7 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
       hideImpossibleCombinations={props.hideImpossibleCombinations}
       showVariationsErrorMessage={props.showVariationsErrorMessage}
       sliderItemsPerPage={props.sliderItemsPerPage}
-      sliderArrowIconSize={props.sliderArrowIconSize}
+      sliderArrowSize={props.sliderArrowSize}
       sliderDisplayThreshold={props.sliderDisplayThreshold}
     />
   )

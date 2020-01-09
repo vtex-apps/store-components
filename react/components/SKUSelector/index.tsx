@@ -149,7 +149,7 @@ interface Props {
   initialSelection?: InitialSelectionType
   displayMode?: MaybeResponsiveInput<DisplayMode>
   sliderDisplayThreshold?: number
-  sliderArrowIconSize?: number
+  sliderArrowSize?: number
   sliderItemsPerPage?: ResponsiveInput<number>
 }
 
@@ -201,7 +201,7 @@ const SKUSelectorContainer: FC<Props> = ({
   showValueForVariation = ShowValueForVariation.none,
   initialSelection = InitialSelectionType.complete,
   sliderDisplayThreshold = 3,
-  sliderArrowIconSize = 12,
+  sliderArrowSize = 12,
   sliderItemsPerPage = {
     desktop: 3,
     tablet: 2,
@@ -329,7 +329,7 @@ const SKUSelectorContainer: FC<Props> = ({
       hideImpossibleCombinations={hideImpossibleCombinations}
       showVariationsErrorMessage={showVariationsErrorMessage}
       sliderDisplayThreshold={sliderDisplayThreshold}
-      sliderArrowIconSize={sliderArrowIconSize}
+      sliderArrowSize={sliderArrowSize}
       sliderItemsPerPage={sliderItemsPerPage}
     />
   )

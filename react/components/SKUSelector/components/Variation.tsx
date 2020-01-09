@@ -31,7 +31,7 @@ interface Props {
   showErrorMessage: boolean
   mode?: string
   sliderDisplayThreshold: number
-  sliderArrowIconSize: number
+  sliderArrowSize: number
   sliderItemsPerPage: ResponsiveInput<number>
 }
 
@@ -57,7 +57,7 @@ const Variation: FC<Props> = ({
   showErrorMessage,
   showValueForVariation,
   containerClasses: containerClassesProp,
-  sliderArrowIconSize,
+  sliderArrowSize,
   sliderDisplayThreshold,
   sliderItemsPerPage,
 }) => {
@@ -102,7 +102,7 @@ const Variation: FC<Props> = ({
     infinite: true,
     showNavigationArrows: 'always',
     showPaginationDots: 'never',
-    arrowIconSize: sliderArrowIconSize,
+    arrowIconSize: sliderArrowSize,
     fullWidth: false,
   }
 

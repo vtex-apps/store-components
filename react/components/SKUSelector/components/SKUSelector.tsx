@@ -58,7 +58,7 @@ interface Props {
   showVariationsErrorMessage: boolean
   displayMode: DisplayMode
   sliderDisplayThreshold: number
-  sliderArrowIconSize: number
+  sliderArrowSize: number
   sliderItemsPerPage: ResponsiveInput<number>
 }
 
@@ -267,7 +267,7 @@ const SKUSelector: FC<Props> = ({
   showVariationsErrorMessage,
   variationsSpacing: marginBottomProp,
   sliderDisplayThreshold,
-  sliderArrowIconSize,
+  sliderArrowSize,
   sliderItemsPerPage,
 }) => {
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
@@ -342,7 +342,7 @@ const SKUSelector: FC<Props> = ({
               variationOption.name
             )}
             sliderDisplayThreshold={sliderDisplayThreshold}
-            sliderArrowIconSize={sliderArrowIconSize}
+            sliderArrowSize={sliderArrowSize}
             sliderItemsPerPage={sliderItemsPerPage}
           />
         )
