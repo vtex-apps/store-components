@@ -155,7 +155,7 @@ const Variation: FC<Props> = ({
           )}
         </div>
         <div
-          className={`${styles.skuSelectorOptionsList} w-100 inline-flex flex-wrap ml2 flex items-center`}
+          className={`${styles.skuSelectorOptionsList} w-100 inline-flex flex-wrap ml2 flex justify-center`}
         >
           {mode === DisplayMode.select && !displayImage ? (
             <SelectModeVariation
