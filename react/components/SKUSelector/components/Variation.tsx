@@ -102,7 +102,7 @@ const Variation: FC<Props> = ({
     infinite: true,
     showNavigationArrows: 'always',
     showPaginationDots: 'never',
-    arrowIconSize: sliderArrowSize,
+    arrowSize: sliderArrowSize,
     fullWidth: false,
   }
 
