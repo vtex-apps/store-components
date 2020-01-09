@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- New `"slider"` value for `displayMode` from SKU Selector.
+- New props `sliderDisplayThreshold`, `sliderArrowIconSize` and `sliderItemsPerPage` to configure the `slider-layout` used by SKU Selector when `displayMode` is set to `"slider"`.
 
 ## [3.98.0] - 2020-01-02
 ### Added
