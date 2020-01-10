@@ -9,13 +9,7 @@ import Placeholder from './Placeholder'
 
 import styles from './styles.css'
 
-const CSS_HANDLES = ['logoImage', 'logoContainer']
-
-/**
- * Wraps element with link, if exists
- */
-const wrapWithLink = (href, element) =>
-  href ? <Link to={href}>{element}</Link> : element
+const CSS_HANDLES = ['logoLink', 'logoImage', 'logoContainer']
 
 /**
  * Logo of the store
@@ -80,7 +74,13 @@ const Logo = ({
     </span>
   )
 
-  return wrapWithLink(href, logo)
+  return href ? (
+    <Link to={href} className={handles.logoLink}>
+      {logo}
+    </Link>
+  ) : (
+    logo
+  )
 }
 
 Logo.propTypes = {
