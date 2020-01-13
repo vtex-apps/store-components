@@ -52,7 +52,7 @@ const SelectorItem: FC<Props> = ({
   const containerClasses = classNames(
     styles.skuSelectorItem,
     `${styles.skuSelectorItem}--${slug(variationValue)}`,
-    'relative di pointer flex items-center outline-0',
+    'relative di pointer flex items-center outline-0 ma2',
     {
       [styles.skuSelectorItemImage]: isImage,
       'o-20': isImpossible,
@@ -62,7 +62,11 @@ const SelectorItem: FC<Props> = ({
   const passedAnyDimension = Boolean(imageHeight || imageWidth)
   let containerStyles = {}
   if (isImage && passedAnyDimension && imageUrl) {
-    containerStyles = { height: imageHeight || 'auto', width: imageWidth || 'auto', padding: 0 }
+    containerStyles = {
+      height: imageHeight || 'auto',
+      width: imageWidth || 'auto',
+      padding: 0,
+    }
     imageUrl = changeImageUrlSize(imageUrl, imageWidth, imageHeight)
   }
 
@@ -89,7 +93,7 @@ const SelectorItem: FC<Props> = ({
           'w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden',
           {
             'hover-b--muted-2': !isSelected && !isImpossible,
-            'ba': showBorders,
+            ba: showBorders,
           }
         )}
       >
@@ -105,10 +109,15 @@ const SelectorItem: FC<Props> = ({
           })}
         >
           {isImage && imageUrl ? (
-            <img className={styles.skuSelectorItemImageValue} src={imageUrl} alt={imageLabel as string | undefined} />
+            <img
+              className={`${styles.skuSelectorItemImageValue} h-100`}
+              src={imageUrl}
+              alt={imageLabel as string | undefined}
+              style={{ objectFit: 'contain' }}
+            />
           ) : (
-              variationValue
-            )}
+            variationValue
+          )}
         </div>
       </div>
       {discount > 0 && (

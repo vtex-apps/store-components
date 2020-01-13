@@ -1,7 +1,7 @@
 import React, { useCallback, memo, useState, FC, useMemo } from 'react'
 import { compose, flip, gt, filter, pathOr, clone } from 'ramda'
+import { ResponsiveInput } from 'vtex.responsive-values'
 
-import Variation from './Variation'
 import styles from '../styles.css'
 import {
   isColor,
@@ -19,6 +19,8 @@ import {
   Variations,
   DisplayMode,
 } from '../types'
+
+import Variation from './Variation'
 import useEffectSkipMount from './hooks/useEffectSkipMount'
 
 export enum ShowValueForVariation {
@@ -55,6 +57,9 @@ interface Props {
   variationsSpacing?: number
   showVariationsErrorMessage: boolean
   displayMode: DisplayMode
+  sliderDisplayThreshold: number
+  sliderArrowSize: number
+  sliderItemsPerPage: ResponsiveInput<number>
 }
 
 const isSkuAvailable = compose<
@@ -261,6 +266,9 @@ const SKUSelector: FC<Props> = ({
   hideImpossibleCombinations,
   showVariationsErrorMessage,
   variationsSpacing: marginBottomProp,
+  sliderDisplayThreshold,
+  sliderArrowSize,
+  sliderItemsPerPage,
 }) => {
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
   const onSelectItemMemo = useCallback(
@@ -333,6 +341,9 @@ const SKUSelector: FC<Props> = ({
               showValueForVariation,
               variationOption.name
             )}
+            sliderDisplayThreshold={sliderDisplayThreshold}
+            sliderArrowSize={sliderArrowSize}
+            sliderItemsPerPage={sliderItemsPerPage}
           />
         )
       })}

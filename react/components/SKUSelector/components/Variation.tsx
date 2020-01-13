@@ -1,24 +1,20 @@
-import React, {
-  FC,
-  memo,
-  useState,
-  Fragment,
-  useCallback,
-} from 'react'
+import React, { FC, memo, useState, Fragment, useCallback } from 'react'
 import { Button } from 'vtex.styleguide'
 import { IOMessage } from 'vtex.native-types'
+import { SliderLayout } from 'vtex.slider-layout'
 import { findIndex, propEq } from 'ramda'
 import classnames from 'classnames'
 import useProduct from 'vtex.product-context/useProduct'
+import { ResponsiveInput } from 'vtex.responsive-values'
 
-import SelectorItem from './SelectorItem'
-import SelectModeVariation from './SelectVariationMode'
 import { stripUrl, isColor, slug } from '../utils'
-
 import styles from '../styles.css'
-import ErrorMessage from './ErrorMessage'
 import { DisplayVariation, DisplayMode } from '../types'
 import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
+
+import ErrorMessage from './ErrorMessage'
+import SelectModeVariation from './SelectVariationMode'
+import SelectorItem from './SelectorItem'
 
 interface Props {
   variation: DisplayVariation
@@ -34,6 +30,9 @@ interface Props {
   containerClasses?: string
   showErrorMessage: boolean
   mode?: string
+  sliderDisplayThreshold: number
+  sliderArrowSize: number
+  sliderItemsPerPage: ResponsiveInput<number>
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
@@ -41,7 +40,8 @@ const ITEMS_VISIBLE_THRESHOLD = 2
 const findSelectedOption = (selectedItem: string | null) =>
   findIndex(propEq('label', selectedItem))
 
-const noop = () => { }
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const noop = () => {}
 
 const Variation: FC<Props> = ({
   mode = 'default',
@@ -57,20 +57,23 @@ const Variation: FC<Props> = ({
   showErrorMessage,
   showValueForVariation,
   containerClasses: containerClassesProp,
+  sliderArrowSize,
+  sliderDisplayThreshold,
+  sliderItemsPerPage,
 }) => {
   const { name, options } = variation
-  
+
   const visibleItemsWhenCollapsed = maxItems - ITEMS_VISIBLE_THRESHOLD
 
   const [showAll, setShowAll] = useState(() => {
     const selectedOptionPosition = findSelectedOption(selectedItem)(options)
     return selectedOptionPosition >= visibleItemsWhenCollapsed
   })
-  
+
   const {
     buyButton = {
       clicked: false,
-    }
+    },
   } = useProduct()
 
   const displayImage = isColor(name)
@@ -87,64 +90,85 @@ const Variation: FC<Props> = ({
     'flex flex-column',
     containerClassesProp,
     styles.skuSelectorSubcontainer,
-    `${styles.skuSelectorSubcontainer}--${slug(name)}`,
+    `${styles.skuSelectorSubcontainer}--${slug(name)}`
   )
+
+  const shouldUseSlider =
+    displayOptions.length > sliderDisplayThreshold &&
+    mode === DisplayMode.slider
+
+  const sliderConfigurationProps = {
+    itemsPerPage: sliderItemsPerPage,
+    infinite: true,
+    showNavigationArrows: 'always',
+    showPaginationDots: 'never',
+    arrowSize: sliderArrowSize,
+    fullWidth: false,
+  }
+
+  const selectorItemsArray = displayOptions.map(option => {
+    return (
+      <SelectorItem
+        isSelected={option.label === selectedItem}
+        key={`${option.label}-${name}`}
+        isAvailable={option.available}
+        maxPrice={maxSkuPrice}
+        onClick={option.impossible ? noop : option.onSelectItem}
+        isImage={displayImage}
+        variationValue={option.label}
+        imageHeight={imageHeight}
+        imageWidth={imageWidth}
+        showBorders={showBorders}
+        imageUrl={
+          option.image &&
+          imageUrlForSize(stripUrl(option.image.imageUrl), VARIATION_IMG_SIZE)
+        }
+        imageLabel={option.image && option.image.imageLabel}
+        isImpossible={option.impossible}
+      />
+    )
+  })
 
   return (
     <div className={containerClasses}>
       <div className={`${styles.skuSelectorNameContainer} ma1`}>
         <div className={`${styles.skuSelectorTextContainer} db mb3`}>
-          {showLabel && (<span
-            className={`${
-              styles.skuSelectorName
-              } c-muted-1 t-small overflow-hidden`}
-          >
-            {name}{showErrorMessage && buyButton.clicked && !selectedItem && (<ErrorMessage />)}
-          </span>)}
+          {showLabel && (
+            <span
+              className={`${styles.skuSelectorName} c-muted-1 t-small overflow-hidden`}
+            >
+              {name}
+              {showErrorMessage && buyButton.clicked && !selectedItem && (
+                <ErrorMessage />
+              )}
+            </span>
+          )}
           {selectedItem && showValueForVariation && (
             <Fragment>
               <span className={styles.skuSelectorNameSeparator}>: </span>
               <span
-                className={`${
-                  styles.skuSelectorSelectorImageValue
-                  } c-muted-1 t-small`}
+                className={`${styles.skuSelectorSelectorImageValue} c-muted-1 t-small`}
               >
                 {selectedItem}
               </span>
             </Fragment>
           )}
         </div>
-        <div className={`${styles.skuSelectorOptionsList} inline-flex flex-wrap ml2 flex items-center`}>
+        <div
+          className={`${styles.skuSelectorOptionsList} w-100 inline-flex flex-wrap ml2 flex justify-center`}
+        >
           {mode === DisplayMode.select && !displayImage ? (
             <SelectModeVariation
               selectedItem={selectedItem}
               displayOptions={displayOptions}
             />
-          ) : displayOptions.map(option => {
-            return (
-              <SelectorItem
-                isSelected={option.label === selectedItem}
-                key={`${option.label}-${name}`}
-                isAvailable={option.available}
-                maxPrice={maxSkuPrice}
-                onClick={option.impossible ? noop : option.onSelectItem}
-                isImage={displayImage}
-                variationValue={option.label}
-                imageHeight={imageHeight}
-                imageWidth={imageWidth}
-                showBorders={showBorders}
-                imageUrl={
-                  option.image &&
-                  imageUrlForSize(
-                    stripUrl(option.image.imageUrl),
-                    VARIATION_IMG_SIZE
-                  )
-                }
-                imageLabel={option.image && option.image.imageLabel}
-                isImpossible={option.impossible}
-              />
-            )
-          })}
+          ) : shouldUseSlider ? (
+            <SliderLayout {...sliderConfigurationProps}>
+              {selectorItemsArray}
+            </SliderLayout>
+          ) : (
+            selectorItemsArray
+          )}
           {!showAll && shouldCollapse && (
             <div className={styles.seeMoreButton}>
               <Button

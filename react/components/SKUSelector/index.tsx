@@ -6,8 +6,13 @@ import React, {
   useCallback,
   FC,
 } from 'react'
-import { useRuntime } from 'vtex.render-runtime'
 import { filter, head, isEmpty, compose, keys, length } from 'ramda'
+import { useRuntime } from 'vtex.render-runtime'
+import {
+  useResponsiveValue,
+  MaybeResponsiveInput,
+  ResponsiveInput,
+} from 'vtex.responsive-values'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
 import SKUSelector, { ShowValueForVariation } from './components/SKUSelector'
@@ -24,14 +29,11 @@ import {
   SelectedVariations,
   SelectorProductItem,
   InitialSelectionType,
-  DisplayMode
+  DisplayMode,
 } from './types'
 import useEffectSkipMount from './components/hooks/useEffectSkipMount'
 
-const keyCount = compose(
-  length,
-  keys
-)
+const keyCount = compose(length, keys)
 const filterSelected = filter(Boolean)
 
 const buildEmptySelectedVariation = (variations: Variations) => {
@@ -64,20 +66,27 @@ function useColorImages(items: SelectorProductItem[], imageRegexText: string) {
       return item
     }
 
-    const hasVariationImage = item.images.some(image => image.imageLabel && imageRegex.test(image.imageLabel))
+    const hasVariationImage = item.images.some(
+      image => image.imageLabel && imageRegex.test(image.imageLabel)
+    )
     return {
-      ...item, images: item.images.filter(image => {
+      ...item,
+      images: item.images.filter(image => {
         if (!image.imageLabel) {
           // if it doesn't have a variation image, it wont remove images without a label
           return !hasVariationImage
         }
         return imageRegex.test(image.imageLabel)
-      })
+      }),
     }
   })
 }
 
-const useImagesMap = (items: SelectorProductItem[], variations: Variations, thumbnailImage?: string) => {
+const useImagesMap = (
+  items: SelectorProductItem[],
+  variations: Variations,
+  thumbnailImage?: string
+) => {
   return useMemo(() => {
     if (thumbnailImage) {
       items = useColorImages(items, thumbnailImage)
@@ -138,10 +147,18 @@ interface Props {
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
   initialSelection?: InitialSelectionType
-  displayMode?: DisplayMode
+  displayMode?: MaybeResponsiveInput<DisplayMode>
+  sliderDisplayThreshold?: number
+  sliderArrowSize?: number
+  sliderItemsPerPage?: ResponsiveInput<number>
 }
 
-const getNewSelectedVariations = (query: any, skuSelected: ProductItem, variations: Variations, initialSelection?: InitialSelectionType) => {
+const getNewSelectedVariations = (
+  query: any,
+  skuSelected: ProductItem,
+  variations: Variations,
+  initialSelection?: InitialSelectionType
+) => {
   const hasSkuInQuery = Boolean(query?.skuId)
   const parsedSku = parseSku(skuSelected)
   const emptyVariations = buildEmptySelectedVariation(variations)
@@ -154,9 +171,8 @@ const getNewSelectedVariations = (query: any, skuSelected: ProductItem, variatio
       ...emptyVariations,
       ...(colorVariationName
         ? {
-          [colorVariationName]:
-            parsedSku.variationValues[colorVariationName],
-        }
+            [colorVariationName]: parsedSku.variationValues[colorVariationName],
+          }
         : {}),
     }
   }
@@ -184,9 +200,17 @@ const SKUSelectorContainer: FC<Props> = ({
   showVariationsErrorMessage = true,
   showValueForVariation = ShowValueForVariation.none,
   initialSelection = InitialSelectionType.complete,
+  sliderDisplayThreshold = 3,
+  sliderArrowSize = 12,
+  sliderItemsPerPage = {
+    desktop: 3,
+    tablet: 2,
+    phone: 1,
+  },
 }) => {
   const variationsCount = keyCount(variations)
   const { query } = useRuntime()
+  const responsiveDisplayMode = useResponsiveValue(displayMode)
 
   const parsedItems = useMemo(() => skuItems.map(parseSku), [skuItems])
   const { setQuery } = useRuntime()
@@ -199,20 +223,25 @@ const SKUSelectorContainer: FC<Props> = ({
     )
   }
 
-  const [
-    selectedVariations,
-    setSelectedVariations,
-  ] = useState<SelectedVariations>(() => getNewSelectedVariations(query, skuSelected, variations, initialSelection))
+  const [selectedVariations, setSelectedVariations] = useState<
+    SelectedVariations
+  >(() =>
+    getNewSelectedVariations(query, skuSelected, variations, initialSelection)
+  )
   useAllSelectedEvent(selectedVariations, variationsCount)
 
   useEffectSkipMount(() => {
-    setSelectedVariations(getNewSelectedVariations(query, skuSelected, variations, initialSelection))
+    setSelectedVariations(
+      getNewSelectedVariations(query, skuSelected, variations, initialSelection)
+    )
   }, [variations])
 
+  // No need to add skuSelected and onSKUSelected to dependency array since that would result in infinite loops
   useEffect(() => {
     if (skuSelected && onSKUSelected) {
       onSKUSelected(skuSelected.itemId)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skuSelected.itemId])
 
   const imagesMap = useImagesMap(parsedItems, variations, thumbnailImage)
@@ -228,22 +257,22 @@ const SKUSelectorContainer: FC<Props> = ({
       const isRemoving = selectedVariations![variationName] === variationValue
       const newSelectedVariation = !isMainAndImpossible
         ? {
-          ...selectedVariations,
-          [variationName]: isRemoving ? null : variationValue,
-        }
+            ...selectedVariations,
+            [variationName]: isRemoving ? null : variationValue,
+          }
         : {
-          ...buildEmptySelectedVariation(variations),
-          [variationName]: variationValue,
-        }
+            ...buildEmptySelectedVariation(variations),
+            [variationName]: variationValue,
+          }
       // Set here for a better response to user
       setSelectedVariations(newSelectedVariation)
       const uniqueOptions = isRemoving
         ? {}
         : uniqueOptionToSelect(
-          possibleItems,
-          newSelectedVariation,
-          isMainAndImpossible
-        )
+            possibleItems,
+            newSelectedVariation,
+            isMainAndImpossible
+          )
       const finalSelected = {
         ...newSelectedVariation,
         ...uniqueOptions,
@@ -277,6 +306,8 @@ const SKUSelectorContainer: FC<Props> = ({
         }
       }
     },
+    // Adding selectedVariations, variationsCount and onSKUSelected causes an infinite loop
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [selectedVariations, variations, onSKUSelected]
   )
 
@@ -287,7 +318,7 @@ const SKUSelectorContainer: FC<Props> = ({
       skuItems={parsedItems}
       variations={variations}
       imageWidth={imageWidth}
-      displayMode={displayMode}
+      displayMode={responsiveDisplayMode}
       imageHeight={imageHeight}
       seeMoreLabel={seeMoreLabel}
       onSelectItem={onSelectItem}
@@ -297,6 +328,9 @@ const SKUSelectorContainer: FC<Props> = ({
       showValueForVariation={showValueForVariation}
       hideImpossibleCombinations={hideImpossibleCombinations}
       showVariationsErrorMessage={showVariationsErrorMessage}
+      sliderDisplayThreshold={sliderDisplayThreshold}
+      sliderArrowSize={sliderArrowSize}
+      sliderItemsPerPage={sliderItemsPerPage}
     />
   )
 }
