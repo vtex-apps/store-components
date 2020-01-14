@@ -110,10 +110,9 @@ const SelectorItem: FC<Props> = ({
         >
           {isImage && imageUrl ? (
             <img
-              className={`${styles.skuSelectorItemImageValue} h-100`}
+              className={styles.skuSelectorItemImageValue}
               src={imageUrl}
               alt={imageLabel as string | undefined}
-              style={{ objectFit: 'contain' }}
             />
           ) : (
             variationValue
