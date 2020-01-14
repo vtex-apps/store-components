@@ -89,6 +89,7 @@ const ProductPrice = (props, context) => {
     showInstallments,
     showLabels,
     showSavings,
+    savingsAsPercentage,
     labelSellingPrice,
     labelListPrice,
     labelSavings,
@@ -143,7 +144,7 @@ const ProductPrice = (props, context) => {
             handles.price_listPriceContainer
           )}
         >
-          {showLabels && (
+          {showLabels && !savingsAsPercentage && (
             <div
               className={classNames(
                 productPrice.listPriceLabel,
@@ -155,21 +156,32 @@ const ProductPrice = (props, context) => {
               <IOMessage id={labelListPrice} />
             </div>
           )}
-          <Price
-            showPriceRange={showListPriceRange}
-            priceRange={listPriceRange}
-            price={listPrice}
-            rangeContainerClasses={classNames(
-              productPrice.listPriceValue,
-              listPriceRangeClass,
-              handles.price_listPriceRange,
-            )}
-            singleContainerClasses={classNames(
-              productPrice.listPriceValue,
-              listPriceClass,
-              handles.price_listPrice
-            )}
-          />
+          {!savingsAsPercentage &&
+            <Price
+              showPriceRange={showListPriceRange}
+              priceRange={listPriceRange}
+              price={listPrice}
+              rangeContainerClasses={classNames(
+                productPrice.listPriceValue,
+                listPriceRangeClass,
+                handles.price_listPriceRange,
+              )}
+              singleContainerClasses={classNames(
+                productPrice.listPriceValue,
+                listPriceClass,
+                handles.price_listPrice
+              )}
+            />}
+          {savingsAsPercentage && (listPrice - sellingPrice > 0) &&
+            <div
+              className={classNames(
+                productPrice.listPriceLabel,
+                handles.price_listPriceLabel,
+                'dib ph2 t-small-ns t-mini'
+              )}
+            >
+              {((listPrice - sellingPrice) / 1000) * 100}%
+            </div>}
         </div>
       )}
       <div
@@ -233,8 +245,8 @@ const ProductPrice = (props, context) => {
             <FormattedMessage
               id="store/pricing.savings"
               values={{
-                savings: 
-                <span 
+                savings:
+                <span
                   className={handles.price_savings_value}>
                     {formatCurrency({
                       intl,
@@ -264,6 +276,7 @@ PriceWithIntl.defaultProps = {
   showSavings: false,
   labelSellingPrice: null,
   labelListPrice: null,
+  savingsAsPercentage: false
 }
 
 PriceWithIntl.schema = {
