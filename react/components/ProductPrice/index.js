@@ -180,7 +180,10 @@ const ProductPrice = (props, context) => {
                 'dib ph2 t-small-ns t-mini'
               )}
             >
-              {((listPrice - sellingPrice) / 1000) * 100}%
+              <FormattedNumber
+                value={((listPrice - sellingPrice) / 1000) * 100}
+                style="percent" 
+              />
             </div>}
         </div>
       )}
