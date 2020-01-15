@@ -123,7 +123,7 @@ const ProductPrice = (props, context) => {
   const computedSavingsDisplay =
     showSavings === false || !hasSavings
       ? 'none'
-      : showSavings === true
+      : showSavings === true && !savingsDisplay
       ? 'price'
       : savingsDisplay
 
@@ -141,7 +141,7 @@ const ProductPrice = (props, context) => {
 
   const sellingPriceRange = sellingPriceList && getPriceRange(sellingPriceList)
   const listPriceRange = listPriceList && getPriceRange(listPriceList)
-
+  console.log("savingsDisplay", computedSavingsDisplay);
   return (
     <div className={classNames(productPrice.priceContainer, className, handles.price_className)}>
       {mayShowListPrice && (
@@ -152,7 +152,7 @@ const ProductPrice = (props, context) => {
             handles.price_listPriceContainer
           )}
         >
-          {showLabels && (
+          {showLabels && computedSavingsDisplay !== 'percentage' && (
             <div
               className={classNames(
                 productPrice.listPriceLabel,
@@ -164,21 +164,31 @@ const ProductPrice = (props, context) => {
               <IOMessage id={labelListPrice} />
             </div>
           )}
-          <Price
-            showPriceRange={showListPriceRange}
-            priceRange={listPriceRange}
-            price={listPrice}
-            rangeContainerClasses={classNames(
-              productPrice.listPriceValue,
-              listPriceRangeClass,
-              handles.price_listPriceRange,
-            )}
-            singleContainerClasses={classNames(
-              productPrice.listPriceValue,
-              listPriceClass,
-              handles.price_listPrice
-            )}
-          />
+          {computedSavingsDisplay === 'percentage' ?
+              (
+                <FormattedNumber
+                  value={((listPrice - sellingPrice) / sellingPrice)}
+                  style="percent"
+                />
+              )
+              :
+              (
+                <Price
+                  showPriceRange={showListPriceRange}
+                  priceRange={listPriceRange}
+                  price={listPrice}
+                  rangeContainerClasses={classNames(
+                    productPrice.listPriceValue,
+                    listPriceRangeClass,
+                    handles.price_listPriceRange,
+                  )}
+                  singleContainerClasses={classNames(
+                    productPrice.listPriceValue,
+                    listPriceClass,
+                    handles.price_listPrice
+                  )}
+                />
+              )}
         </div>
       )}
       <div
@@ -244,18 +254,11 @@ const ProductPrice = (props, context) => {
               values={{
                 savings: (
                   <span className={handles.price_savings_value}>
-                    {computedSavingsDisplay === 'price' ? (
-                      formatCurrency({
-                        intl,
-                        culture,
-                        value: listPrice - sellingPrice,
-                      })
-                    ) : (
-                      <FormattedNumber
-                        value={((listPrice - sellingPrice) / 1000) * 100}
-                        style="percent"
-                      />
-                    )}
+                    {formatCurrency({
+                      intl,
+                      culture,
+                      value: listPrice - sellingPrice,
+                    })}
                 </span>
                 ),
               }}
