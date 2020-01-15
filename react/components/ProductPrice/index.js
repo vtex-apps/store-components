@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import { isNil, head, last, sort, equals } from 'ramda'
-import { FormattedMessage, injectIntl } from 'react-intl'
+import { FormattedMessage, FormattedNumber, injectIntl } from 'react-intl'
 import { IOMessage } from 'vtex.native-types'
 import { useRuntime } from 'vtex.render-runtime'
 import { formatCurrency } from 'vtex.format-currency'
@@ -182,7 +182,7 @@ const ProductPrice = (props, context) => {
             >
               <FormattedNumber
                 value={((listPrice - sellingPrice) / 1000) * 100}
-                style="percent" 
+                style="percent"
               />
             </div>}
         </div>
