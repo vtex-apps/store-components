@@ -37,38 +37,46 @@ The `ProductPrice` is responsible for **displaying the price** of a given produc
   },
 ```
 
-| Prop name               | Type      | Description                           | Default value |
-| ----------------------- | --------- | ------------------------------------- | ------------- |
-| `labelSellingPrice`     | `String`  | Product selling price label           | null          |
-| `labelListPrice`        | `String`  | Product list price label              | null          |
-| `showListPrice`         | `Boolean` | Set visibility of list price          | `true`          |
-| `sellingPrices`         | `Array`   | Product list of selling prices        | `[]`            |
-| `showSellingPriceRange` | `Boolean` | Set visibility of selling price range | `false`         |
-| `showListPriceRange`    | `Boolean` | Set visibility of list price range    | `false`         |
-| `showLabels`            | `Boolean` | Set visibility of labels              | `true`          |
-| `showInstallments`      | `Boolean` | Set visibility of installments        | `false`         |
-| `showSavings`           | `Boolean` | Set visibility of savings             | `false`         |
-| `savingsAsPercentage`   | `Boolean` | Show savings as percentage            | `false`         |
-| `blockClass`            | `String`  | The set value functions as a customization identifier for any CSS specified in the block | null |
+| Prop name                                                       | Type                   | Description                                                                              | Default value |
+| --------------------------------------------------------------- | ---------------------- | ---------------------------------------------------------------------------------------- | ------------- |
+| `labelSellingPrice`                                             | `String`               | Product selling price label                                                              | null          |
+| `labelListPrice`                                                | `String`               | Product list price label                                                                 | null          |
+| `showListPrice`                                                 | `Boolean`              | Set visibility of list price                                                             | `true`        |
+| `sellingPrices`                                                 | `Array`                | Product list of selling prices                                                           | `[]`          |
+| `showSellingPriceRange`                                         | `Boolean`              | Set visibility of selling price range                                                    | `false`       |
+| `showListPriceRange`                                            | `Boolean`              | Set visibility of list price range                                                       | `false`       |
+| `showLabels`                                                    | `Boolean`              | Set visibility of labels                                                                 | `true`        |
+| `showInstallments`                                              | `Boolean`              | Set visibility of installments                                                           | `false`       |
+| `savingsDisplay`                                                | `SavingsDisplayValues` | How to display savings.                                                                  | `none`        |
+| `showSavings` ![](https://img.shields.io/badge/-deprecated-red) | `Boolean`              | Deprecated: use `savingsDisplay` instead. Set visibility of savings.                     | `undefined`   |
+| `blockClass`                                                    | `String`               | The set value functions as a customization identifier for any CSS specified in the block | null          |
+
+Values for `savingsDisplay`:
+
+| Value        | Description                      |
+| ------------ | -------------------------------- |
+| `none`       | Do not show savings              |
+| `price`      | Show savings in price value      |
+| `percentage` | Show savings in percentage value |
 
 ## Customization
 
 In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| CSS Handles                 |
-| -------------------------- |
-| `price_className` |
-| `price_loader` |
-| `price_listPriceContainer` |
-| `price_listPriceLabel` |
-| `price_listPrice` |
-| `price_listPriceRange` |
-| `price_sellingPriceRange` |
+| CSS Handles                   |
+| ----------------------------- |
+| `price_className`             |
+| `price_loader`                |
+| `price_listPriceContainer`    |
+| `price_listPriceLabel`        |
+| `price_listPrice`             |
+| `price_listPriceRange`        |
+| `price_sellingPriceRange`     |
 | `price_sellingPriceContainer` |
-| `price_sellingPriceLabel` |
-| `price_sellingPrice` |
-| `price_savingsContainer` |
-| `price_savings` |
-| `price_installment` |
-| `price_interestRate` |
-| `price_installmentContainer` |
+| `price_sellingPriceLabel`     |
+| `price_sellingPrice`          |
+| `price_savingsContainer`      |
+| `price_savings`               |
+| `price_installment`           |
+| `price_interestRate`          |
+| `price_installmentContainer`  |

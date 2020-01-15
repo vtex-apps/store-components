@@ -89,7 +89,7 @@ const ProductPrice = (props, context) => {
     showInstallments,
     showLabels,
     showSavings,
-    savingsAsPercentage,
+    savingsDisplay,
     labelSellingPrice,
     labelListPrice,
     labelSavings,
@@ -119,6 +119,14 @@ const ProductPrice = (props, context) => {
 
   let { classes } = props
 
+  const hasSavings = listPrice - sellingPrice > 0
+  const computedSavingsDisplay =
+    showSavings === false || !hasSavings
+      ? 'none'
+      : showSavings === true
+      ? 'price'
+      : savingsDisplay
+
   // avoiding undefined verifications
   classes = {
     ...PriceWithIntl.defaultProps.classes,
@@ -144,7 +152,7 @@ const ProductPrice = (props, context) => {
             handles.price_listPriceContainer
           )}
         >
-          {showLabels && !savingsAsPercentage && (
+          {showLabels && (
             <div
               className={classNames(
                 productPrice.listPriceLabel,
@@ -156,35 +164,21 @@ const ProductPrice = (props, context) => {
               <IOMessage id={labelListPrice} />
             </div>
           )}
-          {!savingsAsPercentage &&
-            <Price
-              showPriceRange={showListPriceRange}
-              priceRange={listPriceRange}
-              price={listPrice}
-              rangeContainerClasses={classNames(
-                productPrice.listPriceValue,
-                listPriceRangeClass,
-                handles.price_listPriceRange,
-              )}
-              singleContainerClasses={classNames(
-                productPrice.listPriceValue,
-                listPriceClass,
-                handles.price_listPrice
-              )}
-            />}
-          {savingsAsPercentage && (listPrice - sellingPrice > 0) &&
-            <div
-              className={classNames(
-                productPrice.listPriceLabel,
-                handles.price_listPriceLabel,
-                'dib ph2 t-small-ns t-mini'
-              )}
-            >
-              <FormattedNumber
-                value={((listPrice - sellingPrice) / 1000) * 100}
-                style="percent"
-              />
-            </div>}
+          <Price
+            showPriceRange={showListPriceRange}
+            priceRange={listPriceRange}
+            price={listPrice}
+            rangeContainerClasses={classNames(
+              productPrice.listPriceValue,
+              listPriceRangeClass,
+              handles.price_listPriceRange,
+            )}
+            singleContainerClasses={classNames(
+              productPrice.listPriceValue,
+              listPriceClass,
+              handles.price_listPrice
+            )}
+          />
         </div>
       )}
       <div
@@ -234,7 +228,7 @@ const ProductPrice = (props, context) => {
           installmentClass={`${installmentClass} ${handles.price_installment}`}
         />
       )}
-      {mayShowListPrice && showSavings && (listPrice - sellingPrice > 0) && (
+      {mayShowListPrice && hasSavings && computedSavingsDisplay !== 'none' && (
         <div
           className={classNames(
             productPrice.savingPrice,
@@ -248,15 +242,22 @@ const ProductPrice = (props, context) => {
             <FormattedMessage
               id="store/pricing.savings"
               values={{
-                savings:
-                <span
-                  className={handles.price_savings_value}>
-                    {formatCurrency({
-                      intl,
-                      culture,
-                      value: listPrice - sellingPrice,
-                  })}
+                savings: (
+                  <span className={handles.price_savings_value}>
+                    {computedSavingsDisplay === 'price' ? (
+                      formatCurrency({
+                        intl,
+                        culture,
+                        value: listPrice - sellingPrice,
+                      })
+                    ) : (
+                      <FormattedNumber
+                        value={((listPrice - sellingPrice) / 1000) * 100}
+                        style="percent"
+                      />
+                    )}
                 </span>
+                ),
               }}
             />
           </div>
@@ -276,10 +277,10 @@ PriceWithIntl.defaultProps = {
   showListPrice: true,
   showLabels: true,
   showInstallments: false,
-  showSavings: false,
+  showSavings: undefined,
   labelSellingPrice: null,
   labelListPrice: null,
-  savingsAsPercentage: false
+  savingsDisplay: 'none',
 }
 
 PriceWithIntl.schema = {
@@ -317,10 +318,15 @@ PriceWithIntl.schema = {
       default: PriceWithIntl.defaultProps.showInstallments,
       isLayout: true,
     },
-    showSavings: {
-      type: 'boolean',
-      title: 'admin/editor.productPrice.showSavings',
-      default: PriceWithIntl.defaultProps.showSavings,
+    savingsDisplay: {
+      type: 'enum',
+      enum: ['none', 'price', 'percentage'],
+      enumNames: [
+        'admin/editor.productPrice.savingsDisplay.none',
+        'admin/editor.productPrice.savingsDisplay.price',
+        'admin/editor.productPrice.savingsDisplay.percentage',
+      ],
+      default: 'none',
       isLayout: true,
     },
   },

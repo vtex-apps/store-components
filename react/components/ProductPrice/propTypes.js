@@ -26,8 +26,8 @@ export default {
   labelSellingPrice: PropTypes.string,
   /** Text to the list price's label */
   labelListPrice: PropTypes.string,
-  /** Show savings as percentage */
-  savingsAsPercentage: PropTypes.bool,
+  /** Display mode of price savings */
+  savingsDisplay: PropTypes.oneOf(['none', 'price', 'percentage']),
   /** Available installments */
   installments: PropTypes.arrayOf(
     PropTypes.shape({

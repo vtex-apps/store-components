@@ -46,6 +46,7 @@ const ProductPriceWrapper = ({
   showInstallments,
   showLabels,
   showSavings,
+  savingsDisplay,
   savingsAsPercentage,
   ...props
 }) => {
@@ -79,7 +80,7 @@ const ProductPriceWrapper = ({
         showInstallments,
         showLabels,
         showSavings,
-        savingsAsPercentage,
+        savingsDisplay,
         showProductPrice: true,
       }
     }
@@ -111,6 +112,7 @@ const ProductPriceWrapper = ({
       showInstallments,
       showListPrice,
       showSavings,
+      savingsDisplay,
       savingsAsPercentage,
       showProductPrice: isAvailable(commertialOffer),
     }
@@ -174,10 +176,15 @@ ProductPriceWrapper.schema = {
       default: ProductPrice.defaultProps.showInstallments,
       isLayout: true,
     },
-    showSavings: {
-      type: 'boolean',
-      title: 'admin/editor.productPrice.showSavings',
-      default: ProductPrice.defaultProps.showSavings,
+    savingsDisplay: {
+      type: 'enum',
+      enum: ['none', 'price', 'percentage'],
+      enumNames: [
+        'admin/editor.productPrice.savingsDisplay.none',
+        'admin/editor.productPrice.savingsDisplay.price',
+        'admin/editor.productPrice.savingsDisplay.percentage',
+      ],
+      default: 'none',
       isLayout: true,
     },
   },
