@@ -12,48 +12,16 @@ import SKUSelector from './index'
 import { Variations, InitialSelectionType, DisplayMode } from './types'
 import { ShowValueForVariation } from './components/SKUSelector'
 
-const useVariations = (
-  skuItems: ProductItem[],
-  shouldNotShow: boolean,
-  visibleVariations?: string[]
-) => {
+const useVariations = (skuSpecifications: SkuSpecification[]) => {
   const result = useMemo(() => {
-    if (
-      shouldNotShow ||
-      (visibleVariations && visibleVariations.length === 0)
-    ) {
-      return {}
-    }
     const variations: Variations = {}
-    const variationsSet: Record<string, Set<string>> = {}
-    if (visibleVariations) {
-      visibleVariations = visibleVariations.map(variation =>
-        variation.toLowerCase().trim()
+    for (const specification of skuSpecifications) {
+      variations[specification.field.name] = specification.values.map(
+        value => value.name
       )
     }
-
-    for (const skuItem of skuItems) {
-      for (const currentVariation of skuItem.variations) {
-        const { name, values } = currentVariation
-        if (
-          !visibleVariations ||
-          visibleVariations.includes(name.toLowerCase().trim())
-        ) {
-          const value = values[0]
-          const currentSet = variationsSet[name] || new Set()
-          currentSet.add(value)
-          variationsSet[name] = currentSet
-        }
-      }
-    }
-    const variationsNames = Object.keys(variationsSet)
-    // Transform set back to array
-    for (const variationName of variationsNames) {
-      const set = variationsSet[variationName]
-      variations[variationName] = Array.from(set)
-    }
     return variations
-  }, [skuItems, shouldNotShow])
+  }, [skuSpecifications])
   return result
 }
 
@@ -86,7 +54,6 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
   const { imageHeight, imageWidth } = useResponsiveValues(
     pick(['imageHeight', 'imageWidth'], props)
   )
-
   const skuItems =
     props.skuItems != null
       ? props.skuItems
@@ -102,11 +69,8 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
     !skuSelected?.variations ||
     skuSelected.variations.length === 0
 
-  const variations = useVariations(
-    skuItems,
-    shouldNotShow,
-    props.visibleVariations
-  )
+  const skuSpecifications = valuesFromContext?.product?.skuSpecifications ?? []
+  const variations = useVariations(skuSpecifications)
 
   useEffect(() => {
     if (dispatch) {
