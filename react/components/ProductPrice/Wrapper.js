@@ -47,7 +47,6 @@ const ProductPriceWrapper = ({
   showLabels,
   showSavings,
   savingsDisplay,
-  savingsAsPercentage,
   ...props
 }) => {
   const valuesFromContext = useContext(ProductContext)
@@ -113,7 +112,6 @@ const ProductPriceWrapper = ({
       showListPrice,
       showSavings,
       savingsDisplay,
-      savingsAsPercentage,
       showProductPrice: isAvailable(commertialOffer),
     }
   }
