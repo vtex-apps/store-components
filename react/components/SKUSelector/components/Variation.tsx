@@ -11,7 +11,6 @@ import { stripUrl, isColor, slug } from '../utils'
 import styles from '../styles.css'
 import { DisplayVariation, DisplayMode } from '../types'
 import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
-
 import ErrorMessage from './ErrorMessage'
 import SelectModeVariation from './SelectVariationMode'
 import SelectorItem from './SelectorItem'
@@ -145,7 +144,11 @@ const Variation: FC<Props> = ({
           )}
           {selectedItem && showValueForVariation && (
             <Fragment>
-              <span className={styles.skuSelectorNameSeparator}>: </span>
+              <span
+                className={`${styles.skuSelectorNameSeparator} c-muted-1 t-small`}
+              >
+                :{' '}
+              </span>
               <span
                 className={`${styles.skuSelectorSelectorImageValue} c-muted-1 t-small`}
               >
