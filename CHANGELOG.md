@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `visibility` prop to `sku-selector` to show it only when it has more than one sku
+
 ## [3.100.1] - 2020-01-14
 ### Fixed
 - Issue with image sizing in the SKU Selector.
@@ -102,7 +105,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.92.8] - 2019-12-09
 ### Changed
-- Updated documentation for the following `store-components` blocks: Image, Info Card, Buy Button, Logo, Product Brand, Product Image, Product Name, Product Price and Shipping Simulator. 
+- Updated documentation for the following `store-components` blocks: Image, Info Card, Buy Button, Logo, Product Brand, Product Image, Product Name, Product Price and Shipping Simulator.
 
 ## [3.92.7] - 2019-12-06
 ### Fixed
