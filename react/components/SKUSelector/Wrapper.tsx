@@ -62,7 +62,7 @@ interface Props {
   skuSelected: ProductItem
   onSKUSelected?: (skuId: string) => void
   maxItems?: number
-  minItems?: number
+  visibility?: string
   seeMoreLabel: string
   hideImpossibleCombinations?: boolean
   showValueNameForImageVariation?: boolean
@@ -98,13 +98,13 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
       ? props.skuSelected
       : valuesFromContext.selectedItem
 
-  const minItems = props.minItems != null ? props.minItems : 1
+  const visibility = props.visibility != null ? props.visibility : 'always'
 
   const shouldNotShow =
     skuItems.length === 0 ||
     !skuSelected?.variations ||
     skuSelected.variations.length === 0 ||
-    skuItems.length < minItems
+    (visibility === 'more-than-one' && skuItems.length === 1)
 
   const variations = useVariations(
     skuItems,
