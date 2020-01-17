@@ -85,7 +85,7 @@ The SKU Selector is a Product Details Page block and it is responsible for displ
 | Value           | Description                                                               |
 | --------------- | ------------------------------------------------------------------------- |
 | `always`        | It will show the SKU selector even if the product has only one SKU        |
-| `more-than-one` | It will show the SKU selector only when the product has more than one SKU |
+| `more-than-one` | It will show the SKU selector only when the product has more than one SKU option |
 
 ## Customization
 
