@@ -52,8 +52,9 @@ The SKU Selector is a Product Details Page block and it is responsible for displ
 | `showVariationsErrorMessage`     | `boolean`                                            | If an error message should be displayed when the `BuyButton` is clicked on but didn't select an option for each available variation                                                                                                                         | `true`                              |
 | `displayMode`                    | `Enum`                                               | How the variations will be displayed. It doesn't apply to image variations. Notice that this prop is _responsive_, so you can specify a value for each breakpoint.                                                                                          | `default`                           |
 | `sliderDisplayThreshold`         | `Number`                                             | Controls the maximum number of SKUs that should be displayed using `'default'` displayMode before using displayMode `'slider'`. Notice this prop only takes effect you `displayMode` is set to `slider`.                                                    | `3`                                 |
-| `sliderArrowSize`            | `Enum`                                               | Controls the size (height and width) in pixels of the navigation arrows rendered when `displayMode` is set to `"slider"`.                                                                                                                                   | `12`                                |
+| `sliderArrowSize`                | `Enum`                                               | Controls the size (height and width) in pixels of the navigation arrows rendered when `displayMode` is set to `"slider"`.                                                                                                                                   | `12`                                |
 | `sliderItemsPerPage`             | `{ desktop: Number, tablet: Number, phone: Number }` | Controls how many slides should be shown on each type of device when `displayMode` is set to `slider`.                                                                                                                                                      | `{desktop: 3, tablet: 2, phone: 1}` |
+| `visibility`                     | `Enum`                                               | Controls when the SKU selector shows depending on the mumber of items available                                                                                                                                                                             | `always`                            |
 
 - Possible values for `ShowValueForVariation`:
 
@@ -78,6 +79,13 @@ The SKU Selector is a Product Details Page block and it is responsible for displ
 | `complete` | Complete | It will select the variations values of the first SKU available                                |
 | `image`    | Image    | It will select the first image variation (like Color). All other variations will be unselected |
 | `empty`    | Empty    | All variations will appear as unselected when the page is loaded                               |
+
+- Possible values for `visibility`:
+
+| Value           | Description                                                               |
+| --------------- | ------------------------------------------------------------------------- |
+| `always`        | It will show the SKU selector even if the product has only one SKU        |
+| `more-than-one` | It will show the SKU selector only when the product has more than one SKU |
 
 ## Customization
 
