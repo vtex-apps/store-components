@@ -79,8 +79,9 @@ const useVariations = (
     ) {
       return {}
     }
+    let formattedVisibleVariations = visibleVariations
     if (visibleVariations) {
-      visibleVariations = visibleVariations.map(variation =>
+      formattedVisibleVariations = visibleVariations.map(variation =>
         variation.toLowerCase().trim()
       )
     }
@@ -88,11 +89,11 @@ const useVariations = (
     return isSkuSpecificationsEmpty
       ? getVariationsFromItems(
           variationsSource as ProductItem[],
-          visibleVariations
+          formattedVisibleVariations
         )
       : getVariationsFromSpecifications(
           variationsSource as SkuSpecification[],
-          visibleVariations
+          formattedVisibleVariations
         )
   }, [
     variationsSource,
