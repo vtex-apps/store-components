@@ -1,5 +1,6 @@
 import React from 'react'
 import { render, fireEvent, wait } from '@vtex/test-tools/react'
+import useProduct, { ProductContext } from 'vtex.product-context/useProduct'
 
 import SKUSelector from './../../SKUSelector'
 import { getSKU } from 'sku-helper'
@@ -14,13 +15,15 @@ describe('<SKUSelector />', () => {
     return render(<SKUSelector {...props} />)
   }
 
+  const mockedUseProduct = useProduct as jest.Mock<ProductContext>
+
   it('should call onSKUSelected', async () => {
     const onSKUSelected = jest.fn()
     const { container } = renderComponent({ onSKUSelected })
 
     await wait()
     const selector = container.querySelector('.skuSelectorItem')
-    await wait (() => {
+    await wait(() => {
       fireEvent.click(selector!)
     })
     expect(onSKUSelected).toBeCalledTimes(2)
@@ -1131,5 +1134,121 @@ describe('<SKUSelector />', () => {
 
     expect(separator).toHaveTextContent(':')
     expect(variationValue).toHaveTextContent('Gray')
+  })
+
+  /* Order of the color variations should be: Black, Gray, Blue.
+   * Order of the Size variations should be: 43, 42, 41
+   * The snapshot should validate if the values are coming correctly  */
+  it('should consider order from skuSpecifications', async () => {
+    const defaultSeller = {
+      commertialOffer: { Price: 15, ListPrice: 20, AvailableQuantity: 10 },
+    }
+
+    const firstSku = {
+      itemId: '1',
+      name: 'Gray Shoe',
+      variations: [
+        { name: 'Size', values: ['41'] },
+        { name: 'Color', values: ['Gray'] },
+      ],
+      sellers: [defaultSeller],
+      images: [],
+    }
+
+    mockedUseProduct.mockImplementation(function(): ProductContext {
+      return {
+        product: {
+          buyButton: {
+            clicked: false,
+          },
+          skuSelector: {
+            isVisible: true,
+            areAllVariationsSelected: true,
+          },
+          selectedItem: firstSku,
+          selectedQuantity: 1,
+          assemblyOptions: {
+            items: {},
+            areGroupsValid: {},
+            inputValues: {},
+          },
+          skuSpecifications: [
+            {
+              field: {
+                name: 'Color',
+              },
+              values: [
+                {
+                  name: 'Black',
+                },
+                {
+                  name: 'Gray',
+                },
+                {
+                  name: 'Blue',
+                },
+              ],
+            },
+            {
+              field: {
+                name: 'Size',
+              },
+              values: [
+                {
+                  name: '43',
+                },
+                {
+                  name: '42',
+                },
+                {
+                  name: '41',
+                },
+              ],
+            },
+          ],
+        },
+      }
+    })
+    const skuItems = [
+      firstSku,
+      {
+        itemId: '2',
+        name: 'Black Shoe',
+        variations: [
+          { name: 'Size', values: ['41', '42', '43'] },
+          { name: 'Color', values: ['Black'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '3',
+        name: 'Blue Shoe',
+        variations: [
+          { name: 'Size', values: ['41', '42', '43'] },
+          { name: 'Color', values: ['Blue', 'Black'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '4',
+        name: 'Gray Shoe',
+        variations: [
+          {
+            name: 'Size',
+            values: ['42'],
+          },
+          { name: 'Color', values: ['Gray'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+    ]
+    const { asFragment } = render(
+      <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
+    )
+    //check comment above the 'it' description
+    expect(asFragment()).toMatchSnapshot()
   })
 })
