@@ -5,7 +5,7 @@ const useProduct = jest.fn(() => {
     },
     skuSelector: {
       areAllVariationsSelected: true,
-    }
+    },
   }
 })
 

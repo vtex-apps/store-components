@@ -24,6 +24,20 @@ interface ProductItem {
 interface Product {
   itemMetadata: ItemMetadata
   items: ProductItem[]
+  skuSpecifications: SkuSpecification[]
+}
+
+interface SkuSpecification {
+  field: SkuSpecificationField
+  values: SkuSpecificationValues[]
+}
+
+interface SkuSpecificationField {
+  name: string
+}
+
+interface SkuSpecificationValues {
+  name: string
 }
 
 declare module 'vtex.product-context/useProduct' {

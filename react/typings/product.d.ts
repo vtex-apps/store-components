@@ -8,6 +8,7 @@ export interface Product {
   titleTag: string
   metaTagDescription: string
   items: SKU[]
+  skuSpecifications: SkuSpecification[]
 }
 
 export interface Category {
@@ -38,4 +39,17 @@ interface Seller {
 
 interface CommertialOffer {
   AvailableQuantity: number
+}
+
+interface SkuSpecification {
+  field: SkuSpecificationField
+  values: SkuSpecificationValues[]
+}
+
+interface SkuSpecificationField {
+  name: string
+}
+
+interface SkuSpecificationValues {
+  name: string
 }
