@@ -50,15 +50,17 @@ export const parseSku = (sku: ProductItem) => {
 export const isColor = (variation: string) => {
   if (!variation) return false
 
-  return (
-    variation.toLowerCase() === 'cor' || 
-    variation.toLowerCase() === 'color' || 
-    variation.toLowerCase() === 'colour' || 
-    variation.toLowerCase() === 'farbe'  || 
-    variation.toLowerCase() === 'couleur' || 
-    variation.toLowerCase() === 'kleuren' || 
-    variation.toLowerCase() === 'colori'
-  )
+  const possibleValues = [
+    'cor',
+    'color',
+    'colour',
+    'farbe',
+    'couler',
+    'kleuren',
+    'colori',
+  ]
+
+  return possibleValues.includes(variation.toLowerCase())
 }
 
 /**
