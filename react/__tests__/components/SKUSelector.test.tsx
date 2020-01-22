@@ -1137,7 +1137,7 @@ describe('<SKUSelector />', () => {
   })
 
   /* Order of the color variations should be: Black, Gray, Blue.
-   * Order of the Size variations should be: 43, 42, 41
+   * Order of the Size variations should be: 42, 41
    * The snapshot should validate if the values are coming correctly  */
   it('should consider order from skuSpecifications', async () => {
     const defaultSeller = {
