@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.102.2] - 2020-01-30
+
 ### Fixed
 - Fix specification values exibition. It was showing just the first value of the array.
 
