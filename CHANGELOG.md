@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Fix specification values exibition. It was showing just the first value of the array.
+
 ## [3.102.1] - 2020-01-23
 ### Changed
 - Ordered `SearchBar` props on readme.
