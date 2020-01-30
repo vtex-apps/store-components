@@ -54,7 +54,7 @@ const ProductSpecifications = ({
     const mappedSpecifications = specifications.map(specification => {
       return {
         property: specification.name,
-        specifications: specification.values[0],
+        specifications: specification.values.join(", "),
       }
     })
 
