@@ -55,7 +55,7 @@ export const isColor = (variation: string) => {
     'color',
     'colour',
     'farbe',
-    'couler',
+    'couleur',
     'kleuren',
     'colori',
   ]
