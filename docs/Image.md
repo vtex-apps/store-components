@@ -29,12 +29,13 @@ The `Image` is a VTEX block that allows to **add any image** in the store.
 
 | Prop name     | Type       | Description                                                                | Default value | 
 | ------------- | ---------- | -------------------------------------------------------------------------- | - |
-| `src`         | `String!`  | Specifies the URL of an image                                              | - |
-| `alt`         | `String`   | Specifies an alternate text for an image                                   | - |
-| `maxWidth`    | `String`   | Specifies the max width of an image                                        | - |
-| `maxHeight`   | `String`   | Specifies the max height of an image                                       | - |
-| `srcset`      | `String`   | Specifies the URL of the image to use in different situations              | - |
-| `sizes`       | `String`   | Specifies image sizes for different page layouts                           | - |
+| `src`         | `string!`  | Specifies the URL of an image                                              | - |
+| `alt`         | `string`   | Specifies an alternate text for an image                                   | - |
+| `maxWidth`    | `string`   | Specifies the max width of an image                                        | - |
+| `maxHeight`   | `string`   | Specifies the max height of an image                                       | - |
+| `srcset`      | `string`   | Specifies the URL of the image to use in different situations              | - |
+| `sizes`       | `string`   | Specifies image sizes for different page layouts                           | - |
+| `title` | `string` | Title to be shown on hover | - |
 | `link`        | [`Link`](https://github.com/vtex-apps/native-types/blob/f63aeeb8f6e62f4a9aaec052a8be34973be7389b/pages/contentSchemas.json#L52-L74)| Specifies the link the image will redirect when clicked on                 | - |
 
 ## Customization
