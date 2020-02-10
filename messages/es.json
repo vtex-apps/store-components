@@ -124,6 +124,8 @@
   "admin/editor.image.title": "Imagen",
   "admin/editor.image.description": "Mostrar cualquier imagen",
   "admin/editor.image.src.title": "Imagen",
+  "admin/editor.image.title.title": "Título de la imagen",
+  "admin/editor.image.title.description": "Título que se mostrará al pasar el mouse sobre la imagen",
   "admin/editor.image.alt.title": "Texto alternativo",
   "admin/editor.product-images.title": "Product Images",
   "admin/editor.product-images.description": "El componente de imágenes del producto le permite personalizar las imágenes del producto",
