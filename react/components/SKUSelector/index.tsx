@@ -165,7 +165,9 @@ const getNewSelectedVariations = (
 
   if (hasSkuInQuery || initialSelection === InitialSelectionType.complete) {
     return selectedVariationFromItem(parsedSku, variations)
-  } else if (initialSelection === InitialSelectionType.image) {
+  }
+
+  if (initialSelection === InitialSelectionType.image) {
     const colorVariationName = parsedSku.variations.find(isColor)
     return {
       ...emptyVariations,
@@ -246,6 +248,8 @@ const SKUSelectorContainer: FC<Props> = ({
 
   const imagesMap = useImagesMap(parsedItems, variations, thumbnailImage)
 
+  const dispatch = useProductDispatch()
+
   const onSelectItem = useCallback(
     ({
       name: variationName,
@@ -291,6 +295,17 @@ const SKUSelectorContainer: FC<Props> = ({
           finalSelected
         )
         skuIdToRedirect = newItem!.itemId
+      }
+
+      // if (un)selecting a color variation, dispatch to the product context
+      // so we can show/hide the mainImageLabel if defined
+      if(isColor(variationName)) {
+        dispatch({
+          type: 'SELECT_IMAGE_VARIATION',
+          args: {
+            selectedImageVariationSKU: isRemoving ? null : skuIdToRedirect
+          }
+        })
       }
 
       if (isRemoving) {
