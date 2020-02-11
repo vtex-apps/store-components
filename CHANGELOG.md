@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Dispatch `SELECT_IMAGE_VARIATION` action when manually selecting a image variant SKU
 
 ## [3.102.2] - 2020-01-30
 
