@@ -25,8 +25,15 @@ const AUTCOMPLETE_EXTENSION_ID = 'autocomplete-result-list'
 const messages = defineMessages({
   searchTermTooShort: {
     id: 'store/search.search-term-too-short',
-    defaultMessage: '',
   },
+  editorSearchbarTitle: {
+    id: 'admin/editor.search-bar.title',
+    from: 'vtex.admin-messages',
+  },
+  editorSearchbarPlaceholderTitle: {
+    id: 'admin/editor.search-bar.placeholder.title',
+    from: 'vtex.admin-messages',
+  }
 })
 
 const SearchBar = ({

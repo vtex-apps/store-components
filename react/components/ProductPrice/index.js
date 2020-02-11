@@ -7,6 +7,7 @@ import { IOMessage } from 'vtex.native-types'
 import { useRuntime } from 'vtex.render-runtime'
 import { formatCurrency } from 'vtex.format-currency'
 import { useCssHandles } from 'vtex.css-handles'
+import { defineMessages } from 'react-intl'
 
 import ProductPriceLoader from './Loader'
 import PricePropTypes from './propTypes'
@@ -31,6 +32,41 @@ const CSS_HANDLES = ['price_className',
   'price_installment',
   'price_interestRate',
   'price_installmentContainer']
+
+const messages = defineMessages({
+  editorProductpriceTitle: {
+    id: 'admin/editor.productPrice.title',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceDescription: {
+    id: 'admin/editor.productPrice.description',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceShowsellingpricerange: {
+    id: 'admin/editor.productPrice.showSellingPriceRange',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceShowlistpricerange: {
+    id: 'admin/editor.productPrice.showListPriceRange',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceShowlistprice: {
+    id: 'admin/editor.productPrice.showListPrice',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceShowlabels: {
+    id: 'admin/editor.productPrice.showLabels',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceShowinstallments: {
+    id: 'admin/editor.productPrice.showInstallments',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceShowsavings: {
+    id: 'admin/editor.productPrice.showSavings',
+    from: 'vtex.admin-messages'
+  }
+})
 
 const isValidPriceRange = priceRange => {
   const [lowPrice, highPrice] = priceRange
@@ -267,47 +303,47 @@ PriceWithIntl.defaultProps = {
 }
 
 PriceWithIntl.schema = {
-  title: 'admin/editor.productPrice.title',
-  description: 'admin/editor.productPrice.description',
+  title: messages.editorProductpriceTitle.id,
+  description: messages.editorProductpriceDescription.id,
   type: 'object',
   properties: {
     showSellingPriceRange: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showSellingPriceRange',
-      default: PriceWithIntl.defaultProps.showSellingPriceRange,
-      isLayout: true,
+      title: messages.editorProductpriceShowsellingpricerange.id,
+      default:PriceWithIntl.defaultProps.showSellingPriceRang,
+      isLayout: true
     },
     showListPriceRange: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showListPriceRange',
+      title: messages.editorProductpriceShowlistpricerange.id,
       default: PriceWithIntl.defaultProps.showListPriceRange,
-      isLayout: true,
+      isLayout: true
     },
     showListPrice: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showListPrice',
+      title: messages.editorProductpriceShowlistprice.id,
       default: PriceWithIntl.defaultProps.showListPrice,
-      isLayout: true,
+      isLayout: true
     },
     showLabels: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showLabels',
+      title: messages.editorProductpriceShowlabels.id,
       default: PriceWithIntl.defaultProps.showLabels,
-      isLayout: true,
+      isLayout: true
     },
     showInstallments: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showInstallments',
+      title: messages.editorProductpriceShowinstallments.id,
       default: PriceWithIntl.defaultProps.showInstallments,
-      isLayout: true,
+      isLayout: true
     },
     showSavings: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showSavings',
+      title: messages.editorProductpriceShowsavings.id,
       default: PriceWithIntl.defaultProps.showSavings,
-      isLayout: true,
-    },
-  },
+      isLayout: true
+    }
+  }
 }
 
 export default PriceWithIntl

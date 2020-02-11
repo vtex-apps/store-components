@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty, has } from 'ramda'
+import { defineMessages } from 'react-intl'
 
 import ProductPrice from './index'
 
@@ -35,6 +36,49 @@ const styles = {
     height: '0.686em',
   },
 }
+
+const messages = defineMessages({
+  editorProductpriceTitle: {
+    id: 'admin/editor.productPrice.title',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceDescription: {
+    id: 'admin/editor.productPrice.description',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceLabelsellingprice: {
+    id: 'admin/editor.productPrice.labelSellingPrice',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceLabellistprice: {
+    id: 'admin/editor.productPrice.labelListPrice',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceShowsellingpricerange: {
+    id: 'admin/editor.productPrice.showSellingPriceRange',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceShowlistpricerange: {
+    id: 'admin/editor.productPrice.showListPriceRange',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceShowlistprice: {
+    id: 'admin/editor.productPrice.showListPrice',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceShowlabels: {
+    id: 'admin/editor.productPrice.showLabels',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceShowinstallments: {
+    id: 'admin/editor.productPrice.showInstallments',
+    from: 'vtex.admin-messages'
+  },
+  editorProductpriceShowsavings: {
+    id: 'admin/editor.productPrice.showSavings',
+    from: 'vtex.admin-messages'
+  }
+})
 
 const isAvailable = commertialOffer =>
   Number.isNaN(+path(['AvailableQuantity'], commertialOffer)) ||
@@ -125,59 +169,59 @@ const ProductPriceWrapper = ({
 }
 
 ProductPriceWrapper.schema = {
-  title: 'admin/editor.productPrice.title',
-  description: 'admin/editor.productPrice.description',
+  title: messages.editorProductpriceTitle.id,
+  description: messages.editorProductpriceDescription.id,
   type: 'object',
   properties: {
     labelSellingPrice: {
       type: 'string',
-      title: 'admin/editor.productPrice.labelSellingPrice',
+      title: messages.editorProductpriceLabelsellingprice.id,
       default: ProductPrice.defaultProps.labelSellingPrice,
-      isLayout: false,
+      isLayout: false
     },
     labelListPrice: {
       type: 'string',
-      title: 'admin/editor.productPrice.labelListPrice',
+      title: messages.editorProductpriceLabellistprice.id,
       default: ProductPrice.defaultProps.labelListPrice,
-      isLayout: false,
+      isLayout: false
     },
     showSellingPriceRange: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showSellingPriceRange',
+      title: messages.editorProductpriceShowsellingpricerange.id,
       default: ProductPrice.defaultProps.showSellingPriceRange,
-      isLayout: true,
+      isLayout: true
     },
     showListPriceRange: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showListPriceRange',
+      title: messages.editorProductpriceShowlistpricerange.id,
       default: ProductPrice.defaultProps.showListPriceRange,
-      isLayout: true,
+      isLayout: true
     },
     showListPrice: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showListPrice',
+      title: messages.editorProductpriceShowlistprice.id,
       default: ProductPrice.defaultProps.showListPrice,
-      isLayout: true,
+      isLayout: true
     },
     showLabels: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showLabels',
+      title: messages.editorProductpriceShowlabels.id,
       default: ProductPrice.defaultProps.showLabels,
-      isLayout: true,
+      isLayout: true
     },
     showInstallments: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showInstallments',
+      title: messages.editorProductpriceShowinstallments.id,
       default: ProductPrice.defaultProps.showInstallments,
-      isLayout: true,
+      isLayout: true
     },
     showSavings: {
       type: 'boolean',
-      title: 'admin/editor.productPrice.showSavings',
+      title: messages.editorProductpriceShowsavings.id,
       default: ProductPrice.defaultProps.showSavings,
-      isLayout: true,
-    },
-  },
+      isLayout: true
+    }
+  }
 }
 
 export default ProductPriceWrapper

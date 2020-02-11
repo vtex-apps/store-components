@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl, intlShape, defineMessages } from 'react-intl'
 
 import SearchBar from './components/SearchBar'
+
+const messages = defineMessages({
+  editorSearchbarTitle: {
+    id: 'admin/editor.search-bar.title',
+    from: 'vtex.admin-messages'
+  }
+})
 
 /** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
 class SearchBarContainer extends Component {
@@ -105,7 +112,7 @@ SearchBarContainer.contextTypes = {
 }
 
 SearchBarContainer.schema = {
-  title: 'admin/editor.search-bar.title',
+  title: messages.editorSearchbarTitle.id
 }
 
 SearchBarContainer.propTypes = {

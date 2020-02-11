@@ -3,11 +3,26 @@ import classNames from 'classnames'
 import { indexBy, prop } from 'ramda'
 import React, { Component } from 'react'
 import ContentLoader from 'react-content-loader'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, defineMessages } from 'react-intl'
 
 import SocialButton from './components/SocialButton'
 import { SOCIAL_ENUM } from './constants/social'
 import styles from './styles.css'
+
+const messages = defineMessages({
+  editorShareTitle: {
+    id: 'admin/editor.share.title',
+    from: 'vtex.admin-messages'
+  },
+  editorShareDescription: {
+    id: 'admin/editor.share.description',
+    from: 'vtex.admin-messages'
+  },
+  editorShareSocialTitle: {
+    id: 'admin/editor.share.social.title',
+    from: 'vtex.admin-messages'
+  }
+})
 
 class Share extends Component {
   static propTypes = {
@@ -99,12 +114,12 @@ class Share extends Component {
   }
 
   static schema = {
-    title: 'admin/editor.share.title',
-    description: 'admin/editor.share.description',
+    title: messages.editorShareTitle.id,
+    description: messages.editorShareDescription.id,
     type: 'object',
     properties: {
       social: {
-        title: 'admin/editor.share.social.title',
+        title: messages.editorShareSocialTitle.id,
         type: 'object',
         properties: {
           ...indexBy(
@@ -116,8 +131,8 @@ class Share extends Component {
             }))
           ),
         },
-      },
-    },
+      }
+    }
   }
 
   render() {

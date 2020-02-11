@@ -1,8 +1,48 @@
 import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { isEmpty, propOr } from 'ramda'
+import { defineMessages } from 'react-intl'
 
 import ProductHighlights from './index'
+
+const messages = defineMessages({
+  editorProductdetailsTitle: {
+    id: 'admin/editor.product-details.title',
+    from: 'vtex.admin-messages'
+  },
+  editorProductdetailsDescription: {
+    id: 'admin/editor.product-details.description',
+    from: 'vtex.admin-messages'
+  },
+  editorProductdetailsHighlightsDefault: {
+    id: 'admin/editor.product-details.highlights.default',
+    from: 'vtex.admin-messages'
+  },
+  editorProductdetailsHighlightsAllspecifications: {
+    id: 'admin/editor.product-details.highlights.allSpecifications',
+    from: 'vtex.admin-messages'
+  },
+  editorProductdetailsHighlightsChoosedefault: {
+    id: 'admin/editor.product-details.highlights.chooseDefault',
+    from: 'vtex.admin-messages'
+  },
+  editorProductdetailsHighlightsChoosedefaultspecification: {
+    id: 'admin/editor.product-details.highlights.chooseDefaultSpecification',
+    from: 'vtex.admin-messages'
+  },
+  editorProductdetailsHighlightsTitle: {
+    id: 'admin/editor.product-details.highlights.title',
+    from: 'vtex.admin-messages'
+  },
+  editorProductdetailsHighlightsTypespecificationsTitle: {
+    id: 'admin/editor.product-details.highlights.typeSpecifications.title',
+    from: 'vtex.admin-messages'
+  },
+  editorProductdetailsShowhighlightTitle: {
+    id: 'admin/editor.product-details.showHighlight.title',
+    from: 'vtex.admin-messages'
+  }
+})
 
 const ProductHighlightsWrapper = (props) => {
   const { conditional } = props
@@ -14,7 +54,7 @@ const ProductHighlightsWrapper = (props) => {
 
     const choose = propOr('', 'highlight', conditional)
 
-    if (choose === 'admin/editor.product-details.highlights.chooseDefault') {
+    if (choose === messages.editorProductdetailsHighlightsChoosedefault.id) {
       const typeHighlight = propOr('', 'typeHighlight', conditional)
       const highlightName = typeHighlight.trim()
       const names = highlightName.split(',')
@@ -33,7 +73,7 @@ const ProductHighlightsWrapper = (props) => {
       }, [])
     }
 
-    if (choose === 'admin/editor.product-details.highlights.chooseDefaultSpecification') {
+    if (choose === messages.editorProductdetailsHighlightsChoosedefaultspecification.id) {
       const typeSpecifications = propOr('', 'typeSpecifications', conditional)
       const specificationNames = typeSpecifications.trim().split(',')
       const allSpecifications = propOr([], 'properties', product)
@@ -46,7 +86,7 @@ const ProductHighlightsWrapper = (props) => {
       }, [])
     }
 
-    if (choose === 'admin/editor.product-details.highlights.allSpecifications') {
+    if (choose === messages.editorProductdetailsHighlightsAllspecifications.id) {
       return propOr([], 'properties', product)
     }
   }
@@ -68,9 +108,8 @@ const ProductHighlightsWrapper = (props) => {
 }
 
 ProductHighlightsWrapper.schema = {
-  // @TODO review title and description
-  title: 'admin/editor.product-details.title',
-  description: 'admin/editor.product-details.description',
+  title: messages.editorProductdetailsTitle.id,
+  description: messages.editorProductdetailsDescription.id,
   type: 'object',
   definitions: {
     highlightGroupDefault: {
@@ -78,15 +117,15 @@ ProductHighlightsWrapper.schema = {
       type: 'object',
       properties: {
         highlight: {
-          title: 'admin/editor.product-details.highlights.default',
+          title: messages.editorProductdetailsHighlightsDefault.id,
           type: 'string',
           enum: [
-            'admin/editor.product-details.highlights.allSpecifications',
-            'admin/editor.product-details.highlights.chooseDefault',
-            'admin/editor.product-details.highlights.chooseDefaultSpecification',
+            messages.editorProductdetailsHighlightsAllspecifications.id,
+            messages.editorProductdetailsHighlightsChoosedefault.id,
+            messages.editorProductdetailsHighlightsChoosedefaultspecification.id
           ],
-          default: 'admin/editor.product-details.highlights.allSpecifications',
-        },
+          default: messages.editorProductdetailsHighlightsAllspecifications.id
+        }
       },
       required: ['highlight'],
       dependencies: {
@@ -96,55 +135,60 @@ ProductHighlightsWrapper.schema = {
               properties: {
                 highlight: {
                   enum: [
-                    'admin/editor.product-details.highlights.allSpecifications',
-                  ],
-                },
-              },
-            },
-            {
-              properties: {
-                highlight: {
-                  enum: ['admin/editor.product-details.highlights.chooseDefault'],
-                },
-                typeHighlight: {
-                  type: 'string',
-                  title: 'admin/editor.product-details.highlights.title',
-                },
-              },
-              required: [''],
+                    messages.editorProductdetailsHighlightsAllspecifications.id
+                  ]
+                }
+              }
             },
             {
               properties: {
                 highlight: {
                   enum: [
-                    'admin/editor.product-details.highlights.chooseDefaultSpecification',
-                  ],
+                    messages.editorProductdetailsHighlightsChoosedefault.id
+                  ]
+                },
+                typeHighlight: {
+                  type: 'string',
+                  title: messages.editorProductdetailsHighlightsTitle.id
+                }
+              },
+              required: [
+                ''
+              ]
+            },
+            {
+              properties: {
+                highlight: {
+                  enum: [
+                    messages.editorProductdetailsHighlightsChoosedefaultspecification.id
+                  ]
                 },
                 typeSpecifications: {
                   type: 'string',
-                  title:
-                    'admin/editor.product-details.highlights.typeSpecifications.title',
-                },
+                  title: messages.editorProductdetailsHighlightsTypespecificationsTitle.id
+                }
               },
-              required: [''],
-            },
-          ],
-        },
-      },
-    },
+              required: [
+                ''
+              ]
+            }
+          ]
+        }
+      }
+    }
   },
   properties: {
     showHighlight: {
       type: 'boolean',
-      title: 'admin/editor.product-details.showHighlight.title',
+      title: messages.editorProductdetailsShowhighlightTitle.id,
       default: false,
-      isLayout: false,
+      isLayout: false
     },
     conditional: {
       title: 'Conditional',
-      $ref: '#/definitions/highlightGroupDefault',
-    },
-  },
+      '$ref': '#/definitions/highlightGroupDefault'
+    }
+  }
 }
 
 export default ProductHighlightsWrapper

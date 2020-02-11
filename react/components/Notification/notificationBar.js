@@ -3,9 +3,28 @@ import { string } from 'prop-types'
 import NotificationContent from './notificationContent'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import { formatIOMessage } from 'vtex.native-types'
-import { injectIntl } from 'react-intl'
+import { injectIntl, defineMessages } from 'react-intl'
 
 import styles from './styles.css'
+
+const messages = defineMessages({
+  editorNotificationbarTitle: {
+    id: 'admin/editor.notification-bar.title',
+    from: 'vtex.admin-messages'
+  },
+  editorNotificationbarDescription: {
+    id: 'admin/editor.notification-bar.description',
+    from: 'vtex.admin-messages'
+  },
+  editorNotificationbarContentTitle: {
+    id: 'admin/editor.notification-bar.content.title',
+    from: 'vtex.admin-messages'
+  },
+  editorNotificationbarContentDescription: {
+    id: 'admin/editor.notification-bar.content.description',
+    from: 'vtex.admin-messages'
+  }
+})
 
 const NotificationBar = ({ content, intl }) => {
   return (
@@ -36,7 +55,7 @@ NotificationBar.defaultProps = {
 }
 
 NotificationBar.schema = {
-  title: 'admin/editor.notification-bar.title'
+  title: messages.editorNotificationbarTitle.id
 }
 
 export default hoistNonReactStatics(injectIntl(NotificationBar), memo(NotificationBar))

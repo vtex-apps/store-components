@@ -7,10 +7,30 @@ import {
   ResponsiveInput,
   useResponsiveValues,
 } from 'vtex.responsive-values'
+import { defineMessages } from 'react-intl'
 
 import SKUSelector from './index'
 import { Variations, InitialSelectionType, DisplayMode } from './types'
 import { ShowValueForVariation } from './components/SKUSelector'
+
+const messages = defineMessages({
+  editorSkuselectorTitle: {
+    id: 'admin/editor.skuSelector.title',
+    from: 'vtex.admin-messages'
+  },
+  editorSkuselectorDescription: {
+    id: 'admin/editor.skuSelector.description',
+    from: 'vtex.admin-messages'
+  },
+  editorSkuselectorSeemorelabelTitle: {
+    id: 'admin/editor.skuSelector.seeMoreLabel.title',
+    from: 'vtex.admin-messages'
+  },
+  editorSkuselectorSeemorelabelDescription: {
+    id: 'admin/editor.skuSelector.seeMoreLabel.description',
+    from: 'vtex.admin-messages'
+  }
+})
 
 const getVariationsFromItems = (
   skuItems: ProductItem[],
@@ -210,8 +230,8 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
 }
 
 SKUSelectorWrapper.schema = {
-  title: 'admin/editor.skuSelector.title',
-  description: 'admin/editor.skuSelector.description',
+  title: messages.editorSkuselectorTitle.id,
+  description: messages.editorSkuselectorDescription.id
 }
 
 export default SKUSelectorWrapper

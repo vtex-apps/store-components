@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { path, isEmpty } from 'ramda'
 import { ProductContext } from 'vtex.product-context'
+import { defineMessages } from 'react-intl'
 
 import ProductName from './index'
 
@@ -17,6 +18,29 @@ const styles = {
     height: '1.045em',
   },
 }
+
+const messages = defineMessages({
+  editorProductnameTitle: {
+    id: 'admin/editor.productName.title',
+    from: 'vtex.admin-messages'
+  },
+  editorProductnameDescription: {
+    id: 'admin/editor.productName.description',
+    from: 'vtex.admin-messages'
+  },
+  editorProductnameShowbrandnameTitle: {
+    id: 'admin/editor.productName.showBrandName.title',
+    from: 'vtex.admin-messages'
+  },
+  editorProductnameShowskuTitle: {
+    id: 'admin/editor.productName.showSku.title',
+    from: 'vtex.admin-messages'
+  },
+  editorProductnameShowproductreferenceTitle: {
+    id: 'admin/editor.productName.showProductReference.title',
+    from: 'vtex.admin-messages'
+  }
+})
 
 const ProductNameWrapper = props => {
   const valuesFromContext = useContext(ProductContext)
@@ -44,29 +68,29 @@ const ProductNameWrapper = props => {
 }
 
 ProductNameWrapper.schema = {
-  title: 'admin/editor.productName.title',
-  description: 'admin/editor.productName.description',
+  title: messages.editorProductnameTitle.id,
+  description: messages.editorProductnameDescription.id,
   type: 'object',
   properties: {
     showBrandName: {
       type: 'boolean',
-      title: 'admin/editor.productName.showBrandName.title',
+      title: messages.editorProductnameShowbrandnameTitle.id,
       default: false,
-      isLayout: true,
+      isLayout: true
     },
     showSku: {
       type: 'boolean',
-      title: 'admin/editor.productName.showSku.title',
+      title: messages.editorProductnameShowskuTitle.id,
       default: false,
-      isLayout: true,
+      isLayout: true
     },
     showProductReference: {
       type: 'boolean',
-      title: 'admin/editor.productName.showProductReference.title',
+      title: messages.editorProductnameShowproductreferenceTitle.id,
       default: false,
-      isLayout: true,
-    },
-  },
+      isLayout: true
+    }
+  }
 }
 
 export default ProductNameWrapper

@@ -1,8 +1,20 @@
 import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path } from 'ramda'
+import { defineMessages } from 'react-intl'
 
 import ProductDescription from './index'
+
+const messages = defineMessages({
+  editorProductdescriptionTitle: {
+    id: 'admin/editor.product-description.title',
+    from: 'vtex.admin-messages'
+  },
+  editorProductdescriptionTitlepropTitle: {
+    id: 'admin/editor.product-description.title-prop.title',
+    from: 'vtex.admin-messages'
+  }
+})
 
 const ProductDescriptionWrapper = props => {
   const valuesFromContext = useContext(ProductContext)
@@ -21,8 +33,9 @@ const ProductDescriptionWrapper = props => {
 }
 
 ProductDescriptionWrapper.schema = {
-  title: 'admin/editor.product-description.title',
+  title: messages.editorProductdescriptionTitle.id
 }
+
 
 ProductDescriptionWrapper.defaultProps = {
   collapseContent: true,

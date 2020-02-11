@@ -1,8 +1,36 @@
 import React from 'react'
 import useProduct from 'vtex.product-context/useProduct'
 import { isEmpty, propOr, propEq } from 'ramda'
+import { defineMessages } from 'react-intl'
 
 import ProductSpecifications from './index'
+
+const messages = defineMessages({
+  editorProductspecificationsTitle: {
+    id: 'admin/editor.product-specifications.title',
+    from: 'vtex.admin-messages'
+  },
+  editorProductspecificationsItemsTitle: {
+    id: 'admin/editor.product-specifications.items.title',
+    from: 'vtex.admin-messages'
+  },
+  editorProductspecificationsHiddenspecificationsDescription: {
+    id: 'admin/editor.product-specifications.hidden-specifications.description',
+    from: 'vtex.admin-messages'
+  },
+  editorProductspecificationsHiddenspecificationsTitle: {
+    id: 'admin/editor.product-specifications.hidden-specifications.title',
+    from: 'vtex.admin-messages'
+  },
+  editorProductspecificationsVisiblespecificationsDescription: {
+    id: 'admin/editor.product-specifications.visible-specifications.description',
+    from: 'vtex.admin-messages'
+  },
+  editorProductspecificationsVisiblespecificationsTitle: {
+    id: 'admin/editor.product-specifications.visible-specifications.title',
+    from: 'vtex.admin-messages'
+  }
+})
 
 const getSpecifications = productContext => {
   if (!productContext || isEmpty(productContext)) {
@@ -41,32 +69,32 @@ const ProductSpecificationsWrapper = ({
 
 ProductSpecificationsWrapper.getSchema = () => {
   return {
-      title: 'admin/editor.product-specifications.title',
-      description: '',
-      type: 'object',
-      properties: {
-        hiddenSpecifications: {
-          items: {
-            default: '',
-            type: 'string',
-            title: 'admin/editor.product-specifications.items.title'
-          },
-          description: 'admin/editor.product-specifications.hidden-specifications.description',
-          title: 'admin/editor.product-specifications.hidden-specifications.title',
-          type: 'array'
+    title: messages.editorProductspecificationsTitle.id,
+    description: '',
+    type: 'object',
+    properties: {
+      hiddenSpecifications: {
+        items: {
+          default: '',
+          type: 'string',
+          title: messages.editorProductspecificationsItemsTitle.id
         },
-        visibleSpecifications: {
-          items: {
-            default: '',
-            type: 'string',
-            title: 'admin/editor.product-specifications.items.title'
-          },
-          description: 'admin/editor.product-specifications.visible-specifications.description',
-          title: 'admin/editor.product-specifications.visible-specifications.title',
-          type: 'array'
-        }
+        description: messages.editorProductspecificationsHiddenspecificationsDescription.id,
+        title: messages.editorProductspecificationsHiddenspecificationsTitle.id,
+        type: 'array'
+      },
+      visibleSpecifications: {
+        items: {
+          default: '',
+          type: 'string',
+          title: messages.editorProductspecificationsItemsTitle.id
+        },
+        description: messages.editorProductspecificationsVisiblespecificationsDescription.id,
+        title: messages.editorProductspecificationsVisiblespecificationsTitle.id,
+        type: 'array'
       }
     }
+  }
 }
 
 export default ProductSpecificationsWrapper

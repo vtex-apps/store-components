@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { graphql } from 'react-apollo'
 import { compose } from 'ramda'
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl, intlShape, defineMessages } from 'react-intl'
 import { Input, Button } from 'vtex.styleguide'
 import { withCssHandles } from 'vtex.css-handles'
 import SUBSCRIBE_NEWSLETTER from './mutations/subscribeNewsletter.graphql'
@@ -21,6 +21,33 @@ const CSS_HANDLES = [
   'label',
   'error',
 ]
+
+const messages = defineMessages({
+  editorNewsletterTitle: {
+    id: 'admin/editor.newsletter.title',
+    from: 'vtex.admin-messages'
+  },
+  editorNewsletterDescription: {
+    id: 'admin/editor.newsletter.description',
+    from: 'vtex.admin-messages'
+  },
+  editorNewsletterHidelabel: {
+    id: 'admin/editor.newsletter.hideLabel',
+    from: 'vtex.admin-messages'
+  },
+  editorNewsletterPlaceholder: {
+    id: 'admin/editor.newsletter.placeholder',
+    from: 'vtex.admin-messages'
+  },
+  editorNewsletterLabel: {
+    id: 'admin/editor.newsletter.label',
+    from: 'vtex.admin-messages'
+  },
+  editorNewsletterSubmit: {
+    id: 'admin/editor.newsletter.submit',
+    from: 'vtex.admin-messages'
+  }
+})
 
 class Newsletter extends Component {
   state = {
@@ -187,17 +214,17 @@ Newsletter.propTypes = {
 
 Newsletter.getSchema = () => {
   return {
-    title: 'admin/editor.newsletter.title',
-    description: 'admin/editor.newsletter.description',
+    title: messages.editorNewsletterTitle.id,
+    description: messages.editorNewsletterDescription.id,
     type: 'object',
     properties: {
       hideLabel: {
         type: 'boolean',
-        title: 'admin/editor.newsletter.hideLabel',
+        title: messages.editorNewsletterHidelabel.id,
         default: false,
-        isLayout: true,
-      },
-    },
+        isLayout: true
+      }
+    }
   }
 }
 
