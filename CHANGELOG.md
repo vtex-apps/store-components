@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Move messages to admin-messages and store-messages so we have a centralized repo for translations. This will help our translation team to easily support other languages 
 
 ## [3.104.3] - 2020-02-21
 ### Fixed
