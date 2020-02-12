@@ -24,7 +24,7 @@
     "react-dom": "^16.8.3",
     "react-html-parser": "^2.0.2",
     "react-id-swiper": "2.3.2",
-    "react-intl": "^2.8.0",
+    "react-intl": "3.9.1",
     "react-resize-detector": "^3.0.1",
     "react-share": "^3.0.1",
     "react-slick": "^0.23.1",
