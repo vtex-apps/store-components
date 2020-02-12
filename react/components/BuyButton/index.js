@@ -199,11 +199,11 @@ export const BuyButton = ({
       const foundItem =
         addedItem.length &&
         orderFormItems &&
-        (!addedItem[0].options || addedItem[0].options.length === 0) &&
         orderFormItems.filter(
           item =>
             item.id === addedItem[0].skuId &&
-            item.seller === addedItem[0].seller
+            item.seller === addedItem[0].seller &&
+            !item.canHaveAttachment
         ).length > 0
 
       success = addedItem
