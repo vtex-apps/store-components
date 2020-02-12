@@ -33,7 +33,7 @@ const Greeting = ({ orderForm }) => {
       <Wrapper>
         <Fragment>
           <span className={styles.message}>
-            <FormattedMessage id="store/greeting" />,
+            <FormattedMessage id="store/greeting" from="vtex.store-messages" />,
           </span>
           <span className={`${styles.firstName} pl2 b`}>{firstName}</span>
         </Fragment>

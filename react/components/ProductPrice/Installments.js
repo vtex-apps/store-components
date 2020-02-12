@@ -72,6 +72,7 @@ const Installments = ({
       {showLabels ? (
         <FormattedMessage
           id="store/pricing.installment-display"
+          from="vtex.store-messages"
           values={{
             installments: installmentsElement,
             installmentPrice: installmentPriceElement,
@@ -91,7 +92,7 @@ const Installments = ({
             interestRateClass
           )}
         >
-          <FormattedMessage id="store/pricing.interest-free" />
+          <FormattedMessage id="store/pricing.interest-free" from="vtex.store-messages" />
         </div>
       )}
     </div>

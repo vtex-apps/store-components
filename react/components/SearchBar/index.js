@@ -67,6 +67,7 @@ class SearchBarContainer extends Component {
       customSearchPageUrl,
       placeholder = intl.formatMessage({
         id: 'store/search.placeholder',
+        from: 'vtex.store-messages'
       }),
       autocompleteAlignment = 'right',
       openAutocompleteOnFocus = false,

@@ -30,7 +30,7 @@ const ProductDescription = ({ description, collapseContent, title, intl }) => {
 
   return (
     <div className={handles.productDescriptionContainer}>
-      <FormattedMessage id="store/product-description.title">
+      <FormattedMessage id="store/product-description.title" from="vtex.store-messages">
         {txt => (
           <h2
             className={`${handles.productDescriptionTitle} t-heading-5 mb5 mt0`}

@@ -91,7 +91,7 @@ const ProductSpecifications = ({
   const specificationItems = getSpecificationItems()
 
   const specificationTitle = (
-    <FormattedMessage id="store/technicalspecifications.title">
+    <FormattedMessage id="store/technicalspecifications.title" from="vtex.store-messages" >
       {txt => (
         <h2 className={`${handles.specificationsTitle} t-heading-5 mb5 mt0`}>
           {HtmlParser(txt)}
@@ -109,12 +109,12 @@ const ProductSpecifications = ({
           <th
             className={`${handles.specificationsTablePropertyHeading} w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5`}
           >
-            <FormattedMessage id="store/product-description.property" />
+            <FormattedMessage id="store/product-description.property" from="vtex.store-messages" />
           </th>
           <th
             className={`${handles.specificationsTableSpecificationHeading} w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5`}
           >
-            <FormattedMessage id="store/product-description.specification" />
+            <FormattedMessage id="store/product-description.specification" from="vtex.store-messages" />
           </th>
         </tr>
       </thead>

@@ -20,7 +20,7 @@ const ShareWrapper = props => {
     const { selectedItem, product } = valuesFromContext
 
     const title = intl.formatMessage(
-      { id: 'store/share.title' },
+      { id: 'store/share.title', from: "vtex.store-messages" },
       {
         product: path(['productName'], product),
         sku: path(['name'], selectedItem),

@@ -12,7 +12,7 @@ interface VariationSelectModeProps extends WrappedComponentProps {
 const messages = defineMessages({
   selectPlaceholder: {
     id: 'store/sku-selector.select.placeholder',
-    defaultMessage: '',
+    from: "vtex.store-messages",
   }
 })
 

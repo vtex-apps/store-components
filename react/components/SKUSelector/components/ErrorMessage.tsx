@@ -9,7 +9,7 @@ function ErrorMessage() {
   const className = `${handles.errorMessage} c-danger`
 
   return (
-    <FormattedMessage id="store/sku-selector.variation.select-an-option">
+    <FormattedMessage id="store/sku-selector.variation.select-an-option" from="vtex.store-messages">
       {message => (
         <>{' '}{/* this space is necessary */}
           <span className={className}>

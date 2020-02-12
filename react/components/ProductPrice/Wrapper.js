@@ -77,6 +77,14 @@ const messages = defineMessages({
   editorProductpriceShowsavings: {
     id: 'admin/editor.productPrice.showSavings',
     from: 'vtex.admin-messages'
+  },
+  pricingTo: {
+    id: 'store/pricing.to',
+    from: 'vtex.store-messages'
+  },
+  pricingFrom: {
+    id: 'store/pricing.from',
+    from: 'vtex.store-messages'
   }
 })
 

@@ -29,6 +29,10 @@ const messages = defineMessages({
   editorSkuselectorSeemorelabelDescription: {
     id: 'admin/editor.skuSelector.seeMoreLabel.description',
     from: 'vtex.admin-messages'
+  },
+  skuSelectorSeemore: {
+    id: 'store/skuSelector.seeMore',
+    from: 'vtex.store-messages'
   }
 })
 

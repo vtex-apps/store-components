@@ -1,13 +1,48 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { ApolloConsumer } from 'react-apollo'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl, intlShape, defineMessages } from 'react-intl'
 
 import { Button, Input } from 'vtex.styleguide'
 
 import ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION from './mutations/addToAvailabilitySubscriberMutation.gql'
 
 import styles from './styles.css'
+
+const messages = defineMessages({
+  availabilitysubscriberInvalidemail: {
+    id: 'store/availability-subscriber.invalid-email',
+    from: 'vtex.store-messages'
+  },
+  availabilitysubscriberAddedmessage: {
+    id: 'store/availability-subscriber.added-message',
+    from: 'vtex.store-messages'
+  },
+  availabilitysubscriberTitle: {
+    id: 'store/availability-subscriber.title',
+    from: 'vtex.store-messages'
+  },
+  availabilitysubscriberSubscribelabel: {
+    id: 'store/availability-subscriber.subscribe-label',
+    from: 'vtex.store-messages'
+  },
+  availabilitysubscriberNameplaceholder: {
+    id: 'store/availability-subscriber.name-placeholder',
+    from: 'vtex.store-messages'
+  },
+  availabilitysubscriberEmailplaceholder: {
+    id: 'store/availability-subscriber.email-placeholder',
+    from: 'vtex.store-messages'
+  },
+  availabilitysubscriberSendlabel: {
+    id: 'store/availability-subscriber.send-label',
+    from: 'vtex.store-messages'
+  },
+  availabilitysubscriberErrormessage: {
+    id: 'store/availability-subscriber.error-message',
+    from: 'vtex.store-messages'
+  }
+})
 
 /**
  * Represents the availability subscriber form, that's shown when
@@ -40,7 +75,7 @@ class AvailabilitySubscriber extends Component {
     let error = ''
 
     if (!emailRegex.test(email.toLowerCase())) {
-      error = 'store/availability-subscriber.invalid-email'
+      error = messages.availabilitysubscriberInvalidemail.id
     }
 
     if (error !== emailError) {
@@ -131,7 +166,7 @@ class AvailabilitySubscriber extends Component {
     const event = new Event('message:success')
     event.details = {
       success: true,
-      message: this.translate('store/availability-subscriber.added-message'),
+      message: this.translate(messages.availabilitysubscriberAddedmessage.id),
     }
     document.dispatchEvent(event)
   }
@@ -169,10 +204,10 @@ class AvailabilitySubscriber extends Component {
         {client => (
           <div className={styles.subscriberContainer}>
             <div className={`${styles.title} t-body mb3`}>
-              {this.translate('store/availability-subscriber.title')}
+              {this.translate(messages.availabilitysubscriberTitle.id)}
             </div>
             <div className={`${styles.subscribeLabel} t-small fw3`}>
-              {this.translate('store/availability-subscriber.subscribe-label')}
+              {this.translate(messages.availabilitysubscriberSubscribelabel.id)}
             </div>
             <form
               className={`${styles.form} mb4`}
@@ -190,7 +225,7 @@ class AvailabilitySubscriber extends Component {
                     name="name"
                     type="text"
                     placeholder={this.translate(
-                      'store/availability-subscriber.name-placeholder'
+                      messages.availabilitysubscriberNameplaceholder.id
                     )}
                     value={name}
                     onChange={this.handleInputChange}
@@ -208,7 +243,7 @@ class AvailabilitySubscriber extends Component {
                     name="email"
                     type="text"
                     placeholder={this.translate(
-                      'store/availability-subscriber.email-placeholder'
+                      messages.availabilitysubscriberEmailplaceholder.id
                     )}
                     value={email}
                     onChange={this.handleInputChange}
@@ -228,18 +263,18 @@ class AvailabilitySubscriber extends Component {
                     disabled={isFormDisabled}
                     isLoading={isLoading}
                   >
-                    {this.translate('store/availability-subscriber.send-label')}
+                    {this.translate(messages.availabilitysubscriberSendlabel.id)}
                   </Button>
                 </div>
               </div>
               {sendStatus === 'success' && (
                 <div className={`${styles.success} t-body c-success`}>
-                  {this.translate('store/availability-subscriber.added-message')}
+                  {this.translate(messages.availabilitysubscriberAddedmessage.id)}
                 </div>
               )}
               {sendStatus === 'error' && (
                 <div className={`${styles.error} c-danger`}>
-                  {this.translate('store/availability-subscriber.error-message')}
+                  {this.translate(messages.availabilitysubscriberErrormessage.id)}
                 </div>
               )}
             </form>

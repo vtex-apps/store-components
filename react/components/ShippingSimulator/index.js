@@ -97,7 +97,7 @@ const ShippingSimulator = ({
           block
           isLoading={loading}
         >
-          {intl.formatMessage({ id: 'store/shipping.label' })}
+          {intl.formatMessage({ id: 'store/shipping.label', from: "vtex.store-messages" })}
         </Button>
       </div>
       <ShippingTable shipping={shipping} />

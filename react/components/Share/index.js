@@ -164,7 +164,7 @@ class Share extends Component {
     return (
       <div className={classNames(styles.shareContainer, className)}>
         <div className={classNames(styles.shareLabel, shareLabelClass)}>
-          <FormattedMessage id="store/store-components.share.label" />
+          <FormattedMessage id="store/store-components.share.label" from="vtex.store-messages" />
         </div>
         <div className={classNames(styles.shareButtons, buttonsContainerClass)}>
           {Object.keys(social).map(

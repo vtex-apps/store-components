@@ -46,6 +46,34 @@ const messages = defineMessages({
   editorNewsletterSubmit: {
     id: 'admin/editor.newsletter.submit',
     from: 'vtex.admin-messages'
+  },
+  newsletterConfirmationtitle: {
+    id: 'store/newsletter.confirmationTitle',
+    from: 'vtex.store-messages'
+  },
+  newsletterConfirmationtext: {
+    id: 'store/newsletter.confirmationText',
+    from: 'vtex.store-messages'
+  },
+  newsletterInvalidemail: {
+    id: 'store/newsletter.invalidEmail',
+    from: 'vtex.store-messages'
+  },
+  newsletterError: {
+    id: 'store/newsletter.error',
+    from: 'vtex.store-messages'
+  },
+  newsletterPlaceholder: {
+    id: 'store/newsletter.placeholder',
+    from: 'vtex.store-messages'
+  },
+  newsletterLabel: {
+    id: 'store/newsletter.label',
+    from: 'vtex.store-messages'
+  },
+  newsletterSubmit: {
+    id: 'store/newsletter.submit',
+    from: 'vtex.store-messages'
   }
 })
 
@@ -115,19 +143,19 @@ class Newsletter extends Component {
     const labelText = formatIOMessage({ id: label, intl })
     const placeholderText = formatIOMessage({ id: placeholder, intl })
     const confirmationTitle = formatIOMessage({
-      id: 'store/newsletter.confirmationTitle',
+      id: messages.newsletterConfirmationtitle.id,
       intl,
     })
     const confirmationText = formatIOMessage({
-      id: 'store/newsletter.confirmationText',
+      id: messages.newsletterConfirmationtext.id,
       intl,
     })
     const invalidEmailText = formatIOMessage({
-      id: 'store/newsletter.invalidEmail',
+      id: messages.newsletterInvalidemail.id,
       intl,
     })
     const errorMsg = formatIOMessage({
-      id: 'store/newsletter.error',
+      id: messages.newsletterError.id,
       intl,
     })
 

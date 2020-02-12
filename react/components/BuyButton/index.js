@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useContext, useCallback, useState, useEffect } from 'react'
-import { intlShape, FormattedMessage } from 'react-intl'
+import { intlShape, FormattedMessage, defineMessages } from 'react-intl'
 import { path } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { useRuntime } from 'vtex.render-runtime'
@@ -11,13 +11,40 @@ import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 import { Button, ToastContext, Tooltip } from 'vtex.styleguide'
 import useMarketingSessionParams from './hooks/useMarketingSessionParams'
 
+const messages = defineMessages({
+  buybuttonBuysuccess: {
+    id: 'store/buybutton.buy-success',
+    from: 'vtex.store-messages'
+  },
+  buybuttonSelectskuvariations: {
+    id: 'store/buybutton.select-sku-variations',
+    from: 'vtex.store-messages'
+  },
+  buybuttonBuyofflinesuccess: {
+    id: 'store/buybutton.buy-offline-success',
+    from: 'vtex.store-messages'
+  },
+  buybuttonBuysuccessduplicate: {
+    id: 'store/buybutton.buy-success-duplicate',
+    from: 'vtex.store-messages'
+  },
+  buybuttonAddfailure: {
+    id: 'store/buybutton.add-failure',
+    from: 'vtex.store-messages'
+  },
+  buybuttonSeecart: {
+    id: 'store/buybutton.see-cart',
+    from: 'vtex.store-messages'
+  }
+})
+
 const CONSTANTS = {
-  SUCCESS_MESSAGE_ID: 'store/buybutton.buy-success',
-  SELECT_SKU_ERROR_ID: 'store/buybutton.select-sku-variations',
-  OFFLINE_BUY_MESSAGE_ID: 'store/buybutton.buy-offline-success',
-  DUPLICATE_CART_ITEM_ID: 'store/buybutton.buy-success-duplicate',
-  ERROR_MESSAGE_ID: 'store/buybutton.add-failure',
-  SEE_CART_ID: 'store/buybutton.see-cart',
+  SUCCESS_MESSAGE_ID: messages.buybuttonBuysuccess.id,
+  SELECT_SKU_ERROR_ID: messages.buybuttonSelectskuvariations.id,
+  OFFLINE_BUY_MESSAGE_ID: messages.buybuttonBuyofflinesuccess.id,
+  DUPLICATE_CART_ITEM_ID: messages.buybuttonBuysuccessduplicate.id,
+  ERROR_MESSAGE_ID: messages.buybuttonAddfailure.id,
+  SEE_CART_ID: messages.buybuttonSeecart.id,
   TOAST_TIMEOUT: 3000,
 }
 
@@ -263,7 +290,7 @@ export const BuyButton = ({
 
   const disabled = disabledProp || !available
   const unavailableLabel = (
-    <FormattedMessage id="store/buyButton-label-unavailable">
+    <FormattedMessage id="store/buyButton-label-unavailable" from="vtex.store-messages">
       {message => <span className={handles.buyButtonText}>{message}</span>}
     </FormattedMessage>
   )

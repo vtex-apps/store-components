@@ -27,7 +27,7 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
   if (typeof price === 'undefined') {
     valueText = '-'
   } else if (price === 0) {
-    valueText = intl.formatMessage({ id: 'store/shipping.free' })
+    valueText = intl.formatMessage({ id: 'store/shipping.free', from: 'vtex.store-messages' })
   } else {
     valueText = <FormattedCurrency value={price / 100} />
   }

@@ -268,6 +268,7 @@ const ProductPrice = (props, context) => {
           >
             <FormattedMessage
               id="store/pricing.savings"
+              from="vtex.store-messages"
               values={{
                 savings: 
                 <span 

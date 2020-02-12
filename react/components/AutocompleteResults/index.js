@@ -112,6 +112,7 @@ const AutocompleteResults = ({
   const fullTextSearchLabel = (
     <FormattedMessage
       id="store/search.searchFor"
+      from="vtex.store-messages"
       values={{
         term: <span className={handles.searchTerm}>{`"${inputValue}"`}</span>,
       }}

@@ -108,9 +108,9 @@ function GradientCollapse(props) {
                 className="c-action-primary t-action pointer ma5 bn outline-0"
               >
                 {state === 'entered' || (collapsed && state !== 'exited') ? (
-                  <FormattedMessage id="store/product-description.collapse.showLess" />
+                  <FormattedMessage id="store/product-description.collapse.showLess" from="vtex.store-messages" />
                 ) : (
-                    <FormattedMessage id="store/product-description.collapse.showMore" />
+                    <FormattedMessage id="store/product-description.collapse.showMore" from="vtex.store-messages" />
                   )}
               </button>
             </div>

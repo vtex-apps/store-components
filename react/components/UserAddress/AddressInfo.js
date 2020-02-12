@@ -45,10 +45,11 @@ const AddressInfo = ({ inverted, inline, orderForm, intl }) => {
             {isPickup ? (
               <FormattedMessage
                 id="store/user-address.pickup"
+                from="vtex.store-messages"
                 values={{ name: friendlyName }}
               />
             ) : (
-              <FormattedMessage id="store/user-address.order" />
+              <FormattedMessage id="store/user-address.order" from="vtex.store-messages" />
             )}
           </div>
           <div className="truncate">{displayAddress}</div>
@@ -70,6 +71,7 @@ const AddressInfo = ({ inverted, inline, orderForm, intl }) => {
               centered
               buttonLabel={intl.formatMessage({
                 id: 'store/user-address.change',
+                from: 'vtex.store-messages'
               })}
               buttonClass={
                 inverted ? 'c-on-base--inverted' : 'c-action-primary'
