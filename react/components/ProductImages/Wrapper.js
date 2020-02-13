@@ -9,8 +9,23 @@ import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
 
 const ProductImagesWrapper = props => {
   const valuesFromContext = useProduct() || {}
-  const { aspectRatio, maxHeight, showNavigationArrows, showPaginationDots } = useResponsiveValues(
-    pick(['aspectRatio', 'maxHeight', 'showNavigationArrows', 'showPaginationDots'], props)
+  const {
+    aspectRatio,
+    maxHeight,
+    showNavigationArrows,
+    showPaginationDots,
+    contentOrder,
+  } = useResponsiveValues(
+    pick(
+      [
+        'aspectRatio',
+        'maxHeight',
+        'showNavigationArrows',
+        'showPaginationDots',
+        'contentOrder',
+      ],
+      props
+    )
   )
   const { selectedItem } = valuesFromContext
   const images = useMemo(
@@ -33,9 +48,9 @@ const ProductImagesWrapper = props => {
     <ProductImages
       images={images}
       videos={videos}
-      zoomProps={props.zoomProps}
       hiddenImages={props.hiddenImages}
-      position={props.position || props.thumbnailPosition} //thumbnailPosition is a legacy prop from product-details
+      // thumbnailPosition is a legacy prop from product-details
+      position={props.position || props.thumbnailPosition}
       displayThumbnailsArrows={props.displayThumbnailsArrows}
       thumbnailsOrientation={props.thumbnailsOrientation}
       zoomMode={props.zoomMode}
@@ -46,6 +61,7 @@ const ProductImagesWrapper = props => {
       thumbnailMaxHeight={props.thumbnailMaxHeight}
       showNavigationArrows={showNavigationArrows}
       showPaginationDots={showPaginationDots}
+      contentOrder={contentOrder}
       // Deprecated
       zoomProps={props.zoomProps}
     />
