@@ -151,9 +151,9 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
   const visibility = props.visibility != null ? props.visibility : 'always'
 
   const shouldNotShow =
+    (shouldSelectInitialSKU && skuSelected == null) ||
     skuItems.length === 0 ||
     skuSelected?.variations.length === 0 ||
-    (shouldSelectInitialSKU && skuSelected == null) ||
     (visibility === 'more-than-one' && skuItems.length === 1)
 
   const skuSpecifications = valuesFromContext?.product?.skuSpecifications ?? []
