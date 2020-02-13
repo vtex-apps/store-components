@@ -8,5 +8,4 @@ install:
   - yarn install
   - yarn --cwd react install
 script:
-  - yarn lint:locales
   - yarn --cwd react test
