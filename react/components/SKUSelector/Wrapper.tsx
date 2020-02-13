@@ -106,7 +106,7 @@ const useVariations = (
 
 interface Props {
   skuItems: ProductItem[]
-  skuSelected: ProductItem
+  skuSelected: ProductItem | null
   onSKUSelected?: (skuId: string) => void
   maxItems?: number
   visibility?: string
@@ -134,22 +134,26 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
   const { imageHeight, imageWidth } = useResponsiveValues(
     pick(['imageHeight', 'imageWidth'], props)
   )
+
+  const shouldSelectInitialSKU =
+    props.initialSelection !== InitialSelectionType.empty
+
   const skuItems =
     props.skuItems != null
       ? props.skuItems
       : valuesFromContext?.product?.items ?? []
 
-  const skuSelected =
-    props.skuSelected != null
-      ? props.skuSelected
-      : valuesFromContext.selectedItem
+  let skuSelected = props.skuSelected ?? null
+  if (shouldSelectInitialSKU && skuSelected == null) {
+    skuSelected = valuesFromContext.selectedItem
+  }
 
   const visibility = props.visibility != null ? props.visibility : 'always'
 
   const shouldNotShow =
+    (shouldSelectInitialSKU && skuSelected == null) ||
     skuItems.length === 0 ||
-    !skuSelected?.variations ||
-    skuSelected.variations.length === 0 ||
+    skuSelected?.variations.length === 0 ||
     (visibility === 'more-than-one' && skuItems.length === 1)
 
   const skuSpecifications = valuesFromContext?.product?.skuSpecifications ?? []
@@ -169,7 +173,7 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
     }
   }, [shouldNotShow, dispatch])
 
-  if (shouldNotShow || !skuSelected) {
+  if (shouldNotShow) {
     return null
   }
 

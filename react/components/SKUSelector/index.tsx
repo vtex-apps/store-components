@@ -36,6 +36,14 @@ import useEffectSkipMount from './components/hooks/useEffectSkipMount'
 const keyCount = compose(length, keys)
 const filterSelected = filter(Boolean)
 
+const areAllVariationsSelected = (
+  selected: SelectedVariations,
+  numberOfVariations: number
+) => {
+  const selectedCount = keyCount(filterSelected(selected))
+  return selectedCount === numberOfVariations
+}
+
 const buildEmptySelectedVariation = (variations: Variations) => {
   const variationNames = Object.keys(variations)
   const result = {} as Record<string, null>
@@ -120,12 +128,14 @@ const useAllSelectedEvent = (
   const dispatch = useProductDispatch()
   useEffect(() => {
     if (dispatch && selectedVariations) {
-      const selectedNotNull = filterSelected(selectedVariations)
-      const selectedCount = keyCount(selectedNotNull)
-      const allSelected = selectedCount === variationsCount
       dispatch({
         type: 'SKU_SELECTOR_SET_VARIATIONS_SELECTED',
-        args: { allSelected },
+        args: {
+          allSelected: areAllVariationsSelected(
+            selectedVariations,
+            variationsCount
+          ),
+        },
       })
     }
   }, [dispatch, selectedVariations, variationsCount])
@@ -137,7 +147,7 @@ interface Props {
   seeMoreLabel: string
   maxItems?: number
   variations: Variations
-  skuSelected: ProductItem
+  skuSelected: ProductItem | null
   hideImpossibleCombinations?: boolean
   showValueForVariation?: ShowValueForVariation
   imageHeight?: number
@@ -154,14 +164,18 @@ interface Props {
 }
 
 const getNewSelectedVariations = (
-  query: any,
-  skuSelected: ProductItem,
-  variations: Variations,
-  initialSelection?: InitialSelectionType
+  query: Record<string, string> | undefined,
+  skuSelected: Props['skuSelected'],
+  variations: Props['variations'],
+  initialSelection?: Props['initialSelection']
 ) => {
+  const emptyVariations = buildEmptySelectedVariation(variations)
+  if (skuSelected == null) {
+    return emptyVariations
+  }
+
   const hasSkuInQuery = Boolean(query?.skuId)
   const parsedSku = parseSku(skuSelected)
-  const emptyVariations = buildEmptySelectedVariation(variations)
 
   if (hasSkuInQuery || initialSelection === InitialSelectionType.complete) {
     return selectedVariationFromItem(parsedSku, variations)
@@ -217,12 +231,7 @@ const SKUSelectorContainer: FC<Props> = ({
   const parsedItems = useMemo(() => skuItems.map(parseSku), [skuItems])
   const { setQuery } = useRuntime()
   const redirectToSku = (skuId: string) => {
-    setQuery(
-      { skuId },
-      {
-        replace: true,
-      }
-    )
+    setQuery({ skuId }, { replace: true })
   }
 
   const [selectedVariations, setSelectedVariations] = useState<
@@ -238,13 +247,14 @@ const SKUSelectorContainer: FC<Props> = ({
     )
   }, [variations])
 
-  // No need to add skuSelected and onSKUSelected to dependency array since that would result in infinite loops
+  // This is used to selected an SKU when initialSelection is not 'empty'.
+  // Runs only on the first render.
   useEffect(() => {
     if (skuSelected && onSKUSelected) {
       onSKUSelected(skuSelected.itemId)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [skuSelected.itemId])
+  }, [])
 
   const imagesMap = useImagesMap(parsedItems, variations, thumbnailImage)
 
@@ -285,9 +295,11 @@ const SKUSelectorContainer: FC<Props> = ({
         setSelectedVariations(finalSelected)
       }
 
-      const selectedNotNull = filterSelected(finalSelected)
-      const selectedCount = keyCount(selectedNotNull)
-      const allSelected = selectedCount === variationsCount
+      const allSelected = areAllVariationsSelected(
+        finalSelected,
+        variationsCount
+      )
+
       let skuIdToRedirect = skuId
       if (!skuIdToRedirect || !isEmpty(uniqueOptions)) {
         const newItem = findItemWithSelectedVariations(
@@ -299,26 +311,29 @@ const SKUSelectorContainer: FC<Props> = ({
 
       // if (un)selecting a color variation, dispatch to the product context
       // so we can show/hide the mainImageLabel if defined
-      if(isColor(variationName)) {
+      if (isColor(variationName)) {
+        const variationSKU = isRemoving ? null : skuIdToRedirect
         dispatch({
           type: 'SELECT_IMAGE_VARIATION',
           args: {
-            selectedImageVariationSKU: isRemoving ? null : skuIdToRedirect
-          }
+            selectedImageVariationSKU: variationSKU,
+          },
         })
       }
 
-      if (isRemoving) {
-        // If its just removing, no need to do anything.
-        return
+      // only redirect to a specific sku id if every variation was defined
+      if (allSelected === false) {
+        skuIdToRedirect = null
       }
 
       if (onSKUSelected) {
         onSKUSelected(skuIdToRedirect)
-      } else {
-        if (allSelected || isColor(variationName)) {
-          redirectToSku(skuIdToRedirect)
-        }
+        return
+      }
+
+      // If its just removing, no need to redirect
+      if (!isRemoving && (allSelected || isColor(variationName))) {
+        redirectToSku(skuIdToRedirect)
       }
     },
     // Adding selectedVariations, variationsCount and onSKUSelected causes an infinite loop
