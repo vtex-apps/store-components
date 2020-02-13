@@ -26,9 +26,7 @@ const ProductSpecificationsWrapper = ({
   collapsible = 'always',
 }) => {
   const productContext = useProduct()
-
-  const specifications =
-    propsSpecifications || getSpecifications(productContext)
+  const specifications = propsSpecifications || getSpecifications(productContext)
 
   return (
     <ProductSpecifications

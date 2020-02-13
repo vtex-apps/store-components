@@ -58,7 +58,8 @@ const ProductSpecifications = ({
       }
     })
 
-    if (visibleSpecifications && hiddenSpecifications) {
+    if (visibleSpecifications && visibleSpecifications.length > 0
+      && hiddenSpecifications && hiddenSpecifications.length > 0) {
       console.warn(
         'A product-specification block is using both visibleSpecifications and hiddenSpecifications props at the same time. Please choose only one of them.'
       )
@@ -66,7 +67,7 @@ const ProductSpecifications = ({
       return mappedSpecifications
     }
 
-    if (visibleSpecifications) {
+    if (visibleSpecifications && visibleSpecifications.length > 0) {
       return mappedSpecifications.filter(specification =>
         visibleSpecifications.find(
           filter =>
@@ -74,7 +75,7 @@ const ProductSpecifications = ({
         )
       )
     }
-    if (hiddenSpecifications) {
+    if (hiddenSpecifications && hiddenSpecifications.length > 0) {
       return mappedSpecifications.filter(
         specification =>
           !hiddenSpecifications.find(
