@@ -3,8 +3,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "lint": "eslint --ext js,jsx,ts,tsx .",
-    "lint:locales": "intl-equalizer"
+    "lint": "eslint --ext js,jsx,ts,tsx ."
   },
   "version": "3.47.3",
   "devDependencies": {
@@ -12,7 +11,6 @@
     "@types/node": "^12.7.12",
     "@types/ramda": "^0.26.18",
     "@types/react": "^16.8.23",
-    "@vtex/intl-equalizer": "^2.2.1",
     "@vtex/tsconfig": "^0.2.0",
     "eslint": "^6.8.0",
     "eslint-config-vtex": "^11.2.1",
