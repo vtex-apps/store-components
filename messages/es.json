@@ -177,8 +177,8 @@
   "admin/editor.search-bar.title": "Barra de búsqueda",
   "admin/editor.search-bar.placeholder.title": "Texto de búsqueda",
   "store/editor.action-go-to": "Volver arriba",
-  "admin / editor.toTop.title": "Volver al botón superior",
-  "admin / editor.toTop.description": "Cuando se hace clic lleva la página a la parte superior",
-  "admin / editor.toTop.topPixel.title": "Número de píxel",
-  "admin / editor.toTop.topPixel.description": "Al exceder el valor de píxel definido, aparecerá el botón para volver al principio"
+  "admin/editor.toTop.title": "Volver al botón superior",
+  "admin/editor.toTop.description": "Cuando se hace clic lleva la página a la parte superior",
+  "admin/editor.toTop.topPixel.title": "Número de píxel",
+  "admin/editor.toTop.topPixel.description": "Al exceder el valor de píxel definido, aparecerá el botón para volver al principio"
 }
