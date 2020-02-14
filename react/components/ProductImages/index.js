@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
+import PropTypes from 'prop-types'
+import { useCssHandles } from 'vtex.css-handles'
 
 import Carousel from './components/Carousel'
 import {
@@ -7,7 +8,6 @@ import {
   THUMBS_POSITION_HORIZONTAL,
   DEFAULT_EXCLUDE_IMAGE_WITH,
 } from './utils/enums'
-import { useCssHandles } from 'vtex.css-handles'
 
 const CSS_HANDLES = ['content', 'productImagesContainer']
 
@@ -16,7 +16,7 @@ const ProductImages = ({
   displayThumbnailsArrows,
   hiddenImages,
   images: allImages,
-  videos,
+  videos: allVideos,
   thumbnailsOrientation,
   aspectRatio,
   maxHeight,
@@ -24,6 +24,7 @@ const ProductImages = ({
   thumbnailMaxHeight,
   showNavigationArrows,
   showPaginationDots,
+  contentOrder = 'images-first',
   zoomMode,
   zoomFactor,
   // Deprecated
@@ -33,33 +34,37 @@ const ProductImages = ({
     hiddenImages = [hiddenImages]
   }
 
-  const excludeImageRegexes = hiddenImages && hiddenImages.map(text => new RegExp(text, 'i'))
+  const excludeImageRegexes =
+    hiddenImages && hiddenImages.map(text => new RegExp(text, 'i'))
   const handles = useCssHandles(CSS_HANDLES)
 
-  const images = allImages.filter(image =>
-    !image.imageLabel || !excludeImageRegexes.some(regex => regex.test(image.imageLabel))
-  )
+  const images = allImages
+    .filter(
+      image =>
+        !image.imageLabel ||
+        !excludeImageRegexes.some(regex => regex.test(image.imageLabel))
+    )
+    .map(image => ({
+      type: 'image',
+      url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
+      alt: image.imageText,
+      thumbUrl: image.thumbnailUrl || image.imageUrl,
+    }))
+  const videos = allVideos.map(video => ({
+    type: 'video',
+    src: video.videoUrl,
+    thumbWidth: 300,
+  }))
+  const showVideosFirst = contentOrder === 'videos-first'
 
   const slides = useMemo(() => {
-    if (!images.length && !videos.length) return []
-
-    return [
-      ...images.map(image => ({
-        type: 'image',
-        url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
-        alt: image.imageText,
-        thumbUrl: image.thumbnailUrl || image.imageUrl,
-      })),
-      ...videos.map(video => ({
-        type: 'video',
-        src: video.videoUrl,
-        thumbWidth: 300,
-      })),
-    ]
-  }, [images, videos])
+    return showVideosFirst ? [...videos, ...images] : [...images, ...videos]
+  }, [showVideosFirst, videos, images])
 
   return (
-    <div className={`${handles.productImagesContainer} ${handles.content} w-100`}>
+    <div
+      className={`${handles.productImagesContainer} ${handles.content} w-100`}
+    >
       <Carousel
         slides={slides}
         position={position}
@@ -120,6 +125,15 @@ ProductImages.propTypes = {
     zoomType: PropTypes.string,
   }),
   displayThumbnailsArrows: PropTypes.bool,
+  aspectRatio: PropTypes.string,
+  maxHeight: PropTypes.number,
+  thumbnailAspectRatio: PropTypes.string,
+  thumbnailMaxHeight: PropTypes.number,
+  showNavigationArrows: PropTypes.bool,
+  showPaginationDots: PropTypes.bool,
+  contentOrder: PropTypes.oneOf(['images-first', 'videos-first']),
+  zoomMode: PropTypes.number,
+  zoomFactor: PropTypes.number,
 }
 
 ProductImages.defaultProps = {
