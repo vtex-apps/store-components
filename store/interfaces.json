@@ -4,7 +4,11 @@
   },
   "search-bar": {
     "component": "SearchBar",
-    "allowed": ["autocomplete-result-list", "icon-search", "icon-close"],
+    "allowed": [
+      "autocomplete-result-list",
+      "icon-search",
+      "icon-close"
+    ],
     "content": {
       "$ref": "#/definitions/SearchBar"
     }
@@ -67,7 +71,9 @@
     }
   },
   "user-address": {
-    "allowed": ["modal"],
+    "allowed": [
+      "modal"
+    ],
     "component": "UserAddress"
   },
   "product-services": {
@@ -94,5 +100,8 @@
     "content": {
       "$ref": "app:vtex.store-image#/definitions/Image"
     }
+  },
+  "go-top-button": {
+    "component": "GoTopButton"
   }
 }
