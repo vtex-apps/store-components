@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { useCssHandles } from 'vtex.css-handles'
-import { NoSSR } from 'vtex.render-runtime'
 
 import Carousel from './components/Carousel'
 import {
@@ -66,43 +65,22 @@ const ProductImages = ({
     <div
       className={`${handles.productImagesContainer} ${handles.content} w-100`}
     >
-      {showVideosFirst ? (
-        <NoSSR>
-          <Carousel
-            slides={slides}
-            position={position}
-            displayThumbnailsArrows={displayThumbnailsArrows}
-            thumbnailsOrientation={thumbnailsOrientation}
-            aspectRatio={aspectRatio}
-            maxHeight={maxHeight}
-            thumbnailAspectRatio={thumbnailAspectRatio}
-            thumbnailMaxHeight={thumbnailMaxHeight}
-            showNavigationArrows={showNavigationArrows}
-            showPaginationDots={showPaginationDots}
-            zoomMode={zoomMode}
-            zoomFactor={zoomFactor}
-            // Deprecated
-            zoomProps={zoomProps}
-          />
-        </NoSSR>
-      ) : (
-        <Carousel
-          slides={slides}
-          position={position}
-          displayThumbnailsArrows={displayThumbnailsArrows}
-          thumbnailsOrientation={thumbnailsOrientation}
-          aspectRatio={aspectRatio}
-          maxHeight={maxHeight}
-          thumbnailAspectRatio={thumbnailAspectRatio}
-          thumbnailMaxHeight={thumbnailMaxHeight}
-          showNavigationArrows={showNavigationArrows}
-          showPaginationDots={showPaginationDots}
-          zoomMode={zoomMode}
-          zoomFactor={zoomFactor}
-          // Deprecated
-          zoomProps={zoomProps}
-        />
-      )}
+      <Carousel
+        slides={slides}
+        position={position}
+        displayThumbnailsArrows={displayThumbnailsArrows}
+        thumbnailsOrientation={thumbnailsOrientation}
+        aspectRatio={aspectRatio}
+        maxHeight={maxHeight}
+        thumbnailAspectRatio={thumbnailAspectRatio}
+        thumbnailMaxHeight={thumbnailMaxHeight}
+        showNavigationArrows={showNavigationArrows}
+        showPaginationDots={showPaginationDots}
+        zoomMode={zoomMode}
+        zoomFactor={zoomFactor}
+        // Deprecated
+        zoomProps={zoomProps}
+      />
     </div>
   )
 }

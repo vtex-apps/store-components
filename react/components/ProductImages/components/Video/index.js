@@ -1,25 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { match, compose, isEmpty, complement } from 'ramda'
+import { useCssHandles } from 'vtex.css-handles'
+import { NoSSR } from 'vtex.render-runtime'
 
 import Vimeo from './Vimeo'
 import YouTube from './Youtube'
 
-import { useCssHandles } from 'vtex.css-handles'
-
 const isNotEmpty = complement(isEmpty)
 
 const isVimeo = compose(isNotEmpty, match(/vimeo/))
-const isYoutube = compose(isNotEmpty, match(/youtube|youtu.be/)) 
+const isYoutube = compose(isNotEmpty, match(/youtube|youtu.be/))
 
 const CSS_HANDLES = ['productVideo', 'videoContainer', 'video']
 
 export function getThumbUrl(url, thumbWidth) {
   if (isVimeo(url)) {
     return Vimeo.getThumbUrl(url, thumbWidth)
-  }
-
-  else if (isYoutube(url)) {
+  } else if (isYoutube(url)) {
     return YouTube.getThumbUrl(url, thumbWidth)
   }
 }
@@ -30,7 +28,11 @@ function Video(props) {
 
   return (
     <div className={handles.productVideo}>
-      {isVimeo(url) && <Vimeo {...props} cssHandles={handles} />}
+      {isVimeo(url) && (
+        <NoSSR>
+          <Vimeo {...props} cssHandles={handles} />
+        </NoSSR>
+      )}
       {isYoutube(url) && <YouTube {...props} cssHandles={handles} />}
     </div>
   )
