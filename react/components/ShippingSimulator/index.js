@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl } from 'react-intl'
 import { useApolloClient } from 'react-apollo'
 import PropTypes from 'prop-types'
 import { Button } from 'vtex.styleguide'
@@ -106,7 +106,6 @@ const ShippingSimulator = ({
 }
 
 ShippingSimulator.propTypes = {
-  intl: intlShape.isRequired,
   skuId: PropTypes.string,
   seller: PropTypes.string,
   country: PropTypes.string.isRequired,

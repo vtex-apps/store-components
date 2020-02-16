@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
 import ProductDescription from './../../ProductDescription'
+import { messages } from '../../__mocks__/messages'
 
 describe('<ProductDescription />', () => {
   const renderComponent = customProps => {
@@ -8,7 +9,7 @@ describe('<ProductDescription />', () => {
       description: 'Test description',
       ...customProps,
     }
-    return render(<ProductDescription {...props} />)
+    return render(<ProductDescription {...props} />, { messages })
   }
 
   it('should be mounted', () => {

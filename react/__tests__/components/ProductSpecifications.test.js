@@ -2,6 +2,7 @@ import React from 'react'
 
 import ProductSpecifications from '../../ProductSpecifications'
 import { render } from '@vtex/test-tools/react'
+import { messages } from '../../__mocks__/messages'
 
 describe('<ProductSpecifications /> component', () => {
   const renderComponent = customProps => {
@@ -10,7 +11,7 @@ describe('<ProductSpecifications /> component', () => {
     }
     const comp = <ProductSpecifications {...props} />
 
-    return render(comp)
+    return render(comp, { messages })
   }
 
   it('should be rendered', () => {

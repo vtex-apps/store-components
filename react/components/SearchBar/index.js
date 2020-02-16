@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape, defineMessages } from 'react-intl'
+import { injectIntl, defineMessages } from 'react-intl'
 
 import SearchBar from './components/SearchBar'
 
@@ -117,8 +117,6 @@ SearchBarContainer.schema = {
 }
 
 SearchBarContainer.propTypes = {
-  /* Internationalization */
-  intl: intlShape.isRequired,
   /** Indentify when use the compact version of the component */
   compactMode: PropTypes.bool,
   /** Identify if the search icon is on left or right position */

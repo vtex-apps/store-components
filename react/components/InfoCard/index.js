@@ -3,7 +3,7 @@ import insane from 'insane'
 import { bool, string, oneOf } from 'prop-types'
 import { values } from 'ramda'
 import React, { memo, useMemo } from 'react'
-import { injectIntl, intlShape, defineMessages } from 'react-intl'
+import { injectIntl, defineMessages } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
@@ -329,7 +329,6 @@ MemoizedInfoCard.propTypes = {
   mobileImageUrl: string,
   textAlignment: oneOf(getEnumValues(textAlignmentTypes)),
   imageActionUrl: string,
-  intl: intlShape,
   htmlId: string,
 }
 

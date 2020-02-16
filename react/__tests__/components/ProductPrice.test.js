@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { render } from '@vtex/test-tools/react'
 
 import ProductPrice from './../../ProductPrice'
+import { messages } from '../../__mocks__/messages'
 
 describe('<ProductPrice />', () => {
   const defaultProps = {
@@ -16,7 +17,7 @@ describe('<ProductPrice />', () => {
       ...defaultProps,
       ...customProps,
     }
-    return render(<ProductPrice {...props} />)
+    return render(<ProductPrice {...props} />, { messages })
   }
 
   it('should be mount', () => {

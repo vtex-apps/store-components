@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
 import GradientCollapse from '../../GradientCollapse'
+import { messages } from '../../__mocks__/messages'
 
 describe('<GradientCollapse /> component', () => {
   function renderComponent(customProps = {}) {
@@ -11,7 +12,7 @@ describe('<GradientCollapse /> component', () => {
     }
     const component = <GradientCollapse {...props}>Test</GradientCollapse>
 
-    return render(component)
+    return render(component, { messages })
   }
 
   it('should be able to mount and not break', () => {

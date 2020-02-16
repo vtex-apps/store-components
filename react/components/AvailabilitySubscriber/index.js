@@ -1,47 +1,45 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { ApolloConsumer } from 'react-apollo'
-import { injectIntl, intlShape, defineMessages } from 'react-intl'
-
+import { defineMessages, injectIntl } from 'react-intl'
 import { Button, Input } from 'vtex.styleguide'
 
 import ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION from './mutations/addToAvailabilitySubscriberMutation.gql'
-
 import styles from './styles.css'
 
 const messages = defineMessages({
   availabilitysubscriberInvalidemail: {
     id: 'store/availability-subscriber.invalid-email',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   availabilitysubscriberAddedmessage: {
     id: 'store/availability-subscriber.added-message',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   availabilitysubscriberTitle: {
     id: 'store/availability-subscriber.title',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   availabilitysubscriberSubscribelabel: {
     id: 'store/availability-subscriber.subscribe-label',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   availabilitysubscriberNameplaceholder: {
     id: 'store/availability-subscriber.name-placeholder',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   availabilitysubscriberEmailplaceholder: {
     id: 'store/availability-subscriber.email-placeholder',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   availabilitysubscriberSendlabel: {
     id: 'store/availability-subscriber.send-label',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   availabilitysubscriberErrormessage: {
     id: 'store/availability-subscriber.error-message',
-    from: 'vtex.store-messages'
-  }
+    from: 'vtex.store-messages',
+  },
 })
 
 /**
@@ -64,7 +62,6 @@ class AvailabilitySubscriber extends Component {
   static propTypes = {
     /** The id of the current product sku */
     skuId: PropTypes.string.isRequired,
-    intl: intlShape.isRequired,
   }
 
   validateEmail = email => {
@@ -217,9 +214,7 @@ class AvailabilitySubscriber extends Component {
                 className={`${styles.content} flex-ns justify-between mt4 mw6`}
               >
                 <div
-                  className={`${styles.input} ${
-                    styles.inputName
-                  } w-100 mr5 mb4`}
+                  className={`${styles.input} ${styles.inputName} w-100 mr5 mb4`}
                 >
                   <Input
                     name="name"
@@ -235,9 +230,7 @@ class AvailabilitySubscriber extends Component {
                   />
                 </div>
                 <div
-                  className={`${styles.input} ${
-                    styles.inputEmail
-                  } w-100 mr5 mb4`}
+                  className={`${styles.input} ${styles.inputEmail} w-100 mr5 mb4`}
                 >
                   <Input
                     name="email"
@@ -263,18 +256,24 @@ class AvailabilitySubscriber extends Component {
                     disabled={isFormDisabled}
                     isLoading={isLoading}
                   >
-                    {this.translate(messages.availabilitysubscriberSendlabel.id)}
+                    {this.translate(
+                      messages.availabilitysubscriberSendlabel.id
+                    )}
                   </Button>
                 </div>
               </div>
               {sendStatus === 'success' && (
                 <div className={`${styles.success} t-body c-success`}>
-                  {this.translate(messages.availabilitysubscriberAddedmessage.id)}
+                  {this.translate(
+                    messages.availabilitysubscriberAddedmessage.id
+                  )}
                 </div>
               )}
               {sendStatus === 'error' && (
                 <div className={`${styles.error} c-danger`}>
-                  {this.translate(messages.availabilitysubscriberErrormessage.id)}
+                  {this.translate(
+                    messages.availabilitysubscriberErrormessage.id
+                  )}
                 </div>
               )}
             </form>

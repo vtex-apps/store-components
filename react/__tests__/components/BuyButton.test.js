@@ -1,9 +1,9 @@
 import React from 'react'
 import { render, fireEvent, wait } from '@vtex/test-tools/react'
-import { MockedProvider } from '@apollo/react-testing'
 
 import BuyButton from '../../BuyButton'
 import addToCartMutation from '../../components/BuyButton/mutations/addToCart.gql'
+import { messages } from '../../__mocks__/messages'
 
 const mocks = [
   {
@@ -26,7 +26,7 @@ describe('<BuyButton />', () => {
       ...customProps,
     }
 
-    return render(<BuyButton {...props}>{text}</BuyButton>, { graphql: { mocks }, MockedProvider })
+    return render(<BuyButton {...props}>{text}</BuyButton>, { graphql: { mocks }, messages })
   }
 
   it('should be rendered', async () => {

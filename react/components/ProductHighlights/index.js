@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl } from 'react-intl'
 import HtmlParser from 'react-html-parser'
 
 import styles from './styles.css'
@@ -42,8 +42,6 @@ ProductHighlights.defaultProps = {
 }
 
 ProductHighlights.propTypes = {
-  /** Intl object to provides internationalization */
-  intl: intlShape.isRequired,
   /** Specifications that will be displayed on the table */
   highlights: PropTypes.arrayOf(
     PropTypes.shape({

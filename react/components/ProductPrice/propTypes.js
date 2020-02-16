@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import { intlShape } from 'react-intl'
 
 export default {
   /** Product list of selling prices */
@@ -73,6 +72,4 @@ export default {
   interestRateClass: PropTypes.string,
   /** Component and content loader styles */
   styles: PropTypes.object,
-  /** intl property to format data */
-  intl: intlShape.isRequired,
 }

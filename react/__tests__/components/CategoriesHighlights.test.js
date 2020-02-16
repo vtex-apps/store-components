@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
 import CategoriesHighlights from '../../CategoriesHighlights'
+import { messages } from '../../__mocks__/messages'
 
 describe('<CategoriesHighlights />', () => {
   const renderComponent = customProps => {
@@ -11,7 +12,7 @@ describe('<CategoriesHighlights />', () => {
       ...customProps,
     }
 
-    return render(<CategoriesHighlights {...props} />)
+    return render(<CategoriesHighlights {...props} />, { messages })
   }
 
   it('should be rendered', () => {
