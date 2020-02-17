@@ -49,108 +49,108 @@ const defaultValues = {
 const messages = defineMessages({
   editorInfocardHeadlineTitle: {
     id: 'admin/editor.info-card.headline.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardHeadlineDescription: {
     id: 'admin/editor.info-card.headline.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardSubheadTitle: {
     id: 'admin/editor.info-card.subhead.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardSubheadDescription: {
     id: 'admin/editor.info-card.subhead.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardCalltoactiontextTitle: {
     id: 'admin/editor.info-card.callToActionText.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardCalltoactiontextDescription: {
     id: 'admin/editor.info-card.callToActionText.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardCalltoactionurlTitle: {
     id: 'admin/editor.info-card.callToActionUrl.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardCalltoactionurlDescription: {
     id: 'admin/editor.info-card.callToActionUrl.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardImageurlTitle: {
     id: 'admin/editor.info-card.imageUrl.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardImageurlDescription: {
     id: 'admin/editor.info-card.imageUrl.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardMobileimageurlTitle: {
     id: 'admin/editor.info-card.mobileImageUrl.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardMobileimageurlDescription: {
     id: 'admin/editor.info-card.mobileImageUrl.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardImageactionurlTitle: {
     id: 'admin/editor.info-card.imageActionUrl.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardImageactionurlDescription: {
     id: 'admin/editor.info-card.imageActionUrl.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardTitle: {
     id: 'admin/editor.info-card.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardDescription: {
     id: 'admin/editor.info-card.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardIsfullmodestyleTitle: {
     id: 'admin/editor.info-card.isFullModeStyle.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardIsfullmodestyleDescription: {
     id: 'admin/editor.info-card.isFullModeStyle.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardTextpositionTitle: {
     id: 'admin/editor.info-card.textPosition.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardTextpositionDescription: {
     id: 'admin/editor.info-card.textPosition.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardCalltoactionmodeTitle: {
     id: 'admin/editor.info-card.callToActionMode.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardCalltoactionmodeDescription: {
     id: 'admin/editor.info-card.callToActionMode.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardTextalignmentTitle: {
     id: 'admin/editor.info-card.textAlignment.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorInfocardTextalignmentDescription: {
     id: 'admin/editor.info-card.textAlignment.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorBlockclassTitle: {
     id: 'admin/editor.blockClass.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorBlockclassDescription: {
     id: 'admin/editor.blockClass.description',
-    from: 'vtex.admin-messages'
-  }
+    from: 'vtex.admin-messages',
+  },
 })
 
 const getEnumValues = enumObject => values(enumObject).map(({ value }) => value)
@@ -355,7 +355,7 @@ MemoizedInfoCard.schema = {
       description: messages.editorInfocardIsfullmodestyleDescription.id,
       type: 'boolean',
       default: false,
-      isLayout: true
+      isLayout: true,
     },
     textPosition: {
       title: messages.editorInfocardTextpositionTitle.id,
@@ -364,7 +364,7 @@ MemoizedInfoCard.schema = {
       enum: getEnumValues(textPositionTypes),
       enumNames: getEnumNames(textPositionTypes),
       default: textPositionTypes.TEXT_POSITION_LEFT.value,
-      isLayout: true
+      isLayout: true,
     },
     callToActionMode: {
       title: messages.editorInfocardCalltoactionmodeTitle.id,
@@ -373,7 +373,7 @@ MemoizedInfoCard.schema = {
       enum: getEnumValues(callToActionModeTypes),
       enumNames: getEnumNames(callToActionModeTypes),
       default: callToActionModeTypes.CALL_ACTION_BUTTON.value,
-      isLayout: true
+      isLayout: true,
     },
     textAlignment: {
       title: messages.editorInfocardTextalignmentTitle.id,
@@ -382,15 +382,15 @@ MemoizedInfoCard.schema = {
       default: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
       enum: getEnumValues(textAlignmentTypes),
       enumNames: getEnumNames(textAlignmentTypes),
-      isLayout: true
+      isLayout: true,
     },
     blockClass: {
       title: messages.editorBlockclassTitle.id,
       description: messages.editorBlockclassDescription.id,
       type: 'string',
-      isLayout: true
-    }
-  }
+      isLayout: true,
+    },
+  },
 }
 
 export default MemoizedInfoCard
