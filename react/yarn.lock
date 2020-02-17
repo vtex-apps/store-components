@@ -1542,10 +1542,10 @@
   resolved "https://registry.yarnpkg.com/@vtex/css-handles/-/css-handles-1.1.3.tgz#30bd1010f2907443188738f74dd11d3b6b4ac624"
   integrity sha512-DkqnzMf5jW6lQ1L8wYb9fnXyh0FqZym8qEokGYjeLUqBLBAiVK8XbI4U0ezFswWTOJ3iHZUkUjqPt5WodxR29w==
 
-"@vtex/test-tools@^3.1.0-beta.3":
-  version "3.1.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@vtex/test-tools/-/test-tools-3.1.0-beta.3.tgz#d3a76112b7c25b0b234ee5fb9f18ba08e3deec39"
-  integrity sha512-N3+M9uQ8Qj3Ic9boSudkuOmBaT71aY9WI9to8FGFnBa0cMVbDBvUMtO8IHKY8zepBtp22KmyYJWrLQZv/E/cPA==
+"@vtex/test-tools@^3.1.0-beta.4":
+  version "3.1.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@vtex/test-tools/-/test-tools-3.1.0-beta.4.tgz#3314702d88529e42964d13ded692d2ef63cb2592"
+  integrity sha512-9hAVQGg0WJ3jX396QJVwg3Jo7SZ1mfrPJEZHeNSLpA6KxsO9TFsnRuZ592qeOiziYOmroe/CKSmcaA2WO38vmQ==
   dependencies:
     "@babel/core" "^7.8.4"
     "@babel/plugin-proposal-class-properties" "^7.7.4"

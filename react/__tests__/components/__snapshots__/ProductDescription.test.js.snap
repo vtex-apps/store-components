@@ -35,9 +35,7 @@ exports[`<ProductDescription /> should match the snapshot with description 1`] =
             <button
               class="c-action-primary t-action pointer ma5 bn outline-0"
             >
-              <span>
-                Show more
-              </span>
+              Show more
             </button>
           </div>
         </div>
