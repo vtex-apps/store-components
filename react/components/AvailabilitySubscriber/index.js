@@ -8,7 +8,7 @@ import ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION from './mutations/addToAvailabili
 import styles from './styles.css'
 
 const messages = defineMessages({
-  availabilitysubscriberInvalidemail: {
+  availabilitysubscriberInvalidEmail: {
     id: 'store/availability-subscriber.invalid-email',
     from: 'vtex.store-messages',
   },
@@ -72,7 +72,7 @@ class AvailabilitySubscriber extends Component {
     let error = ''
 
     if (!emailRegex.test(email.toLowerCase())) {
-      error = messages.availabilitysubscriberInvalidemail.id
+      error = messages.availabilitysubscriberInvalidEmail.id
     }
 
     if (error !== emailError) {
