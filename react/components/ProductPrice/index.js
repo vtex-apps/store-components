@@ -16,7 +16,8 @@ import Price from './Price'
 
 import productPrice from './styles.css'
 
-const CSS_HANDLES = ['price_className',
+const CSS_HANDLES = [
+  'price_className',
   'price_loader',
   'price_listPriceContainer',
   'price_listPriceLabel',
@@ -31,41 +32,42 @@ const CSS_HANDLES = ['price_className',
   'price_savings_value',
   'price_installment',
   'price_interestRate',
-  'price_installmentContainer']
+  'price_installmentContainer',
+]
 
 const messages = defineMessages({
   editorProductpriceTitle: {
     id: 'admin/editor.productPrice.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceDescription: {
     id: 'admin/editor.productPrice.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceShowsellingpricerange: {
     id: 'admin/editor.productPrice.showSellingPriceRange',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceShowlistpricerange: {
     id: 'admin/editor.productPrice.showListPriceRange',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceShowlistprice: {
     id: 'admin/editor.productPrice.showListPrice',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceShowlabels: {
     id: 'admin/editor.productPrice.showLabels',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceShowinstallments: {
     id: 'admin/editor.productPrice.showInstallments',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceShowsavings: {
     id: 'admin/editor.productPrice.showSavings',
-    from: 'vtex.admin-messages'
-  }
+    from: 'vtex.admin-messages',
+  },
 })
 
 const isValidPriceRange = priceRange => {
@@ -161,7 +163,12 @@ const ProductPrice = (props, context) => {
   }
 
   if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
-    return <ProductPriceLoader loaderClass={`${loaderClass} ${handles.price_loader}`} {...styles} />
+    return (
+      <ProductPriceLoader
+        loaderClass={`${loaderClass} ${handles.price_loader}`}
+        {...styles}
+      />
+    )
   }
 
   const mayShowListPrice = canShowListPrice(props)
@@ -170,7 +177,13 @@ const ProductPrice = (props, context) => {
   const listPriceRange = listPriceList && getPriceRange(listPriceList)
 
   return (
-    <div className={classNames(productPrice.priceContainer, className, handles.price_className)}>
+    <div
+      className={classNames(
+        productPrice.priceContainer,
+        className,
+        handles.price_className
+      )}
+    >
       {mayShowListPrice && (
         <div
           className={classNames(
@@ -198,7 +211,7 @@ const ProductPrice = (props, context) => {
             rangeContainerClasses={classNames(
               productPrice.listPriceValue,
               listPriceRangeClass,
-              handles.price_listPriceRange,
+              handles.price_listPriceRange
             )}
             singleContainerClasses={classNames(
               productPrice.listPriceValue,
@@ -255,7 +268,7 @@ const ProductPrice = (props, context) => {
           installmentClass={`${installmentClass} ${handles.price_installment}`}
         />
       )}
-      {mayShowListPrice && showSavings && (listPrice - sellingPrice > 0) && (
+      {mayShowListPrice && showSavings && listPrice - sellingPrice > 0 && (
         <div
           className={classNames(
             productPrice.savingPrice,
@@ -264,21 +277,25 @@ const ProductPrice = (props, context) => {
           )}
         >
           <div
-            className={classNames(productPrice.savingPriceValue, savingsClass, handles.price_savings)}
+            className={classNames(
+              productPrice.savingPriceValue,
+              savingsClass,
+              handles.price_savings
+            )}
           >
             <FormattedMessage
               id="store/pricing.savings"
               from="vtex.store-messages"
               values={{
-                savings: 
-                <span 
-                  className={handles.price_savings_value}>
+                savings: (
+                  <span className={handles.price_savings_value}>
                     {formatCurrency({
                       intl,
                       culture,
                       value: listPrice - sellingPrice,
-                  })}
-                </span>
+                    })}
+                  </span>
+                ),
               }}
             />
           </div>
@@ -311,40 +328,40 @@ PriceWithIntl.schema = {
     showSellingPriceRange: {
       type: 'boolean',
       title: messages.editorProductpriceShowsellingpricerange.id,
-      default:PriceWithIntl.defaultProps.showSellingPriceRang,
-      isLayout: true
+      default: PriceWithIntl.defaultProps.showSellingPriceRang,
+      isLayout: true,
     },
     showListPriceRange: {
       type: 'boolean',
       title: messages.editorProductpriceShowlistpricerange.id,
       default: PriceWithIntl.defaultProps.showListPriceRange,
-      isLayout: true
+      isLayout: true,
     },
     showListPrice: {
       type: 'boolean',
       title: messages.editorProductpriceShowlistprice.id,
       default: PriceWithIntl.defaultProps.showListPrice,
-      isLayout: true
+      isLayout: true,
     },
     showLabels: {
       type: 'boolean',
       title: messages.editorProductpriceShowlabels.id,
       default: PriceWithIntl.defaultProps.showLabels,
-      isLayout: true
+      isLayout: true,
     },
     showInstallments: {
       type: 'boolean',
       title: messages.editorProductpriceShowinstallments.id,
       default: PriceWithIntl.defaultProps.showInstallments,
-      isLayout: true
+      isLayout: true,
     },
     showSavings: {
       type: 'boolean',
       title: messages.editorProductpriceShowsavings.id,
       default: PriceWithIntl.defaultProps.showSavings,
-      isLayout: true
-    }
-  }
+      isLayout: true,
+    },
+  },
 }
 
 export default PriceWithIntl

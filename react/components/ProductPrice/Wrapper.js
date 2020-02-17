@@ -40,52 +40,52 @@ const styles = {
 const messages = defineMessages({
   editorProductpriceTitle: {
     id: 'admin/editor.productPrice.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceDescription: {
     id: 'admin/editor.productPrice.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceLabelsellingprice: {
     id: 'admin/editor.productPrice.labelSellingPrice',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceLabellistprice: {
     id: 'admin/editor.productPrice.labelListPrice',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceShowsellingpricerange: {
     id: 'admin/editor.productPrice.showSellingPriceRange',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceShowlistpricerange: {
     id: 'admin/editor.productPrice.showListPriceRange',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceShowlistprice: {
     id: 'admin/editor.productPrice.showListPrice',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceShowlabels: {
     id: 'admin/editor.productPrice.showLabels',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceShowinstallments: {
     id: 'admin/editor.productPrice.showInstallments',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductpriceShowsavings: {
     id: 'admin/editor.productPrice.showSavings',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   pricingTo: {
     id: 'store/pricing.to',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   pricingFrom: {
     id: 'store/pricing.from',
-    from: 'vtex.store-messages'
-  }
+    from: 'vtex.store-messages',
+  },
 })
 
 const isAvailable = commertialOffer =>
@@ -122,7 +122,11 @@ const ProductPriceWrapper = ({
   } = props
 
   const productPriceProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext) || (!has('query', props) && !has('params', props))) {
+    if (
+      !valuesFromContext ||
+      isEmpty(valuesFromContext) ||
+      (!has('query', props) && !has('params', props))
+    ) {
       return {
         ...props,
         labelSellingPrice,
@@ -135,23 +139,30 @@ const ProductPriceWrapper = ({
     }
 
     const { selectedItem } = valuesFromContext
-    const commertialOffer = path(['sellers', 0, 'commertialOffer'], selectedItem)
+    const commertialOffer = path(
+      ['sellers', 0, 'commertialOffer'],
+      selectedItem
+    )
 
     return {
       ...props,
       styles: props.styles || styles,
       className: className || '',
-      listPriceContainerClass: listPriceContainerClass || 't-small-s t-small-ns c-muted-2 mb2',
-      sellingPriceLabelClass: sellingPriceLabelClass || 't-heading-6-s t-heading-5-ns dib',
+      listPriceContainerClass:
+        listPriceContainerClass || 't-small-s t-small-ns c-muted-2 mb2',
+      sellingPriceLabelClass:
+        sellingPriceLabelClass || 't-heading-6-s t-heading-5-ns dib',
       listPriceLabelClass: listPriceLabelClass || 'dib strike',
       listPriceClass: listPriceClass || 'ph2 dib strike',
-      sellingPriceContainerClass: sellingPriceContainerClass || 'pv1 b c-on-base',
+      sellingPriceContainerClass:
+        sellingPriceContainerClass || 'pv1 b c-on-base',
       sellingPriceClass: sellingPriceClass || 't-heading-2-s dib ph2',
-      installmentContainerClass: installmentContainerClass || 't-mini-s t-small-ns c-on-base',
+      installmentContainerClass:
+        installmentContainerClass || 't-mini-s t-small-ns c-on-base',
       installmentClass: installmentClass || 't-body',
       interestRateClass: interestRateClass || 'dib ph2',
       savingsContainerClass: savingsContainerClass || 'c-success mt3',
-      savingsClass:  savingsClass || 'dib t-small',
+      savingsClass: savingsClass || 'dib t-small',
       loaderClass: loaderClass || 'h4-s mw6-s pt2-s',
       listPrice: listPrice || path(['ListPrice'], commertialOffer),
       sellingPrice: sellingPrice || path(['Price'], commertialOffer),
@@ -171,9 +182,7 @@ const ProductPriceWrapper = ({
     return null
   }
 
-  return (
-    <ProductPrice { ...priceProps } />
-  )
+  return <ProductPrice {...priceProps} />
 }
 
 ProductPriceWrapper.schema = {
@@ -185,51 +194,51 @@ ProductPriceWrapper.schema = {
       type: 'string',
       title: messages.editorProductpriceLabelsellingprice.id,
       default: ProductPrice.defaultProps.labelSellingPrice,
-      isLayout: false
+      isLayout: false,
     },
     labelListPrice: {
       type: 'string',
       title: messages.editorProductpriceLabellistprice.id,
       default: ProductPrice.defaultProps.labelListPrice,
-      isLayout: false
+      isLayout: false,
     },
     showSellingPriceRange: {
       type: 'boolean',
       title: messages.editorProductpriceShowsellingpricerange.id,
       default: ProductPrice.defaultProps.showSellingPriceRange,
-      isLayout: true
+      isLayout: true,
     },
     showListPriceRange: {
       type: 'boolean',
       title: messages.editorProductpriceShowlistpricerange.id,
       default: ProductPrice.defaultProps.showListPriceRange,
-      isLayout: true
+      isLayout: true,
     },
     showListPrice: {
       type: 'boolean',
       title: messages.editorProductpriceShowlistprice.id,
       default: ProductPrice.defaultProps.showListPrice,
-      isLayout: true
+      isLayout: true,
     },
     showLabels: {
       type: 'boolean',
       title: messages.editorProductpriceShowlabels.id,
       default: ProductPrice.defaultProps.showLabels,
-      isLayout: true
+      isLayout: true,
     },
     showInstallments: {
       type: 'boolean',
       title: messages.editorProductpriceShowinstallments.id,
       default: ProductPrice.defaultProps.showInstallments,
-      isLayout: true
+      isLayout: true,
     },
     showSavings: {
       type: 'boolean',
       title: messages.editorProductpriceShowsavings.id,
       default: ProductPrice.defaultProps.showSavings,
-      isLayout: true
-    }
-  }
+      isLayout: true,
+    },
+  },
 }
 
 export default ProductPriceWrapper

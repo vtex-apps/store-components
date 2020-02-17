@@ -12,16 +12,12 @@ interface VariationSelectModeProps extends WrappedComponentProps {
 const messages = defineMessages({
   selectPlaceholder: {
     id: 'store/sku-selector.select.placeholder',
-    from: "vtex.store-messages",
-  }
+    from: 'vtex.store-messages',
+  },
 })
 
 function SelectVariationMode(props: VariationSelectModeProps) {
-  const {
-    intl,
-    selectedItem,
-    displayOptions,
-  } = props
+  const { intl, selectedItem, displayOptions } = props
 
   const options = displayOptions.map(op => ({
     label: op.label,
@@ -29,11 +25,13 @@ function SelectVariationMode(props: VariationSelectModeProps) {
   }))
 
   const handleClick = (_: React.MouseEvent, value: string) => {
-    const options = displayOptions
-      .reduce<Record<string, DisplayOption>>((acc, cur) => {
+    const options = displayOptions.reduce<Record<string, DisplayOption>>(
+      (acc, cur) => {
         acc[cur.label] = cur
         return acc
-      }, {})
+      },
+      {}
+    )
     if (options && options[value] && options[value].onSelectItem) {
       options[value].onSelectItem()
     }

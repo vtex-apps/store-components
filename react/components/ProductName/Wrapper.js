@@ -22,24 +22,24 @@ const styles = {
 const messages = defineMessages({
   editorProductnameTitle: {
     id: 'admin/editor.productName.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductnameDescription: {
     id: 'admin/editor.productName.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductnameShowbrandnameTitle: {
     id: 'admin/editor.productName.showBrandName.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductnameShowskuTitle: {
     id: 'admin/editor.productName.showSku.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductnameShowproductreferenceTitle: {
     id: 'admin/editor.productName.showProductReference.title',
-    from: 'vtex.admin-messages'
-  }
+    from: 'vtex.admin-messages',
+  },
 })
 
 const ProductNameWrapper = props => {
@@ -76,21 +76,21 @@ ProductNameWrapper.schema = {
       type: 'boolean',
       title: messages.editorProductnameShowbrandnameTitle.id,
       default: false,
-      isLayout: true
+      isLayout: true,
     },
     showSku: {
       type: 'boolean',
       title: messages.editorProductnameShowskuTitle.id,
       default: false,
-      isLayout: true
+      isLayout: true,
     },
     showProductReference: {
       type: 'boolean',
       title: messages.editorProductnameShowproductreferenceTitle.id,
       default: false,
-      isLayout: true
-    }
-  }
+      isLayout: true,
+    },
+  },
 }
 
 export default ProductNameWrapper

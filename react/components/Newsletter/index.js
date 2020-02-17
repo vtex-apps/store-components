@@ -25,56 +25,56 @@ const CSS_HANDLES = [
 const messages = defineMessages({
   editorNewsletterTitle: {
     id: 'admin/editor.newsletter.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorNewsletterDescription: {
     id: 'admin/editor.newsletter.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorNewsletterHidelabel: {
     id: 'admin/editor.newsletter.hideLabel',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorNewsletterPlaceholder: {
     id: 'admin/editor.newsletter.placeholder',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorNewsletterLabel: {
     id: 'admin/editor.newsletter.label',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorNewsletterSubmit: {
     id: 'admin/editor.newsletter.submit',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   newsletterConfirmationtitle: {
     id: 'store/newsletter.confirmationTitle',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   newsletterConfirmationtext: {
     id: 'store/newsletter.confirmationText',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   newsletterInvalidemail: {
     id: 'store/newsletter.invalidEmail',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   newsletterError: {
     id: 'store/newsletter.error',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   newsletterPlaceholder: {
     id: 'store/newsletter.placeholder',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   newsletterLabel: {
     id: 'store/newsletter.label',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   newsletterSubmit: {
     id: 'store/newsletter.submit',
-    from: 'vtex.store-messages'
-  }
+    from: 'vtex.store-messages',
+  },
 })
 
 class Newsletter extends Component {
@@ -138,7 +138,14 @@ class Newsletter extends Component {
   }
 
   render() {
-    const { hideLabel, intl, submit, label, placeholder, cssHandles } = this.props
+    const {
+      hideLabel,
+      intl,
+      submit,
+      label,
+      placeholder,
+      cssHandles,
+    } = this.props
     const submitText = formatIOMessage({ id: submit, intl })
     const labelText = formatIOMessage({ id: label, intl })
     const placeholderText = formatIOMessage({ id: placeholder, intl })
@@ -168,7 +175,9 @@ class Newsletter extends Component {
         <div className={`${cssHandles.container} mw9 mr-auto ml-auto pv9`}>
           {this.state.success ? (
             <Fragment>
-              <div className={`${cssHandles.confirmationTitle} t-heading-3 pb4 tc`}>
+              <div
+                className={`${cssHandles.confirmationTitle} t-heading-3 pb4 tc`}
+              >
                 {confirmationTitle}
               </div>
               <div className={`${cssHandles.confirmationText} t-body tc`}>
@@ -198,9 +207,7 @@ class Newsletter extends Component {
                   onChange={this.handleChangeEmail}
                 />
                 <div
-                  className={`${
-                    cssHandles.buttonContainer
-                  } pl4-ns flex-none pt3 pt0-ns`}
+                  className={`${cssHandles.buttonContainer} pl4-ns flex-none pt3 pt0-ns`}
                 >
                   <Button
                     variation="primary"
@@ -249,9 +256,9 @@ Newsletter.getSchema = () => {
         type: 'boolean',
         title: messages.editorNewsletterHidelabel.id,
         default: false,
-        isLayout: true
-      }
-    }
+        isLayout: true,
+      },
+    },
   }
 }
 

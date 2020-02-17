@@ -7,8 +7,8 @@ import SearchBar from './components/SearchBar'
 const messages = defineMessages({
   editorSearchbarTitle: {
     id: 'admin/editor.search-bar.title',
-    from: 'vtex.admin-messages'
-  }
+    from: 'vtex.admin-messages',
+  },
 })
 
 /** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
@@ -67,7 +67,7 @@ class SearchBarContainer extends Component {
       customSearchPageUrl,
       placeholder = intl.formatMessage({
         id: 'store/search.placeholder',
-        from: 'vtex.store-messages'
+        from: 'vtex.store-messages',
       }),
       autocompleteAlignment = 'right',
       openAutocompleteOnFocus = false,
@@ -113,7 +113,7 @@ SearchBarContainer.contextTypes = {
 }
 
 SearchBarContainer.schema = {
-  title: messages.editorSearchbarTitle.id
+  title: messages.editorSearchbarTitle.id,
 }
 
 SearchBarContainer.propTypes = {

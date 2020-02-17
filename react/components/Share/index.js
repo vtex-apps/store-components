@@ -12,16 +12,16 @@ import styles from './styles.css'
 const messages = defineMessages({
   editorShareTitle: {
     id: 'admin/editor.share.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorShareDescription: {
     id: 'admin/editor.share.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorShareSocialTitle: {
     id: 'admin/editor.share.social.title',
-    from: 'vtex.admin-messages'
-  }
+    from: 'vtex.admin-messages',
+  },
 })
 
 class Share extends Component {
@@ -131,8 +131,8 @@ class Share extends Component {
             }))
           ),
         },
-      }
-    }
+      },
+    },
   }
 
   render() {
@@ -164,7 +164,10 @@ class Share extends Component {
     return (
       <div className={classNames(styles.shareContainer, className)}>
         <div className={classNames(styles.shareLabel, shareLabelClass)}>
-          <FormattedMessage id="store/store-components.share.label" from="vtex.store-messages" />
+          <FormattedMessage
+            id="store/store-components.share.label"
+            from="vtex.store-messages"
+          />
         </div>
         <div className={classNames(styles.shareButtons, buttonsContainerClass)}>
           {Object.keys(social).map(

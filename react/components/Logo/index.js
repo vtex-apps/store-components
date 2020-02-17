@@ -15,68 +15,68 @@ const CSS_HANDLES = ['logoLink', 'logoImage', 'logoContainer']
 const messages = defineMessages({
   editorLogoTitle: {
     id: 'admin/editor.logo.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoDescription: {
     id: 'admin/editor.logo.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoHrefTitle: {
     id: 'admin/editor.logo.href.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoHrefDescription: {
     id: 'admin/editor.logo.href.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoUrlTitle: {
     id: 'admin/editor.logo.url.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoUrlDescription: {
     id: 'admin/editor.logo.url.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoWidthTitle: {
     id: 'admin/editor.logo.width.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoWidthDescription: {
     id: 'admin/editor.logo.width.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoHeightTitle: {
     id: 'admin/editor.logo.height.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoHeightDescription: {
     id: 'admin/editor.logo.height.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoTitleTitle: {
     id: 'admin/editor.logo.title.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoTitleDescription: {
     id: 'admin/editor.logo.title.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoMobilewidthTitle: {
     id: 'admin/editor.logo.mobileWidth.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoMobilewidthDescription: {
     id: 'admin/editor.logo.mobileWidth.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoMobileheightTitle: {
     id: 'admin/editor.logo.mobileHeight.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorLogoMobileheightDescription: {
     id: 'admin/editor.logo.mobileHeight.description',
-    from: 'vtex.admin-messages'
-  }
+    from: 'vtex.admin-messages',
+  },
 })
 
 /**
@@ -170,46 +170,46 @@ Logo.schema = {
     href: {
       title: messages.editorLogoHrefTitle.id,
       description: messages.editorLogoHrefDescription.id,
-      type: 'string'
+      type: 'string',
     },
     url: {
       title: messages.editorLogoUrlTitle.id,
       description: messages.editorLogoUrlDescription.id,
       type: 'string',
       widget: {
-        'ui:widget': 'image-uploader'
-      }
+        'ui:widget': 'image-uploader',
+      },
     },
     width: {
       title: messages.editorLogoWidthTitle.id,
       description: messages.editorLogoWidthDescription.id,
       type: 'number',
-      isLayout: true
+      isLayout: true,
     },
     height: {
       title: messages.editorLogoHeightTitle.id,
       description: messages.editorLogoHeightDescription.id,
       type: 'number',
-      isLayout: true
+      isLayout: true,
     },
     title: {
       title: messages.editorLogoTitleTitle.id,
       description: messages.editorLogoTitleDescription.id,
-      type: 'string'
+      type: 'string',
     },
     mobileWidth: {
       title: messages.editorLogoMobilewidthTitle.id,
       description: messages.editorLogoMobilewidthDescription.id,
       type: 'number',
-      isLayout: true
+      isLayout: true,
     },
     mobileHeight: {
       title: messages.editorLogoMobileheightTitle.id,
       description: messages.editorLogoMobileheightDescription.id,
       type: 'number',
-      isLayout: true
-    }
-  }
+      isLayout: true,
+    },
+  },
 }
 
 export default Logo

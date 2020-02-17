@@ -8,12 +8,12 @@ import ProductDescription from './index'
 const messages = defineMessages({
   editorProductdescriptionTitle: {
     id: 'admin/editor.product-description.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductdescriptionTitlepropTitle: {
     id: 'admin/editor.product-description.title-prop.title',
-    from: 'vtex.admin-messages'
-  }
+    from: 'vtex.admin-messages',
+  },
 })
 
 const ProductDescriptionWrapper = props => {
@@ -33,9 +33,8 @@ const ProductDescriptionWrapper = props => {
 }
 
 ProductDescriptionWrapper.schema = {
-  title: messages.editorProductdescriptionTitle.id
+  title: messages.editorProductdescriptionTitle.id,
 }
-
 
 ProductDescriptionWrapper.defaultProps = {
   collapseContent: true,

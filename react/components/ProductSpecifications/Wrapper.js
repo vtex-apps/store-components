@@ -8,28 +8,29 @@ import ProductSpecifications from './index'
 const messages = defineMessages({
   editorProductspecificationsTitle: {
     id: 'admin/editor.product-specifications.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductspecificationsItemsTitle: {
     id: 'admin/editor.product-specifications.items.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductspecificationsHiddenspecificationsDescription: {
     id: 'admin/editor.product-specifications.hidden-specifications.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductspecificationsHiddenspecificationsTitle: {
     id: 'admin/editor.product-specifications.hidden-specifications.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorProductspecificationsVisiblespecificationsDescription: {
-    id: 'admin/editor.product-specifications.visible-specifications.description',
-    from: 'vtex.admin-messages'
+    id:
+      'admin/editor.product-specifications.visible-specifications.description',
+    from: 'vtex.admin-messages',
   },
   editorProductspecificationsVisiblespecificationsTitle: {
     id: 'admin/editor.product-specifications.visible-specifications.title',
-    from: 'vtex.admin-messages'
-  }
+    from: 'vtex.admin-messages',
+  },
 })
 
 const getSpecifications = productContext => {
@@ -77,23 +78,28 @@ ProductSpecificationsWrapper.getSchema = () => {
         items: {
           default: '',
           type: 'string',
-          title: messages.editorProductspecificationsItemsTitle.id
+          title: messages.editorProductspecificationsItemsTitle.id,
         },
-        description: messages.editorProductspecificationsHiddenspecificationsDescription.id,
+        description:
+          messages.editorProductspecificationsHiddenspecificationsDescription
+            .id,
         title: messages.editorProductspecificationsHiddenspecificationsTitle.id,
-        type: 'array'
+        type: 'array',
       },
       visibleSpecifications: {
         items: {
           default: '',
           type: 'string',
-          title: messages.editorProductspecificationsItemsTitle.id
+          title: messages.editorProductspecificationsItemsTitle.id,
         },
-        description: messages.editorProductspecificationsVisiblespecificationsDescription.id,
-        title: messages.editorProductspecificationsVisiblespecificationsTitle.id,
-        type: 'array'
-      }
-    }
+        description:
+          messages.editorProductspecificationsVisiblespecificationsDescription
+            .id,
+        title:
+          messages.editorProductspecificationsVisiblespecificationsTitle.id,
+        type: 'array',
+      },
+    },
   }
 }
 

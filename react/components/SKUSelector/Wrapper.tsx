@@ -16,24 +16,24 @@ import { ShowValueForVariation } from './components/SKUSelector'
 const messages = defineMessages({
   editorSkuselectorTitle: {
     id: 'admin/editor.skuSelector.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorSkuselectorDescription: {
     id: 'admin/editor.skuSelector.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorSkuselectorSeemorelabelTitle: {
     id: 'admin/editor.skuSelector.seeMoreLabel.title',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   editorSkuselectorSeemorelabelDescription: {
     id: 'admin/editor.skuSelector.seeMoreLabel.description',
-    from: 'vtex.admin-messages'
+    from: 'vtex.admin-messages',
   },
   skuSelectorSeemore: {
     id: 'store/skuSelector.seeMore',
-    from: 'vtex.store-messages'
-  }
+    from: 'vtex.store-messages',
+  },
 })
 
 const getVariationsFromItems = (
@@ -235,7 +235,7 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
 
 SKUSelectorWrapper.schema = {
   title: messages.editorSkuselectorTitle.id,
-  description: messages.editorSkuselectorDescription.id
+  description: messages.editorSkuselectorDescription.id,
 }
 
 export default SKUSelectorWrapper

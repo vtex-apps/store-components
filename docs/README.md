@@ -135,9 +135,9 @@ Also, all dependencies needed should be inserted inside the react/package.json.
 ## Internationalization
 
 One of the main philosophies behind i18n in VTEX IO is that internationalization should not be a barrier for developing internationalized apps thus not posing any slow down on the building process of such components. 
-To achieve this vision, the developers should never write translations on their own, but rather `tag` the text as translatable and then leave to the translation team/framework handle the heavy lifiting. 
+To achieve this vision, the developers should never write translations on their own, but rather `tag` the text as translatable and then leave to the translation team/framework handle the heavy lifting. 
 
-All translations on this app are stored in two apps (vtex.admin-messages and vtex.store-messages). If you want any new translation, please make a PR on these repos adding the original string in english, and then leave the translation team handle the other translations.
+All translations on this app are stored in two apps (vtex.admin-messages and vtex.store-messages). If you want any new translation, please make a PR on these repos adding the original string in English, and then leave the translation team handle the other translations.
 
 vtex.admin-messages should contain messages for the VTEX `Admin`, while vtex.store-messages should contain messages for the VTEX `store`
 
