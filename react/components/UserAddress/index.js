@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { graphql } from 'react-apollo'
-import { address as addressQuery } from 'vtex.store-resources/Queries'
+import addressQuery from 'vtex.store-resources/QueryAddress'
 
 import Container from '../Container'
 import AddressInfo from './AddressInfo'
