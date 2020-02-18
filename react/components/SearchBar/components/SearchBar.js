@@ -47,6 +47,7 @@ const SearchBar = ({
   openAutocompleteOnFocus,
   blurOnSubmit,
   submitOnIconClick,
+  displayMode,
   minSearchTermLength,
   autocompleteFullWidth,
   intl,
@@ -196,6 +197,7 @@ const SearchBar = ({
                 iconClasses={iconClasses}
                 onGoToSearchPage={onGoToSearchPage}
                 submitOnIconClick={submitOnIconClick}
+                displayMode={displayMode}
                 openAutocompleteOnFocus={openAutocompleteOnFocus}
                 openMenu={openMenu}
                 inputErrorMessage={inputErrorMessage}

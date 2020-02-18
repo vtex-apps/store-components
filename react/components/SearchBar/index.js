@@ -64,7 +64,8 @@ class SearchBarContainer extends Component {
       autocompleteAlignment = 'right',
       openAutocompleteOnFocus = false,
       blurOnSubmit = false,
-      submitOnIconClick = false,
+      submitOnIconClick,
+      displayMode = 'clear',
       minSearchTermLength,
       autocompleteFullWidth = false,
     } = this.props
@@ -90,6 +91,7 @@ class SearchBarContainer extends Component {
         openAutocompleteOnFocus={openAutocompleteOnFocus}
         blurOnSubmit={blurOnSubmit}
         submitOnIconClick={submitOnIconClick}
+        displayMode={displayMode}
         minSearchTermLength={minSearchTermLength}
         autocompleteFullWidth={autocompleteFullWidth}
         intl={intl}
@@ -134,6 +136,7 @@ SearchBarContainer.propTypes = {
   blurOnSubmit: PropTypes.bool,
   /** Identify if icon should submit on click */
   submitOnIconClick: PropTypes.bool,
+  displayMode: PropTypes.string,
   /** Minimum search term length allowed */
   minSearchTermLength: PropTypes.number,
   /** If true, the autocomplete will fill the whole window horizontally */
