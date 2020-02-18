@@ -4,11 +4,7 @@
   },
   "search-bar": {
     "component": "SearchBar",
-    "allowed": [
-      "autocomplete-result-list",
-      "icon-search",
-      "icon-close"
-    ],
+    "allowed": ["autocomplete-result-list", "icon-search", "icon-close"],
     "content": {
       "$ref": "#/definitions/SearchBar"
     }
@@ -71,9 +67,7 @@
     }
   },
   "user-address": {
-    "allowed": [
-      "modal"
-    ],
+    "allowed": ["modal"],
     "component": "UserAddress"
   },
   "product-services": {
@@ -102,6 +96,8 @@
     }
   },
   "go-top-button": {
+    "render": "client",
+    "device": "desktop",
     "component": "GoTopButton"
   }
 }
