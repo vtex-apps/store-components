@@ -8,19 +8,19 @@ import { injectIntl, defineMessages } from 'react-intl'
 import styles from './styles.css'
 
 const messages = defineMessages({
-  editorNotificationbarTitle: {
+  editorNotificationBarTitle: {
     id: 'admin/editor.notification-bar.title',
     from: 'vtex.admin-messages',
   },
-  editorNotificationbarDescription: {
+  editorNotificationBarDescription: {
     id: 'admin/editor.notification-bar.description',
     from: 'vtex.admin-messages',
   },
-  editorNotificationbarContentTitle: {
+  editorNotificationBarContentTitle: {
     id: 'admin/editor.notification-bar.content.title',
     from: 'vtex.admin-messages',
   },
-  editorNotificationbarContentDescription: {
+  editorNotificationBarContentDescription: {
     id: 'admin/editor.notification-bar.content.description',
     from: 'vtex.admin-messages',
   },
@@ -53,7 +53,7 @@ NotificationBar.defaultProps = {
 }
 
 NotificationBar.schema = {
-  title: messages.editorNotificationbarTitle.id,
+  title: messages.editorNotificationBarTitle.id,
 }
 
 export default hoistNonReactStatics(

@@ -16,32 +16,32 @@ NotificationInline.defaultProps = {
 }
 
 const messages = defineMessages({
-  editorNotificationbarTitle: {
+  editorNotificationBarTitle: {
     id: 'admin/editor.notification-bar.title',
     from: 'vtex.admin-messages',
   },
-  editorNotificationbarDescription: {
+  editorNotificationBarDescription: {
     id: 'admin/editor.notification-bar.description',
     from: 'vtex.admin-messages',
   },
-  editorNotificationbarContentTitle: {
+  editorNotificationBarContentTitle: {
     id: 'admin/editor.notification-bar.content.title',
     from: 'vtex.admin-messages',
   },
-  editorNotificationbarContentDescription: {
+  editorNotificationBarContentDescription: {
     id: 'admin/editor.notification-bar.content.description',
     from: 'vtex.admin-messages',
   },
 })
 
 NotificationInline.schema = {
-  title: messages.editorNotificationbarTitle.id,
-  description: messages.editorNotificationbarDescription.id,
+  title: messages.editorNotificationBarTitle.id,
+  description: messages.editorNotificationBarDescription.id,
   type: 'object',
   properties: {
     content: {
-      title: messages.editorNotificationbarContentTitle.id,
-      description: messages.editorNotificationbarContentDescription.id,
+      title: messages.editorNotificationBarContentTitle.id,
+      description: messages.editorNotificationBarContentDescription.id,
       type: 'string',
       default: '',
     },

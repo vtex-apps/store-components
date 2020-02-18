@@ -36,35 +36,35 @@ const CSS_HANDLES = [
 ]
 
 const messages = defineMessages({
-  editorProductpriceTitle: {
+  editorProductPriceTitle: {
     id: 'admin/editor.productPrice.title',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceDescription: {
+  editorProductPriceDescription: {
     id: 'admin/editor.productPrice.description',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceShowsellingpricerange: {
+  editorProductPriceShowSellingPriceRange: {
     id: 'admin/editor.productPrice.showSellingPriceRange',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceShowlistpricerange: {
+  editorProductPriceShowListPriceRange: {
     id: 'admin/editor.productPrice.showListPriceRange',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceShowlistprice: {
+  editorProductPriceShowListPrice: {
     id: 'admin/editor.productPrice.showListPrice',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceShowlabels: {
+  editorProductPriceShowLabels: {
     id: 'admin/editor.productPrice.showLabels',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceShowinstallments: {
+  editorProductPriceShowInstallments: {
     id: 'admin/editor.productPrice.showInstallments',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceShowsavings: {
+  editorProductPriceShowSavings: {
     id: 'admin/editor.productPrice.showSavings',
     from: 'vtex.admin-messages',
   },
@@ -321,43 +321,43 @@ PriceWithIntl.defaultProps = {
 }
 
 PriceWithIntl.schema = {
-  title: messages.editorProductpriceTitle.id,
-  description: messages.editorProductpriceDescription.id,
+  title: messages.editorProductPriceTitle.id,
+  description: messages.editorProductPriceDescription.id,
   type: 'object',
   properties: {
     showSellingPriceRange: {
       type: 'boolean',
-      title: messages.editorProductpriceShowsellingpricerange.id,
+      title: messages.editorProductPriceShowSellingPriceRange.id,
       default: PriceWithIntl.defaultProps.showSellingPriceRang,
       isLayout: true,
     },
     showListPriceRange: {
       type: 'boolean',
-      title: messages.editorProductpriceShowlistpricerange.id,
+      title: messages.editorProductPriceShowListPriceRange.id,
       default: PriceWithIntl.defaultProps.showListPriceRange,
       isLayout: true,
     },
     showListPrice: {
       type: 'boolean',
-      title: messages.editorProductpriceShowlistprice.id,
+      title: messages.editorProductPriceShowListPrice.id,
       default: PriceWithIntl.defaultProps.showListPrice,
       isLayout: true,
     },
     showLabels: {
       type: 'boolean',
-      title: messages.editorProductpriceShowlabels.id,
+      title: messages.editorProductPriceShowLabels.id,
       default: PriceWithIntl.defaultProps.showLabels,
       isLayout: true,
     },
     showInstallments: {
       type: 'boolean',
-      title: messages.editorProductpriceShowinstallments.id,
+      title: messages.editorProductPriceShowInstallments.id,
       default: PriceWithIntl.defaultProps.showInstallments,
       isLayout: true,
     },
     showSavings: {
       type: 'boolean',
-      title: messages.editorProductpriceShowsavings.id,
+      title: messages.editorProductPriceShowSavings.id,
       default: PriceWithIntl.defaultProps.showSavings,
       isLayout: true,
     },

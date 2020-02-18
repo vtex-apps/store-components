@@ -9,67 +9,67 @@ import generateImageConfig from './utils/generateImageConfig'
 import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
 
 const messages = defineMessages({
-  editorProductimagesTitle: {
+  editorProductImagesTitle: {
     id: 'admin/editor.product-images.title',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesDescription: {
+  editorProductImagesDescription: {
     id: 'admin/editor.product-images.description',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesZoomoptionsTitle: {
+  editorProductImagesZoomOptionsTitle: {
     id: 'admin/editor.product-images.zoomOptions.title',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesZoomtypeTitle: {
+  editorProductImagesZoomTypeTitle: {
     id: 'admin/editor.product-images.zoomType.title',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesGallery: {
+  editorProductImagesGallery: {
     id: 'admin/editor.product-images.gallery',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesInpage: {
+  editorProductImagesInpage: {
     id: 'admin/editor.product-images.in-page',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesNozoom: {
+  editorProductImagesNoZoom: {
     id: 'admin/editor.product-images.no-zoom',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesBgopacityTitle: {
+  editorProductImagesBgopacityTitle: {
     id: 'admin/editor.product-images.bgopacity.title',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesThumbnailsorientationTitle: {
+  editorProductImagesThumbnailsOrientationTitle: {
     id: 'admin/editor.product-images.thumbnailsOrientation.title',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesVertical: {
+  editorProductImagesVertical: {
     id: 'admin/editor.product-images.vertical',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesHorizontal: {
+  editorProductImagesHorizontal: {
     id: 'admin/editor.product-images.horizontal',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesPositionTitle: {
+  editorProductImagesPositionTitle: {
     id: 'admin/editor.product-images.position.title',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesPositionDescription: {
+  editorProductImagesPositionDescription: {
     id: 'admin/editor.product-images.position.description',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesLeft: {
+  editorProductImagesLeft: {
     id: 'admin/editor.product-images.left',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesRight: {
+  editorProductImagesRight: {
     id: 'admin/editor.product-images.right',
     from: 'vtex.admin-messages',
   },
-  editorProductimagesDisplaythumbnailsarrowsTitle: {
+  editorProductImagesDisplayThumbnailsArrowsTitle: {
     id: 'admin/editor.product-images.displayThumbnailsArrows.title',
     from: 'vtex.admin-messages',
   },
@@ -137,22 +137,22 @@ const ProductImagesWrapper = props => {
 }
 
 ProductImagesWrapper.getSchema = ({ zoomProps: { zoomType } = {} }) => ({
-  title: messages.editorProductimagesTitle.id,
-  description: messages.editorProductimagesDescription.id,
+  title: messages.editorProductImagesTitle.id,
+  description: messages.editorProductImagesDescription.id,
   type: 'object',
   properties: {
     zoomProps: {
-      title: messages.editorProductimagesZoomoptionsTitle.id,
+      title: messages.editorProductImagesZoomOptionsTitle.id,
       type: 'object',
       properties: {
         zoomType: {
-          title: messages.editorProductimagesZoomtypeTitle.id,
+          title: messages.editorProductImagesZoomTypeTitle.id,
           type: 'string',
           enum: ['gallery', 'in-page', 'no-zoom'],
           enumNames: [
-            messages.editorProductimagesGallery.id,
-            messages.editorProductimagesInpage.id,
-            messages.editorProductimagesNozoom.id,
+            messages.editorProductImagesGallery.id,
+            messages.editorProductImagesInpage.id,
+            messages.editorProductImagesNoZoom.id,
           ],
           widget: {
             'ui:options': {
@@ -164,7 +164,7 @@ ProductImagesWrapper.getSchema = ({ zoomProps: { zoomType } = {} }) => ({
         },
         ...(zoomType === 'gallery' && {
           bgOpacity: {
-            title: messages.editorProductimagesBgopacityTitle.id,
+            title: messages.editorProductImagesBgopacityTitle.id,
             type: 'number',
             minimum: 0,
             maximum: 1,
@@ -175,12 +175,12 @@ ProductImagesWrapper.getSchema = ({ zoomProps: { zoomType } = {} }) => ({
       },
     },
     thumbnailsOrientation: {
-      title: messages.editorProductimagesThumbnailsorientationTitle.id,
+      title: messages.editorProductImagesThumbnailsOrientationTitle.id,
       type: 'string',
       enum: [THUMBS_ORIENTATION.VERTICAL, THUMBS_ORIENTATION.HORIZONTAL],
       enumNames: [
-        messages.editorProductimagesVertical.id,
-        messages.editorProductimagesHorizontal.id,
+        messages.editorProductImagesVertical.id,
+        messages.editorProductImagesHorizontal.id,
       ],
       widget: {
         'ui:options': {
@@ -192,13 +192,13 @@ ProductImagesWrapper.getSchema = ({ zoomProps: { zoomType } = {} }) => ({
       isLayout: true,
     },
     position: {
-      title: messages.editorProductimagesPositionTitle.id,
-      description: messages.editorProductimagesPositionDescription.id,
+      title: messages.editorProductImagesPositionTitle.id,
+      description: messages.editorProductImagesPositionDescription.id,
       type: 'string',
       enum: [THUMBS_POSITION_HORIZONTAL.LEFT, THUMBS_POSITION_HORIZONTAL.RIGHT],
       enumNames: [
-        messages.editorProductimagesLeft.id,
-        messages.editorProductimagesRight.id,
+        messages.editorProductImagesLeft.id,
+        messages.editorProductImagesRight.id,
       ],
       widget: {
         'ui:options': {
@@ -210,7 +210,7 @@ ProductImagesWrapper.getSchema = ({ zoomProps: { zoomType } = {} }) => ({
       isLayout: true,
     },
     displayThumbnailsArrows: {
-      title: messages.editorProductimagesDisplaythumbnailsarrowsTitle.id,
+      title: messages.editorProductImagesDisplayThumbnailsArrowsTitle.id,
       type: 'boolean',
       default: false,
       isLayout: true,

@@ -6,28 +6,28 @@ import { defineMessages } from 'react-intl'
 import ProductSpecifications from './index'
 
 const messages = defineMessages({
-  editorProductspecificationsTitle: {
+  editorProductSpecificationsTitle: {
     id: 'admin/editor.product-specifications.title',
     from: 'vtex.admin-messages',
   },
-  editorProductspecificationsItemsTitle: {
+  editorProductSpecificationsItemsTitle: {
     id: 'admin/editor.product-specifications.items.title',
     from: 'vtex.admin-messages',
   },
-  editorProductspecificationsHiddenspecificationsDescription: {
+  editorProductSpecificationsHiddenSpecificationsDescription: {
     id: 'admin/editor.product-specifications.hidden-specifications.description',
     from: 'vtex.admin-messages',
   },
-  editorProductspecificationsHiddenspecificationsTitle: {
+  editorProductSpecificationsHiddenSpecificationsTitle: {
     id: 'admin/editor.product-specifications.hidden-specifications.title',
     from: 'vtex.admin-messages',
   },
-  editorProductspecificationsVisiblespecificationsDescription: {
+  editorProductSpecificationsVisibleSpecificationsDescription: {
     id:
       'admin/editor.product-specifications.visible-specifications.description',
     from: 'vtex.admin-messages',
   },
-  editorProductspecificationsVisiblespecificationsTitle: {
+  editorProductSpecificationsVisibleSpecificationsTitle: {
     id: 'admin/editor.product-specifications.visible-specifications.title',
     from: 'vtex.admin-messages',
   },
@@ -70,7 +70,7 @@ const ProductSpecificationsWrapper = ({
 
 ProductSpecificationsWrapper.getSchema = () => {
   return {
-    title: messages.editorProductspecificationsTitle.id,
+    title: messages.editorProductSpecificationsTitle.id,
     description: '',
     type: 'object',
     properties: {
@@ -78,25 +78,25 @@ ProductSpecificationsWrapper.getSchema = () => {
         items: {
           default: '',
           type: 'string',
-          title: messages.editorProductspecificationsItemsTitle.id,
+          title: messages.editorProductSpecificationsItemsTitle.id,
         },
         description:
-          messages.editorProductspecificationsHiddenspecificationsDescription
+          messages.editorProductSpecificationsHiddenSpecificationsDescription
             .id,
-        title: messages.editorProductspecificationsHiddenspecificationsTitle.id,
+        title: messages.editorProductSpecificationsHiddenSpecificationsTitle.id,
         type: 'array',
       },
       visibleSpecifications: {
         items: {
           default: '',
           type: 'string',
-          title: messages.editorProductspecificationsItemsTitle.id,
+          title: messages.editorProductSpecificationsItemsTitle.id,
         },
         description:
-          messages.editorProductspecificationsVisiblespecificationsDescription
+          messages.editorProductSpecificationsVisibleSpecificationsDescription
             .id,
         title:
-          messages.editorProductspecificationsVisiblespecificationsTitle.id,
+          messages.editorProductSpecificationsVisibleSpecificationsTitle.id,
         type: 'array',
       },
     },

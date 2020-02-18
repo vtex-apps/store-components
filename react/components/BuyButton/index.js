@@ -12,39 +12,39 @@ import { Button, ToastContext, Tooltip } from 'vtex.styleguide'
 import useMarketingSessionParams from './hooks/useMarketingSessionParams'
 
 const messages = defineMessages({
-  buybuttonBuysuccess: {
+  buyButtonBuySuccess: {
     id: 'store/buybutton.buy-success',
     from: 'vtex.store-messages',
   },
-  buybuttonSelectskuvariations: {
+  buyButtonSelectSkuVariations: {
     id: 'store/buybutton.select-sku-variations',
     from: 'vtex.store-messages',
   },
-  buybuttonBuyofflinesuccess: {
+  buyButtonBuyOfflineSuccess: {
     id: 'store/buybutton.buy-offline-success',
     from: 'vtex.store-messages',
   },
-  buybuttonBuysuccessduplicate: {
+  buyButtonBuysuccessDuplicate: {
     id: 'store/buybutton.buy-success-duplicate',
     from: 'vtex.store-messages',
   },
-  buybuttonAddfailure: {
+  buyButtonAddFailure: {
     id: 'store/buybutton.add-failure',
     from: 'vtex.store-messages',
   },
-  buybuttonSeecart: {
+  buyButtonSeeCart: {
     id: 'store/buybutton.see-cart',
     from: 'vtex.store-messages',
   },
 })
 
 const CONSTANTS = {
-  SUCCESS_MESSAGE_ID: messages.buybuttonBuysuccess.id,
-  SELECT_SKU_ERROR_ID: messages.buybuttonSelectskuvariations.id,
-  OFFLINE_BUY_MESSAGE_ID: messages.buybuttonBuyofflinesuccess.id,
-  DUPLICATE_CART_ITEM_ID: messages.buybuttonBuysuccessduplicate.id,
-  ERROR_MESSAGE_ID: messages.buybuttonAddfailure.id,
-  SEE_CART_ID: messages.buybuttonSeecart.id,
+  SUCCESS_MESSAGE_ID: messages.buyButtonBuySuccess.id,
+  SELECT_SKU_ERROR_ID: messages.buyButtonSelectSkuVariations.id,
+  OFFLINE_BUY_MESSAGE_ID: messages.buyButtonBuyOfflineSuccess.id,
+  DUPLICATE_CART_ITEM_ID: messages.buyButtonBuysuccessDuplicate.id,
+  ERROR_MESSAGE_ID: messages.buyButtonAddFailure.id,
+  SEE_CART_ID: messages.buyButtonSeeCart.id,
   TOAST_TIMEOUT: 3000,
 }
 

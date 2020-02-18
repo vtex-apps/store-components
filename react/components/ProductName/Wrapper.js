@@ -20,23 +20,23 @@ const styles = {
 }
 
 const messages = defineMessages({
-  editorProductnameTitle: {
+  editorProductNameTitle: {
     id: 'admin/editor.productName.title',
     from: 'vtex.admin-messages',
   },
-  editorProductnameDescription: {
+  editorProductNameDescription: {
     id: 'admin/editor.productName.description',
     from: 'vtex.admin-messages',
   },
-  editorProductnameShowbrandnameTitle: {
+  editorProductNameShowBrandNameTitle: {
     id: 'admin/editor.productName.showBrandName.title',
     from: 'vtex.admin-messages',
   },
-  editorProductnameShowskuTitle: {
+  editorProductNameShowSkuTitle: {
     id: 'admin/editor.productName.showSku.title',
     from: 'vtex.admin-messages',
   },
-  editorProductnameShowproductreferenceTitle: {
+  editorProductNameShowproductReferenceTitle: {
     id: 'admin/editor.productName.showProductReference.title',
     from: 'vtex.admin-messages',
   },
@@ -68,25 +68,25 @@ const ProductNameWrapper = props => {
 }
 
 ProductNameWrapper.schema = {
-  title: messages.editorProductnameTitle.id,
-  description: messages.editorProductnameDescription.id,
+  title: messages.editorProductNameTitle.id,
+  description: messages.editorProductNameDescription.id,
   type: 'object',
   properties: {
     showBrandName: {
       type: 'boolean',
-      title: messages.editorProductnameShowbrandnameTitle.id,
+      title: messages.editorProductNameShowBrandNameTitle.id,
       default: false,
       isLayout: true,
     },
     showSku: {
       type: 'boolean',
-      title: messages.editorProductnameShowskuTitle.id,
+      title: messages.editorProductNameShowSkuTitle.id,
       default: false,
       isLayout: true,
     },
     showProductReference: {
       type: 'boolean',
-      title: messages.editorProductnameShowproductreferenceTitle.id,
+      title: messages.editorProductNameShowproductReferenceTitle.id,
       default: false,
       isLayout: true,
     },

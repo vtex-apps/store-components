@@ -6,11 +6,11 @@ import { defineMessages } from 'react-intl'
 import ProductDescription from './index'
 
 const messages = defineMessages({
-  editorProductdescriptionTitle: {
+  editorProductDescriptionTitle: {
     id: 'admin/editor.product-description.title',
     from: 'vtex.admin-messages',
   },
-  editorProductdescriptionTitlepropTitle: {
+  editorProductDescriptionTitlePropTitle: {
     id: 'admin/editor.product-description.title-prop.title',
     from: 'vtex.admin-messages',
   },
@@ -33,7 +33,7 @@ const ProductDescriptionWrapper = props => {
 }
 
 ProductDescriptionWrapper.schema = {
-  title: messages.editorProductdescriptionTitle.id,
+  title: messages.editorProductDescriptionTitle.id,
 }
 
 ProductDescriptionWrapper.defaultProps = {

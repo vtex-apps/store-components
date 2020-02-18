@@ -38,43 +38,43 @@ const styles = {
 }
 
 const messages = defineMessages({
-  editorProductpriceTitle: {
+  editorProductPriceTitle: {
     id: 'admin/editor.productPrice.title',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceDescription: {
+  editorProductPriceDescription: {
     id: 'admin/editor.productPrice.description',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceLabelsellingprice: {
+  editorProductPriceLabelSellingPrice: {
     id: 'admin/editor.productPrice.labelSellingPrice',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceLabellistprice: {
+  editorProductPriceLabelListPrice: {
     id: 'admin/editor.productPrice.labelListPrice',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceShowsellingpricerange: {
+  editorProductPriceShowSellingPriceRange: {
     id: 'admin/editor.productPrice.showSellingPriceRange',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceShowlistpricerange: {
+  editorProductPriceShowListPriceRange: {
     id: 'admin/editor.productPrice.showListPriceRange',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceShowlistprice: {
+  editorProductPriceShowListPrice: {
     id: 'admin/editor.productPrice.showListPrice',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceShowlabels: {
+  editorProductPriceShowLabels: {
     id: 'admin/editor.productPrice.showLabels',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceShowinstallments: {
+  editorProductPriceShowInstallments: {
     id: 'admin/editor.productPrice.showInstallments',
     from: 'vtex.admin-messages',
   },
-  editorProductpriceShowsavings: {
+  editorProductPriceShowSavings: {
     id: 'admin/editor.productPrice.showSavings',
     from: 'vtex.admin-messages',
   },
@@ -186,55 +186,55 @@ const ProductPriceWrapper = ({
 }
 
 ProductPriceWrapper.schema = {
-  title: messages.editorProductpriceTitle.id,
-  description: messages.editorProductpriceDescription.id,
+  title: messages.editorProductPriceTitle.id,
+  description: messages.editorProductPriceDescription.id,
   type: 'object',
   properties: {
     labelSellingPrice: {
       type: 'string',
-      title: messages.editorProductpriceLabelsellingprice.id,
+      title: messages.editorProductPriceLabelSellingPrice.id,
       default: ProductPrice.defaultProps.labelSellingPrice,
       isLayout: false,
     },
     labelListPrice: {
       type: 'string',
-      title: messages.editorProductpriceLabellistprice.id,
+      title: messages.editorProductPriceLabelListPrice.id,
       default: ProductPrice.defaultProps.labelListPrice,
       isLayout: false,
     },
     showSellingPriceRange: {
       type: 'boolean',
-      title: messages.editorProductpriceShowsellingpricerange.id,
+      title: messages.editorProductPriceShowSellingPriceRange.id,
       default: ProductPrice.defaultProps.showSellingPriceRange,
       isLayout: true,
     },
     showListPriceRange: {
       type: 'boolean',
-      title: messages.editorProductpriceShowlistpricerange.id,
+      title: messages.editorProductPriceShowListPriceRange.id,
       default: ProductPrice.defaultProps.showListPriceRange,
       isLayout: true,
     },
     showListPrice: {
       type: 'boolean',
-      title: messages.editorProductpriceShowlistprice.id,
+      title: messages.editorProductPriceShowListPrice.id,
       default: ProductPrice.defaultProps.showListPrice,
       isLayout: true,
     },
     showLabels: {
       type: 'boolean',
-      title: messages.editorProductpriceShowlabels.id,
+      title: messages.editorProductPriceShowLabels.id,
       default: ProductPrice.defaultProps.showLabels,
       isLayout: true,
     },
     showInstallments: {
       type: 'boolean',
-      title: messages.editorProductpriceShowinstallments.id,
+      title: messages.editorProductPriceShowInstallments.id,
       default: ProductPrice.defaultProps.showInstallments,
       isLayout: true,
     },
     showSavings: {
       type: 'boolean',
-      title: messages.editorProductpriceShowsavings.id,
+      title: messages.editorProductPriceShowSavings.id,
       default: ProductPrice.defaultProps.showSavings,
       isLayout: true,
     },
