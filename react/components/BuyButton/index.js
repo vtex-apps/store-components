@@ -14,28 +14,28 @@ import useMarketingSessionParams from './hooks/useMarketingSessionParams'
 const messages = defineMessages({
   buybuttonBuysuccess: {
     id: 'store/buybutton.buy-success',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   buybuttonSelectskuvariations: {
     id: 'store/buybutton.select-sku-variations',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   buybuttonBuyofflinesuccess: {
     id: 'store/buybutton.buy-offline-success',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   buybuttonBuysuccessduplicate: {
     id: 'store/buybutton.buy-success-duplicate',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   buybuttonAddfailure: {
     id: 'store/buybutton.add-failure',
-    from: 'vtex.store-messages'
+    from: 'vtex.store-messages',
   },
   buybuttonSeecart: {
     id: 'store/buybutton.see-cart',
-    from: 'vtex.store-messages'
-  }
+    from: 'vtex.store-messages',
+  },
 })
 
 const CONSTANTS = {
@@ -50,10 +50,7 @@ const CONSTANTS = {
 
 const CSS_HANDLES = ['buyButtonContainer', 'buyButtonText']
 
-const isTooltipNeeded = ({
-  showTooltipOnSkuNotSelected,
-  skuSelector,
-}) => {
+const isTooltipNeeded = ({ showTooltipOnSkuNotSelected, skuSelector }) => {
   if (showTooltipOnSkuNotSelected && !skuSelector.areAllVariationsSelected) {
     return {
       showTooltip: true,
@@ -90,7 +87,11 @@ const skuItemToMinicartItem = item => {
   }
 }
 
-const useCallCartFinishIfPending = (orderFormContext, isAddingToCart, addToCartAndFinish) => {
+const useCallCartFinishIfPending = (
+  orderFormContext,
+  isAddingToCart,
+  addToCartAndFinish
+) => {
   const orderFormLoading = orderFormContext && orderFormContext.loading
   useEffect(() => {
     if (!orderFormLoading && isAddingToCart) {
@@ -196,8 +197,8 @@ export const BuyButton = ({
             options: item.options,
             quantity: item.quantity,
           })),
-          ...(utmParams ? {utmParams} : {}),
-          ...(utmiParams ? {utmiParams} : {}),
+          ...(utmParams ? { utmParams } : {}),
+          ...(utmiParams ? { utmiParams } : {}),
         }
         const mutationRes = await orderFormContext.addItem({ variables })
         const { items } = mutationRes.data.addItem
@@ -267,7 +268,11 @@ export const BuyButton = ({
     await addToCartAndFinish()
   }
 
-  useCallCartFinishIfPending(orderFormContext, isAddingToCart, addToCartAndFinish)
+  useCallCartFinishIfPending(
+    orderFormContext,
+    isAddingToCart,
+    addToCartAndFinish
+  )
 
   const handleClick = e => {
     if (dispatch) {
@@ -290,37 +295,43 @@ export const BuyButton = ({
 
   const disabled = disabledProp || !available
   const unavailableLabel = (
-    <FormattedMessage id="store/buyButton-label-unavailable" from="vtex.store-messages">
+    <FormattedMessage
+      id="store/buyButton-label-unavailable"
+      from="vtex.store-messages"
+    >
       {message => <span className={handles.buyButtonText}>{message}</span>}
     </FormattedMessage>
   )
 
-  const ButtonWithLabel = <Button
-    block={large}
-    disabled={disabled}
-    onClick={handleClick}
-    isLoading={isAddingToCart}
-  >
-    {available ? children : unavailableLabel}
-  </Button>
+  const ButtonWithLabel = (
+    <Button
+      block={large}
+      disabled={disabled}
+      onClick={handleClick}
+      isLoading={isAddingToCart}
+    >
+      {available ? children : unavailableLabel}
+    </Button>
+  )
 
   const { showTooltip, labelId } = isTooltipNeeded({
     showTooltipOnSkuNotSelected,
     skuSelector,
   })
 
-  const tooltipLabel = showTooltip &&
+  const tooltipLabel = showTooltip && (
     <span className={handles.errorMessage}>
       <FormattedMessage id={labelId} />
     </span>
+  )
 
   return !showTooltip ? (
     ButtonWithLabel
   ) : (
-      <Tooltip trigger="click" label={tooltipLabel}>
-        {ButtonWithLabel}
-      </Tooltip>
-    )
+    <Tooltip trigger="click" label={tooltipLabel}>
+      {ButtonWithLabel}
+    </Tooltip>
+  )
 }
 
 BuyButton.propTypes = {

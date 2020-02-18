@@ -2,11 +2,10 @@ import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
 import Share from './../../Share'
-import { messages } from '../../__mocks__/messages'
 
 describe('<Share />', () => {
   const renderComponent = props => {
-    return render(<Share imageUrl="" {...props} />, { messages })
+    return render(<Share imageUrl="" {...props} />)
   }
 
   it('should be mounted', () => {

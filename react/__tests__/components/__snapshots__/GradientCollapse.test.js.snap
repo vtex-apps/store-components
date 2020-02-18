@@ -24,7 +24,7 @@ exports[`<GradientCollapse /> component should match snapshot 1`] = `
         <button
           class="c-action-primary t-action pointer ma5 bn outline-0"
         >
-          Show more
+          store/product-description.collapse.showMore
         </button>
       </div>
     </div>

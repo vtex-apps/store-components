@@ -10,7 +10,7 @@ exports[`<ProductSpecifications /> component should match snapshot with table vi
     <h2
       class="specificationsTitle t-heading-5 mb5 mt0"
     >
-      Technical Specifications
+      store/technicalspecifications.title
     </h2>
     <div
       class="relative"
@@ -27,12 +27,12 @@ exports[`<ProductSpecifications /> component should match snapshot with table vi
               <th
                 class="specificationsTablePropertyHeading w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5"
               >
-                Property
+                store/product-description.property
               </th>
               <th
                 class="specificationsTableSpecificationHeading w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5"
               >
-                Specification
+                store/product-description.specification
               </th>
             </tr>
           </thead>
@@ -65,7 +65,7 @@ exports[`<ProductSpecifications /> component should match snapshot with table vi
           <button
             class="c-action-primary t-action pointer ma5 bn outline-0"
           >
-            Show more
+            store/product-description.collapse.showMore
           </button>
         </div>
       </div>
@@ -82,7 +82,7 @@ exports[`<ProductSpecifications /> component should match snapshot with tabs vie
     <h2
       class="specificationsTitle t-heading-5 mb5 mt0"
     >
-      Technical Specifications
+      store/technicalspecifications.title
     </h2>
     <div
       class="tabs-mock"
@@ -117,7 +117,7 @@ exports[`<ProductSpecifications /> component should match snapshot with tabs vie
                 <button
                   class="c-action-primary t-action pointer ma5 bn outline-0"
                 >
-                  Show more
+                  store/product-description.collapse.showMore
                 </button>
               </div>
             </div>

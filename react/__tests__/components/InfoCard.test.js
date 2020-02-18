@@ -1,7 +1,6 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
-import { messages } from '../../__mocks__/messages'
 import InfoCard from './../../InfoCard'
 
 describe('<InfoCard />', () => {
@@ -14,7 +13,7 @@ describe('<InfoCard />', () => {
       callToActionText: 'CLICK HERE',
       callToActionUrl: 'classic-shoes/p'
     }
-    return render(<InfoCard {...defaultProps} {...props} />, { messages })
+    return render(<InfoCard {...defaultProps} {...props} />)
   }
 
   it('should render with full mode style', () => {

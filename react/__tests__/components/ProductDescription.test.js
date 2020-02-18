@@ -1,7 +1,6 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
 import ProductDescription from './../../ProductDescription'
-import { messages } from '../../__mocks__/messages'
 
 describe('<ProductDescription />', () => {
   const renderComponent = customProps => {
@@ -9,7 +8,7 @@ describe('<ProductDescription />', () => {
       description: 'Test description',
       ...customProps,
     }
-    return render(<ProductDescription {...props} />, { messages })
+    return render(<ProductDescription {...props} />)
   }
 
   it('should be mounted', () => {
@@ -20,11 +19,11 @@ describe('<ProductDescription />', () => {
   it('should match the snapshot with description', () => {
     const { asFragment, getByText } = renderComponent()
     expect(asFragment()).toMatchSnapshot()
-    getByText('Show more')
+    getByText('store/product-description.collapse.showMore')
   })
 
   it('should not show show more button', () => {
     const { debug, queryByText } = renderComponent({ collapseContent: false })
-    expect(queryByText('Show more')).toBeNull()
+    expect(queryByText('store/product-description.collapse.showMore')).toBeNull()
   })
 })

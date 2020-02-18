@@ -2,7 +2,6 @@ import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
 import DiscountBadge from '../../DiscountBadge'
-import { messages } from '../../__mocks__/messages'
 
 describe('<DiscountBadge /> component', () => {
   function renderComponent(customProps = {}) {
@@ -13,7 +12,7 @@ describe('<DiscountBadge /> component', () => {
     }
     const component = <DiscountBadge {...props}>Test</DiscountBadge>
 
-    return render(component, { messages })
+    return render(component)
   }
 
   it('should be able to mount and not break', () => {

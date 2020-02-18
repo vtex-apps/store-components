@@ -4,8 +4,6 @@ import ProductImages from './../../ProductImages'
 import useProduct from 'vtex.product-context/useProduct'
 import { createItem } from '../../__mocks__/productMock'
 
-import { messages } from '../../__mocks__/messages'
-
 const mockUseProduct = useProduct
 
 jest.mock('react-id-swiper/lib/ReactIdSwiper', () => {
@@ -37,7 +35,7 @@ beforeEach(() => {
 
 describe('<ProductImages />', () => {
   const renderComponent = customProps => {
-    return render(<ProductImages {...customProps} />, { messages })
+    return render(<ProductImages {...customProps} />)
   }
 
   it('should render two images (thumb and main image) for each product image', () => {

@@ -2,7 +2,6 @@ import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
 import AvailabilitySubscriber from '../../AvailabilitySubscriber'
-import { messages } from '../../__mocks__/messages'
 
 describe('<AvailabilitySubscriber />', () => {
   function renderComponent(customProps = {}) {
@@ -14,7 +13,6 @@ describe('<AvailabilitySubscriber />', () => {
 
     return render(<AvailabilitySubscriber {...props} />, {
       graphql: { mocks: [] },
-      messages,
     })
   }
 

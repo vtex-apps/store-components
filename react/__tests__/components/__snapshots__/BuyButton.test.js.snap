@@ -29,7 +29,7 @@ exports[`<BuyButton /> should match snapshot unavailable 1`] = `
     <span
       class="buyButtonText"
     >
-      Unavailable
+      store/buyButton-label-unavailable
     </span>
   </button>
 </DocumentFragment>

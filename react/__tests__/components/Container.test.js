@@ -2,13 +2,12 @@ import React from 'react'
 
 import Container from '../../Container'
 import { render } from '@vtex/test-tools/react'
-import { messages } from '../../__mocks__/messages'
 
 describe('<Container /> component', () => {
   const renderComponent = customProps => {
     const comp = <Container {...customProps}> Test </Container>
 
-    return render(comp, { messages })
+    return render(comp)
   }
 
   it('should be rendered', () => {

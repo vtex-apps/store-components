@@ -8,12 +8,12 @@ exports[`<AvailabilitySubscriber /> should match snapshot 1`] = `
     <div
       class="title t-body mb3"
     >
-      This product isn't available right now
+      store/availability-subscriber.title
     </div>
     <div
       class="subscribeLabel t-small fw3"
     >
-      I want to know when this product becomes available
+      store/availability-subscriber.subscribe-label
     </div>
     <form
       class="form mb4"
@@ -27,7 +27,7 @@ exports[`<AvailabilitySubscriber /> should match snapshot 1`] = `
           <label>
             <input
               name="name"
-              placeholder="Name"
+              placeholder="store/availability-subscriber.name-placeholder"
               type="text"
               value=""
             />
@@ -41,7 +41,7 @@ exports[`<AvailabilitySubscriber /> should match snapshot 1`] = `
               data-error="false"
               data-errormessage=""
               name="email"
-              placeholder="Email"
+              placeholder="store/availability-subscriber.email-placeholder"
               type="text"
               value=""
             />
@@ -56,7 +56,7 @@ exports[`<AvailabilitySubscriber /> should match snapshot 1`] = `
             disabled=""
             type="submit"
           >
-            Send
+            store/availability-subscriber.send-label
           </button>
         </div>
       </div>

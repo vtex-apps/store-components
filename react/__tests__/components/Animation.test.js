@@ -3,13 +3,11 @@ import React from 'react'
 import Animation from '../../Animation'
 import { render } from '@vtex/test-tools/react'
 
-import { messages } from '../../__mocks__/messages'
-
 describe('<Animation /> component', () => {
   const renderComponent = customProps => {
     const comp = <Animation {...customProps}> Test </Animation>
 
-    return render(comp, { messages })
+    return render(comp)
   }
 
   it('should be rendered', () => {

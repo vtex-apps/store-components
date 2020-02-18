@@ -28,7 +28,7 @@ exports[`<SearchBar /> should match snapshot 1`] = `
                 autocomplete="off"
                 data-error="false"
                 id="downshift-1-input"
-                placeholder="Search"
+                placeholder="store/search.placeholder"
                 value=""
               />
               <div

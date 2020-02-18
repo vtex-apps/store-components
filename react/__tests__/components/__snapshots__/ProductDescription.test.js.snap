@@ -8,7 +8,7 @@ exports[`<ProductDescription /> should match the snapshot with description 1`] =
     <h2
       class="productDescriptionTitle t-heading-5 mb5 mt0"
     >
-      Product Description
+      store/product-description.title
     </h2>
     <div
       class="productDescriptionText c-muted-1"
@@ -35,7 +35,7 @@ exports[`<ProductDescription /> should match the snapshot with description 1`] =
             <button
               class="c-action-primary t-action pointer ma5 bn outline-0"
             >
-              Show more
+              store/product-description.collapse.showMore
             </button>
           </div>
         </div>

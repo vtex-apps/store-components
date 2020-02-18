@@ -2,13 +2,12 @@ import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
 import CollectionBadges from '../../CollectionBadges'
-import { messages } from '../../__mocks__/messages'
 
 describe('<CollectionBadges /> component', () => {
   function renderComponent(customProps = {}) {
     const component = <CollectionBadges {...customProps}>Test</CollectionBadges>
 
-    return render(component, { messages })
+    return render(component)
   }
 
   it('should be able to mount and not break', () => {

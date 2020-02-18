@@ -1,9 +1,7 @@
 import React from 'react'
-import { MockedProvider } from '@apollo/react-testing'
 import { render } from '@vtex/test-tools/react'
 
 import ShippingSimulator from '../../ShippingSimulator'
-import { messages } from '../../__mocks__/messages'
 
 describe('<ShippingSimulator /> component', () => {
   const renderComponent = (customProps = {}) => {
@@ -12,7 +10,7 @@ describe('<ShippingSimulator /> component', () => {
       ...customProps,
     }
 
-    return render(<ShippingSimulator {...props} />, { graphql: { mocks: [] }, MockedProvider, messages })
+    return render(<ShippingSimulator {...props} />, { graphql: { mocks: [] } })
   }
 
   it('should be able to mount and not break', () => {

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { render } from '@vtex/test-tools/react'
 
 import ProductPrice from './../../ProductPrice'
-import { messages } from '../../__mocks__/messages'
 
 describe('<ProductPrice />', () => {
   const defaultProps = {
@@ -17,7 +16,7 @@ describe('<ProductPrice />', () => {
       ...defaultProps,
       ...customProps,
     }
-    return render(<ProductPrice {...props} />, { messages })
+    return render(<ProductPrice {...props} />)
   }
 
   it('should be mount', () => {
@@ -41,7 +40,7 @@ describe('<ProductPrice />', () => {
       showLabels: true,
       showListPrice: true,
       labelSellingPrice: 'To',
-      labelListPrice: 'From'
+      labelListPrice: 'From',
     }
     const { getByText } = renderComponent(customProps)
     expect(getByText('From')).toBeDefined()
@@ -56,7 +55,7 @@ describe('<ProductPrice />', () => {
       showLabels: false,
       showListPrice: true,
       labelSellingPrice: 'To',
-      labelListPrice: 'From'
+      labelListPrice: 'From',
     }
     const { getByText, queryByText } = renderComponent(customProps)
     expect(queryByText('From')).toBeNull()
@@ -101,9 +100,9 @@ describe('<ProductPrice />', () => {
       labelSellingPrice: 'Now',
       labelListPrice: 'Was',
       sellingPriceList: [30, 50, 20, 55],
-      showSellingPriceRange: true
+      showSellingPriceRange: true,
     }
-    const { getByText , queryByText } = renderComponent(customProps)
+    const { getByText, queryByText } = renderComponent(customProps)
     // dont show labels
     expect(queryByText('Now')).toBeNull()
     expect(queryByText('Was')).toBeNull()
@@ -123,16 +122,16 @@ describe('<ProductPrice />', () => {
       labelListPrice: 'Was',
       sellingPriceList: [30, 50, 20, 55],
       listPriceList: [100, 200, 300, 400],
-      showSellingPriceRange: true
+      showSellingPriceRange: true,
     }
-    const { getByText , queryByText } = renderComponent(customProps)
+    const { getByText, queryByText } = renderComponent(customProps)
     // dont show labels
     expect(queryByText('Now')).toBeNull()
     expect(queryByText('Was')).toBeNull()
     // dont show selling price
     expect(queryByText('$40.00')).toBeNull()
     expect(queryByText('$50.00')).toBeNull()
-    
+
     expect(getByText('$20.00 - $55.00')).toBeDefined()
     expect(getByText('$100.00 - $400.00')).toBeDefined()
   })
@@ -147,16 +146,16 @@ describe('<ProductPrice />', () => {
       labelListPrice: 'Was',
       sellingPriceList: [30, 50, 20, 55],
       listPriceList: [100, 200, 300, 400],
-      showSellingPriceRange: true
+      showSellingPriceRange: true,
     }
-    const { getByText , queryByText } = renderComponent(customProps)
+    const { getByText, queryByText } = renderComponent(customProps)
     // show labels
     expect(getByText('Now')).toBeDefined()
     expect(getByText('Was')).toBeDefined()
     // dont show selling price
     expect(queryByText('$40.00')).toBeNull()
     expect(queryByText('$50.00')).toBeNull()
-    
+
     expect(getByText('$20.00 - $55.00')).toBeDefined()
     expect(getByText('$100.00 - $400.00')).toBeDefined()
   })

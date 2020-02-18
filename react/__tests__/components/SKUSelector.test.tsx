@@ -4,7 +4,6 @@ import useProduct, { ProductContext } from 'vtex.product-context/useProduct'
 
 import SKUSelector from './../../SKUSelector'
 import { getSKU } from 'sku-helper'
-import { messages } from '../../__mocks__/messages'
 
 describe('<SKUSelector />', () => {
   const renderComponent = (customProps = {}) => {
@@ -13,7 +12,7 @@ describe('<SKUSelector />', () => {
       skuItems: [getSKU('Black'), getSKU('Blue'), getSKU('Yellow')],
       ...customProps,
     }
-    return render(<SKUSelector {...props} />, { messages })
+    return render(<SKUSelector {...props} />)
   }
 
   const mockedUseProduct = useProduct as jest.Mock<ProductContext>
@@ -86,8 +85,7 @@ describe('<SKUSelector />', () => {
         skuSelected={skuSelected}
         initialSelection="empty"
         onSKUSelected={onSKUSelected}
-      />,
-      { messages }
+      />
       )
 
     await wait()
@@ -156,8 +154,7 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems[0]
 
     const { getByText, getAllByText } = render(
-      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />,
-      { messages }
+      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
     await wait()
 
@@ -388,8 +385,7 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems[0]
 
     const { getByText, queryByText } = render(
-      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />,
-      { messages }
+      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
     await wait()
     // await Promise.resolve()
@@ -619,8 +615,7 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems[0]
 
     const { getByText, queryByText } = render(
-      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />,
-      { messages }
+      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />
     )
 
     await wait()
@@ -797,8 +792,7 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems[0]
 
     const { getByText, queryByText } = render(
-      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />,
-      { messages }
+      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
 
     await wait()
@@ -1027,8 +1021,7 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems.find(({ itemId }) => itemId === '15')
 
     const { getByText } = render(
-      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />,
-      { messages }
+      <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />
     )
 
     await wait()
@@ -1085,8 +1078,7 @@ describe('<SKUSelector />', () => {
     ]
 
     const { queryByText } = render(
-      <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />,
-      { messages }
+      <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
     )
     await wait()
     expect(queryByText('skuSelectorItem--feijao')).toBeDefined()
@@ -1130,8 +1122,7 @@ describe('<SKUSelector />', () => {
         skuItems={skuItems}
         maxItems={6}
         showValueNameForImageVariation={true}
-      />,
-      { messages }
+      />
     )
 
     await wait()
@@ -1255,8 +1246,7 @@ describe('<SKUSelector />', () => {
       },
     ]
     const { asFragment } = render(
-      <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />,
-      { messages }
+      <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
     )
     //check comment above the 'it' description
     expect(asFragment()).toMatchSnapshot()
