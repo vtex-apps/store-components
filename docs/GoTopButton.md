@@ -1,45 +1,39 @@
-# Go top Button
+📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-## Description
+# Go Top Button
 
 `GoTopButton` is a component of VTEX that when clicked, goes back to the top of the page. This Component can be imported and used by any VTEX app.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+## Configuration
 
-## Table of Contents
-- [Usage](#usage)
-  - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespaces](#css-namespaces)
+1. Import the `vtex.store-component` app to your theme's dependencies in the manifest.json;
 
-## Usage
+```json
+ "dependencies: {
+    "vtex.store-components": "3.x"
+  }
+```
 
-- You must place it in the part of the block where you want it, this component will appear only for mobile devices
+2. Add the `go-top-button` block into your page. Example:
 
-``
-    "store.home": {
+```diff
+  "store.home": {
     "blocks": [
-    ' "..."
-      "go-top-button"
++     "go-top-button",
     ]
   },
-
-``
-
+```
 
 ### Configuration
 
-| Prop name | Type | Description | Default Value |
-| --------- | ---- | ----------- | ----------- |
-| `topPixel` | `Number!` | Height of the page the button will appear on | - |
+| Prop name  | Type      | Description                                  | Default Value |
+| ---------- | --------- | -------------------------------------------- | ------------- |
+| `topPixel` | `Number!` | Height of the page the button will appear on | -             |
 
-### Styles API
+### Customization
 
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-#### CSS Namespaces
-Below, we describe the namespace that are defined in the `GoTopButton`.
-
-| Class name | Description | Component Source |
-| ---------- | ----------- | ---------------- |
-| `goTopButtonContainer` | The bottom of the collapse | [GoTopButton](/react/components/GoTopButton/GoTopButton.js) |
+| CSS Handles            |
+| ---------------------- |
+| `goTopButtonContainer` |
