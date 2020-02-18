@@ -1,3 +1,3 @@
-import { GoTopButton } from './components/GotopButton/GoTopButton';
+import GoTopButton from './components/GoTopButton'
 
-export default GoTopButton;
+export default GoTopButton
