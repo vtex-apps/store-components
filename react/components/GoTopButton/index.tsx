@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl'
 import styles from './styles.css'
 
 interface Props {
-  topPixel: number
+  topPixel?: number
 }
 
 const GoTopButton: StorefrontFC<Props> = ({ topPixel = 1000 }) => {
