@@ -14,12 +14,14 @@ const DISPLAY_MODES = [
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 const CSS_HANDLES = [
+  'autoCompleteOuterContainer',
+  'compactMode',
+  'externalSearchButtonWrapper',
+  'paddingInput',
+  'searchBarClearIcon',
   'searchBarIcon',
   'searchBarSearchIcon',
-  'searchBarClearIcon',
-  'compactMode',
-  'autoCompleteOuterContainer',
-  'paddingInput',
+  'suffixWrapper',
 ]
 
 const CloseIcon = () => {
@@ -125,7 +127,9 @@ const AutocompleteInput = ({
   )
 
   const externalSearchButton = showExternalSearchButton && (
-    <div className={`bw1 bl b--muted-4 flex items-center `}>
+    <div
+      className={`${handles.externalSearchButtonWrapper} bw1 bl b--muted-4 flex items-center `}
+    >
       <button
         className={`${iconClasses || ''} ${applyModifiers(
           handles.searchBarIcon,
@@ -139,7 +143,7 @@ const AutocompleteInput = ({
   )
 
   const suffix = (
-    <div className="flex h-100">
+    <div className={`${handles.suffixWrapper} flex h-100`}>
       {clearButton}
       {internalSearchButton}
       {externalSearchButton}

@@ -62,6 +62,7 @@ Below, we describe the namespace that are defined in the `SearchBar`.
 | Class name                       | Description                                                           | Component Source                                                                 |
 | -------------------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `compactMode`                    | Properties to be applied to the input when `compactMode` prop is true | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
+| `externalSearchButtonWrapper`    | Targets the external search bar icon wrapper                          | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
 | `paddingInput`                   | The padding of the `SearchBar` input                                  | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
 | `searchBarContainer`             | The main container of `SearchBar`                                     | [SearchBar](/react/components/SearchBar/components/SearchBar.js)                 |
 | `searchBarIcon--clear`           | Targets the search bar _clear_ icon                                   | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
@@ -69,3 +70,4 @@ Below, we describe the namespace that are defined in the `SearchBar`.
 | `searchBarIcon--prefix`          | Targets the search bar _prefix_ icon icon                             | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
 | `searchBarIcon--search`          | Targets the search bar _search_ icon                                  | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
 | `searchBarIcon`                  | Targets the search bar icon                                           | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
+| `suffixWrapper`                  | Targets the wrapper for all the input sufixes wrapper                 | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
