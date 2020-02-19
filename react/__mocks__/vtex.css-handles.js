@@ -10,7 +10,7 @@ export const useCssHandles = cssHandles => {
 }
 
 export function applyModifiers(baseClass, modifier) {
-  return `${baseClass}--${modifier}`
+  return [baseClass, `${baseClass}--${modifier}`].join(' ')
 }
 
 export const withCssHandles = (handles = [], options) => Component => {
@@ -19,7 +19,7 @@ export const withCssHandles = (handles = [], options) => Component => {
 
     return <Component cssHandles={cssHandles} {...props} />
   }
-  
+
   const displayName = Component.displayName || Component.name || 'Component'
   EnhancedComponent.displayName = `withCssHandles(${displayName})`
 
