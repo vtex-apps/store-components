@@ -28,10 +28,10 @@ const CloseIcon = () => {
   const hasIconBlock = Boolean(useChildBlock({ id: 'icon-close' }))
 
   if (hasIconBlock) {
-    return <ExtensionPoint id="icon-close" size={22} type="line" />
+    return <ExtensionPoint id="icon-close" size={16} type="line" />
   }
 
-  return <IconClose type="line" size={22} />
+  return <IconClose type="line" size={16} />
 }
 
 const SearchIcon = () => {
