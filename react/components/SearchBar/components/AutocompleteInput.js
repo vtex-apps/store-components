@@ -55,7 +55,7 @@ const AutocompleteInput = ({
   onGoToSearchPage,
   /** @deprecated */
   submitOnIconClick,
-  displayMode,
+  displayMode = 'clear-button',
   openMenu,
   inputErrorMessage,
   ...restProps
@@ -63,8 +63,8 @@ const AutocompleteInput = ({
   const inputRef = useRef(null)
   const handles = useCssHandles(CSS_HANDLES)
 
-  let mode = displayMode || 'clear-button'
-  if (DISPLAY_MODES.indexOf(displayMode) < 0) {
+  let dMode = displayMode
+  if (DISPLAY_MODES.indexOf(dMode) < 0) {
     console.error(
       `[store-componentes/search-bar] Invalid displayMode '${displayMode}'. The valid options are: ${DISPLAY_MODES.join(
         ', '
@@ -72,10 +72,11 @@ const AutocompleteInput = ({
     )
   }
 
+  // for backward compatibility
   if (submitOnIconClick === true) {
-    mode = 'search-button'
+    dMode = 'search-button'
   } else if (submitOnIconClick === false) {
-    mode = 'clear-button'
+    dMode = 'clear-button'
   }
 
   useEffect(() => {
@@ -94,10 +95,11 @@ const AutocompleteInput = ({
   const hasValue = value != null && value.length > 0
 
   const showClearButton =
-    (mode === 'clear-button' && hasValue) || mode === 'search-and-clear-buttons'
+    (dMode === 'clear-button' && hasValue) ||
+    dMode === 'search-and-clear-buttons'
   const showInternalSearchButton =
-    (mode === 'clear-button' && !hasValue) || mode === 'search-button'
-  const showExternalSearchButton = mode === 'search-and-clear-buttons'
+    (dMode === 'clear-button' && !hasValue) || dMode === 'search-button'
+  const showExternalSearchButton = dMode === 'search-and-clear-buttons'
 
   const clearButton = showClearButton && (
     <button
