@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- `SearchBar` moving when icon change from `search` to `clear`.
 
 ## [3.104.1] - 2020-02-19
 ### Fixed
