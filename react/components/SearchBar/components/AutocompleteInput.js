@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Input } from 'vtex.styleguide'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
-import { useCssHandles } from 'vtex.css-handles'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { IconSearch, IconClose } from 'vtex.store-icons'
 
 const DISPLAY_MODES = [
@@ -91,12 +91,18 @@ const AutocompleteInput = ({
 
   const hasValue = value != null && value.length > 0
 
-  const clearButton = ((mode === 'clear-button' && hasValue) ||
-    mode === 'search-and-clear-buttons') && (
+  const showClearButton =
+    (mode === 'clear-button' && hasValue) || mode === 'search-and-clear-buttons'
+  const showInternalSearchButton =
+    (mode === 'clear-button' && !hasValue) || mode === 'search-button'
+  const showExternalSearchButton = mode === 'search-and-clear-buttons'
+
+  const clearButton = showClearButton && (
     <button
-      className={`${iconClasses || ''} ${
-        handles.searchBarClearIcon
-      }  flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3`}
+      className={`${iconClasses || ''} ${applyModifiers(
+        handles.searchBarIcon,
+        'clear'
+      )} flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3`}
       style={{
         visibility: hasValue ? 'visible' : 'hidden',
       }}
@@ -106,24 +112,25 @@ const AutocompleteInput = ({
     </button>
   )
 
-  const internalSearchButton = ((mode === 'clear-button' && !hasValue) ||
-    mode === 'search-button') && (
+  const internalSearchButton = showInternalSearchButton && (
     <button
-      className={`${iconClasses || ''} ${
-        handles.searchBarSearchIcon
-      }  flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3`}
+      className={`${iconClasses || ''} ${applyModifiers(
+        handles.searchBarIcon,
+        'search'
+      )} flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3`}
       onClick={() => hasValue && onGoToSearchPage()}
     >
       <SearchIcon />
     </button>
   )
 
-  const externalSearchButton = mode === 'search-and-clear-buttons' && (
-    <div className="bw1 bl b--muted-4 flex items-center">
+  const externalSearchButton = showExternalSearchButton && (
+    <div className={`bw1 bl b--muted-4 flex items-center `}>
       <button
-        className={`${iconClasses || ''} ${
-          handles.searchBarSearchIcon
-        } flex items-center h-100 pointer pv0 nr5 ph5 bn c-link`}
+        className={`${iconClasses || ''} ${applyModifiers(
+          handles.searchBarIcon,
+          'external-search'
+        )}  flex items-center h-100 pointer pv0 nr5 ph5 bn c-link`}
         onClick={onGoToSearchPage}
       >
         <SearchIcon />
@@ -140,7 +147,12 @@ const AutocompleteInput = ({
   )
 
   const prefix = (
-    <span className={`${iconClasses} ${handles.searchBarIcon}`}>
+    <span
+      className={`${iconClasses} ${applyModifiers(
+        handles.searchBarIcon,
+        'prefix'
+      )} `}
+    >
       <SearchIcon />
     </span>
   )

@@ -59,11 +59,13 @@ Then, add `search-bar` block into your app theme, as we do in our [Store Header]
 
 Below, we describe the namespace that are defined in the `SearchBar`.
 
-| Class name            | Description                                                           | Component Source                                                                 |
-| --------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `searchBarContainer`  | The main container of `SearchBar`                                     | [SearchBar](/react/components/SearchBar/components/SearchBar.js)                 |
-| `compactMode`         | Properties to be applied to the input when `compactMode` prop is true | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
-| `paddingInput`        | The padding of the `SearchBar` input                                  | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
-| `searchBarIcon`       | Targets the search bar icon                                           | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
-| `searchBarSearchIcon` | Targets the search bar _search_ icon                                  | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
-| `searchBarClearIcon`  | Targets the search bar _clear_ icon                                   | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
+| Class name                       | Description                                                           | Component Source                                                                 |
+| -------------------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `searchBarContainer`             | The main container of `SearchBar`                                     | [SearchBar](/react/components/SearchBar/components/SearchBar.js)                 |
+| `compactMode`                    | Properties to be applied to the input when `compactMode` prop is true | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
+| `paddingInput`                   | The padding of the `SearchBar` input                                  | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
+| `searchBarIcon`                  | Targets the search bar icon                                           | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
+| `searchBarIcon--prefix`          | Targets the search bar _prefix_ icon icon                             | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
+| `searchBarIcon--search`          | Targets the search bar _search_ icon                                  | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
+| `searchBarIcon--external-search` | Targets the search bar external _search_ icon                         | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |
+| `searchBarIcon--clear`           | Targets the search bar _clear_ icon                                   | [AutocompleteInput](/react/components/SearchBar/components/AutocompleteInput.js) |

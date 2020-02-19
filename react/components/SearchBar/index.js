@@ -65,7 +65,7 @@ class SearchBarContainer extends Component {
       openAutocompleteOnFocus = false,
       blurOnSubmit = false,
       submitOnIconClick,
-      displayMode = 'clear',
+      displayMode = 'clear-button',
       minSearchTermLength,
       autocompleteFullWidth = false,
     } = this.props
