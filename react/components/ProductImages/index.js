@@ -113,7 +113,7 @@ ProductImages.propTypes = {
       /** URL of the image thumbnail */
       thumbnailUrl: PropTypes.string,
       /** Text that describes the image */
-      imageText: PropTypes.string.isRequired,
+      imageText: PropTypes.string,
     })
   ),
   videos: PropTypes.arrayOf(
