@@ -16,10 +16,10 @@ exports[`<SearchBar /> should match snapshot 1`] = `
         role="combobox"
       >
         <div
-          class="autoCompleteOuterContainer flex"
+          class="autoCompleteOuterContainer"
         >
           <div
-            class="w-100"
+            class="w-100 flex"
           >
             <label>
               <input
@@ -31,13 +31,17 @@ exports[`<SearchBar /> should match snapshot 1`] = `
                 placeholder="Search"
                 value=""
               />
-              <button
-                class=" searchBarIcon flex items-center pointer bn bg-transparent outline-0"
+              <div
+                class="suffixWrapper flex h-100"
               >
-                <div
-                  class="extension-point-icon-search"
-                />
-              </button>
+                <button
+                  class=" searchBarIcon searchBarIcon--search flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3"
+                >
+                  <div
+                    class="extension-point-icon-search"
+                  />
+                </button>
+              </div>
             </label>
           </div>
         </div>

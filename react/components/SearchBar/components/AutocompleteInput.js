@@ -3,15 +3,25 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Input } from 'vtex.styleguide'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
-import { useCssHandles } from 'vtex.css-handles'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { IconSearch, IconClose } from 'vtex.store-icons'
+
+const DISPLAY_MODES = [
+  'clear-button',
+  'search-and-clear-buttons',
+  'search-button',
+]
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
 const CSS_HANDLES = [
-  'searchBarIcon',
-  'compactMode',
   'autoCompleteOuterContainer',
+  'compactMode',
+  'externalSearchButtonWrapper',
   'paddingInput',
+  'searchBarClearIcon',
+  'searchBarIcon',
+  'searchBarSearchIcon',
+  'suffixWrapper',
 ]
 
 const CloseIcon = () => {
@@ -43,13 +53,30 @@ const AutocompleteInput = ({
   iconClasses,
   autoFocus,
   onGoToSearchPage,
+  /** @deprecated */
   submitOnIconClick,
+  displayMode,
   openMenu,
   inputErrorMessage,
   ...restProps
 }) => {
   const inputRef = useRef(null)
   const handles = useCssHandles(CSS_HANDLES)
+
+  let mode = displayMode || 'clear-button'
+  if (DISPLAY_MODES.indexOf(displayMode) < 0) {
+    console.error(
+      `[store-componentes/search-bar] Invalid displayMode '${displayMode}'. The valid options are: ${DISPLAY_MODES.join(
+        ', '
+      )}`
+    )
+  }
+
+  if (submitOnIconClick === true) {
+    mode = 'search-button'
+  } else if (submitOnIconClick === false) {
+    mode = 'clear-button'
+  }
 
   useEffect(() => {
     const changeClassInput = () => {
@@ -64,35 +91,82 @@ const AutocompleteInput = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const suffix = (
+  const hasValue = value != null && value.length > 0
+
+  const showClearButton =
+    (mode === 'clear-button' && hasValue) || mode === 'search-and-clear-buttons'
+  const showInternalSearchButton =
+    (mode === 'clear-button' && !hasValue) || mode === 'search-button'
+  const showExternalSearchButton = mode === 'search-and-clear-buttons'
+
+  const clearButton = showClearButton && (
     <button
-      className={`${iconClasses || ''} ${
-        handles.searchBarIcon
-      } flex items-center pointer bn bg-transparent outline-0`}
-      onClick={
-        submitOnIconClick ? onGoToSearchPage : () => value && onClearInput()
-      }
+      className={`${iconClasses || ''} ${applyModifiers(
+        handles.searchBarIcon,
+        'clear'
+      )} flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3`}
+      style={{
+        visibility: hasValue ? 'visible' : 'hidden',
+      }}
+      onClick={() => onClearInput()}
     >
-      {value && !submitOnIconClick ? (
-        <CloseIcon />
-      ) : (
-        !hasIconLeft && <SearchIcon />
-      )}
+      <CloseIcon />
     </button>
   )
 
+  const internalSearchButton = showInternalSearchButton && (
+    <button
+      className={`${iconClasses || ''} ${applyModifiers(
+        handles.searchBarIcon,
+        'search'
+      )} flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3`}
+      onClick={() => hasValue && onGoToSearchPage()}
+    >
+      <SearchIcon />
+    </button>
+  )
+
+  const externalSearchButton = showExternalSearchButton && (
+    <div
+      className={`${handles.externalSearchButtonWrapper} bw1 bl b--muted-4 flex items-center `}
+    >
+      <button
+        className={`${iconClasses || ''} ${applyModifiers(
+          handles.searchBarIcon,
+          'external-search'
+        )}  flex items-center h-100 pointer pv0 nr5 ph5 bn c-link`}
+        onClick={onGoToSearchPage}
+      >
+        <SearchIcon />
+      </button>
+    </div>
+  )
+
+  const suffix = (
+    <div className={`${handles.suffixWrapper} flex h-100`}>
+      {clearButton}
+      {internalSearchButton}
+      {externalSearchButton}
+    </div>
+  )
+
   const prefix = (
-    <span className={`${iconClasses} ${handles.searchBarIcon}`}>
+    <span
+      className={`${iconClasses} ${applyModifiers(
+        handles.searchBarIcon,
+        'prefix'
+      )} `}
+    >
       <SearchIcon />
     </span>
   )
 
-  const classContainer = classNames('w-100', {
+  const classContainer = classNames('w-100 flex', {
     [handles.compactMode]: compactMode,
   })
 
   return (
-    <div className={`${handles.autoCompleteOuterContainer} flex`}>
+    <div className={handles.autoCompleteOuterContainer}>
       <div className={classContainer}>
         <Input
           ref={inputRef}
@@ -139,8 +213,13 @@ AutocompleteInput.propTypes = {
   autoFocus: PropTypes.bool,
   /** Function to direct the user to the searchPage */
   onGoToSearchPage: PropTypes.func.isRequired,
-  /** Identify if icon should submit on click */
+  /**
+   * @deprecated Use `displayMode`
+   * Identify if icon should submit on click
+   * */
   submitOnIconClick: PropTypes.bool,
+  /* Define the input display mode */
+  displayMode: PropTypes.oneOf(DISPLAY_MODES),
   /** Error message showed in search input */
   inputErrorMessage: PropTypes.string,
 }

@@ -21,7 +21,10 @@ describe('<SearchBar />', () => {
   }
 
   const renderComponent = (customProps = {}) => {
-    return render(<SearchBar />, { graphql: { mocks: [mockedResult] }, MockedProvider })
+    return render(<SearchBar {...customProps} />, {
+      graphql: { mocks: [mockedResult] },
+      MockedProvider,
+    })
   }
 
   it('should be able to mount and not break', () => {
@@ -36,9 +39,44 @@ describe('<SearchBar />', () => {
 
   it('should have CSS handle searchBarIcon', () => {
     const { container } = renderComponent()
-
     const element = container.querySelector('.searchBarIcon')
 
     expect(element).toBeTruthy()
+  })
+
+  it('should display internal search icon button', () => {
+    const { container } = renderComponent({
+      displayMode: 'search-button',
+    })
+
+    expect(container.querySelector('.searchBarIcon--search')).toBeTruthy()
+  })
+
+  it('should display internal clear icon button when a value is typed', () => {
+    const { container } = renderComponent({
+      displayMode: 'search-button',
+      value: 'foo',
+    })
+
+    expect(container.querySelector('.searchBarIcon--search')).toBeTruthy()
+  })
+
+  it('should display external search icon button', () => {
+    const { container } = renderComponent({
+      displayMode: 'search-and-clear-buttons',
+    })
+
+    expect(
+      container.querySelector('.searchBarIcon--external-search')
+    ).toBeTruthy()
+  })
+
+  it('should display interal clear icon button when a value is typed', () => {
+    const { container } = renderComponent({
+      displayMode: 'search-and-clear-buttons',
+      value: 'foo',
+    })
+
+    expect(container.querySelector('.searchBarIcon--clear')).toBeTruthy()
   })
 })
