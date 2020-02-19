@@ -38,14 +38,14 @@ describe('<SearchBar />', () => {
   })
 
   it('should have CSS handle searchBarIcon', () => {
-    const { container, debug } = renderComponent()
+    const { container } = renderComponent()
     const element = container.querySelector('.searchBarIcon')
 
     expect(element).toBeTruthy()
   })
 
   it('should display internal search icon button', () => {
-    const { container, debug } = renderComponent({
+    const { container } = renderComponent({
       displayMode: 'search-button',
     })
 
@@ -53,16 +53,16 @@ describe('<SearchBar />', () => {
   })
 
   it('should display internal clear icon button when a value is typed', () => {
-    const { container, debug } = renderComponent({
+    const { container } = renderComponent({
       displayMode: 'search-button',
-      value: 'foo'
+      value: 'foo',
     })
 
     expect(container.querySelector('.searchBarIcon--search')).toBeTruthy()
   })
 
   it('should display external search icon button', () => {
-    const { container, debug } = renderComponent({
+    const { container } = renderComponent({
       displayMode: 'search-and-clear-buttons',
     })
 
@@ -72,13 +72,11 @@ describe('<SearchBar />', () => {
   })
 
   it('should display interal clear icon button when a value is typed', () => {
-    const { container, debug } = renderComponent({
+    const { container } = renderComponent({
       displayMode: 'search-and-clear-buttons',
-      value: 'foo'
+      value: 'foo',
     })
 
-    expect(
-      container.querySelector('.searchBarIcon--clear')
-    ).toBeTruthy()
+    expect(container.querySelector('.searchBarIcon--clear')).toBeTruthy()
   })
 })
