@@ -105,6 +105,7 @@ export const BuyButton = ({
   } = useProduct()
   const dispatch = useProductDispatch()
   const { settings = {}, showInstallPrompt } = usePWA() || {}
+  const { rootPath = '' } = useRuntime()
   const { promptOnCustomEvent } = settings
   const translateMessage = useCallback(id => intl.formatMessage({ id: id }), [
     intl,
@@ -130,14 +131,13 @@ export const BuyButton = ({
     const action = success
       ? {
         label: translateMessage(CONSTANTS.SEE_CART_ID),
-        href: customToastURL,
+        href: rootPath + customToastURL,
       }
       : undefined
 
     showToast({ message, action })
   }
 
-  const { rootPath = '' } = useRuntime()
   const fullCheckoutUrl = rootPath + checkoutUrl
 
   const beforeAddToCart = event => {
