@@ -20,7 +20,7 @@ describe('<SearchBar />', () => {
   }
 
   const renderComponent = (customProps = {}) => {
-    return render(<SearchBar />, { graphql: { mocks: [mockedResult] } })
+    return render(<SearchBar {...customProps}/>, { graphql: { mocks: [mockedResult] } })
   }
 
   it('should be able to mount and not break', () => {
