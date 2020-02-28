@@ -93,14 +93,19 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 
 | CSS Handles                     |
 | ------------------------------- |
-| `skuSelectorContainer`          |
-| `skuSelectorSubcontainer`       |
-| `skuSelectorName`               |
-| `skuSelectorNameContainer`      |
-| `skuSelectorTextContainer`      |
+| `frameAround`                   |
 | `seeMoreButton`                 |
-| `skuSelectorSelectorImageValue` |
-| `skuSelectorNameSeparator`      |
-| `skuSelectorOptionsList`        |
-| `skuSelectorItemTextValue`      |
+| `skuSelectorContainer`          |
+| `skuSelectorInternalBox`        |
 | `skuSelectorItemImageValue`     |
+| `skuSelectorItemImage`          |
+| `skuSelectorItemTextValue`      |
+| `skuSelectorItem`               |
+| `skuSelectorNameContainer`      |
+| `skuSelectorNameSeparator`      |
+| `skuSelectorName`               |
+| `skuSelectorOptionsList`        |
+| `skuSelectorSelectorImageValue` |
+| `skuSelectorSubcontainer`       |
+| `skuSelectorTextContainer`      |
+| `valueWrapper`                  |

@@ -1,8 +1,8 @@
 import React, { memo, FC, SyntheticEvent } from 'react'
-import { FormattedNumber } from 'react-intl'
 import classNames from 'classnames'
+import { FormattedNumber } from 'react-intl'
+import { useCssHandles } from 'vtex.css-handles'
 
-import styles from '../styles.css'
 import { slug, changeImageUrlSize } from '../utils'
 
 interface Props {
@@ -29,6 +29,18 @@ const getDiscount = (maxPrice?: number | null, price?: number | null) => {
   return discount
 }
 
+const CSS_HANDLES = [
+  'frameAround',
+  'valueWrapper',
+  'diagonalCross',
+  'skuSelectorItem',
+  'skuSelectorBadge',
+  'skuSelectorItemImage',
+  'skuSelectorInternalBox',
+  'skuSelectorItemTextValue',
+  'skuSelectorItemImageValue',
+]
+
 /**
  * Inherits the components that should be displayed inside the Selector component.
  */
@@ -48,13 +60,16 @@ const SelectorItem: FC<Props> = ({
   showBorders = true,
 }) => {
   const discount = getDiscount(maxPrice, price)
+  const handles = useCssHandles(CSS_HANDLES, {
+    migrationFrom: 'vtex.store-components@3.x',
+  })
 
   const containerClasses = classNames(
-    styles.skuSelectorItem,
-    `${styles.skuSelectorItem}--${slug(variationValue)}`,
+    handles.skuSelectorItem,
+    `${handles.skuSelectorItem}--${slug(variationValue)}`,
     'relative di pointer flex items-center outline-0 ma2',
     {
-      [styles.skuSelectorItemImage]: isImage,
+      [`${handles.skuSelectorItemImage}`]: isImage,
       'o-20': isImpossible,
     }
   )
@@ -81,7 +96,7 @@ const SelectorItem: FC<Props> = ({
     >
       <div
         className={classNames(
-          styles.frameAround,
+          handles.frameAround,
           'absolute b--action-primary br3 bw1',
           {
             ba: isSelected,
@@ -90,6 +105,7 @@ const SelectorItem: FC<Props> = ({
       />
       <div
         className={classNames(
+          handles.skuSelectorInternalBox,
           'w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden',
           {
             'hover-b--muted-2': !isSelected && !isImpossible,
@@ -99,18 +115,18 @@ const SelectorItem: FC<Props> = ({
       >
         <div
           className={classNames('absolute absolute--fill', {
-            [styles.diagonalCross]: !isAvailable,
+            [handles.diagonalCross]: !isAvailable,
           })}
         />
         <div
-          className={classNames({
-            [`${styles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
+          className={classNames(handles.valueWrapper, {
+            [`${handles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
             'h-100': isImage,
           })}
         >
           {isImage && imageUrl ? (
             <img
-              className={styles.skuSelectorItemImageValue}
+              className={handles.skuSelectorItemImageValue}
               src={imageUrl}
               alt={imageLabel as string | undefined}
             />
@@ -120,7 +136,7 @@ const SelectorItem: FC<Props> = ({
         </div>
       </div>
       {discount > 0 && (
-        <span className={`${styles.skuSelectorBadge} b`}>
+        <span className={`${handles.skuSelectorBadge} b`}>
           <FormattedNumber value={discount} style="percent" />
         </span>
       )}

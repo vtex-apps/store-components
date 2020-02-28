@@ -1,6 +1,7 @@
 import React, { useCallback, memo, useState, FC, useMemo } from 'react'
 import { compose, flip, gt, filter, pathOr, clone } from 'ramda'
 import { ResponsiveInput } from 'vtex.responsive-values'
+import { useCssHandles } from 'vtex.css-handles'
 
 import styles from '../styles.css'
 import {
@@ -248,6 +249,8 @@ const getAvailableVariationsPromise = (
   })
 }
 
+const CSS_HANDLES = ['skuSelectorContainer']
+
 /** Renders the main and the secondary variation, if it exists. */
 const SKUSelector: FC<Props> = ({
   seeMoreLabel,
@@ -270,6 +273,7 @@ const SKUSelector: FC<Props> = ({
   sliderArrowSize,
   sliderItemsPerPage,
 }) => {
+  const handles = useCssHandles(CSS_HANDLES)
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
   const onSelectItemMemo = useCallback(
     ({
@@ -319,7 +323,7 @@ const SKUSelector: FC<Props> = ({
 
   const variationClasses = `mb${variationsSpacing}`
   return (
-    <div className={styles.skuSelectorContainer}>
+    <div className={`${styles.skuSelectorContainer} ${handles.skuSelectorContainer}`}>
       {displayVariations.map((variationOption, index) => {
         const selectedItem = selectedVariations[variationOption.name]
 
