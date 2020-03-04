@@ -89,7 +89,7 @@ const SelectorItem: FC<Props> = ({
         )}
       />
       <div
-        className={classNames(
+        className={classNames(styles.frameFill,
           'w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden',
           {
             'hover-b--muted-2': !isSelected && !isImpossible,
@@ -98,13 +98,15 @@ const SelectorItem: FC<Props> = ({
         )}
       >
         <div
-          className={classNames('absolute absolute--fill', {
+          className={classNames(styles.skuSelectorItemFill, {
+            [`${styles.skuSelectorItemFill}--selected`]: isSelected,
             [styles.diagonalCross]: !isAvailable,
-          })}
+          }, 'absolute absolute--fill')}
         />
         <div
           className={classNames({
             [`${styles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
+            [`${styles.skuSelectorItemTextValue}--selected`]: isSelected,
             'h-100': isImage,
           })}
         >
@@ -115,8 +117,8 @@ const SelectorItem: FC<Props> = ({
               alt={imageLabel as string | undefined}
             />
           ) : (
-            variationValue
-          )}
+              variationValue
+            )}
         </div>
       </div>
       {discount > 0 && (

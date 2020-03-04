@@ -1,20 +1,19 @@
 /**
 *   SKU Selector CSS Module
 */
-.skuSelectorContainer {
-}
-.skuSelectorSubcontainer {
-}
-.skuSelectorName {
-}
-.skuSelectorNameContainer {
-}
-.skuSelectorNameSeparator {
-}
-.skuSelectorSelectorImageValue {
-}
-.skuSelectorTextContainer {
-}
+.skuSelectorContainer {}
+
+.skuSelectorSubcontainer {}
+
+.skuSelectorName {}
+
+.skuSelectorNameContainer {}
+
+.skuSelectorNameSeparator {}
+
+.skuSelectorSelectorImageValue {}
+
+.skuSelectorTextContainer {}
 
 .skuSelectorSelectContainer {}
 
@@ -50,14 +49,12 @@
 }
 
 .diagonalCross {
-  background-image: linear-gradient(
-    to top right,
-    transparent 44%,
-    rgba(0, 0, 0, 0.3) 48%,
-    currentColor 48%,
-    currentColor 52%,
-    transparent 52%
-  );
+  background-image: linear-gradient(to top right,
+      transparent 44%,
+      rgba(0, 0, 0, 0.3) 48%,
+      currentColor 48%,
+      currentColor 52%,
+      transparent 52%);
 }
 
 .frameAround {
@@ -67,14 +64,14 @@
   right: -0.25rem;
 }
 
-.seeMoreButton {
-}
+.frameFill {}
 
-.skuSelectorOptionsList {
-}
+.seeMoreButton {}
 
-.skuSelectorItemTextValue {
-}
+.skuSelectorOptionsList {}
 
-.skuSelectorItemImageValue {
-}
+.skuSelectorItemFill {}
+
+.skuSelectorItemTextValue {}
+
+.skuSelectorItemImageValue {}
