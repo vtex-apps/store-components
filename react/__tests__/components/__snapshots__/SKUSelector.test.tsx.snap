@@ -3,7 +3,7 @@
 exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
 <DocumentFragment>
   <div
-    class="skuSelectorContainer"
+    class="skuSelectorContainer skuSelectorContainer"
   >
     <div
       class="flex flex-column mb7 skuSelectorSubcontainer skuSelectorSubcontainer--color"
@@ -32,13 +32,13 @@ exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
               class="frameAround absolute b--action-primary br3 bw1"
             />
             <div
-              class="w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
+              class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
             >
               <div
                 class="absolute absolute--fill"
               />
               <div
-                class="h-100"
+                class="valueWrapper h-100"
               >
                 Black
               </div>
@@ -53,13 +53,13 @@ exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
               class="frameAround absolute b--action-primary br3 bw1 ba"
             />
             <div
-              class="w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden ba"
+              class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden ba"
             >
               <div
                 class="absolute absolute--fill"
               />
               <div
-                class="h-100"
+                class="valueWrapper h-100"
               >
                 Gray
               </div>
@@ -74,13 +74,13 @@ exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
               class="frameAround absolute b--action-primary br3 bw1"
             />
             <div
-              class="w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
+              class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
             >
               <div
                 class="absolute absolute--fill"
               />
               <div
-                class="h-100"
+                class="valueWrapper h-100"
               >
                 Blue
               </div>
@@ -116,13 +116,13 @@ exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
               class="frameAround absolute b--action-primary br3 bw1"
             />
             <div
-              class="w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
+              class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
             >
               <div
                 class="absolute absolute--fill"
               />
               <div
-                class="skuSelectorItemTextValue c-on-base center pl5 pr5 z-1 t-body"
+                class="valueWrapper skuSelectorItemTextValue c-on-base center pl5 pr5 z-1 t-body"
               >
                 42
               </div>
@@ -137,13 +137,13 @@ exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
               class="frameAround absolute b--action-primary br3 bw1 ba"
             />
             <div
-              class="w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden ba"
+              class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden ba"
             >
               <div
                 class="absolute absolute--fill"
               />
               <div
-                class="skuSelectorItemTextValue c-on-base center pl5 pr5 z-1 t-body"
+                class="valueWrapper skuSelectorItemTextValue c-on-base center pl5 pr5 z-1 t-body"
               >
                 41
               </div>
