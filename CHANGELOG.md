@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.105.1] - 2020-03-09
 ### Fixed
 - `SKUSelector` not showing any images if you pass the prop `thumbnailImage` and the images have a label, but none of them can pass to the test of the `thumbnailImage` regex.
 
