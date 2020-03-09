@@ -66,7 +66,10 @@ const selectedVariationFromItem = (
   return result
 }
 
-function useColorImages(items: SelectorProductItem[], imageRegexText: string) {
+function filterColorImages(
+  items: SelectorProductItem[],
+  imageRegexText: string
+) {
   const imageRegex = new RegExp(imageRegexText, 'i')
 
   return items.map(item => {
@@ -77,15 +80,18 @@ function useColorImages(items: SelectorProductItem[], imageRegexText: string) {
     const hasVariationImage = item.images.some(
       image => image.imageLabel && imageRegex.test(image.imageLabel)
     )
+
     return {
       ...item,
-      images: item.images.filter(image => {
-        if (!image.imageLabel) {
-          // if it doesn't have a variation image, it wont remove images without a label
-          return !hasVariationImage
-        }
-        return imageRegex.test(image.imageLabel)
-      }),
+      // if it doesn't have a variation image, it wont remove images without a label
+      images: hasVariationImage
+        ? item.images.filter(image => {
+            if (!image.imageLabel) {
+              return false
+            }
+            return imageRegex.test(image.imageLabel)
+          })
+        : item.images,
     }
   })
 }
@@ -96,8 +102,9 @@ const useImagesMap = (
   thumbnailImage?: string
 ) => {
   return useMemo(() => {
+    let filteredItems = items
     if (thumbnailImage) {
-      items = useColorImages(items, thumbnailImage)
+      filteredItems = filterColorImages(items, thumbnailImage)
     }
 
     const variationNames = Object.keys(variations)
@@ -110,7 +117,7 @@ const useImagesMap = (
       const imageMap = {} as Record<string, Image | undefined>
       const variationValues = variations[variationName]
       for (const variationValue of variationValues) {
-        const item = items.find(
+        const item = filteredItems.find(
           sku => sku.variationValues[variationName] === variationValue
         )
         imageMap[variationValue] = item && head(item.images)
@@ -118,7 +125,7 @@ const useImagesMap = (
       result[variationName] = imageMap
     }
     return result
-  }, [items, variations])
+  }, [items, variations, thumbnailImage])
 }
 
 const useAllSelectedEvent = (
@@ -268,6 +275,7 @@ const SKUSelectorContainer: FC<Props> = ({
       isMainAndImpossible,
       possibleItems,
     }) => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const isRemoving = selectedVariations![variationName] === variationValue
       const newSelectedVariation = !isMainAndImpossible
         ? {
@@ -306,6 +314,7 @@ const SKUSelectorContainer: FC<Props> = ({
           possibleItems,
           finalSelected
         )
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         skuIdToRedirect = newItem!.itemId
       }
 
