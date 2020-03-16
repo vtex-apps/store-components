@@ -1,7 +1,7 @@
 import React, { memo, FC, SyntheticEvent } from 'react'
 import classNames from 'classnames'
 import { FormattedNumber } from 'react-intl'
-import { useCssHandles } from 'vtex.css-handles'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 
 import { slug, changeImageUrlSize } from '../utils'
 
@@ -70,6 +70,8 @@ const SelectorItem: FC<Props> = ({
     'relative di pointer flex items-center outline-0 ma2',
     {
       [`${handles.skuSelectorItemImage}`]: isImage,
+      [applyModifiers(handles.skuSelectorItem, 'selected')]: isSelected,
+      [handles.skuSelectorItem]: !isSelected,
       'o-20': isImpossible,
     }
   )
