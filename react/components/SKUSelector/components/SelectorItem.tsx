@@ -67,8 +67,11 @@ const SelectorItem: FC<Props> = ({
   const containerClasses = useMemo(
     () =>
       classNames(
-        applyModifiers(handles.skuSelectorItem, isSelected ? 'selected' : ''),
-        `${handles.skuSelectorItem}--${slug(variationValue)}`,
+        applyModifiers(handles.skuSelectorItem, [
+          slug(variationValue),
+          isSelected ? 'selected' : '',
+        ]),
+        // `${handles.skuSelectorItem}--${slug(variationValue)}`,
         'relative di pointer flex items-center outline-0 ma2',
         {
           [`${handles.skuSelectorItemImage}`]: isImage,
