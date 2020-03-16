@@ -24,7 +24,7 @@ exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
           class="skuSelectorOptionsList w-100 inline-flex flex-wrap ml2 items-center"
         >
           <div
-            class="skuSelectorItem skuSelectorItem--black relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage skuSelectorItem"
+            class="skuSelectorItem skuSelectorItem-- skuSelectorItem--black relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage"
             role="button"
             tabindex="0"
           >
@@ -45,7 +45,7 @@ exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
             </div>
           </div>
           <div
-            class="skuSelectorItem skuSelectorItem--gray relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage skuSelectorItem skuSelectorItem--selected"
+            class="skuSelectorItem skuSelectorItem--selected skuSelectorItem--gray relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage"
             role="button"
             tabindex="0"
           >
@@ -66,7 +66,7 @@ exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
             </div>
           </div>
           <div
-            class="skuSelectorItem skuSelectorItem--blue relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage skuSelectorItem"
+            class="skuSelectorItem skuSelectorItem-- skuSelectorItem--blue relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage"
             role="button"
             tabindex="0"
           >
@@ -108,7 +108,7 @@ exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
           class="skuSelectorOptionsList w-100 inline-flex flex-wrap ml2 items-center"
         >
           <div
-            class="skuSelectorItem skuSelectorItem--42 relative di pointer flex items-center outline-0 ma2 skuSelectorItem"
+            class="skuSelectorItem skuSelectorItem-- skuSelectorItem--42 relative di pointer flex items-center outline-0 ma2"
             role="button"
             tabindex="0"
           >
@@ -129,7 +129,7 @@ exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
             </div>
           </div>
           <div
-            class="skuSelectorItem skuSelectorItem--41 relative di pointer flex items-center outline-0 ma2 skuSelectorItem skuSelectorItem--selected"
+            class="skuSelectorItem skuSelectorItem--selected skuSelectorItem--41 relative di pointer flex items-center outline-0 ma2"
             role="button"
             tabindex="0"
           >
