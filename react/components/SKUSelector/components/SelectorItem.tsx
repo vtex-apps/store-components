@@ -1,7 +1,7 @@
-import React, { memo, FC, SyntheticEvent } from 'react'
+import React, { memo, FC, SyntheticEvent, useMemo } from 'react'
 import classNames from 'classnames'
 import { FormattedNumber } from 'react-intl'
-import { useCssHandles } from 'vtex.css-handles'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 
 import { slug, changeImageUrlSize } from '../utils'
 
@@ -64,14 +64,28 @@ const SelectorItem: FC<Props> = ({
     migrationFrom: 'vtex.store-components@3.x',
   })
 
-  const containerClasses = classNames(
-    handles.skuSelectorItem,
-    `${handles.skuSelectorItem}--${slug(variationValue)}`,
-    'relative di pointer flex items-center outline-0 ma2',
-    {
-      [`${handles.skuSelectorItemImage}`]: isImage,
-      'o-20': isImpossible,
-    }
+  const containerClasses = useMemo(
+    () =>
+      classNames(
+        applyModifiers(handles.skuSelectorItem, [
+          slug(variationValue),
+          isSelected ? 'selected' : '',
+        ]),
+        // `${handles.skuSelectorItem}--${slug(variationValue)}`,
+        'relative di pointer flex items-center outline-0 ma2',
+        {
+          [`${handles.skuSelectorItemImage}`]: isImage,
+          'o-20': isImpossible,
+        }
+      ),
+    [
+      isImage,
+      isSelected,
+      isImpossible,
+      variationValue,
+      handles.skuSelectorItem,
+      handles.skuSelectorItemImage,
+    ]
   )
 
   const passedAnyDimension = Boolean(imageHeight || imageWidth)
