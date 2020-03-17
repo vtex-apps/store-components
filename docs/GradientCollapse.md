@@ -4,20 +4,17 @@
 
 `GradientCollapse` is a VTEX component that hides part of the children when it is bigger than the `collapseHeight` giving the user the _show more_ or _show less_ options. This Component can be imported and used by any VTEX app.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+## Configuration
 
-## Table of Contents
+1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
 
-- [Usage](#usage)
-  - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespaces](#css-namespaces)
+```json
+  "dependencies": {
+    "vtex.store-components": "3.x"
+  }
+```
 
-## Usage
-
-You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
-
-To import it into your code:
+2. Import it into your code:
 
 ```js
 import { GradientCollapse } from 'vtex.store-components'
@@ -31,16 +28,10 @@ You can use it in your code like a React component with the jsx tag: `<GradientC
 </GradientCollapse>
 ```
 
-### Configuration
-
 | Prop name        | Type      | Description                   | Default Value |
 | ---------------- | --------- | ----------------------------- | ------------- |
-| `collapseHeight` | `Number!` | MaxHeight of the container    | -             |
-| `children`       | `Node`    | The component to be collapsed | -             |
-
-### Styles API
-
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+| `collapseHeight` | `Number!` | MaxHeight of the container    | `undefined`   |
+| `children`       | `Node`    | The component to be collapsed | `null`        |
 
 ## Customization
 
