@@ -1,8 +1,9 @@
 import classNames from 'classnames'
 import insane from 'insane'
 import { bool, string, oneOf } from 'prop-types'
+import React, { memo, useMemo, useState, useEffect, useRef } from 'react'
+import marked, { Renderer } from 'marked'
 import { values } from 'ramda'
-import React, { memo, useMemo } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
 import {
   useRuntime,
@@ -68,8 +69,6 @@ const sanitizerConfig = {
   },
 }
 
-const sanitizeHtml = input => (input ? insane(input, sanitizerConfig) : null)
-
 const CSS_HANDLES = [
   'infoCardContainer',
   'infoCardTextContainer',
@@ -77,6 +76,9 @@ const CSS_HANDLES = [
   'infoCardSubhead',
   'infoCardImageContainer',
   'infoCardImage',
+  'infoCardParagraph',
+  'infoCardStrong',
+  'infoCardItalic',
 ]
 
 const InfoCard = ({
@@ -103,6 +105,23 @@ const InfoCard = ({
   const handles = useCssHandles(CSS_HANDLES)
   const paddingClass =
     textPosition === textPostionValues.LEFT ? 'pr4-ns' : 'pl4-ns'
+
+    const renderer = useRef()
+    const [isMounted, setMounted] = useState(false)
+  
+    useEffect(() => {
+      setMounted(true)
+    }, [])
+  
+    if (!isMounted) {
+      renderer.current = new Renderer()
+      renderer.current.paragraph = text =>
+        `<p class="lh-copy ${handles.infoCardParagraph}">${text}</p>`
+      renderer.current.strong = text =>
+        `<span class="b ${handles.infoCardStrong}">${text}</span>`
+      renderer.current.em = text =>
+        `<span class="i ${handles.infoCardItalic}">${text}</span>`
+    }
 
   // We ignore textAlignment tokens when full image mode
   const alignToken = isFullModeStyle
@@ -155,15 +174,37 @@ const InfoCard = ({
 
   const subheadClasses = `${handles.infoCardSubhead} t-body mt6 c-on-base ${alignToken} mw-100`
 
-  const sanitizedHeadline = useMemo(
-    () => sanitizeHtml(formatIOMessage({ id: headline, intl })),
-    [headline, intl]
-  )
+  const sanitizedHeadline = useMemo(() => {
+    marked.setOptions({
+      gfm: true,
+      breaks: true,
+      sanitize: false, //Use insane lib for sanitizing
+      smartLists: true,
+      renderer: renderer.current,
+    })
 
-  const sanitizedSubhead = useMemo(
-    () => sanitizeHtml(formatIOMessage({ id: subhead, intl })),
-    [intl, subhead]
-  )
+    return insane(
+      //TODO: While markdown component isn't released, it needs to be done this way.
+      marked(formatIOMessage({ id: headline, intl })),
+      sanitizerConfig
+    )
+  }, [subhead, intl, sanitizerConfig, marked, insane, formatIOMessage])
+
+  const sanitizedSubhead = useMemo(() => {
+    marked.setOptions({
+      gfm: true,
+      breaks: true,
+      sanitize: false, //Use insane lib for sanitizing
+      smartLists: true,
+      renderer: renderer.current,
+    })
+
+    return insane(
+      //TODO: While markdown component isn't released, it needs to be done this way.
+      marked(formatIOMessage({ id: subhead, intl })),
+      sanitizerConfig
+    )
+  }, [subhead, intl, sanitizerConfig, marked, insane, formatIOMessage])
 
   return (
     <LinkWrapper
