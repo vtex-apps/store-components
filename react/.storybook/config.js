@@ -1,5 +1,5 @@
 import React from 'react'
-import { MockedProvider } from 'react-apollo/test-utils'
+import { MockedProvider } from '@apollo/react-testing'
 import { withI18n } from 'storybook-addon-i18n'
 import { configure, addDecorator, addParameters } from '@storybook/react'
 import { LocaleProvider } from './LocaleProvider'
