@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const path = require('path')
 
 module.exports = async ({ config }) => {
@@ -20,11 +21,21 @@ module.exports = async ({ config }) => {
           loader: require.resolve('ts-loader'),
           options: {
             configFile: 'storybook.tsconfig.json',
-        },
+          },
         },
       ],
     },
   ]
   config.resolve.extensions = [...config.resolve.extensions, '.ts', '.tsx']
+  config.resolve.alias = {
+    ...config.resolve.alias,
+    jest: path.resolve(__dirname, './__aliases__/jest'),
+  }
+  config.plugins = [
+    ...config.plugins,
+    new webpack.ProvidePlugin({
+      jest: 'jest',
+    }),
+  ]
   return config
 }
