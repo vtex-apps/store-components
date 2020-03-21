@@ -50,10 +50,11 @@ import {
 } from '@vtex/styleguide/lib/ToastProvider'
 import Toggle from '@vtex/styleguide/lib/Toggle'
 import Totalizer from '@vtex/styleguide/lib/Totalizer'
-import UncoupledStatement from '@vtex/styleguide/lib/UncoupledStatement'
 import { childrenOf } from '@vtex/styleguide/lib/utils'
+import Tooltip from '@vtex/styleguide/lib/Tooltip'
 
 export {
+  Tooltip,
   childrenOf,
   ToastContext,
   ToastProvider,
@@ -105,5 +106,4 @@ export {
   TimePicker,
   Toggle,
   Totalizer,
-  UncoupledStatement,
 }
