@@ -33,6 +33,7 @@
     "vtex.store-image": "0.x",
     "vtex.device-detector": "0.x",
     "vtex.apps-graphql": "2.x",
+    "vtex.rich-text": "0.x",
     "vtex.slider-layout": "0.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"

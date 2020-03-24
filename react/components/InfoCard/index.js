@@ -1,8 +1,7 @@
 import classNames from 'classnames'
-import insane from 'insane'
 import { bool, string, oneOf } from 'prop-types'
-import React, { memo, useMemo, useState, useEffect, useRef } from 'react'
-import marked, { Renderer } from 'marked'
+import React, { memo, useState, useEffect, useRef } from 'react'
+import { Renderer } from 'marked'
 import { values } from 'ramda'
 import { injectIntl, intlShape } from 'react-intl'
 import {
@@ -11,6 +10,7 @@ import {
 } from 'vtex.render-runtime'
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
+import RichText from 'vtex.rich-text/index'
 
 import CallToAction from './CallToAction'
 import LinkWrapper from './LinkWrapper'
@@ -59,16 +59,6 @@ const safelyGetToken = (tokenMap, valueWanted, propName) =>
 const getImageUrl = (isMobile, imageUrl, mobileImageUrl) =>
   !!mobileImageUrl && isMobile ? mobileImageUrl : imageUrl
 
-const sanitizerConfig = {
-  allowedTags: ['p', 'span', 'a', 'div', 'br'],
-  allowedAttributes: {
-    a: ['class', 'href', 'title', 'target'],
-    span: ['class'],
-    p: ['class'],
-    div: ['class'],
-  },
-}
-
 const CSS_HANDLES = [
   'infoCardContainer',
   'infoCardTextContainer',
@@ -106,22 +96,22 @@ const InfoCard = ({
   const paddingClass =
     textPosition === textPostionValues.LEFT ? 'pr4-ns' : 'pl4-ns'
 
-    const renderer = useRef()
-    const [isMounted, setMounted] = useState(false)
-  
-    useEffect(() => {
-      setMounted(true)
-    }, [])
-  
-    if (!isMounted) {
-      renderer.current = new Renderer()
-      renderer.current.paragraph = text =>
-        `<p class="lh-copy ${handles.infoCardParagraph}">${text}</p>`
-      renderer.current.strong = text =>
-        `<span class="b ${handles.infoCardStrong}">${text}</span>`
-      renderer.current.em = text =>
-        `<span class="i ${handles.infoCardItalic}">${text}</span>`
-    }
+  const renderer = useRef()
+  const [isMounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!isMounted) {
+    renderer.current = new Renderer()
+    renderer.current.paragraph = text =>
+      `<p class="lh-copy ${handles.infoCardParagraph}">${text}</p>`
+    renderer.current.strong = text =>
+      `<span class="b ${handles.infoCardStrong}">${text}</span>`
+    renderer.current.em = text =>
+      `<span class="i ${handles.infoCardItalic}">${text}</span>`
+  }
 
   // We ignore textAlignment tokens when full image mode
   const alignToken = isFullModeStyle
@@ -174,38 +164,6 @@ const InfoCard = ({
 
   const subheadClasses = `${handles.infoCardSubhead} t-body mt6 c-on-base ${alignToken} mw-100`
 
-  const sanitizedHeadline = useMemo(() => {
-    marked.setOptions({
-      gfm: true,
-      breaks: true,
-      sanitize: false, //Use insane lib for sanitizing
-      smartLists: true,
-      renderer: renderer.current,
-    })
-
-    return insane(
-      //TODO: While markdown component isn't released, it needs to be done this way.
-      marked(formatIOMessage({ id: headline, intl })),
-      sanitizerConfig
-    )
-  }, [subhead, intl, sanitizerConfig, marked, insane, formatIOMessage])
-
-  const sanitizedSubhead = useMemo(() => {
-    marked.setOptions({
-      gfm: true,
-      breaks: true,
-      sanitize: false, //Use insane lib for sanitizing
-      smartLists: true,
-      renderer: renderer.current,
-    })
-
-    return insane(
-      //TODO: While markdown component isn't released, it needs to be done this way.
-      marked(formatIOMessage({ id: subhead, intl })),
-      sanitizerConfig
-    )
-  }, [subhead, intl, sanitizerConfig, marked, insane, formatIOMessage])
-
   return (
     <LinkWrapper
       imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
@@ -233,18 +191,8 @@ const InfoCard = ({
           />
         )}
         <div className={textContainerClasses}>
-          {headline && (
-            <div
-              className={headlineClasses}
-              dangerouslySetInnerHTML={{ __html: sanitizedHeadline }}
-            />
-          )}
-          {subhead && (
-            <div
-              className={subheadClasses}
-              dangerouslySetInnerHTML={{ __html: sanitizedSubhead }}
-            />
-          )}
+          {headline && <RichText className={headlineClasses} text={headline} />}
+          {subhead && <RichText className={subheadClasses} text={subhead} />}
           <CallToAction
             mode={callToActionMode}
             text={formatIOMessage({ id: callToActionText, intl })}
