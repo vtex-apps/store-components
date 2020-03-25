@@ -61,6 +61,9 @@ export const isColor = (variation: string) => {
     'culoare',
     'kolory',
     'farve',
+    'färger',
+    'farby',
+    'boje',
     'colori',
   ]
 
