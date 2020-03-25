@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import { bool, string, oneOf } from 'prop-types'
-import React, { memo, useState, useEffect, useRef } from 'react'
-import { Renderer } from 'marked'
+import React, { memo } from 'react'
 import { values } from 'ramda'
 import { injectIntl, intlShape } from 'react-intl'
 import {
