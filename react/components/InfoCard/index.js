@@ -4,7 +4,7 @@ import { bool, string, oneOf } from 'prop-types'
 import { values } from 'ramda'
 import React, { memo, useMemo } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
-import { useRuntime } from 'vtex.render-runtime'
+import { useRuntime, useExperimentalLazyImages } from 'vtex.render-runtime'
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -94,6 +94,9 @@ const InfoCard = ({
   const {
     hints: { mobile },
   } = useRuntime()
+
+  const { lazyLoad } = useExperimentalLazyImages()
+
   const handles = useCssHandles(CSS_HANDLES)
   const paddingClass =
     textPosition === textPostionValues.LEFT ? 'pr4-ns' : 'pl4-ns'
@@ -122,20 +125,21 @@ const InfoCard = ({
     formatIOMessage({ id: mobileImageUrl, intl })
   )
 
-  const containerStyle = isFullModeStyle
+  const containerStyle = isFullModeStyle && !lazyLoad
     ? { backgroundImage: `url(${finalImageUrl})`, backgroundSize: 'cover' }
     : {}
 
   const containerClasses = classNames(
-    `${handles.infoCardContainer} items-center`,
+    `${handles.infoCardContainer} items-center relative`,
     {
       [`flex-ns ${flexOrderToken} bg-base ph2-ns pb2 justify-between`]: !isFullModeStyle,
       [`bg-center bb b--muted-4 flex ${justifyToken}`]: isFullModeStyle,
+      'lazysizes': lazyLoad,
     }
   )
 
   const textContainerClasses = classNames(
-    `${handles.infoCardTextContainer} flex flex-column mw-100`,
+    `${handles.infoCardTextContainer} flex flex-column mw-100 relative z-1`,
     {
       [`w-50-ns ph3-s ${itemsToken} ${paddingClass}`]: !isFullModeStyle,
       [`mh8-ns mh4-s w-40-ns ${itemsToken}`]: isFullModeStyle,
@@ -172,6 +176,19 @@ const InfoCard = ({
         data-testid="container"
         id={htmlId}
       >
+        {lazyLoad && (
+          /** TODO: Currently, it just checks if its under a LazyImages
+           * context and inserts a regular image, relying on render runtime
+           * to actually make it lazy.
+           * It should be considered if it should just do this always, 
+           * making this logic simpler, but must be aware of pontential
+           * breaking changes and must be tested thoroughly. 
+           */
+          <img
+            src={finalImageUrl}
+            className="absolute top-0 bottom-0 right-0 left-0"
+            style={{ objectFit: 'cover' }} />
+        )}
         <div className={textContainerClasses}>
           {headline && (
             <div
