@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.109.0] - 2020-03-25
+
 ### Added
 - färger (sv_SE), farby (sk_SK) and boje (sr_RS) to the array of colors of `SKUSelector`
 
