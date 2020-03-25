@@ -96,23 +96,6 @@ const InfoCard = ({
   const paddingClass =
     textPosition === textPostionValues.LEFT ? 'pr4-ns' : 'pl4-ns'
 
-  const renderer = useRef()
-  const [isMounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!isMounted) {
-    renderer.current = new Renderer()
-    renderer.current.paragraph = text =>
-      `<p class="lh-copy ${handles.infoCardParagraph}">${text}</p>`
-    renderer.current.strong = text =>
-      `<span class="b ${handles.infoCardStrong}">${text}</span>`
-    renderer.current.em = text =>
-      `<span class="i ${handles.infoCardItalic}">${text}</span>`
-  }
-
   // We ignore textAlignment tokens when full image mode
   const alignToken = isFullModeStyle
     ? safelyGetToken(alignTokens, textPosition, 'textPosition')
