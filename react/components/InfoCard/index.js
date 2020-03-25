@@ -66,9 +66,6 @@ const CSS_HANDLES = [
   'infoCardSubhead',
   'infoCardImageContainer',
   'infoCardImage',
-  'infoCardParagraph',
-  'infoCardStrong',
-  'infoCardItalic',
 ]
 
 const InfoCard = ({
