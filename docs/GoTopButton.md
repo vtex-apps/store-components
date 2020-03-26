@@ -2,7 +2,9 @@
 
 # Go Top Button
 
-`GoTopButton` is a component of VTEX that when clicked, goes back to the top of the page. This Component can be imported and used by any VTEX app.
+`GoTopButton` is a store block that redirects users to the top of the page when clicked on. This Component can be imported and used by any VTEX app.
+
+![image](https://user-images.githubusercontent.com/28419764/77644893-9238af80-6f40-11ea-8ceb-7355d0c12686.png)
 
 ## Configuration
 
@@ -14,7 +16,7 @@
   }
 ```
 
-2. Add the `go-top-button` block into your page. Example:
+2. Add the `go-top-button` block into a store template of your choosing. In the example, it will be added to the home page:
 
 ```diff
   "store.home": {
@@ -24,7 +26,20 @@
   },
 ```
 
-### Configuration
+3. Then, declare the go-top-button block using its props stated in the table below:
+
+```diff
+  "store.home": {
+    "blocks": [
+     "go-top-button",
+    ]
+  },
++  "go-top-button":{
++    "props":{
++      "topPixel": "400"
++    }
++  }
+```
 
 | Prop name  | Type      | Description                                  | Default Value |
 | ---------- | --------- | -------------------------------------------- | ------------- |
