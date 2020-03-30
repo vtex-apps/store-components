@@ -186,7 +186,7 @@ const InfoCard = ({
            */
           <img
             src={finalImageUrl}
-            className="absolute w100 h100"
+            className="absolute w-100 h-100"
             style={{ objectFit: 'cover' }} />
         )}
         <div className={textContainerClasses}>
