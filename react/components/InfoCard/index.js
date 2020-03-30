@@ -130,19 +130,20 @@ const InfoCard = ({
     : {}
 
   const containerClasses = classNames(
-    `${handles.infoCardContainer} items-center relative`,
+    `${handles.infoCardContainer} items-center`,
     {
       [`flex-ns ${flexOrderToken} bg-base ph2-ns pb2 justify-between`]: !isFullModeStyle,
       [`bg-center bb b--muted-4 flex ${justifyToken}`]: isFullModeStyle,
-      'lazysizes': lazyLoad,
+      'relative': lazyLoad
     }
   )
 
   const textContainerClasses = classNames(
-    `${handles.infoCardTextContainer} flex flex-column mw-100 relative z-1`,
+    `${handles.infoCardTextContainer} flex flex-column mw-100`,
     {
       [`w-50-ns ph3-s ${itemsToken} ${paddingClass}`]: !isFullModeStyle,
       [`mh8-ns mh4-s w-40-ns ${itemsToken}`]: isFullModeStyle,
+      'relative z-1': lazyLoad
     }
   )
 
