@@ -180,9 +180,9 @@ const InfoCard = ({
           /** TODO: Currently, it just checks if its under a LazyImages
            * context and inserts a regular image, relying on render runtime
            * to actually make it lazy.
-           * It should be considered if it should just do this always, 
-           * making this logic simpler, but must be aware of pontential
-           * breaking changes and must be tested thoroughly. 
+           * In the future, it should be considered to always do this instead,
+           * making this logic simpler, but one must be aware of pontential
+           * breaking changes, and the change must be tested thoroughly. 
            */
           <img
             src={finalImageUrl}
