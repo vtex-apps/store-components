@@ -4,7 +4,7 @@ import { bool, string, oneOf } from 'prop-types'
 import { values } from 'ramda'
 import React, { memo, useMemo } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
-import { useRuntime, useExperimentalLazyImages } from 'vtex.render-runtime'
+import { useRuntime, useExperimentalLazyImagesContext } from 'vtex.render-runtime'
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -95,7 +95,7 @@ const InfoCard = ({
     hints: { mobile },
   } = useRuntime()
 
-  const { lazyLoad } = useExperimentalLazyImages()
+  const { lazyLoad } = useExperimentalLazyImagesContext()
 
   const handles = useCssHandles(CSS_HANDLES)
   const paddingClass =
