@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Problem where banner div remains even without image.
+- Problem where `InfoCard` component would render `banner` div even if no image was received.
 
 ## [3.109.0] - 2020-03-25
 
