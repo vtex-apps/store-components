@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Problem where `InfoCard` component would render `banner` div even if no image was received.
 
 ## [3.109.0] - 2020-03-25
 

@@ -156,6 +156,10 @@ const InfoCard = ({
     [intl, subhead]
   )
 
+  if (!imageUrl) {
+    return null
+  }
+
   return (
     <LinkWrapper
       imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
