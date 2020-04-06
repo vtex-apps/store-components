@@ -156,59 +156,59 @@ const InfoCard = ({
     [intl, subhead]
   )
 
-  if (imageUrl) {
-    return (
-      <LinkWrapper
-        imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
-        extraCondition={!isFullModeStyle}
-        linkProps={{ className: 'no-underline' }}
-      >
-        <div
-          className={containerClasses}
-          style={containerStyle}
-          data-testid="container"
-          id={htmlId}
-        >
-          <div className={textContainerClasses}>
-            {headline && (
-              <div
-                className={headlineClasses}
-                dangerouslySetInnerHTML={{ __html: sanitizedHeadline }}
-              />
-            )}
-            {subhead && (
-              <div
-                className={subheadClasses}
-                dangerouslySetInnerHTML={{ __html: sanitizedSubhead }}
-              />
-            )}
-            <CallToAction
-              mode={callToActionMode}
-              text={formatIOMessage({ id: callToActionText, intl })}
-              url={formatIOMessage({ id: callToActionUrl, intl })}
-            />
-          </div>
-          {!isFullModeStyle && (
-            <div className={`${handles.infoCardImageContainer} w-50-ns`}>
-              <LinkWrapper
-                imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
-              >
-                <img
-                  className={handles.infoCardImage}
-                  src={finalImageUrl}
-                  style={{ objectFit: 'cover' }}
-                  alt=""
-                  data-testid="half-image"
-                />
-              </LinkWrapper>
-            </div>
-          )}
-        </div>
-      </LinkWrapper>
-    )
+  if (!imageUrl) {
+    return null
   }
 
-  return null
+  return (
+    <LinkWrapper
+      imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
+      extraCondition={!isFullModeStyle}
+      linkProps={{ className: 'no-underline' }}
+    >
+      <div
+        className={containerClasses}
+        style={containerStyle}
+        data-testid="container"
+        id={htmlId}
+      >
+        <div className={textContainerClasses}>
+          {headline && (
+            <div
+              className={headlineClasses}
+              dangerouslySetInnerHTML={{ __html: sanitizedHeadline }}
+            />
+          )}
+          {subhead && (
+            <div
+              className={subheadClasses}
+              dangerouslySetInnerHTML={{ __html: sanitizedSubhead }}
+            />
+          )}
+          <CallToAction
+            mode={callToActionMode}
+            text={formatIOMessage({ id: callToActionText, intl })}
+            url={formatIOMessage({ id: callToActionUrl, intl })}
+          />
+        </div>
+        {!isFullModeStyle && (
+          <div className={`${handles.infoCardImageContainer} w-50-ns`}>
+            <LinkWrapper
+              imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
+            >
+              <img
+                className={handles.infoCardImage}
+                src={finalImageUrl}
+                style={{ objectFit: 'cover' }}
+                alt=""
+                data-testid="half-image"
+              />
+            </LinkWrapper>
+          </div>
+        )}
+      </div>
+    </LinkWrapper>
+  )
 }
 
 const MemoizedInfoCard = memo(injectIntl(InfoCard))
