@@ -177,7 +177,7 @@ const InfoCard = ({
         data-testid="container"
         id={htmlId}
       >
-        {lazyLoad && (
+        {lazyLoad && isFullModeStyle && (
           /** TODO: Currently, it just checks if its under a LazyImages
            * context and inserts a regular image, relying on render runtime
            * to actually make it lazy.
