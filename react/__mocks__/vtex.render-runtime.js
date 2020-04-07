@@ -28,3 +28,9 @@ export const ExtensionPoint = ({ id }) => (
 export const useRuntime = () => runtime
 
 export const useChildBlock = () => true
+
+export const useExperimentalLazyImagesContext = () => {
+  return {
+    lazyLoad: false
+  }
+}
