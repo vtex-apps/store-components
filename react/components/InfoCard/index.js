@@ -4,7 +4,10 @@ import { bool, string, oneOf } from 'prop-types'
 import { values } from 'ramda'
 import React, { memo, useMemo } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
-import { useRuntime, useExperimentalLazyImagesContext } from 'vtex.render-runtime'
+import {
+  useRuntime,
+  useExperimentalLazyImagesContext,
+} from 'vtex.render-runtime'
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -125,16 +128,17 @@ const InfoCard = ({
     formatIOMessage({ id: mobileImageUrl, intl })
   )
 
-  const containerStyle = isFullModeStyle && !lazyLoad
-    ? { backgroundImage: `url(${finalImageUrl})`, backgroundSize: 'cover' }
-    : {}
+  const containerStyle =
+    isFullModeStyle && !lazyLoad
+      ? { backgroundImage: `url(${finalImageUrl})`, backgroundSize: 'cover' }
+      : {}
 
   const containerClasses = classNames(
     `${handles.infoCardContainer} items-center`,
     {
       [`flex-ns ${flexOrderToken} bg-base ph2-ns pb2 justify-between`]: !isFullModeStyle,
       [`bg-center bb b--muted-4 flex ${justifyToken}`]: isFullModeStyle,
-      'relative': lazyLoad
+      relative: lazyLoad,
     }
   )
 
@@ -143,7 +147,7 @@ const InfoCard = ({
     {
       [`w-50-ns ph3-s ${itemsToken} ${paddingClass}`]: !isFullModeStyle,
       [`mh8-ns mh4-s w-40-ns ${itemsToken}`]: isFullModeStyle,
-      'relative z-1': lazyLoad
+      'relative z-1': lazyLoad,
     }
   )
 
@@ -160,10 +164,6 @@ const InfoCard = ({
     () => sanitizeHtml(formatIOMessage({ id: subhead, intl })),
     [intl, subhead]
   )
-
-  if (!imageUrl) {
-    return null
-  }
 
   return (
     <LinkWrapper
@@ -183,12 +183,13 @@ const InfoCard = ({
            * to actually make it lazy.
            * In the future, it should be considered to always do this instead,
            * making this logic simpler, but one must be aware of pontential
-           * breaking changes, and the change must be tested thoroughly. 
+           * breaking changes, and the change must be tested thoroughly.
            */
           <img
             src={finalImageUrl}
             className="absolute w-100 h-100"
-            style={{ objectFit: 'cover' }} />
+            style={{ objectFit: 'cover' }}
+          />
         )}
         <div className={textContainerClasses}>
           {headline && (
