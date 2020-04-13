@@ -95,9 +95,9 @@
       "$ref": "app:vtex.store-image#/definitions/Image"
     }
   },
-  "go-top-button": {
+  "back-to-top-button": {
     "render": "client",
     "device": "desktop",
-    "component": "GoTopButton"
+    "component": "BackToTopButton"
   }
 }
