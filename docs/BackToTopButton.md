@@ -2,7 +2,7 @@
 
 # Go Top Button
 
-`GoTopButton` is a store block that redirects users to the top of the page when clicked on. This Component can be imported and used by any VTEX app.
+`BackToTopButton` is a store block that redirects users to the top of the page when clicked on. This Component can be imported and used by any VTEX app.
 
 ![image](https://user-images.githubusercontent.com/28419764/77644893-9238af80-6f40-11ea-8ceb-7355d0c12686.png)
 
@@ -16,34 +16,36 @@
   }
 ```
 
-2. Add the `go-top-button` block into a store template of your choosing. In the example, it will be added to the home page:
+2. Add the `back-to-top-button` block into a store template of your choosing. In the example, it will be added to the home page:
 
 ```diff
   "store.home": {
     "blocks": [
-+     "go-top-button",
++     "back-to-top-button",
     ]
   },
 ```
 
-3. Then, declare the go-top-button block using its props stated in the table below:
+3. Then, declare the back-to-top-button block using its props stated in the table below:
 
 ```diff
   "store.home": {
     "blocks": [
-     "go-top-button",
+     "back-to-top-button",
     ]
   },
-+  "go-top-button":{
++  "back-to-top-button":{
 +    "props":{
-+      "topPixel": "400"
++      "rightPosition": "5%",
++      "bottomPosition": "2rem"
 +    }
 +  }
 ```
 
 | Prop name  | Type      | Description                                  | Default Value |
 | ---------- | --------- | -------------------------------------------- | ------------- |
-| `topPixel` | `Number!` | Height of the page the button will appear on | -             |
+| `rightPosition` | `String!` | Sets the right margin edge for the button. | 0             |
+| `bottomPosition` | `String!` | Sets the bottom margin edge for the button. | 2rem             |
 
 ### Customization
 
@@ -51,4 +53,4 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 
 | CSS Handles            |
 | ---------------------- |
-| `goTopButtonContainer` |
+| `BackToTopButtonContainer` |
