@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Added `GoTopButton` Component.
+- Added `BackToTopButton` Component.
 
 ## [3.105.2] - 2020-03-13
 ### Fixed
