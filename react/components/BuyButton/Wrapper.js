@@ -80,6 +80,7 @@ const BuyButtonWrapper = ({
   customToastURL,
   showTooltipOnSkuNotSelected,
   checkoutVersion,
+  selectedSeller
 }) => {
   const orderFormContext = useOrderForm()
   const valuesFromContext = useProduct()
@@ -89,7 +90,7 @@ const BuyButtonWrapper = ({
   const product = valuesFromContext && valuesFromContext.product
   const selectedItem = valuesFromContext && valuesFromContext.selectedItem
   const assemblyOptions = valuesFromContext && valuesFromContext.assemblyOptions
-  const selectedSeller = path(['selectedItem', 'sellers', 0], valuesFromContext)
+  selectedSeller = selectedSeller ? selectedSeller : path(['selectedItem', 'sellers', 0], valuesFromContext)
   const selectedQuantity =
     valuesFromContext && valuesFromContext.selectedQuantity != null
       ? valuesFromContext.selectedQuantity
@@ -99,12 +100,12 @@ const BuyButtonWrapper = ({
     isEmptyContext || propSkuItems != null
       ? propSkuItems
       : EnhancedBuyButton.mapCatalogItemToCart({
-          product,
-          selectedItem,
-          selectedQuantity,
-          selectedSeller,
-          assemblyOptions,
-        })
+        product,
+        selectedItem,
+        selectedQuantity,
+        selectedSeller,
+        assemblyOptions,
+      })
 
   const large = isEmptyContext || propLarge != null ? propLarge : true
 
@@ -112,8 +113,8 @@ const BuyButtonWrapper = ({
     isEmptyContext || propAvailable != null
       ? propAvailable
       : selectedSeller &&
-        selectedSeller.commertialOffer &&
-        selectedSeller.commertialOffer.AvailableQuantity > 0
+      selectedSeller.commertialOffer &&
+      selectedSeller.commertialOffer.AvailableQuantity > 0
 
   const groupsValidArray =
     (assemblyOptions &&
