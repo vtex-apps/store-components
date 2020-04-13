@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `selectedSeller` added as a prop
+### Added
+-  New prop `selectedSeller` to BuyButton.
 
 ## [3.109.3] - 2020-04-08
 ### Fixed
