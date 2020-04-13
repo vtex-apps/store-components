@@ -44,8 +44,8 @@
 
 | Prop name  | Type      | Description                                  | Default Value |
 | ---------- | --------- | -------------------------------------------- | ------------- |
-| `rightPosition` | `String!` | Sets the right margin edge for the button. | 0             |
-| `bottomPosition` | `String!` | Sets the bottom margin edge for the button. | 2rem             |
+| `rightPosition` | `String!` | Sets the right margin edge for the button (px/rem/%). | 0             |
+| `bottomPosition` | `String!` | Sets the bottom margin edge for the button (px/rem/%). | 2rem             |
 
 ### Customization
 
