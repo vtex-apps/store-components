@@ -1,11 +1,11 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
-import GoTopButton from './index'
+import BackToTopButton from './index'
 
-describe('<GoTopButton /> component', () => {
+describe('<BackToTopButton /> component', () => {
   it('should be rendered', () => {
-    const { asFragment } = render(<GoTopButton />)
+    const { asFragment } = render(<BackToTopButton />)
 
     expect(asFragment()).toBeTruthy()
   })
