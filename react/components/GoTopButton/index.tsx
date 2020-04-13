@@ -25,7 +25,7 @@ const GoTopButton: StorefrontFC<Props> = ({ topPixel = 1000 }) => {
     }
   }, [listener])
 
-  const rigthPosition = scrollY > topPixel ? '10px' : '-100%'
+  const rightPosition = scrollY > topPixel ? '10px' : '-100%'
 
   const handleBackTop = useCallback(() => {
     window.scroll({ top: 0, left: 0, behavior: 'smooth' })
@@ -34,7 +34,7 @@ const GoTopButton: StorefrontFC<Props> = ({ topPixel = 1000 }) => {
   return (
     <div
       className={`${styles.goTopButtonContainer} z-999 fixed`}
-      style={{ right: rigthPosition }}
+      style={{ right: rightPosition }}
     >
       <Button onClick={handleBackTop} size="regular">
         <FormattedMessage id="store/editor.action-go-to" />
