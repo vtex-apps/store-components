@@ -6,6 +6,10 @@
 
 ![image](https://user-images.githubusercontent.com/28419764/77644893-9238af80-6f40-11ea-8ceb-7355d0c12686.png)
 
+Icon Style:
+
+![image](https://user-images.githubusercontent.com/28419764/79279983-a60f6b80-7e85-11ea-9a8d-48abd655e559.png)
+
 ## Configuration
 
 1. Import the `vtex.store-component` app to your theme's dependencies in the manifest.json;
@@ -37,20 +41,25 @@
 +  "back-to-top-button":{
 +    "props":{
 +      "rightPosition": "5%",
-+      "bottomPosition": "2rem"
++      "bottomPosition": "2rem",
++      "showAfterPixelY": 800,
 +    }
 +  }
 ```
 
-| Prop name  | Type      | Description                                  | Default Value |
-| ---------- | --------- | -------------------------------------------- | ------------- |
-| `rightPosition` | `String!` | Sets the right margin edge for the button (px/rem/%). | 0             |
-| `bottomPosition` | `String!` | Sets the bottom margin edge for the button (px/rem/%). | 2rem             |
+| Prop name         | Type       | Description                                            | Default Value |
+| ----------------- | ---------- | ------------------------------------------------------ | ------------- |
+| `rightPosition`   | `String!`  | Sets the right margin edge for the button (px/rem/%).  | 0             |
+| `bottomPosition`  | `String!`  | Sets the bottom margin edge for the button (px/rem/%). | 2rem          |
+| `showAfterPixelY` | `Number!`  | Sets the Y pixel that the button will show after .     | 600           |
+| `isIconStyle`     | `Boolean!` | Sets Caret Top Icon instead "Back To Top" Text.        | false         |
 
 ### Customization
 
 In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| CSS Handles            |
-| ---------------------- |
+| CSS Handles                |
+| -------------------------- |
 | `BackToTopButtonContainer` |
+| `BackToTopButtonHidden`    |
+| `BackToTopButtonActive`    |
