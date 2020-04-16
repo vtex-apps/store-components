@@ -1,11 +1,12 @@
 import React, { FC, ReactElement } from 'react'
 import { useDevice } from 'vtex.device-detector'
+
 import ZoomInPlace from './ZoomInPlace'
 
 export enum ZoomMode {
   InPlaceClick = 'in-place-click',
   InPlaceHover = 'in-place-hover',
-  Disabled = 'disabled'
+  Disabled = 'disabled',
 }
 
 interface Props {
@@ -14,8 +15,12 @@ interface Props {
   factor?: number
 }
 
-
-const Zoomable: FC<Props> = ({ children, factor = 2, zoomContent, mode = ZoomMode.InPlaceClick }) => {
+const Zoomable: FC<Props> = ({
+  children,
+  factor = 2,
+  zoomContent,
+  mode = ZoomMode.InPlaceClick,
+}) => {
   const { isMobile } = useDevice()
 
   if (isMobile && mode !== ZoomMode.Disabled) {
