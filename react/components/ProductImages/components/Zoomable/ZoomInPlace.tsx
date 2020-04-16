@@ -98,7 +98,10 @@ const ZoomInPlace: FC<Props> = ({ children, zoomContent, type, factor }) => {
   // Resets position when the image is zoomed out
   useEffect(() => {
     if (!isZoomedIn) {
-      setPositionAndScale(0, 0, 1)
+      // This value of the scale is because of some really weird bug
+      // in Chrome https://github.com/vtex-apps/store-components/issues/738
+      // Should be reverted to just `1` once the Chrome bug is fixed.
+      setPositionAndScale(0, 0, 1.000001)
       containerBounds.current = null
     }
   }, [isZoomedIn])
