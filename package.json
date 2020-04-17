@@ -12,6 +12,7 @@
     "@types/node": "^12.7.12",
     "@types/ramda": "^0.26.18",
     "@types/react": "^16.8.23",
+    "@vtex/danger": "^0.0.16",
     "@vtex/intl-equalizer": "^2.2.1",
     "@vtex/tsconfig": "^0.2.0",
     "eslint": "^6.8.0",
