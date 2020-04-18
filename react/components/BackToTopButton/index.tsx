@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Button } from 'vtex.styleguide'
 import { FormattedMessage } from 'react-intl'
 import { Icon } from 'vtex.store-icons'
+import classNames from 'classnames'
 
 import styles from './styles.css'
 
@@ -19,6 +20,13 @@ const handleBackTop = () => {
 const BackToTopButton: StorefrontFC<Props> = props => {
   const [isShowed, setIsShowed] = useState(false)
   const [scrollY, setScrollY] = useState(0)
+  const backToTopButtonClasses = classNames(
+    `${styles.backToTopButtonContainer} z-999 fixed bottom-2 right-2`,
+    {
+      [`${styles.backToTopButtonHidden}`]: !isShowed,
+      [`${styles.backToTopButtonActive}`]: isShowed,
+    }
+  )
 
   function scrollValue() {
     setScrollY(window.pageYOffset)
@@ -43,21 +51,13 @@ const BackToTopButton: StorefrontFC<Props> = props => {
   }, [scrollY, props.displayThreshold])
 
   return props.display == 'button' ? (
-    <div
-      className={`${styles.backToTopButtonContainer} ${
-        isShowed ? styles.backToTopButtonActive : styles.backToTopButtonHidden
-      } z-999 fixed bottom-2 right-2`}
-    >
+    <div className={backToTopButtonClasses}>
       <Button onClick={handleBackTop} size="regular">
         <FormattedMessage id="store/editor.action-go-to" />
       </Button>
     </div>
   ) : (
-    <div
-      className={`${styles.backToTopButtonContainer} ${
-        isShowed ? styles.backToTopButtonActive : styles.backToTopButtonHidden
-      } z-999 fixed bottom-2 right-2`}
-    >
+    <div className={backToTopButtonClasses}>
       <Button onClick={handleBackTop} size="regular">
         <Icon id="nav-caret--up" size="16" />
       </Button>
