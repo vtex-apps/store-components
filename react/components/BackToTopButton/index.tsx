@@ -1,22 +1,29 @@
-import React, { useCallback, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from 'vtex.styleguide'
 import { FormattedMessage } from 'react-intl'
-import styles from './styles.css'
 import { Icon } from 'vtex.store-icons'
+
+import styles from './styles.css'
 
 interface Props {
   displayThreshold?: number
-  rightPosition?: string
-  bottomPosition?: string
-  display?: boolean
+  display?: Display
+}
+
+type Display = 'button' | 'caret-icon'
+
+const handleBackTop = () => {
+  window.scroll({ top: 0, left: 0, behavior: 'smooth' })
 }
 
 const BackToTopButton: StorefrontFC<Props> = props => {
-  const handleBackTop = useCallback(() => {
-    window.scroll({ top: 0, left: 0, behavior: 'smooth' })
-  }, [])
   const [isShowed, setIsShowed] = useState(false)
   const [scrollY, setScrollY] = useState(0)
+
+  function scrollValue() {
+    setScrollY(window.pageYOffset)
+  }
+
   useEffect(() => {
     function watchScroll() {
       window.addEventListener('scroll', scrollValue)
@@ -33,13 +40,9 @@ const BackToTopButton: StorefrontFC<Props> = props => {
     } else {
       setIsShowed(false)
     }
-  })
+  }, [scrollY, props.displayThreshold])
 
-  function scrollValue() {
-    setScrollY(window.pageYOffset)
-  }
-
-  return !props.display ? (
+  return props.display == 'button' ? (
     <div
       className={`${styles.backToTopButtonContainer} ${
         isShowed ? styles.backToTopButtonActive : styles.backToTopButtonHidden
@@ -63,10 +66,8 @@ const BackToTopButton: StorefrontFC<Props> = props => {
 }
 
 BackToTopButton.defaultProps = {
-  rightPosition: '2rem',
-  bottomPosition: '2rem',
   displayThreshold: 600,
-  display: false,
+  display: 'button',
 }
 
 export default BackToTopButton
