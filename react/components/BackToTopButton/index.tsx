@@ -43,8 +43,7 @@ const BackToTopButton: StorefrontFC<Props> = props => {
     <div
       className={`${styles.backToTopButtonContainer} ${
         isShowed ? styles.backToTopButtonActive : styles.backToTopButtonHidden
-      } z-999 fixed`}
-      style={{ right: props.rightPosition, bottom: props.bottomPosition }}
+      } z-999 fixed bottom-2 right-2`}
     >
       <Button onClick={handleBackTop} size="regular">
         <FormattedMessage id="store/editor.action-go-to" />
@@ -54,8 +53,7 @@ const BackToTopButton: StorefrontFC<Props> = props => {
     <div
       className={`${styles.backToTopButtonContainer} ${
         isShowed ? styles.backToTopButtonActive : styles.backToTopButtonHidden
-      } z-999 fixed`}
-      style={{ right: props.rightPosition, bottom: props.bottomPosition }}
+      } z-999 fixed bottom-2 right-2`}
     >
       <Button onClick={handleBackTop} size="regular">
         <Icon id="nav-caret--up" size="16" />
