@@ -40,19 +40,22 @@ Icon Style:
   },
 +  "back-to-top-button":{
 +    "props":{
-+      "rightPosition": "5%",
-+      "bottomPosition": "2rem",
 +      "showAfterPixelY": 800,
 +    }
 +  }
 ```
 
-| Prop name         | Type       | Description                                            | Default Value |
-| ----------------- | ---------- | ------------------------------------------------------ | ------------- |
-| `rightPosition`   | `String!`  | Sets the right margin edge for the button (px/rem/%).  | 0             |
-| `bottomPosition`  | `String!`  | Sets the bottom margin edge for the button (px/rem/%). | 2rem          |
-| `showAfterPixelY` | `Number!`  | Sets the Y pixel that the button will show after .     | 600           |
-| `isIconStyle`     | `Boolean!` | Sets Caret Top Icon instead "Back To Top" Text.        | false         |
+| Prop name          | Type           | Description                                              | Default Value |
+| ------------------ | -------------- | -------------------------------------------------------- | ------------- |
+| `displayThreshold` | `Number!`      | Sets the window Y pixel that the button will show after. | 600           |
+| `display`          | `DisplayEnum!` | Sets BackToTopButton componentmode.                      | button        |
+
+- Possible values of `DisplayEnum`:
+
+| Enum name  | Enum value   | Description                                     |
+| ---------- | ------------ | ----------------------------------------------- |
+| Button     | 'button'     | Sets "Back To Top" text to the button.          |
+| Caret-Icon | 'caret-icon' | Sets Caret Top Icon instead "Back To Top" text. |
 
 ### Customization
 
