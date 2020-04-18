@@ -5,10 +5,10 @@ import styles from './styles.css'
 import { Icon } from 'vtex.store-icons'
 
 interface Props {
-  showAfterPixelY?: number
+  displayThreshold?: number
   rightPosition?: string
   bottomPosition?: string
-  isIconStyle?: boolean
+  display?: boolean
 }
 
 const BackToTopButton: StorefrontFC<Props> = props => {
@@ -28,7 +28,7 @@ const BackToTopButton: StorefrontFC<Props> = props => {
   })
 
   useEffect(() => {
-    if (scrollY > props.showAfterPixelY!) {
+    if (scrollY > props.displayThreshold!) {
       setIsShowed(true)
     } else {
       setIsShowed(false)
@@ -39,10 +39,10 @@ const BackToTopButton: StorefrontFC<Props> = props => {
     setScrollY(window.pageYOffset)
   }
 
-  return !props.isIconStyle ? (
+  return !props.display ? (
     <div
-      className={`${styles.BackToTopButtonContainer} ${
-        isShowed ? styles.BackToTopButtonActive : styles.BackToTopButtonHidden
+      className={`${styles.backToTopButtonContainer} ${
+        isShowed ? styles.backToTopButtonActive : styles.backToTopButtonHidden
       } z-999 fixed`}
       style={{ right: props.rightPosition, bottom: props.bottomPosition }}
     >
@@ -52,8 +52,8 @@ const BackToTopButton: StorefrontFC<Props> = props => {
     </div>
   ) : (
     <div
-      className={`${styles.BackToTopButtonContainer} ${
-        isShowed ? styles.BackToTopButtonActive : styles.BackToTopButtonHidden
+      className={`${styles.backToTopButtonContainer} ${
+        isShowed ? styles.backToTopButtonActive : styles.backToTopButtonHidden
       } z-999 fixed`}
       style={{ right: props.rightPosition, bottom: props.bottomPosition }}
     >
@@ -67,8 +67,8 @@ const BackToTopButton: StorefrontFC<Props> = props => {
 BackToTopButton.defaultProps = {
   rightPosition: '2rem',
   bottomPosition: '2rem',
-  showAfterPixelY: 600,
-  isIconStyle: false,
+  displayThreshold: 600,
+  display: false,
 }
 
 export default BackToTopButton
