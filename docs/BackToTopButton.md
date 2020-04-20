@@ -4,13 +4,13 @@
 
 `BackToTopButton` is a store block exported by the Store Components app that redirects users to the top of the page when clicked on.
 
-*Back To Top Button rendered as a text button* 
-
 ![image](https://user-images.githubusercontent.com/28419764/77644893-9238af80-6f40-11ea-8ceb-7355d0c12686.png)
 
-*Back To Top Button rendered as a caret icon*
+*Back To Top Button rendered as a text button* 
 
 ![image](https://user-images.githubusercontent.com/28419764/79279983-a60f6b80-7e85-11ea-9a8d-48abd655e559.png)
+
+*Back To Top Button rendered as a caret icon*
 
 ## Configuration
 
