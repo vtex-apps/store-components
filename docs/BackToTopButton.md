@@ -1,18 +1,20 @@
 📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-# Go Top Button
+# Back To Top Button
 
-`BackToTopButton` is a store block that redirects users to the top of the page when clicked on. This Component can be imported and used by any VTEX app.
+`BackToTopButton` is a store block exported by the Store Components app that redirects users to the top of the page when clicked on.
+
+*Back To Top Button rendered as a text button* 
 
 ![image](https://user-images.githubusercontent.com/28419764/77644893-9238af80-6f40-11ea-8ceb-7355d0c12686.png)
 
-Icon Style:
+*Back To Top Button rendered as a caret icon*
 
 ![image](https://user-images.githubusercontent.com/28419764/79279983-a60f6b80-7e85-11ea-9a8d-48abd655e559.png)
 
 ## Configuration
 
-1. Import the `vtex.store-component` app to your theme's dependencies in the manifest.json;
+1. Add the `vtex.store-component` app to your theme's dependencies in the manifest.json;
 
 ```json
  "dependencies: {
@@ -30,7 +32,7 @@ Icon Style:
   },
 ```
 
-3. Then, declare the back-to-top-button block using its props stated in the table below:
+3. Then, declare the `back-to-top-button` block using its props stated in the table below. For example:
 
 ```diff
   "store.home": {
@@ -45,17 +47,11 @@ Icon Style:
 +  }
 ```
 
-| Prop name          | Type           | Description                                              | Default Value |
-| ------------------ | -------------- | -------------------------------------------------------- | ------------- |
-| `displayThreshold` | `Number!`      | Sets the window Y pixel that the button will show after. | 600           |
-| `display`          | `DisplayEnum!` | Sets BackToTopButton componentmode.                      | button        |
+| Prop name          | Type           | Description                                                       | Default Value |
+| ------------------ | -------------- | ----------------------------------------------------------------- | ------------- |
+| `displayThreshold` | `number`       | Defines the window Y pixel in which the button will be displayed. | `600`          |
+| `display`          | `enum`         | Defines the component rendering. Possible values are: `button` to display a button with a `Back To Top` label text or `caret-icon` to display just an icon.                                                                     | `button`        |
 
-- Possible values of `DisplayEnum`:
-
-| Enum name  | Enum value   | Description                                     |
-| ---------- | ------------ | ----------------------------------------------- |
-| Button     | 'button'     | Sets "Back To Top" text to the button.          |
-| Caret-Icon | 'caret-icon' | Sets Caret Top Icon instead "Back To Top" text. |
 
 ### Customization
 
