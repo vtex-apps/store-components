@@ -21,6 +21,7 @@
     "typescript": "^3.7.4"
   },
   "dependencies": {
+    "@vtex/danger": "0.2.2",
     "react": "^16.8.6"
   }
 }
