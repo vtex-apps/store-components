@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- I've made the thing better
+
 ## [3.110.2] - 2020-04-20
 ### Security
 - Bump versions of dependencies.

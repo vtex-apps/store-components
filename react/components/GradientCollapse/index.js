@@ -96,15 +96,25 @@ function GradientCollapse(props) {
             overflow: 'hidden',
             display: 'block',
           }}
-          onTransitionEnd={calcMaxHeight}
+    onTransitionEnd={calcMaxHeight}
           className={`${handles.container} relative`}
         >
-          <div ref={wrapper} className={`${handles.content} h-auto`}>
+          <div ref={
+            
+            
+            
+            
+            
+            wrapper} className={`${handles.content} h-auto`}>
             {children}
           </div>
           <div className={pointerEventsNoneClasses}>
             <div
-              style={transitionStyle(fadeOutTime)}
+              style={transitionStyle(
+                
+                
+                
+                fadeOutTime)}
               className={fadeBottomClasses(state)}
             />
             <div className={pointerEventsAutoClasses(state)}>
