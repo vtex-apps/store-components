@@ -41,6 +41,7 @@ The `infoCard` block allows you to **display content combining image and text** 
 | `textAlignment` | `TextAlignmentEnum` | Control the text alignment inside component. This prop is ignored if `isFullModeStyle` is true  | `"left"` |
 | `headline` | `String` | Text to be used as headline. If not provided, it will not be rendered | `null` |
 | `subhead` | `String` | Text to be displayed underneath the headline. If not provided, it will not be rendered | `null` |
+| `textMode` | `TextModeEnum` | Chooses which text mode should be used to process the text from `headline` and `subhead` props.   | `"html"` |
 | `callToActionMode` | `CallToActionEnum` | Set Call to Action component mode | `"button"` |
 | `callToActionText` | `String` | Text to be displayed inside the CTA component | `""` |
 | `callToActionUrl` | `String` | URL to be redirected when CTA component is clicked | `""` |
@@ -49,8 +50,7 @@ The `infoCard` block allows you to **display content combining image and text** 
 | `blockClass` | `String` | Adds an extra class name to ease styling | `null` |
 | `htmlId` | `String` | Adds an ID to the container element | `null` |
 
-
-- Possible values of `TextPostionEnum`:
+- Possible values of `TextPositionEnum`:
 
 | Enum name | Enum value | Description |
 | --------- | ---- | ----------- |
@@ -74,6 +74,15 @@ The `infoCard` block allows you to **display content combining image and text** 
 | Center | 'center' | Text alignment will be to the center. |
 | Right | 'right' | Text alignment will be to the right. |
 
+- Possible values of `TextModeEnum`:
+
+| Enum name | Enum value | Description |
+| --------- | ---- | ----------- |
+| HTML | 'html' | The InfoCard component will expect to receive HTML text for `headline` and `subhead` props. |
+| Rich-Text | 'rich-text' | The InfoCard component will expect to receive Markdown text for `headline` and `subhead` props, and will use the [`rich-text` block](https://github.com/vtex-apps/rich-text) to render both. |
+
+:warning: When `textMode` is set to `rich-text`, the CSS handles `infoCardHeadline` and `infoCardSubhead` will not be applied. To customize the headline and subhead text, you should use the CSS handles available in the [`rich-text` block](https://github.com/vtex-apps/rich-text).
+
 ## Customization
 
 In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
@@ -88,7 +97,3 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 | `infoCardCallActionText` |
 | `infoCardImageContainer` |
 | `infoCardImage` |
-| `infoCardParagraph` |
-| `infoCardStrong` |
-| `infoCardItalic` |
-
