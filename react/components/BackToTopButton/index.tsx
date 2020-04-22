@@ -53,7 +53,7 @@ const BackToTopButton: StorefrontFC<Props> = ({
   return display == 'button' ? (
     <div className={backToTopButtonClasses}>
       <Button onClick={handleBackTop} size="regular">
-        <FormattedMessage id="store/editor.action-go-to" />
+        <FormattedMessage id="store/back-to-top.label" />
       </Button>
     </div>
   ) : (

@@ -176,7 +176,7 @@
   "admin/editor.product-description.title-prop.title": "Title",
   "admin/editor.search-bar.title": "Search bar",
   "admin/editor.search-bar.placeholder.title": "Placeholder",
-  "store/editor.action-go-to": "Back to top",
+  "store/back-to-top.label": "Back to top",
   "admin/editor.toTop.title": "Back to top button",
   "admin/editor.toTop.description": "When clicked it takes the page to the top",
   "admin/editor.toTop.topPixel.title": "Number of pixels",
