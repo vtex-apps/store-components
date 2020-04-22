@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
-import InfoCard from './../../InfoCard'
+import InfoCard from '../../InfoCard'
 
 describe('<InfoCard />', () => {
   const renderComponent = props => {
@@ -11,7 +11,7 @@ describe('<InfoCard />', () => {
       subhead: 'MY SUBHEAD',
       imageUrl: 'my-image.com/image.png',
       callToActionText: 'CLICK HERE',
-      callToActionUrl: 'classic-shoes/p'
+      callToActionUrl: 'classic-shoes/p',
     }
     return render(<InfoCard {...defaultProps} {...props} />)
   }
@@ -81,6 +81,19 @@ describe('<InfoCard />', () => {
       headline:
         'HEADLINE <span class="my-custom-class">THIS IS BOOOLD AND BLUE</span> HEADLINE STILL',
       subhead: '',
+    })
+    expect(asFragment()).toBeDefined()
+    expect(asFragment()).toMatchSnapshot()
+  })
+  it("should render subhead and headline using the RichText component when textMode is set to 'rich-text'", () => {
+    const { asFragment } = renderComponent({
+      isFullModeStyle: true,
+      callToActionMode: 'none',
+      textAlignment: 'right',
+      textPosition: 'center',
+      textMode: 'rich-text',
+      headline: 'This is a headline, and should be inside a rich-text.',
+      subhead: 'This is a subhead, and should be inside a rich-text.',
     })
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toMatchSnapshot()
