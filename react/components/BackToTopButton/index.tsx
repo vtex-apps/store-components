@@ -17,7 +17,10 @@ const handleBackTop = () => {
   window.scroll({ top: 0, left: 0, behavior: 'smooth' })
 }
 
-const BackToTopButton: StorefrontFC<Props> = props => {
+const BackToTopButton: StorefrontFC<Props> = ({
+  displayThreshold = 600,
+  display = 'button',
+}) => {
   const [isShowed, setIsShowed] = useState(false)
   const [scrollY, setScrollY] = useState(0)
   const backToTopButtonClasses = classNames(
@@ -33,24 +36,21 @@ const BackToTopButton: StorefrontFC<Props> = props => {
   }
 
   useEffect(() => {
-    function watchScroll() {
-      window.addEventListener('scroll', scrollValue)
-    }
-    watchScroll()
+    window.addEventListener('scroll', scrollValue)
     return () => {
       window.removeEventListener('scroll', scrollValue)
     }
-  })
+  }, [])
 
   useEffect(() => {
-    if (scrollY > props.displayThreshold!) {
+    if (scrollY > displayThreshold) {
       setIsShowed(true)
     } else {
       setIsShowed(false)
     }
-  }, [scrollY, props.displayThreshold])
+  }, [scrollY, displayThreshold])
 
-  return props.display == 'button' ? (
+  return display == 'button' ? (
     <div className={backToTopButtonClasses}>
       <Button onClick={handleBackTop} size="regular">
         <FormattedMessage id="store/editor.action-go-to" />
@@ -63,11 +63,6 @@ const BackToTopButton: StorefrontFC<Props> = props => {
       </Button>
     </div>
   )
-}
-
-BackToTopButton.defaultProps = {
-  displayThreshold: 600,
-  display: 'button',
 }
 
 export default BackToTopButton
