@@ -1,8 +1,9 @@
 import classNames from 'classnames'
 import { bool, string, oneOf } from 'prop-types'
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { values } from 'ramda'
 import { injectIntl, intlShape } from 'react-intl'
+import insane from 'insane'
 import {
   useRuntime,
   useExperimentalLazyImagesContext,
@@ -19,6 +20,7 @@ import {
   callToActionModeTypes,
   textPostionValues,
   textAlignmentValues,
+  textModeTypes,
 } from './SchemaTypes'
 
 const justifyTokens = {
@@ -58,6 +60,18 @@ const safelyGetToken = (tokenMap, valueWanted, propName) =>
 const getImageUrl = (isMobile, imageUrl, mobileImageUrl) =>
   !!mobileImageUrl && isMobile ? mobileImageUrl : imageUrl
 
+const sanitizerConfig = {
+  allowedTags: ['p', 'span', 'a', 'div', 'br'],
+  allowedAttributes: {
+    a: ['class', 'href', 'title', 'target'],
+    span: ['class'],
+    p: ['class'],
+    div: ['class'],
+  },
+}
+
+const sanitizeHtml = input => (input ? insane(input, sanitizerConfig) : null)
+
 const CSS_HANDLES = [
   'infoCardContainer',
   'infoCardTextContainer',
@@ -81,6 +95,7 @@ const InfoCard = ({
   imageActionUrl,
   intl,
   htmlId,
+  textMode,
 }) => {
   const {
     hints: { mobile },
@@ -143,6 +158,16 @@ const InfoCard = ({
 
   const subheadClasses = `${handles.infoCardSubhead} t-body mt6 c-on-base ${alignToken} mw-100`
 
+  const sanitizedHeadline = useMemo(
+    () => sanitizeHtml(formatIOMessage({ id: headline, intl })),
+    [headline, intl]
+  )
+
+  const sanitizedSubhead = useMemo(
+    () => sanitizeHtml(formatIOMessage({ id: subhead, intl })),
+    [intl, subhead]
+  )
+
   return (
     <LinkWrapper
       imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
@@ -160,9 +185,10 @@ const InfoCard = ({
            * context and inserts a regular image, relying on render runtime
            * to actually make it lazy.
            * In the future, it should be considered to always do this instead,
-           * making this logic simpler, but one must be aware of pontential
+           * making this logic simpler, but one must be aware of potential
            * breaking changes, and the change must be tested thoroughly.
            */
+          // eslint-disable-next-line jsx-a11y/alt-text
           <img
             src={finalImageUrl}
             className="absolute w-100 h-100"
@@ -170,8 +196,24 @@ const InfoCard = ({
           />
         )}
         <div className={textContainerClasses}>
-          {headline && <RichText className={headlineClasses} text={headline} />}
-          {subhead && <RichText className={subheadClasses} text={subhead} />}
+          {headline &&
+            (textMode === 'html' ? (
+              <div
+                className={headlineClasses}
+                dangerouslySetInnerHTML={{ __html: sanitizedHeadline }}
+              />
+            ) : (
+              <RichText className={headlineClasses} text={headline} />
+            ))}
+          {subhead &&
+            (textMode === 'html' ? (
+              <div
+                className={subheadClasses}
+                dangerouslySetInnerHTML={{ __html: sanitizedSubhead }}
+              />
+            ) : (
+              <RichText className={subheadClasses} text={subhead} />
+            ))}
           <CallToAction
             mode={callToActionMode}
             text={formatIOMessage({ id: callToActionText, intl })}
@@ -215,6 +257,7 @@ MemoizedInfoCard.propTypes = {
   imageActionUrl: string,
   intl: intlShape,
   htmlId: string,
+  textMode: oneOf(getEnumValues(textModeTypes)),
 }
 
 MemoizedInfoCard.defaultProps = {
@@ -228,6 +271,7 @@ MemoizedInfoCard.defaultProps = {
   imageUrl: '',
   mobileImageUrl: '',
   textAlignment: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
+  textMode: textModeTypes.TEXT_MODE_HTML.value,
 }
 
 MemoizedInfoCard.schema = {
@@ -267,6 +311,15 @@ MemoizedInfoCard.schema = {
       default: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
       enum: getEnumValues(textAlignmentTypes),
       enumNames: getEnumNames(textAlignmentTypes),
+      isLayout: true,
+    },
+    textMode: {
+      title: 'admin/editor.info-card.textMode.title',
+      description: 'admin/editor.info-card.textMode.description',
+      type: 'string',
+      default: textModeTypes.TEXT_MODE_HTML.value,
+      enum: getEnumValues(textModeTypes),
+      enumNames: getEnumNames(textModeTypes),
       isLayout: true,
     },
     blockClass: {
