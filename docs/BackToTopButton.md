@@ -42,7 +42,7 @@
   },
 +  "back-to-top-button":{
 +    "props":{
-+      "showAfterPixelY": 800,
++      "displayThreshold": 800,
 +    }
 +  }
 ```
