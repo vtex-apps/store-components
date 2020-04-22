@@ -59,6 +59,6 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 
 | CSS Handles                |
 | -------------------------- |
-| `BackToTopButtonContainer` |
-| `BackToTopButtonHidden`    |
-| `BackToTopButtonActive`    |
+| `backToTopButtonContainer` |
+| `backToTopButtonHidden`    |
+| `backToTopButtonActive`    |
