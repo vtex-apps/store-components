@@ -1,15 +1,16 @@
 import classNames from 'classnames'
-import insane from 'insane'
 import { bool, string, oneOf } from 'prop-types'
-import { values } from 'ramda'
 import React, { memo, useMemo } from 'react'
+import { values } from 'ramda'
 import { injectIntl, intlShape } from 'react-intl'
+import insane from 'insane'
 import {
   useRuntime,
   useExperimentalLazyImagesContext,
 } from 'vtex.render-runtime'
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
+import RichText from 'vtex.rich-text/index'
 
 import CallToAction from './CallToAction'
 import LinkWrapper from './LinkWrapper'
@@ -19,6 +20,7 @@ import {
   callToActionModeTypes,
   textPostionValues,
   textAlignmentValues,
+  textModeTypes,
 } from './SchemaTypes'
 
 const justifyTokens = {
@@ -93,6 +95,7 @@ const InfoCard = ({
   imageActionUrl,
   intl,
   htmlId,
+  textMode,
 }) => {
   const {
     hints: { mobile },
@@ -182,9 +185,10 @@ const InfoCard = ({
            * context and inserts a regular image, relying on render runtime
            * to actually make it lazy.
            * In the future, it should be considered to always do this instead,
-           * making this logic simpler, but one must be aware of pontential
+           * making this logic simpler, but one must be aware of potential
            * breaking changes, and the change must be tested thoroughly.
            */
+          // eslint-disable-next-line jsx-a11y/alt-text
           <img
             src={finalImageUrl}
             className="absolute w-100 h-100"
@@ -192,18 +196,24 @@ const InfoCard = ({
           />
         )}
         <div className={textContainerClasses}>
-          {headline && (
-            <div
-              className={headlineClasses}
-              dangerouslySetInnerHTML={{ __html: sanitizedHeadline }}
-            />
-          )}
-          {subhead && (
-            <div
-              className={subheadClasses}
-              dangerouslySetInnerHTML={{ __html: sanitizedSubhead }}
-            />
-          )}
+          {headline &&
+            (textMode === 'html' ? (
+              <div
+                className={headlineClasses}
+                dangerouslySetInnerHTML={{ __html: sanitizedHeadline }}
+              />
+            ) : (
+              <RichText className={headlineClasses} text={headline} />
+            ))}
+          {subhead &&
+            (textMode === 'html' ? (
+              <div
+                className={subheadClasses}
+                dangerouslySetInnerHTML={{ __html: sanitizedSubhead }}
+              />
+            ) : (
+              <RichText className={subheadClasses} text={subhead} />
+            ))}
           <CallToAction
             mode={callToActionMode}
             text={formatIOMessage({ id: callToActionText, intl })}
@@ -247,6 +257,7 @@ MemoizedInfoCard.propTypes = {
   imageActionUrl: string,
   intl: intlShape,
   htmlId: string,
+  textMode: oneOf(getEnumValues(textModeTypes)),
 }
 
 MemoizedInfoCard.defaultProps = {
@@ -260,6 +271,7 @@ MemoizedInfoCard.defaultProps = {
   imageUrl: '',
   mobileImageUrl: '',
   textAlignment: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
+  textMode: textModeTypes.TEXT_MODE_HTML.value,
 }
 
 MemoizedInfoCard.schema = {
@@ -299,6 +311,15 @@ MemoizedInfoCard.schema = {
       default: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
       enum: getEnumValues(textAlignmentTypes),
       enumNames: getEnumNames(textAlignmentTypes),
+      isLayout: true,
+    },
+    textMode: {
+      title: 'admin/editor.info-card.textMode.title',
+      description: 'admin/editor.info-card.textMode.description',
+      type: 'string',
+      default: textModeTypes.TEXT_MODE_HTML.value,
+      enum: getEnumValues(textModeTypes),
+      enumNames: getEnumNames(textModeTypes),
       isLayout: true,
     },
     blockClass: {
