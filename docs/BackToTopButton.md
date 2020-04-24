@@ -2,15 +2,15 @@
 
 # Back To Top Button
 
-`BackToTopButton` is a store block exported by the Store Components app that redirects users to the top of the page when clicked on.
+`back-to-top-button` is a store block exported by the Store Components app that redirects users to the top of the page when clicked on.
 
 ![image](https://user-images.githubusercontent.com/28419764/77644893-9238af80-6f40-11ea-8ceb-7355d0c12686.png)
 
-*Back To Top Button rendered as a text button* 
+_Back To Top Button rendered as a text button_
 
 ![image](https://user-images.githubusercontent.com/28419764/79279983-a60f6b80-7e85-11ea-9a8d-48abd655e559.png)
 
-*Back To Top Button rendered as a caret icon*
+_Back To Top Button rendered as a caret icon_
 
 ## Configuration
 
@@ -47,11 +47,10 @@
 +  }
 ```
 
-| Prop name          | Type           | Description                                                       | Default Value |
-| ------------------ | -------------- | ----------------------------------------------------------------- | ------------- |
-| `displayThreshold` | `number`       | Defines the window Y pixel in which the button will be displayed. | `600`          |
-| `display`          | `enum`         | Defines the component rendering. Possible values are: `button` to display a button with a `Back To Top` label text or `caret-icon` to display just an icon.                                                                     | `button`        |
-
+| Prop name          | Type     | Description                                                                                                                                                 | Default Value |
+| ------------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `displayThreshold` | `number` | Defines the window Y pixel in which the button will be displayed.                                                                                           | `600`         |
+| `display`          | `enum`   | Defines the component rendering. Possible values are: `button` to display a button with a `Back To Top` label text or `caret-icon` to display just an icon. | `button`      |
 
 ### Customization
 
