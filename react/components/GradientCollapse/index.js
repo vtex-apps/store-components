@@ -4,7 +4,11 @@ import { Transition } from 'react-transition-group'
 import debounce from 'debounce'
 import { FormattedMessage } from 'react-intl'
 import classNames from 'classnames'
+import { useCssHandles } from 'vtex.css-handles'
+
 import styles from './styles.css'
+
+const CSS_HANDLES = ['container', 'content', 'showMoreButton']
 
 const transitionStyle = transitionTime => ({
   transition: `${transitionTime}ms ease-in-out`,
@@ -29,6 +33,7 @@ function GradientCollapse(props) {
     onCollapsedChange,
     collapsed: collapsedProp,
   } = props
+  const handles = useCssHandles(CSS_HANDLES)
   const [collapsed, setCollapsed] = useState(collapsedProp)
   const [prevCollapsedProp, setPrevCollapsedProp] = useState(collapsedProp)
   const [maxHeight, setMaxHeight] = useState('auto')
@@ -92,9 +97,9 @@ function GradientCollapse(props) {
             display: 'block',
           }}
           onTransitionEnd={calcMaxHeight}
-          className="relative"
+          className={`${handles.container} relative`}
         >
-          <div ref={wrapper} className="h-auto">
+          <div ref={wrapper} className={`${handles.content} h-auto`}>
             {children}
           </div>
           <div className={pointerEventsNoneClasses}>
@@ -105,13 +110,13 @@ function GradientCollapse(props) {
             <div className={pointerEventsAutoClasses(state)}>
               <button
                 onClick={e => handleCollapsedChange(e, !collapsed)}
-                className="c-action-primary t-action pointer ma5 bn outline-0"
+                className={`${handles.showMoreButton} c-action-primary t-action pointer ma5 bn outline-0`}
               >
                 {state === 'entered' || (collapsed && state !== 'exited') ? (
                   <FormattedMessage id="store/product-description.collapse.showLess" />
                 ) : (
-                    <FormattedMessage id="store/product-description.collapse.showMore" />
-                  )}
+                  <FormattedMessage id="store/product-description.collapse.showMore" />
+                )}
               </button>
             </div>
           </div>

@@ -57,6 +57,31 @@ exports[`<InfoCard /> should not render subhead 1`] = `
 </DocumentFragment>
 `;
 
+exports[`<InfoCard /> should render subhead and headline using the RichText component when textMode is set to 'rich-text' 1`] = `
+<DocumentFragment>
+  <div
+    class="infoCardContainer items-center bg-center bb b--muted-4 flex justify-center"
+    data-testid="container"
+    style="background-image: url(my-image.com/image.png); background-size: cover;"
+  >
+    <div
+      class="infoCardTextContainer flex flex-column mw-100 mh8-ns mh4-s w-40-ns items-center"
+    >
+      <div
+        data-testid="rich-text"
+      >
+        This is a headline, and should be inside a rich-text.
+      </div>
+      <div
+        data-testid="rich-text"
+      >
+        This is a subhead, and should be inside a rich-text.
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`<InfoCard /> should render with full mode style 1`] = `
 <DocumentFragment>
   <div

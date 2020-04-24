@@ -9,6 +9,55 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Added `BackToTopButton` Component.
 
+## [3.111.0] - 2020-04-23
+### Added
+- `textMode` prop to the InfoCard component.
+
+## [3.110.2] - 2020-04-20
+### Security
+- Bump versions of dependencies.
+
+## [3.110.1] - 2020-04-16
+### Fixed
+- `ProductImages` zoom out of the first image not working.
+
+## [3.110.0] - 2020-04-13
+### Added
+-  New prop `selectedSeller` to BuyButton.
+
+## [3.109.3] - 2020-04-08
+### Fixed
+- `InfoCard`s with no image not being rendered at all.
+
+## [3.109.2] - 2020-04-07
+### Changed
+- Allow `info-card` background to be loaded lazily.
+
+## [3.109.1] - 2020-04-06
+### Fixed
+- Problem where `InfoCard` component would render `banner` div even if no image was received.
+
+## [3.109.0] - 2020-03-25
+
+### Added
+- färger (sv_SE), farby (sk_SK) and boje (sr_RS) to the array of colors of `SKUSelector`
+
+## [3.108.0] - 2020-03-19
+### Added
+- kolory (pl_PL) and farve (dk_DK) to the array of colors of `SKUSelector`
+
+## [3.107.0] - 2020-03-17
+### Added
+- `showMoreButton`, `content` and `container` CSS Handles to `GradientCollapse`.
+
+## [3.106.0] - 2020-03-16
+### Added
+- Add `selected` modifier to the selected item in SKUSelector.
+
+## [3.105.3] - 2020-03-16
+### Fixed
+- Color name for Romanian.
+
 ## [3.105.2] - 2020-03-13
 ### Fixed
 - Color name for Italian.

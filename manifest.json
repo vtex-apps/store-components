@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store-components",
-  "version": "3.105.2",
+  "version": "3.111.0",
   "title": "VTEX Store Components",
   "defaultLocale": "pt-BR",
   "description": "The VTEX store components for that render apps can use",
@@ -33,6 +33,7 @@
     "vtex.store-image": "0.x",
     "vtex.device-detector": "0.x",
     "vtex.apps-graphql": "2.x",
+    "vtex.rich-text": "0.x",
     "vtex.slider-layout": "0.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
