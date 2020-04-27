@@ -55,29 +55,30 @@
 
 In order to apply CSS customizations on this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| CSS Handles |
-| --- |
-| `carouselContainer` |
-| `carouselCursorDefault` |
-| `carouselGaleryCursor` |
-| `carouselGaleryThumbs` |
-| `carouselIconCaretLeft` |
-| `carouselImagePlaceholder` |
-| `carouselInconCaretRight` |
-| `carouselThumbBorder` |
-| `figure` |
-| `image` |
-| `productImageTag`|
+| CSS Handles                                        |
+| -------------------------------------------------- |
+| `carouselContainer`                                |
+| `carouselCursorDefault`                            |
+| `carouselGaleryCursor`                             |
+| `carouselGaleryThumbs`                             |
+| `carouselIconCaretLeft`                            |
+| `carouselImagePlaceholder`                         |
+| `carouselInconCaretRight`                          |
+| `carouselThumbBorder`                              |
+| `figure`                                           |
+| `image`                                            |
 | `productImagesContainer` (`content` is deprecated) |
-| `productImagesGallerySlide` |
-| `productImagesGallerySwiperContainer` |
-| `productImagesThumbActive` |
-| `productImagesThumbCaret` |
-| `productImagesThumb` |
-| `productImagesThumbsSwiperContainer` |
-| `productVideo` |
-| `swiperCaret` |
-| `thumbImg` |
-| `videoContainer` |
-| `video` |
-| `video`|
+| `productImagesGallerySlide`                        |
+| `productImagesGallerySwiperContainer`              |
+| `productImagesGallerySwiperDot`                    |
+| `productImagesThumb`                               |
+| `productImagesThumbActive`                         |
+| `productImagesThumbCaret`                          |
+| `productImagesThumbsSwiperContainer`               |
+| `productImageTag`                                  |
+| `productVideo`                                     |
+| `swiperCaret`                                      |
+| `thumbImg`                                         |
+| `video`                                            |
+| `video`                                            |
+| `videoContainer`                                   |

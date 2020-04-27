@@ -4,30 +4,47 @@ import debounce from 'debounce'
 import classNames from 'classnames'
 import { path, equals } from 'ramda'
 import ReactResizeDetector from 'react-resize-detector'
-
 import { IconCaret } from 'vtex.store-icons'
 import { withCssHandles } from 'vtex.css-handles'
 
 import Video, { getThumbUrl } from '../Video'
 import ProductImage from '../ProductImage'
-
 import styles from '../../styles.css'
 import './global.css'
+
+import ThumbnailSwiper from './ThumbnailSwiper'
+import {
+  THUMBS_ORIENTATION,
+  THUMBS_POSITION_HORIZONTAL,
+} from '../../utils/enums'
 
 /**
  * ReactIdSwiper cannot be SSRendered, so this is a fake swiper that copies some of its classes and HTML layout and render only the first image of the children array.
  */
-const FakeSwiper = ({ children, containerClass, direction = THUMBS_ORIENTATION.HORIZONTAL }) => {
-  const swiperContainerDirection = direction === THUMBS_ORIENTATION.HORIZONTAL ? 'swiper-container-horizontal' : direction === THUMBS_ORIENTATION.VERTICAL ? 'swiper-container-vertical' : ''
+const FakeSwiper = ({
+  children,
+  containerClass,
+  direction = THUMBS_ORIENTATION.HORIZONTAL,
+}) => {
+  const swiperContainerDirection =
+    direction === THUMBS_ORIENTATION.HORIZONTAL
+      ? 'swiper-container-horizontal'
+      : direction === THUMBS_ORIENTATION.VERTICAL
+      ? 'swiper-container-vertical'
+      : ''
   const childrenArray = React.Children.toArray(children)
   if (childrenArray.length === 0) {
     return null
   }
   const child = childrenArray[0]
   const childClass = path(['props', 'className'], child)
-  const newChildClass = childClass ? `${childClass} swiper-slide-active` : childClass
+  const newChildClass = childClass
+    ? `${childClass} swiper-slide-active`
+    : childClass
   return (
-    <div className={`${containerClass} swiper-container-initialized ${swiperContainerDirection}`}>
+    <div
+      className={`${containerClass} swiper-container-initialized ${swiperContainerDirection}`}
+    >
       <div className="swiper-wrapper">
         {React.cloneElement(child, {
           className: newChildClass,
@@ -41,14 +58,7 @@ const FakeSwiper = ({ children, containerClass, direction = THUMBS_ORIENTATION.H
 const Swiper = window.navigator
   ? require('react-id-swiper/lib/ReactIdSwiper').default
   : FakeSwiper
-
 const SwiperModules = window.navigator ? require('swiper/dist/js/swiper') : {}
-
-import ThumbnailSwiper from './ThumbnailSwiper'
-import {
-  THUMBS_ORIENTATION,
-  THUMBS_POSITION_HORIZONTAL,
-} from '../../utils/enums'
 
 const CSS_HANDLES = [
   'carouselContainer',
@@ -59,6 +69,7 @@ const CSS_HANDLES = [
   'swiperCaretNext',
   'swiperCaretPrev',
   'productImagesThumbCaret',
+  'productImagesGallerySwiperDot',
 ]
 
 const initialState = {
@@ -104,7 +115,10 @@ class Carousel extends Component {
 
   thumbLoadFinish = () => {
     this.thumbLoadCount++
-    if (!this.props.slides || this.thumbLoadCount === this.props.slides.length) {
+    if (
+      !this.props.slides ||
+      this.thumbLoadCount === this.props.slides.length
+    ) {
       this.setState({ thumbsLoaded: true })
     }
   }
@@ -178,11 +192,18 @@ class Carousel extends Component {
   }
 
   renderSlide = (slide, i) => {
-    const { aspectRatio, maxHeight, zoomMode, zoomFactor, zoomProps: legacyZoomProps } = this.props
+    const {
+      aspectRatio,
+      maxHeight,
+      zoomMode,
+      zoomFactor,
+      zoomProps: legacyZoomProps,
+    } = this.props
 
     // Backwards compatibility
     const { zoomType: legacyZoomType } = legacyZoomProps || {}
-    const isZoomDisabled = legacyZoomType === 'no-zoom' || zoomMode === 'disabled'
+    const isZoomDisabled =
+      legacyZoomType === 'no-zoom' || zoomMode === 'disabled'
 
     switch (slide.type) {
       case 'image':
@@ -225,13 +246,14 @@ class Carousel extends Component {
     return {
       modules: [SwiperModules.Pagination, SwiperModules.Navigation],
       containerClass: `swiper-container ${cssHandles.productImagesGallerySwiperContainer}`,
-      ...(slides.length > 1 && showPaginationDots && {
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true,
-          bulletActiveClass: 'c-action-primary swiper-pagination-bullet-active',
-        },
-      }),
+      ...(slides.length > 1 &&
+        showPaginationDots && {
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            bulletActiveClass: `${cssHandles.productImagesGallerySwiperDot} c-action-primary swiper-pagination-bullet-active`,
+          },
+        }),
       ...(slides.length > 1 && {
         navigation: {
           prevEl: '.swiper-caret-prev',
@@ -246,7 +268,9 @@ class Carousel extends Component {
       resistanceRatio: slides.length > 1 ? 0.85 : 0,
       ...(showNavigationArrows && {
         renderNextButton: () => (
-          <span className={`swiper-caret-next pl7 pr2 right-0 ${caretClassName} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretNext}`}>
+          <span
+            className={`swiper-caret-next pl7 pr2 right-0 ${caretClassName} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretNext}`}
+          >
             <IconCaret
               orientation="right"
               size={iconSize}
@@ -255,7 +279,9 @@ class Carousel extends Component {
           </span>
         ),
         renderPrevButton: () => (
-          <span className={`swiper-caret-prev pr7 pl2 left-0 ${caretClassName} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretPrev}`}>
+          <span
+            className={`swiper-caret-prev pr7 pl2 left-0 ${caretClassName} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretPrev}`}
+          >
             <IconCaret
               orientation="left"
               size={iconSize}
@@ -271,12 +297,16 @@ class Carousel extends Component {
         if (this.gallerySwiper !== swiper) {
           this.gallerySwiper = swiper
         }
-      }
+      },
     }
   }
 
   get thumbnailsParams() {
-    const { displayThumbnailsArrows, thumbnailsOrientation, cssHandles } = this.props
+    const {
+      displayThumbnailsArrows,
+      thumbnailsOrientation,
+      cssHandles,
+    } = this.props
 
     const isThumbsVertical =
       thumbnailsOrientation === THUMBS_ORIENTATION.VERTICAL
@@ -356,7 +386,7 @@ class Carousel extends Component {
         if (this.thumbSwiper !== swiper) {
           this.thumbSwiper = swiper
         }
-      }
+      },
     }
   }
 
@@ -405,20 +435,28 @@ class Carousel extends Component {
         swiperParams={this.thumbnailsParams}
         thumbUrls={this.state.thumbUrl}
         position={position}
-        onThumbClick={index => this.gallerySwiper && this.gallerySwiper.slideTo(index)}
+        onThumbClick={index =>
+          this.gallerySwiper && this.gallerySwiper.slideTo(index)
+        }
         thumbnailAspectRatio={thumbnailAspectRatio}
         thumbnailMaxHeight={thumbnailMaxHeight}
       />
     )
 
-    const containerClasses = classNames(cssHandles.carouselContainer, 'relative overflow-hidden w-100', {
-      'flex-ns justify-end-ns': isThumbsVertical &&
-        position === THUMBS_POSITION_HORIZONTAL.LEFT &&
-        hasThumbs,
-      'flex-ns justify-start-ns': isThumbsVertical &&
-        position === THUMBS_POSITION_HORIZONTAL.RIGHT &&
-        hasThumbs,
-    })
+    const containerClasses = classNames(
+      cssHandles.carouselContainer,
+      'relative overflow-hidden w-100',
+      {
+        'flex-ns justify-end-ns':
+          isThumbsVertical &&
+          position === THUMBS_POSITION_HORIZONTAL.LEFT &&
+          hasThumbs,
+        'flex-ns justify-start-ns':
+          isThumbsVertical &&
+          position === THUMBS_POSITION_HORIZONTAL.RIGHT &&
+          hasThumbs,
+      }
+    )
 
     const SliderComponent = slides.length === 1 ? FakeSwiper : Swiper
 
@@ -426,10 +464,14 @@ class Carousel extends Component {
       <div className={containerClasses} aria-hidden="true">
         {isThumbsVertical && thumbnailSwiper}
         <div className={imageClasses}>
+          <div>potato</div>
           <ReactResizeDetector handleHeight onResize={this.updateSwiperSize}>
             <SliderComponent {...this.galleryParams} shouldSwiperUpdate>
               {slides.map((slide, i) => (
-                <div key={i} className={`${cssHandles.productImagesGallerySlide} swiper-slide center-all`}>
+                <div
+                  key={i}
+                  className={`${cssHandles.productImagesGallerySlide} swiper-slide center-all`}
+                >
                   {this.renderSlide(slide, i)}
                 </div>
               ))}
