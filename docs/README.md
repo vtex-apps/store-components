@@ -160,6 +160,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/JNussens"><img src="https://avatars0.githubusercontent.com/u/7662734?v=4" width="100px;" alt=""/><br /><sub><b>Jean Nussenzveig</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=JNussens" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/lucasayb"><img src="https://avatars2.githubusercontent.com/u/17356081?v=4" width="100px;" alt=""/><br /><sub><b>Lucas Antônio Yamamoto Borges</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=lucasayb" title="Code">💻</a></td>
     <td align="center"><a href="https://t.co/LTjWBxRnqE"><img src="https://avatars3.githubusercontent.com/u/28419764?v=4" width="100px;" alt=""/><br /><sub><b>Sebastian Sanchez Vega</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=sebaskun98" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Erislandio"><img src="https://avatars1.githubusercontent.com/u/34255207?v=4" width="100px;" alt=""/><br /><sub><b>Erislandio</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=Erislandio" title="Code">💻</a></td>
   </tr>
 </table>
 
