@@ -94,5 +94,10 @@
     "content": {
       "$ref": "app:vtex.store-image#/definitions/Image"
     }
+  },
+  "back-to-top-button": {
+    "render": "client",
+    "device": "desktop",
+    "component": "BackToTopButton"
   }
 }
