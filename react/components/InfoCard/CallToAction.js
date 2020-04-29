@@ -7,7 +7,7 @@ import { callActionValues } from './SchemaTypes'
 
 const CSS_HANDLES = ['infoCardCallActionContainer', 'infoCardCallActionText']
 
-const CallToAction = ({ mode, text, url }) => {
+const CallToAction = ({ mode, text, url, linkTarget }) => {
   const handles = useCssHandles(CSS_HANDLES)
 
   if (mode === callActionValues.NONE) {
@@ -30,7 +30,11 @@ const CallToAction = ({ mode, text, url }) => {
   }
 
   return (
-    <Link className={`${handles.infoCardCallActionContainer} mt6 mb6`} to={url}>
+    <Link
+      className={`${handles.infoCardCallActionContainer} mt6 mb6`}
+      target={linkTarget}
+      to={url}
+    >
       <ActionWrapper text={text} mode={mode} />
     </Link>
   )
