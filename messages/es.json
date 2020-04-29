@@ -180,5 +180,9 @@
   "admin/editor.product-description.title-prop.title": "Título",
   "admin/editor.search-bar.title": "Barra de búsqueda",
   "admin/editor.search-bar.placeholder.title": "Texto de búsqueda",
-  "store/back-to-top.label": "Volver arriba"
+  "store/back-to-top.label": "Volver arriba",
+  "admin/editor.toTop.title": "Back to top button",
+  "admin/editor.toTop.description": "Al hacer clic, lleva la página a la parte superior",
+  "admin/editor.toTop.topPixel.title": "Número de píxeles",
+  "admin/editor.toTop.topPixel.description": "Al exceder el valor de píxel definido, aparecerá el botón para volver a la parte superior."
 }
