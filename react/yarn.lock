@@ -5652,9 +5652,9 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-"swiper@github:vtex/swiper#4.5.1":
-  version "4.5.1"
-  resolved "https://codeload.github.com/vtex/swiper/tar.gz/c69fde58f538f95904a380e3f9f5c500c26f3dec"
+"swiper@github:vtex/swiper#4.5.2":
+  version "4.5.2"
+  resolved "https://codeload.github.com/vtex/swiper/tar.gz/6a1f202561f8f13d7f4bfdd4689c7770b9bf2b6d"
   dependencies:
     dom7 "^2.1.3"
     ssr-window "^1.0.1"

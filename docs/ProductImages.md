@@ -67,17 +67,18 @@ In order to apply CSS customizations on this and other blocks, follow the instru
 | `carouselThumbBorder` |
 | `figure` |
 | `image` |
-| `productImageTag`|
 | `productImagesContainer` (`content` is deprecated) |
 | `productImagesGallerySlide` |
 | `productImagesGallerySwiperContainer` |
+| `productImagesThumb` |
 | `productImagesThumbActive` |
 | `productImagesThumbCaret` |
-| `productImagesThumb` |
 | `productImagesThumbsSwiperContainer` |
+| `productImageTag`|
 | `productVideo` |
+| `swiperBullet` |
 | `swiperCaret` |
 | `thumbImg` |
-| `videoContainer` |
 | `video` |
 | `video`|
+| `videoContainer` |
