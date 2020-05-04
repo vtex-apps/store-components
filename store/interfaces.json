@@ -97,7 +97,6 @@
   },
   "back-to-top-button": {
     "render": "client",
-    "device": "desktop",
     "component": "BackToTopButton"
   }
 }
