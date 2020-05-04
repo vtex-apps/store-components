@@ -88,6 +88,7 @@ const InfoCard = ({
   callToActionMode,
   callToActionText,
   callToActionUrl,
+  callToActionLinkTarget,
   textPosition,
   textAlignment,
   imageUrl,
@@ -96,6 +97,7 @@ const InfoCard = ({
   intl,
   htmlId,
   textMode,
+  linkTarget,
 }) => {
   const {
     hints: { mobile },
@@ -172,7 +174,7 @@ const InfoCard = ({
     <LinkWrapper
       imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
       extraCondition={!isFullModeStyle}
-      linkProps={{ className: 'no-underline' }}
+      linkProps={{ className: 'no-underline', target: linkTarget }}
     >
       <div
         className={containerClasses}
@@ -218,12 +220,14 @@ const InfoCard = ({
             mode={callToActionMode}
             text={formatIOMessage({ id: callToActionText, intl })}
             url={formatIOMessage({ id: callToActionUrl, intl })}
+            linkTarget={callToActionLinkTarget}
           />
         </div>
         {!isFullModeStyle && (
           <div className={`${handles.infoCardImageContainer} w-50-ns`}>
             <LinkWrapper
               imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
+              linkProps={{ target: linkTarget }}
             >
               <img
                 className={handles.infoCardImage}
@@ -258,6 +262,9 @@ MemoizedInfoCard.propTypes = {
   intl: intlShape,
   htmlId: string,
   textMode: oneOf(getEnumValues(textModeTypes)),
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+  linkTarget: oneOf('_self', '_blank', '_parent', '_top'),
+  callToActionLinkTarget: oneOf('_self', '_blank', '_parent', '_top'),
 }
 
 MemoizedInfoCard.defaultProps = {
@@ -272,6 +279,8 @@ MemoizedInfoCard.defaultProps = {
   mobileImageUrl: '',
   textAlignment: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
   textMode: textModeTypes.TEXT_MODE_HTML.value,
+  linkTarget: '_self',
+  callToActionLinkTarget: '_self',
 }
 
 MemoizedInfoCard.schema = {
