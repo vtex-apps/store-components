@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- `BackToTopButton` showing on mobile
+- `BackToTopButton` not being rendered on mobile devices.
 
 ## [3.114.0] - 2020-05-04
 ### Added
