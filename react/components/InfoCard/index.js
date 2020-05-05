@@ -263,8 +263,8 @@ MemoizedInfoCard.propTypes = {
   htmlId: string,
   textMode: oneOf(getEnumValues(textModeTypes)),
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
-  linkTarget: oneOf('_self', '_blank', '_parent', '_top'),
-  callToActionLinkTarget: oneOf('_self', '_blank', '_parent', '_top'),
+  linkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
+  callToActionLinkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
 }
 
 MemoizedInfoCard.defaultProps = {
