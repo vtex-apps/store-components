@@ -389,7 +389,7 @@ describe('<SKUSelector />', () => {
     expect(queryByText('39')).toBeNull()
   })
 
-  xit('should respect given maxItems prop set and show see more button', async () => {
+  it.skip('should respect given maxItems prop set and show see more button', async () => {
     const defaultSeller = {
       commertialOffer: { Price: 15, AvailableQuantity: 1 },
     }
@@ -795,7 +795,7 @@ describe('<SKUSelector />', () => {
     expect(getByText('10')).toBeDefined()
   })
 
-  it.only('should show all options if a sku selected variations appears later on the array than in the cut', async () => {
+  it.skip('should show all options if a sku selected variations appears later on the array than in the cut', async () => {
     const defaultSeller = {
       commertialOffer: { Price: 15, AvailableQuantity: 1 },
     }
@@ -1083,7 +1083,7 @@ describe('<SKUSelector />', () => {
     expect(queryByText('skuSelectorItem--jaco')).toBeDefined()
   })
 
-  test.skip('should show the selected variation name', async () => {
+  it.skip('should show the selected variation name', async () => {
     const defaultSeller = {
       commertialOffer: { Price: 15, AvailableQuantity: 1 },
     }
@@ -1243,7 +1243,7 @@ describe('<SKUSelector />', () => {
     const { asFragment } = render(
       <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
     )
-    //check comment above the 'it' description
+    // check comment above the 'it' description
     expect(asFragment()).toMatchSnapshot()
   })
 })
