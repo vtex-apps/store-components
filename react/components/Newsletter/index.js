@@ -5,8 +5,9 @@ import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import { Input, Button } from 'vtex.styleguide'
 import { withCssHandles } from 'vtex.css-handles'
-import SUBSCRIBE_NEWSLETTER from './mutations/subscribeNewsletter.graphql'
 import { formatIOMessage } from 'vtex.native-types'
+
+import SUBSCRIBE_NEWSLETTER from './mutations/subscribeNewsletter.graphql'
 
 const EMAIL_REGEX = /^[A-z0-9+_-]+(?:\.[A-z0-9+_-]+)*@(?:[A-z0-9](?:[A-z0-9-]*[A-z0-9])?\.)+[A-z0-9](?:[A-z0-9-]*[A-z0-9])?$/
 const CSS_HANDLES = [
@@ -83,7 +84,14 @@ class Newsletter extends Component {
   }
 
   render() {
-    const { hideLabel, intl, submit, label, placeholder, cssHandles } = this.props
+    const {
+      hideLabel,
+      intl,
+      submit,
+      label,
+      placeholder,
+      cssHandles,
+    } = this.props
     const submitText = formatIOMessage({ id: submit, intl })
     const labelText = formatIOMessage({ id: label, intl })
     const placeholderText = formatIOMessage({ id: placeholder, intl })
@@ -113,7 +121,9 @@ class Newsletter extends Component {
         <div className={`${cssHandles.container} mw9 mr-auto ml-auto pv9`}>
           {this.state.success ? (
             <Fragment>
-              <div className={`${cssHandles.confirmationTitle} t-heading-3 pb4 tc`}>
+              <div
+                className={`${cssHandles.confirmationTitle} t-heading-3 pb4 tc`}
+              >
                 {confirmationTitle}
               </div>
               <div className={`${cssHandles.confirmationText} t-body tc`}>
@@ -143,9 +153,7 @@ class Newsletter extends Component {
                   onChange={this.handleChangeEmail}
                 />
                 <div
-                  className={`${
-                    cssHandles.buttonContainer
-                  } pl4-ns flex-none pt3 pt0-ns`}
+                  className={`${cssHandles.buttonContainer} pl4-ns flex-none pt3 pt0-ns`}
                 >
                   <Button
                     variation="primary"
@@ -170,6 +178,12 @@ class Newsletter extends Component {
   }
 }
 
+const NewsletterWrapper = compose(
+  graphql(SUBSCRIBE_NEWSLETTER, { name: 'subscribeNewsletter' }),
+  withCssHandles(CSS_HANDLES),
+  injectIntl
+)(Newsletter)
+
 Newsletter.defaultProps = {
   hideLabel: false,
   showTerms: false,
@@ -183,9 +197,10 @@ Newsletter.propTypes = {
   submit: PropTypes.string,
   subscribeNewsletter: PropTypes.func.isRequired,
   intl: intlShape,
+  cssHandles: PropTypes.any,
 }
 
-Newsletter.getSchema = () => {
+NewsletterWrapper.getSchema = () => {
   return {
     title: 'admin/editor.newsletter.title',
     description: 'admin/editor.newsletter.description',
@@ -201,8 +216,4 @@ Newsletter.getSchema = () => {
   }
 }
 
-export default compose(
-  graphql(SUBSCRIBE_NEWSLETTER, { name: 'subscribeNewsletter' }),
-  withCssHandles(CSS_HANDLES),
-  injectIntl
-)(Newsletter)
+export default NewsletterWrapper
