@@ -45,6 +45,7 @@ exports[`<SearchBar /> should match snapshot 1`] = `
             </label>
           </div>
         </div>
+        <div />
         <div>
           <div
             class="extension-point-autocomplete-result-list"
