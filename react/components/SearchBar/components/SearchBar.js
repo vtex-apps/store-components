@@ -12,10 +12,9 @@ import {
 import { Overlay } from 'vtex.react-portal'
 import { useCssHandles } from 'vtex.css-handles'
 import { intlShape, defineMessages } from 'react-intl'
+
 import styles from '../styles.css'
-
 import AutocompleteResults from '../../AutocompleteResults'
-
 import AutocompleteInput from './AutocompleteInput'
 
 const CSS_HANDLES = ['searchBarInnerContainer']
@@ -160,6 +159,8 @@ const SearchBar = ({
       : props => <AutocompleteResults {...props} />
   }, [isAutocompleteDeclared])
 
+  const autocompleteContainerRef = useRef(null)
+
   return (
     <div
       ref={container}
@@ -229,9 +230,11 @@ const SearchBar = ({
                   onFocus: openAutocompleteOnFocus ? openMenu : undefined,
                 })}
               />
+              <div ref={autocompleteContainerRef} />
               <Overlay
-                alignment={autocompleteAlignment}
                 fullWindow={autocompleteFullWidth}
+                alignment={autocompleteAlignment}
+                target={autocompleteContainerRef.current}
               >
                 <SelectedAutocompleteResults
                   parentContainer={container}
