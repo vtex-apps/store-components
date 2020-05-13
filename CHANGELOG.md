@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Improve documentation for Buy Button block
+
 ## [3.114.4] - 2020-05-12
 ### Fixed
 - `Autocomplete` closing by clicking on an interactive component inside it.
