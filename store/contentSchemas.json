@@ -26,6 +26,11 @@
           "$ref": "app:vtex.native-types#/definitions/url",
           "default": ""
         },
+        "callToActionLinkTarget": {
+          "title": "admin/editor.info-card.callToActionLinkTarget.title",
+          "enum": ["_self", "_blank"],
+          "enumNames": ["Same tab", "New tab"]
+        },
         "imageUrl": {
           "title": "admin/editor.info-card.imageUrl.title",
           "description": "admin/editor.info-card.imageUrl.description",

@@ -94,6 +94,7 @@
   "admin/editor.info-card.callToActionText.title": "Title of callToActionText property",
   "admin/editor.info-card.callToActionText.description": "Description of callToActionText property",
   "admin/editor.info-card.callToActionUrl.title": "Title of callToActionUrl property",
+  "admin/editor.info-card.callToActionLinkTarget.title": "Title of callToActionLinkTarget property",
   "admin/editor.info-card.callToActionUrl.description": "Description of callToActionUrl property",
   "admin/editor.info-card.imageUrl.title": "Title of imageUrl property",
   "admin/editor.info-card.imageUrl.description": "Description of imageUrl property",

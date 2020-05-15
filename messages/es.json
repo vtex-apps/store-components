@@ -94,6 +94,7 @@
   "admin/editor.info-card.callToActionText.title": "Call to Action",
   "admin/editor.info-card.callToActionText.description": "Texto que se mostrará dentro del componente de llamada a acción",
   "admin/editor.info-card.callToActionUrl.title": "Call to Action URL",
+  "admin/editor.info-card.callToActionLinkTarget.title": "Tipo de Redireccionamiento del Call to Action Link",
   "admin/editor.info-card.callToActionUrl.description": "URL para redirección cuando se produce el CTA",
   "admin/editor.info-card.imageUrl.title": "Imagen",
   "admin/editor.info-card.imageUrl.description": "Imagen a usuario usada en escritorios",
