@@ -96,6 +96,8 @@
   "admin/editor.info-card.callToActionUrl.title": "Call to Action URL",
   "admin/editor.info-card.callToActionLinkTarget.title": "Redirection type of Call to Action Link",
   "admin/editor.info-card.callToActionLinkTarget.description": "Descrição da propriedade callToActionLinkTarget",
+  "admin/editor.info-card.callToActionLinkTarget.blank": "Name of the enum value to the link opens in a new tab",
+  "admin/editor.info-card.callToActionLinkTarget.self": "Name of the enum value to the link opens in the same tab",
   "admin/editor.info-card.callToActionUrl.description": "Url to redirect to when CTA is clicked",
   "admin/editor.info-card.imageUrl.title": "Image",
   "admin/editor.info-card.imageUrl.description": "Image to be used on desktop",
