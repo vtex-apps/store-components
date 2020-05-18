@@ -312,7 +312,6 @@ MemoizedInfoCard.schema = {
       enum: getEnumValues(callToActionLinkTargetTypes),
       enumNames: getEnumNames(callToActionLinkTargetTypes),
       default: callToActionLinkTargetTypes.SAME_TAB.value,
-      isLayout: true,
     },
     callToActionMode: {
       title: 'admin/editor.info-card.callToActionMode.title',
