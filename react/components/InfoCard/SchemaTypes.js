@@ -9,6 +9,11 @@ export const textPostionValues = {
   RIGHT: 'right',
 }
 
+export const callToActionLinkTargetValues = {
+  BLANK: '_blank',
+  SELF: '_self',
+}
+
 export const textAlignmentValues = {
   LEFT: 'left',
   CENTER: 'center',
@@ -44,6 +49,17 @@ export const textPositionTypes = {
   TEXT_POSITION_RIGHT: {
     name: 'admin/editor.info-card.textPosition.right',
     value: textPostionValues.RIGHT,
+  },
+}
+
+export const callToActionLinkTargetTypes = {
+  NEW_TAB: {
+    name: 'admin/editor.info-card.callToActionLinkTarget.blank',
+    value: callToActionLinkTargetValues.BLANK,
+  },
+  SAME_TAB: {
+    name: 'admin/editor.info-card.callToActionLinkTarget.self',
+    value: callToActionLinkTargetValues.SELF,
   },
 }
 
