@@ -26,6 +26,10 @@
           "$ref": "app:vtex.native-types#/definitions/url",
           "default": ""
         },
+        "callToActionLinkTarget": {
+          "title": "admin/editor.info-card.callToActionLinkTarget.title",
+          "description": "admin/editor.info-card.callToActionLinkTarget.description"
+        },
         "imageUrl": {
           "title": "admin/editor.info-card.imageUrl.title",
           "description": "admin/editor.info-card.imageUrl.description",

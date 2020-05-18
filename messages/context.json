@@ -105,6 +105,7 @@
   "admin/editor.info-card.textPosition.center": "Name of enum value to make text at center position",
   "admin/editor.info-card.textPosition.right": "Name of enum value to make text at right position",
   "admin/editor.info-card.callToActionLinkTarget.title": "Title of callToActionLinkTarget property",
+  "admin/editor.info-card.callToActionLinkTarget.description": "Description of callToActionLinkTarget property",
   "admin/editor.info-card.callToActionLinkTarget.blank": "Name of enum value to make link opens in a new tab",
   "admin/editor.info-card.callToActionLinkTarget.self": "Name of enum value to make link opens in the same tab",
   "admin/editor.info-card.textAlignment.left": "Name of enum value to align text to the left",

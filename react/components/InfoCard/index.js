@@ -16,6 +16,7 @@ import CallToAction from './CallToAction'
 import LinkWrapper from './LinkWrapper'
 import {
   textPositionTypes,
+  callToActionLinkTargetTypes,
   textAlignmentTypes,
   callToActionModeTypes,
   textPostionValues,
