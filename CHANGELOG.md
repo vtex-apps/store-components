@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.114.6] - 2020-05-19
+
 ### Added
 
 - Back to Top Button added to readme
