@@ -80,6 +80,7 @@ Below we have a README for each component of this project that explains how to u
 
 - [Animation](Animation.md)
 - [Availability Subscriber](AvailabilitySubscriber.md)
+- [Back To Top Button](BackToTopButton.md)
 - [Buy Button](BuyButton.md)
 - [Categories Highlights](CategoriesHighlights.md)
 - [Collection Badges](CollectionBadges.md)
