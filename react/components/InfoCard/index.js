@@ -16,7 +16,6 @@ import CallToAction from './CallToAction'
 import LinkWrapper from './LinkWrapper'
 import {
   textPositionTypes,
-  callToActionLinkTargetTypes,
   textAlignmentTypes,
   callToActionModeTypes,
   textPostionValues,
@@ -304,14 +303,6 @@ MemoizedInfoCard.schema = {
       enumNames: getEnumNames(textPositionTypes),
       default: textPositionTypes.TEXT_POSITION_LEFT.value,
       isLayout: true,
-    },
-    callToActionLinkTarget: {
-      title: 'admin/editor.info-card.callToActionLinkTarget.title',
-      description: 'admin/editor.info-card.callToActionLinkTarget.description',
-      type: 'string',
-      enum: getEnumValues(callToActionLinkTargetTypes),
-      enumNames: getEnumNames(callToActionLinkTargetTypes),
-      default: callToActionLinkTargetTypes.SAME_TAB.value,
     },
     callToActionMode: {
       title: 'admin/editor.info-card.callToActionMode.title',

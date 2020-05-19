@@ -52,17 +52,6 @@ export const textPositionTypes = {
   },
 }
 
-export const callToActionLinkTargetTypes = {
-  NEW_TAB: {
-    name: 'admin/editor.info-card.callToActionLinkTarget.blank',
-    value: callToActionLinkTargetValues.BLANK,
-  },
-  SAME_TAB: {
-    name: 'admin/editor.info-card.callToActionLinkTarget.self',
-    value: callToActionLinkTargetValues.SELF,
-  },
-}
-
 export const textAlignmentTypes = {
   TEXT_ALIGNMENT_LEFT: {
     name: 'admin/editor.info-card.textAlignment.left',
