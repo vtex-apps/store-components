@@ -88,10 +88,11 @@ const SearchBar = ({
           return
         }
 
+        const query = 'map=ft&_q=' + element.term
         navigate({
           page: 'store.search',
           params: { term: element.term },
-          query: 'map=ft',
+          query: query,
         })
         return
       }
@@ -107,7 +108,7 @@ const SearchBar = ({
       if (element.criteria) {
         // This param is only useful to track terms searched
         // See: https://support.google.com/analytics/answer/1012264
-        const paramForSearchTracking = '&_c=' + terms[0]
+        const paramForSearchTracking = '&_c=' + terms[0] + '&_q=' + terms[0]
 
         page = 'store.search'
         params = { term: terms[0] }

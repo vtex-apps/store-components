@@ -36,10 +36,10 @@ const getLinkProps = element => {
   if (element.criteria) {
     // This param is only useful to track terms searched
     // See: https://support.google.com/analytics/answer/1012264
-    const paramForSearchTracking = '&_c=' + terms[0]
+    const paramForSearchTracking = '&_c=' + terms[0] + '&_q=' + terms[0]
 
     page = 'store.search'
-    params = { term: terms[0] }
+    params = {}
     query = `map=c,ft&rest=${terms.slice(1).join(',')}` + paramForSearchTracking
   }
 
@@ -119,6 +119,7 @@ const AutocompleteResults = ({
   )
 
   const renderSearchByClick = inputValue => {
+    const query = 'map=ft&_q=' + inputValue
     return customSearchPageUrl ? (
       <Link
         className={getListItemClassNames({
@@ -133,7 +134,7 @@ const AutocompleteResults = ({
       <Link
         page="store.search"
         params={{ term: inputValue }}
-        query="map=ft"
+        query={query}
         className={getListItemClassNames({
           itemIndex: 0,
           highlightedIndex,

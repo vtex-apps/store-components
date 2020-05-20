@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Support for the new free text search URL on the `SearchBar`.
 
 ## [3.116.3] - 2020-06-04
 ### Changed
@@ -46,9 +48,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Back to Top Button added to readme
 
 ## [3.114.5] - 2020-05-13
-
 ### Fixed
-
 - Improve documentation for Buy Button block
 
 ## [3.114.4] - 2020-05-12
