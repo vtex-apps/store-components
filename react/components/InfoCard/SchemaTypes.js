@@ -9,11 +9,6 @@ export const textPostionValues = {
   RIGHT: 'right',
 }
 
-export const callToActionLinkTargetValues = {
-  BLANK: '_blank',
-  SELF: '_self',
-}
-
 export const textAlignmentValues = {
   LEFT: 'left',
   CENTER: 'center',
