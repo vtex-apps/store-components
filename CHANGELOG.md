@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Support for the new free text search URL on the `SearchBar`.
+- Support for the new full text search URL on the `SearchBar`.
 
 ## [3.116.3] - 2020-06-04
 ### Changed
