@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Fixed Product Price block documentation by addind a deprecation badge and disclaimer.
+- Fixed Product Price block documentation by adding a deprecation badge and disclaimer.
 
 ## [3.115.0] - 2020-05-20
 ### Added
