@@ -57,7 +57,7 @@ Below, we describe the namespace that are defined in the `Newsletter`.
 | `inputGroup` | Element that wraps input | [index](./index.js)
 | `buttonContainer` | Element that wraps the button | [index](./index.js)
 | `label` | Label of the input | [index](./index.js)
-| `error` | Error messsage | [index](./index.js)
+| `error` | Error message | [index](./index.js)
 | `confirmation` | Class added to `newsletter` when user submit email | [index](./index.js)
 | `confirmationTitle` | Title showed when user submit email | [index](./index.js)
 | `confirmationText` | Text showed when user submit email | [index](./index.js)

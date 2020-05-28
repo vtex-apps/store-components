@@ -70,7 +70,7 @@ The SKU Selector is a Product Details Page block and it is responsible for displ
 | ----------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `"default"` | default | Displays all variations like the image variations                                                                                  |
 | `"select"`  | select  | Displays all variations, except for image variations as `Select`components                                                         |
-| `"slider"`  | slider  | Displays all variations in a slider when the number of available options in greater then the the value of `sliderDisplayThreshold` |
+| `"slider"`  | slider  | Displays all variations in a slider when the number of available options in greater than the the value of `sliderDisplayThreshold` |
 
 - Possible values for `initialSelection`:
 
