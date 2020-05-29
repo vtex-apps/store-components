@@ -11,16 +11,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Brand image link changed to brand slug instead of brand name.
 
+### Added
+- New CSS handle `specificationItemProperty` plus the name of the specification.
+
 ## [3.115.2] - 2020-05-29
-
 ### Fixed
-
 - Revert release v3.110.1 that was making images to not load in Chrome 83.
 
 ## [3.115.1] - 2020-05-28
-
 ### Fixed
-
 - Fixed Product Price block documentation by adding a deprecation badge and disclaimer.
 
 ### Added
