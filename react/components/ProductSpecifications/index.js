@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react'
+import slugify from 'slugify'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import HtmlParser from 'react-html-parser'
@@ -42,6 +43,15 @@ const ProductSpecifications = ({
       (collapsible === 'mobileOnly' && isMobile) ||
       (collapsible === 'desktopOnly' && !isMobile)
   )
+
+  const toSlug = str => {
+    const stringWithNoSpecialCharacters = str.replace(/[^\w+&\s-_]/g, '')
+
+    const slugified =
+      slugify(stringWithNoSpecialCharacters, { lower: true }) || ''
+
+    return slugified
+  }
 
   const handleTabChange = tabIndex => {
     setCurrentTab(tabIndex)
@@ -128,7 +138,7 @@ const ProductSpecifications = ({
             <td
               className={`${applyModifiers(
                 handles.specificationItemProperty,
-                specification.property.replace(/\W+/g, '_')
+                toSlug(specification.property)
               )}
                w-50 b--muted-4 bb pa5`}
             >
@@ -137,7 +147,7 @@ const ProductSpecifications = ({
             <td
               className={`${applyModifiers(
                 handles.specificationItemSpecifications,
-                specification.specifications.replace(/\W+/g, '_')
+                toSlug(specification.property)
               )} w-50 b--muted-4 bb pa5`}
             >
               {HtmlParser(specification.specifications)}
