@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - New CSS handle `specificationItemProperty` plus the name of the specification.
 
+## [3.115.1] - 2020-05-28
+### Fixed
+
+- Fixed Product Price block documentation by adding a deprecation badge and disclaimer.
+
 ## [3.115.0] - 2020-05-20
 ### Added
 - Option to edit `callToActionLinkTarget` prop from the InfoCard on site editor.
