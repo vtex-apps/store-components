@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.115.2] - 2020-05-29
+
 ### Fixed
 
 - Revert release v3.110.1 that was making images to not load in Chrome 83.
