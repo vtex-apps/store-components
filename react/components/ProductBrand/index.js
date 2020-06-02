@@ -87,10 +87,10 @@ const ProductBrand = ({
       {query => {
         const { data } = query
         if (data && data.brand) {
-          const { imageUrl } = data.brand
+          const { imageUrl, slug } = data.brand
           if (imageUrl) {
             const dpi = (window && window.devicePixelRatio) || 1
-            const logoLink = '/' + brandName + '/b'
+            const logoLink = '/' + slug + '/b'
             const logoImage = (
               <img
                 className={`${handles.productBrandLogo}`}

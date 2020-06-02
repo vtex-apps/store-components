@@ -16,6 +16,7 @@ const mocks = [
     result: {
       data: {
         brand: {
+          slug: 'billabong',
           imageUrl: '/220310/billabong.jpg'
         }
       },

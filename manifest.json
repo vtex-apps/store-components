@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store-components",
-  "version": "3.115.1",
+  "version": "3.115.3",
   "title": "VTEX Store Components",
   "defaultLocale": "pt-BR",
   "description": "The VTEX store components for that render apps can use",
@@ -12,9 +12,6 @@
     "docs": "0.x"
   },
   "mustUpdateAt": "2019-04-02",
-  "scripts": {
-    "postreleasy": "vtex publish --verbose"
-  },
   "dependencies": {
     "vtex.native-types": "0.x",
     "vtex.shipping-estimate-translator": "2.x",
