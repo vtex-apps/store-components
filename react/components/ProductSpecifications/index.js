@@ -3,7 +3,7 @@ import slugify from 'slugify'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import HtmlParser from 'react-html-parser'
-import { useCssHandles, applyModifiers } from 'vtex.css-handles'
+import { useCssHandles } from 'vtex.css-handles'
 import { Tabs, Tab } from 'vtex.styleguide'
 import { useDevice } from 'vtex.device-detector'
 
@@ -43,15 +43,6 @@ const ProductSpecifications = ({
       (collapsible === 'mobileOnly' && isMobile) ||
       (collapsible === 'desktopOnly' && !isMobile)
   )
-
-  const toSlug = str => {
-    const stringWithNoSpecialCharacters = str.replace(/[^\w+&\s-_]/g, '')
-
-    const slugified =
-      slugify(stringWithNoSpecialCharacters, { lower: true }) || ''
-
-    return slugified
-  }
 
   const handleTabChange = tabIndex => {
     setCurrentTab(tabIndex)
@@ -136,19 +127,14 @@ const ProductSpecifications = ({
         {specificationItems.map((specification, i) => (
           <tr key={i}>
             <td
-              className={`${applyModifiers(
-                handles.specificationItemProperty,
-                toSlug(specification.property)
-              )}
-               w-50 b--muted-4 bb pa5`}
+              data-specification={specification.property}
+              className={`${handles.specificationItemProperty} w-50 b--muted-4 bb pa5`}
             >
               {HtmlParser(specification.property)}
             </td>
             <td
-              className={`${applyModifiers(
-                handles.specificationItemSpecifications,
-                toSlug(specification.property)
-              )} w-50 b--muted-4 bb pa5`}
+              data-specification={specification.specifications}
+              className={`${handles.specificationItemSpecifications} w-50 b--muted-4 bb pa5`}
             >
               {HtmlParser(specification.specifications)}
             </td>

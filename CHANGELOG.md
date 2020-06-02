@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- New CSS handle `specificationItemProperty` plus the name of the specification.
+- New data attribute on product specification with the name of the specification.
 
 ## [3.115.3] - 2020-06-02
 ### Fixed
