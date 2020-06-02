@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react'
-import slugify from 'slugify'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import HtmlParser from 'react-html-parser'
