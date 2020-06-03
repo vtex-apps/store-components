@@ -44,11 +44,13 @@ exports[`<ProductSpecifications /> component should match snapshot with table vi
             <tr>
               <td
                 class="specificationItemProperty w-50 b--muted-4 bb pa5"
+                data-specification="test"
               >
                 test
               </td>
               <td
                 class="specificationItemSpecifications w-50 b--muted-4 bb pa5"
+                data-specification="value"
               >
                 value
               </td>

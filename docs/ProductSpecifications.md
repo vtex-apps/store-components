@@ -1,4 +1,4 @@
-📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion). 
+📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
 # Product Specifications
 
@@ -51,7 +51,7 @@
 
 In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| CSS Handles                                |
+| CSS Handles                               |
 | ----------------------------------------- |
 | `specificationsTitle`                     |
 | `specificationsTableContainer`            |

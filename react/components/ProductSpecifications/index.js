@@ -54,12 +54,16 @@ const ProductSpecifications = ({
     const mappedSpecifications = specifications.map(specification => {
       return {
         property: specification.name,
-        specifications: specification.values.join(", "),
+        specifications: specification.values.join(', '),
       }
     })
 
-    if (visibleSpecifications && visibleSpecifications.length > 0
-      && hiddenSpecifications && hiddenSpecifications.length > 0) {
+    if (
+      visibleSpecifications &&
+      visibleSpecifications.length > 0 &&
+      hiddenSpecifications &&
+      hiddenSpecifications.length > 0
+    ) {
       console.warn(
         'A product-specification block is using both visibleSpecifications and hiddenSpecifications props at the same time. Please choose only one of them.'
       )
@@ -122,11 +126,13 @@ const ProductSpecifications = ({
         {specificationItems.map((specification, i) => (
           <tr key={i}>
             <td
+              data-specification={specification.property}
               className={`${handles.specificationItemProperty} w-50 b--muted-4 bb pa5`}
             >
               {HtmlParser(specification.property)}
             </td>
             <td
+              data-specification={specification.specifications}
               className={`${handles.specificationItemSpecifications} w-50 b--muted-4 bb pa5`}
             >
               {HtmlParser(specification.specifications)}
