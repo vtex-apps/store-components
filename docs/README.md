@@ -165,6 +165,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/BeatrizMiranda"><img src="https://avatars2.githubusercontent.com/u/28959326?v=4" width="100px;" alt=""/><br /><sub><b>Beatriz Miranda</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=BeatrizMiranda" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Jayendra88"><img src="https://avatars1.githubusercontent.com/u/2637457?v=4" width="100px;" alt=""/><br /><sub><b>Jayendra</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=Jayendra88" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/pgrimaud"><img src="https://avatars1.githubusercontent.com/u/1866496?v=4" width="100px;" alt=""/><br /><sub><b>Pierre Grimaud</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=pgrimaud" title="Documentation">📖</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-enable -->
