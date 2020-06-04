@@ -1,107 +1,119 @@
-import React, { Component } from 'react'
+import React, { useState, useCallback } from 'react'
+import { useIntl } from 'react-intl'
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape } from 'react-intl'
+import { ModalContext } from 'vtex.modal-layout'
+import { useRuntime } from 'vtex.render-runtime'
 
 import SearchBar from './components/SearchBar'
 
-/** Canonical search bar that uses the autocomplete endpoint to search for a specific product*/
-class SearchBarContainer extends Component {
-  state = {
-    inputValue: '',
-  }
+const { useModalDispatch } = ModalContext
 
-  handleClearInput = () => {
-    this.setState({ inputValue: '' })
-  }
+/**
+ * Canonical search bar that uses the autocomplete endpoint to search for a specific product
+ * */
+function SearchBarContainer(props) {
+  const intl = useIntl()
+  const {
+    compactMode,
+    hasIconLeft,
+    iconClasses,
+    autoFocus,
+    maxWidth,
+    attemptPageTypeSearch,
+    customSearchPageUrl,
+    placeholder = intl.formatMessage({
+      id: 'store/search.placeholder',
+    }),
+    autocompleteAlignment = 'right',
+    openAutocompleteOnFocus = false,
+    blurOnSubmit = false,
+    submitOnIconClick,
+    displayMode = 'clear-button',
+    minSearchTermLength,
+    autocompleteFullWidth = false,
+  } = props
 
-  handleGoToSearchPage = () => {
-    const search = this.state.inputValue
-    const { customSearchPageUrl } = this.props
+  const modalDispatch = useModalDispatch()
+  const [inputValue, setInputValue] = useState()
+  const { navigate } = useRuntime()
 
-    if (this.props.attemptPageTypeSearch) {
+  const closeModal = useCallback(() => {
+    if (modalDispatch) {
+      modalDispatch({
+        type: 'CLOSE_MODAL',
+      })
+    }
+  }, [modalDispatch])
+
+  const handleClearInput = useCallback(() => {
+    setInputValue('')
+  }, [])
+
+  const handleInputChange = useCallback(event => {
+    setInputValue(event.target.value)
+  }, [])
+
+  const handleGoToSearchPage = useCallback(() => {
+    const search = inputValue
+    if (attemptPageTypeSearch) {
       window.location.href = `/${search}`
+      closeModal()
       return
     }
 
     if (customSearchPageUrl) {
-      this.context.navigate({
+      navigate({
         to: customSearchPageUrl.replace(/\$\{term\}/g, search),
       })
-
+      closeModal()
       return
     }
 
     // This param is only useful to track terms searched
     // See: https://support.google.com/analytics/answer/1012264
-    const paramForSearchTracking = '&_q=' + search
+    const paramForSearchTracking = `&_q=${search}`
 
-    this.setState({ inputValue: '' })
-    this.context.navigate({
+    setInputValue('')
+    navigate({
       page: 'store.search',
       params: { term: search },
-      query: 'map=ft' + paramForSearchTracking,
+      query: `map=ft${paramForSearchTracking}`,
       fallbackToWindowLocation: false,
     })
-  }
+    closeModal()
+  }, [
+    inputValue,
+    attemptPageTypeSearch,
+    customSearchPageUrl,
+    navigate,
+    closeModal,
+  ])
 
-  handleInputChange = event => {
-    this.setState({ inputValue: event.target.value })
-  }
-
-  render() {
-    const {
-      intl,
-      compactMode,
-      hasIconLeft,
-      iconClasses,
-      autoFocus,
-      maxWidth,
-      attemptPageTypeSearch,
-      customSearchPageUrl,
-      placeholder = intl.formatMessage({
-        id: 'store/search.placeholder',
-      }),
-      autocompleteAlignment = 'right',
-      openAutocompleteOnFocus = false,
-      blurOnSubmit = false,
-      submitOnIconClick,
-      displayMode = 'clear-button',
-      minSearchTermLength,
-      autocompleteFullWidth = false,
-    } = this.props
-
-    const { inputValue } = this.state
-
-    return (
-      <SearchBar
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus={autoFocus}
-        placeholder={placeholder}
-        inputValue={inputValue}
-        onClearInput={this.handleClearInput}
-        onGoToSearchPage={this.handleGoToSearchPage}
-        onInputChange={this.handleInputChange}
-        compactMode={compactMode}
-        hasIconLeft={hasIconLeft}
-        iconClasses={iconClasses}
-        maxWidth={maxWidth}
-        attemptPageTypeSearch={attemptPageTypeSearch}
-        customSearchPageUrl={customSearchPageUrl}
-        autocompleteAlignment={autocompleteAlignment}
-        openAutocompleteOnFocus={openAutocompleteOnFocus}
-        blurOnSubmit={blurOnSubmit}
-        submitOnIconClick={submitOnIconClick}
-        displayMode={displayMode}
-        minSearchTermLength={minSearchTermLength}
-        autocompleteFullWidth={autocompleteFullWidth}
-        intl={intl}
-      />
-    )
-  }
-}
-
-SearchBarContainer.contextTypes = {
-  navigate: PropTypes.func,
+  return (
+    <SearchBar
+      // eslint-disable-next-line jsx-a11y/no-autofocus
+      autoFocus={autoFocus}
+      placeholder={placeholder}
+      inputValue={inputValue}
+      onClearInput={handleClearInput}
+      onGoToSearchPage={handleGoToSearchPage}
+      onInputChange={handleInputChange}
+      compactMode={compactMode}
+      hasIconLeft={hasIconLeft}
+      iconClasses={iconClasses}
+      maxWidth={maxWidth}
+      attemptPageTypeSearch={attemptPageTypeSearch}
+      customSearchPageUrl={customSearchPageUrl}
+      autocompleteAlignment={autocompleteAlignment}
+      openAutocompleteOnFocus={openAutocompleteOnFocus}
+      blurOnSubmit={blurOnSubmit}
+      submitOnIconClick={submitOnIconClick}
+      displayMode={displayMode}
+      minSearchTermLength={minSearchTermLength}
+      autocompleteFullWidth={autocompleteFullWidth}
+      intl={intl}
+    />
+  )
 }
 
 SearchBarContainer.schema = {
@@ -109,8 +121,6 @@ SearchBarContainer.schema = {
 }
 
 SearchBarContainer.propTypes = {
-  /* Internationalization */
-  intl: intlShape.isRequired,
   /** Indentify when use the compact version of the component */
   compactMode: PropTypes.bool,
   /** Identify if the search icon is on left or right position */
@@ -143,4 +153,4 @@ SearchBarContainer.propTypes = {
   autocompleteFullWidth: PropTypes.bool,
 }
 
-export default injectIntl(SearchBarContainer)
+export default SearchBarContainer
