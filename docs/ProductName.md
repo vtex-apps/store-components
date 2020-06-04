@@ -2,7 +2,7 @@
 
 # Product Name
 
-The `ProductName` is a block responsible for **displaying the product name** along other informations such as **SKU** or **brand**.
+The `ProductName` is a block responsible for **displaying the product name** along other information such as **SKU** or **brand**.
 
 ![image](https://user-images.githubusercontent.com/284515/70231165-8f6b4200-1738-11ea-9f06-3583c08fc693.png)
 

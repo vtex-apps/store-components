@@ -16,7 +16,7 @@ The Shipping Simulator block **estimates the shipping fee** based on a zip code 
   }
 ```
 
-2. Add the `shipping-simulator` block to any block bellow store.product. For example:
+2. Add the `shipping-simulator` block to any block below store.product. For example:
 
 ```json
   "store.product": {

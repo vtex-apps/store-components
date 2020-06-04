@@ -107,7 +107,7 @@ Below we have a README for each component of this project that explains how to u
 
 ## Creating a new component
 
-To start your development, create a new folder on react/components. Thats where your source code will be stored. Also create a new js file on /react, this file should be used to expose your component, like:
+To start your development, create a new folder on react/components. That's where your source code will be stored. Also create a new js file on /react, this file should be used to expose your component, like:
 
 ### Project structure
 
