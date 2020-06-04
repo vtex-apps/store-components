@@ -34,7 +34,7 @@ function SearchBarContainer(props) {
   } = props
 
   const modalDispatch = useModalDispatch()
-  const [inputValue, setInputValue] = useState()
+  const [inputValue, setInputValue] = useState('')
   const { navigate } = useRuntime()
 
   const closeModal = useCallback(() => {
