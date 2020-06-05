@@ -27,9 +27,9 @@ const ProductImages = ({
   contentOrder = 'images-first',
   zoomMode,
   zoomFactor,
+  contentType = 'all',
   // Deprecated
   zoomProps,
-  contentType = 'all',
 }) => {
   if (hiddenImages && !Array.isArray(hiddenImages)) {
     hiddenImages = [hiddenImages]
@@ -39,30 +39,30 @@ const ProductImages = ({
     hiddenImages && hiddenImages.map(text => new RegExp(text, 'i'))
   const handles = useCssHandles(CSS_HANDLES)
 
-  const images =
-    contentType !== 'videos'
-      ? allImages
-          .filter(
-            image =>
-              !image.imageLabel ||
-              !excludeImageRegexes.some(regex => regex.test(image.imageLabel))
-          )
-          .map(image => ({
-            type: 'image',
-            url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
-            alt: image.imageText,
-            thumbUrl: image.thumbnailUrl || image.imageUrl,
-          }))
-      : []
-
-  const videos =
-    contentType !== 'images'
-      ? allVideos.map(video => ({
-          type: 'video',
-          src: video.videoUrl,
-          thumbWidth: 300,
+  const shouldIncludeImages = contentType !== 'videos'
+  const images = shouldIncludeImages
+    ? allImages
+        .filter(
+          image =>
+            !image.imageLabel ||
+            !excludeImageRegexes.some(regex => regex.test(image.imageLabel))
+        )
+        .map(image => ({
+          type: 'image',
+          url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
+          alt: image.imageText,
+          thumbUrl: image.thumbnailUrl || image.imageUrl,
         }))
-      : []
+    : []
+
+  const shouldIncludeVideos = contentType !== 'images'
+  const videos = shouldIncludeVideos
+    ? allVideos.map(video => ({
+        type: 'video',
+        src: video.videoUrl,
+        thumbWidth: 300,
+      }))
+    : []
 
   const showVideosFirst = contentOrder === 'videos-first'
 
