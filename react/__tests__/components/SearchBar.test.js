@@ -1,6 +1,5 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
-import { MockedProvider } from '@apollo/react-testing'
 
 import SearchBar from '../../SearchBar'
 import autocomplete from '../../components/AutocompleteResults/queries/autocomplete.gql'
@@ -23,7 +22,6 @@ describe('<SearchBar />', () => {
   const renderComponent = (customProps = {}) => {
     return render(<SearchBar {...customProps} />, {
       graphql: { mocks: [mockedResult] },
-      MockedProvider,
     })
   }
 

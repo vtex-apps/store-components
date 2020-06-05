@@ -1,5 +1,4 @@
 import React from 'react'
-import { MockedProvider } from '@apollo/react-testing'
 import { fireEvent, waitForElement, render } from '@vtex/test-tools/react'
 
 import Newsletter from '../../components/Newsletter'
@@ -17,8 +16,7 @@ test('should have label, input and submit', () => {
       placeholder={placeholderTextId}
       label={labelTextId}
       submit={submitTextId}
-    />,
-    { MockedProvider }
+    />
   )
 
   const input = getByLabelText(labelTextId)
@@ -34,8 +32,7 @@ test('should add error message when user types wrong email', () => {
       placeholder={placeholderTextId}
       label={labelTextId}
       submit={submitTextId}
-    />,
-    { MockedProvider }
+    />
   )
 
   const mockedInput = getByLabelText(labelTextId)
@@ -72,7 +69,6 @@ test('should call mutation', async () => {
     />,
     {
       graphql: { mocks, addTypename: false },
-      MockedProvider,
     }
   )
 
@@ -107,7 +103,6 @@ test('should handle mutation error', async () => {
     />,
     {
       graphql: { mocks, addTypename: false },
-      MockedProvider,
     }
   )
 

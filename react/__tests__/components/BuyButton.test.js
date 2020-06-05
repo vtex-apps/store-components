@@ -1,5 +1,4 @@
 import React from 'react'
-import { MockedProvider } from '@apollo/react-testing'
 import { fireEvent, wait, render } from '@vtex/test-tools/react'
 
 import BuyButton from '../../BuyButton'
@@ -28,7 +27,6 @@ describe('<BuyButton />', () => {
 
     return render(<BuyButton {...props}>{text}</BuyButton>, {
       graphql: { mocks },
-      MockedProvider,
     })
   }
 
