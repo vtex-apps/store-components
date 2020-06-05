@@ -111,7 +111,6 @@ function SearchBarContainer(props) {
       displayMode={displayMode}
       minSearchTermLength={minSearchTermLength}
       autocompleteFullWidth={autocompleteFullWidth}
-      intl={intl}
     />
   )
 }

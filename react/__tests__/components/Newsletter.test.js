@@ -1,6 +1,7 @@
 import React from 'react'
-import { render, fireEvent, waitForElement } from '@vtex/test-tools/react'
 import { MockedProvider } from '@apollo/react-testing'
+import { fireEvent, waitForElement, render } from '@vtex/test-tools/react'
+
 import Newsletter from '../../components/Newsletter'
 import subscribeNewsletter from '../../components/Newsletter/mutations/subscribeNewsletter.graphql'
 
@@ -53,7 +54,7 @@ test('should call mutation', async () => {
     {
       request: {
         query: subscribeNewsletter,
-        variables: { email: email },
+        variables: { email },
       },
       result: {
         data: {
@@ -71,7 +72,7 @@ test('should call mutation', async () => {
     />,
     {
       graphql: { mocks, addTypename: false },
-      MockedProvider
+      MockedProvider,
     }
   )
 

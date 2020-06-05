@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useContext, useCallback, useState, useEffect } from 'react'
-import { intlShape, FormattedMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 import { path } from 'ramda'
 import ContentLoader from 'react-content-loader'
 import { useRuntime } from 'vtex.render-runtime'
@@ -340,7 +340,7 @@ BuyButton.propTypes = {
   /** Set style to large */
   large: PropTypes.bool,
   /** Internationalization */
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
   /** If the product is available or not*/
   available: PropTypes.bool,
   /** If it should a tooltip when you click the button but there's no SKU selected */

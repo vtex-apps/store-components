@@ -1,6 +1,6 @@
 import React from 'react'
-import { MockedProvider } from '@apollo/react-testing'
 import { render } from '@vtex/test-tools/react'
+import { MockedProvider } from '@apollo/react-testing'
 
 import ShippingSimulator from '../../ShippingSimulator'
 
@@ -11,7 +11,10 @@ describe('<ShippingSimulator /> component', () => {
       ...customProps,
     }
 
-    return render(<ShippingSimulator {...props} />, { graphql: { mocks: [] }, MockedProvider })
+    return render(<ShippingSimulator {...props} />, {
+      graphql: { mocks: [] },
+      MockedProvider,
+    })
   }
 
   it('should be able to mount and not break', () => {

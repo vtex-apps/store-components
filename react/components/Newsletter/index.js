@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { graphql } from 'react-apollo'
 import { compose } from 'ramda'
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl } from 'react-intl'
 import { Input, Button } from 'vtex.styleguide'
 import { withCssHandles } from 'vtex.css-handles'
 import { formatIOMessage } from 'vtex.native-types'
@@ -196,7 +196,7 @@ Newsletter.propTypes = {
   placeholder: PropTypes.string,
   submit: PropTypes.string,
   subscribeNewsletter: PropTypes.func.isRequired,
-  intl: intlShape,
+  intl: PropTypes.object,
   cssHandles: PropTypes.any,
 }
 

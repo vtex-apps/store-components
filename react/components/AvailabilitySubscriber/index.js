@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { ApolloConsumer } from 'react-apollo'
-import { injectIntl, intlShape } from 'react-intl'
-
+import { injectIntl } from 'react-intl'
 import { Button, Input } from 'vtex.styleguide'
 
 import ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION from './mutations/addToAvailabilitySubscriberMutation.gql'
@@ -29,7 +28,7 @@ class AvailabilitySubscriber extends Component {
   static propTypes = {
     /** The id of the current product sku */
     skuId: PropTypes.string.isRequired,
-    intl: intlShape.isRequired,
+    intl: PropTypes.object.isRequired,
   }
 
   validateEmail = email => {

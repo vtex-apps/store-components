@@ -1,8 +1,8 @@
 import classNames from 'classnames'
-import { bool, string, oneOf } from 'prop-types'
+import PropTypes, { bool, string, oneOf } from 'prop-types'
 import React, { memo, useMemo } from 'react'
 import { values } from 'ramda'
-import { injectIntl, intlShape } from 'react-intl'
+import { injectIntl } from 'react-intl'
 import insane from 'insane'
 import {
   useRuntime,
@@ -259,7 +259,7 @@ MemoizedInfoCard.propTypes = {
   mobileImageUrl: string,
   textAlignment: oneOf(getEnumValues(textAlignmentTypes)),
   imageActionUrl: string,
-  intl: intlShape,
+  intl: PropTypes.object,
   htmlId: string,
   textMode: oneOf(getEnumValues(textModeTypes)),
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a

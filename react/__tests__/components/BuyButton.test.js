@@ -1,6 +1,6 @@
 import React from 'react'
-import { render, fireEvent, wait } from '@vtex/test-tools/react'
 import { MockedProvider } from '@apollo/react-testing'
+import { fireEvent, wait, render } from '@vtex/test-tools/react'
 
 import BuyButton from '../../BuyButton'
 import addToCartMutation from '../../components/BuyButton/mutations/addToCart.gql'
@@ -13,10 +13,10 @@ const mocks = [
     },
     result: {
       data: {
-        addToCart: {}
-      }
-    }
-  }
+        addToCart: {},
+      },
+    },
+  },
 ]
 
 describe('<BuyButton />', () => {
@@ -26,7 +26,10 @@ describe('<BuyButton />', () => {
       ...customProps,
     }
 
-    return render(<BuyButton {...props}>{text}</BuyButton>, { graphql: { mocks }, MockedProvider })
+    return render(<BuyButton {...props}>{text}</BuyButton>, {
+      graphql: { mocks },
+      MockedProvider,
+    })
   }
 
   it('should be rendered', async () => {
@@ -69,7 +72,7 @@ describe('<BuyButton />', () => {
       },
       buttonText
     )
-    
+
     await wait(() => {
       fireEvent.click(getByText(buttonText))
     })

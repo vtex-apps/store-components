@@ -14,7 +14,7 @@ describe('<AvailabilitySubscriber />', () => {
 
     return render(<AvailabilitySubscriber {...props} />, {
       graphql: { mocks: [] },
-      MockedProvider
+      MockedProvider,
     })
   }
 

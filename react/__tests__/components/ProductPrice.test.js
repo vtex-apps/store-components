@@ -1,8 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { render } from '@vtex/test-tools/react'
 
-import ProductPrice from './../../ProductPrice'
+import ProductPrice from '../../ProductPrice'
 
 describe('<ProductPrice />', () => {
   const defaultProps = {
