@@ -11,7 +11,7 @@ import {
 } from 'vtex.render-runtime'
 import { Overlay } from 'vtex.react-portal'
 import { useCssHandles } from 'vtex.css-handles'
-import { intlShape, defineMessages } from 'react-intl'
+import { defineMessages, useIntl } from 'react-intl'
 
 import styles from '../styles.css'
 import AutocompleteResults from '../../AutocompleteResults'
@@ -49,8 +49,8 @@ const SearchBar = ({
   displayMode,
   minSearchTermLength,
   autocompleteFullWidth,
-  intl,
 }) => {
+  const intl = useIntl()
   const container = useRef()
   const { navigate } = useRuntime()
   const handles = useCssHandles(CSS_HANDLES)
@@ -301,8 +301,6 @@ SearchBar.propTypes = {
   minSearchTermLength: PropTypes.number,
   /** If true, the autocomplete will fill the whole window horizontally */
   autocompleteFullWidth: PropTypes.bool,
-  /* Internationalization */
-  intl: intlShape.isRequired,
 }
 
 export default SearchBar

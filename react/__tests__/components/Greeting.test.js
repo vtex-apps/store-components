@@ -1,6 +1,5 @@
 import React from 'react'
-import { render, wait} from '@vtex/test-tools/react'
-import { MockedProvider } from '@apollo/react-testing'
+import { render, wait } from '@vtex/test-tools/react'
 
 import orderFormQuery from '../../components/Greeting/queries/orderForm.gql'
 
@@ -31,7 +30,7 @@ describe('<Greeting /> component', () => {
       ...customProps,
     }
 
-    return render(<Greeting {...props} />, { graphql: { mocks }, MockedProvider })
+    return render(<Greeting {...props} />, { graphql: { mocks } })
   }
 
   it('should render name in orderForm', async () => {

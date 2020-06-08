@@ -1,10 +1,12 @@
 import React from 'react'
 import { Dropdown } from 'vtex.styleguide'
-import { injectIntl, InjectedIntlProps, defineMessages } from 'react-intl'
+import { injectIntl, defineMessages, IntlShape } from 'react-intl'
+
 import styles from '../styles.css'
 import { DisplayOption } from '../types'
 
-interface VariationSelectModeProps extends InjectedIntlProps {
+interface VariationSelectModeProps {
+  intl: IntlShape
   selectedItem: string | null
   displayOptions: DisplayOption[]
 }
@@ -13,15 +15,11 @@ const messages = defineMessages({
   selectPlaceholder: {
     id: 'store/sku-selector.select.placeholder',
     defaultMessage: '',
-  }
+  },
 })
 
 function SelectVariationMode(props: VariationSelectModeProps) {
-  const {
-    intl,
-    selectedItem,
-    displayOptions,
-  } = props
+  const { intl, selectedItem, displayOptions } = props
 
   const options = displayOptions.map(op => ({
     label: op.label,
@@ -29,11 +27,13 @@ function SelectVariationMode(props: VariationSelectModeProps) {
   }))
 
   const handleClick = (_: React.MouseEvent, value: string) => {
-    const options = displayOptions
-      .reduce<Record<string, DisplayOption>>((acc, cur) => {
+    const options = displayOptions.reduce<Record<string, DisplayOption>>(
+      (acc, cur) => {
         acc[cur.label] = cur
         return acc
-      }, {})
+      },
+      {}
+    )
     if (options && options[value] && options[value].onSelectItem) {
       options[value].onSelectItem()
     }
