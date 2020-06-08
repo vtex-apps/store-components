@@ -27,15 +27,15 @@ function SelectVariationMode(props: VariationSelectModeProps) {
   }))
 
   const handleClick = (_: React.MouseEvent, value: string) => {
-    const options = displayOptions.reduce<Record<string, DisplayOption>>(
+    const reducedOptions = displayOptions.reduce<Record<string, DisplayOption>>(
       (acc, cur) => {
         acc[cur.label] = cur
         return acc
       },
       {}
     )
-    if (options?.[value]?.onSelectItem) {
-      options[value].onSelectItem()
+    if (reducedOptions?.[value]?.onSelectItem) {
+      reducedOptions[value].onSelectItem()
     }
   }
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, EffectCallback } from 'react'
 
-const useEffectSkipMount = (func: EffectCallback, deps: any[]) => {
+const useEffectSkipMount = (func: EffectCallback, deps: unknown[]) => {
   const isFirstRender = useRef(true)
   useEffect(() => {
     if (isFirstRender.current) {
@@ -8,7 +8,8 @@ const useEffectSkipMount = (func: EffectCallback, deps: any[]) => {
       return
     }
     return func()
-  }, [func])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps)
 }
 
 export default useEffectSkipMount

@@ -88,12 +88,15 @@ const SelectorItem: FC<Props> = ({
     ]
   )
 
-  const passedAnyDimension = Boolean(imageHeight ?? imageWidth)
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  const passedAnyDimension = Boolean(imageHeight || imageWidth)
   let containerStyles = {}
   if (isImage && passedAnyDimension && imageUrl) {
     containerStyles = {
-      height: imageHeight ?? 'auto',
-      width: imageWidth ?? 'auto',
+      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+      height: imageHeight || 'auto',
+      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+      width: imageWidth || 'auto',
       padding: 0,
     }
     imageUrl = changeImageUrlSize(imageUrl, imageWidth, imageHeight)
