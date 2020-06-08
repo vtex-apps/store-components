@@ -21,9 +21,9 @@ const ProductHighlightsWrapper = props => {
       const specificationGroups = propOr([], 'specificationGroups', product)
 
       return names.reduce((acc, item) => {
-        const highlightSpecificationGroup = specificationGroups.filter(
+        const [highlightSpecificationGroup] = specificationGroups.filter(
           x => x.name.toLowerCase() === item.trim().toLowerCase()
-        )[0]
+        )
         const highlight = propOr(
           [],
           'specifications',

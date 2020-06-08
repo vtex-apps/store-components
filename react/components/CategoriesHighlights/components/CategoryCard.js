@@ -38,7 +38,7 @@ class CategoryCard extends Component {
           ) : (
             <img
               src={
-                shape == SQUARED ? squaredPlaceholder : rectangularPlaceholder
+                shape === SQUARED ? squaredPlaceholder : rectangularPlaceholder
               }
               alt=""
               className={`${categoriesHighlights[`${shape}CardImage`]}`}
