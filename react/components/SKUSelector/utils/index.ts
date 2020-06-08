@@ -32,6 +32,7 @@ export const stripUrl = (url: string) => url.replace(/^https?:/, '')
  * @param {sku} sku
  */
 export const parseSku = (sku: ProductItem) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result = clone(sku) as any
   const variationValues = {} as Record<string, string>
   for (const variation of sku.variations) {
@@ -103,6 +104,7 @@ export const findItemWithSelectedVariations = (
     // may return any item, return first element
     return items[0]
   }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   return items.find(isSkuSelected(selectedNotNull))
 }
 
@@ -126,6 +128,7 @@ export const findListItemsWithSelectedVariations = (
     // return all
     return items
   }
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   return items.filter(isSkuSelected(selectedNotNull))
 }
 
@@ -139,6 +142,7 @@ export const uniqueOptionToSelect = (
     : findListItemsWithSelectedVariations(items, selectedVariations)
   const unselected = reject(Boolean, selectedVariations)
   const unselectedNames = Object.keys(unselected)
+  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   const availableOptions = buildAvailableVariations(
     possibleItems,
     unselectedNames
@@ -159,6 +163,7 @@ export const uniqueOptionToSelect = (
 }
 
 export function slug(str: string) {
+  // eslint-disable-next-line no-useless-escape
   const replaced = str?.replace(/[*+~.()'"!:@&\[\]]/g, '') || ''
   const slugified = slugify(replaced, { lower: true }) || ''
   return slugified

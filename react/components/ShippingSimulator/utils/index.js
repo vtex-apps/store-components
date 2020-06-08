@@ -4,9 +4,9 @@ const getRandomAddressId = () =>
   (addressId++ * new Date().getTime() * -1).toString().replace('-', '')
 
 export const getNewAddress = country => {
-  const addressId = getRandomAddressId()
+  const randomAddressId = getRandomAddressId()
   return {
-    addressId,
+    addressId: randomAddressId,
     addressType: 'residential',
     city: null,
     complement: null,

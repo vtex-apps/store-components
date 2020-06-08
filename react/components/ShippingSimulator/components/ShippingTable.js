@@ -58,12 +58,12 @@ export default class ShippingTable extends Component {
         className={`${styles.shippingTable} bt bb b--muted-4 c-muted-1 ph0 pv3 mt4 w-100`}
       >
         <tbody>
-          {slaList.map(shipping => (
+          {slaList.map(shippingItem => (
             <ShippingTableRow
-              key={shipping.id}
-              name={shipping.friendlyName}
-              shippingEstimate={shipping.shippingEstimate}
-              price={shipping.price}
+              key={shippingItem.id}
+              name={shippingItem.friendlyName}
+              shippingEstimate={shippingItem.shippingEstimate}
+              price={shippingItem.price}
             />
           ))}
         </tbody>
