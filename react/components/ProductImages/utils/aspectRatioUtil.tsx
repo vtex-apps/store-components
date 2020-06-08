@@ -48,7 +48,8 @@ export const imageUrl = (
   let height: number | string = 'auto'
 
   if (aspectRatio && aspectRatio !== 'auto') {
-    height = size * (parseAspectRatio(aspectRatio) ?? 1)
+    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+    height = size * (parseAspectRatio(aspectRatio) || 1)
 
     if (width > maxSize) {
       height /= width / maxSize
