@@ -78,7 +78,7 @@ class Newsletter extends Component {
       .then(() => {
         this.safeSetState({ success: true, loading: false })
       })
-      .catch(e => {
+      .catch(() => {
         this.safeSetState({ error: true, loading: false })
       })
   }
