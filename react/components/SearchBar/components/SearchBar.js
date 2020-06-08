@@ -46,6 +46,7 @@ const SearchBar = ({
   openAutocompleteOnFocus,
   blurOnSubmit,
   submitOnIconClick,
+  // eslint-disable-next-line react/prop-types
   displayMode,
   minSearchTermLength,
   autocompleteFullWidth,
@@ -127,8 +128,8 @@ const SearchBar = ({
     return null
   }
 
-  const showInputErrorMessage = inputErrorMessage => {
-    setInputErrorMessage(inputErrorMessage)
+  const showInputErrorMessage = newInputErrorMessage => {
+    setInputErrorMessage(newInputErrorMessage)
   }
 
   const hideInputErrorMessage = () => {
