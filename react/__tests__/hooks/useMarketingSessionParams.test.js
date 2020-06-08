@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { renderHook, act } from '@testing-library/react-hooks'
 
 import useMarketingSessionParams from '../../components/BuyButton/hooks/useMarketingSessionParams'
@@ -44,6 +45,7 @@ test('if session has correct data, get and format input correctly', async () => 
   )
   const { result } = renderHook(() => useMarketingSessionParams())
 
+  // eslint-disable-next-line no-return-await
   await act(async () => await Promise.resolve())
 
   const { utmParams, utmiParams } = result.current
@@ -66,6 +68,7 @@ test('if session does not have data, leave object as undefined', async () => {
   )
   const { result } = renderHook(() => useMarketingSessionParams())
 
+  // eslint-disable-next-line no-return-await
   await act(async () => await Promise.resolve())
 
   const { utmParams, utmiParams } = result.current
@@ -80,6 +83,7 @@ test('if session promise rejects, everything still works, response is undefined'
   )
   const { result } = renderHook(() => useMarketingSessionParams())
 
+  // eslint-disable-next-line no-return-await
   await act(async () => await Promise.resolve())
 
   const { utmParams, utmiParams } = result.current

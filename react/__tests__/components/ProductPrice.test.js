@@ -63,6 +63,7 @@ describe('<ProductPrice />', () => {
     expect(getByText('$50.00')).toBeDefined()
   })
 
+  // eslint-disable-next-line jest/no-identical-title
   it('should show selling price and list price but with NO labels', () => {
     const customProps = {
       listPrice: 50,

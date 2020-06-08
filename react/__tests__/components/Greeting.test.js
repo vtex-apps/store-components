@@ -40,6 +40,7 @@ describe('<Greeting /> component', () => {
     getByText('Adam')
   })
 
+  // eslint-disable-next-line jest/no-identical-title
   it('should render name in orderForm', async () => {
     const { getByTestId } = renderComponent({ loading: true })
     await wait(() => {
