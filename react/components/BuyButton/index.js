@@ -71,7 +71,8 @@ const useCallCartFinishIfPending = (
     if (!orderFormLoading && isAddingToCart) {
       addToCartAndFinish()
     }
-  }, [addToCartAndFinish, isAddingToCart, orderFormLoading])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orderFormLoading])
 }
 
 /**
@@ -229,6 +230,7 @@ export const BuyButton = ({
       setAddingToCart(false)
       showToastMessage()
       if (isOneClickBuy) {
+        // eslint-disable-next-line no-restricted-globals
         location.assign(fullCheckoutUrl)
       }
       onAddFinish && onAddFinish()

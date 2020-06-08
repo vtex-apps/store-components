@@ -89,10 +89,13 @@ interface ParsedAssemblyOptions {
 }
 
 export const transformAssemblyOptions = (
+  // eslint-disable-next-line @typescript-eslint/default-param-last
   assemblyOptionsItems: Record<GroupId, AssemblyOptionItem[]> = {},
+  // eslint-disable-next-line @typescript-eslint/default-param-last
   inputValues: Record<GroupId, InputValue> = {},
   parentPrice: number,
   parentQuantity: number
+  // eslint-disable-next-line max-params
 ): ParsedAssemblyOptions => {
   // contains options sent as arguments to graphql mutation
   const options: Option[] = []

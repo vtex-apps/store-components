@@ -3,6 +3,7 @@ import {
   ItemOption,
   InputValuesOption,
 } from './assemblyUtils'
+// eslint-disable-next-line jest/no-mocks-import
 import { customBell, comboPizza, starColor } from './__mocks__/assemblyOptions'
 
 test('should transform assemblyOptions', () => {

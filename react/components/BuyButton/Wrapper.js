@@ -33,7 +33,6 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
         {message => <span className={handles.buyButtonText}>{message}</span>}
       </FormattedMessage>
     )
-    return
   }
 
   const totalPrice = skuItems.reduce((acc, item) => {
@@ -100,7 +99,8 @@ const BuyButtonWrapper = ({
   const skuItems =
     isEmptyContext || propSkuItems != null
       ? propSkuItems
-      : EnhancedBuyButton.mapCatalogItemToCart({
+      : // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        EnhancedBuyButton.mapCatalogItemToCart({
           product,
           selectedItem,
           selectedQuantity,
@@ -135,6 +135,7 @@ const BuyButtonWrapper = ({
     checkoutVersion.installedAppPublic.version
 
   const checkoutUrl =
+    // eslint-disable-next-line radix
     version && parseInt(version.split('.')[0]) > 0
       ? CHECKOUT_URL.V1
       : CHECKOUT_URL.V0
