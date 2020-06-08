@@ -21,7 +21,7 @@ const pointerEventsAutoClasses = state =>
     styles.pointerEventsAuto,
     {
       'bg-transparent': state === 'entered',
-      'bg-base': state != 'entered',
+      'bg-base': state !== 'entered',
     },
     'tc w-100'
   )
