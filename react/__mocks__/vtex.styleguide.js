@@ -30,6 +30,7 @@ export function Dropdown(props) {
   }
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-onchange
     <select value={value} onChange={onChange}>
       {options.map(op => (
         <option key={op.value} value={op.value}>

@@ -62,12 +62,10 @@ export const applyModifiers = (handles, modifier) => {
     .join(' ')
     .trim()
 
-  return splitHandles
-    .concat(modifiedHandles)
-    .join(' ')
-    .trim()
+  return splitHandles.concat(modifiedHandles).join(' ').trim()
 }
 
+// eslint-disable-next-line default-param-last
 export const withCssHandles = (handles = [], options) => Component => {
   const EnhancedComponent = props => {
     const cssHandles = useCssHandles(handles, options)

@@ -15,7 +15,7 @@ const mockOrderForm = {
 }
 
 export function orderFormConsumer(Comp) {
-  return class extends React.Component {
+  return class OrderFormConsumer extends React.Component {
     render() {
       return <Comp {...this.props} orderFormContext={mockOrderForm} />
     }

@@ -2,6 +2,7 @@ const DEFAULT_COLOR = 'Pink'
 
 export const getSKU = (color = DEFAULT_COLOR) => ({
   itemId: `SKU${color}`,
+  // eslint-disable-next-line no-restricted-globals
   name,
   nameComplete: `Simple SKU ${color}`,
   complementName: `Complete SKU Name ${color}`,
