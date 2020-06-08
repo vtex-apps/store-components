@@ -79,6 +79,10 @@ Youtube.propTypes = {
   height: PropTypes.number,
   playing: PropTypes.bool,
   title: PropTypes.string,
+  cssHandles: PropTypes.shape({
+    video: PropTypes.string.isRequired,
+    videoContainer: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 Youtube.defaultProps = {

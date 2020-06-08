@@ -46,6 +46,7 @@ const ProductImage: FC<Props> = ({
         mode={zoomMode}
         factor={zoomFactor}
         zoomContent={
+          // eslint-disable-next-line jsx-a11y/alt-text
           <img
             src={imageUrl(
               src,

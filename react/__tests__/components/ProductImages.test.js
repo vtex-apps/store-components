@@ -3,13 +3,14 @@ import { render } from '@vtex/test-tools/react'
 import useProduct from 'vtex.product-context/useProduct'
 
 import ProductImages from '../../ProductImages'
+// eslint-disable-next-line jest/no-mocks-import
 import { createItem } from '../../__mocks__/productMock'
 
 const mockUseProduct = useProduct
 
 jest.mock('react-id-swiper/lib/ReactIdSwiper', () => {
   return {
-    default: ({ children }) => {
+    default({ children }) {
       return <div>{children}</div>
     },
   }

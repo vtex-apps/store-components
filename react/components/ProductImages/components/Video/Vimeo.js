@@ -16,16 +16,16 @@ class Vimeo extends Component {
     fetch(getUrl)
       .then(response => response.json())
       .then(response => {
-        const { height, width, html, title } = response
+        const { height: heightDiv, width: widthDiv, html, title } = response
 
         const thumbUrl = Vimeo.thumbUrlFromResp(response, props.thumbWidth)
         props.setThumb && props.setThumb(thumbUrl, title)
 
-        const src = html.match(/src= *" *([^"]*) *"/)[1] // Get url from response
+        const [, src] = html.match(/src= *" *([^"]*) *"/) // Get url from response
 
         this.setState({
           iframe: {
-            divStyle: { padding: `${(100 * height) / width}% 0 0 0` },
+            divStyle: { padding: `${(100 * heightDiv) / widthDiv}% 0 0 0` },
             src,
           },
         })
@@ -101,6 +101,10 @@ Vimeo.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   playing: PropTypes.bool,
+  cssHandles: PropTypes.shape({
+    video: PropTypes.string.isRequired,
+    videoContainer: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 Vimeo.defaultProps = {

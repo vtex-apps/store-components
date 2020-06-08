@@ -23,7 +23,7 @@ const parseAspectRatio = (input?: AspectRatio | null) => {
     const [width, height] = data
     const ratio = parseFloat(height) / parseFloat(width)
 
-    if (typeof ratio !== 'number' || isNaN(ratio)) {
+    if (typeof ratio !== 'number' || window.isNaN(ratio)) {
       return null
     }
 
@@ -42,6 +42,7 @@ export const imageUrl = (
   size: number,
   maxSize: number,
   aspectRatio?: AspectRatio
+  // eslint-disable-next-line max-params
 ) => {
   let width = size
   let height: number | string = 'auto'
