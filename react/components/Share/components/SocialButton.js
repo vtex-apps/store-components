@@ -6,6 +6,21 @@ import * as ReactShare from 'react-share'
 import { SOCIAL_TO_ENUM, SOCIAL_ENUM_TO_COMPONENT } from '../constants/social'
 import styles from '../styles.css'
 
+function resolveMessageProp(message, socialEnum) {
+  const titlePropMessage = [
+    SOCIAL_TO_ENUM.whatsapp,
+    SOCIAL_TO_ENUM.twitter,
+    SOCIAL_TO_ENUM.telegram,
+    SOCIAL_TO_ENUM.pinterest,
+  ]
+
+  return titlePropMessage.includes(socialEnum)
+    ? { title: message }
+    : socialEnum === SOCIAL_TO_ENUM.facebook
+    ? { quote: message }
+    : { body: message }
+}
+
 export default class SocialButton extends Component {
   static propTypes = {
     /** Share URL */
@@ -69,19 +84,4 @@ export default class SocialButton extends Component {
       </SocialComponent>
     )
   }
-}
-
-function resolveMessageProp(message, socialEnum) {
-  const titlePropMessage = [
-    SOCIAL_TO_ENUM.whatsapp,
-    SOCIAL_TO_ENUM.twitter,
-    SOCIAL_TO_ENUM.telegram,
-    SOCIAL_TO_ENUM.pinterest,
-  ]
-
-  return titlePropMessage.includes(socialEnum)
-    ? { title: message }
-    : socialEnum === SOCIAL_TO_ENUM.facebook
-    ? { quote: message }
-    : { body: message }
 }
