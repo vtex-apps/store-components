@@ -50,6 +50,7 @@
 | `thumbnailsOrientation`   | `Enum`    | Choose the orientation of the thumbnails. Can be set to `vertical` or `horizontal`                                 | `vertical`    | 
 | `zoomFactor` | `number` | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large) | 2 |
 | `zoomMode` | `disabled\|in-place-click\|in-place-hover` | Sets the zoom behavior. | `in-place-click` |
+| `contentType`   | `'all'` &#124; `'images'` &#124; `'videos'`   | Controls the type of content that will be displayed.                               | `'all'`    | 
 
 #### Customization
 
