@@ -110,7 +110,7 @@ class AvailabilitySubscriber extends Component {
         variables,
       })
       .then(
-        mutationRes => {
+        () => {
           this.setState({
             name: '',
             email: '',
@@ -119,7 +119,7 @@ class AvailabilitySubscriber extends Component {
           })
         },
         mutationErr => {
-          console.log('ERROR: ', mutationErr)
+          console.error('ERROR: ', mutationErr)
           this.setState({
             isLoading: false,
             sendStatus: 'error',
