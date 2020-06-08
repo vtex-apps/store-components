@@ -36,17 +36,17 @@ const getLinkProps = element => {
   if (element.criteria) {
     // This param is only useful to track terms searched
     // See: https://support.google.com/analytics/answer/1012264
-    const paramForSearchTracking = '&_c=' + terms[0]
+    const paramForSearchTracking = `&_c=${terms[0]}`
 
     page = 'store.search'
     params = { term: terms.join('/') }
-    query = `map=c,ft` + paramForSearchTracking
+    query = `map=c,ft${paramForSearchTracking}`
   }
 
   return { page, params, query }
 }
 
-/** List of search results to be displayed*/
+/** List of search results to be displayed */
 const AutocompleteResults = ({
   parentContainer,
   isOpen,
@@ -156,7 +156,7 @@ const AutocompleteResults = ({
             <Fragment>
               <li
                 {...getItemProps({
-                  key: 'ft' + inputValue,
+                  key: `ft${inputValue}`,
                   item: { term: inputValue },
                   index: 0,
                   onClick: handleItemClick,
@@ -223,15 +223,15 @@ const AutocompleteResults = ({
 }
 
 const itemProps = PropTypes.shape({
-  /** Image of the product*/
+  /** Image of the product */
   thumb: PropTypes.string,
-  /** Name of the product*/
+  /** Name of the product */
   name: PropTypes.string,
-  /** Link to the product*/
+  /** Link to the product */
   href: PropTypes.string,
-  /** Slug of the product*/
+  /** Slug of the product */
   slug: PropTypes.string,
-  /** Criteria of the product*/
+  /** Criteria of the product */
   criteria: PropTypes.string,
 })
 
@@ -243,9 +243,9 @@ AutocompleteResults.propTypes = {
     }),
     loading: PropTypes.bool.isRequired,
   }),
-  /** Downshift specific prop*/
+  /** Downshift specific prop */
   highlightedIndex: PropTypes.number,
-  /** Search query*/
+  /** Search query */
   inputValue: PropTypes.string.isRequired,
   /** Closes the options box. */
   closeMenu: PropTypes.func,

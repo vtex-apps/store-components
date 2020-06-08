@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import { ANIMATIONS } from './animation'
 
 const ANIMATION_TRANSFER = 110
@@ -44,9 +45,9 @@ export default class Animation extends Component {
     const { isActive, type, duration, transfer, transferEnter } = this.props
     let animation = ANIMATIONS[type]
     if (isActive) {
-      animation = animation['from'](duration, transferEnter)
+      animation = animation.from(duration, transferEnter)
     } else {
-      animation = animation['leave'](duration, transfer)
+      animation = animation.leave(duration, transfer)
     }
     return animation
   }

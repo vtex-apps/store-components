@@ -90,7 +90,7 @@ const ProductBrand = ({
           const { imageUrl, slug } = data.brand
           if (imageUrl) {
             const dpi = (window && window.devicePixelRatio) || 1
-            const logoLink = '/' + slug + '/b'
+            const logoLink = `/${slug}/b`
             const logoImage = (
               <img
                 className={`${handles.productBrandLogo}`}

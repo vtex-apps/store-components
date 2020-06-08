@@ -17,13 +17,7 @@ import ShippingSimulatorLoader from './Loader'
 import styles from './shippingSimulator.css'
 import { getNewAddress } from './utils'
 
-const ShippingSimulator = ({
-  intl,
-  skuId,
-  seller,
-  country,
-  loaderStyles,
-}) => {
+const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
   const client = useApolloClient()
   const [address, setAddress] = useState(() =>
     addValidation(getNewAddress(country))

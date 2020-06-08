@@ -8,7 +8,7 @@ const useEffectSkipMount = (func: EffectCallback, deps: any[]) => {
       return
     }
     return func()
-  }, deps)
+  }, [func])
 }
 
 export default useEffectSkipMount

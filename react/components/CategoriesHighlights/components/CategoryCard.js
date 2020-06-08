@@ -5,7 +5,6 @@ import { Link } from 'vtex.render-runtime'
 import { RECTANGULAR, SQUARED } from '../constants'
 import rectangularPlaceholder from '../images/rectangular-placeholder.svg'
 import squaredPlaceholder from '../images/squared-placeholder.svg'
-
 import categoriesHighlights from '../categoriesHighlights.css'
 
 /**

@@ -88,12 +88,12 @@ const SelectorItem: FC<Props> = ({
     ]
   )
 
-  const passedAnyDimension = Boolean(imageHeight || imageWidth)
+  const passedAnyDimension = Boolean(imageHeight ?? imageWidth)
   let containerStyles = {}
   if (isImage && passedAnyDimension && imageUrl) {
     containerStyles = {
-      height: imageHeight || 'auto',
-      width: imageWidth || 'auto',
+      height: imageHeight ?? 'auto',
+      width: imageWidth ?? 'auto',
       padding: 0,
     }
     imageUrl = changeImageUrlSize(imageUrl, imageWidth, imageHeight)

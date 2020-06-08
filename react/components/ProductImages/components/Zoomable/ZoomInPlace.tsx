@@ -77,7 +77,7 @@ const ZoomInPlace: FC<Props> = ({ children, zoomContent, type, factor }) => {
   }
 
   const getContainerBounds = () =>
-    containerBounds.current || getBounds(containerRef.current)
+    containerBounds.current ?? getBounds(containerRef.current)
 
   const handleMouseOver = () => {
     setZoom(true)

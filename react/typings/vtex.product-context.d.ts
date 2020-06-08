@@ -8,17 +8,17 @@ interface ProductItem {
   itemId: string
   name: string
   images: Image[]
-  variations: {
+  variations: Array<{
     name: string
     values: string[]
-  }[]
-  sellers: {
+  }>
+  sellers: Array<{
     commertialOffer: {
       Price: number
       ListPrice: number
       AvailableQuantity: number
     }
-  }[]
+  }>
 }
 
 interface Product {
@@ -57,8 +57,8 @@ declare module 'vtex.product-context/useProduct' {
   type InputValues = Record<string, string>
 
   export interface ProductContext {
-    product?: Product,
-    selectedItem: ProductItem | null,
+    product?: Product
+    selectedItem: ProductItem | null
     selectedQuantity: number
     skuSelector: {
       isVisible: boolean

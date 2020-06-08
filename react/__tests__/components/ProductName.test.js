@@ -1,7 +1,8 @@
 import React from 'react'
-import ProductName from './../../ProductName'
 import { render } from '@vtex/test-tools/react'
 import PropTypes from 'prop-types'
+
+import ProductName from '../../ProductName'
 
 describe('<ProductName />', () => {
   const defaultProps = {

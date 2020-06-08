@@ -1,5 +1,6 @@
 import { prop, filter, clone, reject } from 'ramda'
 import slugify from 'slugify'
+
 import { SelectorProductItem, SelectedVariations } from '../types'
 
 /**
@@ -151,14 +152,14 @@ export const uniqueOptionToSelect = (
   const finalUniqueVariations = {} as Record<string, string>
   // Transform set to plain value
   for (const variationName of variationsNames) {
-    const value = variationsWithOne[variationName].values().next().value
+    const { value } = variationsWithOne[variationName].values().next()
     finalUniqueVariations[variationName] = value
   }
   return finalUniqueVariations
 }
 
 export function slug(str: string) {
-  const replaced = (str && str.replace(/[*+~.()'"!:@&\[\]]/g, '')) || ''
+  const replaced = str?.replace(/[*+~.()'"!:@&\[\]]/g, '') || ''
   const slugified = slugify(replaced, { lower: true }) || ''
   return slugified
 }
@@ -213,14 +214,18 @@ export const MAX_HEIGHT = 4000
  * "?width=WIDTH&height=HEIGHT&aspect=true"
  *
  */
-const baseUrlRegex: RegExp = new RegExp(/.+ids\/(\d+)/)
+const baseUrlRegex = new RegExp(/.+ids\/(\d+)/)
 
 export function cleanImageUrl(imageUrl: string) {
-  const result = baseUrlRegex.exec(imageUrl) || []
+  const result = baseUrlRegex.exec(imageUrl) ?? []
   return result.length > 0 ? result[0] : null
 }
 
-function replaceLegacyFileManagerUrl(imageUrl: string, width: number | string, height: number | string) {
+function replaceLegacyFileManagerUrl(
+  imageUrl: string,
+  width: number | string,
+  height: number | string
+) {
   const legacyUrlPattern = '/arquivos/ids/'
   const isLegacyUrl = imageUrl.includes(legacyUrlPattern)
   if (!isLegacyUrl) return imageUrl
@@ -230,13 +235,17 @@ function replaceLegacyFileManagerUrl(imageUrl: string, width: number | string, h
 export function changeImageUrlSize(
   imageUrl: string,
   width: string | number = DEFAULT_WIDTH,
-  height: string | number = DEFAULT_HEIGHT,
+  height: string | number = DEFAULT_HEIGHT
 ) {
   if (!imageUrl) return
   typeof width === 'number' && (width = Math.min(width, MAX_WIDTH))
   typeof height === 'number' && (height = Math.min(height, MAX_HEIGHT))
 
-  const normalizedImageUrl = replaceLegacyFileManagerUrl(imageUrl, width, height)
+  const normalizedImageUrl = replaceLegacyFileManagerUrl(
+    imageUrl,
+    width,
+    height
+  )
   const queryStringSeparator = normalizedImageUrl.includes('?') ? '&' : '?'
 
   return `${normalizedImageUrl}${queryStringSeparator}width=${width}&height=${height}&aspect=true`
@@ -251,7 +260,10 @@ export function getValidMarginBottom(variationsSpacing?: number) {
     return DEFAULT_BOTTOM_MARGIN
   }
 
-  return Math.max(Math.min(MAX_POSSIBLE_MARGIN, variationsSpacing), MIN_POSSIBLE_MARGIN)
+  return Math.max(
+    Math.min(MAX_POSSIBLE_MARGIN, variationsSpacing),
+    MIN_POSSIBLE_MARGIN
+  )
 }
 
 export const NO_BOTTOM_MARGIN = 'none'

@@ -1,13 +1,12 @@
 import React from 'react'
+
 import style from '../../styles.css'
 
 export default function ImagePlaceholder() {
   return (
     <div className="relative">
       <div
-        className={`${
-          style.carouselImagePlaceholder
-        } absolute w-100 h-100 contain bg-center`}
+        className={`${style.carouselImagePlaceholder} absolute w-100 h-100 contain bg-center`}
       />
       <svg
         width="100%"

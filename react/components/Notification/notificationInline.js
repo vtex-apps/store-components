@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import { string } from 'prop-types'
+
 import NotificationContent from './notificationContent'
 
 const NotificationInline = ({ content }) => {

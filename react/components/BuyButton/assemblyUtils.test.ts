@@ -76,5 +76,5 @@ test('empty input values should result in empty options', () => {
     parentPrice,
     parentQuantity
   )
-  expect(resultStar.options.length).toBe(0)
+  expect(resultStar.options).toHaveLength(0)
 })

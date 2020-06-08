@@ -6,7 +6,6 @@ import classNames from 'classnames'
 import * as Amp from 'react-amphtml'
 
 import Placeholder from './Placeholder'
-
 import styles from './styles.css'
 
 const CSS_HANDLES = ['logoLink', 'logoImage', 'logoContainer']

@@ -6,7 +6,6 @@ import { NoSSR } from 'vtex.render-runtime'
 
 import Dots from './components/Dots'
 import Arrow from './components/Arrow'
-
 import getItemsPerPage from './utils/ItemsPerPage'
 
 import './global.css'

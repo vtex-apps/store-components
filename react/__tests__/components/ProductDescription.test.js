@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
-import ProductDescription from './../../ProductDescription'
+
+import ProductDescription from '../../ProductDescription'
 
 describe('<ProductDescription />', () => {
   const renderComponent = customProps => {

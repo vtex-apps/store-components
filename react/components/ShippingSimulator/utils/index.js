@@ -10,7 +10,7 @@ export const getNewAddress = country => {
     addressType: 'residential',
     city: null,
     complement: null,
-    country: country,
+    country,
     geoCoordinates: [],
     neighborhood: null,
     number: null,

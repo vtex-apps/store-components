@@ -5,8 +5,12 @@ const mockOrderForm = {
     orderFormId: '123',
   },
   items: [],
-  addItem: ({ items = [] }) => new Promise(resolve => resolve({ data: { addItem: { ...mockOrderForm, items }}})),
-  refetch: () => new Promise(resolve => resolve({ data: { orderForm: mockOrderForm }})),
+  addItem: ({ items = [] }) =>
+    new Promise(resolve =>
+      resolve({ data: { addItem: { ...mockOrderForm, items } } })
+    ),
+  refetch: () =>
+    new Promise(resolve => resolve({ data: { orderForm: mockOrderForm } })),
   loading: false,
 }
 

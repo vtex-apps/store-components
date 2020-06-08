@@ -1,10 +1,10 @@
 import React from 'react'
-import { THUMB_SIZE } from '../../../module/images'
 import classNames from 'classnames'
+import { useCssHandles } from 'vtex.css-handles'
 
+import { THUMB_SIZE } from '../../../module/images'
 import { THUMBS_POSITION_HORIZONTAL } from '../../utils/enums'
 import { imageUrl } from '../../utils/aspectRatioUtil'
-import { useCssHandles } from 'vtex.css-handles'
 
 const THUMB_MAX_SIZE = 256
 
@@ -77,8 +77,7 @@ const ThumbnailSwiper = ({
     'db-ns': hasThumbs,
     mt3: !isThumbsVertical,
     'w-20 bottom-0 top-0 absolute': isThumbsVertical,
-    'left-0':
-      isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.LEFT,
+    'left-0': isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.LEFT,
     'right-0':
       isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.RIGHT,
   })
@@ -87,7 +86,8 @@ const ThumbnailSwiper = ({
     <div className={thumbClasses} data-testid="thumbnail-swiper">
       <Swiper {...swiperParams} shouldSwiperUpdate>
         {slides.map((slide, i) => {
-          const itemContainerClasses = classNames('swiper-slide mb5 pointer',
+          const itemContainerClasses = classNames(
+            'swiper-slide mb5 pointer',
             handles.productImagesThumb,
             {
               'w-20': !isThumbsVertical,

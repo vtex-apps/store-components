@@ -12,7 +12,7 @@ const DISPLAY_MODES = [
   'search-button',
 ]
 
-/** Midleware component to adapt the styleguide/Input to be used by the Downshift*/
+/** Midleware component to adapt the styleguide/Input to be used by the Downshift */
 const CSS_HANDLES = [
   'autoCompleteOuterContainer',
   'compactMode',

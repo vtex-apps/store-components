@@ -1,14 +1,12 @@
 import React, { Fragment } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
-import { injectIntl } from 'react-intl'
+import { injectIntl, FormattedMessage } from 'react-intl'
 import classNames from 'classnames'
 import { isEmpty } from 'ramda'
-import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
 import { formatCurrency } from 'vtex.format-currency'
 
 import PricePropTypes from './propTypes'
-
 import productPrice from './styles.css'
 
 /** Installments component */

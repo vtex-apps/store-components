@@ -120,7 +120,7 @@ export const transformAssemblyOptions = (
       const {
         options: childrenOptions,
         assemblyOptions: childrenAssemblyOptions,
-      } = childrenAddedData || {
+      } = childrenAddedData ?? {
         options: undefined,
         assemblyOptions: undefined,
       }
@@ -137,7 +137,7 @@ export const transformAssemblyOptions = (
             sellingPrice: item.price,
             quantity,
             sellingPriceWithAssemblies:
-              item.price + sumAssembliesPrice(item.children || {}),
+              item.price + sumAssembliesPrice(item.children ?? {}),
             id: item.id,
             ...(childrenAssemblyOptions
               ? { assemblyOptions: childrenAssemblyOptions }
