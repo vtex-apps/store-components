@@ -6,6 +6,8 @@ import { IconLocationMarker } from 'vtex.store-icons'
 
 const AddressInfo = ({ inverted, inline, orderForm, intl }) => {
   const { shippingData } = orderForm
+  const hasModal = !!useChildBlock({ id: 'modal' })
+
   if (!shippingData || !shippingData.address) return
 
   const { street, number, complement, addressType } = shippingData.address
@@ -23,8 +25,6 @@ const AddressInfo = ({ inverted, inline, orderForm, intl }) => {
     ['pickupPointCheckedIn', 'friendlyName'],
     orderForm
   )
-
-  const hasModal = !!useChildBlock({ id: 'modal' })
 
   return (
     <div className={`flex ${inline ? 'items-end' : 'items-center flex-auto'}`}>
