@@ -107,6 +107,7 @@ Installments.propTypes = {
   installments: PricePropTypes.installments,
   /** Pages editor config to display labels */
   showLabels: PropTypes.bool.isRequired,
+  intl: PropTypes.object.isRequired,
 }
 
 export default injectIntl(Installments)

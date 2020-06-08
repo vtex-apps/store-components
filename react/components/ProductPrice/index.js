@@ -1,6 +1,5 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import classNames from 'classnames'
-import PropTypes from 'prop-types'
 import { isNil, head, last, sort, equals } from 'ramda'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { IOMessage } from 'vtex.native-types'
@@ -78,7 +77,7 @@ const canShowListPrice = props => {
 /**
  * The Price component. Shows the prices information of the Product Summary.
  */
-const ProductPrice = (props, context) => {
+const ProductPrice = props => {
   const {
     sellingPriceList,
     sellingPrice,
@@ -92,7 +91,6 @@ const ProductPrice = (props, context) => {
     showSavings,
     labelSellingPrice,
     labelListPrice,
-    labelSavings,
     className,
     loaderClass,
     listPriceContainerClass,
@@ -121,6 +119,7 @@ const ProductPrice = (props, context) => {
 
   // avoiding undefined verifications
   classes = {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     ...PriceWithIntl.defaultProps.classes,
     ...classes,
   }
