@@ -8,6 +8,7 @@ import { Link, useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
 // This import should NOT be removed
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './styles.css'
 import autocomplete from './queries/autocomplete.gql'
 
@@ -23,7 +24,7 @@ const CSS_HANDLES = [
 ]
 
 const getImageUrl = image => {
-  const imageUrl = (image.match(/https?:(.*?)"/g) || [''])[0]
+  const [imageUrl] = image.match(/https?:(.*?)"/g) || ['']
   return imageUrl.replace(/https?:/, '').replace(/-25-25/g, '-50-50')
 }
 
@@ -48,6 +49,7 @@ const getLinkProps = element => {
 
 /** List of search results to be displayed */
 const AutocompleteResults = ({
+  // eslint-disable-next-line react/prop-types
   parentContainer,
   isOpen,
   data = {}, // when inputValue is '', query is skipped and value is undefined
@@ -70,6 +72,7 @@ const AutocompleteResults = ({
     () => ({
       width: Math.max(
         MIN_RESULTS_WIDTH,
+        // eslint-disable-next-line react/prop-types
         (parentContainer.current && parentContainer.current.offsetWidth) || 0
       ),
     }),
@@ -92,6 +95,7 @@ const AutocompleteResults = ({
 
   const getListItemClassNames = ({
     itemIndex = -1,
+    // eslint-disable-next-line no-shadow
     highlightedIndex,
     hasThumb,
   } = {}) => {
@@ -118,6 +122,7 @@ const AutocompleteResults = ({
     />
   )
 
+  // eslint-disable-next-line no-shadow
   const renderSearchByClick = inputValue => {
     return customSearchPageUrl ? (
       <Link
@@ -163,6 +168,7 @@ const AutocompleteResults = ({
                 })}
               >
                 {attemptPageTypeSearch ? (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     href="#"
                     onClick={event => event.preventDefault()}
@@ -180,6 +186,7 @@ const AutocompleteResults = ({
 
               {items.map((item, index) => {
                 return (
+                  // eslint-disable-next-line react/jsx-key
                   <li
                     {...getItemProps({
                       key: item.name + index,
