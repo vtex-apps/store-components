@@ -81,6 +81,7 @@ const AutocompleteInput = ({
 
   useEffect(() => {
     const changeClassInput = () => {
+      // eslint-disable-next-line vtex/prefer-early-return
       if (compactMode) {
         inputRef.current.placeholder = ''
         inputRef.current.classList.add(handles.paddingInput)

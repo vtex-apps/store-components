@@ -34,7 +34,7 @@ const AddressInfo = ({ inverted, inline, orderForm, intl }) => {
             inverted ? 'c-on-base--inverted' : 'c-muted-2'
           }`}
         >
-          <IconLocationMarker size={27} viewBox={'0 0 21 27'} />
+          <IconLocationMarker size={27} viewBox="0 0 21 27" />
         </div>
         <div className="flex flex-auto flex-column">
           <div

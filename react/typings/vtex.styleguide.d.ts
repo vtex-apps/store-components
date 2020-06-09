@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 declare module 'vtex.styleguide' {
   export const Checkbox: any
   export const Radio: any

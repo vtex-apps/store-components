@@ -7,6 +7,7 @@ import styles from '../styles.css'
  * Collection Badge Item.
  * Displays a collection badge item.
  */
+// eslint-disable-next-line react/prefer-stateless-function
 export class CollectionBadgeItem extends PureComponent {
   render() {
     return (

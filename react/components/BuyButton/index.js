@@ -338,7 +338,7 @@ BuyButton.propTypes = {
       ),
     })
   ),
-  /** Component children that will be displayed inside of the button * */
+  /** Component children that will be displayed inside of the button */
   children: PropTypes.node.isRequired,
   /** Should redirect to checkout after adding to cart */
   isOneClickBuy: PropTypes.bool,
@@ -370,7 +370,7 @@ BuyButton.propTypes = {
   disabled: PropTypes.bool,
   /** A custom URL for the `VIEW CART` button inside the toast */
   customToastURL: PropTypes.string,
-  /** The URL to the cart * */
+  /** The URL to the cart */
   checkoutUrl: PropTypes.string,
 }
 

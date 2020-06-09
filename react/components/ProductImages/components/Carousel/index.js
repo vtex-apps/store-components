@@ -182,7 +182,9 @@ class Carousel extends Component {
   }
 
   setVideoThumb = i => (url, title) => {
+    // eslint-disable-next-line react/no-access-state-in-setstate
     const thumbUrl = { ...this.state.thumbUrl }
+    // eslint-disable-next-line react/no-access-state-in-setstate
     const alt = { ...this.state.alt }
 
     thumbUrl[i] = url

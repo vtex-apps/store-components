@@ -1,4 +1,7 @@
 {
+  "rules": {
+    "react/jsx-filename-extension": "off"
+  },
   "extends": "vtex-react",
   "env": {
     "browser": true,

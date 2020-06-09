@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement } from 'react'
+import { FunctionComponent } from 'react'
 
 declare global {
   interface StorefrontFC<P = {}> extends FunctionComponent<P> {

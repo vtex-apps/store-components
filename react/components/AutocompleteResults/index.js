@@ -8,7 +8,7 @@ import { Link, useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
 // This import should NOT be removed
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line no-unused-vars
 import styles from './styles.css'
 import autocomplete from './queries/autocomplete.gql'
 

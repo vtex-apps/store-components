@@ -115,15 +115,6 @@ const ProductPrice = props => {
 
   const handles = useCssHandles(CSS_HANDLES)
 
-  let { classes } = props
-
-  // avoiding undefined verifications
-  classes = {
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    ...PriceWithIntl.defaultProps.classes,
-    ...classes,
-  }
-
   if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
     return (
       <ProductPriceLoader

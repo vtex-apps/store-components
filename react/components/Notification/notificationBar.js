@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { string, object } from 'prop-types'
+import PropTypes from 'prop-types'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import { formatIOMessage } from 'vtex.native-types'
 import { injectIntl } from 'react-intl'
@@ -26,8 +26,8 @@ const NotificationBar = ({ content, intl }) => {
 }
 
 NotificationBar.propTypes = {
-  content: string,
-  intl: object.isRequired,
+  content: PropTypes.string,
+  intl: PropTypes.object.isRequired,
 }
 
 NotificationBar.defaultProps = {

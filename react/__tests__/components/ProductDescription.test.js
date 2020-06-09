@@ -24,7 +24,7 @@ describe('<ProductDescription />', () => {
   })
 
   it('should not show show more button', () => {
-    const { debug, queryByText } = renderComponent({ collapseContent: false })
+    const { queryByText } = renderComponent({ collapseContent: false })
     expect(queryByText('Show more')).toBeNull()
   })
 })

@@ -11,6 +11,7 @@ import categoriesHighlights from '../categoriesHighlights.css'
  * CategoryCard is a component responsible to display an image of a category
  * and provides the link to the category specified by its name.
  */
+// eslint-disable-next-line react/prefer-stateless-function
 class CategoryCard extends Component {
   static propTypes = {
     /** Name of the category */
@@ -28,6 +29,7 @@ class CategoryCard extends Component {
       <div className={`${categoriesHighlights[`${shape}Card`]} shadow-1 ma1`}>
         {/* TODO: Redirect to the page of the category specified by its name */}
 
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <Link>
           {image ? (
             <img

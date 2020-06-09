@@ -4,9 +4,7 @@ import React from 'react'
 const noop = () => {}
 
 export function Pixel(Comp) {
-  return class PixelComponent extends React.Component {
-    render() {
-      return <Comp {...this.props} push={noop} />
-    }
+  return function PixelComponent(props) {
+    return <Comp {...props} push={noop} />
   }
 }

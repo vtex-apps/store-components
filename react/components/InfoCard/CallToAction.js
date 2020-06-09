@@ -17,7 +17,8 @@ const CallToAction = ({ mode, text, url, linkTarget }) => {
     return null
   }
 
-  const ActionWrapper = () => {
+  // eslint-disable-next-line no-shadow
+  const ActionWrapper = ({ text, mode }) => {
     if (mode === callActionValues.BUTTON) {
       return <Button onClick={noop}>{text}</Button>
     }
