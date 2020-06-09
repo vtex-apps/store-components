@@ -49,7 +49,7 @@ class Newsletter extends Component {
   }
 
   handleChangeEmail = e => {
-    this.setState({ email: e.target.value })
+    this.setState({ email: e.target.value.trim() })
   }
 
   validateEmail = () => {
