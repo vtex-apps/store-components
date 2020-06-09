@@ -39,8 +39,8 @@ const getLinkProps = element => {
     const paramForSearchTracking = '&_c=' + terms[0]
 
     page = 'store.search'
-    params = { term: terms[0] }
-    query = `map=c,ft&rest=${terms.slice(1).join(',')}` + paramForSearchTracking
+    params = { term: terms.join('/') }
+    query = `map=c,ft` + paramForSearchTracking
   }
 
   return { page, params, query }

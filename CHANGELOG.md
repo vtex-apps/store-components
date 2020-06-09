@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+- `rest` query string.
+
 ## [3.117.0] - 2020-06-08
 ### Added
 - `contentType` prop to the ProductImages component.
