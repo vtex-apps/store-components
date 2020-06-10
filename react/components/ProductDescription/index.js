@@ -18,15 +18,16 @@ const CSS_HANDLES = [
  * Render the description of a product
  */
 const ProductDescription = ({ description, collapseContent, title, intl }) => {
+  const descriptionParsed = useMemo(
+    () => HtmlParser(description || '<span></span>'),
+    [description]
+  )
+
+  const handles = useCssHandles(CSS_HANDLES)
+
   if (!description) {
     return null
   }
-
-  const descriptionParsed = useMemo(() => HtmlParser(description), [
-    description,
-  ])
-
-  const handles = useCssHandles(CSS_HANDLES)
 
   return (
     <div className={handles.productDescriptionContainer}>
@@ -58,6 +59,7 @@ ProductDescription.propTypes = {
   /** Product description string */
   description: PropTypes.string,
   collapseContent: PropTypes.bool,
+  intl: PropTypes.object.isRequired,
 }
 
 export default injectIntl(memo(ProductDescription))

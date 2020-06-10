@@ -1,14 +1,12 @@
 import React, { Fragment } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
-import { injectIntl } from 'react-intl'
+import { injectIntl, FormattedMessage } from 'react-intl'
 import classNames from 'classnames'
 import { isEmpty } from 'ramda'
-import { FormattedMessage } from 'react-intl'
 import PropTypes from 'prop-types'
 import { formatCurrency } from 'vtex.format-currency'
 
 import PricePropTypes from './propTypes'
-
 import productPrice from './styles.css'
 
 /** Installments component */
@@ -109,6 +107,7 @@ Installments.propTypes = {
   installments: PricePropTypes.installments,
   /** Pages editor config to display labels */
   showLabels: PropTypes.bool.isRequired,
+  intl: PropTypes.object.isRequired,
 }
 
 export default injectIntl(Installments)

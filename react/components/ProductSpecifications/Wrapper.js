@@ -26,7 +26,8 @@ const ProductSpecificationsWrapper = ({
   collapsible = 'always',
 }) => {
   const productContext = useProduct()
-  const specifications = propsSpecifications || getSpecifications(productContext)
+  const specifications =
+    propsSpecifications || getSpecifications(productContext)
 
   return (
     <ProductSpecifications
@@ -41,32 +42,36 @@ const ProductSpecificationsWrapper = ({
 
 ProductSpecificationsWrapper.getSchema = () => {
   return {
-      title: 'admin/editor.product-specifications.title',
-      description: '',
-      type: 'object',
-      properties: {
-        hiddenSpecifications: {
-          items: {
-            default: '',
-            type: 'string',
-            title: 'admin/editor.product-specifications.items.title'
-          },
-          description: 'admin/editor.product-specifications.hidden-specifications.description',
-          title: 'admin/editor.product-specifications.hidden-specifications.title',
-          type: 'array'
+    title: 'admin/editor.product-specifications.title',
+    description: '',
+    type: 'object',
+    properties: {
+      hiddenSpecifications: {
+        items: {
+          default: '',
+          type: 'string',
+          title: 'admin/editor.product-specifications.items.title',
         },
-        visibleSpecifications: {
-          items: {
-            default: '',
-            type: 'string',
-            title: 'admin/editor.product-specifications.items.title'
-          },
-          description: 'admin/editor.product-specifications.visible-specifications.description',
-          title: 'admin/editor.product-specifications.visible-specifications.title',
-          type: 'array'
-        }
-      }
-    }
+        description:
+          'admin/editor.product-specifications.hidden-specifications.description',
+        title:
+          'admin/editor.product-specifications.hidden-specifications.title',
+        type: 'array',
+      },
+      visibleSpecifications: {
+        items: {
+          default: '',
+          type: 'string',
+          title: 'admin/editor.product-specifications.items.title',
+        },
+        description:
+          'admin/editor.product-specifications.visible-specifications.description',
+        title:
+          'admin/editor.product-specifications.visible-specifications.title',
+        type: 'array',
+      },
+    },
+  }
 }
 
 export default ProductSpecificationsWrapper

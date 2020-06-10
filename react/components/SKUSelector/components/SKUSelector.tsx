@@ -20,7 +20,6 @@ import {
   Variations,
   DisplayMode,
 } from '../types'
-
 import Variation from './Variation'
 import useEffectSkipMount from './hooks/useEffectSkipMount'
 
@@ -323,7 +322,9 @@ const SKUSelector: FC<Props> = ({
 
   const variationClasses = `mb${variationsSpacing}`
   return (
-    <div className={`${styles.skuSelectorContainer} ${handles.skuSelectorContainer}`}>
+    <div
+      className={`${styles.skuSelectorContainer} ${handles.skuSelectorContainer}`}
+    >
       {displayVariations.map((variationOption, index) => {
         const selectedItem = selectedVariations[variationOption.name]
 

@@ -72,12 +72,13 @@ const ZoomInPlace: FC<Props> = ({ children, zoomContent, type, factor }) => {
       return
     }
 
-    contentElement.style.transform = `scale(${scale}, ${scale}) translate3d(${-x /
-      scale}px, ${-y / scale}px, 0)`
+    contentElement.style.transform = `scale(${scale}, ${scale}) translate3d(${
+      -x / scale
+    }px, ${-y / scale}px, 0)`
   }
 
   const getContainerBounds = () =>
-    containerBounds.current || getBounds(containerRef.current)
+    containerBounds.current ?? getBounds(containerRef.current)
 
   const handleMouseOver = () => {
     setZoom(true)
@@ -86,6 +87,7 @@ const ZoomInPlace: FC<Props> = ({ children, zoomContent, type, factor }) => {
   const handleClick = (event: ReactMouseEvent) => {
     setZoom(!isZoomedIn)
 
+    // eslint-disable-next-line vtex/prefer-early-return
     if (!isZoomedIn) {
       const mousePosition = getMousePositionFromEvent(
         event,
@@ -97,6 +99,7 @@ const ZoomInPlace: FC<Props> = ({ children, zoomContent, type, factor }) => {
 
   // Resets position when the image is zoomed out
   useEffect(() => {
+    // eslint-disable-next-line vtex/prefer-early-return
     if (!isZoomedIn) {
       setPositionAndScale(0, 0, 1)
       containerBounds.current = null
@@ -135,6 +138,7 @@ const ZoomInPlace: FC<Props> = ({ children, zoomContent, type, factor }) => {
       }
     }
     return () => {
+      // eslint-disable-next-line vtex/prefer-early-return
       if (document) {
         document.removeEventListener('mousemove', handleMouseMove)
         if (type === 'click') {

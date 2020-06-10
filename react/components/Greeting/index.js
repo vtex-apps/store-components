@@ -7,14 +7,11 @@ import { graphql } from 'react-apollo'
 
 import orderFormQuery from './queries/orderForm.gql'
 import Loader from './Loader'
-
 import styles from './styles.css'
 
 const Wrapper = ({ children }) => (
   <div
-    className={`${
-      styles.greetingContainer
-    } mh4 pv4 t-heading-4 c-on-base nowrap`}
+    className={`${styles.greetingContainer} mh4 pv4 t-heading-4 c-on-base nowrap`}
   >
     {children}
   </div>

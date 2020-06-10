@@ -7,6 +7,9 @@ import { callActionValues } from './SchemaTypes'
 
 const CSS_HANDLES = ['infoCardCallActionContainer', 'infoCardCallActionText']
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const noop = () => {}
+
 const CallToAction = ({ mode, text, url, linkTarget }) => {
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -14,9 +17,10 @@ const CallToAction = ({ mode, text, url, linkTarget }) => {
     return null
   }
 
-  const ActionWrapper = ({ mode, text }) => {
+  // eslint-disable-next-line no-shadow
+  const ActionWrapper = ({ text, mode }) => {
     if (mode === callActionValues.BUTTON) {
-      return <Button onClick={() => {}}>{text}</Button>
+      return <Button onClick={noop}>{text}</Button>
     }
 
     // Mode is link

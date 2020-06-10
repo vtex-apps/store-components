@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 declare module 'vtex.responsive-values' {
   const useResponsiveValues: (input: any) => any
   const useResponsiveValue: <T>(input: MaybeResponsiveInput<T>) => T

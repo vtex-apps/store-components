@@ -2,7 +2,6 @@ import React from 'react'
 import { render, wait } from '@vtex/test-tools/react'
 
 import orderFormQuery from '../../components/Greeting/queries/orderForm.gql'
-
 import Greeting from '../../Greeting'
 
 const mocks = [
@@ -13,8 +12,8 @@ const mocks = [
     result: {
       data: {
         minicart: {
-          orderForm: '{ "clientProfileData": { "firstName": "Adam" } }'
-        }
+          orderForm: '{ "clientProfileData": { "firstName": "Adam" } }',
+        },
       },
     },
   },
@@ -41,6 +40,7 @@ describe('<Greeting /> component', () => {
     getByText('Adam')
   })
 
+  // eslint-disable-next-line jest/no-identical-title
   it('should render name in orderForm', async () => {
     const { getByTestId } = renderComponent({ loading: true })
     await wait(() => {

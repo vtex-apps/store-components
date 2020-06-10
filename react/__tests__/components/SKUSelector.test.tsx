@@ -1,13 +1,13 @@
 import React from 'react'
 import { render, fireEvent, wait } from '@vtex/test-tools/react'
 import useProduct, { ProductContext } from 'vtex.product-context/useProduct'
-
-import SKUSelector from './../../SKUSelector'
 import { getSKU } from 'sku-helper'
+
+import SKUSelector from '../../components/SKUSelector/Wrapper'
 
 describe('<SKUSelector />', () => {
   const renderComponent = (customProps = {}) => {
-    const props = {
+    const props: any = {
       skuSelected: getSKU(),
       skuItems: [getSKU('Black'), getSKU('Blue'), getSKU('Yellow')],
       ...customProps,
@@ -24,6 +24,7 @@ describe('<SKUSelector />', () => {
     await wait()
     const selector = container.querySelector('.skuSelectorItem')
     await wait(() => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       fireEvent.click(selector!)
     })
     expect(onSKUSelected).toBeCalledTimes(2)
@@ -76,7 +77,7 @@ describe('<SKUSelector />', () => {
         images: [],
       },
     ]
-    const skuSelected = skuItems[0]
+    const [skuSelected] = skuItems
     const onSKUSelected = jest.fn()
     const { getByText } = render(
       <SKUSelector
@@ -151,7 +152,7 @@ describe('<SKUSelector />', () => {
         images: [],
       },
     ]
-    const skuSelected = skuItems[0]
+    const [skuSelected] = skuItems
 
     const { getByText, getAllByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
@@ -382,7 +383,7 @@ describe('<SKUSelector />', () => {
         images: [],
       },
     ]
-    const skuSelected = skuItems[0]
+    const [skuSelected] = skuItems
 
     const { getByText, queryByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
@@ -612,7 +613,7 @@ describe('<SKUSelector />', () => {
         images: [],
       },
     ]
-    const skuSelected = skuItems[0]
+    const [skuSelected] = skuItems
 
     const { getByText, queryByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />
@@ -620,6 +621,7 @@ describe('<SKUSelector />', () => {
 
     await wait()
 
+    // eslint-disable-next-line jest/valid-expect
     expect(getByText('seeMoreLabel'))
     expect(getByText('4')).toBeDefined()
     expect(queryByText('5')).toBeNull()
@@ -789,7 +791,7 @@ describe('<SKUSelector />', () => {
         images: [],
       },
     ]
-    const skuSelected = skuItems[0]
+    const [skuSelected] = skuItems
 
     const { getByText, queryByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
@@ -1121,7 +1123,7 @@ describe('<SKUSelector />', () => {
         skuSelected={skuItems[0]}
         skuItems={skuItems}
         maxItems={6}
-        showValueNameForImageVariation={true}
+        showValueNameForImageVariation
       />
     )
 
@@ -1155,60 +1157,62 @@ describe('<SKUSelector />', () => {
       images: [],
     }
 
-    mockedUseProduct.mockImplementation(function(): ProductContext {
-      return {
-        product: {
-          buyButton: {
-            clicked: false,
-          },
-          skuSelector: {
-            isVisible: true,
-            areAllVariationsSelected: true,
-          },
-          selectedItem: firstSku,
-          selectedQuantity: 1,
-          assemblyOptions: {
-            items: {},
-            areGroupsValid: {},
-            inputValues: {},
-          },
-          skuSpecifications: [
-            {
-              field: {
-                name: 'Color',
-              },
-              values: [
-                {
-                  name: 'Black',
-                },
-                {
-                  name: 'Gray',
-                },
-                {
-                  name: 'Blue',
-                },
-              ],
+    mockedUseProduct.mockImplementation(
+      function getProductContext(): ProductContext {
+        return {
+          product: {
+            buyButton: {
+              clicked: false,
             },
-            {
-              field: {
-                name: 'Size',
-              },
-              values: [
-                {
-                  name: '43',
-                },
-                {
-                  name: '42',
-                },
-                {
-                  name: '41',
-                },
-              ],
+            skuSelector: {
+              isVisible: true,
+              areAllVariationsSelected: true,
             },
-          ],
-        },
+            selectedItem: firstSku,
+            selectedQuantity: 1,
+            assemblyOptions: {
+              items: {},
+              areGroupsValid: {},
+              inputValues: {},
+            },
+            skuSpecifications: [
+              {
+                field: {
+                  name: 'Color',
+                },
+                values: [
+                  {
+                    name: 'Black',
+                  },
+                  {
+                    name: 'Gray',
+                  },
+                  {
+                    name: 'Blue',
+                  },
+                ],
+              },
+              {
+                field: {
+                  name: 'Size',
+                },
+                values: [
+                  {
+                    name: '43',
+                  },
+                  {
+                    name: '42',
+                  },
+                  {
+                    name: '41',
+                  },
+                ],
+              },
+            ],
+          },
+        }
       }
-    })
+    )
     const skuItems = [
       firstSku,
       {
@@ -1248,7 +1252,7 @@ describe('<SKUSelector />', () => {
     const { asFragment } = render(
       <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
     )
-    //check comment above the 'it' description
+    // check comment above the 'it' description
     expect(asFragment()).toMatchSnapshot()
   })
 })

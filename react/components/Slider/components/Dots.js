@@ -6,6 +6,7 @@ import classNames from 'classnames'
  * Dots component. It's an overriden component of react-slick that controls
  * the slide transition;
  */
+// eslint-disable-next-line react/prefer-stateless-function
 export default class Dots extends Component {
   render() {
     const { className, style, dots, cssClass, customClass } = this.props

@@ -1,5 +1,4 @@
 import React from 'react'
-import { map, join } from 'ramda'
 import { injectIntl } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 import { FormattedCurrency, formatCurrency } from 'vtex.format-currency'

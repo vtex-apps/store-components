@@ -1,4 +1,5 @@
 import React from 'react'
 
-export default () => <hr className="o-30" size="1" />
-
+export default function ProductSeparator() {
+  return <hr className="o-30" size="1" />
+}

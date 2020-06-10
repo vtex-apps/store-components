@@ -30,6 +30,7 @@ export function Dropdown(props) {
   }
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-onchange
     <select value={value} onChange={onChange}>
       {options.map(op => (
         <option key={op.value} value={op.value}>
@@ -60,14 +61,17 @@ export const Input = forwardRef(function Input(
   )
 })
 
-export const Button = jest.fn(({ isLoading, variation, block, children, ...props }) => {
-  return (
-    <button
-      data-variation={variation}
-      data-isloading={isLoading}
-      data-block={block}
-      {...props}>
-      {children}
-    </button>
-  )
-})
+export const Button = jest.fn(
+  ({ isLoading, variation, block, children, ...props }) => {
+    return (
+      <button
+        data-variation={variation}
+        data-isloading={isLoading}
+        data-block={block}
+        {...props}
+      >
+        {children}
+      </button>
+    )
+  }
+)

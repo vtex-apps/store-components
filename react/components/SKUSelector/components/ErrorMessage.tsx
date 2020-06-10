@@ -11,10 +11,10 @@ function ErrorMessage() {
   return (
     <FormattedMessage id="store/sku-selector.variation.select-an-option">
       {message => (
-        <>{' '}{/* this space is necessary */}
-          <span className={className}>
-            {message}
-          </span>
+        <>
+          {' '}
+          {/* this space is necessary */}
+          <span className={className}>{message}</span>
         </>
       )}
     </FormattedMessage>

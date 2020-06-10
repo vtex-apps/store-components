@@ -3,6 +3,7 @@ import {
   ItemOption,
   InputValuesOption,
 } from './assemblyUtils'
+// eslint-disable-next-line jest/no-mocks-import
 import { customBell, comboPizza, starColor } from './__mocks__/assemblyOptions'
 
 test('should transform assemblyOptions', () => {
@@ -76,5 +77,5 @@ test('empty input values should result in empty options', () => {
     parentPrice,
     parentQuantity
   )
-  expect(resultStar.options.length).toBe(0)
+  expect(resultStar.options).toHaveLength(0)
 })

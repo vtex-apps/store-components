@@ -13,11 +13,11 @@ class Youtube extends Component {
     this.state = {
       iframe: {
         src: `https://www.youtube.com/embed/${videoId}?${params}`,
-      }
+      },
     }
   }
 
-  static getThumbUrl = (url) => {
+  static getThumbUrl = url => {
     const videoId = Youtube.extractVideoID(url)
     return Promise.resolve(`https://img.youtube.com/vi/${videoId}/default.jpg`)
   }
@@ -79,6 +79,10 @@ Youtube.propTypes = {
   height: PropTypes.number,
   playing: PropTypes.bool,
   title: PropTypes.string,
+  cssHandles: PropTypes.shape({
+    video: PropTypes.string.isRequired,
+    videoContainer: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 Youtube.defaultProps = {

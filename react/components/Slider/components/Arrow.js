@@ -6,6 +6,7 @@ import classNames from 'classnames'
  * Arrow component. It's an overriden component of react-slick that controls
  * the slide transition.
  */
+// eslint-disable-next-line react/prefer-stateless-function
 export default class Arrow extends Component {
   render() {
     const { className, style, onClick, cssClass, customClasses } = this.props
@@ -16,6 +17,7 @@ export default class Arrow extends Component {
     })
 
     return (
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
       <div
         className={`${arrowClasses}`}
         style={{ ...style }}

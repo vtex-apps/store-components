@@ -89,10 +89,13 @@ interface ParsedAssemblyOptions {
 }
 
 export const transformAssemblyOptions = (
+  // eslint-disable-next-line @typescript-eslint/default-param-last
   assemblyOptionsItems: Record<GroupId, AssemblyOptionItem[]> = {},
+  // eslint-disable-next-line @typescript-eslint/default-param-last
   inputValues: Record<GroupId, InputValue> = {},
   parentPrice: number,
   parentQuantity: number
+  // eslint-disable-next-line max-params
 ): ParsedAssemblyOptions => {
   // contains options sent as arguments to graphql mutation
   const options: Option[] = []
@@ -120,7 +123,7 @@ export const transformAssemblyOptions = (
       const {
         options: childrenOptions,
         assemblyOptions: childrenAssemblyOptions,
-      } = childrenAddedData || {
+      } = childrenAddedData ?? {
         options: undefined,
         assemblyOptions: undefined,
       }
@@ -137,7 +140,7 @@ export const transformAssemblyOptions = (
             sellingPrice: item.price,
             quantity,
             sellingPriceWithAssemblies:
-              item.price + sumAssembliesPrice(item.children || {}),
+              item.price + sumAssembliesPrice(item.children ?? {}),
             id: item.id,
             ...(childrenAssemblyOptions
               ? { assemblyOptions: childrenAssemblyOptions }

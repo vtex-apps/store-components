@@ -8,6 +8,7 @@ import { Link, useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
 // This import should NOT be removed
+// eslint-disable-next-line no-unused-vars
 import styles from './styles.css'
 import autocomplete from './queries/autocomplete.gql'
 
@@ -23,7 +24,7 @@ const CSS_HANDLES = [
 ]
 
 const getImageUrl = image => {
-  const imageUrl = (image.match(/https?:(.*?)"/g) || [''])[0]
+  const [imageUrl] = image.match(/https?:(.*?)"/g) || ['']
   return imageUrl.replace(/https?:/, '').replace(/-25-25/g, '-50-50')
 }
 
@@ -36,18 +37,19 @@ const getLinkProps = element => {
   if (element.criteria) {
     // This param is only useful to track terms searched
     // See: https://support.google.com/analytics/answer/1012264
-    const paramForSearchTracking = '&_c=' + terms[0]
+    const paramForSearchTracking = `&_c=${terms[0]}`
 
     page = 'store.search'
     params = { term: terms.join('/') }
-    query = `map=c,ft` + paramForSearchTracking
+    query = `map=c,ft${paramForSearchTracking}`
   }
 
   return { page, params, query }
 }
 
-/** List of search results to be displayed*/
+/** List of search results to be displayed */
 const AutocompleteResults = ({
+  // eslint-disable-next-line react/prop-types
   parentContainer,
   isOpen,
   data = {}, // when inputValue is '', query is skipped and value is undefined
@@ -70,6 +72,7 @@ const AutocompleteResults = ({
     () => ({
       width: Math.max(
         MIN_RESULTS_WIDTH,
+        // eslint-disable-next-line react/prop-types
         (parentContainer.current && parentContainer.current.offsetWidth) || 0
       ),
     }),
@@ -92,6 +95,7 @@ const AutocompleteResults = ({
 
   const getListItemClassNames = ({
     itemIndex = -1,
+    // eslint-disable-next-line no-shadow
     highlightedIndex,
     hasThumb,
   } = {}) => {
@@ -118,6 +122,7 @@ const AutocompleteResults = ({
     />
   )
 
+  // eslint-disable-next-line no-shadow
   const renderSearchByClick = inputValue => {
     return customSearchPageUrl ? (
       <Link
@@ -156,13 +161,14 @@ const AutocompleteResults = ({
             <Fragment>
               <li
                 {...getItemProps({
-                  key: 'ft' + inputValue,
+                  key: `ft${inputValue}`,
                   item: { term: inputValue },
                   index: 0,
                   onClick: handleItemClick,
                 })}
               >
                 {attemptPageTypeSearch ? (
+                  // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     href="#"
                     onClick={event => event.preventDefault()}
@@ -180,6 +186,7 @@ const AutocompleteResults = ({
 
               {items.map((item, index) => {
                 return (
+                  // eslint-disable-next-line react/jsx-key
                   <li
                     {...getItemProps({
                       key: item.name + index,
@@ -223,15 +230,15 @@ const AutocompleteResults = ({
 }
 
 const itemProps = PropTypes.shape({
-  /** Image of the product*/
+  /** Image of the product */
   thumb: PropTypes.string,
-  /** Name of the product*/
+  /** Name of the product */
   name: PropTypes.string,
-  /** Link to the product*/
+  /** Link to the product */
   href: PropTypes.string,
-  /** Slug of the product*/
+  /** Slug of the product */
   slug: PropTypes.string,
-  /** Criteria of the product*/
+  /** Criteria of the product */
   criteria: PropTypes.string,
 })
 
@@ -243,9 +250,9 @@ AutocompleteResults.propTypes = {
     }),
     loading: PropTypes.bool.isRequired,
   }),
-  /** Downshift specific prop*/
+  /** Downshift specific prop */
   highlightedIndex: PropTypes.number,
-  /** Search query*/
+  /** Search query */
   inputValue: PropTypes.string.isRequired,
   /** Closes the options box. */
   closeMenu: PropTypes.func,

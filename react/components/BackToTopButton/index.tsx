@@ -50,7 +50,7 @@ const BackToTopButton: StorefrontFC<Props> = ({
     }
   }, [scrollY, displayThreshold])
 
-  return display == 'button' ? (
+  return display === 'button' ? (
     <div className={backToTopButtonClasses}>
       <Button onClick={handleBackTop} size="regular">
         <FormattedMessage id="store/back-to-top.label" />

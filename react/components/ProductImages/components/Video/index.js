@@ -17,7 +17,8 @@ const CSS_HANDLES = ['productVideo', 'videoContainer', 'video']
 export function getThumbUrl(url, thumbWidth) {
   if (isVimeo(url)) {
     return Vimeo.getThumbUrl(url, thumbWidth)
-  } else if (isYoutube(url)) {
+  }
+  if (isYoutube(url)) {
     return YouTube.getThumbUrl(url, thumbWidth)
   }
 }

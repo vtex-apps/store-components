@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'debounce'
@@ -11,7 +12,6 @@ import Video, { getThumbUrl } from '../Video'
 import ProductImage from '../ProductImage'
 import styles from '../../styles.css'
 import './global.css'
-
 import ThumbnailSwiper from './ThumbnailSwiper'
 import {
   THUMBS_ORIENTATION,
@@ -36,7 +36,7 @@ const FakeSwiper = ({
   if (childrenArray.length === 0) {
     return null
   }
-  const child = childrenArray[0]
+  const [child] = childrenArray
   const childClass = path(['props', 'className'], child)
   const newChildClass = childClass
     ? `${childClass} swiper-slide-active`
@@ -182,7 +182,9 @@ class Carousel extends Component {
   }
 
   setVideoThumb = i => (url, title) => {
+    // eslint-disable-next-line react/no-access-state-in-setstate
     const thumbUrl = { ...this.state.thumbUrl }
+    // eslint-disable-next-line react/no-access-state-in-setstate
     const alt = { ...this.state.alt }
 
     thumbUrl[i] = url
@@ -468,6 +470,7 @@ class Carousel extends Component {
       <div className={containerClasses} aria-hidden="true">
         {isThumbsVertical && thumbnailSwiper}
         <div className={imageClasses}>
+          {/* eslint-disable-next-line react/jsx-handler-names */}
           <ReactResizeDetector handleHeight onResize={this.updateSwiperSize}>
             <SliderComponent {...this.galleryParams} shouldSwiperUpdate>
               {slides.map((slide, i) => (

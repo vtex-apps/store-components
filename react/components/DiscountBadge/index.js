@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { FormattedNumber } from 'react-intl'
 import PropTypes from 'prop-types'
-
 import { IOMessage } from 'vtex.native-types'
 
 import styles from './styles.css'

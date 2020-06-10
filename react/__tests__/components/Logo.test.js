@@ -1,7 +1,7 @@
 import React from 'react'
+import { render } from '@vtex/test-tools/react'
 
 import Logo from '../../Logo'
-import { render } from '@vtex/test-tools/react'
 
 describe('<Logo /> component', () => {
   const renderComponent = customProps => {

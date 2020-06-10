@@ -18,7 +18,7 @@ const validateModifier = modifier => {
   }
 
   /* This is not an error, so doesn't log any message, but should
-   * invalidate the current modifier and not include it*/
+   * invalidate the current modifier and not include it */
   if (modifier === '') {
     return false
   }
@@ -62,12 +62,10 @@ export const applyModifiers = (handles, modifier) => {
     .join(' ')
     .trim()
 
-  return splitHandles
-    .concat(modifiedHandles)
-    .join(' ')
-    .trim()
+  return splitHandles.concat(modifiedHandles).join(' ').trim()
 }
 
+// eslint-disable-next-line default-param-last
 export const withCssHandles = (handles = [], options) => Component => {
   const EnhancedComponent = props => {
     const cssHandles = useCssHandles(handles, options)

@@ -6,7 +6,6 @@ import classNames from 'classnames'
 import * as Amp from 'react-amphtml'
 
 import Placeholder from './Placeholder'
-
 import styles from './styles.css'
 
 const CSS_HANDLES = ['logoLink', 'logoImage', 'logoContainer']
@@ -92,6 +91,9 @@ Logo.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /** Logo's height */
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  href: PropTypes.string,
+  mobileWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  mobileHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
 
 Logo.schema = {

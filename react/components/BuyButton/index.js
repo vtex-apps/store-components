@@ -9,6 +9,7 @@ import { useCssHandles } from 'vtex.css-handles'
 import useProduct from 'vtex.product-context/useProduct'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 import { Button, ToastContext, Tooltip } from 'vtex.styleguide'
+
 import useMarketingSessionParams from './hooks/useMarketingSessionParams'
 
 const CONSTANTS = {
@@ -23,10 +24,7 @@ const CONSTANTS = {
 
 const CSS_HANDLES = ['buyButtonContainer', 'buyButtonText']
 
-const isTooltipNeeded = ({
-  showTooltipOnSkuNotSelected,
-  skuSelector,
-}) => {
+const isTooltipNeeded = ({ showTooltipOnSkuNotSelected, skuSelector }) => {
   if (showTooltipOnSkuNotSelected && !skuSelector.areAllVariationsSelected) {
     return {
       showTooltip: true,
@@ -63,12 +61,17 @@ const skuItemToMinicartItem = item => {
   }
 }
 
-const useCallCartFinishIfPending = (orderFormContext, isAddingToCart, addToCartAndFinish) => {
+const useCallCartFinishIfPending = (
+  orderFormContext,
+  isAddingToCart,
+  addToCartAndFinish
+) => {
   const orderFormLoading = orderFormContext && orderFormContext.loading
   useEffect(() => {
     if (!orderFormLoading && isAddingToCart) {
       addToCartAndFinish()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderFormLoading])
 }
 
@@ -107,9 +110,7 @@ export const BuyButton = ({
   const { settings = {}, showInstallPrompt } = usePWA() || {}
   const { rootPath = '' } = useRuntime()
   const { promptOnCustomEvent } = settings
-  const translateMessage = useCallback(id => intl.formatMessage({ id: id }), [
-    intl,
-  ])
+  const translateMessage = useCallback(id => intl.formatMessage({ id }), [intl])
   const orderFormItems = path(['orderForm', 'items'], orderFormContext)
   const { utmParams, utmiParams } = useMarketingSessionParams()
 
@@ -130,9 +131,9 @@ export const BuyButton = ({
 
     const action = success
       ? {
-        label: translateMessage(CONSTANTS.SEE_CART_ID),
-        href: rootPath + customToastURL,
-      }
+          label: translateMessage(CONSTANTS.SEE_CART_ID),
+          href: rootPath + customToastURL,
+        }
       : undefined
 
     showToast({ message, action })
@@ -169,8 +170,8 @@ export const BuyButton = ({
             options: item.options,
             quantity: item.quantity,
           })),
-          ...(utmParams ? {utmParams} : {}),
-          ...(utmiParams ? {utmiParams} : {}),
+          ...(utmParams ? { utmParams } : {}),
+          ...(utmiParams ? { utmiParams } : {}),
         }
         const mutationRes = await orderFormContext.addItem({ variables })
         const { items } = mutationRes.data.addItem
@@ -229,6 +230,7 @@ export const BuyButton = ({
       setAddingToCart(false)
       showToastMessage()
       if (isOneClickBuy) {
+        // eslint-disable-next-line no-restricted-globals
         location.assign(fullCheckoutUrl)
       }
       onAddFinish && onAddFinish()
@@ -240,7 +242,11 @@ export const BuyButton = ({
     await addToCartAndFinish()
   }
 
-  useCallCartFinishIfPending(orderFormContext, isAddingToCart, addToCartAndFinish)
+  useCallCartFinishIfPending(
+    orderFormContext,
+    isAddingToCart,
+    addToCartAndFinish
+  )
 
   const handleClick = e => {
     if (dispatch) {
@@ -268,32 +274,35 @@ export const BuyButton = ({
     </FormattedMessage>
   )
 
-  const ButtonWithLabel = <Button
-    block={large}
-    disabled={disabled}
-    onClick={handleClick}
-    isLoading={isAddingToCart}
-  >
-    {available ? children : unavailableLabel}
-  </Button>
+  const ButtonWithLabel = (
+    <Button
+      block={large}
+      disabled={disabled}
+      onClick={handleClick}
+      isLoading={isAddingToCart}
+    >
+      {available ? children : unavailableLabel}
+    </Button>
+  )
 
   const { showTooltip, labelId } = isTooltipNeeded({
     showTooltipOnSkuNotSelected,
     skuSelector,
   })
 
-  const tooltipLabel = showTooltip &&
+  const tooltipLabel = showTooltip && (
     <span className={handles.errorMessage}>
       <FormattedMessage id={labelId} />
     </span>
+  )
 
   return !showTooltip ? (
     ButtonWithLabel
   ) : (
-      <Tooltip trigger="click" label={tooltipLabel}>
-        {ButtonWithLabel}
-      </Tooltip>
-    )
+    <Tooltip trigger="click" label={tooltipLabel}>
+      {ButtonWithLabel}
+    </Tooltip>
+  )
 }
 
 BuyButton.propTypes = {
@@ -329,7 +338,7 @@ BuyButton.propTypes = {
       ),
     })
   ),
-  /** Component children that will be displayed inside of the button **/
+  /** Component children that will be displayed inside of the button */
   children: PropTypes.node.isRequired,
   /** Should redirect to checkout after adding to cart */
   isOneClickBuy: PropTypes.bool,
@@ -341,7 +350,7 @@ BuyButton.propTypes = {
   large: PropTypes.bool,
   /** Internationalization */
   intl: PropTypes.object.isRequired,
-  /** If the product is available or not*/
+  /** If the product is available or not */
   available: PropTypes.bool,
   /** If it should a tooltip when you click the button but there's no SKU selected */
   showTooltipOnSkuNotSelected: PropTypes.bool,
@@ -361,7 +370,7 @@ BuyButton.propTypes = {
   disabled: PropTypes.bool,
   /** A custom URL for the `VIEW CART` button inside the toast */
   customToastURL: PropTypes.string,
-  /** The URL to the cart **/
+  /** The URL to the cart */
   checkoutUrl: PropTypes.string,
 }
 

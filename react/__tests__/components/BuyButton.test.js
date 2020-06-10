@@ -82,6 +82,7 @@ describe('<BuyButton />', () => {
     expect.assertions(assertions)
   })
 
+  // eslint-disable-next-line jest/expect-expect
   it('should show items prices', async () => {
     const skuItems = [
       {

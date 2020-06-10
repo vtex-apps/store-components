@@ -175,6 +175,7 @@ const getNewSelectedVariations = (
   skuSelected: Props['skuSelected'],
   variations: Props['variations'],
   initialSelection?: Props['initialSelection']
+  // eslint-disable-next-line max-params
 ) => {
   const emptyVariations = buildEmptySelectedVariation(variations)
   if (skuSelected == null) {

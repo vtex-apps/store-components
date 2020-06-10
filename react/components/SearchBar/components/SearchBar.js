@@ -46,6 +46,7 @@ const SearchBar = ({
   openAutocompleteOnFocus,
   blurOnSubmit,
   submitOnIconClick,
+  // eslint-disable-next-line react/prop-types
   displayMode,
   minSearchTermLength,
   autocompleteFullWidth,
@@ -107,11 +108,11 @@ const SearchBar = ({
       if (element.criteria) {
         // This param is only useful to track terms searched
         // See: https://support.google.com/analytics/answer/1012264
-        const paramForSearchTracking = '&_c=' + terms[0]
+        const paramForSearchTracking = `&_c=${terms[0]}`
 
         page = 'store.search'
         params = { term: terms.join('/') }
-        query = `map=c,ft` + paramForSearchTracking
+        query = `map=c,ft${paramForSearchTracking}`
       }
 
       navigate({ page, params, query })
@@ -127,8 +128,8 @@ const SearchBar = ({
     return null
   }
 
-  const showInputErrorMessage = inputErrorMessage => {
-    setInputErrorMessage(inputErrorMessage)
+  const showInputErrorMessage = newInputErrorMessage => {
+    setInputErrorMessage(newInputErrorMessage)
   }
 
   const hideInputErrorMessage = () => {

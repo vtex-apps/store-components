@@ -88,11 +88,14 @@ const SelectorItem: FC<Props> = ({
     ]
   )
 
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const passedAnyDimension = Boolean(imageHeight || imageWidth)
   let containerStyles = {}
   if (isImage && passedAnyDimension && imageUrl) {
     containerStyles = {
+      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
       height: imageHeight || 'auto',
+      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
       width: imageWidth || 'auto',
       padding: 0,
     }

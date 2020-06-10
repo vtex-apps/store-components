@@ -31,6 +31,6 @@ export const useChildBlock = () => true
 
 export const useExperimentalLazyImagesContext = () => {
   return {
-    lazyLoad: false
+    lazyLoad: false,
   }
 }

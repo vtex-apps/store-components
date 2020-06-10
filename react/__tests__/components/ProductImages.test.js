@@ -1,14 +1,16 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
-import ProductImages from './../../ProductImages'
 import useProduct from 'vtex.product-context/useProduct'
+
+import ProductImages from '../../ProductImages'
+// eslint-disable-next-line jest/no-mocks-import
 import { createItem } from '../../__mocks__/productMock'
 
 const mockUseProduct = useProduct
 
 jest.mock('react-id-swiper/lib/ReactIdSwiper', () => {
   return {
-    default: ({ children }) => {
+    default({ children }) {
       return <div>{children}</div>
     },
   }
@@ -56,8 +58,8 @@ describe('<ProductImages />', () => {
       ],
     }
     const { getAllByAltText } = renderComponent(props)
-    expect(getAllByAltText('imageText').length).toBe(2)
-    expect(getAllByAltText('imageText2').length).toBe(2)
+    expect(getAllByAltText('imageText')).toHaveLength(2)
+    expect(getAllByAltText('imageText2')).toHaveLength(2)
   })
   it('should show thumbs when there is more than one image', () => {
     const props = {
@@ -96,7 +98,7 @@ describe('<ProductImages />', () => {
     const { queryByTestId } = renderComponent(props)
 
     const swiper = queryByTestId('thumbnail-swiper')
-    expect(swiper).toBe(null)
+    expect(swiper).toBeNull()
   })
 
   describe('test logic to thumbnail orientation', () => {
@@ -233,9 +235,9 @@ describe('<ProductImages />', () => {
         selectedItem: createItem({}),
       }))
       const { queryAllByAltText } = renderComponent({})
-      expect(queryAllByAltText('imageText').length).toBe(2)
-      expect(queryAllByAltText('imageText2').length).toBe(2)
-      expect(queryAllByAltText('imageText3').length).toBe(2)
+      expect(queryAllByAltText('imageText')).toHaveLength(2)
+      expect(queryAllByAltText('imageText2')).toHaveLength(2)
+      expect(queryAllByAltText('imageText3')).toHaveLength(2)
     })
     it('give priority to prop items if product in context', () => {
       mockUseProduct.mockImplementation(() => ({
@@ -258,8 +260,8 @@ describe('<ProductImages />', () => {
         ],
       }
       const { queryAllByAltText } = renderComponent(props)
-      expect(queryAllByAltText('propImageText').length).toBe(2)
-      expect(queryAllByAltText('propImageText2').length).toBe(2)
+      expect(queryAllByAltText('propImageText')).toHaveLength(2)
+      expect(queryAllByAltText('propImageText2')).toHaveLength(2)
     })
   })
 })

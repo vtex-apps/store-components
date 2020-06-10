@@ -4,10 +4,10 @@ import { path, isEmpty, compose } from 'ramda'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { withToast } from 'vtex.styleguide'
 import { useOrderForm } from 'vtex.store-resources/OrderFormContext'
-import ProductPrice from '../ProductPrice'
 import { graphql } from 'react-apollo'
 import { useCssHandles } from 'vtex.css-handles'
 
+import ProductPrice from '../ProductPrice'
 import { BuyButton } from './index'
 import { transformAssemblyOptions, sumAssembliesPrice } from './assemblyUtils'
 import addToCartMutation from './mutations/addToCart.gql'
@@ -33,7 +33,6 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
         {message => <span className={handles.buyButtonText}>{message}</span>}
       </FormattedMessage>
     )
-    return
   }
 
   const totalPrice = skuItems.reduce((acc, item) => {
@@ -80,7 +79,7 @@ const BuyButtonWrapper = ({
   customToastURL,
   showTooltipOnSkuNotSelected,
   checkoutVersion,
-  selectedSeller
+  selectedSeller,
 }) => {
   const orderFormContext = useOrderForm()
   const valuesFromContext = useProduct()
@@ -90,7 +89,8 @@ const BuyButtonWrapper = ({
   const product = valuesFromContext && valuesFromContext.product
   const selectedItem = valuesFromContext && valuesFromContext.selectedItem
   const assemblyOptions = valuesFromContext && valuesFromContext.assemblyOptions
-  selectedSeller = selectedSeller ? selectedSeller : path(['selectedItem', 'sellers', 0], valuesFromContext)
+  selectedSeller =
+    selectedSeller || path(['selectedItem', 'sellers', 0], valuesFromContext)
   const selectedQuantity =
     valuesFromContext && valuesFromContext.selectedQuantity != null
       ? valuesFromContext.selectedQuantity
@@ -99,13 +99,14 @@ const BuyButtonWrapper = ({
   const skuItems =
     isEmptyContext || propSkuItems != null
       ? propSkuItems
-      : EnhancedBuyButton.mapCatalogItemToCart({
-        product,
-        selectedItem,
-        selectedQuantity,
-        selectedSeller,
-        assemblyOptions,
-      })
+      : // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        EnhancedBuyButton.mapCatalogItemToCart({
+          product,
+          selectedItem,
+          selectedQuantity,
+          selectedSeller,
+          assemblyOptions,
+        })
 
   const large = isEmptyContext || propLarge != null ? propLarge : true
 
@@ -113,8 +114,8 @@ const BuyButtonWrapper = ({
     isEmptyContext || propAvailable != null
       ? propAvailable
       : selectedSeller &&
-      selectedSeller.commertialOffer &&
-      selectedSeller.commertialOffer.AvailableQuantity > 0
+        selectedSeller.commertialOffer &&
+        selectedSeller.commertialOffer.AvailableQuantity > 0
 
   const groupsValidArray =
     (assemblyOptions &&
@@ -134,6 +135,7 @@ const BuyButtonWrapper = ({
     checkoutVersion.installedAppPublic.version
 
   const checkoutUrl =
+    // eslint-disable-next-line radix
     version && parseInt(version.split('.')[0]) > 0
       ? CHECKOUT_URL.V1
       : CHECKOUT_URL.V0
