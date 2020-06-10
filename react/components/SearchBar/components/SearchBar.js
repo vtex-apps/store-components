@@ -17,7 +17,7 @@ import styles from '../styles.css'
 import AutocompleteResults from '../../AutocompleteResults'
 import AutocompleteInput from './AutocompleteInput'
 
-const CSS_HANDLES = ['searchBarInnerContainer']
+const CSS_HANDLES = ['searchBarInnerContainer', 'open', 'hasTerm']
 const SEARCH_DELAY_TIME = 500
 const AUTCOMPLETE_EXTENSION_ID = 'autocomplete-result-list'
 
@@ -186,7 +186,9 @@ const SearchBar = ({
             <div
               className={classNames(
                 'relative-m w-100',
-                handles.searchBarInnerContainer
+                handles.searchBarInnerContainer,
+                isOpen ? handles.open : '',
+                inputValue !== '' ? handles.hasTerm : ''
               )}
             >
               <AutocompleteInput
