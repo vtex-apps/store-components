@@ -10,14 +10,14 @@ import {
   useChildBlock,
 } from 'vtex.render-runtime'
 import { Overlay } from 'vtex.react-portal'
-import { useCssHandles } from 'vtex.css-handles'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { defineMessages, useIntl } from 'react-intl'
 
 import styles from '../styles.css'
 import AutocompleteResults from '../../AutocompleteResults'
 import AutocompleteInput from './AutocompleteInput'
 
-const CSS_HANDLES = ['searchBarInnerContainer', 'open', 'hasTerm']
+const CSS_HANDLES = ['searchBarInnerContainer']
 const SEARCH_DELAY_TIME = 500
 const AUTCOMPLETE_EXTENSION_ID = 'autocomplete-result-list'
 
@@ -187,8 +187,12 @@ const SearchBar = ({
               className={classNames(
                 'relative-m w-100',
                 handles.searchBarInnerContainer,
-                isOpen ? handles.open : '',
-                inputValue !== '' ? handles.hasTerm : ''
+                isOpen
+                  ? applyModifiers(handles.searchBarInnerContainer, 'opened')
+                  : '',
+                inputValue !== ''
+                  ? applyModifiers(handles.searchBarInnerContainer, 'filled')
+                  : ''
               )}
             >
               <AutocompleteInput
