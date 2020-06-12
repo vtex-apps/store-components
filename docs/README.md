@@ -141,6 +141,7 @@ To execute our tests go to `react/` folder and run `yarn test`
 
 [![Build Status](https://api.travis-ci.org/vtex-apps/store-components.svg?branch=master)](https://travis-ci.org/vtex-apps/store-components)
 
+<!-- DOCS-IGNORE:start -->
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -169,6 +170,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
+<!-- DOCS-IGNORE:end -->
 
 **Upcoming documentation:**
 
