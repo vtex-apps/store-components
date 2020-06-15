@@ -9,15 +9,6 @@ VTEX Store Components is a collection of components that can be used to create/e
 
 :loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
 
-## Release Schedule
-
-| Release |       Status        | Initial Release | Maintenance LTS Start | End-of-life | Store Compatibility |
-| :-----: | :-----------------: | :-------------: | :-------------------: | :---------: | :-----------------: |
-|  [3.x]  | **Current Release** |   2018-11-29    |                       |             |         2.x         |
-|  [2.x]  | **Maintenance LTS** |   2018-10-02    |      2018-12-01       | March 2019  |         1.x         |
-
-See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for more information.
-
 ## Table of Contents
 
 - [Usage](#usage)
@@ -150,6 +141,7 @@ To execute our tests go to `react/` folder and run `yarn test`
 
 [![Build Status](https://api.travis-ci.org/vtex-apps/store-components.svg?branch=master)](https://travis-ci.org/vtex-apps/store-components)
 
+<!-- DOCS-IGNORE:start -->
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -178,6 +170,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
+<!-- DOCS-IGNORE:end -->
 
 **Upcoming documentation:**
 
