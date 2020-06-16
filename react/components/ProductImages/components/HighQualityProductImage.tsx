@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import classnames from 'classnames'
 import { useCssHandles } from 'vtex.css-handles'
 
+import styles from '../styles.css'
 import { imageUrl } from '../utils/aspectRatioUtil'
 import ProductImageContext from './ProductImageContext'
 import Zoomable, { ZoomMode as ZoomModeComplete } from './Zoomable'
@@ -11,25 +12,38 @@ const IMAGE_SIZES = [800, 1200, 1400]
 const DEFAULT_SIZE = 1200
 const MAX_SIZE = 4096
 
-type ZoomMode = Exclude<ZoomModeComplete, 'open-modal'>
 type AspectRatio = string | number
+type ZoomMode = Exclude<ZoomModeComplete, 'open-modal'>
 
 interface Props {
   zoomMode?: ZoomMode
   zoomFactor?: number
   aspectRatio?: AspectRatio
-  maxHeight?: number | string
 }
 
-const CSS_HANDLES = ['highQualityContainer', 'imgZoom'] as const
+function validateZoomMode(zoomMode: ZoomModeComplete): ZoomMode {
+  if (
+    zoomMode !== 'disabled' &&
+    zoomMode !== 'in-place-click' &&
+    zoomMode !== 'in-place-hover'
+  ) {
+    console.warn(
+      `You passed a wrong value to prop zoomMode \`${zoomMode}\` using 'disabled' instead`
+    )
+    return 'disabled'
+  }
+
+  return zoomMode
+}
+
+const CSS_HANDLES = [
+  'imgZoom',
+  'productImageTag',
+  'highQualityContainer',
+] as const
 
 function HighQualityProductImage(props: Props) {
-  const {
-    zoomFactor = 2,
-    maxHeight,
-    aspectRatio = 'auto',
-    zoomMode = 'in-place-click',
-  } = props
+  const { zoomFactor = 2, aspectRatio = 'auto', zoomMode = 'disabled' } = props
   const handles = useCssHandles(CSS_HANDLES)
   const context = useContext(ProductImageContext)
 
@@ -54,10 +68,16 @@ function HighQualityProductImage(props: Props) {
     'w-100 h-100 overflow-hidden'
   )
 
+  const imgClasses = classnames(
+    handles.productImageTag,
+    styles.highQualityProductImageImgElement,
+    'w-100 h-100'
+  )
+
   return (
     <div className={containerClasses}>
       <Zoomable
-        mode={zoomMode}
+        mode={validateZoomMode(zoomMode)}
         factor={zoomFactor}
         zoomContent={
           // eslint-disable-next-line jsx-a11y/alt-text
@@ -88,13 +108,7 @@ function HighQualityProductImage(props: Props) {
           title={alt}
           loading="lazy"
           srcSet={srcSet}
-          className={handles.imgZoom}
-          style={{
-            width: '100%',
-            height: '100%',
-            maxHeight: maxHeight ?? 'unset',
-            objectFit: 'contain',
-          }}
+          className={imgClasses}
           // See comment regarding sizes below
           sizes="(max-width: 64.1rem) 100vw, 50vw"
           src={imageUrl(src, DEFAULT_SIZE * zoomFactor, MAX_SIZE, aspectRatio)}
