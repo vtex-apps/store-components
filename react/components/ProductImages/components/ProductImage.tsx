@@ -18,7 +18,7 @@ interface Props {
   zoomMode: ZoomMode
   zoomFactor: number
   aspectRatio?: AspectRatio
-  maxHeight?: number
+  maxHeight?: number | string
   ModalZoomElement?: typeof Modal
 }
 
