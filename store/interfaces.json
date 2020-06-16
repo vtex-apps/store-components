@@ -24,6 +24,9 @@
   "product-images": {
     "component": "ProductImages"
   },
+  "product-images.high-quality-image": {
+    "component": "HighQualityProductImage"
+  },
   "product-price": {
     "component": "ProductPrice",
     "content": {

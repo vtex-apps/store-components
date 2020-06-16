@@ -4,7 +4,9 @@ import { useCssHandles } from 'vtex.css-handles'
 
 import Zoomable, { ZoomMode } from './Zoomable'
 import { imageUrl } from '../utils/aspectRatioUtil'
-import ProductImageContext from './ProductImageContext'
+import ProductImageContext, {
+  State as ProductImageState,
+} from './ProductImageContext'
 
 const IMAGE_SIZES = [600, 800, 1200]
 const DEFAULT_SIZE = 800
@@ -43,37 +45,45 @@ const ProductImage: FC<Props> = ({
   const handles = useCssHandles(CSS_HANDLES)
   const imageRef = useRef(null)
 
-  const imageContext = useMemo(() => ({}), [])
+  const imageContext: ProductImageState = useMemo(
+    () => ({
+      src,
+      alt,
+    }),
+    [alt, src]
+  )
 
   return (
-    <div className={handles.productImage}>
-      <Zoomable
-        mode={zoomMode}
-        factor={zoomFactor}
-        ModalZoomElement={ModalZoomElement}
-        zoomContent={
-          // eslint-disable-next-line jsx-a11y/alt-text
-          <img
-            src={imageUrl(
-              src,
-              DEFAULT_SIZE * zoomFactor,
-              MAX_SIZE,
-              aspectRatio
-            )}
-            className={handles.productImageTag}
-            style={{
-              // Resets possible resizing done via CSS
-              maxWidth: 'unset',
-              width: `${zoomFactor * 100}%`,
-              height: `${zoomFactor * 100}%`,
-              objectFit: 'contain',
-            }}
-            // See comment regarding sizes below
-            sizes="(max-width: 64.1rem) 100vw, 50vw"
-          />
-        }
-      >
-        <ProductImageContext.Provider value={imageContext}>
+    <ProductImageContext.Provider value={imageContext}>
+      <div className={handles.productImage}>
+        <Zoomable
+          mode={zoomMode}
+          factor={zoomFactor}
+          ModalZoomElement={ModalZoomElement}
+          zoomContent={
+            // eslint-disable-next-line jsx-a11y/alt-text
+            <img
+              // This img element is just for zoom
+              role="presentation"
+              src={imageUrl(
+                src,
+                DEFAULT_SIZE * zoomFactor,
+                MAX_SIZE,
+                aspectRatio
+              )}
+              className={handles.productImageTag}
+              style={{
+                // Resets possible resizing done via CSS
+                maxWidth: 'unset',
+                width: `${zoomFactor * 100}%`,
+                height: `${zoomFactor * 100}%`,
+                objectFit: 'contain',
+              }}
+              // See comment regarding sizes below
+              sizes="(max-width: 64.1rem) 100vw, 50vw"
+            />
+          }
+        >
           <img
             ref={imageRef}
             className={handles.productImageTag}
@@ -100,9 +110,9 @@ const ProductImage: FC<Props> = ({
             // probably be gotten from flex-layout or something.
             sizes="(max-width: 64.1rem) 100vw, 50vw"
           />
-        </ProductImageContext.Provider>
-      </Zoomable>
-    </div>
+        </Zoomable>
+      </div>
+    </ProductImageContext.Provider>
   )
 }
 
