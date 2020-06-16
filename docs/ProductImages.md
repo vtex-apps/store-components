@@ -49,8 +49,52 @@
 | `thumbnailMaxHeight`             | `number`                                   | The max height for the thumbnail image | `true`          |
 | `thumbnailsOrientation`   | `Enum`    | Choose the orientation of the thumbnails. Can be set to `vertical` or `horizontal`                                 | `vertical`    | 
 | `zoomFactor` | `number` | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large) | 2 |
-| `zoomMode` | `disabled\|in-place-click\|in-place-hover` | Sets the zoom behavior. | `in-place-click` |
+| `zoomMode` | `disabled\|in-place-click\|in-place-hover\|open-modal` | Sets the zoom behavior. | `in-place-click` |
+| `ModalZoom` | `vtex.modal-layout:modal-layout` | The `modal-layout` block that will open when you click in the image and `zoomMode` is `open-modal` | `undefined` |
 | `contentType`   | `'all'` &#124; `'images'` &#124; `'videos'`   | Controls the type of content that will be displayed.                               | `'all'`    | 
+
+### `product-images.high-quality-image` block
+
+This block is meant to be used when you want that the zoom action open a modal with the current image of the `product-images` in it. In order to use you just have to put it inside the block that you will pass in the prop `ModalZoom` of the `product-images`:
+
+
+```jsonc
+{
+  "product-images.high-quality-image": {
+    "props": {
+      "zoomMode": "in-place-click",
+      "zoomFactor": 2
+    }
+  },
+  "modal-layout#product-zoom": {
+    "children": [
+      // you can put any other block inside the modal,
+      // this is just a normal modal
+      "flex-layout.row#product-name",
+      "product-images.high-quality-image"
+    ]
+  },
+  "product-images": {
+    "props": {
+      "ModalZoom": "modal-layout#product-zoom",
+      "zoomMode": "open-modal",
+      "aspectRatio": {
+        "desktop": "auto",
+        "phone": "16:9"
+      }
+    }
+  }
+}
+```
+
+The props of this block are very similar with some props of `product-images`:
+
+| Prop name | Type | Description | Default Value |
+| --- | --- | --- | --- |
+| `zoomMode` | `'disabled'\|'in-place-click'\|'in-place-hover'` | Same as `zoomMode` of `product-images` but it doesn't accept `'open-modal'` | `'disabled'` |
+| `zoomFactor` | `number` | Same as `zoomFactor` from `product-images` | `2` |
+| `aspectRatio` | `string` | Same as in `product-images` | `'auto'` |
+
 
 #### Customization
 
@@ -83,3 +127,5 @@ In order to apply CSS customizations on this and other blocks, follow the instru
 | `video` |
 | `video`|
 | `videoContainer` |
+| `imgZoom` |
+| `highQualityContainer` |
