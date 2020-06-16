@@ -144,7 +144,12 @@ ProductImages.propTypes = {
   showNavigationArrows: PropTypes.bool,
   showPaginationDots: PropTypes.bool,
   contentOrder: PropTypes.oneOf(['images-first', 'videos-first']),
-  zoomMode: PropTypes.number,
+  zoomMode: PropTypes.oneOf([
+    'disabled',
+    'open-modal',
+    'in-place-click',
+    'in-place-hover',
+  ]),
   zoomFactor: PropTypes.number,
   contentType: PropTypes.oneOf(['all', 'images', 'videos']),
 }
