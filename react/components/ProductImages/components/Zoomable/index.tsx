@@ -5,12 +5,11 @@ import { useDevice } from 'vtex.device-detector'
 import ZoomInPlace from './ZoomInPlace'
 import ModalZoom from './ModalZoom'
 
-export enum ZoomMode {
-  InPlaceClick = 'in-place-click',
-  InPlaceHover = 'in-place-hover',
-  Disabled = 'disabled',
-  OpenModal = 'open-modal',
-}
+export type ZoomMode =
+  | 'in-place-click'
+  | 'in-place-hover'
+  | 'disabled'
+  | 'open-modal'
 
 interface Props {
   mode?: ZoomMode
@@ -24,11 +23,11 @@ const Zoomable: FC<Props> = ({
   factor = 2,
   zoomContent,
   ModalZoomElement,
-  mode = ZoomMode.InPlaceClick,
+  mode = 'in-place-click',
 }) => {
   const { isMobile } = useDevice()
 
-  if (isMobile && mode !== ZoomMode.Disabled) {
+  if (isMobile && mode !== 'disabled') {
     // TODO: Good enough for now, but needs to be a gallery in the future.
     // Preferably photoswipe.com
     return (
@@ -39,19 +38,19 @@ const Zoomable: FC<Props> = ({
   }
 
   switch (mode) {
-    case ZoomMode.InPlaceHover:
+    case 'in-place-hover':
       return (
         <ZoomInPlace type="hover" factor={factor} zoomContent={zoomContent}>
           {children}
         </ZoomInPlace>
       )
-    case ZoomMode.InPlaceClick:
+    case 'in-place-click':
       return (
         <ZoomInPlace type="click" factor={factor} zoomContent={zoomContent}>
           {children}
         </ZoomInPlace>
       )
-    case ZoomMode.OpenModal: {
+    case 'open-modal': {
       if (ModalZoomElement) {
         return (
           <ModalZoom ModalZoomElement={ModalZoomElement}>{children}</ModalZoom>
@@ -59,7 +58,7 @@ const Zoomable: FC<Props> = ({
       }
     }
     // eslint-disable-next-line no-fallthrough
-    case ZoomMode.Disabled:
+    case 'disabled':
     default:
       return <>{children}</>
   }
