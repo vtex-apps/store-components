@@ -199,6 +199,7 @@ class Carousel extends Component {
       maxHeight,
       zoomMode,
       zoomFactor,
+      ModalZoomElement,
       zoomProps: legacyZoomProps,
     } = this.props
 
@@ -213,9 +214,10 @@ class Carousel extends Component {
           <ProductImage
             src={slide.url}
             alt={slide.alt}
-            aspectRatio={aspectRatio}
             maxHeight={maxHeight}
             zoomFactor={zoomFactor}
+            aspectRatio={aspectRatio}
+            ModalZoomElement={ModalZoomElement}
             zoomMode={isZoomDisabled ? 'disabled' : zoomMode}
           />
         )
@@ -500,6 +502,7 @@ Carousel.propTypes = {
       bestUrlIndex: PropTypes.number,
     })
   ),
+  ModalZoomElement: PropTypes.any,
   displayThumbnailsArrows: PropTypes.bool,
 }
 

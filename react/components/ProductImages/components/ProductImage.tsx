@@ -1,8 +1,10 @@
 import React, { FC, useMemo, useRef } from 'react'
+import { Modal } from 'vtex.modal-layout'
 import { useCssHandles } from 'vtex.css-handles'
 
 import Zoomable, { ZoomMode } from './Zoomable'
 import { imageUrl } from '../utils/aspectRatioUtil'
+import ProductImageContext from './ProductImageContext'
 
 const IMAGE_SIZES = [600, 800, 1200]
 const DEFAULT_SIZE = 800
@@ -15,6 +17,7 @@ interface Props {
   zoomFactor: number
   aspectRatio?: AspectRatio
   maxHeight?: number
+  ModalZoomElement?: typeof Modal
 }
 
 type AspectRatio = string | number
@@ -24,10 +27,11 @@ const CSS_HANDLES = ['productImage', 'productImageTag']
 const ProductImage: FC<Props> = ({
   src,
   alt,
-  zoomMode = ZoomMode.InPlaceClick,
   zoomFactor = 2,
-  aspectRatio = 'auto',
   maxHeight = 600,
+  ModalZoomElement,
+  aspectRatio = 'auto',
+  zoomMode = ZoomMode.InPlaceClick,
 }) => {
   const srcSet = useMemo(
     () =>
@@ -37,14 +41,16 @@ const ProductImage: FC<Props> = ({
     [src, aspectRatio]
   )
   const handles = useCssHandles(CSS_HANDLES)
-
   const imageRef = useRef(null)
+
+  const imageContext = useMemo(() => ({}), [])
 
   return (
     <div className={handles.productImage}>
       <Zoomable
         mode={zoomMode}
         factor={zoomFactor}
+        ModalZoomElement={ModalZoomElement}
         zoomContent={
           // eslint-disable-next-line jsx-a11y/alt-text
           <img
@@ -67,32 +73,34 @@ const ProductImage: FC<Props> = ({
           />
         }
       >
-        <img
-          ref={imageRef}
-          className={handles.productImageTag}
-          style={{
-            width: '100%',
-            height: '100%',
-            maxHeight: maxHeight || 'unset',
-            objectFit: 'contain',
-          }}
-          src={imageUrl(src, DEFAULT_SIZE, MAX_SIZE, aspectRatio)}
-          srcSet={srcSet}
-          alt={alt}
-          title={alt}
-          loading="lazy"
-          // WIP
-          // The value of the "sizes" attribute means: if the window has at most 64.1rem of width,
-          // the image will be of a width of 100vw. Otherwise, the
-          // image will be 50vw wide.
-          // This size is used for picking the best available size
-          // given the ones from the srcset above.
-          //
-          // This is WIP because it is a guess: we are assuming
-          // the image will be of a certain size, but it should be
-          // probably be gotten from flex-layout or something.
-          sizes="(max-width: 64.1rem) 100vw, 50vw"
-        />
+        <ProductImageContext.Provider value={imageContext}>
+          <img
+            ref={imageRef}
+            className={handles.productImageTag}
+            style={{
+              width: '100%',
+              height: '100%',
+              maxHeight: maxHeight || 'unset',
+              objectFit: 'contain',
+            }}
+            src={imageUrl(src, DEFAULT_SIZE, MAX_SIZE, aspectRatio)}
+            srcSet={srcSet}
+            alt={alt}
+            title={alt}
+            loading="lazy"
+            // WIP
+            // The value of the "sizes" attribute means: if the window has at most 64.1rem of width,
+            // the image will be of a width of 100vw. Otherwise, the
+            // image will be 50vw wide.
+            // This size is used for picking the best available size
+            // given the ones from the srcset above.
+            //
+            // This is WIP because it is a guess: we are assuming
+            // the image will be of a certain size, but it should be
+            // probably be gotten from flex-layout or something.
+            sizes="(max-width: 64.1rem) 100vw, 50vw"
+          />
+        </ProductImageContext.Provider>
       </Zoomable>
     </div>
   )

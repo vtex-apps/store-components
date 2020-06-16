@@ -63,6 +63,7 @@
     "vtex.search-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.search-graphql@0.24.1/public/@types/vtex.search-graphql",
     "vtex.shipping-estimate-translator": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.shipping-estimate-translator@2.2.0/public/@types/vtex.shipping-estimate-translator",
     "vtex.slider-layout": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider-layout@0.11.0/public/@types/vtex.slider-layout",
+    "vtex.modal-layout": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.modal-layout@0.5.1/public/@types/vtex.modal-layout",
     "vtex.store-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.122.0/public/@types/vtex.store-graphql",
     "vtex.store-icons": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-icons@0.17.0/public/@types/vtex.store-icons",
     "vtex.store-image": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-image@0.4.3/public/@types/vtex.store-image",
