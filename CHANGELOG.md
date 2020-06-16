@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Classes included to advise when the input is filled and when the result list is opened.
+- Apply modifiers to handle `searchBarInnerContainer` in `SearchBar`.
 
 ## [3.117.2] - 2020-06-10
 ### Fixed
