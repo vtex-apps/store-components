@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Apply modifiers to handle `searchBarInnerContainer` in `SearchBar`.
 
-## [3.117.3] - 2020-06-15
+### Fixed
+- CSS Handles table in README.md file: added the needed attribute to the `specificationItemProperty` handle.
 
+## [3.117.3] - 2020-06-15
 ### Removed
 - Table of maintenance of major versions from docs.
 
