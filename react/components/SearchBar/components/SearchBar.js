@@ -186,7 +186,10 @@ const SearchBar = ({
             <div
               className={classNames(
                 'relative-m w-100',
-                applyModifiers(handles.searchBarInnerContainer, [isOpen ? 'opened' : '', inputValue ? 'filled' : '']),
+                applyModifiers(handles.searchBarInnerContainer, [
+                  isOpen ? 'opened' : '',
+                  inputValue ? 'filled' : '',
+                ])
               )}
             >
               <AutocompleteInput
