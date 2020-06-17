@@ -10,7 +10,7 @@ import {
   useChildBlock,
 } from 'vtex.render-runtime'
 import { Overlay } from 'vtex.react-portal'
-import { useCssHandles } from 'vtex.css-handles'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { defineMessages, useIntl } from 'react-intl'
 
 import styles from '../styles.css'
@@ -186,7 +186,10 @@ const SearchBar = ({
             <div
               className={classNames(
                 'relative-m w-100',
-                handles.searchBarInnerContainer
+                applyModifiers(handles.searchBarInnerContainer, [
+                  isOpen ? 'opened' : '',
+                  inputValue ? 'filled' : '',
+                ])
               )}
             >
               <AutocompleteInput
