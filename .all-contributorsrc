@@ -81,6 +81,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "igorpoubel",
+      "name": "Igor Poubel",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6241622?v=4",
+      "profile": "https://www.linkedin.com/in/igorpoubel",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
