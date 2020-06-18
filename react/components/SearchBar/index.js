@@ -5,6 +5,7 @@ import { ModalContext } from 'vtex.modal-layout'
 import { useRuntime } from 'vtex.render-runtime'
 
 import SearchBar from './components/SearchBar'
+import encodeForwardSlash from '../../utils/encodeForwardSlash'
 
 const { useModalDispatch } = ModalContext
 
@@ -54,7 +55,7 @@ function SearchBarContainer(props) {
   }, [])
 
   const handleGoToSearchPage = useCallback(() => {
-    const search = inputValue
+    const search = encodeForwardSlash(inputValue)
 
     if (attemptPageTypeSearch) {
       window.location.href = `/${search}`
