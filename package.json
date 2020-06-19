@@ -6,11 +6,14 @@
   "scripts": {
     "lint": "eslint --ext js,jsx,ts,tsx .",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json}\"",
+    "test": "cd ./react && yarn test",
+    "verify": "yarn lint && yarn test",
     "lint:locales": "intl-equalizer"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn verify"
     }
   },
   "lint-staged": {

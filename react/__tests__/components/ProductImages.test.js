@@ -1,12 +1,23 @@
 import React from 'react'
-import { render } from '@vtex/test-tools/react'
+import { render, fireEvent } from '@vtex/test-tools/react'
 import useProduct from 'vtex.product-context/useProduct'
+import { Modal } from 'vtex.modal-layout'
 
 import ProductImages from '../../ProductImages'
 // eslint-disable-next-line jest/no-mocks-import
 import { createItem } from '../../__mocks__/productMock'
+import HighQualityProductImage from '../../HighQualityProductImage'
 
 const mockUseProduct = useProduct
+
+// This works just like a slot passed to product-iamges
+function ModalLayout() {
+  return (
+    <Modal>
+      <HighQualityProductImage />
+    </Modal>
+  )
+}
 
 jest.mock('react-id-swiper/lib/ReactIdSwiper', () => {
   return {
@@ -262,6 +273,70 @@ describe('<ProductImages />', () => {
       const { queryAllByAltText } = renderComponent(props)
       expect(queryAllByAltText('propImageText')).toHaveLength(2)
       expect(queryAllByAltText('propImageText2')).toHaveLength(2)
+    })
+  })
+
+  describe('<HighQualityProductImage />', () => {
+    it('should render if the modal-trigger is clicked', () => {
+      const props = {
+        zoomMode: 'open-modal',
+        ModalZoom: ModalLayout,
+        images: [
+          {
+            imageUrls: ['url2'],
+            thresholds: [1],
+            thumbnailUrl: 'url2',
+            imageText: 'imageText2',
+          },
+        ],
+      }
+      const { getAllByAltText, getByTestId } = render(
+        <ProductImages {...props} />
+      )
+
+      const images = getAllByAltText('imageText2')
+
+      expect(images).toHaveLength(1)
+      fireEvent.click(getByTestId('modal-trigger'), {
+        bubbles: true,
+        cancelable: true,
+      })
+      expect(getAllByAltText('imageText2')).toHaveLength(2)
+    })
+
+    it('should render 2 img[alt="iamgeText2"] if img2 trigger is clicked', () => {
+      const props = {
+        zoomMode: 'open-modal',
+        ModalZoom: ModalLayout,
+        images: [
+          {
+            imageUrls: ['url'],
+            thresholds: [1],
+            thumbnailUrl: 'url',
+            imageText: 'imageText',
+          },
+          {
+            imageUrls: ['url2'],
+            thresholds: [1],
+            thumbnailUrl: 'url2',
+            imageText: 'imageText2',
+          },
+        ],
+      }
+      const { getAllByAltText, getAllByTestId } = render(
+        <ProductImages {...props} />
+      )
+
+      const images = getAllByAltText('imageText2')
+      expect(images).toHaveLength(2)
+      fireEvent.click(getAllByTestId('modal-trigger')[1], {
+        bubbles: true,
+        cancelable: true,
+      })
+
+      // 3 images with the alt because is one image of the trigger,
+      // one image of the thumbs and the image of HighQualityProductImage
+      expect(getAllByAltText('imageText2')).toHaveLength(3)
     })
   })
 })

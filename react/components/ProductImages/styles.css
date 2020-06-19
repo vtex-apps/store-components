@@ -6,6 +6,11 @@
 
 .productImage { }
 
+.highQualityProductImageImgElement {
+  max-height: unset;
+  object-fit: contain;
+}
+
 .carouselGaleryCursor {
   cursor: url('./components/Carousel/cursor.svg') 8 8, default;
 }

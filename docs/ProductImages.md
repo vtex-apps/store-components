@@ -49,8 +49,61 @@
 | `thumbnailMaxHeight`             | `number`                                   | The max height for the thumbnail image | `true`          |
 | `thumbnailsOrientation`   | `Enum`    | Choose the orientation of the thumbnails. Can be set to `vertical` or `horizontal`                                 | `vertical`    | 
 | `zoomFactor` | `number` | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large) | 2 |
-| `zoomMode` | `disabled\|in-place-click\|in-place-hover` | Sets the zoom behavior. | `in-place-click` |
-| `contentType`   | `'all'` &#124; `'images'` &#124; `'videos'`   | Controls the type of content that will be displayed.                               | `'all'`    | 
+| `zoomMode` | `enum` | Defines the image zoom behavior. Possible values are: `disabled` (zoom is disabled), `in-place-click`(zoom will be triggered when the image is clicked on), `in-place-hover`(zoom will be triggered when the image is hovered on)  or `open-modal` (image is zoommed using a modal). | `in-place-click` |
+| `ModalZoom` | `enum` | Allows clicking on the product image to open a popup for zooming it. This prop's value must match the name of the block responsible for triggering the modal containing the product image for zooming (e.g. `"modal-layout"`). Notice that the `ModalZoom` prop will work only if the `zoomMode` prop of the `product-image` is set as `open-modal`. To learn more, check out the [Advanced Configuration section](#Advanced-Configuration). | `undefined` |
+| `contentType` | `enum` | Controls the type of content that will be displayed in the block. Possible values are: `images`, `videos`, or `all`. | `all` |
+
+### Advanced configuration
+
+In this section, we teach you how to use modal zoom, a property for when you want to open a popup containing the product image for zooming. To use this feature, configure your `product-images` block using the `zoomMode` and `ModalZoom` props with `open-modal` and `modal-layout` set as its values, respectively.
+
+Once both props are correctly configured, declare the `modal-layout` block, responsible for triggering the image in a popup, and the `product-images.high-quality-image` block as its child.
+
+The `product-images.high-quality-image` block is a *special* block, only meant to render a popup containing the `product-image` block's image for zooming. 
+
+Check the following example:
+
+
+```jsonc
+{
+  "product-images.high-quality-image": {
+    "props": {
+      "zoomMode": "in-place-click",
+      "zoomFactor": 2
+    }
+  },
+  "modal-layout#product-zoom": {
+    "children": [
+      // you can put any other block inside the modal,
+      // this is just a normal modal
+      "flex-layout.row#product-name",
+      "product-images.high-quality-image"
+    ]
+  },
+  "product-images": {
+    "props": {
+      "ModalZoom": "modal-layout#product-zoom",
+      // to use the ModalZoom, the product-images zoomMode value must be set as open-modal
+      "zoomMode": "open-modal",
+      "aspectRatio": {
+        "desktop": "auto",
+        "phone": "16:9"
+      }
+    }
+  }
+}
+```
+
+Notice that the `product-images.high-quality-image` block must be declared as a child of `modal-layout` and, in addition to that, you can also declare other blocks exported by the [Modal Layout app](https://vtex.io/docs/components/all/vtex.modal-layout) as children.
+
+The following table shows the props allowed by `product-images.high-quality-image`:
+
+| Prop name | Type | Description | Default Value |
+| --- | --- | --- | --- |
+| `zoomMode` | `enum` | Defines the zoom behavior for the `product-images.high-quality-image` block. Possible values are: `disabled` (zoom is disabled), `in-place-click`(zoom will be triggered when the image is clicked on), or `in-place-hover`(zoom will be triggered when the image is hovered on). Different from the `store-images` prop, this one doesn't accept `open-modal` value. | `disabled` |
+| `zoomFactor` | `number` | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large). | `2` |
+| `aspectRatio` | `string` | Sets the aspect ratio of the image, that is, whether the image should be square, portrait, landscape, etc. The value should follow the [common aspect ratio notation](https://en.wikipedia.org/wiki/Aspect_ratio_(image) i.e. two numbers separated by a colon such as `1:1` for square, `3:4` for upright portrait, or `1920:1080` for even large values).| `auto` |
+
 
 #### Customization
 
@@ -67,7 +120,9 @@ In order to apply CSS customizations on this and other blocks, follow the instru
 | `carouselInconCaretRight` |
 | `carouselThumbBorder` |
 | `figure` |
+| `highQualityContainer` |
 | `image` |
+| `imgZoom` |
 | `productImagesContainer` (`content` is deprecated) |
 | `productImagesGallerySlide` |
 | `productImagesGallerySwiperContainer` |

@@ -27,6 +27,7 @@ const ProductImages = ({
   contentOrder = 'images-first',
   zoomMode,
   zoomFactor,
+  ModalZoomElement,
   contentType = 'all',
   // Deprecated
   zoomProps,
@@ -77,16 +78,17 @@ const ProductImages = ({
       <Carousel
         slides={slides}
         position={position}
-        displayThumbnailsArrows={displayThumbnailsArrows}
-        thumbnailsOrientation={thumbnailsOrientation}
-        aspectRatio={aspectRatio}
-        maxHeight={maxHeight}
-        thumbnailAspectRatio={thumbnailAspectRatio}
-        thumbnailMaxHeight={thumbnailMaxHeight}
-        showNavigationArrows={showNavigationArrows}
-        showPaginationDots={showPaginationDots}
         zoomMode={zoomMode}
+        maxHeight={maxHeight}
         zoomFactor={zoomFactor}
+        aspectRatio={aspectRatio}
+        ModalZoomElement={ModalZoomElement}
+        thumbnailMaxHeight={thumbnailMaxHeight}
+        showPaginationDots={showPaginationDots}
+        thumbnailAspectRatio={thumbnailAspectRatio}
+        showNavigationArrows={showNavigationArrows}
+        thumbnailsOrientation={thumbnailsOrientation}
+        displayThumbnailsArrows={displayThumbnailsArrows}
         // Deprecated
         zoomProps={zoomProps}
       />
@@ -100,6 +102,7 @@ ProductImages.propTypes = {
     THUMBS_POSITION_HORIZONTAL.LEFT,
     THUMBS_POSITION_HORIZONTAL.RIGHT,
   ]),
+  ModalZoomElement: PropTypes.any,
   thumbnailsOrientation: PropTypes.oneOf([
     THUMBS_ORIENTATION.VERTICAL,
     THUMBS_ORIENTATION.HORIZONTAL,
@@ -141,7 +144,12 @@ ProductImages.propTypes = {
   showNavigationArrows: PropTypes.bool,
   showPaginationDots: PropTypes.bool,
   contentOrder: PropTypes.oneOf(['images-first', 'videos-first']),
-  zoomMode: PropTypes.number,
+  zoomMode: PropTypes.oneOf([
+    'disabled',
+    'open-modal',
+    'in-place-click',
+    'in-place-hover',
+  ]),
   zoomFactor: PropTypes.number,
   contentType: PropTypes.oneOf(['all', 'images', 'videos']),
 }
