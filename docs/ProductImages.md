@@ -50,7 +50,7 @@
 | `thumbnailsOrientation`   | `Enum`    | Choose the orientation of the thumbnails. Can be set to `vertical` or `horizontal`                                 | `vertical`    | 
 | `zoomFactor` | `number` | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large) | 2 |
 | `zoomMode` | `enum` | Defines the image zoom behavior. Possible values are: `disabled` (zoom is disabled), `in-place-click`(zoom will be triggered when the image is clicked on), `in-place-hover`(zoom will be triggered when the image is hovered on)  or `open-modal` (image is zoommed using a modal). | `in-place-click` |
-| `ModalZoom` | `enum` | Allows clicking on the product image to open a popup for zooming it. This prop's value must match the name of the block responsible for triggering the modal containing the product image for zooming (e.g. `"modal-layout"`). Notice that the `ModalZoom` prop will work only if the `zoomMode` prop of the `product-image` is set as `open-modal`. To learn more, check out the [Advanced Configuration section](#Advanced-Configuration). | `undefined` |
+| `ModalZoom` | `block` | Allows clicking on the product image to open a popup for zooming it. This prop's value must match the name of the block responsible for triggering the modal containing the product image for zooming (e.g. `"modal-layout"`). Notice that the `ModalZoom` prop will work only if the `zoomMode` prop of the `product-image` is set as `open-modal`. To learn more, check out the [Advanced Configuration section](#Advanced-Configuration). | `undefined` |
 | `contentType` | `enum` | Controls the type of content that will be displayed in the block. Possible values are: `images`, `videos`, or `all`. | `all` |
 
 ### Advanced configuration
