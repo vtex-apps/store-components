@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Type of prop `ModalZoom` of `product-images` in the documentation`.
+- Updated Product Image's README.md (fixed the `ModalZoom` prop type).
 
 ## [3.119.1] - 2020-06-22
 ### Fixed
