@@ -50,18 +50,20 @@
 | `thumbnailsOrientation`   | `Enum`    | Choose the orientation of the thumbnails. Can be set to `vertical` or `horizontal`                                 | `vertical`    | 
 | `zoomFactor` | `number` | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large) | 2 |
 | `zoomMode` | `enum` | Defines the image zoom behavior. Possible values are: `disabled` (zoom is disabled), `in-place-click`(zoom will be triggered when the image is clicked on), `in-place-hover`(zoom will be triggered when the image is hovered on)  or `open-modal` (image is zoommed using a modal). | `in-place-click` |
-| `ModalZoom` | `block` | Opens a modal (popup) for product image zooming. This prop's value must match the name of the block responsible for triggering the modal containing the product image for zooming (e.g. `"modal-layout"`). Notice that the `ModalZoom` prop will work only if the `zoomMode` prop is set as `open-modal`. To learn more, check out the [Advanced Configuration section](#Advanced-Configuration). | `undefined` |
+| `ModalZoom` | `block` | Opens a modal for product image zooming. This prop's value must match the name of the block responsible for triggering the modal containing the product image for zooming (e.g. `modal-layout` from [Modal layout](https://vtex.io/docs/components/all/vtex.modal-layout/) app). Notice that the `ModalZoom` prop will work only if the `zoomMode` prop is set as `open-modal`. To learn more, check out the [Advanced Configuration section](#Advanced-Configuration). | `undefined` |
 | `contentType` | `enum` | Controls the type of content that will be displayed in the block. Possible values are: `images`, `videos`, or `all`. | `all` |
 
 ### Advanced configuration
 
 In this section, we teach you how to use modal zoom, a property for when you want to open a popup containing the product image for zooming. To use this feature, configure your `product-images` block using the `zoomMode` and `ModalZoom` props with `open-modal` and `modal-layout` set as its values, respectively.
 
-Once both props are correctly configured, declare the `modal-layout` block, responsible for triggering the image in a popup, and the `product-images.high-quality-image` block as its child.
+When configured as stated previously, the `zoomMode` prop will allow the trigger of a modal for image zooming. In addition to that, the `MozalZoom` prop will render the block passed in as its value - in this case, mandatorily the `modal-layout`. In such a way, **we become able to configure a modal containing the product image for zooming**.
 
-The `product-images.high-quality-image` block is a *special* block, only meant to render a popup containing the `product-image` block's image for zooming. 
+Once both props are correctly configured, you must declare the `modal-layout` block and the `product-images.high-quality-image` block as its child.
 
-Check the following example:
+The `modal-layout` block is the one responsible for building the Modal component and triggering the image zooming in a popup box. The `product-images.high-quality-image` block, in turn, is a *special* block, only meant to render the `product-image` block inside the modal. 
+
+Check out an example below:
 
 
 ```jsonc
