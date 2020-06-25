@@ -27,7 +27,7 @@ const Zoomable: FC<Props> = ({
 }) => {
   const { isMobile } = useDevice()
 
-  if (isMobile && mode !== 'disabled') {
+  if (isMobile && mode !== 'disabled' && mode !== 'open-modal') {
     // TODO: Good enough for now, but needs to be a gallery in the future.
     // Preferably photoswipe.com
     return (
