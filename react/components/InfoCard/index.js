@@ -133,27 +133,24 @@ const InfoCard = ({
     formatIOMessage({ id: mobileImageUrl, intl })
   )
 
-  const containerStyle =
-    isFullModeStyle
-      ? {
+  const containerStyle = isFullModeStyle
+    ? {
         /* If lazyloaded, the background image comes from the `data-bg` attribute
          * below. Otherwise, sets it here as background-image */
-        ...(!lazyLoad && { backgroundImage: `url(${finalImageUrl})`}),
+        ...(!lazyLoad && { backgroundImage: `url(${finalImageUrl})` }),
         backgroundSize: 'cover',
       }
-      : {}
+    : {}
 
-  const containerAttributes = 
-    isFullModeStyle && lazyLoad
-      ? { 'data-bg': finalImageUrl }
-      : {}
+  const containerAttributes =
+    isFullModeStyle && lazyLoad ? { 'data-bg': finalImageUrl } : {}
 
   const containerClasses = classNames(
     `${handles.infoCardContainer} items-center`,
     {
       [`flex-ns ${flexOrderToken} bg-base ph2-ns pb2 justify-between`]: !isFullModeStyle,
       [`bg-center bb b--muted-4 flex ${justifyToken}`]: isFullModeStyle,
-      'lazyload': lazyLoad,
+      lazyload: lazyLoad,
     }
   )
 
