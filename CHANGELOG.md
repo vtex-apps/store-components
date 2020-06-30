@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Issue where the background image of infocard component wouldn't be adjustable via CSS when lazyloaded.
 
 ## [3.119.3] - 2020-06-25
 ### Fixed
