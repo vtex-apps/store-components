@@ -136,6 +136,11 @@ const InfoCard = ({
   const containerStyle =
     isFullModeStyle && !lazyLoad
       ? { backgroundImage: `url(${finalImageUrl})`, backgroundSize: 'cover' }
+      : { backgroundSize: 'cover' }
+
+  const containerAttributes = 
+    isFullModeStyle && lazyLoad
+      ? { 'data-bg': finalImageUrl }
       : {}
 
   const containerClasses = classNames(
@@ -143,7 +148,7 @@ const InfoCard = ({
     {
       [`flex-ns ${flexOrderToken} bg-base ph2-ns pb2 justify-between`]: !isFullModeStyle,
       [`bg-center bb b--muted-4 flex ${justifyToken}`]: isFullModeStyle,
-      relative: lazyLoad,
+      'lazyload': lazyLoad,
     }
   )
 
@@ -152,7 +157,6 @@ const InfoCard = ({
     {
       [`w-50-ns ph3-s ${itemsToken} ${paddingClass}`]: !isFullModeStyle,
       [`mh8-ns mh4-s w-40-ns ${itemsToken}`]: isFullModeStyle,
-      'relative z-1': lazyLoad,
     }
   )
 
@@ -181,22 +185,8 @@ const InfoCard = ({
         style={containerStyle}
         data-testid="container"
         id={htmlId}
+        {...containerAttributes}
       >
-        {lazyLoad && isFullModeStyle && (
-          /** TODO: Currently, it just checks if its under a LazyImages
-           * context and inserts a regular image, relying on render runtime
-           * to actually make it lazy.
-           * In the future, it should be considered to always do this instead,
-           * making this logic simpler, but one must be aware of potential
-           * breaking changes, and the change must be tested thoroughly.
-           */
-          // eslint-disable-next-line jsx-a11y/alt-text
-          <img
-            src={finalImageUrl}
-            className="absolute w-100 h-100"
-            style={{ objectFit: 'cover' }}
-          />
-        )}
         <div className={textContainerClasses}>
           {headline &&
             (textMode === 'html' ? (
