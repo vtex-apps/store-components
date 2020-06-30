@@ -134,9 +134,14 @@ const InfoCard = ({
   )
 
   const containerStyle =
-    isFullModeStyle && !lazyLoad
-      ? { backgroundImage: `url(${finalImageUrl})`, backgroundSize: 'cover' }
-      : { backgroundSize: 'cover' }
+    isFullModeStyle
+      ? {
+        /* If lazyloaded, the background image comes from the `data-bg` attribute
+         * below. Otherwise, sets it here as background-image */
+        ...(!lazyLoad && { backgroundImage: `url(${finalImageUrl})`}),
+        backgroundSize: 'cover',
+      }
+      : {}
 
   const containerAttributes = 
     isFullModeStyle && lazyLoad
