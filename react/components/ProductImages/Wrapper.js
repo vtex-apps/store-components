@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import useProduct from 'vtex.product-context/useProduct'
 import { useResponsiveValues } from 'vtex.responsive-values'
-import { path, map, pick } from 'ramda'
+import { path, pick } from 'ramda'
 
 import ProductImages from './index'
 import generateImageConfig from './utils/generateImageConfig'
@@ -27,14 +27,35 @@ const ProductImagesWrapper = props => {
       props
     )
   )
-  const { selectedItem } = valuesFromContext
-  const images = useMemo(
-    () =>
-      props.images != null
-        ? props.images
-        : map(generateImageConfig, path(['images'], selectedItem) || []),
-    [props.images, selectedItem]
-  )
+
+  const {
+    selectedItem,
+    skuSelector: { selectedImageVariationSKU },
+    product: { items: skus },
+  } = valuesFromContext
+
+  const images = useMemo(() => {
+    if (props.images != null) {
+      return props.images
+    }
+
+    let imagePaths
+
+    // if there's a image sku defined
+    if (selectedImageVariationSKU) {
+      const skuItem = skus.find(sku => sku.itemId === selectedImageVariationSKU)
+
+      if (skuItem) {
+        imagePaths = skuItem.images
+      }
+    }
+
+    if (!imagePaths && selectedItem) {
+      imagePaths = selectedItem.images
+    }
+
+    return (imagePaths || []).map(generateImageConfig)
+  }, [props.images, selectedImageVariationSKU, selectedItem, skus])
 
   const videos = useMemo(
     () =>
