@@ -1,6 +1,6 @@
 # Animation ![https://img.shields.io/badge/-Deprecated-red](https://img.shields.io/badge/-Deprecated-red)
 
-:warning: **The Animation component has been deprecated**(support is still given).
+:warning: **The Animation component has been deprecated** (support is still given).
 
 ## Description
 
