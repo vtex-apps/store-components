@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Animation component documentation by adding a deprecation badge and disclaimer.
+- Slider component documentation by adding a deprecation badge and disclaimer.
 
 ## [3.119.4] - 2020-07-01
 ### Fixed
