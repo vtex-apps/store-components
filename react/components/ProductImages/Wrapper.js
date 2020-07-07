@@ -28,11 +28,7 @@ const ProductImagesWrapper = props => {
     )
   )
 
-  const {
-    selectedItem,
-    skuSelector: { selectedImageVariationSKU },
-    product: { items: skus },
-  } = valuesFromContext
+  const { selectedItem, skuSelector, product } = valuesFromContext
 
   const images = useMemo(() => {
     if (props.images != null) {
@@ -42,8 +38,15 @@ const ProductImagesWrapper = props => {
     let imagePaths
 
     // if there's a image sku defined
-    if (selectedImageVariationSKU) {
-      const skuItem = skus.find(sku => sku.itemId === selectedImageVariationSKU)
+    if (
+      product &&
+      product.items &&
+      skuSelector &&
+      skuSelector.selectedImageVariationSKU
+    ) {
+      const skuItem = product.items.find(
+        sku => sku.itemId === skuSelector.selectedImageVariationSKU
+      )
 
       if (skuItem) {
         imagePaths = skuItem.images
@@ -55,7 +58,7 @@ const ProductImagesWrapper = props => {
     }
 
     return (imagePaths || []).map(generateImageConfig)
-  }, [props.images, selectedImageVariationSKU, selectedItem, skus])
+  }, [props.images, product, skuSelector, selectedItem])
 
   const videos = useMemo(
     () =>

@@ -1,5 +1,6 @@
 const useProduct = jest.fn(() => {
   return {
+    product: {},
     buyButton: {
       clicked: false,
     },

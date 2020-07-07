@@ -68,7 +68,9 @@ describe('<ProductImages />', () => {
         },
       ],
     }
+
     const { getAllByAltText } = renderComponent(props)
+
     expect(getAllByAltText('imageText')).toHaveLength(2)
     expect(getAllByAltText('imageText2')).toHaveLength(2)
   })
@@ -89,8 +91,10 @@ describe('<ProductImages />', () => {
         },
       ],
     }
+
     const { queryByTestId, getAllByAltText } = renderComponent(props)
     const swiper = queryByTestId('thumbnail-swiper')
+
     expect(swiper.className.includes('db-ns')).toBeTruthy()
     getAllByAltText('imageText')
     getAllByAltText('imageText2')
@@ -106,9 +110,11 @@ describe('<ProductImages />', () => {
         },
       ],
     }
+
     const { queryByTestId } = renderComponent(props)
 
     const swiper = queryByTestId('thumbnail-swiper')
+
     expect(swiper).toBeNull()
   })
 
@@ -131,9 +137,11 @@ describe('<ProductImages />', () => {
           },
         ],
       }
+
       const { queryByTestId } = renderComponent(props)
 
       const swiper = queryByTestId('thumbnail-swiper')
+
       expect(swiper.className.includes('absolute')).toBeTruthy()
       expect(swiper.className.includes('w-20')).toBeTruthy()
     })
@@ -154,9 +162,11 @@ describe('<ProductImages />', () => {
           },
         ],
       }
+
       const { queryByTestId } = renderComponent(props)
 
       const swiper = queryByTestId('thumbnail-swiper')
+
       expect(swiper.className.includes('absolute')).toBeTruthy()
       expect(swiper.className.includes('w-20')).toBeTruthy()
     })
@@ -178,9 +188,11 @@ describe('<ProductImages />', () => {
           },
         ],
       }
+
       const { queryByTestId } = renderComponent(props)
 
       const swiper = queryByTestId('thumbnail-swiper')
+
       expect(swiper.className.includes('absolute')).toBeFalsy()
       expect(swiper.className.includes('w-20')).toBeFalsy()
     })
@@ -203,9 +215,11 @@ describe('<ProductImages />', () => {
           },
         ],
       }
+
       const { queryByTestId } = renderComponent(props)
 
       const swiper = queryByTestId('thumbnail-swiper')
+
       expect(swiper.className.includes('absolute')).toBeTruthy()
       expect(swiper.className.includes('w-20')).toBeTruthy()
       expect(swiper.className.includes('left')).toBeTruthy()
@@ -230,9 +244,11 @@ describe('<ProductImages />', () => {
           },
         ],
       }
+
       const { queryByTestId } = renderComponent(props)
 
       const swiper = queryByTestId('thumbnail-swiper')
+
       expect(swiper.className.includes('absolute')).toBeTruthy()
       expect(swiper.className.includes('w-20')).toBeTruthy()
       expect(swiper.className.includes('left')).toBeFalsy()
@@ -243,13 +259,31 @@ describe('<ProductImages />', () => {
   describe('test with product context', () => {
     it('render properly with product in context', () => {
       mockUseProduct.mockImplementation(() => ({
-        selectedItem: createItem({}),
+        selectedItem: createItem({ id: 'potato' }),
       }))
       const { queryAllByAltText } = renderComponent({})
-      expect(queryAllByAltText('imageText')).toHaveLength(2)
-      expect(queryAllByAltText('imageText2')).toHaveLength(2)
-      expect(queryAllByAltText('imageText3')).toHaveLength(2)
+
+      expect(queryAllByAltText('potato-imageText')).toHaveLength(2)
+      expect(queryAllByAltText('potato-imageText2')).toHaveLength(2)
+      expect(queryAllByAltText('potato-imageText3')).toHaveLength(2)
     })
+
+    it('gives priority to selected image variation sku', () => {
+      mockUseProduct.mockImplementation(() => ({
+        product: {
+          items: [createItem({ id: '123' }), createItem({ id: '456' })],
+        },
+        skuSelector: {
+          selectedImageVariationSKU: '456',
+        },
+      }))
+      const { queryAllByAltText } = renderComponent({})
+
+      expect(queryAllByAltText('456-imageText')).toHaveLength(2)
+      expect(queryAllByAltText('456-imageText2')).toHaveLength(2)
+      expect(queryAllByAltText('456-imageText3')).toHaveLength(2)
+    })
+
     it('give priority to prop items if product in context', () => {
       mockUseProduct.mockImplementation(() => ({
         selectedItem: createItem({}),
@@ -270,7 +304,9 @@ describe('<ProductImages />', () => {
           },
         ],
       }
+
       const { queryAllByAltText } = renderComponent(props)
+
       expect(queryAllByAltText('propImageText')).toHaveLength(2)
       expect(queryAllByAltText('propImageText2')).toHaveLength(2)
     })
@@ -290,6 +326,7 @@ describe('<ProductImages />', () => {
           },
         ],
       }
+
       const { getAllByAltText, getByTestId } = render(
         <ProductImages {...props} />
       )
@@ -323,11 +360,13 @@ describe('<ProductImages />', () => {
           },
         ],
       }
+
       const { getAllByAltText, getAllByTestId } = render(
         <ProductImages {...props} />
       )
 
       const images = getAllByAltText('imageText2')
+
       expect(images).toHaveLength(2)
       fireEvent.click(getAllByTestId('modal-trigger')[1], {
         bubbles: true,
