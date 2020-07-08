@@ -1,4 +1,6 @@
-# Slider
+# Slider ![https://img.shields.io/badge/-Deprecated-red](https://img.shields.io/badge/-Deprecated-red)
+
+:warning: **The Slider component has been deprecated in favor of the [Slider Layout](https://vtex.io/docs/app/vtex.slider-layout) app**. Although support for this component is still given, it's strongly recommended that you update your store theme with the Slider Layout's blocks in order to keep up with the component's evolution.
 
 ## Description
 

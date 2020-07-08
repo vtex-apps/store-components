@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Animation component documentation by adding a deprecation badge and disclaimer.
+- Slider component documentation by adding a deprecation badge and disclaimer.
 
 ## [3.119.5] - 2020-07-07
 ### Fixed
