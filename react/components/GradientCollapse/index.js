@@ -16,6 +16,7 @@ const transitionStyle = transitionTime => ({
 
 const fadeBottomClasses = state =>
   classNames(styles.fadeBottom, { 'o-0': state === 'entered' }, 'w-100 h-50')
+
 const pointerEventsAutoClasses = state =>
   classNames(
     styles.pointerEventsAuto,
@@ -33,6 +34,7 @@ function GradientCollapse(props) {
     onCollapsedChange,
     collapsed: collapsedProp,
   } = props
+
   const handles = useCssHandles(CSS_HANDLES)
   const [collapsed, setCollapsed] = useState(collapsedProp)
   const [prevCollapsedProp, setPrevCollapsedProp] = useState(collapsedProp)
@@ -47,6 +49,9 @@ function GradientCollapse(props) {
 
   const calcMaxHeight = () => {
     const wrapperEl = wrapper.current
+
+    if (!wrapperEl) return
+
     // check if the content is smaller than the passed
     // height to collapse
     if (wrapperEl.scrollHeight > collapseHeight) {
@@ -68,9 +73,11 @@ function GradientCollapse(props) {
   }
 
   const debouncedCalcMaxHeight = debounce(calcMaxHeight, 500)
+
   useLayoutEffect(() => {
     window.addEventListener('resize', debouncedCalcMaxHeight)
     calcMaxHeight()
+
     return () => {
       window.removeEventListener('resize', debouncedCalcMaxHeight)
     }
