@@ -259,7 +259,7 @@ class Carousel extends Component {
             bulletSelector: `.swiper-pagination-bullet`,
             bulletClass: `swiper-pagination-bullet ${cssHandles.swiperBullet}`,
             bulletActiveClass:
-              'c-action-primary swiper-pagination-bullet-active',
+              `c-action-primary swiper-pagination-bullet-active ${cssHandles.swiperBullet}--isActive`,
           },
         }),
       ...(slides.length > 1 && {

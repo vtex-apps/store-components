@@ -135,6 +135,7 @@ In order to apply CSS customizations on this and other blocks, follow the instru
 | `productImageTag`|
 | `productVideo` |
 | `swiperBullet` |
+| `swiperBullet--isActive` |
 | `swiperCaret` |
 | `thumbImg` |
 | `video` |
