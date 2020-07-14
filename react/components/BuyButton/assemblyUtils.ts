@@ -117,7 +117,7 @@ export const transformAssemblyOptions = (
       let childrenAddedData = null
 
       if (item.children) {
-        let childInputValues: Record<GroupId, InputValue> = {}
+        const childInputValues: Record<GroupId, InputValue> = {}
 
         // Get every input value of the item and add it as a child
         for (const key in item.children) {
@@ -127,9 +127,11 @@ export const transformAssemblyOptions = (
         // Get all the input values this item is handling
         const handledInputValues = Object.keys(childInputValues)
         // and remove the handled input values from the list
-        assemblyInputValuesKeys = assemblyInputValuesKeys.filter(inputValueKey => {
-          return handledInputValues.includes(inputValueKey)
-        })
+        assemblyInputValuesKeys = assemblyInputValuesKeys.filter(
+          inputValueKey => {
+            return handledInputValues.includes(inputValueKey)
+          }
+        )
 
         childrenAddedData = transformAssemblyOptions(
           item.children,

@@ -83,18 +83,18 @@ export const customBell: AssemblyOptions = {
       },
     ],
   },
-  "inputValues": {
-    "1-3-lines": {
-      "Line 1": "First line",
-      "Line 2": "Second line",
-      "Line 3": "Third line",
-    }
+  inputValues: {
+    '1-3-lines': {
+      'Line 1': 'First line',
+      'Line 2': 'Second line',
+      'Line 3': 'Third line',
+    },
   },
-  "areGroupsValid": {
-    "add-on_Add-on": true,
-    "text_style_Text Style": true,
-    "engraving_Engraving": true
-  }
+  areGroupsValid: {
+    'add-on_Add-on': true,
+    'text_style_Text Style': true,
+    engraving_Engraving: true,
+  },
 }
 
 export const starColor = {
