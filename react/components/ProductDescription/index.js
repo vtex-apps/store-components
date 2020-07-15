@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage, injectIntl } from 'react-intl'
-import HtmlParser from 'react-html-parser'
+import HtmlParser from 'html-react-parser'
 import { useCssHandles } from 'vtex.css-handles'
 import { formatIOMessage } from 'vtex.native-types'
 

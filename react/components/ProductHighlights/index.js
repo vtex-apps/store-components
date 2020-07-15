@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl } from 'react-intl'
-import HtmlParser from 'react-html-parser'
+import HtmlParser from 'html-react-parser'
 
 import styles from './styles.css'
 
@@ -11,6 +11,7 @@ import styles from './styles.css'
  */
 const ProductHighlights = ({ ...props }) => {
   const { highlights } = props
+
   return (
     <div className={`${styles.highlightContent} pt3 pb5`}>
       {highlights.map((item, i) => (
