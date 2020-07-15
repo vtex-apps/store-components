@@ -6,7 +6,7 @@ import classNames from 'classnames'
 import { path, equals } from 'ramda'
 import ReactResizeDetector from 'react-resize-detector'
 import { IconCaret } from 'vtex.store-icons'
-import { withCssHandles } from 'vtex.css-handles'
+import { withCssHandles, applyModifiers } from 'vtex.css-handles'
 
 import Video, { getThumbUrl } from '../Video'
 import ProductImage from '../ProductImage'
@@ -259,7 +259,7 @@ class Carousel extends Component {
             bulletSelector: `.swiper-pagination-bullet`,
             bulletClass: `swiper-pagination-bullet ${cssHandles.swiperBullet}`,
             bulletActiveClass:
-              `c-action-primary swiper-pagination-bullet-active ${cssHandles.swiperBullet}--isActive`,
+              `c-action-primary swiper-pagination-bullet-active ${applyModifiers(cssHandles.swiperBullet), 'isActive'}`,
           },
         }),
       ...(slides.length > 1 && {
