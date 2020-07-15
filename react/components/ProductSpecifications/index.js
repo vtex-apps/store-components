@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
-import HtmlParser from 'html-react-parser'
+import HtmlParser from 'react-html-parser'
 import { useCssHandles } from 'vtex.css-handles'
 import { Tabs, Tab } from 'vtex.styleguide'
 import { useDevice } from 'vtex.device-detector'

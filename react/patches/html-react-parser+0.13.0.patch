@@ -1,0 +1,13 @@
+diff --git a/node_modules/html-react-parser/index.js b/node_modules/html-react-parser/index.js
+index a4e859c..7312849 100644
+--- a/node_modules/html-react-parser/index.js
++++ b/node_modules/html-react-parser/index.js
+@@ -1,5 +1,7 @@
+ var domToReact = require('./lib/dom-to-react');
+-var htmlToDOM = require('html-dom-parser');
++var htmlToDOM = typeof document !== 'undefined' 
++  ? require('html-dom-parser/lib/html-to-dom-client') 
++  : require('html-dom-parser/lib/html-to-dom-server');
+ 
+ // decode HTML entities by default for `htmlparser2`
+ var domParserOptions = { decodeEntities: true, lowerCaseAttributeNames: false };

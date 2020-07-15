@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl } from 'react-intl'
-import HtmlParser from 'html-react-parser'
+import HtmlParser from 'react-html-parser'
 
 import styles from './styles.css'
 
