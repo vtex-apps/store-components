@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Inserted CSS Handle for active swiperBullet in Product Images Carousel.
 
+## [3.119.7] - 2020-07-14
+### Fixed
+- Search Bar documentation (New CSS Handles: `searchBarInnerContainer--opened` and `searchBarInnerContainer--filled`
+
 ## [3.119.6] - 2020-07-08
 ### Fixed
 - Animation component documentation by adding a deprecation badge and disclaimer.
