@@ -1,11 +1,11 @@
 import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
-import HtmlParser from 'react-html-parser'
 import { useCssHandles } from 'vtex.css-handles'
 import { Tabs, Tab } from 'vtex.styleguide'
 import { useDevice } from 'vtex.device-detector'
 
+import { SanitizedHTML } from '../../modules/sanitizedHTML'
 import GradientCollapse from '../GradientCollapse/index'
 
 const CSS_HANDLES = [
@@ -99,7 +99,7 @@ const ProductSpecifications = ({
     <FormattedMessage id="store/technicalspecifications.title">
       {txt => (
         <h2 className={`${handles.specificationsTitle} t-heading-5 mb5 mt0`}>
-          {HtmlParser(txt)}
+          <SanitizedHTML content={txt} />
         </h2>
       )}
     </FormattedMessage>
@@ -130,13 +130,13 @@ const ProductSpecifications = ({
               data-specification={specification.property}
               className={`${handles.specificationItemProperty} w-50 b--muted-4 bb pa5`}
             >
-              {HtmlParser(specification.property)}
+              <SanitizedHTML content={specification.property} />
             </td>
             <td
               data-specification={specification.specifications}
               className={`${handles.specificationItemSpecifications} w-50 b--muted-4 bb pa5`}
             >
-              {HtmlParser(specification.specifications)}
+              <SanitizedHTML content={specification.specifications} />
             </td>
           </tr>
         ))}
@@ -174,7 +174,7 @@ const ProductSpecifications = ({
         {specificationItems.map((specification, i) => (
           <Tab
             key={i}
-            label={HtmlParser(specification.property)}
+            label={<SanitizedHTML content={specification.property} />}
             active={currentTab === i}
             onClick={() => handleTabChange(i)}
           >
@@ -185,10 +185,10 @@ const ProductSpecifications = ({
                   collapsed={collapsed}
                   onCollapsedChange={(_, newValue) => setCollapsed(newValue)}
                 >
-                  {HtmlParser(specification.specifications)}
+                  <SanitizedHTML content={specification.specifications} />
                 </GradientCollapse>
               ) : (
-                HtmlParser(specification.specifications)
+                <SanitizedHTML content={specification.specifications} />
               )}
             </div>
           </Tab>

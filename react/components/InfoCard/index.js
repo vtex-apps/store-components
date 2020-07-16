@@ -1,9 +1,8 @@
 import classNames from 'classnames'
 import PropTypes, { bool, string, oneOf } from 'prop-types'
-import React, { memo, useMemo } from 'react'
+import React, { memo } from 'react'
 import { values } from 'ramda'
 import { injectIntl } from 'react-intl'
-import insane from 'insane'
 import {
   useRuntime,
   useExperimentalLazyImagesContext,
@@ -22,6 +21,15 @@ import {
   textAlignmentValues,
   textModeTypes,
 } from './SchemaTypes'
+import { SanitizedHTML } from '../../modules/sanitizedHTML'
+
+const ALLOWED_TAGS = ['p', 'span', 'a', 'div', 'br']
+const ALLOWED_ATTRS = {
+  a: ['class', 'href', 'title', 'target'],
+  span: ['class'],
+  p: ['class'],
+  div: ['class'],
+}
 
 const justifyTokens = {
   [textPostionValues.LEFT]: 'justify-start',
@@ -59,18 +67,6 @@ const safelyGetToken = (tokenMap, valueWanted, propName) =>
 
 const getImageUrl = (isMobile, imageUrl, mobileImageUrl) =>
   !!mobileImageUrl && isMobile ? mobileImageUrl : imageUrl
-
-const sanitizerConfig = {
-  allowedTags: ['p', 'span', 'a', 'div', 'br'],
-  allowedAttributes: {
-    a: ['class', 'href', 'title', 'target'],
-    span: ['class'],
-    p: ['class'],
-    div: ['class'],
-  },
-}
-
-const sanitizeHtml = input => (input ? insane(input, sanitizerConfig) : null)
 
 const CSS_HANDLES = [
   'infoCardContainer',
@@ -113,14 +109,17 @@ const InfoCard = ({
   const alignToken = isFullModeStyle
     ? safelyGetToken(alignTokens, textPosition, 'textPosition')
     : safelyGetToken(alignTokens, textAlignment, 'textAlignment')
+
   const itemsToken = isFullModeStyle
     ? safelyGetToken(itemsTokens, textPosition, 'textPosition')
     : safelyGetToken(itemsTokens, textAlignment, 'textAlignment')
+
   const justifyToken = safelyGetToken(
     justifyTokens,
     textPosition,
     'textPosition'
   )
+
   const flexOrderToken = safelyGetToken(
     flexOrderTokens,
     textPosition,
@@ -166,16 +165,6 @@ const InfoCard = ({
 
   const subheadClasses = `${handles.infoCardSubhead} t-body mt6 c-on-base ${alignToken} mw-100`
 
-  const sanitizedHeadline = useMemo(
-    () => sanitizeHtml(formatIOMessage({ id: headline, intl })),
-    [headline, intl]
-  )
-
-  const sanitizedSubhead = useMemo(
-    () => sanitizeHtml(formatIOMessage({ id: subhead, intl })),
-    [intl, subhead]
-  )
-
   return (
     <LinkWrapper
       imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
@@ -192,19 +181,25 @@ const InfoCard = ({
         <div className={textContainerClasses}>
           {headline &&
             (textMode === 'html' ? (
-              <div
-                className={headlineClasses}
-                dangerouslySetInnerHTML={{ __html: sanitizedHeadline }}
-              />
+              <div className={headlineClasses}>
+                <SanitizedHTML
+                  content={formatIOMessage({ id: headline, intl })}
+                  allowedTags={ALLOWED_TAGS}
+                  allowedAttributes={ALLOWED_ATTRS}
+                />
+              </div>
             ) : (
               <RichText className={headlineClasses} text={headline} />
             ))}
           {subhead &&
             (textMode === 'html' ? (
-              <div
-                className={subheadClasses}
-                dangerouslySetInnerHTML={{ __html: sanitizedSubhead }}
-              />
+              <div className={subheadClasses}>
+                <SanitizedHTML
+                  content={formatIOMessage({ id: subhead, intl })}
+                  allowedTags={ALLOWED_TAGS}
+                  allowedAttributes={ALLOWED_ATTRS}
+                />
+              </div>
             ) : (
               <RichText className={subheadClasses} text={subhead} />
             ))}
