@@ -35,10 +35,17 @@ function getDangerousSanitizedHTML(html: string, opts: SanitizeOpts = {}) {
   return { __html: sanitizeHTML(html, opts) }
 }
 
-function useSanitizedHTML(html: string, opts: SanitizeOpts = {}) {
+function useSanitizedHTML(
+  html: string,
+  { allowedAttributes, allowedClasses, allowedTags }: SanitizeOpts = {}
+) {
   const sanitizedHTML = useMemo(() => {
-    return getDangerousSanitizedHTML(html, opts)
-  }, [html, opts])
+    return getDangerousSanitizedHTML(html, {
+      allowedAttributes,
+      allowedClasses,
+      allowedTags,
+    })
+  }, [allowedAttributes, allowedClasses, allowedTags, html])
 
   return sanitizedHTML
 }
