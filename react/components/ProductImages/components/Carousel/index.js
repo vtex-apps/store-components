@@ -258,8 +258,10 @@ class Carousel extends Component {
             // custom props from vtex/swiper
             bulletSelector: `.swiper-pagination-bullet`,
             bulletClass: `swiper-pagination-bullet ${cssHandles.swiperBullet}`,
-            bulletActiveClass:
-              `c-action-primary swiper-pagination-bullet-active ${applyModifiers(cssHandles.swiperBullet, 'active')}`,
+            bulletActiveClass: `c-action-primary swiper-pagination-bullet-active ${applyModifiers(
+              cssHandles.swiperBullet,
+              'active'
+            )}`,
           },
         }),
       ...(slides.length > 1 && {
