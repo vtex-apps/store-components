@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl } from 'react-intl'
-import HtmlParser from 'react-html-parser'
 
+import { SanitizedHTML } from '../../modules/sanitizedHTML'
 import styles from './styles.css'
 
 /**
@@ -24,13 +24,13 @@ const ProductHighlights = ({ ...props }) => {
           <span
             className={`${styles.highlightTitle} t-body c-on-base fw7 pr3 `}
           >
-            {HtmlParser(item.name)}
+            <SanitizedHTML content={item.name} />
             {': '}
           </span>
           <span
             className={`${styles.highlightValue} t-body c-muted-1 lh-copy `}
           >
-            {HtmlParser(item.values[0])}
+            <SanitizedHTML content={item.values[0]} />
           </span>
         </div>
       ))}
