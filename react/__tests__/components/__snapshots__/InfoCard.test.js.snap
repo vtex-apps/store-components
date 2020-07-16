@@ -13,18 +13,26 @@ exports[`<InfoCard /> should insert span with class on headline 1`] = `
       <div
         class="infoCardHeadline t-heading-2 mt6 tc c-on-base mw-100"
       >
-        HEADLINE 
-        <span
-          class="my-custom-class"
+        <div
+          style="display: contents;"
         >
-          THIS IS BOOOLD AND BLUE
-        </span>
-         HEADLINE STILL
+          HEADLINE 
+          <span
+            class="my-custom-class"
+          >
+            THIS IS BOOOLD AND BLUE
+          </span>
+           HEADLINE STILL
+        </div>
       </div>
       <div
         class="infoCardSubhead t-body mt6 c-on-base tc mw-100"
       >
-        MY SUBHEAD
+        <div
+          style="display: contents;"
+        >
+          MY SUBHEAD
+        </div>
       </div>
     </div>
   </div>
@@ -44,13 +52,17 @@ exports[`<InfoCard /> should not render subhead 1`] = `
       <div
         class="infoCardHeadline t-heading-2 mt6 tc c-on-base mw-100"
       >
-        HEADLINE 
-        <span
-          class="my-custom-class"
+        <div
+          style="display: contents;"
         >
-          THIS IS BOOOLD AND BLUE
-        </span>
-         HEADLINE STILL
+          HEADLINE 
+          <span
+            class="my-custom-class"
+          >
+            THIS IS BOOOLD AND BLUE
+          </span>
+           HEADLINE STILL
+        </div>
       </div>
     </div>
   </div>
@@ -95,12 +107,20 @@ exports[`<InfoCard /> should render with full mode style 1`] = `
       <div
         class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
       >
-        MY HEADLINE
+        <div
+          style="display: contents;"
+        >
+          MY HEADLINE
+        </div>
       </div>
       <div
         class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
       >
-        MY SUBHEAD
+        <div
+          style="display: contents;"
+        >
+          MY SUBHEAD
+        </div>
       </div>
       <a
         href="dummy"
@@ -126,12 +146,20 @@ exports[`<InfoCard /> should render with image and text side by side 1`] = `
       <div
         class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
       >
-        MY HEADLINE
+        <div
+          style="display: contents;"
+        >
+          MY HEADLINE
+        </div>
       </div>
       <div
         class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
       >
-        MY SUBHEAD
+        <div
+          style="display: contents;"
+        >
+          MY SUBHEAD
+        </div>
       </div>
       <a
         href="dummy"
@@ -169,12 +197,20 @@ exports[`<InfoCard /> should render without a call to action 1`] = `
       <div
         class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
       >
-        MY HEADLINE
+        <div
+          style="display: contents;"
+        >
+          MY HEADLINE
+        </div>
       </div>
       <div
         class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
       >
-        MY SUBHEAD
+        <div
+          style="display: contents;"
+        >
+          MY SUBHEAD
+        </div>
       </div>
     </div>
   </div>
@@ -193,12 +229,20 @@ exports[`<InfoCard /> should wrap half image in a link with imageActionUrl 1`] =
       <div
         class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
       >
-        MY HEADLINE
+        <div
+          style="display: contents;"
+        >
+          MY HEADLINE
+        </div>
       </div>
       <div
         class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
       >
-        MY SUBHEAD
+        <div
+          style="display: contents;"
+        >
+          MY SUBHEAD
+        </div>
       </div>
     </div>
     <div
@@ -236,12 +280,20 @@ exports[`<InfoCard /> should wrap whole container in a link with imageActionUrl 
         <div
           class="infoCardHeadline t-heading-2 mt6 tc c-on-base mw-100"
         >
-          MY HEADLINE
+          <div
+            style="display: contents;"
+          >
+            MY HEADLINE
+          </div>
         </div>
         <div
           class="infoCardSubhead t-body mt6 c-on-base tc mw-100"
         >
-          MY SUBHEAD
+          <div
+            style="display: contents;"
+          >
+            MY SUBHEAD
+          </div>
         </div>
       </div>
     </div>

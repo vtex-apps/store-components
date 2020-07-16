@@ -20,7 +20,11 @@ exports[`<ProductDescription /> should match the snapshot with description 1`] =
         <div
           class="content h-auto"
         >
-          Test description
+          <div
+            style="display: contents;"
+          >
+            Test description
+          </div>
         </div>
         <div
           class="pointerEventsNone dn absolute bottom-0 w-100 h-100 flex-column justify-end"
