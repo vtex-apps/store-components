@@ -15,7 +15,7 @@ test('renders a simple string', () => {
   `)
 })
 
-test('filters out script tags by default', () => {
+test('filters out script tags', () => {
   const { container } = render(
     <SanitizedHTML content="<script>console.log('potato')</script><h1>Hey</h1>" />
   )
@@ -91,6 +91,29 @@ test('filters out tags', () => {
       <h3>
         Let's go
       </h3>
+    </div>
+  `)
+})
+
+test('renders iframes', () => {
+  const { container } = render(
+    <SanitizedHTML
+      content={`<iframe src="https://player.vimeo.com/video/402279141" frameborder="0" 
+      allow="autoplay; fullscreen" allowfullscreen="" style="position: relative; height: 200px; width: 100%;"></iframe>`}
+    />
+  )
+
+  expect(container.firstChild).toMatchInlineSnapshot(`
+    <div
+      style="display: contents;"
+    >
+      <iframe
+        allow="autoplay; fullscreen"
+        allowfullscreen=""
+        frameborder="0"
+        src="https://player.vimeo.com/video/402279141"
+        style="position: relative; height: 200px; width: 100%;"
+      />
     </div>
   `)
 })
