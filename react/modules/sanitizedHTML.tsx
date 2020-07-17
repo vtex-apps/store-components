@@ -6,26 +6,74 @@ type SanitizeOpts = {
   allowedClasses?: Record<string, string[]>
   allowedTags?: string[]
 }
+
 type SanitizedHTMLProps = SanitizeOpts & {
   content: string
 }
 
-function filter(token: {
-  tag: string
-  attrs: Record<string, number | undefined | string>
-}) {
-  if (token.tag === 'script') {
-    return false
-  }
-
-  return true
+const DEFAULTS = {
+  allowedAttributes: {
+    '*': ['title', 'accesskey'],
+    a: ['href', 'name', 'target', 'aria-label'],
+    iframe: ['frameborder', 'src', 'allowfullscreen', 'allow', 'style'],
+    img: ['src', 'alt', 'title', 'aria-label'],
+  },
+  allowedClasses: {},
+  allowedSchemes: ['http', 'https', 'mailto'],
+  allowedTags: [
+    'a',
+    'abbr',
+    'article',
+    'b',
+    'blockquote',
+    'br',
+    'caption',
+    'code',
+    'del',
+    'details',
+    'div',
+    'em',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'hr',
+    'i',
+    'img',
+    'ins',
+    'iframe',
+    'kbd',
+    'li',
+    'main',
+    'mark',
+    'ol',
+    'p',
+    'pre',
+    'section',
+    'span',
+    'strike',
+    'strong',
+    'sub',
+    'summary',
+    'sup',
+    'table',
+    'tbody',
+    'td',
+    'th',
+    'thead',
+    'tr',
+    'u',
+    'ul',
+  ],
 }
 
 function sanitizeHTML(
   html: string,
   { allowedAttributes, allowedClasses, allowedTags }: SanitizeOpts = {}
 ) {
-  const opts: Record<string, unknown> = { filter }
+  const opts: Record<string, unknown> = { ...DEFAULTS }
 
   if (allowedTags) opts.allowedTags = allowedTags
   if (allowedClasses) opts.allowedClasses = allowedClasses

@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Prevent `insane` from filtering out `iframe`s.
 
 ## [3.120.3] - 2020-07-17
 ### Fixed
