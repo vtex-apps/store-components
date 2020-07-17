@@ -14,7 +14,9 @@ function filter(token: {
   tag: string
   attrs: Record<string, number | undefined | string>
 }) {
-  if (token.tag === 'script') return false
+  if (token.tag === 'script') {
+    return false
+  }
 
   return true
 }
@@ -23,12 +25,13 @@ function sanitizeHTML(
   html: string,
   { allowedAttributes, allowedClasses, allowedTags }: SanitizeOpts = {}
 ) {
-  return insane(html, {
-    filter,
-    allowedTags,
-    allowedClasses,
-    allowedAttributes,
-  })
+  const opts: Record<string, unknown> = { filter }
+
+  if (allowedTags) opts.allowedTags = allowedTags
+  if (allowedClasses) opts.allowedClasses = allowedClasses
+  if (allowedAttributes) opts.allowedAttributes = allowedAttributes
+
+  return insane(html, opts)
 }
 
 function getDangerousSanitizedHTML(html: string, opts: SanitizeOpts = {}) {
