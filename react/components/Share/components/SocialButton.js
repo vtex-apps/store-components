@@ -1,24 +1,29 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import * as ReactShare from 'react-share'
 
-import { SOCIAL_TO_ENUM, SOCIAL_ENUM_TO_COMPONENT } from '../constants/social'
+import { SOCIAL_NAME_MAP, SOCIAL_COMPONENT_MAP } from '../constants/social'
 import styles from '../styles.css'
 
-function resolveMessageProp(message, socialEnum) {
-  const titlePropMessage = [
-    SOCIAL_TO_ENUM.whatsapp,
-    SOCIAL_TO_ENUM.twitter,
-    SOCIAL_TO_ENUM.telegram,
-    SOCIAL_TO_ENUM.pinterest,
-  ]
+const SOCIAL_WITH_TITLE = new Set([
+  SOCIAL_NAME_MAP.whatsapp,
+  SOCIAL_NAME_MAP.twitter,
+  SOCIAL_NAME_MAP.telegram,
+  SOCIAL_NAME_MAP.pinterest,
+])
 
-  return titlePropMessage.includes(socialEnum)
-    ? { title: message }
-    : socialEnum === SOCIAL_TO_ENUM.facebook
-    ? { quote: message }
-    : { body: message }
+function getExtraSocialProps({ message, socialEnum }) {
+  if (!message) return {}
+
+  if (SOCIAL_WITH_TITLE.has(socialEnum)) {
+    return { title: message }
+  }
+
+  if (socialEnum === SOCIAL_NAME_MAP.facebook) {
+    return { quote: message }
+  }
+
+  return { body: message }
 }
 
 export default class SocialButton extends Component {
@@ -54,10 +59,14 @@ export default class SocialButton extends Component {
       iconClass,
       imageUrl,
     } = this.props
-    const socialComponentName = SOCIAL_ENUM_TO_COMPONENT[socialEnum]
-    const SocialComponent = ReactShare[`${socialComponentName}ShareButton`]
-    const SocialIcon = ReactShare[`${socialComponentName}Icon`]
-    const additionalProps = message && resolveMessageProp(message, socialEnum)
+
+    const {
+      SocialNetworkName,
+      SocialComponent,
+      SocialIcon,
+    } = SOCIAL_COMPONENT_MAP[socialEnum]
+
+    const additionalProps = getExtraSocialProps({ message, socialEnum })
 
     const icon = (
       <SocialIcon
@@ -69,7 +78,7 @@ export default class SocialButton extends Component {
 
     /* Pinterest requires imageUrl for the "media" prop, but
      * it might not be loaded yet */
-    if (socialComponentName === SOCIAL_TO_ENUM.pinterest && !imageUrl) {
+    if (SocialNetworkName === SOCIAL_NAME_MAP.pinterest && !imageUrl) {
       return icon
     }
 

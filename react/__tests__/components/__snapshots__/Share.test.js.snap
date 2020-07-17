@@ -93,37 +93,6 @@ exports[`<Share /> should match the snapshot with Facebook 1`] = `
 </DocumentFragment>
 `;
 
-exports[`<Share /> should match the snapshot with Google+ 1`] = `
-<DocumentFragment>
-  <div
-    class="shareContainer shareLoader"
-  >
-    <svg
-      class="content-loader-mock"
-    >
-      <circle
-        cx="1em"
-        cy="1em"
-        height="2em"
-        r="1em"
-      />
-      <circle
-        cx="3.5em"
-        cy="1em"
-        height="2em"
-        r="1em"
-      />
-      <circle
-        cx="6em"
-        cy="1em"
-        height="2em"
-        r="1em"
-      />
-    </svg>
-  </div>
-</DocumentFragment>
-`;
-
 exports[`<Share /> should match the snapshot with Telegram 1`] = `
 <DocumentFragment>
   <div
