@@ -199,7 +199,7 @@ const variationNameToDisplayVariation = ({
   hideImpossibleCombinations: boolean
 }) => (variationName: string): DisplayVariation => {
   const name = variationName
-  const values = variations[variationName]
+  const { values, originalName } = variations[variationName]
   const options = values
     .map(
       parseOptionNameToDisplayOption({
@@ -213,7 +213,7 @@ const variationNameToDisplayVariation = ({
       })
     )
     .filter(Boolean) as DisplayOption[]
-  return { name, options }
+  return { name, originalName, options }
 }
 
 // Parameters are explained on PropTypes
@@ -303,6 +303,7 @@ const SKUSelector: FC<Props> = ({
       hideImpossibleCombinations,
     ]
   )
+
   const [displayVariations, setDisplayVariations] = useState<
     DisplayVariation[]
   >(() => getAvailableVariations(availableVariationsPayload))

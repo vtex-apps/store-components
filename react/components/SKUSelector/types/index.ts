@@ -45,7 +45,14 @@ export interface DisplayOption {
 
 export interface DisplayVariation {
   name: string
+  originalName: string
   options: DisplayOption[]
 }
 
-export type Variations = Record<string, string[]>
+export type Variations = Record<
+  string,
+  {
+    originalName: string
+    values: string[]
+  }
+>
