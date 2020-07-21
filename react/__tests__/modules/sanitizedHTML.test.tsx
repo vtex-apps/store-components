@@ -65,7 +65,7 @@ test('filters out classes', () => {
       style="display: contents;"
     >
       <h1
-        class="🥔 🍇"
+        class="🥔 🍎 🍇"
       >
         Hey
       </h1>
@@ -114,6 +114,32 @@ test('renders iframes', () => {
         src="https://player.vimeo.com/video/402279141"
         style="position: relative; height: 200px; width: 100%;"
       />
+    </div>
+  `)
+})
+
+test('renders divs and spans with classes, styles and ids', () => {
+  const { container } = render(
+    <SanitizedHTML
+      content={`<div id="the-potato" class="🥔">potato</div><span style="font-size: 22px;">big 🥔</span>`}
+    />
+  )
+
+  expect(container.firstChild).toMatchInlineSnapshot(`
+    <div
+      style="display: contents;"
+    >
+      <div
+        class="🥔"
+        id="the-potato"
+      >
+        potato
+      </div>
+      <span
+        style="font-size: 22px;"
+      >
+        big 🥔
+      </span>
     </div>
   `)
 })

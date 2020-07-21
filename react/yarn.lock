@@ -1448,6 +1448,14 @@
   resolved "https://registry.yarnpkg.com/@vtex/css-handles/-/css-handles-1.1.3.tgz#30bd1010f2907443188738f74dd11d3b6b4ac624"
   integrity sha512-DkqnzMf5jW6lQ1L8wYb9fnXyh0FqZym8qEokGYjeLUqBLBAiVK8XbI4U0ezFswWTOJ3iHZUkUjqPt5WodxR29w==
 
+"@vtex/insane@^2.7.0":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@vtex/insane/-/insane-2.7.0.tgz#bef2b95d5cad142658031c51b73b98dc58f2d451"
+  integrity sha512-U4RTWMOfI+L7WoLjC3Of+2amitzLXVZ1LrzkZzHdGAbRRn4YCeXnGMOLcU3C4sIxmZNgY9UuEdgyCsSQHI/uiA==
+  dependencies:
+    assignment "2.0.0"
+    he "0.5.0"
+
 "@vtex/test-tools@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@vtex/test-tools/-/test-tools-3.1.0.tgz#05d9d2574a57c791b342d0156ac52fccb8843729"
@@ -2852,14 +2860,6 @@ inherits@2, inherits@^2.0.1, inherits@^2.0.3:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
-
-insane@^2.6.2:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/insane/-/insane-2.6.2.tgz#c2ab68bb3e006ab451560d1b446917329c0a8120"
-  integrity sha1-wqtouz4AarRRVg0bRGkXMpwKgSA=
-  dependencies:
-    assignment "2.0.0"
-    he "0.5.0"
 
 intl-format-cache@^4.2.21:
   version "4.3.0"
