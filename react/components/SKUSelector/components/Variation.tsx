@@ -115,6 +115,7 @@ const Variation: FC<Props> = ({
         onClick={option.impossible ? noop : option.onSelectItem}
         isImage={displayImage}
         variationValue={option.label}
+        variationValueOriginalName={option.originalName}
         imageHeight={imageHeight}
         imageWidth={imageWidth}
         showBorders={showBorders}
