@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Replaed `insane` with `@vtex/insane` to support wildcard tag in `allowedAttributes`.
+- Replace `insane` with `@vtex/insane` to support wildcard tag in `allowedAttributes`.
 
 ## [3.120.4] - 2020-07-17
 ### Fixed
