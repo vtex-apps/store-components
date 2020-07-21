@@ -114,29 +114,34 @@ const parseOptionNameToDisplayOption = ({
   imagesMap: ImageMap
   variationCount: number
   hideImpossibleCombinations: boolean
-}) => (variationValue: string): DisplayOption | null => {
-  const isSelected = selectedVariations[variationName] === variationValue
-  const image = imagesMap?.[variationName]?.[variationValue]
+}) => (variationValue: {
+  name: string
+  originalName: string
+}): DisplayOption | null => {
+  const isSelected = selectedVariations[variationName] === variationValue.name
+  const image = imagesMap?.[variationName]?.[variationValue.name]
 
   const newSelectedVariation = clone(selectedVariations)
-  newSelectedVariation[variationName] = isSelected ? null : variationValue
+  newSelectedVariation[variationName] = isSelected ? null : variationValue.name
 
   const possibleItems = findListItemsWithSelectedVariations(
     skuItems,
     newSelectedVariation
   )
+
   if (possibleItems.length > 0) {
     // This is a valid combination option
     const [item] = possibleItems
     const callbackFn = onSelectItemMemo({
       name: variationName,
-      value: variationValue,
+      value: variationValue.name,
       skuId: item.itemId,
       isMainAndImpossible: false,
       possibleItems,
     })
     return {
-      label: variationValue,
+      label: variationValue.name,
+      originalName: variationValue.originalName,
       onSelectItem: callbackFn,
       image,
       available: showItemAsAvailable(
@@ -153,13 +158,15 @@ const parseOptionNameToDisplayOption = ({
     // If the hideImpossibleCombinations is true, we should display it as normal but when pressed it will reset the selected variations.
     const callbackFn = onSelectItemMemo({
       name: variationName,
-      value: variationValue,
+      value: variationValue.name,
       skuId: null,
       isMainAndImpossible: true,
       possibleItems: skuItems,
     })
+
     return {
-      label: variationValue,
+      label: variationValue.name,
+      originalName: variationValue.originalName,
       onSelectItem: callbackFn,
       image,
       available: true,
@@ -169,7 +176,8 @@ const parseOptionNameToDisplayOption = ({
   if (!hideImpossibleCombinations) {
     // This is a impossible combination and will only appear if the prop allows.
     return {
-      label: variationValue,
+      label: variationValue.name,
+      originalName: variationValue.originalName,
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       onSelectItem: () => {},
       image,

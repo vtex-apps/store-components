@@ -13,6 +13,7 @@ interface Props {
   onClick: (e: SyntheticEvent<HTMLDivElement>) => void
   isImage: boolean
   variationValue: string
+  variationValueOriginalName: string
   imageUrl?: string
   imageLabel?: string | null
   isImpossible: boolean
@@ -52,6 +53,7 @@ const SelectorItem: FC<Props> = ({
   onClick,
   isImage,
   variationValue,
+  variationValueOriginalName,
   imageUrl,
   imageLabel,
   isImpossible,
@@ -68,7 +70,7 @@ const SelectorItem: FC<Props> = ({
     () =>
       classNames(
         applyModifiers(handles.skuSelectorItem, [
-          slug(variationValue),
+          slug(variationValueOriginalName),
           isSelected ? 'selected' : '',
         ]),
         // `${handles.skuSelectorItem}--${slug(variationValue)}`,
@@ -82,7 +84,7 @@ const SelectorItem: FC<Props> = ({
       isImage,
       isSelected,
       isImpossible,
-      variationValue,
+      variationValueOriginalName,
       handles.skuSelectorItem,
       handles.skuSelectorItemImage,
     ]

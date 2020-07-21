@@ -39,7 +39,10 @@ const getVariationsFromItems = (
     const set = variationsSet[variationName]
     variations[variationName] = {
       originalName: variationName,
-      values: Array.from(set),
+      values: Array.from(set).map(value => ({
+        name: value,
+        originalName: value,
+      })),
     }
   }
   return variations
@@ -57,7 +60,10 @@ const getVariationsFromSpecifications = (
     ) {
       variations[specification.field.name] = {
         originalName: specification.field.originalName,
-        values: specification.values.map(value => value.name),
+        values: specification.values.map(value => ({
+          name: value.name,
+          originalName: value.originalName,
+        })),
       }
     }
   }
