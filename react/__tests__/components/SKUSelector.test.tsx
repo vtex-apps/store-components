@@ -1179,32 +1179,40 @@ describe('<SKUSelector />', () => {
               {
                 field: {
                   name: 'Color',
+                  originalName: 'Color',
                 },
                 values: [
                   {
                     name: 'Black',
+                    originalName: 'Black',
                   },
                   {
                     name: 'Gray',
+                    originalName: 'Gray',
                   },
                   {
                     name: 'Blue',
+                    originalName: 'Blue',
                   },
                 ],
               },
               {
                 field: {
                   name: 'Size',
+                  originalName: 'Size',
                 },
                 values: [
                   {
                     name: '43',
+                    originalName: '43',
                   },
                   {
                     name: '42',
+                    originalName: '42',
                   },
                   {
                     name: '41',
+                    originalName: '41',
                   },
                 ],
               },

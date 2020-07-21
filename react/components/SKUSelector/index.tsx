@@ -115,7 +115,7 @@ const useImagesMap = (
         continue
       }
       const imageMap = {} as Record<string, Image | undefined>
-      const variationValues = variations[variationName]
+      const variationValues = variations[variationName].values
       for (const variationValue of variationValues) {
         const item = filteredItems.find(
           sku => sku.variationValues[variationName] === variationValue

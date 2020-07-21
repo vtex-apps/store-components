@@ -37,7 +37,10 @@ const getVariationsFromItems = (
   // Transform set back to array
   for (const variationName of variationsNames) {
     const set = variationsSet[variationName]
-    variations[variationName] = Array.from(set)
+    variations[variationName] = {
+      originalName: variationName,
+      values: Array.from(set),
+    }
   }
   return variations
 }
@@ -52,9 +55,10 @@ const getVariationsFromSpecifications = (
       !visibleVariations ||
       visibleVariations.includes(specification.field.name.toLowerCase().trim())
     ) {
-      variations[specification.field.name] = specification.values.map(
-        value => value.name
-      )
+      variations[specification.field.name] = {
+        originalName: specification.field.originalName,
+        values: specification.values.map(value => value.name),
+      }
     }
   }
   return variations
@@ -72,6 +76,7 @@ const useVariations = (
   const variationsSource = isSkuSpecificationsEmpty
     ? skuItems
     : skuSpecifications
+
   const result = useMemo(() => {
     if (
       shouldNotShow ||
@@ -101,6 +106,7 @@ const useVariations = (
     visibleVariations,
     isSkuSpecificationsEmpty,
   ])
+
   return result
 }
 

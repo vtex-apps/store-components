@@ -60,7 +60,7 @@ const Variation: FC<Props> = ({
   sliderDisplayThreshold,
   sliderItemsPerPage,
 }) => {
-  const { name, options } = variation
+  const { originalName, name, options } = variation
 
   const visibleItemsWhenCollapsed = maxItems - ITEMS_VISIBLE_THRESHOLD
 
@@ -75,7 +75,7 @@ const Variation: FC<Props> = ({
     },
   } = useProduct()
 
-  const displayImage = isColor(name)
+  const displayImage = isColor(originalName)
 
   const shouldCollapse = !showAll && options.length > maxItems
 
@@ -89,7 +89,7 @@ const Variation: FC<Props> = ({
     'flex flex-column',
     containerClassesProp,
     styles.skuSelectorSubcontainer,
-    `${styles.skuSelectorSubcontainer}--${slug(name)}`
+    `${styles.skuSelectorSubcontainer}--${slug(originalName)}`
   )
 
   const shouldUseSlider =
