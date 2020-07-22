@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - SKU Selector documentation (prop table).
 
+## [3.120.7] - 2020-07-21
+### Fixed
+- Use `originalName` in SKU Selector values.
+
+## [3.120.6] - 2020-07-21
+### Fixed
+- Use `originalName` in SKU Selector to avoid CSS classes to vary based on translation.
+
+## [3.120.5] - 2020-07-21
+### Fixed
+- Replace `insane` with `@vtex/insane` to support wildcard tag in `allowedAttributes`.
+
 ## [3.120.4] - 2020-07-17
 ### Fixed
 - Prevent `insane` from filtering out `iframe`s.

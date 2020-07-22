@@ -1,5 +1,5 @@
 import React, { useMemo, FC } from 'react'
-import insane from 'insane'
+import insane from '@vtex/insane'
 
 type SanitizeOpts = {
   allowedAttributes?: Record<string, string[]>
@@ -13,10 +13,10 @@ type SanitizedHTMLProps = SanitizeOpts & {
 
 const DEFAULTS = {
   allowedAttributes: {
-    '*': ['title', 'accesskey'],
-    a: ['href', 'name', 'target', 'aria-label'],
-    iframe: ['frameborder', 'src', 'allowfullscreen', 'allow', 'style'],
-    img: ['src', 'alt', 'title', 'aria-label'],
+    '*': ['id', 'title', 'accesskey', 'class', 'style', 'aria-label'],
+    a: ['href', 'name', 'target'],
+    iframe: ['frameborder', 'src', 'allowfullscreen', 'allow'],
+    img: ['src', 'alt'],
   },
   allowedClasses: {},
   allowedSchemes: ['http', 'https', 'mailto'],

@@ -35,10 +35,12 @@ interface SkuSpecification {
 
 interface SkuSpecificationField {
   name: string
+  originalName: string
 }
 
 interface SkuSpecificationValues {
   name: string
+  originalName: string
 }
 
 declare module 'vtex.product-context/useProduct' {

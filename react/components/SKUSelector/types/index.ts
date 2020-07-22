@@ -37,6 +37,7 @@ export type ImageMap = Record<string, Record<string, Image | undefined>>
 
 export interface DisplayOption {
   label: string
+  originalName: string
   onSelectItem: () => void
   image: Image | undefined
   available: boolean
@@ -45,7 +46,17 @@ export interface DisplayOption {
 
 export interface DisplayVariation {
   name: string
+  originalName: string
   options: DisplayOption[]
 }
 
-export type Variations = Record<string, string[]>
+export type Variations = Record<
+  string,
+  {
+    originalName: string
+    values: Array<{
+      name: string
+      originalName: string
+    }>
+  }
+>
