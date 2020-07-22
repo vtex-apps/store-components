@@ -2,13 +2,13 @@
 
 # SKU Selector
 
-The SKU Selector is a Product Details Page block and it is responsible for displaying every SKU available for a given product.
+The SKU Selector is a product details page block responsible for displaying every SKU available for a given product.
 
 ![image](https://user-images.githubusercontent.com/12139385/70264113-931db980-1776-11ea-9a7e-6d4c8f122ad8.png)
 
 ## Configuration
 
-1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
+1. Add the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
 
 ```json
   "dependencies": {
@@ -16,7 +16,7 @@ The SKU Selector is a Product Details Page block and it is responsible for displ
   }
 ```
 
-2. Add the `skuselector` block to any block below `store.product`(Product template). For example:
+2. Add the `sku-selector` block to any block below `store.product` template (product page). For example:
 
 ```json
   "store.product": {
@@ -36,56 +36,38 @@ The SKU Selector is a Product Details Page block and it is responsible for displ
   },
 ```
 
-| Prop name                        | Type                                                 | Description                                                                                                                                                                                                                                                 | Default value                       |
-| -------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| `hideImpossibleCombinations`     | `boolean`                                            | When set to `true` a variation option that leads to a impossible product combination won't be displayed. If `false`, the variation will be displayed faded (with less opacity), but the user won't be able to select it.                                    | `true`                              |
-| `maxItems`                       | `number`                                             | The maximum number of variation items to be displayed before a `See more button` be triggered. The `See more button` will be displayed 2 items before the number set in `maxItems`.                                                                         | `10`                                |
-| `showValueNameForImageVariation` | `boolean`                                            | ![Deprecated](https://img.shields.io/badge/-deprecated-red) Use `showValueForVariation` instead                                                                                                                                                             | `false`                             |
-| `showValueForVariation`          | `ShowValueForVariation`                              | If it should show the value of the selected variation. The possible values of this prop are the ones defined by `ShowValueForVariation`                                                                                                                     | `'none'`                            |
-| `thumbnailImage`                 | `string`                                             | The value set in the string will define which image will be displayed firts, according to the value in the image's `imageLabel`. If you pass this prop and no image with this text in the `imageLabel` can be found, it will show any image of the product. | `undefined`                         |
-| `visibleVariations`              | `string[]`                                           | If you pass this array it will only display the passed names. If you pass a name that doesn't represent a variation, the block will not show anything. This means that passing an empty array doesn't display any variation                                 | -                                   |
-| `variationsSpacing`              | `number`                                             | This prop represents how much of `margin-bottom` you want to put in all variation blocks. The value is not in `px`, every value represent a tachyons class. The value numbers are from 0-11                                                                 | `7`                                 |
-| `imageHeight`                    | `number | object`                                    | Height of the thumbnail. If you pass an object it will expect two attributes: `desktop` and `mobile`. The value of both should be the height of each device                                                                                                 | `'auto'`                            |
-| `imageWidth`                     | `number | object`                                    | It works same way as `imageHeight`                                                                                                                                                                                                                          | `'auto'`                            |
-| `showVariationsLabels`           | `boolean`                                            | If the variation names should be displayed                                                                                                                                                                                                                  | `true`                              |
-| `initialSelection`               | `Enum`                                               | Control the user initial selection for available variations when product page is loaded                                                                                                                                                                     | `complete`                          |
-| `showVariationsErrorMessage`     | `boolean`                                            | If an error message should be displayed when the `BuyButton` is clicked on but didn't select an option for each available variation                                                                                                                         | `true`                              |
-| `displayMode`                    | `Enum`                                               | How the variations will be displayed. It doesn't apply to image variations. Notice that this prop is _responsive_, so you can specify a value for each breakpoint.                                                                                          | `default`                           |
-| `sliderDisplayThreshold`         | `Number`                                             | Controls the maximum number of SKUs that should be displayed using `'default'` displayMode before using displayMode `'slider'`. Notice this prop only takes effect you `displayMode` is set to `slider`.                                                    | `3`                                 |
-| `sliderArrowSize`                | `Enum`                                               | Controls the size (height and width) in pixels of the navigation arrows rendered when `displayMode` is set to `"slider"`.                                                                                                                                   | `12`                                |
-| `sliderItemsPerPage`             | `{ desktop: Number, tablet: Number, phone: Number }` | Controls how many slides should be shown on each type of device when `displayMode` is set to `slider`.                                                                                                                                                      | `{desktop: 3, tablet: 2, phone: 1}` |
-| `visibility`                     | `Enum`                                               | Controls when the SKU selector shows depending on the mumber of items available                                                                                                                                                                             | `always`                            |
+| Prop name   | Type      | Description            | Default value                       |
+| -------------------------------- | ----------- | ------------------------------------- | ----------------------------------- |
+| `visibility`  | `enum`  | Defines the scenarios in which the SKU selector should be displayed. Possible values are: `always` (it will always be displayed even if the product has only one SKU option) or `more-than-one` (the SKU Selector is only displayed when the product has more than one SKU option).  | `always` |
+| `visibleVariations`  | `array` | Specifies which product variations should be displayed in the product details page. Notice the following: if you declare a name that doesn't represent a real product variation or an empty array, no variations will be displayed. Check out more information regarding this prop structure below this table. | `undefined` |
+| `hideImpossibleCombinations`     | `boolean`   | Whether a product variation that leads to a impossible product combination should be clickable (`true`) or not (`false`). Notice that in both scenarios the variation will be displayed. However, when the prop is set as `false`, the variation is faded displayed (with less opacity). | `true`  |
+| `maxItems`  | `number`  | Maximum number of variation items to be displayed in the SKU Selector before the `See more` button. The button will always be displayed 2 items before the number set in `maxItems`. | `10`  |
+| `showValueForVariation`  | `enum`  | Displays a value for the selected variation. This prop replaces the former `showValueNameForImageVariation` (deprecated). Possible values are: `none` (no values are displayed when the variation is selected), `image` (displays only the image value for the selected variation, if any) or `all` (all variation values are displayed).  | `none` | 
+| `variationsSpacing`  | `number` | Defines the `margin-bottom` size to be applied in the rendered product variations. Possible values are from `0` to `11` (the prop value is not in `px`, every value represents a tachyons class). | `7`   |
+| `showVariationsErrorMessage`  | `boolean` | Whether an error message should be displayed whenever the `BuyButton` is clicked on but no available variation was selected (`true`) or not (`false`). | `true` |
+| `showVariationsLabels` | `boolean`   | Whether the variation names should be displayed (`true`) or not (`false`).   | `true` |
+| `displayMode` | `enum` | Defines how the product variation names will be displayed (it doesn't apply to product variation images). Possible values are: `default` (displays all variation names), `select` (only displays the selected variation name) or `slider` (displays all variation names in a slider when the number of available options in greater than the value defined in the `sliderDisplayThreshold` prop). Notice that this prop is _responsive_, so you can declare an object as its value specifying a value for each breakpoint (`desktop` and `mobile`). | `default`  |
+| `sliderDisplayThreshold` | `number` | Minimum number of product variation names that should be displayed using `slider` display mode. This prop only properly works when `displayMode` is set as `slider`.  | `3`  |
+| `sliderArrowSize` | `number`  | Controls the size (height and width) in pixels of the navigation arrows rendered when `displayMode` is set as `slider`. | `12` |
+| `sliderItemsPerPage` | `object` | Controls how many slides should be shown on each type of device when `displayMode` is set as `slider`. Check out more information regarding this prop structure below this table. | `{desktop: 3, tablet: 2, phone: 1}` |
+| `thumbnailImage` | `string`  | First image to be displayed. This prop value must be the same text string defined in the desired product image's `imageLabel` field (from the Catalog module). If you use this prop and no image declaring the same text string in its `imageLabel` field is found, any product image will be randomly rendered instead. | `undefined` |
+| `imageHeight`  | `number` | `object` | Height (in `px`) of the product thumbnail image. You can declare an object as its value in case you want to define a height for each device (`desktop` and `mobile`). | `undefined` |
+| `imageWidth` | `number` | `object` | Width (in `px`) of the product thumbnail image. You can declare an object as its value in case you want to define a width for each device (`desktop` and `mobile`).  | `undefined`  |
+| `initialSelection` | `enum`  | Controls the user initial selection for available variations when product page is fully loaded. Possible values are: `complete` (selects the first available SKU's variation values), `image` (selects the first available image variation) or `empty` (no variations will be selected when the page is loaded).  | `complete` |
 
-- Possible values for `ShowValueForVariation`:
+- **`visibleVariations` array**
 
-| Value     | Description                                                                   |
-| --------- | ----------------------------------------------------------------------------- |
-| `'none'`  | It won't show any value                                                       |
-| `'image'` | Will show the value of the selected variation by the side of image variations |
-| `'all'`   | Show the value of all the variations                                          |
+| Prop name       | Type    | Description  | Default value |    
+| ----------- | ------- | ----------- | ----------- | 
+| `name` | `string` | Product variation name.  | `undefined` | 
 
-- Possible values for `displayMode`:
+- **`sliderItemsPerPage` object**
 
-| Value       | Name    | Description                                                                                                                        |
-| ----------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `"default"` | default | Displays all variations like the image variations                                                                                  |
-| `"select"`  | select  | Displays all variations, except for image variations as `Select`components                                                         |
-| `"slider"`  | slider  | Displays all variations in a slider when the number of available options in greater than the the value of `sliderDisplayThreshold` |
-
-- Possible values for `initialSelection`:
-
-| Value      | Name     | Description                                                                                    |
-| ---------- | -------- | ---------------------------------------------------------------------------------------------- |
-| `complete` | Complete | It will select the variations values of the first SKU available                                |
-| `image`    | Image    | It will select the first image variation (like Color). All other variations will be unselected |
-| `empty`    | Empty    | All variations will appear as unselected when the page is loaded                               |
-
-- Possible values for `visibility`:
-
-| Value           | Description                                                               |
-| --------------- | ------------------------------------------------------------------------- |
-| `always`        | It will show the SKU selector even if the product has only one SKU option        |
-| `more-than-one` | It will show the SKU selector only when the product has more than one SKU option |
+| Prop name      | Type    | Description  | Default value |    
+| ----------- | ------- | ----------- | ----------- | 
+| `desktop` | `number` | Number of slides to be displayed on desktop devices when `displayMode` is set as `slider`.   | `3` | 
+| `tablet` | `number` | Number of slides to be displayed on tablet devices when `displayMode` is set as `slider`. | `2` | 
+| `phone` | `number` | Number of slides to be displayed on phone devices when `displayMode` is set as `slider`. | `1` |
 
 ## Customization
 
