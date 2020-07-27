@@ -30,6 +30,7 @@ function validateZoomMode(zoomMode: ZoomModeComplete): ZoomMode {
     console.warn(
       `You passed a wrong value to prop zoomMode \`${zoomMode}\` using 'disabled' instead`
     )
+
     return 'disabled'
   }
 
@@ -51,6 +52,7 @@ function HighQualityProductImage(props: Props) {
     console.warn(
       "You're using a HighQualityProductImage out of a ProductImageContext"
     )
+
     return null
   }
 

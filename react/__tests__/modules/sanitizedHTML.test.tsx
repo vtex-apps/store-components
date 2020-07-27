@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
-import { SanitizedHTML } from '../../modules/sanitizedHTML'
+import { SanitizedHTML } from '../../components/SanitizedHTML'
 
 test('renders a simple string', () => {
   const { container } = render(<SanitizedHTML content="Potato" />)

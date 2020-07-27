@@ -5,7 +5,7 @@ import { useCssHandles } from 'vtex.css-handles'
 import { Tabs, Tab } from 'vtex.styleguide'
 import { useDevice } from 'vtex.device-detector'
 
-import { SanitizedHTML } from '../../modules/sanitizedHTML'
+import { SanitizedHTML } from '../SanitizedHTML'
 import GradientCollapse from '../GradientCollapse/index'
 
 const CSS_HANDLES = [

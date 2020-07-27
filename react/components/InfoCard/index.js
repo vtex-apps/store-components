@@ -21,7 +21,7 @@ import {
   textAlignmentValues,
   textModeTypes,
 } from './SchemaTypes'
-import { SanitizedHTML } from '../../modules/sanitizedHTML'
+import { SanitizedHTML } from '../SanitizedHTML'
 
 const ALLOWED_TAGS = ['p', 'span', 'a', 'div', 'br']
 const ALLOWED_ATTRS = {
