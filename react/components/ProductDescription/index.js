@@ -4,7 +4,7 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 import { formatIOMessage } from 'vtex.native-types'
 
-import { SanitizedHTML } from '../../modules/sanitizedHTML'
+import { SanitizedHTML } from '../SanitizedHTML'
 import GradientCollapse from '../GradientCollapse/index'
 
 const CSS_HANDLES = [

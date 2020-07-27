@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { string } from 'prop-types'
 
-import { SanitizedHTML } from '../../modules/sanitizedHTML'
+import { SanitizedHTML } from '../SanitizedHTML'
 import styles from './styles.css'
 
 const NotificationContent = ({ content }) => {

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl } from 'react-intl'
 
-import { SanitizedHTML } from '../../modules/sanitizedHTML'
+import { SanitizedHTML } from '../SanitizedHTML'
 import styles from './styles.css'
 
 /**

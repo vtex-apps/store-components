@@ -64,9 +64,10 @@ const AutocompleteInput = ({
   const handles = useCssHandles(CSS_HANDLES)
 
   let dMode = displayMode
+
   if (DISPLAY_MODES.indexOf(dMode) < 0) {
     console.error(
-      `[store-componentes/search-bar] Invalid displayMode '${displayMode}'. The valid options are: ${DISPLAY_MODES.join(
+      `[store-components/search-bar] Invalid displayMode '${displayMode}'. The valid options are: ${DISPLAY_MODES.join(
         ', '
       )}`
     )
@@ -98,8 +99,10 @@ const AutocompleteInput = ({
   const showClearButton =
     (dMode === 'clear-button' && hasValue) ||
     dMode === 'search-and-clear-buttons'
+
   const showInternalSearchButton =
     (dMode === 'clear-button' && !hasValue) || dMode === 'search-button'
+
   const showExternalSearchButton = dMode === 'search-and-clear-buttons'
 
   const clearButton = showClearButton && (
