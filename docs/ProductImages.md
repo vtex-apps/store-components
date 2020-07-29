@@ -133,8 +133,8 @@ In order to apply CSS customizations on this and other blocks, follow the instru
 | `productImagesThumbCaret` |
 | `productImagesThumbsSwiperContainer` |
 | `productImageTag`|
-| `productImageMain`|
-| `productImageZoom`|
+| `productImageTag--main`|
+| `productImageTag--zoon`|
 | `productVideo` |
 | `swiperBullet` |
 | `swiperBullet--active` |
