@@ -2,6 +2,7 @@ import React, { FC, useMemo, useRef } from 'react'
 import { Modal } from 'vtex.modal-layout'
 import { useCssHandles } from 'vtex.css-handles'
 
+import { applyModifiers } from 'vtex.css-handles'
 import Zoomable, { ZoomMode } from './Zoomable'
 import { imageUrl } from '../utils/aspectRatioUtil'
 import ProductImageContext, {
@@ -71,7 +72,7 @@ const ProductImage: FC<Props> = ({
                 MAX_SIZE,
                 aspectRatio
               )}
-              className={handles.productImageTag}
+              className={`${applyModifiers(handles.productImageTag, 'zoom')}`}
               style={{
                 // Resets possible resizing done via CSS
                 maxWidth: 'unset',
@@ -86,7 +87,7 @@ const ProductImage: FC<Props> = ({
         >
           <img
             ref={imageRef}
-            className={handles.productImageTag}
+            className={`${applyModifiers(handles.productImageTag, 'main')}`}
             style={{
               width: '100%',
               height: '100%',
