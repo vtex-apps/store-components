@@ -1279,4 +1279,133 @@ describe('<SKUSelector />', () => {
     // check comment above the 'it' description
     expect(asFragment()).toMatchSnapshot()
   })
+
+  it('should not show the Yellow variation since there is no items with the Yellow variation', async () => {
+    const defaultSeller = {
+      commertialOffer: { Price: 15, ListPrice: 20, AvailableQuantity: 10 },
+    }
+
+    const firstSku = {
+      itemId: '1',
+      name: 'Gray Shoe',
+      variations: [
+        { name: 'Size', values: ['41'] },
+        { name: 'Color', values: ['Gray'] },
+      ],
+      sellers: [defaultSeller],
+      images: [],
+    }
+
+    mockedUseProduct.mockImplementation(
+      function getProductContext(): ProductContext {
+        return {
+          product: {
+            buyButton: {
+              clicked: false,
+            },
+            skuSelector: {
+              isVisible: true,
+              areAllVariationsSelected: true,
+            },
+            selectedItem: firstSku,
+            selectedQuantity: 1,
+            assemblyOptions: {
+              items: {},
+              areGroupsValid: {},
+              inputValues: {},
+            },
+            skuSpecifications: [
+              {
+                field: {
+                  name: 'Color',
+                  originalName: 'Color',
+                },
+                values: [
+                  {
+                    name: 'Yellow',
+                    originalName: 'Yellow',
+                  },
+                  {
+                    name: 'Black',
+                    originalName: 'Black',
+                  },
+                  {
+                    name: 'Gray',
+                    originalName: 'Gray',
+                  },
+                  {
+                    name: 'Blue',
+                    originalName: 'Blue',
+                  },
+                ],
+              },
+              {
+                field: {
+                  name: 'Size',
+                  originalName: 'Size',
+                },
+                values: [
+                  {
+                    name: '43',
+                    originalName: '43',
+                  },
+                  {
+                    name: '42',
+                    originalName: '42',
+                  },
+                  {
+                    name: '41',
+                    originalName: '41',
+                  },
+                ],
+              },
+            ],
+          },
+        }
+      }
+    )
+
+    const skuItems = [
+      firstSku,
+      {
+        itemId: '2',
+        name: 'Black Shoe',
+        variations: [
+          { name: 'Size', values: ['41', '42', '43'] },
+          { name: 'Color', values: ['Black'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '3',
+        name: 'Blue Shoe',
+        variations: [
+          { name: 'Size', values: ['41', '42', '43'] },
+          { name: 'Color', values: ['Blue', 'Black'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '4',
+        name: 'Gray Shoe',
+        variations: [
+          {
+            name: 'Size',
+            values: ['42'],
+          },
+          { name: 'Color', values: ['Gray'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+    ]
+
+    const { queryByText } = render(
+      <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
+    )
+
+    expect(queryByText('Yellow')).toBeFalsy()
+  })
 })
