@@ -24,7 +24,7 @@ interface Props {
 
 type AspectRatio = string | number
 
-const CSS_HANDLES = ['productImage', 'productImageTag']
+const CSS_HANDLES = ['productImage', 'productImageTag', 'productImageMain', 'productImageZoom']
 
 const ProductImage: FC<Props> = ({
   src,
@@ -71,7 +71,7 @@ const ProductImage: FC<Props> = ({
                 MAX_SIZE,
                 aspectRatio
               )}
-              className={handles.productImageTag}
+              className={`${handles.productImageTag} ${handles.productImageZoom}`}
               style={{
                 // Resets possible resizing done via CSS
                 maxWidth: 'unset',
@@ -86,7 +86,7 @@ const ProductImage: FC<Props> = ({
         >
           <img
             ref={imageRef}
-            className={handles.productImageTag}
+            className={`${handles.productImageTag} ${handles.productImageMain}`}
             style={{
               width: '100%',
               height: '100%',
