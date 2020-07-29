@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.122.0] - 2020-07-29
+
 ### Added
 - Add new `productImageTag--zoom` and `productImageTag--main` CSS Handles to Product Images component.
 
