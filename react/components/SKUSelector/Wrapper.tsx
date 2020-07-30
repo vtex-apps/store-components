@@ -176,8 +176,6 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
     props.visibleVariations
   )
 
-  console.log( 'teste VARIATIONS: ', {variations, skuSpecifications, visibleVariations: props.visibleVariations})
-
   useEffect(() => {
     if (dispatch) {
       dispatch({
