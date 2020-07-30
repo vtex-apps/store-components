@@ -56,7 +56,9 @@ const getVariationsFromSpecifications = (
   for (const specification of skuSpecifications) {
     if (
       !visibleVariations ||
-      visibleVariations.includes(specification.field.originalName.toLowerCase().trim())
+      visibleVariations.includes(
+        specification.field.originalName.toLowerCase().trim()
+      )
     ) {
       variations[specification.field.name] = {
         originalName: specification.field.originalName,
