@@ -56,7 +56,7 @@ const getVariationsFromSpecifications = (
   for (const specification of skuSpecifications) {
     if (
       !visibleVariations ||
-      visibleVariations.includes(specification.field.name.toLowerCase().trim())
+      visibleVariations.includes(specification.field.originalName.toLowerCase().trim())
     ) {
       variations[specification.field.name] = {
         originalName: specification.field.originalName,
@@ -175,6 +175,8 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
     shouldNotShow,
     props.visibleVariations
   )
+
+  console.log( 'teste VARIATIONS: ', {variations, skuSpecifications, visibleVariations: props.visibleVariations})
 
   useEffect(() => {
     if (dispatch) {
