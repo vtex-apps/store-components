@@ -1,13 +1,13 @@
+import PropTypes from 'prop-types'
+import { compose } from 'ramda'
 import React, { Component, Fragment } from 'react'
 import { graphql } from 'react-apollo'
-import { compose } from 'ramda'
-import PropTypes from 'prop-types'
 import { injectIntl } from 'react-intl'
-import { Input, Button } from 'vtex.styleguide'
 import { withCssHandles } from 'vtex.css-handles'
 import { formatIOMessage } from 'vtex.native-types'
-
+import { Button, Checkbox, Input } from 'vtex.styleguide'
 import SUBSCRIBE_NEWSLETTER from './mutations/subscribeNewsletter.graphql'
+
 
 const EMAIL_REGEX = /^[A-z0-9+_-]+(?:\.[A-z0-9+_-]+)*@(?:[A-z0-9](?:[A-z0-9-]*[A-z0-9])?\.)+[A-z0-9](?:[A-z0-9-]*[A-z0-9])?$/
 const CSS_HANDLES = [
@@ -26,8 +26,11 @@ const CSS_HANDLES = [
 class Newsletter extends Component {
   state = {
     email: '',
+    name: '',
+    checkbox: false,
     loading: false,
     error: null,
+    checkboxError: null,
     success: null,
     invalidEmail: false,
   }
@@ -52,12 +55,41 @@ class Newsletter extends Component {
     this.setState({ email: e.target.value.trim() })
   }
 
+  handleChangeName = e => {
+    this.setState({ name: e.target.value.trim() })
+  }
+
+  handleToggleCheckbox = e => {
+    this.setState({ checkbox: !this.state.checkbox })
+    this.setState({ invalidCheckbox: false })
+  }
+
   validateEmail = () => {
     return EMAIL_REGEX.test(this.state.email)
   }
 
+  validateName = () => {
+    if(this.state.name != ""){
+      return true
+    }else{
+      return false
+    }
+  }
+
+  validateCheckbox = () => {
+    return this.state.checkbox
+  }
+
   handleSubmit = e => {
     e.preventDefault()
+    if (!this.validateCheckbox() && this.props.showTerms) {
+      this.setState({ invalidCheckbox: true })
+      return
+    }
+    if (!this.validateName() && this.props.showName) {
+      this.setState({ invalidName: true })
+      return
+    }
     if (!this.validateEmail()) {
       this.setState({ invalidEmail: true })
       if (this.inputRef && this.inputRef.current) {
@@ -68,13 +100,15 @@ class Newsletter extends Component {
 
     this.setState({
       invalidEmail: false,
+      invalidName: false,
+      invalidCheckbox: false,
       loading: true,
       error: null,
       success: null,
     })
 
     this.props
-      .subscribeNewsletter({ variables: { email: this.state.email } })
+      .subscribeNewsletter({ variables: { email: this.state.email, firstName: this.state.name } })
       .then(() => {
         this.safeSetState({ success: true, loading: false })
       })
@@ -90,11 +124,16 @@ class Newsletter extends Component {
       submit,
       label,
       placeholder,
+      placeholderName,
+      checkboxText,
       cssHandles,
+      showName,
+      showTerms
     } = this.props
     const submitText = formatIOMessage({ id: submit, intl })
     const labelText = formatIOMessage({ id: label, intl })
     const placeholderText = formatIOMessage({ id: placeholder, intl })
+    const placeholderTextName = formatIOMessage({ id: placeholderName, intl })
     const confirmationTitle = formatIOMessage({
       id: 'store/newsletter.confirmationTitle',
       intl,
@@ -107,8 +146,16 @@ class Newsletter extends Component {
       id: 'store/newsletter.invalidEmail',
       intl,
     })
+    const invalidNameText = formatIOMessage({
+      id: 'store/newsletter.invalidName',
+      intl,
+    })
     const errorMsg = formatIOMessage({
       id: 'store/newsletter.error',
+      intl,
+    })
+    const errorCheckbox = formatIOMessage({
+      id: 'store/newsletter.checkboxError',
       intl,
     })
 
@@ -131,29 +178,59 @@ class Newsletter extends Component {
               </div>
             </Fragment>
           ) : (
-            <form className={`${cssHandles.form} mw6 center tc ph5 ph0-ns`}>
+            <form className={`${cssHandles.form} mw7 center tc ph6 ph0-ns`}>
               <label
                 className={`${cssHandles.label} t-heading-3 tc ${
                   hideLabel ? 'dn' : ''
                 }`}
-                htmlFor="newsletter-input"
+                htmlFor="newsletter-input-email"
               >
                 {labelText}
               </label>
-              <div className={`${cssHandles.inputGroup} flex-ns pt5`}>
-                <Input
-                  ref={this.inputRef}
-                  id="newsletter-input"
-                  errorMessage={
-                    this.state.invalidEmail ? invalidEmailText : null
-                  }
-                  placeholder={placeholderText}
-                  name="newsletter"
-                  value={this.state.email}
-                  onChange={this.handleChangeEmail}
-                />
+              <div className={`${cssHandles.inputGroup} flex-ns pt5 mh5`}>
+              {showName ? (
+              <>
+                <div className={`fl w-50 mh2`}>
+                    <Input
+                      ref={this.inputRef}
+                      id="newsletter-input-name"
+                      errorMessage={
+                        this.state.invalidName ? invalidNameText : null
+                      }
+                      placeholder={placeholderTextName}
+                      name="newsletter"
+                      value={this.state.name}
+                      onChange={this.handleChangeName}
+                    />
+                </div>
+                <div className={`fl w-50 mh2`}>
+                  <Input
+                    ref={this.inputRef}
+                    id="newsletter-input-email"
+                    errorMessage={
+                      this.state.invalidEmail ? invalidEmailText : null
+                    }
+                    placeholder={placeholderText}
+                    name="newsletter"
+                    value={this.state.email}
+                    onChange={this.handleChangeEmail}
+                  />
+                </div>
+              </> ) : (
+                  <Input
+                    ref={this.inputRef}
+                    id="newsletter-input-email"
+                    errorMessage={
+                      this.state.invalidEmail ? invalidEmailText : null
+                    }
+                    placeholder={placeholderText}
+                    name="newsletter"
+                    value={this.state.email}
+                    onChange={this.handleChangeEmail}
+                  />
+                )}
                 <div
-                  className={`${cssHandles.buttonContainer} pl4-ns flex-none pt3 pt0-ns`}
+                  className={`${cssHandles.buttonContainer} pl4-ns flex-none pt3 pt0-ns w-10`}
                 >
                   <Button
                     variation="primary"
@@ -165,9 +242,27 @@ class Newsletter extends Component {
                   </Button>
                 </div>
               </div>
+              {showTerms &&
+                <div className={`${cssHandles.checkboxContainer} mw9 pa5 tc`}>
+                  <Checkbox
+                    id="checkbox"
+                    name="checkbox"
+                    onChange={this.handleToggleCheckbox}
+                    checked={this.state.checkbox} 
+                    label={checkboxText}
+                    color="#fafafa"
+                    isRequired
+                  />
+                </div>
+              }
               {this.state.error && (
                 <div className={`${cssHandles.error} c-danger t-body pt5`}>
                   {errorMsg}
+                </div>
+              )}
+              {this.state.invalidCheckbox && (
+                <div className={`${cssHandles.error} c-danger t-body pt5`}>
+                  {errorCheckbox}
                 </div>
               )}
             </form>
@@ -187,13 +282,17 @@ const NewsletterWrapper = compose(
 Newsletter.defaultProps = {
   hideLabel: false,
   showTerms: false,
+  showName: false,
 }
 
 Newsletter.propTypes = {
   hideLabel: PropTypes.bool.isRequired,
   showTerms: PropTypes.bool.isRequired,
+  showName: PropTypes.bool.isRequired,
   label: PropTypes.string,
   placeholder: PropTypes.string,
+  placeholderName: PropTypes.string,
+  checkboxText: PropTypes.string,
   submit: PropTypes.string,
   subscribeNewsletter: PropTypes.func.isRequired,
   intl: PropTypes.object,
