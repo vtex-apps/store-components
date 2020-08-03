@@ -12,6 +12,7 @@ describe('<SKUSelector />', () => {
       skuItems: [getSKU('Black'), getSKU('Blue'), getSKU('Yellow')],
       ...customProps,
     }
+
     return render(<SKUSelector {...props} />)
   }
 
@@ -23,6 +24,7 @@ describe('<SKUSelector />', () => {
 
     await wait()
     const selector = container.querySelector('.skuSelectorItem')
+
     await wait(() => {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       fireEvent.click(selector!)
@@ -77,6 +79,7 @@ describe('<SKUSelector />', () => {
         images: [],
       },
     ]
+
     const [skuSelected] = skuItems
     const onSKUSelected = jest.fn()
     const { getByText } = render(
@@ -152,11 +155,13 @@ describe('<SKUSelector />', () => {
         images: [],
       },
     ]
+
     const [skuSelected] = skuItems
 
     const { getByText, getAllByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
+
     await wait()
 
     expect(getAllByText(/gray/i)).toHaveLength(1)
@@ -383,11 +388,13 @@ describe('<SKUSelector />', () => {
         images: [],
       },
     ]
+
     const [skuSelected] = skuItems
 
     const { getByText, queryByText } = render(
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
+
     await wait()
     // await Promise.resolve()
     expect(getByText('seeMoreLabel')).toBeDefined()
@@ -399,6 +406,7 @@ describe('<SKUSelector />', () => {
     const defaultSeller = {
       commertialOffer: { Price: 15, AvailableQuantity: 1 },
     }
+
     const skuItems = [
       {
         itemId: '1',
@@ -613,6 +621,7 @@ describe('<SKUSelector />', () => {
         images: [],
       },
     ]
+
     const [skuSelected] = skuItems
 
     const { getByText, queryByText } = render(
@@ -791,6 +800,7 @@ describe('<SKUSelector />', () => {
         images: [],
       },
     ]
+
     const [skuSelected] = skuItems
 
     const { getByText, queryByText } = render(
@@ -806,6 +816,7 @@ describe('<SKUSelector />', () => {
     const defaultSeller = {
       commertialOffer: { Price: 15, AvailableQuantity: 1 },
     }
+
     const skuItems = [
       {
         itemId: '1',
@@ -1020,6 +1031,7 @@ describe('<SKUSelector />', () => {
         images: [],
       },
     ]
+
     const skuSelected = skuItems.find(({ itemId }) => itemId === '15')
 
     const { getByText } = render(
@@ -1036,6 +1048,7 @@ describe('<SKUSelector />', () => {
     const defaultSeller = {
       commertialOffer: { Price: 15, AvailableQuantity: 1 },
     }
+
     const skuItems = [
       {
         itemId: '1',
@@ -1082,6 +1095,7 @@ describe('<SKUSelector />', () => {
     const { queryByText } = render(
       <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
     )
+
     await wait()
     expect(queryByText('skuSelectorItem--feijao')).toBeDefined()
     expect(queryByText('skuSelectorItem--square-brackets')).toBeDefined()
@@ -1257,9 +1271,11 @@ describe('<SKUSelector />', () => {
         images: [],
       },
     ]
+
     const { asFragment } = render(
       <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
     )
+
     // check comment above the 'it' description
     expect(asFragment()).toMatchSnapshot()
   })

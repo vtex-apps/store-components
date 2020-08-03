@@ -22,6 +22,7 @@ const getBounds = (element?: Element | null): ContainerBounds | null => {
   if (!element) return null
 
   const bounds = element.getBoundingClientRect()
+
   return {
     x: bounds.left,
     y: bounds.top,
@@ -51,6 +52,7 @@ const getMousePositionFromEvent = (
 
   // Values larger than 0 increase mouse movement sensivity
   const boost = 0.1
+
   return {
     x: clamp(0, bounds.width, -bounds.width * boost + x * (1 + boost * 2)),
     y: clamp(0, bounds.height, -bounds.height * boost + y * (1 + boost * 2)),
@@ -68,6 +70,7 @@ const ZoomInPlace: FC<Props> = ({ children, zoomContent, type, factor }) => {
 
   const setPositionAndScale = (x: number, y: number, scale: number) => {
     const contentElement = contentRef.current
+
     if (!contentElement) {
       return
     }
@@ -93,6 +96,7 @@ const ZoomInPlace: FC<Props> = ({ children, zoomContent, type, factor }) => {
         event,
         getContainerBounds()
       )
+
       setPositionAndScale(mousePosition.x, mousePosition.y, factor)
     }
   }
@@ -137,6 +141,7 @@ const ZoomInPlace: FC<Props> = ({ children, zoomContent, type, factor }) => {
         document.addEventListener('click', handleClickOutside)
       }
     }
+
     return () => {
       // eslint-disable-next-line vtex/prefer-early-return
       if (document) {

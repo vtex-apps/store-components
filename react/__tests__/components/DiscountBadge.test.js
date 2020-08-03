@@ -10,6 +10,7 @@ describe('<DiscountBadge /> component', () => {
       sellingPrice: 90,
       ...customProps,
     }
+
     const component = <DiscountBadge {...props}>Test</DiscountBadge>
 
     return render(component)
@@ -17,16 +18,19 @@ describe('<DiscountBadge /> component', () => {
 
   it('should be able to mount and not break', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot without label', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot with label', () => {
     const { asFragment } = renderComponent({ label: 'LABEL' })
+
     expect(asFragment()).toMatchSnapshot()
   })
 })

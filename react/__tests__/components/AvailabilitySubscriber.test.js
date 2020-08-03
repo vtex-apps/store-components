@@ -16,11 +16,13 @@ describe('<AvailabilitySubscriber />', () => {
 
   it('should be able to mount and not break', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toMatchSnapshot()
   })
 })

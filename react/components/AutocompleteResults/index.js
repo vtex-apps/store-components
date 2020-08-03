@@ -25,6 +25,7 @@ const CSS_HANDLES = [
 
 const getImageUrl = image => {
   const [imageUrl] = image.match(/https?:(.*?)"/g) || ['']
+
   return imageUrl.replace(/https?:/, '').replace(/-25-25/g, '-50-50')
 }
 
@@ -66,6 +67,7 @@ const AutocompleteResults = ({
   const {
     hints: { mobile },
   } = useRuntime()
+
   const handles = useCssHandles(CSS_HANDLES)
 
   const listStyle = useMemo(
@@ -100,6 +102,7 @@ const AutocompleteResults = ({
     hasThumb,
   } = {}) => {
     const highlightClass = highlightedIndex === itemIndex ? 'bg-muted-5' : ''
+
     return `pointer pa4 outline-0 ${handles.resultsItem} ${highlightClass} ${
       hasThumb ? 'flex justify-start' : 'db w-100'
     }`

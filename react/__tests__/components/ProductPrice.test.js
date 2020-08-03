@@ -15,21 +15,25 @@ describe('<ProductPrice />', () => {
       ...defaultProps,
       ...customProps,
     }
+
     return render(<ProductPrice {...props} />)
   }
 
   it('should be mount', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toBeDefined()
   })
 
   it('should match snapshot', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot Loader', () => {
     const { asFragment } = renderComponent({ showListPrice: true })
+
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -41,7 +45,9 @@ describe('<ProductPrice />', () => {
       labelSellingPrice: 'To',
       labelListPrice: 'From',
     }
+
     const { getByText } = renderComponent(customProps)
+
     expect(getByText('From')).toBeDefined()
     expect(getByText('To')).toBeDefined()
     expect(getByText('$40.00')).toBeDefined()
@@ -56,7 +62,9 @@ describe('<ProductPrice />', () => {
       labelSellingPrice: 'To',
       labelListPrice: 'From',
     }
+
     const { getByText, queryByText } = renderComponent(customProps)
+
     expect(queryByText('From')).toBeNull()
     expect(queryByText('To')).toBeNull()
     expect(getByText('$40.00')).toBeDefined()
@@ -70,7 +78,9 @@ describe('<ProductPrice />', () => {
       showLabels: false,
       showListPrice: true,
     }
+
     const { getByText, queryByText } = renderComponent(customProps)
+
     expect(queryByText('From')).toBeNull()
     expect(queryByText('To')).toBeNull()
     expect(getByText('$40.00')).toBeDefined()
@@ -85,7 +95,9 @@ describe('<ProductPrice />', () => {
       labelSellingPrice: 'Now',
       labelListPrice: 'Was',
     }
+
     const { getByText } = renderComponent(customProps)
+
     expect(getByText('Was')).toBeDefined()
     expect(getByText('Now')).toBeDefined()
     expect(getByText('$40.00')).toBeDefined()
@@ -102,7 +114,9 @@ describe('<ProductPrice />', () => {
       sellingPriceList: [30, 50, 20, 55],
       showSellingPriceRange: true,
     }
+
     const { getByText, queryByText } = renderComponent(customProps)
+
     // dont show labels
     expect(queryByText('Now')).toBeNull()
     expect(queryByText('Was')).toBeNull()
@@ -124,7 +138,9 @@ describe('<ProductPrice />', () => {
       listPriceList: [100, 200, 300, 400],
       showSellingPriceRange: true,
     }
+
     const { getByText, queryByText } = renderComponent(customProps)
+
     // dont show labels
     expect(queryByText('Now')).toBeNull()
     expect(queryByText('Was')).toBeNull()
@@ -148,7 +164,9 @@ describe('<ProductPrice />', () => {
       listPriceList: [100, 200, 300, 400],
       showSellingPriceRange: true,
     }
+
     const { getByText, queryByText } = renderComponent(customProps)
+
     // show labels
     expect(getByText('Now')).toBeDefined()
     expect(getByText('Was')).toBeDefined()

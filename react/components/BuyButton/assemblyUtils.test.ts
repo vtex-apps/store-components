@@ -19,6 +19,7 @@ test('should transform assemblyOptions', () => {
 
   expect(resultBell.options).toHaveLength(5)
   const addonOption = resultBell.options[0] as ItemOption
+
   expect(addonOption.assemblyId).toBe('add-on_Add-on')
   expect(addonOption.id).toBe('2000588')
   expect(addonOption.quantity).toBe(1)
@@ -33,6 +34,7 @@ test('should transform assemblyOptions', () => {
 
   expect(resultPizza.options).toHaveLength(2)
   const pizzaOption = resultPizza.options[0] as ItemOption
+
   expect(pizzaOption.assemblyId).toBe('pizza_composition_Pizza flavor')
   expect(pizzaOption.id).toBe('5101')
   expect(pizzaOption.quantity).toBe(1)
@@ -40,6 +42,7 @@ test('should transform assemblyOptions', () => {
   expect(pizzaOption.options).toHaveLength(3)
 
   const drinksOptions = resultPizza.options[1] as ItemOption
+
   expect(drinksOptions.options).toBeUndefined()
 })
 
@@ -56,6 +59,7 @@ test('input values', () => {
 
   expect(resultStar.options).toHaveLength(1)
   const customization = resultStar.options[0] as InputValuesOption
+
   expect(customization.assemblyId).toBe('Customization')
   expect(customization.inputValues).toMatchObject({
     Font: 'Sans serif',
@@ -99,9 +103,11 @@ test('recursive input values', () => {
   expect(resultBell.options).toHaveLength(5)
 
   const engraving = resultBell.options[4] as ItemOption
+
   expect(engraving.options).toHaveLength(1)
 
   const recursiveInputValue = engraving.options![0] as InputValuesOption
+
   expect(recursiveInputValue.assemblyId).toBe('1-3-lines')
   expect(recursiveInputValue.inputValues).toBe(
     customBell.inputValues['1-3-lines']
@@ -225,5 +231,6 @@ test('empty input values should result in empty options', () => {
     parentPrice,
     parentQuantity
   )
+
   expect(resultStar.options).toHaveLength(0)
 })

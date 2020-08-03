@@ -32,15 +32,19 @@ const FakeSwiper = ({
       : direction === THUMBS_ORIENTATION.VERTICAL
       ? 'swiper-container-vertical'
       : ''
+
   const childrenArray = React.Children.toArray(children)
+
   if (childrenArray.length === 0) {
     return null
   }
+
   const [child] = childrenArray
   const childClass = path(['props', 'className'], child)
   const newChildClass = childClass
     ? `${childClass} swiper-slide-active`
     : childClass
+
   return (
     <div
       className={`${containerClass} swiper-container-initialized ${swiperContainerDirection}`}
@@ -58,6 +62,7 @@ const FakeSwiper = ({
 const Swiper = window.navigator
   ? require('react-id-swiper/lib/ReactIdSwiper').default
   : FakeSwiper
+// eslint-disable-next-line padding-line-between-statements
 const SwiperModules = window.navigator ? require('swiper/dist/js/swiper') : {}
 
 const CSS_HANDLES = [
@@ -94,6 +99,7 @@ class Carousel extends Component {
     slides.forEach(async (slide, i) => {
       if (slide.type === 'video') {
         const thumbUrl = await getThumbUrl(slide.src, slide.thumbWidth)
+
         this.isVideo[i] = true
         this.setVideoThumb(i)(thumbUrl)
         this.thumbLoadFinish()
@@ -126,12 +132,15 @@ class Carousel extends Component {
   getThumb = thumbUrl => {
     if (!window.navigator) return // Image object doesn't exist when it's being rendered in the server side
     const image = new Image()
+
     image.onload = () => {
       this.thumbLoadFinish()
     }
+
     image.onerror = () => {
       this.thumbLoadFinish()
     }
+
     image.src = thumbUrl
   }
 
@@ -161,10 +170,12 @@ class Carousel extends Component {
         this.gallerySwiper && this.gallerySwiper.slideTo(0)
         this.thumbSwiper && this.thumbSwiper.slideTo(0)
       }
+
       return
     }
 
     const paginationElement = path(['pagination', 'el'], this.gallerySwiper)
+
     if (paginationElement) paginationElement.hidden = isVideo[activeIndex]
 
     const gallerySwiperZoom = path(['zoom'], this.gallerySwiper)
@@ -178,6 +189,7 @@ class Carousel extends Component {
 
   onSlideChange = () => {
     const activeIndex = path(['activeIndex'], this.gallerySwiper)
+
     this.setState({ activeIndex, sliderChanged: true })
   }
 
@@ -221,6 +233,7 @@ class Carousel extends Component {
             zoomMode={isZoomDisabled ? 'disabled' : zoomMode}
           />
         )
+
       case 'video':
         return (
           <Video
@@ -230,6 +243,7 @@ class Carousel extends Component {
             id={i}
           />
         )
+
       default:
         return null
     }
@@ -320,6 +334,7 @@ class Carousel extends Component {
 
     const isThumbsVertical =
       thumbnailsOrientation === THUMBS_ORIENTATION.VERTICAL
+
     const caretSize = 24
     const caretClassName = `${cssHandles.productImagesThumbCaret} absolute z-2 pointer c-action-primary flex pv2`
     const caretStyle = { transition: 'opacity 200ms' }
@@ -342,6 +357,7 @@ class Carousel extends Component {
               [`right-0 top-0 items-center h-100 pl6 ${styles.gradientBaseRight}`]: !isThumbsVertical,
             }
           )
+
           return (
             <span className={classes} style={caretStyle}>
               <IconCaret
@@ -360,6 +376,7 @@ class Carousel extends Component {
               [`items-center h-100 pr6 ${styles.gradientBaseLeft}`]: !isThumbsVertical,
             }
           )
+
           return (
             <span className={classes} style={caretStyle}>
               <IconCaret
@@ -415,6 +432,7 @@ class Carousel extends Component {
 
     const isThumbsVertical =
       thumbnailsOrientation === THUMBS_ORIENTATION.VERTICAL
+
     const hasThumbs = slides && slides.length > 1
 
     const galleryCursor = {

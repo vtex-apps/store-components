@@ -1,8 +1,7 @@
 import React, { FC, useMemo, useRef } from 'react'
 import { Modal } from 'vtex.modal-layout'
-import { useCssHandles } from 'vtex.css-handles'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 
-import { applyModifiers } from 'vtex.css-handles'
 import Zoomable, { ZoomMode } from './Zoomable'
 import { imageUrl } from '../utils/aspectRatioUtil'
 import ProductImageContext, {
@@ -43,6 +42,7 @@ const ProductImage: FC<Props> = ({
       ).join(','),
     [src, aspectRatio]
   )
+
   const handles = useCssHandles(CSS_HANDLES)
   const imageRef = useRef(null)
 

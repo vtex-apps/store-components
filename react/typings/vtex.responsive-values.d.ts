@@ -3,14 +3,14 @@ declare module 'vtex.responsive-values' {
   const useResponsiveValues: (input: any) => any
   const useResponsiveValue: <T>(input: MaybeResponsiveInput<T>) => T
 
-  enum InputDevices {
+  const enum InputDevices {
     mobile = 'mobile',
     phone = 'phone',
     tablet = 'tablet',
     desktop = 'desktop',
   }
 
-  enum OutputDevices {
+  const enum OutputDevices {
     phone = 'phone',
     tablet = 'tablet',
     desktop = 'desktop',

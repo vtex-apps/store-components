@@ -27,6 +27,7 @@ const Logo = ({
     account,
     hints: { mobile },
   } = useRuntime()
+
   const handles = useCssHandles(CSS_HANDLES)
   const logoClassNames = classNames('store-logo', handles.logoContainer, {
     [styles.sizeDesktop]: !mobile,

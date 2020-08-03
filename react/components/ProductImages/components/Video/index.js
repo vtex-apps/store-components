@@ -18,6 +18,7 @@ export function getThumbUrl(url, thumbWidth) {
   if (isVimeo(url)) {
     return Vimeo.getThumbUrl(url, thumbWidth)
   }
+
   if (isYoutube(url)) {
     return YouTube.getThumbUrl(url, thumbWidth)
   }

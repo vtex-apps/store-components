@@ -13,6 +13,7 @@ describe('<InfoCard />', () => {
       callToActionText: 'CLICK HERE',
       callToActionUrl: 'classic-shoes/p',
     }
+
     return render(<InfoCard {...defaultProps} {...props} />)
   }
 
@@ -20,15 +21,19 @@ describe('<InfoCard />', () => {
     const { asFragment, getByTestId } = renderComponent({
       isFullModeStyle: true,
     })
+
     expect(asFragment()).toBeDefined()
     const container = getByTestId('container')
+
     expect(container.style['background-image']).toBeDefined()
     expect(asFragment()).toMatchSnapshot()
   })
   it('should render with image and text side by side', () => {
     const { asFragment, getByTestId } = renderComponent()
+
     expect(asFragment()).toBeDefined()
     const halfImage = getByTestId('half-image')
+
     expect(halfImage).toBeDefined()
     expect(asFragment()).toMatchSnapshot()
   })
@@ -37,6 +42,7 @@ describe('<InfoCard />', () => {
       isFullModeStyle: true,
       callToActionMode: 'none',
     })
+
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toMatchSnapshot()
   })
@@ -46,6 +52,7 @@ describe('<InfoCard />', () => {
       callToActionMode: 'none',
       imageActionUrl: 'classic-shoes/p',
     })
+
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toMatchSnapshot()
   })
@@ -57,6 +64,7 @@ describe('<InfoCard />', () => {
       textAlignment: 'right',
       textPosition: 'center',
     })
+
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toMatchSnapshot()
   })
@@ -69,6 +77,7 @@ describe('<InfoCard />', () => {
       headline:
         'HEADLINE <span class="my-custom-class">THIS IS BOOOLD AND BLUE</span> HEADLINE STILL',
     })
+
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toMatchSnapshot()
   })
@@ -82,6 +91,7 @@ describe('<InfoCard />', () => {
         'HEADLINE <span class="my-custom-class">THIS IS BOOOLD AND BLUE</span> HEADLINE STILL',
       subhead: '',
     })
+
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toMatchSnapshot()
   })
@@ -95,6 +105,7 @@ describe('<InfoCard />', () => {
       headline: 'This is a headline, and should be inside a rich-text.',
       subhead: 'This is a subhead, and should be inside a rich-text.',
     })
+
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toMatchSnapshot()
   })

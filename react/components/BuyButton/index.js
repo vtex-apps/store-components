@@ -31,6 +31,7 @@ const isTooltipNeeded = ({ showTooltipOnSkuNotSelected, skuSelector }) => {
       labelId: CONSTANTS.SELECT_SKU_ERROR_ID,
     }
   }
+
   return {
     showTooltip: false,
   }
@@ -67,6 +68,7 @@ const useCallCartFinishIfPending = (
   addToCartAndFinish
 ) => {
   const orderFormLoading = orderFormContext && orderFormContext.loading
+
   useEffect(() => {
     if (!orderFormLoading && isAddingToCart) {
       addToCartAndFinish()
@@ -106,6 +108,7 @@ export const BuyButton = ({
       areAllVariationsSelected: true,
     },
   } = useProduct()
+
   const dispatch = useProductDispatch()
   const { settings = {}, showInstallPrompt } = usePWA() || {}
   const { rootPath = '' } = useRuntime()
@@ -151,16 +154,20 @@ export const BuyButton = ({
 
   const addToCartAndFinish = async () => {
     let showToastMessage
+
     try {
       const minicartItems = skuItems.map(skuItemToMinicartItem)
       const localStateMutationResult = !isOneClickBuy
         ? await addToCart(minicartItems)
         : null
+
       const linkStateItems =
         localStateMutationResult && localStateMutationResult.data.addToCart
+
       const callOrderFormDirectly = !linkStateItems
 
       let success = null
+
       if (callOrderFormDirectly) {
         const variables = {
           orderFormId: orderFormContext.orderForm.orderFormId,
@@ -173,6 +180,7 @@ export const BuyButton = ({
           ...(utmParams ? { utmParams } : {}),
           ...(utmiParams ? { utmiParams } : {}),
         }
+
         const mutationRes = await orderFormContext.addItem({ variables })
         const { items } = mutationRes.data.addItem
 
@@ -233,6 +241,7 @@ export const BuyButton = ({
         // eslint-disable-next-line no-restricted-globals
         location.assign(fullCheckoutUrl)
       }
+
       onAddFinish && onAddFinish()
     }, 500)
   }

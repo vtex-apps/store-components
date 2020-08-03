@@ -1,10 +1,10 @@
-export enum InitialSelectionType {
+export const enum InitialSelectionType {
   complete = 'complete',
   image = 'image',
   empty = 'empty',
 }
 
-export enum DisplayMode {
+export const enum DisplayMode {
   select = 'select',
   default = 'default',
   slider = 'slider',

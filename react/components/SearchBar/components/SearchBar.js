@@ -78,6 +78,7 @@ const SearchBar = ({
       if (element.term) {
         if (attemptPageTypeSearch) {
           window.location.href = `/${element.term}`
+
           return
         }
 
@@ -94,6 +95,7 @@ const SearchBar = ({
           params: { term: element.term },
           query: 'map=ft',
         })
+
         return
       }
 
@@ -102,6 +104,7 @@ const SearchBar = ({
         slug: element.slug,
         id: element.productId,
       }
+
       let query = ''
       const terms = element.slug.split('/')
 
@@ -214,6 +217,7 @@ const SearchBar = ({
 
                       if (errorMessage) {
                         showInputErrorMessage(errorMessage)
+
                         return
                       }
 

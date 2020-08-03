@@ -66,6 +66,7 @@ const Variation: FC<Props> = ({
 
   const [showAll, setShowAll] = useState(() => {
     const selectedOptionPosition = findSelectedOption(selectedItem)(options)
+
     return selectedOptionPosition >= visibleItemsWhenCollapsed
   })
 
@@ -84,6 +85,7 @@ const Variation: FC<Props> = ({
     0,
     shouldCollapse ? visibleItemsWhenCollapsed : options.length
   )
+
   const showAllAction = useCallback(() => setShowAll(true), [setShowAll])
   const containerClasses = classnames(
     'flex flex-column',
@@ -123,7 +125,7 @@ const Variation: FC<Props> = ({
           option.image &&
           imageUrlForSize(stripUrl(option.image.imageUrl), VARIATION_IMG_SIZE)
         }
-        imageLabel={option.image && option.image.imageLabel}
+        imageLabel={option.image?.imageLabel}
         isImpossible={option.impossible}
       />
     )

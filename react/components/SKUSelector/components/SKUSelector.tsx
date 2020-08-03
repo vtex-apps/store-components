@@ -23,7 +23,7 @@ import {
 import Variation from './Variation'
 import useEffectSkipMount from './hooks/useEffectSkipMount'
 
-export enum ShowValueForVariation {
+export const enum ShowValueForVariation {
   none = 'none',
   image = 'image',
   all = 'all',
@@ -34,6 +34,7 @@ function getShowValueForVariation(
   variationName: string
 ) {
   const isImage = isColor(variationName)
+
   return (
     showValueForVariation === ShowValueForVariation.all ||
     (showValueForVariation === ShowValueForVariation.image && isImage)
@@ -71,21 +72,29 @@ const isSkuAvailable = compose<
   pathOr(0, ['sellers', '0', 'commertialOffer', 'AvailableQuantity'])
 )
 
-const showItemAsAvailable = (
-  possibleItems: SelectorProductItem[],
-  selectedVariations: SelectedVariations,
-  variationCount: number,
+const showItemAsAvailable = ({
+  possibleItems,
+  selectedVariations,
+  variationCount,
+  isSelected,
+}: {
+  possibleItems: SelectorProductItem[]
+  selectedVariations: SelectedVariations
+  variationCount: number
   isSelected: boolean
-) => {
+}) => {
   const selectedNotNull = filter(Boolean, selectedVariations)
   const selectedCount = Object.keys(selectedNotNull).length
+
   if (selectedCount === variationCount && isSelected) {
     const item = findItemWithSelectedVariations(
       possibleItems,
       selectedVariations
     )
+
     return isSkuAvailable(item)
   }
+
   return possibleItems.some(isSkuAvailable)
 }
 
@@ -122,6 +131,7 @@ const parseOptionNameToDisplayOption = ({
   const image = imagesMap?.[variationName]?.[variationValue.name]
 
   const newSelectedVariation = clone(selectedVariations)
+
   newSelectedVariation[variationName] = isSelected ? null : variationValue.name
 
   const possibleItems = findListItemsWithSelectedVariations(
@@ -139,20 +149,22 @@ const parseOptionNameToDisplayOption = ({
       isMainAndImpossible: false,
       possibleItems,
     })
+
     return {
       label: variationValue.name,
       originalName: variationValue.originalName,
       onSelectItem: callbackFn,
       image,
-      available: showItemAsAvailable(
+      available: showItemAsAvailable({
         possibleItems,
         selectedVariations,
         variationCount,
-        isSelected
-      ),
+        isSelected,
+      }),
       impossible: false,
     }
   }
+
   if (hideImpossibleCombinations && isColor(variationName)) {
     // This is a visual (with picture) variation and should not be hidden.
     // If the hideImpossibleCombinations is true, we should display it as normal but when pressed it will reset the selected variations.
@@ -173,6 +185,7 @@ const parseOptionNameToDisplayOption = ({
       impossible: false,
     }
   }
+
   if (!hideImpossibleCombinations) {
     // This is a impossible combination and will only appear if the prop allows.
     return {
@@ -185,6 +198,7 @@ const parseOptionNameToDisplayOption = ({
       impossible: true,
     }
   }
+
   // This is a impossible combination and will be hidden.
   return null
 }
@@ -221,6 +235,7 @@ const variationNameToDisplayVariation = ({
       })
     )
     .filter(Boolean) as DisplayOption[]
+
   return { name, originalName, options }
 }
 
@@ -234,6 +249,7 @@ const getAvailableVariations = ({
   hideImpossibleCombinations,
 }: AvailableVariationParams): DisplayVariation[] => {
   const variationCount = Object.keys(variations).length
+
   return Object.keys(variations).map(
     variationNameToDisplayVariation({
       variations,
@@ -252,6 +268,7 @@ const getAvailableVariationsPromise = (
 ): Promise<DisplayVariation[]> => {
   return new Promise(resolve => {
     const result = getAvailableVariations(params)
+
     resolve(result)
   })
 }
@@ -293,6 +310,7 @@ const SKUSelector: FC<Props> = ({
       onSelectItem({ name, value, skuId, isMainAndImpossible, possibleItems }),
     [onSelectItem]
   )
+
   const availableVariationsPayload = useMemo(
     () => ({
       variations,
@@ -319,17 +337,20 @@ const SKUSelector: FC<Props> = ({
   useEffectSkipMount(() => {
     let isCurrent = true
     const promise = getAvailableVariationsPromise(availableVariationsPayload)
+
     promise.then(availableVariations => {
       if (isCurrent) {
         setDisplayVariations(availableVariations)
       }
     })
+
     return () => {
       isCurrent = false
     }
   }, [availableVariationsPayload])
 
   const variationClasses = `mb${variationsSpacing}`
+
   return (
     <div
       className={`${styles.skuSelectorContainer} ${handles.skuSelectorContainer}`}

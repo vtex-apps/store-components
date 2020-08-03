@@ -12,11 +12,13 @@ describe('<CollectionBadges /> component', () => {
 
   it('should be able to mount and not break', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot without badges', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -24,6 +26,7 @@ describe('<CollectionBadges /> component', () => {
     const { asFragment } = renderComponent({
       collectionBadgesText: ['badge1', 'badge2'],
     })
+
     expect(asFragment()).toMatchSnapshot()
   })
 })

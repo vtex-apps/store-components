@@ -27,6 +27,7 @@ const CHECKOUT_URL = {
 
 const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
   const handles = useCssHandles(MESSAGE_CSS_HANDLES)
+
   if (!showItemsPrice) {
     return (
       <FormattedMessage id="store/buy-button.add-to-cart">
@@ -40,7 +41,9 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
       item.sellingPriceWithAssemblies != null
         ? item.sellingPriceWithAssemblies
         : item.price
+
     const itemCost = itemPrice * item.quantity
+
     return acc + itemCost
   }, 0)
 
@@ -60,6 +63,7 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
     </div>
   )
 }
+
 const BuyButtonWrapper = ({
   intl,
   addToCart,
@@ -89,6 +93,7 @@ const BuyButtonWrapper = ({
   const product = valuesFromContext && valuesFromContext.product
   const selectedItem = valuesFromContext && valuesFromContext.selectedItem
   const assemblyOptions = valuesFromContext && valuesFromContext.assemblyOptions
+
   selectedSeller =
     selectedSeller || path(['selectedItem', 'sellers', 0], valuesFromContext)
   const selectedQuantity =
