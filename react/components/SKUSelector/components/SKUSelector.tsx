@@ -166,27 +166,6 @@ const parseOptionNameToDisplayOption = ({
     }
   }
 
-  if (hideImpossibleCombinations && isColor(variationName)) {
-    // This is a visual (with picture) variation and should not be hidden.
-    // If the hideImpossibleCombinations is true, we should display it as normal but when pressed it will reset the selected variations.
-    const callbackFn = onSelectItemMemo({
-      name: variationName,
-      value: variationValue.name,
-      skuId: null,
-      isMainAndImpossible: true,
-      possibleItems: skuItems,
-    })
-
-    return {
-      label: variationValue.name,
-      originalName: variationValue.originalName,
-      onSelectItem: callbackFn,
-      image,
-      available: true,
-      impossible: false,
-    }
-  }
-
   if (!hideImpossibleCombinations) {
     // This is a impossible combination and will only appear if the prop allows.
     return {

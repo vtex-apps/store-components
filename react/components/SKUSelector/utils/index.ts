@@ -93,7 +93,6 @@ export const getMainVariationName = (variations: string[]) => {
  * items: skuItems parsed with variations fields
  * Output: item or null, if not present
  */
-
 export const findItemWithSelectedVariations = (
   items: SelectorProductItem[],
   selectedVariations: SelectedVariations
@@ -120,7 +119,6 @@ export const findItemWithSelectedVariations = (
  * items: skuItems parsed with variations fields
  * Output: list of items with those variations
  */
-
 export const findListItemsWithSelectedVariations = (
   items: SelectorProductItem[],
   selectedVariations: SelectedVariations
