@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-type GenericObject = Record<string, unknown>
+type GenericObject = Record<string, any>
 
 declare global {
   interface StorefrontFC<P = GenericObject> extends FunctionComponent<P> {

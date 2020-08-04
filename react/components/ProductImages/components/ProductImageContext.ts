@@ -5,6 +5,6 @@ export interface State {
   alt: string
 }
 
-const ProductImageContext = createContext<State | Record<string, unknown>>({})
+const ProductImageContext = createContext<State | Record<string, any>>({})
 
 export default ProductImageContext
