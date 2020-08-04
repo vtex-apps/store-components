@@ -23,7 +23,8 @@ import {
 import Variation from './Variation'
 import useEffectSkipMount from './hooks/useEffectSkipMount'
 
-export const enum ShowValueForVariation {
+// eslint-disable-next-line no-restricted-syntax
+export enum ShowValueForVariation {
   none = 'none',
   image = 'image',
   all = 'all',

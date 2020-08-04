@@ -1,10 +1,12 @@
-export const enum InitialSelectionType {
+// eslint-disable-next-line no-restricted-syntax
+export enum InitialSelectionType {
   complete = 'complete',
   image = 'image',
   empty = 'empty',
 }
 
-export const enum DisplayMode {
+// eslint-disable-next-line no-restricted-syntax
+export enum DisplayMode {
   select = 'select',
   default = 'default',
   slider = 'slider',
