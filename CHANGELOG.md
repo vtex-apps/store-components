@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Update eslint and re-format project.
 
+## [3.122.1] - 2020-07-30
+### Fixed
+- SKUSelector: Use `originalName` to match with `visibleVariations` prop.
+
 ## [3.122.0] - 2020-07-29
 
 ### Added
