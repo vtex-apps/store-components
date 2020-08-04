@@ -17,6 +17,7 @@ describe('<ProductName />', () => {
       ...defaultProps,
       ...customProps,
     }
+
     return render(<ProductName {...props} />, {
       context,
       childContextTypes: {
@@ -27,11 +28,13 @@ describe('<ProductName />', () => {
 
   it('should be mounted', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toBeDefined()
   })
 
   it('should match the snapshot with only Name', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -49,6 +52,7 @@ describe('<ProductName />', () => {
       brandName: 'ProductBrandName',
       showBrandName: true,
     })
+
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -57,6 +61,7 @@ describe('<ProductName />', () => {
       productReference: 'productReferenceTest',
       showProductReference: true,
     })
+
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -69,11 +74,13 @@ describe('<ProductName />', () => {
       productReference: 'productReferenceTest',
       showProductReference: true,
     })
+
     expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match the snapshot Loader', () => {
     const { asFragment } = renderComponent({ name: undefined })
+
     expect(asFragment()).toMatchSnapshot()
   })
 })

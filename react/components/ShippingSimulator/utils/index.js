@@ -5,6 +5,7 @@ const getRandomAddressId = () =>
 
 export const getNewAddress = country => {
   const randomAddressId = getRandomAddressId()
+
   return {
     addressId: randomAddressId,
     addressType: 'residential',

@@ -6,6 +6,7 @@ test('ensure that function wont be called on first render', () => {
   const fakeFn = jest.fn()
   const deps = ['a']
   const { rerender } = renderHook(() => useEffectSkipMount(fakeFn, deps))
+
   expect(fakeFn).toBeCalledTimes(0)
   rerender()
   expect(fakeFn).toBeCalledTimes(0)
@@ -21,6 +22,7 @@ test('ensure that after prop changes, provided function is called', () => {
       },
     }
   )
+
   expect(fakeFn).toBeCalledTimes(0)
   rerender({ deps: ['b'] })
   expect(fakeFn).toBeCalledTimes(1)

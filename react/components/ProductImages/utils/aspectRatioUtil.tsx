@@ -10,12 +10,15 @@ const parseAspectRatio = (input?: AspectRatio | null) => {
   if (!input) {
     return null
   }
+
   if (typeof input === 'string') {
     if (input === 'auto') {
       return null
     }
+
     const separator = ':'
     const data = input.split(separator)
+
     if (data.length !== 2) {
       return null
     }

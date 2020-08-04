@@ -32,6 +32,7 @@ describe('<BuyButton />', () => {
 
   it('should be rendered', async () => {
     const { asFragment } = renderComponent()
+
     await wait()
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toBeTruthy()
@@ -39,18 +40,21 @@ describe('<BuyButton />', () => {
 
   it('should match snapshot normal', async () => {
     const { asFragment } = renderComponent({ available: true, skuItems: [] })
+
     await wait()
     expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot unavailable', async () => {
     const { asFragment } = renderComponent({ available: false, skuItems: [] })
+
     await wait()
     expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot loading', async () => {
     const { asFragment } = renderComponent({ available: false })
+
     await wait()
     expect(asFragment()).toMatchSnapshot()
   })
@@ -79,6 +83,7 @@ describe('<BuyButton />', () => {
       expect(onAddStart).toBeCalledTimes(1)
       expect(onAddFinish).toBeCalledTimes(1)
     }
+
     expect.assertions(assertions)
   })
 
@@ -142,6 +147,7 @@ describe('<BuyButton />', () => {
         sellingPriceWithAssemblies: 115,
       },
     ]
+
     const { getByText } = renderComponent(
       {
         available: true,
@@ -150,7 +156,9 @@ describe('<BuyButton />', () => {
       },
       null
     )
+
     const priceRegex = /230.00/
+
     await wait()
     getByText(priceRegex)
   })

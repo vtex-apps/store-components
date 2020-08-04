@@ -6,15 +6,19 @@ export const sumAssembliesPrice = (
 ) => {
   const cleanAssemblies = assemblyOptions || {}
   const assembliesGroupItems = Object.values(cleanAssemblies)
+
   return assembliesGroupItems.reduce<number>(
     (sum: number, groupItems: AssemblyOptionItem[]) => {
       const groupPrice = groupItems.reduce<number>((groupSum, item) => {
         const childrenPrice: number = item.children
           ? sumAssembliesPrice(item.children)
           : 0
+
         const itemCost = item.price * item.quantity
+
         return groupSum + itemCost + childrenPrice * item.quantity
       }, 0)
+
       return groupPrice + sum
     },
     0
@@ -113,6 +117,7 @@ export const transformAssemblyOptions = (
 
   for (const groupId of assemblyItemsKeys) {
     const items = assemblyOptionsItems[groupId]
+
     for (const item of items) {
       let childrenAddedData = null
 
@@ -126,6 +131,7 @@ export const transformAssemblyOptions = (
 
         // Get all the input values this item is handling
         const handledInputValues = Object.keys(childInputValues)
+
         // and remove the handled input values from the list
         assemblyInputValuesKeys = assemblyInputValuesKeys.filter(
           inputValueKey => {
@@ -198,6 +204,7 @@ export const transformAssemblyOptions = (
 
   for (const groupId of assemblyInputValuesKeys) {
     const inputValuesObject = inputValues[groupId] || {}
+
     if (Object.keys(inputValuesObject).length > 0) {
       options.push({
         assemblyId: groupId,

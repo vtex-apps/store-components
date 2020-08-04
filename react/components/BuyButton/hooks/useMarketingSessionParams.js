@@ -30,6 +30,7 @@ const useMarketingSessionParams = () => {
           ['response', 'namespaces', 'public'],
           data
         )
+
         if (Object.keys(publicFields).length === 0) {
           return
         }

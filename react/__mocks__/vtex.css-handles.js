@@ -2,6 +2,7 @@ import React from 'react'
 
 export const useCssHandles = cssHandles => {
   const handles = {}
+
   cssHandles.forEach(handle => {
     handles[handle] = handle
   })
@@ -14,6 +15,7 @@ const validateModifier = modifier => {
     console.error(
       `Invalid modifier type on \`cssHandles.applyModifier\`. All modifiers should be strings, found "${modifier}" `
     )
+
     return false
   }
 
@@ -27,6 +29,7 @@ const validateModifier = modifier => {
     console.error(
       `Invalid modifier on \`cssHandles.applyModifier\`. Modifiers should contain only letters, numbers or -`
     )
+
     return false
   }
 
@@ -36,10 +39,12 @@ const validateModifier = modifier => {
 export const applyModifiers = (handles, modifier) => {
   const normalizedModifiers =
     typeof modifier === 'string' ? [modifier] : modifier
+
   if (!Array.isArray(normalizedModifiers)) {
     console.error(
       'Invalid modifier type on `cssHandles.applyModifier`. Please use either a string or an array of strings'
     )
+
     return handles
   }
 
@@ -74,6 +79,7 @@ export const withCssHandles = (handles = [], options) => Component => {
   }
 
   const displayName = Component.displayName || Component.name || 'Component'
+
   EnhancedComponent.displayName = `withCssHandles(${displayName})`
 
   return EnhancedComponent

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import { renderHook, act } from '@testing-library/react-hooks'
 
 import useMarketingSessionParams from '../../components/BuyButton/hooks/useMarketingSessionParams'
@@ -49,6 +48,7 @@ test('if session has correct data, get and format input correctly', async () => 
   await act(async () => await Promise.resolve())
 
   const { utmParams, utmiParams } = result.current
+
   expect(utmParams).toMatchObject({
     source: 'utmSource',
     medium: 'utmMedium',
@@ -72,6 +72,7 @@ test('if session does not have data, leave object as undefined', async () => {
   await act(async () => await Promise.resolve())
 
   const { utmParams, utmiParams } = result.current
+
   expect(utmParams).toBeUndefined()
   expect(utmiParams).toBeUndefined()
 })
@@ -87,6 +88,7 @@ test('if session promise rejects, everything still works, response is undefined'
   await act(async () => await Promise.resolve())
 
   const { utmParams, utmiParams } = result.current
+
   expect(utmParams).toBeUndefined()
   expect(utmiParams).toBeUndefined()
 })

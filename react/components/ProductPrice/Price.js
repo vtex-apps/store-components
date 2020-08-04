@@ -5,6 +5,7 @@ import { FormattedCurrency, formatCurrency } from 'vtex.format-currency'
 
 const isValidPriceRange = priceRange => {
   const [lowPrice, highPrice] = priceRange
+
   return priceRange.length === 2 && lowPrice !== highPrice
 }
 

@@ -35,13 +35,16 @@ export const parseSku = (sku: ProductItem) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result = clone(sku) as any
   const variationValues = {} as Record<string, string>
+
   for (const variation of sku.variations) {
     variationValues[variation.name] = variation.values[0]
   }
+
   const variations = sku.variations.map(prop('name'))
 
   result.variationValues = variationValues
   result.variations = variations
+
   return result as SelectorProductItem
 }
 
@@ -99,11 +102,14 @@ export const findItemWithSelectedVariations = (
     Boolean,
     selectedVariations
   ) as SelectedVariationsNotNull
+
   const selectedCount = Object.keys(selectedNotNull).length
+
   if (selectedCount === 0) {
     // may return any item, return first element
     return items[0]
   }
+
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
   return items.find(isSkuSelected(selectedNotNull))
 }
@@ -123,11 +129,14 @@ export const findListItemsWithSelectedVariations = (
     Boolean,
     selectedVariations
   ) as SelectedVariationsNotNull
+
   const selectedCount = Object.keys(selectedNotNull).length
+
   if (selectedCount === 0) {
     // return all
     return items
   }
+
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
   return items.filter(isSkuSelected(selectedNotNull))
 }
@@ -140,6 +149,7 @@ export const uniqueOptionToSelect = (
   const possibleItems = !isMainAndImpossible
     ? items
     : findListItemsWithSelectedVariations(items, selectedVariations)
+
   const unselected = reject(Boolean, selectedVariations)
   const unselectedNames = Object.keys(unselected)
   // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -147,6 +157,7 @@ export const uniqueOptionToSelect = (
     possibleItems,
     unselectedNames
   )
+
   const variationsWithOne = filter(
     setValues => setValues.size === 1,
     availableOptions
@@ -154,11 +165,14 @@ export const uniqueOptionToSelect = (
 
   const variationsNames = Object.keys(variationsWithOne)
   const finalUniqueVariations = {} as Record<string, string>
+
   // Transform set to plain value
   for (const variationName of variationsNames) {
     const { value } = variationsWithOne[variationName].values().next()
+
     finalUniqueVariations[variationName] = value
   }
+
   return finalUniqueVariations
 }
 
@@ -166,8 +180,10 @@ export function slug(str: string) {
   // eslint-disable-next-line no-useless-escape
   const replaced = str?.replace(/[*+~.()'"!:@&\[\]]/g, '') || ''
   const slugified = slugify(replaced, { lower: true }) || ''
+
   return slugified
 }
+
 type SelectedVariationsNotNull = Record<string, string>
 
 /** Private functions */
@@ -176,8 +192,10 @@ const isSkuSelected = (selectedNotNull: SelectedVariationsNotNull) => (
 ) => {
   const hasAll = Object.keys(selectedNotNull).every(variationName => {
     const selectedValue = selectedNotNull[variationName]
+
     return sku.variationValues[variationName] === selectedValue
   })
+
   return hasAll
 }
 
@@ -186,18 +204,22 @@ const buildAvailableVariations = (
   variationNames: string[]
 ) => {
   const result = {} as Record<string, Set<string>>
+
   for (const variationName of variationNames) {
     result[variationName] = new Set()
   }
+
   for (const item of items) {
     for (const variationName of variationNames) {
       const variationValue = item.variationValues[variationName]
       const currentSet = result[variationName]
+
       if (variationValue) {
         currentSet.add(variationValue)
       }
     }
   }
+
   return result
 }
 
@@ -223,6 +245,7 @@ const baseUrlRegex = new RegExp(/.+ids\/(\d+)/)
 
 export function cleanImageUrl(imageUrl: string) {
   const result = baseUrlRegex.exec(imageUrl) ?? []
+
   return result.length > 0 ? result[0] : null
 }
 
@@ -233,7 +256,9 @@ function replaceLegacyFileManagerUrl(
 ) {
   const legacyUrlPattern = '/arquivos/ids/'
   const isLegacyUrl = imageUrl.includes(legacyUrlPattern)
+
   if (!isLegacyUrl) return imageUrl
+
   return `${cleanImageUrl(imageUrl)}-${width}-${height}`
 }
 
@@ -251,6 +276,7 @@ export function changeImageUrlSize(
     width,
     height
   )
+
   const queryStringSeparator = normalizedImageUrl.includes('?') ? '&' : '?'
 
   return `${normalizedImageUrl}${queryStringSeparator}width=${width}&height=${height}&aspect=true`

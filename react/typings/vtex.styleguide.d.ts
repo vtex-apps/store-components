@@ -7,7 +7,7 @@ declare module 'vtex.styleguide' {
   export const Modal: any
   export const withToast: any
   export const Tooltip: any
-  // eslint-disable-next-line @typescript-eslint/camelcase
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   export const EXPERIMENTAL_Select: any
   export const Dropdown: any
 }

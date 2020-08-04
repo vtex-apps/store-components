@@ -6,6 +6,7 @@ import productPrice from './styles.css'
 
 const ProductPriceLoader = (loaderProps = {}) => {
   const { loaderClass, ...props } = loaderProps
+
   return (
     <div
       className={classNames(

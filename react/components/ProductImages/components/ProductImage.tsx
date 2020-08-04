@@ -42,6 +42,7 @@ const ProductImage: FC<Props> = ({
       ).join(','),
     [src, aspectRatio]
   )
+
   const handles = useCssHandles(CSS_HANDLES)
   const imageRef = useRef(null)
 

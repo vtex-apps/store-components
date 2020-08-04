@@ -26,15 +26,18 @@ const shouldExcludeBrand = (brandName, brandId, excludeList) => {
   if (Array.isArray(excludeList)) {
     return excludeList.includes(brandName) || excludeList.includes(brandId)
   }
+
   return false
 }
 
 const useBrandInfoProps = (brandName, brandId) => {
   const productContext = useContext(ProductContext)
   const product = productContext && productContext.product
+
   if ((brandName && brandId) || !product) {
     return { brandName, brandId }
   }
+
   return { brandName: product.brand, brandId: product.brandId }
 }
 
@@ -86,8 +89,10 @@ const ProductBrand = ({
     <Query query={brandLogoQuery} ssr={false} variables={{ id: brandId }}>
       {query => {
         const { data } = query
+
         if (data && data.brand) {
           const { imageUrl, slug } = data.brand
+
           if (imageUrl) {
             const dpi = (window && window.devicePixelRatio) || 1
             const logoLink = `/${slug}/b`
@@ -158,6 +163,7 @@ const ProductBrand = ({
             </BrandContainer>
           )
         }
+
         if (loadingPlaceholder === DISPLAY_MODE.TEXT && fallbackToText) {
           return (
             <BrandContainer>

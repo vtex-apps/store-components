@@ -44,11 +44,13 @@ export default class Animation extends Component {
   get animation() {
     const { isActive, type, duration, transfer, transferEnter } = this.props
     let animation = ANIMATIONS[type]
+
     if (isActive) {
       animation = animation.from(duration, transferEnter)
     } else {
       animation = animation.leave(duration, transfer)
     }
+
     return animation
   }
 
