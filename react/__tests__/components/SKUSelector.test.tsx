@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, wait } from '@vtex/test-tools/react'
+import { render, fireEvent, waitFor } from '@vtex/test-tools/react'
 import useProduct, { ProductContext } from 'vtex.product-context/useProduct'
 import { getSKU } from 'sku-helper'
 
@@ -22,10 +22,10 @@ describe('<SKUSelector />', () => {
     const onSKUSelected = jest.fn()
     const { container } = renderComponent({ onSKUSelected })
 
-    await wait()
+    await waitFor(() => {})
     const selector = container.querySelector('.skuSelectorItem')
 
-    await wait(() => {
+    await waitFor(() => {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       fireEvent.click(selector!)
     })
@@ -92,15 +92,15 @@ describe('<SKUSelector />', () => {
       />
     )
 
-    await wait()
+    await waitFor(() => {})
 
-    await wait(() => {
+    await waitFor(() => {
       getByText('Gray').click()
     })
 
     expect(getByText('42')).toBeDefined()
 
-    await wait(() => {
+    await waitFor(() => {
       getByText('42').click()
     })
 
@@ -162,7 +162,7 @@ describe('<SKUSelector />', () => {
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
 
-    await wait()
+    await waitFor(() => {})
 
     expect(getAllByText(/gray/i)).toHaveLength(1)
     expect(getAllByText(/blue/i)).toHaveLength(1)
@@ -395,7 +395,7 @@ describe('<SKUSelector />', () => {
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
 
-    await wait()
+    await waitFor(() => {})
     // await Promise.resolve()
     expect(getByText('seeMoreLabel')).toBeDefined()
     expect(getByText('38')).toBeDefined()
@@ -628,7 +628,7 @@ describe('<SKUSelector />', () => {
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />
     )
 
-    await wait()
+    await waitFor(() => {})
 
     // eslint-disable-next-line jest/valid-expect
     expect(getByText('seeMoreLabel'))
@@ -807,7 +807,7 @@ describe('<SKUSelector />', () => {
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
 
-    await wait()
+    await waitFor(() => {})
     expect(queryByText('seeMoreLabel')).toBeNull()
     expect(getByText('10')).toBeDefined()
   })
@@ -1038,7 +1038,7 @@ describe('<SKUSelector />', () => {
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />
     )
 
-    await wait()
+    await waitFor(() => {})
 
     expect(getByText('4')).toBeDefined()
     expect(getByText('12')).toBeDefined()
@@ -1096,7 +1096,7 @@ describe('<SKUSelector />', () => {
       <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
     )
 
-    await wait()
+    await waitFor(() => {})
     expect(queryByText('skuSelectorItem--feijao')).toBeDefined()
     expect(queryByText('skuSelectorItem--square-brackets')).toBeDefined()
     expect(queryByText('skuSelectorItem--johns')).toBeDefined()
@@ -1141,7 +1141,7 @@ describe('<SKUSelector />', () => {
       />
     )
 
-    await wait()
+    await waitFor(() => {})
 
     const separator = container.querySelector('.skuSelectorNameSeparator')
     const variationValue = container.querySelector(

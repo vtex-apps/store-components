@@ -164,8 +164,7 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
     pick(['imageHeight', 'imageWidth'], props)
   )
 
-  const shouldSelectInitialSKU =
-    props.initialSelection !== InitialSelectionType.empty
+  const shouldSelectInitialSKU = props.initialSelection !== 'empty'
 
   const skuItems =
     props.skuItems != null
