@@ -42,6 +42,10 @@ Through the Storefront, you can change the `Newsletter`'s behavior and interface
 | `placeholder` | `String` | Placeholder of the email input | `Enter your email address` (translated text) |
 | `submit` | `String` | Label of the submit button | `Sign up` (translated text) |
 | `hideLabel` | `Boolean` | Hide label | `false` |
+| `showName` | `Boolean` | Show name input | `false` |
+| `placeholderName` | `String` | Placeholder of the name input | `""` |
+| `showTerms` | `Boolean` | Show checkbox for terms | `false` |
+| `checkboxText` | `String` | Placeholder of the terms checkbox | `""` |
 
 ### Styles API
 You should follow the Styles API instruction in the main [README](/README.md#styles-api).
