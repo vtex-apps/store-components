@@ -11,7 +11,7 @@ type SanitizedHTMLProps = SanitizeOpts & {
   content: string
 }
 
-const DEFAULTS = {
+export const DEFAULTS = {
   allowedAttributes: {
     '*': ['id', 'title', 'accesskey', 'class', 'style', 'aria-label'],
     a: ['href', 'name', 'target'],
@@ -33,6 +33,7 @@ const DEFAULTS = {
     'details',
     'div',
     'em',
+    'figure',
     'h1',
     'h2',
     'h3',
