@@ -1,9 +1,11 @@
+// eslint-disable-next-line no-restricted-syntax
 export enum InitialSelectionType {
   complete = 'complete',
   image = 'image',
   empty = 'empty',
 }
 
+// eslint-disable-next-line no-restricted-syntax
 export enum DisplayMode {
   select = 'select',
   default = 'default',

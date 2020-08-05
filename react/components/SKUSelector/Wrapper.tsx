@@ -22,21 +22,26 @@ const getVariationsFromItems = (
   for (const skuItem of skuItems) {
     for (const currentVariation of skuItem.variations) {
       const { name, values } = currentVariation
+
       if (
         !visibleVariations ||
         visibleVariations.includes(name.toLowerCase().trim())
       ) {
-        const value = values[0]
+        const [value] = values
         const currentSet = variationsSet[name] || new Set()
+
         currentSet.add(value)
         variationsSet[name] = currentSet
       }
     }
   }
+
   const variationsNames = Object.keys(variationsSet)
+
   // Transform set back to array
   for (const variationName of variationsNames) {
     const set = variationsSet[variationName]
+
     variations[variationName] = {
       originalName: variationName,
       values: Array.from(set).map(value => ({
@@ -45,6 +50,7 @@ const getVariationsFromItems = (
       })),
     }
   }
+
   return variations
 }
 
@@ -53,10 +59,13 @@ const getVariationsFromSpecifications = (
   visibleVariations?: string[]
 ) => {
   const variations: Variations = {}
+
   for (const specification of skuSpecifications) {
     if (
       !visibleVariations ||
-      visibleVariations.includes(specification.field.name.toLowerCase().trim())
+      visibleVariations.includes(
+        specification.field.originalName.toLowerCase().trim()
+      )
     ) {
       variations[specification.field.name] = {
         originalName: specification.field.originalName,
@@ -67,15 +76,21 @@ const getVariationsFromSpecifications = (
       }
     }
   }
+
   return variations
 }
 
-const useVariations = (
-  skuItems: ProductItem[],
-  skuSpecifications: SkuSpecification[],
-  shouldNotShow: boolean,
+const useVariations = ({
+  skuItems,
+  skuSpecifications,
+  shouldNotShow,
+  visibleVariations,
+}: {
+  skuItems: ProductItem[]
+  skuSpecifications: SkuSpecification[]
+  shouldNotShow: boolean
   visibleVariations?: string[]
-) => {
+}) => {
   const isSkuSpecificationsEmpty = skuSpecifications.length === 0
   /* if the skuSpecifications array has values, then it should be used to find
    * the variations, which will come ordered the same way they are in the catalog */
@@ -90,7 +105,9 @@ const useVariations = (
     ) {
       return {}
     }
+
     let formattedVisibleVariations = visibleVariations
+
     if (visibleVariations) {
       formattedVisibleVariations = visibleVariations.map(variation =>
         variation.toLowerCase().trim()
@@ -156,6 +173,7 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
       : valuesFromContext?.product?.items ?? []
 
   let skuSelected = props.skuSelected ?? null
+
   if (shouldSelectInitialSKU && skuSelected == null) {
     skuSelected = valuesFromContext.selectedItem
   }
@@ -169,12 +187,12 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
     (visibility === 'more-than-one' && skuItems.length === 1)
 
   const skuSpecifications = valuesFromContext?.product?.skuSpecifications ?? []
-  const variations = useVariations(
+  const variations = useVariations({
     skuItems,
     skuSpecifications,
     shouldNotShow,
-    props.visibleVariations
-  )
+    visibleVariations: props.visibleVariations,
+  })
 
   useEffect(() => {
     if (dispatch) {
@@ -190,6 +208,7 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
   }
 
   let showValueForVariation = ShowValueForVariation.none
+
   if (props.showValueForVariation) {
     showValueForVariation = props.showValueForVariation
   } else if (props.showValueNameForImageVariation) {

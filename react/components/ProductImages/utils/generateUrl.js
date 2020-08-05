@@ -20,13 +20,16 @@ const baseUrlRegex = new RegExp(/.+ids\/(\d+)/)
 
 export function cleanImageUrl(imageUrl) {
   const result = baseUrlRegex.exec(imageUrl)
+
   if (result.length > 0) return result[0]
 }
 
 function replaceLegacyFileManagerUrl(imageUrl, width, height) {
   const legacyUrlPattern = '/arquivos/ids/'
   const isLegacyUrl = imageUrl.includes(legacyUrlPattern)
+
   if (!isLegacyUrl) return imageUrl
+
   return `${cleanImageUrl(imageUrl)}-${width}-${height}`
 }
 
@@ -44,6 +47,7 @@ export function changeImageUrlSize(
     width,
     height
   )
+
   const queryStringSeparator = normalizedImageUrl.includes('?') ? '&' : '?'
 
   return `${normalizedImageUrl}${queryStringSeparator}width=${width}&height=${height}&aspect=true`

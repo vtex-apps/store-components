@@ -73,7 +73,7 @@ function sanitizeHTML(
   html: string,
   { allowedAttributes, allowedClasses, allowedTags }: SanitizeOpts = {}
 ) {
-  const opts: Record<string, unknown> = { ...DEFAULTS }
+  const opts: Record<string, any> = { ...DEFAULTS }
 
   if (allowedTags) opts.allowedTags = allowedTags
   if (allowedClasses) opts.allowedClasses = allowedClasses

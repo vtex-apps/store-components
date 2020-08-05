@@ -44,12 +44,14 @@ const Zoomable: FC<Props> = ({
           {children}
         </ZoomInPlace>
       )
+
     case 'in-place-click':
       return (
         <ZoomInPlace type="click" factor={factor} zoomContent={zoomContent}>
           {children}
         </ZoomInPlace>
       )
+
     case 'open-modal': {
       if (ModalZoomElement) {
         return (
@@ -57,8 +59,11 @@ const Zoomable: FC<Props> = ({
         )
       }
     }
-    // eslint-disable-next-line no-fallthrough
+    // falls through
+
     case 'disabled':
+    // falls through
+
     default:
       return <>{children}</>
   }

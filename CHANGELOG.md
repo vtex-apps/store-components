@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.122.3] - 2020-08-04
+### Fixed
+- SKUSelector `hideImpossibleCombinations` rendering a variation with no items attached.
+
+## [3.122.2] - 2020-08-04
+### Changed
+- Update eslint and re-format project.
+
+## [3.122.1] - 2020-07-30
+### Fixed
+- SKUSelector: Use `originalName` to match with `visibleVariations` prop.
+
+## [3.122.0] - 2020-07-29
+
+### Added
+- Add new `productImageTag--zoom` and `productImageTag--main` CSS Handles to Product Images component.
+
 ## [3.121.0] - 2020-07-27
 ### Added
 - Expose `SanitizedHTML` component.

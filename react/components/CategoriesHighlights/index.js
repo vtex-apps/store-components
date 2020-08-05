@@ -126,6 +126,7 @@ class CategoriesHighlights extends Component {
     if (!showCategoriesHighlighted) return null
 
     const categories = values(categoriesHighlighted).map(category => category)
+
     range(categories.length, quantityOfItems).forEach(() => {
       categories.push({
         name: '',

@@ -33,19 +33,23 @@ describe('<Greeting /> component', () => {
   }
 
   it('should render name in orderForm', async () => {
-    const { getByText } = renderComponent()
+    const { queryByText } = renderComponent()
+
     await wait(() => {
       jest.runAllTimers()
     })
-    getByText('Adam')
+
+    expect(queryByText('Adam')).not.toBeFalsy()
   })
 
   // eslint-disable-next-line jest/no-identical-title
   it('should render name in orderForm', async () => {
-    const { getByTestId } = renderComponent({ loading: true })
+    const { queryByTestId } = renderComponent({ loading: true })
+
     await wait(() => {
       jest.runAllTimers()
     })
-    getByTestId('greeting-loader')
+
+    expect(queryByTestId('greeting-loader')).not.toBeFalsy()
   })
 })

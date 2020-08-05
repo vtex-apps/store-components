@@ -27,6 +27,7 @@ const ProductNameWrapper = props => {
     }
 
     const { product, selectedItem } = valuesFromContext
+
     return {
       ...props,
       tag: props.tag || 'h1',

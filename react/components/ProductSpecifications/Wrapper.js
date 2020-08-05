@@ -8,12 +8,15 @@ const getSpecifications = productContext => {
   if (!productContext || isEmpty(productContext)) {
     return []
   }
+
   const { product } = productContext
   const specificationGroups = propOr([], 'specificationGroups', product)
   const groupWithAll = specificationGroups.find(
     propEq('name', 'allSpecifications')
   )
+
   const allSpecifications = groupWithAll ? groupWithAll.specifications : []
+
   return allSpecifications
 }
 

@@ -24,11 +24,13 @@ const ProductHighlightsWrapper = props => {
         const [highlightSpecificationGroup] = specificationGroups.filter(
           x => x.name.toLowerCase() === item.trim().toLowerCase()
         )
+
         const highlight = propOr(
           [],
           'specifications',
           highlightSpecificationGroup
         )
+
         return acc.concat(highlight)
       }, [])
     }
@@ -45,6 +47,7 @@ const ProductHighlightsWrapper = props => {
         const highlight = allSpecifications.filter(
           x => x.name.toLowerCase() === item.trim().toLowerCase()
         )
+
         return acc.concat(highlight)
       }, [])
     }

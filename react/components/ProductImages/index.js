@@ -38,6 +38,7 @@ const ProductImages = ({
 
   const excludeImageRegexes =
     hiddenImages && hiddenImages.map(text => new RegExp(text, 'i'))
+
   const handles = useCssHandles(CSS_HANDLES)
 
   const shouldIncludeImages = contentType !== 'videos'

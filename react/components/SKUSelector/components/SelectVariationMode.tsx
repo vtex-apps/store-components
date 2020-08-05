@@ -30,10 +30,12 @@ function SelectVariationMode(props: VariationSelectModeProps) {
     const reducedOptions = displayOptions.reduce<Record<string, DisplayOption>>(
       (acc, cur) => {
         acc[cur.label] = cur
+
         return acc
       },
       {}
     )
+
     if (reducedOptions?.[value]?.onSelectItem) {
       reducedOptions[value].onSelectItem()
     }

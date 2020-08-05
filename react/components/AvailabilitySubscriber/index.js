@@ -101,6 +101,7 @@ class AvailabilitySubscriber extends Component {
         ],
       },
     }
+
     this.setState({
       isLoading: true,
     })
@@ -127,6 +128,7 @@ class AvailabilitySubscriber extends Component {
         }
       )
     const event = new Event('message:success')
+
     event.details = {
       success: true,
       message: this.translate('store/availability-subscriber.added-message'),

@@ -55,9 +55,11 @@ function SearchBarContainer(props) {
 
   const handleGoToSearchPage = useCallback(() => {
     const search = inputValue
+
     if (attemptPageTypeSearch) {
       window.location.href = `/${search}`
       closeModal()
+
       return
     }
 
@@ -66,6 +68,7 @@ function SearchBarContainer(props) {
         to: customSearchPageUrl.replace(/\$\{term\}/g, search),
       })
       closeModal()
+
       return
     }
 

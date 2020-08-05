@@ -19,13 +19,16 @@ class Youtube extends Component {
 
   static getThumbUrl = url => {
     const videoId = Youtube.extractVideoID(url)
+
     return Promise.resolve(`https://img.youtube.com/vi/${videoId}/default.jpg`)
   }
 
   static extractVideoID = url => {
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/
     const match = url.match(regExp)
+
     if (match && match[7].length === 11) return match[7]
+
     return null
   }
 
@@ -33,6 +36,7 @@ class Youtube extends Component {
     if (!this.frameReady) return
 
     const youtubeCommand = JSON.stringify({ event: 'command', func: command })
+
     this.iframeRef.contentWindow.postMessage(
       youtubeCommand,
       'https://www.youtube.com'

@@ -33,6 +33,7 @@ describe('<ProductBrand /> component', () => {
       excludeBrands: [],
       logoWithLink: logoRedirect,
     }
+
     const comp = <ProductBrand {...props} />
 
     return render(comp, { graphql: { mocks } })
@@ -44,6 +45,7 @@ describe('<ProductBrand /> component', () => {
 
   it('brand image should not have a link', async () => {
     const { queryByTestId } = renderComponent(false)
+
     await wait(() => {
       jest.runAllTimers()
     })
@@ -52,6 +54,7 @@ describe('<ProductBrand /> component', () => {
 
   it('brand image should have a link', async () => {
     const { getByTestId } = renderComponent(true)
+
     await wait(() => {
       jest.runAllTimers()
     })

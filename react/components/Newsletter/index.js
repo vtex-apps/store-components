@@ -95,6 +95,7 @@ class Newsletter extends Component {
       if (this.inputRef && this.inputRef.current) {
         this.inputRef.current.focus()
       }
+
       return
     }
 
@@ -130,6 +131,7 @@ class Newsletter extends Component {
       showName,
       showTerms
     } = this.props
+
     const submitText = formatIOMessage({ id: submit, intl })
     const labelText = formatIOMessage({ id: label, intl })
     const placeholderText = formatIOMessage({ id: placeholder, intl })
@@ -138,18 +140,22 @@ class Newsletter extends Component {
       id: 'store/newsletter.confirmationTitle',
       intl,
     })
+
     const confirmationText = formatIOMessage({
       id: 'store/newsletter.confirmationText',
       intl,
     })
+
     const invalidEmailText = formatIOMessage({
       id: 'store/newsletter.invalidEmail',
       intl,
     })
+
     const invalidNameText = formatIOMessage({
       id: 'store/newsletter.invalidName',
       intl,
     })
+
     const errorMsg = formatIOMessage({
       id: 'store/newsletter.error',
       intl,
