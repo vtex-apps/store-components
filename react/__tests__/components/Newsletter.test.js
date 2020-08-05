@@ -39,6 +39,7 @@ test('should add error message when user types wrong email', () => {
   const submit = getByText(submitTextId)
 
   const wrongEmail = 'foobar'
+
   fireEvent.change(mockedInput, { target: { value: wrongEmail } })
   fireEvent.click(submit)
 

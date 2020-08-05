@@ -15,11 +15,13 @@ describe('<ShippingSimulator /> component', () => {
 
   it('should be able to mount and not break', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot without skuId and seller', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -28,7 +30,9 @@ describe('<ShippingSimulator /> component', () => {
       skuId: 'skuId',
       seller: '1',
     }
+
     const { asFragment } = renderComponent(props)
+
     expect(asFragment()).toMatchSnapshot()
   })
 })

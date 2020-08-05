@@ -37,6 +37,7 @@ const BackToTopButton: StorefrontFC<Props> = ({
 
   useEffect(() => {
     window.addEventListener('scroll', scrollValue)
+
     return () => {
       window.removeEventListener('scroll', scrollValue)
     }

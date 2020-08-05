@@ -24,9 +24,11 @@ interface Props {
 
 const getDiscount = (maxPrice?: number | null, price?: number | null) => {
   let discount = 0
+
   if (maxPrice && price) {
     discount = 1 - price / maxPrice
   }
+
   return discount
 }
 
@@ -93,6 +95,7 @@ const SelectorItem: FC<Props> = ({
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   const passedAnyDimension = Boolean(imageHeight || imageWidth)
   let containerStyles = {}
+
   if (isImage && passedAnyDimension && imageUrl) {
     containerStyles = {
       // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing

@@ -41,15 +41,18 @@ const areAllVariationsSelected = (
   numberOfVariations: number
 ) => {
   const selectedCount = keyCount(filterSelected(selected))
+
   return selectedCount === numberOfVariations
 }
 
 const buildEmptySelectedVariation = (variations: Variations) => {
   const variationNames = Object.keys(variations)
   const result = {} as Record<string, null>
+
   for (const variationName of variationNames) {
     result[variationName] = null
   }
+
   return result
 }
 
@@ -60,9 +63,11 @@ const selectedVariationFromItem = (
 ) => {
   const variationNames = Object.keys(variations)
   const result = {} as Record<string, string>
+
   for (const variationName of variationNames) {
     result[variationName] = item.variationValues[variationName]
   }
+
   return result
 }
 
@@ -89,6 +94,7 @@ function filterColorImages(
             if (!image.imageLabel) {
               return false
             }
+
             return imageRegex.test(image.imageLabel)
           })
         : item.images,
@@ -103,27 +109,34 @@ const useImagesMap = (
 ) => {
   return useMemo(() => {
     let filteredItems = items
+
     if (thumbnailImage) {
       filteredItems = filterColorImages(items, thumbnailImage)
     }
 
     const variationNames = Object.keys(variations)
     const result: ImageMap = {}
+
     for (const variationName of variationNames) {
       // Today, only "Color" variation should show image, need to find a more resilient way to tell this, waiting for backend
       if (!isColor(variationName)) {
         continue
       }
+
       const imageMap = {} as Record<string, Image | undefined>
       const variationValues = variations[variationName].values
+
       for (const variationValue of variationValues) {
         const item = filteredItems.find(
           sku => sku.variationValues[variationName] === variationValue.name
         )
+
         imageMap[variationValue.name] = item && head(item.images)
       }
+
       result[variationName] = imageMap
     }
+
     return result
   }, [items, variations, thumbnailImage])
 }
@@ -133,6 +146,7 @@ const useAllSelectedEvent = (
   variationsCount: number
 ) => {
   const dispatch = useProductDispatch()
+
   useEffect(() => {
     if (dispatch && selectedVariations) {
       dispatch({
@@ -178,6 +192,7 @@ const getNewSelectedVariations = (
   // eslint-disable-next-line max-params
 ) => {
   const emptyVariations = buildEmptySelectedVariation(variations)
+
   if (skuSelected == null) {
     return emptyVariations
   }
@@ -191,6 +206,7 @@ const getNewSelectedVariations = (
 
   if (initialSelection === InitialSelectionType.image) {
     const colorVariationName = parsedSku.variations.find(isColor)
+
     return {
       ...emptyVariations,
       ...(colorVariationName
@@ -247,6 +263,7 @@ const SKUSelectorContainer: FC<Props> = ({
   >(() =>
     getNewSelectedVariations(query, skuSelected, variations, initialSelection)
   )
+
   useAllSelectedEvent(selectedVariations, variationsCount)
 
   useEffectSkipMount(() => {
@@ -287,6 +304,7 @@ const SKUSelectorContainer: FC<Props> = ({
             ...buildEmptySelectedVariation(variations),
             [variationName]: variationValue,
           }
+
       // Set here for a better response to user
       setSelectedVariations(newSelectedVariation)
       const uniqueOptions = isRemoving
@@ -296,10 +314,12 @@ const SKUSelectorContainer: FC<Props> = ({
             newSelectedVariation,
             isMainAndImpossible
           )
+
       const finalSelected = {
         ...newSelectedVariation,
         ...uniqueOptions,
       }
+
       if (!isEmpty(uniqueOptions)) {
         setSelectedVariations(finalSelected)
       }
@@ -310,11 +330,13 @@ const SKUSelectorContainer: FC<Props> = ({
       )
 
       let skuIdToRedirect = skuId
+
       if (!skuIdToRedirect || !isEmpty(uniqueOptions)) {
         const newItem = findItemWithSelectedVariations(
           possibleItems,
           finalSelected
         )
+
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         skuIdToRedirect = newItem!.itemId
       }
@@ -323,6 +345,7 @@ const SKUSelectorContainer: FC<Props> = ({
       // so we can show/hide the mainImageLabel if defined
       if (isColor(variationName)) {
         const variationSKU = isRemoving ? null : skuIdToRedirect
+
         dispatch({
           type: 'SELECT_IMAGE_VARIATION',
           args: {
@@ -338,6 +361,7 @@ const SKUSelectorContainer: FC<Props> = ({
 
       if (onSKUSelected) {
         onSKUSelected(skuIdToRedirect)
+
         return
       }
 

@@ -23,6 +23,7 @@ const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
   const [address, setAddress] = useState(() =>
     addValidation(getNewAddress(country))
   )
+
   const [shipping, setShipping] = useState(null)
   const [loading, setLoading] = useState(false)
   const [isValid, setIsValid] = useState(false)
@@ -32,6 +33,7 @@ const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
       ...address,
       ...newAddress,
     }
+
     setAddress(updatedAddress)
     setIsValid(updatedAddress.postalCode.valid)
   }
@@ -40,6 +42,7 @@ const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
     e.preventDefault()
     setLoading(true)
     const { postalCode } = removeValidation(address)
+
     client
       .query({
         query: getShippingEstimates,

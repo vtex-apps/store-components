@@ -12,11 +12,13 @@ describe('<Container /> component', () => {
 
   it('should be rendered', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toMatchSnapshot()
   })
 })

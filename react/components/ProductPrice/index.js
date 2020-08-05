@@ -34,11 +34,13 @@ const CSS_HANDLES = [
 
 const isValidPriceRange = priceRange => {
   const [lowPrice, highPrice] = priceRange
+
   return priceRange.length === 2 && lowPrice !== highPrice
 }
 
 const getPriceRange = prices => {
   const sortedPrices = sort((a, b) => a - b, prices)
+
   return [head(sortedPrices), last(sortedPrices)]
 }
 
@@ -59,16 +61,19 @@ const canShowListPrice = props => {
 
   const sellingPriceRange =
     (sellingPriceList && getPriceRange(sellingPriceList)) || []
+
   const listPriceRange = (listPriceList && getPriceRange(listPriceList)) || []
 
   const showingSellingPriceRange =
     showSellingPriceRange && isValidPriceRange(sellingPriceRange)
+
   const showingListPriceRange =
     showListPriceRange && isValidPriceRange(listPriceRange)
 
   const sellingPriceToShow = showingSellingPriceRange
     ? sellingPriceRange
     : sellingPrice
+
   const listPriceToShow = showingListPriceRange ? listPriceRange : listPrice
 
   return !equals(listPriceToShow, sellingPriceToShow)

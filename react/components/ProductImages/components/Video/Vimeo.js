@@ -19,6 +19,7 @@ class Vimeo extends Component {
         const { height: heightDiv, width: widthDiv, html, title } = response
 
         const thumbUrl = Vimeo.thumbUrlFromResp(response, props.thumbWidth)
+
         props.setThumb && props.setThumb(thumbUrl, title)
 
         const [, src] = html.match(/src= *" *([^"]*) *"/) // Get url from response
@@ -34,6 +35,7 @@ class Vimeo extends Component {
 
   static getThumbUrl = url => {
     const getUrl = `https://vimeo.com/api/oembed.json?url=${url}`
+
     return fetch(getUrl)
       .then(response => response.json())
       .then(response => response.thumbnail_url)
@@ -56,6 +58,7 @@ class Vimeo extends Component {
     if (!this.frameReady) return
 
     const vimeoCommand = JSON.stringify({ method: command })
+
     this.iframeRef.contentWindow.postMessage(
       vimeoCommand,
       'https://player.vimeo.com'
