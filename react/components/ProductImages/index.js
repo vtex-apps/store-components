@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { useCssHandles } from 'vtex.css-handles'
 
-import Carousel from './components/Carousel'
+import Carousel from './components/Carousel/index.bkp'
 import {
   THUMBS_ORIENTATION,
   THUMBS_POSITION_HORIZONTAL,
