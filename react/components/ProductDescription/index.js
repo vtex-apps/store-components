@@ -13,7 +13,15 @@ const CSS_HANDLES = [
   'productDescriptionText',
 ]
 
-const allowedTags = [...DEFAULTS.allowedTags, 'link', 'body', 'html', 'style']
+const allowedTags = [
+  ...DEFAULTS.allowedTags,
+  'link',
+  'body',
+  'html',
+  'style',
+  'link',
+  'script',
+]
 
 /**
  * Product Description Component.
