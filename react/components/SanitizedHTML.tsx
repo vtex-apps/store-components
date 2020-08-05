@@ -17,6 +17,7 @@ export const DEFAULTS = {
     a: ['href', 'name', 'target'],
     iframe: ['frameborder', 'src', 'allowfullscreen', 'allow'],
     img: ['src', 'alt'],
+    link: ['rel', 'type', 'href'],
   },
   allowedClasses: {},
   allowedSchemes: ['http', 'https', 'mailto'],
