@@ -250,7 +250,6 @@ class Newsletter extends Component {
                     onChange={this.handleToggleCheckbox}
                     checked={this.state.checkbox} 
                     label={checkboxText}
-                    color="#fafafa"
                     isRequired
                   />
                 </div>
