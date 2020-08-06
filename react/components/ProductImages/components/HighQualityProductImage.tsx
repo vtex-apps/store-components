@@ -7,11 +7,6 @@ import { imageUrl } from '../utils/aspectRatioUtil'
 import ProductImageContext from './ProductImageContext'
 import Zoomable, { ZoomMode as ZoomModeComplete } from './Zoomable'
 
-// Same logic of the fixed values of ProductImages, but bigger values
-const IMAGE_SIZES = [800, 1200, 1400]
-const DEFAULT_SIZE = 1200
-const MAX_SIZE = 4096
-
 type AspectRatio = string | number
 type ZoomMode = Exclude<ZoomModeComplete, 'open-modal'>
 
@@ -19,6 +14,9 @@ interface Props {
   zoomMode?: ZoomMode
   zoomFactor?: number
   aspectRatio?: AspectRatio
+  imageSizes?: number[]
+  defaultSize?: number
+  maxSize?: number
 }
 
 function validateZoomMode(zoomMode: ZoomModeComplete): ZoomMode {
@@ -44,7 +42,14 @@ const CSS_HANDLES = [
 ] as const
 
 function HighQualityProductImage(props: Props) {
-  const { zoomFactor = 2, aspectRatio = 'auto', zoomMode = 'disabled' } = props
+  const {
+    imageSizes,
+    maxSize = 4096,
+    zoomFactor = 2,
+    defaultSize = 1200,
+    aspectRatio = 'auto',
+    zoomMode = 'disabled',
+  } = props
   const handles = useCssHandles(CSS_HANDLES)
   const context = useContext(ProductImageContext)
 
@@ -61,9 +66,9 @@ function HighQualityProductImage(props: Props) {
   }
 
   const { alt, src } = context
-  const srcSet = IMAGE_SIZES.map(
-    size => `${imageUrl(src, size, MAX_SIZE, aspectRatio)} ${size}w`
-  ).join(',')
+  const srcSet = imageSizes
+    ?.map(size => `${imageUrl(src, size, maxSize, aspectRatio)} ${size}w`)
+    .join(',')
 
   const containerClasses = classnames(
     handles.highQualityContainer,
@@ -96,12 +101,11 @@ function HighQualityProductImage(props: Props) {
             }}
             // See comment regarding sizes below
             sizes="(max-width: 64.1rem) 100vw, 50vw"
-            src={imageUrl(
-              src,
-              DEFAULT_SIZE * zoomFactor,
-              MAX_SIZE,
-              aspectRatio
-            )}
+            src={
+              imageSizes
+                ? imageUrl(src, defaultSize * zoomFactor, maxSize, aspectRatio)
+                : src
+            }
           />
         }
       >
@@ -113,7 +117,11 @@ function HighQualityProductImage(props: Props) {
           className={imgClasses}
           // See comment regarding sizes below
           sizes="(max-width: 64.1rem) 100vw, 50vw"
-          src={imageUrl(src, DEFAULT_SIZE * zoomFactor, MAX_SIZE, aspectRatio)}
+          src={
+            imageSizes
+              ? imageUrl(src, defaultSize * zoomFactor, maxSize, aspectRatio)
+              : src
+          }
         />
       </Zoomable>
     </div>
