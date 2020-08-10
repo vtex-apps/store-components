@@ -4,13 +4,23 @@ import { FormattedMessage, injectIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 import { formatIOMessage } from 'vtex.native-types'
 
-import { SanitizedHTML } from '../SanitizedHTML'
+import { SanitizedHTML, DEFAULTS } from '../SanitizedHTML'
 import GradientCollapse from '../GradientCollapse/index'
 
 const CSS_HANDLES = [
   'productDescriptionContainer',
   'productDescriptionTitle',
   'productDescriptionText',
+]
+
+const allowedTags = [
+  ...DEFAULTS.allowedTags,
+  'link',
+  'body',
+  'html',
+  'style',
+  'link',
+  'script',
 ]
 
 /**
@@ -39,10 +49,10 @@ const ProductDescription = ({ description, collapseContent, title, intl }) => {
       <div className={`${handles.productDescriptionText} c-muted-1`}>
         {collapseContent ? (
           <GradientCollapse collapseHeight={220}>
-            <SanitizedHTML content={description} />
+            <SanitizedHTML content={description} allowedTags={allowedTags} />
           </GradientCollapse>
         ) : (
-          <SanitizedHTML content={description} />
+          <SanitizedHTML content={description} allowedTags={allowedTags} />
         )}
       </div>
     </div>

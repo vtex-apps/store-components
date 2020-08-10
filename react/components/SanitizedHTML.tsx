@@ -68,13 +68,6 @@ export const DEFAULTS = {
     'tr',
     'u',
     'ul',
-    // unfortunately some stores have these tags in product descriptions
-    'link',
-    'body',
-    'html',
-    'style',
-    'link',
-    'script',
   ],
 }
 
