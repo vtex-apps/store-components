@@ -42,6 +42,8 @@ export const DEFAULTS = {
     'h5',
     'h6',
     'hr',
+    'header',
+    'footer',
     'i',
     'img',
     'ins',
