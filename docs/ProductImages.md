@@ -105,7 +105,9 @@ The following table shows the props allowed by `product-images.high-quality-imag
 | `zoomMode` | `enum` | Defines the zoom behavior for the `product-images.high-quality-image` block. Possible values are: `disabled` (zoom is disabled), `in-place-click`(zoom will be triggered when the image is clicked on), or `in-place-hover`(zoom will be triggered when the image is hovered on). Different from the `store-images` prop, this one doesn't accept `open-modal` value. | `disabled` |
 | `zoomFactor` | `number` | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large). | `2` |
 | `aspectRatio` | `string` | Sets the aspect ratio of the image, that is, whether the image should be square, portrait, landscape, etc. The value should follow the [common aspect ratio notation](https://en.wikipedia.org/wiki/Aspect_ratio_(image) i.e. two numbers separated by a colon such as `1:1` for square, `3:4` for upright portrait, or `1920:1080` for even large values).| `auto` |
-
+| `defaultSize` | `number` |  Image default size (in `px`). | `1200` | 
+| `imageSizes` | `[number]` | Image size(s) (in `px`) to be used in the image's [`srcset` HTML attribute](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images). If no value is passed to this prop, the `srcset` will use the image original size.  | `undefined` |
+| `maxSize` | `number` | Image maximum size (in `px`) for rendering regardless of the screen size. Notice that this prop only works if you also declare the `imageSizes` prop. | `4096` |
 
 #### Customization
 

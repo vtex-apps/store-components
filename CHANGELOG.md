@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `imageSizes`, `defaultSize`, `maxSize` props to `HighQualityProductImage`.
+
+### Fixed
+- `HighQualityProductImage` reducing image size.
 
 ## [3.122.7] - 2020-08-10
 ### Added
