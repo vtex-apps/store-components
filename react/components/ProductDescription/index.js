@@ -21,7 +21,14 @@ const allowedTags = [
   'style',
   'link',
   'script',
+  'head',
+  'meta',
 ]
+
+const allowedAttributes = {
+  ...DEFAULTS.allowedAttributes,
+  meta: ['charset', 'name', 'content'],
+}
 
 /**
  * Product Description Component.
@@ -49,10 +56,18 @@ const ProductDescription = ({ description, collapseContent, title, intl }) => {
       <div className={`${handles.productDescriptionText} c-muted-1`}>
         {collapseContent ? (
           <GradientCollapse collapseHeight={220}>
-            <SanitizedHTML content={description} allowedTags={allowedTags} />
+            <SanitizedHTML
+              content={description}
+              allowedTags={allowedTags}
+              allowedAttributes={allowedAttributes}
+            />
           </GradientCollapse>
         ) : (
-          <SanitizedHTML content={description} allowedTags={allowedTags} />
+          <SanitizedHTML
+            content={description}
+            allowedTags={allowedTags}
+            allowedAttributes={allowedAttributes}
+          />
         )}
       </div>
     </div>
