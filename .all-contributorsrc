@@ -99,6 +99,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "MatheusR42",
+      "name": "Matheus Araujo",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/16908590?v=4",
+      "profile": "https://github.com/MatheusR42",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
