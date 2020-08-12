@@ -1,6 +1,6 @@
 # VTEX Store Components
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Description
@@ -163,6 +163,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/pgrimaud"><img src="https://avatars1.githubusercontent.com/u/1866496?v=4" width="100px;" alt=""/><br /><sub><b>Pierre Grimaud</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=pgrimaud" title="Documentation">📖</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/igorpoubel"><img src="https://avatars2.githubusercontent.com/u/6241622?v=4" width="100px;" alt=""/><br /><sub><b>Igor Poubel</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=igorpoubel" title="Code">💻</a></td>
     <td align="center"><a href="http://www.hugoccosta.com"><img src="https://avatars2.githubusercontent.com/u/20212776?v=4" width="100px;" alt=""/><br /><sub><b>Hugo Costa</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=hugocostadev" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/MatheusR42"><img src="https://avatars0.githubusercontent.com/u/16908590?v=4" width="100px;" alt=""/><br /><sub><b>Matheus Araujo</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=MatheusR42" title="Documentation">📖</a></td>
   </tr>
 </table>
 
