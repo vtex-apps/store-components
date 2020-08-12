@@ -41,6 +41,12 @@ const ShippingSimulator = ({
     setIsValid(postalCode.valid)
   }
 
+  const keyPress = e => {
+    if(e.which == 13){
+      handleClick(e);
+    }
+  }
+
   const handleClick = e => {
     e.preventDefault()
     setLoading(true)
@@ -77,7 +83,7 @@ const ShippingSimulator = ({
 
   return (
     <Fragment>
-      <div className={`${styles.shippingContainer} t-small c-on-base`}>
+      <div className={`${styles.shippingContainer} t-small c-on-base`} onKeyPress={keyPress}>
         <AddressRules country={country} shouldUseIOFetching>
           <AddressContainer
             Input={StyleguideInput}
