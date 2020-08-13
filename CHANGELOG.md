@@ -8,8 +8,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Calculate shipping when enter is pressed
-- Assert module from node.js
-
 
 ## [3.54.0] - 2019-07-17
 ### Added

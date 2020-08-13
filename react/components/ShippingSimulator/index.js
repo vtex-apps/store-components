@@ -41,14 +41,8 @@ const ShippingSimulator = ({
     setIsValid(postalCode.valid)
   }
 
-  const keyPress = e => {
-    if(e.which == 13){
-      handleClick(e);
-    }
-  }
-
   const handleClick = e => {
-    e.preventDefault()
+    e && e.preventDefault()
     setLoading(true)
     const { postalCode } = removeValidation(address)
     client
@@ -83,7 +77,7 @@ const ShippingSimulator = ({
 
   return (
     <Fragment>
-      <div className={`${styles.shippingContainer} t-small c-on-base`} onKeyPress={keyPress}>
+      <div className={`${styles.shippingContainer} t-small c-on-base`} >
         <AddressRules country={country} shouldUseIOFetching>
           <AddressContainer
             Input={StyleguideInput}
@@ -91,7 +85,7 @@ const ShippingSimulator = ({
             onChangeAddress={handleAddressChange}
             autoCompletePostalCode
           >
-            <PostalCodeGetter />
+            <PostalCodeGetter onSubmit={handleClick}/>
           </AddressContainer>
         </AddressRules>
         <Button
