@@ -2,18 +2,13 @@
 *   Product Image CSS Module
 */
 
-.content { }
+.productVideo { }
 
-.video { }
+.productImage { }
 
-.image { }
-
-.imageBlur30 { 
-  filter: blur(30px);
-}
-
-.imageTransitionOpacity {
-  transition: 1s;
+.highQualityProductImageImgElement {
+  max-height: unset;
+  object-fit: contain;
 }
 
 .carouselGaleryCursor {
@@ -24,26 +19,43 @@
   height: auto;
 }
 
-.carouselGaleryThumbs :global(.swiper-slide):not(:global(.swiper-slide-thumb-active)) .carouselThumbBorder {
-  border-width: 0px;
-}
-
 .carouselIconCaretRight,
 .carouselIconCaretLeft {
   stroke: white;
   stroke-width: 0.5px;
-  -webkit-filter: drop-shadow( 0px 1px 1px #CACBCC );
-  filter: drop-shadow( 0px 1px 1px #CACBCC );
+  -webkit-filter: drop-shadow(0px 1px 1px #cacbcc);
+  filter: drop-shadow(0px 1px 1px #cacbcc);
 }
 
-.carouselCursorDefault:hover{
+.carouselCursorDefault:hover {
   cursor: default;
 }
 
-.carouselImagePlaceholder { }
+.carouselImagePlaceholder {
+}
 
 /** Overrides figure css declaration from vtex-tachyons, which
  * for some reason adds margin to all figure elements */
 .figure {
   margin: 0;
+}
+
+.gradientBaseBottom {
+  /** TODO: use the actual bg-base token instead of a hardcoded color */
+  background: linear-gradient(transparent, white);
+}
+
+.gradientBaseTop {
+  /** TODO: use the actual bg-base token instead of a hardcoded color */
+  background: linear-gradient(white, transparent);
+}
+
+.gradientBaseRight {
+  /** TODO: use the actual bg-base token instead of a hardcoded color */
+  background: linear-gradient(90deg, transparent, white);
+}
+
+.gradientBaseLeft {
+  /** TODO: use the actual bg-base token instead of a hardcoded color */
+  background: linear-gradient(90deg, white, transparent);
 }

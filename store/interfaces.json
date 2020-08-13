@@ -3,7 +3,14 @@
     "component": "Logo"
   },
   "search-bar": {
-    "component": "SearchBar"
+    "component": "SearchBar",
+    "allowed": ["autocomplete-result-list", "icon-search", "icon-close"],
+    "content": {
+      "$ref": "#/definitions/SearchBar"
+    }
+  },
+  "autocomplete-result-list": {
+    "component": "AutocompleteResults"
   },
   "buy-button": {
     "component": "BuyButton"
@@ -17,6 +24,9 @@
   "product-images": {
     "component": "ProductImages"
   },
+  "product-images.high-quality-image": {
+    "component": "HighQualityProductImage"
+  },
   "product-price": {
     "component": "ProductPrice",
     "content": {
@@ -24,7 +34,10 @@
     }
   },
   "product-description": {
-    "component": "ProductDescription"
+    "component": "ProductDescription",
+    "content": {
+      "$ref": "#/definitions/ProductDescription"
+    }
   },
   "product-separator": {
     "component": "ProductSeparator"
@@ -74,9 +87,19 @@
     "component": "NotificationInline"
   },
   "notification.bar": {
-    "component": "NotificationBar"
+    "component": "NotificationBar",
+    "content": {
+      "$ref": "app:vtex.store-components#/definitions/NotificationBar"
+    }
   },
   "image": {
-    "component": "Image"
+    "component": "Image",
+    "content": {
+      "$ref": "app:vtex.store-components#/definitions/Image"
+    }
+  },
+  "back-to-top-button": {
+    "render": "client",
+    "component": "BackToTopButton"
   }
 }

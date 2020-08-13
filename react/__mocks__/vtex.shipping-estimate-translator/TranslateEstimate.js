@@ -1,5 +1,5 @@
 import React from 'react'
 
-const TranslateEstimate = props => <div className="translate-estimate-mock" />
+const TranslateEstimate = () => <div className="translate-estimate-mock" />
 
 export default TranslateEstimate

@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { injectIntl, intlShape } from 'react-intl'
-import HtmlParser from 'react-html-parser'
+import { injectIntl } from 'react-intl'
 
+import { SanitizedHTML } from '../SanitizedHTML'
 import styles from './styles.css'
 
 /**
@@ -11,6 +11,7 @@ import styles from './styles.css'
  */
 const ProductHighlights = ({ ...props }) => {
   const { highlights } = props
+
   return (
     <div className={`${styles.highlightContent} pt3 pb5`}>
       {highlights.map((item, i) => (
@@ -23,13 +24,13 @@ const ProductHighlights = ({ ...props }) => {
           <span
             className={`${styles.highlightTitle} t-body c-on-base fw7 pr3 `}
           >
-            {HtmlParser(item.name)}
+            <SanitizedHTML content={item.name} />
             {': '}
           </span>
           <span
             className={`${styles.highlightValue} t-body c-muted-1 lh-copy `}
           >
-            {HtmlParser(item.values[0])}
+            <SanitizedHTML content={item.values[0]} />
           </span>
         </div>
       ))}
@@ -43,7 +44,7 @@ ProductHighlights.defaultProps = {
 
 ProductHighlights.propTypes = {
   /** Intl object to provides internationalization */
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
   /** Specifications that will be displayed on the table */
   highlights: PropTypes.arrayOf(
     PropTypes.shape({

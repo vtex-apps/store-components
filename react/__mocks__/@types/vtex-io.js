@@ -6,7 +6,7 @@ export const contextPropTypes = PropTypes.shape({
     isSuccess: PropTypes.bool,
     message: PropTypes.string,
   }).isRequired,
-  /* Is information still loading*/
+  /* Is information still loading */
   loading: PropTypes.bool.isRequired,
   /* Function to refetch the orderForm query */
   refetch: PropTypes.func.isRequired,
@@ -14,9 +14,9 @@ export const contextPropTypes = PropTypes.shape({
   addItem: PropTypes.func.isRequired,
   /* Function to update the orderForm */
   updateOrderForm: PropTypes.func.isRequired,
-  /* Function to update the orderForm profile data*/
+  /* Function to update the orderForm profile data */
   updateOrderFormProfile: PropTypes.func.isRequired,
-  /* Function to update the orderForm and refetch the data*/
+  /* Function to update the orderForm and refetch the data */
   updateAndRefetchOrderForm: PropTypes.func.isRequired,
   /* Function to update the message */
   updateToastMessage: PropTypes.func.isRequired,

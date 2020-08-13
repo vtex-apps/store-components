@@ -1,8 +1,6 @@
-import React from 'react'
-
 export const createClientMock = responseMock => ({
   query: () =>
-    new Promise((resolve, reject) => {
+    new Promise(resolve => {
       resolve(responseMock)
     }),
 })

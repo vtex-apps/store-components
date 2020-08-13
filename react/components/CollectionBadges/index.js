@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { CollectionBadgeItem } from './components/CollectionBadgeItem'
-
 import styles from './styles.css'
 
 /**

@@ -6,7 +6,7 @@ import ContentLoader from 'react-content-loader'
 import { FormattedMessage } from 'react-intl'
 
 import SocialButton from './components/SocialButton'
-import { SOCIAL_ENUM } from './constants/social'
+import { SOCIAL_LIST } from './constants/social'
 import styles from './styles.css'
 
 class Share extends Component {
@@ -52,6 +52,7 @@ class Share extends Component {
       contentLoaderClass,
       ...rest
     } = loaderProps
+
     const loaderStyles = {
       r: '1em',
       height: '2em',
@@ -73,8 +74,8 @@ class Share extends Component {
             width: '100%',
             height: '100%',
           }}
-          height="100%"
-          width="100%"
+          height="100"
+          width="100"
           {...rest}
         >
           <circle cx="1em" {...loaderStyles} {...button1} />
@@ -109,7 +110,7 @@ class Share extends Component {
         properties: {
           ...indexBy(
             prop('title'),
-            SOCIAL_ENUM.map(socialNetwork => ({
+            SOCIAL_LIST.map(socialNetwork => ({
               type: 'boolean',
               title: socialNetwork,
               default: Share.defaultProps.social[socialNetwork],

@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { intlShape, injectIntl } from 'react-intl'
-import { useRuntime } from 'vtex.render-runtime'
+import { injectIntl } from 'react-intl'
 import TranslateEstimate from 'vtex.shipping-estimate-translator/TranslateEstimate'
 import classNames from 'classnames'
 import { FormattedCurrency } from 'vtex.format-currency'
@@ -58,7 +57,7 @@ ShippingTableRow.propTypes = {
   name: PropTypes.string,
   shippingEstimate: PropTypes.string,
   price: PropTypes.number,
-  intl: intlShape.isRequired,
+  intl: PropTypes.object.isRequired,
 }
 
 export default injectIntl(ShippingTableRow)

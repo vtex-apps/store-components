@@ -1,10 +1,12 @@
 import React from 'react'
 import classNames from 'classnames'
 import ContentLoader from 'react-content-loader'
+
 import productPrice from './styles.css'
 
 const ProductPriceLoader = (loaderProps = {}) => {
   const { loaderClass, ...props } = loaderProps
+
   return (
     <div
       className={classNames(

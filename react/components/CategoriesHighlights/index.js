@@ -1,9 +1,8 @@
-import categoriesHighlights from './categoriesHighlights.css'
-
 import PropTypes from 'prop-types'
 import { range, values } from 'ramda'
 import React, { Component } from 'react'
 
+import categoriesHighlights from './categoriesHighlights.css'
 import CategoryCard from './components/CategoryCard'
 import { ITEMS_PER_ROW, RECTANGULAR, SQUARED } from './constants.js'
 
@@ -41,7 +40,7 @@ class CategoriesHighlights extends Component {
   }
 
   static getSchema = ({ quantityOfItems }) => {
-    let categoriesHighlightedProps = {}
+    const categoriesHighlightedProps = {}
 
     range(0, quantityOfItems || ITEMS_PER_ROW).forEach(index => {
       categoriesHighlightedProps[`category${index}`] = {
@@ -126,7 +125,8 @@ class CategoriesHighlights extends Component {
 
     if (!showCategoriesHighlighted) return null
 
-    let categories = values(categoriesHighlighted).map(category => category)
+    const categories = values(categoriesHighlighted).map(category => category)
+
     range(categories.length, quantityOfItems).forEach(() => {
       categories.push({
         name: '',

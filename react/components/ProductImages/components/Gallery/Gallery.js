@@ -3,7 +3,7 @@ import { PhotoSwipe } from 'react-photoswipe'
 
 import './global.css'
 
-const Gallery = ({ items, isOpen, index, handleClose, bgOpacity}) => {
+const Gallery = ({ items, isOpen, index, handleClose, bgOpacity }) => {
   const toPswItem = item => ({
     src: item.urls[item.bestUrlIndex],
     w: 1280,
@@ -17,7 +17,7 @@ const Gallery = ({ items, isOpen, index, handleClose, bgOpacity}) => {
       isOpen={isOpen}
       items={useMemo(() => items.map(toPswItem), [items])}
       onClose={handleClose}
-      options={{index, bgOpacity, history: false}}
+      options={{ index, bgOpacity, history: false }}
     />
   )
 }

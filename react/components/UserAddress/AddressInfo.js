@@ -6,6 +6,8 @@ import { IconLocationMarker } from 'vtex.store-icons'
 
 const AddressInfo = ({ inverted, inline, orderForm, intl }) => {
   const { shippingData } = orderForm
+  const hasModal = !!useChildBlock({ id: 'modal' })
+
   if (!shippingData || !shippingData.address) return
 
   const { street, number, complement, addressType } = shippingData.address
@@ -24,8 +26,6 @@ const AddressInfo = ({ inverted, inline, orderForm, intl }) => {
     orderForm
   )
 
-  const hasModal = !!useChildBlock({ id: 'modal' })
-
   return (
     <div className={`flex ${inline ? 'items-end' : 'items-center flex-auto'}`}>
       <div className="flex flex-auto">
@@ -34,7 +34,7 @@ const AddressInfo = ({ inverted, inline, orderForm, intl }) => {
             inverted ? 'c-on-base--inverted' : 'c-muted-2'
           }`}
         >
-          <IconLocationMarker size={27} viewBox={'0 0 21 27'} />
+          <IconLocationMarker size={27} viewBox="0 0 21 27" />
         </div>
         <div className="flex flex-auto flex-column">
           <div

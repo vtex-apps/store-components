@@ -1,5 +1,5 @@
 mutation availabilitySubscribe($acronym: String!, $document: DocumentInput) {
-  updateDocument(acronym: $acronym, document: $document) {
+  createDocument(acronym: $acronym, document: $document) {
     cacheId
     id
     href

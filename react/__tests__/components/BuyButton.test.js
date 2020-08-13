@@ -1,8 +1,22 @@
 import React from 'react'
-import { render, fireEvent } from '@vtex/test-tools/react'
-import { MockedProvider } from 'react-apollo/test-utils'
+import { fireEvent, wait, render } from '@vtex/test-tools/react'
 
 import BuyButton from '../../BuyButton'
+import addToCartMutation from '../../components/BuyButton/mutations/addToCart.gql'
+
+const mocks = [
+  {
+    request: {
+      query: addToCartMutation,
+      variables: { items: [] },
+    },
+    result: {
+      data: {
+        addToCart: {},
+      },
+    },
+  },
+]
 
 describe('<BuyButton />', () => {
   const renderComponent = (customProps, text = 'Test') => {
@@ -11,33 +25,37 @@ describe('<BuyButton />', () => {
       ...customProps,
     }
 
-    const comp = (
-      <MockedProvider resolvers={{}}>
-        <BuyButton {...props}>{text}</BuyButton>
-      </MockedProvider>
-    )
-
-    return render(comp)
+    return render(<BuyButton {...props}>{text}</BuyButton>, {
+      graphql: { mocks },
+    })
   }
 
   it('should be rendered', async () => {
     const { asFragment } = renderComponent()
+
+    await wait()
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toBeTruthy()
   })
 
-  it('should match snapshot normal', () => {
+  it('should match snapshot normal', async () => {
     const { asFragment } = renderComponent({ available: true, skuItems: [] })
+
+    await wait()
     expect(asFragment()).toMatchSnapshot()
   })
 
-  it('should match snapshot unavailable', () => {
+  it('should match snapshot unavailable', async () => {
     const { asFragment } = renderComponent({ available: false, skuItems: [] })
+
+    await wait()
     expect(asFragment()).toMatchSnapshot()
   })
 
-  it('should match snapshot loading', () => {
+  it('should match snapshot loading', async () => {
     const { asFragment } = renderComponent({ available: false })
+
+    await wait()
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -56,22 +74,28 @@ describe('<BuyButton />', () => {
       },
       buttonText
     )
-    fireEvent.click(getByText(buttonText))
-    await new Promise(resolve => setTimeout(resolve, 0))
+
+    await wait(() => {
+      fireEvent.click(getByText(buttonText))
+    })
+
     const assertions = () => {
       expect(onAddStart).toBeCalledTimes(1)
       expect(onAddFinish).toBeCalledTimes(1)
     }
+
     expect.assertions(assertions)
   })
 
-  it('should show items prices', () => {
+  // eslint-disable-next-line jest/expect-expect
+  it('should show items prices', async () => {
     const skuItems = [
       {
         skuId: '1',
         quantity: 2,
         seller: '1',
         name: 'Item',
+        brand: 'fo',
         price: 100,
         options: [
           { assemblyId: '1', id: '2', quantity: 2, seller: '1' },
@@ -88,6 +112,20 @@ describe('<BuyButton />', () => {
                 sellingPrice: 5,
                 quantity: 2,
                 id: '1',
+                sellingPriceWithAssemblies: 6,
+                assemblyOptions: {
+                  added: [
+                    {
+                      item: {
+                        sellingPrice: 1,
+                        id: '3',
+                        quantity: 1,
+                        name: 'Recursive',
+                        sellingPriceWithAssemblies: 1,
+                      },
+                    },
+                  ],
+                },
               },
             },
             {
@@ -99,14 +137,17 @@ describe('<BuyButton />', () => {
                 sellingPrice: 3,
                 quantity: 1,
                 id: '2',
+                sellingPriceWithAssemblies: 3,
               },
             },
           ],
           removed: [],
           parentPrice: 100,
         },
+        sellingPriceWithAssemblies: 115,
       },
     ]
+
     const { getByText } = renderComponent(
       {
         available: true,
@@ -115,7 +156,10 @@ describe('<BuyButton />', () => {
       },
       null
     )
-    const priceRegex = /226.00/
+
+    const priceRegex = /230.00/
+
+    await wait()
     getByText(priceRegex)
   })
 })

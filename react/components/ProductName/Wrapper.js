@@ -27,12 +27,14 @@ const ProductNameWrapper = props => {
     }
 
     const { product, selectedItem } = valuesFromContext
+
     return {
       ...props,
       tag: props.tag || 'h1',
       name: props.name || path(['productName'], product),
       skuName: props.skuName || path(['name'], selectedItem),
-      productReference: props.productReference || path(['productReference'], product),
+      productReference:
+        props.productReference || path(['productReference'], product),
       brandName: props.brandName || path(['brand'], product),
       styles: props.styles || styles,
       className: props.className || 't-heading-4',

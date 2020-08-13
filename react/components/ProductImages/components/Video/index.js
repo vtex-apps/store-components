@@ -1,24 +1,43 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
+import { match, compose, isEmpty, complement } from 'ramda'
+import { useCssHandles } from 'vtex.css-handles'
+import { NoSSR } from 'vtex.render-runtime'
+
 import Vimeo from './Vimeo'
-import styles from '../../styles.css'
+import YouTube from './Youtube'
 
-class Video extends Component {
-  static getThumbUrl(url, thumbWidth) {
-    if (url.search('vimeo') !== -1) {
-      return Vimeo.getThumbUrl(url, thumbWidth)
-    }
+const isNotEmpty = complement(isEmpty)
+
+const isVimeo = compose(isNotEmpty, match(/vimeo/))
+const isYoutube = compose(isNotEmpty, match(/youtube|youtu.be/))
+
+const CSS_HANDLES = ['productVideo', 'videoContainer', 'video']
+
+export function getThumbUrl(url, thumbWidth) {
+  if (isVimeo(url)) {
+    return Vimeo.getThumbUrl(url, thumbWidth)
   }
 
-  render() {
-    const { url } = this.props
-
-    return (
-      <div className={styles.video}>
-        {url.search('vimeo') !== -1 && <Vimeo {...this.props} />}
-      </div>
-    )
+  if (isYoutube(url)) {
+    return YouTube.getThumbUrl(url, thumbWidth)
   }
+}
+
+function Video(props) {
+  const { url } = props
+  const handles = useCssHandles(CSS_HANDLES)
+
+  return (
+    <div className={handles.productVideo}>
+      {isVimeo(url) && (
+        <NoSSR>
+          <Vimeo {...props} cssHandles={handles} />
+        </NoSSR>
+      )}
+      {isYoutube(url) && <YouTube {...props} cssHandles={handles} />}
+    </div>
+  )
 }
 
 Video.propsTypes = {

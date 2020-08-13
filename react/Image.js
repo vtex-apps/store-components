@@ -1,3 +1,3 @@
-import Image from './components/Image/index'
+import { Image } from 'vtex.store-image'
 
 export default Image

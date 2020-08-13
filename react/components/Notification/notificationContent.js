@@ -1,16 +1,14 @@
 import React, { memo } from 'react'
 import { string } from 'prop-types'
-import insane from 'insane'
 
+import { SanitizedHTML } from '../SanitizedHTML'
 import styles from './styles.css'
 
 const NotificationContent = ({ content }) => {
-  const safeContent = { __html: insane(content) }
   return (
-    <div
-      className={styles.notificationContent}
-      dangerouslySetInnerHTML={safeContent}
-    />
+    <div className={styles.notificationContent}>
+      <SanitizedHTML content={content} />
+    </div>
   )
 }
 

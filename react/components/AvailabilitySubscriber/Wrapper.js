@@ -15,13 +15,17 @@ const AvailabilitySubscriberWrapper = props => {
     ['selectedItem', 'sellers', 0, 'commertialOffer'],
     valuesFromContext
   )
-  
-  const available = props.available != null ? props.available : isAvailable(commertialOffer)
+
+  const available =
+    props.available != null ? props.available : isAvailable(commertialOffer)
 
   // Render component only if product is out of sales
   if (available) return null
 
-  const skuId = props.skuId != null ? props.skuId : path(['selectedItem', 'itemId'], valuesFromContext)
+  const skuId =
+    props.skuId != null
+      ? props.skuId
+      : path(['selectedItem', 'itemId'], valuesFromContext)
 
   return <AvailabilitySubscriber skuId={skuId} />
 }

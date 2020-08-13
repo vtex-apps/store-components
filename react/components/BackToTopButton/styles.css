@@ -1,0 +1,15 @@
+.backToTopButtonContainer {
+  border-bottom: 3.125rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.backToTopButtonHidden {
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+}
+
+.backToTopButtonActive {
+  height: auto;
+  opacity: 1;
+}

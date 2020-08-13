@@ -1,9 +1,14 @@
 {
+  "projectName": "store-components",
+  "projectOwner": "vtex-apps",
+  "repoType": "github",
+  "repoHost": "https://github.com",
   "files": [
-    "README.md"
+    "docs/README.md"
   ],
   "imageSize": 100,
   "commit": false,
+  "commitConvention": "none",
   "contributors": [
     {
       "login": "hapoza",
@@ -13,11 +18,98 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "JNussens",
+      "name": "Jean Nussenzveig",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/7662734?v=4",
+      "profile": "https://github.com/JNussens",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "lucasayb",
+      "name": "Lucas Antônio Yamamoto Borges",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/17356081?v=4",
+      "profile": "https://github.com/lucasayb",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "sebaskun98",
+      "name": "Sebastian Sanchez Vega",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/28419764?v=4",
+      "profile": "https://t.co/LTjWBxRnqE",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Erislandio",
+      "name": "Erislandio",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/34255207?v=4",
+      "profile": "https://github.com/Erislandio",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "BeatrizMiranda",
+      "name": "Beatriz Miranda",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/28959326?v=4",
+      "profile": "https://github.com/BeatrizMiranda",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Jayendra88",
+      "name": "Jayendra",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2637457?v=4",
+      "profile": "https://github.com/Jayendra88",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "pgrimaud",
+      "name": "Pierre Grimaud",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1866496?v=4",
+      "profile": "https://github.com/pgrimaud",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "igorpoubel",
+      "name": "Igor Poubel",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6241622?v=4",
+      "profile": "https://www.linkedin.com/in/igorpoubel",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "hugocostadev",
+      "name": "Hugo Costa",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/20212776?v=4",
+      "profile": "http://www.hugoccosta.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "MatheusR42",
+      "name": "Matheus Araujo",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/16908590?v=4",
+      "profile": "https://github.com/MatheusR42",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
-  "projectName": "store-components",
-  "projectOwner": "vtex-apps",
-  "repoType": "github",
-  "repoHost": "https://github.com"
+  "skipCi": true
 }

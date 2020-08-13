@@ -1,19 +1,17 @@
 {
   "vendor": "vtex",
   "name": "store-components",
-  "version": "3.54.0",
+  "version": "3.123.2",
   "title": "VTEX Store Components",
   "defaultLocale": "pt-BR",
   "description": "The VTEX store components for that render apps can use",
   "builders": {
     "react": "3.x",
     "store": "0.x",
-    "messages": "1.x"
+    "messages": "1.x",
+    "docs": "0.x"
   },
   "mustUpdateAt": "2019-04-02",
-  "scripts": {
-    "postreleasy": "vtex publish --verbose"
-  },
   "dependencies": {
     "vtex.native-types": "0.x",
     "vtex.shipping-estimate-translator": "2.x",
@@ -23,9 +21,18 @@
     "vtex.store-icons": "0.x",
     "vtex.modal": "0.x",
     "vtex.react-portal": "0.x",
+    "vtex.responsive-values": "0.x",
     "vtex.address-form": "4.x",
     "vtex.product-context": "0.x",
-    "vtex.format-currency": "0.x"
+    "vtex.format-currency": "0.x",
+    "vtex.search-graphql": "0.x",
+    "vtex.css-handles": "0.x",
+    "vtex.store-image": "0.x",
+    "vtex.device-detector": "0.x",
+    "vtex.apps-graphql": "2.x",
+    "vtex.rich-text": "0.x",
+    "vtex.slider-layout": "0.x",
+    "vtex.modal-layout": "0.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

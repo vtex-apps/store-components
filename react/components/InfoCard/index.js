@@ -1,11 +1,15 @@
 import classNames from 'classnames'
-import insane from 'insane'
-import { bool, string, oneOf } from 'prop-types'
+import PropTypes, { bool, string, oneOf } from 'prop-types'
+import React, { memo } from 'react'
 import { values } from 'ramda'
-import React, { memo, useMemo } from 'react'
-import { injectIntl, intlShape } from 'react-intl'
-import { useRuntime } from 'vtex.render-runtime'
+import { injectIntl } from 'react-intl'
+import {
+  useRuntime,
+  useExperimentalLazyImagesContext,
+} from 'vtex.render-runtime'
 import { formatIOMessage } from 'vtex.native-types'
+import { useCssHandles } from 'vtex.css-handles'
+import RichText from 'vtex.rich-text/index'
 
 import CallToAction from './CallToAction'
 import LinkWrapper from './LinkWrapper'
@@ -15,9 +19,17 @@ import {
   callToActionModeTypes,
   textPostionValues,
   textAlignmentValues,
+  textModeTypes,
 } from './SchemaTypes'
+import { SanitizedHTML } from '../SanitizedHTML'
 
-import styles from './infoCard.css'
+const ALLOWED_TAGS = ['p', 'span', 'a', 'div', 'br']
+const ALLOWED_ATTRS = {
+  a: ['class', 'href', 'title', 'target'],
+  span: ['class'],
+  p: ['class'],
+  div: ['class'],
+}
 
 const justifyTokens = {
   [textPostionValues.LEFT]: 'justify-start',
@@ -56,40 +68,40 @@ const safelyGetToken = (tokenMap, valueWanted, propName) =>
 const getImageUrl = (isMobile, imageUrl, mobileImageUrl) =>
   !!mobileImageUrl && isMobile ? mobileImageUrl : imageUrl
 
-const safelyGetBlockClass = blockClass =>
-  blockClass ? blockClass.split(' ')[0] : ''
-
-const sanitizerConfig = {
-  allowedTags: ['p', 'span', 'a', 'div', 'br'],
-  allowedAttributes: {
-    a: ['class', 'href', 'title', 'target'],
-    span: ['class'],
-    p: ['class'],
-    div: ['class'],
-  },
-}
-
-const sanitizeHtml = input => (input ? insane(input, sanitizerConfig) : null)
+const CSS_HANDLES = [
+  'infoCardContainer',
+  'infoCardTextContainer',
+  'infoCardHeadline',
+  'infoCardSubhead',
+  'infoCardImageContainer',
+  'infoCardImage',
+]
 
 const InfoCard = ({
-  blockClass,
   isFullModeStyle,
   headline,
   subhead,
   callToActionMode,
   callToActionText,
   callToActionUrl,
+  callToActionLinkTarget,
   textPosition,
   textAlignment,
   imageUrl,
   mobileImageUrl,
   imageActionUrl,
   intl,
-  htmlId
+  htmlId,
+  textMode,
+  linkTarget,
 }) => {
   const {
     hints: { mobile },
   } = useRuntime()
+
+  const { lazyLoad } = useExperimentalLazyImagesContext()
+
+  const handles = useCssHandles(CSS_HANDLES)
   const paddingClass =
     textPosition === textPostionValues.LEFT ? 'pr4-ns' : 'pl4-ns'
 
@@ -97,14 +109,17 @@ const InfoCard = ({
   const alignToken = isFullModeStyle
     ? safelyGetToken(alignTokens, textPosition, 'textPosition')
     : safelyGetToken(alignTokens, textAlignment, 'textAlignment')
+
   const itemsToken = isFullModeStyle
     ? safelyGetToken(itemsTokens, textPosition, 'textPosition')
     : safelyGetToken(itemsTokens, textAlignment, 'textAlignment')
+
   const justifyToken = safelyGetToken(
     justifyTokens,
     textPosition,
     'textPosition'
   )
+
   const flexOrderToken = safelyGetToken(
     flexOrderTokens,
     textPosition,
@@ -118,84 +133,91 @@ const InfoCard = ({
   )
 
   const containerStyle = isFullModeStyle
-    ? { backgroundImage: `url(${finalImageUrl})`, backgroundSize: 'cover' }
+    ? {
+        /* If lazyloaded, the background image comes from the `data-bg` attribute
+         * below. Otherwise, sets it here as background-image */
+        ...(!lazyLoad && { backgroundImage: `url(${finalImageUrl})` }),
+        backgroundSize: 'cover',
+      }
     : {}
 
+  const containerAttributes =
+    isFullModeStyle && lazyLoad ? { 'data-bg': finalImageUrl } : {}
+
   const containerClasses = classNames(
-    `${styles.infoCardContainer} items-center`,
+    `${handles.infoCardContainer} items-center`,
     {
-      [`${styles.infoCardContainer}--${safelyGetBlockClass(
-        blockClass
-      )}`]: blockClass,
       [`flex-ns ${flexOrderToken} bg-base ph2-ns pb2 justify-between`]: !isFullModeStyle,
       [`bg-center bb b--muted-4 flex ${justifyToken}`]: isFullModeStyle,
+      lazyload: lazyLoad,
     }
   )
 
   const textContainerClasses = classNames(
-    `${styles.infoCardTextContainer} flex flex-column mw-100`,
+    `${handles.infoCardTextContainer} flex flex-column mw-100`,
     {
       [`w-50-ns ph3-s ${itemsToken} ${paddingClass}`]: !isFullModeStyle,
       [`mh8-ns mh4-s w-40-ns ${itemsToken}`]: isFullModeStyle,
     }
   )
 
-  const headlineClasses = `${
-    styles.infoCardHeadline
-  } t-heading-2 mt6 ${alignToken} c-on-base mw-100`
+  const headlineClasses = `${handles.infoCardHeadline} t-heading-2 mt6 ${alignToken} c-on-base mw-100`
 
-  const subheadClasses = `${
-    styles.infoCardSubhead
-  } t-body mt6 c-on-base ${alignToken} mw-100`
-
-  const sanitizedHeadline = useMemo(
-    () => sanitizeHtml(formatIOMessage({ id: headline, intl })),
-    [headline, intl]
-  )
-
-  const sanitizedSubhead = useMemo(
-    () => sanitizeHtml(formatIOMessage({ id: subhead, intl })),
-    [intl, subhead]
-  )
+  const subheadClasses = `${handles.infoCardSubhead} t-body mt6 c-on-base ${alignToken} mw-100`
 
   return (
     <LinkWrapper
-      imageActionUrl={imageActionUrl}
+      imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
       extraCondition={!isFullModeStyle}
-      linkProps={{ className: 'no-underline' }}
+      linkProps={{ className: 'no-underline', target: linkTarget }}
     >
       <div
         className={containerClasses}
         style={containerStyle}
         data-testid="container"
         id={htmlId}
+        {...containerAttributes}
       >
         <div className={textContainerClasses}>
-          {headline && (
-            <div
-              className={headlineClasses}
-              dangerouslySetInnerHTML={{ __html: sanitizedHeadline }}
-            />
-          )}
-          {subhead && (
-            <div
-              className={subheadClasses}
-              dangerouslySetInnerHTML={{ __html: sanitizedSubhead }}
-            />
-          )}
+          {headline &&
+            (textMode === 'html' ? (
+              <div className={headlineClasses}>
+                <SanitizedHTML
+                  content={formatIOMessage({ id: headline, intl })}
+                  allowedTags={ALLOWED_TAGS}
+                  allowedAttributes={ALLOWED_ATTRS}
+                />
+              </div>
+            ) : (
+              <RichText className={headlineClasses} text={headline} />
+            ))}
+          {subhead &&
+            (textMode === 'html' ? (
+              <div className={subheadClasses}>
+                <SanitizedHTML
+                  content={formatIOMessage({ id: subhead, intl })}
+                  allowedTags={ALLOWED_TAGS}
+                  allowedAttributes={ALLOWED_ATTRS}
+                />
+              </div>
+            ) : (
+              <RichText className={subheadClasses} text={subhead} />
+            ))}
           <CallToAction
             mode={callToActionMode}
             text={formatIOMessage({ id: callToActionText, intl })}
             url={formatIOMessage({ id: callToActionUrl, intl })}
+            linkTarget={callToActionLinkTarget}
           />
         </div>
         {!isFullModeStyle && (
-          <div className={`${styles.infoCardImageContainer} w-50-ns`}>
+          <div className={`${handles.infoCardImageContainer} w-50-ns`}>
             <LinkWrapper
               imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
+              linkProps={{ target: linkTarget }}
             >
               <img
-                className={styles.infoCardImage}
+                className={handles.infoCardImage}
                 src={finalImageUrl}
                 style={{ objectFit: 'cover' }}
                 alt=""
@@ -224,8 +246,12 @@ MemoizedInfoCard.propTypes = {
   mobileImageUrl: string,
   textAlignment: oneOf(getEnumValues(textAlignmentTypes)),
   imageActionUrl: string,
-  intl: intlShape,
-  htmlId: string
+  intl: PropTypes.object,
+  htmlId: string,
+  textMode: oneOf(getEnumValues(textModeTypes)),
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+  linkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
+  callToActionLinkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
 }
 
 MemoizedInfoCard.defaultProps = {
@@ -239,6 +265,9 @@ MemoizedInfoCard.defaultProps = {
   imageUrl: '',
   mobileImageUrl: '',
   textAlignment: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
+  textMode: textModeTypes.TEXT_MODE_HTML.value,
+  linkTarget: '_self',
+  callToActionLinkTarget: '_self',
 }
 
 MemoizedInfoCard.schema = {
@@ -278,6 +307,15 @@ MemoizedInfoCard.schema = {
       default: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
       enum: getEnumValues(textAlignmentTypes),
       enumNames: getEnumNames(textAlignmentTypes),
+      isLayout: true,
+    },
+    textMode: {
+      title: 'admin/editor.info-card.textMode.title',
+      description: 'admin/editor.info-card.textMode.description',
+      type: 'string',
+      default: textModeTypes.TEXT_MODE_HTML.value,
+      enum: getEnumValues(textModeTypes),
+      enumNames: getEnumNames(textModeTypes),
       isLayout: true,
     },
     blockClass: {

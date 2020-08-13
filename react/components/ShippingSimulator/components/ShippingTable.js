@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 
 import ShippingTableRow from './ShippingTableRow'
-
 import styles from '../shippingSimulator.css'
 
 export default class ShippingTable extends Component {
@@ -16,7 +15,7 @@ export default class ShippingTable extends Component {
           slas: PropTypes.arrayOf(
             PropTypes.shape({
               id: PropTypes.string,
-              name: PropTypes.string,
+              friendlyName: PropTypes.string,
               price: PropTypes.number,
               shippingEstimate: PropTypes.string,
             })
@@ -56,13 +55,16 @@ export default class ShippingTable extends Component {
 
     return (
       <table
-        className={`${
-          styles.shippingTable
-        } bt bb b--muted-4 c-muted-1 ph0 pv3 mt4 w-100`}
+        className={`${styles.shippingTable} bt bb b--muted-4 c-muted-1 ph0 pv3 mt4 w-100`}
       >
         <tbody>
-          {slaList.map(shipping => (
-            <ShippingTableRow key={shipping.id} {...shipping} />
+          {slaList.map(shippingItem => (
+            <ShippingTableRow
+              key={shippingItem.id}
+              name={shippingItem.friendlyName}
+              shippingEstimate={shippingItem.shippingEstimate}
+              price={shippingItem.price}
+            />
           ))}
         </tbody>
       </table>

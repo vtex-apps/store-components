@@ -1,24 +1,24 @@
 import React, { memo } from 'react'
-import { string } from 'prop-types'
-import NotificationContent from './notificationContent'
+import PropTypes from 'prop-types'
 import hoistNonReactStatics from 'hoist-non-react-statics'
+import { formatIOMessage } from 'vtex.native-types'
+import { injectIntl } from 'react-intl'
 
+import NotificationContent from './notificationContent'
 import styles from './styles.css'
 
-const NotificationBar = ({ content }) => {
+const NotificationBar = ({ content, intl }) => {
   return (
     content && (
       <div
-        className={`${
-          styles.notificationBarContainer
-        } bg-base--inverted c-on-base--inverted w-100`}
+        className={`${styles.notificationBarContainer} bg-base--inverted c-on-base--inverted w-100`}
       >
         <div
-          className={`${
-            styles.notificationBarInner
-          } min-h-large flex items-center justify-center`}
+          className={`${styles.notificationBarInner} min-h-large flex items-center justify-center`}
         >
-          <NotificationContent content={content} />
+          <NotificationContent
+            content={formatIOMessage({ id: content, intl })}
+          />
         </div>
       </div>
     )
@@ -26,7 +26,8 @@ const NotificationBar = ({ content }) => {
 }
 
 NotificationBar.propTypes = {
-  content: string,
+  content: PropTypes.string,
+  intl: PropTypes.object.isRequired,
 }
 
 NotificationBar.defaultProps = {
@@ -35,16 +36,9 @@ NotificationBar.defaultProps = {
 
 NotificationBar.schema = {
   title: 'admin/editor.notification-bar.title',
-  description: 'admin/editor.notification-bar.description',
-  type: 'object',
-  properties: {
-    content: {
-      title: 'admin/editor.notification-bar.content.title',
-      description: 'admin/editor.notification-bar.content.description',
-      type: 'string',
-      default: '',
-    },
-  },
 }
 
-export default hoistNonReactStatics(NotificationBar, memo(NotificationBar))
+export default hoistNonReactStatics(
+  injectIntl(NotificationBar),
+  memo(NotificationBar)
+)

@@ -1,16 +1,25 @@
 /**
 *   SKU Selector CSS Module
 */
-.skuSelectorContainer {}
-.skuSelectorSubcontainer {}
-.skuSelectorName {}
-.skuSelectorNameContainer {}
+.skuSelectorContainer {
+}
+.skuSelectorSubcontainer {
+}
+.skuSelectorName {
+}
+.skuSelectorNameContainer {
+}
+.skuSelectorNameSeparator {
+}
+.skuSelectorSelectorImageValue {
+}
+.skuSelectorTextContainer {
+}
+
+.skuSelectorSelectContainer {}
 
 .skuSelectorItem {
   font-size: 90%;
-  margin-top: 2px;
-  margin-bottom: 3px;
-  margin-right: 10px;
   height: 36px;
 }
 
@@ -26,7 +35,7 @@
 }
 
 .skuSelectorBagde {
-  font-size: .71429rem;
+  font-size: 0.71429rem;
   background-color: #ff4136;
   border-radius: 50%;
   color: #fff;
@@ -58,4 +67,8 @@
   right: -0.25rem;
 }
 
-.seeMoreButton {}
+.seeMoreButton {
+}
+
+.skuSelectorOptionsList {
+}

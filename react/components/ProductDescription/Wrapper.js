@@ -13,10 +13,15 @@ const ProductDescriptionWrapper = props => {
 
   return (
     <ProductDescription
+      title={props.title}
       description={description}
       collapseContent={props.collapseContent}
     />
   )
+}
+
+ProductDescriptionWrapper.schema = {
+  title: 'admin/editor.product-description.title',
 }
 
 ProductDescriptionWrapper.defaultProps = {

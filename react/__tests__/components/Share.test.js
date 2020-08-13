@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
-import Share from './../../Share'
+import Share from '../../Share'
 
 describe('<Share />', () => {
   const renderComponent = props => {
@@ -10,6 +10,7 @@ describe('<Share />', () => {
 
   it('should be mounted', () => {
     const { asFragment } = renderComponent()
+
     expect(asFragment()).toBeDefined()
   })
 
@@ -19,6 +20,7 @@ describe('<Share />', () => {
         Facebook: true,
       },
     })
+
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -28,6 +30,7 @@ describe('<Share />', () => {
         Twitter: true,
       },
     })
+
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -37,6 +40,7 @@ describe('<Share />', () => {
         WhatsApp: true,
       },
     })
+
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -46,15 +50,7 @@ describe('<Share />', () => {
         Telegram: true,
       },
     })
-    expect(asFragment()).toMatchSnapshot()
-  })
 
-  it('should match the snapshot with Google+', () => {
-    const { asFragment } = renderComponent({
-      social: {
-        'Google+': true,
-      },
-    })
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -64,6 +60,7 @@ describe('<Share />', () => {
         'E-mail': true,
       },
     })
+
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -75,11 +72,13 @@ describe('<Share />', () => {
         Telegram: true,
       },
     })
+
     expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot Loader', () => {
     const { asFragment } = renderComponent({ loading: true })
+
     expect(asFragment()).toMatchSnapshot()
   })
 })

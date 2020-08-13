@@ -21,13 +21,34 @@ export function Spinner(props) {
   return <div className="spinner-mock"> {props.children} </div>
 }
 
+export function Dropdown(props) {
+  const { onChange, options } = props
+  let { value } = props
+
+  if (value === null) {
+    value = undefined
+  }
+
+  return (
+    // eslint-disable-next-line jsx-a11y/no-onchange
+    <select value={value} onChange={onChange}>
+      {options.map(op => (
+        <option key={op.value} value={op.value}>
+          {op.label}
+        </option>
+      ))}
+    </select>
+  )
+}
+
 export const Input = forwardRef(function Input(
-  { label, error, errorMessage, isLoading, ...props },
+  { label, error, errorMessage, isLoading, prefix, suffix, ...props },
   ref
 ) {
   return (
     <label>
       {label}
+      {prefix}
       <input
         data-isloading={isLoading}
         data-error={error}
@@ -35,14 +56,22 @@ export const Input = forwardRef(function Input(
         ref={ref}
         {...props}
       />
+      {suffix}
     </label>
   )
 })
 
-export const Button = jest.fn(({ isLoading, variation, children, ...props }) => {
-  return (
-    <button data-variation={variation} data-isloading={isLoading} {...props}>
-      {children}
-    </button>
-  )
-})
+export const Button = jest.fn(
+  ({ isLoading, variation, block, children, ...props }) => {
+    return (
+      <button
+        data-variation={variation}
+        data-isloading={isLoading}
+        data-block={block}
+        {...props}
+      >
+        {children}
+      </button>
+    )
+  }
+)

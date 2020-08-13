@@ -1,7 +1,12 @@
 import React from 'react'
 
-const ContentLoad = ({ children }) => (
-  <svg className="content-loader-mock">{children}</svg>
+const ContentLoad = ({ children, 'data-testid': testId }) => (
+  <svg
+    className="content-loader-mock"
+    {...(testId ? { 'data-testid': testId } : {})}
+  >
+    {children}
+  </svg>
 )
 
 export default ContentLoad

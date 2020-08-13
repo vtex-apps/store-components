@@ -1,5 +1,11 @@
 {
   "definitions": {
+    "Image": {
+      "title": "admin/editor.store-image.title",
+      "properties": {
+        "$ref": "app:vtex.store-image#/definitions/Image/properties"
+      }
+    },
     "InfoCard": {
       "properties": {
         "headline": {
@@ -26,6 +32,16 @@
           "$ref": "app:vtex.native-types#/definitions/url",
           "default": ""
         },
+        "callToActionLinkTarget": {
+          "default": "_self",
+          "type": "string",
+          "title": "admin/editor.info-card.callToActionLinkTarget.title",
+          "enum": ["_blank", "_self"],
+          "enumNames": [
+            "admin/editor.info-card.callToActionLinkTarget.blank",
+            "admin/editor.info-card.callToActionLinkTarget.self"
+          ]
+        },
         "imageUrl": {
           "title": "admin/editor.info-card.imageUrl.title",
           "description": "admin/editor.info-card.imageUrl.description",
@@ -49,6 +65,26 @@
           "description": "admin/editor.info-card.imageActionUrl.description",
           "$ref": "app:vtex.native-types#/definitions/url",
           "default": ""
+        }
+      }
+    },
+    "ProductDescription": {
+      "title": "admin/editor.product-description.title",
+      "type": "object",
+      "properties": {
+        "title": {
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "title": "admin/editor.product-description.title-prop.title"
+        }
+      }
+    },
+    "SearchBar": {
+      "title": "admin/editor.search-bar.title",
+      "type": "object",
+      "properties": {
+        "placeholder": {
+          "type": "string",
+          "title": "admin/editor.search-bar.placeholder.title"
         }
       }
     },
@@ -92,6 +128,17 @@
           "title": "admin/editor.skuSelector.seeMoreLabel.title",
           "description": "admin/editor.skuSelector.seeMoreLabel.description",
           "default": "store/skuSelector.seeMore",
+          "$ref": "app:vtex.native-types#/definitions/text"
+        }
+      }
+    },
+    "NotificationBar": {
+      "type": "object",
+      "description": "admin/editor.notification-bar.description",
+      "properties": {
+        "content": {
+          "title": "admin/editor.notification-bar.content.title",
+          "description": "admin/editor.notification-bar.content.description",
           "$ref": "app:vtex.native-types#/definitions/text"
         }
       }

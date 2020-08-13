@@ -4,7 +4,7 @@ import { isEmpty, propOr } from 'ramda'
 
 import ProductHighlights from './index'
 
-const ProductHighlightsWrapper = (props) => {
+const ProductHighlightsWrapper = props => {
   const { conditional } = props
 
   const valuesFromContext = useContext(ProductContext)
@@ -21,19 +21,24 @@ const ProductHighlightsWrapper = (props) => {
       const specificationGroups = propOr([], 'specificationGroups', product)
 
       return names.reduce((acc, item) => {
-        const highlightSpecificationGroup = specificationGroups.filter(
+        const [highlightSpecificationGroup] = specificationGroups.filter(
           x => x.name.toLowerCase() === item.trim().toLowerCase()
-        )[0]
+        )
+
         const highlight = propOr(
           [],
           'specifications',
           highlightSpecificationGroup
         )
+
         return acc.concat(highlight)
       }, [])
     }
 
-    if (choose === 'admin/editor.product-details.highlights.chooseDefaultSpecification') {
+    if (
+      choose ===
+      'admin/editor.product-details.highlights.chooseDefaultSpecification'
+    ) {
       const typeSpecifications = propOr('', 'typeSpecifications', conditional)
       const specificationNames = typeSpecifications.trim().split(',')
       const allSpecifications = propOr([], 'properties', product)
@@ -42,11 +47,14 @@ const ProductHighlightsWrapper = (props) => {
         const highlight = allSpecifications.filter(
           x => x.name.toLowerCase() === item.trim().toLowerCase()
         )
+
         return acc.concat(highlight)
       }, [])
     }
 
-    if (choose === 'admin/editor.product-details.highlights.allSpecifications') {
+    if (
+      choose === 'admin/editor.product-details.highlights.allSpecifications'
+    ) {
       return propOr([], 'properties', product)
     }
   }
@@ -62,9 +70,7 @@ const ProductHighlightsWrapper = (props) => {
     }
   }
 
-  return (
-    <ProductHighlights { ...productHighlightsProps() } />
-  )
+  return <ProductHighlights {...productHighlightsProps()} />
 }
 
 ProductHighlightsWrapper.schema = {
@@ -104,7 +110,9 @@ ProductHighlightsWrapper.schema = {
             {
               properties: {
                 highlight: {
-                  enum: ['admin/editor.product-details.highlights.chooseDefault'],
+                  enum: [
+                    'admin/editor.product-details.highlights.chooseDefault',
+                  ],
                 },
                 typeHighlight: {
                   type: 'string',

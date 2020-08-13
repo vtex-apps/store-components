@@ -1,5 +1,13 @@
-import React from 'react'
+const useProduct = jest.fn(() => {
+  return {
+    product: {},
+    buyButton: {
+      clicked: false,
+    },
+    skuSelector: {
+      areAllVariationsSelected: true,
+    },
+  }
+})
 
-const ProductContext = React.createContext({})
-const useProduct = () => React.useContext(ProductContext)
 export default useProduct

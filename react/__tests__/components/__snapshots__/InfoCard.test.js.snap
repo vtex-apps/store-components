@@ -13,18 +13,26 @@ exports[`<InfoCard /> should insert span with class on headline 1`] = `
       <div
         class="infoCardHeadline t-heading-2 mt6 tc c-on-base mw-100"
       >
-        HEADLINE 
-        <span
-          class="my-custom-class"
+        <div
+          style="display: contents;"
         >
-          THIS IS BOOOLD AND BLUE
-        </span>
-         HEADLINE STILL
+          HEADLINE 
+          <span
+            class="my-custom-class"
+          >
+            THIS IS BOOOLD AND BLUE
+          </span>
+           HEADLINE STILL
+        </div>
       </div>
       <div
         class="infoCardSubhead t-body mt6 c-on-base tc mw-100"
       >
-        MY SUBHEAD
+        <div
+          style="display: contents;"
+        >
+          MY SUBHEAD
+        </div>
       </div>
     </div>
   </div>
@@ -44,13 +52,42 @@ exports[`<InfoCard /> should not render subhead 1`] = `
       <div
         class="infoCardHeadline t-heading-2 mt6 tc c-on-base mw-100"
       >
-        HEADLINE 
-        <span
-          class="my-custom-class"
+        <div
+          style="display: contents;"
         >
-          THIS IS BOOOLD AND BLUE
-        </span>
-         HEADLINE STILL
+          HEADLINE 
+          <span
+            class="my-custom-class"
+          >
+            THIS IS BOOOLD AND BLUE
+          </span>
+           HEADLINE STILL
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<InfoCard /> should render subhead and headline using the RichText component when textMode is set to 'rich-text' 1`] = `
+<DocumentFragment>
+  <div
+    class="infoCardContainer items-center bg-center bb b--muted-4 flex justify-center"
+    data-testid="container"
+    style="background-image: url(my-image.com/image.png); background-size: cover;"
+  >
+    <div
+      class="infoCardTextContainer flex flex-column mw-100 mh8-ns mh4-s w-40-ns items-center"
+    >
+      <div
+        data-testid="rich-text"
+      >
+        This is a headline, and should be inside a rich-text.
+      </div>
+      <div
+        data-testid="rich-text"
+      >
+        This is a subhead, and should be inside a rich-text.
       </div>
     </div>
   </div>
@@ -70,12 +107,20 @@ exports[`<InfoCard /> should render with full mode style 1`] = `
       <div
         class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
       >
-        MY HEADLINE
+        <div
+          style="display: contents;"
+        >
+          MY HEADLINE
+        </div>
       </div>
       <div
         class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
       >
-        MY SUBHEAD
+        <div
+          style="display: contents;"
+        >
+          MY SUBHEAD
+        </div>
       </div>
       <a
         href="dummy"
@@ -101,12 +146,20 @@ exports[`<InfoCard /> should render with image and text side by side 1`] = `
       <div
         class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
       >
-        MY HEADLINE
+        <div
+          style="display: contents;"
+        >
+          MY HEADLINE
+        </div>
       </div>
       <div
         class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
       >
-        MY SUBHEAD
+        <div
+          style="display: contents;"
+        >
+          MY SUBHEAD
+        </div>
       </div>
       <a
         href="dummy"
@@ -144,12 +197,20 @@ exports[`<InfoCard /> should render without a call to action 1`] = `
       <div
         class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
       >
-        MY HEADLINE
+        <div
+          style="display: contents;"
+        >
+          MY HEADLINE
+        </div>
       </div>
       <div
         class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
       >
-        MY SUBHEAD
+        <div
+          style="display: contents;"
+        >
+          MY SUBHEAD
+        </div>
       </div>
     </div>
   </div>
@@ -168,12 +229,20 @@ exports[`<InfoCard /> should wrap half image in a link with imageActionUrl 1`] =
       <div
         class="infoCardHeadline t-heading-2 mt6 tl c-on-base mw-100"
       >
-        MY HEADLINE
+        <div
+          style="display: contents;"
+        >
+          MY HEADLINE
+        </div>
       </div>
       <div
         class="infoCardSubhead t-body mt6 c-on-base tl mw-100"
       >
-        MY SUBHEAD
+        <div
+          style="display: contents;"
+        >
+          MY SUBHEAD
+        </div>
       </div>
     </div>
     <div
@@ -211,12 +280,20 @@ exports[`<InfoCard /> should wrap whole container in a link with imageActionUrl 
         <div
           class="infoCardHeadline t-heading-2 mt6 tc c-on-base mw-100"
         >
-          MY HEADLINE
+          <div
+            style="display: contents;"
+          >
+            MY HEADLINE
+          </div>
         </div>
         <div
           class="infoCardSubhead t-body mt6 c-on-base tc mw-100"
         >
-          MY SUBHEAD
+          <div
+            style="display: contents;"
+          >
+            MY SUBHEAD
+          </div>
         </div>
       </div>
     </div>

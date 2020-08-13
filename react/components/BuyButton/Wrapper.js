@@ -1,113 +1,150 @@
-import React, { useContext } from 'react'
-import { ProductContext } from 'vtex.product-context'
-import { path, isEmpty, compose, pathOr } from 'ramda'
+import React from 'react'
+import useProduct from 'vtex.product-context/useProduct'
+import { path, isEmpty, compose } from 'ramda'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { withToast } from 'vtex.styleguide'
-import { orderFormConsumer } from 'vtex.store-resources/OrderFormContext'
-import ProductPrice from '../ProductPrice'
+import { useOrderForm } from 'vtex.store-resources/OrderFormContext'
 import { graphql } from 'react-apollo'
+import { useCssHandles } from 'vtex.css-handles'
 
+import ProductPrice from '../ProductPrice'
 import { BuyButton } from './index'
-import { transformAssemblyOptions } from './assemblyUtils'
+import { transformAssemblyOptions, sumAssembliesPrice } from './assemblyUtils'
 import addToCartMutation from './mutations/addToCart.gql'
 import setOpenMinicartMutation from './mutations/setOpenMinicart.gql'
+import installedApp from './queries/installedApp.gql'
+
+const MESSAGE_CSS_HANDLES = [
+  'buyButtonText',
+  'buttonDataContainer',
+  'buttonItemsPrice',
+]
+
+const CHECKOUT_URL = {
+  V0: '/checkout/#/cart',
+  V1: '/cart',
+}
 
 const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
+  const handles = useCssHandles(MESSAGE_CSS_HANDLES)
+
   if (!showItemsPrice) {
-    return <FormattedMessage id="store/buy-button.add-to-cart" />
+    return (
+      <FormattedMessage id="store/buy-button.add-to-cart">
+        {message => <span className={handles.buyButtonText}>{message}</span>}
+      </FormattedMessage>
+    )
   }
 
   const totalPrice = skuItems.reduce((acc, item) => {
-    const itemPrice = item.price * item.quantity
-    const addedAssemblyOptions = pathOr([], ['assemblyOptions', 'added'], item)
-    return (
-      acc +
-      addedAssemblyOptions.reduce(
-        (childAcc, option) =>
-          childAcc +
-          option.item.sellingPrice * option.normalizedQuantity * item.quantity,
-        itemPrice
-      )
-    )
+    const itemPrice =
+      item.sellingPriceWithAssemblies != null
+        ? item.sellingPriceWithAssemblies
+        : item.price
+
+    const itemCost = itemPrice * item.quantity
+
+    return acc + itemCost
   }, 0)
 
   return (
-    <div className="flex w-100 justify-between items-center">
-      <FormattedMessage id="store/buy-button.add-to-cart" />
+    <div
+      className={`${handles.buttonDataContainer} flex w-100 justify-between items-center`}
+    >
+      <FormattedMessage id="store/buy-button.add-to-cart">
+        {message => <span className={handles.buyButtonText}>{message}</span>}
+      </FormattedMessage>
       <ProductPrice
         showLabels={false}
         showListPrice={false}
         sellingPrice={totalPrice}
+        className={handles.buttonItemsPrice}
       />
     </div>
   )
 }
 
-const BuyButtonWrapper = props => {
-  const {
-    intl,
-    addToCart,
-    showToast,
-    orderFormContext,
-    onAddStart,
-    onAddFinish,
-    children,
-  } = props
+const BuyButtonWrapper = ({
+  intl,
+  addToCart,
+  showToast,
+  onAddStart,
+  onAddFinish,
+  children,
+  isOneClickBuy,
+  shouldOpenMinicart,
+  setMinicartOpen,
+  showItemsPrice,
+  available: propAvailable,
+  skuItems: propSkuItems,
+  large: propLarge,
+  disabled: propDisabled,
+  shouldAddToCart,
+  customToastURL,
+  showTooltipOnSkuNotSelected,
+  checkoutVersion,
+  selectedSeller,
+}) => {
+  const orderFormContext = useOrderForm()
+  const valuesFromContext = useProduct()
 
-  const valuesFromContext = useContext(ProductContext)
+  const isEmptyContext = !valuesFromContext || isEmpty(valuesFromContext)
 
-  const buyButtonProps = () => {
-    if (!valuesFromContext || isEmpty(valuesFromContext)) {
-      return props
-    }
+  const product = valuesFromContext && valuesFromContext.product
+  const selectedItem = valuesFromContext && valuesFromContext.selectedItem
+  const assemblyOptions = valuesFromContext && valuesFromContext.assemblyOptions
 
-    const {
-      product,
-      selectedItem,
-      selectedQuantity,
-      assemblyOptions,
-    } = valuesFromContext
+  selectedSeller =
+    selectedSeller || path(['selectedItem', 'sellers', 0], valuesFromContext)
+  const selectedQuantity =
+    valuesFromContext && valuesFromContext.selectedQuantity != null
+      ? valuesFromContext.selectedQuantity
+      : 1
 
-    const sellerId = path(['sellers', 0, 'sellerId'], selectedItem)
-    const commertialOffer = path(
-      ['sellers', 0, 'commertialOffer'],
-      selectedItem
-    )
+  const skuItems =
+    isEmptyContext || propSkuItems != null
+      ? propSkuItems
+      : // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        EnhancedBuyButton.mapCatalogItemToCart({
+          product,
+          selectedItem,
+          selectedQuantity,
+          selectedSeller,
+          assemblyOptions,
+        })
 
-    const available =
-      Number.isNaN(+path(['AvailableQuantity'], commertialOffer)) ||
-      path(['AvailableQuantity'], commertialOffer) > 0
+  const large = isEmptyContext || propLarge != null ? propLarge : true
 
-    const contextSkuItems = product &&
-      selectedItem &&
-      sellerId && [
-        {
-          skuId: selectedItem.itemId,
-          quantity: selectedQuantity,
-          seller: sellerId,
-          name: selectedItem.nameComplete,
-          price: commertialOffer.Price,
-          variant: selectedItem.name,
-          brand: product.brand,
-          index: 0,
-          detailUrl: `/${product.linkText}/p`,
-          imageUrl: path(['images', '0', 'imageUrl'], selectedItem),
-          listPrice: path(
-            ['sellers', '0', 'commertialOffer', 'ListPrice'],
-            selectedItem
-          ),
-          ...transformAssemblyOptions(assemblyOptions, commertialOffer.Price),
-        },
-      ]
+  const available =
+    isEmptyContext || propAvailable != null
+      ? propAvailable
+      : selectedSeller &&
+        selectedSeller.commertialOffer &&
+        selectedSeller.commertialOffer.AvailableQuantity > 0
 
-    return {
-      ...props,
-      skuItems: props.skuItems == null ? contextSkuItems : props.skuItems,
-      large: props.large == null ? true : props.large,
-      available: props.available == null ? available : props.available,
-    }
-  }
-  const buttonProps = buyButtonProps()
+  const groupsValidArray =
+    (assemblyOptions &&
+      assemblyOptions.areGroupsValid &&
+      Object.values(assemblyOptions.areGroupsValid)) ||
+    []
+
+  const areAssemblyGroupsValid = groupsValidArray.every(Boolean)
+  const disabled =
+    isEmptyContext || propDisabled != null
+      ? propDisabled
+      : !areAssemblyGroupsValid
+
+  const version =
+    checkoutVersion &&
+    checkoutVersion.installedAppPublic &&
+    checkoutVersion.installedAppPublic.version
+
+  const checkoutUrl =
+    // eslint-disable-next-line radix
+    version && parseInt(version.split('.')[0]) > 0
+      ? CHECKOUT_URL.V1
+      : CHECKOUT_URL.V0
+
   return (
     <BuyButton
       intl={intl}
@@ -116,13 +153,20 @@ const BuyButtonWrapper = props => {
       onAddFinish={onAddFinish}
       showToast={showToast}
       orderFormContext={orderFormContext}
-      {...buttonProps}
+      skuItems={skuItems}
+      large={large}
+      available={available}
+      isOneClickBuy={isOneClickBuy}
+      shouldOpenMinicart={shouldOpenMinicart}
+      setMinicartOpen={setMinicartOpen}
+      disabled={disabled}
+      customToastURL={customToastURL}
+      shouldAddToCart={shouldAddToCart}
+      showTooltipOnSkuNotSelected={showTooltipOnSkuNotSelected}
+      checkoutUrl={checkoutUrl}
     >
       {children || (
-        <BuyButtonMessage
-          showItemsPrice={props.showItemsPrice}
-          skuItems={buttonProps.skuItems}
-        />
+        <BuyButtonMessage showItemsPrice={showItemsPrice} skuItems={skuItems} />
       )}
     </BuyButton>
   )
@@ -142,10 +186,67 @@ const withOpenMinicart = graphql(setOpenMinicartMutation, {
   }),
 })
 
-export default compose(
+const withCheckoutVersion = graphql(installedApp, {
+  name: 'checkoutVersion',
+  options: {
+    ssr: false,
+    variables: {
+      slug: 'vtex.checkout',
+    },
+  },
+})
+
+const EnhancedBuyButton = compose(
   withAddToCart,
   withOpenMinicart,
+  withCheckoutVersion,
   withToast,
-  injectIntl,
-  orderFormConsumer
+  injectIntl
 )(BuyButtonWrapper)
+
+// This function is public available to be used only by vtex.product-summary.
+// We do not garantee this API will not change and might happen breaking change anytime.
+EnhancedBuyButton.mapCatalogItemToCart = function mapCatalogItemToCart({
+  product,
+  selectedItem,
+  selectedQuantity,
+  selectedSeller,
+  assemblyOptions,
+}) {
+  return (
+    product &&
+    selectedItem &&
+    selectedSeller &&
+    selectedSeller.commertialOffer && [
+      {
+        index: 0,
+        quantity: selectedQuantity,
+        detailUrl: `/${product.linkText}/p`,
+        name: product.productName,
+        brand: product.brand,
+        category:
+          product.categories && product.categories.length > 0
+            ? product.categories[0]
+            : '',
+        productRefId: product.productReference,
+        seller: selectedSeller.sellerId,
+        price: selectedSeller.commertialOffer.Price,
+        listPrice: selectedSeller.commertialOffer.ListPrice,
+        variant: selectedItem.name,
+        skuId: selectedItem.itemId,
+        imageUrl: path(['images', '0', 'imageUrl'], selectedItem),
+        ...transformAssemblyOptions(
+          path(['items'], assemblyOptions),
+          path(['inputValues'], assemblyOptions),
+          selectedSeller.commertialOffer.Price,
+          selectedQuantity
+        ),
+        sellingPriceWithAssemblies:
+          selectedSeller.commertialOffer.Price +
+          sumAssembliesPrice(path(['items'], assemblyOptions) || {}),
+      },
+    ]
+  )
+}
+
+export default EnhancedBuyButton

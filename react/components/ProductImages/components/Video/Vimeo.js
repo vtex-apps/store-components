@@ -2,17 +2,44 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class Vimeo extends Component {
-  static getThumbUrl = (url, thumbWidth) =>
-    new Promise(resolve => {
-      const getUrl = `https://vimeo.com/api/oembed.json?url=${url}`
-      fetch(getUrl)
-        .then(response => {
-          return response.json()
+  constructor(props) {
+    super(props)
+
+    this.state = { iframe: {} }
+
+    const { loop, autoplay, width, height, showTitle, url } = this.props
+    const params = `autoplay=${autoplay}&loop=${loop}&title=${showTitle}&width=${width}&height=${height}`
+    const getUrl = `https://vimeo.com/api/oembed.json?url=${url}&${params}`
+
+    this.iframeRef = React.createRef()
+
+    fetch(getUrl)
+      .then(response => response.json())
+      .then(response => {
+        const { height: heightDiv, width: widthDiv, html, title } = response
+
+        const thumbUrl = Vimeo.thumbUrlFromResp(response, props.thumbWidth)
+
+        props.setThumb && props.setThumb(thumbUrl, title)
+
+        const [, src] = html.match(/src= *" *([^"]*) *"/) // Get url from response
+
+        this.setState({
+          iframe: {
+            divStyle: { padding: `${(100 * heightDiv) / widthDiv}% 0 0 0` },
+            src,
+          },
         })
-        .then(response => {
-          resolve(Vimeo.thumbUrlFromResp(response, thumbWidth))
-        })
-    })
+      })
+  }
+
+  static getThumbUrl = url => {
+    const getUrl = `https://vimeo.com/api/oembed.json?url=${url}`
+
+    return fetch(getUrl)
+      .then(response => response.json())
+      .then(response => response.thumbnail_url)
+  }
 
   static thumbUrlFromResp(response, thumbWidth) {
     const { height, width } = response
@@ -27,46 +54,11 @@ class Vimeo extends Component {
     )
   }
 
-  constructor(props) {
-    super(props)
-
-    this.state = { iframe: {} }
-
-    const { loop, autoplay, width, height, showTitle, url } = this.props
-    const params = `autoplay=${autoplay}&loop=${loop}&title=${showTitle}&width=${width}&height=${height}`
-    const getUrl = `https://vimeo.com/api/oembed.json?url=${url}&${params}`
-
-    this.iframeRef = React.createRef()
-
-    fetch(getUrl)
-      .then(response => {
-        return response.json()
-      })
-      .then(response => {
-        const { height, width, html, title } = response
-
-        const thumbUrl = Vimeo.thumbUrlFromResp(response, props.thumbWidth)
-        props.setThumb && props.setThumb(thumbUrl, title)
-
-        const src = html.match(/src= *" *([^"]*) *"/)[1] // Get url from response
-
-        this.setState({
-          iframe: {
-            divStyle: { padding: `${(100 * height) / width}% 0 0 0` },
-            src: src,
-          },
-        })
-      })
-  }
-
-  componentDidMount() {
-    this.iframeRef.onload = () => (this.frameReady = true)
-  }
-
   executeCommand = command => () => {
     if (!this.frameReady) return
 
     const vimeoCommand = JSON.stringify({ method: command })
+
     this.iframeRef.contentWindow.postMessage(
       vimeoCommand,
       'https://player.vimeo.com'
@@ -75,18 +67,21 @@ class Vimeo extends Component {
 
   render() {
     const { iframe } = this.state
-    const { className, id } = this.props
+    const { className, id, cssHandles } = this.props
 
     this.props.playing
       ? this.executeCommand('play')()
       : this.executeCommand('pause')()
 
     return (
-      <div style={iframe.divStyle} className={`relative ${className}`}>
+      <div
+        style={iframe.divStyle}
+        className={`relative ${className} ${cssHandles.videoContainer}`}
+      >
         <iframe
           ref={this.iframeRef}
           title={id}
-          className="absolute top-0 left-0 w-100 h-100"
+          className={`${cssHandles.video} absolute top-0 left-0 w-100 h-100`}
           src={iframe.src}
           frameBorder="0"
           allowFullScreen
@@ -109,6 +104,10 @@ Vimeo.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   playing: PropTypes.bool,
+  cssHandles: PropTypes.shape({
+    video: PropTypes.string.isRequired,
+    videoContainer: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 Vimeo.defaultProps = {

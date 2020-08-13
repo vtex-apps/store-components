@@ -1,46 +1,55 @@
-import { InMemoryCache } from 'apollo-cache-inmemory'
 import React from 'react'
-import { render } from '@vtex/test-tools/react'
+import { render, wait } from '@vtex/test-tools/react'
 
+import orderFormQuery from '../../components/Greeting/queries/orderForm.gql'
 import Greeting from '../../Greeting'
 
-describe('<Greeting /> component', () => {
-  const data = {
-    minicart: {
-      __typename: 'Minicart',
-      orderForm: JSON.stringify({
-        __typename: 'OrderFormClient',
-        clientProfileData: {
-          __typename: 'ClientProfileData',
-          firstName: 'name',
-        },
-      }),
+const mocks = [
+  {
+    request: {
+      query: orderFormQuery,
     },
-  }
+    result: {
+      data: {
+        minicart: {
+          orderForm: '{ "clientProfileData": { "firstName": "Adam" } }',
+        },
+      },
+    },
+  },
+]
 
-  const cache = new InMemoryCache()
-  cache.writeData({ data })
+describe('<Greeting /> component', () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
 
   const renderComponent = customProps => {
     const props = {
       ...customProps,
     }
 
-    return render(<Greeting {...props} />, { graphql: { cache: cache } })
+    return render(<Greeting {...props} />, { graphql: { mocks } })
   }
 
-  it('should be rendered', () => {
-    const { asFragment } = renderComponent()
-    expect(asFragment()).toBeTruthy()
+  it('should render name in orderForm', async () => {
+    const { queryByText } = renderComponent()
+
+    await wait(() => {
+      jest.runAllTimers()
+    })
+
+    expect(queryByText('Adam')).not.toBeFalsy()
   })
 
-  it('should match snapshot without loading', () => {
-    const { asFragment } = renderComponent()
-    expect(asFragment({ loading: false })).toMatchSnapshot()
-  })
+  // eslint-disable-next-line jest/no-identical-title
+  it('should render name in orderForm', async () => {
+    const { queryByTestId } = renderComponent({ loading: true })
 
-  it('should match snapshot with loading', () => {
-    const { asFragment } = renderComponent({ loading: true })
-    expect(asFragment()).toMatchSnapshot()
+    await wait(() => {
+      jest.runAllTimers()
+    })
+
+    expect(queryByTestId('greeting-loader')).not.toBeFalsy()
   })
 })

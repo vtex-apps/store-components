@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { ApolloConsumer } from 'react-apollo'
-import { injectIntl, intlShape } from 'react-intl'
-
+import { injectIntl } from 'react-intl'
 import { Button, Input } from 'vtex.styleguide'
 
 import ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION from './mutations/addToAvailabilitySubscriberMutation.gql'
-
 import styles from './styles.css'
 
 /**
@@ -29,7 +27,7 @@ class AvailabilitySubscriber extends Component {
   static propTypes = {
     /** The id of the current product sku */
     skuId: PropTypes.string.isRequired,
-    intl: intlShape.isRequired,
+    intl: PropTypes.object.isRequired,
   }
 
   validateEmail = email => {
@@ -90,7 +88,7 @@ class AvailabilitySubscriber extends Component {
           },
           {
             key: 'notificationSend',
-            value: false,
+            value: 'false',
           },
           {
             key: 'createdAt',
@@ -103,6 +101,7 @@ class AvailabilitySubscriber extends Component {
         ],
       },
     }
+
     this.setState({
       isLoading: true,
     })
@@ -112,7 +111,7 @@ class AvailabilitySubscriber extends Component {
         variables,
       })
       .then(
-        mutationRes => {
+        () => {
           this.setState({
             name: '',
             email: '',
@@ -121,7 +120,7 @@ class AvailabilitySubscriber extends Component {
           })
         },
         mutationErr => {
-          console.log('ERROR: ', mutationErr)
+          console.error('ERROR: ', mutationErr)
           this.setState({
             isLoading: false,
             sendStatus: 'error',
@@ -129,6 +128,7 @@ class AvailabilitySubscriber extends Component {
         }
       )
     const event = new Event('message:success')
+
     event.details = {
       success: true,
       message: this.translate('store/availability-subscriber.added-message'),
@@ -182,9 +182,7 @@ class AvailabilitySubscriber extends Component {
                 className={`${styles.content} flex-ns justify-between mt4 mw6`}
               >
                 <div
-                  className={`${styles.input} ${
-                    styles.inputName
-                  } w-100 mr5 mb4`}
+                  className={`${styles.input} ${styles.inputName} w-100 mr5 mb4`}
                 >
                   <Input
                     name="name"
@@ -200,9 +198,7 @@ class AvailabilitySubscriber extends Component {
                   />
                 </div>
                 <div
-                  className={`${styles.input} ${
-                    styles.inputEmail
-                  } w-100 mr5 mb4`}
+                  className={`${styles.input} ${styles.inputEmail} w-100 mr5 mb4`}
                 >
                   <Input
                     name="email"
@@ -234,12 +230,16 @@ class AvailabilitySubscriber extends Component {
               </div>
               {sendStatus === 'success' && (
                 <div className={`${styles.success} t-body c-success`}>
-                  {this.translate('store/availability-subscriber.added-message')}
+                  {this.translate(
+                    'store/availability-subscriber.added-message'
+                  )}
                 </div>
               )}
               {sendStatus === 'error' && (
                 <div className={`${styles.error} c-danger`}>
-                  {this.translate('store/availability-subscriber.error-message')}
+                  {this.translate(
+                    'store/availability-subscriber.error-message'
+                  )}
                 </div>
               )}
             </form>

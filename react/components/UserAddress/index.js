@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { graphql } from 'react-apollo'
-import { address as addressQuery } from 'vtex.store-resources/Queries'
+import ADDRESS_QUERY from 'vtex.store-resources/QueryAddress'
 
 import Container from '../Container'
 import AddressInfo from './AddressInfo'
 
-const UserAddress = ({ variation, addressQuery }) => {
-  const { orderForm } = addressQuery
+const UserAddress = ({ variation, addressQuery: addressQueryProp }) => {
+  const { orderForm } = addressQueryProp
   const { shippingData } = orderForm || {}
 
   if (!orderForm || !shippingData || !shippingData.address) {
@@ -52,7 +52,7 @@ UserAddress.propTypes = {
   addressQuery: PropTypes.object.isRequired,
 }
 
-const withAddressQuery = graphql(addressQuery, {
+const withAddressQuery = graphql(ADDRESS_QUERY, {
   name: 'addressQuery',
   options: () => ({ ssr: false }),
 })

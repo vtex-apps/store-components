@@ -1,67 +1,121 @@
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import React, { useMemo, useEffect, useState } from 'react'
-import debounce from 'debounce'
+import { useCssHandles } from 'vtex.css-handles'
 
 import Carousel from './components/Carousel'
-import styles from './styles.css'
+import {
+  THUMBS_ORIENTATION,
+  THUMBS_POSITION_HORIZONTAL,
+  DEFAULT_EXCLUDE_IMAGE_WITH,
+} from './utils/enums'
 
-const getBestUrlIndex = thresholds => {
-  const windowSize = window.innerWidth
+const CSS_HANDLES = ['content', 'productImagesContainer']
 
-  let bestUrlIndex = 0
+const ProductImages = ({
+  position,
+  displayThumbnailsArrows,
+  hiddenImages,
+  images: allImages,
+  videos: allVideos,
+  thumbnailsOrientation,
+  aspectRatio,
+  maxHeight,
+  thumbnailAspectRatio,
+  thumbnailMaxHeight,
+  showNavigationArrows,
+  showPaginationDots,
+  contentOrder = 'images-first',
+  zoomMode,
+  zoomFactor,
+  ModalZoomElement,
+  contentType = 'all',
+  // Deprecated
+  zoomProps,
+}) => {
+  if (hiddenImages && !Array.isArray(hiddenImages)) {
+    hiddenImages = [hiddenImages]
+  }
 
-  thresholds.forEach((threshold, i) => {
-    if (windowSize > threshold) bestUrlIndex = i + 1
-  })
+  const excludeImageRegexes =
+    hiddenImages && hiddenImages.map(text => new RegExp(text, 'i'))
 
-  return bestUrlIndex
-}
+  const handles = useCssHandles(CSS_HANDLES)
 
-const ProductImages = props => {
-  const [_, setState] = useState(0)
-  const { position, zoomProps } = props
+  const shouldIncludeImages = contentType !== 'videos'
+  const images = shouldIncludeImages
+    ? allImages
+        .filter(
+          image =>
+            !image.imageLabel ||
+            !excludeImageRegexes.some(regex => regex.test(image.imageLabel))
+        )
+        .map(image => ({
+          type: 'image',
+          url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
+          alt: image.imageText,
+          thumbUrl: image.thumbnailUrl || image.imageUrl,
+        }))
+    : []
 
-  const debouncedGetBestUrl = debounce(() => {
-    // force update
-    setState(c => c + 1)
-  }, 500)
+  const shouldIncludeVideos = contentType !== 'images'
+  const videos = shouldIncludeVideos
+    ? allVideos.map(video => ({
+        type: 'video',
+        src: video.videoUrl,
+        thumbWidth: 300,
+      }))
+    : []
 
-  useEffect(() => {
-    window.addEventListener('resize', debouncedGetBestUrl)
-
-    return () => {
-      window.removeEventListener('resize', debouncedGetBestUrl)
-
-      debouncedGetBestUrl.clear()
-    }
-  }, [debouncedGetBestUrl])
+  const showVideosFirst = contentOrder === 'videos-first'
 
   const slides = useMemo(() => {
-    const { images } = props
-
-    if (images.length === 0) return
-
-    return images.map(image => {
-      return {
-        type: 'image',
-        urls: image.imageUrls,
-        alt: image.imageText,
-        thumbUrl: image.thumbnailUrl || image.imageUrls[0],
-        bestUrlIndex: getBestUrlIndex(image.thresholds),
-      }
-    })
-  }, [props.images])
+    return showVideosFirst ? [...videos, ...images] : [...images, ...videos]
+  }, [showVideosFirst, videos, images])
 
   return (
-    <div className={`${styles.content} w-100`}>
-      <Carousel slides={slides} position={position} zoomProps={zoomProps} />
+    <div
+      className={`${handles.productImagesContainer} ${handles.content} w-100`}
+    >
+      <Carousel
+        slides={slides}
+        position={position}
+        zoomMode={zoomMode}
+        maxHeight={maxHeight}
+        zoomFactor={zoomFactor}
+        aspectRatio={aspectRatio}
+        ModalZoomElement={ModalZoomElement}
+        thumbnailMaxHeight={thumbnailMaxHeight}
+        showPaginationDots={showPaginationDots}
+        thumbnailAspectRatio={thumbnailAspectRatio}
+        showNavigationArrows={showNavigationArrows}
+        thumbnailsOrientation={thumbnailsOrientation}
+        displayThumbnailsArrows={displayThumbnailsArrows}
+        // Deprecated
+        zoomProps={zoomProps}
+      />
     </div>
   )
 }
 
 ProductImages.propTypes = {
   /** The position of the thumbs */
-  position: PropTypes.oneOf(['left', 'right']),
+  position: PropTypes.oneOf([
+    THUMBS_POSITION_HORIZONTAL.LEFT,
+    THUMBS_POSITION_HORIZONTAL.RIGHT,
+  ]),
+  ModalZoomElement: PropTypes.any,
+  thumbnailsOrientation: PropTypes.oneOf([
+    THUMBS_ORIENTATION.VERTICAL,
+    THUMBS_ORIENTATION.HORIZONTAL,
+  ]),
+  /** This is a necessary prop if you're using SKUSelector to display color images
+   * (like a image with only green to represent an SKU of something green) and you
+   * want to not display this image in the ProductImages component, to do this you
+   * just have to upload the image in the catalog with the value of this prop inside the imageText property */
+  hiddenImages: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   /** Array of images to be passed for the Thumbnail Slider component as a props */
   images: PropTypes.arrayOf(
     PropTypes.shape({
@@ -72,58 +126,42 @@ ProductImages.propTypes = {
       /** URL of the image thumbnail */
       thumbnailUrl: PropTypes.string,
       /** Text that describes the image */
-      imageText: PropTypes.string.isRequired,
+      imageText: PropTypes.string,
     })
   ),
+  videos: PropTypes.arrayOf(
+    PropTypes.shape({
+      videoUrl: PropTypes.string,
+    })
+  ),
+  zoomProps: PropTypes.shape({
+    zoomType: PropTypes.string,
+  }),
+  displayThumbnailsArrows: PropTypes.bool,
+  aspectRatio: PropTypes.string,
+  maxHeight: PropTypes.number,
+  thumbnailAspectRatio: PropTypes.string,
+  thumbnailMaxHeight: PropTypes.number,
+  showNavigationArrows: PropTypes.bool,
+  showPaginationDots: PropTypes.bool,
+  contentOrder: PropTypes.oneOf(['images-first', 'videos-first']),
+  zoomMode: PropTypes.oneOf([
+    'disabled',
+    'open-modal',
+    'in-place-click',
+    'in-place-hover',
+  ]),
+  zoomFactor: PropTypes.number,
+  contentType: PropTypes.oneOf(['all', 'images', 'videos']),
 }
 
 ProductImages.defaultProps = {
   images: [],
-  position: 'left',
+  position: THUMBS_POSITION_HORIZONTAL.LEFT,
   zoomProps: { zoomType: 'in-page' },
-}
-
-ProductImages.getSchema = ({ zoomProps: { zoomType } = {} }) => {
-  return {
-    title: 'admin/editor.product-images.title',
-    description: 'admin/editor.product-images.description',
-    type: 'object',
-    properties: {
-      zoomProps: {
-        title: 'admin/editor.product-images.zoomOptions.title',
-        type: 'object',
-        properties: {
-          zoomType: {
-            title: 'admin/editor.product-images.zoomType.title',
-            type: 'string',
-            enum: ['gallery', 'in-page', 'no-zoom'],
-            enumNames: [
-              'admin/editor.product-images.gallery',
-              'admin/editor.product-images.in-page',
-              'admin/editor.product-images.no-zoom',
-            ],
-            widget: {
-              'ui:options': {
-                inline: false,
-              },
-              'ui:widget': 'radio',
-            },
-            default: 'no-zoom',
-          },
-          ...(zoomType === 'gallery' && {
-            bgOpacity: {
-              title: 'admin/editor.product-images.bgopacity.title',
-              type: 'number',
-              minimum: 0.0,
-              maximum: 1.0,
-              multipleOf: 0.01,
-              default: 0.8,
-            },
-          }),
-        },
-      },
-    },
-  }
+  thumbnailsOrientation: THUMBS_ORIENTATION.VERTICAL,
+  displayThumbnailsArrows: false,
+  hiddenImages: DEFAULT_EXCLUDE_IMAGE_WITH,
 }
 
 export default ProductImages

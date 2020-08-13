@@ -1,8 +1,20 @@
 {
-  "extends": "eslint-config-vtex-react",
+  "rules": {
+    "react/jsx-filename-extension": "off"
+  },
+  "extends": "vtex-react",
   "env": {
     "browser": true,
     "es6": true,
     "jest": true
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"],
+      "parser": "babel-eslint",
+      "parserOptions": {
+        "sourceType": "module"
+      }
+    }
+  ]
 }

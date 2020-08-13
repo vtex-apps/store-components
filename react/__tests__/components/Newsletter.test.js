@@ -1,5 +1,6 @@
 import React from 'react'
-import { render, fireEvent, waitForElement } from '@vtex/test-tools/react'
+import { fireEvent, waitForElement, render } from '@vtex/test-tools/react'
+
 import Newsletter from '../../components/Newsletter'
 import subscribeNewsletter from '../../components/Newsletter/mutations/subscribeNewsletter.graphql'
 
@@ -38,6 +39,7 @@ test('should add error message when user types wrong email', () => {
   const submit = getByText(submitTextId)
 
   const wrongEmail = 'foobar'
+
   fireEvent.change(mockedInput, { target: { value: wrongEmail } })
   fireEvent.click(submit)
 
@@ -50,7 +52,7 @@ test('should call mutation', async () => {
     {
       request: {
         query: subscribeNewsletter,
-        variables: { email: email },
+        variables: { email },
       },
       result: {
         data: {

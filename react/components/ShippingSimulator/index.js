@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
-import { injectIntl, intlShape } from 'react-intl'
-import { compose, withApollo } from 'react-apollo'
+import { injectIntl } from 'react-intl'
+import { useApolloClient } from 'react-apollo'
 import PropTypes from 'prop-types'
 import { Button } from 'vtex.styleguide'
 import {
@@ -17,34 +17,32 @@ import ShippingSimulatorLoader from './Loader'
 import styles from './shippingSimulator.css'
 import { getNewAddress } from './utils'
 
-const ShippingSimulator = ({
-  intl,
-  client,
-  skuId,
-  seller,
-  country,
-  loaderStyles,
-}) => {
+// eslint-disable-next-line react/prop-types
+const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
+  const client = useApolloClient()
   const [address, setAddress] = useState(() =>
     addValidation(getNewAddress(country))
   )
+
   const [shipping, setShipping] = useState(null)
   const [loading, setLoading] = useState(false)
   const [isValid, setIsValid] = useState(false)
 
   const handleAddressChange = newAddress => {
-    setAddress({
+    const updatedAddress = {
       ...address,
       ...newAddress,
-    })
-    const { postalCode } = address
-    setIsValid(postalCode.valid)
+    }
+
+    setAddress(updatedAddress)
+    setIsValid(updatedAddress.postalCode.valid)
   }
 
   const handleClick = e => {
     e && e.preventDefault()
     setLoading(true)
     const { postalCode } = removeValidation(address)
+
     client
       .query({
         query: getShippingEstimates,
@@ -106,8 +104,7 @@ const ShippingSimulator = ({
 }
 
 ShippingSimulator.propTypes = {
-  intl: intlShape.isRequired,
-  client: PropTypes.object,
+  intl: PropTypes.object.isRequired,
   skuId: PropTypes.string,
   seller: PropTypes.string,
   country: PropTypes.string.isRequired,
@@ -115,7 +112,4 @@ ShippingSimulator.propTypes = {
   styles: PropTypes.object,
 }
 
-export default compose(
-  withApollo,
-  injectIntl
-)(ShippingSimulator)
+export default injectIntl(ShippingSimulator)
