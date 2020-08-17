@@ -4,13 +4,13 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { path, equals } from 'ramda'
 import { IconCaret } from 'vtex.store-icons'
-import { withCssHandles, applyModifiers } from 'vtex.css-handles'
+import { withCssHandles } from 'vtex.css-handles'
 import SwiperCore, { Thumbs, Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import Video, { getThumbUrl } from '../Video'
 import ProductImage from '../ProductImage'
-import styles from '../../styles.css'
+import styles from './styles.css'
 import ThumbnailSwiper from './ThumbnailSwiper'
 import {
   THUMBS_ORIENTATION,
@@ -34,35 +34,22 @@ const CSS_HANDLES = [
   'swiperCaret',
   'swiperCaretNext',
   'swiperCaretPrev',
-  'swiperBullet',
 ]
 
-function preloadThumb(thumbUrl, callback) {
-  // Image object doesn't exist when it's being rendered in the server side
-  if (!window.navigator) {
-    return
-  }
-
-  const image = new Image()
-
-  image.onload = callback
-  image.onerror = callback
-
-  image.src = thumbUrl
-}
-
 const initialState = {
-  loaded: [],
   thumbUrl: [],
   alt: [],
-  thumbsLoaded: false,
   activeIndex: 0,
-  thumbSwiper: null,
-  gallerySwiper: null,
 }
 
 class Carousel extends Component {
-  state = initialState
+  state = {
+    ...initialState,
+    thumbSwiper: null,
+    gallerySwiper: null,
+  }
+
+  isVideo = []
 
   get hasGallerySwiper() {
     return Boolean(this.state.gallerySwiper)
@@ -72,11 +59,10 @@ class Carousel extends Component {
     return Boolean(this.state.thumbSwiper)
   }
 
-  async setInitialVariablesState() {
+  setInitialVariablesState() {
     const slides = this.props.slides || []
 
     this.isVideo = []
-    this.thumbLoadCount = 0
 
     slides.forEach(async (slide, i) => {
       if (slide.type === 'video') {
@@ -84,22 +70,17 @@ class Carousel extends Component {
 
         this.isVideo[i] = true
         this.setVideoThumb(i)(thumbUrl)
-        this.thumbLoadFinish()
       } else {
-        preloadThumb(slide.thumbUrl, () => this.thumbLoadFinish())
+        // Image object doesn't exist when it's being rendered in the server side
+        if (!window.navigator) {
+          return
+        }
+
+        const image = new Image()
+
+        image.src = slide.thumbUrl
       }
     })
-  }
-
-  thumbLoadFinish = () => {
-    this.thumbLoadCount++
-
-    if (
-      !this.props.slides ||
-      this.thumbLoadCount === this.props.slides.length
-    ) {
-      this.setState({ thumbsLoaded: true })
-    }
   }
 
   componentDidMount() {
@@ -107,22 +88,21 @@ class Carousel extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { loaded, activeIndex } = this.state
+    const { activeIndex } = this.state
     const { isVideo } = this
 
     if (!equals(prevProps.slides, this.props.slides)) {
       this.setInitialVariablesState()
-      this.setState(initialState)
 
-      if (this.props.slides && this.props.slides.length > 1) {
-        if (this.hasGallerySwiper) {
-          this.state.gallerySwiper.slideTo(0)
-        }
+      const newInitialState = { ...initialState }
 
-        if (this.hasThumbSwiper) {
-          this.state.thumbSwiper.slideTo(0)
-        }
-      }
+      if (!this.props.slides) return
+
+      this.setState(newInitialState, () => {
+        // if (this.props.slides.length > 1 && this.hasGallerySwiper) {
+        //   this.state.gallerySwiper.slideTo(0)
+        // }
+      })
 
       return
     }
@@ -135,20 +115,14 @@ class Carousel extends Component {
     if (paginationElement) {
       paginationElement.hidden = isVideo[activeIndex]
     }
-
-    const gallerySwiperZoom = path(['swiper', 'zoom'], this.state.gallerySwiper)
-
-    if (gallerySwiperZoom) {
-      if (loaded[activeIndex]) {
-        gallerySwiperZoom.enable()
-      } else {
-        gallerySwiperZoom.disable()
-      }
-    }
   }
 
   handleSlideChange = () => {
     this.setState(prevState => {
+      if (!this.hasGallerySwiper) {
+        return
+      }
+
       const { activeIndex } = prevState.gallerySwiper
 
       return { activeIndex, sliderChanged: true }
@@ -212,23 +186,18 @@ class Carousel extends Component {
   }
 
   get galleryParams() {
-    const { cssHandles, slides = [], showPaginationDots = true } = this.props
+    const { slides = [], showPaginationDots = true } = this.props
 
     const params = {}
 
     if (slides.length > 1 && showPaginationDots) {
       params.pagination = {
         clickable: true,
-        // todo: what to do about this
-        // bulletClass: `swiper-pagination-bullet ${cssHandles.swiperBullet}`,
-        // bulletActiveClass: `c-action-primary swiper-pagination-bullet-active ${applyModifiers(
-        //   cssHandles.swiperBullet,
-        //   'active'
-        // )}`,
-        // // custom props from vtex/swiper
-        // bulletSelector: `.swiper-pagination-bullet`,
-        renderBullet(index, className) {
-          return `<span class="${className} ${cssHandles.swiperBullet}"></span>`
+        clickableClass: styles.swiperPaginationClickable,
+        bulletClass: styles.swiperBullet,
+        bulletActiveClass: styles['swiperBullet--active'],
+        renderBullet(_index, className) {
+          return `<span class="${className} c-on-primary"></span>`
         },
       }
     }
@@ -241,11 +210,15 @@ class Carousel extends Component {
       }
     }
 
+    params.thumbs = {
+      swiper: this.state.thumbSwiper,
+      multipleActiveThumbs: false,
+    }
+
     return params
   }
 
   render() {
-    const { thumbsLoaded } = this.state
     const { displayThumbnailsArrows } = this.props
 
     const {
@@ -256,6 +229,7 @@ class Carousel extends Component {
       thumbnailAspectRatio,
       thumbnailsOrientation,
       zoomProps: { zoomType },
+      showNavigationArrows,
     } = this.props
 
     const isThumbsVertical =
@@ -283,7 +257,7 @@ class Carousel extends Component {
       }
     )
 
-    const thumbnailSwiper = thumbsLoaded && hasThumbs && (
+    const thumbnailSwiper = (
       <ThumbnailSwiper
         onSwiper={instance => this.setState({ thumbSwiper: instance })}
         isThumbsVertical={isThumbsVertical}
@@ -311,8 +285,6 @@ class Carousel extends Component {
       }
     )
 
-    const { showNavigationArrows = true } = this.props
-
     return (
       <div className={containerClasses} aria-hidden="true">
         {isThumbsVertical && thumbnailSwiper}
@@ -321,10 +293,6 @@ class Carousel extends Component {
           <Swiper
             onSwiper={instance => this.setState({ gallerySwiper: instance })}
             className={cssHandles.productImagesGallerySwiperContainer}
-            thumbs={{
-              swiper: this.state.thumbSwiper,
-              multipleActiveThumbs: false,
-            }}
             threshold={10}
             resistanceRatio={slides.length > 1 ? 0.85 : 0}
             onSlideChange={this.handleSlideChange}

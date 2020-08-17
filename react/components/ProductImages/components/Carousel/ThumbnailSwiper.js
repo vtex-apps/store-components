@@ -71,8 +71,8 @@ const ThumbnailSwiper = props => {
     position,
     thumbnailAspectRatio,
     thumbnailMaxHeight,
-    onSwiper = () => null,
     displayThumbnailsArrows,
+    ...swiperProps
   } = props
 
   const hasThumbs = slides.length > 1
@@ -156,7 +156,6 @@ const ThumbnailSwiper = props => {
   return (
     <div className={thumbClassName} data-testid="thumbnail-swiper">
       <Swiper
-        onSwiper={onSwiper}
         className={`h-100 ${handles.productImagesThumbsSwiperContainer}`}
         // todo: why is it throwing a warning???
         // observer={true}
@@ -177,6 +176,7 @@ const ThumbnailSwiper = props => {
         preloadImages
         updateOnWindowResize
         direction={isThumbsVertical ? 'vertical' : 'horizontal'}
+        {...swiperProps}
       >
         {slides.map((slide, i) => {
           return (
