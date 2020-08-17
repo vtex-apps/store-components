@@ -75,7 +75,7 @@ const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
 
   return (
     <Fragment>
-      <div className={`${styles.shippingContainer} t-small c-on-base`} >
+      <div className={`${styles.shippingContainer} t-small c-on-base`}>
         <AddressRules country={country} shouldUseIOFetching>
           <AddressContainer
             Input={StyleguideInput}
@@ -83,7 +83,7 @@ const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
             onChangeAddress={handleAddressChange}
             autoCompletePostalCode
           >
-            <PostalCodeGetter onSubmit={handleClick}/>
+            <PostalCodeGetter onSubmit={handleClick} />
           </AddressContainer>
         </AddressRules>
         <Button
