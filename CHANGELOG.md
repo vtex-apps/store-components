@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Calculate shipping when enter is pressed
 
+## [3.123.3] - 2020-08-14
+### Fixed
+- Issue of product specification in multilanguage stores.
+
 ## [3.123.2] - 2020-08-12
 ### Fixed
 - Prop name in docs.

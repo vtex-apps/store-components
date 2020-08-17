@@ -1,6 +1,6 @@
 import React from 'react'
 import useProduct from 'vtex.product-context/useProduct'
-import { isEmpty, propOr, propEq } from 'ramda'
+import { isEmpty, propOr } from 'ramda'
 
 import ProductSpecifications from './index'
 
@@ -12,7 +12,9 @@ const getSpecifications = productContext => {
   const { product } = productContext
   const specificationGroups = propOr([], 'specificationGroups', product)
   const groupWithAll = specificationGroups.find(
-    propEq('name', 'allSpecifications')
+    specificationGroup =>
+      specificationGroup.originalName === 'allSpecifications' ||
+      specificationGroup.name === 'allSpecifications'
   )
 
   const allSpecifications = groupWithAll ? groupWithAll.specifications : []
