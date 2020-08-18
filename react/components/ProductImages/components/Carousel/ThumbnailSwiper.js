@@ -58,6 +58,13 @@ const Thumbnail = props => {
   )
 }
 
+const navigationConfig = {
+  prevEl: '.swiper-thumbnails-caret-prev',
+  nextEl: '.swiper-thumbnails-caret-next',
+  disabledClass: `c-disabled o-0 pointer-events-none ${styles.carouselCursorDefault}`,
+  hiddenClass: 'dn',
+}
+
 const ThumbnailSwiper = props => {
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -143,23 +150,14 @@ const ThumbnailSwiper = props => {
     isThumbsVertical,
   ])
 
-  const navigation = {
-    prevEl: '.swiper-thumbnails-caret-prev',
-    nextEl: '.swiper-thumbnails-caret-next',
-    disabledClass: `c-disabled o-0 pointer-events-none ${styles.carouselCursorDefault}`,
-    hiddenClass: 'dn',
-  }
-
   return (
     <div className={thumbClassName} data-testid="thumbnail-swiper">
       <Swiper
         className={`h-100 ${handles.productImagesThumbsSwiperContainer}`}
-        // todo: why is it throwing a warning???
-        // observer={true}
         slidesPerView="auto"
         touchRatio={1}
         threshold={8}
-        navigation={navigation}
+        navigation={navigationConfig}
         /* Slides are grouped when thumbnails arrows are enabled
          * so that clicking on next/prev will scroll more than
          * one thumbnail */

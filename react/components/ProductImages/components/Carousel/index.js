@@ -100,11 +100,7 @@ class Carousel extends Component {
 
       if (!this.props.slides) return
 
-      this.setState(newInitialState, () => {
-        // if (this.props.slides.length > 1 && this.hasGallerySwiper) {
-        //   this.state.gallerySwiper.slideTo(0)
-        // }
-      })
+      this.setState(newInitialState)
 
       return
     }
