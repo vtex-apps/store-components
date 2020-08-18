@@ -39,7 +39,7 @@ const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
   }
 
   const handleClick = e => {
-    e.preventDefault()
+    e && e.preventDefault()
     setLoading(true)
     const { postalCode } = removeValidation(address)
 
@@ -83,7 +83,7 @@ const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
             onChangeAddress={handleAddressChange}
             autoCompletePostalCode
           >
-            <PostalCodeGetter />
+            <PostalCodeGetter onSubmit={handleClick} />
           </AddressContainer>
         </AddressRules>
         <Button

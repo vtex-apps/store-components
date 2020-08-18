@@ -50,6 +50,7 @@ function HighQualityProductImage(props: Props) {
     aspectRatio = 'auto',
     zoomMode = 'disabled',
   } = props
+
   const handles = useCssHandles(CSS_HANDLES)
   const context = useContext(ProductImageContext)
 
