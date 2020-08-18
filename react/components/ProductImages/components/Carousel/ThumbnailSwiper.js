@@ -21,23 +21,10 @@ const CSS_HANDLES = [
 ]
 
 const Thumbnail = props => {
-  const {
-    alt,
-    height,
-    thumbUrl,
-    handles,
-    maxHeight = 150,
-    aspectRatio = 'auto',
-  } = props
+  const { alt, thumbUrl, handles, aspectRatio = 'auto' } = props
 
   return (
-    <div
-      style={{
-        height,
-        maxHeight: maxHeight || 'unset',
-        position: 'relative',
-      }}
-    >
+    <>
       <figure
         className={handles.figure}
         itemProp="associatedMedia"
@@ -54,7 +41,7 @@ const Thumbnail = props => {
       <div
         className={`absolute absolute--fill b--solid b--muted-2 bw0 ${handles.carouselThumbBorder}`}
       />
-    </div>
+    </>
   )
 }
 
@@ -177,15 +164,18 @@ const ThumbnailSwiper = props => {
             <SwiperSlide
               key={`${i}-${slide.alt}`}
               className={itemContainerClassName}
+              style={{
+                height: isThumbsVertical ? 'auto' : '115px',
+                maxHeight: thumbnailMaxHeight || 'unset',
+                position: 'relative',
+              }}
             >
               <Thumbnail
                 index={i}
                 handles={handles}
-                height={isThumbsVertical ? 'auto' : '115px'}
                 alt={slide.alt}
                 thumbUrl={slide.thumbUrl || thumbUrls[i]}
                 aspectRatio={thumbnailAspectRatio}
-                maxHeight={thumbnailMaxHeight}
               />
             </SwiperSlide>
           )

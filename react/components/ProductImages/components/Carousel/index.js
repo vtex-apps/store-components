@@ -312,28 +312,27 @@ class Carousel extends Component {
               <div className={styles['swiper-pagination']} />
             )}
 
-            {showNavigationArrows && (
-              <span
-                className={`swiper-caret-next pl7 pr2 right-0 ${CARET_CLASSNAME} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretNext}`}
-              >
-                <IconCaret
-                  orientation="right"
-                  size={CARET_ICON_SIZE}
-                  className={styles.carouselIconCaretRight}
-                />
-              </span>
-            )}
-
-            {showNavigationArrows && (
-              <span
-                className={`swiper-caret-prev pr7 pl2 left-0 ${CARET_CLASSNAME} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretPrev}`}
-              >
-                <IconCaret
-                  orientation="left"
-                  size={CARET_ICON_SIZE}
-                  className={styles.carouselIconCaretLeft}
-                />
-              </span>
+            {slides.length > 1 && showNavigationArrows && (
+              <>
+                <span
+                  className={`swiper-caret-next pl7 pr2 right-0 ${CARET_CLASSNAME} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretNext}`}
+                >
+                  <IconCaret
+                    orientation="right"
+                    size={CARET_ICON_SIZE}
+                    className={styles.carouselIconCaretRight}
+                  />
+                </span>
+                <span
+                  className={`swiper-caret-prev pr7 pl2 left-0 ${CARET_CLASSNAME} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretPrev}`}
+                >
+                  <IconCaret
+                    orientation="left"
+                    size={CARET_ICON_SIZE}
+                    className={styles.carouselIconCaretLeft}
+                  />
+                </span>
+              </>
             )}
           </Swiper>
 
