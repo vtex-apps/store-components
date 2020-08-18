@@ -21,6 +21,19 @@
 .carouselImagePlaceholder {
 }
 
+/* pagination */
+.swiper-pagination {
+  position: absolute;
+  text-align: center;
+  transition: 300ms opacity;
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+}
+
+.swiper-pagination:global(.swiper-pagination-hidden) {
+  opacity: 0;
+}
+
 /* Bullets */
 .swiperBullet {
   width: 8px;
@@ -47,7 +60,7 @@ button.swiperBullet {
 
 .swiperBullet--active {
   opacity: 1;
-  background: #0f3e99;
+  background-color: currentColor;
 }
 
 :global(.swiper-container-vertical > .swiper-pagination-bullets) {

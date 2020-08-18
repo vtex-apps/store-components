@@ -10,14 +10,15 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import Video, { getThumbUrl } from '../Video'
 import ProductImage from '../ProductImage'
-import styles from './styles.css'
 import ThumbnailSwiper from './ThumbnailSwiper'
 import {
   THUMBS_ORIENTATION,
   THUMBS_POSITION_HORIZONTAL,
 } from '../../utils/enums'
+import styles from './swiper.scoped.css'
 
-import './global.css'
+import './swiper.global.css'
+import './overrides.global.css'
 
 const CARET_ICON_SIZE = 24
 const CARET_CLASSNAME =
@@ -29,6 +30,7 @@ SwiperCore.use([Thumbs, Navigation, Pagination])
 const CSS_HANDLES = [
   'carouselContainer',
   'productImagesThumbsSwiperContainer',
+  'productImagesThumbActive',
   'productImagesGallerySwiperContainer',
   'productImagesGallerySlide',
   'swiperCaret',
@@ -186,18 +188,19 @@ class Carousel extends Component {
   }
 
   get galleryParams() {
-    const { slides = [], showPaginationDots = true } = this.props
+    const { cssHandles, slides = [], showPaginationDots = true } = this.props
 
     const params = {}
 
     if (slides.length > 1 && showPaginationDots) {
       params.pagination = {
+        el: `.${styles['swiper-pagination']}`,
         clickable: true,
         clickableClass: styles.swiperPaginationClickable,
         bulletClass: styles.swiperBullet,
         bulletActiveClass: styles['swiperBullet--active'],
         renderBullet(_index, className) {
-          return `<span class="${className} c-on-primary"></span>`
+          return `<span class="${className} c-action-primary"></span>`
         },
       }
     }
@@ -213,14 +216,13 @@ class Carousel extends Component {
     params.thumbs = {
       swiper: this.state.thumbSwiper,
       multipleActiveThumbs: false,
+      slideThumbActiveClass: cssHandles.productImagesThumbActive,
     }
 
     return params
   }
 
   render() {
-    const { displayThumbnailsArrows } = this.props
-
     const {
       position,
       cssHandles,
@@ -229,7 +231,9 @@ class Carousel extends Component {
       thumbnailAspectRatio,
       thumbnailsOrientation,
       zoomProps: { zoomType },
-      showNavigationArrows,
+      showPaginationDots = true,
+      showNavigationArrows = true,
+      displayThumbnailsArrows = false,
     } = this.props
 
     const isThumbsVertical =
@@ -307,6 +311,10 @@ class Carousel extends Component {
                 {this.renderSlide(slide, i)}
               </SwiperSlide>
             ))}
+
+            {showPaginationDots && (
+              <div className={styles['swiper-pagination']} />
+            )}
 
             {showNavigationArrows && (
               <span

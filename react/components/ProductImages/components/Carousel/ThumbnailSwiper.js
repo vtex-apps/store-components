@@ -17,7 +17,6 @@ const CSS_HANDLES = [
   'productImagesThumb',
   'carouselThumbBorder',
   'carouselGaleryThumbs',
-  'productImagesThumbActive',
   'productImagesThumbCaret',
 ]
 
@@ -29,12 +28,10 @@ const Thumbnail = props => {
     handles,
     maxHeight = 150,
     aspectRatio = 'auto',
-    itemContainerClassName,
   } = props
 
   return (
     <div
-      className={itemContainerClassName}
       style={{
         height,
         maxHeight: maxHeight || 'unset',
@@ -162,7 +159,6 @@ const ThumbnailSwiper = props => {
         slidesPerView="auto"
         touchRatio={1}
         threshold={8}
-        slideActiveClass={handles.productImagesThumbActive}
         navigation={navigation}
         /* Slides are grouped when thumbnails arrows are enabled
          * so that clicking on next/prev will scroll more than
@@ -180,9 +176,11 @@ const ThumbnailSwiper = props => {
       >
         {slides.map((slide, i) => {
           return (
-            <SwiperSlide key={`${i}-${slide.alt}`} style={{ flexShrink: 1 }}>
+            <SwiperSlide
+              key={`${i}-${slide.alt}`}
+              className={itemContainerClassName}
+            >
               <Thumbnail
-                itemContainerClassName={itemContainerClassName}
                 index={i}
                 handles={handles}
                 height={isThumbsVertical ? 'auto' : '115px'}
