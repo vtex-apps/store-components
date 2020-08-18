@@ -19,18 +19,14 @@ function ModalLayout() {
   )
 }
 
-jest.mock('react-id-swiper/lib/ReactIdSwiper', () => {
+jest.mock('swiper/react', () => {
   return {
-    default({ children }) {
+    Swiper({ children }) {
       return <div>{children}</div>
     },
-  }
-})
-
-jest.mock('swiper/dist/js/swiper.esm', () => {
-  return {
-    Pagination: 'Pagination',
-    Navigation: 'Navigation',
+    SwiperSlide({ children }) {
+      return <div>{children}</div>
+    },
   }
 })
 
@@ -115,7 +111,7 @@ describe('<ProductImages />', () => {
 
     const swiper = queryByTestId('thumbnail-swiper')
 
-    expect(swiper).toBeNull()
+    expect(swiper).toHaveClass('dn')
   })
 
   describe('test logic to thumbnail orientation', () => {
@@ -333,15 +329,18 @@ describe('<ProductImages />', () => {
 
       const images = getAllByAltText('imageText2')
 
-      expect(images).toHaveLength(1)
+      // 2 for thumb + main image
+      expect(images).toHaveLength(2)
       fireEvent.click(getByTestId('modal-trigger'), {
         bubbles: true,
         cancelable: true,
       })
-      expect(getAllByAltText('imageText2')).toHaveLength(2)
+
+      // 3 for thumb + main image + modal image
+      expect(getAllByAltText('imageText2')).toHaveLength(3)
     })
 
-    it('should render 2 img[alt="iamgeText2"] if img2 trigger is clicked', () => {
+    it('should render 2 img[alt="imageText2"] if img2 trigger is clicked', () => {
       const props = {
         zoomMode: 'open-modal',
         ModalZoom: ModalLayout,

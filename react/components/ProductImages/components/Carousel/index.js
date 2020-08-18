@@ -301,7 +301,7 @@ class Carousel extends Component {
           >
             {slides.map((slide, i) => (
               <SwiperSlide
-                key={i}
+                key={`slider-${i}`}
                 className={`${cssHandles.productImagesGallerySlide} swiper-slide center-all`}
               >
                 {this.renderSlide(slide, i)}
@@ -309,12 +309,13 @@ class Carousel extends Component {
             ))}
 
             {showPaginationDots && (
-              <div className={styles['swiper-pagination']} />
+              <div key="pagination" className={styles['swiper-pagination']} />
             )}
 
             {slides.length > 1 && showNavigationArrows && (
               <>
                 <span
+                  key="caret-next"
                   className={`swiper-caret-next pl7 pr2 right-0 ${CARET_CLASSNAME} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretNext}`}
                 >
                   <IconCaret
@@ -324,6 +325,7 @@ class Carousel extends Component {
                   />
                 </span>
                 <span
+                  key="caret-prev"
                   className={`swiper-caret-prev pr7 pl2 left-0 ${CARET_CLASSNAME} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretPrev}`}
                 >
                   <IconCaret

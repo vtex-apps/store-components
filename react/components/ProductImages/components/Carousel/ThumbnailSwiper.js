@@ -116,7 +116,7 @@ const ThumbnailSwiper = props => {
     )
 
     return (
-      <Fragment>
+      <Fragment key="navigation-arrows">
         <span className={nextBtnClassName} style={thumbCaretStyle}>
           <IconCaret
             orientation={isThumbsVertical ? 'down' : 'right'}
