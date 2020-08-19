@@ -42,11 +42,12 @@
 | `contentOrder`   | `'videos-first'` &#124; `'images-first'`    | Controls the order in which the images and videos are displayed.                                 | `'images-first'`    | 
 | `displayThumbnailsArrows` | `boolean` | Displays navigation arrows on the thumbnails media (if there are enough thumbnails for them to scroll)              | `false`       |
 | `hiddenImages`       | `string`  | Hides images whose labels match the values listed in this prop. Intended to be used along with the `product-summary-sku-selector` block. You can have more information at the [SKU Selector](https://vtex.io/docs/components/all/vtex.store-components/sku-selector) documentation | `skuvariation` |
+| `maxHeight`             | `number`                                   | The maximum height for individual product images (in pixels). | `600`          |
 | `position`                | `Enum`    | Set the position of the thumbnails (`left` or `right`). Only used when `thumbnailsOrientation` is `vertical` | `left`        |
 | `showNavigationArrows`             | `boolean`                                   | Controls if the navigation arrows should appear | `true`          |
 | `showPaginationDots`             | `boolean`                                   | Controls if the pagination dots should appear | `true`          |
 | `thumbnailAspectRatio`             | `string`                                   | Sets the aspect ratio of the thumbnail image; For more information about aspect ratio, check the `aspectRatio` prop | `"auto"`          |
-| `thumbnailMaxHeight`             | `number`                                   | The max height for the thumbnail image | `true`          |
+| `thumbnailMaxHeight`             | `number`                                   | The max height for the thumbnail image (in pixels). | `150`          |
 | `thumbnailsOrientation`   | `Enum`    | Choose the orientation of the thumbnails. Can be set to `vertical` or `horizontal`                                 | `vertical`    | 
 | `zoomFactor` | `number` | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large) | 2 |
 | `zoomMode` | `enum` | Defines the image zoom behavior. Possible values are: `disabled` (zoom is disabled), `in-place-click`(zoom will be triggered when the image is clicked on), `in-place-hover`(zoom will be triggered when the image is hovered on)  or `open-modal` (image is zoommed using a modal). | `in-place-click` |
