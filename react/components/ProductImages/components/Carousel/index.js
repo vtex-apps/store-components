@@ -308,34 +308,39 @@ class Carousel extends Component {
               </SwiperSlide>
             ))}
 
-            {showPaginationDots && (
-              <div key="pagination" className={styles['swiper-pagination']} />
-            )}
+            <div
+              key="pagination"
+              className={classNames(styles['swiper-pagination'], {
+                dn: slides.length === 1 || !showPaginationDots,
+              })}
+            />
 
-            {slides.length > 1 && showNavigationArrows && (
-              <>
-                <span
-                  key="caret-next"
-                  className={`swiper-caret-next pl7 pr2 right-0 ${CARET_CLASSNAME} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretNext}`}
-                >
-                  <IconCaret
-                    orientation="right"
-                    size={CARET_ICON_SIZE}
-                    className={styles.carouselIconCaretRight}
-                  />
-                </span>
-                <span
-                  key="caret-prev"
-                  className={`swiper-caret-prev pr7 pl2 left-0 ${CARET_CLASSNAME} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretPrev}`}
-                >
-                  <IconCaret
-                    orientation="left"
-                    size={CARET_ICON_SIZE}
-                    className={styles.carouselIconCaretLeft}
-                  />
-                </span>
-              </>
-            )}
+            <div
+              className={classNames({
+                dn: slides.length === 1 || !showNavigationArrows,
+              })}
+            >
+              <span
+                key="caret-next"
+                className={`swiper-caret-next pl7 pr2 right-0 ${CARET_CLASSNAME} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretNext}`}
+              >
+                <IconCaret
+                  orientation="right"
+                  size={CARET_ICON_SIZE}
+                  className={styles.carouselIconCaretRight}
+                />
+              </span>
+              <span
+                key="caret-prev"
+                className={`swiper-caret-prev pr7 pl2 left-0 ${CARET_CLASSNAME} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretPrev}`}
+              >
+                <IconCaret
+                  orientation="left"
+                  size={CARET_ICON_SIZE}
+                  className={styles.carouselIconCaretLeft}
+                />
+              </span>
+            </div>
           </Swiper>
 
           {!isThumbsVertical && thumbnailSwiper}
