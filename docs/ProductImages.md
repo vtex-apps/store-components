@@ -120,6 +120,7 @@ In order to apply CSS customizations on this and other blocks, follow the instru
 | `carouselGaleryCursor` |
 | `carouselGaleryThumbs` |
 | `carouselIconCaretLeft` |
+| `carouselIconCaretRight` |
 | `carouselImagePlaceholder` |
 | `carouselInconCaretRight` |
 | `carouselThumbBorder` |
@@ -134,13 +135,16 @@ In order to apply CSS customizations on this and other blocks, follow the instru
 | `productImagesThumbActive` |
 | `productImagesThumbCaret` |
 | `productImagesThumbsSwiperContainer` |
-| `productImageTag`|
 | `productImageTag--main`|
 | `productImageTag--zoon`|
+| `productImageTag`|
 | `productVideo` |
-| `swiperBullet` |
+| `swiper-pagination` |
 | `swiperBullet--active` |
+| `swiperBullet` |
 | `swiperCaret` |
+| `swiperCaretNext` |
+| `swiperCaretPrev` |
 | `thumbImg` |
 | `video` |
 | `video`|
