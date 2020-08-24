@@ -42,7 +42,7 @@
 | `contentOrder`   | `'videos-first'` &#124; `'images-first'`    | Controls the order in which the images and videos are displayed.                                 | `'images-first'`    | 
 | `displayThumbnailsArrows` | `boolean` | Displays navigation arrows on the thumbnails media (if there are enough thumbnails for them to scroll)              | `false`       |
 | `hiddenImages`       | `string`  | Hides images whose labels match the values listed in this prop. Intended to be used along with the `product-summary-sku-selector` block. You can have more information at the [SKU Selector](https://vtex.io/docs/components/all/vtex.store-components/sku-selector) documentation | `skuvariation` |
-| `maxHeight`             | `number`                                   | The maximum height for individual product images (in pixels). | `600`          |
+| `maxHeight`             | `number`                                   | Maximum height for individual product images (in pixels). | `600`          |
 | `position`                | `Enum`    | Set the position of the thumbnails (`left` or `right`). Only used when `thumbnailsOrientation` is `vertical` | `left`        |
 | `showNavigationArrows`             | `boolean`                                   | Controls if the navigation arrows should appear | `true`          |
 | `showPaginationDots`             | `boolean`                                   | Controls if the pagination dots should appear | `true`          |
