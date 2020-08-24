@@ -13,6 +13,9 @@ const CSS_HANDLES = [
   'specificationsTabsContainer',
   'specificationsTitle',
   'specificationsTable',
+  'specificationsTableRow',
+  'specificationsTableHead',
+  'specificationsTableBody',
   'specificationsTab',
   'specificationsTablePropertyHeading',
   'specificationsTableSpecificationHeading',
@@ -109,8 +112,8 @@ const ProductSpecifications = ({
     <table
       className={`${handles.specificationsTable} w-100 bg-base border-collapse`}
     >
-      <thead>
-        <tr>
+      <thead className={handles.specificationsTableHead}>
+        <tr className={handles.specificationsTableRow}>
           <th
             className={`${handles.specificationsTablePropertyHeading} w-50 b--muted-4 bb bt c-muted-2 t-body tl pa5`}
           >
@@ -123,9 +126,9 @@ const ProductSpecifications = ({
           </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className={handles.specificationsTableBody}>
         {specificationItems.map((specification, i) => (
-          <tr key={i}>
+          <tr className={handles.specificationsTableRow} key={i}>
             <td
               data-specification={specification.property}
               className={`${handles.specificationItemProperty} w-50 b--muted-4 bb pa5`}
