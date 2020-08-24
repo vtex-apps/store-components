@@ -47,7 +47,7 @@
 | `showNavigationArrows`             | `boolean`                                   | Controls if the navigation arrows should appear | `true`          |
 | `showPaginationDots`             | `boolean`                                   | Controls if the pagination dots should appear | `true`          |
 | `thumbnailAspectRatio`             | `string`                                   | Sets the aspect ratio of the thumbnail image; For more information about aspect ratio, check the `aspectRatio` prop | `"auto"`          |
-| `thumbnailMaxHeight`             | `number`                                   | The max height for the thumbnail image (in pixels). | `150`          |
+| `thumbnailMaxHeight`             | `number`                                   | Maximum height for the thumbnail image (in pixels). | `150`          |
 | `thumbnailsOrientation`   | `Enum`    | Choose the orientation of the thumbnails. Can be set to `vertical` or `horizontal`                                 | `vertical`    | 
 | `zoomFactor` | `number` | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large) | 2 |
 | `zoomMode` | `enum` | Defines the image zoom behavior. Possible values are: `disabled` (zoom is disabled), `in-place-click`(zoom will be triggered when the image is clicked on), `in-place-hover`(zoom will be triggered when the image is hovered on)  or `open-modal` (image is zoommed using a modal). | `in-place-click` |
