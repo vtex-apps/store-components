@@ -23,13 +23,7 @@
     "checkJs": true
   },
   "exclude": ["node_modules"],
-  "include": [
-    "./typings/*.d.ts",
-    "./**/*.tsx",
-    "./**/*.ts",
-    "./**/*.js",
-    "./**/*.jsx"
-  ],
+  "include": ["./typings/*.d.ts", "./**/*.tsx", "./**/*.ts"],
   "typeAcquisition": {
     "enable": false
   }
