@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Update shipping data on `orderForm` after shipping simulation.
-- Pre-fill postal code information from `orderForm`'s shipping data.
+- Pre-fill postal code information with `orderForm`'s shipping data.
 
 ## [3.124.0] - 2020-08-27
 ### Added
