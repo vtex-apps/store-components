@@ -1,27 +1,201 @@
-import React, { useContext } from 'react'
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+} from 'react'
 import { ProductContext } from 'vtex.product-context'
-import { path } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
+import { useCheckoutURL } from 'vtex.checkout-resources/Utils'
+import { useApolloClient } from 'react-apollo'
+import { addValidation, removeValidation } from 'vtex.address-form/helpers'
+import {
+  useOrderShipping,
+  OrderShippingProvider,
+} from 'vtex.order-shipping/OrderShipping'
+import { useOrderForm } from 'vtex.order-manager/OrderForm'
 
+import { getNewAddress } from './utils'
 import ShippingSimulator from './index'
+import getShippingEstimates from './queries/getShippingEstimates.gql'
+import ShippingSimulatorLoader from './Loader'
 
-const ShippingSimulatorWrapper = props => {
-  const { culture } = useRuntime()
-  const productContext = useContext(ProductContext)
+const useAddressState = (country, postalCode) => {
+  const [address, setAddress] = useState(() =>
+    addValidation(getNewAddress(country, postalCode))
+  )
 
-  const country = props.country || culture.country
-  const skuId = props.skuId || path(['selectedItem', 'itemId'], productContext)
-  const seller =
-    props.seller ||
-    path(['selectedItem', 'sellers', 0, 'sellerId'], productContext)
+  const [isValid, setIsValid] = useState(!!postalCode)
+
+  const updateAddress = newAddress => {
+    const updatedAddress = {
+      ...address,
+      ...newAddress,
+    }
+
+    setAddress(updatedAddress)
+    setIsValid(updatedAddress.postalCode.valid)
+  }
+
+  return { address, updateAddress, isValid }
+}
+
+const BaseShippingSimulatorWrapper = ({
+  country,
+  seller,
+  skuId,
+  loaderStyles,
+  onShippingAddressUpdate,
+  initialPostalCode,
+  initialShipping,
+}) => {
+  const [shipping, setShipping] = useState(initialShipping ?? null)
+  const [loading, setLoading] = useState(false)
+
+  const { address, updateAddress, isValid } = useAddressState(
+    country,
+    initialPostalCode
+  )
+
+  const isMountedRef = useRef(false)
+
+  useEffect(() => {
+    if (isMountedRef.current) {
+      return
+    }
+
+    isMountedRef.current = true
+
+    if (!address || !isValid) {
+      return
+    }
+
+    handleCalculateShipping()
+  }, [handleCalculateShipping, address, isValid])
+
+  const client = useApolloClient()
+
+  const handleCalculateShipping = useCallback(
+    e => {
+      e && e.preventDefault()
+      setLoading(true)
+      const rawAddress = removeValidation(address)
+
+      client
+        .query({
+          query: getShippingEstimates,
+          variables: {
+            country,
+            postalCode: rawAddress.postalCode,
+            items: [
+              {
+                quantity: '1',
+                id: skuId,
+                seller,
+              },
+            ],
+          },
+        })
+        .then(result => {
+          setShipping(result.data.shipping)
+        })
+        .then(() => {
+          return onShippingAddressUpdate?.(rawAddress)
+        })
+        .catch(error => {
+          console.error(error)
+        })
+        .finally(() => {
+          setLoading(false)
+        })
+    },
+    [address, client, country, seller, skuId, onShippingAddressUpdate]
+  )
 
   return (
     <ShippingSimulator
       skuId={skuId}
       seller={seller}
       country={country}
-      loaderStyles={props.loaderStyles}
+      loaderStyles={loaderStyles}
+      loading={loading}
+      address={address}
+      isValid={isValid}
+      shipping={shipping}
+      onAddressChange={updateAddress}
+      onCalculateShipping={handleCalculateShipping}
     />
+  )
+}
+
+const ShippingSimulatorWithOrderForm = ({
+  country,
+  skuId,
+  seller,
+  loaderStyles,
+}) => {
+  const { updateSelectedAddress } = useOrderShipping()
+  const { orderForm } = useOrderForm()
+
+  const selectedAddress = orderForm?.shipping?.selectedAddress
+
+  return (
+    <BaseShippingSimulatorWrapper
+      skuId={skuId}
+      seller={seller}
+      country={country}
+      loaderStyles={loaderStyles}
+      initialPostalCode={
+        orderForm?.canEditData || selectedAddress?.isDisposable
+          ? selectedAddress?.postalCode
+          : undefined
+      }
+      onShippingAddressUpdate={updateSelectedAddress}
+    />
+  )
+}
+
+const OrderFormLoader = props => {
+  const { loading } = useOrderForm()
+
+  if (loading) {
+    return <ShippingSimulatorLoader {...props.loaderStyles} />
+  }
+
+  return props.children
+}
+
+const ShippingSimulatorWrapper = props => {
+  const { major } = useCheckoutURL()
+  const { culture } = useRuntime()
+  const productContext = useContext(ProductContext)
+
+  const country = props.country || culture.country
+  const skuId = props.skuId || productContext?.selectedItem?.itemId
+  const seller =
+    props.seller || productContext?.selectedItem?.sellers?.[0]?.sellerId
+
+  if (major < 1) {
+    return (
+      <BaseShippingSimulatorWrapper
+        country={country}
+        skuId={skuId}
+        seller={seller}
+      />
+    )
+  }
+
+  return (
+    <OrderShippingProvider>
+      <OrderFormLoader>
+        <ShippingSimulatorWithOrderForm
+          country={country}
+          seller={seller}
+          skuId={skuId}
+        />
+      </OrderFormLoader>
+    </OrderShippingProvider>
   )
 }
 
