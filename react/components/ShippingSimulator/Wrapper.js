@@ -7,7 +7,6 @@ import React, {
 } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { useRuntime } from 'vtex.render-runtime'
-import { useCheckoutURL } from 'vtex.checkout-resources/Utils'
 import { useApolloClient } from 'react-apollo'
 import { addValidation, removeValidation } from 'vtex.address-form/helpers'
 import {
@@ -166,7 +165,6 @@ const OrderFormLoader = props => {
 }
 
 const ShippingSimulatorWrapper = props => {
-  const { major } = useCheckoutURL()
   const { culture } = useRuntime()
   const productContext = useContext(ProductContext)
 
@@ -175,7 +173,10 @@ const ShippingSimulatorWrapper = props => {
   const seller =
     props.seller || productContext?.selectedItem?.sellers?.[0]?.sellerId
 
-  if (major < 1) {
+  if (
+    window.__RUNTIME__.settings['vtex.store'].enableOrderFormOptimization !==
+    true
+  ) {
     return (
       <BaseShippingSimulatorWrapper
         country={country}
