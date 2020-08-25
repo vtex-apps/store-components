@@ -46,33 +46,16 @@ const BaseShippingSimulatorWrapper = ({
   seller,
   skuId,
   loaderStyles,
-  onShippingAddressUpdate,
-  initialPostalCode,
-  initialShipping,
+  onShippingAddressUpdate = _ => {},
+  initialPostalCode = undefined,
 }) => {
-  const [shipping, setShipping] = useState(initialShipping ?? null)
+  const [shipping, setShipping] = useState(null)
   const [loading, setLoading] = useState(false)
 
   const { address, updateAddress, isValid } = useAddressState(
     country,
     initialPostalCode
   )
-
-  const isMountedRef = useRef(false)
-
-  useEffect(() => {
-    if (isMountedRef.current) {
-      return
-    }
-
-    isMountedRef.current = true
-
-    if (!address || !isValid) {
-      return
-    }
-
-    handleCalculateShipping()
-  }, [handleCalculateShipping, address, isValid])
 
   const client = useApolloClient()
 
@@ -112,6 +95,22 @@ const BaseShippingSimulatorWrapper = ({
     },
     [address, client, country, seller, skuId, onShippingAddressUpdate]
   )
+
+  const isMountedRef = useRef(false)
+
+  useEffect(() => {
+    if (isMountedRef.current) {
+      return
+    }
+
+    isMountedRef.current = true
+
+    if (!address || !isValid) {
+      return
+    }
+
+    handleCalculateShipping()
+  }, [handleCalculateShipping, address, isValid])
 
   return (
     <ShippingSimulator
@@ -182,6 +181,7 @@ const ShippingSimulatorWrapper = props => {
         country={country}
         skuId={skuId}
         seller={seller}
+        loaderStyles={props.loaderStyles}
       />
     )
   }
@@ -193,6 +193,7 @@ const ShippingSimulatorWrapper = props => {
           country={country}
           seller={seller}
           skuId={skuId}
+          loaderStyles={props.loaderStyles}
         />
       </OrderFormLoader>
     </OrderShippingProvider>
