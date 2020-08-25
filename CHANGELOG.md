@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Updated `README.md` file for `animation`, `slider` and `product-price` blocks to remove the `Deprecated` badge from the title.
 
 ## [3.123.6] - 2020-08-25
 ### Fixed
