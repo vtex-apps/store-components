@@ -174,8 +174,8 @@ const ShippingSimulatorWrapper = props => {
     props.seller || productContext?.selectedItem?.sellers?.[0]?.sellerId
 
   if (
-    window.__RUNTIME__.settings['vtex.store'].enableOrderFormOptimization !==
-    true
+    window.__RUNTIME__?.settings?.['vtex.store']
+      ?.enableOrderFormOptimization !== true
   ) {
     return (
       <BaseShippingSimulatorWrapper

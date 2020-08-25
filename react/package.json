@@ -76,6 +76,11 @@
   "vtexTestTools": {
     "defaultLocale": "en"
   },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./setupTests.js"
+    ]
+  },
   "resolutions": {
     "dom7": "github:vtex/dom7#2.1.4"
   },
