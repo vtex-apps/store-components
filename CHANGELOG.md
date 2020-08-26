@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Allow to pass `width` and `height` to `iframe` and `img` tags.
+- Allow to pass `rowspan` and `colspan` to `td` tags.
 
 ## [3.123.7] - 2020-08-25
 ### Fixed
