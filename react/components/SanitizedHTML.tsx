@@ -13,14 +13,23 @@ type SanitizedHTMLProps = SanitizeOpts & {
 
 export const DEFAULTS = {
   allowedAttributes: {
-    '*': ['id', 'title', 'accesskey', 'class', 'style', 'aria-label'],
+    '*': [
+      'id',
+      'title',
+      'accesskey',
+      'class',
+      'style',
+      'aria-label',
+      'width',
+      'height',
+    ],
     a: ['href', 'name', 'target'],
-    iframe: ['frameborder', 'src', 'allowfullscreen', 'allow'],
+    iframe: ['allow', 'allowfullscreen', 'frameborder', 'src'],
     img: ['src', 'alt'],
     link: ['rel', 'type', 'href'],
   },
   allowedClasses: {},
-  allowedSchemes: ['http', 'https', 'mailto'],
+  allowedSchemes: ['http', 'https', 'mailto', 'tel'],
   allowedTags: [
     'a',
     'abbr',
