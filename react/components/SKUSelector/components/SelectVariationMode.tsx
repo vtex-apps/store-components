@@ -36,6 +36,7 @@ function SelectVariationMode(props: VariationSelectModeProps) {
       {}
     )
 
+    // @ts-expect-error ts-migrate(2774) FIXME: This condition will always return true since the f... Remove this comment to see the full error message
     if (reducedOptions?.[value]?.onSelectItem) {
       reducedOptions[value].onSelectItem()
     }

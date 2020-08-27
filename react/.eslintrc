@@ -1,6 +1,7 @@
 {
   "rules": {
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "@typescript-eslint/ban-ts-comment": 0
   },
   "extends": "vtex-react",
   "env": {

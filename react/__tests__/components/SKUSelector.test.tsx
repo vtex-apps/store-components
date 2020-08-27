@@ -1,4 +1,5 @@
 import React from 'react'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../node_modules/@vtex/test-tools/react... Remove this comment to see the full error message
 import { render, fireEvent, wait } from '@vtex/test-tools/react'
 import useProduct, { ProductContext } from 'vtex.product-context/useProduct'
 import { getSKU } from 'sku-helper'
@@ -84,9 +85,13 @@ describe('<SKUSelector />', () => {
     const onSKUSelected = jest.fn()
     const { getByText } = render(
       <SKUSelector
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ Price: number; }' is missing the following... Remove this comment to see the full error message
         skuItems={skuItems}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '"select"' is not assignable to type 'Display... Remove this comment to see the full error message
         displayMode="select"
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ itemId: string; name: string; variations: ... Remove this comment to see the full error message
         skuSelected={skuSelected}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '"empty"' is not assignable to type 'InitialS... Remove this comment to see the full error message
         initialSelection="empty"
         onSKUSelected={onSKUSelected}
       />
@@ -159,6 +164,7 @@ describe('<SKUSelector />', () => {
     const [skuSelected] = skuItems
 
     const { getByText, getAllByText } = render(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ Price: number; }' is missing the following... Remove this comment to see the full error message
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
 
@@ -168,7 +174,9 @@ describe('<SKUSelector />', () => {
     expect(getAllByText(/blue/i)).toHaveLength(1)
     expect(getAllByText(/black/i)).toHaveLength(1)
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'toBeInTheDocument' does not exist on typ... Remove this comment to see the full error message
     expect(getByText(/color/i)).toBeInTheDocument()
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'toBeInTheDocument' does not exist on typ... Remove this comment to see the full error message
     expect(getByText(/size/i)).toBeInTheDocument()
   })
 
@@ -392,6 +400,7 @@ describe('<SKUSelector />', () => {
     const [skuSelected] = skuItems
 
     const { getByText, queryByText } = render(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ Price: number; }' is missing the following... Remove this comment to see the full error message
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
 
@@ -625,6 +634,7 @@ describe('<SKUSelector />', () => {
     const [skuSelected] = skuItems
 
     const { getByText, queryByText } = render(
+      // @ts-expect-error ts-migrate(2322) FIXME: Property 'ListPrice' is missing in type '{ Price: ... Remove this comment to see the full error message
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />
     )
 
@@ -804,6 +814,7 @@ describe('<SKUSelector />', () => {
     const [skuSelected] = skuItems
 
     const { getByText, queryByText } = render(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type '{ Price: number; }' is missing the following... Remove this comment to see the full error message
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} />
     )
 
@@ -1035,6 +1046,7 @@ describe('<SKUSelector />', () => {
     const skuSelected = skuItems.find(({ itemId }) => itemId === '15')
 
     const { getByText } = render(
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'undefined' is not assignable to type 'Produc... Remove this comment to see the full error message
       <SKUSelector skuSelected={skuSelected} skuItems={skuItems} maxItems={6} />
     )
 
@@ -1093,6 +1105,7 @@ describe('<SKUSelector />', () => {
     ]
 
     const { queryByText } = render(
+      // @ts-expect-error ts-migrate(2322) FIXME: Property 'ListPrice' is missing in type '{ Price: ... Remove this comment to see the full error message
       <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
     )
 
@@ -1134,7 +1147,9 @@ describe('<SKUSelector />', () => {
 
     const { container } = render(
       <SKUSelector
+        // @ts-expect-error ts-migrate(2322) FIXME: Property 'ListPrice' is missing in type '{ Price: ... Remove this comment to see the full error message
         skuSelected={skuItems[0]}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type '{ itemId: string; name: string; variations: ... Remove this comment to see the full error message
         skuItems={skuItems}
         maxItems={6}
         showValueNameForImageVariation
@@ -1148,7 +1163,9 @@ describe('<SKUSelector />', () => {
       '.skuSelectorSelectorImageValue'
     )
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'toHaveTextContent' does not exist on typ... Remove this comment to see the full error message
     expect(separator).toHaveTextContent(':')
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'toHaveTextContent' does not exist on typ... Remove this comment to see the full error message
     expect(variationValue).toHaveTextContent('Gray')
   })
 
@@ -1175,6 +1192,7 @@ describe('<SKUSelector />', () => {
       function getProductContext(): ProductContext {
         return {
           product: {
+            // @ts-expect-error ts-migrate(2322) FIXME: Object literal may only specify known properties, ... Remove this comment to see the full error message
             buyButton: {
               clicked: false,
             },
@@ -1273,6 +1291,7 @@ describe('<SKUSelector />', () => {
     ]
 
     const { asFragment } = render(
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'seeMoreLabel' is missing in type '{ skuS... Remove this comment to see the full error message
       <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
     )
 
@@ -1300,6 +1319,7 @@ describe('<SKUSelector />', () => {
       function getProductContext(): ProductContext {
         return {
           product: {
+            // @ts-expect-error ts-migrate(2322) FIXME: Object literal may only specify known properties, ... Remove this comment to see the full error message
             buyButton: {
               clicked: false,
             },
@@ -1403,6 +1423,7 @@ describe('<SKUSelector />', () => {
     ]
 
     const { queryByText } = render(
+      // @ts-expect-error ts-migrate(2741) FIXME: Property 'seeMoreLabel' is missing in type '{ skuS... Remove this comment to see the full error message
       <SKUSelector skuSelected={skuItems[0]} skuItems={skuItems} maxItems={6} />
     )
 
