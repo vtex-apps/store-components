@@ -56,9 +56,9 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 | `specificationsTitle`                     |
 | `specificationsTableContainer`            |
 | `specificationsTable`                     |
-| `specificationsTableRow`                  |
-| `specificationsTableHead`                 |
 | `specificationsTableBody`                 |
+| `specificationsTableHead`                 |
+| `specificationsTableRow`                  |
 | `specificationsTabsContainer`             |
 | `specificationsTab`                       |
 | `specificationsTablePropertyHeading`      |
