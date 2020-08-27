@@ -1,10 +1,12 @@
 import React from 'react'
 
-export const useCssHandles = (cssHandles: any) => {
-  const handles = {}
+export const useCssHandles = (
+  cssHandles: string[],
+  _?: Record<string, string>
+) => {
+  const handles: Record<string, string> = {}
 
-  cssHandles.forEach((handle: any) => {
-    // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
+  cssHandles.forEach(handle => {
     handles[handle] = handle
   })
 
@@ -76,7 +78,6 @@ export const withCssHandles = (handles = [], options: any) => (
   Component: any
 ) => {
   const EnhancedComponent = (props: any) => {
-    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 2.
     const cssHandles = useCssHandles(handles, options)
 
     return <Component cssHandles={cssHandles} {...props} />
