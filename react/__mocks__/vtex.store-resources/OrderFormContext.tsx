@@ -14,8 +14,8 @@ const mockOrderForm = {
   loading: false,
 }
 
-export function orderFormConsumer(Comp) {
-  return function OrderFormConsumer(props) {
+export function orderFormConsumer(Comp: any) {
+  return function OrderFormConsumer(props: any) {
     return <Comp {...props} orderFormContext={mockOrderForm} />
   }
 }

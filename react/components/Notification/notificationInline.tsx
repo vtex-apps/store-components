@@ -1,14 +1,17 @@
 import React, { memo } from 'react'
-import { string } from 'prop-types'
 
 import NotificationContent from './notificationContent'
 
-const NotificationInline = ({ content }) => {
-  return content && <NotificationContent content={content} />
+type OwnProps = {
+  content?: string
 }
 
-NotificationInline.propTypes = {
-  content: string,
+// @ts-expect-error ts-migrate(2456) FIXME: Type alias 'Props' circularly references itself.
+type Props = OwnProps & typeof NotificationInline.defaultProps
+
+// @ts-expect-error ts-migrate(7022) FIXME: 'NotificationInline' implicitly has type 'any' bec... Remove this comment to see the full error message
+const NotificationInline = ({ content }: Props) => {
+  return content && <NotificationContent content={content} />
 }
 
 NotificationInline.defaultProps = {

@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.styleguide"' has no exported member ... Remove this comment to see the full error message
 import { Input } from 'vtex.styleguide'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.render-runtime"' has no exported mem... Remove this comment to see the full error message
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { IconSearch, IconClose } from 'vtex.store-icons'
@@ -44,6 +45,27 @@ const SearchIcon = () => {
   return <IconSearch />
 }
 
+type AutocompleteInputProps = {
+  autoComplete?: string
+  id?: string
+  onBlur?: (...args: any[]) => any
+  onChange?: (...args: any[]) => any
+  onKeyDown?: (...args: any[]) => any
+  value?: string
+  openMenu?: (...args: any[]) => any
+  placeholder?: string
+  compactMode?: boolean
+  onClearInput?: (...args: any[]) => any
+  hasIconLeft?: boolean
+  iconClasses?: string
+  iconBlockClass?: string
+  autoFocus?: boolean
+  onGoToSearchPage: (...args: any[]) => any
+  submitOnIconClick?: boolean
+  displayMode?: any // TODO: PropTypes.oneOf(DISPLAY_MODES)
+  inputErrorMessage?: string
+}
+
 const AutocompleteInput = ({
   onClearInput,
   compactMode,
@@ -59,7 +81,7 @@ const AutocompleteInput = ({
   openMenu,
   inputErrorMessage,
   ...restProps
-}) => {
+}: AutocompleteInputProps) => {
   const inputRef = useRef(null)
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -84,12 +106,15 @@ const AutocompleteInput = ({
     const changeClassInput = () => {
       // eslint-disable-next-line vtex/prefer-early-return
       if (compactMode) {
+        // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
         inputRef.current.placeholder = ''
+        // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
         inputRef.current.classList.add(handles.paddingInput)
       }
     }
 
     changeClassInput()
+    // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
     autoFocus && inputRef.current.focus()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -114,6 +139,7 @@ const AutocompleteInput = ({
       style={{
         visibility: hasValue ? 'visible' : 'hidden',
       }}
+      // @ts-expect-error ts-migrate(2722) FIXME: Cannot invoke an object which is possibly 'undefin... Remove this comment to see the full error message
       onClick={() => onClearInput()}
     >
       <CloseIcon />
@@ -187,47 +213,6 @@ const AutocompleteInput = ({
       </div>
     </div>
   )
-}
-
-AutocompleteInput.propTypes = {
-  /** Downshift prop to be passed to the input */
-  autoComplete: PropTypes.string,
-  /** Input ID */
-  id: PropTypes.string,
-  /** Downshift prop to be passed to the input */
-  onBlur: PropTypes.func,
-  /** Downshift prop to be passed to the input */
-  onChange: PropTypes.func,
-  /** Downshift prop to be passed to the input */
-  onKeyDown: PropTypes.func,
-  /** Downshift prop to be passed to the input */
-  value: PropTypes.string,
-  /** Downshift func to open the menu */
-  openMenu: PropTypes.func,
-  /** Placeholder to be used on the input */
-  placeholder: PropTypes.string,
-  compactMode: PropTypes.bool,
-  /** Clears the input */
-  onClearInput: PropTypes.func,
-  /** Identify if the search icon is on left or right position */
-  hasIconLeft: PropTypes.bool,
-  /** Custom classes for the search icon */
-  iconClasses: PropTypes.string,
-  /** Block class for the search icon */
-  iconBlockClass: PropTypes.string,
-  /** Identify if the search input should autofocus or not */
-  autoFocus: PropTypes.bool,
-  /** Function to direct the user to the searchPage */
-  onGoToSearchPage: PropTypes.func.isRequired,
-  /**
-   * @deprecated Use `displayMode`
-   * Identify if icon should submit on click
-   * */
-  submitOnIconClick: PropTypes.bool,
-  /* Define the input display mode */
-  displayMode: PropTypes.oneOf(DISPLAY_MODES),
-  /** Error message showed in search input */
-  inputErrorMessage: PropTypes.string,
 }
 
 export default AutocompleteInput

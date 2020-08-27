@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import { SOCIAL_NAME_MAP, SOCIAL_COMPONENT_MAP } from '../constants/social'
@@ -12,7 +11,7 @@ const SOCIAL_WITH_TITLE = new Set([
   SOCIAL_NAME_MAP.pinterest,
 ])
 
-function getExtraSocialProps({ message, socialEnum }) {
+function getExtraSocialProps({ message, socialEnum }: any) {
   if (!message) return {}
 
   if (SOCIAL_WITH_TITLE.has(socialEnum)) {
@@ -26,24 +25,19 @@ function getExtraSocialProps({ message, socialEnum }) {
   return { body: message }
 }
 
-export default class SocialButton extends Component {
-  static propTypes = {
-    /** Share URL */
-    url: PropTypes.string.isRequired,
-    /** Message to be shared */
-    message: PropTypes.string,
-    /** Social Network Enum */
-    socialEnum: PropTypes.string.isRequired,
-    /** Button size in pixels */
-    size: PropTypes.number,
-    /** Classes to be applied to social button */
-    buttonClass: PropTypes.string,
-    /** Classes to be applied to icon of the button */
-    iconClass: PropTypes.string,
-    /** Image url to share in social medias */
-    imageUrl: PropTypes.string,
-  }
+type OwnProps = {
+  url: string
+  message?: string
+  socialEnum: string
+  size?: number
+  buttonClass?: string
+  iconClass?: string
+  imageUrl?: string
+}
 
+type Props = OwnProps & typeof SocialButton.defaultProps
+
+export default class SocialButton extends Component<Props> {
   static defaultProps = {
     size: 32,
     buttonClass: 'mh1 pointer outline-0 dim',
@@ -86,6 +80,7 @@ export default class SocialButton extends Component {
       <SocialComponent
         url={url}
         className={classNames(styles.shareSocialButton, buttonClass)}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'undefined' is not assignable to type 'string... Remove this comment to see the full error message
         media={imageUrl}
         {...additionalProps}
       >

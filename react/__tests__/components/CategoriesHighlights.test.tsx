@@ -4,7 +4,7 @@ import { render } from '@vtex/test-tools/react'
 import CategoriesHighlights from '../../CategoriesHighlights'
 
 describe('<CategoriesHighlights />', () => {
-  const renderComponent = customProps => {
+  const renderComponent = (customProps: any) => {
     const props = {
       cardShape: 'squared',
       showCategoriesHighlighted: true,
@@ -15,6 +15,7 @@ describe('<CategoriesHighlights />', () => {
   }
 
   it('should be rendered', () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     const { asFragment } = renderComponent()
 
     expect(asFragment()).toBeDefined()
@@ -22,6 +23,7 @@ describe('<CategoriesHighlights />', () => {
   })
 
   it('should match snapshot Squared', () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     const { asFragment } = renderComponent()
 
     expect(asFragment()).toMatchSnapshot()

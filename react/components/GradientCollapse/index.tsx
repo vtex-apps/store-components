@@ -1,6 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react'
-import PropTypes from 'prop-types'
+// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/react-transition-group` if... Remove this comment to see the full error message
 import { Transition } from 'react-transition-group'
+// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/debounce` if it exists or ... Remove this comment to see the full error message
 import debounce from 'debounce'
 import { FormattedMessage } from 'react-intl'
 import classNames from 'classnames'
@@ -10,14 +11,14 @@ import styles from './styles.css'
 
 const CSS_HANDLES = ['container', 'content', 'showMoreButton']
 
-const transitionStyle = transitionTime => ({
+const transitionStyle = (transitionTime: any) => ({
   transition: `${transitionTime}ms ease-in-out`,
 })
 
-const fadeBottomClasses = state =>
+const fadeBottomClasses = (state: any) =>
   classNames(styles.fadeBottom, { 'o-0': state === 'entered' }, 'w-100 h-50')
 
-const pointerEventsAutoClasses = state =>
+const pointerEventsAutoClasses = (state: any) =>
   classNames(
     styles.pointerEventsAuto,
     {
@@ -27,7 +28,16 @@ const pointerEventsAutoClasses = state =>
     'tc w-100'
   )
 
-function GradientCollapse(props) {
+type OwnProps = {
+  collapseHeight: number
+  collapsed?: boolean
+  children?: React.ReactNode
+  onCollapsedChange?: (...args: any[]) => any
+}
+
+type Props = OwnProps & typeof GradientCollapse.defaultProps
+
+function GradientCollapse(props: Props) {
   const {
     children,
     collapseHeight,
@@ -52,7 +62,9 @@ function GradientCollapse(props) {
 
     // check if the content is smaller than the passed
     // height to collapse
+    // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
     if (wrapperEl.scrollHeight > collapseHeight) {
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       setMaxHeight(wrapperEl.scrollHeight + 60)
       setCollapseVisible(true)
     } else {
@@ -61,7 +73,7 @@ function GradientCollapse(props) {
     }
   }
 
-  const handleCollapsedChange = (e, newValue) => {
+  const handleCollapsedChange = (e: any, newValue: any) => {
     setCollapsed(newValue)
     setPrevCollapsedProp(collapsedProp)
 
@@ -93,7 +105,7 @@ function GradientCollapse(props) {
 
   return (
     <Transition timeout={transitionTime} in={!collapsed}>
-      {state => (
+      {(state: any) => (
         <div
           style={{
             ...transitionStyle(transitionTime),
@@ -104,6 +116,7 @@ function GradientCollapse(props) {
           onTransitionEnd={calcMaxHeight}
           className={`${handles.container} relative`}
         >
+          {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'undefined' is not assignable to type 'HTMLDi... Remove this comment to see the full error message */}
           <div ref={wrapper} className={`${handles.content} h-auto`}>
             {children}
           </div>
@@ -129,14 +142,6 @@ function GradientCollapse(props) {
       )}
     </Transition>
   )
-}
-
-GradientCollapse.propTypes = {
-  /** Maximum height collapsed */
-  collapseHeight: PropTypes.number.isRequired,
-  collapsed: PropTypes.bool,
-  children: PropTypes.node,
-  onCollapsedChange: PropTypes.func,
 }
 
 GradientCollapse.defaultProps = {

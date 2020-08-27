@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { indexBy, prop } from 'ramda'
 import React, { Component } from 'react'
+// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/react-content-loader` if i... Remove this comment to see the full error message
 import ContentLoader from 'react-content-loader'
 import { FormattedMessage } from 'react-intl'
 
@@ -9,46 +9,40 @@ import SocialButton from './components/SocialButton'
 import { SOCIAL_LIST } from './constants/social'
 import styles from './styles.css'
 
-class Share extends Component {
-  static propTypes = {
-    /** Social Networks configuration */
-    social: PropTypes.object,
-    /** Share buttons options */
-    options: PropTypes.shape({
-      /** Share buttons size in pixels */
-      size: PropTypes.number,
-    }),
-    /** Share URL title */
-    title: PropTypes.string,
-    /** Indcates if the component should render the Content Loader */
-    loading: PropTypes.bool,
-    /** Component and content loader styles */
-    styles: PropTypes.object,
-    /** Classes to be applied to root element  */
-    className: PropTypes.string,
-    /** Classes to be applied to Share label */
-    shareLabelClass: PropTypes.string,
-    /** Classes to be applied to social button */
-    socialButtonClass: PropTypes.string,
-    /** Classes to be applied to container of the buttons */
-    buttonsContainerClass: PropTypes.string,
-    /** Classes to be applied to icon of the button */
-    socialIconClass: PropTypes.string,
-    /** Classes to be applied to the Content Loader container */
-    loaderContainerClass: PropTypes.string,
-    /** Classes to be applied to the Content Loader */
-    contentLoaderClass: PropTypes.string,
-    /** Image url for share in social medias */
-    imageUrl: PropTypes.string,
+type OwnProps = {
+  social?: any
+  options?: {
+    size?: number
   }
+  title?: string
+  loading?: boolean
+  styles?: any
+  className?: string
+  shareLabelClass?: string
+  socialButtonClass?: string
+  buttonsContainerClass?: string
+  socialIconClass?: string
+  loaderContainerClass?: string
+  contentLoaderClass?: string
+  imageUrl?: string
+}
 
+type Props = OwnProps & typeof Share.defaultProps
+
+class Share extends Component<Props> {
   static Loader = (loaderProps = {}) => {
     const {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'vtex-share__button--loader' does not exi... Remove this comment to see the full error message
       'vtex-share__button--loader': button,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'vtex-share__button--loader-1' does not e... Remove this comment to see the full error message
       'vtex-share__button--loader-1': button1,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'vtex-share__button--loader-2' does not e... Remove this comment to see the full error message
       'vtex-share__button--loader-2': button2,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'vtex-share__button--loader-3' does not e... Remove this comment to see the full error message
       'vtex-share__button--loader-3': button3,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'containerClass' does not exist on type '... Remove this comment to see the full error message
       containerClass,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'contentLoaderClass' does not exist on ty... Remove this comment to see the full error message
       contentLoaderClass,
       ...rest
     } = loaderProps
@@ -113,6 +107,7 @@ class Share extends Component {
             SOCIAL_LIST.map(socialNetwork => ({
               type: 'boolean',
               title: socialNetwork,
+              // @ts-expect-error ts-migrate(7053) FIXME: No index signature with a parameter of type 'strin... Remove this comment to see the full error message
               default: Share.defaultProps.social[socialNetwork],
             }))
           ),

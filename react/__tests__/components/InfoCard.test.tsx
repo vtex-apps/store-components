@@ -4,7 +4,7 @@ import { render } from '@vtex/test-tools/react'
 import InfoCard from '../../InfoCard'
 
 describe('<InfoCard />', () => {
-  const renderComponent = props => {
+  const renderComponent = (props: any) => {
     const defaultProps = {
       isFullModeStyle: false,
       headline: 'MY HEADLINE',
@@ -29,6 +29,7 @@ describe('<InfoCard />', () => {
     expect(asFragment()).toMatchSnapshot()
   })
   it('should render with image and text side by side', () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     const { asFragment, getByTestId } = renderComponent()
 
     expect(asFragment()).toBeDefined()

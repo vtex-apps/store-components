@@ -5,7 +5,8 @@ import { useRuntime } from 'vtex.render-runtime'
 
 import ShippingSimulator from './index'
 
-const ShippingSimulatorWrapper = props => {
+const ShippingSimulatorWrapper = (props: any) => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'culture' does not exist on type 'Runtime... Remove this comment to see the full error message
   const { culture } = useRuntime()
   const productContext = useContext(ProductContext)
 
@@ -20,6 +21,7 @@ const ShippingSimulatorWrapper = props => {
       skuId={skuId}
       seller={seller}
       country={country}
+      // @ts-expect-error ts-migrate(2322) FIXME: Property 'loaderStyles' does not exist on type 'In... Remove this comment to see the full error message
       loaderStyles={props.loaderStyles}
     />
   )

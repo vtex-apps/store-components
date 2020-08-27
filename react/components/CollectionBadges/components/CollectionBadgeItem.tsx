@@ -1,14 +1,21 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 
 import styles from '../styles.css'
+
+type OwnProps = {}
+
+type Props = OwnProps & typeof CollectionBadgeItem.defaultProps
 
 /**
  * Collection Badge Item.
  * Displays a collection badge item.
  */
 // eslint-disable-next-line react/prefer-stateless-function
-export class CollectionBadgeItem extends PureComponent {
+export class CollectionBadgeItem extends PureComponent<Props> {
+  static defaultProps = {
+    children: {},
+  }
+
   render() {
     return (
       <div className={`${styles.item} mh1 pa2 bg-blue white tc`}>
@@ -16,13 +23,4 @@ export class CollectionBadgeItem extends PureComponent {
       </div>
     )
   }
-}
-
-CollectionBadgeItem.propTypes = {
-  /** Children component that should be render inside the collection badge item */
-  children: PropTypes.node.isRequired,
-}
-
-CollectionBadgeItem.defaultProps = {
-  children: {},
 }

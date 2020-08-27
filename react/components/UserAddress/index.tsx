@@ -1,12 +1,17 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 import { graphql } from 'react-apollo'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'vtex.store-resources/QueryAddr... Remove this comment to see the full error message
 import ADDRESS_QUERY from 'vtex.store-resources/QueryAddress'
 
 import Container from '../Container'
 import AddressInfo from './AddressInfo'
 
-const UserAddress = ({ variation, addressQuery: addressQueryProp }) => {
+type Props = {
+  variation: 'inline' | 'bar'
+  addressQuery: any
+}
+
+const UserAddress = ({ variation, addressQuery: addressQueryProp }: Props) => {
   const { orderForm } = addressQueryProp
   const { shippingData } = orderForm || {}
 
@@ -47,14 +52,10 @@ const UserAddress = ({ variation, addressQuery: addressQueryProp }) => {
   )
 }
 
-UserAddress.propTypes = {
-  variation: PropTypes.oneOf(['inline', 'bar']).isRequired,
-  addressQuery: PropTypes.object.isRequired,
-}
-
 const withAddressQuery = graphql(ADDRESS_QUERY, {
   name: 'addressQuery',
   options: () => ({ ssr: false }),
 })
 
+// @ts-expect-error ts-migrate(2345) FIXME: Type 'PropsWithChildren<Partial<DataProps<{}, {}>>... Remove this comment to see the full error message
 export default withAddressQuery(UserAddress)

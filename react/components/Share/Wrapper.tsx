@@ -6,10 +6,11 @@ import { useRuntime } from 'vtex.render-runtime'
 
 import Share from './index'
 
-const ShareWrapper = props => {
+const ShareWrapper = (props: any) => {
   const { intl } = props
 
   const valuesFromContext = useContext(ProductContext)
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'account' does not exist on type 'Runtime... Remove this comment to see the full error message
   const { account } = useRuntime()
 
   const shareProps = () => {
@@ -17,6 +18,7 @@ const ShareWrapper = props => {
       return props
     }
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'selectedItem' does not exist on type 'un... Remove this comment to see the full error message
     const { selectedItem, product } = valuesFromContext
 
     const title = intl.formatMessage(

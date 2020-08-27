@@ -4,15 +4,16 @@ import { isEmpty, propOr } from 'ramda'
 
 import ProductSpecifications from './index'
 
-const getSpecifications = productContext => {
+const getSpecifications = (productContext: any) => {
   if (!productContext || isEmpty(productContext)) {
     return []
   }
 
   const { product } = productContext
   const specificationGroups = propOr([], 'specificationGroups', product)
+  // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
   const groupWithAll = specificationGroups.find(
-    specificationGroup =>
+    (specificationGroup: any) =>
       specificationGroup.originalName === 'allSpecifications' ||
       specificationGroup.name === 'allSpecifications'
   )
@@ -26,10 +27,13 @@ const ProductSpecificationsWrapper = ({
   hiddenSpecifications,
   visibleSpecifications,
   specifications: propsSpecifications,
-  tabsMode, // This is a legacy prop passed by product-details
+
+  // This is a legacy prop passed by product-details
+  tabsMode,
+
   showSpecificationsTab = false,
   collapsible = 'always',
-}) => {
+}: any) => {
   const productContext = useProduct()
   const specifications =
     propsSpecifications || getSpecifications(productContext)

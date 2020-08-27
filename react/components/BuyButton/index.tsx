@@ -1,13 +1,15 @@
-import PropTypes from 'prop-types'
 import React, { useContext, useCallback, useState, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { path } from 'ramda'
+// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/react-content-loader` if i... Remove this comment to see the full error message
 import ContentLoader from 'react-content-loader'
 import { useRuntime } from 'vtex.render-runtime'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'vtex.store-resources/PWAContex... Remove this comment to see the full error message
 import { usePWA } from 'vtex.store-resources/PWAContext'
 import { useCssHandles } from 'vtex.css-handles'
 import useProduct from 'vtex.product-context/useProduct'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.styleguide"' has no exported member ... Remove this comment to see the full error message
 import { Button, ToastContext, Tooltip } from 'vtex.styleguide'
 
 import useMarketingSessionParams from './hooks/useMarketingSessionParams'
@@ -24,7 +26,7 @@ const CONSTANTS = {
 
 const CSS_HANDLES = ['buyButtonContainer', 'buyButtonText']
 
-const isTooltipNeeded = ({ showTooltipOnSkuNotSelected, skuSelector }) => {
+const isTooltipNeeded = ({ showTooltipOnSkuNotSelected, skuSelector }: any) => {
   if (showTooltipOnSkuNotSelected && !skuSelector.areAllVariationsSelected) {
     return {
       showTooltip: true,
@@ -37,7 +39,7 @@ const isTooltipNeeded = ({ showTooltipOnSkuNotSelected, skuSelector }) => {
   }
 }
 
-const skuItemToMinicartItem = item => {
+const skuItemToMinicartItem = (item: any) => {
   return {
     // Important for the mutation
     id: item.skuId,
@@ -63,9 +65,9 @@ const skuItemToMinicartItem = item => {
 }
 
 const useCallCartFinishIfPending = (
-  orderFormContext,
-  isAddingToCart,
-  addToCartAndFinish
+  orderFormContext: any,
+  isAddingToCart: any,
+  addToCartAndFinish: any
 ) => {
   const orderFormLoading = orderFormContext && orderFormContext.loading
 
@@ -75,6 +77,41 @@ const useCallCartFinishIfPending = (
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderFormLoading])
+}
+
+type Props = {
+  skuItems?: Array<{
+    skuId: string
+    quantity: number
+    seller?: string | number
+    name: string
+    price: number
+    variant?: string
+    brand: string
+    options?: Array<{
+      id: string
+      quantity: number
+      assemblyId: string
+      seller?: string
+    }>
+  }>
+  children: React.ReactNode
+  isOneClickBuy?: boolean
+  shouldOpenMinicart?: boolean
+  shouldAddToCart?: boolean
+  large?: boolean
+  intl: any
+  available?: boolean
+  showTooltipOnSkuNotSelected?: boolean
+  showToast?: (...args: any[]) => any
+  onAddStart?: (...args: any[]) => any
+  onAddFinish?: (...args: any[]) => any
+  addToCart: (...args: any[]) => any
+  setMinicartOpen: (...args: any[]) => any
+  orderFormContext?: any
+  disabled?: boolean
+  customToastURL?: string
+  checkoutUrl?: string
 }
 
 /**
@@ -99,7 +136,7 @@ export const BuyButton = ({
   showTooltipOnSkuNotSelected = true,
   checkoutUrl,
   customToastURL = checkoutUrl,
-}) => {
+}: Props) => {
   const handles = useCssHandles(CSS_HANDLES)
   const [isAddingToCart, setAddingToCart] = useState(false)
   const { showToast } = useContext(ToastContext)
@@ -111,13 +148,14 @@ export const BuyButton = ({
 
   const dispatch = useProductDispatch()
   const { settings = {}, showInstallPrompt } = usePWA() || {}
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'rootPath' does not exist on type 'Runtim... Remove this comment to see the full error message
   const { rootPath = '' } = useRuntime()
   const { promptOnCustomEvent } = settings
   const translateMessage = useCallback(id => intl.formatMessage({ id }), [intl])
   const orderFormItems = path(['orderForm', 'items'], orderFormContext)
   const { utmParams, utmiParams } = useMarketingSessionParams()
 
-  const resolveToastMessage = (success, isNewItem) => {
+  const resolveToastMessage = (success: any, isNewItem: any) => {
     if (!success) return translateMessage(CONSTANTS.ERROR_MESSAGE_ID)
     if (!isNewItem) return translateMessage(CONSTANTS.DUPLICATE_CART_ITEM_ID)
 
@@ -129,7 +167,7 @@ export const BuyButton = ({
     return checkForOffline
   }
 
-  const toastMessage = ({ success, isNewItem }) => {
+  const toastMessage = ({ success, isNewItem }: any) => {
     const message = resolveToastMessage(success, isNewItem)
 
     const action = success
@@ -144,7 +182,7 @@ export const BuyButton = ({
 
   const fullCheckoutUrl = rootPath + checkoutUrl
 
-  const beforeAddToCart = event => {
+  const beforeAddToCart = (event: any) => {
     event.stopPropagation()
     event.preventDefault()
 
@@ -153,9 +191,10 @@ export const BuyButton = ({
   }
 
   const addToCartAndFinish = async () => {
-    let showToastMessage
+    let showToastMessage: any
 
     try {
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       const minicartItems = skuItems.map(skuItemToMinicartItem)
       const localStateMutationResult = !isOneClickBuy
         ? await addToCart(minicartItems)
@@ -166,11 +205,12 @@ export const BuyButton = ({
 
       const callOrderFormDirectly = !linkStateItems
 
-      let success = null
+      let success: any = null
 
       if (callOrderFormDirectly) {
         const variables = {
           orderFormId: orderFormContext.orderForm.orderFormId,
+          // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
           items: skuItems.map(item => ({
             id: item.skuId,
             seller: item.seller,
@@ -184,10 +224,11 @@ export const BuyButton = ({
         const mutationRes = await orderFormContext.addItem({ variables })
         const { items } = mutationRes.data.addItem
 
+        // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
         success = skuItems.filter(
           skuItem =>
             !!items.find(
-              ({ id, seller }) =>
+              ({ id, seller }: any) =>
                 id === skuItem.skuId && seller === skuItem.seller
             )
         )
@@ -196,10 +237,11 @@ export const BuyButton = ({
 
       const addedItem =
         (linkStateItems &&
+          // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
           skuItems.filter(
             skuItem =>
               !!linkStateItems.find(
-                ({ id, seller }) =>
+                ({ id, seller }: any) =>
                   id === skuItem.skuId && seller === skuItem.seller
               )
           )) ||
@@ -208,8 +250,9 @@ export const BuyButton = ({
       const foundItem =
         addedItem.length &&
         orderFormItems &&
+        // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
         orderFormItems.filter(
-          item =>
+          (item: any) =>
             item.id === addedItem[0].skuId &&
             item.seller === addedItem[0].seller &&
             !item.canHaveAttachment
@@ -246,7 +289,7 @@ export const BuyButton = ({
     }, 500)
   }
 
-  const handleAddToCart = async event => {
+  const handleAddToCart = async (event: any) => {
     beforeAddToCart(event)
     await addToCartAndFinish()
   }
@@ -257,7 +300,7 @@ export const BuyButton = ({
     addToCartAndFinish
   )
 
-  const handleClick = e => {
+  const handleClick = (e: any) => {
     if (dispatch) {
       dispatch({ type: 'SET_BUY_BUTTON_CLICKED', args: { clicked: true } })
     }
@@ -312,75 +355,6 @@ export const BuyButton = ({
       {ButtonWithLabel}
     </Tooltip>
   )
-}
-
-BuyButton.propTypes = {
-  /** SKU Items to be added to the cart */
-  skuItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      /** Specification of which product will be added to the cart */
-      skuId: PropTypes.string.isRequired,
-      /** Quantity of the product sku to be added to the cart */
-      quantity: PropTypes.number.isRequired,
-      /** Which seller is being referenced by the button */
-      seller: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      /* Sku name */
-      name: PropTypes.string.isRequired,
-      /* Sku price */
-      price: PropTypes.number.isRequired,
-      /* Sku variant */
-      variant: PropTypes.string,
-      /* Sku brand */
-      brand: PropTypes.string.isRequired,
-      /* Sku options. In delivery, for examples, are the pizza options */
-      options: PropTypes.arrayOf(
-        PropTypes.shape({
-          /* Option id */
-          id: PropTypes.string.isRequired,
-          /* Option quantity */
-          quantity: PropTypes.number.isRequired,
-          /* Option assembly id */
-          assemblyId: PropTypes.string.isRequired,
-          /* Option seller */
-          seller: PropTypes.string,
-        })
-      ),
-    })
-  ),
-  /** Component children that will be displayed inside of the button */
-  children: PropTypes.node.isRequired,
-  /** Should redirect to checkout after adding to cart */
-  isOneClickBuy: PropTypes.bool,
-  /** Should open the Minicart after click */
-  shouldOpenMinicart: PropTypes.bool,
-  /** If it should add to cart when clicked */
-  shouldAddToCart: PropTypes.bool,
-  /** Set style to large */
-  large: PropTypes.bool,
-  /** Internationalization */
-  intl: PropTypes.object.isRequired,
-  /** If the product is available or not */
-  available: PropTypes.bool,
-  /** If it should a tooltip when you click the button but there's no SKU selected */
-  showTooltipOnSkuNotSelected: PropTypes.bool,
-  /** Function used to show toasts (messages) to user */
-  showToast: PropTypes.func,
-  /** Function to be called on the start of add to cart click event */
-  onAddStart: PropTypes.func,
-  /** Function to be called on the end of add to cart event */
-  onAddFinish: PropTypes.func,
-  /** Add to cart mutation */
-  addToCart: PropTypes.func.isRequired,
-  /** Open Minicart mutation */
-  setMinicartOpen: PropTypes.func.isRequired,
-  /** The orderFormContext object */
-  orderFormContext: PropTypes.object,
-  /** If the button is disabled or not */
-  disabled: PropTypes.bool,
-  /** A custom URL for the `VIEW CART` button inside the toast */
-  customToastURL: PropTypes.string,
-  /** The URL to the cart */
-  checkoutUrl: PropTypes.string,
 }
 
 export default BuyButton

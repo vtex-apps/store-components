@@ -12,13 +12,14 @@ describe('<ProductName />', () => {
 
   const context = { culture: { currency: 'USD' } }
 
-  const renderComponent = customProps => {
+  const renderComponent = (customProps: any) => {
     const props = {
       ...defaultProps,
       ...customProps,
     }
 
     return render(<ProductName {...props} />, {
+      // @ts-expect-error ts-migrate(2345) FIXME: Object literal may only specify known properties, ... Remove this comment to see the full error message
       context,
       childContextTypes: {
         culture: PropTypes.object,
@@ -27,12 +28,14 @@ describe('<ProductName />', () => {
   }
 
   it('should be mounted', () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     const { asFragment } = renderComponent()
 
     expect(asFragment()).toBeDefined()
   })
 
   it('should match the snapshot with only Name', () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     const { asFragment } = renderComponent()
 
     expect(asFragment()).toMatchSnapshot()

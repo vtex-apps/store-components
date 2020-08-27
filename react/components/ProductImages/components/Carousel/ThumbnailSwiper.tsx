@@ -32,7 +32,7 @@ const Thumbnail = ({
   maxHeight = 150,
   aspectRatio = 'auto',
   itemContainerClasses,
-}) => {
+}: any) => {
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div
@@ -70,7 +70,7 @@ const ThumbnailSwiper = ({
   activeIndex,
   thumbnailAspectRatio,
   thumbnailMaxHeight,
-}) => {
+}: any) => {
   const hasThumbs = slides.length > 1
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -86,7 +86,7 @@ const ThumbnailSwiper = ({
   return (
     <div className={thumbClasses} data-testid="thumbnail-swiper">
       <Swiper {...swiperParams} shouldSwiperUpdate>
-        {slides.map((slide, i) => {
+        {slides.map((slide: any, i: any) => {
           const itemContainerClasses = classNames(
             'swiper-slide mb5 pointer',
             handles.productImagesThumb,

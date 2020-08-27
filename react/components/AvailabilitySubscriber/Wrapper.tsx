@@ -4,11 +4,13 @@ import { path } from 'ramda'
 
 import AvailabilitySubscriber from './index'
 
-const isAvailable = commertialOffer =>
+const isAvailable = (commertialOffer: any) =>
+  // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
   Number.isNaN(+path(['AvailableQuantity'], commertialOffer)) ||
+  // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
   path(['AvailableQuantity'], commertialOffer) > 0
 
-const AvailabilitySubscriberWrapper = props => {
+const AvailabilitySubscriberWrapper = (props: any) => {
   const valuesFromContext = useContext(ProductContext)
 
   const commertialOffer = path(

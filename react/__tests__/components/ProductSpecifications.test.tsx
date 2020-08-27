@@ -4,7 +4,7 @@ import { render } from '@vtex/test-tools/react'
 import ProductSpecifications from '../../ProductSpecifications'
 
 describe('<ProductSpecifications /> component', () => {
-  const renderComponent = customProps => {
+  const renderComponent = (customProps: any) => {
     const props = {
       ...customProps,
     }
@@ -15,12 +15,14 @@ describe('<ProductSpecifications /> component', () => {
   }
 
   it('should be rendered', () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     const { asFragment } = renderComponent()
 
     expect(asFragment()).toBeTruthy()
   })
 
   it('should match snapshot with table view and no specifications', () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     const { asFragment } = renderComponent()
 
     expect(asFragment()).toMatchSnapshot()

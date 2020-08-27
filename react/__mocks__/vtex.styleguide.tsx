@@ -3,25 +3,25 @@ import React, { forwardRef } from 'react'
 
 export const ToastContext = React.createContext({ showToast: jest.fn() })
 
-export function withToast(Comp) {
-  return function WrappedWithToast(props) {
+export function withToast(Comp: any) {
+  return function WrappedWithToast(props: any) {
     return <Comp {...props} showToast={jest.fn()} />
   }
 }
 
-export function Tabs(props) {
+export function Tabs(props: any) {
   return <div className="tabs-mock"> {props.children} </div>
 }
 
-export function Tab(props) {
+export function Tab(props: any) {
   return <div className="tab-mock"> {props.children} </div>
 }
 
-export function Spinner(props) {
+export function Spinner(props: any) {
   return <div className="spinner-mock"> {props.children} </div>
 }
 
-export function Dropdown(props) {
+export function Dropdown(props: any) {
   const { onChange, options } = props
   let { value } = props
 
@@ -32,7 +32,7 @@ export function Dropdown(props) {
   return (
     // eslint-disable-next-line jsx-a11y/no-onchange
     <select value={value} onChange={onChange}>
-      {options.map(op => (
+      {options.map((op: any) => (
         <option key={op.value} value={op.value}>
           {op.label}
         </option>
@@ -42,6 +42,7 @@ export function Dropdown(props) {
 }
 
 export const Input = forwardRef(function Input(
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'label' does not exist on type '{ childre... Remove this comment to see the full error message
   { label, error, errorMessage, isLoading, prefix, suffix, ...props },
   ref
 ) {
@@ -53,6 +54,7 @@ export const Input = forwardRef(function Input(
         data-isloading={isLoading}
         data-error={error}
         data-errormessage={errorMessage}
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'unknown' is not assignable to type 'HTMLInpu... Remove this comment to see the full error message
         ref={ref}
         {...props}
       />

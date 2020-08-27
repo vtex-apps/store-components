@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
 import React from 'react'
+// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/react-content-loader` if i... Remove this comment to see the full error message
 import ContentLoader from 'react-content-loader'
 import classNames from 'classnames'
 import { useCssHandles } from 'vtex.css-handles'
@@ -13,6 +13,23 @@ const CSS_HANDLES = [
   'productNameBrandLoader',
   'productNameSkuLoader',
 ]
+
+type Props = {
+  name?: string
+  skuName?: string
+  showSku?: boolean
+  productReference?: string
+  showProductReference?: boolean
+  brandName?: string
+  showBrandName?: boolean
+  styles?: any
+  className?: string
+  brandNameClass?: string
+  skuNameClass?: string
+  productReferenceClass?: string
+  loaderClass?: string
+  tag?: 'div' | 'h1' | 'h2' | 'h3'
+}
 
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
@@ -32,7 +49,7 @@ const ProductName = ({
   productReference,
   showProductReference = false,
   tag: Wrapper = 'div',
-}) => {
+}: Props) => {
   const handles = useCssHandles(CSS_HANDLES)
 
   const Loader = (loaderProps = {}) => (
@@ -40,6 +57,7 @@ const ProductName = ({
       className={classNames(
         handles.productNameContainer,
         handles.productNameLoader,
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'className' does not exist on type '{}'.
         loaderProps.className
       )}
     >
@@ -57,6 +75,7 @@ const ProductName = ({
           height="1.125em"
           width="75%"
           x="15%"
+          // @ts-expect-error ts-migrate(7053) FIXME: No index signature with a parameter of type 'strin... Remove this comment to see the full error message
           {...loaderProps[handles.productNameBrandLoader]}
         />
         <rect
@@ -64,6 +83,7 @@ const ProductName = ({
           width="50%"
           x="25%"
           y="1.75em"
+          // @ts-expect-error ts-migrate(7053) FIXME: No index signature with a parameter of type 'strin... Remove this comment to see the full error message
           {...loaderProps[handles.productNameSkuLoader]}
         />
       </ContentLoader>
@@ -98,37 +118,6 @@ const ProductName = ({
       )}
     </Wrapper>
   )
-}
-
-ProductName.propTypes = {
-  /** Name of the product */
-  name: PropTypes.string,
-  /** Selected SKU name */
-  skuName: PropTypes.string,
-  /** Show sku */
-  showSku: PropTypes.bool,
-  /** Product reference */
-  productReference: PropTypes.string,
-  /** Show product reference */
-  showProductReference: PropTypes.bool,
-  /** Brand name */
-  brandName: PropTypes.string,
-  /** Show brand name */
-  showBrandName: PropTypes.bool,
-  /** Component and content loader styles */
-  styles: PropTypes.object,
-  /** Classes to be applied to root element */
-  className: PropTypes.string,
-  /** Classes to be applied to brandName element */
-  brandNameClass: PropTypes.string,
-  /** Classes to be applied to skuName element */
-  skuNameClass: PropTypes.string,
-  /** Classes to be applied to productReference element */
-  productReferenceClass: PropTypes.string,
-  /** Classes to be applied to loader root element */
-  loaderClass: PropTypes.string,
-  /** HTML tag to be used in the component container */
-  tag: PropTypes.oneOf(['div', 'h1', 'h2', 'h3']),
 }
 
 export default ProductName

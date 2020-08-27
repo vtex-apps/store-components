@@ -70,5 +70,6 @@ export const imageUrl = (
     width = Math.min(maxSize, width)
   }
 
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
   return changeImageUrlSize(src, width, height)
 }

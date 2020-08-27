@@ -1,13 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { injectIntl } from 'react-intl'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'vtex.shipping-estimate-transla... Remove this comment to see the full error message
 import TranslateEstimate from 'vtex.shipping-estimate-translator/TranslateEstimate'
 import classNames from 'classnames'
 import { FormattedCurrency } from 'vtex.format-currency'
 
 import styles from '../shippingSimulator.css'
 
-const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
+type Props = {
+  name?: string
+  shippingEstimate?: string
+  price?: number
+  intl: any
+}
+
+const ShippingTableRow = ({ name, shippingEstimate, price, intl }: Props) => {
   const etaClassName = classNames(
     `${styles.shippingTableCell} pv1 ph3 t-small c-muted-2`,
     {
@@ -51,13 +58,6 @@ const ShippingTableRow = ({ name, shippingEstimate, price, intl }) => {
       <td className={valueClassName}>{valueText}</td>
     </tr>
   )
-}
-
-ShippingTableRow.propTypes = {
-  name: PropTypes.string,
-  shippingEstimate: PropTypes.string,
-  price: PropTypes.number,
-  intl: PropTypes.object.isRequired,
 }
 
 export default injectIntl(ShippingTableRow)

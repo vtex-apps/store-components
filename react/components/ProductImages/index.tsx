@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react'
-import PropTypes from 'prop-types'
 import { useCssHandles } from 'vtex.css-handles'
 
 import Carousel from './components/Carousel'
@@ -11,6 +10,40 @@ import {
 
 const CSS_HANDLES = ['content', 'productImagesContainer']
 
+type OwnProps = {
+  position?: any // TODO: PropTypes.oneOf([ THUMBS_POSITION_HORIZONTAL.LEFT, THUMBS_POSITION_HORIZONTAL.RIGHT, ])
+  ModalZoomElement?: any
+  thumbnailsOrientation?: any // TODO: PropTypes.oneOf([ THUMBS_ORIENTATION.VERTICAL, THUMBS_ORIENTATION.HORIZONTAL, ])
+  hiddenImages?: string | string[]
+  images?: Array<{
+    imageUrls?: string[]
+    thresholds?: number[]
+    thumbnailUrl?: string
+    imageText?: string
+  }>
+  videos?: Array<{
+    videoUrl?: string
+  }>
+  zoomProps?: {
+    zoomType?: string
+  }
+  displayThumbnailsArrows?: boolean
+  aspectRatio?: string
+  maxHeight?: number
+  thumbnailAspectRatio?: string
+  thumbnailMaxHeight?: number
+  showNavigationArrows?: boolean
+  showPaginationDots?: boolean
+  contentOrder?: 'images-first' | 'videos-first'
+  zoomMode?: 'disabled' | 'open-modal' | 'in-place-click' | 'in-place-hover'
+  zoomFactor?: number
+  contentType?: 'all' | 'images' | 'videos'
+}
+
+// @ts-expect-error ts-migrate(2456) FIXME: Type alias 'Props' circularly references itself.
+type Props = OwnProps & typeof ProductImages.defaultProps
+
+// @ts-expect-error ts-migrate(7022) FIXME: 'ProductImages' implicitly has type 'any' because ... Remove this comment to see the full error message
 const ProductImages = ({
   position,
   displayThumbnailsArrows,
@@ -31,13 +64,13 @@ const ProductImages = ({
   contentType = 'all',
   // Deprecated
   zoomProps,
-}) => {
+}: Props) => {
   if (hiddenImages && !Array.isArray(hiddenImages)) {
     hiddenImages = [hiddenImages]
   }
 
   const excludeImageRegexes =
-    hiddenImages && hiddenImages.map(text => new RegExp(text, 'i'))
+    hiddenImages && hiddenImages.map((text: any) => new RegExp(text, 'i'))
 
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -45,11 +78,13 @@ const ProductImages = ({
   const images = shouldIncludeImages
     ? allImages
         .filter(
-          image =>
+          (image: any) =>
             !image.imageLabel ||
-            !excludeImageRegexes.some(regex => regex.test(image.imageLabel))
+            !excludeImageRegexes.some((regex: any) =>
+              regex.test(image.imageLabel)
+            )
         )
-        .map(image => ({
+        .map((image: any) => ({
           type: 'image',
           url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
           alt: image.imageText,
@@ -59,7 +94,7 @@ const ProductImages = ({
 
   const shouldIncludeVideos = contentType !== 'images'
   const videos = shouldIncludeVideos
-    ? allVideos.map(video => ({
+    ? allVideos.map((video: any) => ({
         type: 'video',
         src: video.videoUrl,
         thumbWidth: 300,
@@ -77,6 +112,7 @@ const ProductImages = ({
       className={`${handles.productImagesContainer} ${handles.content} w-100`}
     >
       <Carousel
+        // @ts-expect-error ts-migrate(2322) FIXME: Property 'slides' does not exist on type 'Intrinsi... Remove this comment to see the full error message
         slides={slides}
         position={position}
         zoomMode={zoomMode}
@@ -95,64 +131,6 @@ const ProductImages = ({
       />
     </div>
   )
-}
-
-ProductImages.propTypes = {
-  /** The position of the thumbs */
-  position: PropTypes.oneOf([
-    THUMBS_POSITION_HORIZONTAL.LEFT,
-    THUMBS_POSITION_HORIZONTAL.RIGHT,
-  ]),
-  ModalZoomElement: PropTypes.any,
-  thumbnailsOrientation: PropTypes.oneOf([
-    THUMBS_ORIENTATION.VERTICAL,
-    THUMBS_ORIENTATION.HORIZONTAL,
-  ]),
-  /** This is a necessary prop if you're using SKUSelector to display color images
-   * (like a image with only green to represent an SKU of something green) and you
-   * want to not display this image in the ProductImages component, to do this you
-   * just have to upload the image in the catalog with the value of this prop inside the imageText property */
-  hiddenImages: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
-  /** Array of images to be passed for the Thumbnail Slider component as a props */
-  images: PropTypes.arrayOf(
-    PropTypes.shape({
-      /** URL of the image */
-      imageUrls: PropTypes.arrayOf(PropTypes.string.isRequired),
-      /** Size thresholds used to choose each image */
-      thresholds: PropTypes.arrayOf(PropTypes.number),
-      /** URL of the image thumbnail */
-      thumbnailUrl: PropTypes.string,
-      /** Text that describes the image */
-      imageText: PropTypes.string,
-    })
-  ),
-  videos: PropTypes.arrayOf(
-    PropTypes.shape({
-      videoUrl: PropTypes.string,
-    })
-  ),
-  zoomProps: PropTypes.shape({
-    zoomType: PropTypes.string,
-  }),
-  displayThumbnailsArrows: PropTypes.bool,
-  aspectRatio: PropTypes.string,
-  maxHeight: PropTypes.number,
-  thumbnailAspectRatio: PropTypes.string,
-  thumbnailMaxHeight: PropTypes.number,
-  showNavigationArrows: PropTypes.bool,
-  showPaginationDots: PropTypes.bool,
-  contentOrder: PropTypes.oneOf(['images-first', 'videos-first']),
-  zoomMode: PropTypes.oneOf([
-    'disabled',
-    'open-modal',
-    'in-place-click',
-    'in-place-hover',
-  ]),
-  zoomFactor: PropTypes.number,
-  contentType: PropTypes.oneOf(['all', 'images', 'videos']),
 }
 
 ProductImages.defaultProps = {

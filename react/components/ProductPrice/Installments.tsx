@@ -3,11 +3,20 @@ import { useRuntime } from 'vtex.render-runtime'
 import { injectIntl, FormattedMessage } from 'react-intl'
 import classNames from 'classnames'
 import { isEmpty } from 'ramda'
-import PropTypes from 'prop-types'
 import { formatCurrency } from 'vtex.format-currency'
 
+// @ts-expect-error ts-migrate(6133) FIXME: 'PricePropTypes' is declared but its value is neve... Remove this comment to see the full error message
 import PricePropTypes from './propTypes'
 import productPrice from './styles.css'
+
+type Props = {
+  className?: string
+  installmentClass?: string
+  interestRateClass?: string
+  installments?: any // TODO: PricePropTypes.installments
+  showLabels: boolean
+  intl: any
+}
 
 /** Installments component */
 const Installments = ({
@@ -17,14 +26,15 @@ const Installments = ({
   installmentClass,
   interestRateClass,
   intl,
-}) => {
+}: Props) => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'culture' does not exist on type 'Runtime... Remove this comment to see the full error message
   const { culture } = useRuntime()
 
   if (
     !installments ||
     isEmpty(
       installments.filter(
-        ({ NumberOfInstallments }) => NumberOfInstallments > 1
+        ({ NumberOfInstallments }: any) => NumberOfInstallments > 1
       )
     )
   ) {
@@ -32,7 +42,7 @@ const Installments = ({
   }
 
   const noInterestRateInstallments = installments.filter(
-    installment =>
+    (installment: any) =>
       !installment.InterestRate && installment.NumberOfInstallments > 1
   )
 
@@ -43,7 +53,7 @@ const Installments = ({
   const installment = (isEmpty(noInterestRateInstallments)
     ? installments
     : noInterestRateInstallments
-  ).reduce((previous, current) =>
+  ).reduce((previous: any, current: any) =>
     previous.NumberOfInstallments > current.NumberOfInstallments
       ? previous
       : current
@@ -94,20 +104,6 @@ const Installments = ({
       )}
     </div>
   )
-}
-
-Installments.propTypes = {
-  /** Classes to be applied to the root element */
-  className: PropTypes.string,
-  /** Classes to be applied to installment value element */
-  installmentClass: PropTypes.string,
-  /** Classes to be applied to interest rate element */
-  interestRateClass: PropTypes.string,
-  /** Product installments to be displayed */
-  installments: PricePropTypes.installments,
-  /** Pages editor config to display labels */
-  showLabels: PropTypes.bool.isRequired,
-  intl: PropTypes.object.isRequired,
 }
 
 export default injectIntl(Installments)

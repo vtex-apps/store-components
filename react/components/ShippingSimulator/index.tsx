@@ -1,14 +1,16 @@
 import React, { Fragment, useState } from 'react'
 import { injectIntl } from 'react-intl'
 import { useApolloClient } from 'react-apollo'
-import PropTypes from 'prop-types'
 import { Button } from 'vtex.styleguide'
 import {
   AddressRules,
   AddressContainer,
   PostalCodeGetter,
+  // @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'vtex.address-form' or its corr... Remove this comment to see the full error message
 } from 'vtex.address-form'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'vtex.address-form/inputs' or i... Remove this comment to see the full error message
 import { StyleguideInput } from 'vtex.address-form/inputs'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'vtex.address-form/helpers' or ... Remove this comment to see the full error message
 import { addValidation, removeValidation } from 'vtex.address-form/helpers'
 
 import ShippingTable from './components/ShippingTable'
@@ -17,8 +19,23 @@ import ShippingSimulatorLoader from './Loader'
 import styles from './shippingSimulator.css'
 import { getNewAddress } from './utils'
 
+type Props = {
+  intl: any
+  skuId?: string
+  seller?: string
+  country: string
+  styles?: any
+}
+
 // eslint-disable-next-line react/prop-types
-const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
+const ShippingSimulator = ({
+  intl,
+  skuId,
+  seller,
+  country,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'loaderStyles' does not exist on type 'Pr... Remove this comment to see the full error message
+  loaderStyles,
+}: Props) => {
   const client = useApolloClient()
   const [address, setAddress] = useState(() =>
     addValidation(getNewAddress(country))
@@ -28,7 +45,7 @@ const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
   const [loading, setLoading] = useState(false)
   const [isValid, setIsValid] = useState(false)
 
-  const handleAddressChange = newAddress => {
+  const handleAddressChange = (newAddress: any) => {
     const updatedAddress = {
       ...address,
       ...newAddress,
@@ -38,7 +55,7 @@ const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
     setIsValid(updatedAddress.postalCode.valid)
   }
 
-  const handleClick = e => {
+  const handleClick = (e: any) => {
     e && e.preventDefault()
     setLoading(true)
     const { postalCode } = removeValidation(address)
@@ -98,18 +115,10 @@ const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
           {intl.formatMessage({ id: 'store/shipping.label' })}
         </Button>
       </div>
+      {/* @ts-expect-error ts-migrate(2769) FIXME: Type 'null' is not assignable to type '{ logistics... Remove this comment to see the full error message */}
       <ShippingTable shipping={shipping} />
     </Fragment>
   )
-}
-
-ShippingSimulator.propTypes = {
-  intl: PropTypes.object.isRequired,
-  skuId: PropTypes.string,
-  seller: PropTypes.string,
-  country: PropTypes.string.isRequired,
-  /** Component and content loader styles */
-  styles: PropTypes.object,
 }
 
 export default injectIntl(ShippingSimulator)

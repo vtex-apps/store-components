@@ -1,7 +1,7 @@
 import React from 'react'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.render-runtime"' has no exported mem... Remove this comment to see the full error message
 import { Link, useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import * as Amp from 'react-amphtml'
 
@@ -9,6 +9,16 @@ import Placeholder from './Placeholder'
 import styles from './styles.css'
 
 const CSS_HANDLES = ['logoLink', 'logoImage', 'logoContainer']
+
+type Props = {
+  url?: string
+  title: string
+  width?: number | string
+  height?: number | string
+  href?: string
+  mobileWidth?: number | string
+  mobileHeight?: number | string
+}
 
 /**
  * Logo of the store
@@ -21,10 +31,13 @@ const Logo = ({
   title,
   mobileWidth,
   mobileHeight,
-}) => {
+}: Props) => {
   const {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'amp' does not exist on type 'Runtime'.
     amp,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'account' does not exist on type 'Runtime... Remove this comment to see the full error message
     account,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hints' does not exist on type 'Runtime'.
     hints: { mobile },
   } = useRuntime()
 
@@ -81,20 +94,6 @@ const Logo = ({
   ) : (
     logo
   )
-}
-
-Logo.propTypes = {
-  /** URL of the logo */
-  url: PropTypes.string,
-  /** Title to be displayed as alt text */
-  title: PropTypes.string.isRequired,
-  /** Logo's width */
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /** Logo's height */
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  href: PropTypes.string,
-  mobileWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  mobileHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
 
 Logo.schema = {

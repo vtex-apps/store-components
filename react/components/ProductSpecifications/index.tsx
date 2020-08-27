@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
-import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.styleguide"' has no exported member ... Remove this comment to see the full error message
 import { Tabs, Tab } from 'vtex.styleguide'
 import { useDevice } from 'vtex.device-detector'
 
@@ -23,10 +23,26 @@ const CSS_HANDLES = [
   'specificationItemSpecifications',
 ]
 
+type OwnProps = {
+  specifications?: Array<{
+    name: string
+    values: string[]
+  }>
+  shouldCollapseInTabChange?: boolean
+  tabsMode?: boolean
+  visibleSpecifications?: any[]
+  hiddenSpecifications?: any[]
+  collapsible?: 'always' | 'never' | 'desktopOnly' | 'mobileOnly'
+}
+
+// @ts-expect-error ts-migrate(2456) FIXME: Type alias 'Props' circularly references itself.
+type Props = OwnProps & typeof ProductSpecifications.defaultProps
+
 /**
  * Product Specification Component.
  * Render the technical specifications of a product. Can be displayed in two views: Table view or Tabs view.
  */
+// @ts-expect-error ts-migrate(7022) FIXME: 'ProductSpecifications' implicitly has type 'any' ... Remove this comment to see the full error message
 const ProductSpecifications = ({
   tabsMode,
   specifications,
@@ -34,7 +50,7 @@ const ProductSpecifications = ({
   hiddenSpecifications,
   visibleSpecifications,
   shouldCollapseInTabChange,
-}) => {
+}: Props) => {
   const [currentTab, setCurrentTab] = useState(0)
   const [collapsed, setCollapsed] = useState(true)
   const handles = useCssHandles(CSS_HANDLES)
@@ -46,7 +62,7 @@ const ProductSpecifications = ({
       (collapsible === 'desktopOnly' && !isMobile)
   )
 
-  const handleTabChange = tabIndex => {
+  const handleTabChange = (tabIndex: any) => {
     setCurrentTab(tabIndex)
     if (shouldCollapseInTabChange) {
       setCollapsed(true)
@@ -54,7 +70,7 @@ const ProductSpecifications = ({
   }
 
   const getSpecificationItems = () => {
-    const mappedSpecifications = specifications.map(specification => {
+    const mappedSpecifications = specifications.map((specification: any) => {
       return {
         property: specification.name,
         specifications: specification.values.join(', '),
@@ -75,9 +91,9 @@ const ProductSpecifications = ({
     }
 
     if (visibleSpecifications && visibleSpecifications.length > 0) {
-      return mappedSpecifications.filter(specification =>
+      return mappedSpecifications.filter((specification: any) =>
         visibleSpecifications.find(
-          filter =>
+          (filter: any) =>
             specification.property.toLowerCase() === filter.toLowerCase()
         )
       )
@@ -85,9 +101,9 @@ const ProductSpecifications = ({
 
     if (hiddenSpecifications && hiddenSpecifications.length > 0) {
       return mappedSpecifications.filter(
-        specification =>
+        (specification: any) =>
           !hiddenSpecifications.find(
-            filter =>
+            (filter: any) =>
               specification.property.toLowerCase() === filter.toLowerCase()
           )
       )
@@ -102,6 +118,7 @@ const ProductSpecifications = ({
     <FormattedMessage id="store/technicalspecifications.title">
       {txt => (
         <h2 className={`${handles.specificationsTitle} t-heading-5 mb5 mt0`}>
+          {/* @ts-expect-error ts-migrate(2322) FIXME: Type 'undefined' is not assignable to type 'string... Remove this comment to see the full error message */}
           <SanitizedHTML content={txt} />
         </h2>
       )}
@@ -127,7 +144,7 @@ const ProductSpecifications = ({
         </tr>
       </thead>
       <tbody className={handles.specificationsTableBody}>
-        {specificationItems.map((specification, i) => (
+        {specificationItems.map((specification: any, i: any) => (
           <tr className={handles.specificationsTableRow} key={i}>
             <td
               data-specification={specification.property}
@@ -174,7 +191,7 @@ const ProductSpecifications = ({
     <div className={`${handles.specificationsTabsContainer} pt8`}>
       {specificationTitle}
       <Tabs fullWidth>
-        {specificationItems.map((specification, i) => (
+        {specificationItems.map((specification: any, i: any) => (
           <Tab
             key={i}
             label={<SanitizedHTML content={specification.property} />}
@@ -207,32 +224,6 @@ ProductSpecifications.defaultProps = {
   specifications: [],
   tabsMode: false,
   shouldCollapseInTabChange: false,
-}
-
-ProductSpecifications.propTypes = {
-  /** Specifications that will be displayed on the table */
-  specifications: PropTypes.arrayOf(
-    PropTypes.shape({
-      /** Specification name */
-      name: PropTypes.string.isRequired,
-      /** Specifications value */
-      values: PropTypes.arrayOf(PropTypes.string).isRequired,
-    })
-  ),
-  /** If should collapse when a tab is changed */
-  shouldCollapseInTabChange: PropTypes.bool,
-  /** Tabs mode view */
-  tabsMode: PropTypes.bool,
-  /** Specifications which will be shown exclusively (optional) */
-  visibleSpecifications: PropTypes.array,
-  /** Specifications which will be hidden (optional) */
-  hiddenSpecifications: PropTypes.array,
-  collapsible: PropTypes.oneOf([
-    'always',
-    'never',
-    'desktopOnly',
-    'mobileOnly',
-  ]),
 }
 
 export default ProductSpecifications

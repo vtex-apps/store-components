@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { range, values } from 'ramda'
 import React, { Component } from 'react'
 
@@ -6,22 +5,20 @@ import categoriesHighlights from './categoriesHighlights.css'
 import CategoryCard from './components/CategoryCard'
 import { ITEMS_PER_ROW, RECTANGULAR, SQUARED } from './constants.js'
 
+type OwnProps = {
+  categoriesHighlighted?: any
+  showCategoriesHighlighted?: boolean
+  quantityOfItems: number
+  cardShape: any // TODO: PropTypes.oneOf([SQUARED, RECTANGULAR])
+}
+
+type Props = OwnProps & typeof CategoriesHighlights.defaultProps
+
 /**
  * CategoriesHighlights is a component responsible to display the
  * Categories highlighted in a department.
  */
-class CategoriesHighlights extends Component {
-  static propTypes = {
-    /** Categories highlighted in the department */
-    categoriesHighlighted: PropTypes.object,
-    /** Flag which indicates if the categories highlighted should be displayed or not */
-    showCategoriesHighlighted: PropTypes.bool,
-    /** Number of categories highlighted to be displayed (it should be 2 or 4) */
-    quantityOfItems: PropTypes.number.isRequired,
-    /** Shape of the card box which wraps each category (it should be 'squared' or 'rectangular')  */
-    cardShape: PropTypes.oneOf([SQUARED, RECTANGULAR]).isRequired,
-  }
-
+class CategoriesHighlights extends Component<Props> {
   static defaultProps = {
     categoriesHighlighted: {},
     showCategoriesHighlighted: false,
@@ -39,10 +36,11 @@ class CategoriesHighlights extends Component {
     },
   }
 
-  static getSchema = ({ quantityOfItems }) => {
+  static getSchema = ({ quantityOfItems }: any) => {
     const categoriesHighlightedProps = {}
 
     range(0, quantityOfItems || ITEMS_PER_ROW).forEach(index => {
+      // @ts-expect-error ts-migrate(7053) FIXME: No index signature with a parameter of type 'strin... Remove this comment to see the full error message
       categoriesHighlightedProps[`category${index}`] = {
         type: 'object',
         title: 'admin/editor.categoriesHighlighted.category',

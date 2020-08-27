@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React, { useContext } from 'react'
 import { Query } from 'react-apollo'
 import { ProductContext } from 'vtex.product-context'
@@ -22,7 +21,7 @@ const CSS_HANDLES = [
   'productBrandNameSpacer',
 ]
 
-const shouldExcludeBrand = (brandName, brandId, excludeList) => {
+const shouldExcludeBrand = (brandName: any, brandId: any, excludeList: any) => {
   if (Array.isArray(excludeList)) {
     return excludeList.includes(brandName) || excludeList.includes(brandId)
   }
@@ -30,8 +29,9 @@ const shouldExcludeBrand = (brandName, brandId, excludeList) => {
   return false
 }
 
-const useBrandInfoProps = (brandName, brandId) => {
+const useBrandInfoProps = (brandName: any, brandId: any) => {
   const productContext = useContext(ProductContext)
+  // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
   const product = productContext && productContext.product
 
   if ((brandName && brandId) || !product) {
@@ -39,6 +39,18 @@ const useBrandInfoProps = (brandName, brandId) => {
   }
 
   return { brandName: product.brand, brandId: product.brandId }
+}
+
+type Props = {
+  brandName?: string
+  brandId?: number
+  displayMode?: any // TODO: PropTypes.oneOf(Object.values(DISPLAY_MODE))
+  loadingPlaceholder?: any // TODO: PropTypes.oneOf(Object.values(DISPLAY_MODE))
+  fallbackToText?: boolean
+  excludeBrands?: Array<number | string>
+  height?: number
+  blockClass?: string
+  logoWithLink?: boolean
 }
 
 const ProductBrand = ({
@@ -54,7 +66,7 @@ const ProductBrand = ({
   logoWithLink,
   brandName: brandNameProp,
   brandId: brandIdProp,
-}) => {
+}: Props) => {
   const { brandName, brandId } = useBrandInfoProps(brandNameProp, brandIdProp)
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -71,7 +83,7 @@ const ProductBrand = ({
     <span className={`${handles.productBrandName}`}>{brandName}</span>
   )
 
-  const BrandContainer = ({ children }) => (
+  const BrandContainer = ({ children }: any) => (
     <div className={`${handles.productBrandContainer}`}>{children}</div>
   )
 
@@ -87,7 +99,7 @@ const ProductBrand = ({
 
   return (
     <Query query={brandLogoQuery} ssr={false} variables={{ id: brandId }}>
-      {query => {
+      {(query: any) => {
         const { data } = query
 
         if (data && data.brand) {
@@ -102,6 +114,7 @@ const ProductBrand = ({
                 src={changeImageUrlSize(
                   `/arquivos/ids${imageUrl}`,
                   undefined,
+                  // @ts-expect-error ts-migrate(2345) FIXME: Type 'number' is not assignable to type 'string | ... Remove this comment to see the full error message
                   height ? height * dpi : undefined
                 )}
                 alt={brandName}
@@ -178,28 +191,6 @@ const ProductBrand = ({
       }}
     </Query>
   )
-}
-
-ProductBrand.propTypes = {
-  /** Brand name */
-  brandName: PropTypes.string,
-  /** Brand id */
-  brandId: PropTypes.number,
-  /** Whether it should be displayed as a logo or as a text */
-  displayMode: PropTypes.oneOf(Object.values(DISPLAY_MODE)),
-  /** Whether the loading placeholder should have the size of the logo or the text */
-  loadingPlaceholder: PropTypes.oneOf(Object.values(DISPLAY_MODE)),
-  /** Whether it should display the name of the brand if there is no logo */
-  fallbackToText: PropTypes.bool,
-  /** List of brands that should be hidden, if any */
-  excludeBrands: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ),
-  /** Height of the logo */
-  height: PropTypes.number,
-  /** CSS Handler */
-  blockClass: PropTypes.string,
-  logoWithLink: PropTypes.bool,
 }
 
 export default ProductBrand

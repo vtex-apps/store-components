@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/react-slick` if it exists ... Remove this comment to see the full error message
 import Slider from 'react-slick'
+// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/react-resize-detector` if ... Remove this comment to see the full error message
 import ReactResizeDetector from 'react-resize-detector'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.render-runtime"' has no exported mem... Remove this comment to see the full error message
 import { NoSSR } from 'vtex.render-runtime'
 
 import Dots from './components/Dots'
@@ -16,32 +18,24 @@ const VTEXClasses = {
   DOTS_CLASS: `${slider.dots}`,
 }
 
+type Props = {
+  sliderSettings?: any
+  adaptToScreen?: boolean
+  defaultItemWidth?: number
+  scrollByPage?: boolean
+  ssrFallback?: React.ReactElement
+  leftArrowClasses?: string
+  rightArrowClasses?: string
+  dotsClasses?: string
+}
+
 /**
  * Slick Slider Component.
  */
-export default class SlickSlider extends Component {
-  static propTypes = {
-    /** Array of items to be rendered inside the slider. */
-    children: PropTypes.array.isRequired,
-    /** Slider settings. */
-    sliderSettings: PropTypes.object,
-    /** Makes the items per page to adapt by the slider width. */
-    adaptToScreen: PropTypes.bool,
-    /** Default item width, it's necessary when the adaptToScreen is true. */
-    defaultItemWidth: PropTypes.number,
-    /** If the scroll of items is by page or not. */
-    scrollByPage: PropTypes.bool,
-    /** SSR fallback. */
-    ssrFallback: PropTypes.element,
-    /** Left arrow custom classes */
-    leftArrowClasses: PropTypes.string,
-    /** Right arrow custom classes */
-    rightArrowClasses: PropTypes.string,
-    /** Dots custom classes */
-    dotsClasses: PropTypes.string,
-  }
+export default class SlickSlider extends Component<Props> {
+  _slick: any
 
-  getSettings(slideWidth) {
+  getSettings(slideWidth: any) {
     const {
       sliderSettings,
       adaptToScreen,
@@ -61,6 +55,7 @@ export default class SlickSlider extends Component {
     )
 
     const settings = { ...sliderSettings }
+    // @ts-expect-error ts-migrate(2533) FIXME: Object is possibly 'null' or 'undefined'.
     const numItems = children.length
 
     settings.nextArrow = settings.nextArrow || (
@@ -75,7 +70,7 @@ export default class SlickSlider extends Component {
         cssClass={VTEXClasses.ARROW_LEFT_CLASS}
       />
     )
-    settings.appendDots = dots => (
+    settings.appendDots = (dots: any) => (
       <Dots
         dots={dots}
         customClass={dotsClasses}
@@ -101,10 +96,10 @@ export default class SlickSlider extends Component {
   render() {
     const component = (
       <ReactResizeDetector handleWidth>
-        {width => (
+        {(width: any) => (
           <Slider
             {...this.getSettings(width)}
-            ref={c => {
+            ref={(c: any) => {
               this._slick = c
             }}
           >

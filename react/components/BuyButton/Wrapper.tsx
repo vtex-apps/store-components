@@ -3,6 +3,7 @@ import useProduct from 'vtex.product-context/useProduct'
 import { path, isEmpty, compose } from 'ramda'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { withToast } from 'vtex.styleguide'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.store-resources/OrderFormContext"' h... Remove this comment to see the full error message
 import { useOrderForm } from 'vtex.store-resources/OrderFormContext'
 import { graphql } from 'react-apollo'
 import { useCssHandles } from 'vtex.css-handles'
@@ -25,7 +26,7 @@ const CHECKOUT_URL = {
   V1: '/cart',
 }
 
-const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
+const BuyButtonMessage = ({ showItemsPrice, skuItems }: any) => {
   const handles = useCssHandles(MESSAGE_CSS_HANDLES)
 
   if (!showItemsPrice) {
@@ -36,7 +37,7 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
     )
   }
 
-  const totalPrice = skuItems.reduce((acc, item) => {
+  const totalPrice = skuItems.reduce((acc: any, item: any) => {
     const itemPrice =
       item.sellingPriceWithAssemblies != null
         ? item.sellingPriceWithAssemblies
@@ -84,7 +85,7 @@ const BuyButtonWrapper = ({
   showTooltipOnSkuNotSelected,
   checkoutVersion,
   selectedSeller,
-}) => {
+}: any) => {
   const orderFormContext = useOrderForm()
   const valuesFromContext = useProduct()
 
@@ -105,6 +106,7 @@ const BuyButtonWrapper = ({
     isEmptyContext || propSkuItems != null
       ? propSkuItems
       : // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'mapCatalogItemToCart' does not exist on ... Remove this comment to see the full error message
         EnhancedBuyButton.mapCatalogItemToCart({
           product,
           selectedItem,
@@ -174,15 +176,18 @@ const BuyButtonWrapper = ({
 
 const withAddToCart = graphql(addToCartMutation, {
   name: 'addToCart',
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'addToCart' does not exist on type 'Optio... Remove this comment to see the full error message
   props: ({ addToCart }) => ({
-    addToCart: items => addToCart({ variables: { items } }),
+    addToCart: (items: any) => addToCart({ variables: { items } }),
   }),
 })
 
 const withOpenMinicart = graphql(setOpenMinicartMutation, {
   name: 'setMinicartOpen',
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'setMinicartOpen' does not exist on type ... Remove this comment to see the full error message
   props: ({ setMinicartOpen }) => ({
-    setMinicartOpen: isOpen => setMinicartOpen({ variables: { isOpen } }),
+    setMinicartOpen: (isOpen: any) =>
+      setMinicartOpen({ variables: { isOpen } }),
   }),
 })
 
@@ -198,21 +203,24 @@ const withCheckoutVersion = graphql(installedApp, {
 
 const EnhancedBuyButton = compose(
   withAddToCart,
+  // @ts-expect-error ts-migrate(2769) FIXME: Property 'addToCart' is missing in type 'Readonly<... Remove this comment to see the full error message
   withOpenMinicart,
   withCheckoutVersion,
   withToast,
   injectIntl
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
 )(BuyButtonWrapper)
 
 // This function is public available to be used only by vtex.product-summary.
 // We do not garantee this API will not change and might happen breaking change anytime.
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'mapCatalogItemToCart' does not exist on ... Remove this comment to see the full error message
 EnhancedBuyButton.mapCatalogItemToCart = function mapCatalogItemToCart({
   product,
   selectedItem,
   selectedQuantity,
   selectedSeller,
   assemblyOptions,
-}) {
+}: any) {
   return (
     product &&
     selectedItem &&

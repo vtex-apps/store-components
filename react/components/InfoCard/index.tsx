@@ -5,8 +5,10 @@ import { values } from 'ramda'
 import { injectIntl } from 'react-intl'
 import {
   useRuntime,
+  // @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.render-runtime"' has no exported mem... Remove this comment to see the full error message
   useExperimentalLazyImagesContext,
 } from 'vtex.render-runtime'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.native-types"' has no exported membe... Remove this comment to see the full error message
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
 import RichText from 'vtex.rich-text/index'
@@ -59,13 +61,17 @@ const defaultValues = {
   textAlignment: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
 }
 
-const getEnumValues = enumObject => values(enumObject).map(({ value }) => value)
-const getEnumNames = enumObject => values(enumObject).map(({ name }) => name)
+const getEnumValues = (enumObject: any) =>
+  values(enumObject).map(({ value }) => value)
 
-const safelyGetToken = (tokenMap, valueWanted, propName) =>
+const getEnumNames = (enumObject: any) =>
+  values(enumObject).map(({ name }) => name)
+
+const safelyGetToken = (tokenMap: any, valueWanted: any, propName: any) =>
+  // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
   tokenMap[valueWanted] || defaultValues[propName]
 
-const getImageUrl = (isMobile, imageUrl, mobileImageUrl) =>
+const getImageUrl = (isMobile: any, imageUrl: any, mobileImageUrl: any) =>
   !!mobileImageUrl && isMobile ? mobileImageUrl : imageUrl
 
 const CSS_HANDLES = [
@@ -94,8 +100,9 @@ const InfoCard = ({
   htmlId,
   textMode,
   linkTarget,
-}) => {
+}: any) => {
   const {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hints' does not exist on type 'Runtime'.
     hints: { mobile },
   } = useRuntime()
 
@@ -189,6 +196,7 @@ const InfoCard = ({
                 />
               </div>
             ) : (
+              // @ts-expect-error ts-migrate(2604) FIXME: JSX element type 'RichText' does not have any cons... Remove this comment to see the full error message
               <RichText className={headlineClasses} text={headline} />
             ))}
           {subhead &&
@@ -201,6 +209,7 @@ const InfoCard = ({
                 />
               </div>
             ) : (
+              // @ts-expect-error ts-migrate(2604) FIXME: JSX element type 'RichText' does not have any cons... Remove this comment to see the full error message
               <RichText className={subheadClasses} text={subhead} />
             ))}
           <CallToAction
@@ -233,6 +242,7 @@ const InfoCard = ({
 
 const MemoizedInfoCard = memo(injectIntl(InfoCard))
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'Named... Remove this comment to see the full error message
 MemoizedInfoCard.propTypes = {
   blockClass: string,
   isFullModeStyle: bool,
@@ -254,6 +264,7 @@ MemoizedInfoCard.propTypes = {
   callToActionLinkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
 }
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'defaultProps' does not exist on type 'Na... Remove this comment to see the full error message
 MemoizedInfoCard.defaultProps = {
   isFullModeStyle: false,
   textPosition: textPositionTypes.TEXT_POSITION_LEFT.value,
@@ -270,6 +281,7 @@ MemoizedInfoCard.defaultProps = {
   callToActionLinkTarget: '_self',
 }
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'schema' does not exist on type 'NamedExo... Remove this comment to see the full error message
 MemoizedInfoCard.schema = {
   title: 'admin/editor.info-card.title',
   description: 'admin/editor.info-card.description',

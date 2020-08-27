@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from 'vtex.styleguide'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.render-runtime"' has no exported mem... Remove this comment to see the full error message
 import { Link } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -10,7 +11,7 @@ const CSS_HANDLES = ['infoCardCallActionContainer', 'infoCardCallActionText']
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {}
 
-const CallToAction = ({ mode, text, url, linkTarget }) => {
+const CallToAction = ({ mode, text, url, linkTarget }: any) => {
   const handles = useCssHandles(CSS_HANDLES)
 
   if (mode === callActionValues.NONE) {
@@ -18,7 +19,7 @@ const CallToAction = ({ mode, text, url, linkTarget }) => {
   }
 
   // eslint-disable-next-line no-shadow
-  const ActionWrapper = ({ text, mode }) => {
+  const ActionWrapper = ({ text, mode }: any) => {
     if (mode === callActionValues.BUTTON) {
       return <Button onClick={noop}>{text}</Button>
     }

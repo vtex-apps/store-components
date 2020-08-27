@@ -1,4 +1,5 @@
 import React from 'react'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../node_modules/@vtex/test-tools/react... Remove this comment to see the full error message
 import { render, wait } from '@vtex/test-tools/react'
 
 import ProductBrand from '../../ProductBrand'
@@ -24,7 +25,7 @@ const mocks = [
 ]
 
 describe('<ProductBrand /> component', () => {
-  const renderComponent = logoRedirect => {
+  const renderComponent = (logoRedirect: any) => {
     const props = {
       displayMode: 'logo',
       fallbackToText: true,
