@@ -38,6 +38,7 @@ const skuShape: PropTypes.Requireable<skuShape> = PropTypes.shape({
     })
   ),
 })
+
 export { skuShape }
 
 /*
@@ -54,6 +55,7 @@ const parsedSkuShape: PropTypes.Requireable<parsedSkuShape> = PropTypes.shape({
   /** List of products specifications names */
   variations: PropTypes.arrayOf(PropTypes.string),
 })
+
 export { parsedSkuShape }
 
 type variationShape = {
@@ -88,4 +90,5 @@ const variationShape: PropTypes.Requireable<variationShape> = PropTypes.shape({
     })
   ),
 })
+
 export { variationShape }
