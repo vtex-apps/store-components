@@ -10,11 +10,6 @@
     "verify": "yarn lint && yarn test",
     "lint:locales": "intl-equalizer"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{ts,js,tsx,jsx}": [
       "eslint --fix",
