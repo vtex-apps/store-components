@@ -3,7 +3,7 @@ let addressId = 1
 const getRandomAddressId = () =>
   (addressId++ * new Date().getTime() * -1).toString().replace('-', '')
 
-export const getNewAddress = country => {
+export const getNewAddress = (country, postalCode) => {
   const randomAddressId = getRandomAddressId()
 
   return {
@@ -15,7 +15,7 @@ export const getNewAddress = country => {
     geoCoordinates: [],
     neighborhood: null,
     number: null,
-    postalCode: null,
+    postalCode: postalCode ?? null,
     receiverName: null,
     reference: null,
     state: null,
