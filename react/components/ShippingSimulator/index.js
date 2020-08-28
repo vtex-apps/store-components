@@ -1,6 +1,5 @@
-import React, { Fragment, useState } from 'react'
-import { injectIntl } from 'react-intl'
-import { useApolloClient } from 'react-apollo'
+import React, { Fragment } from 'react'
+import { useIntl } from 'react-intl'
 import PropTypes from 'prop-types'
 import { Button } from 'vtex.styleguide'
 import {
@@ -9,65 +8,26 @@ import {
   PostalCodeGetter,
 } from 'vtex.address-form'
 import { StyleguideInput } from 'vtex.address-form/inputs'
-import { addValidation, removeValidation } from 'vtex.address-form/helpers'
 
 import ShippingTable from './components/ShippingTable'
-import getShippingEstimates from './queries/getShippingEstimates.gql'
 import ShippingSimulatorLoader from './Loader'
 import styles from './shippingSimulator.css'
-import { getNewAddress } from './utils'
 
-// eslint-disable-next-line react/prop-types
-const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
-  const client = useApolloClient()
-  const [address, setAddress] = useState(() =>
-    addValidation(getNewAddress(country))
-  )
-
-  const [shipping, setShipping] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [isValid, setIsValid] = useState(false)
-
-  const handleAddressChange = newAddress => {
-    const updatedAddress = {
-      ...address,
-      ...newAddress,
-    }
-
-    setAddress(updatedAddress)
-    setIsValid(updatedAddress.postalCode.valid)
-  }
-
-  const handleClick = e => {
-    e && e.preventDefault()
-    setLoading(true)
-    const { postalCode } = removeValidation(address)
-
-    client
-      .query({
-        query: getShippingEstimates,
-        variables: {
-          country,
-          postalCode,
-          items: [
-            {
-              quantity: '1',
-              id: skuId,
-              seller,
-            },
-          ],
-        },
-      })
-      .then(result => {
-        setShipping(result.data.shipping)
-      })
-      .catch(error => {
-        console.error(error)
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  }
+const ShippingSimulator = ({
+  /* eslint-disable react/prop-types */
+  skuId,
+  seller,
+  country,
+  loading,
+  loaderStyles,
+  onAddressChange,
+  address,
+  isValid,
+  onCalculateShipping,
+  shipping,
+  /* eslint-enable react/prop-types */
+}) => {
+  const intl = useIntl()
 
   if (!seller || !skuId) {
     return <ShippingSimulatorLoader {...loaderStyles} />
@@ -80,14 +40,15 @@ const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
           <AddressContainer
             Input={StyleguideInput}
             address={address}
-            onChangeAddress={handleAddressChange}
+            onChangeAddress={onAddressChange}
             autoCompletePostalCode
+            disabled={loading}
           >
-            <PostalCodeGetter onSubmit={handleClick} />
+            <PostalCodeGetter onSubmit={onCalculateShipping} />
           </AddressContainer>
         </AddressRules>
         <Button
-          onClick={handleClick}
+          onClick={onCalculateShipping}
           className={styles.shippingCTA}
           disabled={!isValid}
           size="small"
@@ -104,7 +65,6 @@ const ShippingSimulator = ({ intl, skuId, seller, country, loaderStyles }) => {
 }
 
 ShippingSimulator.propTypes = {
-  intl: PropTypes.object.isRequired,
   skuId: PropTypes.string,
   seller: PropTypes.string,
   country: PropTypes.string.isRequired,
@@ -112,4 +72,4 @@ ShippingSimulator.propTypes = {
   styles: PropTypes.object,
 }
 
-export default injectIntl(ShippingSimulator)
+export default ShippingSimulator

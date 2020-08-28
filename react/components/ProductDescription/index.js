@@ -23,11 +23,15 @@ const allowedTags = [
   'script',
   'head',
   'meta',
+  'object',
+  'embed',
 ]
 
 const allowedAttributes = {
   ...DEFAULTS.allowedAttributes,
   meta: ['charset', 'name', 'content'],
+  object: ['type', 'height', 'width', 'data'],
+  embed: ['height', 'width', 'src'],
 }
 
 /**

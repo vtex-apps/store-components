@@ -9,6 +9,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - [`ProductImages`] Updated Swiper from `v4` to `v6`.
 
+## [3.125.0] - 2020-08-28
+### Changed
+- Update shipping data on `orderForm` after shipping simulation.
+- Pre-fill postal code information with `orderForm`'s shipping data.
+
+## [3.124.0] - 2020-08-27
+### Added
+- New CSS Handles to `product-specifications`:
+  - `specificationsTableRow`
+  - `specificationsTableHead`
+  - `specificationsTableBody`
+
+## [3.123.8] - 2020-08-26
+### Fixed
+- Allow to pass `width` and `height` to `iframe` and `img` tags.
+- Allow to pass `rowspan` and `colspan` to `td` tags.
+
+## [3.123.7] - 2020-08-25
+### Fixed
+- Updated `README.md` file for `animation`, `slider` and `product-price` blocks to remove the `Deprecated` badge from the title.
+
+## [3.123.6] - 2020-08-25
+### Fixed
+- Documentation on `product-images` block.
+
+## [3.123.5] - 2020-08-24
+### Added
+- `object` and `embed` to `ProductDescription` allowed tag list.
+
 ## [3.123.4] - 2020-08-18
 ### Added
 - Calculate shipping when enter is pressed

@@ -1,4 +1,5 @@
-# Animation ![https://img.shields.io/badge/-Deprecated-red](https://img.shields.io/badge/-Deprecated-red)
+# Animation
+![https://img.shields.io/badge/-Deprecated-red](https://img.shields.io/badge/-Deprecated-red)
 
 :warning: **The Animation block has been deprecated**. Despite this, support for it is still granted.
 
