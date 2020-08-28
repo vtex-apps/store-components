@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { ApolloConsumer } from 'react-apollo'
 import { injectIntl } from 'react-intl'
-// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.styleguide"' has no exported member ... Remove this comment to see the full error message
 import { Button, Input } from 'vtex.styleguide'
 
 import ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION from './mutations/addToAvailabilitySubscriberMutation.gql'
@@ -19,10 +18,10 @@ type State = any
  * the product isn't available.
  */
 class AvailabilitySubscriber extends Component<Props, State> {
-  emailInput = React.createRef()
-  nameInput = React.createRef()
+  private emailInput = React.createRef<HTMLInputElement>()
+  private nameInput = React.createRef<HTMLInputElement>()
 
-  state = {
+  public state = {
     name: '',
     email: '',
     emailError: '',
@@ -31,7 +30,7 @@ class AvailabilitySubscriber extends Component<Props, State> {
     sendStatus: '',
   }
 
-  validateEmail = (email: any) => {
+  private validateEmail = (email: any) => {
     const { emailError } = this.state
 
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -49,7 +48,7 @@ class AvailabilitySubscriber extends Component<Props, State> {
     }
   }
 
-  handleEmailBlur = () => {
+  private handleEmailBlur = () => {
     if (this.state.hasBlurredEmail) {
       return
     }
@@ -59,7 +58,7 @@ class AvailabilitySubscriber extends Component<Props, State> {
     })
   }
 
-  handleInputChange = (e: any) => {
+  private handleInputChange = (e: any) => {
     this.setState({
       [e.target.name]: e.target.value,
     })
@@ -69,36 +68,18 @@ class AvailabilitySubscriber extends Component<Props, State> {
     }
   }
 
-  handleSubmit = (e: any, client: any) => {
+  private handleSubmit = (e: any, client: any) => {
     e.preventDefault()
     const variables = {
       acronym: 'AS',
       document: {
         fields: [
-          {
-            key: 'skuId',
-            value: this.props.skuId,
-          },
-          {
-            key: 'name',
-            value: this.state.name,
-          },
-          {
-            key: 'email',
-            value: this.state.email,
-          },
-          {
-            key: 'notificationSend',
-            value: 'false',
-          },
-          {
-            key: 'createdAt',
-            value: new Date().toISOString(),
-          },
-          {
-            key: 'sendAt',
-            value: null,
-          },
+          { key: 'skuId', value: this.props.skuId },
+          { key: 'name', value: this.state.name },
+          { key: 'email', value: this.state.email },
+          { key: 'notificationSend', value: 'false' },
+          { key: 'createdAt', value: new Date().toISOString() },
+          { key: 'sendAt', value: null },
         ],
       },
     }
@@ -107,10 +88,7 @@ class AvailabilitySubscriber extends Component<Props, State> {
       isLoading: true,
     })
     client
-      .mutate({
-        mutation: ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION,
-        variables,
-      })
+      .mutate({ mutation: ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION, variables })
       .then(
         () => {
           this.setState({
@@ -128,28 +106,27 @@ class AvailabilitySubscriber extends Component<Props, State> {
           })
         }
       )
-    const event = new Event('message:success')
+    const event = new CustomEvent('message:success', {
+      detail: {
+        success: true,
+        message: this.translate('store/availability-subscriber.added-message'),
+      },
+    })
 
-    // @ts-expect-error ts-migrate(2339) FIXME: Property 'details' does not exist on type 'Event'.
-    event.details = {
-      success: true,
-      message: this.translate('store/availability-subscriber.added-message'),
-    }
+    // TODO: gotta check if this is working
     document.dispatchEvent(event)
   }
 
-  translate = (id: any) => this.props.intl.formatMessage({ id })
+  private translate = (id: string) => this.props.intl.formatMessage({ id })
 
-  componentDidMount() {
+  public componentDidMount() {
     this.setState({
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'RefObject... Remove this comment to see the full error message
-      email: this.emailInput.value || '',
-      // @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'RefObject... Remove this comment to see the full error message
-      name: this.nameInput.value || '',
+      email: this.emailInput.current?.value ?? '',
+      name: this.nameInput.current?.value ?? '',
     })
   }
 
-  render() {
+  public render() {
     const {
       name,
       email,
