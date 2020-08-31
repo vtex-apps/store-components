@@ -53,17 +53,21 @@ function SearchBarContainer(props) {
     setInputValue(event.target.value)
   }, [])
 
-  const handleGoToSearchPage = useCallback(() => {
-    const search = inputValue
+  const validateInputValue = useCallback( input => {
+    return input.replace(/\//g, "-")
+  }, [])
 
-    if (attemptPageTypeSearch) {
+  const handleGoToSearchPage = useCallback(() => {
+    const search = validateInputValue(inputValue)    
+
+    if (attemptPageTypeSearch) {      
       window.location.href = `/${search}`
       closeModal()
 
       return
     }
 
-    if (customSearchPageUrl) {
+    if (customSearchPageUrl) {      
       navigate({
         to: customSearchPageUrl.replace(/\$\{term\}/g, search),
       })
@@ -74,8 +78,7 @@ function SearchBarContainer(props) {
 
     // This param is only useful to track terms searched
     // See: https://support.google.com/analytics/answer/1012264
-    const paramForSearchTracking = `&_q=${search}`
-
+    const paramForSearchTracking = `&_q=${search}`    
     setInputValue('')
     navigate({
       page: 'store.search',
