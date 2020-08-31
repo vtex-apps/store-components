@@ -55,7 +55,7 @@ function SearchBarContainer(props) {
 
   const validateInputValue = useCallback(input => {
     return input.replace(/\//g, '-')
-  }, [input])
+  }, [])
 
   const handleGoToSearchPage = useCallback(() => {
     const search = validateInputValue(inputValue)
@@ -79,6 +79,7 @@ function SearchBarContainer(props) {
     // This param is only useful to track terms searched
     // See: https://support.google.com/analytics/answer/1012264
     const paramForSearchTracking = `&_q=${search}`
+
     setInputValue('')
     navigate({
       page: 'store.search',
@@ -93,6 +94,7 @@ function SearchBarContainer(props) {
     customSearchPageUrl,
     navigate,
     closeModal,
+    validateInputValue,
   ])
 
   return (

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Validating input in searchbar component to switch slash for hyphen
+- `validateInputValue` function create
+
 ## [3.125.0] - 2020-08-28
 ### Changed
 - Update shipping data on `orderForm` after shipping simulation.
