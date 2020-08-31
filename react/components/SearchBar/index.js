@@ -79,6 +79,7 @@ function SearchBarContainer(props) {
     // This param is only useful to track terms searched
     // See: https://support.google.com/analytics/answer/1012264
     const paramForSearchTracking = `&_q=${search}`
+    
     setInputValue('')
     navigate({
       page: 'store.search',
