@@ -58,16 +58,16 @@ function SearchBarContainer(props) {
   }, [])
 
   const handleGoToSearchPage = useCallback(() => {
-    const search = validateInputValue(inputValue)    
+    const search = validateInputValue(inputValue)
 
-    if (attemptPageTypeSearch) {      
+    if (attemptPageTypeSearch) {
       window.location.href = `/${search}`
       closeModal()
 
       return
     }
 
-    if (customSearchPageUrl) {      
+    if (customSearchPageUrl) {
       navigate({
         to: customSearchPageUrl.replace(/\$\{term\}/g, search),
       })

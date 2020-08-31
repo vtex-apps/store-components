@@ -56,7 +56,7 @@ const SearchBar = ({
   const { navigate } = useRuntime()
   const handles = useCssHandles(CSS_HANDLES)
   const [searchTerm, setSearchTerm] = useState(inputValue)
-  const [inputErrorMessage, setInputErrorMessage] = useState()  
+  const [inputErrorMessage, setInputErrorMessage] = useState()
 
   const debouncedSetSearchTerm = useCallback(
     debounce(newValue => {
@@ -123,7 +123,7 @@ const SearchBar = ({
     [navigate, attemptPageTypeSearch, customSearchPageUrl]
   )
 
-  const validateInput = () => {    
+  const validateInput = () => {
     if (minSearchTermLength && inputValue.length < minSearchTermLength) {
       return intl.formatMessage(messages.searchTermTooShort)
     }
