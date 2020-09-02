@@ -1,17 +1,15 @@
-import React from 'react'
+import React, { Fragment, useMemo } from 'react'
 import classNames from 'classnames'
 import { useCssHandles } from 'vtex.css-handles'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { IconCaret } from 'vtex.store-icons'
 
 import { THUMB_SIZE } from '../../../module/images'
 import { THUMBS_POSITION_HORIZONTAL } from '../../utils/enums'
 import { imageUrl } from '../../utils/aspectRatioUtil'
+import styles from '../../styles.css'
 
 const THUMB_MAX_SIZE = 256
-
-/** Swiper and its modules are imported using require to avoid breaking SSR */
-const Swiper = window.navigator
-  ? require('react-id-swiper/lib/ReactIdSwiper').default
-  : null
 
 const CSS_HANDLES = [
   'figure',
@@ -19,27 +17,14 @@ const CSS_HANDLES = [
   'productImagesThumb',
   'carouselThumbBorder',
   'carouselGaleryThumbs',
-  'productImagesThumbActive',
+  'productImagesThumbCaret',
 ]
 
-const Thumbnail = ({
-  alt,
-  index,
-  onThumbClick,
-  height,
-  thumbUrl,
-  handles,
-  maxHeight = 150,
-  aspectRatio = 'auto',
-  itemContainerClasses,
-}) => {
+const Thumbnail = props => {
+  const { alt, thumbUrl, handles, aspectRatio = 'auto' } = props
+
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-    <div
-      className={itemContainerClasses}
-      style={{ height, maxHeight: maxHeight || 'unset' }}
-      onClick={() => onThumbClick(index)}
-    >
+    <>
       <figure
         className={handles.figure}
         itemProp="associatedMedia"
@@ -56,63 +41,146 @@ const Thumbnail = ({
       <div
         className={`absolute absolute--fill b--solid b--muted-2 bw0 ${handles.carouselThumbBorder}`}
       />
-    </div>
+    </>
   )
 }
 
-const ThumbnailSwiper = ({
-  isThumbsVertical,
-  slides,
-  swiperParams,
-  thumbUrls,
-  position,
-  onThumbClick,
-  activeIndex,
-  thumbnailAspectRatio,
-  thumbnailMaxHeight,
-}) => {
-  const hasThumbs = slides.length > 1
+const navigationConfig = {
+  prevEl: '.swiper-thumbnails-caret-prev',
+  nextEl: '.swiper-thumbnails-caret-next',
+  disabledClass: `c-disabled o-0 pointer-events-none ${styles.carouselCursorDefault}`,
+  hiddenClass: 'dn',
+}
+
+const ThumbnailSwiper = props => {
   const handles = useCssHandles(CSS_HANDLES)
 
-  const thumbClasses = classNames(`${handles.carouselGaleryThumbs} dn h-auto`, {
-    'db-ns': hasThumbs,
-    mt3: !isThumbsVertical,
-    'w-20 bottom-0 top-0 absolute': isThumbsVertical,
-    'left-0': isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.LEFT,
-    'right-0':
-      isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.RIGHT,
-  })
+  const {
+    isThumbsVertical,
+    slides,
+    thumbUrls,
+    position,
+    thumbnailAspectRatio,
+    thumbnailMaxHeight,
+    displayThumbnailsArrows,
+    ...swiperProps
+  } = props
+
+  const hasThumbs = slides.length > 1
+
+  const thumbClassName = classNames(
+    `${handles.carouselGaleryThumbs} dn h-auto`,
+    {
+      'db-ns': hasThumbs,
+      mt3: !isThumbsVertical,
+      'w-20 bottom-0 top-0 absolute': isThumbsVertical,
+      'left-0':
+        isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.LEFT,
+      'right-0':
+        isThumbsVertical && position === THUMBS_POSITION_HORIZONTAL.RIGHT,
+    }
+  )
+
+  const itemContainerClassName = classNames(
+    handles.productImagesThumb,
+    'mb5 pointer',
+    {
+      'w-20': !isThumbsVertical,
+      'w-100': isThumbsVertical,
+    }
+  )
+
+  const arrows = useMemo(() => {
+    if (!displayThumbnailsArrows) {
+      return null
+    }
+
+    const thumbCaretSize = 24
+    const thumbCaretClassName = `${handles.productImagesThumbCaret} absolute z-2 pointer c-action-primary flex pv2`
+    const thumbCaretStyle = { transition: 'opacity 0.2s' }
+
+    const nextBtnClassName = classNames(
+      'swiper-thumbnails-caret-next',
+      thumbCaretClassName,
+      {
+        [`bottom-0 pt7 left-0 justify-center w-100 ${styles.gradientBaseBottom}`]: isThumbsVertical,
+        [`right-0 top-0 items-center h-100 pl6 ${styles.gradientBaseRight}`]: !isThumbsVertical,
+      }
+    )
+
+    const prevBtnClassName = classNames(
+      'swiper-thumbnails-caret-prev top-0 left-0',
+      thumbCaretClassName,
+      isThumbsVertical && `pb7 justify-center w-100 ${styles.gradientBaseTop}`,
+      !isThumbsVertical && `items-center h-100 pr6 ${styles.gradientBaseLeft}`
+    )
+
+    return (
+      <Fragment key="navigation-arrows">
+        <span className={nextBtnClassName} style={thumbCaretStyle}>
+          <IconCaret
+            orientation={isThumbsVertical ? 'down' : 'right'}
+            size={thumbCaretSize}
+          />
+        </span>
+        <span className={prevBtnClassName} style={thumbCaretStyle}>
+          <IconCaret
+            orientation={isThumbsVertical ? 'up' : 'left'}
+            size={thumbCaretSize}
+          />
+        </span>
+      </Fragment>
+    )
+  }, [
+    displayThumbnailsArrows,
+    handles.productImagesThumbCaret,
+    isThumbsVertical,
+  ])
 
   return (
-    <div className={thumbClasses} data-testid="thumbnail-swiper">
-      <Swiper {...swiperParams} shouldSwiperUpdate>
+    <div className={thumbClassName} data-testid="thumbnail-swiper">
+      <Swiper
+        className={`h-100 ${handles.productImagesThumbsSwiperContainer}`}
+        slidesPerView="auto"
+        touchRatio={1}
+        threshold={8}
+        navigation={navigationConfig}
+        /* Slides are grouped when thumbnails arrows are enabled
+         * so that clicking on next/prev will scroll more than
+         * one thumbnail */
+        slidesPerGroup={displayThumbnailsArrows ? 4 : 1}
+        freeMode={false}
+        mousewheel={false}
+        zoom={false}
+        watchSlidesVisibility
+        watchSlidesProgress
+        preloadImages
+        updateOnWindowResize
+        direction={isThumbsVertical ? 'vertical' : 'horizontal'}
+        {...swiperProps}
+      >
         {slides.map((slide, i) => {
-          const itemContainerClasses = classNames(
-            'swiper-slide mb5 pointer',
-            handles.productImagesThumb,
-            {
-              'w-20': !isThumbsVertical,
-              'w-100': isThumbsVertical,
-              'swiper-slide-active': activeIndex === i,
-              [handles.productImagesThumbActive]: activeIndex === i,
-            }
-          )
-
           return (
-            <Thumbnail
+            <SwiperSlide
               key={`${i}-${slide.alt}`}
-              itemContainerClasses={itemContainerClasses}
-              index={i}
-              handles={handles}
-              height={isThumbsVertical ? 'auto' : '115px'}
-              onThumbClick={onThumbClick}
-              alt={slide.alt}
-              thumbUrl={slide.thumbUrl || thumbUrls[i]}
-              aspectRatio={thumbnailAspectRatio}
-              maxHeight={thumbnailMaxHeight}
-            />
+              className={itemContainerClassName}
+              style={{
+                height: isThumbsVertical ? 'auto' : '115px',
+                maxHeight: thumbnailMaxHeight || 'unset',
+                position: 'relative',
+              }}
+            >
+              <Thumbnail
+                index={i}
+                handles={handles}
+                alt={slide.alt}
+                thumbUrl={slide.thumbUrl || thumbUrls[i]}
+                aspectRatio={thumbnailAspectRatio}
+              />
+            </SwiperSlide>
           )
         })}
+        {arrows}
       </Swiper>
     </div>
   )
