@@ -49,7 +49,7 @@ const UserAddress = ({
     </div>
   ) : (
     <div
-      className={`${handles.userAddressContainer} bg-base--inverted c-on-base--inverted flex ph5 pointer pv3`}
+      className={`${handles.userAddressContainer} bg-base--inverted c-on-base--inverted flex ph5 pointer pv3 ml3 mr3`}
     >
       <Container className="flex justify-center w-100 left-0">
         <div className="w-100 mw9 flex">
