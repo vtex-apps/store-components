@@ -6,7 +6,7 @@
  * @returns {string}
  */
 const encodeForwardSlash = str => {
-  return str.replace(/\//gi, "$2F")
+  return str.replace(/\//gi, '$2F')
 }
 
 export default encodeForwardSlash
