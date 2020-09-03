@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `showStreet`, `showCityAndState`, `showPostalCode`, `showPrefix` props to `UserAddress`
+- CSS handles to `UserAddress`
+
 ## [3.126.1] - 2020-09-03
 ### Fixed
 - Encode forward slash in the search term.
