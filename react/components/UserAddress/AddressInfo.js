@@ -44,12 +44,14 @@ const AddressInfo = ({
 
   if (complement) displayStreet = `${displayStreet} - ${complement}`
 
-  const displayCityAndState = `${city}, ${state}`
+  const displayCityAndState = !!city && !!state ? `${city}, ${state}` : ''
 
-  const displayAddress = `${showStreet ? displayStreet : ''}${
+  const displayAddress = `${showStreet ? displayStreet || '' : ''}${
     showStreet && (showCityAndState || showPostalCode) ? ', ' : ''
   }${showCityAndState ? displayCityAndState : ''}${
-    showCityAndState && showPostalCode ? ', ' : ''
+    showCityAndState && showPostalCode
+      ? `${displayCityAndState ? ', ' : ''}`
+      : ''
   }${showPostalCode ? postalCode : ''}`
 
   const isPickup = addressType === 'pickup'
