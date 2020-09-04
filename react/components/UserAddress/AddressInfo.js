@@ -49,7 +49,9 @@ const AddressInfo = ({
   const displayAddress = `${showStreet ? displayStreet || '' : ''}${
     showStreet && (showCityAndState || showPostalCode) ? ', ' : ''
   }${showCityAndState ? displayCityAndState : ''}${
-    showCityAndState && showPostalCode ? `${displayCityAndState ? ', ' : ''}` : ''
+    showCityAndState && showPostalCode
+      ? `${displayCityAndState ? ', ' : ''}`
+      : ''
   }${showPostalCode ? postalCode : ''}`
 
   const isPickup = addressType === 'pickup'
