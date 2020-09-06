@@ -51,6 +51,10 @@ const BackToTopButton: StorefrontFC<Props> = ({
     }
   }, [scrollY, displayThreshold])
 
+  if (!isShowed) {
+    return null
+  }
+
   return display === 'button' ? (
     <div className={backToTopButtonClasses}>
       <Button onClick={handleBackTop} size="regular">
