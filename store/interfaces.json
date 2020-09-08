@@ -6,7 +6,7 @@
     "component": "SearchBar",
     "allowed": ["autocomplete-result-list", "icon-search", "icon-close"],
     "content": {
-      "$ref": "#/definitions/SearchBar"
+      "$ref": "app:vtex.store-components#/definitions/SearchBar"
     }
   },
   "autocomplete-result-list": {
@@ -30,13 +30,13 @@
   "product-price": {
     "component": "ProductPrice",
     "content": {
-      "$ref": "#/definitions/ProductPrice"
+      "$ref": "app:vtex.store-components#/definitions/ProductPrice"
     }
   },
   "product-description": {
     "component": "ProductDescription",
     "content": {
-      "$ref": "#/definitions/ProductDescription"
+      "$ref": "app:vtex.store-components#/definitions/ProductDescription"
     }
   },
   "product-separator": {
@@ -66,7 +66,7 @@
   "info-card": {
     "component": "InfoCard",
     "content": {
-      "$ref": "#/definitions/InfoCard"
+      "$ref": "app:vtex.store-components#/definitions/InfoCard"
     }
   },
   "user-address": {
