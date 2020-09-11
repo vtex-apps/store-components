@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Added a deprecation disclaimer in the Product Specifications block documentation.
 
+### Added
+- Table head to `shipping-simulator`.
+- Missing CSS handles to `shipping-simulator`.
+
 ## [3.128.1] - 2020-09-18
 ### Fixed
 - SKU Selector issue with translated stores.
