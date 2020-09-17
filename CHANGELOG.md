@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Color translation for fi-FL.
+- Color translation for `fi-FI`.
 
 ## [3.127.1] - 2020-09-09
 ### Fixed
