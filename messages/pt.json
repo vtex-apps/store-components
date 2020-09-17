@@ -126,6 +126,7 @@
   "store/user-address.pickup": "Retirar em {name}",
   "store/user-address.order": "Enviar para",
   "store/user-address.change": "Alterar",
+  "store/user-address.add": "Adicionar local",
   "admin/editor.notification-bar.title": "Notification bar",
   "admin/editor.notification-bar.description": "Um componente que mostra qualquer texto em um estilo de barra",
   "admin/editor.notification-bar.content.title": "Conteúdo",

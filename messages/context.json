@@ -126,6 +126,7 @@
   "store/user-address.pickup": "Pickup at <address>",
   "store/user-address.order": "Order to <address>",
   "store/user-address.change": "Change address button label",
+  "store/user-address.add": "Set address button label",
   "admin/editor.notification-bar.title": "Notification bar",
   "admin/editor.notification-bar.description": "A component that show any text in a bar style",
   "admin/editor.notification-bar.content.title": "Content",

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `shouldUpdateOrderForm` prop to `ShippingSimulator`
+- `showIfEmpty` prop to `UserAddress` so that shopper with no address can add one
+- Event listener to `UserAddress` for `locationUpdated` event from `vtex.shopper-location`
+
 ## [3.130.0] - 2020-09-21
 ### Added
 - `product-sku-attributes` interface

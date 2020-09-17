@@ -47,6 +47,7 @@ const BaseShippingSimulatorWrapper = ({
   loaderStyles,
   onShippingAddressUpdate = _ => {},
   initialPostalCode = undefined,
+  shouldUpdateOrderForm,
 }) => {
   const [shipping, setShipping] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -83,6 +84,8 @@ const BaseShippingSimulatorWrapper = ({
           setShipping(result.data.shipping)
         })
         .then(() => {
+          if (!shouldUpdateOrderForm) return
+
           return onShippingAddressUpdate?.(rawAddress)
         })
         .catch(error => {
@@ -92,7 +95,15 @@ const BaseShippingSimulatorWrapper = ({
           setLoading(false)
         })
     },
-    [address, client, country, seller, skuId, onShippingAddressUpdate]
+    [
+      address,
+      client,
+      country,
+      seller,
+      skuId,
+      onShippingAddressUpdate,
+      shouldUpdateOrderForm,
+    ]
   )
 
   const isMountedRef = useRef(false)
@@ -132,6 +143,7 @@ const ShippingSimulatorWithOrderForm = ({
   skuId,
   seller,
   loaderStyles,
+  shouldUpdateOrderForm,
 }) => {
   const { updateSelectedAddress } = useOrderShipping()
   const { orderForm } = useOrderForm()
@@ -150,6 +162,7 @@ const ShippingSimulatorWithOrderForm = ({
           : undefined
       }
       onShippingAddressUpdate={updateSelectedAddress}
+      shouldUpdateOrderForm={shouldUpdateOrderForm}
     />
   )
 }
@@ -173,6 +186,8 @@ const ShippingSimulatorWrapper = props => {
   const seller =
     props.seller || productContext?.selectedItem?.sellers?.[0]?.sellerId
 
+  const { shouldUpdateOrderForm = true } = props
+
   if (
     window.__RUNTIME__?.settings?.['vtex.store']
       ?.enableOrderFormOptimization !== true
@@ -195,6 +210,7 @@ const ShippingSimulatorWrapper = props => {
           seller={seller}
           skuId={skuId}
           loaderStyles={props.loaderStyles}
+          shouldUpdateOrderForm={shouldUpdateOrderForm}
         />
       </OrderFormLoader>
     </OrderShippingProvider>
