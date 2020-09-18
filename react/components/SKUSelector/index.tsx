@@ -115,11 +115,12 @@ const useImagesMap = (
     }
 
     const variationNames = Object.keys(variations)
+
     const result: ImageMap = {}
 
     for (const variationName of variationNames) {
       // Today, only "Color" variation should show image, need to find a more resilient way to tell this, waiting for backend
-      if (!isColor(variationName)) {
+      if (!isColor(variations[variationName].originalName)) {
         continue
       }
 
