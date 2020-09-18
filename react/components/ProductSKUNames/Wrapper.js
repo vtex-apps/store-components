@@ -4,15 +4,6 @@ import useProduct from 'vtex.product-context/useProduct'
 
 import ProductSKUNames from './index'
 
-const styles = {
-  'vtex-product-sku-names--loader': {
-    x: 0,
-    y: '2.569em',
-    width: '10.311em',
-    height: '1.045em',
-  },
-}
-
 const getVariationsFromSelectedItem = productContext => {
   const { selectedImageVariationSKU } = productContext.skuSelector
 
@@ -43,7 +34,7 @@ const ProductSKUNamesWrapper = props => {
       ...props,
       skuVariations:
         props.skuVariations || getVariationsFromSelectedItem(valuesFromContext),
-      styles: props.styles || styles,
+      styles: props.styles,
       className: props.className,
     }
   }

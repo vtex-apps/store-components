@@ -3,16 +3,18 @@ import React from 'react'
 import classNames from 'classnames'
 import { useCssHandles } from 'vtex.css-handles'
 
-const CSS_HANDLES = ['productSKUNamesContainer']
+const CSS_HANDLES = [
+  'productSKUNamesContaine',
+  'skuLineClass',
+  'skuNameClass',
+  'skuValueClass',
+]
 
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
  */
 const ProductSKUNames = ({
-  skuNameClass,
-  skuValueClass,
   className,
-  skuLineClass,
   skuVariations,
   tag: Wrapper = 'div',
 }) => {
@@ -29,13 +31,13 @@ const ProductSKUNames = ({
       {skuVariations.map((sku, i) => {
         return (
           <div
-            className={classNames(skuLineClass)}
+            className={classNames(handles.skuLineClass)}
             key={`sku_${i}_${sku.name}`}
           >
-            <span className={`${classNames(skuNameClass)} mr2 b`}>
+            <span className={`${classNames(handles.skuNameClass)} mr2 b`}>
               {sku.name}:
             </span>
-            <span className={classNames(skuValueClass)}>
+            <span className={classNames(handles.skuValueClass)}>
               {sku.values.join(', ')}
             </span>
           </div>
