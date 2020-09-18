@@ -4,8 +4,6 @@
 
 The `ProductSKUNames` is a block responsible for **displaying a list of the currrent SKU variations** for the product.
 
-![image](https://user-images.githubusercontent.com/284515/70231165-8f6b4200-1738-11ea-9f06-3583c08fc693.png)
-
 ## Configuration
 
 1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json`, for example:
