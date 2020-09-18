@@ -89,6 +89,7 @@ Below we have a README for each component of this project that explains how to u
 - [Product Description](ProductDescription.md)
 - [Product Images](ProductImages.md)
 - [Product Name](ProductName.md)
+- [Product SKU Names](ProductSKUNames.md)
 - [Product Price](ProductPrice.md)
 - [Product Specifications](ProductSpecifications.md)
 - [SKU Selector](SKUSelector.md)
