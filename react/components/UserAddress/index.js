@@ -25,6 +25,12 @@ const UserAddress = ({
     window.addEventListener('locationUpdated', () => {
       addressQueryProp.refetch()
     })
+
+    return () => {
+      window.removeEventListener('locationUpdated', () => {
+        addressQueryProp.refetch()
+      })
+    }
   }, [addressQueryProp])
 
   if (
