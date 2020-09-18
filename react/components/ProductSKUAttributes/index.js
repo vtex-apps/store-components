@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { useCssHandles } from 'vtex.css-handles'
 
 const CSS_HANDLES = [
-  'productSKUNamesContaine',
+  'productSKUAttributesContainer',
   'skuLineClass',
   'skuNameClass',
   'skuValueClass',
@@ -13,7 +13,7 @@ const CSS_HANDLES = [
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
  */
-const ProductSKUNames = ({
+const ProductSKUAttributes = ({
   className,
   skuVariations,
   tag: Wrapper = 'div',
@@ -26,7 +26,11 @@ const ProductSKUNames = ({
 
   return (
     <Wrapper
-      className={classNames(handles.productSKUNamesContainer, 'mv0', className)}
+      className={classNames(
+        handles.productSKUAttributesContainer,
+        'mv0',
+        className
+      )}
     >
       {skuVariations.map((sku, i) => {
         return (
@@ -47,7 +51,7 @@ const ProductSKUNames = ({
   )
 }
 
-ProductSKUNames.propTypes = {
+ProductSKUAttributes.propTypes = {
   /** Selected SKU name */
   skuVariations: PropTypes.object,
   /** Component and content loader styles */
@@ -62,4 +66,4 @@ ProductSKUNames.propTypes = {
   tag: PropTypes.oneOf(['div']),
 }
 
-export default ProductSKUNames
+export default ProductSKUAttributes

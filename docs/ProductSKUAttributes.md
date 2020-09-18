@@ -1,8 +1,8 @@
 📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion). 
 
-# Product SKU Names
+# Product SKU Attributes
 
-The `ProductSKUNames` is a block responsible for **displaying a list of the currrent SKU variations** for the product.
+The `ProductSKUAttributes` is a block responsible for **displaying a list of the currrent SKU variations** for the product.
 
 ## Configuration
 
@@ -14,7 +14,7 @@ The `ProductSKUNames` is a block responsible for **displaying a list of the curr
   }
 ```
 
-2. Add the `product-sku-names` block to any block below `store.product` (Product template). For example:
+2. Add the `product-sku-attributes` block to any block below `store.product` (Product template). For example:
 
 ```json
   "store.product": {
@@ -24,7 +24,7 @@ The `ProductSKUNames` is a block responsible for **displaying a list of the curr
   },
   "flex-layout.row#product": {
     "children": [
-      "product-sku-names"
+      "product-sku-attributes"
     ]
   },
 ```
@@ -35,7 +35,7 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 
 | CSS Handles |
 | --- |
-| `productSKUNamesContainer` |
+| `ProductSKUAttributesContainer` |
 | `skuValueClass` |
 | `skuNameClass` |
 | `skuLineClass` |

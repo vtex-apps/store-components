@@ -2,7 +2,7 @@ import React from 'react'
 import { isEmpty } from 'ramda'
 import useProduct from 'vtex.product-context/useProduct'
 
-import ProductSKUNames from './index'
+import ProductSKUAttributes from './index'
 
 const getVariationsFromSelectedItem = productContext => {
   const { selectedImageVariationSKU } = productContext.skuSelector
@@ -22,10 +22,10 @@ const getVariationsFromSelectedItem = productContext => {
   return productContext.selectedItem.variations
 }
 
-const ProductSKUNamesWrapper = props => {
+const ProductSKUAttributesWrapper = props => {
   const valuesFromContext = useProduct()
 
-  const productSKUNamesProps = () => {
+  const ProductSKUAttributesProps = () => {
     if (!valuesFromContext || isEmpty(valuesFromContext)) {
       return props
     }
@@ -39,7 +39,7 @@ const ProductSKUNamesWrapper = props => {
     }
   }
 
-  return <ProductSKUNames {...productSKUNamesProps()} />
+  return <ProductSKUAttributes {...ProductSKUAttributesProps()} />
 }
 
-export default ProductSKUNamesWrapper
+export default ProductSKUAttributesWrapper

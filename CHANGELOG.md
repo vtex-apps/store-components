@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `product-sku-names` interface
+- `product-sku-attributes` interface
 
 ## [3.128.0] - 2020-09-17
 ### Added
