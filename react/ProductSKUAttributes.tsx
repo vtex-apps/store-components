@@ -3,10 +3,10 @@ import { useCssHandles } from 'vtex.css-handles'
 import useProduct from 'vtex.product-context/useProduct'
 
 const CSS_HANDLES = [
-  'productSKUNamesContainer',
-  'skuLineClass',
-  'skuNameClass',
-  'skuValueClass',
+  'productSKUAttributesContainer',
+  'attributeLine',
+  'attributeName',
+  'attributeValue',
 ] as const
 
 const getVariationsFromSelectedItem = (
@@ -54,12 +54,14 @@ function ProductSKUNames(_props: Props) {
   }
 
   return (
-    <div className={`${handles.productSKUNamesContainer} mv0`}>
+    <div className={`${handles.productSKUAttributesContainer} mv0`}>
       {skuVariations.map(sku => {
         return (
-          <div className={handles.skuLineClass} key={sku.name}>
-            <span className={`${handles.skuNameClass} mr2 b`}>{sku.name}:</span>
-            <span className={handles.skuValueClass}>
+          <div className={handles.attributeLine} key={sku.name}>
+            <span className={`${handles.attributeName} mr2 b`}>
+              {sku.name}:
+            </span>
+            <span className={handles.attributeValue}>
               {sku.values.join(', ')}
             </span>
           </div>
