@@ -23,12 +23,52 @@ const AddressInfo = ({
   showCityAndState,
   showPostalCode,
   showPrefix,
+  showIfEmpty,
 }) => {
   const { shippingData } = orderForm
   const hasModal = !!useChildBlock({ id: 'modal' })
   const handles = useCssHandles(CSS_HANDLES)
 
-  if (!shippingData || !shippingData.address) return
+  if (!shippingData || !shippingData.address) {
+    if (!showIfEmpty) return
+
+    return (
+      <div
+        className={`flex ${inline ? 'items-end' : 'items-center flex-auto'}`}
+      >
+        <div
+          className={`${
+            handles.addressInfoIconContainer
+          } mr3 flex items-center ${
+            inverted ? 'c-on-base--inverted' : 'c-muted-2'
+          }`}
+        >
+          <IconLocationMarker size={27} viewBox="0 0 21 27" />
+        </div>
+        {hasModal ? (
+          <div
+            className={`${handles.addressInfoModalContainer} flex items-center`}
+          >
+            <ExtensionPoint
+              id="modal"
+              centered
+              buttonLabel={intl.formatMessage({
+                id: 'store/user-address.add',
+              })}
+              buttonClass={
+                inverted ? 'c-on-base--inverted' : 'c-action-primary'
+              }
+              showTopBar={false}
+            />
+          </div>
+        ) : (
+          <div className={`${handles.addressInfoAddressContainer} truncate`}>
+            <FormattedMessage id="store/user-address.add" />
+          </div>
+        )}
+      </div>
+    )
+  }
 
   const {
     street,

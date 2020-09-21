@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { graphql } from 'react-apollo'
 import { useCssHandles } from 'vtex.css-handles'
 import ADDRESS_QUERY from 'vtex.store-resources/QueryAddress'
@@ -16,12 +16,26 @@ const UserAddress = ({
   showCityAndState = false,
   showPostalCode = false,
   showPrefix = true,
+  showIfEmpty = false,
 }) => {
   const { orderForm } = addressQueryProp
-  const { shippingData } = orderForm || {}
   const handles = useCssHandles(CSS_HANDLES)
 
-  if (!orderForm || !shippingData || !shippingData.address) {
+  useEffect(() => {
+    const handleLocationUpdated = () => addressQueryProp.refetch()
+
+    window.addEventListener('locationUpdated', handleLocationUpdated)
+
+    return () => {
+      window.removeEventListener('locationUpdated', handleLocationUpdated)
+    }
+  }, [addressQueryProp])
+
+  if (
+    !orderForm ||
+    ((!orderForm.shippingData || !orderForm.shippingData.address) &&
+      !showIfEmpty)
+  ) {
     return null
   }
 
@@ -44,6 +58,7 @@ const UserAddress = ({
           showCityAndState={showCityAndState}
           showPostalCode={showPostalCode}
           showPrefix={showPrefix}
+          showIfEmpty={showIfEmpty}
         />
       }
     </div>
@@ -61,6 +76,7 @@ const UserAddress = ({
             showCityAndState={showCityAndState}
             showPostalCode={showPostalCode}
             showPrefix={showPrefix}
+            showIfEmpty={showIfEmpty}
           />
         </div>
       </Container>
@@ -75,6 +91,7 @@ UserAddress.propTypes = {
   showCityAndState: PropTypes.bool,
   showPostalCode: PropTypes.bool,
   showPrefix: PropTypes.bool,
+  showIfEmpty: PropTypes.bool,
 }
 
 const withAddressQuery = graphql(ADDRESS_QUERY, {
