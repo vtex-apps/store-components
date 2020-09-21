@@ -66,6 +66,7 @@ declare module 'vtex.product-context/useProduct' {
     skuSelector: {
       isVisible: boolean
       areAllVariationsSelected: boolean
+      selectedImageVariationSKU: string
     }
     buyButton: {
       clicked: boolean
@@ -88,4 +89,5 @@ declare module 'vtex.product-context/ProductDispatchContext' {
 
 declare module 'vtex.product-context' {
   export const ProductContext
+  export function useProduct(): ProductContextType
 }
