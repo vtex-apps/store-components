@@ -13,7 +13,7 @@ The `ProductSKUAttributes` is a block responsible for **displaying a list of the
 +   "vtex.store-components": "3.x"
   }
 
-2. Add the `product-sku-attributes` block to any block below `store.product` (Product template). For example:
+2. Add the `product-sku-attributes` block to any block in the `store.product` template (Product Details Page template). For example:
 
 ```json
   "store.product": {
