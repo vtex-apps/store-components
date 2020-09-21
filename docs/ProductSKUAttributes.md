@@ -3,6 +3,7 @@
 # Product SKU Attributes
 
 The `ProductSKUAttributes` is a block responsible for **displaying a list of the currrent SKU variations** for the product.
+![image](https://user-images.githubusercontent.com/24723/93642867-358ced80-f9d5-11ea-9dad-a5286eb04efd.png)
 
 ## Configuration
 
