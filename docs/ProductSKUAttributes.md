@@ -8,11 +8,10 @@ The `ProductSKUAttributes` is a block responsible for **displaying a list of the
 
 1. Add the `vtex.store-components` app to your theme's dependencies in the `manifest.json` file:
 
-```json
+```diff
   "dependencies: {
-    "vtex.store-components": "3.x"
++   "vtex.store-components": "3.x"
   }
-```
 
 2. Add the `product-sku-attributes` block to any block below `store.product` (Product template). For example:
 
