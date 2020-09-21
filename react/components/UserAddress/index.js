@@ -22,14 +22,12 @@ const UserAddress = ({
   const handles = useCssHandles(CSS_HANDLES)
 
   useEffect(() => {
-    window.addEventListener('locationUpdated', () => {
-      addressQueryProp.refetch()
-    })
+    const handleLocationUpdated = () => addressQueryProp.refetch()
+
+    window.addEventListener('locationUpdated', handleLocationUpdated)
 
     return () => {
-      window.removeEventListener('locationUpdated', () => {
-        addressQueryProp.refetch()
-      })
+      window.removeEventListener('locationUpdated', handleLocationUpdated)
     }
   }, [addressQueryProp])
 
