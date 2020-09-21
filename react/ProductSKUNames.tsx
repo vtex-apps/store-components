@@ -24,14 +24,12 @@ const getVariationsFromSelectedItem = (
   const { selectedImageVariationSKU } = productContext.skuSelector
 
   if (selectedImageVariationSKU) {
-    const selected = productContext.product.items.filter(item => {
+    const selected = productContext.product.items.find(item => {
       return item.itemId === selectedImageVariationSKU
     })
 
-    if (selected.length) {
-      const [item] = selected
-
-      return item.variations
+    if (selected) {
+      return selected.variations
     }
   }
 
