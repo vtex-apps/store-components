@@ -31,7 +31,20 @@ const ShippingTable = ({ shipping }) => {
     <table
       className={`${styles.shippingTable} bt bb b--muted-4 c-muted-1 ph0 pv3 mt4 w-100`}
     >
-      <tbody>
+      <thead className={`${styles.shippingTableHead} dn`}>
+        <tr className={styles.shippingTableRow}>
+          <th className={styles.shippingTableHeadDeliveryName}>
+            <FormattedMessage id="store/shipping.deliveryName" />
+          </th>
+          <th className={styles.shippingTableHeadDeliveryEstimate}>
+            <FormattedMessage id="store/shipping.deliveryEstimate" />
+          </th>
+          <th className={styles.shippingTableHeadDeliveryPrice}>
+            <FormattedMessage id="store/shipping.deliveryPrice" />
+          </th>
+        </tr>
+      </thead>
+      <tbody className={styles.shippingTableBody}>
         {slaList.map(shippingItem => (
           <ShippingTableRow
             key={shippingItem.id}
