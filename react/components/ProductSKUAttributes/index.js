@@ -5,9 +5,9 @@ import { useCssHandles } from 'vtex.css-handles'
 
 const CSS_HANDLES = [
   'productSKUAttributesContainer',
-  'skuLineClass',
-  'skuNameClass',
-  'skuValueClass',
+  'attributeLine',
+  'attributeName',
+  'attributeValue',
 ]
 
 /**
@@ -35,13 +35,13 @@ const ProductSKUAttributes = ({
       {skuVariations.map((sku, i) => {
         return (
           <div
-            className={classNames(handles.skuLineClass)}
+            className={classNames(handles.attributeLine)}
             key={`sku_${i}_${sku.name}`}
           >
-            <span className={`${classNames(handles.skuNameClass)} mr2 b`}>
+            <span className={`${classNames(handles.attributeLName)} mr2 b`}>
               {sku.name}:
             </span>
-            <span className={classNames(handles.skuValueClass)}>
+            <span className={classNames(handles.attributeLValue)}>
               {sku.values.join(', ')}
             </span>
           </div>
@@ -56,12 +56,6 @@ ProductSKUAttributes.propTypes = {
   skuVariations: PropTypes.object,
   /** Component and content loader styles */
   className: PropTypes.string,
-  /** Component and content loader styles */
-  skuLineClass: PropTypes.string,
-  /** Classes to be applied to skuName element */
-  skuNameClass: PropTypes.string,
-  /** Classes to be applied to skuValue element */
-  skuValueClass: PropTypes.string,
   /** HTML tag to be used in the component container */
   tag: PropTypes.oneOf(['div']),
 }
