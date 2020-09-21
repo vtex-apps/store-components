@@ -43,7 +43,7 @@ interface Props {
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
  */
-function ProductSKUNames(_props: Props) {
+function ProductSKUAttributes(_props: Props) {
   const handles = useCssHandles(CSS_HANDLES)
   const productContext = useProduct()
 
@@ -71,4 +71,4 @@ function ProductSKUNames(_props: Props) {
   )
 }
 
-export default ProductSKUNames
+export default ProductSKUAttributes
