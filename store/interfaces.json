@@ -18,6 +18,9 @@
   "product-name": {
     "component": "ProductName"
   },
+  "product-sku-attributes": {
+    "component": "ProductSKUAttributes"
+  },
   "product-brand": {
     "component": "ProductBrand"
   },
