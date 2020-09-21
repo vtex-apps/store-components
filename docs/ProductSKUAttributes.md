@@ -6,7 +6,7 @@ The `ProductSKUAttributes` is a block responsible for **displaying a list of the
 
 ## Configuration
 
-1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json`, for example:
+1. Add the `vtex.store-components` app to your theme's dependencies in the `manifest.json` file:
 
 ```json
   "dependencies: {
