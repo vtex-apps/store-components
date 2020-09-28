@@ -112,10 +112,21 @@ const ZoomInPlace: FC<Props> = ({ children, zoomContent, type, factor }) => {
 
   /* Adds mouse event handlers to the entire document, so that
    * mouse movement is not restricted to just the content element */
-  const handleClickOutside = () => {
-    if (isZoomedIn) {
-      setZoom(false)
+  const handleClickOutside = (event: MouseEvent) => {
+    if (!isZoomedIn) {
+      return
     }
+
+    const isDescendant =
+      containerRef.current &&
+      event.target &&
+      containerRef.current.contains?.(event.target as Node)
+
+    if (isDescendant) {
+      return
+    }
+
+    setZoom(false)
   }
 
   const handleMouseMove = (event: ReactMouseEvent) => {
