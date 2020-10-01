@@ -7,4 +7,6 @@ declare module 'vtex.native-types' {
     values: Record<string, any>
     ['data-testid']: string
   }>
+
+  export const formatIOMessage: any
 }
