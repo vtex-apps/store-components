@@ -1,3 +1,3 @@
-mutation subscribeNewsletter($email: String) {
-  subscribeNewsletter(email: $email)
+mutation subscribeNewsletter($email: String, $name: String) {
+  subscribeNewsletter(email: $email, name: $name)
 }
