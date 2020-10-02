@@ -36,8 +36,10 @@ const styles = {
   },
 }
 
-const isAvailable = commertialOffer =>
+const isAvailable = (commertialOffer: any) =>
+  // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
   Number.isNaN(+path(['AvailableQuantity'], commertialOffer)) ||
+  // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
   path(['AvailableQuantity'], commertialOffer) > 0
 
 const ProductPriceWrapper = ({
@@ -47,7 +49,7 @@ const ProductPriceWrapper = ({
   showLabels,
   showSavings,
   ...props
-}) => {
+}: any) => {
   const valuesFromContext = useContext(ProductContext)
 
   const {
@@ -86,6 +88,7 @@ const ProductPriceWrapper = ({
       }
     }
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'selectedItem' does not exist on type 'un... Remove this comment to see the full error message
     const { selectedItem } = valuesFromContext
     const commertialOffer = path(
       ['sellers', 0, 'commertialOffer'],
@@ -141,48 +144,56 @@ ProductPriceWrapper.schema = {
     labelSellingPrice: {
       type: 'string',
       title: 'admin/editor.productPrice.labelSellingPrice',
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       default: ProductPrice.defaultProps.labelSellingPrice,
       isLayout: false,
     },
     labelListPrice: {
       type: 'string',
       title: 'admin/editor.productPrice.labelListPrice',
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       default: ProductPrice.defaultProps.labelListPrice,
       isLayout: false,
     },
     showSellingPriceRange: {
       type: 'boolean',
       title: 'admin/editor.productPrice.showSellingPriceRange',
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       default: ProductPrice.defaultProps.showSellingPriceRange,
       isLayout: true,
     },
     showListPriceRange: {
       type: 'boolean',
       title: 'admin/editor.productPrice.showListPriceRange',
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       default: ProductPrice.defaultProps.showListPriceRange,
       isLayout: true,
     },
     showListPrice: {
       type: 'boolean',
       title: 'admin/editor.productPrice.showListPrice',
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       default: ProductPrice.defaultProps.showListPrice,
       isLayout: true,
     },
     showLabels: {
       type: 'boolean',
       title: 'admin/editor.productPrice.showLabels',
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       default: ProductPrice.defaultProps.showLabels,
       isLayout: true,
     },
     showInstallments: {
       type: 'boolean',
       title: 'admin/editor.productPrice.showInstallments',
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       default: ProductPrice.defaultProps.showInstallments,
       isLayout: true,
     },
     showSavings: {
       type: 'boolean',
       title: 'admin/editor.productPrice.showSavings',
+      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
       default: ProductPrice.defaultProps.showSavings,
       isLayout: true,
     },

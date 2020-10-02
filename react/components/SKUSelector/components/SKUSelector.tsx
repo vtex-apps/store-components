@@ -246,7 +246,7 @@ const getAvailableVariations = ({
 const getAvailableVariationsPromise = (
   params: AvailableVariationParams
 ): Promise<DisplayVariation[]> => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     const result = getAvailableVariations(params)
 
     resolve(result)
@@ -318,7 +318,7 @@ const SKUSelector: FC<Props> = ({
     let isCurrent = true
     const promise = getAvailableVariationsPromise(availableVariationsPayload)
 
-    promise.then(availableVariations => {
+    promise.then((availableVariations) => {
       if (isCurrent) {
         setDisplayVariations(availableVariations)
       }

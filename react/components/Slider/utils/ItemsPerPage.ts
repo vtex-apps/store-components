@@ -1,6 +1,6 @@
 import { path } from 'ramda'
 
-function getItemWidth(slick, maxWidth) {
+function getItemWidth(slick: any, maxWidth: any) {
   const slidesNodeList = path(
     ['innerSlider', 'list', 'childNodes', '0', 'childNodes'],
     slick
@@ -12,14 +12,15 @@ function getItemWidth(slick, maxWidth) {
     const slidesArray = Array.prototype.slice.call(slidesNodeList)
 
     // eslint-disable-next-line array-callback-return
-    slidesArray.map(slide => {
+    slidesArray.map((slide: any) => {
       const attributes = Array.prototype.slice.call(slide.attributes)
 
       // eslint-disable-next-line array-callback-return
-      attributes.map(attr => {
+      attributes.map((attr: any) => {
         // eslint-disable-next-line vtex/prefer-early-return
         if (attr.nodeName === 'data-index' && attr.nodeValue === '0') {
           itemWidth = path(['childNodes', '0', 'clientWidth'], slide)
+          // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
           if (maxWidth && maxWidth < itemWidth) itemWidth = maxWidth
         }
       })
@@ -34,10 +35,10 @@ function getItemWidth(slick, maxWidth) {
  */
 // eslint-disable-next-line max-params
 export default function getItemsPerPage(
-  slick,
-  slideWidth,
-  defaultItemWidth,
-  actualItemsPerPage
+  slick: any,
+  slideWidth: any,
+  defaultItemWidth: any,
+  actualItemsPerPage: any
 ) {
   if (slideWidth) {
     const shelfItemWidth = getItemWidth(slick, defaultItemWidth)

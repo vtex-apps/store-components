@@ -1,4 +1,5 @@
 import React from 'react'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../node_modules/@vtex/test-tools/react... Remove this comment to see the full error message
 import { render, wait } from '@vtex/test-tools/react'
 
 import orderFormQuery from '../../components/Greeting/queries/orderForm.gql'
@@ -24,7 +25,7 @@ describe('<Greeting /> component', () => {
     jest.useFakeTimers()
   })
 
-  const renderComponent = customProps => {
+  const renderComponent = (customProps: any) => {
     const props = {
       ...customProps,
     }
@@ -33,6 +34,7 @@ describe('<Greeting /> component', () => {
   }
 
   it('should render name in orderForm', async () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     const { queryByText } = renderComponent()
 
     await wait(() => {

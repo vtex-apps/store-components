@@ -3,14 +3,14 @@ import { injectIntl } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
 import { FormattedCurrency, formatCurrency } from 'vtex.format-currency'
 
-const isValidPriceRange = priceRange => {
+const isValidPriceRange = (priceRange: any) => {
   const [lowPrice, highPrice] = priceRange
 
   return priceRange.length === 2 && lowPrice !== highPrice
 }
 
-const formatPriceRange = (intl, culture, rawPriceRange) => {
-  const priceRangeFormatted = (rawPriceRange || []).map(value =>
+const formatPriceRange = (intl: any, culture: any, rawPriceRange: any) => {
+  const priceRangeFormatted = (rawPriceRange || []).map((value: any) =>
     formatCurrency({ intl, culture, value })
   )
 
@@ -24,7 +24,8 @@ const Price = ({
   rangeContainerClasses,
   singleContainerClasses,
   intl,
-}) => {
+}: any) => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'culture' does not exist on type 'Runtime... Remove this comment to see the full error message
   const { culture } = useRuntime()
 
   const mustShowPriceRange =

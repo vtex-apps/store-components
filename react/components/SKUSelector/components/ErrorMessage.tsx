@@ -10,7 +10,7 @@ function ErrorMessage() {
 
   return (
     <FormattedMessage id="store/sku-selector.variation.select-an-option">
-      {message => (
+      {(message) => (
         <>
           {' '}
           {/* this space is necessary */}

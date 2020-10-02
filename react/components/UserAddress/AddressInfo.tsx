@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.render-runtime"' has no exported mem... Remove this comment to see the full error message
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 import { pathOr } from 'ramda'
@@ -24,7 +25,7 @@ const AddressInfo = ({
   showPostalCode,
   showPrefix,
   showIfEmpty,
-}) => {
+}: any) => {
   const { shippingData } = orderForm
   const hasModal = !!useChildBlock({ id: 'modal' })
   const handles = useCssHandles(CSS_HANDLES)
@@ -168,4 +169,5 @@ const AddressInfo = ({
   )
 }
 
+// @ts-expect-error ts-migrate(2769) FIXME: Type '({ inverted, inline, orderForm, intl, showSt... Remove this comment to see the full error message
 export default injectIntl(AddressInfo)

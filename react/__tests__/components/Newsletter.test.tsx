@@ -1,7 +1,9 @@
 import React from 'react'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../node_modules/@vtex/test-tools/react... Remove this comment to see the full error message
 import { fireEvent, waitForElement, render } from '@vtex/test-tools/react'
 
 import Newsletter from '../../components/Newsletter'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '../../components/Newsletter/mu... Remove this comment to see the full error message
 import subscribeNewsletter from '../../components/Newsletter/mutations/subscribeNewsletter.graphql'
 
 const placeholderTextId = 'store/newsletter.placeholder'
@@ -13,6 +15,7 @@ const errorTextId = 'store/newsletter.error'
 test('should have label, input and submit', () => {
   const { getByLabelText, getByText } = render(
     <Newsletter
+      // @ts-expect-error ts-migrate(2322) FIXME: Property 'placeholder' does not exist on type 'Int... Remove this comment to see the full error message
       placeholder={placeholderTextId}
       label={labelTextId}
       submit={submitTextId}
@@ -29,6 +32,7 @@ test('should have label, input and submit', () => {
 test('should add error message when user types wrong email', () => {
   const { getByLabelText, getByText } = render(
     <Newsletter
+      // @ts-expect-error ts-migrate(2322) FIXME: Property 'placeholder' does not exist on type 'Int... Remove this comment to see the full error message
       placeholder={placeholderTextId}
       label={labelTextId}
       submit={submitTextId}
@@ -43,6 +47,7 @@ test('should add error message when user types wrong email', () => {
   fireEvent.change(mockedInput, { target: { value: wrongEmail } })
   fireEvent.click(submit)
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'toHaveAttribute' does not exist on type ... Remove this comment to see the full error message
   expect(mockedInput).toHaveAttribute('data-errormessage')
 })
 
@@ -64,6 +69,7 @@ test('should call mutation', async () => {
 
   const { getByLabelText, getByText } = render(
     <Newsletter
+      // @ts-expect-error ts-migrate(2322) FIXME: Property 'placeholder' does not exist on type 'Int... Remove this comment to see the full error message
       placeholder={placeholderTextId}
       label={labelTextId}
       submit={submitTextId}
@@ -98,6 +104,7 @@ test('should handle mutation error', async () => {
 
   const { getByLabelText, getByText } = render(
     <Newsletter
+      // @ts-expect-error ts-migrate(2322) FIXME: Property 'placeholder' does not exist on type 'Int... Remove this comment to see the full error message
       placeholder={placeholderTextId}
       label={labelTextId}
       submit={submitTextId}

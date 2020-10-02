@@ -1,4 +1,5 @@
 import React from 'react'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../node_modules/@vtex/test-tools/react... Remove this comment to see the full error message
 import { fireEvent, wait, render } from '@vtex/test-tools/react'
 
 import BuyButton from '../../BuyButton'
@@ -19,7 +20,7 @@ const mocks = [
 ]
 
 describe('<BuyButton />', () => {
-  const renderComponent = (customProps, text = 'Test') => {
+  const renderComponent = (customProps: any, text = 'Test') => {
     const props = {
       available: true,
       ...customProps,
@@ -31,6 +32,7 @@ describe('<BuyButton />', () => {
   }
 
   it('should be rendered', async () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1-2 arguments, but got 0.
     const { asFragment } = renderComponent()
 
     await wait()
@@ -84,6 +86,7 @@ describe('<BuyButton />', () => {
       expect(onAddFinish).toBeCalledTimes(1)
     }
 
+    // @ts-expect-error ts-migrate(2345) FIXME: Argument of type '() => void' is not assignable to... Remove this comment to see the full error message
     expect.assertions(assertions)
   })
 
@@ -154,6 +157,7 @@ describe('<BuyButton />', () => {
         skuItems,
         showItemsPrice: true,
       },
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'null' is not assignable to param... Remove this comment to see the full error message
       null
     )
 

@@ -158,7 +158,7 @@ export const uniqueOptionToSelect = (
   )
 
   const variationsWithOne = filter(
-    setValues => setValues.size === 1,
+    (setValues) => setValues.size === 1,
     availableOptions
   )
 
@@ -189,7 +189,7 @@ type SelectedVariationsNotNull = Record<string, string>
 const isSkuSelected = (selectedNotNull: SelectedVariationsNotNull) => (
   sku: SelectorProductItem
 ) => {
-  const hasAll = Object.keys(selectedNotNull).every(variationName => {
+  const hasAll = Object.keys(selectedNotNull).every((variationName) => {
     const selectedValue = selectedNotNull[variationName]
 
     return sku.variationValues[variationName] === selectedValue

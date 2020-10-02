@@ -32,19 +32,20 @@ const CSS_HANDLES = [
   'price_installmentContainer',
 ]
 
-const isValidPriceRange = priceRange => {
+const isValidPriceRange = (priceRange: any) => {
   const [lowPrice, highPrice] = priceRange
 
   return priceRange.length === 2 && lowPrice !== highPrice
 }
 
-const getPriceRange = prices => {
+const getPriceRange = (prices: any) => {
+  // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
   const sortedPrices = sort((a, b) => a - b, prices)
 
   return [head(sortedPrices), last(sortedPrices)]
 }
 
-const canShowListPrice = props => {
+const canShowListPrice = (props: any) => {
   const {
     sellingPriceList,
     sellingPrice,
@@ -82,7 +83,7 @@ const canShowListPrice = props => {
 /**
  * The Price component. Shows the prices information of the Product Summary.
  */
-const ProductPrice = props => {
+const ProductPrice = (props: any) => {
   const {
     sellingPriceList,
     sellingPrice,
@@ -116,6 +117,7 @@ const ProductPrice = props => {
     intl,
   } = props
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'culture' does not exist on type 'Runtime... Remove this comment to see the full error message
   const { culture } = useRuntime()
 
   const handles = useCssHandles(CSS_HANDLES)
@@ -159,6 +161,7 @@ const ProductPrice = props => {
                 'dib ph2 t-small-ns t-mini'
               )}
             >
+              {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ id: any; }' is missing the following prope... Remove this comment to see the full error message */}
               <IOMessage id={labelListPrice} />
             </div>
           )}
@@ -195,6 +198,7 @@ const ProductPrice = props => {
               handles.price_sellingPriceLabel
             )}
           >
+            {/* @ts-expect-error ts-migrate(2739) FIXME: Type '{ id: any; }' is missing the following prope... Remove this comment to see the full error message */}
             <IOMessage id={labelSellingPrice} />
           </div>
         )}
@@ -277,6 +281,7 @@ PriceWithIntl.defaultProps = {
   labelListPrice: null,
 }
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'schema' does not exist on type 'FC<WithI... Remove this comment to see the full error message
 PriceWithIntl.schema = {
   title: 'admin/editor.productPrice.title',
   description: 'admin/editor.productPrice.description',

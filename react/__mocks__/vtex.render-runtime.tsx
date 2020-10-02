@@ -10,18 +10,18 @@ const runtime = {
   culture: { currency: 'USD' },
 }
 
-export const withRuntimeContext = Comp =>
-  function WrappedRuntimeContext(props) {
+export const withRuntimeContext = (Comp: any) =>
+  function WrappedRuntimeContext(props: any) {
     return <Comp {...props} runtime={runtime} />
   }
 
-export const Link = ({ children }) => <a href="dummy">{children}</a>
+export const Link = ({ children }: any) => <a href="dummy">{children}</a>
 
-export const NoSSR = ({ children }) => (
+export const NoSSR = ({ children }: any) => (
   <div className="NoSSR-mock">{children}</div>
 )
 
-export const ExtensionPoint = ({ id }) => (
+export const ExtensionPoint = ({ id }: any) => (
   <div className={`extension-point-${id}`} />
 )
 

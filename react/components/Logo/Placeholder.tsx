@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function LogoPlaceholder({ width, height, title }) {
+export default function LogoPlaceholder({ width, height, title }: any) {
   return (
     <svg
       width={width}

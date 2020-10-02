@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
-import PropTypes from 'prop-types'
 import { FormattedMessage, injectIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.native-types"' has no exported membe... Remove this comment to see the full error message
 import { formatIOMessage } from 'vtex.native-types'
 
 import { SanitizedHTML, DEFAULTS } from '../SanitizedHTML'
@@ -34,11 +34,23 @@ const allowedAttributes = {
   embed: ['height', 'width', 'src'],
 }
 
+type Props = {
+  title?: string
+  description?: string
+  collapseContent?: boolean
+  intl: any
+}
+
 /**
  * Product Description Component.
  * Render the description of a product
  */
-const ProductDescription = ({ description, collapseContent, title, intl }) => {
+const ProductDescription = ({
+  description,
+  collapseContent,
+  title,
+  intl,
+}: Props) => {
   const handles = useCssHandles(CSS_HANDLES)
 
   if (!description) {
@@ -48,7 +60,7 @@ const ProductDescription = ({ description, collapseContent, title, intl }) => {
   return (
     <div className={handles.productDescriptionContainer}>
       <FormattedMessage id="store/product-description.title">
-        {txt => (
+        {(txt) => (
           <h2
             className={`${handles.productDescriptionTitle} t-heading-5 mb5 mt0`}
           >
@@ -76,14 +88,6 @@ const ProductDescription = ({ description, collapseContent, title, intl }) => {
       </div>
     </div>
   )
-}
-
-ProductDescription.propTypes = {
-  title: PropTypes.string,
-  /** Product description string */
-  description: PropTypes.string,
-  collapseContent: PropTypes.bool,
-  intl: PropTypes.object.isRequired,
 }
 
 export default injectIntl(memo(ProductDescription))

@@ -1,17 +1,24 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { ApolloConsumer } from 'react-apollo'
 import { injectIntl } from 'react-intl'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.styleguide"' has no exported member ... Remove this comment to see the full error message
 import { Button, Input } from 'vtex.styleguide'
 
 import ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION from './mutations/addToAvailabilitySubscriberMutation.gql'
 import styles from './styles.css'
 
+type Props = {
+  skuId: string
+  intl: any
+}
+
+type State = any
+
 /**
  * Represents the availability subscriber form, that's shown when
  * the product isn't available.
  */
-class AvailabilitySubscriber extends Component {
+class AvailabilitySubscriber extends Component<Props, State> {
   emailInput = React.createRef()
   nameInput = React.createRef()
 
@@ -24,13 +31,7 @@ class AvailabilitySubscriber extends Component {
     sendStatus: '',
   }
 
-  static propTypes = {
-    /** The id of the current product sku */
-    skuId: PropTypes.string.isRequired,
-    intl: PropTypes.object.isRequired,
-  }
-
-  validateEmail = email => {
+  validateEmail = (email: any) => {
     const { emailError } = this.state
 
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -58,7 +59,7 @@ class AvailabilitySubscriber extends Component {
     })
   }
 
-  handleInputChange = e => {
+  handleInputChange = (e: any) => {
     this.setState({
       [e.target.name]: e.target.value,
     })
@@ -68,7 +69,7 @@ class AvailabilitySubscriber extends Component {
     }
   }
 
-  handleSubmit = (e, client) => {
+  handleSubmit = (e: any, client: any) => {
     e.preventDefault()
     const variables = {
       acronym: 'AS',
@@ -119,7 +120,7 @@ class AvailabilitySubscriber extends Component {
             sendStatus: 'success',
           })
         },
-        mutationErr => {
+        (mutationErr: any) => {
           console.error('ERROR: ', mutationErr)
           this.setState({
             isLoading: false,
@@ -129,6 +130,7 @@ class AvailabilitySubscriber extends Component {
       )
     const event = new Event('message:success')
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'details' does not exist on type 'Event'.
     event.details = {
       success: true,
       message: this.translate('store/availability-subscriber.added-message'),
@@ -136,11 +138,13 @@ class AvailabilitySubscriber extends Component {
     document.dispatchEvent(event)
   }
 
-  translate = id => this.props.intl.formatMessage({ id })
+  translate = (id: any) => this.props.intl.formatMessage({ id })
 
   componentDidMount() {
     this.setState({
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'RefObject... Remove this comment to see the full error message
       email: this.emailInput.value || '',
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'value' does not exist on type 'RefObject... Remove this comment to see the full error message
       name: this.nameInput.value || '',
     })
   }
@@ -166,7 +170,7 @@ class AvailabilitySubscriber extends Component {
 
     return (
       <ApolloConsumer>
-        {client => (
+        {(client) => (
           <div className={styles.subscriberContainer}>
             <div className={`${styles.title} t-body mb3`}>
               {this.translate('store/availability-subscriber.title')}
@@ -176,7 +180,7 @@ class AvailabilitySubscriber extends Component {
             </div>
             <form
               className={`${styles.form} mb4`}
-              onSubmit={e => this.handleSubmit(e, client)}
+              onSubmit={(e) => this.handleSubmit(e, client)}
             >
               <div
                 className={`${styles.content} flex-ns justify-between mt4 mw6`}
@@ -192,7 +196,7 @@ class AvailabilitySubscriber extends Component {
                     )}
                     value={name}
                     onChange={this.handleInputChange}
-                    ref={e => {
+                    ref={(e: any) => {
                       this.nameInput = e
                     }}
                   />
@@ -211,7 +215,7 @@ class AvailabilitySubscriber extends Component {
                     onBlur={this.handleEmailBlur}
                     error={hasBlurredEmail && !!emailError}
                     errorMessage={emailErrorMessage}
-                    ref={e => {
+                    ref={(e: any) => {
                       this.emailInput = e
                     }}
                   />

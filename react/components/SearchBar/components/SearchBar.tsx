@@ -1,12 +1,15 @@
 import React, { useRef, useCallback, useState, useEffect, useMemo } from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import Downshift from 'downshift'
+// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/debounce` if it exists or ... Remove this comment to see the full error message
 import debounce from 'debounce'
 import {
+  // @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.render-runtime"' has no exported mem... Remove this comment to see the full error message
   NoSSR,
   useRuntime,
+  // @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.render-runtime"' has no exported mem... Remove this comment to see the full error message
   ExtensionPoint,
+  // @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.render-runtime"' has no exported mem... Remove this comment to see the full error message
   useChildBlock,
 } from 'vtex.render-runtime'
 import { Overlay } from 'vtex.react-portal'
@@ -28,6 +31,28 @@ const messages = defineMessages({
   },
 })
 
+type Props = {
+  placeholder: string
+  inputValue: string
+  onInputChange: (...args: any[]) => any
+  onGoToSearchPage: (...args: any[]) => any
+  onClearInput: (...args: any[]) => any
+  compactMode?: boolean
+  hasIconLeft?: boolean
+  iconClasses?: string
+  iconBlockClass?: string
+  autoFocus?: boolean
+  maxWidth?: string | number
+  customSearchPageUrl?: string
+  attemptPageTypeSearch?: boolean
+  autocompleteAlignment?: string
+  openAutocompleteOnFocus?: boolean
+  blurOnSubmit?: boolean
+  submitOnIconClick?: boolean
+  minSearchTermLength?: number
+  autocompleteFullWidth?: boolean
+}
+
 const SearchBar = ({
   placeholder,
   onInputChange,
@@ -46,20 +71,22 @@ const SearchBar = ({
   openAutocompleteOnFocus,
   blurOnSubmit,
   submitOnIconClick,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'displayMode' does not exist on type 'Pro... Remove this comment to see the full error message
   // eslint-disable-next-line react/prop-types
   displayMode,
   minSearchTermLength,
   autocompleteFullWidth,
-}) => {
+}: Props) => {
   const intl = useIntl()
   const container = useRef()
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'navigate' does not exist on type 'Runtim... Remove this comment to see the full error message
   const { navigate } = useRuntime()
   const handles = useCssHandles(CSS_HANDLES)
   const [searchTerm, setSearchTerm] = useState(inputValue)
   const [inputErrorMessage, setInputErrorMessage] = useState()
 
   const debouncedSetSearchTerm = useCallback(
-    debounce(newValue => {
+    debounce((newValue: any) => {
       setSearchTerm(newValue)
     }, SEARCH_DELAY_TIME),
     []
@@ -70,7 +97,7 @@ const SearchBar = ({
   }, [debouncedSetSearchTerm, inputValue])
 
   const onSelect = useCallback(
-    element => {
+    (element) => {
       if (!element) {
         return
       }
@@ -114,6 +141,7 @@ const SearchBar = ({
         const paramForSearchTracking = `&_c=${terms[0]}`
 
         page = 'store.search'
+        // @ts-expect-error ts-migrate(2322) FIXME: Object literal may only specify known properties, ... Remove this comment to see the full error message
         params = { term: terms.join('/') }
         query = `map=c,ft${paramForSearchTracking}`
       }
@@ -131,17 +159,19 @@ const SearchBar = ({
     return null
   }
 
-  const showInputErrorMessage = newInputErrorMessage => {
+  const showInputErrorMessage = (newInputErrorMessage: any) => {
     setInputErrorMessage(newInputErrorMessage)
   }
 
   const hideInputErrorMessage = () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     setInputErrorMessage()
   }
 
   const fallback = (
     <AutocompleteInput
       placeholder={placeholder}
+      // @ts-expect-error ts-migrate(2322) FIXME: Property 'onInputChange' does not exist on type 'I... Remove this comment to see the full error message
       onInputChange={onInputChange}
       inputValue={inputValue}
       hasIconLeft={hasIconLeft}
@@ -158,14 +188,17 @@ const SearchBar = ({
 
   const SelectedAutocompleteResults = useMemo(() => {
     return isAutocompleteDeclared
-      ? props => <ExtensionPoint id={AUTCOMPLETE_EXTENSION_ID} {...props} />
-      : props => <AutocompleteResults {...props} />
+      ? (props: any) => (
+          <ExtensionPoint id={AUTCOMPLETE_EXTENSION_ID} {...props} />
+        )
+      : (props: any) => <AutocompleteResults {...props} />
   }, [isAutocompleteDeclared])
 
   const autocompleteContainerRef = useRef(null)
 
   return (
     <div
+      // @ts-expect-error ts-migrate(2322) FIXME: Type 'undefined' is not assignable to type 'HTMLDi... Remove this comment to see the full error message
       ref={container}
       className={classNames('w-100 mw7 pv4', styles.searchBarContainer)}
       style={{
@@ -202,14 +235,16 @@ const SearchBar = ({
                 onClearInput={onClearInput}
                 hasIconLeft={hasIconLeft}
                 iconClasses={iconClasses}
+                // @ts-expect-error ts-migrate(2783) FIXME: 'onGoToSearchPage' is specified more than once, so... Remove this comment to see the full error message
                 onGoToSearchPage={onGoToSearchPage}
                 submitOnIconClick={submitOnIconClick}
                 displayMode={displayMode}
+                // @ts-expect-error ts-migrate(2322) FIXME: Property 'openAutocompleteOnFocus' does not exist ... Remove this comment to see the full error message
                 openAutocompleteOnFocus={openAutocompleteOnFocus}
                 openMenu={openMenu}
                 inputErrorMessage={inputErrorMessage}
                 {...getInputProps({
-                  onKeyDown: event => {
+                  onKeyDown: (event) => {
                     // Only call default search function if user doesn't
                     // have any item highlighted in the menu options
                     if (event.key === 'Enter' && highlightedIndex === null) {
@@ -234,13 +269,17 @@ const SearchBar = ({
                   placeholder,
                   value: inputValue,
                   onChange: onInputChange,
+                  // @ts-expect-error ts-migrate(2345) FIXME: Object literal may only specify known properties, ... Remove this comment to see the full error message
                   onFocus: openAutocompleteOnFocus ? openMenu : undefined,
                 })}
               />
               <div ref={autocompleteContainerRef} />
               <Overlay
+                // @ts-expect-error ts-migrate(2322) FIXME: Type 'undefined' is not assignable to type 'boolea... Remove this comment to see the full error message
                 fullWindow={autocompleteFullWidth}
+                // @ts-expect-error ts-migrate(2322) FIXME: Type 'undefined' is not assignable to type 'Horizo... Remove this comment to see the full error message
                 alignment={autocompleteAlignment}
+                // @ts-expect-error ts-migrate(2322) FIXME: Type 'null' is not assignable to type 'HTMLElement... Remove this comment to see the full error message
                 target={autocompleteContainerRef.current}
               >
                 <SelectedAutocompleteResults
@@ -265,49 +304,6 @@ const SearchBar = ({
       </NoSSR>
     </div>
   )
-}
-
-SearchBar.propTypes = {
-  /** Placeholder to be used on the input */
-  placeholder: PropTypes.string.isRequired,
-  /** Current value of the input */
-  inputValue: PropTypes.string.isRequired,
-  /** Function to handle input changes */
-  onInputChange: PropTypes.func.isRequired,
-  /** Function to direct the user to the searchPage */
-  onGoToSearchPage: PropTypes.func.isRequired,
-  /** Function to clear the input */
-  onClearInput: PropTypes.func.isRequired,
-  /** Indentify when use the compact version of the component */
-  compactMode: PropTypes.bool,
-  /** Identify if the search icon is on left or right position */
-  hasIconLeft: PropTypes.bool,
-  /** Custom classes for the search icon */
-  iconClasses: PropTypes.string,
-  /** Block class for the search icon */
-  iconBlockClass: PropTypes.string,
-  /** Identify if the search input should autofocus or not */
-  autoFocus: PropTypes.bool,
-  /** Max width of the search bar */
-  maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
-  customSearchPageUrl: PropTypes.string,
-  /** Uses the term the user has inputed to try to navigate to the proper
-   * page type (e.g. a department, a brand, a category)
-   */
-  attemptPageTypeSearch: PropTypes.bool,
-  /* Autocomplete Horizontal alignment */
-  autocompleteAlignment: PropTypes.string,
-  /** Identify if autocomplete should be open on input focus or not */
-  openAutocompleteOnFocus: PropTypes.bool,
-  /** Identify if input should blur on submit */
-  blurOnSubmit: PropTypes.bool,
-  /** Identify if icon should submit on click */
-  submitOnIconClick: PropTypes.bool,
-  /** Minimum search term length allowed */
-  minSearchTermLength: PropTypes.number,
-  /** If true, the autocomplete will fill the whole window horizontally */
-  autocompleteFullWidth: PropTypes.bool,
 }
 
 export default SearchBar

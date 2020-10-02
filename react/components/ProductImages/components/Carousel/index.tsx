@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { path, equals } from 'ramda'
 import { IconCaret } from 'vtex.store-icons'
@@ -44,7 +43,21 @@ const initialState = {
   activeIndex: 0,
 }
 
-class Carousel extends Component {
+type Props = {
+  slides?: Array<{
+    type?: string
+    url?: string
+    alt?: string
+    thumbUrl?: string
+    bestUrlIndex?: number
+  }>
+  ModalZoomElement?: any
+  displayThumbnailsArrows?: boolean
+}
+
+type State = any
+
+class Carousel extends Component<Props, State> {
   state = {
     ...initialState,
     thumbSwiper: null,
@@ -68,9 +81,12 @@ class Carousel extends Component {
 
     slides.forEach(async (slide, i) => {
       if (slide.type === 'video') {
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'src' does not exist on type '{ type?: st... Remove this comment to see the full error message
         const thumbUrl = await getThumbUrl(slide.src, slide.thumbWidth)
 
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'boolean' is not assignable to type 'never'.
         this.isVideo[i] = true
+        // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
         this.setVideoThumb(i)(thumbUrl)
       } else {
         // Image object doesn't exist when it's being rendered in the server side
@@ -80,6 +96,7 @@ class Carousel extends Component {
 
         const image = new Image()
 
+        // @ts-expect-error ts-migrate(2322) FIXME: Type 'undefined' is not assignable to type 'string... Remove this comment to see the full error message
         image.src = slide.thumbUrl
       }
     })
@@ -89,7 +106,7 @@ class Carousel extends Component {
     this.setInitialVariablesState()
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     const { activeIndex } = this.state
     const { isVideo } = this
 
@@ -111,12 +128,13 @@ class Carousel extends Component {
     )
 
     if (paginationElement) {
+      // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
       paginationElement.hidden = isVideo[activeIndex]
     }
   }
 
   handleSlideChange = () => {
-    this.setState(prevState => {
+    this.setState((prevState: any) => {
       if (!this.hasGallerySwiper) {
         return
       }
@@ -127,8 +145,8 @@ class Carousel extends Component {
     })
   }
 
-  setVideoThumb = i => (url, title) => {
-    this.setState(prevState => {
+  setVideoThumb = (i: any) => (url: any, title: any) => {
+    this.setState((prevState: any) => {
       const thumbUrl = { ...prevState.thumbUrl }
       const alt = { ...prevState.alt }
 
@@ -139,13 +157,18 @@ class Carousel extends Component {
     })
   }
 
-  renderSlide = (slide, i) => {
+  renderSlide = (slide: any, i: any) => {
     const {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'aspectRatio' does not exist on type 'Rea... Remove this comment to see the full error message
       aspectRatio,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'maxHeight' does not exist on type 'Reado... Remove this comment to see the full error message
       maxHeight,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'zoomMode' does not exist on type 'Readon... Remove this comment to see the full error message
       zoomMode,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'zoomFactor' does not exist on type 'Read... Remove this comment to see the full error message
       zoomFactor,
       ModalZoomElement,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'zoomProps' does not exist on type 'Reado... Remove this comment to see the full error message
       zoomProps: legacyZoomProps,
     } = this.props
 
@@ -184,24 +207,27 @@ class Carousel extends Component {
   }
 
   get galleryParams() {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'cssHandles' does not exist on type 'Read... Remove this comment to see the full error message
     const { cssHandles, slides = [], showPaginationDots = true } = this.props
 
     const params = {}
 
     if (slides.length > 1 && showPaginationDots) {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'pagination' does not exist on type '{}'.
       params.pagination = {
         el: `.${styles['swiper-pagination']}`,
         clickable: true,
         clickableClass: styles.swiperPaginationClickable,
         bulletClass: styles.swiperBullet,
         bulletActiveClass: styles['swiperBullet--active'],
-        renderBullet(_index, className) {
+        renderBullet(_index: any, className: any) {
           return `<span class="${className} c-action-primary"></span>`
         },
       }
     }
 
     if (slides.length > 1) {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'navigation' does not exist on type '{}'.
       params.navigation = {
         prevEl: '.swiper-caret-prev',
         nextEl: '.swiper-caret-next',
@@ -209,6 +235,7 @@ class Carousel extends Component {
       }
     }
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'thumbs' does not exist on type '{}'.
     params.thumbs = {
       swiper: this.state.thumbSwiper,
       multipleActiveThumbs: false,
@@ -220,14 +247,22 @@ class Carousel extends Component {
 
   render() {
     const {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'position' does not exist on type 'Readon... Remove this comment to see the full error message
       position,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'cssHandles' does not exist on type 'Read... Remove this comment to see the full error message
       cssHandles,
       slides = [],
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'thumbnailMaxHeight' does not exist on ty... Remove this comment to see the full error message
       thumbnailMaxHeight,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'thumbnailAspectRatio' does not exist on ... Remove this comment to see the full error message
       thumbnailAspectRatio,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'thumbnailsOrientation' does not exist on... Remove this comment to see the full error message
       thumbnailsOrientation,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'zoomProps' does not exist on type 'Reado... Remove this comment to see the full error message
       zoomProps: { zoomType },
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'showPaginationDots' does not exist on ty... Remove this comment to see the full error message
       showPaginationDots = true,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'showNavigationArrows' does not exist on ... Remove this comment to see the full error message
       showNavigationArrows = true,
       displayThumbnailsArrows = false,
     } = this.props
@@ -244,6 +279,7 @@ class Carousel extends Component {
 
     const imageClasses = classNames(
       'w-100 border-box',
+      // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       galleryCursor[zoomType],
       {
         'ml-20-ns w-80-ns pl5':
@@ -259,7 +295,7 @@ class Carousel extends Component {
 
     const thumbnailSwiper = (
       <ThumbnailSwiper
-        onSwiper={instance => this.setState({ thumbSwiper: instance })}
+        onSwiper={(instance: any) => this.setState({ thumbSwiper: instance })}
         isThumbsVertical={isThumbsVertical}
         thumbnailAspectRatio={thumbnailAspectRatio}
         thumbnailMaxHeight={thumbnailMaxHeight}
@@ -291,7 +327,7 @@ class Carousel extends Component {
 
         <div className={imageClasses}>
           <Swiper
-            onSwiper={instance => this.setState({ gallerySwiper: instance })}
+            onSwiper={(instance) => this.setState({ gallerySwiper: instance })}
             className={cssHandles.productImagesGallerySwiperContainer}
             threshold={10}
             resistanceRatio={slides.length > 1 ? 0.85 : 0}
@@ -350,18 +386,5 @@ class Carousel extends Component {
   }
 }
 
-Carousel.propTypes = {
-  slides: PropTypes.arrayOf(
-    PropTypes.shape({
-      type: PropTypes.string,
-      url: PropTypes.string,
-      alt: PropTypes.string,
-      thumbUrl: PropTypes.string,
-      bestUrlIndex: PropTypes.number,
-    })
-  ),
-  ModalZoomElement: PropTypes.any,
-  displayThumbnailsArrows: PropTypes.bool,
-}
-
+// @ts-expect-error ts-migrate(2345) FIXME: Type '{ cssHandles: Record<string, string>; }' has... Remove this comment to see the full error message
 export default withCssHandles(CSS_HANDLES)(Carousel)

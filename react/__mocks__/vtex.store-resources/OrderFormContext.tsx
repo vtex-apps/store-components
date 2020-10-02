@@ -6,16 +6,16 @@ const mockOrderForm = {
   },
   items: [],
   addItem: ({ items = [] }) =>
-    new Promise(resolve =>
+    new Promise((resolve) =>
       resolve({ data: { addItem: { ...mockOrderForm, items } } })
     ),
   refetch: () =>
-    new Promise(resolve => resolve({ data: { orderForm: mockOrderForm } })),
+    new Promise((resolve) => resolve({ data: { orderForm: mockOrderForm } })),
   loading: false,
 }
 
-export function orderFormConsumer(Comp) {
-  return function OrderFormConsumer(props) {
+export function orderFormConsumer(Comp: any) {
+  return function OrderFormConsumer(props: any) {
     return <Comp {...props} orderFormContext={mockOrderForm} />
   }
 }

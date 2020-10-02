@@ -1,6 +1,20 @@
 import PropTypes from 'prop-types'
 
-export const skuShape = PropTypes.shape({
+type skuShape = {
+  name: string
+  images: Array<{
+    imageUrl: string
+    imageLabel?: string
+  }>
+  itemId: string
+  variations?: Array<{
+    name?: string
+    values?: string[]
+  }>
+}
+
+// @ts-expect-error ts-migrate(2322) FIXME: Type 'undefined' is not assignable to type '{ imag... Remove this comment to see the full error message
+const skuShape: PropTypes.Requireable<skuShape> = PropTypes.shape({
   /** Name of the SKU Item */
   name: PropTypes.string.isRequired,
   /** Images of the SKU item */
@@ -25,13 +39,41 @@ export const skuShape = PropTypes.shape({
   ),
 })
 
-export const parsedSkuShape = PropTypes.shape({
+export { skuShape }
+
+/*
+(ts-migrate) TODO: Migrate the remaining prop types
+...skuShape
+*/
+type parsedSkuShape = {
+  variations?: string[]
+}
+
+// @ts-expect-error ts-migrate(2322) FIXME: Type 'null' is not assignable to type 'string[] | ... Remove this comment to see the full error message
+const parsedSkuShape: PropTypes.Requireable<parsedSkuShape> = PropTypes.shape({
   ...skuShape,
   /** List of products specifications names */
   variations: PropTypes.arrayOf(PropTypes.string),
 })
 
-export const variationShape = PropTypes.shape({
+export { parsedSkuShape }
+
+type variationShape = {
+  name?: string
+  options?: Array<{
+    image?: {
+      imageLabel?: string
+      imageUrl?: string
+    }
+    available?: boolean
+    label?: string
+    onSelectItem?: (...args: any[]) => any
+    impossible?: boolean
+  }>
+}
+
+// @ts-expect-error ts-migrate(2322) FIXME: Type 'null' is not assignable to type 'string | un... Remove this comment to see the full error message
+const variationShape: PropTypes.Requireable<variationShape> = PropTypes.shape({
   /** Variation Name */
   name: PropTypes.string,
   /** Options Array */
@@ -48,3 +90,5 @@ export const variationShape = PropTypes.shape({
     })
   ),
 })
+
+export { variationShape }

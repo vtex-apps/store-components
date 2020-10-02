@@ -20,7 +20,7 @@ const CSS_HANDLES = [
   'productImagesThumbCaret',
 ]
 
-const Thumbnail = props => {
+const Thumbnail = (props: any) => {
   const { alt, thumbUrl, handles, aspectRatio = 'auto' } = props
 
   return (
@@ -52,7 +52,7 @@ const navigationConfig = {
   hiddenClass: 'dn',
 }
 
-const ThumbnailSwiper = props => {
+const ThumbnailSwiper = (props: any) => {
   const handles = useCssHandles(CSS_HANDLES)
 
   const {
@@ -159,7 +159,7 @@ const ThumbnailSwiper = props => {
         direction={isThumbsVertical ? 'vertical' : 'horizontal'}
         {...swiperProps}
       >
-        {slides.map((slide, i) => {
+        {slides.map((slide: any, i: any) => {
           return (
             <SwiperSlide
               key={`${i}-${slide.alt}`}

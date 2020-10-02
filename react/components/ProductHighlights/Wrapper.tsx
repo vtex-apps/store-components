@@ -4,25 +4,28 @@ import { isEmpty, propOr } from 'ramda'
 
 import ProductHighlights from './index'
 
-const ProductHighlightsWrapper = props => {
+const ProductHighlightsWrapper = (props: any) => {
   const { conditional } = props
 
   const valuesFromContext = useContext(ProductContext)
 
   const getHighlights = () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'product' does not exist on type 'unknown... Remove this comment to see the full error message
     const { product } = valuesFromContext
 
     const choose = propOr('', 'highlight', conditional)
 
     if (choose === 'admin/editor.product-details.highlights.chooseDefault') {
       const typeHighlight = propOr('', 'typeHighlight', conditional)
+      // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
       const highlightName = typeHighlight.trim()
       const names = highlightName.split(',')
       const specificationGroups = propOr([], 'specificationGroups', product)
 
-      return names.reduce((acc, item) => {
+      return names.reduce((acc: any, item: any) => {
+        // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
         const [highlightSpecificationGroup] = specificationGroups.filter(
-          x => x.name.toLowerCase() === item.trim().toLowerCase()
+          (x: any) => x.name.toLowerCase() === item.trim().toLowerCase()
         )
 
         const highlight = propOr(
@@ -40,12 +43,14 @@ const ProductHighlightsWrapper = props => {
       'admin/editor.product-details.highlights.chooseDefaultSpecification'
     ) {
       const typeSpecifications = propOr('', 'typeSpecifications', conditional)
+      // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
       const specificationNames = typeSpecifications.trim().split(',')
       const allSpecifications = propOr([], 'properties', product)
 
-      return specificationNames.reduce((acc, item) => {
+      return specificationNames.reduce((acc: any, item: any) => {
+        // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
         const highlight = allSpecifications.filter(
-          x => x.name.toLowerCase() === item.trim().toLowerCase()
+          (x: any) => x.name.toLowerCase() === item.trim().toLowerCase()
         )
 
         return acc.concat(highlight)

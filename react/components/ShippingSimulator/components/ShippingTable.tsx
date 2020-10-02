@@ -1,24 +1,40 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 
 import ShippingTableRow from './ShippingTableRow'
 import styles from '../shippingSimulator.css'
 
-const ShippingTable = ({ shipping }) => {
+type Props = {
+  shipping?: {
+    logisticsInfo?: Array<{
+      itemIndex?: string
+      slas?: Array<{
+        id?: string
+        friendlyName?: string
+        price?: number
+        shippingEstimate?: string
+      }>
+    }>
+  }
+}
+
+const ShippingTable = ({ shipping }: Props) => {
   if ((shipping?.logisticsInfo?.length ?? 0) === 0) {
     return null
   }
 
+  // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
   const slaList = shipping.logisticsInfo.reduce(
+    // @ts-expect-error ts-migrate(2769) FIXME: Type '{ id?: string | undefined; friendlyName?: st... Remove this comment to see the full error message
     (slas, info) => [...slas, ...info.slas],
     []
   )
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'length' does not exist on type '{ itemIn... Remove this comment to see the full error message
   if (slaList.length === 0) {
     return (
       <FormattedMessage id="store/shipping.empty-sla">
-        {text => (
+        {(text) => (
           <span className={`${styles.shippingNoMessage} dib t-small mt4`}>
             {text}
           </span>
@@ -45,7 +61,8 @@ const ShippingTable = ({ shipping }) => {
         </tr>
       </thead>
       <tbody className={styles.shippingTableBody}>
-        {slaList.map(shippingItem => (
+        {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'map' does not exist on type '{ itemIndex... Remove this comment to see the full error message */}
+        {slaList.map((shippingItem: any) => (
           <ShippingTableRow
             key={shippingItem.id}
             name={shippingItem.friendlyName}
@@ -56,25 +73,6 @@ const ShippingTable = ({ shipping }) => {
       </tbody>
     </table>
   )
-}
-
-ShippingTable.propTypes = {
-  /** Shipping informations */
-  shipping: PropTypes.shape({
-    logisticsInfo: PropTypes.arrayOf(
-      PropTypes.shape({
-        itemIndex: PropTypes.string,
-        slas: PropTypes.arrayOf(
-          PropTypes.shape({
-            id: PropTypes.string,
-            friendlyName: PropTypes.string,
-            price: PropTypes.number,
-            shippingEstimate: PropTypes.string,
-          })
-        ),
-      })
-    ),
-  }),
 }
 
 export default ShippingTable

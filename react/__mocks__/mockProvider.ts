@@ -1,6 +1,6 @@
-export const createClientMock = responseMock => ({
+export const createClientMock = (responseMock: any) => ({
   query: () =>
-    new Promise(resolve => {
+    new Promise((resolve) => {
       resolve(responseMock)
     }),
 })

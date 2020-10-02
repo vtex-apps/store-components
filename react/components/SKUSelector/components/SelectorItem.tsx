@@ -114,7 +114,7 @@ const SelectorItem: FC<Props> = ({
       onClick={onClick}
       style={containerStyles}
       className={containerClasses}
-      onKeyDown={e => e.key === 'Enter' && onClick(e)}
+      onKeyDown={(e) => e.key === 'Enter' && onClick(e)}
     >
       <div
         className={classNames(

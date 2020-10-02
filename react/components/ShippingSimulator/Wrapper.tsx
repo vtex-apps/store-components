@@ -8,11 +8,14 @@ import React, {
 import { ProductContext } from 'vtex.product-context'
 import { useRuntime } from 'vtex.render-runtime'
 import { useApolloClient } from 'react-apollo'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'vtex.address-form/helpers' or ... Remove this comment to see the full error message
 import { addValidation, removeValidation } from 'vtex.address-form/helpers'
 import {
   useOrderShipping,
   OrderShippingProvider,
+  // @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'vtex.order-shipping/OrderShipp... Remove this comment to see the full error message
 } from 'vtex.order-shipping/OrderShipping'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'vtex.order-manager/OrderForm' ... Remove this comment to see the full error message
 import { useOrderForm } from 'vtex.order-manager/OrderForm'
 
 import { getNewAddress } from './utils'
@@ -20,14 +23,14 @@ import ShippingSimulator from './index'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
 import ShippingSimulatorLoader from './Loader'
 
-const useAddressState = (country, postalCode) => {
+const useAddressState = (country: any, postalCode: any) => {
   const [address, setAddress] = useState(() =>
     addValidation(getNewAddress(country, postalCode))
   )
 
   const [isValid, setIsValid] = useState(!!postalCode)
 
-  const updateAddress = newAddress => {
+  const updateAddress = (newAddress: any) => {
     const updatedAddress = {
       ...address,
       ...newAddress,
@@ -45,10 +48,10 @@ const BaseShippingSimulatorWrapper = ({
   seller,
   skuId,
   loaderStyles,
-  onShippingAddressUpdate = _ => {},
+  onShippingAddressUpdate = (_: any) => {},
   initialPostalCode = undefined,
   shouldUpdateOrderForm,
-}) => {
+}: any) => {
   const [shipping, setShipping] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -60,7 +63,7 @@ const BaseShippingSimulatorWrapper = ({
   const client = useApolloClient()
 
   const handleCalculateShipping = useCallback(
-    e => {
+    (e) => {
       e && e.preventDefault()
       setLoading(true)
       const rawAddress = removeValidation(address)
@@ -80,7 +83,7 @@ const BaseShippingSimulatorWrapper = ({
             ],
           },
         })
-        .then(result => {
+        .then((result) => {
           setShipping(result.data.shipping)
         })
         .then(() => {
@@ -88,7 +91,7 @@ const BaseShippingSimulatorWrapper = ({
 
           return onShippingAddressUpdate?.(rawAddress)
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error)
         })
         .finally(() => {
@@ -119,6 +122,7 @@ const BaseShippingSimulatorWrapper = ({
       return
     }
 
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     handleCalculateShipping()
   }, [handleCalculateShipping, address, isValid])
 
@@ -127,6 +131,7 @@ const BaseShippingSimulatorWrapper = ({
       skuId={skuId}
       seller={seller}
       country={country}
+      // @ts-expect-error ts-migrate(2322) FIXME: Property 'loaderStyles' does not exist on type 'In... Remove this comment to see the full error message
       loaderStyles={loaderStyles}
       loading={loading}
       address={address}
@@ -144,7 +149,7 @@ const ShippingSimulatorWithOrderForm = ({
   seller,
   loaderStyles,
   shouldUpdateOrderForm,
-}) => {
+}: any) => {
   const { updateSelectedAddress } = useOrderShipping()
   const { orderForm } = useOrderForm()
 
@@ -167,7 +172,7 @@ const ShippingSimulatorWithOrderForm = ({
   )
 }
 
-const OrderFormLoader = props => {
+const OrderFormLoader = (props: any) => {
   const { loading } = useOrderForm()
 
   if (loading) {
@@ -177,18 +182,22 @@ const OrderFormLoader = props => {
   return props.children
 }
 
-const ShippingSimulatorWrapper = props => {
+const ShippingSimulatorWrapper = (props: any) => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'culture' does not exist on type 'Runtime... Remove this comment to see the full error message
   const { culture } = useRuntime()
   const productContext = useContext(ProductContext)
 
   const country = props.country || culture.country
+  // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
   const skuId = props.skuId || productContext?.selectedItem?.itemId
   const seller =
+    // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
     props.seller || productContext?.selectedItem?.sellers?.[0]?.sellerId
 
   const { shouldUpdateOrderForm = true } = props
 
   if (
+    // @ts-expect-error ts-migrate(2339) FIXME: Property '__RUNTIME__' does not exist on type 'Win... Remove this comment to see the full error message
     window.__RUNTIME__?.settings?.['vtex.store']
       ?.enableOrderFormOptimization !== true
   ) {

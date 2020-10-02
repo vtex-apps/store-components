@@ -3,11 +3,14 @@ import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 import { graphql } from 'react-apollo'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.styleguide"' has no exported member ... Remove this comment to see the full error message
 import { Spinner } from 'vtex.styleguide'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.render-runtime"' has no exported mem... Remove this comment to see the full error message
 import { Link, useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 
 // This import should NOT be removed
+// @ts-expect-error ts-migrate(6133) FIXME: 'styles' is declared but its value is never read.
 // eslint-disable-next-line no-unused-vars
 import styles from './styles.css'
 import autocomplete from './queries/autocomplete.gql'
@@ -24,13 +27,13 @@ const CSS_HANDLES = [
   'resultsItemName',
 ]
 
-const getImageUrl = image => {
+const getImageUrl = (image: any) => {
   const [imageUrl] = image.match(/https?:(.*?)"/g) || ['']
 
   return imageUrl.replace(/https?:/, '').replace(/-25-25/g, '-50-50')
 }
 
-const getLinkProps = element => {
+const getLinkProps = (element: any) => {
   let page = 'store.product'
   let params = { slug: element.slug, id: element.productId }
   let query = ''
@@ -42,6 +45,7 @@ const getLinkProps = element => {
     const paramForSearchTracking = `&_c=${terms[0]}`
 
     page = 'store.search'
+    // @ts-expect-error ts-migrate(2322) FIXME: Object literal may only specify known properties, ... Remove this comment to see the full error message
     params = { term: terms.join('/') }
     query = `map=c,ft${paramForSearchTracking}`
   }
@@ -49,11 +53,31 @@ const getLinkProps = element => {
   return { page, params, query }
 }
 
+type AutocompleteResultsProps = {
+  data?: {
+    autocomplete?: {
+      itemsReturned?: itemProps[]
+    }
+    loading: boolean
+  }
+  highlightedIndex?: number
+  inputValue: string
+  closeMenu?: (...args: any[]) => any
+  onClearInput?: (...args: any[]) => any
+  getItemProps?: (...args: any[]) => any
+  customSearchPageUrl?: string
+  isOpen?: boolean
+  getMenuProps?: (...args: any[]) => any
+  attemptPageTypeSearch?: boolean
+}
+
 /** List of search results to be displayed */
 const AutocompleteResults = ({
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'parentContainer' does not exist on type ... Remove this comment to see the full error message
   // eslint-disable-next-line react/prop-types
   parentContainer,
   isOpen,
+  // @ts-expect-error ts-migrate(2741) FIXME: Property 'loading' is missing in type '{}' but req... Remove this comment to see the full error message
   data = {}, // when inputValue is '', query is skipped and value is undefined
   inputValue,
   closeMenu,
@@ -63,9 +87,10 @@ const AutocompleteResults = ({
   highlightedIndex,
   attemptPageTypeSearch,
   customSearchPageUrl,
-}) => {
+}: AutocompleteResultsProps) => {
   const items = data.autocomplete ? data.autocomplete.itemsReturned : []
   const {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'hints' does not exist on type 'Runtime'.
     hints: { mobile },
   } = useRuntime()
 
@@ -93,16 +118,20 @@ const AutocompleteResults = ({
   )
 
   const handleItemClick = () => {
+    // @ts-expect-error ts-migrate(2722) FIXME: Cannot invoke an object which is possibly 'undefin... Remove this comment to see the full error message
     onClearInput()
+    // @ts-expect-error ts-migrate(2722) FIXME: Cannot invoke an object which is possibly 'undefin... Remove this comment to see the full error message
     closeMenu()
   }
 
   const getListItemClassNames = ({
     itemIndex = -1,
+
     // eslint-disable-next-line no-shadow
     highlightedIndex,
+
     hasThumb,
-  } = {}) => {
+  }: any = {}) => {
     const highlightClass = highlightedIndex === itemIndex ? 'bg-muted-5' : ''
 
     return `pointer pa4 outline-0 ${handles.resultsItem} ${highlightClass} ${
@@ -128,7 +157,7 @@ const AutocompleteResults = ({
   )
 
   // eslint-disable-next-line no-shadow
-  const renderSearchByClick = inputValue => {
+  const renderSearchByClick = (inputValue: any) => {
     return customSearchPageUrl ? (
       <Link
         className={getListItemClassNames({
@@ -156,6 +185,7 @@ const AutocompleteResults = ({
 
   return (
     <div style={listStyle}>
+      {/* @ts-expect-error ts-migrate(2722) FIXME: Cannot invoke an object which is possibly 'undefin... Remove this comment to see the full error message */}
       <ul className={listClassNames} {...getMenuProps()}>
         {isOpen ? (
           data.loading ? (
@@ -165,6 +195,7 @@ const AutocompleteResults = ({
           ) : (
             <Fragment>
               <li
+                // @ts-expect-error ts-migrate(2722) FIXME: Cannot invoke an object which is possibly 'undefin... Remove this comment to see the full error message
                 {...getItemProps({
                   key: `ft${inputValue}`,
                   item: { term: encodedInputValue },
@@ -176,7 +207,7 @@ const AutocompleteResults = ({
                   // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     href="#"
-                    onClick={event => event.preventDefault()}
+                    onClick={(event) => event.preventDefault()}
                     className={getListItemClassNames({
                       itemIndex: 0,
                       highlightedIndex,
@@ -189,11 +220,14 @@ const AutocompleteResults = ({
                 )}
               </li>
 
+              {/* @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'. */}
               {items.map((item, index) => {
                 return (
                   // eslint-disable-next-line react/jsx-key
                   <li
+                    // @ts-expect-error ts-migrate(2722) FIXME: Cannot invoke an object which is possibly 'undefin... Remove this comment to see the full error message
                     {...getItemProps({
+                      // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
                       key: item.name + index,
                       index: index + 1,
                       item,
@@ -234,7 +268,16 @@ const AutocompleteResults = ({
   )
 }
 
-const itemProps = PropTypes.shape({
+type itemProps = {
+  thumb?: string
+  name?: string
+  href?: string
+  slug?: string
+  criteria?: string
+}
+
+// @ts-expect-error ts-migrate(2322) FIXME: Type 'null' is not assignable to type 'string | un... Remove this comment to see the full error message
+const itemProps: PropTypes.Requireable<itemProps> = PropTypes.shape({
   /** Image of the product */
   thumb: PropTypes.string,
   /** Name of the product */
@@ -247,38 +290,16 @@ const itemProps = PropTypes.shape({
   criteria: PropTypes.string,
 })
 
-AutocompleteResults.propTypes = {
-  /** Graphql data response. */
-  data: PropTypes.shape({
-    autocomplete: PropTypes.shape({
-      itemsReturned: PropTypes.arrayOf(itemProps),
-    }),
-    loading: PropTypes.bool.isRequired,
-  }),
-  /** Downshift specific prop */
-  highlightedIndex: PropTypes.number,
-  /** Search query */
-  inputValue: PropTypes.string.isRequired,
-  /** Closes the options box. */
-  closeMenu: PropTypes.func,
-  /** Clears the input */
-  onClearInput: PropTypes.func,
-  /** Downshift function */
-  getItemProps: PropTypes.func,
-  /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
-  customSearchPageUrl: PropTypes.string,
-  isOpen: PropTypes.bool,
-  getMenuProps: PropTypes.func,
-  attemptPageTypeSearch: PropTypes.bool,
-}
-
 const AutocompleteResultsWithData = graphql(autocomplete, {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'inputValue' does not exist on type '{}'.
   skip: ({ inputValue }) => !inputValue,
-  options: props => ({
+  options: (props) => ({
     variables: {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'inputValue' does not exist on type '{}'.
       inputValue: props.inputValue,
     },
   }),
+  // @ts-expect-error ts-migrate(2345) FIXME: Property 'inputValue' is missing in type 'PropsWit... Remove this comment to see the full error message
 })(AutocompleteResults)
 
 export default AutocompleteResultsWithData

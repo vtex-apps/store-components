@@ -1,16 +1,17 @@
 import React from 'react'
 
-export const useCssHandles = cssHandles => {
+export const useCssHandles = (cssHandles: any) => {
   const handles = {}
 
-  cssHandles.forEach(handle => {
+  cssHandles.forEach((handle: any) => {
+    // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     handles[handle] = handle
   })
 
   return handles
 }
 
-const validateModifier = modifier => {
+const validateModifier = (modifier: any) => {
   if (typeof modifier !== 'string') {
     console.error(
       `Invalid modifier type on \`cssHandles.applyModifier\`. All modifiers should be strings, found "${modifier}" `
@@ -36,7 +37,7 @@ const validateModifier = modifier => {
   return true
 }
 
-export const applyModifiers = (handles, modifier) => {
+export const applyModifiers = (handles: any, modifier: any) => {
   const normalizedModifiers =
     typeof modifier === 'string' ? [modifier] : modifier
 
@@ -51,7 +52,7 @@ export const applyModifiers = (handles, modifier) => {
   const splitHandles = handles.split(' ')
 
   const modifiedHandles = normalizedModifiers
-    .map(currentModifier => {
+    .map((currentModifier) => {
       const isValid = validateModifier(currentModifier)
 
       if (!isValid) {
@@ -59,11 +60,11 @@ export const applyModifiers = (handles, modifier) => {
       }
 
       return splitHandles
-        .map(handle => `${handle}--${currentModifier}`)
+        .map((handle: any) => `${handle}--${currentModifier}`)
         .join(' ')
         .trim()
     })
-    .filter(l => l.length > 0)
+    .filter((l) => l.length > 0)
     .join(' ')
     .trim()
 
@@ -71,8 +72,11 @@ export const applyModifiers = (handles, modifier) => {
 }
 
 // eslint-disable-next-line default-param-last
-export const withCssHandles = (handles = [], options) => Component => {
-  const EnhancedComponent = props => {
+export const withCssHandles = (handles = [], options: any) => (
+  Component: any
+) => {
+  const EnhancedComponent = (props: any) => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 2.
     const cssHandles = useCssHandles(handles, options)
 
     return <Component cssHandles={cssHandles} {...props} />

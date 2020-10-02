@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 import { injectIntl } from 'react-intl'
 
-export function formatCurrency({ intl, culture, value }) {
+export function formatCurrency({ intl, culture, value }: any) {
   return intl.formatNumber(value, {
     style: 'currency',
     currency: culture.currency,
@@ -12,7 +12,8 @@ export function formatCurrency({ intl, culture, value }) {
   })
 }
 
-function BaseFormattedCurrency({ value, intl }) {
+function BaseFormattedCurrency({ value, intl }: any) {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'culture' does not exist on type 'Runtime... Remove this comment to see the full error message
   const { culture } = useRuntime()
 
   const number = intl.formatNumber(value, {

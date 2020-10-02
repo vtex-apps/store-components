@@ -4,7 +4,7 @@ import { render } from '@vtex/test-tools/react'
 import Logo from '../../Logo'
 
 describe('<Logo /> component', () => {
-  const renderComponent = customProps => {
+  const renderComponent = (customProps: any) => {
     const props = {
       title: 'title',
       ...customProps,
@@ -22,6 +22,7 @@ describe('<Logo /> component', () => {
   })
 
   it('should match snapshot without link', () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     const { asFragment } = renderComponent()
 
     expect(asFragment()).toMatchSnapshot()

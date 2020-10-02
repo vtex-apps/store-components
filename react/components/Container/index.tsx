@@ -4,7 +4,7 @@ import classNames from 'classnames'
 
 import styles from './Container.css'
 
-const render = ({ className, children, ...props }, ref) => {
+const render = ({ className, children, ...props }: any, ref: any) => {
   const classes = classNames(
     styles.container,
     'ph3 ph5-m ph2-xl mw9 center',

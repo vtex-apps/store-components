@@ -1,4 +1,5 @@
 import React from 'react'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"../../node_modules/@vtex/test-tools/react... Remove this comment to see the full error message
 import { render, fireEvent } from '@vtex/test-tools/react'
 import useProduct from 'vtex.product-context/useProduct'
 import { Modal } from 'vtex.modal-layout'
@@ -21,10 +22,10 @@ function ModalLayout() {
 
 jest.mock('swiper/react', () => {
   return {
-    Swiper({ children }) {
+    Swiper({ children }: any) {
       return <div>{children}</div>
     },
-    SwiperSlide({ children }) {
+    SwiperSlide({ children }: any) {
       return <div>{children}</div>
     },
   }
@@ -33,17 +34,20 @@ jest.mock('swiper/react', () => {
 // This Image mock only call set onload function after user sets the src property in object
 class FakeImage {
   onload = null
-  set src(newSrc) {
+  // @ts-expect-error ts-migrate(6133) FIXME: 'newSrc' is declared but its value is never read.
+  set src(newSrc: any) {
+    // @ts-expect-error ts-migrate(2721) FIXME: Cannot invoke an object which is possibly 'null'.
     this.onload && this.onload()
   }
 }
 
 beforeEach(() => {
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'FakeImage' is missing the following properti... Remove this comment to see the full error message
   window.Image = FakeImage
 })
 
 describe('<ProductImages />', () => {
-  const renderComponent = customProps => {
+  const renderComponent = (customProps: any) => {
     return render(<ProductImages {...customProps} />)
   }
 
@@ -111,6 +115,7 @@ describe('<ProductImages />', () => {
 
     const swiper = queryByTestId('thumbnail-swiper')
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'toHaveClass' does not exist on type 'Jes... Remove this comment to see the full error message
     expect(swiper).toHaveClass('dn')
   })
 
@@ -254,6 +259,7 @@ describe('<ProductImages />', () => {
 
   describe('test with product context', () => {
     it('render properly with product in context', () => {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockImplementation' does not exist on ty... Remove this comment to see the full error message
       mockUseProduct.mockImplementation(() => ({
         selectedItem: createItem({ id: 'potato' }),
       }))
@@ -265,6 +271,7 @@ describe('<ProductImages />', () => {
     })
 
     it('gives priority to selected image variation sku', () => {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockImplementation' does not exist on ty... Remove this comment to see the full error message
       mockUseProduct.mockImplementation(() => ({
         product: {
           items: [createItem({ id: '123' }), createItem({ id: '456' })],
@@ -281,6 +288,7 @@ describe('<ProductImages />', () => {
     })
 
     it('give priority to prop items if product in context', () => {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'mockImplementation' does not exist on ty... Remove this comment to see the full error message
       mockUseProduct.mockImplementation(() => ({
         selectedItem: createItem({}),
       }))

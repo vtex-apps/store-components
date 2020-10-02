@@ -1,13 +1,20 @@
 import React, { Fragment } from 'react'
-import { bool, string, object, node } from 'prop-types'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.render-runtime"' has no exported mem... Remove this comment to see the full error message
 import { Link } from 'vtex.render-runtime'
+
+type Props = {
+  imageActionUrl?: string
+  children?: React.ReactNode
+  extraCondition?: boolean
+  linkProps?: any
+}
 
 const LinkWrapper = ({
   imageActionUrl,
   children,
   extraCondition,
   linkProps = {},
-}) => {
+}: Props) => {
   if (!imageActionUrl || imageActionUrl.length === 0 || extraCondition) {
     return <Fragment>{children}</Fragment>
   }
@@ -17,13 +24,6 @@ const LinkWrapper = ({
       {children}
     </Link>
   )
-}
-
-LinkWrapper.propTypes = {
-  imageActionUrl: string,
-  children: node,
-  extraCondition: bool,
-  linkProps: object,
 }
 
 export default LinkWrapper

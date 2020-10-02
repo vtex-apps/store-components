@@ -1,32 +1,46 @@
 import React, { Fragment } from 'react'
 import { useIntl } from 'react-intl'
-import PropTypes from 'prop-types'
 import { Button } from 'vtex.styleguide'
 import {
   AddressRules,
   AddressContainer,
   PostalCodeGetter,
+  // @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'vtex.address-form' or its corr... Remove this comment to see the full error message
 } from 'vtex.address-form'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'vtex.address-form/inputs' or i... Remove this comment to see the full error message
 import { StyleguideInput } from 'vtex.address-form/inputs'
 
 import ShippingTable from './components/ShippingTable'
 import ShippingSimulatorLoader from './Loader'
 import styles from './shippingSimulator.css'
 
+type Props = {
+  skuId?: string
+  seller?: string
+  country: string
+  styles?: any
+}
+
 const ShippingSimulator = ({
   /* eslint-disable react/prop-types */
   skuId,
   seller,
   country,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'loading' does not exist on type 'Props'.
   loading,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'loaderStyles' does not exist on type 'Pr... Remove this comment to see the full error message
   loaderStyles,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onAddressChange' does not exist on type ... Remove this comment to see the full error message
   onAddressChange,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'address' does not exist on type 'Props'.
   address,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'isValid' does not exist on type 'Props'.
   isValid,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'onCalculateShipping' does not exist on t... Remove this comment to see the full error message
   onCalculateShipping,
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'shipping' does not exist on type 'Props'... Remove this comment to see the full error message
   shipping,
-  /* eslint-enable react/prop-types */
-}) => {
+}: Props) => {
   const intl = useIntl()
 
   if (!seller || !skuId) {
@@ -62,14 +76,6 @@ const ShippingSimulator = ({
       <ShippingTable shipping={shipping} />
     </Fragment>
   )
-}
-
-ShippingSimulator.propTypes = {
-  skuId: PropTypes.string,
-  seller: PropTypes.string,
-  country: PropTypes.string.isRequired,
-  /** Component and content loader styles */
-  styles: PropTypes.object,
 }
 
 export default ShippingSimulator

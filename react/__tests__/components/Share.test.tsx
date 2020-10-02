@@ -4,11 +4,12 @@ import { render } from '@vtex/test-tools/react'
 import Share from '../../Share'
 
 describe('<Share />', () => {
-  const renderComponent = props => {
+  const renderComponent = (props: any) => {
     return render(<Share imageUrl="" {...props} />)
   }
 
   it('should be mounted', () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     const { asFragment } = renderComponent()
 
     expect(asFragment()).toBeDefined()

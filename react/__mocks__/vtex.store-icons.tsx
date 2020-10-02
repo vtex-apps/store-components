@@ -1,6 +1,6 @@
 import React from 'react'
 
-const iconMock = ({ orientation = '', size, className = '', name }) => {
+const iconMock = ({ orientation = '', size, className = '', name }: any) => {
   return (
     <svg
       className={`${orientation} ${className} ${name}`}
@@ -16,11 +16,11 @@ const iconMock = ({ orientation = '', size, className = '', name }) => {
   )
 }
 
-export const IconClose = ({ orientation, size, className }) =>
+export const IconClose = ({ orientation, size, className }: any) =>
   iconMock({ orientation, size, className, name: 'IconClose' })
 
-export const IconSearch = ({ orientation, size, className }) =>
+export const IconSearch = ({ orientation, size, className }: any) =>
   iconMock({ orientation, size, className, name: 'IconSearch' })
 
-export const IconCaret = ({ orientation, size, className }) =>
+export const IconCaret = ({ orientation, size, className }: any) =>
   iconMock({ orientation, size, className, name: 'IconCaret' })

@@ -38,8 +38,10 @@ const fakeSessionNoData = {
 }
 
 test('if session has correct data, get and format input correctly', async () => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property '__RENDER_8_SESSION__' does not exist on ... Remove this comment to see the full error message
   window.__RENDER_8_SESSION__ = {}
-  window.__RENDER_8_SESSION__.sessionPromise = new Promise(resolve =>
+  // @ts-expect-error ts-migrate(2339) FIXME: Property '__RENDER_8_SESSION__' does not exist on ... Remove this comment to see the full error message
+  window.__RENDER_8_SESSION__.sessionPromise = new Promise((resolve) =>
     resolve(fakeSessionWithData)
   )
   const { result } = renderHook(() => useMarketingSessionParams())
@@ -62,8 +64,10 @@ test('if session has correct data, get and format input correctly', async () => 
 })
 
 test('if session does not have data, leave object as undefined', async () => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property '__RENDER_8_SESSION__' does not exist on ... Remove this comment to see the full error message
   window.__RENDER_8_SESSION__ = {}
-  window.__RENDER_8_SESSION__.sessionPromise = new Promise(resolve =>
+  // @ts-expect-error ts-migrate(2339) FIXME: Property '__RENDER_8_SESSION__' does not exist on ... Remove this comment to see the full error message
+  window.__RENDER_8_SESSION__.sessionPromise = new Promise((resolve) =>
     resolve(fakeSessionNoData)
   )
   const { result } = renderHook(() => useMarketingSessionParams())
@@ -78,7 +82,9 @@ test('if session does not have data, leave object as undefined', async () => {
 })
 
 test('if session promise rejects, everything still works, response is undefined', async () => {
+  // @ts-expect-error ts-migrate(2339) FIXME: Property '__RENDER_8_SESSION__' does not exist on ... Remove this comment to see the full error message
   window.__RENDER_8_SESSION__ = {}
+  // @ts-expect-error ts-migrate(2339) FIXME: Property '__RENDER_8_SESSION__' does not exist on ... Remove this comment to see the full error message
   window.__RENDER_8_SESSION__.sessionPromise = new Promise((_, reject) =>
     reject()
   )

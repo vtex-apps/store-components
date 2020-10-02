@@ -1,13 +1,22 @@
 import React, { memo } from 'react'
-import PropTypes from 'prop-types'
 import hoistNonReactStatics from 'hoist-non-react-statics'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.native-types"' has no exported membe... Remove this comment to see the full error message
 import { formatIOMessage } from 'vtex.native-types'
 import { injectIntl } from 'react-intl'
 
 import NotificationContent from './notificationContent'
 import styles from './styles.css'
 
-const NotificationBar = ({ content, intl }) => {
+type OwnProps = {
+  content?: string
+  intl: any
+}
+
+// @ts-expect-error ts-migrate(2456) FIXME: Type alias 'Props' circularly references itself.
+type Props = OwnProps & typeof NotificationBar.defaultProps
+
+// @ts-expect-error ts-migrate(7022) FIXME: 'NotificationBar' implicitly has type 'any' becaus... Remove this comment to see the full error message
+const NotificationBar = ({ content, intl }: Props) => {
   return (
     content && (
       <div
@@ -23,11 +32,6 @@ const NotificationBar = ({ content, intl }) => {
       </div>
     )
   )
-}
-
-NotificationBar.propTypes = {
-  content: PropTypes.string,
-  intl: PropTypes.object.isRequired,
 }
 
 NotificationBar.defaultProps = {

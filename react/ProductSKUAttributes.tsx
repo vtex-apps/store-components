@@ -24,7 +24,7 @@ const getVariationsFromSelectedItem = (
   const { selectedImageVariationSKU } = productContext.skuSelector
 
   if (selectedImageVariationSKU) {
-    const selected = productContext.product.items.find(item => {
+    const selected = productContext.product.items.find((item) => {
       return item.itemId === selectedImageVariationSKU
     })
 
@@ -55,7 +55,7 @@ function ProductSKUAttributes(_props: Props) {
 
   return (
     <div className={`${handles.productSKUAttributesContainer} mv0`}>
-      {skuVariations.map(sku => {
+      {skuVariations.map((sku) => {
         return (
           <div className={handles.attributeLine} key={sku.name}>
             <span className={`${handles.attributeName} mr2 b`}>

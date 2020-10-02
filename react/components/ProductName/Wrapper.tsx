@@ -18,7 +18,7 @@ const styles = {
   },
 }
 
-const ProductNameWrapper = props => {
+const ProductNameWrapper = (props: any) => {
   const valuesFromContext = useContext(ProductContext)
 
   const productNameProps = () => {
@@ -26,6 +26,7 @@ const ProductNameWrapper = props => {
       return props
     }
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'product' does not exist on type 'unknown... Remove this comment to see the full error message
     const { product, selectedItem } = valuesFromContext
 
     return {

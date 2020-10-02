@@ -1,13 +1,13 @@
 {
-  "rules": {
-    "react/jsx-filename-extension": "off",
-    "@typescript-eslint/ban-ts-comment": "off"
-  },
   "extends": "vtex-react",
   "env": {
     "browser": true,
     "es6": true,
     "jest": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   },
   "overrides": [
     {

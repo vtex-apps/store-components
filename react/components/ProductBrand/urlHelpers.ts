@@ -20,17 +20,19 @@ const baseUrlRegex = new RegExp(/.+ids\/(\d+)/)
 
 const httpRegex = new RegExp(/http:\/\//)
 
-export function toHttps(url) {
+export function toHttps(url: any) {
   return url.replace(httpRegex, 'https://')
 }
 
-export function cleanImageUrl(imageUrl) {
+// @ts-expect-error ts-migrate(7030) FIXME: Not all code paths return a value.
+export function cleanImageUrl(imageUrl: any) {
   const result = baseUrlRegex.exec(imageUrl)
 
+  // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
   if (result.length > 0) return result[0]
 }
 
-function replaceLegacyFileManagerUrl(imageUrl, width, height) {
+function replaceLegacyFileManagerUrl(imageUrl: any, width: any, height: any) {
   const legacyUrlPattern = '/arquivos/ids/'
   const isLegacyUrl = imageUrl.includes(legacyUrlPattern)
 
@@ -40,12 +42,14 @@ function replaceLegacyFileManagerUrl(imageUrl, width, height) {
 }
 
 export function changeImageUrlSize(
-  imageUrl,
+  imageUrl: any,
   width = DEFAULT_WIDTH,
   height = DEFAULT_HEIGHT
 ) {
   if (!imageUrl) return
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'string'.
   typeof width === 'number' && (width = Math.min(width, MAX_WIDTH))
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'number' is not assignable to type 'string'.
   typeof height === 'number' && (height = Math.min(height, MAX_HEIGHT))
 
   const normalizedImageUrl = replaceLegacyFileManagerUrl(

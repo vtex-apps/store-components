@@ -68,7 +68,7 @@ function HighQualityProductImage(props: Props) {
 
   const { alt, src } = context
   const srcSet = imageSizes
-    ?.map(size => `${imageUrl(src, size, maxSize, aspectRatio)} ${size}w`)
+    ?.map((size) => `${imageUrl(src, size, maxSize, aspectRatio)} ${size}w`)
     .join(',')
 
   const containerClasses = classnames(

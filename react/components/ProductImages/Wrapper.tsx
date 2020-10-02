@@ -7,7 +7,7 @@ import ProductImages from './index'
 import generateImageConfig from './utils/generateImageConfig'
 import { THUMBS_ORIENTATION, THUMBS_POSITION_HORIZONTAL } from './utils/enums'
 
-const ProductImagesWrapper = props => {
+const ProductImagesWrapper = (props: any) => {
   const valuesFromContext = useProduct() || {}
   const {
     aspectRatio,
@@ -45,7 +45,7 @@ const ProductImagesWrapper = props => {
       skuSelector.selectedImageVariationSKU
     ) {
       const skuItem = product.items.find(
-        sku => sku.itemId === skuSelector.selectedImageVariationSKU
+        (sku) => sku.itemId === skuSelector.selectedImageVariationSKU
       )
 
       if (skuItem) {
@@ -94,6 +94,7 @@ const ProductImagesWrapper = props => {
   )
 }
 
+// @ts-expect-error ts-migrate(2525) FIXME: Initializer provides no value for this binding ele... Remove this comment to see the full error message
 ProductImagesWrapper.getSchema = ({ zoomProps: { zoomType } = {} }) => ({
   title: 'admin/editor.product-images.title',
   description: 'admin/editor.product-images.description',

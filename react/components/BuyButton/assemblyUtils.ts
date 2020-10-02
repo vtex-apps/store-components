@@ -134,7 +134,7 @@ export const transformAssemblyOptions = (
 
         // and remove the handled input values from the list
         assemblyInputValuesKeys = assemblyInputValuesKeys.filter(
-          inputValueKey => {
+          (inputValueKey) => {
             return handledInputValues.includes(inputValueKey)
           }
         )

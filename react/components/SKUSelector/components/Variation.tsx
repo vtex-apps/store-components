@@ -107,7 +107,7 @@ const Variation: FC<Props> = ({
     fullWidth: false,
   }
 
-  const selectorItemsArray = displayOptions.map(option => {
+  const selectorItemsArray = displayOptions.map((option) => {
     return (
       <SelectorItem
         isSelected={option.label === selectedItem}

@@ -1,4 +1,4 @@
 module.exports = {
-  addValidation: fields => fields,
-  removeValidation: fields => fields,
+  addValidation: (fields: any) => fields,
+  removeValidation: (fields: any) => fields,
 }

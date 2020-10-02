@@ -10,7 +10,7 @@ describe('<ProductPrice />', () => {
     sellingPrice: 40,
   }
 
-  const renderComponent = customProps => {
+  const renderComponent = (customProps: any) => {
     const props = {
       ...defaultProps,
       ...customProps,
@@ -20,12 +20,14 @@ describe('<ProductPrice />', () => {
   }
 
   it('should be mount', () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     const { asFragment } = renderComponent()
 
     expect(asFragment()).toBeDefined()
   })
 
   it('should match snapshot', () => {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 1 arguments, but got 0.
     const { asFragment } = renderComponent()
 
     expect(asFragment()).toMatchSnapshot()

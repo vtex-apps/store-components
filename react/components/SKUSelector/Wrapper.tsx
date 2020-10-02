@@ -44,7 +44,7 @@ const getVariationsFromItems = (
 
     variations[variationName] = {
       originalName: variationName,
-      values: Array.from(set).map(value => ({
+      values: Array.from(set).map((value) => ({
         name: value,
         originalName: value,
       })),
@@ -69,7 +69,7 @@ const getVariationsFromSpecifications = (
     ) {
       variations[specification.field.name] = {
         originalName: specification.field.originalName,
-        values: specification.values.map(value => ({
+        values: specification.values.map((value) => ({
           name: value.name,
           originalName: value.originalName,
         })),
@@ -109,7 +109,7 @@ const useVariations = ({
     let formattedVisibleVariations = visibleVariations
 
     if (visibleVariations) {
-      formattedVisibleVariations = visibleVariations.map(variation =>
+      formattedVisibleVariations = visibleVariations.map((variation) =>
         variation.toLowerCase().trim()
       )
     }
@@ -157,7 +157,7 @@ interface Props {
   sliderItemsPerPage?: ResponsiveInput<number>
 }
 
-const SKUSelectorWrapper: StorefrontFC<Props> = props => {
+const SKUSelectorWrapper: StorefrontFC<Props> = (props) => {
   const valuesFromContext = useProduct()
   const dispatch = useProductDispatch()
   const { imageHeight, imageWidth } = useResponsiveValues(

@@ -1,12 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import { graphql } from 'react-apollo'
 import { compose } from 'ramda'
-import PropTypes from 'prop-types'
 import { injectIntl } from 'react-intl'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.styleguide"' has no exported member ... Remove this comment to see the full error message
 import { Input, Button } from 'vtex.styleguide'
 import { withCssHandles } from 'vtex.css-handles'
+// @ts-expect-error ts-migrate(2305) FIXME: Module '"vtex.native-types"' has no exported membe... Remove this comment to see the full error message
 import { formatIOMessage } from 'vtex.native-types'
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module './mutations/subscribeNewslette... Remove this comment to see the full error message
 import SUBSCRIBE_NEWSLETTER from './mutations/subscribeNewsletter.graphql'
 
 const EMAIL_REGEX = /^[A-z0-9+_-]+(?:\.[A-z0-9+_-]+)*@(?:[A-z0-9](?:[A-z0-9-]*[A-z0-9])?\.)+[A-z0-9](?:[A-z0-9-]*[A-z0-9])?$/
@@ -23,7 +25,29 @@ const CSS_HANDLES = [
   'error',
 ]
 
-class Newsletter extends Component {
+type OwnProps = {
+  hideLabel: boolean
+  showTerms: boolean
+  label?: string
+  placeholder?: string
+  submit?: string
+  subscribeNewsletter: (...args: any[]) => any
+  intl?: any
+  cssHandles?: any
+}
+
+type State = any
+
+type Props = OwnProps & typeof Newsletter.defaultProps
+
+class Newsletter extends Component<Props, State> {
+  static defaultProps = {
+    hideLabel: false,
+    showTerms: false,
+  }
+
+  mounted: any
+
   state = {
     email: '',
     loading: false,
@@ -42,13 +66,15 @@ class Newsletter extends Component {
     this.mounted = false
   }
 
+  // @ts-expect-error ts-migrate(7019) FIXME: Rest parameter 'params' implicitly has an 'any[]' ... Remove this comment to see the full error message
   safeSetState(...params) {
     if (this.mounted) {
+      // @ts-expect-error ts-migrate(2556) FIXME: Expected 1-2 arguments, but got 0 or more.
       this.setState(...params)
     }
   }
 
-  handleChangeEmail = e => {
+  handleChangeEmail = (e: any) => {
     this.setState({ email: e.target.value.trim() })
   }
 
@@ -56,11 +82,12 @@ class Newsletter extends Component {
     return EMAIL_REGEX.test(this.state.email)
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e: any) => {
     e.preventDefault()
     if (!this.validateEmail()) {
       this.setState({ invalidEmail: true })
       if (this.inputRef && this.inputRef.current) {
+        // @ts-expect-error ts-migrate(2571) FIXME: Object is of type 'unknown'.
         this.inputRef.current.focus()
       }
 
@@ -186,25 +213,12 @@ class Newsletter extends Component {
 const NewsletterWrapper = compose(
   graphql(SUBSCRIBE_NEWSLETTER, { name: 'subscribeNewsletter' }),
   withCssHandles(CSS_HANDLES),
+  // @ts-expect-error ts-migrate(2769) FIXME: Type 'true' is not assignable to type 'false'.
   injectIntl
+  // @ts-expect-error ts-migrate(2554) FIXME: Expected 0 arguments, but got 1.
 )(Newsletter)
 
-Newsletter.defaultProps = {
-  hideLabel: false,
-  showTerms: false,
-}
-
-Newsletter.propTypes = {
-  hideLabel: PropTypes.bool.isRequired,
-  showTerms: PropTypes.bool.isRequired,
-  label: PropTypes.string,
-  placeholder: PropTypes.string,
-  submit: PropTypes.string,
-  subscribeNewsletter: PropTypes.func.isRequired,
-  intl: PropTypes.object,
-  cssHandles: PropTypes.any,
-}
-
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'getSchema' does not exist on type 'Compo... Remove this comment to see the full error message
 NewsletterWrapper.getSchema = () => {
   return {
     title: 'admin/editor.newsletter.title',

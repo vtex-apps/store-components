@@ -38,7 +38,7 @@ const ProductImage: FC<Props> = ({
   const srcSet = useMemo(
     () =>
       IMAGE_SIZES.map(
-        size => `${imageUrl(src, size, MAX_SIZE, aspectRatio)} ${size}w`
+        (size) => `${imageUrl(src, size, MAX_SIZE, aspectRatio)} ${size}w`
       ).join(','),
     [src, aspectRatio]
   )

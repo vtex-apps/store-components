@@ -5,7 +5,7 @@
  * @param {string} str
  * @returns {string}
  */
-const encodeForwardSlash = str => {
+const encodeForwardSlash = (str: any) => {
   return str.replace(/\//gi, '$2F')
 }
 

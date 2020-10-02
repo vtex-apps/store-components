@@ -1,7 +1,8 @@
 import React from 'react'
+// @ts-expect-error ts-migrate(7016) FIXME: Try `npm install @types/react-content-loader` if i... Remove this comment to see the full error message
 import ContentLoader from 'react-content-loader'
 
-const GreetingLoading = props => (
+const GreetingLoading = (props: any) => (
   <ContentLoader
     height={32}
     width={300}

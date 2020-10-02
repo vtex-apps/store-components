@@ -1,13 +1,23 @@
-import PropTypes from 'prop-types'
 import React, { useEffect } from 'react'
 import { graphql } from 'react-apollo'
 import { useCssHandles } from 'vtex.css-handles'
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'vtex.store-resources/QueryAddr... Remove this comment to see the full error message
 import ADDRESS_QUERY from 'vtex.store-resources/QueryAddress'
 
 import Container from '../Container'
 import AddressInfo from './AddressInfo'
 
 const CSS_HANDLES = ['userAddressContainer']
+
+type Props = {
+  variation: 'inline' | 'bar'
+  addressQuery: any
+  showStreet?: boolean
+  showCityAndState?: boolean
+  showPostalCode?: boolean
+  showPrefix?: boolean
+  showIfEmpty?: boolean
+}
 
 const UserAddress = ({
   variation,
@@ -17,7 +27,7 @@ const UserAddress = ({
   showPostalCode = false,
   showPrefix = true,
   showIfEmpty = false,
-}) => {
+}: Props) => {
   const { orderForm } = addressQueryProp
   const handles = useCssHandles(CSS_HANDLES)
 
@@ -84,19 +94,10 @@ const UserAddress = ({
   )
 }
 
-UserAddress.propTypes = {
-  variation: PropTypes.oneOf(['inline', 'bar']).isRequired,
-  addressQuery: PropTypes.object.isRequired,
-  showStreet: PropTypes.bool,
-  showCityAndState: PropTypes.bool,
-  showPostalCode: PropTypes.bool,
-  showPrefix: PropTypes.bool,
-  showIfEmpty: PropTypes.bool,
-}
-
 const withAddressQuery = graphql(ADDRESS_QUERY, {
   name: 'addressQuery',
   options: () => ({ ssr: false }),
 })
 
+// @ts-expect-error ts-migrate(2345) FIXME: Type 'PropsWithChildren<Partial<DataProps<{}, {}>>... Remove this comment to see the full error message
 export default withAddressQuery(UserAddress)
