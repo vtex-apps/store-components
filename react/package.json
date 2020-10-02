@@ -45,7 +45,6 @@
     "@vtex/tsconfig": "^0.3.0",
     "apollo-cache-inmemory": "^1.4.3",
     "babel-eslint": "^10.1.0",
-    "ts-migrate": "^0.1.7",
     "typescript": "3.8.3",
     "vtex.address-form": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.6.3/public/_types/react",
     "vtex.apps-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.apps-graphql@2.5.1/public/@types/vtex.apps-graphql",
