@@ -72,7 +72,7 @@ export const applyModifiers = (handles: any, modifier: any) => {
 }
 
 // eslint-disable-next-line default-param-last
-export const withCssHandles = (handles = [], options: any) => (
+export const withCssHandles = (handles = [], options: any = {}) => (
   Component: any
 ) => {
   const EnhancedComponent = (props: any) => {
