@@ -57,8 +57,8 @@ Below, we describe the namespace that are defined in the `ProductHighlights`.
 
 | Class name         | Description                                      | Component Source                                      |
 | ------------------ | ------------------------------------------------ | ----------------------------------------------------- |
-| `highlightContent` | The content of ProductHighlights section.        | [index](/react/components/ProductHighlights/index.js) |
-| `itemHighlight`    | The area that wrapper a highlight.               | [index](/react/components/ProductHighlights/index.js) |
-| `highlightTitle`   | The content that contains the highlight's title. | [index](/react/components/ProductHighlights/index.js) |
-| `highlightValue`   | The content that contains the highlight's value. | [index](/react/components/ProductHighlights/index.js) |
+| `highlightContent` | The content of ProductHighlights section.        | [index](/react/components/ProductHighlights/index.ts) |
+| `itemHighlight`    | The area that wrapper a highlight.               | [index](/react/components/ProductHighlights/index.ts) |
+| `highlightTitle`   | The content that contains the highlight's title. | [index](/react/components/ProductHighlights/index.ts) |
+| `highlightValue`   | The content that contains the highlight's value. | [index](/react/components/ProductHighlights/index.ts) |
 

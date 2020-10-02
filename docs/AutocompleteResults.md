@@ -45,5 +45,5 @@ In order to apply CSS customizations in this and other blocks, follow the instru
 
 | Class name         | Description                                     | Component Source                                                     |
 | ------------------ | ----------------------------------------------- | -------------------------------------------------------------------- |
-| `resultsList`      | The list containing the results of the search   | [ResultsList](/react/components/SearchBar/components/ResultsList.js) |
-| `resultsItemImage` | The image from a product returned by the search | [ResultsList](/react/components/SearchBar/components/ResultsList.js) |
+| `resultsList`      | The list containing the results of the search   | [ResultsList](/react/components/SearchBar/components/ResultsList.ts) |
+| `resultsItemImage` | The image from a product returned by the search | [ResultsList](/react/components/SearchBar/components/ResultsList.ts) |

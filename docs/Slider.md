@@ -64,6 +64,6 @@ Below, we describe the namespace that are defined in the `Slider`.
 
 | Class name | Description | Component Source |
 | ---------- | ----------- | ---------------- |
-| `arrowRight` | The right arrow of the slider | [index](/react/components/Slider/index.js) |
-| `arrowLeft` | The left arrow of the slider | [index](/react/components/Slider/index.js) |
-| `dots` | The slider dots | [index](/react/components/Slider/index.js) | 
+| `arrowRight` | The right arrow of the slider | [index](/react/components/Slider/index.ts) |
+| `arrowLeft` | The left arrow of the slider | [index](/react/components/Slider/index.ts) |
+| `dots` | The slider dots | [index](/react/components/Slider/index.ts) | 

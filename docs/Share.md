@@ -67,9 +67,9 @@ Below, we describe the namespace that are defined in the `Share`.
 
 | Class name | Description | Component Source |
 | ---------- | ----------- | ---------------- |
-| `shareContainer` | The main container of `Share` | [index](/react/components/Share/index.js) |
-| `shareLoader` | The share loader | [index](/react/components/Share/index.js) |
-| `shareLabel` | The share label | [index](/react/components/Share/index.js) | 
-| `shareButtons` | The main container of social media buttons | [index](/react/components/Share/index.js) |
-| `shareSocialButton` | The share social media button | [index](/react/components/Share/components/SocialButton.js) | 
-| `shareSocialIcon` | The share social media icon | [index](/react/components/Share/components/SocialButton.js) |
+| `shareContainer` | The main container of `Share` | [index](/react/components/Share/index.ts) |
+| `shareLoader` | The share loader | [index](/react/components/Share/index.ts) |
+| `shareLabel` | The share label | [index](/react/components/Share/index.ts) | 
+| `shareButtons` | The main container of social media buttons | [index](/react/components/Share/index.ts) |
+| `shareSocialButton` | The share social media button | [index](/react/components/Share/components/SocialButton.ts) | 
+| `shareSocialIcon` | The share social media icon | [index](/react/components/Share/components/SocialButton.ts) |

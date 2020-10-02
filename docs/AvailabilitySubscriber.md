@@ -64,14 +64,14 @@ Below, we describe the namespace that are defined in the `AvailabilitySubscriber
 
 | Class name | Description | Component Source |
 | ---------- | ----------- |----------------- |
-| `subscriberContainer` | `AvailabilitySubscriber` container | [index](/react/components/AvailabilitySubscriber/index.js) |
-| `title` | `AvailabilitySubscriber` title | [index](/react/components/AvailabilitySubscriber/index.js) |
-| `subscribeLabel` | `AvailabilitySubscriber` subscribe label | [index](/react/components/AvailabilitySubscriber/index.js) |
-| `form` | `AvailabilitySubscriber` form container | [index](/react/components/AvailabilitySubscriber/index.js) |
-| `content` | `AvailabilitySubscriber` form content container | [index](/react/components/AvailabilitySubscriber/index.js) |
-| `input` | `AvailabilitySubscriber` form input containter | [index](/react/components/AvailabilitySubscriber/index.js) |
-| `inputName` | `AvailabilitySubscriber` form input name | [index](/react/components/AvailabilitySubscriber/index.js) |
-| `inputEmail` | `AvailabilitySubscriber` form input email | [index](/react/components/AvailabilitySubscriber/index.js) |
-| `submit` | `AvailabilitySubscriber` form submit button | [index](/react/components/AvailabilitySubscriber/index.js) |
-| `success` | `AvailabilitySubscriber` success feedback message | [index](/react/components/AvailabilitySubscriber/index.js) |
-| `error` | `AvailabilitySubscriber` error feedback message | [index](/react/components/AvailabilitySubscriber/index.js) |
+| `subscriberContainer` | `AvailabilitySubscriber` container | [index](/react/components/AvailabilitySubscriber/index.ts) |
+| `title` | `AvailabilitySubscriber` title | [index](/react/components/AvailabilitySubscriber/index.ts) |
+| `subscribeLabel` | `AvailabilitySubscriber` subscribe label | [index](/react/components/AvailabilitySubscriber/index.ts) |
+| `form` | `AvailabilitySubscriber` form container | [index](/react/components/AvailabilitySubscriber/index.ts) |
+| `content` | `AvailabilitySubscriber` form content container | [index](/react/components/AvailabilitySubscriber/index.ts) |
+| `input` | `AvailabilitySubscriber` form input containter | [index](/react/components/AvailabilitySubscriber/index.ts) |
+| `inputName` | `AvailabilitySubscriber` form input name | [index](/react/components/AvailabilitySubscriber/index.ts) |
+| `inputEmail` | `AvailabilitySubscriber` form input email | [index](/react/components/AvailabilitySubscriber/index.ts) |
+| `submit` | `AvailabilitySubscriber` form submit button | [index](/react/components/AvailabilitySubscriber/index.ts) |
+| `success` | `AvailabilitySubscriber` success feedback message | [index](/react/components/AvailabilitySubscriber/index.ts) |
+| `error` | `AvailabilitySubscriber` error feedback message | [index](/react/components/AvailabilitySubscriber/index.ts) |

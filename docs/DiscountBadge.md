@@ -52,5 +52,5 @@ Below, we describe the namespaces that are defined in the `DiscountBadge`.
 
 | Class name                | Description                  | Component Source                                  |
 | ------------------------- | ---------------------------- | ------------------------------------------------- |
-| `discountContainer`       | The discount container       | [index](/react/components/DiscountBadge/index.js) |
-| `discountInsideContainer` | The discount inner container | [index](/react/components/DiscountBadge/index.js) |
+| `discountContainer`       | The discount container       | [index](/react/components/DiscountBadge/index.ts) |
+| `discountInsideContainer` | The discount inner container | [index](/react/components/DiscountBadge/index.ts) |

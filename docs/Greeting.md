@@ -33,6 +33,6 @@ Below, we describe the namespace that are defined in the `Greeting`.
 
 | Class name | Description | Component Source |
 | ---------- | ----------- | ---------------- |
-| `greetingContainer` | The container wrapping the `message` and the `firstName` | [index](/react/components/Greeting/index.js) |
-| `message` | The default greeting message | [index](/react/components/Greeting/index.js) |
-| `firstName` | The user first name | [index](/react/components/Greeting/index.js) |
+| `greetingContainer` | The container wrapping the `message` and the `firstName` | [index](/react/components/Greeting/index.ts) |
+| `message` | The default greeting message | [index](/react/components/Greeting/index.ts) |
+| `firstName` | The user first name | [index](/react/components/Greeting/index.ts) |

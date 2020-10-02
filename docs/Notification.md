@@ -52,6 +52,6 @@ Below, we describe the namespace that are defined in the `Notification`.
 
 | Class name | Description | Component Source |
 | ---------- | ----------- | ---------------- |
-| `notificationContent` | The content of `Notification` | [index](/react/components/Notification/notificationContent.js) |
-| `notificationBarContainer` | The main container of `NotificationBar` | [index](/react/components/Notification/notificationBar.js) |
-| `notificationBarInner` | The inner container of `NotificationBar` | [index](/react/components/Notification/notificationBar.js) |
+| `notificationContent` | The content of `Notification` | [index](/react/components/Notification/notificationContent.ts) |
+| `notificationBarContainer` | The main container of `NotificationBar` | [index](/react/components/Notification/notificationBar.ts) |
+| `notificationBarInner` | The inner container of `NotificationBar` | [index](/react/components/Notification/notificationBar.ts) |

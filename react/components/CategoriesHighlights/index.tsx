@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 import categoriesHighlights from './categoriesHighlights.css'
 import CategoryCard from './components/CategoryCard'
-import { ITEMS_PER_ROW, RECTANGULAR, SQUARED } from './constants.js'
+import { ITEMS_PER_ROW, RECTANGULAR, SQUARED } from './constants'
 
 type OwnProps = {
   categoriesHighlighted?: any

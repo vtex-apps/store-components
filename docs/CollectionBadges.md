@@ -45,5 +45,5 @@ Below, we describe the namespace that are defined in the `CollectionBadges`.
 
 | Class name | Description | Component Source |
 | ---------- | ----------- | ---------------- |
-| `collectionContainer` | The collection badger main container | [index](/react/components/CollectionBadges/index.js) |
-| `item` | The collection badge item main container | [index](/react/components/CollectionBadges/components/CollectionBadgeItem.js) |
+| `collectionContainer` | The collection badger main container | [index](/react/components/CollectionBadges/index.ts) |
+| `item` | The collection badge item main container | [index](/react/components/CollectionBadges/components/CollectionBadgeItem.ts) |
