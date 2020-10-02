@@ -1,6 +1,5 @@
 import React from 'react'
 
-// @ts-expect-error ts-migrate(2306) FIXME: File '/Users/kaisermann/Projects/VTEX/store-compon... Remove this comment to see the full error message
 import { addValidation, removeValidation } from './helpers'
 import { StyleguideInput } from './inputs'
 
