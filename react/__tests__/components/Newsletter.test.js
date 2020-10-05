@@ -16,6 +16,9 @@ test('should have label, input and submit', () => {
       placeholder={placeholderTextId}
       label={labelTextId}
       submit={submitTextId}
+      hideLabel={false}
+      showTerms
+      formFields="emailOnly"
     />
   )
 
@@ -32,6 +35,9 @@ test('should add error message when user types wrong email', () => {
       placeholder={placeholderTextId}
       label={labelTextId}
       submit={submitTextId}
+      hideLabel={false}
+      showTerms
+      formFields="emailOnly"
     />
   )
 
@@ -67,6 +73,9 @@ test('should call mutation', async () => {
       placeholder={placeholderTextId}
       label={labelTextId}
       submit={submitTextId}
+      hideLabel={false}
+      showTerms
+      formFields="emailOnly"
     />,
     {
       graphql: { mocks, addTypename: false },
@@ -101,6 +110,9 @@ test('should handle mutation error', async () => {
       placeholder={placeholderTextId}
       label={labelTextId}
       submit={submitTextId}
+      hideLabel={false}
+      showTerms
+      formFields="emailOnly"
     />,
     {
       graphql: { mocks, addTypename: false },
