@@ -77,14 +77,10 @@ function Newsletter(props: Props) {
   const handles = useCssHandles(CSS_HANDLES)
   const intl = useIntl()
 
-  const [subscribeNewsletter] = useMutation<
+  const [subscribeNewsletter, { error: mutationError }] = useMutation<
     boolean,
     { email: string; name?: string }
-  >(SUBSCRIBE_NEWSLETTER, {
-    onError: () => {
-      setState({ ...state, error: true })
-    },
-  })
+  >(SUBSCRIBE_NEWSLETTER)
 
   useEffect(() => {
     isMounted.current = true
@@ -168,6 +164,17 @@ function Newsletter(props: Props) {
           },
     })
       .then(() => {
+        if (mutationError) {
+          safeSetState({
+            ...state,
+            success: false,
+            error: true,
+            loading: false,
+          })
+
+          return
+        }
+
         safeSetState({ ...state, success: true, loading: false })
       })
       .catch(() => {
