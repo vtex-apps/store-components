@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `formFields` and `namePlaceholder` props to `Newsletter` component.
+- Support for `name` field in `Newsletter` form.
 
 ## [3.130.2] - 2020-09-28
 ### Fixed
