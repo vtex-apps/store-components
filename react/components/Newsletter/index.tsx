@@ -22,6 +22,8 @@ interface Props {
   label: string
   placeholder: string
   submit: string
+  formFields: 'emailOnly' | 'nameAndEmail'
+  namePlaceholder?: string
 }
 
 interface State {
@@ -30,6 +32,7 @@ interface State {
   error: boolean
   success: boolean
   invalidEmail: boolean
+  name: string
 }
 
 const CSS_HANDLES = [
@@ -50,11 +53,21 @@ function validateEmail(email: string) {
 }
 
 function Newsletter(props: Props) {
-  const inputRef = useRef<HTMLInputElement>()
+  const {
+    hideLabel = false,
+    submit,
+    label,
+    placeholder,
+    namePlaceholder,
+    formFields,
+  } = props
+
+  const emailInputRef = useRef<HTMLInputElement>()
   const isMounted = useRef<boolean>(false)
 
   const [state, setState] = useState<State>({
     email: '',
+    name: '',
     loading: false,
     error: false,
     success: false,
@@ -79,7 +92,7 @@ function Newsletter(props: Props) {
     return () => {
       isMounted.current = false
     }
-  })
+  }, [])
 
   const safeSetState = (newState: State) => {
     if (isMounted.current) {
@@ -87,11 +100,10 @@ function Newsletter(props: Props) {
     }
   }
 
-  const { hideLabel = false, submit, label, placeholder } = props
-
   const submitText = formatIOMessage({ id: submit, intl })
   const labelText = formatIOMessage({ id: label, intl })
-  const placeholderText = formatIOMessage({ id: placeholder, intl })
+  const emailPlaceholderText = formatIOMessage({ id: placeholder, intl })
+  const namePlaceholderText = formatIOMessage({ id: namePlaceholder, intl })
   const confirmationTitle = formatIOMessage({
     id: 'store/newsletter.confirmationTitle',
     intl,
@@ -116,6 +128,10 @@ function Newsletter(props: Props) {
     setState({ ...state, email: e.target?.value.trim() })
   }
 
+  const handleChangeName = (e: ChangeEvent<HTMLInputElement>) => {
+    setState({ ...state, name: e.target?.value.trim() })
+  }
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
 
@@ -124,8 +140,8 @@ function Newsletter(props: Props) {
     if (!isCurrentEmailValid) {
       setState({ ...state, invalidEmail: true })
 
-      if (inputRef?.current) {
-        inputRef.current.focus()
+      if (emailInputRef?.current) {
+        emailInputRef.current.focus()
       }
 
       return
@@ -139,7 +155,18 @@ function Newsletter(props: Props) {
       success: false,
     })
 
-    subscribeNewsletter({ variables: { email: state.email } })
+    const shouldSendNameValue = formFields === 'nameAndEmail'
+
+    subscribeNewsletter({
+      variables: shouldSendNameValue
+        ? {
+            email: state.email,
+            name: state.name,
+          }
+        : {
+            email: state.email,
+          },
+    })
       .then(() => {
         safeSetState({ ...state, success: true, loading: false })
       })
@@ -176,14 +203,23 @@ function Newsletter(props: Props) {
             </label>
             <div className={`${handles.inputGroup} flex-ns pt5`}>
               <Input
-                ref={inputRef}
+                ref={emailInputRef}
                 id="newsletter-input"
                 errorMessage={state.invalidEmail ? invalidEmailText : null}
-                placeholder={placeholderText}
+                placeholder={emailPlaceholderText}
                 name="newsletter"
                 value={state.email}
                 onChange={handleChangeEmail}
               />
+              {formFields === 'nameAndEmail' && (
+                <Input
+                  id="newsletter-name-input"
+                  placeholder={namePlaceholderText}
+                  name="newsletter-name"
+                  value={state.name}
+                  onChange={handleChangeName}
+                />
+              )}
               <div
                 className={`${handles.buttonContainer} pl4-ns flex-none pt3 pt0-ns`}
               >
@@ -219,6 +255,16 @@ Newsletter.schema = {
       title: 'admin/editor.newsletter.hideLabel',
       default: false,
       isLayout: true,
+    },
+    formFields: {
+      type: 'string',
+      enum: ['emailOnly', 'nameAndEmail'],
+      enumNames: [
+        'admin/editor.newsletter.formFields.emailOnly',
+        'admin/editor.newsletter.formFields.nameAndEmail',
+      ],
+      title: 'admin/editor.newsletter.formFields',
+      default: 'emailOnly',
     },
   },
 }
