@@ -118,6 +118,11 @@
           "title": "admin/editor.newsletter.submit",
           "$ref": "app:vtex.native-types#/definitions/text",
           "default": "store/newsletter.submit"
+        },
+        "namePlaceholder": {
+          "title": "admin/editor.newsletter.namePlaceholder",
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": "store/newsletter.namePlaceholder"
         }
       }
     },
