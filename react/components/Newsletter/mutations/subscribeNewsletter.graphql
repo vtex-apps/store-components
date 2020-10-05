@@ -1,3 +1,3 @@
-mutation subscribeNewsletter($email: String, $name: String) {
+mutation subscribeNewsletter($email: String, $name: String) @context(provider: "vtex.store-graphql") {
   subscribeNewsletter(email: $email, name: $name)
 }
