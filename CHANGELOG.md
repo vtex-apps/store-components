@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `picture` and `source` to `SanitizedHTML` allowed tag list.
+
 ## [3.130.2] - 2020-09-28
 ### Fixed
 - Issue where product images would zoom out immediately in certain cases.
