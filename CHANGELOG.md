@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - `picture` and `source` to `SanitizedHTML` allowed tag list.
+- Fixing `vtex link`.
 
 ## [3.130.2] - 2020-09-28
 ### Fixed
