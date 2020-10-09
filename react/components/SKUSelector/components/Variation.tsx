@@ -114,7 +114,7 @@ const Variation: FC<Props> = ({
         key={`${option.label}-${name}`}
         isAvailable={option.available}
         maxPrice={maxSkuPrice}
-        onClick={option.impossible ? noop : () => option.onSelectItem}
+        onClick={option.impossible ? noop : option.onSelectItem}
         isImage={displayImage}
         variationValue={option.label}
         variationValueOriginalName={option.originalName}

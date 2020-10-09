@@ -40,7 +40,7 @@ export type ImageMap = Record<string, Record<string, Image | undefined>>
 export interface DisplayOption {
   label: string
   originalName: string
-  onSelectItem: (item?: CallbackItem) => void
+  onSelectItem: () => void
   image: Image | undefined
   available: boolean
   impossible: boolean
