@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.131.0] - 2020-10-13
+
 ### Added
 - `picture` and `source` to `SanitizedHTML` allowed tag list.
 - Fixing `vtex link`.
