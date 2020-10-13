@@ -36,9 +36,7 @@ function SelectVariationMode(props: VariationSelectModeProps) {
       {}
     )
 
-    if (reducedOptions?.[value]?.onSelectItem) {
-      reducedOptions[value].onSelectItem()
-    }
+    return reducedOptions[value].onSelectItem()
   }
 
   return (
