@@ -39,6 +39,7 @@ const CSS_HANDLES = [
   'skuSelectorItem',
   'skuSelectorBadge',
   'skuSelectorItemImage',
+  'skuSelectorItemWrapper',
   'skuSelectorInternalBox',
   'skuSelectorItemTextValue',
   'skuSelectorItemImageValue',
@@ -108,60 +109,62 @@ const SelectorItem: FC<Props> = ({
   }
 
   return (
-    <div
-      role="button"
-      tabIndex={0}
-      onClick={onClick}
-      style={containerStyles}
-      className={containerClasses}
-      onKeyDown={e => e.key === 'Enter' && onClick(e)}
-    >
+    <div className={handles.skuSelectorItemWrapper}>
       <div
-        className={classNames(
-          handles.frameAround,
-          'absolute b--action-primary br3 bw1',
-          {
-            ba: isSelected,
-          }
-        )}
-      />
-      <div
-        className={classNames(
-          handles.skuSelectorInternalBox,
-          'w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden',
-          {
-            'hover-b--muted-2': !isSelected && !isImpossible,
-            ba: showBorders,
-          }
-        )}
+        role="button"
+        tabIndex={0}
+        onClick={onClick}
+        style={containerStyles}
+        className={containerClasses}
+        onKeyDown={e => e.key === 'Enter' && onClick(e)}
       >
         <div
-          className={classNames('absolute absolute--fill', {
-            [handles.diagonalCross]: !isAvailable,
-          })}
+          className={classNames(
+            handles.frameAround,
+            'absolute b--action-primary br3 bw1',
+            {
+              ba: isSelected,
+            }
+          )}
         />
         <div
-          className={classNames(handles.valueWrapper, {
-            [`${handles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
-            'h-100': isImage,
-          })}
-        >
-          {isImage && imageUrl ? (
-            <img
-              className={handles.skuSelectorItemImageValue}
-              src={imageUrl}
-              alt={imageLabel as string | undefined}
-            />
-          ) : (
-            variationValue
+          className={classNames(
+            handles.skuSelectorInternalBox,
+            'w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden',
+            {
+              'hover-b--muted-2': !isSelected && !isImpossible,
+              ba: showBorders,
+            }
           )}
+        >
+          <div
+            className={classNames('absolute absolute--fill', {
+              [handles.diagonalCross]: !isAvailable,
+            })}
+          />
+          <div
+            className={classNames(handles.valueWrapper, {
+              [`${handles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
+              'h-100': isImage,
+            })}
+          >
+            {isImage && imageUrl ? (
+              <img
+                className={handles.skuSelectorItemImageValue}
+                src={imageUrl}
+                alt={imageLabel as string | undefined}
+              />
+            ) : (
+              variationValue
+            )}
+          </div>
         </div>
+        {discount > 0 && (
+          <span className={`${handles.skuSelectorBadge} b`}>
+            <FormattedNumber value={discount} style="percent" />
+          </span>
+        )}
       </div>
-      {discount > 0 && (
-        <span className={`${handles.skuSelectorBadge} b`}>
-          <FormattedNumber value={discount} style="percent" />
-        </span>
-      )}
     </div>
   )
 }
