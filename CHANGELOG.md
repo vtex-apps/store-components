@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Added a wrapp to `skuSelectorItem` button with a new CSS handles `skuSelectorItemWrapper` in SKU Selector.
+
 ## [3.131.0] - 2020-10-13
 
 ### Added
