@@ -18,7 +18,7 @@ import AutocompleteResults from '../../AutocompleteResults'
 import AutocompleteInput from './AutocompleteInput'
 
 const CSS_HANDLES = ['searchBarInnerContainer']
-const SEARCH_DELAY_TIME = 500
+const SEARCH_DELAY_TIME = 1000
 const AUTCOMPLETE_EXTENSION_ID = 'autocomplete-result-list'
 
 const messages = defineMessages({
