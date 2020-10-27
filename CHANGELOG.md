@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.131.1] - 2020-10-27
+
 ### Changed
 
 - Increase search bar delay
