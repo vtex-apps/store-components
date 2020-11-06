@@ -7,7 +7,7 @@ describe('<CollectionBadges /> component', () => {
   it('should be able to mount and not break', () => {
     const { container } = render(<CollectionBadges>Test</CollectionBadges>)
 
-    expect(container.firstChild).toBeTruthy()
+    expect(container.firstChild).toBeInTheDocument()
   })
 
   it('should match snapshot without badges', () => {
