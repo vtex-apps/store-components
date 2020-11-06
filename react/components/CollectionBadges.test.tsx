@@ -1,15 +1,9 @@
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
-import CollectionBadges from './index'
+import CollectionBadges from './CollectionBadges'
 
 describe('<CollectionBadges /> component', () => {
-  it('should be able to mount and not break', () => {
-    const { container } = render(<CollectionBadges>Test</CollectionBadges>)
-
-    expect(container.firstChild).toBeInTheDocument()
-  })
-
   it('should match snapshot without badges', () => {
     const { container } = render(<CollectionBadges>Test</CollectionBadges>)
 
