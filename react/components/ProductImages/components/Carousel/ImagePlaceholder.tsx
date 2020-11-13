@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import style from '../../styles.css'
 
-export default function ImagePlaceholder() {
+const ImagePlaceholder: FC = () => {
   return (
     <div className="relative">
       <div
-        className={`${style.carouselImagePlaceholder} absolute w-100 h-100 contain bg-center`}
+        className={`${style.carouselImagePlaceholder} absolute w-100 contain bg-center`}
       />
       <svg
         width="100%"
-        height="100%"
         viewBox="0 0 512 512"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -41,3 +40,5 @@ export default function ImagePlaceholder() {
     </div>
   )
 }
+
+export default ImagePlaceholder

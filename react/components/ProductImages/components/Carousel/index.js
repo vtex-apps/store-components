@@ -11,6 +11,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import Video, { getThumbUrl } from '../Video'
 import ProductImage from '../ProductImage'
 import ThumbnailSwiper from './ThumbnailSwiper'
+import ImagePlaceholder from './ImagePlaceholder'
 import {
   THUMBS_ORIENTATION,
   THUMBS_POSITION_HORIZONTAL,
@@ -220,6 +221,9 @@ class Carousel extends Component {
 
   render() {
     const {
+      aspectRatio,
+      maxHeight,
+      placeholder,
       position,
       cssHandles,
       slides = [],
@@ -231,6 +235,8 @@ class Carousel extends Component {
       showNavigationArrows = true,
       displayThumbnailsArrows = false,
     } = this.props
+
+    const hasSlides = slides && slides.length > 0
 
     const isThumbsVertical =
       thumbnailsOrientation === THUMBS_ORIENTATION.VERTICAL
@@ -244,13 +250,46 @@ class Carousel extends Component {
 
     const imageClasses = classNames(
       'w-100 border-box',
-      galleryCursor[zoomType],
+      galleryCursor[hasSlides ? zoomType : 'no-zoom'],
       {
-        'ml-20-ns w-80-ns pl5':
+        'ml-20-ns w-80-ns pl5-ns':
+          isThumbsVertical &&
+          position === THUMBS_POSITION_HORIZONTAL.LEFT &&
+          (hasThumbs || !hasSlides),
+        'mr-20-ns w-80-ns pr5-ns':
+          isThumbsVertical &&
+          position === THUMBS_POSITION_HORIZONTAL.RIGHT &&
+          (hasThumbs || !hasSlides),
+      }
+    )
+
+    if (!hasSlides) {
+      return (
+        <div className={imageClasses}>
+          {placeholder ? (
+            <ProductImage
+              src={placeholder}
+              alt="Product image placeholder"
+              maxHeight={maxHeight}
+              aspectRatio={aspectRatio}
+              zoomMode="disabled"
+            />
+          ) : (
+            <ImagePlaceholder />
+          )}
+        </div>
+      )
+    }
+
+    const containerClasses = classNames(
+      cssHandles.carouselContainer,
+      'relative overflow-hidden w-100',
+      {
+        'flex-ns justify-end-ns':
           isThumbsVertical &&
           position === THUMBS_POSITION_HORIZONTAL.LEFT &&
           hasThumbs,
-        'mr-20-ns w-80-ns pr5':
+        'flex-ns justify-start-ns':
           isThumbsVertical &&
           position === THUMBS_POSITION_HORIZONTAL.RIGHT &&
           hasThumbs,
@@ -268,21 +307,6 @@ class Carousel extends Component {
         slides={slides}
         position={position}
       />
-    )
-
-    const containerClasses = classNames(
-      cssHandles.carouselContainer,
-      'relative overflow-hidden w-100',
-      {
-        'flex-ns justify-end-ns':
-          isThumbsVertical &&
-          position === THUMBS_POSITION_HORIZONTAL.LEFT &&
-          hasThumbs,
-        'flex-ns justify-start-ns':
-          isThumbsVertical &&
-          position === THUMBS_POSITION_HORIZONTAL.RIGHT &&
-          hasThumbs,
-      }
     )
 
     return (
