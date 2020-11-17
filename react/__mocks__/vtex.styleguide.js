@@ -61,7 +61,7 @@ export const Input = forwardRef(function Input(
   )
 })
 
-export const InputSearch = forwardRef(function Input(
+export const InputSearch = forwardRef(function InputSearch(
   { label, error, errorMessage, isLoading, prefix, suffix, ...props },
   ref
 ) {

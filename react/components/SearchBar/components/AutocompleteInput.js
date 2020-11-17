@@ -172,31 +172,33 @@ const AutocompleteInput = ({
     [handles.compactMode]: compactMode,
   })
 
-
-  if(searchInput){
+  if (searchInput) {
     return (
-      <form action="#" onSubmit={e => {
-        e.preventDefault()
-        e.stopPropagation()
-        e.nativeEvent.stopImmediatePropagation()
-      }}>
-      <div className={handles.autoCompleteOuterContainer}>
-        <div className={classContainer}>
-        <InputSearch 
-            ref={inputRef}
-            size="large"
-            value={value}
-            {...restProps}          
-          />
+      <form
+        action="#"
+        onSubmit={e => {
+          e.preventDefault()
+          e.stopPropagation()
+          e.nativeEvent.stopImmediatePropagation()
+        }}
+      >
+        <div className={handles.autoCompleteOuterContainer}>
+          <div className={classContainer}>
+            <InputSearch
+              ref={inputRef}
+              size="large"
+              value={value}
+              {...restProps}
+            />
+          </div>
         </div>
-      </div>
       </form>
-    )  
+    )
   }
 
-  return (    
+  return (
     <div className={handles.autoCompleteOuterContainer}>
-      <div className={classContainer}>               
+      <div className={classContainer}>
         <Input
           ref={inputRef}
           size="large"
@@ -252,7 +254,7 @@ AutocompleteInput.propTypes = {
   /** Error message showed in search input */
   inputErrorMessage: PropTypes.string,
   /** If true, the autocomplete will be an input type search */
-  searchInput: PropTypes.bool
+  searchInput: PropTypes.bool,
 }
 
 export default AutocompleteInput
