@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `searchInput` prop to `SearchBar`. If true, the autocomplete will be an input type search 
+-  With searchInput=true it solves the problem when you click on the 'ok' button then disappears the results block on iOs platform
+-  With searchInput=true it allows also to have a 'Search button' on the iOs virtual keyboard.
 
 ## [3.131.3] - 2020-11-13
 ### Fixed

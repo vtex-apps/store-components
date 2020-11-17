@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { InputSearch } from 'vtex.styleguide'
+import { Input, InputSearch } from 'vtex.styleguide'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { IconSearch, IconClose } from 'vtex.store-icons'
@@ -58,6 +58,7 @@ const AutocompleteInput = ({
   displayMode = 'clear-button',
   openMenu,
   inputErrorMessage,
+  searchInput,
   ...restProps
 }) => {
   const inputRef = useRef(null)
@@ -171,21 +172,31 @@ const AutocompleteInput = ({
     [handles.compactMode]: compactMode,
   })
 
-  return (
-    <form action="#" onSubmit={e => {
-      e.preventDefault()
-      e.stopPropagation()
-      e.nativeEvent.stopImmediatePropagation()
-    }}>
+
+  if(searchInput){
+    return (
+      <form action="#" onSubmit={e => {
+        e.preventDefault()
+        e.stopPropagation()
+        e.nativeEvent.stopImmediatePropagation()
+      }}>
+      <div className={handles.autoCompleteOuterContainer}>
+        <div className={classContainer}>
+        <InputSearch 
+            ref={inputRef}
+            size="large"
+            value={value}
+            {...restProps}          
+          />
+        </div>
+      </div>
+      </form>
+    )  
+  }
+
+  return (    
     <div className={handles.autoCompleteOuterContainer}>
-      <div className={classContainer}>
-      <InputSearch 
-          ref={inputRef}
-          size="large"
-          value={value}
-          {...restProps}          
-        />
-        {/*        
+      <div className={classContainer}>               
         <Input
           ref={inputRef}
           size="large"
@@ -195,10 +206,9 @@ const AutocompleteInput = ({
           {...restProps}
           error={Boolean(inputErrorMessage)}
           errorMessage={inputErrorMessage}
-        /> */}
+        />
       </div>
     </div>
-    </form>
   )
 }
 
@@ -241,6 +251,8 @@ AutocompleteInput.propTypes = {
   displayMode: PropTypes.oneOf(DISPLAY_MODES),
   /** Error message showed in search input */
   inputErrorMessage: PropTypes.string,
+  /** If true, the autocomplete will be an input type search */
+  searchInput: PropTypes.bool
 }
 
 export default AutocompleteInput

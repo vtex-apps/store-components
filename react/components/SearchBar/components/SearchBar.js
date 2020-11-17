@@ -50,6 +50,7 @@ const SearchBar = ({
   displayMode,
   minSearchTermLength,
   autocompleteFullWidth,
+  searchInput
 }) => {
   const intl = useIntl()
   const container = useRef()
@@ -206,6 +207,7 @@ const SearchBar = ({
                 submitOnIconClick={submitOnIconClick}
                 displayMode={displayMode}
                 openAutocompleteOnFocus={openAutocompleteOnFocus}
+                searchInput={searchInput}
                 openMenu={openMenu}
                 inputErrorMessage={inputErrorMessage}
                 {...getInputProps({
@@ -308,6 +310,8 @@ SearchBar.propTypes = {
   minSearchTermLength: PropTypes.number,
   /** If true, the autocomplete will fill the whole window horizontally */
   autocompleteFullWidth: PropTypes.bool,
+  /** If true, the autocomplete will be an input type search */
+  searchInput: PropTypes.bool
 }
 
 export default SearchBar
