@@ -32,7 +32,7 @@ function SearchBarContainer(props) {
     displayMode = 'clear-button',
     minSearchTermLength,
     autocompleteFullWidth = false,
-    searchInput = false
+    searchInput = false,
   } = props
 
   const modalDispatch = useModalDispatch()
@@ -157,7 +157,7 @@ SearchBarContainer.propTypes = {
   /** If true, the autocomplete will fill the whole window horizontally */
   autocompleteFullWidth: PropTypes.bool,
   /** If true, the autocomplete will be an input type search */
-  searchInput: PropTypes.bool
+  searchInput: PropTypes.bool,
 }
 
 export default SearchBarContainer
