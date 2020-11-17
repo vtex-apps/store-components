@@ -4,7 +4,7 @@ import style from '../../styles.css'
 
 const ImagePlaceholder: FC = () => {
   return (
-    <div className="relative">
+    <div className="relative" data-testid="default-image-placeholder">
       <div
         className={`${style.carouselImagePlaceholder} absolute w-100 contain bg-center`}
       />

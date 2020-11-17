@@ -95,6 +95,29 @@ describe('<ProductImages />', () => {
     getAllByAltText('imageText')
     getAllByAltText('imageText2')
   })
+  it('should show default placeholder when there is NO image', () => {
+    const props = {
+      images: [],
+    }
+
+    const { queryByTestId } = renderComponent(props)
+
+    const defaultPlaceholder = queryByTestId('default-image-placeholder')
+
+    expect(defaultPlaceholder).toBeVisible()
+  })
+  it('should show custom placeholder when provided and there is NO image', () => {
+    const props = {
+      images: [],
+      placeholder: 'url',
+    }
+
+    const { queryByAltText } = renderComponent(props)
+
+    const defaultPlaceholder = queryByAltText('Product image placeholder')
+
+    expect(defaultPlaceholder).toBeVisible()
+  })
   it('should NOT show thumbs when there is one image', () => {
     const props = {
       images: [
