@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { Input } from 'vtex.styleguide'
+import { InputSearch } from 'vtex.styleguide'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { IconSearch, IconClose } from 'vtex.store-icons'
@@ -172,8 +172,20 @@ const AutocompleteInput = ({
   })
 
   return (
+    <form action="#" onSubmit={e => {
+      e.preventDefault()
+      e.stopPropagation()
+      e.nativeEvent.stopImmediatePropagation()
+    }}>
     <div className={handles.autoCompleteOuterContainer}>
       <div className={classContainer}>
+      <InputSearch 
+          ref={inputRef}
+          size="large"
+          value={value}
+          {...restProps}          
+        />
+        {/*        
         <Input
           ref={inputRef}
           size="large"
@@ -183,9 +195,10 @@ const AutocompleteInput = ({
           {...restProps}
           error={Boolean(inputErrorMessage)}
           errorMessage={inputErrorMessage}
-        />
+        /> */}
       </div>
     </div>
+    </form>
   )
 }
 

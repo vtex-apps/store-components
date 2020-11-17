@@ -61,6 +61,27 @@ export const Input = forwardRef(function Input(
   )
 })
 
+export const InputSearch = forwardRef(function Input(
+  { label, error, errorMessage, isLoading, prefix, suffix, ...props },
+  ref
+) {
+  return (
+    <label>
+      {label}
+      {prefix}
+      <input
+        type="search"
+        data-isloading={isLoading}
+        data-error={error}
+        data-errormessage={errorMessage}
+        ref={ref}
+        {...props}
+      />
+      {suffix}
+    </label>
+  )
+})
+
 export const Button = jest.fn(
   ({ isLoading, variation, block, children, ...props }) => {
     return (
