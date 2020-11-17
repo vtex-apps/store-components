@@ -58,7 +58,7 @@ const AutocompleteInput = ({
   displayMode = 'clear-button',
   openMenu,
   inputErrorMessage,
-  searchInput,
+  inputType = 'text',
   ...restProps
 }) => {
   const inputRef = useRef(null)
@@ -172,7 +172,9 @@ const AutocompleteInput = ({
     [handles.compactMode]: compactMode,
   })
 
-  if (searchInput) {
+  if (inputType === 'search') {
+    // <form> tag is needed for iOS:
+    // https://stackoverflow.com/a/26287843
     return (
       <form
         action="#"
@@ -181,16 +183,18 @@ const AutocompleteInput = ({
           e.stopPropagation()
           e.nativeEvent.stopImmediatePropagation()
         }}
+        className={handles.autoCompleteOuterContainer}
       >
-        <div className={handles.autoCompleteOuterContainer}>
-          <div className={classContainer}>
-            <InputSearch
-              ref={inputRef}
-              size="large"
-              value={value}
-              {...restProps}
-            />
-          </div>
+        <div className={classContainer}>
+          <InputSearch
+            ref={inputRef}
+            size="large"
+            value={value}
+            {...restProps}
+            error={Boolean(inputErrorMessage)}
+            errorMessage={inputErrorMessage}
+            onSubmit={onGoToSearchPage}
+          />
         </div>
       </form>
     )
@@ -253,8 +257,8 @@ AutocompleteInput.propTypes = {
   displayMode: PropTypes.oneOf(DISPLAY_MODES),
   /** Error message showed in search input */
   inputErrorMessage: PropTypes.string,
-  /** If true, the autocomplete will be an input type search */
-  searchInput: PropTypes.bool,
+  /** The type of the search input */
+  inputType: PropTypes.oneOf(['text', 'search']),
 }
 
 export default AutocompleteInput
