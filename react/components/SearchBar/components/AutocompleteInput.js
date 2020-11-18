@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { Input } from 'vtex.styleguide'
+import { Input, InputSearch } from 'vtex.styleguide'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { IconSearch, IconClose } from 'vtex.store-icons'
@@ -58,6 +58,7 @@ const AutocompleteInput = ({
   displayMode = 'clear-button',
   openMenu,
   inputErrorMessage,
+  inputType = 'text',
   ...restProps
 }) => {
   const inputRef = useRef(null)
@@ -171,6 +172,34 @@ const AutocompleteInput = ({
     [handles.compactMode]: compactMode,
   })
 
+  if (inputType === 'search') {
+    // <form> tag is needed for iOS:
+    // https://stackoverflow.com/a/26287843
+    return (
+      <form
+        action="#"
+        onSubmit={e => {
+          e.preventDefault()
+          e.stopPropagation()
+          e.nativeEvent.stopImmediatePropagation()
+        }}
+        className={handles.autoCompleteOuterContainer}
+      >
+        <div className={classContainer}>
+          <InputSearch
+            ref={inputRef}
+            size="large"
+            value={value}
+            {...restProps}
+            error={Boolean(inputErrorMessage)}
+            errorMessage={inputErrorMessage}
+            onSubmit={onGoToSearchPage}
+          />
+        </div>
+      </form>
+    )
+  }
+
   return (
     <div className={handles.autoCompleteOuterContainer}>
       <div className={classContainer}>
@@ -228,6 +257,8 @@ AutocompleteInput.propTypes = {
   displayMode: PropTypes.oneOf(DISPLAY_MODES),
   /** Error message showed in search input */
   inputErrorMessage: PropTypes.string,
+  /** The type of the search input */
+  inputType: PropTypes.oneOf(['text', 'search']),
 }
 
 export default AutocompleteInput
