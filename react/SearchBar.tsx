@@ -43,6 +43,8 @@ interface Props {
   inputType?: 'text' | 'search'
   /** Define the component display mode, such as which buttons should be visible */
   displayMode?: 'clear-button' | 'search-and-clear-buttons' | 'search-button'
+  /** Define how the autocomplete component should be displayed. Possible values are: `overlay` (suggestions overlapping other components) and `container` (displays the suggestion within a container). */
+  containerMode: 'overlay' | 'container'
 }
 
 /**
@@ -63,6 +65,7 @@ function SearchBarContainer(props: Props) {
     }),
     autocompleteAlignment = 'right',
     openAutocompleteOnFocus = false,
+    containerMode = 'overlay',
     blurOnSubmit = false,
     submitOnIconClick,
     displayMode = 'clear-button',
@@ -153,6 +156,7 @@ function SearchBarContainer(props: Props) {
       minSearchTermLength={minSearchTermLength}
       autocompleteFullWidth={autocompleteFullWidth}
       inputType={inputType}
+      containerMode={containerMode}
     />
   )
 }
