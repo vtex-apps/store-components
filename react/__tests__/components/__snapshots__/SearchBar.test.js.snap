@@ -26,6 +26,7 @@ exports[`<SearchBar /> should match snapshot 1`] = `
                 aria-autocomplete="list"
                 aria-labelledby="downshift-1-label"
                 autocomplete="off"
+                containermode="overlay"
                 data-error="false"
                 id="downshift-1-input"
                 placeholder="Search"
