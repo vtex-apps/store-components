@@ -1,3 +1,3 @@
-import NotificationBar from './components/Notification/notificationBar'
+import NotificationBar from './components/Notification/NotificationBar'
 
 export default NotificationBar

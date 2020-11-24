@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl'
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
 
-import NotificationContent from './notificationContent'
+import NotificationContent from './NotificationContent'
 
 interface Props {
   content?: string
