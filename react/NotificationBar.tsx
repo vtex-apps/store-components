@@ -35,8 +35,12 @@ function NotificationBar({ content = '' }: Props) {
   )
 }
 
-NotificationBar.schema = {
+const MemoizedNotificationBar: React.MemoExoticComponent<
+  typeof NotificationBar
+> & { schema?: Record<string, string> } = memo(NotificationBar)
+
+MemoizedNotificationBar.schema = {
   title: 'admin/editor.notification-bar.title',
 }
 
-export default memo(NotificationBar)
+export default MemoizedNotificationBar

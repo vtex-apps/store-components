@@ -14,8 +14,12 @@ function NotificationInline({ content = '' }: Props) {
   return <NotificationContent content={content} />
 }
 
-NotificationInline.schema = {
+const MemoizedNotificationInline: React.MemoExoticComponent<
+  typeof NotificationInline
+> & { schema?: Record<string, string> } = memo(NotificationInline)
+
+MemoizedNotificationInline.schema = {
   title: 'admin/editor.notification-bar.title',
 }
 
-export default memo(NotificationInline)
+export default MemoizedNotificationInline
