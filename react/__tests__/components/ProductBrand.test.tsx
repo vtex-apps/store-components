@@ -2,7 +2,7 @@ import React from 'react'
 import { render, wait } from '@vtex/test-tools/react'
 
 import ProductBrand from '../../ProductBrand'
-import brandLogoQuery from '../../components/ProductBrand/productBrand.gql'
+import brandLogoQuery from '../../graphql/productBrand.gql'
 
 const mocks = [
   {
@@ -24,17 +24,17 @@ const mocks = [
 ]
 
 describe('<ProductBrand /> component', () => {
-  const renderComponent = logoRedirect => {
+  const renderComponent = (logoRedirect: boolean) => {
     const props = {
-      displayMode: 'logo',
       fallbackToText: true,
-      loadingPlaceholder: 'logo',
       height: 100,
       excludeBrands: [],
       logoWithLink: logoRedirect,
     }
 
-    const comp = <ProductBrand {...props} />
+    const comp = (
+      <ProductBrand {...props} displayMode="logo" loadingPlaceholder="logo" />
+    )
 
     return render(comp, { graphql: { mocks } })
   }
