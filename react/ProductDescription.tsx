@@ -8,9 +8,12 @@ import { useProduct } from 'vtex.product-context'
 import { SanitizedHTML, DEFAULTS } from './components/SanitizedHTML'
 import GradientCollapse from './components/GradientCollapse'
 
-export type Props = {
+type Props = {
+  /** Description fallback */
   description?: string
-  title: string
+  /** Section title */
+  title?: string
+  /** Define if content should start collapsed or not */
   collapseContent?: boolean
 }
 
