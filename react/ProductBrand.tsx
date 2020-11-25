@@ -8,7 +8,7 @@ import brandLogoQuery from './graphql/productBrand.gql'
 
 type DisplayModeOptions = 'logo' | 'text'
 
-export interface Props {
+interface Props {
   /** Brand name */
   brandName: string
   /** Brand id */
