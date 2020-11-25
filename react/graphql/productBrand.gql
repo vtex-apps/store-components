@@ -1,5 +1,5 @@
 query Brand($id: Int) {
-  brand(id: $id) {
+  brand(id: $id) @context(provider: "vtex.store-graphql") {
     slug
     imageUrl
   }
