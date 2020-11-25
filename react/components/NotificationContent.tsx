@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
 
-import { SanitizedHTML } from '../SanitizedHTML'
+import { SanitizedHTML } from './SanitizedHTML'
 
 interface Props {
   content: string

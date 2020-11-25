@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 
-import NotificationContent from './NotificationContent'
+import NotificationContent from './components/NotificationContent'
 
 interface Props {
   content?: string
