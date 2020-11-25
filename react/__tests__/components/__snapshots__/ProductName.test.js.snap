@@ -6,7 +6,7 @@ exports[`<ProductName /> should match the snapshot Loader 1`] = `
     class="productNameContainer mv0 t-heading-4"
   >
     <span
-      class="productBrand"
+      class="productBrand "
     >
       Billabong Die Cut Loose Fit Short Sleeve Rashguard - Men's 
     </span>
@@ -20,7 +20,7 @@ exports[`<ProductName /> should match the snapshot with Name and Brand 1`] = `
     class="productNameContainer mv0 t-heading-4"
   >
     <span
-      class="productBrand"
+      class="productBrand "
     >
       ProductTest - ProductBrandName
     </span>
@@ -34,12 +34,12 @@ exports[`<ProductName /> should match the snapshot with Name and Product Referen
     class="productNameContainer mv0 t-heading-4"
   >
     <span
-      class="productBrand"
+      class="productBrand "
     >
       ProductTest 
     </span>
     <span
-      class="productReference"
+      class="productReference "
     >
       REF: productReferenceTest
     </span>
@@ -53,12 +53,12 @@ exports[`<ProductName /> should match the snapshot with Name and SkuName 1`] = `
     class="productNameContainer mv0 t-heading-4"
   >
     <span
-      class="productBrand"
+      class="productBrand "
     >
       ProductTest 
     </span>
     <span
-      class="productBrand"
+      class="productBrand "
     >
       ProductSkuName
     </span>
@@ -72,17 +72,17 @@ exports[`<ProductName /> should match the snapshot with all options 1`] = `
     class="productNameContainer mv0 t-heading-4"
   >
     <span
-      class="productBrand"
+      class="productBrand "
     >
       ProductTest - ProductBrandName
     </span>
     <span
-      class="productBrand"
+      class="productBrand "
     >
       ProductSkuName
     </span>
     <span
-      class="productReference"
+      class="productReference "
     >
       REF: productReferenceTest
     </span>
@@ -96,7 +96,7 @@ exports[`<ProductName /> should match the snapshot with only Name 1`] = `
     class="productNameContainer mv0 t-heading-4"
   >
     <span
-      class="productBrand"
+      class="productBrand "
     >
       ProductTest 
     </span>
