@@ -10,9 +10,9 @@ type DisplayModeOptions = 'logo' | 'text'
 
 interface Props {
   /** Brand name */
-  brandName: string
+  brandName?: string
   /** Brand id */
-  brandId: number
+  brandId?: number
   /** Whether it should be displayed as a logo or as a text */
   displayMode?: DisplayModeOptions
   /** Whether the loading placeholder should have the size of the logo or the text */
@@ -24,7 +24,7 @@ interface Props {
   /** Height of the logo */
   height?: number
   /** CSS Handler */
-  blockClass: string
+  blockClass?: string
   logoWithLink: boolean
 }
 
@@ -61,7 +61,10 @@ const shouldExcludeBrand = (
   return false
 }
 
-const useBrandInfoProps = (brandName: string, brandId: number) => {
+const useBrandInfoProps = (
+  brandName: string | undefined,
+  brandId: number | undefined
+) => {
   const productContext = useProduct()
   const product = productContext?.product
 
