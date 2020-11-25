@@ -9,6 +9,8 @@ const ANIMATION_TIME = 0.4
 
 /**
  * Animation component
+ *
+ * @deprecated This component is deprecated.
  */
 export default class Animation extends Component {
   static propTypes = {

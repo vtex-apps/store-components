@@ -22,14 +22,17 @@ const getSpecifications = productContext => {
   return allSpecifications
 }
 
-const ProductSpecificationsWrapper = ({
+/**
+ * @deprecated This component is deprecated. Please use [vtex.product-specifications](https://github.com/vtex-apps/product-specifications) instead.
+ */
+function ProductSpecificationsWrapper({
   hiddenSpecifications,
   visibleSpecifications,
   specifications: propsSpecifications,
   tabsMode, // This is a legacy prop passed by product-details
   showSpecificationsTab = false,
   collapsible = 'always',
-}) => {
+}) {
   const productContext = useProduct()
   const specifications =
     propsSpecifications || getSpecifications(productContext)
@@ -45,38 +48,34 @@ const ProductSpecificationsWrapper = ({
   )
 }
 
-ProductSpecificationsWrapper.getSchema = () => {
-  return {
-    title: 'admin/editor.product-specifications.title',
-    description: '',
-    type: 'object',
-    properties: {
-      hiddenSpecifications: {
-        items: {
-          default: '',
-          type: 'string',
-          title: 'admin/editor.product-specifications.items.title',
-        },
-        description:
-          'admin/editor.product-specifications.hidden-specifications.description',
-        title:
-          'admin/editor.product-specifications.hidden-specifications.title',
-        type: 'array',
+ProductSpecificationsWrapper.schema = {
+  title: 'admin/editor.product-specifications.title',
+  description: '',
+  type: 'object',
+  properties: {
+    hiddenSpecifications: {
+      items: {
+        default: '',
+        type: 'string',
+        title: 'admin/editor.product-specifications.items.title',
       },
-      visibleSpecifications: {
-        items: {
-          default: '',
-          type: 'string',
-          title: 'admin/editor.product-specifications.items.title',
-        },
-        description:
-          'admin/editor.product-specifications.visible-specifications.description',
-        title:
-          'admin/editor.product-specifications.visible-specifications.title',
-        type: 'array',
-      },
+      description:
+        'admin/editor.product-specifications.hidden-specifications.description',
+      title: 'admin/editor.product-specifications.hidden-specifications.title',
+      type: 'array',
     },
-  }
+    visibleSpecifications: {
+      items: {
+        default: '',
+        type: 'string',
+        title: 'admin/editor.product-specifications.items.title',
+      },
+      description:
+        'admin/editor.product-specifications.visible-specifications.description',
+      title: 'admin/editor.product-specifications.visible-specifications.title',
+      type: 'array',
+    },
+  },
 }
 
 export default ProductSpecificationsWrapper

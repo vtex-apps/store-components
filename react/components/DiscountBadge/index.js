@@ -12,8 +12,10 @@ const calculateDiscountTax = (listPrice, sellingPrice) => {
 /**
  * The discount badge component. It receives the product's list and selling prices
  * and calculates the discount percent to show it in the product's sumary.
+ *
+ * @deprecated This component is deprecated. Please use [vtex.product-price](https://github.com/vtex-apps/product-price) instead.
  */
-const DiscountBadge = ({ listPrice, sellingPrice, label = '', children }) => {
+function DiscountBadge({ listPrice, sellingPrice, label = '', children }) {
   const percent = calculateDiscountTax(listPrice, sellingPrice)
   const shouldShowPercentage = percent && percent >= 0.01
 

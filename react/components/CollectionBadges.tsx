@@ -1,4 +1,5 @@
-import React, { FC } from 'react'
+import React from 'react'
+import type { FC } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
 
 export type Props = {
@@ -7,6 +8,9 @@ export type Props = {
 
 const HANDLES = ['collectionContainer', 'item'] as const
 
+/**
+ * @deprecated This component is deprecated. Please use [vtex.product-highlights](https://github.com/vtex-apps/product-highlights) instead.
+ */
 const CollectionBadges: FC<Props> = ({
   collectionBadgesText = [],
   children,

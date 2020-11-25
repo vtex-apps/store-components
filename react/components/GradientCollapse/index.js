@@ -27,6 +27,9 @@ const pointerEventsAutoClasses = state =>
     'tc w-100'
   )
 
+/**
+ * @deprecated This component is deprecated.
+ */
 function GradientCollapse(props) {
   const {
     children,

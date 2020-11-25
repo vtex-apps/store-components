@@ -1,40 +1,36 @@
+📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
+
 # Newsletter
 
-## Description
+![https://img.shields.io/badge/-Deprecated-red](https://img.shields.io/badge/-Deprecated-red)
 
-`Newsletter` is a VTEX component that displays a newsletter form. 
-This component can be imported and used by any VTEX app.
+> :warning: **The Newsletter block has been deprecated in favor of the [Newsletter app](https://vtex.io/docs/components/all/vtex.store-newsletter/).**
+> Although support for this block is still granted, we strongly recommend you to update your store theme with the Product Specification's blocks in order to keep up with the component's evolution.
 
-:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
+`newsletter` is a block that displays a newsletter form.
 
-## Table of Contents
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-    - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespaces](#css-namespaces)
+## Configuration
 
-## Usage
+1. Add the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
 
-You should follow the usage instruction in the main [README](/README.md#usage).
+```json
+  "dependencies": {
+    "vtex.store-components": "3.x"
+  }
+```
 
-Then, add `newsletter` block into your app theme.
+2. Add the `newsletter` block. For example:
 
-Example:
 
 ```json
   "store.home": {
-    "blocks": [
-      "carousel#home",
-      "shelf#home",
-      "newsletter"
+    "children": [
+      "newsletter",
     ]
   },
 ```
 
-#### Configuration
-
-Through the Storefront, you can change the `Newsletter`'s behavior and interface. However, you also can make in your theme app.
+#### Props
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
@@ -43,21 +39,19 @@ Through the Storefront, you can change the `Newsletter`'s behavior and interface
 | `submit` | `String` | Label of the submit button | `Sign up` (translated text) |
 | `hideLabel` | `Boolean` | Hide label | `false` |
 
-### Styles API
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+## Customization
 
-#### CSS Namespaces
-Below, we describe the namespace that are defined in the `Newsletter`.
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| Class name | Description | Component Source |
-| ---------- | ----------- | ---------------- |
-| `newsletter` | Outmost element | [index](./index.js)
-| `container` | Container element | [index](./index.js)
-| `form` | Form element | [index](./index.js)
-| `inputGroup` | Element that wraps input | [index](./index.js)
-| `buttonContainer` | Element that wraps the button | [index](./index.js)
-| `label` | Label of the input | [index](./index.js)
-| `error` | Error message | [index](./index.js)
-| `confirmation` | Class added to `newsletter` when user submit email | [index](./index.js)
-| `confirmationTitle` | Title showed when user submit email | [index](./index.js)
-| `confirmationText` | Text showed when user submit email | [index](./index.js)
+| CSS Handles                     |
+| ------------------------------- |
+| `newsletter` |
+| `container` |
+| `form` |
+| `inputGroup` |
+| `buttonContainer` |
+| `label` |
+| `error` |
+| `confirmation` |
+| `confirmationTitle` |
+| `confirmationText` |

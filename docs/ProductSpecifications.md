@@ -2,7 +2,10 @@
 
 # Product Specifications
 
-:warning: **The Product Specifications block has been deprecated in favor of the [Product Specifications app](https://vtex.io/docs/components/all/vtex.product-specifications/)**. Although support for this block is still granted, we strongly recommend you to update your store theme with the Product Specification's blocks in order to keep up with the component's evolution.
+![https://img.shields.io/badge/-Deprecated-red](https://img.shields.io/badge/-Deprecated-red)
+
+> :warning: **The Product Specifications block has been deprecated in favor of the [Product Specifications app](https://vtex.io/docs/components/all/vtex.product-specifications/).**
+> Although support for this block is still granted, we strongly recommend you to update your store theme with the Product Specification's blocks in order to keep up with the component's evolution.
 
 `ProductSpecifications` is a block that shows the technical [specifications](https://help.vtex.com/tutorial/what-are-fields-or-specifications--2lB4AgibEseceMggKE2k2m) of a product.
 
