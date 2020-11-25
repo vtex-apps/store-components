@@ -1,17 +1,24 @@
 import React, { memo } from 'react'
-import PropTypes from 'prop-types'
-import { FormattedMessage, injectIntl } from 'react-intl'
+import type { MemoExoticComponent, PropsWithChildren } from 'react'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 import { formatIOMessage } from 'vtex.native-types'
+import { useProduct } from 'vtex.product-context'
 
-import { SanitizedHTML, DEFAULTS } from '../SanitizedHTML'
-import GradientCollapse from '../GradientCollapse/index'
+import { SanitizedHTML, DEFAULTS } from './components/SanitizedHTML'
+import GradientCollapse from './components/GradientCollapse'
+
+export type Props = {
+  description?: string
+  title: string
+  collapseContent?: boolean
+}
 
 const CSS_HANDLES = [
   'productDescriptionContainer',
   'productDescriptionTitle',
   'productDescriptionText',
-]
+] as const
 
 const allowedTags = [
   ...DEFAULTS.allowedTags,
@@ -38,12 +45,18 @@ const allowedAttributes = {
  * Product Description Component.
  * Render the description of a product
  */
-const ProductDescription = ({ description, collapseContent, title, intl }) => {
+function ProductDescription(props: PropsWithChildren<Props>) {
   const handles = useCssHandles(CSS_HANDLES)
+  const intl = useIntl()
+  const { product } = useProduct()
+
+  const description = props.description ?? product?.description
 
   if (!description) {
     return null
   }
+
+  const { collapseContent = true, title } = props
 
   return (
     <div className={handles.productDescriptionContainer}>
@@ -78,12 +91,12 @@ const ProductDescription = ({ description, collapseContent, title, intl }) => {
   )
 }
 
-ProductDescription.propTypes = {
-  title: PropTypes.string,
-  /** Product description string */
-  description: PropTypes.string,
-  collapseContent: PropTypes.bool,
-  intl: PropTypes.object.isRequired,
+const MemoizedProductDescription: MemoExoticComponent<
+  typeof ProductDescription
+> & { schema?: Record<string, string> } = memo(ProductDescription)
+
+MemoizedProductDescription.schema = {
+  title: 'admin/editor.product-description.title',
 }
 
-export default injectIntl(memo(ProductDescription))
+export default MemoizedProductDescription

@@ -4,7 +4,7 @@ import { render } from '@vtex/test-tools/react'
 import ProductDescription from '../../ProductDescription'
 
 describe('<ProductDescription />', () => {
-  const renderComponent = customProps => {
+  const renderComponent = (customProps?: any) => {
     const props = {
       description: 'Test description',
       ...customProps,
@@ -20,10 +20,10 @@ describe('<ProductDescription />', () => {
   })
 
   it('should match the snapshot with description', () => {
-    const { asFragment, getByText } = renderComponent()
+    const { asFragment, queryByText } = renderComponent()
 
     expect(asFragment()).toMatchSnapshot()
-    getByText('Show more')
+    expect(queryByText('Show more')).toBeInTheDocument()
   })
 
   it('should not show show more button', () => {
