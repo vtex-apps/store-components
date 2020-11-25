@@ -4,33 +4,33 @@ import { useProduct } from 'vtex.product-context'
 import ContentLoader from 'react-content-loader'
 import { useCssHandles } from 'vtex.css-handles'
 
-interface Props {
+type Props = {
   /** Name of the product */
   name?: string
   /** Selected SKU name */
   skuName?: string
   /** Show sku */
-  showSku: boolean
+  showSku?: boolean
   /** Product reference */
   productReference?: string
   /** Show product reference */
-  showProductReference: boolean
+  showProductReference?: boolean
   /** Brand name */
   brandName?: string
   /** Show brand name */
-  showBrandName: boolean
+  showBrandName?: boolean
   /** Classes to be applied to root element */
-  className: string
+  className?: string
   /** Classes to be applied to brandName element */
-  brandNameClass: string
+  brandNameClass?: string
   /** Classes to be applied to skuName element */
-  skuNameClass: string
+  skuNameClass?: string
   /** Classes to be applied to productReference element */
-  productReferenceClass: string
+  productReferenceClass?: string
   /** Classes to be applied to loader root element */
-  loaderClass: string
+  loaderClass?: string
   /** HTML tag to be used in the component container */
-  tag: 'div' | 'h1' | 'h2' | 'h3'
+  tag?: 'div' | 'h1' | 'h2' | 'h3'
 }
 
 const CSS_HANDLES = [
@@ -123,7 +123,7 @@ function ProductNameWrapper(props: Props) {
   return (
     <ProductName
       {...props}
-      tag={props.tag || 'h1'}
+      tag={props.tag ?? 'h1'}
       name={props.name ?? product?.productName}
       skuName={props.skuName ?? selectedItem?.name}
       productReference={props.productReference ?? product?.productReference}
