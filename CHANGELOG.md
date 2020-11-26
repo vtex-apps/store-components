@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- `Logo` components implementation from JavaScript to TypeScript.
 
 ## [3.132.5] - 2020-12-02
 ### Changed
