@@ -1,7 +1,6 @@
 import React, { useRef, useCallback, useState, useEffect, useMemo } from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import Downshift from 'downshift'
+import Downshift, { DownshiftProps } from 'downshift'
 import debounce from 'debounce'
 import {
   NoSSR,
@@ -13,8 +12,9 @@ import { Overlay } from 'vtex.react-portal'
 import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { defineMessages, useIntl } from 'react-intl'
 
-import styles from '../styles.css'
+import styles from './SearchBar.css'
 import AutocompleteResults from '../../AutocompleteResults'
+import type { Props as AutocompleteResultsProps } from '../../AutocompleteResults'
 import AutocompleteInput from './AutocompleteInput'
 
 const CSS_HANDLES = ['searchBarInnerContainer']
@@ -28,7 +28,54 @@ const messages = defineMessages({
   },
 })
 
-const SearchBar = ({
+interface Props {
+  /** Placeholder to be used on the input */
+  placeholder: string
+  /** Current value of the input */
+  inputValue: string
+  /** Function to handle input changes */
+  onInputChange: DownshiftProps<any>['onChange']
+  /** Function to direct the user to the searchPage */
+  onGoToSearchPage: () => void
+  /** Function to clear the input */
+  onClearInput: () => void
+  /** Indentify when use the compact version of the component */
+  compactMode?: boolean
+  /** Identify if the search icon is on left or right position */
+  hasIconLeft?: boolean
+  /** Custom classes for the search icon */
+  iconClasses?: string
+  /** Block class for the search icon */
+  iconBlockClass?: string
+  /** Identify if the search input should autofocus or not */
+  autoFocus?: boolean
+  /** Max width of the search bar */
+  maxWidth?: string | number
+  /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
+  customSearchPageUrl?: string
+  /** Uses the term the user has inputed to try to navigate to the proper
+   * page type (e.g. a department, a brand, a category)
+   */
+  attemptPageTypeSearch?: boolean
+  /* Autocomplete Horizontal alignment */
+  autocompleteAlignment?: 'right' | 'left' | 'center'
+  /** Identify if autocomplete should be open on input focus or not */
+  openAutocompleteOnFocus?: boolean
+  /** Identify if input should blur on submit */
+  blurOnSubmit?: boolean
+  /** Identify if icon should submit on click */
+  submitOnIconClick?: boolean
+  /** Minimum search term length allowed */
+  minSearchTermLength?: number
+  /** If true, the autocomplete will fill the whole window horizontally */
+  autocompleteFullWidth?: boolean
+  /** The type of the search input */
+  inputType?: 'text' | 'search'
+  /** Define the component display mode,such as which buttons should be visible */
+  displayMode?: 'clear-button' | 'search-and-clear-buttons' | 'search-button'
+}
+
+function SearchBar({
   placeholder,
   onInputChange,
   onGoToSearchPage,
@@ -46,21 +93,22 @@ const SearchBar = ({
   openAutocompleteOnFocus,
   blurOnSubmit,
   submitOnIconClick,
-  // eslint-disable-next-line react/prop-types
   displayMode,
   minSearchTermLength,
   autocompleteFullWidth,
   inputType,
-}) => {
+}: Props) {
   const intl = useIntl()
-  const container = useRef()
+  const container = useRef<HTMLDivElement>(null)
   const { navigate } = useRuntime()
   const handles = useCssHandles(CSS_HANDLES)
   const [searchTerm, setSearchTerm] = useState(inputValue)
-  const [inputErrorMessage, setInputErrorMessage] = useState()
+  const [inputErrorMessage, setInputErrorMessage] = useState<
+    string | undefined
+  >()
 
   const debouncedSetSearchTerm = useCallback(
-    debounce(newValue => {
+    debounce((newValue: string) => {
       setSearchTerm(newValue)
     }, SEARCH_DELAY_TIME),
     []
@@ -71,7 +119,7 @@ const SearchBar = ({
   }, [debouncedSetSearchTerm, inputValue])
 
   const onSelect = useCallback(
-    element => {
+    (element) => {
       if (!element) {
         return
       }
@@ -101,7 +149,7 @@ const SearchBar = ({
       }
 
       let page = 'store.product'
-      let params = {
+      let params: Record<string, string> = {
         slug: element.slug,
         id: element.productId,
       }
@@ -132,12 +180,12 @@ const SearchBar = ({
     return null
   }
 
-  const showInputErrorMessage = newInputErrorMessage => {
+  const showInputErrorMessage = (newInputErrorMessage: string) => {
     setInputErrorMessage(newInputErrorMessage)
   }
 
   const hideInputErrorMessage = () => {
-    setInputErrorMessage()
+    setInputErrorMessage(undefined)
   }
 
   const fallback = (
@@ -150,6 +198,7 @@ const SearchBar = ({
       iconBlockClass={iconBlockClass}
       inputErrorMessage={inputErrorMessage}
       onGoToSearchPage={onGoToSearchPage}
+      onClearInput={onClearInput}
     />
   )
 
@@ -159,11 +208,13 @@ const SearchBar = ({
 
   const SelectedAutocompleteResults = useMemo(() => {
     return isAutocompleteDeclared
-      ? props => <ExtensionPoint id={AUTCOMPLETE_EXTENSION_ID} {...props} />
-      : props => <AutocompleteResults {...props} />
+      ? (props: AutocompleteResultsProps) => (
+          <ExtensionPoint id={AUTCOMPLETE_EXTENSION_ID} {...props} />
+        )
+      : (props: AutocompleteResultsProps) => <AutocompleteResults {...props} />
   }, [isAutocompleteDeclared])
 
-  const autocompleteContainerRef = useRef(null)
+  const autocompleteContainerRef = useRef<HTMLDivElement>(null)
 
   return (
     <div
@@ -200,18 +251,16 @@ const SearchBar = ({
                 // eslint-disable-next-line jsx-a11y/no-autofocus
                 autoFocus={autoFocus}
                 compactMode={compactMode}
-                onClearInput={onClearInput}
                 hasIconLeft={hasIconLeft}
                 iconClasses={iconClasses}
-                onGoToSearchPage={onGoToSearchPage}
+                openAutocompleteOnFocus={openAutocompleteOnFocus}
                 submitOnIconClick={submitOnIconClick}
                 displayMode={displayMode}
-                openAutocompleteOnFocus={openAutocompleteOnFocus}
                 inputType={inputType}
                 openMenu={openMenu}
                 inputErrorMessage={inputErrorMessage}
                 {...getInputProps({
-                  onKeyDown: event => {
+                  onKeyDown: (event) => {
                     // Only call default search function if user doesn't
                     // have any item highlighted in the menu options
                     if (event.key === 'Enter' && highlightedIndex === null) {
@@ -236,17 +285,20 @@ const SearchBar = ({
                   placeholder,
                   value: inputValue,
                   onChange: onInputChange,
+                  // @ts-expect-error this exists
                   onFocus: openAutocompleteOnFocus ? openMenu : undefined,
                 })}
+                onClearInput={onClearInput}
+                onGoToSearchPage={onGoToSearchPage}
               />
               <div ref={autocompleteContainerRef} />
               <Overlay
                 fullWindow={autocompleteFullWidth}
                 alignment={autocompleteAlignment}
-                target={autocompleteContainerRef.current}
+                target={autocompleteContainerRef.current ?? undefined}
               >
                 <SelectedAutocompleteResults
-                  parentContainer={container}
+                  parentContainer={container ?? undefined}
                   {...{
                     attemptPageTypeSearch,
                     isOpen,
@@ -267,51 +319,6 @@ const SearchBar = ({
       </NoSSR>
     </div>
   )
-}
-
-SearchBar.propTypes = {
-  /** Placeholder to be used on the input */
-  placeholder: PropTypes.string.isRequired,
-  /** Current value of the input */
-  inputValue: PropTypes.string.isRequired,
-  /** Function to handle input changes */
-  onInputChange: PropTypes.func.isRequired,
-  /** Function to direct the user to the searchPage */
-  onGoToSearchPage: PropTypes.func.isRequired,
-  /** Function to clear the input */
-  onClearInput: PropTypes.func.isRequired,
-  /** Indentify when use the compact version of the component */
-  compactMode: PropTypes.bool,
-  /** Identify if the search icon is on left or right position */
-  hasIconLeft: PropTypes.bool,
-  /** Custom classes for the search icon */
-  iconClasses: PropTypes.string,
-  /** Block class for the search icon */
-  iconBlockClass: PropTypes.string,
-  /** Identify if the search input should autofocus or not */
-  autoFocus: PropTypes.bool,
-  /** Max width of the search bar */
-  maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
-  customSearchPageUrl: PropTypes.string,
-  /** Uses the term the user has inputed to try to navigate to the proper
-   * page type (e.g. a department, a brand, a category)
-   */
-  attemptPageTypeSearch: PropTypes.bool,
-  /* Autocomplete Horizontal alignment */
-  autocompleteAlignment: PropTypes.string,
-  /** Identify if autocomplete should be open on input focus or not */
-  openAutocompleteOnFocus: PropTypes.bool,
-  /** Identify if input should blur on submit */
-  blurOnSubmit: PropTypes.bool,
-  /** Identify if icon should submit on click */
-  submitOnIconClick: PropTypes.bool,
-  /** Minimum search term length allowed */
-  minSearchTermLength: PropTypes.number,
-  /** If true, the autocomplete will fill the whole window horizontally */
-  autocompleteFullWidth: PropTypes.bool,
-  /** The type of the search input */
-  inputType: PropTypes.oneOf(['text', 'search']),
 }
 
 export default SearchBar

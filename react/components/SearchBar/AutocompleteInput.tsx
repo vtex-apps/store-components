@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Input, InputSearch } from 'vtex.styleguide'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { IconSearch, IconClose } from 'vtex.store-icons'
+import type { DownshiftProps } from 'downshift'
 
 const DISPLAY_MODES = [
   'clear-button',
@@ -44,7 +44,53 @@ const SearchIcon = () => {
   return <IconSearch />
 }
 
-const AutocompleteInput = ({
+interface Props {
+  /** Downshift prop to be passed to the input */
+  autoComplete?: string
+  /** Input ID */
+  id?: string
+  /** Downshift prop to be passed to the input */
+  onBlur?: () => void
+  /** Downshift prop to be passed to the input */
+  onChange?: DownshiftProps<any>['onChange']
+  /** Downshift prop to be passed to the input */
+  onKeyDown?: (event: any) => void
+  /** Downshift prop to be passed to the input */
+  value?: string
+  /** Downshift func to open the menu */
+  openMenu?: () => void
+  /** Placeholder to be used on the input */
+  placeholder?: string
+  compactMode?: boolean
+  /** Clears the input */
+  onClearInput: () => void
+  /** Identify if the search icon is on left or right position */
+  hasIconLeft?: boolean
+  /** Custom classes for the search icon */
+  iconClasses?: string
+  /** Block class for the search icon */
+  iconBlockClass?: string
+  /** Identify if the search input should autofocus or not */
+  autoFocus?: boolean
+  /** Function to direct the user to the searchPage */
+  onGoToSearchPage: () => void
+  /**
+   * @deprecated Use `displayMode`
+   * Identify if icon should submit on click
+   * */
+  submitOnIconClick?: boolean
+  /* Define the input display mode */
+  displayMode?: 'clear-button' | 'search-and-clear-buttons' | 'search-button'
+  /** Error message showed in search input */
+  inputErrorMessage?: string
+  /** The type of the search input */
+  inputType?: 'text' | 'search'
+  openAutocompleteOnFocus?: boolean
+  onInputChange: DownshiftProps<any>['onChange']
+  inputValue: string
+}
+
+function AutocompleteInput({
   onClearInput,
   compactMode,
   value,
@@ -53,15 +99,15 @@ const AutocompleteInput = ({
   iconClasses,
   autoFocus,
   onGoToSearchPage,
-  /** @deprecated */
   submitOnIconClick,
   displayMode = 'clear-button',
   openMenu,
   inputErrorMessage,
   inputType = 'text',
+  openAutocompleteOnFocus,
   ...restProps
-}) => {
-  const inputRef = useRef(null)
+}: Props) {
+  const inputRef = useRef<HTMLInputElement>(null)
   const handles = useCssHandles(CSS_HANDLES)
 
   let dMode = displayMode
@@ -84,14 +130,14 @@ const AutocompleteInput = ({
   useEffect(() => {
     const changeClassInput = () => {
       // eslint-disable-next-line vtex/prefer-early-return
-      if (compactMode) {
+      if (compactMode && inputRef.current) {
         inputRef.current.placeholder = ''
         inputRef.current.classList.add(handles.paddingInput)
       }
     }
 
     changeClassInput()
-    autoFocus && inputRef.current.focus()
+    autoFocus && inputRef.current?.focus()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -108,7 +154,7 @@ const AutocompleteInput = ({
 
   const clearButton = showClearButton && (
     <button
-      className={`${iconClasses || ''} ${applyModifiers(
+      className={`${iconClasses ?? ''} ${applyModifiers(
         handles.searchBarIcon,
         'clear'
       )} flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3`}
@@ -123,7 +169,7 @@ const AutocompleteInput = ({
 
   const internalSearchButton = showInternalSearchButton && (
     <button
-      className={`${iconClasses || ''} ${applyModifiers(
+      className={`${iconClasses ?? ''} ${applyModifiers(
         handles.searchBarIcon,
         'search'
       )} flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3`}
@@ -138,7 +184,7 @@ const AutocompleteInput = ({
       className={`${handles.externalSearchButtonWrapper} bw1 bl b--muted-4 flex items-center `}
     >
       <button
-        className={`${iconClasses || ''} ${applyModifiers(
+        className={`${iconClasses ?? ''} ${applyModifiers(
           handles.searchBarIcon,
           'external-search'
         )}  flex items-center h-100 pointer pv0 nr5 ph5 bn c-link`}
@@ -178,7 +224,7 @@ const AutocompleteInput = ({
     return (
       <form
         action="#"
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault()
           e.stopPropagation()
           e.nativeEvent.stopImmediatePropagation()
@@ -216,49 +262,6 @@ const AutocompleteInput = ({
       </div>
     </div>
   )
-}
-
-AutocompleteInput.propTypes = {
-  /** Downshift prop to be passed to the input */
-  autoComplete: PropTypes.string,
-  /** Input ID */
-  id: PropTypes.string,
-  /** Downshift prop to be passed to the input */
-  onBlur: PropTypes.func,
-  /** Downshift prop to be passed to the input */
-  onChange: PropTypes.func,
-  /** Downshift prop to be passed to the input */
-  onKeyDown: PropTypes.func,
-  /** Downshift prop to be passed to the input */
-  value: PropTypes.string,
-  /** Downshift func to open the menu */
-  openMenu: PropTypes.func,
-  /** Placeholder to be used on the input */
-  placeholder: PropTypes.string,
-  compactMode: PropTypes.bool,
-  /** Clears the input */
-  onClearInput: PropTypes.func,
-  /** Identify if the search icon is on left or right position */
-  hasIconLeft: PropTypes.bool,
-  /** Custom classes for the search icon */
-  iconClasses: PropTypes.string,
-  /** Block class for the search icon */
-  iconBlockClass: PropTypes.string,
-  /** Identify if the search input should autofocus or not */
-  autoFocus: PropTypes.bool,
-  /** Function to direct the user to the searchPage */
-  onGoToSearchPage: PropTypes.func.isRequired,
-  /**
-   * @deprecated Use `displayMode`
-   * Identify if icon should submit on click
-   * */
-  submitOnIconClick: PropTypes.bool,
-  /* Define the input display mode */
-  displayMode: PropTypes.oneOf(DISPLAY_MODES),
-  /** Error message showed in search input */
-  inputErrorMessage: PropTypes.string,
-  /** The type of the search input */
-  inputType: PropTypes.oneOf(['text', 'search']),
 }
 
 export default AutocompleteInput
