@@ -1,6 +1,6 @@
 import React from 'react'
 import { useCssHandles } from 'vtex.css-handles'
-import useProduct from 'vtex.product-context/useProduct'
+import { useProduct } from 'vtex.product-context'
 
 const CSS_HANDLES = [
   'productSKUAttributesContainer',

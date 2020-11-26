@@ -3,23 +3,29 @@ import type { FormEvent, ChangeEvent } from 'react'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-apollo'
 import { Button, Input } from 'vtex.styleguide'
-import useProduct from 'vtex.product-context/useProduct'
+import { useProduct } from 'vtex.product-context'
+import type { Seller } from 'vtex.product-context'
 
 import ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION from './graphql/addToAvailabilitySubscriberMutation.gql'
-import styles from './styles/availability-subscriber.css'
+import styles from './AvailabilitySubscriber.css'
 
+interface MutationVariables {
+  acronym: string
+  document: {
+    fields: Array<{
+      key: string
+      value?: string | null
+    }>
+  }
+}
 interface Props {
-  /* Availability of the product */
+  /* Product's availability */
   available?: boolean
   /* SKU id to subscribe to */
-  skuId?: boolean
+  skuId?: string
 }
 
-interface CommertialOffer {
-  AvailableQuantity: number
-}
-
-const isAvailable = (commertialOffer?: CommertialOffer) => {
+const isAvailable = (commertialOffer?: Seller['commertialOffer']) => {
   return (
     commertialOffer &&
     (Number.isNaN(+commertialOffer.AvailableQuantity) ||
@@ -29,7 +35,7 @@ const isAvailable = (commertialOffer?: CommertialOffer) => {
 
 /**
  * Availability Subscriber Component.
- * A form where users can sign in to be alerted
+ * A form where users can sign up to be alerted
  * when a product becomes available again
  */
 function AvailabilitySubscriber(props: Props) {
@@ -39,9 +45,10 @@ function AvailabilitySubscriber(props: Props) {
   const [emailError, setEmailError] = useState(false)
   const [didBlurEmail, setDidBlurEmail] = useState(false)
 
-  const [addToAvailabilitySubscriber, { loading, error, data }] = useMutation(
-    ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION
-  )
+  const [signUp, { loading, error, data }] = useMutation<
+    unknown,
+    MutationVariables
+  >(ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION)
 
   const intl = useIntl()
 
@@ -51,14 +58,15 @@ function AvailabilitySubscriber(props: Props) {
   const available = props.available ?? isAvailable(commertialOffer)
   const skuId = props.skuId ?? productContext.selectedItem?.itemId
 
-  // Render component only if product is out of sales
+  // Render component only if the product is out of stock
   if (available || !skuId) {
     return null
   }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const variables = {
+
+    const variables: MutationVariables = {
       acronym: 'AS',
       document: {
         fields: [
@@ -90,11 +98,11 @@ function AvailabilitySubscriber(props: Props) {
       },
     }
 
-    const result = await addToAvailabilitySubscriber({
+    const signUpMutationResult = await signUp({
       variables,
     })
 
-    if (!result.errors) {
+    if (!signUpMutationResult.errors) {
       setName('')
       setEmail('')
     }
