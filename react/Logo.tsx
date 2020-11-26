@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
-import classNames from 'classnames'
 import * as Amp from 'react-amphtml'
 
 import Placeholder from './components/Logo/LogoPlaceholder'
@@ -45,10 +44,9 @@ function Logo({
   } = useRuntime()
 
   const handles = useCssHandles(CSS_HANDLES)
-  const logoClassNames = classNames('store-logo', handles.logoContainer, {
-    [styles.sizeDesktop]: !mobile,
-    [styles.sizeMobile]: mobile,
-  })
+  const logoClassNames = `store-logo ${handles.logoContainer} ${
+    mobile ? styles.sizeMobile : styles.sizeDesktop
+  }`
 
   const imgWidth = mobile && mobileWidth ? mobileWidth : width
   const imgHeight = mobile && mobileHeight ? mobileHeight : height
