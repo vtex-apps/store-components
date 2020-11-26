@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Migrate `user-address` to TypeScript.
+
 ## [3.136.1] - 2020-12-08
 ### Changed
 - Refactored `ProductDescription` to TypeScript.

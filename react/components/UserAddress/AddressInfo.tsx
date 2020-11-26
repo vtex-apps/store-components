@@ -1,9 +1,20 @@
 import React, { Fragment } from 'react'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
-import { pathOr } from 'ramda'
-import { injectIntl, FormattedMessage } from 'react-intl'
+import { useIntl, FormattedMessage } from 'react-intl'
 import { IconLocationMarker } from 'vtex.store-icons'
+
+type Props = {
+  // todo: fix orderform typings
+  orderForm: any
+  inverted: boolean
+  inline: boolean
+  showStreet: boolean
+  showCityAndState: boolean
+  showPostalCode: boolean
+  showPrefix: boolean
+  showIfEmpty: boolean
+}
 
 const CSS_HANDLES = [
   'addressInfoIconContainer',
@@ -12,25 +23,27 @@ const CSS_HANDLES = [
   'addressInfoAddressContainer',
   'addressInfoDivider',
   'addressInfoModalContainer',
-]
+] as const
 
 const AddressInfo = ({
   inverted,
   inline,
   orderForm,
-  intl,
   showStreet,
   showCityAndState,
   showPostalCode,
   showPrefix,
   showIfEmpty,
-}) => {
+}: Props) => {
   const { shippingData } = orderForm
   const hasModal = !!useChildBlock({ id: 'modal' })
   const handles = useCssHandles(CSS_HANDLES)
+  const intl = useIntl()
 
   if (!shippingData || !shippingData.address) {
-    if (!showIfEmpty) return
+    if (!showIfEmpty) {
+      return null
+    }
 
     return (
       <div
@@ -95,11 +108,7 @@ const AddressInfo = ({
   }${showPostalCode ? postalCode : ''}`
 
   const isPickup = addressType === 'pickup'
-  const friendlyName = pathOr(
-    '',
-    ['pickupPointCheckedIn', 'friendlyName'],
-    orderForm
-  )
+  const friendlyName = orderForm?.pickupPointCheckedIn?.friendlyName ?? ''
 
   return (
     <div className={`flex ${inline ? 'items-end' : 'items-center flex-auto'}`}>
@@ -113,6 +122,7 @@ const AddressInfo = ({
         >
           <IconLocationMarker size={27} viewBox="0 0 21 27" />
         </div>
+
         <div
           className={`${handles.addressInfoTextContainer} flex flex-auto flex-column`}
         >
@@ -132,6 +142,7 @@ const AddressInfo = ({
               )}
             </div>
           )}
+
           <div className={`${handles.addressInfoAddressContainer} truncate`}>
             {displayAddress}
           </div>
@@ -147,6 +158,7 @@ const AddressInfo = ({
               height: '1.5rem',
             }}
           />
+
           <div
             className={`${handles.addressInfoModalContainer} flex items-center`}
           >
@@ -168,4 +180,4 @@ const AddressInfo = ({
   )
 }
 
-export default injectIntl(AddressInfo)
+export default AddressInfo
