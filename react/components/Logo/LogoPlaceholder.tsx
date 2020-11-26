@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export default function LogoPlaceholder({ width, height, title }) {
+interface Props {
+  width: string | number
+  height: string | number
+  title: string
+}
+
+function LogoPlaceholder({ width, height, title }: Props) {
   return (
     <svg
       width={width}
@@ -27,3 +33,5 @@ export default function LogoPlaceholder({ width, height, title }) {
     </svg>
   )
 }
+
+export default memo(LogoPlaceholder)

@@ -1,19 +1,35 @@
 import React from 'react'
 import { Link, useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import * as Amp from 'react-amphtml'
 
-import Placeholder from './Placeholder'
-import styles from './styles.css'
+import Placeholder from './components/Logo/LogoPlaceholder'
+import styles from './components/Logo/styles.css'
 
-const CSS_HANDLES = ['logoLink', 'logoImage', 'logoContainer']
+interface Props {
+  /** Logo's URL */
+  url: string
+  /** Title to be displayed as alt text */
+  title: string
+  /** Logo's width */
+  width: string | number
+  /** Logo's height */
+  height: string | number
+  /** Link to redirect users on click */
+  href: string
+  /** Logo's width on mobile */
+  mobileWidth: string | number
+  /** Logo's height on mobile */
+  mobileHeight: string | number
+}
+
+const CSS_HANDLES = ['logoLink', 'logoImage', 'logoContainer'] as const
 
 /**
- * Logo of the store
+ * Store's logo.
  */
-const Logo = ({
+function Logo({
   url,
   href,
   width,
@@ -21,7 +37,7 @@ const Logo = ({
   title,
   mobileWidth,
   mobileHeight,
-}) => {
+}: Props) {
   const {
     amp,
     account,
@@ -37,7 +53,7 @@ const Logo = ({
   const imgWidth = mobile && mobileWidth ? mobileWidth : width
   const imgHeight = mobile && mobileHeight ? mobileHeight : height
 
-  const imageUrl = url && url.replace(/{{account}}/g, account)
+  const imageUrl = url?.replace(/{{account}}/g, account)
 
   let image = null
 
@@ -81,20 +97,6 @@ const Logo = ({
   ) : (
     logo
   )
-}
-
-Logo.propTypes = {
-  /** URL of the logo */
-  url: PropTypes.string,
-  /** Title to be displayed as alt text */
-  title: PropTypes.string.isRequired,
-  /** Logo's width */
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /** Logo's height */
-  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  href: PropTypes.string,
-  mobileWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  mobileHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
 
 Logo.schema = {
