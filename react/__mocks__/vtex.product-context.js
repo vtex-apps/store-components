@@ -18,3 +18,15 @@ export const ProductContext = React.createContext({
     titleTag: "Billabong Die Cut Loose Fit Short Sleeve Rashguard - Men's",
   },
 })
+
+export const useProduct = jest.fn(() => {
+  return {
+    product: {},
+    buyButton: {
+      clicked: false,
+    },
+    skuSelector: {
+      areAllVariationsSelected: true,
+    },
+  }
+})

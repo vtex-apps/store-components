@@ -1,10 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-interface Seller {
-  commertialOffer: {
-    AvailableQuantity: number
-  }
-}
-
 interface ProductItem {
   itemId: string
   name: string
@@ -43,7 +37,18 @@ interface SkuSpecificationValues {
   originalName: string
 }
 
-declare module 'vtex.product-context/useProduct' {
+declare module 'vtex.product-context/ProductDispatchContext' {
+  type DispatchFunction = (payload: { type: string; args?: any }) => void
+  export const useProductDispatch: () => DispatchFunction
+}
+
+declare module 'vtex.product-context' {
+  export interface Seller {
+    commertialOffer: {
+      AvailableQuantity: number
+    }
+  }
+
   type GroupId = string
 
   interface AssemblyOptionItem {
@@ -78,16 +83,6 @@ declare module 'vtex.product-context/useProduct' {
     }
   }
 
-  const useProduct: () => ProductContext
-  export default useProduct
-}
-
-declare module 'vtex.product-context/ProductDispatchContext' {
-  type DispatchFunction = (payload: { type: string; args?: any }) => void
-  export const useProductDispatch: () => DispatchFunction
-}
-
-declare module 'vtex.product-context' {
+  export const useProduct: () => ProductContext
   export const ProductContext
-  export function useProduct(): ProductContextType
 }
