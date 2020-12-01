@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- `Container` to TypeScript.
+- Refactored `Container` to TypeScript.
 
 ## [3.132.1] - 2020-11-30
 ### Changed
