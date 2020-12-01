@@ -9,13 +9,15 @@ import orderFormQuery from './queries/orderForm.gql'
 import Loader from './Loader'
 import styles from './styles.css'
 
-const Wrapper = ({ children }) => (
-  <div
-    className={`${styles.greetingContainer} mh4 pv4 t-heading-4 c-on-base nowrap`}
-  >
-    {children}
-  </div>
-)
+function Wrapper({ children }) {
+  return (
+    <div
+      className={`${styles.greetingContainer} mh4 pv4 t-heading-4 c-on-base nowrap`}
+    >
+      {children}
+    </div>
+  )
+}
 
 const withWrapper = Component => props => (
   <Wrapper>
@@ -23,7 +25,10 @@ const withWrapper = Component => props => (
   </Wrapper>
 )
 
-const Greeting = ({ orderForm }) => {
+/**
+ * @deprecated This component is deprecated.
+ */
+function Greeting({ orderForm }) {
   const firstName = path(['clientProfileData', 'firstName'], orderForm) || null
 
   return (
