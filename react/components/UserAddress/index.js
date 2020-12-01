@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo'
 import { useCssHandles } from 'vtex.css-handles'
 import ADDRESS_QUERY from 'vtex.store-resources/QueryAddress'
 
-import Container from '../Container'
+import Container from '../../Container'
 import AddressInfo from './AddressInfo'
 
 const CSS_HANDLES = ['userAddressContainer']
