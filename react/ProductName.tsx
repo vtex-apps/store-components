@@ -4,19 +4,34 @@ import { useProduct } from 'vtex.product-context'
 import ContentLoader from 'react-content-loader'
 import { useCssHandles } from 'vtex.css-handles'
 
-type Props = {
-  /** Name of the product */
+type DeprecatedProps = {
+  /**
+   * Name of the product
+   * @deprecated This prop is fulfilled automatically via product-context.
+   */
   name?: string
-  /** Selected SKU name */
+  /**
+   * Selected SKU name
+   * @deprecated This prop is fulfilled automatically via product-context.
+   */
   skuName?: string
+  /**
+   * Product reference
+   * @deprecated This prop is fulfilled automatically via product-context.
+   */
+  productReference?: string
+  /**
+   * Brand name
+   * @deprecated This prop is fulfilled automatically via product-context.
+   */
+  brandName?: string
+}
+
+type Props = {
   /** Show sku */
   showSku?: boolean
-  /** Product reference */
-  productReference?: string
   /** Show product reference */
   showProductReference?: boolean
-  /** Brand name */
-  brandName?: string
   /** Show brand name */
   showBrandName?: boolean
   /** Classes to be applied to root element */
@@ -31,7 +46,7 @@ type Props = {
   loaderClass?: string
   /** HTML tag to be used in the component container */
   tag?: 'div' | 'h1' | 'h2' | 'h3'
-}
+} & DeprecatedProps
 
 const CSS_HANDLES = [
   'productNameContainer',
@@ -49,14 +64,14 @@ function ProductName({
   skuNameClass,
   loaderClass,
   className,
-  name,
-  skuName,
   showSku = false,
-  brandName,
   showBrandName = false,
-  productReference,
   showProductReference = false,
   tag: Wrapper = 'div',
+  name,
+  skuName,
+  brandName,
+  productReference,
 }: Props) {
   const handles = useCssHandles(CSS_HANDLES)
 

@@ -22,6 +22,9 @@ interface Product {
   itemMetadata: ItemMetadata
   items: ProductItem[]
   skuSpecifications: SkuSpecification[]
+  productName: string
+  productReference: string
+  brand: string
 }
 
 interface SkuSpecification {
