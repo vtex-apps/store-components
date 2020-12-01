@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- ProductName to TypeScript.
+- Refactored ProductName to TypeScript.
 
 ## [3.132.6] - 2020-12-02
 ### Changed
