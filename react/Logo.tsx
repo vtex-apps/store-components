@@ -12,15 +12,15 @@ interface Props {
   /** Title to be displayed as alt text */
   title: string
   /** Logo's width */
-  width: string | number
+  width?: string | number
   /** Logo's height */
-  height: string | number
+  height?: string | number
   /** Link to redirect users on click */
   href: string
   /** Logo's width on mobile */
-  mobileWidth: string | number
+  mobileWidth?: string | number
   /** Logo's height on mobile */
-  mobileHeight: string | number
+  mobileHeight?: string | number
 }
 
 const CSS_HANDLES = ['logoLink', 'logoImage', 'logoContainer'] as const

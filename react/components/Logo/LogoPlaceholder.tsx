@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 
 interface Props {
-  width: string | number
-  height: string | number
+  width?: string | number
+  height?: string | number
   title: string
 }
 
