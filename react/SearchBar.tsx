@@ -9,13 +9,13 @@ import encodeForwardSlash from './utils/encodeForwardSlash'
 const { useModalDispatch } = ModalContext
 
 interface Props {
-  /** Indentify when use the compact version of the component */
+  /** Define when use the compact version of the component */
   compactMode?: boolean
-  /** Identify if the search icon is on left or right position */
+  /** Define if the search icon is on left or right position */
   hasIconLeft?: boolean
   /** Custom classes for the search icon */
   iconClasses?: string
-  /** Identify if the search input should autofocus or not */
+  /** Define if the search input should autofocus or not */
   autoFocus?: boolean
   /** Max width of the search bar */
   maxWidth?: string | number
@@ -29,11 +29,11 @@ interface Props {
   placeholder?: string
   /* Autocomplete Horizontal alignment */
   autocompleteAlignment?: 'right' | 'left' | 'center'
-  /** Identify if autocomplete should be open on input focus or not */
+  /** Define if autocomplete should be open on input focus or not */
   openAutocompleteOnFocus?: boolean
-  /** Identify if input should blur on submit */
+  /** Define if input should blur on submit */
   blurOnSubmit?: boolean
-  /** Identify if icon should submit on click */
+  /** Define if icon should submit on click */
   submitOnIconClick?: boolean
   /** Minimum search term length allowed */
   minSearchTermLength?: number
@@ -41,7 +41,7 @@ interface Props {
   autocompleteFullWidth?: boolean
   /** The type of the search input */
   inputType?: 'text' | 'search'
-  /** Define the component display mode,such as which buttons should be visible */
+  /** Define the component display mode, such as which buttons should be visible */
   displayMode?: 'clear-button' | 'search-and-clear-buttons' | 'search-button'
 }
 

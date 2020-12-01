@@ -19,7 +19,7 @@ import AutocompleteInput from './AutocompleteInput'
 
 const CSS_HANDLES = ['searchBarInnerContainer']
 const SEARCH_DELAY_TIME = 1000
-const AUTCOMPLETE_EXTENSION_ID = 'autocomplete-result-list'
+const AUTOCOMPLETE_EXTENSION_ID = 'autocomplete-result-list'
 
 const messages = defineMessages({
   searchTermTooShort: {
@@ -203,15 +203,23 @@ function SearchBar({
   )
 
   const isAutocompleteDeclared = Boolean(
-    useChildBlock({ id: AUTCOMPLETE_EXTENSION_ID })
+    useChildBlock({ id: AUTOCOMPLETE_EXTENSION_ID })
   )
 
   const SelectedAutocompleteResults = useMemo(() => {
-    return isAutocompleteDeclared
-      ? (props: AutocompleteResultsProps) => (
-          <ExtensionPoint id={AUTCOMPLETE_EXTENSION_ID} {...props} />
-        )
-      : (props: AutocompleteResultsProps) => <AutocompleteResults {...props} />
+    if (isAutocompleteDeclared) {
+      const AutoCompleteResultsWrapper = (props: AutocompleteResultsProps) => (
+        <ExtensionPoint id={AUTOCOMPLETE_EXTENSION_ID} {...props} />
+      )
+
+      return AutoCompleteResultsWrapper
+    }
+
+    const AutoCompleteResultsWrapper = (props: AutocompleteResultsProps) => (
+      <AutocompleteResults {...props} />
+    )
+
+    return AutoCompleteResultsWrapper
   }, [isAutocompleteDeclared])
 
   const autocompleteContainerRef = useRef<HTMLDivElement>(null)

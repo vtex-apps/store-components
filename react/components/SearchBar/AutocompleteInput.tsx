@@ -137,7 +137,7 @@ function AutocompleteInput({
     }
 
     changeClassInput()
-    autoFocus && inputRef.current?.focus()
+    if (autoFocus) inputRef.current?.focus()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
