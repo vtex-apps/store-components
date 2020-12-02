@@ -54,6 +54,7 @@ The SKU Selector is a product details page block responsible for displaying ever
 | `imageHeight`  | `number` | `object` | Height (in `px`) of the product thumbnail image. You can declare an object as its value in case you want to define a height for each device (`desktop` and `mobile`). | `undefined` |
 | `imageWidth` | `number` | `object` | Width (in `px`) of the product thumbnail image. You can declare an object as its value in case you want to define a width for each device (`desktop` and `mobile`).  | `undefined`  |
 | `initialSelection` | `enum`  | Controls the user initial selection for available variations when product page is fully loaded. Possible values are: `complete` (selects the first available SKU's variation values), `image` (selects the first available image variation) or `empty` (no variations will be selected when the page is loaded).  | `complete` |
+| `displayPrices`     | `boolean` | Only works if `displayMode` is set to `select` or `default`. Display the product price next to the variation label. Examples: [Shelf](https://user-images.githubusercontent.com/1207017/100927937-550bc080-34c4-11eb-9a2f-d0421f00e11b.png), [Product Page](https://user-images.githubusercontent.com/1207017/100927940-56d58400-34c4-11eb-911f-062c2f227511.png) | `false` |
 
 - **`visibleVariations` array**
 
