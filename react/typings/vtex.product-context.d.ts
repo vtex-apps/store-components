@@ -17,6 +17,8 @@ interface ProductItem {
 }
 
 interface Product {
+  brand: string
+  brandId: string
   itemMetadata: ItemMetadata
   items: ProductItem[]
   skuSpecifications: SkuSpecification[]
