@@ -20,41 +20,62 @@ const baseUrlRegex = new RegExp(/.+ids\/(\d+)/)
 
 const httpRegex = new RegExp(/http:\/\//)
 
-export function toHttps(url) {
+export function toHttps(url: string) {
   return url.replace(httpRegex, 'https://')
 }
 
-export function cleanImageUrl(imageUrl) {
+export function cleanImageUrl(imageUrl: string) {
   const result = baseUrlRegex.exec(imageUrl)
 
-  if (result.length > 0) return result[0]
+  if (result && result.length > 0) {
+    return result[0]
+  }
+
+  return null
 }
 
-function replaceLegacyFileManagerUrl(imageUrl, width, height) {
+function replaceLegacyFileManagerUrl(
+  imageUrl: string,
+  width: number | string,
+  height: number | string
+) {
   const legacyUrlPattern = '/arquivos/ids/'
   const isLegacyUrl = imageUrl.includes(legacyUrlPattern)
 
-  if (!isLegacyUrl) return imageUrl
+  if (!isLegacyUrl) {
+    return imageUrl
+  }
 
   return `${cleanImageUrl(imageUrl)}-${width}-${height}`
 }
 
-export function changeImageUrlSize(
+export function changeImageUrlSize({
   imageUrl,
   width = DEFAULT_WIDTH,
-  height = DEFAULT_HEIGHT
-) {
-  if (!imageUrl) return
-  typeof width === 'number' && (width = Math.min(width, MAX_WIDTH))
-  typeof height === 'number' && (height = Math.min(height, MAX_HEIGHT))
+  height = DEFAULT_HEIGHT,
+}: {
+  imageUrl: string
+  width?: string | number
+  height?: string | number
+}) {
+  let adjustedWidth = width
+  let adjustedHeight = height
+
+  if (typeof width === 'number') {
+    adjustedWidth = Math.min(width, MAX_WIDTH)
+  }
+
+  if (typeof height === 'number') {
+    adjustedHeight = Math.min(height, MAX_HEIGHT)
+  }
 
   const normalizedImageUrl = replaceLegacyFileManagerUrl(
     imageUrl,
-    width,
-    height
+    adjustedWidth,
+    adjustedHeight
   )
 
   const queryStringSeparator = normalizedImageUrl.includes('?') ? '&' : '?'
 
-  return `${normalizedImageUrl}${queryStringSeparator}width=${width}&height=${height}&aspect=true`
+  return `${normalizedImageUrl}${queryStringSeparator}width=${adjustedWidth}&height=${adjustedHeight}&aspect=true`
 }

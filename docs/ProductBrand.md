@@ -9,11 +9,11 @@ The `ProductBrand` is a VTEX block that displays either the **name** or the **lo
 
 ## Configuration
 
-1. Import the `vtex.product-summary` app to your theme's dependencies in the `manifest.json`, for example:
+1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json`, for example:
 
 ```json
   "dependencies: {
-    "vtex.product-summary": "2.x"
+    "vtex.store-components": "2.x"
   }
 ```
 
@@ -54,3 +54,13 @@ The `ProductBrand` is a VTEX block that displays either the **name** or the **lo
 ## Customization 
 
 In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
+
+| CSS Handles |
+| --- |
+| `productBrandContainer` |
+| `productBrandName` |
+| `productBrandLogo` |
+| `productBrandLogoWrapper` |
+| `productBrandLogoLink` |
+| `productBrandLogoSpacer` |
+| `productBrandNameSpacer` |
