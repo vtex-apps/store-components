@@ -87,7 +87,10 @@
   },
   "notification": {},
   "notification.inline": {
-    "component": "NotificationInline"
+    "component": "NotificationInline",
+    "content": {
+      "$ref": "app:vtex.store-components#/definitions/NotificationBar"
+    }
   },
   "notification.bar": {
     "component": "NotificationBar",
