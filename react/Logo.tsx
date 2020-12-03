@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useRuntime } from 'vtex.render-runtime'
+import type { RenderContext } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 import * as Amp from 'react-amphtml'
 
@@ -41,7 +42,7 @@ function Logo({
     amp,
     account,
     hints: { mobile },
-  } = useRuntime()
+  } = useRuntime() as RenderContext.RenderContext
 
   const handles = useCssHandles(CSS_HANDLES)
   const logoClassNames = `store-logo ${handles.logoContainer} ${
