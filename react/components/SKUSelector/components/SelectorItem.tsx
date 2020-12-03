@@ -157,9 +157,12 @@ const SelectorItem: FC<Props> = ({
             />
           ) : (
             <>
-              {variationValue}{' '}
+              {variationValue}
               {price && !isSelected && displayPrices && (
-                <FormattedCurrency value={price} />
+                <>
+                  {' '}
+                  <FormattedCurrency value={price} />
+                </>
               )}
             </>
           )}
