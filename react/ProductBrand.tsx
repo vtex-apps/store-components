@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, FC } from 'react'
+import React, { FC } from 'react'
 import { useQuery } from 'react-apollo'
 import { useProduct } from 'vtex.product-context'
 import { useCssHandles } from 'vtex.css-handles'
@@ -10,7 +10,7 @@ import brandLogoQuery from './graphql/productBrand.gql'
 type DisplayModeOptions = 'logo' | 'text'
 type WithLinkOptions = 'none' | 'logo' | 'text' | 'logoAndText'
 
-interface Props {
+export interface ProductBrandProps {
   /** Brand name */
   brandName?: string
   /** Brand id */
@@ -58,7 +58,7 @@ export const PRODUCT_BRAND_CSS_HANDLES = [
 const shouldExcludeBrand = (
   brandName: string,
   brandId: number,
-  excludeList: Props['excludeBrands']
+  excludeList: ProductBrandProps['excludeBrands']
 ) => {
   if (Array.isArray(excludeList)) {
     return excludeList.includes(brandName) || excludeList.includes(brandId)
@@ -98,7 +98,7 @@ function ProductBrand({
   withLink = 'none',
   brandName: brandNameProp,
   brandId: brandIdProp,
-}: PropsWithChildren<Props>) {
+}: ProductBrandProps) {
   const { brandName, brandId } = useBrandInfoProps(brandNameProp, brandIdProp)
   const handles = useCssHandles(PRODUCT_BRAND_CSS_HANDLES)
 
