@@ -159,6 +159,7 @@ class Carousel extends Component {
       case 'image':
         return (
           <ProductImage
+            index={i}
             src={slide.url}
             alt={slide.alt}
             maxHeight={maxHeight}

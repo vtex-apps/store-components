@@ -13,6 +13,7 @@ const DEFAULT_SIZE = 800
 const MAX_SIZE = 2048
 
 interface Props {
+  index: number
   src: string
   alt: string
   zoomMode: ZoomMode
@@ -27,6 +28,7 @@ type AspectRatio = string | number
 const CSS_HANDLES = ['productImage', 'productImageTag']
 
 const ProductImage: FC<Props> = ({
+  index,
   src,
   alt,
   zoomFactor = 2,
@@ -87,6 +89,7 @@ const ProductImage: FC<Props> = ({
         >
           <img
             ref={imageRef}
+            data-vtex-preload={index === 0 ? 'true' : 'false'}
             className={`${applyModifiers(handles.productImageTag, 'main')}`}
             style={{
               width: '100%',
@@ -98,7 +101,7 @@ const ProductImage: FC<Props> = ({
             srcSet={srcSet}
             alt={alt}
             title={alt}
-            loading="lazy"
+            loading={index === 0 ? 'eager' : 'lazy'}
             // WIP
             // The value of the "sizes" attribute means: if the window has at most 64.1rem of width,
             // the image will be of a width of 100vw. Otherwise, the
