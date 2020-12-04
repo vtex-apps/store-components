@@ -54,7 +54,7 @@
 | `zoomMode` | `enum` | Defines the image zoom behavior. Possible values are: `disabled` (zoom is disabled), `in-place-click`(zoom will be triggered when the image is clicked on), `in-place-hover`(zoom will be triggered when the image is hovered on)  or `open-modal` (image is zoommed using a modal). | `in-place-click` |
 | `ModalZoom` | `block` | Opens a modal for product image zooming. This prop's value must match the name of the block responsible for triggering the modal containing the product image for zooming (e.g. `modal-layout` from [Modal layout](https://vtex.io/docs/components/all/vtex.modal-layout/) app). Notice that the `ModalZoom` prop will work only if the `zoomMode` prop is set as `open-modal`. To learn more, check out the [Advanced Configuration section](#Advanced-Configuration). | `undefined` |
 | `contentType` | `enum` | Controls the type of content that will be displayed in the block. Possible values are: `images`, `videos`, or `all`. | `all` |
-
+| `displayMode` | `enum` | Enables you to choose between `default` and `inline` modes. `default` mode displays the images in a carousel and is compatible with all props available. `inline` mode will display only images (videos not supported yet) and with no extra markup. Useful if you have a complex layout. Props compatible with this mode are: `maxHeight`, `hiddenImages`, `zoomFactor`, `aspectRatio`,`ModalZoomElement` and `zoomMode`. Possible values are: `default` or `inline`. | `default` |
 ### Advanced configuration
 
 In this section, we teach you how to use modal zoom, a property for when you want to open a popup containing the product image for zooming. To use this feature, configure your `product-images` block using the `zoomMode` and `ModalZoom` props with `open-modal` and `modal-layout` set as its values, respectively.
@@ -131,6 +131,8 @@ In order to apply CSS customizations on this and other blocks, follow the instru
 | `image` |
 | `imgZoom` |
 | `productImagesContainer` (`content` is deprecated) |
+| `productImagesContainer--default`|
+| `productImagesContainer--inline`|
 | `productImagesGallerySlide` |
 | `productImagesGallerySwiperContainer` |
 | `productImagesThumb` |
