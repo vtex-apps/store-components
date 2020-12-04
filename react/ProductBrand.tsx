@@ -3,10 +3,12 @@ import { useQuery } from 'react-apollo'
 import { useProduct } from 'vtex.product-context'
 import { useCssHandles } from 'vtex.css-handles'
 
+import ProductBrandName from './components/ProductBrand/ProductBrandName'
 import { changeImageUrlSize } from './utils/imgUrlHelpers'
 import brandLogoQuery from './graphql/productBrand.gql'
 
 type DisplayModeOptions = 'logo' | 'text'
+type WithLinkOptions = 'none' | 'logo' | 'text' | 'logoAndText'
 
 interface Props {
   /** Brand name */
@@ -25,7 +27,10 @@ interface Props {
   height?: number
   /** CSS Handler */
   blockClass?: string
-  logoWithLink: boolean
+  /** @deprecated use withLink instead */
+  logoWithLink?: boolean
+  /** Whether it should link to the brand's page */
+  withLink?: WithLinkOptions
 }
 
 interface ProductBrandQueryVariables {
@@ -33,18 +38,19 @@ interface ProductBrandQueryVariables {
 }
 
 interface ProductBrandQueryResult {
-  brand: {
+  brand?: {
     imageUrl: string | null
     slug: string
   }
 }
 
-const CSS_HANDLES = [
+export const PRODUCT_BRAND_CSS_HANDLES = [
   'productBrandContainer',
   'productBrandName',
   'productBrandLogo',
   'productBrandLogoWrapper',
   'productBrandLogoLink',
+  'productBrandNameLink',
   'productBrandLogoSpacer',
   'productBrandNameSpacer',
 ] as const
@@ -89,11 +95,12 @@ function ProductBrand({
   height = 100,
   excludeBrands,
   logoWithLink,
+  withLink = 'none',
   brandName: brandNameProp,
   brandId: brandIdProp,
 }: PropsWithChildren<Props>) {
   const { brandName, brandId } = useBrandInfoProps(brandNameProp, brandIdProp)
-  const handles = useCssHandles(CSS_HANDLES)
+  const handles = useCssHandles(PRODUCT_BRAND_CSS_HANDLES)
 
   const { data, loading, error } = useQuery<
     ProductBrandQueryResult,
@@ -102,6 +109,11 @@ function ProductBrand({
     variables: { id: Number(brandId) },
     ssr: false,
   })
+
+  const logoHasLink =
+    withLink === 'logo' || withLink === 'logoAndText' || Boolean(logoWithLink)
+
+  const nameHasLink = withLink === 'text' || withLink === 'logoAndText'
 
   if (!brandName || !brandId) {
     return null
@@ -113,7 +125,11 @@ function ProductBrand({
   }
 
   const brandNameElement = (
-    <span className={`${handles.productBrandName}`}>{brandName}</span>
+    <ProductBrandName
+      brandName={brandName}
+      withLink={nameHasLink}
+      slug={data?.brand?.slug}
+    />
   )
 
   const BrandContainer: FC = ({ children }) => (
@@ -204,7 +220,7 @@ function ProductBrand({
         className={`${handles.productBrandLogoWrapper}`}
       >
         {/** TODO: Use a smarter Image component that handles VTEX image resizing etc. */}
-        {logoWithLink ? (
+        {logoHasLink ? (
           <a
             href={logoLink}
             className={`${handles.productBrandLogoLink}`}
