@@ -1,12 +1,13 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { useCssHandles } from 'vtex.css-handles'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 
 import Carousel from './components/Carousel'
 import ProductImage from './components/ProductImage'
 import {
   THUMBS_ORIENTATION,
   THUMBS_POSITION_HORIZONTAL,
+  DEFAULT_EXCLUDE_IMAGE_WITH,
   DISPLAY_MODE,
 } from './utils/enums'
 
@@ -42,6 +43,10 @@ const ProductImages = ({
     hiddenImages && hiddenImages.map(text => new RegExp(text, 'i'))
 
   const handles = useCssHandles(CSS_HANDLES)
+  const productImagesContainerClass = applyModifiers(
+    handles.productImagesContainer,
+    displayMode
+  )
 
   const shouldIncludeImages = contentType !== 'videos'
   const images = shouldIncludeImages
@@ -78,9 +83,7 @@ const ProductImages = ({
   const isZoomDisabled = legacyZoomType === 'no-zoom' || zoomMode === 'disabled'
 
   return (
-    <div
-      className={`${handles.productImagesContainer} ${handles.content} w-100`}
-    >
+    <div className={`${productImagesContainerClass} ${handles.content} w-100`}>
       {displayMode === 'inline' ? (
         images.map(({ url, alt }, index) => (
           <ProductImage
@@ -182,6 +185,7 @@ ProductImages.defaultProps = {
   zoomProps: { zoomType: 'in-page' },
   thumbnailsOrientation: THUMBS_ORIENTATION.VERTICAL,
   displayThumbnailsArrows: false,
+  hiddenImages: DEFAULT_EXCLUDE_IMAGE_WITH,
   displayMode: DISPLAY_MODE.DEFAULT,
 }
 
