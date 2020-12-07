@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - New prop `displayPrices` to `sku-selector`.
 
+## [3.132.7] - 2020-12-07
+### Changed
+- Refactored ProductName to TypeScript.
+
 ## [3.132.6] - 2020-12-02
 ### Changed
 - `Logo` components implementation from JavaScript to TypeScript.
