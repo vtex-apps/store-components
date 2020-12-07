@@ -131,8 +131,8 @@ In order to apply CSS customizations on this and other blocks, follow the instru
 | `image` |
 | `imgZoom` |
 | `productImagesContainer` (`content` is deprecated) |
-| `productImagesContainer--default`|
-| `productImagesContainer--inline`|
+| `productImagesContainer--carousel`|
+| `productImagesContainer--list`|
 | `productImagesGallerySlide` |
 | `productImagesGallerySwiperContainer` |
 | `productImagesThumb` |
