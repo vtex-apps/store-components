@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.133.0] - 2020-12-07
 ### Added
 - `ProductImages` displays a default placeholder image if no image or video is present.
 - `ProductImages` can receive a custom placeholder image by using the `placeholder` prop
