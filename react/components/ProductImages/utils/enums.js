@@ -9,8 +9,8 @@ export const THUMBS_ORIENTATION = {
 }
 
 export const DISPLAY_MODE = {
-  DEFAULT: 'default',
-  INLINE: 'inline',
+  CAROUSEL: 'carousel',
+  LIST: 'list',
 }
 
 export const DEFAULT_EXCLUDE_IMAGE_WITH = 'skuvariation'

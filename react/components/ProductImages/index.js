@@ -82,10 +82,12 @@ const ProductImages = ({
   const { zoomType: legacyZoomType } = zoomProps || {}
   const isZoomDisabled = legacyZoomType === 'no-zoom' || zoomMode === 'disabled'
 
-  return (
-    <div className={`${productImagesContainerClass} ${handles.content} w-100`}>
-      {displayMode === 'inline' ? (
-        images.map(({ url, alt }, index) => (
+  const containerClass = `${productImagesContainerClass} ${handles.content} w-100`
+
+  if (displayMode === DISPLAY_MODE.LIST)
+    return (
+      <div className={containerClass}>
+        {images.map(({ url, alt }, index) => (
           <ProductImage
             key={index}
             src={url}
@@ -96,26 +98,29 @@ const ProductImages = ({
             ModalZoomElement={ModalZoomElement}
             zoomMode={isZoomDisabled ? 'disabled' : zoomMode}
           />
-        ))
-      ) : (
-        <Carousel
-          slides={slides}
-          position={position}
-          zoomMode={zoomMode}
-          maxHeight={maxHeight}
-          zoomFactor={zoomFactor}
-          aspectRatio={aspectRatio}
-          ModalZoomElement={ModalZoomElement}
-          thumbnailMaxHeight={thumbnailMaxHeight}
-          showPaginationDots={showPaginationDots}
-          thumbnailAspectRatio={thumbnailAspectRatio}
-          showNavigationArrows={showNavigationArrows}
-          thumbnailsOrientation={thumbnailsOrientation}
-          displayThumbnailsArrows={displayThumbnailsArrows}
-          // Deprecated
-          zoomProps={zoomProps}
-        />
-      )}
+        ))}
+      </div>
+    )
+
+  return (
+    <div className={containerClass}>
+      <Carousel
+        slides={slides}
+        position={position}
+        zoomMode={zoomMode}
+        maxHeight={maxHeight}
+        zoomFactor={zoomFactor}
+        aspectRatio={aspectRatio}
+        ModalZoomElement={ModalZoomElement}
+        thumbnailMaxHeight={thumbnailMaxHeight}
+        showPaginationDots={showPaginationDots}
+        thumbnailAspectRatio={thumbnailAspectRatio}
+        showNavigationArrows={showNavigationArrows}
+        thumbnailsOrientation={thumbnailsOrientation}
+        displayThumbnailsArrows={displayThumbnailsArrows}
+        // Deprecated
+        zoomProps={zoomProps}
+      />
     </div>
   )
 }
@@ -176,7 +181,7 @@ ProductImages.propTypes = {
   ]),
   zoomFactor: PropTypes.number,
   contentType: PropTypes.oneOf(['all', 'images', 'videos']),
-  displayMode: PropTypes.oneOf([DISPLAY_MODE.DEFAULT, DISPLAY_MODE.INLINE]),
+  displayMode: PropTypes.oneOf([DISPLAY_MODE.CAROUSEL, DISPLAY_MODE.LIST]),
 }
 
 ProductImages.defaultProps = {
@@ -186,7 +191,7 @@ ProductImages.defaultProps = {
   thumbnailsOrientation: THUMBS_ORIENTATION.VERTICAL,
   displayThumbnailsArrows: false,
   hiddenImages: DEFAULT_EXCLUDE_IMAGE_WITH,
-  displayMode: DISPLAY_MODE.DEFAULT,
+  displayMode: DISPLAY_MODE.CAROUSEL,
 }
 
 export default ProductImages
