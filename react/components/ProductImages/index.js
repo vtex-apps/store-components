@@ -15,6 +15,7 @@ const ProductImages = ({
   position,
   displayThumbnailsArrows,
   hiddenImages,
+  placeholder,
   images: allImages,
   videos: allVideos,
   thumbnailsOrientation,
@@ -78,6 +79,7 @@ const ProductImages = ({
     >
       <Carousel
         slides={slides}
+        placeholder={placeholder}
         position={position}
         zoomMode={zoomMode}
         maxHeight={maxHeight}
@@ -116,6 +118,7 @@ ProductImages.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
+  placeholder: PropTypes.string,
   /** Array of images to be passed for the Thumbnail Slider component as a props */
   images: PropTypes.arrayOf(
     PropTypes.shape({
