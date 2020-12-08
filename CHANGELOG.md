@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Preload main image of `ProductImages`
+- Preload main image of `ProductImages`.
 
 ## [3.134.0] - 2020-12-08
 ### Added
