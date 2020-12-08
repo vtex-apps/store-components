@@ -122,7 +122,7 @@ function SearchBar({
   }, [debouncedSetSearchTerm, inputValue])
 
   const onSelect = useCallback(
-    (element) => {
+    element => {
       if (!element) {
         return
       }
@@ -271,7 +271,7 @@ function SearchBar({
                 openMenu={openMenu}
                 inputErrorMessage={inputErrorMessage}
                 {...getInputProps({
-                  onKeyDown: (event) => {
+                  onKeyDown: event => {
                     // Only call default search function if user doesn't
                     // have any item highlighted in the menu options
                     if (event.key === 'Enter' && highlightedIndex === null) {
@@ -296,6 +296,7 @@ function SearchBar({
                   placeholder,
                   value: inputValue,
                   onChange: onInputChange,
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                   // @ts-expect-error this exists
                   onFocus: openAutocompleteOnFocus ? openMenu : undefined,
                 })}
