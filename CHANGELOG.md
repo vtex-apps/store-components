@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Refactored `ProductDescription` to TypeScript.
 
+## [3.136.0] - 2020-12-08
+### Added
+- `withLink` prop on `ProductBrand`. It controls in which cases the component should link to the brand's page.
+### Changed
+- `logoWithLink` prop on `ProductBrand` is now deprecated.
+
 ## [3.135.0] - 2020-12-08
 ### Changed
 - Preload main image of `ProductImages`.
