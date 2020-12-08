@@ -267,7 +267,6 @@ function SearchBar({
                 openAutocompleteOnFocus={openAutocompleteOnFocus}
                 submitOnIconClick={submitOnIconClick}
                 displayMode={displayMode}
-                containerMode={containerMode}
                 inputType={inputType}
                 openMenu={openMenu}
                 inputErrorMessage={inputErrorMessage}
