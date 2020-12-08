@@ -12,15 +12,7 @@ declare module 'vtex.styleguide' {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   export const EXPERIMENTAL_Select: any
   export const Dropdown: any
-  export const Input: ComponentType<InputProps>
-  interface InputProps {
-    value?: string
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
-    onBlur?: () => void
-    placeholder?: string
-    name?: string
-    type?: string
-    error?: boolean
-    errorMessage?: string
-  }
+  export const Input: any
+  export const Spinner: any
+  export const InputSearch: any
 }

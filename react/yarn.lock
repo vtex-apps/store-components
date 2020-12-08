@@ -1367,6 +1367,11 @@
   resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.11.tgz#2521cc86f69d15c5b90664e4829d84566052c1cf"
   integrity sha512-2koNhpWm3DgWRp5tpkiJ8JGc1xTn2q0l+jUNUE7oMKXUf5NpI9AIdC4kbjGNFBdHtcxBD18LAksoudAVhFKCjw==
 
+"@types/debounce@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/debounce/-/debounce-1.2.0.tgz#9ee99259f41018c640b3929e1bb32c3dcecdb192"
+  integrity sha512-bWG5wapaWgbss9E238T0R6bfo5Fh3OkeoSt245CM7JJwVwpw6MEBCbIxLq5z8KzsE3uJhzcIuQkyiZmzV3M/Dw==
+
 "@types/graceful-fs@^4.1.2":
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/@types/graceful-fs/-/graceful-fs-4.1.4.tgz#4ff9f641a7c6d1a3508ff88bc3141b152772e753"
@@ -1441,7 +1446,7 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.6.tgz#146d3da57b3c636cc0d1769396ce1cfa8991147f"
   integrity sha512-6QlRuqsQ/Ox/aJEQWBEJG7A9+u7oSYl3mem/K8IzxXG/kAGbV1YPD9Bg9Zw3vyxC/YP+zONKwy8hGkSt1jxFMw==
 
-"@types/node@^12.7.2", "@types/node@^12.7.5":
+"@types/node@^12.7.5":
   version "12.19.3"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.19.3.tgz#a6e252973214079155f749e8bef99cc80af182fa"
   integrity sha512-8Jduo8wvvwDzEVJCOvS/G6sgilOLvvhn1eMmK3TW8/T217O7u1jdrK6ImKLv80tVryaPSVeKu6sjDEiFjd4/eg==
@@ -1586,14 +1591,10 @@
     react-test-renderer "^16.13.1"
     typescript "^3.9.7"
 
-"@vtex/tsconfig@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@vtex/tsconfig/-/tsconfig-0.3.0.tgz#b16bfed615bfb1c6bd63c7cee7fbbba2dcf85a1d"
-  integrity sha512-tm+TKvz1ear25HcNvB8ortlaIEuq36k5rC6D/BtnhqtLOh5vmfPju0eF9Aei6zqrFr5MsmqVWcyaO350FDd+4Q==
-  dependencies:
-    "@types/graphql" "^14.5.0"
-    "@types/jest" "^24.0.18"
-    "@types/node" "^12.7.2"
+"@vtex/tsconfig@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@vtex/tsconfig/-/tsconfig-0.5.5.tgz#5456b66696389f269768a5d76e11ae7f4c02b1b2"
+  integrity sha512-uOFLkWLBlG8bpXuZWUu3VKJKL1sU49YAXDkxOkLJ7GRDQBXjifQ0fPjJ3vlQVFDi0fRjNZbtHamtlYf8b1GeGg==
 
 "@wry/context@^0.4.0":
   version "0.4.4"

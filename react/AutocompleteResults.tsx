@@ -1,17 +1,16 @@
 import React, { Fragment, useMemo } from 'react'
+import type { RefObject } from 'react'
 import classnames from 'classnames'
-import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
-import { graphql } from 'react-apollo'
+import { useQuery } from 'react-apollo'
 import { Spinner } from 'vtex.styleguide'
 import { Link, useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
+import type { PropGetters } from 'downshift'
 
-// This import should NOT be removed
-// eslint-disable-next-line no-unused-vars
-import styles from './styles.css'
-import autocomplete from './queries/autocomplete.gql'
-import encodeForwardSlash from '../../utils/encodeForwardSlash'
+import './AutocompleteResults.css'
+import autocomplete from './graphql/autocomplete.gql'
+import encodeForwardSlash from './utils/encodeForwardSlash'
 
 const MIN_RESULTS_WIDTH = 320
 const CSS_HANDLES = [
@@ -24,16 +23,13 @@ const CSS_HANDLES = [
   'resultsItemName',
 ]
 
-const getImageUrl = image => {
-  const [imageUrl] = image.match(/https?:(.*?)"/g) || ['']
+const getImageUrl = (image: string) => {
+  const [imageUrl] = image.match(/https?:(.*?)"/g) ?? ['']
 
   return imageUrl.replace(/https?:/, '').replace(/-25-25/g, '-50-50')
 }
 
-const getLinkProps = element => {
-  let page = 'store.product'
-  let params = { slug: element.slug, id: element.productId }
-  let query = ''
+const getLinkProps = (element: AutocompleteItem) => {
   const terms = element.slug.split('/')
 
   if (element.criteria) {
@@ -41,20 +37,58 @@ const getLinkProps = element => {
     // See: https://support.google.com/analytics/answer/1012264
     const paramForSearchTracking = `&_c=${terms[0]}`
 
-    page = 'store.search'
-    params = { term: terms.join('/') }
-    query = `map=c,ft${paramForSearchTracking}`
+    return {
+      page: 'store.search',
+      params: { term: terms.join('/') },
+      query: `map=c,ft${paramForSearchTracking}`,
+    }
   }
 
-  return { page, params, query }
+  return {
+    page: 'store.product',
+    params: { slug: element.slug, id: element.productId },
+    query: '',
+  }
+}
+
+export type Props = {
+  parentContainer?: RefObject<HTMLElement>
+  /** Downshift specific prop */
+  highlightedIndex: number | null
+  /** Search query */
+  inputValue: string
+  /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
+  customSearchPageUrl?: string
+  isOpen?: boolean
+  attemptPageTypeSearch?: boolean
+  /** Closes the options box. */
+  closeMenu: () => void
+  /** Clears the input */
+  onClearInput: () => void
+  /** Downshift function */
+  getItemProps: PropGetters<AutocompleteItem | { term: string }>['getItemProps']
+  getMenuProps: PropGetters<AutocompleteItem | { term: string }>['getMenuProps']
+}
+
+type AutocompleteItem = {
+  thumb: string
+  name: string
+  href: string
+  slug: string
+  criteria: string
+  productId: string
+}
+
+interface AutocompleteResult {
+  autocomplete: {
+    itemsReturned: AutocompleteItem[]
+  }
 }
 
 /** List of search results to be displayed */
-const AutocompleteResults = ({
-  // eslint-disable-next-line react/prop-types
+function AutocompleteResults({
   parentContainer,
   isOpen,
-  data = {}, // when inputValue is '', query is skipped and value is undefined
   inputValue,
   closeMenu,
   onClearInput,
@@ -63,8 +97,14 @@ const AutocompleteResults = ({
   highlightedIndex,
   attemptPageTypeSearch,
   customSearchPageUrl,
-}) => {
-  const items = data.autocomplete ? data.autocomplete.itemsReturned : []
+}: Props) {
+  const { data, loading } = useQuery<AutocompleteResult>(autocomplete, {
+    skip: !inputValue,
+    variables: { inputValue },
+  })
+
+  const items = data?.autocomplete?.itemsReturned ?? []
+
   const {
     hints: { mobile },
   } = useRuntime()
@@ -76,11 +116,10 @@ const AutocompleteResults = ({
     () => ({
       width: Math.max(
         MIN_RESULTS_WIDTH,
-        // eslint-disable-next-line react/prop-types
-        (parentContainer.current && parentContainer.current.offsetWidth) || 0
+        parentContainer?.current?.offsetWidth ?? 0
       ),
     }),
-    /* with the isOpen here this will be called 
+    /* with the isOpen here this will be called
     only when you open or close the ResultList */
     [parentContainer]
   )
@@ -97,12 +136,16 @@ const AutocompleteResults = ({
     closeMenu()
   }
 
-  const getListItemClassNames = ({
+  function getListItemClassNames({
     itemIndex = -1,
     // eslint-disable-next-line no-shadow
     highlightedIndex,
     hasThumb,
-  } = {}) => {
+  }: {
+    itemIndex?: number
+    highlightedIndex?: number | null
+    hasThumb?: boolean
+  } = {}) {
     const highlightClass = highlightedIndex === itemIndex ? 'bg-muted-5' : ''
 
     return `pointer pa4 outline-0 ${handles.resultsItem} ${highlightClass} ${
@@ -128,7 +171,7 @@ const AutocompleteResults = ({
   )
 
   // eslint-disable-next-line no-shadow
-  const renderSearchByClick = inputValue => {
+  const renderSearchByClick = (inputValue: string) => {
     return customSearchPageUrl ? (
       <Link
         className={getListItemClassNames({
@@ -158,7 +201,7 @@ const AutocompleteResults = ({
     <div style={listStyle}>
       <ul className={listClassNames} {...getMenuProps()}>
         {isOpen ? (
-          data.loading ? (
+          loading ? (
             <div className={getListItemClassNames({})}>
               <WrappedSpinner />
             </div>
@@ -176,7 +219,7 @@ const AutocompleteResults = ({
                   // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     href="#"
-                    onClick={event => event.preventDefault()}
+                    onClick={(event) => event.preventDefault()}
                     className={getListItemClassNames({
                       itemIndex: 0,
                       highlightedIndex,
@@ -194,7 +237,7 @@ const AutocompleteResults = ({
                   // eslint-disable-next-line react/jsx-key
                   <li
                     {...getItemProps({
-                      key: item.name + index,
+                      key: `${item.name}${index}`,
                       index: index + 1,
                       item,
                       onClick: handleItemClick,
@@ -234,51 +277,4 @@ const AutocompleteResults = ({
   )
 }
 
-const itemProps = PropTypes.shape({
-  /** Image of the product */
-  thumb: PropTypes.string,
-  /** Name of the product */
-  name: PropTypes.string,
-  /** Link to the product */
-  href: PropTypes.string,
-  /** Slug of the product */
-  slug: PropTypes.string,
-  /** Criteria of the product */
-  criteria: PropTypes.string,
-})
-
-AutocompleteResults.propTypes = {
-  /** Graphql data response. */
-  data: PropTypes.shape({
-    autocomplete: PropTypes.shape({
-      itemsReturned: PropTypes.arrayOf(itemProps),
-    }),
-    loading: PropTypes.bool.isRequired,
-  }),
-  /** Downshift specific prop */
-  highlightedIndex: PropTypes.number,
-  /** Search query */
-  inputValue: PropTypes.string.isRequired,
-  /** Closes the options box. */
-  closeMenu: PropTypes.func,
-  /** Clears the input */
-  onClearInput: PropTypes.func,
-  /** Downshift function */
-  getItemProps: PropTypes.func,
-  /** A template for a custom url. It can have a substring ${term} used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) */
-  customSearchPageUrl: PropTypes.string,
-  isOpen: PropTypes.bool,
-  getMenuProps: PropTypes.func,
-  attemptPageTypeSearch: PropTypes.bool,
-}
-
-const AutocompleteResultsWithData = graphql(autocomplete, {
-  skip: ({ inputValue }) => !inputValue,
-  options: props => ({
-    variables: {
-      inputValue: props.inputValue,
-    },
-  }),
-})(AutocompleteResults)
-
-export default AutocompleteResultsWithData
+export default AutocompleteResults
