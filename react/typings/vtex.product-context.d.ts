@@ -25,6 +25,7 @@ interface Product {
   productName: string
   productReference: string
   brand: string
+  description: string
 }
 
 interface SkuSpecification {
