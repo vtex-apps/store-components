@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.136.2] - 2020-12-08
+
 ### Changed
 - Migrate `user-address` to TypeScript.
 
