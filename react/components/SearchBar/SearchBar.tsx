@@ -73,6 +73,8 @@ interface Props {
   inputType?: 'text' | 'search'
   /** Define the component display mode,such as which buttons should be visible */
   displayMode?: 'clear-button' | 'search-and-clear-buttons' | 'search-button'
+  /** Define how the autocomplete component should be displayed. Possible values are: `overlay` (suggestions overlapping other components) and `container` (displays the suggestion within a container). */
+  containerMode: 'overlay' | 'container'
 }
 
 function SearchBar({
@@ -97,6 +99,7 @@ function SearchBar({
   minSearchTermLength,
   autocompleteFullWidth,
   inputType,
+  containerMode = 'overlay',
 }: Props) {
   const intl = useIntl()
   const container = useRef<HTMLDivElement>(null)
@@ -300,11 +303,8 @@ function SearchBar({
                 onGoToSearchPage={onGoToSearchPage}
               />
               <div ref={autocompleteContainerRef} />
-              <Overlay
-                fullWindow={autocompleteFullWidth}
-                alignment={autocompleteAlignment}
-                target={autocompleteContainerRef.current ?? undefined}
-              >
+
+              {containerMode === 'container' ? (
                 <SelectedAutocompleteResults
                   parentContainer={container ?? undefined}
                   {...{
@@ -320,7 +320,29 @@ function SearchBar({
                     customSearchPageUrl,
                   }}
                 />
-              </Overlay>
+              ) : (
+                <Overlay
+                  fullWindow={autocompleteFullWidth}
+                  alignment={autocompleteAlignment}
+                  target={autocompleteContainerRef.current ?? undefined}
+                >
+                  <SelectedAutocompleteResults
+                    parentContainer={container}
+                    {...{
+                      attemptPageTypeSearch,
+                      isOpen,
+                      getMenuProps,
+                      inputValue: searchTerm,
+                      getItemProps,
+                      selectedItem,
+                      highlightedIndex,
+                      closeMenu,
+                      onClearInput,
+                      customSearchPageUrl,
+                    }}
+                  />
+                </Overlay>
+              )}
             </div>
           )}
         </Downshift>
