@@ -28,15 +28,20 @@ function SelectVariationMode(props: VariationSelectModeProps) {
   const { culture } = useRuntime()
 
   const options = displayOptions.map(({ label, price: value }) => {
-    const price =
-      displayPrices && value && selectedItem !== label
-        ? ` - ${formatCurrency({ intl, culture, value })}`
-        : ''
+    if (displayPrices && value && selectedItem !== label) {
+      const labelWithPrice = `${label} - ${formatCurrency({
+        intl,
+        culture,
+        value,
+      })}`
 
-    return {
-      label: `${label}${price}`,
-      value: label,
+      return {
+        label: labelWithPrice,
+        value: labelWithPrice,
+      }
     }
+
+    return { label, value: label }
   })
 
   const handleClick = (_: React.MouseEvent, value: string) => {
