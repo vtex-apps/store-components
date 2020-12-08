@@ -224,7 +224,7 @@ function AutocompleteInput({
     return (
       <form
         action="#"
-        onSubmit={(e) => {
+        onSubmit={e => {
           e.preventDefault()
           e.stopPropagation()
           e.nativeEvent.stopImmediatePropagation()

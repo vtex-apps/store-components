@@ -219,7 +219,7 @@ function AutocompleteResults({
                   // eslint-disable-next-line jsx-a11y/anchor-is-valid
                   <a
                     href="#"
-                    onClick={(event) => event.preventDefault()}
+                    onClick={event => event.preventDefault()}
                     className={getListItemClassNames({
                       itemIndex: 0,
                       highlightedIndex,
