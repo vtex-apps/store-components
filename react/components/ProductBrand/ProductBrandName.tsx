@@ -1,7 +1,6 @@
 import React from 'react'
-import { useCssHandles } from 'vtex.css-handles'
 
-import { PRODUCT_BRAND_CSS_HANDLES } from '../../ProductBrand'
+import { useProductBrandCssHandles } from './ProductBrandCssHandles'
 
 interface Props {
   brandName: string
@@ -9,8 +8,10 @@ interface Props {
   slug?: string
 }
 
+const CSS_HANDLES = ['productBrandNameLink', 'productBrandName'] as const
+
 function ProductBrandName({ brandName, withLink, slug }: Props) {
-  const handles = useCssHandles(PRODUCT_BRAND_CSS_HANDLES)
+  const { handles } = useProductBrandCssHandles()
 
   if (withLink && slug) {
     const nameLink = `/${slug}/b`
@@ -28,5 +29,7 @@ function ProductBrandName({ brandName, withLink, slug }: Props) {
 
   return <span className={`${handles.productBrandName}`}>{brandName}</span>
 }
+
+ProductBrandName.cssHandles = CSS_HANDLES
 
 export default ProductBrandName
