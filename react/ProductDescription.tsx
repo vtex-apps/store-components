@@ -2,11 +2,18 @@ import React, { memo } from 'react'
 import type { MemoExoticComponent, PropsWithChildren } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
+import type { CssHandlesTypes } from 'vtex.css-handles'
 import { formatIOMessage } from 'vtex.native-types'
 import { useProduct } from 'vtex.product-context'
 
 import { SanitizedHTML, DEFAULTS } from './components/SanitizedHTML'
 import GradientCollapse from './components/GradientCollapse'
+
+const CSS_HANDLES = [
+  'productDescriptionContainer',
+  'productDescriptionTitle',
+  'productDescriptionText',
+] as const
 
 type Props = {
   /** Description fallback */
@@ -15,13 +22,9 @@ type Props = {
   title?: string
   /** Define if content should start collapsed or not */
   collapseContent?: boolean
+  /** Used to override default CSS handles */
+  classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
 }
-
-const CSS_HANDLES = [
-  'productDescriptionContainer',
-  'productDescriptionTitle',
-  'productDescriptionText',
-] as const
 
 const allowedTags = [
   ...DEFAULTS.allowedTags,
@@ -49,7 +52,7 @@ const allowedAttributes = {
  * Render the description of a product
  */
 function ProductDescription(props: PropsWithChildren<Props>) {
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES, { classes: props.classes })
   const intl = useIntl()
   const { product } = useProduct()
 

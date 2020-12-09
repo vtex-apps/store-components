@@ -3,6 +3,17 @@ import { isEmpty } from 'ramda'
 import { useProduct } from 'vtex.product-context'
 import ContentLoader from 'react-content-loader'
 import { useCssHandles } from 'vtex.css-handles'
+import type { CssHandlesTypes } from 'vtex.css-handles'
+
+const CSS_HANDLES = [
+  'productNameContainer',
+  'productBrand',
+  'productSku',
+  'productReference',
+  'productNameLoader',
+  'productNameBrandLoader',
+  'productNameSkuLoader',
+] as const
 
 type DeprecatedProps = {
   /**
@@ -46,17 +57,9 @@ type Props = {
   loaderClass?: string
   /** HTML tag to be used in the component container */
   tag?: 'div' | 'h1' | 'h2' | 'h3'
+  /** Used to override default CSS handles */
+  classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
 } & DeprecatedProps
-
-const CSS_HANDLES = [
-  'productNameContainer',
-  'productBrand',
-  'productSku',
-  'productReference',
-  'productNameLoader',
-  'productNameBrandLoader',
-  'productNameSkuLoader',
-] as const
 
 function ProductName({
   productReferenceClass,
@@ -68,12 +71,13 @@ function ProductName({
   showBrandName = false,
   showProductReference = false,
   tag: Wrapper = 'div',
+  classes,
   name,
   skuName,
   brandName,
   productReference,
 }: Props) {
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES, { classes })
 
   if (!name) {
     return (

@@ -36,8 +36,9 @@ This Component can be imported and used by any VTEX App.
 
 | Prop name         | Type      | Description                                                                                                                                                                          | Default     |
 | ----------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| `collapseContent` | `Boolean` | If true, whenever the product description is too big, it will collapse and show a "Show More" button. When false, it will never collapse and will always show the whole description. | `true`      |
-| `title`           | `string`  | Defines a custom title for the description section.                                                                                                                                  | `undefined` |
+| `collapseContent` | `Boolean` | If true, whenever the product description is too big, it will collapse and show a "Show More" button. When false, it will never collapse and will always show the whole description. | `true` |
+| `title`           | `string`  | Defines a custom title for the description section. | `undefined` |
+| `classes` | `CustomCSSClasses` | Used to override default CSS handles. To better understand how this prop works, we recommend reading about it [here](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only useful if you're using this block as a React component. | `undefined` |
 
 ## Customization
 
