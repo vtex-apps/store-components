@@ -29,6 +29,10 @@ The `ProductSKUAttributes` is a block responsible for **displaying a list of the
   },
 ```
 
+| Prop name | Type | Description | Default value |
+| --- | --- | --- | ---| 
+| `classes` | `CustomCSSClasses` | Used to override default CSS handles. To better understand how this prop works, we recommend reading about it [here](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only useful if you're using this block as a React component. | `undefined` |
+
 ## Customization
 
 In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
