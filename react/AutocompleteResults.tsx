@@ -6,6 +6,7 @@ import { useQuery } from 'react-apollo'
 import { Spinner } from 'vtex.styleguide'
 import { Link, useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
+import type { CssHandlesTypes } from 'vtex.css-handles'
 import type { PropGetters } from 'downshift'
 
 import './AutocompleteResults.css'
@@ -21,7 +22,7 @@ const CSS_HANDLES = [
   'spinnerContainer',
   'spinnerInnerContainer',
   'resultsItemName',
-]
+] as const
 
 const getImageUrl = (image: string) => {
   const [imageUrl] = image.match(/https?:(.*?)"/g) ?? ['']
@@ -68,6 +69,8 @@ export type Props = {
   /** Downshift function */
   getItemProps: PropGetters<AutocompleteItem | { term: string }>['getItemProps']
   getMenuProps: PropGetters<AutocompleteItem | { term: string }>['getMenuProps']
+  /** Used to override default CSS handles */
+  classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
 }
 
 type AutocompleteItem = {
@@ -97,6 +100,7 @@ function AutocompleteResults({
   highlightedIndex,
   attemptPageTypeSearch,
   customSearchPageUrl,
+  classes,
 }: Props) {
   const { data, loading } = useQuery<AutocompleteResult>(autocomplete, {
     skip: !inputValue,
@@ -109,7 +113,7 @@ function AutocompleteResults({
     hints: { mobile },
   } = useRuntime()
 
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES, { classes })
   const encodedInputValue = encodeForwardSlash(inputValue)
 
   const listStyle = useMemo(
