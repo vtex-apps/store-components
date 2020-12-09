@@ -9,15 +9,16 @@ import {
   useChildBlock,
 } from 'vtex.render-runtime'
 import { Overlay } from 'vtex.react-portal'
-import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { defineMessages, useIntl } from 'react-intl'
 
 import styles from './SearchBar.css'
 import AutocompleteResults from '../../AutocompleteResults'
 import type { Props as AutocompleteResultsProps } from '../../AutocompleteResults'
 import AutocompleteInput from './AutocompleteInput'
+import { useSearchBarCssHandles } from './SearchBarCssHandles'
 
-const CSS_HANDLES = ['searchBarInnerContainer']
+export const CSS_HANDLES = ['searchBarInnerContainer'] as const
+
 const SEARCH_DELAY_TIME = 1000
 const AUTOCOMPLETE_EXTENSION_ID = 'autocomplete-result-list'
 
@@ -101,10 +102,10 @@ function SearchBar({
   inputType,
   containerMode = 'overlay',
 }: Props) {
+  const { withModifiers } = useSearchBarCssHandles()
   const intl = useIntl()
   const container = useRef<HTMLDivElement>(null)
   const { navigate } = useRuntime()
-  const handles = useCssHandles(CSS_HANDLES)
   const [searchTerm, setSearchTerm] = useState(inputValue)
   const [inputErrorMessage, setInputErrorMessage] = useState<
     string | undefined
@@ -252,7 +253,7 @@ function SearchBar({
             <div
               className={classNames(
                 'relative-m w-100',
-                applyModifiers(handles.searchBarInnerContainer, [
+                withModifiers('searchBarInnerContainer', [
                   isOpen ? 'opened' : '',
                   inputValue ? 'filled' : '',
                 ])
@@ -351,5 +352,7 @@ function SearchBar({
     </div>
   )
 }
+
+SearchBar.cssHandles = CSS_HANDLES
 
 export default SearchBar

@@ -40,6 +40,7 @@ Then, add `search-bar` block into your app theme, as we do in our [Store Header]
 | `containerMode` | `enum` | Defines how the autocomplete component should be displayed. Possible values are: `overlay` (suggestions overlapping other components) and `container` (displays the suggestion within a container). | `overlay` |
 | ~`iconClasses`~           | `String`                                      | ![DEPRECATED](https://img.shields.io/badge/-deprecated-red) ~Custom classes for the search icon~ Use the CSS handle `searchBarIcon`.                                                              | -              |
 | ~`submitOnIconClick`~     | `Boolean`                                     | ![DEPRECATED](https://img.shields.io/badge/-deprecated-red) - ~Define if search icon should submit on click.~ Use the `displayMode` prop instead.                                               | `false`        |
+| `classes` | `CustomCSSClasses` | Used to override default CSS handles. To better understand how this prop works, we recommend reading about it [here](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only useful if you're using this block as a React component. | `undefined` |
 
 ### `DisplayMode`
 

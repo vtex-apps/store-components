@@ -2,11 +2,20 @@ import React, { useState, useCallback } from 'react'
 import { useIntl } from 'react-intl'
 import { ModalContext } from 'vtex.modal-layout'
 import { useRuntime } from 'vtex.render-runtime'
+import { useCssHandles } from 'vtex.css-handles'
+import type { CssHandlesTypes } from 'vtex.css-handles'
 
 import SearchBar from './components/SearchBar/SearchBar'
+import AutocompleteInput from './components/SearchBar/AutocompleteInput'
+import { SearchBarCssHandlesProvider } from './components/SearchBar/SearchBarCssHandles'
 import encodeForwardSlash from './utils/encodeForwardSlash'
 
 const { useModalDispatch } = ModalContext
+
+export const SEARCH_BAR_CSS_HANDLES = [
+  ...SearchBar.cssHandles,
+  ...AutocompleteInput.cssHandles,
+] as const
 
 interface Props {
   /** Define when use the compact version of the component */
@@ -45,6 +54,8 @@ interface Props {
   displayMode?: 'clear-button' | 'search-and-clear-buttons' | 'search-button'
   /** Define how the autocomplete component should be displayed. Possible values are: `overlay` (suggestions overlapping other components) and `container` (displays the suggestion within a container). */
   containerMode: 'overlay' | 'container'
+  /** Used to override default CSS handles */
+  classes?: CssHandlesTypes.CustomClasses<typeof SEARCH_BAR_CSS_HANDLES>
 }
 
 /**
@@ -72,11 +83,16 @@ function SearchBarContainer(props: Props) {
     minSearchTermLength,
     autocompleteFullWidth = false,
     inputType = 'text',
+    classes,
   } = props
 
   const modalDispatch = useModalDispatch()
   const [inputValue, setInputValue] = useState('')
   const { navigate } = useRuntime()
+
+  const { handles, withModifiers } = useCssHandles(SEARCH_BAR_CSS_HANDLES, {
+    classes,
+  })
 
   const closeModal = useCallback(() => {
     if (modalDispatch) {
@@ -134,30 +150,35 @@ function SearchBarContainer(props: Props) {
   ])
 
   return (
-    <SearchBar
-      // eslint-disable-next-line jsx-a11y/no-autofocus
-      autoFocus={autoFocus}
-      placeholder={placeholder}
-      inputValue={inputValue}
-      onClearInput={handleClearInput}
-      onGoToSearchPage={handleGoToSearchPage}
-      onInputChange={handleInputChange}
-      compactMode={compactMode}
-      hasIconLeft={hasIconLeft}
-      iconClasses={iconClasses}
-      maxWidth={maxWidth}
-      attemptPageTypeSearch={attemptPageTypeSearch}
-      customSearchPageUrl={customSearchPageUrl}
-      autocompleteAlignment={autocompleteAlignment}
-      openAutocompleteOnFocus={openAutocompleteOnFocus}
-      blurOnSubmit={blurOnSubmit}
-      submitOnIconClick={submitOnIconClick}
-      displayMode={displayMode}
-      minSearchTermLength={minSearchTermLength}
-      autocompleteFullWidth={autocompleteFullWidth}
-      inputType={inputType}
-      containerMode={containerMode}
-    />
+    <SearchBarCssHandlesProvider
+      handles={handles}
+      withModifiers={withModifiers}
+    >
+      <SearchBar
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus={autoFocus}
+        placeholder={placeholder}
+        inputValue={inputValue}
+        onClearInput={handleClearInput}
+        onGoToSearchPage={handleGoToSearchPage}
+        onInputChange={handleInputChange}
+        compactMode={compactMode}
+        hasIconLeft={hasIconLeft}
+        iconClasses={iconClasses}
+        maxWidth={maxWidth}
+        attemptPageTypeSearch={attemptPageTypeSearch}
+        customSearchPageUrl={customSearchPageUrl}
+        autocompleteAlignment={autocompleteAlignment}
+        openAutocompleteOnFocus={openAutocompleteOnFocus}
+        blurOnSubmit={blurOnSubmit}
+        submitOnIconClick={submitOnIconClick}
+        displayMode={displayMode}
+        minSearchTermLength={minSearchTermLength}
+        autocompleteFullWidth={autocompleteFullWidth}
+        inputType={inputType}
+        containerMode={containerMode}
+      />
+    </SearchBarCssHandlesProvider>
   )
 }
 
