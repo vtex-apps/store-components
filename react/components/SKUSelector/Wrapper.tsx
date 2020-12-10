@@ -1,7 +1,6 @@
 import React, { useMemo, useEffect } from 'react'
-import useProduct from 'vtex.product-context/useProduct'
+import { useProduct, useProductDispatch } from 'vtex.product-context'
 import { pick } from 'ramda'
-import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 import {
   MaybeResponsiveInput,
   ResponsiveInput,
@@ -157,15 +156,14 @@ interface Props {
   sliderItemsPerPage?: ResponsiveInput<number>
 }
 
-const SKUSelectorWrapper: StorefrontFC<Props> = props => {
+function SKUSelectorWrapper(props: Props) {
   const valuesFromContext = useProduct()
   const dispatch = useProductDispatch()
   const { imageHeight, imageWidth } = useResponsiveValues(
     pick(['imageHeight', 'imageWidth'], props)
   )
 
-  const shouldSelectInitialSKU =
-    props.initialSelection !== InitialSelectionType.empty
+  const shouldSelectInitialSKU = props.initialSelection !== 'empty'
 
   const skuItems =
     props.skuItems != null
@@ -207,12 +205,12 @@ const SKUSelectorWrapper: StorefrontFC<Props> = props => {
     return null
   }
 
-  let showValueForVariation = ShowValueForVariation.none
+  let showValueForVariation: ShowValueForVariation = 'none'
 
   if (props.showValueForVariation) {
     showValueForVariation = props.showValueForVariation
   } else if (props.showValueNameForImageVariation) {
-    showValueForVariation = ShowValueForVariation.image
+    showValueForVariation = 'image'
   }
 
   return (

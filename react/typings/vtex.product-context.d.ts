@@ -90,5 +90,7 @@ declare module 'vtex.product-context' {
   }
 
   export const useProduct: () => ProductContext
+  type DispatchFunction = (payload: { type: string; args?: any }) => void
+  export const useProductDispatch: () => DispatchFunction
   export const ProductContext
 }
