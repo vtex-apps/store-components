@@ -1,4 +1,3 @@
-/* cssHandlesContext.ts */
 import { createCssHandlesContext } from 'vtex.css-handles'
 
 import { PRODUCT_BRAND_CSS_HANDLES } from '../../ProductBrand'

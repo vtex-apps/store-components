@@ -1,4 +1,3 @@
-/* cssHandlesContext.ts */
 import { createCssHandlesContext } from 'vtex.css-handles'
 
 import { SEARCH_BAR_CSS_HANDLES } from '../../SearchBar'

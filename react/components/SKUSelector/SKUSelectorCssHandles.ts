@@ -1,4 +1,3 @@
-/* cssHandlesContext.ts */
 import { createCssHandlesContext } from 'vtex.css-handles'
 
 import { SKU_SELECTOR_CSS_HANDLES } from './Wrapper'

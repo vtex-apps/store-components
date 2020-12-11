@@ -1,4 +1,3 @@
-/* cssHandlesContext.ts */
 import { createCssHandlesContext } from 'vtex.css-handles'
 
 import { USER_ADDRESS_CSS_HANDLES } from '../../UserAddress'

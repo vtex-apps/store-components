@@ -64,9 +64,6 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
   )
 }
 
-/**
- * @deprecated This component is deprecated. Please use [vtex.add-to-cart-button](https://github.com/vtex-apps/add-to-cart-button) instead.
- */
 const BuyButtonWrapper = ({
   intl,
   addToCart,
