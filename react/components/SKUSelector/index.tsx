@@ -201,11 +201,11 @@ const getNewSelectedVariations = (
   const hasSkuInQuery = Boolean(query?.skuId)
   const parsedSku = parseSku(skuSelected)
 
-  if (hasSkuInQuery || initialSelection === InitialSelectionType.complete) {
+  if (hasSkuInQuery || initialSelection === 'complete') {
     return selectedVariationFromItem(parsedSku, variations)
   }
 
-  if (initialSelection === InitialSelectionType.image) {
+  if (initialSelection === 'image') {
     const colorVariationName = parsedSku.variations.find(isColor)
 
     return {
@@ -236,11 +236,11 @@ const SKUSelectorContainer: FC<Props> = ({
   thumbnailImage,
   variationsSpacing,
   showVariationsLabels = true,
-  displayMode = DisplayMode.default,
+  displayMode = 'default',
   hideImpossibleCombinations = true,
   showVariationsErrorMessage = true,
-  showValueForVariation = ShowValueForVariation.none,
-  initialSelection = InitialSelectionType.complete,
+  showValueForVariation = 'none',
+  initialSelection = 'complete',
   sliderDisplayThreshold = 3,
   sliderArrowSize = 12,
   sliderItemsPerPage = {

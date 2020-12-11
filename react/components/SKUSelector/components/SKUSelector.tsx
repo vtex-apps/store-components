@@ -23,12 +23,7 @@ import {
 import Variation from './Variation'
 import useEffectSkipMount from './hooks/useEffectSkipMount'
 
-// eslint-disable-next-line no-restricted-syntax
-export enum ShowValueForVariation {
-  none = 'none',
-  image = 'image',
-  all = 'all',
-}
+export type ShowValueForVariation = 'none' | 'image' | 'all'
 
 function getShowValueForVariation(
   showValueForVariation: ShowValueForVariation,
@@ -37,8 +32,8 @@ function getShowValueForVariation(
   const isImage = isColor(variationName)
 
   return (
-    showValueForVariation === ShowValueForVariation.all ||
-    (showValueForVariation === ShowValueForVariation.image && isImage)
+    showValueForVariation === 'all' ||
+    (showValueForVariation === 'image' && isImage)
   )
 }
 
