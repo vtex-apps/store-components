@@ -73,9 +73,9 @@ export const applyModifiers = (handles, modifier) => {
 // eslint-disable-next-line default-param-last
 export const withCssHandles = (handles = [], options) => Component => {
   const EnhancedComponent = props => {
-    const cssHandles = useCssHandles(handles, options)
+    const { handles: cssHandles } = useCssHandles(handles, options)
 
-    return <Component cssHandles={cssHandles} {...props} />
+    return <Component handles={cssHandles} {...props} />
   }
 
   const displayName = Component.displayName || Component.name || 'Component'
