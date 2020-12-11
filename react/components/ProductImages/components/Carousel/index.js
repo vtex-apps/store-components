@@ -186,7 +186,7 @@ class Carousel extends Component {
   }
 
   get galleryParams() {
-    const { cssHandles, slides = [], showPaginationDots = true } = this.props
+    const { handles, slides = [], showPaginationDots = true } = this.props
 
     const params = {}
 
@@ -214,7 +214,7 @@ class Carousel extends Component {
     params.thumbs = {
       swiper: this.state.thumbSwiper,
       multipleActiveThumbs: false,
-      slideThumbActiveClass: cssHandles.productImagesThumbActive,
+      slideThumbActiveClass: handles.productImagesThumbActive,
     }
 
     return params
@@ -226,7 +226,7 @@ class Carousel extends Component {
       maxHeight,
       placeholder,
       position,
-      cssHandles,
+      handles,
       slides = [],
       thumbnailMaxHeight,
       thumbnailAspectRatio,
@@ -283,7 +283,7 @@ class Carousel extends Component {
     }
 
     const containerClasses = classNames(
-      cssHandles.carouselContainer,
+      handles.carouselContainer,
       'relative overflow-hidden w-100',
       {
         'flex-ns justify-end-ns':
@@ -317,7 +317,7 @@ class Carousel extends Component {
         <div className={imageClasses}>
           <Swiper
             onSwiper={instance => this.setState({ gallerySwiper: instance })}
-            className={cssHandles.productImagesGallerySwiperContainer}
+            className={handles.productImagesGallerySwiperContainer}
             threshold={10}
             resistanceRatio={slides.length > 1 ? 0.85 : 0}
             onSlideChange={this.handleSlideChange}
@@ -327,7 +327,7 @@ class Carousel extends Component {
             {slides.map((slide, i) => (
               <SwiperSlide
                 key={`slider-${i}`}
-                className={`${cssHandles.productImagesGallerySlide} swiper-slide center-all`}
+                className={`${handles.productImagesGallerySlide} swiper-slide center-all`}
               >
                 {this.renderSlide(slide, i)}
               </SwiperSlide>
@@ -347,7 +347,7 @@ class Carousel extends Component {
             >
               <span
                 key="caret-next"
-                className={`swiper-caret-next pl7 pr2 right-0 ${CARET_CLASSNAME} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretNext}`}
+                className={`swiper-caret-next pl7 pr2 right-0 ${CARET_CLASSNAME} ${handles.swiperCaret} ${handles.swiperCaretNext}`}
               >
                 <IconCaret
                   orientation="right"
@@ -357,7 +357,7 @@ class Carousel extends Component {
               </span>
               <span
                 key="caret-prev"
-                className={`swiper-caret-prev pr7 pl2 left-0 ${CARET_CLASSNAME} ${cssHandles.swiperCaret} ${cssHandles.swiperCaretPrev}`}
+                className={`swiper-caret-prev pr7 pl2 left-0 ${CARET_CLASSNAME} ${handles.swiperCaret} ${handles.swiperCaretPrev}`}
               >
                 <IconCaret
                   orientation="left"

@@ -26,7 +26,7 @@ const CHECKOUT_URL = {
 }
 
 const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
-  const handles = useCssHandles(MESSAGE_CSS_HANDLES)
+  const { handles } = useCssHandles(MESSAGE_CSS_HANDLES)
 
   if (!showItemsPrice) {
     return (
@@ -64,6 +64,9 @@ const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
   )
 }
 
+/**
+ * @deprecated This component is deprecated. Please use [vtex.add-to-cart-button](https://github.com/vtex-apps/add-to-cart-button) instead.
+ */
 const BuyButtonWrapper = ({
   intl,
   addToCart,
@@ -196,6 +199,9 @@ const withCheckoutVersion = graphql(installedApp, {
   },
 })
 
+/**
+ * @deprecated This component is deprecated. Please use [vtex.add-to-cart-button](https://github.com/vtex-apps/add-to-cart-button) instead.
+ */
 const EnhancedBuyButton = compose(
   withAddToCart,
   withOpenMinicart,
