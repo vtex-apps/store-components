@@ -1,7 +1,6 @@
-import React, { useCallback, memo, useState, FC, useMemo } from 'react'
+import React, { useCallback, memo, useState, useMemo } from 'react'
 import { compose, flip, gt, filter, pathOr, clone } from 'ramda'
 import { ResponsiveInput } from 'vtex.responsive-values'
-import { useCssHandles } from 'vtex.css-handles'
 
 import styles from '../styles.css'
 import {
@@ -22,6 +21,7 @@ import {
 } from '../types'
 import Variation from './Variation'
 import useEffectSkipMount from './hooks/useEffectSkipMount'
+import { useSKUSelectorCssHandles } from '../SKUSelectorCssHandles'
 
 export type ShowValueForVariation = 'none' | 'image' | 'all'
 
@@ -248,10 +248,10 @@ const getAvailableVariationsPromise = (
   })
 }
 
-const CSS_HANDLES = ['skuSelectorContainer']
+const CSS_HANDLES = ['skuSelectorContainer'] as const
 
 /** Renders the main and the secondary variation, if it exists. */
-const SKUSelector: FC<Props> = ({
+function SKUSelector({
   seeMoreLabel,
   maxItems,
   variations,
@@ -271,8 +271,8 @@ const SKUSelector: FC<Props> = ({
   sliderDisplayThreshold,
   sliderArrowSize,
   sliderItemsPerPage,
-}) => {
-  const handles = useCssHandles(CSS_HANDLES)
+}: Props) {
+  const { handles } = useSKUSelectorCssHandles()
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
   const onSelectItemMemo = useCallback(
     ({
@@ -361,4 +361,4 @@ const SKUSelector: FC<Props> = ({
   )
 }
 
-export default memo(SKUSelector)
+export default Object.assign(memo(SKUSelector), { cssHandles: CSS_HANDLES })

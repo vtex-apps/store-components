@@ -6,10 +6,23 @@ import {
   ResponsiveInput,
   useResponsiveValues,
 } from 'vtex.responsive-values'
+import { useCssHandles } from 'vtex.css-handles'
+import type { CssHandlesTypes } from 'vtex.css-handles'
 
 import SKUSelector from './index'
+import SelectorItem from './components/SelectorItem'
+import ErrorMessage from './components/ErrorMessage'
 import { Variations, InitialSelectionType, DisplayMode } from './types'
-import { ShowValueForVariation } from './components/SKUSelector'
+import SKUSelectorInternal, {
+  ShowValueForVariation,
+} from './components/SKUSelector'
+import { SKUSelectorCssHandlesProvider } from './SKUSelectorCssHandles'
+
+export const SKU_SELECTOR_CSS_HANDLES = [
+  ...ErrorMessage.cssHandles,
+  ...SelectorItem.cssHandles,
+  ...SKUSelectorInternal.cssHandles,
+] as const
 
 const getVariationsFromItems = (
   skuItems: ProductItem[],
@@ -154,9 +167,15 @@ interface Props {
   sliderDisplayThreshold?: number
   sliderArrowSize?: number
   sliderItemsPerPage?: ResponsiveInput<number>
+  /** Used to override default CSS handles */
+  classes?: CssHandlesTypes.CustomClasses<typeof SKU_SELECTOR_CSS_HANDLES>
 }
 
 function SKUSelectorWrapper(props: Props) {
+  const { handles, withModifiers } = useCssHandles(SKU_SELECTOR_CSS_HANDLES, {
+    classes: props.classes,
+  })
+
   const valuesFromContext = useProduct()
   const dispatch = useProductDispatch()
   const { imageHeight, imageWidth } = useResponsiveValues(
@@ -214,27 +233,32 @@ function SKUSelectorWrapper(props: Props) {
   }
 
   return (
-    <SKUSelector
-      skuItems={skuItems}
-      variations={variations}
-      imageWidth={imageWidth}
-      skuSelected={skuSelected}
-      maxItems={props.maxItems}
-      imageHeight={imageHeight}
-      displayMode={props.displayMode}
-      seeMoreLabel={props.seeMoreLabel}
-      onSKUSelected={props.onSKUSelected}
-      thumbnailImage={props.thumbnailImage}
-      initialSelection={props.initialSelection}
-      variationsSpacing={props.variationsSpacing}
-      showValueForVariation={showValueForVariation}
-      showVariationsLabels={props.showVariationsLabels}
-      hideImpossibleCombinations={props.hideImpossibleCombinations}
-      showVariationsErrorMessage={props.showVariationsErrorMessage}
-      sliderItemsPerPage={props.sliderItemsPerPage}
-      sliderArrowSize={props.sliderArrowSize}
-      sliderDisplayThreshold={props.sliderDisplayThreshold}
-    />
+    <SKUSelectorCssHandlesProvider
+      handles={handles}
+      withModifiers={withModifiers}
+    >
+      <SKUSelector
+        skuItems={skuItems}
+        variations={variations}
+        imageWidth={imageWidth}
+        skuSelected={skuSelected}
+        maxItems={props.maxItems}
+        imageHeight={imageHeight}
+        displayMode={props.displayMode}
+        seeMoreLabel={props.seeMoreLabel}
+        onSKUSelected={props.onSKUSelected}
+        thumbnailImage={props.thumbnailImage}
+        initialSelection={props.initialSelection}
+        variationsSpacing={props.variationsSpacing}
+        showValueForVariation={showValueForVariation}
+        showVariationsLabels={props.showVariationsLabels}
+        hideImpossibleCombinations={props.hideImpossibleCombinations}
+        showVariationsErrorMessage={props.showVariationsErrorMessage}
+        sliderItemsPerPage={props.sliderItemsPerPage}
+        sliderArrowSize={props.sliderArrowSize}
+        sliderDisplayThreshold={props.sliderDisplayThreshold}
+      />
+    </SKUSelectorCssHandlesProvider>
   )
 }
 
