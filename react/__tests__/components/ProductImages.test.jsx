@@ -106,6 +106,7 @@ describe('<ProductImages />', () => {
 
     expect(defaultPlaceholder).toBeVisible()
   })
+
   it('should show custom placeholder when provided and there is NO image', () => {
     const props = {
       images: [],
@@ -118,6 +119,7 @@ describe('<ProductImages />', () => {
 
     expect(defaultPlaceholder).toBeVisible()
   })
+
   it('should NOT show thumbs when there is one image', () => {
     const props = {
       images: [
