@@ -10,18 +10,19 @@ import { useCssHandles } from 'vtex.css-handles'
 import type { CssHandlesTypes } from 'vtex.css-handles'
 
 import SKUSelector from './index'
-import SelectorItem from './components/SelectorItem'
-import ErrorMessage from './components/ErrorMessage'
+import { CSS_HANDLES as SelectorItemCssHandles } from './components/SelectorItem'
+import { CSS_HANDLES as ErrorMessageCssHandles } from './components/ErrorMessage'
 import { Variations, InitialSelectionType, DisplayMode } from './types'
-import SKUSelectorInternal, {
+import {
   ShowValueForVariation,
+  CSS_HANDLES as SKUSelectorCssHandles,
 } from './components/SKUSelector'
 import { SKUSelectorCssHandlesProvider } from './SKUSelectorCssHandles'
 
 export const SKU_SELECTOR_CSS_HANDLES = [
-  ...ErrorMessage.cssHandles,
-  ...SelectorItem.cssHandles,
-  ...SKUSelectorInternal.cssHandles,
+  ...ErrorMessageCssHandles,
+  ...SelectorItemCssHandles,
+  ...SKUSelectorCssHandles,
 ] as const
 
 const getVariationsFromItems = (

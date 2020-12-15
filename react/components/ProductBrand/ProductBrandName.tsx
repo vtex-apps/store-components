@@ -8,7 +8,7 @@ interface Props {
   slug?: string
 }
 
-const CSS_HANDLES = ['productBrandNameLink', 'productBrandName'] as const
+export const CSS_HANDLES = ['productBrandNameLink', 'productBrandName'] as const
 
 function ProductBrandName({ brandName, withLink, slug }: Props) {
   const { handles } = useProductBrandCssHandles()
@@ -29,7 +29,5 @@ function ProductBrandName({ brandName, withLink, slug }: Props) {
 
   return <span className={`${handles.productBrandName}`}>{brandName}</span>
 }
-
-ProductBrandName.cssHandles = CSS_HANDLES
 
 export default ProductBrandName

@@ -353,6 +353,4 @@ function SearchBar({
   )
 }
 
-SearchBar.cssHandles = CSS_HANDLES
-
 export default SearchBar

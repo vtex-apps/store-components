@@ -5,16 +5,18 @@ import { useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 import type { CssHandlesTypes } from 'vtex.css-handles'
 
-import SearchBar from './components/SearchBar/SearchBar'
-import AutocompleteInput from './components/SearchBar/AutocompleteInput'
+import SearchBar, {
+  CSS_HANDLES as SearchBarCssHandles,
+} from './components/SearchBar/SearchBar'
+import { CSS_HANDLES as AutocompleteInputCssHandles } from './components/SearchBar/AutocompleteInput'
 import { SearchBarCssHandlesProvider } from './components/SearchBar/SearchBarCssHandles'
 import encodeForwardSlash from './utils/encodeForwardSlash'
 
 const { useModalDispatch } = ModalContext
 
 export const SEARCH_BAR_CSS_HANDLES = [
-  ...SearchBar.cssHandles,
-  ...AutocompleteInput.cssHandles,
+  ...SearchBarCssHandles,
+  ...AutocompleteInputCssHandles,
 ] as const
 
 interface Props {

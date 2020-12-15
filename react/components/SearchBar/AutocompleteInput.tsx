@@ -14,7 +14,7 @@ const DISPLAY_MODES = [
 ]
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift */
-const CSS_HANDLES = [
+export const CSS_HANDLES = [
   'autoCompleteOuterContainer',
   'compactMode',
   'externalSearchButtonWrapper',
@@ -261,7 +261,5 @@ function AutocompleteInput({
     </div>
   )
 }
-
-AutocompleteInput.cssHandles = CSS_HANDLES
 
 export default AutocompleteInput

@@ -248,7 +248,7 @@ const getAvailableVariationsPromise = (
   })
 }
 
-const CSS_HANDLES = ['skuSelectorContainer'] as const
+export const CSS_HANDLES = ['skuSelectorContainer'] as const
 
 /** Renders the main and the secondary variation, if it exists. */
 function SKUSelector({
@@ -361,4 +361,4 @@ function SKUSelector({
   )
 }
 
-export default Object.assign(memo(SKUSelector), { cssHandles: CSS_HANDLES })
+export default memo(SKUSelector)

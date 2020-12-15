@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl'
 
 import { useSKUSelectorCssHandles } from '../SKUSelectorCssHandles'
 
-const CSS_HANDLES = ['errorMessage'] as const
+export const CSS_HANDLES = ['errorMessage'] as const
 
 function ErrorMessage() {
   const { handles } = useSKUSelectorCssHandles()
@@ -21,7 +21,5 @@ function ErrorMessage() {
     </FormattedMessage>
   )
 }
-
-ErrorMessage.cssHandles = CSS_HANDLES
 
 export default ErrorMessage

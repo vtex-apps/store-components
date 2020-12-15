@@ -32,7 +32,7 @@ const getDiscount = (maxPrice?: number | null, price?: number | null) => {
   return discount
 }
 
-const CSS_HANDLES = [
+export const CSS_HANDLES = [
   'frameAround',
   'valueWrapper',
   'diagonalCross',
@@ -163,4 +163,4 @@ function SelectorItem({
   )
 }
 
-export default Object.assign(memo(SelectorItem), { cssHandles: CSS_HANDLES })
+export default memo(SelectorItem)

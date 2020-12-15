@@ -17,7 +17,7 @@ type Props = {
   showIfEmpty: boolean
 }
 
-const CSS_HANDLES = [
+export const CSS_HANDLES = [
   'addressInfoIconContainer',
   'addressInfoTextContainer',
   'addressInfoPrefixContainer',
@@ -180,7 +180,5 @@ const AddressInfo = ({
     </div>
   )
 }
-
-AddressInfo.cssHandles = CSS_HANDLES
 
 export default AddressInfo

@@ -5,7 +5,9 @@ import { useCssHandles } from 'vtex.css-handles'
 import type { CssHandlesTypes } from 'vtex.css-handles'
 
 import { ProductBrandCssHandlesProvider } from './components/ProductBrand/ProductBrandCssHandles'
-import ProductBrandName from './components/ProductBrand/ProductBrandName'
+import ProductBrandName, {
+  CSS_HANDLES as ProductBrandNameCssHandles,
+} from './components/ProductBrand/ProductBrandName'
 import { changeImageUrlSize } from './utils/imgUrlHelpers'
 import brandLogoQuery from './graphql/productBrand.gql'
 
@@ -30,7 +32,7 @@ export const PRODUCT_BRAND_CSS_HANDLES = [
   'productBrandLogoLink',
   'productBrandLogoSpacer',
   'productBrandNameSpacer',
-  ...ProductBrandName.cssHandles,
+  ...ProductBrandNameCssHandles,
 ] as const
 
 export interface ProductBrandProps {

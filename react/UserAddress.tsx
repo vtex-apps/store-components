@@ -5,12 +5,14 @@ import type { CssHandlesTypes } from 'vtex.css-handles'
 import ADDRESS_QUERY from 'vtex.store-resources/QueryAddress'
 
 import Container from './Container'
-import AddressInfo from './components/UserAddress/AddressInfo'
+import AddressInfo, {
+  CSS_HANDLES as AddressInfoCssHandles,
+} from './components/UserAddress/AddressInfo'
 import { UserAddressCssHandlesProvider } from './components/UserAddress/UserAddressCssHandles'
 
 export const USER_ADDRESS_CSS_HANDLES = [
   'userAddressContainer',
-  ...AddressInfo.cssHandles,
+  ...AddressInfoCssHandles,
 ] as const
 
 type Props = {
