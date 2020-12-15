@@ -107,6 +107,7 @@ const ProductImages = ({
     <div className={containerClass}>
       <Carousel
         slides={slides}
+        placeholder={placeholder}
         position={position}
         zoomMode={zoomMode}
         maxHeight={maxHeight}
