@@ -46,8 +46,8 @@ interface Props {
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
  */
-function ProductSKUAttributes(_props: Props) {
-  const { handles } = useCssHandles(CSS_HANDLES, { classes: _props.classes })
+function ProductSKUAttributes({ classes }: Props) {
+  const { handles } = useCssHandles(CSS_HANDLES, { classes })
   const productContext = useProduct()
 
   const skuVariations = getVariationsFromSelectedItem(productContext)

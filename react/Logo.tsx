@@ -12,7 +12,7 @@ const CSS_HANDLES = ['logoLink', 'logoImage', 'logoContainer'] as const
 
 interface Props {
   /** Logo's URL */
-  url?: string
+  url: string
   /** Title to be displayed as alt text */
   title: string
   /** Logo's width */
