@@ -9,6 +9,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - New prop `displayPrices` to `sku-selector`.
 
+## [3.137.0] - 2020-12-15
+### Added
+- `displayMode` prop to `product-images`
+
+## [3.136.3] - 2020-12-11
+### Fixed
+- SKUSelector types.
+
+## [3.136.2] - 2020-12-08
+
+### Changed
+- Migrate `user-address` to TypeScript.
+
+## [3.136.1] - 2020-12-08
+### Changed
+- Refactored `ProductDescription` to TypeScript.
+
+## [3.136.0] - 2020-12-08
+### Added
+- `withLink` prop on `ProductBrand`. It controls in which cases the component should link to the brand's page.
+### Changed
+- `logoWithLink` prop on `ProductBrand` is now deprecated.
+
+## [3.135.0] - 2020-12-08
+### Changed
+- Preload main image of `ProductImages`.
+
+## [3.134.0] - 2020-12-08
+### Added
+- New prop `containerMode` to `search-bar`.
+
+## [3.133.1] - 2020-12-08
+### Changed
+- Migrate `autocomplete-result-list` and `search-bar` to TypeScript.
+
+## [3.133.0] - 2020-12-07
+### Added
+- `ProductImages` displays a default placeholder image if no image or video is present.
+- `ProductImages` can receive a custom placeholder image by using the `placeholder` prop
+
 ## [3.132.7] - 2020-12-07
 ### Changed
 - Refactored ProductName to TypeScript.

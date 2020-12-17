@@ -1,12 +1,14 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { useCssHandles } from 'vtex.css-handles'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 
 import Carousel from './components/Carousel'
+import ProductImage from './components/ProductImage'
 import {
   THUMBS_ORIENTATION,
   THUMBS_POSITION_HORIZONTAL,
   DEFAULT_EXCLUDE_IMAGE_WITH,
+  DISPLAY_MODE,
 } from './utils/enums'
 
 const CSS_HANDLES = ['content', 'productImagesContainer']
@@ -15,6 +17,7 @@ const ProductImages = ({
   position,
   displayThumbnailsArrows,
   hiddenImages,
+  placeholder,
   images: allImages,
   videos: allVideos,
   thumbnailsOrientation,
@@ -31,6 +34,7 @@ const ProductImages = ({
   contentType = 'all',
   // Deprecated
   zoomProps,
+  displayMode,
 }) => {
   if (hiddenImages && !Array.isArray(hiddenImages)) {
     hiddenImages = [hiddenImages]
@@ -40,6 +44,10 @@ const ProductImages = ({
     hiddenImages && hiddenImages.map(text => new RegExp(text, 'i'))
 
   const handles = useCssHandles(CSS_HANDLES)
+  const productImagesContainerClass = applyModifiers(
+    handles.productImagesContainer,
+    displayMode
+  )
 
   const shouldIncludeImages = contentType !== 'videos'
   const images = shouldIncludeImages
@@ -72,12 +80,34 @@ const ProductImages = ({
     return showVideosFirst ? [...videos, ...images] : [...images, ...videos]
   }, [showVideosFirst, videos, images])
 
+  const { zoomType: legacyZoomType } = zoomProps || {}
+  const isZoomDisabled = legacyZoomType === 'no-zoom' || zoomMode === 'disabled'
+
+  const containerClass = `${productImagesContainerClass} ${handles.content} w-100`
+
+  if (displayMode === DISPLAY_MODE.LIST)
+    return (
+      <div className={containerClass}>
+        {images.map(({ url, alt }, index) => (
+          <ProductImage
+            key={index}
+            src={url}
+            alt={alt}
+            maxHeight={maxHeight}
+            zoomFactor={zoomFactor}
+            aspectRatio={aspectRatio}
+            ModalZoomElement={ModalZoomElement}
+            zoomMode={isZoomDisabled ? 'disabled' : zoomMode}
+          />
+        ))}
+      </div>
+    )
+
   return (
-    <div
-      className={`${handles.productImagesContainer} ${handles.content} w-100`}
-    >
+    <div className={containerClass}>
       <Carousel
         slides={slides}
+        placeholder={placeholder}
         position={position}
         zoomMode={zoomMode}
         maxHeight={maxHeight}
@@ -116,6 +146,7 @@ ProductImages.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
+  placeholder: PropTypes.string,
   /** Array of images to be passed for the Thumbnail Slider component as a props */
   images: PropTypes.arrayOf(
     PropTypes.shape({
@@ -153,6 +184,7 @@ ProductImages.propTypes = {
   ]),
   zoomFactor: PropTypes.number,
   contentType: PropTypes.oneOf(['all', 'images', 'videos']),
+  displayMode: PropTypes.oneOf([DISPLAY_MODE.CAROUSEL, DISPLAY_MODE.LIST]),
 }
 
 ProductImages.defaultProps = {
@@ -162,6 +194,7 @@ ProductImages.defaultProps = {
   thumbnailsOrientation: THUMBS_ORIENTATION.VERTICAL,
   displayThumbnailsArrows: false,
   hiddenImages: DEFAULT_EXCLUDE_IMAGE_WITH,
+  displayMode: DISPLAY_MODE.CAROUSEL,
 }
 
 export default ProductImages

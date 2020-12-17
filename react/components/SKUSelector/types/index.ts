@@ -1,16 +1,6 @@
-// eslint-disable-next-line no-restricted-syntax
-export enum InitialSelectionType {
-  complete = 'complete',
-  image = 'image',
-  empty = 'empty',
-}
+export type InitialSelectionType = 'complete' | 'image' | 'empty'
 
-// eslint-disable-next-line no-restricted-syntax
-export enum DisplayMode {
-  select = 'select',
-  default = 'default',
-  slider = 'slider',
-}
+export type DisplayMode = 'select' | 'default' | 'slider'
 
 export interface SelectorProductItem extends Omit<ProductItem, 'variations'> {
   variations: string[]

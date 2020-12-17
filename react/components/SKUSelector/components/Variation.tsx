@@ -4,12 +4,12 @@ import { IOMessage } from 'vtex.native-types'
 import { SliderLayout } from 'vtex.slider-layout'
 import { findIndex, propEq } from 'ramda'
 import classnames from 'classnames'
-import useProduct from 'vtex.product-context/useProduct'
+import { useProduct } from 'vtex.product-context'
 import { ResponsiveInput } from 'vtex.responsive-values'
 
 import { stripUrl, isColor, slug } from '../utils'
 import styles from '../styles.css'
-import { DisplayVariation, DisplayMode } from '../types'
+import { DisplayVariation } from '../types'
 import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 import ErrorMessage from './ErrorMessage'
 import SelectModeVariation from './SelectVariationMode'
@@ -97,8 +97,7 @@ const Variation: FC<Props> = ({
   )
 
   const shouldUseSlider =
-    displayOptions.length > sliderDisplayThreshold &&
-    mode === DisplayMode.slider
+    displayOptions.length > sliderDisplayThreshold && mode === 'slider'
 
   const sliderConfigurationProps = {
     itemsPerPage: sliderItemsPerPage,
@@ -167,7 +166,7 @@ const Variation: FC<Props> = ({
         <div
           className={`${styles.skuSelectorOptionsList} w-100 inline-flex flex-wrap ml2 items-center`}
         >
-          {mode === DisplayMode.select && !displayImage ? (
+          {mode === 'select' && !displayImage ? (
             <SelectModeVariation
               selectedItem={selectedItem}
               displayOptions={displayOptions}

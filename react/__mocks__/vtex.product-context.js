@@ -27,6 +27,6 @@ const mockedContext = {
 
 export const ProductContext = React.createContext(mockedContext)
 
-export function useProduct() {
-  return mockedContext
-}
+export const useProduct = jest.fn(() => mockedContext)
+
+export const useProductDispatch = () => jest.fn()

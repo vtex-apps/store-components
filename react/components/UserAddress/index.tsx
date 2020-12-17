@@ -1,55 +1,69 @@
-import PropTypes from 'prop-types'
 import React, { useEffect } from 'react'
-import { graphql } from 'react-apollo'
+import { useQuery } from 'react-apollo'
 import { useCssHandles } from 'vtex.css-handles'
 import ADDRESS_QUERY from 'vtex.store-resources/QueryAddress'
 
 import Container from '../../Container'
 import AddressInfo from './AddressInfo'
 
-const CSS_HANDLES = ['userAddressContainer']
+const CSS_HANDLES = ['userAddressContainer'] as const
 
-const UserAddress = ({
+type Props = {
+  /** Define if address should be displayed in a single line or in blocks */
+  variation: 'inline' | 'bar'
+  /** Define if street should be displayed */
+  showStreet?: boolean
+  /** Define if city and state should be displayed */
+  showCityAndState?: boolean
+  /** Define if postal code should be displayed */
+  showPostalCode?: boolean
+  /** Define if prefix should be displayed */
+  showPrefix?: boolean
+  /** Define if component should render if address is empty */
+  showIfEmpty?: boolean
+}
+
+function UserAddress({
   variation,
-  addressQuery: addressQueryProp,
   showStreet = true,
   showCityAndState = false,
   showPostalCode = false,
   showPrefix = true,
   showIfEmpty = false,
-}) => {
-  const { orderForm } = addressQueryProp
+}: Props) {
   const handles = useCssHandles(CSS_HANDLES)
+  // todo: type the data returned
+  const { data: orderFormData, refetch } = useQuery(ADDRESS_QUERY, {
+    ssr: false,
+  })
 
   useEffect(() => {
-    const handleLocationUpdated = () => addressQueryProp.refetch()
+    const handleLocationUpdated = () => refetch()
 
     window.addEventListener('locationUpdated', handleLocationUpdated)
 
     return () => {
       window.removeEventListener('locationUpdated', handleLocationUpdated)
     }
-  }, [addressQueryProp])
+  }, [refetch])
 
-  if (
-    !orderForm ||
-    ((!orderForm.shippingData || !orderForm.shippingData.address) &&
-      !showIfEmpty)
-  ) {
+  const orderForm = orderFormData?.orderForm
+
+  if (!orderForm || (!orderForm?.shippingData?.address && !showIfEmpty)) {
     return null
   }
 
   const isInline = variation === 'inline'
   const isInverted = !isInline
 
-  return isInline ? (
-    <div
-      className={`${handles.userAddressContainer} ph5`}
-      style={{
-        maxWidth: '30rem',
-      }}
-    >
-      {
+  if (isInline) {
+    return (
+      <div
+        className={`${handles.userAddressContainer} ph5`}
+        style={{
+          maxWidth: '30rem',
+        }}
+      >
         <AddressInfo
           inverted={isInverted}
           inline={isInline}
@@ -60,9 +74,11 @@ const UserAddress = ({
           showPrefix={showPrefix}
           showIfEmpty={showIfEmpty}
         />
-      }
-    </div>
-  ) : (
+      </div>
+    )
+  }
+
+  return (
     <div
       className={`${handles.userAddressContainer} bg-base--inverted c-on-base--inverted flex ph5 pointer pv3 ml3 mr3`}
     >
@@ -84,19 +100,4 @@ const UserAddress = ({
   )
 }
 
-UserAddress.propTypes = {
-  variation: PropTypes.oneOf(['inline', 'bar']).isRequired,
-  addressQuery: PropTypes.object.isRequired,
-  showStreet: PropTypes.bool,
-  showCityAndState: PropTypes.bool,
-  showPostalCode: PropTypes.bool,
-  showPrefix: PropTypes.bool,
-  showIfEmpty: PropTypes.bool,
-}
-
-const withAddressQuery = graphql(ADDRESS_QUERY, {
-  name: 'addressQuery',
-  options: () => ({ ssr: false }),
-})
-
-export default withAddressQuery(UserAddress)
+export default UserAddress
