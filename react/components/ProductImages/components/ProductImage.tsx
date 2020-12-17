@@ -45,7 +45,7 @@ const ProductImage: FC<Props> = ({
     [src, aspectRatio]
   )
 
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
   const imageRef = useRef(null)
 
   const imageContext: ProductImageState = useMemo(

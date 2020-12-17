@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createContext, useContext, useMemo } from 'react'
 
 export const useCssHandles = cssHandles => {
   const handles = {}
@@ -7,7 +7,36 @@ export const useCssHandles = cssHandles => {
     handles[handle] = handle
   })
 
-  return handles
+  return { handles, withModifiers: withModifiersHelper(handles) }
+}
+
+const withModifiersHelper = handles => (handle, modifier) => {
+  return applyModifiers(handles[handle], modifier)
+}
+
+export const createCssHandlesContext = cssHandles => {
+  const Context = createContext({
+    handles: cssHandles,
+    withModifiers: withModifiersHelper(cssHandles),
+  })
+
+  const useContextCssHandles = () => {
+    return useContext(Context)
+  }
+
+  const CssHandlesProvider = ({ withModifiers, handles, children }) => {
+    const value = useMemo(
+      () => ({
+        handles,
+        withModifiers,
+      }),
+      [withModifiers, handles]
+    )
+
+    return <Context.Provider value={value}>{children}</Context.Provider>
+  }
+
+  return { useContextCssHandles, CssHandlesProvider }
 }
 
 const validateModifier = modifier => {
@@ -73,9 +102,9 @@ export const applyModifiers = (handles, modifier) => {
 // eslint-disable-next-line default-param-last
 export const withCssHandles = (handles = [], options) => Component => {
   const EnhancedComponent = props => {
-    const cssHandles = useCssHandles(handles, options)
+    const { handles: cssHandles } = useCssHandles(handles, options)
 
-    return <Component cssHandles={cssHandles} {...props} />
+    return <Component handles={cssHandles} {...props} />
   }
 
   const displayName = Component.displayName || Component.name || 'Component'

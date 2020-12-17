@@ -1,11 +1,12 @@
 import React from 'react'
-import { useCssHandles } from 'vtex.css-handles'
 import { FormattedMessage } from 'react-intl'
 
-const CSS_HANDLES = ['errorMessage'] as const
+import { useSKUSelectorCssHandles } from '../SKUSelectorCssHandles'
+
+export const CSS_HANDLES = ['errorMessage'] as const
 
 function ErrorMessage() {
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useSKUSelectorCssHandles()
   const className = `${handles.errorMessage} c-danger`
 
   return (

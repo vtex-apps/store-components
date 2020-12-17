@@ -2,9 +2,10 @@ import React, { useRef, useEffect } from 'react'
 import classNames from 'classnames'
 import { Input, InputSearch } from 'vtex.styleguide'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
-import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { IconSearch, IconClose } from 'vtex.store-icons'
 import type { DownshiftProps } from 'downshift'
+
+import { useSearchBarCssHandles } from './SearchBarCssHandles'
 
 const DISPLAY_MODES = [
   'clear-button',
@@ -13,7 +14,7 @@ const DISPLAY_MODES = [
 ]
 
 /** Midleware component to adapt the styleguide/Input to be used by the Downshift */
-const CSS_HANDLES = [
+export const CSS_HANDLES = [
   'autoCompleteOuterContainer',
   'compactMode',
   'externalSearchButtonWrapper',
@@ -22,7 +23,7 @@ const CSS_HANDLES = [
   'searchBarIcon',
   'searchBarSearchIcon',
   'suffixWrapper',
-]
+] as const
 
 const CloseIcon = () => {
   const hasIconBlock = Boolean(useChildBlock({ id: 'icon-close' }))
@@ -107,8 +108,8 @@ function AutocompleteInput({
   openAutocompleteOnFocus,
   ...restProps
 }: Props) {
+  const { handles, withModifiers } = useSearchBarCssHandles()
   const inputRef = useRef<HTMLInputElement>(null)
-  const handles = useCssHandles(CSS_HANDLES)
 
   let dMode = displayMode
 
@@ -154,8 +155,8 @@ function AutocompleteInput({
 
   const clearButton = showClearButton && (
     <button
-      className={`${iconClasses ?? ''} ${applyModifiers(
-        handles.searchBarIcon,
+      className={`${iconClasses ?? ''} ${withModifiers(
+        'searchBarIcon',
         'clear'
       )} flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3`}
       style={{
@@ -169,8 +170,8 @@ function AutocompleteInput({
 
   const internalSearchButton = showInternalSearchButton && (
     <button
-      className={`${iconClasses ?? ''} ${applyModifiers(
-        handles.searchBarIcon,
+      className={`${iconClasses ?? ''} ${withModifiers(
+        'searchBarIcon',
         'search'
       )} flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3`}
       onClick={() => hasValue && onGoToSearchPage()}
@@ -184,8 +185,8 @@ function AutocompleteInput({
       className={`${handles.externalSearchButtonWrapper} bw1 bl b--muted-4 flex items-center `}
     >
       <button
-        className={`${iconClasses ?? ''} ${applyModifiers(
-          handles.searchBarIcon,
+        className={`${iconClasses ?? ''} ${withModifiers(
+          'searchBarIcon',
           'external-search'
         )}  flex items-center h-100 pointer pv0 nr5 ph5 bn c-link`}
         onClick={onGoToSearchPage}
@@ -205,10 +206,7 @@ function AutocompleteInput({
 
   const prefix = (
     <span
-      className={`${iconClasses} ${applyModifiers(
-        handles.searchBarIcon,
-        'prefix'
-      )} `}
+      className={`${iconClasses} ${withModifiers('searchBarIcon', 'prefix')} `}
     >
       <SearchIcon />
     </span>

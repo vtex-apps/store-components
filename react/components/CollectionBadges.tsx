@@ -15,7 +15,7 @@ const CollectionBadges: FC<Props> = ({
   collectionBadgesText = [],
   children,
 }) => {
-  const handles = useCssHandles(HANDLES)
+  const { handles } = useCssHandles(HANDLES)
 
   return (
     <div className={`${handles.collectionContainer} relative dib w-100`}>

@@ -2,6 +2,10 @@
 
 # Buy Button
 
+![https://img.shields.io/badge/-Deprecated-red](https://img.shields.io/badge/-Deprecated-red)
+
+> :warning: **The Buy Button block has been deprecated in favor of the [Add To Cart Button app](https://vtex.io/docs/components/all/vtex.add-to-cart-button/).**
+> Although support for this block is still granted, we strongly recommend you to update your store theme with the Add to Cart Button's blocks in order to keep up with the component's evolution.
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->

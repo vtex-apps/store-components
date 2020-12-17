@@ -53,7 +53,7 @@ const navigationConfig = {
 }
 
 const ThumbnailSwiper = props => {
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
 
   const {
     isThumbsVertical,

@@ -2,21 +2,26 @@ import React, { memo } from 'react'
 import { useIntl } from 'react-intl'
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
+import type { CssHandlesTypes } from 'vtex.css-handles'
 
-import NotificationContent from './components/NotificationContent'
-
-interface Props {
-  content?: string
-}
+import { SanitizedHTML } from './components/SanitizedHTML'
 
 const CSS_HANDLES = [
   'notificationBarContainer',
   'notificationBarInner',
+  'notificationContent',
 ] as const
 
-function NotificationBar({ content = '' }: Props) {
+interface Props {
+  /** Text to be used in the bar */
+  content?: string
+  /** Used to override default CSS handles */
+  classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
+}
+
+function NotificationBar({ content = '', classes }: Props) {
+  const { handles } = useCssHandles(CSS_HANDLES, { classes })
   const intl = useIntl()
-  const handles = useCssHandles(CSS_HANDLES)
 
   if (!content) {
     return null
@@ -29,7 +34,9 @@ function NotificationBar({ content = '' }: Props) {
       <div
         className={`${handles.notificationBarInner} min-h-large flex items-center justify-center`}
       >
-        <NotificationContent content={formatIOMessage({ id: content, intl })} />
+        <div className={handles.notificationContent}>
+          <SanitizedHTML content={formatIOMessage({ id: content, intl })} />
+        </div>
       </div>
     </div>
   )

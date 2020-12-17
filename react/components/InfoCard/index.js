@@ -101,7 +101,7 @@ const InfoCard = ({
 
   const { lazyLoad } = useExperimentalLazyImagesContext()
 
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
   const paddingClass =
     textPosition === textPostionValues.LEFT ? 'pr4-ns' : 'pl4-ns'
 

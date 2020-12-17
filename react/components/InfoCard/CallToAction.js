@@ -11,7 +11,7 @@ const CSS_HANDLES = ['infoCardCallActionContainer', 'infoCardCallActionText']
 const noop = () => {}
 
 const CallToAction = ({ mode, text, url, linkTarget }) => {
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
 
   if (mode === callActionValues.NONE) {
     return null

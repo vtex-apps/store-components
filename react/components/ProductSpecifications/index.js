@@ -37,7 +37,7 @@ const ProductSpecifications = ({
 }) => {
   const [currentTab, setCurrentTab] = useState(0)
   const [collapsed, setCollapsed] = useState(true)
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
   const { isMobile } = useDevice()
 
   const shouldBeCollapsible = Boolean(

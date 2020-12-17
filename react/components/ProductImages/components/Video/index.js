@@ -26,7 +26,7 @@ export function getThumbUrl(url, thumbWidth) {
 
 function Video(props) {
   const { url } = props
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
 
   return (
     <div className={handles.productVideo}>

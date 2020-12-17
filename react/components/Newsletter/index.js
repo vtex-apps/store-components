@@ -85,14 +85,7 @@ class Newsletter extends Component {
   }
 
   render() {
-    const {
-      hideLabel,
-      intl,
-      submit,
-      label,
-      placeholder,
-      cssHandles,
-    } = this.props
+    const { hideLabel, intl, submit, label, placeholder, handles } = this.props
 
     const submitText = formatIOMessage({ id: submit, intl })
     const labelText = formatIOMessage({ id: label, intl })
@@ -119,33 +112,33 @@ class Newsletter extends Component {
 
     return (
       <div
-        className={`${cssHandles.newsletter} ${
-          this.state.success ? cssHandles.confirmation : ''
+        className={`${handles.newsletter} ${
+          this.state.success ? handles.confirmation : ''
         } w-100`}
       >
-        <div className={`${cssHandles.container} mw9 mr-auto ml-auto pv9`}>
+        <div className={`${handles.container} mw9 mr-auto ml-auto pv9`}>
           {this.state.success ? (
             <Fragment>
               <div
-                className={`${cssHandles.confirmationTitle} t-heading-3 pb4 tc`}
+                className={`${handles.confirmationTitle} t-heading-3 pb4 tc`}
               >
                 {confirmationTitle}
               </div>
-              <div className={`${cssHandles.confirmationText} t-body tc`}>
+              <div className={`${handles.confirmationText} t-body tc`}>
                 {confirmationText}
               </div>
             </Fragment>
           ) : (
-            <form className={`${cssHandles.form} mw6 center tc ph5 ph0-ns`}>
+            <form className={`${handles.form} mw6 center tc ph5 ph0-ns`}>
               <label
-                className={`${cssHandles.label} t-heading-3 tc ${
+                className={`${handles.label} t-heading-3 tc ${
                   hideLabel ? 'dn' : ''
                 }`}
                 htmlFor="newsletter-input"
               >
                 {labelText}
               </label>
-              <div className={`${cssHandles.inputGroup} flex-ns pt5`}>
+              <div className={`${handles.inputGroup} flex-ns pt5`}>
                 <Input
                   ref={this.inputRef}
                   id="newsletter-input"
@@ -158,7 +151,7 @@ class Newsletter extends Component {
                   onChange={this.handleChangeEmail}
                 />
                 <div
-                  className={`${cssHandles.buttonContainer} pl4-ns flex-none pt3 pt0-ns`}
+                  className={`${handles.buttonContainer} pl4-ns flex-none pt3 pt0-ns`}
                 >
                   <Button
                     variation="primary"
@@ -171,7 +164,7 @@ class Newsletter extends Component {
                 </div>
               </div>
               {this.state.error && (
-                <div className={`${cssHandles.error} c-danger t-body pt5`}>
+                <div className={`${handles.error} c-danger t-body pt5`}>
                   {errorMsg}
                 </div>
               )}
@@ -202,7 +195,7 @@ Newsletter.propTypes = {
   submit: PropTypes.string,
   subscribeNewsletter: PropTypes.func.isRequired,
   intl: PropTypes.object,
-  cssHandles: PropTypes.any,
+  handles: PropTypes.any,
 }
 
 NewsletterWrapper.getSchema = () => {

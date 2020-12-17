@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
-import { useCssHandles } from 'vtex.css-handles'
 import { useIntl, FormattedMessage } from 'react-intl'
 import { IconLocationMarker } from 'vtex.store-icons'
+
+import { useUserAddressCssHandles } from './UserAddressCssHandles'
 
 type Props = {
   // todo: fix orderform typings
@@ -16,7 +17,7 @@ type Props = {
   showIfEmpty: boolean
 }
 
-const CSS_HANDLES = [
+export const CSS_HANDLES = [
   'addressInfoIconContainer',
   'addressInfoTextContainer',
   'addressInfoPrefixContainer',
@@ -37,7 +38,7 @@ const AddressInfo = ({
 }: Props) => {
   const { shippingData } = orderForm
   const hasModal = !!useChildBlock({ id: 'modal' })
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useUserAddressCssHandles()
   const intl = useIntl()
 
   if (!shippingData || !shippingData.address) {

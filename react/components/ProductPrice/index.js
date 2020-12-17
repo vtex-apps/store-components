@@ -118,7 +118,7 @@ const ProductPrice = props => {
 
   const { culture } = useRuntime()
 
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
 
   if ((showListPrice && isNil(listPrice)) || isNil(sellingPrice)) {
     return (

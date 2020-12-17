@@ -16,7 +16,7 @@
     "vtex.address-form": "4.x",
     "vtex.apps-graphql": "2.x",
     "vtex.checkout-resources": "0.x",
-    "vtex.css-handles": "0.x",
+    "vtex.css-handles": "1.x",
     "vtex.device-detector": "0.x",
     "vtex.format-currency": "0.x",
     "vtex.modal": "0.x",

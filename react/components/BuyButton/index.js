@@ -80,6 +80,7 @@ const useCallCartFinishIfPending = (
 /**
  * BuyButton Component.
  * Adds a list of sku items to the cart.
+ * @deprecated This component is deprecated. Please use [vtex.add-to-cart-button](https://github.com/vtex-apps/add-to-cart-button) instead.
  */
 export const BuyButton = ({
   intl,
@@ -100,7 +101,7 @@ export const BuyButton = ({
   checkoutUrl,
   customToastURL = checkoutUrl,
 }) => {
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
   const [isAddingToCart, setAddingToCart] = useState(false)
   const { showToast } = useContext(ToastContext)
   const {

@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Deprecated
+- `buy-button`.
+  
+### Changed
+- Migrate to `vtex.css-handles@1.x`.
 
 ## [3.137.0] - 2020-12-15
 ### Added

@@ -2,10 +2,13 @@ import React from 'react'
 import { Link, useRuntime } from 'vtex.render-runtime'
 import type { RenderContext } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
+import type { CssHandlesTypes } from 'vtex.css-handles'
 import * as Amp from 'react-amphtml'
 
 import Placeholder from './components/Logo/LogoPlaceholder'
 import styles from './components/Logo/styles.css'
+
+const CSS_HANDLES = ['logoLink', 'logoImage', 'logoContainer'] as const
 
 interface Props {
   /** Logo's URL */
@@ -17,14 +20,14 @@ interface Props {
   /** Logo's height */
   height?: string | number
   /** Link to redirect users on click */
-  href: string
+  href?: string
   /** Logo's width on mobile */
   mobileWidth?: string | number
   /** Logo's height on mobile */
   mobileHeight?: string | number
+  /** Used to override default CSS handles */
+  classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
 }
-
-const CSS_HANDLES = ['logoLink', 'logoImage', 'logoContainer'] as const
 
 /**
  * Store's logo.
@@ -37,6 +40,7 @@ function Logo({
   title,
   mobileWidth,
   mobileHeight,
+  classes,
 }: Props) {
   const {
     amp,
@@ -44,7 +48,7 @@ function Logo({
     hints: { mobile },
   } = useRuntime() as RenderContext.RenderContext
 
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES, { classes })
   const logoClassNames = `store-logo ${handles.logoContainer} ${
     mobile ? styles.sizeMobile : styles.sizeDesktop
   }`

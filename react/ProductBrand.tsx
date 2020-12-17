@@ -2,36 +2,17 @@ import React, { FC } from 'react'
 import { useQuery } from 'react-apollo'
 import { useProduct } from 'vtex.product-context'
 import { useCssHandles } from 'vtex.css-handles'
+import type { CssHandlesTypes } from 'vtex.css-handles'
 
-import ProductBrandName from './components/ProductBrand/ProductBrandName'
+import { ProductBrandCssHandlesProvider } from './components/ProductBrand/ProductBrandCssHandles'
+import ProductBrandName, {
+  CSS_HANDLES as ProductBrandNameCssHandles,
+} from './components/ProductBrand/ProductBrandName'
 import { changeImageUrlSize } from './utils/imgUrlHelpers'
 import brandLogoQuery from './graphql/productBrand.gql'
 
 type DisplayModeOptions = 'logo' | 'text'
 type WithLinkOptions = 'none' | 'logo' | 'text' | 'logoAndText'
-
-export interface ProductBrandProps {
-  /** Brand name */
-  brandName?: string
-  /** Brand id */
-  brandId?: number
-  /** Whether it should be displayed as a logo or as a text */
-  displayMode?: DisplayModeOptions
-  /** Whether the loading placeholder should have the size of the logo or the text */
-  loadingPlaceholder?: DisplayModeOptions
-  /** Whether it should display the name of the brand if there is no logo */
-  fallbackToText?: boolean
-  /** List of brands that should be hidden, if any */
-  excludeBrands?: Array<string | number>
-  /** Height of the logo */
-  height?: number
-  /** CSS Handler */
-  blockClass?: string
-  /** @deprecated use withLink instead */
-  logoWithLink?: boolean
-  /** Whether it should link to the brand's page */
-  withLink?: WithLinkOptions
-}
 
 interface ProductBrandQueryVariables {
   id: number
@@ -46,14 +27,42 @@ interface ProductBrandQueryResult {
 
 export const PRODUCT_BRAND_CSS_HANDLES = [
   'productBrandContainer',
-  'productBrandName',
   'productBrandLogo',
   'productBrandLogoWrapper',
   'productBrandLogoLink',
-  'productBrandNameLink',
   'productBrandLogoSpacer',
   'productBrandNameSpacer',
+  ...ProductBrandNameCssHandles,
 ] as const
+
+export interface ProductBrandProps {
+  /** The brand name. If no value is declared, the product context should provide the data. */
+  brandName?: string
+  /** The brand ID.  If no value is declared, the product context should provide the data. */
+  brandId?: number
+  /** This will define if the product brand will be displayed by text or logo */
+  displayMode?: DisplayModeOptions
+  /** This will define if the loading placeholder should have the size of the logo or the text */
+  loadingPlaceholder?: DisplayModeOptions
+  /** This prop should only be used when `displayMode` is set to `logo`.
+   * It defines what should be done when the Product Brand was set to display a brand logo
+   * but no image was registered in the VTEX admin's Catalog
+   * */
+  fallbackToText?: boolean
+  /** The brand names or brand IDs listed in the array will never be displayed by the Brand component.
+   * It is usually useful to hide default or test brand names/logos on the store front
+   * */
+  excludeBrands?: Array<string | number>
+  /** It sets the logo height. It should only be used when `displayMode` is set to `logo` */
+  height?: number
+  /** @deprecated use withLink instead */
+  logoWithLink?: boolean
+  /** Defines the scenarios in which the product brand should have a link that leads to its website. */
+  withLink?: WithLinkOptions
+  /** Used to override default CSS handles */
+  classes?: CssHandlesTypes.CustomClasses<typeof PRODUCT_BRAND_CSS_HANDLES>
+  blockClass?: string
+}
 
 const shouldExcludeBrand = (
   brandName: string,
@@ -98,9 +107,12 @@ function ProductBrand({
   withLink = 'none',
   brandName: brandNameProp,
   brandId: brandIdProp,
+  classes,
 }: ProductBrandProps) {
   const { brandName, brandId } = useBrandInfoProps(brandNameProp, brandIdProp)
-  const handles = useCssHandles(PRODUCT_BRAND_CSS_HANDLES)
+  const { handles, withModifiers } = useCssHandles(PRODUCT_BRAND_CSS_HANDLES, {
+    classes,
+  })
 
   const { data, loading, error } = useQuery<
     ProductBrandQueryResult,
@@ -125,11 +137,16 @@ function ProductBrand({
   }
 
   const brandNameElement = (
-    <ProductBrandName
-      brandName={brandName}
-      withLink={nameHasLink}
-      slug={data?.brand?.slug}
-    />
+    <ProductBrandCssHandlesProvider
+      handles={handles}
+      withModifiers={withModifiers}
+    >
+      <ProductBrandName
+        brandName={brandName}
+        withLink={nameHasLink}
+        slug={data?.brand?.slug}
+      />
+    </ProductBrandCssHandlesProvider>
   )
 
   const BrandContainer: FC = ({ children }) => (

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { useCssHandles, applyModifiers } from 'vtex.css-handles'
+import { useCssHandles } from 'vtex.css-handles'
 
 import Carousel from './components/Carousel'
 import ProductImage from './components/ProductImage'
@@ -43,9 +43,9 @@ const ProductImages = ({
   const excludeImageRegexes =
     hiddenImages && hiddenImages.map(text => new RegExp(text, 'i'))
 
-  const handles = useCssHandles(CSS_HANDLES)
-  const productImagesContainerClass = applyModifiers(
-    handles.productImagesContainer,
+  const { handles, withModifiers } = useCssHandles(CSS_HANDLES)
+  const productImagesContainerClass = withModifiers(
+    'productImagesContainer',
     displayMode
   )
 
