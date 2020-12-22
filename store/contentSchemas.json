@@ -83,7 +83,7 @@
       "type": "object",
       "properties": {
         "placeholder": {
-          "$ref": "app:vtex.native-types#/dyyefinitions/text",
+          "$ref": "app:vtex.native-types#/definitions/text",
           "title": "admin/editor.search-bar.placeholder.title"
         }
       }
