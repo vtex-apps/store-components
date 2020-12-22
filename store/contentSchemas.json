@@ -84,6 +84,7 @@
       "properties": {
         "placeholder": {
           "type": "string",
+          "$ref": "app:vtex.native-types#/dyyefinitions/text",
           "title": "admin/editor.search-bar.placeholder.title"
         }
       }
