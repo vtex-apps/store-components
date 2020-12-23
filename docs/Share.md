@@ -1,48 +1,47 @@
+📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion). 
+
 # Share
 
-## Description
+The `share` is a block that allows to share a product URL via social medias.
 
-`Share` is a VTEX component that allows to share a product url via social medias.
-This component can be imported and used by any VTEX app.
+## Configuration
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
-
-## Table of Contents
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-    - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespaces](#css-namespaces)
-
-## Usage
-
-You should follow the usage instruction in the main [README](/README.md#usage).
-
-Then, add `share` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
-
-### Blocks API
-
-When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `Share` and describes if they are required or optional.
+1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json`, for example:
 
 ```json
-  "share": {
-    "component": "Share"
+  "dependencies: {
+    "vtex.store-components": "3.x"
   }
 ```
 
-For now this block does not have any required or optional blocks.
+2. Add the `share` block to any block below `store.product` (Product template). For example:
 
-#### Configuration
-
-Through the Storefront, you can change the `Share`'s behavior and interface. However, you also can make in your theme app, as Store theme does.
+```json
+  "store.product": {
+    "children": [
+      "flex-layout.row#product",
+    ]
+  },
+  "flex-layout.row#product": {
+    "children": [
+      "share"
+    ]
+  },
+  "share": {
+    "props": {
+      "social": {
+        "Facebook": true,
+        "Twitter": true,
+        "WhatsApp": true,
+      }
+    }
+  },
+```
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| `className` | `String` | The main container classes | null |
-| `shareLabelClass` | `String` | The share label classes | true |
-| `buttonsContainerClass` | `String` | The button container classes | true |
-| `options` | `Options` | Share button options, like "size" | {} |
-| `social` | `Social` | The possible social medias to be displayed | {Facebook: true, Twitter: true, WhatsApp: true, Pinterest: true} |
+| `options` | `Options` | Share button options, like `size` | {} |
+| `social` | `Social` | The possible social medias to be displayed | `{Facebook: true, Twitter: true, WhatsApp: true, Pinterest: true}` |
 | `imageUrl` | `String` | Image url to share in social medias |
 
 Options:
@@ -55,21 +54,22 @@ Social:
 
 | Prop name | Type | Description |
 | --------- | ---- | ----------- |
-| `Facebook` | `Boolean` | If facebook social media will be shown |
-| `Twitter` | `Boolean` | If twitter social media will be shown |
-| `WhatsApp` | `Boolean` | If whatsApp social media will be shown |
+| `Facebook` | `Boolean` | Whether Facebook will be shown |
+| `Twitter` | `Boolean` | Whether Twitter will be shown |
+| `WhatsApp` | `Boolean` | Whether WhatsApp will be shown |
+| `Pinterest` | `Boolean` | Whether Pinterest will be shown |
+| `Telegram` | `Boolean` | Whether Telegram will be shown |
+| `E-mail` | `Boolean` | Whether E-mail will be shown |
 
-### Styles API
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+## Customization
 
-#### CSS Namespaces
-Below, we describe the namespace that are defined in the `Share`.
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| Class name | Description | Component Source |
-| ---------- | ----------- | ---------------- |
-| `shareContainer` | The main container of `Share` | [index](/react/components/Share/index.js) |
-| `shareLoader` | The share loader | [index](/react/components/Share/index.js) |
-| `shareLabel` | The share label | [index](/react/components/Share/index.js) | 
-| `shareButtons` | The main container of social media buttons | [index](/react/components/Share/index.js) |
-| `shareSocialButton` | The share social media button | [index](/react/components/Share/components/SocialButton.js) | 
-| `shareSocialIcon` | The share social media icon | [index](/react/components/Share/components/SocialButton.js) |
+| CSS Handles |
+| --- |
+| `shareContainer` |
+| `shareLoader` |
+| `shareLabel` |
+| `shareButtons` |
+| `shareSocialButton` |
+| `shareSocialIcon` |
