@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- New keys to `product-images`.It prevent render problems when prefetch is enabled.
 
 ## [3.138.1] - 2020-12-28
 ### Changed
@@ -94,7 +96,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.131.3] - 2020-11-13
 ### Fixed
 - Navigating between product images using thumbnails was not working 
-
 
 ## [3.131.2] - 2020-11-10
 ### Changed
