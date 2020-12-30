@@ -32,10 +32,10 @@ function Video(props) {
     <div className={handles.productVideo}>
       {isVimeo(url) && (
         <NoSSR>
-          <Vimeo {...props} cssHandles={handles} />
+          <Vimeo key={url} {...props} cssHandles={handles} />
         </NoSSR>
       )}
-      {isYoutube(url) && <YouTube {...props} cssHandles={handles} />}
+      {isYoutube(url) && <YouTube key={url} {...props} cssHandles={handles} />}
     </div>
   )
 }
