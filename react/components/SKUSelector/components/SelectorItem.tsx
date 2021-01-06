@@ -65,7 +65,7 @@ function SelectorItem({
   imageWidth,
   showBorders = true,
   showNameForVariation = false,
-  name
+  name,
 }: Props) {
   const discount = getDiscount(maxPrice, price)
   const { handles, withModifiers } = useSKUSelectorCssHandles()
@@ -108,7 +108,9 @@ function SelectorItem({
     imageUrl = changeImageUrlSize(imageUrl, imageWidth, imageHeight)
   }
 
-  const varValue = showNameForVariation ? `${name} ${variationValue}` : variationValue
+  const varValue = showNameForVariation
+    ? `${name} ${variationValue}`
+    : variationValue
 
   return (
     <div

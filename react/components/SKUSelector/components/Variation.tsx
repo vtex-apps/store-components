@@ -60,7 +60,7 @@ const Variation: FC<Props> = ({
   sliderArrowSize,
   sliderDisplayThreshold,
   sliderItemsPerPage,
-  showNameForVariation
+  showNameForVariation,
 }) => {
   const { originalName, name, options } = variation
 
