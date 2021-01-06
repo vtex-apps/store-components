@@ -32,6 +32,7 @@ interface Props {
   sliderDisplayThreshold: number
   sliderArrowSize: number
   sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
+  showNameForVariation?: boolean
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
@@ -59,6 +60,7 @@ const Variation: FC<Props> = ({
   sliderArrowSize,
   sliderDisplayThreshold,
   sliderItemsPerPage,
+  showNameForVariation
 }) => {
   const { originalName, name, options } = variation
 
@@ -126,6 +128,8 @@ const Variation: FC<Props> = ({
         }
         imageLabel={option.image?.imageLabel}
         isImpossible={option.impossible}
+        showNameForVariation={showNameForVariation}
+        name={name}
       />
     )
   })
