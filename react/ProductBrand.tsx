@@ -209,6 +209,10 @@ function ProductBrand({
     return <BrandContainer>{brandNameElement}</BrandContainer>
   }
 
+  if (imageUrl === null && !fallbackToText) {
+    return null
+  }
+
   const dpi = window?.devicePixelRatio ?? 1
   const logoLink = `/${slug}/b`
 

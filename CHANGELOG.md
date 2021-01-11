@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- ProductBrand to prevent render broken image when product does not have imageUrl.
+
 ## [3.138.2] - 2020-12-30
 ### Added
 - New keys to `product-images`.It prevent render problems when prefetch is enabled.
