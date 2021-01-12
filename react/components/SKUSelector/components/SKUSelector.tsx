@@ -57,7 +57,7 @@ interface Props {
   sliderDisplayThreshold: number
   sliderArrowSize: number
   sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
-  showNameForVariation?: boolean
+  showLabelForVariation?: boolean
 }
 
 const isSkuAvailable = compose<
@@ -272,7 +272,7 @@ function SKUSelector({
   sliderDisplayThreshold,
   sliderArrowSize,
   sliderItemsPerPage,
-  showNameForVariation,
+  showLabelForVariation,
 }: Props) {
   const { handles } = useSKUSelectorCssHandles()
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
@@ -356,7 +356,7 @@ function SKUSelector({
             sliderDisplayThreshold={sliderDisplayThreshold}
             sliderArrowSize={sliderArrowSize}
             sliderItemsPerPage={sliderItemsPerPage}
-            showNameForVariation={showNameForVariation}
+            showLabelForVariation={showLabelForVariation}
           />
         )
       })}

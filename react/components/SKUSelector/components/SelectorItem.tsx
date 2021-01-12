@@ -20,7 +20,7 @@ interface Props {
   imageHeight?: number | string
   imageWidth?: number | string
   showBorders?: boolean
-  showNameForVariation?: boolean
+  showLabelForVariation?: boolean
   name: string
 }
 
@@ -64,7 +64,7 @@ function SelectorItem({
   imageHeight,
   imageWidth,
   showBorders = true,
-  showNameForVariation = false,
+  showLabelForVariation = false,
   name,
 }: Props) {
   const discount = getDiscount(maxPrice, price)
@@ -108,7 +108,7 @@ function SelectorItem({
     imageUrl = changeImageUrlSize(imageUrl, imageWidth, imageHeight)
   }
 
-  const varValue = showNameForVariation
+  const varValue = showLabelForVariation
     ? `${name} ${variationValue}`
     : variationValue
 
