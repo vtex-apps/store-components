@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.138.3] - 2021-01-13
+
 ### Fixed
 - ProductBrand to prevent render broken image when product does not have imageUrl.
 
