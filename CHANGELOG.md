@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Color translations for swedish, finnish and dutch.
+
 ## [3.138.3] - 2021-01-13
 
 ### Fixed
