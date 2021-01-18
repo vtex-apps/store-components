@@ -14,6 +14,7 @@ const THUMB_MAX_SIZE = 256
 const CSS_HANDLES = [
   'figure',
   'thumbImg',
+  'thumbVid',
   'productImagesThumb',
   'carouselThumbBorder',
   'carouselGaleryThumbs',
@@ -21,7 +22,7 @@ const CSS_HANDLES = [
 ]
 
 const Thumbnail = props => {
-  const { alt, thumbUrl, handles, aspectRatio = 'auto' } = props
+  const { alt, isVideo, thumbUrl, handles, aspectRatio = 'auto' } = props
 
   return (
     <>
@@ -32,7 +33,7 @@ const Thumbnail = props => {
         itemType="http://schema.org/ImageObject"
       >
         <img
-          className={`${handles.thumbImg} w-100 h-auto db`}
+          className={`${handles.thumbImg} ${isVideo ? handles.thumbVid : ''} w-100 h-auto db`}
           itemProp="thumbnail"
           alt={alt}
           src={imageUrl(thumbUrl, THUMB_SIZE, THUMB_MAX_SIZE, aspectRatio)}
@@ -67,6 +68,7 @@ const ThumbnailSwiper = props => {
   } = props
 
   const hasThumbs = slides.length > 1
+
 
   const thumbClassName = classNames(
     `${handles.carouselGaleryThumbs} dn h-auto`,
@@ -171,6 +173,7 @@ const ThumbnailSwiper = props => {
               }}
             >
               <Thumbnail
+                isVideo={slide.type === 'video'}
                 index={i}
                 handles={handles}
                 alt={slide.alt}
