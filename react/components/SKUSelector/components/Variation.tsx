@@ -14,7 +14,7 @@ import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 import ErrorMessage from './ErrorMessage'
 import SelectModeVariation from './SelectVariationMode'
 import SelectorItem from './SelectorItem'
-import { showVariationsLabels } from './SKUSelector'
+import { ShowVariationsLabels } from './SKUSelector'
 
 interface Props {
   variation: DisplayVariation
@@ -26,7 +26,7 @@ interface Props {
   imageHeight?: number
   imageWidth?: number
   showBorders?: boolean
-  showLabel: showVariationsLabels
+  showLabel: ShowVariationsLabels
   containerClasses?: string
   showErrorMessage: boolean
   mode?: string
@@ -107,40 +107,37 @@ const Variation: FC<Props> = ({
     fullWidth: false,
   }
 
+  // The following code is for keep backward compatibility
+  let variationLabel = ''
+  if (typeof showLabel === 'boolean') {
+    variationLabel = showLabel ? 'name' : 'none'
+  } else {
+    variationLabel = showLabel
+  }
 
   const selectorItemsArray = displayOptions.map(option => {
     return (
-      <div className={`${styles.skuSelectorItemContainer}`}>
-        <SelectorItem
-          isSelected={option.label === selectedItem}
-          key={`${option.label}-${name}`}
-          isAvailable={option.available}
-          maxPrice={maxSkuPrice}
-          onClick={option.impossible ? noop : option.onSelectItem}
-          isImage={displayImage}
-          variationValue={option.label}
-          variationValueOriginalName={option.originalName}
-          imageHeight={imageHeight}
-          imageWidth={imageWidth}
-          showBorders={showBorders}
-          imageUrl={
-            option.image &&
-            imageUrlForSize(stripUrl(option.image.imageUrl), VARIATION_IMG_SIZE)
-          }
-          imageLabel={option.image?.imageLabel}
-          isImpossible={option.impossible}
-        />
-        {typeof showLabel === 'string' && (
-          <div className={`${styles.skuSelectorLabelContainer} db mb3`}>
-            <span
-              className={`${styles.skuSelectorLabel} c-muted-1 t-small`}
-            >
-              {showLabel === 'values' && option.label}
-              {showLabel === 'namesAndValues' && `${name} ${option.label}`}
-            </span>
-          </div>
-        )}
-      </div>
+      <SelectorItem
+        isSelected={option.label === selectedItem}
+        key={`${option.label}-${name}`}
+        isAvailable={option.available}
+        maxPrice={maxSkuPrice}
+        onClick={option.impossible ? noop : option.onSelectItem}
+        isImage={displayImage}
+        variationValue={option.label}
+        variationValueOriginalName={option.originalName}
+        imageHeight={imageHeight}
+        imageWidth={imageWidth}
+        showBorders={showBorders}
+        imageUrl={
+          option.image &&
+          imageUrlForSize(stripUrl(option.image.imageUrl), VARIATION_IMG_SIZE)
+        }
+        imageLabel={option.image?.imageLabel}
+        isImpossible={option.impossible}
+        variationLabel={variationLabel}
+        name={name}
+      />
     )
   })
 
@@ -148,7 +145,7 @@ const Variation: FC<Props> = ({
     <div className={containerClasses}>
       <div className={`${styles.skuSelectorNameContainer} ma1`}>
         <div className={`${styles.skuSelectorTextContainer} db mb3`}>
-          {typeof showLabel === 'boolean' && showLabel && (
+          {variationLabel === 'name' && (
             <span
               className={`${styles.skuSelectorName} c-muted-1 t-small overflow-hidden`}
             >
