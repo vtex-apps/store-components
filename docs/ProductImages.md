@@ -151,6 +151,7 @@ In order to apply CSS customizations on this and other blocks, follow the instru
 | `swiperCaretNext` |
 | `swiperCaretPrev` |
 | `thumbImg` |
+| `thumbVid` |
 | `video` |
 | `video`|
 | `videoContainer` |
