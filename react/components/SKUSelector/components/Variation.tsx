@@ -109,6 +109,7 @@ const Variation: FC<Props> = ({
 
   // The following code is for keep backward compatibility
   let variationLabel = ''
+
   if (typeof showLabel === 'boolean') {
     variationLabel = showLabel ? 'name' : 'none'
   } else {

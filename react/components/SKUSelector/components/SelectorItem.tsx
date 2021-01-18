@@ -46,7 +46,7 @@ export const CSS_HANDLES = [
   'skuSelectorItemImageValue',
   'skuSelectorLabelContainer',
   'skuSelectorLabel',
-  'skuSelectorItemContainer'
+  'skuSelectorItemContainer',
 ] as const
 
 /**
@@ -68,7 +68,7 @@ function SelectorItem({
   imageWidth,
   showBorders = true,
   variationLabel,
-  name
+  name,
 }: Props) {
   const discount = getDiscount(maxPrice, price)
   const { handles, withModifiers } = useSKUSelectorCssHandles()
@@ -111,9 +111,10 @@ function SelectorItem({
     imageUrl = changeImageUrlSize(imageUrl, imageWidth, imageHeight)
   }
 
-  const labelText = variationLabel === 'values' && variationValue
-    || variationLabel === 'namesAndValues' && `${name} ${variationValue}`
-    || ''
+  const labelText =
+    (variationLabel === 'values' && variationValue) ||
+    (variationLabel === 'namesAndValues' && `${name} ${variationValue}`) ||
+    ''
 
   return (
     <div className={`${handles.skuSelectorItemContainer}`}>
