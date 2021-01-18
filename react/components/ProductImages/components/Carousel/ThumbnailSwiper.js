@@ -1,6 +1,6 @@
 import React, { Fragment, useMemo } from 'react'
 import classNames from 'classnames'
-import { useCssHandles } from 'vtex.css-handles'
+import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { IconCaret } from 'vtex.store-icons'
 
@@ -33,7 +33,10 @@ const Thumbnail = props => {
         itemType="http://schema.org/ImageObject"
       >
         <img
-          className={`${handles.thumbImg} ${isVideo ? handles.thumbVid : ''} w-100 h-auto db`}
+          className={`${applyModifiers(
+            handles.thumbImg,
+            isVideo ? 'video' : null
+          )} w-100 h-auto db`}
           itemProp="thumbnail"
           alt={alt}
           src={imageUrl(thumbUrl, THUMB_SIZE, THUMB_MAX_SIZE, aspectRatio)}
@@ -68,7 +71,6 @@ const ThumbnailSwiper = props => {
   } = props
 
   const hasThumbs = slides.length > 1
-
 
   const thumbClassName = classNames(
     `${handles.carouselGaleryThumbs} dn h-auto`,

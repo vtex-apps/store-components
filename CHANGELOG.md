@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-- `thumbVid` cssHandles aditional class on `Product Image` to differ video thumbnails from image thumbnails
+- Modifier `video` to CSS Handle `thumbImg` on `Product Image` to differ video thumbnails from image thumbnails.
 
 ## [3.138.3] - 2021-01-13
 
