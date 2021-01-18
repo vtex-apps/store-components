@@ -14,6 +14,7 @@ import { CSS_HANDLES as ErrorMessageCssHandles } from './components/ErrorMessage
 import { Variations, InitialSelectionType, DisplayMode } from './types'
 import {
   ShowValueForVariation,
+  showVariationsLabels,
   CSS_HANDLES as SKUSelectorCssHandles,
 } from './components/SKUSelector'
 import { SKUSelectorCssHandlesProvider } from './SKUSelectorCssHandles'
@@ -159,7 +160,7 @@ interface Props {
   imageWidth?: ResponsiveValuesTypes.ResponsiveValue<number>
   thumbnailImage?: string
   visibleVariations?: string[]
-  showVariationsLabels?: boolean
+  showVariationsLabels?: showVariationsLabels
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
   initialSelection?: InitialSelectionType
@@ -167,7 +168,6 @@ interface Props {
   sliderDisplayThreshold?: number
   sliderArrowSize?: number
   sliderItemsPerPage?: ResponsiveValuesTypes.ResponsiveValue<number>
-  showLabelForVariation?: boolean
   /** Used to override default CSS handles */
   classes?: CssHandlesTypes.CustomClasses<typeof SKU_SELECTOR_CSS_HANDLES>
 }
@@ -258,7 +258,6 @@ function SKUSelectorWrapper(props: Props) {
         sliderItemsPerPage={props.sliderItemsPerPage}
         sliderArrowSize={props.sliderArrowSize}
         sliderDisplayThreshold={props.sliderDisplayThreshold}
-        showLabelForVariation={props.showLabelForVariation}
       />
     </SKUSelectorCssHandlesProvider>
   )

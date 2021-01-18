@@ -14,7 +14,7 @@ import {
 } from 'vtex.responsive-values'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
-import SKUSelector, { ShowValueForVariation } from './components/SKUSelector'
+import SKUSelector, { ShowValueForVariation, showVariationsLabels } from './components/SKUSelector'
 import {
   parseSku,
   isColor,
@@ -174,7 +174,7 @@ interface Props {
   imageHeight?: number
   imageWidth?: number
   thumbnailImage?: string
-  showVariationsLabels?: boolean
+  showVariationsLabels?: showVariationsLabels
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
   initialSelection?: InitialSelectionType
@@ -182,7 +182,6 @@ interface Props {
   sliderDisplayThreshold?: number
   sliderArrowSize?: number
   sliderItemsPerPage?: ResponsiveValuesTypes.ResponsiveValue<number>
-  showLabelForVariation?: boolean
 }
 
 const getNewSelectedVariations = (
@@ -248,7 +247,6 @@ const SKUSelectorContainer: FC<Props> = ({
     tablet: 2,
     phone: 1,
   },
-  showLabelForVariation = false,
 }) => {
   const variationsCount = keyCount(variations)
   const { query } = useRuntime()
@@ -398,7 +396,6 @@ const SKUSelectorContainer: FC<Props> = ({
       sliderDisplayThreshold={sliderDisplayThreshold}
       sliderArrowSize={sliderArrowSize}
       sliderItemsPerPage={sliderItemsPerPage}
-      showLabelForVariation={showLabelForVariation}
     />
   )
 }

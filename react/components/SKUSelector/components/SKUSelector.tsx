@@ -25,6 +25,8 @@ import { useSKUSelectorCssHandles } from '../SKUSelectorCssHandles'
 
 export type ShowValueForVariation = 'none' | 'image' | 'all'
 
+export type showVariationsLabels = boolean | 'values' | 'namesAndValues';
+
 function getShowValueForVariation(
   showValueForVariation: ShowValueForVariation,
   variationName: string
@@ -50,14 +52,13 @@ interface Props {
   showBorders?: boolean
   imageHeight?: number
   imageWidth?: number
-  showVariationsLabels: boolean
+  showVariationsLabels: showVariationsLabels
   variationsSpacing?: number
   showVariationsErrorMessage: boolean
   displayMode: DisplayMode
   sliderDisplayThreshold: number
   sliderArrowSize: number
   sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
-  showLabelForVariation?: boolean
 }
 
 const isSkuAvailable = compose<
@@ -272,7 +273,6 @@ function SKUSelector({
   sliderDisplayThreshold,
   sliderArrowSize,
   sliderItemsPerPage,
-  showLabelForVariation,
 }: Props) {
   const { handles } = useSKUSelectorCssHandles()
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
@@ -356,7 +356,6 @@ function SKUSelector({
             sliderDisplayThreshold={sliderDisplayThreshold}
             sliderArrowSize={sliderArrowSize}
             sliderItemsPerPage={sliderItemsPerPage}
-            showLabelForVariation={showLabelForVariation}
           />
         )
       })}

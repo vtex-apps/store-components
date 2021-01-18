@@ -14,6 +14,7 @@ import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 import ErrorMessage from './ErrorMessage'
 import SelectModeVariation from './SelectVariationMode'
 import SelectorItem from './SelectorItem'
+import { showVariationsLabels } from './SKUSelector'
 
 interface Props {
   variation: DisplayVariation
@@ -25,14 +26,13 @@ interface Props {
   imageHeight?: number
   imageWidth?: number
   showBorders?: boolean
-  showLabel: boolean
+  showLabel: showVariationsLabels
   containerClasses?: string
   showErrorMessage: boolean
   mode?: string
   sliderDisplayThreshold: number
   sliderArrowSize: number
   sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
-  showLabelForVariation?: boolean
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
@@ -60,7 +60,6 @@ const Variation: FC<Props> = ({
   sliderArrowSize,
   sliderDisplayThreshold,
   sliderItemsPerPage,
-  showLabelForVariation,
 }) => {
   const { originalName, name, options } = variation
 
@@ -108,29 +107,40 @@ const Variation: FC<Props> = ({
     fullWidth: false,
   }
 
+
   const selectorItemsArray = displayOptions.map(option => {
     return (
-      <SelectorItem
-        isSelected={option.label === selectedItem}
-        key={`${option.label}-${name}`}
-        isAvailable={option.available}
-        maxPrice={maxSkuPrice}
-        onClick={option.impossible ? noop : option.onSelectItem}
-        isImage={displayImage}
-        variationValue={option.label}
-        variationValueOriginalName={option.originalName}
-        imageHeight={imageHeight}
-        imageWidth={imageWidth}
-        showBorders={showBorders}
-        imageUrl={
-          option.image &&
-          imageUrlForSize(stripUrl(option.image.imageUrl), VARIATION_IMG_SIZE)
-        }
-        imageLabel={option.image?.imageLabel}
-        isImpossible={option.impossible}
-        showLabelForVariation={showLabelForVariation}
-        name={name}
-      />
+      <div className={`${styles.skuSelectorItemContainer}`}>
+        <SelectorItem
+          isSelected={option.label === selectedItem}
+          key={`${option.label}-${name}`}
+          isAvailable={option.available}
+          maxPrice={maxSkuPrice}
+          onClick={option.impossible ? noop : option.onSelectItem}
+          isImage={displayImage}
+          variationValue={option.label}
+          variationValueOriginalName={option.originalName}
+          imageHeight={imageHeight}
+          imageWidth={imageWidth}
+          showBorders={showBorders}
+          imageUrl={
+            option.image &&
+            imageUrlForSize(stripUrl(option.image.imageUrl), VARIATION_IMG_SIZE)
+          }
+          imageLabel={option.image?.imageLabel}
+          isImpossible={option.impossible}
+        />
+        {typeof showLabel === 'string' && (
+          <div className={`${styles.skuSelectorLabelContainer} db mb3`}>
+            <span
+              className={`${styles.skuSelectorLabel} c-muted-1 t-small`}
+            >
+              {showLabel === 'values' && option.label}
+              {showLabel === 'namesAndValues' && `${name} ${option.label}`}
+            </span>
+          </div>
+        )}
+      </div>
     )
   })
 
@@ -138,7 +148,7 @@ const Variation: FC<Props> = ({
     <div className={containerClasses}>
       <div className={`${styles.skuSelectorNameContainer} ma1`}>
         <div className={`${styles.skuSelectorTextContainer} db mb3`}>
-          {showLabel && (
+          {typeof showLabel === 'boolean' && showLabel && (
             <span
               className={`${styles.skuSelectorName} c-muted-1 t-small overflow-hidden`}
             >
