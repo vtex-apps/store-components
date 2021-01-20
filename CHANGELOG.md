@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Added `first-image` option for the `displayMode` prop of `product-images`.
+- Added `thumbnailVisibility` prop to `product-images`. When `dysplayMode` is set to `carousel` (default value), it adds the option to hide the thumbnails.
 
 ## [3.142.1] - 2021-03-30
 ### Fixed
