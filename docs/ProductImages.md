@@ -128,6 +128,7 @@ In order to apply CSS customizations on this and other blocks, follow the instru
 | `carouselInconCaretRight` |
 | `carouselThumbBorder` |
 | `figure` |
+| `figure--video` |
 | `highQualityContainer` |
 | `image` |
 | `imgZoom` |
