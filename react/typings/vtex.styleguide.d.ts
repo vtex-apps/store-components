@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 declare module 'vtex.styleguide' {
-  import type { ComponentType, ChangeEvent } from 'react'
-
   export const Checkbox: any
   export const Radio: any
   export const NumericStepper: any

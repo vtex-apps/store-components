@@ -35,7 +35,9 @@ function NotificationBar({ content = '', classes }: Props) {
         className={`${handles.notificationBarInner} min-h-large flex items-center justify-center`}
       >
         <div className={handles.notificationContent}>
-          <SanitizedHTML content={formatIOMessage({ id: content, intl })} />
+          <SanitizedHTML
+            content={formatIOMessage({ id: content, intl }) as string}
+          />
         </div>
       </div>
     </div>

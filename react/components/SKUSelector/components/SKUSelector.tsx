@@ -1,6 +1,6 @@
 import React, { useCallback, memo, useState, useMemo } from 'react'
 import { compose, flip, gt, filter, pathOr, clone } from 'ramda'
-import { ResponsiveInput } from 'vtex.responsive-values'
+import { ResponsiveValuesTypes } from 'vtex.responsive-values'
 
 import styles from '../styles.css'
 import {
@@ -56,7 +56,7 @@ interface Props {
   displayMode: DisplayMode
   sliderDisplayThreshold: number
   sliderArrowSize: number
-  sliderItemsPerPage: ResponsiveInput<number>
+  sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
 }
 
 const isSkuAvailable = compose<

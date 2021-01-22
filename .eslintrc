@@ -1,3 +1,4 @@
 {
-  "extends": "vtex"
+  "extends": "vtex",
+  "root": true
 }

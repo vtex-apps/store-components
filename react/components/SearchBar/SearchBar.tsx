@@ -111,6 +111,7 @@ function SearchBar({
     string | undefined
   >()
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetSearchTerm = useCallback(
     debounce((newValue: string) => {
       setSearchTerm(newValue)
