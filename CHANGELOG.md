@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Lint issues.
+- Modifiers of Search Bar.
 
 ## [3.140.1] - 2021-01-22
 ### Fixed

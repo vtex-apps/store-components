@@ -252,13 +252,10 @@ function SearchBar({
             openMenu,
           }) => (
             <div
-              className={classNames(
-                'relative-m w-100',
-                withModifiers('searchBarInnerContainer', [
-                  isOpen ? 'opened' : '',
-                  inputValue ? 'filled' : '',
-                ])
-              )}
+              className={`relative-m w-100 ${withModifiers(
+                'searchBarInnerContainer',
+                [isOpen ? 'opened' : '', inputValue ? 'filled' : '']
+              )}`}
             >
               <AutocompleteInput
                 // eslint-disable-next-line jsx-a11y/no-autofocus
