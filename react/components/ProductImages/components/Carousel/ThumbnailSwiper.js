@@ -27,9 +27,7 @@ const Thumbnail = props => {
   return (
     <>
       <figure
-        className={`${applyModifiers(handles.figure,
-          isVideo ? 'video' : null
-        )}`}
+        className={`${applyModifiers(handles.figure, isVideo ? 'video' : '')}`}
         itemProp="associatedMedia"
         itemScope
         itemType="http://schema.org/ImageObject"
@@ -37,7 +35,7 @@ const Thumbnail = props => {
         <img
           className={`${applyModifiers(
             handles.thumbImg,
-            isVideo ? 'video' : null
+            isVideo ? 'video' : ''
           )} w-100 h-auto db`}
           itemProp="thumbnail"
           alt={alt}
