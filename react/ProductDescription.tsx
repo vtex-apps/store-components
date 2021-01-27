@@ -1,19 +1,27 @@
-import React, { memo } from 'react'
+import React, {memo, useState} from 'react'
 import type { MemoExoticComponent, PropsWithChildren } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 import type { CssHandlesTypes } from 'vtex.css-handles'
 import { formatIOMessage } from 'vtex.native-types'
 import { useProduct } from 'vtex.product-context'
+import { useDevice} from "vtex.device-detector";
 
 import { SanitizedHTML, DEFAULTS } from './components/SanitizedHTML'
 import GradientCollapse from './components/GradientCollapse'
+import {Button} from "vtex.styleguide";
+
+import './ProductDescription.css'
 
 const CSS_HANDLES = [
   'productDescriptionContainer',
   'productDescriptionTitle',
   'productDescriptionText',
+  'showMoreButtonSpan'
 ] as const
+
+const defaultDesktopCharacters = 1000;
+const defaultMobileCharacters = 500;
 
 type Props = {
   /** Description fallback */
@@ -23,6 +31,9 @@ type Props = {
   /** Define if content should start collapsed or not */
   collapseContent?: boolean
   /** Used to override default CSS handles */
+  customCollapse?: boolean
+  desktopLimitCharacters?: number
+  mobileLimitCharacters?: number
   classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
 }
 
@@ -55,14 +66,31 @@ function ProductDescription(props: PropsWithChildren<Props>) {
   const { handles } = useCssHandles(CSS_HANDLES, { classes: props.classes })
   const intl = useIntl()
   const { product } = useProduct()
+  const { isMobile } = useDevice()
 
   const description = props.description ?? product?.description
 
   if (!description) {
     return null
   }
+  
+  const { collapseContent = true, title, customCollapse = false } = props
 
-  const { collapseContent = true, title } = props
+  let {desktopLimitCharacters = defaultDesktopCharacters, mobileLimitCharacters = defaultMobileCharacters} = props
+  let limitCharacters = 0;
+  if(customCollapse) {
+    desktopLimitCharacters = Number.isNaN(desktopLimitCharacters) ? defaultDesktopCharacters : desktopLimitCharacters;
+    mobileLimitCharacters = Number.isNaN(mobileLimitCharacters) ? defaultMobileCharacters : mobileLimitCharacters;
+    limitCharacters = isMobile ? mobileLimitCharacters : desktopLimitCharacters;
+  }
+
+  const [ filteredDescription, setFilteredDescription ] = useState(description.substring(0, limitCharacters));
+  const [ showMoreButton, setShowMoreButton ] = useState(true)
+
+  const changeDescription = () => {
+    setFilteredDescription(description)
+    setShowMoreButton(false)
+  }
 
   return (
     <div className={handles.productDescriptionContainer}>
@@ -76,23 +104,39 @@ function ProductDescription(props: PropsWithChildren<Props>) {
         )}
       </FormattedMessage>
 
-      <div className={`${handles.productDescriptionText} c-muted-1`}>
-        {collapseContent ? (
-          <GradientCollapse collapseHeight={220}>
+      {customCollapse ? (
+        <div className={`${handles.productDescriptionText} c-muted-1`}>
+          <SanitizedHTML
+            content={filteredDescription}
+            allowedTags={allowedTags}
+            allowedAttributes={allowedAttributes}
+          />
+          {showMoreButton && description.length > limitCharacters ? (
+            <span className={`${handles.showMoreButtonSpan}`}>
+              <Button size="small" variation="tertiary" onClick={changeDescription}>{intl.formatMessage({
+                id: 'store/customCollapse.readMore',
+              })}</Button>
+            </span>) : null}
+        </div>
+      ) : (
+        <div className={`${handles.productDescriptionText} c-muted-1`}>
+          {collapseContent ? (
+            <GradientCollapse collapseHeight={220}>
+              <SanitizedHTML
+                content={description}
+                allowedTags={allowedTags}
+                allowedAttributes={allowedAttributes}
+              />
+            </GradientCollapse>
+          ) : (
             <SanitizedHTML
               content={description}
               allowedTags={allowedTags}
               allowedAttributes={allowedAttributes}
             />
-          </GradientCollapse>
-        ) : (
-          <SanitizedHTML
-            content={description}
-            allowedTags={allowedTags}
-            allowedAttributes={allowedAttributes}
-          />
-        )}
-      </div>
+          )}
+        </div>
+      )}
     </div>
   )
 }
@@ -102,7 +146,7 @@ const MemoizedProductDescription: MemoExoticComponent<
 > & { schema?: Record<string, string> } = memo(ProductDescription)
 
 MemoizedProductDescription.schema = {
-  title: 'admin/editor.product-description.title',
+  title: 'admin/editor.product-description.title'
 }
 
 export default MemoizedProductDescription
