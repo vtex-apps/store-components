@@ -10,8 +10,7 @@ import { filter, head, isEmpty, compose, keys, length } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
 import {
   useResponsiveValue,
-  MaybeResponsiveInput,
-  ResponsiveInput,
+  ResponsiveValuesTypes,
 } from 'vtex.responsive-values'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
@@ -179,10 +178,10 @@ interface Props {
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
   initialSelection?: InitialSelectionType
-  displayMode?: MaybeResponsiveInput<DisplayMode>
+  displayMode?: ResponsiveValuesTypes.ResponsiveValue<DisplayMode>
   sliderDisplayThreshold?: number
   sliderArrowSize?: number
-  sliderItemsPerPage?: ResponsiveInput<number>
+  sliderItemsPerPage?: ResponsiveValuesTypes.ResponsiveValue<number>
 }
 
 const getNewSelectedVariations = (
@@ -259,9 +258,10 @@ const SKUSelectorContainer: FC<Props> = ({
     setQuery({ skuId }, { replace: true })
   }
 
-  const [selectedVariations, setSelectedVariations] = useState<
-    SelectedVariations
-  >(() =>
+  const [
+    selectedVariations,
+    setSelectedVariations,
+  ] = useState<SelectedVariations>(() =>
     getNewSelectedVariations(query, skuSelected, variations, initialSelection)
   )
 

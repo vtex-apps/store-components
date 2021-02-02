@@ -19,6 +19,7 @@ function Wrapper({ children }) {
   )
 }
 
+// eslint-disable-next-line react/display-name
 const withWrapper = Component => props => (
   <Wrapper>
     <Component {...props} />

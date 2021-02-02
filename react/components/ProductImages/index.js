@@ -49,30 +49,36 @@ const ProductImages = ({
     displayMode
   )
 
-  const shouldIncludeImages = contentType !== 'videos'
-  const images = shouldIncludeImages
-    ? allImages
-        .filter(
-          image =>
-            !image.imageLabel ||
-            !excludeImageRegexes.some(regex => regex.test(image.imageLabel))
-        )
-        .map(image => ({
-          type: 'image',
-          url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
-          alt: image.imageText,
-          thumbUrl: image.thumbnailUrl || image.imageUrl,
-        }))
-    : []
+  const images = useMemo(() => {
+    const shouldIncludeImages = contentType !== 'videos'
 
-  const shouldIncludeVideos = contentType !== 'images'
-  const videos = shouldIncludeVideos
-    ? allVideos.map(video => ({
-        type: 'video',
-        src: video.videoUrl,
-        thumbWidth: 300,
-      }))
-    : []
+    return shouldIncludeImages
+      ? allImages
+          .filter(
+            image =>
+              !image.imageLabel ||
+              !excludeImageRegexes.some(regex => regex.test(image.imageLabel))
+          )
+          .map(image => ({
+            type: 'image',
+            url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
+            alt: image.imageText,
+            thumbUrl: image.thumbnailUrl || image.imageUrl,
+          }))
+      : []
+  }, [allImages, contentType, excludeImageRegexes])
+
+  const videos = useMemo(() => {
+    const shouldIncludeVideos = contentType !== 'images'
+
+    return shouldIncludeVideos
+      ? allVideos.map(video => ({
+          type: 'video',
+          src: video.videoUrl,
+          thumbWidth: 300,
+        }))
+      : []
+  }, [allVideos, contentType])
 
   const showVideosFirst = contentOrder === 'videos-first'
 

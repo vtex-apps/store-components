@@ -5,7 +5,7 @@ import { SliderLayout } from 'vtex.slider-layout'
 import { findIndex, propEq } from 'ramda'
 import classnames from 'classnames'
 import { useProduct } from 'vtex.product-context'
-import { ResponsiveInput } from 'vtex.responsive-values'
+import { ResponsiveValuesTypes } from 'vtex.responsive-values'
 
 import { stripUrl, isColor, slug } from '../utils'
 import styles from '../styles.css'
@@ -31,7 +31,7 @@ interface Props {
   mode?: string
   sliderDisplayThreshold: number
   sliderArrowSize: number
-  sliderItemsPerPage: ResponsiveInput<number>
+  sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
