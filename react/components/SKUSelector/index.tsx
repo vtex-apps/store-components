@@ -237,7 +237,7 @@ const SKUSelectorContainer: FC<Props> = ({
   imageHeight,
   thumbnailImage,
   variationsSpacing,
-  showVariationsLabels = 'name',
+  showVariationsLabels = 'variation',
   displayMode = 'default',
   hideImpossibleCombinations = true,
   showVariationsErrorMessage = true,

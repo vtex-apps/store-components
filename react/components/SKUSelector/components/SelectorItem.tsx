@@ -21,7 +21,7 @@ interface Props {
   imageWidth?: number | string
   showBorders?: boolean
   variationLabel: string
-  name: string
+  label: string
 }
 
 const getDiscount = (maxPrice?: number | null, price?: number | null) => {
@@ -44,9 +44,6 @@ export const CSS_HANDLES = [
   'skuSelectorInternalBox',
   'skuSelectorItemTextValue',
   'skuSelectorItemImageValue',
-  'skuSelectorLabelContainer',
-  'skuSelectorLabel',
-  'skuSelectorItemContainer',
 ] as const
 
 /**
@@ -68,7 +65,7 @@ function SelectorItem({
   imageWidth,
   showBorders = true,
   variationLabel,
-  name,
+  label,
 }: Props) {
   const discount = getDiscount(maxPrice, price)
   const { handles, withModifiers } = useSKUSelectorCssHandles()
@@ -111,74 +108,69 @@ function SelectorItem({
     imageUrl = changeImageUrlSize(imageUrl, imageWidth, imageHeight)
   }
 
-  const labelText =
-    (variationLabel === 'values' && variationValue) ||
-    (variationLabel === 'namesAndValues' && `${name} ${variationValue}`) ||
-    ''
+  let itemTextValue = variationValue
+
+  if (
+    variationLabel === 'itemValue' ||
+    variationLabel === 'variationAndItemValue'
+  ) {
+    itemTextValue = `${label} ${variationValue}`
+  }
 
   return (
-    <div className={`${handles.skuSelectorItemContainer}`}>
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      style={containerStyles}
+      className={containerClasses}
+      onKeyDown={e => e.key === 'Enter' && onClick(e)}
+    >
       <div
-        role="button"
-        tabIndex={0}
-        onClick={onClick}
-        style={containerStyles}
-        className={containerClasses}
-        onKeyDown={e => e.key === 'Enter' && onClick(e)}
+        className={classNames(
+          handles.frameAround,
+          'absolute b--action-primary br3 bw1',
+          {
+            ba: isSelected,
+          }
+        )}
+      />
+      <div
+        className={classNames(
+          handles.skuSelectorInternalBox,
+          'w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden',
+          {
+            'hover-b--muted-2': !isSelected && !isImpossible,
+            ba: showBorders,
+          }
+        )}
       >
         <div
-          className={classNames(
-            handles.frameAround,
-            'absolute b--action-primary br3 bw1',
-            {
-              ba: isSelected,
-            }
-          )}
+          className={classNames('absolute absolute--fill', {
+            [handles.diagonalCross]: !isAvailable,
+          })}
         />
         <div
-          className={classNames(
-            handles.skuSelectorInternalBox,
-            'w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden',
-            {
-              'hover-b--muted-2': !isSelected && !isImpossible,
-              ba: showBorders,
-            }
-          )}
+          className={classNames(handles.valueWrapper, {
+            [`${handles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
+            'h-100': isImage,
+          })}
         >
-          <div
-            className={classNames('absolute absolute--fill', {
-              [handles.diagonalCross]: !isAvailable,
-            })}
-          />
-          <div
-            className={classNames(handles.valueWrapper, {
-              [`${handles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
-              'h-100': isImage,
-            })}
-          >
-            {isImage && imageUrl ? (
-              <img
-                className={handles.skuSelectorItemImageValue}
-                src={imageUrl}
-                alt={imageLabel as string | undefined}
-              />
-            ) : (
-              variationValue
-            )}
-          </div>
+          {isImage && imageUrl ? (
+            <img
+              className={handles.skuSelectorItemImageValue}
+              src={imageUrl}
+              alt={imageLabel as string | undefined}
+            />
+          ) : (
+            itemTextValue
+          )}
         </div>
-        {discount > 0 && (
-          <span className={`${handles.skuSelectorBadge} b`}>
-            <FormattedNumber value={discount} style="percent" />
-          </span>
-        )}
       </div>
-      {labelText && (
-        <div className={`${handles.skuSelectorLabelContainer} db mb3`}>
-          <span className={`${handles.skuSelectorLabel} c-muted-1 t-small`}>
-            {labelText}
-          </span>
-        </div>
+      {discount > 0 && (
+        <span className={`${handles.skuSelectorBadge} b`}>
+          <FormattedNumber value={discount} style="percent" />
+        </span>
       )}
     </div>
   )

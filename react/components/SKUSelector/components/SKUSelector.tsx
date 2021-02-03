@@ -29,9 +29,9 @@ export type ShowValueForVariation = 'none' | 'image' | 'all'
 export type ShowVariationsLabels =
   | boolean
   | 'none'
-  | 'name'
-  | 'values'
-  | 'namesAndValues'
+  | 'variation'
+  | 'itemValue'
+  | 'variationAndItemValue'
 
 function getShowValueForVariation(
   showValueForVariation: ShowValueForVariation,

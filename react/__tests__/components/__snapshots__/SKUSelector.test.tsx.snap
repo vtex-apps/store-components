@@ -24,77 +24,65 @@ exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
           class="skuSelectorOptionsList w-100 inline-flex flex-wrap ml2 items-center"
         >
           <div
-            class="skuSelectorItemContainer"
+            class="skuSelectorItem skuSelectorItem--black relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage"
+            role="button"
+            tabindex="0"
           >
             <div
-              class="skuSelectorItem skuSelectorItem--black relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage"
-              role="button"
-              tabindex="0"
+              class="frameAround absolute b--action-primary br3 bw1"
+            />
+            <div
+              class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
             >
               <div
-                class="frameAround absolute b--action-primary br3 bw1"
+                class="absolute absolute--fill"
               />
               <div
-                class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
+                class="valueWrapper h-100"
               >
-                <div
-                  class="absolute absolute--fill"
-                />
-                <div
-                  class="valueWrapper h-100"
-                >
-                  Black
-                </div>
+                Black
               </div>
             </div>
           </div>
           <div
-            class="skuSelectorItemContainer"
+            class="skuSelectorItem skuSelectorItem--gray skuSelectorItem--selected relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage"
+            role="button"
+            tabindex="0"
           >
             <div
-              class="skuSelectorItem skuSelectorItem--gray skuSelectorItem--selected relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage"
-              role="button"
-              tabindex="0"
+              class="frameAround absolute b--action-primary br3 bw1 ba"
+            />
+            <div
+              class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden ba"
             >
               <div
-                class="frameAround absolute b--action-primary br3 bw1 ba"
+                class="absolute absolute--fill"
               />
               <div
-                class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden ba"
+                class="valueWrapper h-100"
               >
-                <div
-                  class="absolute absolute--fill"
-                />
-                <div
-                  class="valueWrapper h-100"
-                >
-                  Gray
-                </div>
+                Gray
               </div>
             </div>
           </div>
           <div
-            class="skuSelectorItemContainer"
+            class="skuSelectorItem skuSelectorItem--blue relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage"
+            role="button"
+            tabindex="0"
           >
             <div
-              class="skuSelectorItem skuSelectorItem--blue relative di pointer flex items-center outline-0 ma2 skuSelectorItemImage"
-              role="button"
-              tabindex="0"
+              class="frameAround absolute b--action-primary br3 bw1"
+            />
+            <div
+              class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
             >
               <div
-                class="frameAround absolute b--action-primary br3 bw1"
+                class="absolute absolute--fill"
               />
               <div
-                class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
+                class="valueWrapper h-100"
               >
-                <div
-                  class="absolute absolute--fill"
-                />
-                <div
-                  class="valueWrapper h-100"
-                >
-                  Blue
-                </div>
+                Blue
               </div>
             </div>
           </div>
@@ -120,52 +108,44 @@ exports[`<SKUSelector /> should consider order from skuSpecifications 1`] = `
           class="skuSelectorOptionsList w-100 inline-flex flex-wrap ml2 items-center"
         >
           <div
-            class="skuSelectorItemContainer"
+            class="skuSelectorItem skuSelectorItem--42 relative di pointer flex items-center outline-0 ma2"
+            role="button"
+            tabindex="0"
           >
             <div
-              class="skuSelectorItem skuSelectorItem--42 relative di pointer flex items-center outline-0 ma2"
-              role="button"
-              tabindex="0"
+              class="frameAround absolute b--action-primary br3 bw1"
+            />
+            <div
+              class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
             >
               <div
-                class="frameAround absolute b--action-primary br3 bw1"
+                class="absolute absolute--fill"
               />
               <div
-                class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden hover-b--muted-2 ba"
+                class="valueWrapper skuSelectorItemTextValue c-on-base center pl5 pr5 z-1 t-body"
               >
-                <div
-                  class="absolute absolute--fill"
-                />
-                <div
-                  class="valueWrapper skuSelectorItemTextValue c-on-base center pl5 pr5 z-1 t-body"
-                >
-                  42
-                </div>
+                42
               </div>
             </div>
           </div>
           <div
-            class="skuSelectorItemContainer"
+            class="skuSelectorItem skuSelectorItem--41 skuSelectorItem--selected relative di pointer flex items-center outline-0 ma2"
+            role="button"
+            tabindex="0"
           >
             <div
-              class="skuSelectorItem skuSelectorItem--41 skuSelectorItem--selected relative di pointer flex items-center outline-0 ma2"
-              role="button"
-              tabindex="0"
+              class="frameAround absolute b--action-primary br3 bw1 ba"
+            />
+            <div
+              class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden ba"
             >
               <div
-                class="frameAround absolute b--action-primary br3 bw1 ba"
+                class="absolute absolute--fill"
               />
               <div
-                class="skuSelectorInternalBox w-100 h-100 b--muted-4 br2 b z-1 c-muted-5 flex items-center overflow-hidden ba"
+                class="valueWrapper skuSelectorItemTextValue c-on-base center pl5 pr5 z-1 t-body"
               >
-                <div
-                  class="absolute absolute--fill"
-                />
-                <div
-                  class="valueWrapper skuSelectorItemTextValue c-on-base center pl5 pr5 z-1 t-body"
-                >
-                  41
-                </div>
+                41
               </div>
             </div>
           </div>

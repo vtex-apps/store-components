@@ -107,14 +107,17 @@ const Variation: FC<Props> = ({
     fullWidth: false,
   }
 
-  // The following code is for keep backward compatibility
+  // The following code is here to maintain backwards compatibility
   let variationLabel = ''
 
   if (typeof showLabel === 'boolean') {
-    variationLabel = showLabel ? 'name' : 'none'
+    variationLabel = showLabel ? 'variation' : 'none'
   } else {
     variationLabel = showLabel
   }
+
+  const showVariationLabelName =
+    variationLabel === 'variation' || variationLabel === 'variationAndItemValue'
 
   const selectorItemsArray = displayOptions.map(option => {
     return (
@@ -137,7 +140,7 @@ const Variation: FC<Props> = ({
         imageLabel={option.image?.imageLabel}
         isImpossible={option.impossible}
         variationLabel={variationLabel}
-        name={name}
+        label={name}
       />
     )
   })
@@ -146,7 +149,7 @@ const Variation: FC<Props> = ({
     <div className={containerClasses}>
       <div className={`${styles.skuSelectorNameContainer} ma1`}>
         <div className={`${styles.skuSelectorTextContainer} db mb3`}>
-          {variationLabel === 'name' && (
+          {showVariationLabelName && (
             <span
               className={`${styles.skuSelectorName} c-muted-1 t-small overflow-hidden`}
             >
