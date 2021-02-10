@@ -14,6 +14,7 @@ import { imageUrlForSize, VARIATION_IMG_SIZE } from '../../module/images'
 import ErrorMessage from './ErrorMessage'
 import SelectModeVariation from './SelectVariationMode'
 import SelectorItem from './SelectorItem'
+import { ShowVariationsLabels } from './SKUSelector'
 
 interface Props {
   variation: DisplayVariation
@@ -25,7 +26,7 @@ interface Props {
   imageHeight?: number
   imageWidth?: number
   showBorders?: boolean
-  showLabel: boolean
+  showLabel: ShowVariationsLabels
   containerClasses?: string
   showErrorMessage: boolean
   mode?: string
@@ -106,6 +107,18 @@ const Variation: FC<Props> = ({
     fullWidth: false,
   }
 
+  // The following code is here to maintain backwards compatibility
+  let variationLabel = ''
+
+  if (typeof showLabel === 'boolean') {
+    variationLabel = showLabel ? 'variation' : 'none'
+  } else {
+    variationLabel = showLabel
+  }
+
+  const showVariationLabelName =
+    variationLabel === 'variation' || variationLabel === 'variationAndItemValue'
+
   const selectorItemsArray = displayOptions.map(option => {
     return (
       <SelectorItem
@@ -126,6 +139,8 @@ const Variation: FC<Props> = ({
         }
         imageLabel={option.image?.imageLabel}
         isImpossible={option.impossible}
+        variationLabel={variationLabel}
+        label={name}
       />
     )
   })
@@ -134,7 +149,7 @@ const Variation: FC<Props> = ({
     <div className={containerClasses}>
       <div className={`${styles.skuSelectorNameContainer} ma1`}>
         <div className={`${styles.skuSelectorTextContainer} db mb3`}>
-          {showLabel && (
+          {showVariationLabelName && (
             <span
               className={`${styles.skuSelectorName} c-muted-1 t-small overflow-hidden`}
             >

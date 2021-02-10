@@ -25,6 +25,14 @@ import { useSKUSelectorCssHandles } from '../SKUSelectorCssHandles'
 
 export type ShowValueForVariation = 'none' | 'image' | 'all'
 
+// The boolean type was kept because for backward compatibility
+export type ShowVariationsLabels =
+  | boolean
+  | 'none'
+  | 'variation'
+  | 'itemValue'
+  | 'variationAndItemValue'
+
 function getShowValueForVariation(
   showValueForVariation: ShowValueForVariation,
   variationName: string
@@ -50,7 +58,7 @@ interface Props {
   showBorders?: boolean
   imageHeight?: number
   imageWidth?: number
-  showVariationsLabels: boolean
+  showVariationsLabels: ShowVariationsLabels
   variationsSpacing?: number
   showVariationsErrorMessage: boolean
   displayMode: DisplayMode

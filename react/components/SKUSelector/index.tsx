@@ -14,7 +14,10 @@ import {
 } from 'vtex.responsive-values'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
-import SKUSelector, { ShowValueForVariation } from './components/SKUSelector'
+import SKUSelector, {
+  ShowValueForVariation,
+  ShowVariationsLabels,
+} from './components/SKUSelector'
 import {
   parseSku,
   isColor,
@@ -174,7 +177,7 @@ interface Props {
   imageHeight?: number
   imageWidth?: number
   thumbnailImage?: string
-  showVariationsLabels?: boolean
+  showVariationsLabels?: ShowVariationsLabels
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
   initialSelection?: InitialSelectionType
@@ -234,7 +237,7 @@ const SKUSelectorContainer: FC<Props> = ({
   imageHeight,
   thumbnailImage,
   variationsSpacing,
-  showVariationsLabels = true,
+  showVariationsLabels = 'variation',
   displayMode = 'default',
   hideImpossibleCombinations = true,
   showVariationsErrorMessage = true,

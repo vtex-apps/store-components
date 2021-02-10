@@ -14,6 +14,7 @@ import { CSS_HANDLES as ErrorMessageCssHandles } from './components/ErrorMessage
 import { Variations, InitialSelectionType, DisplayMode } from './types'
 import {
   ShowValueForVariation,
+  ShowVariationsLabels,
   CSS_HANDLES as SKUSelectorCssHandles,
 } from './components/SKUSelector'
 import { SKUSelectorCssHandlesProvider } from './SKUSelectorCssHandles'
@@ -159,7 +160,7 @@ interface Props {
   imageWidth?: ResponsiveValuesTypes.ResponsiveValue<number>
   thumbnailImage?: string
   visibleVariations?: string[]
-  showVariationsLabels?: boolean
+  showVariationsLabels?: ShowVariationsLabels
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
   initialSelection?: InitialSelectionType
