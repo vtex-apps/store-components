@@ -10,7 +10,6 @@ import SearchBar, {
 } from './components/SearchBar/SearchBar'
 import { CSS_HANDLES as AutocompleteInputCssHandles } from './components/SearchBar/AutocompleteInput'
 import { SearchBarCssHandlesProvider } from './components/SearchBar/SearchBarCssHandles'
-import encodeForwardSlash from './utils/encodeForwardSlash'
 
 const { useModalDispatch } = ModalContext
 
@@ -113,7 +112,7 @@ function SearchBarContainer(props: Props) {
   }, [])
 
   const handleGoToSearchPage = useCallback(() => {
-    const search = encodeForwardSlash(inputValue)
+    const search = encodeURIComponent(inputValue)
 
     if (attemptPageTypeSearch) {
       window.location.href = `/${search}`
