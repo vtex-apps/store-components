@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useState } from 'react'
+import React, { memo, useMemo, useRef, useState } from 'react'
 import type { MemoExoticComponent, PropsWithChildren } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
@@ -72,25 +72,33 @@ function ProductDescription(props: PropsWithChildren<Props>) {
   const description = props.description ?? product?.description
   const [isCustomCollapsed, setCustomCollapsed] = useState(customCollapse)
 
-  const limitCharacters = useMemo(() => {
-    let {
-      desktopLimitCharacters = defaultDesktopCharacters,
-      mobileLimitCharacters = defaultMobileCharacters,
-    } = props
+  const {
+    desktopLimitCharacters = defaultDesktopCharacters,
+    mobileLimitCharacters = defaultMobileCharacters,
+  }: any = props
 
+  const desktopLimitChars: any = useRef(desktopLimitCharacters)
+  const mobileLimitChars: any = useRef(mobileLimitCharacters)
+
+  const limitCharacters = useMemo(() => {
     if (isCustomCollapsed) {
-      desktopLimitCharacters = Number.isNaN(desktopLimitCharacters)
+      desktopLimitChars.current = Number.isNaN(desktopLimitCharacters)
         ? defaultDesktopCharacters
         : desktopLimitCharacters
-      mobileLimitCharacters = Number.isNaN(mobileLimitCharacters)
+      mobileLimitChars.current = Number.isNaN(mobileLimitCharacters)
         ? defaultMobileCharacters
         : mobileLimitCharacters
 
-      return isMobile ? mobileLimitCharacters : desktopLimitCharacters
+      return isMobile ? mobileLimitChars.current : desktopLimitChars.current
     }
 
     return 0
-  }, [isCustomCollapsed, props, isMobile])
+  }, [
+    isCustomCollapsed,
+    isMobile,
+    desktopLimitCharacters,
+    mobileLimitCharacters,
+  ])
 
   if (!description) {
     return null
