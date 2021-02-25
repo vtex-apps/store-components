@@ -2,9 +2,8 @@ import React, { useMemo, useEffect } from 'react'
 import { useProduct, useProductDispatch } from 'vtex.product-context'
 import { pick } from 'ramda'
 import {
-  MaybeResponsiveInput,
-  ResponsiveInput,
   useResponsiveValues,
+  ResponsiveValuesTypes,
 } from 'vtex.responsive-values'
 import { useCssHandles } from 'vtex.css-handles'
 import type { CssHandlesTypes } from 'vtex.css-handles'
@@ -15,6 +14,7 @@ import { CSS_HANDLES as ErrorMessageCssHandles } from './components/ErrorMessage
 import { Variations, InitialSelectionType, DisplayMode } from './types'
 import {
   ShowValueForVariation,
+  ShowVariationsLabels,
   CSS_HANDLES as SKUSelectorCssHandles,
 } from './components/SKUSelector'
 import { SKUSelectorCssHandlesProvider } from './SKUSelectorCssHandles'
@@ -156,18 +156,18 @@ interface Props {
   hideImpossibleCombinations?: boolean
   showValueNameForImageVariation?: boolean
   showValueForVariation?: ShowValueForVariation
-  imageHeight?: MaybeResponsiveInput<number>
-  imageWidth?: MaybeResponsiveInput<number>
+  imageHeight?: ResponsiveValuesTypes.ResponsiveValue<number>
+  imageWidth?: ResponsiveValuesTypes.ResponsiveValue<number>
   thumbnailImage?: string
   visibleVariations?: string[]
-  showVariationsLabels?: boolean
+  showVariationsLabels?: ShowVariationsLabels
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
   initialSelection?: InitialSelectionType
-  displayMode?: MaybeResponsiveInput<DisplayMode>
+  displayMode?: ResponsiveValuesTypes.ResponsiveValue<DisplayMode>
   sliderDisplayThreshold?: number
   sliderArrowSize?: number
-  sliderItemsPerPage?: ResponsiveInput<number>
+  sliderItemsPerPage?: ResponsiveValuesTypes.ResponsiveValue<number>
   /** Used to override default CSS handles */
   classes?: CssHandlesTypes.CustomClasses<typeof SKU_SELECTOR_CSS_HANDLES>
 }

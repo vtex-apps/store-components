@@ -11,6 +11,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `desktopLimitCharacters` prop to `product-description`
 - `mobileLimitCharacters` prop to `product-description`
 
+## [3.141.1] - 2021-02-17
+### Fixed
+- Image schema was not referencing dependencies, but only properties
+
+## [3.141.0] - 2021-02-10
+### Changed
+- `showVariationsLabels` prop to add the ability to show variation name (label) before each item's value.
+
+## [3.140.2] - 2021-02-02
+### Fixed
+- Lint issues.
+- Modifiers of Search Bar.
+
 ## [3.140.1] - 2021-01-22
 ### Fixed
 - Usage of `applyModifiers`.

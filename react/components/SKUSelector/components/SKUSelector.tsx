@@ -1,6 +1,6 @@
 import React, { useCallback, memo, useState, useMemo } from 'react'
 import { compose, flip, gt, filter, pathOr, clone } from 'ramda'
-import { ResponsiveInput } from 'vtex.responsive-values'
+import { ResponsiveValuesTypes } from 'vtex.responsive-values'
 
 import styles from '../styles.css'
 import {
@@ -24,6 +24,14 @@ import useEffectSkipMount from './hooks/useEffectSkipMount'
 import { useSKUSelectorCssHandles } from '../SKUSelectorCssHandles'
 
 export type ShowValueForVariation = 'none' | 'image' | 'all'
+
+// The boolean type was kept because for backward compatibility
+export type ShowVariationsLabels =
+  | boolean
+  | 'none'
+  | 'variation'
+  | 'itemValue'
+  | 'variationAndItemValue'
 
 function getShowValueForVariation(
   showValueForVariation: ShowValueForVariation,
@@ -50,13 +58,13 @@ interface Props {
   showBorders?: boolean
   imageHeight?: number
   imageWidth?: number
-  showVariationsLabels: boolean
+  showVariationsLabels: ShowVariationsLabels
   variationsSpacing?: number
   showVariationsErrorMessage: boolean
   displayMode: DisplayMode
   sliderDisplayThreshold: number
   sliderArrowSize: number
-  sliderItemsPerPage: ResponsiveInput<number>
+  sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
 }
 
 const isSkuAvailable = compose<

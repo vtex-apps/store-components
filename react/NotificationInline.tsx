@@ -25,7 +25,9 @@ function NotificationInline({ content = '', classes }: Props) {
 
   return (
     <div className={handles.notificationContent}>
-      <SanitizedHTML content={formatIOMessage({ id: content, intl })} />
+      <SanitizedHTML
+        content={formatIOMessage({ id: content, intl }) as string}
+      />
     </div>
   )
 }

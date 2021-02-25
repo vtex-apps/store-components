@@ -20,6 +20,8 @@ interface Props {
   imageHeight?: number | string
   imageWidth?: number | string
   showBorders?: boolean
+  variationLabel: string
+  label: string
 }
 
 const getDiscount = (maxPrice?: number | null, price?: number | null) => {
@@ -62,6 +64,8 @@ function SelectorItem({
   imageHeight,
   imageWidth,
   showBorders = true,
+  variationLabel,
+  label,
 }: Props) {
   const discount = getDiscount(maxPrice, price)
   const { handles, withModifiers } = useSKUSelectorCssHandles()
@@ -102,6 +106,15 @@ function SelectorItem({
       padding: 0,
     }
     imageUrl = changeImageUrlSize(imageUrl, imageWidth, imageHeight)
+  }
+
+  let itemTextValue = variationValue
+
+  if (
+    variationLabel === 'itemValue' ||
+    variationLabel === 'variationAndItemValue'
+  ) {
+    itemTextValue = `${label} ${variationValue}`
   }
 
   return (
@@ -150,7 +163,7 @@ function SelectorItem({
               alt={imageLabel as string | undefined}
             />
           ) : (
-            variationValue
+            itemTextValue
           )}
         </div>
       </div>

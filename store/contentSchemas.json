@@ -1,11 +1,5 @@
 {
   "definitions": {
-    "Image": {
-      "title": "admin/editor.store-image.title",
-      "properties": {
-        "$ref": "app:vtex.store-image#/definitions/Image/properties"
-      }
-    },
     "InfoCard": {
       "properties": {
         "headline": {
