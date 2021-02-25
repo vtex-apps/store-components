@@ -1,15 +1,15 @@
-import React, {memo, useState} from 'react'
+import React, { memo, useMemo, useState } from 'react'
 import type { MemoExoticComponent, PropsWithChildren } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 import type { CssHandlesTypes } from 'vtex.css-handles'
 import { formatIOMessage } from 'vtex.native-types'
 import { useProduct } from 'vtex.product-context'
-import { useDevice} from "vtex.device-detector";
+import { useDevice } from 'vtex.device-detector'
+import { Button } from 'vtex.styleguide'
 
 import { SanitizedHTML, DEFAULTS } from './components/SanitizedHTML'
 import GradientCollapse from './components/GradientCollapse'
-import {Button} from "vtex.styleguide";
 
 import './ProductDescription.css'
 
@@ -17,11 +17,11 @@ const CSS_HANDLES = [
   'productDescriptionContainer',
   'productDescriptionTitle',
   'productDescriptionText',
-  'showMoreButtonSpan'
+  'showMoreButtonSpan',
 ] as const
 
-const defaultDesktopCharacters = 1000;
-const defaultMobileCharacters = 500;
+const defaultDesktopCharacters = 1000
+const defaultMobileCharacters = 500
 
 type Props = {
   /** Description fallback */
@@ -68,28 +68,36 @@ function ProductDescription(props: PropsWithChildren<Props>) {
   const { product } = useProduct()
   const { isMobile } = useDevice()
 
+  const { collapseContent = true, title, customCollapse = false } = props
   const description = props.description ?? product?.description
+  const [isCustomCollapsed, setCustomCollapsed] = useState(customCollapse)
+
+  const limitCharacters = useMemo(() => {
+    let {
+      desktopLimitCharacters = defaultDesktopCharacters,
+      mobileLimitCharacters = defaultMobileCharacters,
+    } = props
+
+    if (isCustomCollapsed) {
+      desktopLimitCharacters = Number.isNaN(desktopLimitCharacters)
+        ? defaultDesktopCharacters
+        : desktopLimitCharacters
+      mobileLimitCharacters = Number.isNaN(mobileLimitCharacters)
+        ? defaultMobileCharacters
+        : mobileLimitCharacters
+
+      return isMobile ? mobileLimitCharacters : desktopLimitCharacters
+    }
+
+    return 0
+  }, [isCustomCollapsed, props, isMobile])
 
   if (!description) {
     return null
   }
-  
-  const { collapseContent = true, title, customCollapse = false } = props
-
-  let {desktopLimitCharacters = defaultDesktopCharacters, mobileLimitCharacters = defaultMobileCharacters} = props
-  let limitCharacters = 0;
-  if(customCollapse) {
-    desktopLimitCharacters = Number.isNaN(desktopLimitCharacters) ? defaultDesktopCharacters : desktopLimitCharacters;
-    mobileLimitCharacters = Number.isNaN(mobileLimitCharacters) ? defaultMobileCharacters : mobileLimitCharacters;
-    limitCharacters = isMobile ? mobileLimitCharacters : desktopLimitCharacters;
-  }
-
-  const [ filteredDescription, setFilteredDescription ] = useState(description.substring(0, limitCharacters));
-  const [ showMoreButton, setShowMoreButton ] = useState(true)
 
   const changeDescription = () => {
-    setFilteredDescription(description)
-    setShowMoreButton(false)
+    setCustomCollapsed(false)
   }
 
   return (
@@ -107,16 +115,27 @@ function ProductDescription(props: PropsWithChildren<Props>) {
       {customCollapse ? (
         <div className={`${handles.productDescriptionText} c-muted-1`}>
           <SanitizedHTML
-            content={filteredDescription}
+            content={
+              isCustomCollapsed
+                ? description.substring(0, limitCharacters)
+                : description
+            }
             allowedTags={allowedTags}
             allowedAttributes={allowedAttributes}
           />
-          {showMoreButton && description.length > limitCharacters ? (
+          {isCustomCollapsed && description.length > limitCharacters ? (
             <span className={`${handles.showMoreButtonSpan}`}>
-              <Button size="small" variation="tertiary" onClick={changeDescription}>{intl.formatMessage({
-                id: 'store/customCollapse.readMore',
-              })}</Button>
-            </span>) : null}
+              <Button
+                size="small"
+                variation="tertiary"
+                onClick={changeDescription}
+              >
+                {intl.formatMessage({
+                  id: 'store/customCollapse.readMore',
+                })}
+              </Button>
+            </span>
+          ) : null}
         </div>
       ) : (
         <div className={`${handles.productDescriptionText} c-muted-1`}>
@@ -146,7 +165,7 @@ const MemoizedProductDescription: MemoExoticComponent<
 > & { schema?: Record<string, string> } = memo(ProductDescription)
 
 MemoizedProductDescription.schema = {
-  title: 'admin/editor.product-description.title'
+  title: 'admin/editor.product-description.title',
 }
 
 export default MemoizedProductDescription
