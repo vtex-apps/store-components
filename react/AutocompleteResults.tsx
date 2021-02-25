@@ -11,7 +11,6 @@ import type { PropGetters } from 'downshift'
 
 import './AutocompleteResults.css'
 import autocomplete from './graphql/autocomplete.gql'
-import encodeForwardSlash from './utils/encodeForwardSlash'
 
 const MIN_RESULTS_WIDTH = 320
 const CSS_HANDLES = [
@@ -114,7 +113,7 @@ function AutocompleteResults({
   } = useRuntime()
 
   const { handles } = useCssHandles(CSS_HANDLES, { classes })
-  const encodedInputValue = encodeForwardSlash(inputValue)
+  const encodedInputValue = encodeURIComponent(inputValue)
 
   const listStyle = useMemo(
     () => ({
