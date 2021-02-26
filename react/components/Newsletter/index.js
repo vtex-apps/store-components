@@ -6,6 +6,7 @@ import { injectIntl } from 'react-intl'
 import { Input, Button } from 'vtex.styleguide'
 import { withCssHandles } from 'vtex.css-handles'
 import { formatIOMessage } from 'vtex.native-types'
+import { PixelContext } from 'vtex.pixel-manager'
 
 import SUBSCRIBE_NEWSLETTER from './mutations/subscribeNewsletter.graphql'
 
@@ -36,6 +37,7 @@ class Newsletter extends Component {
 
   componentDidMount() {
     this.mounted = true
+    this.props.push({ event: 'pageView' })
   }
 
   componentWillUnmount() {
@@ -179,7 +181,8 @@ class Newsletter extends Component {
 const NewsletterWrapper = compose(
   graphql(SUBSCRIBE_NEWSLETTER, { name: 'subscribeNewsletter' }),
   withCssHandles(CSS_HANDLES),
-  injectIntl
+  injectIntl,
+  PixelContext.withPixel
 )(Newsletter)
 
 Newsletter.defaultProps = {
@@ -196,6 +199,7 @@ Newsletter.propTypes = {
   subscribeNewsletter: PropTypes.func.isRequired,
   intl: PropTypes.object,
   handles: PropTypes.any,
+  push: PropTypes.func,
 }
 
 NewsletterWrapper.getSchema = () => {
