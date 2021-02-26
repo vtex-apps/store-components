@@ -72,21 +72,22 @@ function ProductDescription(props: PropsWithChildren<Props>) {
   const description = props.description ?? product?.description
   const [isCustomCollapsed, setCustomCollapsed] = useState(customCollapse)
 
-  let {
+  const {
     desktopLimitCharacters = defaultDesktopCharacters,
     mobileLimitCharacters = defaultMobileCharacters,
   } = props
 
   const limitCharacters = useMemo(() => {
     if (isCustomCollapsed) {
-      desktopLimitCharacters = Number.isNaN(desktopLimitCharacters)
+      const validDesktopLimitCharacters = Number.isNaN(desktopLimitCharacters)
         ? defaultDesktopCharacters
         : desktopLimitCharacters
-      mobileLimitCharacters = Number.isNaN(mobileLimitCharacters)
+
+      const validMobileLimitCharacters = Number.isNaN(mobileLimitCharacters)
         ? defaultMobileCharacters
         : mobileLimitCharacters
 
-      return isMobile ? mobileLimitCharacters : desktopLimitCharacters
+      return isMobile ? validMobileLimitCharacters : validDesktopLimitCharacters
     }
 
     return 0
