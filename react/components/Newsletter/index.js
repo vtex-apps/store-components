@@ -37,7 +37,7 @@ class Newsletter extends Component {
 
   componentDidMount() {
     this.mounted = true
-    this.props.push({ event: 'pageView' })
+    this.props.push({ event: 'newsletterInput' })
   }
 
   componentWillUnmount() {

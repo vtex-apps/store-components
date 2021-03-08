@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Push `pageView` pixel event when newsletter is mounted
+- Push `newsletterInput` pixel event when newsletter is mounted
 
 ## [3.141.2] - 2021-02-25
 ### Fixed
