@@ -258,11 +258,13 @@ class Carousel extends Component {
         'ml-20-ns w-80-ns pl5-ns':
           isThumbsVertical &&
           position === THUMBS_POSITION_HORIZONTAL.LEFT &&
-          ((hasThumbs && thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE) || !hasSlides),
+          ((hasThumbs && thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE) ||
+            !hasSlides),
         'mr-20-ns w-80-ns pr5-ns':
           isThumbsVertical &&
           position === THUMBS_POSITION_HORIZONTAL.RIGHT &&
-          ((hasThumbs && thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE) || !hasSlides),
+          ((hasThumbs && thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE) ||
+            !hasSlides),
       }
     )
 
@@ -316,7 +318,9 @@ class Carousel extends Component {
 
     return (
       <div className={containerClasses} aria-hidden="true">
-        {isThumbsVertical && thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE && thumbnailSwiper}
+        {isThumbsVertical &&
+          thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE &&
+          thumbnailSwiper}
         <div className={imageClasses}>
           <Swiper
             onSwiper={instance => this.setState({ gallerySwiper: instance })}
@@ -371,7 +375,9 @@ class Carousel extends Component {
             </div>
           </Swiper>
 
-          {!isThumbsVertical && thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE && thumbnailSwiper}
+          {!isThumbsVertical &&
+            thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE &&
+            thumbnailSwiper}
         </div>
       </div>
     )
@@ -392,7 +398,7 @@ Carousel.propTypes = {
   displayThumbnailsArrows: PropTypes.bool,
   thumbnailVisibility: PropTypes.oneOf([
     THUMBS_VISIBILITY.VISIBLE,
-    THUMBS_VISIBILITY.HIDDEN
+    THUMBS_VISIBILITY.HIDDEN,
   ]),
 }
 
