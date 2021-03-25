@@ -8,6 +8,7 @@ interface ProductItem {
     values: string[]
   }>
   sellers: Array<{
+    sellerDefault: boolean
     commertialOffer: {
       Price: number
       ListPrice: number
@@ -50,7 +51,9 @@ declare module 'vtex.product-context/ProductDispatchContext' {
 
 declare module 'vtex.product-context' {
   export interface Seller {
+    sellerDefault: boolean
     commertialOffer: {
+      Price: number
       AvailableQuantity: number
     }
   }

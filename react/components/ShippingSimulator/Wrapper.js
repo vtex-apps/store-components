@@ -19,6 +19,7 @@ import { getNewAddress } from './utils'
 import ShippingSimulator from './index'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
 import ShippingSimulatorLoader from './Loader'
+import { getDefaultSeller } from '../../utils/sellers'
 
 const useAddressState = (country, postalCode) => {
   const [address, setAddress] = useState(() =>
@@ -183,8 +184,18 @@ const ShippingSimulatorWrapper = props => {
 
   const country = props.country || culture.country
   const skuId = props.skuId || productContext?.selectedItem?.itemId
-  const seller =
-    props.seller || productContext?.selectedItem?.sellers?.[0]?.sellerId
+
+  let sellerId = props.seller
+
+  if (!sellerId) {
+    const defaultSeller = getDefaultSeller(
+      productContext?.selectedItem?.sellers
+    )
+
+    if (defaultSeller) {
+      sellerId = defaultSeller.sellerId
+    }
+  }
 
   const { shouldUpdateOrderForm = true } = props
 
@@ -196,7 +207,7 @@ const ShippingSimulatorWrapper = props => {
       <BaseShippingSimulatorWrapper
         country={country}
         skuId={skuId}
-        seller={seller}
+        seller={sellerId}
         loaderStyles={props.loaderStyles}
       />
     )
@@ -207,7 +218,7 @@ const ShippingSimulatorWrapper = props => {
       <OrderFormLoader>
         <ShippingSimulatorWithOrderForm
           country={country}
-          seller={seller}
+          seller={sellerId}
           skuId={skuId}
           loaderStyles={props.loaderStyles}
           shouldUpdateOrderForm={shouldUpdateOrderForm}

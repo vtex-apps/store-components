@@ -1,5 +1,5 @@
 import React, { useCallback, memo, useState, useMemo } from 'react'
-import { compose, flip, gt, filter, pathOr, clone } from 'ramda'
+import { filter, clone } from 'ramda'
 import { ResponsiveValuesTypes } from 'vtex.responsive-values'
 
 import styles from '../styles.css'
@@ -22,6 +22,7 @@ import {
 import Variation from './Variation'
 import useEffectSkipMount from './hooks/useEffectSkipMount'
 import { useSKUSelectorCssHandles } from '../SKUSelectorCssHandles'
+import { getDefaultSeller } from '../../../utils/sellers'
 
 export type ShowValueForVariation = 'none' | 'image' | 'all'
 
@@ -67,14 +68,19 @@ interface Props {
   sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
 }
 
-const isSkuAvailable = compose<
-  SelectorProductItem | undefined,
-  number,
-  boolean
->(
-  flip(gt)(0),
-  pathOr(0, ['sellers', '0', 'commertialOffer', 'AvailableQuantity'])
-)
+function isSkuAvailable(item?: SelectorProductItem) {
+  if (!item) {
+    return false
+  }
+
+  const seller = getDefaultSeller(item.sellers)
+
+  if (!seller) {
+    return false
+  }
+
+  return seller.commertialOffer?.AvailableQuantity > 0
+}
 
 const showItemAsAvailable = ({
   possibleItems,

@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Use sellerDefault as default seller and fallback to first available seller.
 
 ## [3.142.0] - 2021-03-09
 ### Added
