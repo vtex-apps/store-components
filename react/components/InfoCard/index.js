@@ -69,6 +69,7 @@ const getImageUrl = (isMobile, imageUrl, mobileImageUrl) =>
   !!mobileImageUrl && isMobile ? mobileImageUrl : imageUrl
 
 const CSS_HANDLES = [
+  'infoCardImageLinkWrapper',
   'infoCardContainer',
   'infoCardTextContainer',
   'infoCardHeadline',
@@ -153,6 +154,8 @@ const InfoCard = ({
     }
   )
 
+  const linkWrapperClasses = classNames(`${handles.infoCardImageLinkWrapper} no-underline`)
+
   const textContainerClasses = classNames(
     `${handles.infoCardTextContainer} flex flex-column mw-100`,
     {
@@ -169,7 +172,7 @@ const InfoCard = ({
     <LinkWrapper
       imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
       extraCondition={!isFullModeStyle}
-      linkProps={{ className: 'no-underline', target: linkTarget }}
+      linkProps={{ className: linkWrapperClasses, target: linkTarget }}
     >
       <div
         className={containerClasses}
