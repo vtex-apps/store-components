@@ -154,9 +154,7 @@ const InfoCard = ({
     }
   )
 
-  const linkWrapperClasses = classNames(
-    `${handles.infoCardImageLinkWrapper} no-underline`
-    )
+  const linkWrapperClasses = `${handles.infoCardImageLinkWrapper} no-underline`
 
   const textContainerClasses = classNames(
     `${handles.infoCardTextContainer} flex flex-column mw-100`,
