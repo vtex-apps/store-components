@@ -1,6 +1,7 @@
 import { prop, filter, clone, reject } from 'ramda'
 import slugify from 'slugify'
 
+import { getDefaultSeller } from '../../../utils/sellers'
 import { SelectorProductItem, SelectedVariations } from '../types'
 
 /**
@@ -11,13 +12,10 @@ export const getMaxSkuPrice = (items: SelectorProductItem[]) => {
   if (!items) return 0
 
   return items.reduce((max, sku) => {
-    const [
-      {
-        commertialOffer: { Price },
-      },
-    ] = sku.sellers
+    const seller = getDefaultSeller(sku.sellers)
+    const price = seller?.commertialOffer.Price ?? 0
 
-    return Math.max(max, Price)
+    return Math.max(max, price)
   }, 0)
 }
 
