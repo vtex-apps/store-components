@@ -8,6 +8,7 @@ import type { Seller } from 'vtex.product-context'
 
 import ADD_TO_AVAILABILITY_SUBSCRIBER_MUTATION from './graphql/addToAvailabilitySubscriberMutation.gql'
 import styles from './AvailabilitySubscriber.css'
+import { getDefaultSeller } from './utils/sellers'
 
 interface MutationVariables {
   acronym: string
@@ -52,10 +53,9 @@ function AvailabilitySubscriber(props: Props) {
 
   const intl = useIntl()
 
-  const commertialOffer =
-    productContext.selectedItem?.sellers[0]?.commertialOffer
+  const seller = getDefaultSeller(productContext.selectedItem?.sellers)
 
-  const available = props.available ?? isAvailable(commertialOffer)
+  const available = props.available ?? isAvailable(seller?.commertialOffer)
   const skuId = props.skuId ?? productContext.selectedItem?.itemId
 
   // Render component only if the product is out of stock
