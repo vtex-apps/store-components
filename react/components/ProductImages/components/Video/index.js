@@ -6,11 +6,13 @@ import { NoSSR } from 'vtex.render-runtime'
 
 import Vimeo from './Vimeo'
 import YouTube from './Youtube'
+import Mp4 from './Mp4'
 
 const isNotEmpty = complement(isEmpty)
 
 const isVimeo = compose(isNotEmpty, match(/vimeo/))
 const isYoutube = compose(isNotEmpty, match(/youtube|youtu.be/))
+const isMp4 = compose(isNotEmpty, match(/.mp4/))
 
 const CSS_HANDLES = ['productVideo', 'videoContainer', 'video']
 
@@ -26,16 +28,17 @@ export function getThumbUrl(url, thumbWidth) {
 
 function Video(props) {
   const { url } = props
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
 
   return (
     <div className={handles.productVideo}>
       {isVimeo(url) && (
         <NoSSR>
-          <Vimeo {...props} cssHandles={handles} />
+          <Vimeo key={url} {...props} cssHandles={handles} />
         </NoSSR>
       )}
-      {isYoutube(url) && <YouTube {...props} cssHandles={handles} />}
+      {isYoutube(url) && <YouTube key={url} {...props} cssHandles={handles} />}
+      {isMp4(url) && <Mp4 key={url} {...props} cssHandles={handles} />}
     </div>
   )
 }
