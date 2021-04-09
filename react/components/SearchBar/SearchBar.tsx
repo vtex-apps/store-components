@@ -16,6 +16,7 @@ import AutocompleteResults from '../../AutocompleteResults'
 import type { Props as AutocompleteResultsProps } from '../../AutocompleteResults'
 import AutocompleteInput from './AutocompleteInput'
 import { useSearchBarCssHandles } from './SearchBarCssHandles'
+import { formatIOMessage } from 'vtex.native-types'
 
 export const CSS_HANDLES = ['searchBarInnerContainer'] as const
 
@@ -195,7 +196,7 @@ function SearchBar({
 
   const fallback = (
     <AutocompleteInput
-      placeholder={placeholder}
+      placeholder={formatIOMessage({ id: placeholder, intl })}
       onInputChange={onInputChange}
       inputValue={inputValue}
       hasIconLeft={hasIconLeft}
