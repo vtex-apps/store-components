@@ -10,6 +10,7 @@ import {
 } from 'vtex.render-runtime'
 import { Overlay } from 'vtex.react-portal'
 import { defineMessages, useIntl } from 'react-intl'
+import { formatIOMessage } from 'vtex.native-types'
 
 import styles from './SearchBar.css'
 import AutocompleteResults from '../../AutocompleteResults'
@@ -195,7 +196,7 @@ function SearchBar({
 
   const fallback = (
     <AutocompleteInput
-      placeholder={placeholder}
+      placeholder={formatIOMessage({ id: placeholder, intl }) as string}
       onInputChange={onInputChange}
       inputValue={inputValue}
       hasIconLeft={hasIconLeft}
