@@ -10,13 +10,13 @@ import {
 } from 'vtex.render-runtime'
 import { Overlay } from 'vtex.react-portal'
 import { defineMessages, useIntl } from 'react-intl'
+import { formatIOMessage } from 'vtex.native-types'
 
 import styles from './SearchBar.css'
 import AutocompleteResults from '../../AutocompleteResults'
 import type { Props as AutocompleteResultsProps } from '../../AutocompleteResults'
 import AutocompleteInput from './AutocompleteInput'
 import { useSearchBarCssHandles } from './SearchBarCssHandles'
-import { formatIOMessage } from 'vtex.native-types'
 
 export const CSS_HANDLES = ['searchBarInnerContainer'] as const
 
