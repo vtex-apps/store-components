@@ -196,7 +196,7 @@ function SearchBar({
 
   const fallback = (
     <AutocompleteInput
-      placeholder={formatIOMessage({ id: placeholder, intl })}
+      placeholder={formatIOMessage({ id: placeholder, intl }) as string}
       onInputChange={onInputChange}
       inputValue={inputValue}
       hasIconLeft={hasIconLeft}
