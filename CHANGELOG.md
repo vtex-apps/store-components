@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Added css handler class for image link wrapper
 
+## [3.142.2] - 2021-04-09
+### Fixed
+- Makes the SearchBar placeholder translatable
+
 ## [3.142.1] - 2021-03-30
 ### Fixed
 - Use sellerDefault as default seller and fallback to first seller.
