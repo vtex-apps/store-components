@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Check if the swiper is not destroyed before rendering, which could cause the whole product UI to crash
+
 ## [3.142.2] - 2021-04-09
 ### Fixed
 - Makes the SearchBar placeholder translatable

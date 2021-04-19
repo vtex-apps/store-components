@@ -315,58 +315,60 @@ class Carousel extends Component {
         {isThumbsVertical && thumbnailSwiper}
 
         <div className={imageClasses}>
-          <Swiper
-            onSwiper={instance => this.setState({ gallerySwiper: instance })}
-            className={handles.productImagesGallerySwiperContainer}
-            threshold={10}
-            resistanceRatio={slides.length > 1 ? 0.85 : 0}
-            onSlideChange={this.handleSlideChange}
-            updateOnWindowResize
-            {...this.galleryParams}
-          >
-            {slides.map((slide, i) => (
-              <SwiperSlide
-                key={`slider-${i}`}
-                className={`${handles.productImagesGallerySlide} swiper-slide center-all`}
-              >
-                {this.renderSlide(slide, i)}
-              </SwiperSlide>
-            ))}
-
-            <div
-              key="pagination"
-              className={classNames(styles['swiper-pagination'], {
-                dn: slides.length === 1 || !showPaginationDots,
-              })}
-            />
-
-            <div
-              className={classNames({
-                dn: slides.length === 1 || !showNavigationArrows,
-              })}
+          {!this.state.thumbSwiper?.destroyed && (
+            <Swiper
+              onSwiper={instance => this.setState({ gallerySwiper: instance })}
+              className={handles.productImagesGallerySwiperContainer}
+              threshold={10}
+              resistanceRatio={slides.length > 1 ? 0.85 : 0}
+              onSlideChange={this.handleSlideChange}
+              updateOnWindowResize
+              {...this.galleryParams}
             >
-              <span
-                key="caret-next"
-                className={`swiper-caret-next pl7 pr2 right-0 ${CARET_CLASSNAME} ${handles.swiperCaret} ${handles.swiperCaretNext}`}
+              {slides.map((slide, i) => (
+                <SwiperSlide
+                  key={`slider-${i}`}
+                  className={`${handles.productImagesGallerySlide} swiper-slide center-all`}
+                >
+                  {this.renderSlide(slide, i)}
+                </SwiperSlide>
+              ))}
+
+              <div
+                key="pagination"
+                className={classNames(styles['swiper-pagination'], {
+                  dn: slides.length === 1 || !showPaginationDots,
+                })}
+              />
+
+              <div
+                className={classNames({
+                  dn: slides.length === 1 || !showNavigationArrows,
+                })}
               >
-                <IconCaret
-                  orientation="right"
-                  size={CARET_ICON_SIZE}
-                  className={styles.carouselIconCaretRight}
-                />
-              </span>
-              <span
-                key="caret-prev"
-                className={`swiper-caret-prev pr7 pl2 left-0 ${CARET_CLASSNAME} ${handles.swiperCaret} ${handles.swiperCaretPrev}`}
-              >
-                <IconCaret
-                  orientation="left"
-                  size={CARET_ICON_SIZE}
-                  className={styles.carouselIconCaretLeft}
-                />
-              </span>
-            </div>
-          </Swiper>
+                <span
+                  key="caret-next"
+                  className={`swiper-caret-next pl7 pr2 right-0 ${CARET_CLASSNAME} ${handles.swiperCaret} ${handles.swiperCaretNext}`}
+                >
+                  <IconCaret
+                    orientation="right"
+                    size={CARET_ICON_SIZE}
+                    className={styles.carouselIconCaretRight}
+                  />
+                </span>
+                <span
+                  key="caret-prev"
+                  className={`swiper-caret-prev pr7 pl2 left-0 ${CARET_CLASSNAME} ${handles.swiperCaret} ${handles.swiperCaretPrev}`}
+                >
+                  <IconCaret
+                    orientation="left"
+                    size={CARET_ICON_SIZE}
+                    className={styles.carouselIconCaretLeft}
+                  />
+                </span>
+              </div>
+            </Swiper>
+          )}
 
           {!isThumbsVertical && thumbnailSwiper}
         </div>
