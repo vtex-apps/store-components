@@ -1,6 +1,6 @@
 # VTEX Store Components
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Description
@@ -168,6 +168,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/LuisaFCorrea"><img src="https://avatars3.githubusercontent.com/u/66276121?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Luisa Correa</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=LuisaFCorrea" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/pmarignan"><img src="https://avatars2.githubusercontent.com/u/32361926?v=4?s=100" width="100px;" alt=""/><br /><sub><b>pmarignan</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=pmarignan" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/rcmuniz1994"><img src="https://avatars.githubusercontent.com/u/32344098?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rodrigo Muniz</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=rcmuniz1994" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/ovio224"><img src="https://avatars.githubusercontent.com/u/68231117?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ovi</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=oviolion" title="Code">💻</a></td>
   </tr>
 </table>
 
