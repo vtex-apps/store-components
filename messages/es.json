@@ -193,5 +193,5 @@
   "admin/editor.toTop.description": "Al hacer clic, lleva la página a la parte superior",
   "admin/editor.toTop.topPixel.title": "Número de píxeles",
   "admin/editor.toTop.topPixel.description": "Al exceder el valor de píxel definido, aparecerá el botón para volver a la parte superior.",
-  "store/customCollapse.readMore": "...lee mas"
+  "store/customCollapse.readMore": "…lee mas"
 }
