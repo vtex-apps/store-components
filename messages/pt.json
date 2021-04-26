@@ -193,5 +193,5 @@
   "admin/editor.toTop.description": "Quando clicado, leva a página ao topo",
   "admin/editor.toTop.topPixel.title": "Número de pixels",
   "admin/editor.toTop.topPixel.description": "Ao exceder o valor de pixel definido, o botão para retornar ao topo aparecerá",
-  "store/customCollapse.readMore": "...consulte mais informação"
+  "store/customCollapse.readMore": "…ler mais"
 }
