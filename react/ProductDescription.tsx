@@ -17,7 +17,7 @@ const CSS_HANDLES = [
   'productDescriptionContainer',
   'productDescriptionTitle',
   'productDescriptionText',
-  'showMoreButtonSpan',
+  'readMoreButton',
 ] as const
 
 const defaultDesktopCharacters = 1000
