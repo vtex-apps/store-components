@@ -295,7 +295,7 @@ function SearchBar({
                   },
                   placeholder: formatIOMessage({
                     id: placeholder,
-                    intl
+                    intl,
                   }) as string,
                   value: inputValue,
                   onChange: onInputChange,
