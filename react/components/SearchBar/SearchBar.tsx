@@ -293,7 +293,7 @@ function SearchBar({
                       hideInputErrorMessage()
                     }
                   },
-                  placeholder,
+                  placeholder: formatIOMessage({ id: placeholder, intl }) as string,
                   value: inputValue,
                   onChange: onInputChange,
                   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
