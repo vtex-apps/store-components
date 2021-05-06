@@ -68,7 +68,7 @@ function ProductDescription(props: PropsWithChildren<Props>) {
 
   return (
     <div className={handles.productDescriptionContainer}>
-      {showTitle ? (
+      {showTitle && (
         <FormattedMessage id="store/product-description.title">
           {txt => (
             <h2
@@ -78,7 +78,7 @@ function ProductDescription(props: PropsWithChildren<Props>) {
             </h2>
           )}
         </FormattedMessage>
-      ) : null}
+      )}
 
       <div className={`${handles.productDescriptionText} c-muted-1`}>
         {collapseContent ? (
