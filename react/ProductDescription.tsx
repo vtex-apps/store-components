@@ -20,7 +20,7 @@ type Props = {
   description?: string
   /** Section title */
   title?: string
-  /** Define whether or not to show the title*/
+  /** Define whether or not to show the title */
   showTitle?: boolean
   /** Define if content should start collapsed or not */
   collapseContent?: boolean
@@ -70,7 +70,7 @@ function ProductDescription(props: PropsWithChildren<Props>) {
     <div className={handles.productDescriptionContainer}>
       {showTitle ? (
         <FormattedMessage id="store/product-description.title">
-          {(txt) => (
+          {txt => (
             <h2
               className={`${handles.productDescriptionTitle} t-heading-5 mb5 mt0`}
             >
