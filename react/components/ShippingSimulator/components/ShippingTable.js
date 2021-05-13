@@ -14,16 +14,24 @@ const ShippingTable = ({ shipping }) => {
     (slas, info) => [...slas, ...info.slas],
     []
   )
-  
+
   console.log(shipping)
   console.log(slaList)
-  
-  const slaList2 = slaList.reduce(
-    (id, info) => [...preco, ...info.preco],
-    []
-  )
 
-  console.log(slaList2)
+  let shippingId = [];
+  let shippingArray = [];
+
+  for (let i = 0; i < slaList.length; i++) {
+    console.log(shippingId)
+    let shippingTypes = shippingId.includes(slaList[i].id);
+    if (slaList[i].id && !shippingTypes) {
+      shippingId.push(slaList[i].id)
+      shippingArray.push(slaList[i])
+    }
+  }
+
+  console.log(shippingId)
+  console.log(shippingArray)
 
   if (slaList.length === 0) {
     return (
