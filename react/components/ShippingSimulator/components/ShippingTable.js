@@ -14,6 +14,16 @@ const ShippingTable = ({ shipping }) => {
     (slas, info) => [...slas, ...info.slas],
     []
   )
+  
+  console.log(shipping)
+  console.log(slaList)
+  
+  const slaList2 = slaList.reduce(
+    (id, info) => [...preco, ...info.preco],
+    []
+  )
+
+  console.log(slaList2)
 
   if (slaList.length === 0) {
     return (
