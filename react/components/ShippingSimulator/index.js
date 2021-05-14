@@ -25,6 +25,7 @@ const ShippingSimulator = ({
   isValid,
   onCalculateShipping,
   shipping,
+  sumAllValues
   /* eslint-enable react/prop-types */
 }) => {
   const intl = useIntl()
@@ -59,7 +60,7 @@ const ShippingSimulator = ({
           {intl.formatMessage({ id: 'store/shipping.label' })}
         </Button>
       </div>
-      <ShippingTable shipping={shipping} />
+      <ShippingTable shipping={shipping} sumAllValues={sumAllValues} />
     </Fragment>
   )
 }

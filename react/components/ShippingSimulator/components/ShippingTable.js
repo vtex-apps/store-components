@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl'
 import ShippingTableRow from './ShippingTableRow'
 import styles from '../shippingSimulator.css'
 
-const ShippingTable = ({ shipping }) => {
+const ShippingTable = ({ shipping, sumAllValues }) => {
   if ((shipping?.logisticsInfo?.length ?? 0) === 0) {
     return null
   }
@@ -15,23 +15,20 @@ const ShippingTable = ({ shipping }) => {
     []
   )
 
-  console.log(shipping)
   console.log(slaList)
 
-  let shippingId = [];
-  let shippingArray = [];
+  let slaSumValuesList = []
 
-  for (let i = 0; i < slaList.length; i++) {
-    console.log(shippingId)
-    let shippingTypes = shippingId.includes(slaList[i].id);
-    if (slaList[i].id && !shippingTypes) {
-      shippingId.push(slaList[i].id)
-      shippingArray.push(slaList[i])
-    }
+  if (sumAllValues) {
+    slaList.reduce(function (res, value) {
+      if (!res[value.id]) {
+        res[value.id] = { id: value.id, ...value, price: 0 };
+        slaSumValuesList.push(res[value.id])
+      }
+      res[value.id].price += value.price;
+      return res;
+    }, {});
   }
-
-  console.log(shippingId)
-  console.log(shippingArray)
 
   if (slaList.length === 0) {
     return (
@@ -63,14 +60,24 @@ const ShippingTable = ({ shipping }) => {
         </tr>
       </thead>
       <tbody className={styles.shippingTableBody}>
-        {slaList.map(shippingItem => (
-          <ShippingTableRow
-            key={shippingItem.id}
-            name={shippingItem.friendlyName}
-            shippingEstimate={shippingItem.shippingEstimate}
-            price={shippingItem.price}
-          />
-        ))}
+        {sumAllValues ?
+          slaSumValuesList.map(shippingItem => (
+            <ShippingTableRow
+              key={shippingItem.id}
+              name={shippingItem.friendlyName}
+              shippingEstimate={shippingItem.shippingEstimate}
+              price={shippingItem.price}
+            />
+          )) : 
+          slaList.map(shippingItem => (
+            <ShippingTableRow
+              key={shippingItem.id}
+              name={shippingItem.friendlyName}
+              shippingEstimate={shippingItem.shippingEstimate}
+              price={shippingItem.price}
+            />
+          ))
+        }
       </tbody>
     </table>
   )

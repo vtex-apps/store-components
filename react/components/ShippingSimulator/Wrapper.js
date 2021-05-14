@@ -49,6 +49,7 @@ const BaseShippingSimulatorWrapper = ({
   onShippingAddressUpdate = _ => {},
   initialPostalCode = undefined,
   shouldUpdateOrderForm,
+  sumAllValues
 }) => {
   const [shipping, setShipping] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -133,6 +134,7 @@ const BaseShippingSimulatorWrapper = ({
       address={address}
       isValid={isValid}
       shipping={shipping}
+      sumAllValues={sumAllValues}
       onAddressChange={updateAddress}
       onCalculateShipping={handleCalculateShipping}
     />
@@ -145,6 +147,7 @@ const ShippingSimulatorWithOrderForm = ({
   seller,
   loaderStyles,
   shouldUpdateOrderForm,
+  sumAllValues
 }) => {
   const { updateSelectedAddress } = useOrderShipping()
   const { orderForm } = useOrderForm()
@@ -164,6 +167,7 @@ const ShippingSimulatorWithOrderForm = ({
       }
       onShippingAddressUpdate={updateSelectedAddress}
       shouldUpdateOrderForm={shouldUpdateOrderForm}
+      sumAllValues={sumAllValues}
     />
   )
 }
@@ -184,6 +188,8 @@ const ShippingSimulatorWrapper = props => {
 
   const country = props.country || culture.country
   const skuId = props.skuId || productContext?.selectedItem?.itemId
+
+  const sumAllValues = props.sumAllValues
 
   let sellerId = props.seller
 
@@ -208,6 +214,7 @@ const ShippingSimulatorWrapper = props => {
         country={country}
         skuId={skuId}
         seller={sellerId}
+        sumAllValues={sumAllValues}
         loaderStyles={props.loaderStyles}
       />
     )
@@ -221,6 +228,7 @@ const ShippingSimulatorWrapper = props => {
           seller={sellerId}
           skuId={skuId}
           loaderStyles={props.loaderStyles}
+          sumAllValues={sumAllValues}
           shouldUpdateOrderForm={shouldUpdateOrderForm}
         />
       </OrderFormLoader>
