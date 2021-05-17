@@ -15,8 +15,6 @@ const ShippingTable = ({ shipping, sumAllValues }) => {
     []
   )
 
-  console.log(slaList)
-
   let slaSumValuesList = []
 
   if (sumAllValues) {
