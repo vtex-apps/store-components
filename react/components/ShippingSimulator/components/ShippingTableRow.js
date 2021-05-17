@@ -8,6 +8,9 @@ import { FormattedCurrency } from 'vtex.format-currency'
 import styles from '../shippingSimulator.css'
 
 const ShippingTableRow = ({ name, shippingEstimate, price }) => {
+  console.log("Nome", name)
+  console.log("Estimativa", shippingEstimate)
+  console.log("Preço", price)
   const { formatMessage } = useIntl()
   const etaClassName = classNames(
     `${styles.shippingTableCell} ${styles.shippingTableCellDeliveryEstimate} pv1 ph3 t-small c-muted-2`,

@@ -23,7 +23,7 @@ import { getDefaultSeller } from '../../utils/sellers'
 
 const useAddressState = (country, postalCode) => {
   const [address, setAddress] = useState(() =>
-    addValidation(getNewAddress(country, postalCode))
+    addValidation(getNewAddress(country, postalCode)) 
   )
 
   const [isValid, setIsValid] = useState(!!postalCode)
