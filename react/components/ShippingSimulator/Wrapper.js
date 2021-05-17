@@ -49,7 +49,8 @@ const BaseShippingSimulatorWrapper = ({
   onShippingAddressUpdate = _ => {},
   initialPostalCode = undefined,
   shouldUpdateOrderForm,
-  sumAllValues
+  sumAllValues,
+  selectedQuantity
 }) => {
   const [shipping, setShipping] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -75,7 +76,7 @@ const BaseShippingSimulatorWrapper = ({
             postalCode: rawAddress.postalCode,
             items: [
               {
-                quantity: '1',
+                quantity: selectedQuantity,
                 id: skuId,
                 seller,
               },
@@ -103,6 +104,7 @@ const BaseShippingSimulatorWrapper = ({
       country,
       seller,
       skuId,
+      selectedQuantity,
       onShippingAddressUpdate,
       shouldUpdateOrderForm,
     ]
@@ -135,6 +137,7 @@ const BaseShippingSimulatorWrapper = ({
       isValid={isValid}
       shipping={shipping}
       sumAllValues={sumAllValues}
+      selectedQuantity={selectedQuantity}
       onAddressChange={updateAddress}
       onCalculateShipping={handleCalculateShipping}
     />
@@ -147,7 +150,8 @@ const ShippingSimulatorWithOrderForm = ({
   seller,
   loaderStyles,
   shouldUpdateOrderForm,
-  sumAllValues
+  sumAllValues,
+  selectedQuantity
 }) => {
   const { updateSelectedAddress } = useOrderShipping()
   const { orderForm } = useOrderForm()
@@ -168,6 +172,7 @@ const ShippingSimulatorWithOrderForm = ({
       onShippingAddressUpdate={updateSelectedAddress}
       shouldUpdateOrderForm={shouldUpdateOrderForm}
       sumAllValues={sumAllValues}
+      selectedQuantity={selectedQuantity}
     />
   )
 }
@@ -188,6 +193,7 @@ const ShippingSimulatorWrapper = props => {
 
   const country = props.country || culture.country
   const skuId = props.skuId || productContext?.selectedItem?.itemId
+  const selectedQuantity = productContext?.selectedQuantity.toString()
 
   const sumAllValues = props.sumAllValues
 
@@ -215,6 +221,7 @@ const ShippingSimulatorWrapper = props => {
         skuId={skuId}
         seller={sellerId}
         sumAllValues={sumAllValues}
+        selectedQuantity={selectedQuantity}
         loaderStyles={props.loaderStyles}
       />
     )
@@ -229,6 +236,7 @@ const ShippingSimulatorWrapper = props => {
           skuId={skuId}
           loaderStyles={props.loaderStyles}
           sumAllValues={sumAllValues}
+          selectedQuantity={selectedQuantity}
           shouldUpdateOrderForm={shouldUpdateOrderForm}
         />
       </OrderFormLoader>
