@@ -40,6 +40,7 @@ The Shipping Simulator block **estimates the shipping fee** based on a zip code 
 | ----------------------- | --------- | --------------------------------------------------------------------------------------------- | ------------- |
 | `skuId`                 | `String`  | ID of the current product SKU                                                                 | -             |
 | `seller`                | `String`  | ID of the product seller                                                                      | -             |
+| `sumAllValues`          | `Boolean` | If the product has gifts or attachments, you can choose whether the shipping information will be grouped by shipping type or showing the shipping prices for each of the items individually. | `false`       |
 | `shouldUpdateOrderForm` | `Boolean` | Whether interacting with the simulator should update the shopper's address in their orderForm | `true`        |
 
 ## Customization
