@@ -35,6 +35,7 @@ const ProductImages = ({
   // Deprecated
   zoomProps,
   displayMode,
+  children
 }) => {
   if (hiddenImages && !Array.isArray(hiddenImages)) {
     hiddenImages = [hiddenImages]
@@ -54,17 +55,17 @@ const ProductImages = ({
 
     return shouldIncludeImages
       ? allImages
-          .filter(
-            image =>
-              !image.imageLabel ||
-              !excludeImageRegexes.some(regex => regex.test(image.imageLabel))
-          )
-          .map(image => ({
-            type: 'image',
-            url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
-            alt: image.imageText,
-            thumbUrl: image.thumbnailUrl || image.imageUrl,
-          }))
+        .filter(
+          image =>
+            !image.imageLabel ||
+            !excludeImageRegexes.some(regex => regex.test(image.imageLabel))
+        )
+        .map(image => ({
+          type: 'image',
+          url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
+          alt: image.imageText,
+          thumbUrl: image.thumbnailUrl || image.imageUrl,
+        }))
       : []
   }, [allImages, contentType, excludeImageRegexes])
 
@@ -73,10 +74,10 @@ const ProductImages = ({
 
     return shouldIncludeVideos
       ? allVideos.map(video => ({
-          type: 'video',
-          src: video.videoUrl,
-          thumbWidth: 300,
-        }))
+        type: 'video',
+        src: video.videoUrl,
+        thumbWidth: 300,
+      }))
       : []
   }, [allVideos, contentType])
 
@@ -128,7 +129,9 @@ const ProductImages = ({
         displayThumbnailsArrows={displayThumbnailsArrows}
         // Deprecated
         zoomProps={zoomProps}
-      />
+      >
+        {children}
+      </Carousel>
     </div>
   )
 }

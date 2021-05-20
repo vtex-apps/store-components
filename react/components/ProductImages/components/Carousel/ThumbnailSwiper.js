@@ -1,6 +1,7 @@
-import React, { Fragment, useMemo } from 'react'
+import React, { Fragment, useContext, useMemo } from 'react'
 import classNames from 'classnames'
 import { useCssHandles, applyModifiers } from 'vtex.css-handles'
+import { CarouselContext } from './index.js'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { IconCaret } from 'vtex.store-icons'
 
@@ -19,6 +20,7 @@ const CSS_HANDLES = [
   'carouselThumbBorder',
   'carouselGaleryThumbs',
   'productImagesThumbCaret',
+  'productImagesThumbsSwiperContainer'
 ]
 
 const Thumbnail = props => {
@@ -58,7 +60,6 @@ const navigationConfig = {
 
 const ThumbnailSwiper = props => {
   const { handles } = useCssHandles(CSS_HANDLES)
-
   const {
     isThumbsVertical,
     slides,
@@ -67,8 +68,8 @@ const ThumbnailSwiper = props => {
     thumbnailAspectRatio,
     thumbnailMaxHeight,
     displayThumbnailsArrows,
-    ...swiperProps
-  } = props
+    onThumbSwiper
+  } = useContext(CarouselContext)
 
   const hasThumbs = slides.length > 1
 
@@ -161,7 +162,7 @@ const ThumbnailSwiper = props => {
         preloadImages
         updateOnWindowResize
         direction={isThumbsVertical ? 'vertical' : 'horizontal'}
-        {...swiperProps}
+        onSwiper={onThumbSwiper}
       >
         {slides.map((slide, i) => {
           return (

@@ -3,11 +3,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { path, equals } from 'ramda'
-import { IconCaret } from 'vtex.store-icons'
 import { withCssHandles } from 'vtex.css-handles'
 import SwiperCore, { Thumbs, Navigation, Pagination } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
 
+import MainImageSwiper from './MainImageSwiper'
 import Video, { getThumbUrl } from '../Video'
 import ProductImage from '../ProductImage'
 import ThumbnailSwiper from './ThumbnailSwiper'
@@ -20,10 +19,6 @@ import styles from './swiper.scoped.css'
 
 import './swiper.global.css'
 import './overrides.global.css'
-
-const CARET_ICON_SIZE = 24
-const CARET_CLASSNAME =
-  'pv8 absolute top-50 translate--50y z-2 pointer c-action-primary'
 
 // install Swiper's Thumbs component
 SwiperCore.use([Thumbs, Navigation, Pagination])
@@ -44,6 +39,8 @@ const initialState = {
   alt: [],
   activeIndex: 0,
 }
+
+export const CarouselContext = React.createContext({})
 
 class Carousel extends Component {
   state = {
@@ -185,6 +182,8 @@ class Carousel extends Component {
     }
   }
 
+
+
   get galleryParams() {
     const { handles, slides = [], showPaginationDots = true } = this.props
 
@@ -236,6 +235,7 @@ class Carousel extends Component {
       showNavigationArrows = true,
       displayThumbnailsArrows = false,
     } = this.props
+
 
     const hasSlides = slides && slides.length > 0
 
@@ -297,82 +297,38 @@ class Carousel extends Component {
       }
     )
 
-    const thumbnailSwiper = (
-      <ThumbnailSwiper
-        onSwiper={instance => this.setState({ thumbSwiper: instance })}
-        isThumbsVertical={isThumbsVertical}
-        thumbnailAspectRatio={thumbnailAspectRatio}
-        thumbnailMaxHeight={thumbnailMaxHeight}
-        thumbUrls={this.state.thumbUrl}
-        displayThumbnailsArrows={displayThumbnailsArrows}
-        slides={slides}
-        position={position}
-      />
-    )
+    const contextValues = {
+      onGallerySwiper: instance => this.setState({ gallerySwiper: instance }),
+      onThumbSwiper: instance => this.setState({ thumbSwiper: instance }),
+      isThumbsVertical: isThumbsVertical,
+      thumbnailAspectRatio: thumbnailAspectRatio,
+      thumbnailMaxHeight: thumbnailMaxHeight,
+      thumbUrls: this.state.thumbUrl,
+      displayThumbnailsArrows: displayThumbnailsArrows,
+      slides: slides,
+      position: position,
+      threshold: 10,
+      resistanceRatio: slides.length > 1 ? 0.85 : 0,
+      onSlideChange: this.handleSlideChange,
+      renderSlide: this.renderSlide,
+      showPaginationDots: showPaginationDots,
+      showNavigationArrows: showNavigationArrows,
+      galleryParams: this.galleryParams
+    }
 
     return (
-      <div className={containerClasses} aria-hidden="true">
-        {isThumbsVertical && thumbnailSwiper}
+      <CarouselContext.Provider value={contextValues}>
+        <div className={containerClasses} aria-hidden="true">
 
-        <div className={imageClasses}>
-          {!this.state.thumbSwiper?.destroyed && (
-            <Swiper
-              onSwiper={instance => this.setState({ gallerySwiper: instance })}
-              className={handles.productImagesGallerySwiperContainer}
-              threshold={10}
-              resistanceRatio={slides.length > 1 ? 0.85 : 0}
-              onSlideChange={this.handleSlideChange}
-              updateOnWindowResize
-              {...this.galleryParams}
-            >
-              {slides.map((slide, i) => (
-                <SwiperSlide
-                  key={`slider-${i}`}
-                  className={`${handles.productImagesGallerySlide} swiper-slide center-all`}
-                >
-                  {this.renderSlide(slide, i)}
-                </SwiperSlide>
-              ))}
-
-              <div
-                key="pagination"
-                className={classNames(styles['swiper-pagination'], {
-                  dn: slides.length === 1 || !showPaginationDots,
-                })}
-              />
-
-              <div
-                className={classNames({
-                  dn: slides.length === 1 || !showNavigationArrows,
-                })}
-              >
-                <span
-                  key="caret-next"
-                  className={`swiper-caret-next pl7 pr2 right-0 ${CARET_CLASSNAME} ${handles.swiperCaret} ${handles.swiperCaretNext}`}
-                >
-                  <IconCaret
-                    orientation="right"
-                    size={CARET_ICON_SIZE}
-                    className={styles.carouselIconCaretRight}
-                  />
-                </span>
-                <span
-                  key="caret-prev"
-                  className={`swiper-caret-prev pr7 pl2 left-0 ${CARET_CLASSNAME} ${handles.swiperCaret} ${handles.swiperCaretPrev}`}
-                >
-                  <IconCaret
-                    orientation="left"
-                    size={CARET_ICON_SIZE}
-                    className={styles.carouselIconCaretLeft}
-                  />
-                </span>
-              </div>
-            </Swiper>
-          )}
-
-          {!isThumbsVertical && thumbnailSwiper}
+          {isThumbsVertical && (<ThumbnailSwiper />)}
+          <div className={imageClasses}>
+            {!this.state.thumbSwiper?.destroyed &&
+              (this.props.children.length > 0 ? (this.props.children) : <MainImageSwiper />)
+            }
+            {!isThumbsVertical && (<ThumbnailSwiper />)}
+          </div>
         </div>
-      </div>
+      </CarouselContext.Provider >
     )
   }
 }
