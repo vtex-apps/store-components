@@ -49,7 +49,7 @@ const BaseShippingSimulatorWrapper = ({
   onShippingAddressUpdate = _ => {},
   initialPostalCode = undefined,
   shouldUpdateOrderForm,
-  sumAllValues,
+  pricingMode,
   selectedQuantity
 }) => {
   const [shipping, setShipping] = useState(null)
@@ -136,7 +136,7 @@ const BaseShippingSimulatorWrapper = ({
       address={address}
       isValid={isValid}
       shipping={shipping}
-      sumAllValues={sumAllValues}
+      pricingMode={pricingMode}
       selectedQuantity={selectedQuantity}
       onAddressChange={updateAddress}
       onCalculateShipping={handleCalculateShipping}
@@ -150,7 +150,7 @@ const ShippingSimulatorWithOrderForm = ({
   seller,
   loaderStyles,
   shouldUpdateOrderForm,
-  sumAllValues,
+  pricingMode,
   selectedQuantity
 }) => {
   const { updateSelectedAddress } = useOrderShipping()
@@ -171,7 +171,7 @@ const ShippingSimulatorWithOrderForm = ({
       }
       onShippingAddressUpdate={updateSelectedAddress}
       shouldUpdateOrderForm={shouldUpdateOrderForm}
-      sumAllValues={sumAllValues}
+      pricingMode={pricingMode}
       selectedQuantity={selectedQuantity}
     />
   )
@@ -195,7 +195,7 @@ const ShippingSimulatorWrapper = props => {
   const skuId = props.skuId || productContext?.selectedItem?.itemId
   const selectedQuantity = productContext?.selectedQuantity.toString()
 
-  const sumAllValues = props.sumAllValues
+  const pricingMode = props.pricingMode
 
   let sellerId = props.seller
 
@@ -220,7 +220,7 @@ const ShippingSimulatorWrapper = props => {
         country={country}
         skuId={skuId}
         seller={sellerId}
-        sumAllValues={sumAllValues}
+        pricingMode={pricingMode}
         selectedQuantity={selectedQuantity}
         loaderStyles={props.loaderStyles}
       />
@@ -235,7 +235,7 @@ const ShippingSimulatorWrapper = props => {
           seller={sellerId}
           skuId={skuId}
           loaderStyles={props.loaderStyles}
-          sumAllValues={sumAllValues}
+          pricingMode={pricingMode}
           selectedQuantity={selectedQuantity}
           shouldUpdateOrderForm={shouldUpdateOrderForm}
         />

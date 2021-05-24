@@ -25,7 +25,7 @@ const ShippingSimulator = ({
   isValid,
   onCalculateShipping,
   shipping,
-  sumAllValues
+  pricingMode
   /* eslint-enable react/prop-types */
 }) => {
   const intl = useIntl()
@@ -60,7 +60,7 @@ const ShippingSimulator = ({
           {intl.formatMessage({ id: 'store/shipping.label' })}
         </Button>
       </div>
-      <ShippingTable shipping={shipping} sumAllValues={sumAllValues} />
+      <ShippingTable shipping={shipping} pricingMode={pricingMode} />
     </Fragment>
   )
 }
@@ -68,9 +68,14 @@ const ShippingSimulator = ({
 ShippingSimulator.propTypes = {
   skuId: PropTypes.string,
   seller: PropTypes.string,
+  pricingMode: PropTypes.enum,
   country: PropTypes.string.isRequired,
   /** Component and content loader styles */
   styles: PropTypes.object,
+}
+
+ShippingSimulator.defaultProps  = {
+  pricingMode: 'individualItems'
 }
 
 export default ShippingSimulator

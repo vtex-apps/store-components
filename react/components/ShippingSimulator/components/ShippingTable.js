@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 
+import { GROUPED } from '../constants/PricingMode'
 import ShippingTableRow from './ShippingTableRow'
 import styles from '../shippingSimulator.css'
 
-const ShippingTable = ({ shipping, sumAllValues }) => {
+const ShippingTable = ({ shipping, pricingMode }) => {
   if ((shipping?.logisticsInfo?.length ?? 0) === 0) {
     return null
   }
@@ -17,7 +18,7 @@ const ShippingTable = ({ shipping, sumAllValues }) => {
 
   let slaSumValuesList = []
 
-  if (sumAllValues) {
+  if (pricingMode === GROUPED) {
     slaList.reduce(function (res, value) {
       if (!res[value.id]) {
         res[value.id] = { id: value.id, ...value, price: 0 };
@@ -58,7 +59,7 @@ const ShippingTable = ({ shipping, sumAllValues }) => {
         </tr>
       </thead>
       <tbody className={styles.shippingTableBody}>
-        {sumAllValues ?
+        {pricingMode === GROUPED ?
           slaSumValuesList.map(shippingItem => (
             <ShippingTableRow
               key={shippingItem.id}
@@ -66,7 +67,7 @@ const ShippingTable = ({ shipping, sumAllValues }) => {
               shippingEstimate={shippingItem.shippingEstimate}
               price={shippingItem.price}
             />
-          )) : 
+          )) :
           slaList.map(shippingItem => (
             <ShippingTableRow
               key={shippingItem.id}
