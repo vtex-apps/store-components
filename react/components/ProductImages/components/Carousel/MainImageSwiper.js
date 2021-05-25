@@ -101,4 +101,4 @@ const MainImageSwiper = () => {
   );
 }
 
-export default MainImageSwiper;
+export default MainImageSwiper
