@@ -98,7 +98,7 @@ const MainImageSwiper = () => {
         </span>
       </div >
     </Swiper >
-  );
+  )
 }
 
-export default MainImageSwiper;
+export default MainImageSwiper
