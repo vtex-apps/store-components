@@ -61,23 +61,16 @@ const ShippingTable = ({ shipping, pricingMode }) => {
         </tr>
       </thead>
       <tbody className={styles.shippingTableBody}>
-        {pricingMode === GROUPED
-          ? slaSumValuesList.map(shippingItem => (
-              <ShippingTableRow
-                key={shippingItem.id}
-                name={shippingItem.friendlyName}
-                shippingEstimate={shippingItem.shippingEstimate}
-                price={shippingItem.price}
-              />
-            ))
-          : slaList.map(shippingItem => (
-              <ShippingTableRow
-                key={shippingItem.id}
-                name={shippingItem.friendlyName}
-                shippingEstimate={shippingItem.shippingEstimate}
-                price={shippingItem.price}
-              />
-            ))}
+        {(pricingMode === GROUPED ? slaSumValuesList : slaList).map(
+          shippingItem => (
+            <ShippingTableRow
+              key={shippingItem.id}
+              name={shippingItem.friendlyName}
+              shippingEstimate={shippingItem.shippingEstimate}
+              price={shippingItem.price}
+            />
+          )
+        )}
       </tbody>
     </table>
   )
