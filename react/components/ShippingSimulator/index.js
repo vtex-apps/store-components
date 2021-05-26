@@ -25,7 +25,7 @@ const ShippingSimulator = ({
   isValid,
   onCalculateShipping,
   shipping,
-  pricingMode
+  pricingMode,
   /* eslint-enable react/prop-types */
 }) => {
   const intl = useIntl()
@@ -74,8 +74,8 @@ ShippingSimulator.propTypes = {
   styles: PropTypes.object,
 }
 
-ShippingSimulator.defaultProps  = {
-  pricingMode: 'individualItems'
+ShippingSimulator.defaultProps = {
+  pricingMode: 'individualItems',
 }
 
 export default ShippingSimulator

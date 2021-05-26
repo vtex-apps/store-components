@@ -16,17 +16,19 @@ const ShippingTable = ({ shipping, pricingMode }) => {
     []
   )
 
-  let slaSumValuesList = []
+  const slaSumValuesList = []
 
   if (pricingMode === GROUPED) {
     slaList.reduce(function (res, value) {
       if (!res[value.id]) {
-        res[value.id] = { id: value.id, ...value, price: 0 };
+        res[value.id] = { id: value.id, ...value, price: 0 }
         slaSumValuesList.push(res[value.id])
       }
-      res[value.id].price += value.price;
-      return res;
-    }, {});
+
+      res[value.id].price += value.price
+
+      return res
+    }, {})
   }
 
   if (slaList.length === 0) {
@@ -59,24 +61,23 @@ const ShippingTable = ({ shipping, pricingMode }) => {
         </tr>
       </thead>
       <tbody className={styles.shippingTableBody}>
-        {pricingMode === GROUPED ?
-          slaSumValuesList.map(shippingItem => (
-            <ShippingTableRow
-              key={shippingItem.id}
-              name={shippingItem.friendlyName}
-              shippingEstimate={shippingItem.shippingEstimate}
-              price={shippingItem.price}
-            />
-          )) :
-          slaList.map(shippingItem => (
-            <ShippingTableRow
-              key={shippingItem.id}
-              name={shippingItem.friendlyName}
-              shippingEstimate={shippingItem.shippingEstimate}
-              price={shippingItem.price}
-            />
-          ))
-        }
+        {pricingMode === GROUPED
+          ? slaSumValuesList.map(shippingItem => (
+              <ShippingTableRow
+                key={shippingItem.id}
+                name={shippingItem.friendlyName}
+                shippingEstimate={shippingItem.shippingEstimate}
+                price={shippingItem.price}
+              />
+            ))
+          : slaList.map(shippingItem => (
+              <ShippingTableRow
+                key={shippingItem.id}
+                name={shippingItem.friendlyName}
+                shippingEstimate={shippingItem.shippingEstimate}
+                price={shippingItem.price}
+              />
+            ))}
       </tbody>
     </table>
   )
@@ -99,6 +100,7 @@ ShippingTable.propTypes = {
       })
     ),
   }),
+  pricingMode: PropTypes.enum,
 }
 
 export default ShippingTable

@@ -23,7 +23,7 @@ import { getDefaultSeller } from '../../utils/sellers'
 
 const useAddressState = (country, postalCode) => {
   const [address, setAddress] = useState(() =>
-    addValidation(getNewAddress(country, postalCode)) 
+    addValidation(getNewAddress(country, postalCode))
   )
 
   const [isValid, setIsValid] = useState(!!postalCode)
@@ -50,7 +50,7 @@ const BaseShippingSimulatorWrapper = ({
   initialPostalCode = undefined,
   shouldUpdateOrderForm,
   pricingMode,
-  selectedQuantity
+  selectedQuantity,
 }) => {
   const [shipping, setShipping] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -151,7 +151,7 @@ const ShippingSimulatorWithOrderForm = ({
   loaderStyles,
   shouldUpdateOrderForm,
   pricingMode,
-  selectedQuantity
+  selectedQuantity,
 }) => {
   const { updateSelectedAddress } = useOrderShipping()
   const { orderForm } = useOrderForm()
@@ -195,7 +195,7 @@ const ShippingSimulatorWrapper = props => {
   const skuId = props.skuId || productContext?.selectedItem?.itemId
   const selectedQuantity = productContext?.selectedQuantity.toString()
 
-  const pricingMode = props.pricingMode
+  const { pricingMode } = props
 
   let sellerId = props.seller
 
