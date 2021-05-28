@@ -193,7 +193,7 @@ const ShippingSimulatorWrapper = props => {
 
   const country = props.country || culture.country
   const skuId = props.skuId || productContext?.selectedItem?.itemId
-  const selectedQuantity = productContext?.selectedQuantity.toString()
+  const selectedQuantity = productContext?.selectedQuantity?.toString()
 
   const { pricingMode } = props
 
