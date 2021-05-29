@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `ProductDescription` - Add `showTitle` prop.
+- `showTitle` prop to `ProductDescription` component.
 
 ## [3.143.1] - 2021-04-28
 ### Fixed
