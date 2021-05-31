@@ -41,8 +41,7 @@ const CSS_HANDLES = [
   'skuSelectorItemImage',
   'skuSelectorInternalBox',
   'skuSelectorItemTextValue',
-  'skuSelectorItemImageValue',
-  'unAvailable'
+  'skuSelectorItemImageValue'
 ]
 
 /**
@@ -142,9 +141,8 @@ const SelectorItem: FC<Props> = ({
           })}
         />
         <div
-          className={classNames(handles.valueWrapper, {
+          className={classNames(applyModifiers(handles.valueWrapper, !isAvailable ? 'unavailable' : ''), {
             [`${handles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
-            [handles.unAvailable]: !isAvailable,
             'h-100': isImage,
           })}
         >
