@@ -41,7 +41,7 @@ const CSS_HANDLES = [
   'skuSelectorItemImage',
   'skuSelectorInternalBox',
   'skuSelectorItemTextValue',
-  'skuSelectorItemImageValue'
+  'skuSelectorItemImageValue',
 ]
 
 /**
