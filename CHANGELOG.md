@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Add new prop to group Shipping-Simulator similar values
+
 ## [3.143.1] - 2021-04-28
 ### Fixed
 - Makes main SearchBar placeholder translatable
