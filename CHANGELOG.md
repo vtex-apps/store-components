@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.144.0] - 2021-05-31
+
 ### Added
 - Add new prop to group Shipping-Simulator similar values
 
