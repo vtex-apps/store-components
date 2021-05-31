@@ -51,7 +51,7 @@ function HighQualityProductImage(props: Props) {
     zoomMode = 'disabled',
   } = props
 
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
   const context = useContext(ProductImageContext)
 
   if (!context) {

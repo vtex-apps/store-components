@@ -48,11 +48,12 @@
 | --------- | ---- | ----------- | ------------- |
 | `title` | `String!` | The image alt description | `VTEX logo` |
 | `color` | `String` | The image fill color | `#F71963` |
-| `showLabel` | `Boolean` | Set the label visibility  | true |
+| `showLabel` | `Boolean` | Set the label visibility  | `true` |
 | `width` | `Number` | The logo image width | `493` |
 | `height` | `Number` | The logo image height | `177` |
-| `url` | `String` | The image url | - |
-| `href` | `String` | Image link | - |
+| `url` | `String` | The image url | `undefined` |
+| `href` | `String` | Image link | `undefined` |
+| `classes` | `CustomCSSClasses` | Used to override default CSS handles. To better understand how this prop works, we recommend reading about it [here](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only useful if you're using this block as a React component. | `undefined` |
 
 ## Customization
 

@@ -1,7 +1,6 @@
-import React, { useCallback, memo, useState, FC, useMemo } from 'react'
-import { compose, flip, gt, filter, pathOr, clone } from 'ramda'
-import { ResponsiveInput } from 'vtex.responsive-values'
-import { useCssHandles } from 'vtex.css-handles'
+import React, { useCallback, memo, useState, useMemo } from 'react'
+import { filter, clone } from 'ramda'
+import { ResponsiveValuesTypes } from 'vtex.responsive-values'
 
 import styles from '../styles.css'
 import {
@@ -22,13 +21,18 @@ import {
 } from '../types'
 import Variation from './Variation'
 import useEffectSkipMount from './hooks/useEffectSkipMount'
+import { useSKUSelectorCssHandles } from '../SKUSelectorCssHandles'
+import { getDefaultSeller } from '../../../utils/sellers'
 
-// eslint-disable-next-line no-restricted-syntax
-export enum ShowValueForVariation {
-  none = 'none',
-  image = 'image',
-  all = 'all',
-}
+export type ShowValueForVariation = 'none' | 'image' | 'all'
+
+// The boolean type was kept because for backward compatibility
+export type ShowVariationsLabels =
+  | boolean
+  | 'none'
+  | 'variation'
+  | 'itemValue'
+  | 'variationAndItemValue'
 
 function getShowValueForVariation(
   showValueForVariation: ShowValueForVariation,
@@ -37,8 +41,8 @@ function getShowValueForVariation(
   const isImage = isColor(variationName)
 
   return (
-    showValueForVariation === ShowValueForVariation.all ||
-    (showValueForVariation === ShowValueForVariation.image && isImage)
+    showValueForVariation === 'all' ||
+    (showValueForVariation === 'image' && isImage)
   )
 }
 
@@ -55,23 +59,28 @@ interface Props {
   showBorders?: boolean
   imageHeight?: number
   imageWidth?: number
-  showVariationsLabels: boolean
+  showVariationsLabels: ShowVariationsLabels
   variationsSpacing?: number
   showVariationsErrorMessage: boolean
   displayMode: DisplayMode
   sliderDisplayThreshold: number
   sliderArrowSize: number
-  sliderItemsPerPage: ResponsiveInput<number>
+  sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
 }
 
-const isSkuAvailable = compose<
-  SelectorProductItem | undefined,
-  number,
-  boolean
->(
-  flip(gt)(0),
-  pathOr(0, ['sellers', '0', 'commertialOffer', 'AvailableQuantity'])
-)
+function isSkuAvailable(item?: SelectorProductItem) {
+  if (!item) {
+    return false
+  }
+
+  const seller = getDefaultSeller(item.sellers)
+
+  if (!seller) {
+    return false
+  }
+
+  return seller.commertialOffer?.AvailableQuantity > 0
+}
 
 const showItemAsAvailable = ({
   possibleItems,
@@ -253,10 +262,10 @@ const getAvailableVariationsPromise = (
   })
 }
 
-const CSS_HANDLES = ['skuSelectorContainer']
+export const CSS_HANDLES = ['skuSelectorContainer'] as const
 
 /** Renders the main and the secondary variation, if it exists. */
-const SKUSelector: FC<Props> = ({
+function SKUSelector({
   seeMoreLabel,
   maxItems,
   variations,
@@ -276,8 +285,8 @@ const SKUSelector: FC<Props> = ({
   sliderDisplayThreshold,
   sliderArrowSize,
   sliderItemsPerPage,
-}) => {
-  const handles = useCssHandles(CSS_HANDLES)
+}: Props) {
+  const { handles } = useSKUSelectorCssHandles()
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
   const onSelectItemMemo = useCallback(
     ({

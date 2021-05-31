@@ -10,12 +10,14 @@ import { filter, head, isEmpty, compose, keys, length } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
 import {
   useResponsiveValue,
-  MaybeResponsiveInput,
-  ResponsiveInput,
+  ResponsiveValuesTypes,
 } from 'vtex.responsive-values'
 import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
 
-import SKUSelector, { ShowValueForVariation } from './components/SKUSelector'
+import SKUSelector, {
+  ShowValueForVariation,
+  ShowVariationsLabels,
+} from './components/SKUSelector'
 import {
   parseSku,
   isColor,
@@ -175,14 +177,14 @@ interface Props {
   imageHeight?: number
   imageWidth?: number
   thumbnailImage?: string
-  showVariationsLabels?: boolean
+  showVariationsLabels?: ShowVariationsLabels
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
   initialSelection?: InitialSelectionType
-  displayMode?: MaybeResponsiveInput<DisplayMode>
+  displayMode?: ResponsiveValuesTypes.ResponsiveValue<DisplayMode>
   sliderDisplayThreshold?: number
   sliderArrowSize?: number
-  sliderItemsPerPage?: ResponsiveInput<number>
+  sliderItemsPerPage?: ResponsiveValuesTypes.ResponsiveValue<number>
 }
 
 const getNewSelectedVariations = (
@@ -201,11 +203,11 @@ const getNewSelectedVariations = (
   const hasSkuInQuery = Boolean(query?.skuId)
   const parsedSku = parseSku(skuSelected)
 
-  if (hasSkuInQuery || initialSelection === InitialSelectionType.complete) {
+  if (hasSkuInQuery || initialSelection === 'complete') {
     return selectedVariationFromItem(parsedSku, variations)
   }
 
-  if (initialSelection === InitialSelectionType.image) {
+  if (initialSelection === 'image') {
     const colorVariationName = parsedSku.variations.find(isColor)
 
     return {
@@ -235,12 +237,12 @@ const SKUSelectorContainer: FC<Props> = ({
   imageHeight,
   thumbnailImage,
   variationsSpacing,
-  showVariationsLabels = true,
-  displayMode = DisplayMode.default,
+  showVariationsLabels = 'variation',
+  displayMode = 'default',
   hideImpossibleCombinations = true,
   showVariationsErrorMessage = true,
-  showValueForVariation = ShowValueForVariation.none,
-  initialSelection = InitialSelectionType.complete,
+  showValueForVariation = 'none',
+  initialSelection = 'complete',
   sliderDisplayThreshold = 3,
   sliderArrowSize = 12,
   sliderItemsPerPage = {
@@ -259,9 +261,10 @@ const SKUSelectorContainer: FC<Props> = ({
     setQuery({ skuId }, { replace: true })
   }
 
-  const [selectedVariations, setSelectedVariations] = useState<
-    SelectedVariations
-  >(() =>
+  const [
+    selectedVariations,
+    setSelectedVariations,
+  ] = useState<SelectedVariations>(() =>
     getNewSelectedVariations(query, skuSelected, variations, initialSelection)
   )
 

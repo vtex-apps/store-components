@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const ProductContext = React.createContext({
+const mockedContext = {
   product: {
     benefits: [],
     brand: 'Billabong',
@@ -17,4 +17,16 @@ export const ProductContext = React.createContext({
     selectedSku: '453964',
     titleTag: "Billabong Die Cut Loose Fit Short Sleeve Rashguard - Men's",
   },
-})
+  buyButton: {
+    clicked: false,
+  },
+  skuSelector: {
+    areAllVariationsSelected: true,
+  },
+}
+
+export const ProductContext = React.createContext(mockedContext)
+
+export const useProduct = jest.fn(() => mockedContext)
+
+export const useProductDispatch = () => jest.fn()

@@ -117,6 +117,42 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "pmarignan",
+      "name": "pmarignan",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/32361926?v=4",
+      "profile": "https://github.com/pmarignan",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "rcmuniz1994",
+      "name": "Rodrigo Muniz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/32344098?v=4",
+      "profile": "https://github.com/rcmuniz1994",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "oviolion",
+      "name": "Ovi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/68231117?v=4",
+      "profile": "https://github.com/ovio224",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "LucasCastroJussi",
+      "name": "LucasCastroJussi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/80407814?v=4",
+      "profile": "https://github.com/LucasCastroJussi",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

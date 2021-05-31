@@ -41,6 +41,7 @@
 | `aspectRatio`             | `string`                                   | Sets the aspect ratio of the image, that is, whether the image should be square, portrait, landscape, etc. The value should follow the [common aspect ratio notation](https://en.wikipedia.org/wiki/Aspect_ratio_(image)) i.e. two numbers separated by a colon such as `1:1` for square, `3:4` for upright portrait, or `1920:1080` for even large values) | `"auto"`          |
 | `contentOrder`   | `'videos-first'` &#124; `'images-first'`    | Controls the order in which the images and videos are displayed.                                 | `'images-first'`    | 
 | `displayThumbnailsArrows` | `boolean` | Displays navigation arrows on the thumbnails media (if there are enough thumbnails for them to scroll)              | `false`       |
+| `placeholder` | `string` | Sets the URL for a placeholder image to be used in case there is no available image or video of the product. | `undefined`       |
 | `hiddenImages`       | `string`  | Hides images whose labels match the values listed in this prop. Intended to be used along with the `product-summary-sku-selector` block. You can have more information at the [SKU Selector](https://vtex.io/docs/components/all/vtex.store-components/sku-selector) documentation | `skuvariation` |
 | `maxHeight`             | `number`                                   | Maximum height for individual product images (in pixels). | `600`          |
 | `position`                | `Enum`    | Set the position of the thumbnails (`left` or `right`). Only used when `thumbnailsOrientation` is `vertical` | `left`        |
@@ -53,6 +54,7 @@
 | `zoomMode` | `enum` | Defines the image zoom behavior. Possible values are: `disabled` (zoom is disabled), `in-place-click`(zoom will be triggered when the image is clicked on), `in-place-hover`(zoom will be triggered when the image is hovered on)  or `open-modal` (image is zoommed using a modal). | `in-place-click` |
 | `ModalZoom` | `block` | Opens a modal for product image zooming. This prop's value must match the name of the block responsible for triggering the modal containing the product image for zooming (e.g. `modal-layout` from [Modal layout](https://vtex.io/docs/components/all/vtex.modal-layout/) app). Notice that the `ModalZoom` prop will work only if the `zoomMode` prop is set as `open-modal`. To learn more, check out the [Advanced Configuration section](#Advanced-Configuration). | `undefined` |
 | `contentType` | `enum` | Controls the type of content that will be displayed in the block. Possible values are: `images`, `videos`, or `all`. | `all` |
+| `displayMode` | `enum` | Defines how the product media should be displayed. Possible values are `carousel` (displays the product images and videos in a carousel) and `list` (displays only the product images inline, with no extra markup). *Caution*: The `list` value does not display product videos and it is only compatible with the `maxHeight`, `hiddenImages`, `zoomFactor`, `aspectRatio`,`ModalZoomElement`, and `zoomMode` props. | `carousel` |
 
 ### Advanced configuration
 
@@ -126,10 +128,13 @@ In order to apply CSS customizations on this and other blocks, follow the instru
 | `carouselInconCaretRight` |
 | `carouselThumbBorder` |
 | `figure` |
+| `figure--video` |
 | `highQualityContainer` |
 | `image` |
 | `imgZoom` |
 | `productImagesContainer` (`content` is deprecated) |
+| `productImagesContainer--carousel`|
+| `productImagesContainer--list`|
 | `productImagesGallerySlide` |
 | `productImagesGallerySwiperContainer` |
 | `productImagesThumb` |
@@ -147,6 +152,7 @@ In order to apply CSS customizations on this and other blocks, follow the instru
 | `swiperCaretNext` |
 | `swiperCaretPrev` |
 | `thumbImg` |
+| `thumbImg--video` |
 | `video` |
 | `video`|
 | `videoContainer` |

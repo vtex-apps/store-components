@@ -8,11 +8,14 @@ This Component can be imported and used by any VTEX app.
 :loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
 
 ## Table of Contents
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-    - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespaces](#css-namespaces)
+- [Notification](#notification)
+  - [Description](#description)
+  - [Table of Contents](#table-of-contents)
+  - [Usage](#usage)
+    - [Blocks API](#blocks-api)
+      - [Configuration](#configuration)
+    - [Styles API](#styles-api)
+      - [CSS Namespaces](#css-namespaces)
 
 ## Usage
 
@@ -43,6 +46,7 @@ Through the Storefront, you can change the `Notification`'s behavior and interfa
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
 | `content` | `String` | Text to be used in the bar. | '' |
+| `classes` | `CustomCSSClasses` | Used to override default CSS handles. To better understand how this prop works, we recommend reading about it [here](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only useful if you're using this block as a React component. | `undefined` |
 
 ### Styles API
 You should follow the Styles API instruction in the main [README](/README.md#styles-api).

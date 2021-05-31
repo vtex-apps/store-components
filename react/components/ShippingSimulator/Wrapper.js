@@ -19,6 +19,7 @@ import { getNewAddress } from './utils'
 import ShippingSimulator from './index'
 import getShippingEstimates from './queries/getShippingEstimates.gql'
 import ShippingSimulatorLoader from './Loader'
+import { getDefaultSeller } from '../../utils/sellers'
 
 const useAddressState = (country, postalCode) => {
   const [address, setAddress] = useState(() =>
@@ -48,6 +49,8 @@ const BaseShippingSimulatorWrapper = ({
   onShippingAddressUpdate = _ => {},
   initialPostalCode = undefined,
   shouldUpdateOrderForm,
+  pricingMode,
+  selectedQuantity,
 }) => {
   const [shipping, setShipping] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -73,7 +76,7 @@ const BaseShippingSimulatorWrapper = ({
             postalCode: rawAddress.postalCode,
             items: [
               {
-                quantity: '1',
+                quantity: selectedQuantity,
                 id: skuId,
                 seller,
               },
@@ -101,6 +104,7 @@ const BaseShippingSimulatorWrapper = ({
       country,
       seller,
       skuId,
+      selectedQuantity,
       onShippingAddressUpdate,
       shouldUpdateOrderForm,
     ]
@@ -132,6 +136,8 @@ const BaseShippingSimulatorWrapper = ({
       address={address}
       isValid={isValid}
       shipping={shipping}
+      pricingMode={pricingMode}
+      selectedQuantity={selectedQuantity}
       onAddressChange={updateAddress}
       onCalculateShipping={handleCalculateShipping}
     />
@@ -144,6 +150,8 @@ const ShippingSimulatorWithOrderForm = ({
   seller,
   loaderStyles,
   shouldUpdateOrderForm,
+  pricingMode,
+  selectedQuantity,
 }) => {
   const { updateSelectedAddress } = useOrderShipping()
   const { orderForm } = useOrderForm()
@@ -163,6 +171,8 @@ const ShippingSimulatorWithOrderForm = ({
       }
       onShippingAddressUpdate={updateSelectedAddress}
       shouldUpdateOrderForm={shouldUpdateOrderForm}
+      pricingMode={pricingMode}
+      selectedQuantity={selectedQuantity}
     />
   )
 }
@@ -183,8 +193,21 @@ const ShippingSimulatorWrapper = props => {
 
   const country = props.country || culture.country
   const skuId = props.skuId || productContext?.selectedItem?.itemId
-  const seller =
-    props.seller || productContext?.selectedItem?.sellers?.[0]?.sellerId
+  const selectedQuantity = productContext?.selectedQuantity?.toString()
+
+  const { pricingMode } = props
+
+  let sellerId = props.seller
+
+  if (!sellerId) {
+    const defaultSeller = getDefaultSeller(
+      productContext?.selectedItem?.sellers
+    )
+
+    if (defaultSeller) {
+      sellerId = defaultSeller.sellerId
+    }
+  }
 
   const { shouldUpdateOrderForm = true } = props
 
@@ -196,7 +219,9 @@ const ShippingSimulatorWrapper = props => {
       <BaseShippingSimulatorWrapper
         country={country}
         skuId={skuId}
-        seller={seller}
+        seller={sellerId}
+        pricingMode={pricingMode}
+        selectedQuantity={selectedQuantity}
         loaderStyles={props.loaderStyles}
       />
     )
@@ -207,9 +232,11 @@ const ShippingSimulatorWrapper = props => {
       <OrderFormLoader>
         <ShippingSimulatorWithOrderForm
           country={country}
-          seller={seller}
+          seller={sellerId}
           skuId={skuId}
           loaderStyles={props.loaderStyles}
+          pricingMode={pricingMode}
+          selectedQuantity={selectedQuantity}
           shouldUpdateOrderForm={shouldUpdateOrderForm}
         />
       </OrderFormLoader>

@@ -27,6 +27,9 @@ const pointerEventsAutoClasses = state =>
     'tc w-100'
   )
 
+/**
+ * @deprecated This component is deprecated.
+ */
 function GradientCollapse(props) {
   const {
     children,
@@ -35,7 +38,7 @@ function GradientCollapse(props) {
     collapsed: collapsedProp,
   } = props
 
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
   const [collapsed, setCollapsed] = useState(collapsedProp)
   const [prevCollapsedProp, setPrevCollapsedProp] = useState(collapsedProp)
   const [maxHeight, setMaxHeight] = useState('auto')

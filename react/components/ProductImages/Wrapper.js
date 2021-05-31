@@ -15,6 +15,7 @@ const ProductImagesWrapper = props => {
     showNavigationArrows,
     showPaginationDots,
     contentOrder,
+    placeholder,
   } = useResponsiveValues(
     pick(
       [
@@ -23,6 +24,7 @@ const ProductImagesWrapper = props => {
         'showNavigationArrows',
         'showPaginationDots',
         'contentOrder',
+        'placeholder',
       ],
       props
     )
@@ -73,6 +75,7 @@ const ProductImagesWrapper = props => {
       images={images}
       videos={videos}
       hiddenImages={props.hiddenImages}
+      placeholder={placeholder}
       // thumbnailPosition is a legacy prop from product-details
       position={props.position || props.thumbnailPosition}
       displayThumbnailsArrows={props.displayThumbnailsArrows}
@@ -90,6 +93,7 @@ const ProductImagesWrapper = props => {
       contentType={props.contentType}
       // Deprecated
       zoomProps={props.zoomProps}
+      displayMode={props.displayMode}
     />
   )
 }

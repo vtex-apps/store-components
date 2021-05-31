@@ -18,6 +18,8 @@ const VTEXClasses = {
 
 /**
  * Slick Slider Component.
+ *
+ * @deprecated This component is deprecated. Please use [vtex.slider-layout](https://github.com/vtex-apps/slider-layout) instead.
  */
 export default class SlickSlider extends Component {
   static propTypes = {

@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from '@vtex/test-tools/react'
 
 import SearchBar from '../../SearchBar'
-import autocomplete from '../../components/AutocompleteResults/queries/autocomplete.gql'
+import autocomplete from '../../graphql/autocomplete.gql'
 
 describe('<SearchBar />', () => {
   const mockedResult = {

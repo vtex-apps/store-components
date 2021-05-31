@@ -1,8 +1,8 @@
-import React, { memo, FC, SyntheticEvent, useMemo } from 'react'
+import React, { memo, SyntheticEvent, useMemo } from 'react'
 import classNames from 'classnames'
 import { FormattedNumber } from 'react-intl'
-import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 
+import { useSKUSelectorCssHandles } from '../SKUSelectorCssHandles'
 import { slug, changeImageUrlSize } from '../utils'
 
 interface Props {
@@ -20,6 +20,8 @@ interface Props {
   imageHeight?: number | string
   imageWidth?: number | string
   showBorders?: boolean
+  variationLabel: string
+  label: string
 }
 
 const getDiscount = (maxPrice?: number | null, price?: number | null) => {
@@ -32,7 +34,7 @@ const getDiscount = (maxPrice?: number | null, price?: number | null) => {
   return discount
 }
 
-const CSS_HANDLES = [
+export const CSS_HANDLES = [
   'frameAround',
   'valueWrapper',
   'diagonalCross',
@@ -42,12 +44,12 @@ const CSS_HANDLES = [
   'skuSelectorInternalBox',
   'skuSelectorItemTextValue',
   'skuSelectorItemImageValue',
-]
+] as const
 
 /**
  * Inherits the components that should be displayed inside the Selector component.
  */
-const SelectorItem: FC<Props> = ({
+function SelectorItem({
   isAvailable = true,
   isSelected = false,
   maxPrice,
@@ -62,20 +64,19 @@ const SelectorItem: FC<Props> = ({
   imageHeight,
   imageWidth,
   showBorders = true,
-}) => {
+  variationLabel,
+  label,
+}: Props) {
   const discount = getDiscount(maxPrice, price)
-  const handles = useCssHandles(CSS_HANDLES, {
-    migrationFrom: 'vtex.store-components@3.x',
-  })
+  const { handles, withModifiers } = useSKUSelectorCssHandles()
 
   const containerClasses = useMemo(
     () =>
       classNames(
-        applyModifiers(handles.skuSelectorItem, [
+        withModifiers('skuSelectorItem', [
           slug(variationValueOriginalName),
           isSelected ? 'selected' : '',
         ]),
-        // `${handles.skuSelectorItem}--${slug(variationValue)}`,
         'relative di pointer flex items-center outline-0 ma2',
         {
           [`${handles.skuSelectorItemImage}`]: isImage,
@@ -87,7 +88,7 @@ const SelectorItem: FC<Props> = ({
       isSelected,
       isImpossible,
       variationValueOriginalName,
-      handles.skuSelectorItem,
+      withModifiers,
       handles.skuSelectorItemImage,
     ]
   )
@@ -105,6 +106,15 @@ const SelectorItem: FC<Props> = ({
       padding: 0,
     }
     imageUrl = changeImageUrlSize(imageUrl, imageWidth, imageHeight)
+  }
+
+  let itemTextValue = variationValue
+
+  if (
+    variationLabel === 'itemValue' ||
+    variationLabel === 'variationAndItemValue'
+  ) {
+    itemTextValue = `${label} ${variationValue}`
   }
 
   return (
@@ -153,7 +163,7 @@ const SelectorItem: FC<Props> = ({
               alt={imageLabel as string | undefined}
             />
           ) : (
-            variationValue
+            itemTextValue
           )}
         </div>
       </div>

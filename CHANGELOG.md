@@ -9,6 +9,167 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `unavailable` modifier to `valueWrapper` CSS handle.
 
+## [3.144.0] - 2021-05-31
+
+### Added
+- Add new prop to group Shipping-Simulator similar values
+
+## [3.143.1] - 2021-04-28
+### Fixed
+- Makes main SearchBar placeholder translatable
+
+## [3.143.0] - 2021-04-19
+### Added
+- CSS handle class for image link wrapper.
+
+## [3.142.3] - 2021-04-19
+
+### Fixed
+- Check if the swiper is not destroyed before rendering, which could cause the whole product UI to crash
+
+## [3.142.2] - 2021-04-09
+### Fixed
+- Makes the SearchBar placeholder translatable
+
+## [3.142.1] - 2021-03-30
+### Fixed
+- Use sellerDefault as default seller and fallback to first seller.
+
+## [3.142.0] - 2021-03-09
+### Added
+- Push `newsletterInput` pixel event when newsletter is mounted
+
+## [3.141.2] - 2021-02-25
+### Fixed
+- Searches with slash.
+
+## [3.141.1] - 2021-02-17
+### Fixed
+- Image schema was not referencing dependencies, but only properties
+
+## [3.141.0] - 2021-02-10
+### Changed
+- `showVariationsLabels` prop to add the ability to show variation name (label) before each item's value.
+
+## [3.140.2] - 2021-02-02
+### Fixed
+- Lint issues.
+- Modifiers of Search Bar.
+
+## [3.140.1] - 2021-01-22
+### Fixed
+- Usage of `applyModifiers`.
+
+## [3.140.0] - 2021-01-22
+### Added
+- Modifier `video` to CSS Handle `figure` on `Product Image` to differ video thumbnails from image thumbnails.
+
+## [3.139.0] - 2021-01-19
+
+### Added
+- Modifier `video` to CSS Handle `thumbImg` on `Product Image` to differ video thumbnails from image thumbnails.
+
+## [3.138.3] - 2021-01-13
+
+### Fixed
+- ProductBrand to prevent render broken image when product does not have imageUrl.
+
+## [3.138.2] - 2020-12-30
+### Added
+- New keys to `product-images`.It prevent render problems when prefetch is enabled.
+
+## [3.138.1] - 2020-12-28
+### Changed
+- Makes search placeholder translatable
+
+## [3.138.0] - 2020-12-17
+### Deprecated
+- `buy-button`.
+  
+### Changed
+- Migrate to `vtex.css-handles@1.x`.
+
+## [3.137.0] - 2020-12-15
+### Added
+- `displayMode` prop to `product-images`
+
+## [3.136.3] - 2020-12-11
+### Fixed
+- SKUSelector types.
+
+## [3.136.2] - 2020-12-08
+
+### Changed
+- Migrate `user-address` to TypeScript.
+
+## [3.136.1] - 2020-12-08
+### Changed
+- Refactored `ProductDescription` to TypeScript.
+
+## [3.136.0] - 2020-12-08
+### Added
+- `withLink` prop on `ProductBrand`. It controls in which cases the component should link to the brand's page.
+### Changed
+- `logoWithLink` prop on `ProductBrand` is now deprecated.
+
+## [3.135.0] - 2020-12-08
+### Changed
+- Preload main image of `ProductImages`.
+
+## [3.134.0] - 2020-12-08
+### Added
+- New prop `containerMode` to `search-bar`.
+
+## [3.133.1] - 2020-12-08
+### Changed
+- Migrate `autocomplete-result-list` and `search-bar` to TypeScript.
+
+## [3.133.0] - 2020-12-07
+### Added
+- `ProductImages` displays a default placeholder image if no image or video is present.
+- `ProductImages` can receive a custom placeholder image by using the `placeholder` prop
+
+## [3.132.7] - 2020-12-07
+### Changed
+- Refactored ProductName to TypeScript.
+
+## [3.132.6] - 2020-12-02
+### Changed
+- `Logo` components implementation from JavaScript to TypeScript.
+
+## [3.132.5] - 2020-12-02
+### Changed
+- `ProductBrand` components implementation from JavaScript to TypeScript.
+
+## [3.132.4] - 2020-12-02
+### Changed
+- `Notification` components implementation from `js` to `tsx`.
+
+## [3.132.3] - 2020-12-01
+### Changed
+- Deprecate blocks: `newsletter`, `product-specifications`, and `product-highlights`.
+- Deprecate components: `Animation`, `CategoriesHighlights`, `CollectionBadges`, `DiscountBadge`, `GradientCollapse`, `Greeting`, `Newsletter`, `ProductHighlights`, `ProductSpecifications`, `Slider`, and `ProductSeparator`.
+
+## [3.132.2] - 2020-12-01
+### Changed
+- Refactored `Container` to TypeScript.
+
+## [3.132.1] - 2020-11-30
+### Changed
+- Refactored `AvailabilitySubscriber` to typescript.
+
+## [3.132.0] - 2020-11-18
+### Added
+- New prop `inputType` to `search-bar`.
+
+## [3.131.3] - 2020-11-13
+### Fixed
+- Navigating between product images using thumbnails was not working 
+
+## [3.131.2] - 2020-11-10
+### Changed
+- Refactor `CollectionBadge` to TypeScript.
+
 ## [3.131.1] - 2020-10-27
 
 ### Changed
