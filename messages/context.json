@@ -7,6 +7,7 @@
   "admin/editor.productName.showBrandName.title": "admin/editor.productName.showBrandName.title",
   "admin/editor.productName.showSku.title": "admin/editor.productName.showSku.title",
   "admin/editor.productName.showProductReference.title": "admin/editor.productName.showProductReference.title",
+  "admin/editor.productName.showProductLink.title": "Showing the link associated with the product name",
   "admin/editor.productPrice.title": "admin/editor.productPrice.title",
   "admin/editor.productPrice.description": "admin/editor.productPrice.description",
   "admin/editor.productPrice.showListPrice": "admin/editor.productPrice.showListPrice",

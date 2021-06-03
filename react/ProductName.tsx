@@ -13,6 +13,7 @@ const CSS_HANDLES = [
   'productNameLoader',
   'productNameBrandLoader',
   'productNameSkuLoader',
+  'productNameLink',
 ] as const
 
 type DeprecatedProps = {
@@ -59,6 +60,10 @@ type Props = {
   tag?: 'div' | 'h1' | 'h2' | 'h3'
   /** Used to override default CSS handles */
   classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
+  /** Show product link with the product name */
+  showProductLink?: boolean
+  /** Product link */
+  productLink?: string
 } & DeprecatedProps
 
 function ProductName({
@@ -76,6 +81,8 @@ function ProductName({
   skuName,
   brandName,
   productReference,
+  showProductLink,
+  productLink,
 }: Props) {
   const { handles } = useCssHandles(CSS_HANDLES, { classes })
 
@@ -99,6 +106,37 @@ function ProductName({
           <rect height="1.125em" width="50%" x="25%" y="1.75em" />
         </ContentLoader>
       </div>
+    )
+  }
+
+  if (showProductLink && productLink) {
+    return (
+      <Wrapper
+        className={`${handles.productNameContainer} mv0 ${className ?? ''}`}
+      >
+        <a
+          href={'/' + productLink + '/p'}
+          className={`${handles.productNameLink} pointer c-link hover-c-link active-c-link no-underline underline-hover`}
+        >
+          <span className={`${handles.productBrand} ${brandNameClass ?? ''}`}>
+            {name} {showBrandName && brandName && `- ${brandName}`}
+          </span>
+          {showSku && skuName && (
+            <span className={`${handles.productBrand} ${skuNameClass ?? ''}`}>
+              {skuName}
+            </span>
+          )}
+          {showProductReference && productReference && (
+            <span
+              className={`${handles.productReference} ${
+                productReferenceClass ?? ''
+              }`}
+            >
+              {`REF: ${productReference}`}
+            </span>
+          )}
+        </a>
+      </Wrapper>
     )
   }
 
@@ -138,6 +176,8 @@ function ProductNameWrapper(props: Props) {
   }
 
   const { product, selectedItem } = valuesFromContext
+  const showProductLink =
+    props.showProductLink !== undefined ? props.showProductLink : false
 
   return (
     <ProductName
@@ -148,6 +188,8 @@ function ProductNameWrapper(props: Props) {
       productReference={props.productReference ?? product?.productReference}
       brandName={props.brandName ?? product?.brand}
       className={props.className ?? 't-heading-4'}
+      showProductLink={showProductLink}
+      productLink={product?.linkText}
     />
   )
 }
@@ -174,6 +216,11 @@ ProductNameWrapper.schema = {
       title: 'admin/editor.productName.showProductReference.title',
       default: false,
       isLayout: true,
+    },
+    showProductLink: {
+      type: 'boolean',
+      title: 'admin/editor.productName.showProductLink.title',
+      default: false,
     },
   },
 }
