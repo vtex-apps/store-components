@@ -6,8 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
 ### Added
 - `showProductLink` prop to show the link associated with the product name.
+
+## [3.144.0] - 2021-05-31
+
+### Added
+- Add new prop to group Shipping-Simulator similar values
+
 ## [3.143.1] - 2021-04-28
 ### Fixed
 - Makes main SearchBar placeholder translatable
