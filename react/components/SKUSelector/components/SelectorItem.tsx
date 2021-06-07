@@ -141,10 +141,16 @@ const SelectorItem: FC<Props> = ({
           })}
         />
         <div
-          className={classNames(applyModifiers(handles.valueWrapper, !isAvailable ? 'unavailable' : ''), {
-            [`${handles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
-            'h-100': isImage,
-          })}
+          className={classNames(
+            applyModifiers(
+              handles.valueWrapper,
+              !isAvailable ? 'unavailable' : ''
+            ),
+            {
+              [`${handles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
+              'h-100': isImage,
+            }
+          )}
         >
           {isImage && imageUrl ? (
             <img
