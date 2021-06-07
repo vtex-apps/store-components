@@ -129,7 +129,7 @@
   "store/user-address.add": "Add Location",
   "admin/editor.notification-bar.title": "Notification bar",
   "admin/editor.notification-bar.description": "A component that show any text in a bar style",
-  "admin/editor.notification-bar.content.title": "Content",
+  "admin/editor.notification-bar.content.title": "المحتوى",
   "admin/editor.notification-bar.content.description": "Text of the bar",
   "admin/editor.blockClass.title": "CSS Block Class",
   "admin/editor.blockClass.description": "Adds an extra class name to ease styling",
