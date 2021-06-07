@@ -152,10 +152,7 @@ function SelectorItem({
         />
         <div
           className={classNames(
-            applyModifiers(
-              handles.valueWrapper,
-              !isAvailable ? 'unavailable' : ''
-            ),
+            withModifiers('valueWrapper', !isAvailable ? 'unavailable' : ''),
             {
               [`${handles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
               'h-100': isImage,
