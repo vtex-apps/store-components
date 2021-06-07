@@ -38,12 +38,18 @@ This autocomplete is commonly used with [Downshift](https://github.com/downshift
 | `customSearchPageUrl`          | `String`   | Template for a custom url. It can have a substring `${term}` used as placeholder to interpolate the searched term. (e.g. `/search?query=${term}`) | -             |
 | `isOpen`                       | `Boolean`  | Identify if autocomplete should be open                                                                                                           | -             |
 | `attemptPageTypeSearch`        | `Boolean`  | if `true`, uses the term the user has inputted to try to navigate to the proper page type (e.g. a department, a brand, a category)                | -             |
+| `classes` | `CustomCSSClasses` | Used to override default CSS handles. To better understand how this prop works, we recommend reading about it [here](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only useful if you're using this block as a React component. | `undefined` |
 
-## Customization
+## Customization 
 
 In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| Class name         | Description                                     | Component Source                                                     |
-| ------------------ | ----------------------------------------------- | -------------------------------------------------------------------- |
-| `resultsList`      | The list containing the results of the search   | [ResultsList](/react/components/SearchBar/components/ResultsList.js) |
-| `resultsItemImage` | The image from a product returned by the search | [ResultsList](/react/components/SearchBar/components/ResultsList.js) |
+| CSS Handles |
+| --- |
+| `resultsItem` |
+| `resultsList` |
+| `searchTerm` |
+| `resultsItemImage` |
+| `spinnerContainer` |
+| `spinnerInnerContainer` |
+| `resultsItemName` |

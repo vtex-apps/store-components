@@ -69,6 +69,7 @@ const getImageUrl = (isMobile, imageUrl, mobileImageUrl) =>
   !!mobileImageUrl && isMobile ? mobileImageUrl : imageUrl
 
 const CSS_HANDLES = [
+  'infoCardImageLinkWrapper',
   'infoCardContainer',
   'infoCardTextContainer',
   'infoCardHeadline',
@@ -101,7 +102,7 @@ const InfoCard = ({
 
   const { lazyLoad } = useExperimentalLazyImagesContext()
 
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
   const paddingClass =
     textPosition === textPostionValues.LEFT ? 'pr4-ns' : 'pl4-ns'
 
@@ -153,6 +154,8 @@ const InfoCard = ({
     }
   )
 
+  const linkWrapperClasses = `${handles.infoCardImageLinkWrapper} no-underline`
+
   const textContainerClasses = classNames(
     `${handles.infoCardTextContainer} flex flex-column mw-100`,
     {
@@ -169,7 +172,7 @@ const InfoCard = ({
     <LinkWrapper
       imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
       extraCondition={!isFullModeStyle}
-      linkProps={{ className: 'no-underline', target: linkTarget }}
+      linkProps={{ className: linkWrapperClasses, target: linkTarget }}
     >
       <div
         className={containerClasses}

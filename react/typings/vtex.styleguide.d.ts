@@ -10,4 +10,7 @@ declare module 'vtex.styleguide' {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   export const EXPERIMENTAL_Select: any
   export const Dropdown: any
+  export const Input: any
+  export const Spinner: any
+  export const InputSearch: any
 }

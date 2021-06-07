@@ -1,40 +1,37 @@
+📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
+
 # Product Highlights
 
-## Description
+![https://img.shields.io/badge/-Deprecated-red](https://img.shields.io/badge/-Deprecated-red)
 
-`ProductHighlights` is a VTEX Component that shows the general specifications of a product.
-This Component can be imported and used by any VTEX App.
+> :warning: **The Product Highlights block has been deprecated in favor of the [Product Specifications app](https://vtex.io/docs/components/all/vtex.product-specifications/).**
+> Although support for this block is still granted, we strongly recommend you to update your store theme with the Product Specification's blocks in order to keep up with the component's evolution.
 
-:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
 
-## Table of Contents
+`product-highlights` is a block that shows the general specifications of a product.
 
-- [Usage](#usage)
-  - [CSS namespaces](#css-namespaces)
-  - [Styles API](#styles-api)
-    - [CSS namespaces](#css-namespaces)
+## Configuration
 
-## Usage
-
-You should follow the usage instruction in the main [README](https://github.com/vtex-apps/store-components/blob/master/README.md#usage).
-
-Then, add `product-highlights` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json).
-
-Now, you can change the behavior of the `product-details` through blocks. See an example of how to configure: 
+1. Add the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
 
 ```json
-  "product-details": {
-      "blocks": [
-        "...",
-        "product-highlights"
-      ]
-    }
+  "dependencies": {
+    "vtex.store-components": "3.x"
+  }
 ```
 
+2. Add the `product-highlights` block to any block below `store.product` template (product page) or `product-summary`. For example:
 
-### Configuration
 
-Through the Storefront, you can change the `ProductDescription`'s behavior and interface. However, you also can make in your theme app, as Store Theme does.
+```json
+  "store.product": {
+    "children": [
+      "product-highlights",
+    ]
+  },
+```
+
+### Props
 
 | Prop name    | Type                | Description             | Default value |
 | ------------ | ------------------- | ----------------------- | ------------- |
@@ -47,18 +44,13 @@ Highlights:
 | `name`    | `String!`        | Highlights name   |
 | `values`  | `Array(String)!` | Highlights values |
 
-### Styles API
+## Customization
 
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-#### CSS Namespaces
-
-Below, we describe the namespace that are defined in the `ProductHighlights`.
-
-| Class name         | Description                                      | Component Source                                      |
-| ------------------ | ------------------------------------------------ | ----------------------------------------------------- |
-| `highlightContent` | The content of ProductHighlights section.        | [index](/react/components/ProductHighlights/index.js) |
-| `itemHighlight`    | The area that wrapper a highlight.               | [index](/react/components/ProductHighlights/index.js) |
-| `highlightTitle`   | The content that contains the highlight's title. | [index](/react/components/ProductHighlights/index.js) |
-| `highlightValue`   | The content that contains the highlight's value. | [index](/react/components/ProductHighlights/index.js) |
-
+| CSS Handles                     |
+| ------------------------------- |
+| `highlightContent` |
+| `itemHighlight` |
+| `highlightTitle` |
+| `highlightValue` |

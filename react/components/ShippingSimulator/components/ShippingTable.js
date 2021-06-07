@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 
+import { GROUPED } from '../constants/PricingMode'
 import ShippingTableRow from './ShippingTableRow'
 import styles from '../shippingSimulator.css'
 
-const ShippingTable = ({ shipping }) => {
+const ShippingTable = ({ shipping, pricingMode }) => {
   if ((shipping?.logisticsInfo?.length ?? 0) === 0) {
     return null
   }
@@ -14,6 +15,21 @@ const ShippingTable = ({ shipping }) => {
     (slas, info) => [...slas, ...info.slas],
     []
   )
+
+  const slaSumValuesList = []
+
+  if (pricingMode === GROUPED) {
+    slaList.reduce(function (res, value) {
+      if (!res[value.id]) {
+        res[value.id] = { id: value.id, ...value, price: 0 }
+        slaSumValuesList.push(res[value.id])
+      }
+
+      res[value.id].price += value.price
+
+      return res
+    }, {})
+  }
 
   if (slaList.length === 0) {
     return (
@@ -45,14 +61,16 @@ const ShippingTable = ({ shipping }) => {
         </tr>
       </thead>
       <tbody className={styles.shippingTableBody}>
-        {slaList.map(shippingItem => (
-          <ShippingTableRow
-            key={shippingItem.id}
-            name={shippingItem.friendlyName}
-            shippingEstimate={shippingItem.shippingEstimate}
-            price={shippingItem.price}
-          />
-        ))}
+        {(pricingMode === GROUPED ? slaSumValuesList : slaList).map(
+          shippingItem => (
+            <ShippingTableRow
+              key={shippingItem.id}
+              name={shippingItem.friendlyName}
+              shippingEstimate={shippingItem.shippingEstimate}
+              price={shippingItem.price}
+            />
+          )
+        )}
       </tbody>
     </table>
   )
@@ -75,6 +93,7 @@ ShippingTable.propTypes = {
       })
     ),
   }),
+  pricingMode: PropTypes.enum,
 }
 
 export default ShippingTable

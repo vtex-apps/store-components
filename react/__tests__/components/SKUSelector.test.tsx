@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent, wait } from '@vtex/test-tools/react'
-import useProduct, { ProductContext } from 'vtex.product-context/useProduct'
+import { useProduct, ProductContext } from 'vtex.product-context'
 import { getSKU } from 'sku-helper'
 
 import SKUSelector from '../../components/SKUSelector/Wrapper'

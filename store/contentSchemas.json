@@ -1,11 +1,5 @@
 {
   "definitions": {
-    "Image": {
-      "title": "admin/editor.store-image.title",
-      "properties": {
-        "$ref": "app:vtex.store-image#/definitions/Image/properties"
-      }
-    },
     "InfoCard": {
       "properties": {
         "headline": {
@@ -83,7 +77,7 @@
       "type": "object",
       "properties": {
         "placeholder": {
-          "type": "string",
+          "$ref": "app:vtex.native-types#/definitions/text",
           "title": "admin/editor.search-bar.placeholder.title"
         }
       }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useCssHandles } from 'vtex.css-handles'
-import useProduct from 'vtex.product-context/useProduct'
+import type { CssHandlesTypes } from 'vtex.css-handles'
+import { useProduct } from 'vtex.product-context'
 
 const CSS_HANDLES = [
   'productSKUAttributesContainer',
@@ -38,13 +39,15 @@ const getVariationsFromSelectedItem = (
 
 interface Props {
   blockClass?: string
+  /** Used to override default CSS handles */
+  classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
 }
 
 /**
  * Name component. Show name and relevant SKU information of the Product Summary
  */
-function ProductSKUAttributes(_props: Props) {
-  const handles = useCssHandles(CSS_HANDLES)
+function ProductSKUAttributes({ classes }: Props) {
+  const { handles } = useCssHandles(CSS_HANDLES, { classes })
   const productContext = useProduct()
 
   const skuVariations = getVariationsFromSelectedItem(productContext)

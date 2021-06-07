@@ -9,6 +9,8 @@ import { ITEMS_PER_ROW, RECTANGULAR, SQUARED } from './constants.js'
 /**
  * CategoriesHighlights is a component responsible to display the
  * Categories highlighted in a department.
+ *
+ * @deprecated This component is deprecated.
  */
 class CategoriesHighlights extends Component {
   static propTypes = {
