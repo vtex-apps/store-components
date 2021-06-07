@@ -7,7 +7,7 @@
   "admin/editor.productName.showBrandName.title": "Mostrar la marca",
   "admin/editor.productName.showSku.title": "Mostrar el SKU",
   "admin/editor.productName.showProductReference.title": "Mostrar la referencia del producto",
-  "admin/editor.productName.showProductLink.title": "Mostrar el enlace asociado al nombre del producto",
+  "admin/editor.productName.displayMode.title": "Mostrar el enlace asociado al nombre del producto o al texto sin formato",
   "admin/editor.productPrice.title": "Precio del producto",
   "admin/editor.productPrice.description": "Componente del precio del producto",
   "admin/editor.productPrice.showListPrice": "Mostrar precios de tabla",

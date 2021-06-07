@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { isEmpty } from 'ramda'
 import { useProduct } from 'vtex.product-context'
 import ContentLoader from 'react-content-loader'
 import { useCssHandles } from 'vtex.css-handles'
 import type { CssHandlesTypes } from 'vtex.css-handles'
+import { Link } from 'vtex.render-runtime'
 
 const CSS_HANDLES = [
   'productNameContainer',
@@ -61,9 +62,11 @@ type Props = {
   /** Used to override default CSS handles */
   classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
   /** Show product link with the product name */
-  showProductLink?: boolean
+  displayMode?: 'plainText' | 'linkToProductPage'
   /** Product link */
   productLink?: string
+  /** Product link */
+  productId?: string
 } & DeprecatedProps
 
 function ProductName({
@@ -81,8 +84,9 @@ function ProductName({
   skuName,
   brandName,
   productReference,
-  showProductLink,
+  displayMode,
   productLink,
+  productId,
 }: Props) {
   const { handles } = useCssHandles(CSS_HANDLES, { classes })
 
@@ -109,58 +113,42 @@ function ProductName({
     )
   }
 
-  if (showProductLink && productLink) {
-    return (
-      <Wrapper
-        className={`${handles.productNameContainer} mv0 ${className ?? ''}`}
-      >
-        <a
-          href={'/' + productLink + '/p'}
-          className={`${handles.productNameLink} pointer c-link hover-c-link active-c-link no-underline underline-hover`}
-        >
-          <span className={`${handles.productBrand} ${brandNameClass ?? ''}`}>
-            {name} {showBrandName && brandName && `- ${brandName}`}
-          </span>
-          {showSku && skuName && (
-            <span className={`${handles.productBrand} ${skuNameClass ?? ''}`}>
-              {skuName}
-            </span>
-          )}
-          {showProductReference && productReference && (
-            <span
-              className={`${handles.productReference} ${
-                productReferenceClass ?? ''
-              }`}
-            >
-              {`REF: ${productReference}`}
-            </span>
-          )}
-        </a>
-      </Wrapper>
-    )
+  const LinkWrapper =
+    displayMode && displayMode === 'linkToProductPage' ? Link : Fragment
+  const linkProps = {
+    page: 'store.product',
+    params: {
+      slug: productLink,
+      id: productId,
+    },
   }
 
   return (
     <Wrapper
       className={`${handles.productNameContainer} mv0 ${className ?? ''}`}
     >
-      <span className={`${handles.productBrand} ${brandNameClass ?? ''}`}>
-        {name} {showBrandName && brandName && `- ${brandName}`}
-      </span>
-      {showSku && skuName && (
-        <span className={`${handles.productBrand} ${skuNameClass ?? ''}`}>
-          {skuName}
+      <LinkWrapper
+        className={`${handles.productNameLink} pointer c-link hover-c-link active-c-link no-underline underline-hover`}
+        {...linkProps}
+      >
+        <span className={`${handles.productBrand} ${brandNameClass ?? ''}`}>
+          {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
-      )}
-      {showProductReference && productReference && (
-        <span
-          className={`${handles.productReference} ${
-            productReferenceClass ?? ''
-          }`}
-        >
-          {`REF: ${productReference}`}
-        </span>
-      )}
+        {showSku && skuName && (
+          <span className={`${handles.productBrand} ${skuNameClass ?? ''}`}>
+            {skuName}
+          </span>
+        )}
+        {showProductReference && productReference && (
+          <span
+            className={`${handles.productReference} ${
+              productReferenceClass ?? ''
+            }`}
+          >
+            {`REF: ${productReference}`}
+          </span>
+        )}
+      </LinkWrapper>
     </Wrapper>
   )
 }
@@ -176,8 +164,8 @@ function ProductNameWrapper(props: Props) {
   }
 
   const { product, selectedItem } = valuesFromContext
-  const showProductLink =
-    props.showProductLink !== undefined ? props.showProductLink : false
+  const displayMode =
+    props.displayMode !== undefined ? props.displayMode : 'plainText'
 
   return (
     <ProductName
@@ -188,8 +176,9 @@ function ProductNameWrapper(props: Props) {
       productReference={props.productReference ?? product?.productReference}
       brandName={props.brandName ?? product?.brand}
       className={props.className ?? 't-heading-4'}
-      showProductLink={showProductLink}
+      displayMode={displayMode}
       productLink={product?.linkText}
+      productId={product?.productId}
     />
   )
 }
@@ -217,10 +206,12 @@ ProductNameWrapper.schema = {
       default: false,
       isLayout: true,
     },
-    showProductLink: {
-      type: 'boolean',
-      title: 'admin/editor.productName.showProductLink.title',
-      default: false,
+    displayMode: {
+      type: 'string',
+      title: 'admin/editor.productName.displayMode.title',
+      enum: ['plainText', 'linkToProductPage'],
+      enumNames: ['plainText', 'linkToProductPage'],
+      default: 'plainText',
     },
   },
 }
