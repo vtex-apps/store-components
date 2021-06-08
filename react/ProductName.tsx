@@ -84,7 +84,7 @@ function ProductName({
   skuName,
   brandName,
   productReference,
-  displayMode,
+  displayMode = 'plainText',
   productLink,
   productId,
 }: Props) {
@@ -113,8 +113,6 @@ function ProductName({
     )
   }
 
-  const LinkWrapper =
-    displayMode && displayMode === 'linkToProductPage' ? Link : Fragment
   const linkProps = {
     page: 'store.product',
     params: {
@@ -128,8 +126,9 @@ function ProductName({
       className={`${handles.productNameContainer} mv0 ${className ?? ''}`}
     >
       <LinkWrapper
+        displayMode={displayMode}
         className={`${handles.productNameLink} pointer c-link hover-c-link active-c-link no-underline underline-hover`}
-        {...linkProps}
+        linkProps={linkProps}
       >
         <span className={`${handles.productBrand} ${brandNameClass ?? ''}`}>
           {name} {showBrandName && brandName && `- ${brandName}`}
@@ -154,6 +153,21 @@ function ProductName({
 }
 
 /**
+ * Shows the link associated with the product name or plain text depending on the displayMode.
+ */
+const LinkWrapper = ({ displayMode, linkProps, className, children }: any) => {
+  if (displayMode === 'plainText') {
+    return <Fragment>{children}</Fragment>
+  }
+
+  return (
+    <Link className={className} {...linkProps}>
+      {children}
+    </Link>
+  )
+}
+
+/**
  * Displays the product name along other information such as **SKU** or **brand**.
  */
 function ProductNameWrapper(props: Props) {
@@ -164,8 +178,6 @@ function ProductNameWrapper(props: Props) {
   }
 
   const { product, selectedItem } = valuesFromContext
-  const displayMode =
-    props.displayMode !== undefined ? props.displayMode : 'plainText'
 
   return (
     <ProductName
@@ -176,7 +188,7 @@ function ProductNameWrapper(props: Props) {
       productReference={props.productReference ?? product?.productReference}
       brandName={props.brandName ?? product?.brand}
       className={props.className ?? 't-heading-4'}
-      displayMode={displayMode}
+      displayMode={props.displayMode}
       productLink={product?.linkText}
       productId={product?.productId}
     />
