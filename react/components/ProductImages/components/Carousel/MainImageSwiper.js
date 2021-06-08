@@ -1,9 +1,14 @@
-import React, { useContext } from 'react';
-import { CarouselContext } from './index.js'
+import React, { useContext } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import classNames from 'classnames'
 import { IconCaret } from 'vtex.store-icons'
 import { useCssHandles } from 'vtex.css-handles'
+
+import { CarouselContext } from './index.js'
+import styles from './swiper.scoped.css'
+
+import './swiper.global.css'
+import './overrides.global.css'
 
 const CSS_HANDLES = [
   'carouselContainer',
@@ -20,14 +25,7 @@ const CARET_ICON_SIZE = 24
 const CARET_CLASSNAME =
   'pv8 absolute top-50 translate--50y z-2 pointer c-action-primary'
 
-import styles from './swiper.scoped.css'
-
-import './swiper.global.css'
-import './overrides.global.css'
-
-
 const MainImageSwiper = () => {
-
   const { handles } = useCssHandles(CSS_HANDLES)
 
   const {
@@ -39,8 +37,8 @@ const MainImageSwiper = () => {
     onSlideChange,
     galleryParams,
     showPaginationDots,
-    showNavigationArrows } = useContext(CarouselContext)
-
+    showNavigationArrows,
+  } = useContext(CarouselContext)
 
   return (
     <Swiper
@@ -52,29 +50,26 @@ const MainImageSwiper = () => {
       updateOnWindowResize
       {...galleryParams}
     >
-      {
-        slides.map((slide, i) => (
-          <SwiperSlide
-            key={`slider-${i}`}
-            className={`${handles.productImagesGallerySlide} swiper-slide center-all`}
-          >
-            {renderSlide(slide, i)}
-          </SwiperSlide>
-        ))
-      }
+      {slides.map((slide, i) => (
+        <SwiperSlide
+          key={`slider-${i}`}
+          className={`${handles.productImagesGallerySlide} swiper-slide center-all`}
+        >
+          {renderSlide(slide, i)}
+        </SwiperSlide>
+      ))}
 
-      < div
+      <div
         key="pagination"
         className={classNames(styles['swiper-pagination'], {
           dn: slides.length === 1 || !showPaginationDots,
         })}
       />
 
-      < div
-        className={
-          classNames({
-            dn: slides.length === 1 || !showNavigationArrows,
-          })}
+      <div
+        className={classNames({
+          dn: slides.length === 1 || !showNavigationArrows,
+        })}
       >
         <span
           key="caret-next"
@@ -96,8 +91,8 @@ const MainImageSwiper = () => {
             className={styles.carouselIconCaretLeft}
           />
         </span>
-      </div >
-    </Swiper >
+      </div>
+    </Swiper>
   )
 }
 
