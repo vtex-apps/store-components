@@ -24,7 +24,13 @@ function SelectVariationMode(props: VariationSelectModeProps) {
   const options = displayOptions.map(op => ({
     label: op.label,
     value: op.label,
-    disabled: op.disabled ? op.impossible : false
+    disabled: op.disabled ? 
+      (op.impossible 
+        ? true 
+        : (!op.impossible && !op.available 
+          ? true 
+          : false))
+      : false 
   }))
 
   const handleClick = (_: React.MouseEvent, value: string) => {
