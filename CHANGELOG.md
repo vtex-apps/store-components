@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-- `showProductLink` prop to show the link associated with the product name.
+- `displayMode` prop useful for displaying the product name in plain text or embedded in the link to the product page.
 
 ## [3.144.0] - 2021-05-31
 
