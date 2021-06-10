@@ -65,7 +65,7 @@ type Props = {
   displayMode?: 'plainText' | 'linkToProductPage'
   /** Product link */
   productLink?: string
-  /** Product link */
+  /** Product id */
   productId?: string
 } & DeprecatedProps
 
