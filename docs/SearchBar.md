@@ -41,6 +41,7 @@ Then, add `search-bar` block into your app theme, as we do in our [Store Header]
 | ~`iconClasses`~           | `String`                                      | ![DEPRECATED](https://img.shields.io/badge/-deprecated-red) ~Custom classes for the search icon~ Use the CSS handle `searchBarIcon`.                                                              | -              |
 | ~`submitOnIconClick`~     | `Boolean`                                     | ![DEPRECATED](https://img.shields.io/badge/-deprecated-red) - ~Define if search icon should submit on click.~ Use the `displayMode` prop instead.                                               | `false`        |
 | `classes` | `CustomCSSClasses` | Used to override default CSS handles. To better understand how this prop works, we recommend reading about it [here](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only useful if you're using this block as a React component. | `undefined` |
+| `disableBlurAndTouchEndHandler` | `Boolean` | The autocomplete can have touchable/clickable components. Interacting with those components may trigger blur and touch events that will close the autcomplete. When set to true, this prop will disable those handlers. | `false` |
 
 ### `DisplayMode`
 
