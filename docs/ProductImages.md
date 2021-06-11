@@ -147,7 +147,7 @@ you also can wrap main slider with another layout app, this can be useful when y
       "blockClass": "product"
     },
     "children": [
-      "product-images.main-swiper",
+      "product-images-swiper",
       "flex-layout.col#badges"
     ]
   },
