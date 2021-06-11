@@ -69,6 +69,24 @@ type Props = {
   productId?: string
 } & DeprecatedProps
 
+type LinkWrapperProps = {
+  /** Show product link with the product name */
+  displayMode: 'plainText' | 'linkToProductPage'
+  /** Props for navigating to the product page */
+  linkProps: LinkProps
+  /** Classes to be applied to root element */
+  className: string
+  /** Component children that will be displayed */
+  children: React.ReactNode
+}
+
+type LinkProps = {
+  /** Page name */
+  page: string
+  /** Navigation params */
+  params: Record<string, unknown>
+}
+
 function ProductName({
   productReferenceClass,
   brandNameClass,
@@ -155,7 +173,12 @@ function ProductName({
 /**
  * Shows the link associated with the product name or plain text depending on the displayMode.
  */
-const LinkWrapper = ({ displayMode, linkProps, className, children }: any) => {
+const LinkWrapper = ({
+  displayMode,
+  linkProps,
+  className,
+  children,
+}: LinkWrapperProps) => {
   if (displayMode === 'plainText') {
     return <Fragment>{children}</Fragment>
   }
