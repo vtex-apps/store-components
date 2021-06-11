@@ -117,8 +117,6 @@
   "back-to-top-button": {
     "render": "client",
     "component": "BackToTopButton"
-  },
-  "complement-name": {
-    "component": "ComplementName"
+  }
   }
 }
