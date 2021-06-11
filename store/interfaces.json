@@ -4,11 +4,7 @@
   },
   "search-bar": {
     "component": "SearchBar",
-    "allowed": [
-      "autocomplete-result-list",
-      "icon-search",
-      "icon-close"
-    ],
+    "allowed": ["autocomplete-result-list", "icon-search", "icon-close"],
     "content": {
       "$ref": "app:vtex.store-components#/definitions/SearchBar"
     }
@@ -81,9 +77,7 @@
     }
   },
   "user-address": {
-    "allowed": [
-      "modal"
-    ],
+    "allowed": ["modal"],
     "component": "UserAddress"
   },
   "product-services": {
@@ -117,6 +111,5 @@
   "back-to-top-button": {
     "render": "client",
     "component": "BackToTopButton"
-  }
   }
 }
