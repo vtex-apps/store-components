@@ -57,7 +57,7 @@ interface Props {
   containerMode: 'overlay' | 'container'
   /** Used to override default CSS handles */
   classes?: CssHandlesTypes.CustomClasses<typeof SEARCH_BAR_CSS_HANDLES>
-  /** The autocomplete can have touchable/clickable components. Interacting with those components may trigger blur and touch events that will close the autcomplete. When set to true, this prop will disable those handlers */
+  /** The autocomplete can have touchable/clickable components. Interacting with those components may trigger blur and touch events that will close the autocomplete. When set to true, this prop will disable those handlers */
   disableBlurAndTouchEndHandler?: boolean
 }
 
