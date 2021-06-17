@@ -190,7 +190,7 @@ const parseOptionNameToDisplayOption = ({
       image,
       available: true,
       impossible: true,
-      disabled: disableUnavailableSelectOptions
+      disabled: disableUnavailableSelectOptions,
     }
   }
 
@@ -206,7 +206,7 @@ const variationNameToDisplayVariation = ({
   imagesMap,
   variationCount,
   hideImpossibleCombinations,
-  disableUnavailableSelectOptions
+  disableUnavailableSelectOptions,
 }: {
   variations: Variations
   selectedVariations: SelectedVariations
@@ -320,7 +320,7 @@ function SKUSelector({
       onSelectItemMemo,
       skuItems,
       hideImpossibleCombinations,
-      disableUnavailableSelectOptions
+      disableUnavailableSelectOptions,
     }),
     [
       variations,
@@ -329,7 +329,7 @@ function SKUSelector({
       onSelectItemMemo,
       skuItems,
       hideImpossibleCombinations,
-      disableUnavailableSelectOptions
+      disableUnavailableSelectOptions,
     ]
   )
 

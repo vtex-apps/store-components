@@ -24,12 +24,12 @@ function SelectVariationMode(props: VariationSelectModeProps) {
   const options = displayOptions.map(op => ({
     label: op.label,
     value: op.label,
-    disabled: op.disabled ? 
-      (op.impossible 
+    disabled: op.disabled
+      ? op.impossible 
+        ? true
+        : !op.impossible && !op.available 
         ? true 
-        : (!op.impossible && !op.available 
-          ? true 
-          : false))
+        : false
       : false 
   }))
 
