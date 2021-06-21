@@ -8,6 +8,8 @@
   "admin/editor.productName.showSku.title": "admin/editor.productName.showSku.title",
   "admin/editor.productName.showProductReference.title": "admin/editor.productName.showProductReference.title",
   "admin/editor.productName.displayMode.title": "admin/editor.productName.displayMode.title",
+  "admin/editor.productName.displayMode.plainText": "admin/editor.productName.displayMode.plainText",
+  "admin/editor.productName.displayMode.linkToProductPage": "admin/editor.productName.displayMode.linkToProductPage",
   "admin/editor.productPrice.title": "admin/editor.productPrice.title",
   "admin/editor.productPrice.description": "admin/editor.productPrice.description",
   "admin/editor.productPrice.showListPrice": "admin/editor.productPrice.showListPrice",

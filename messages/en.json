@@ -8,6 +8,8 @@
   "admin/editor.productName.showSku.title": "Shows the sku",
   "admin/editor.productName.showProductReference.title": "Shows the product reference",
   "admin/editor.productName.displayMode.title": "Showing the link associated with the product name or plain text",
+  "admin/editor.productName.displayMode.plainText": "Plain text",
+  "admin/editor.productName.displayMode.linkToProductPage": "Link to product page",
   "admin/editor.productPrice.title": "Product price",
   "admin/editor.productPrice.description": "Product price Component",
   "admin/editor.productPrice.showListPrice": "Show product's list price",

@@ -87,6 +87,26 @@ type LinkProps = {
   params: Record<string, unknown>
 }
 
+/**
+ * Shows the link associated with the product name or plain text depending on the displayMode.
+ */
+const LinkWrapper = ({
+  displayMode,
+  linkProps,
+  className,
+  children,
+}: LinkWrapperProps) => {
+  if (displayMode === 'plainText') {
+    return <Fragment>{children}</Fragment>
+  }
+
+  return (
+    <Link className={className} {...linkProps}>
+      {children}
+    </Link>
+  )
+}
+
 function ProductName({
   productReferenceClass,
   brandNameClass,
@@ -171,26 +191,6 @@ function ProductName({
 }
 
 /**
- * Shows the link associated with the product name or plain text depending on the displayMode.
- */
-const LinkWrapper = ({
-  displayMode,
-  linkProps,
-  className,
-  children,
-}: LinkWrapperProps) => {
-  if (displayMode === 'plainText') {
-    return <Fragment>{children}</Fragment>
-  }
-
-  return (
-    <Link className={className} {...linkProps}>
-      {children}
-    </Link>
-  )
-}
-
-/**
  * Displays the product name along other information such as **SKU** or **brand**.
  */
 function ProductNameWrapper(props: Props) {
@@ -245,7 +245,10 @@ ProductNameWrapper.schema = {
       type: 'string',
       title: 'admin/editor.productName.displayMode.title',
       enum: ['plainText', 'linkToProductPage'],
-      enumNames: ['plainText', 'linkToProductPage'],
+      enumNames: [
+        'admin/editor.productName.displayMode.plainText',
+        'admin/editor.productName.displayMode.linkToProductPage',
+      ],
       default: 'plainText',
     },
   },
