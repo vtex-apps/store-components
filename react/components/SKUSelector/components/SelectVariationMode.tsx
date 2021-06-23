@@ -18,19 +18,24 @@ const messages = defineMessages({
   },
 })
 
+function isDisabled(disabled: boolean, impossible: boolean, available: boolean) {
+  if (disabled) {
+    if (impossible) return true
+    if (!impossible && !available) return true
+
+    return false
+  } 
+  
+  return false
+}
+
 function SelectVariationMode(props: VariationSelectModeProps) {
   const { intl, selectedItem, displayOptions } = props
 
   const options = displayOptions.map(op => ({
     label: op.label,
     value: op.label,
-    disabled: op.disabled
-      ? op.impossible 
-        ? true
-        : !op.impossible && !op.available 
-        ? true 
-        : false
-      : false 
+    disabled: isDisabled(op.disabled, op.impossible, op.available)
   }))
 
   const handleClick = (_: React.MouseEvent, value: string) => {
