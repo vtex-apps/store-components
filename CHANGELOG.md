@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `disableBlurAndTouchEndHandler` prop to the `SearchBar` component.
+
 ## [3.146.0] - 2021-06-28
 ### Added
 - `unavailable` modifier to `valueWrapper` CSS handle.
