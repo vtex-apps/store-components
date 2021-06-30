@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.148.0] - 2021-06-30
+
 ### Added
 - `displayMode` prop useful for displaying the product name in plain text or embedded in the link to the product page.
 
