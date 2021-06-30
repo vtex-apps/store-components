@@ -1,6 +1,10 @@
 import React, { useRef, useCallback, useState, useEffect, useMemo } from 'react'
 import classNames from 'classnames'
-import Downshift, { DownshiftProps } from 'downshift'
+import Downshift, {
+  DownshiftProps,
+  DownshiftState,
+  StateChangeOptions,
+} from 'downshift'
 import debounce from 'debounce'
 import {
   NoSSR,
@@ -77,6 +81,8 @@ interface Props {
   displayMode?: 'clear-button' | 'search-and-clear-buttons' | 'search-button'
   /** Define how the autocomplete component should be displayed. Possible values are: `overlay` (suggestions overlapping other components) and `container` (displays the suggestion within a container). */
   containerMode: 'overlay' | 'container'
+  /** The autocomplete can have touchable/clickable components. Interacting with those components may trigger blur and touch events that will close the autcomplete. When set to true, this prop will disable those handlers */
+  disableBlurAndTouchEndHandler?: boolean
 }
 
 function SearchBar({
@@ -102,6 +108,7 @@ function SearchBar({
   autocompleteFullWidth,
   inputType,
   containerMode = 'overlay',
+  disableBlurAndTouchEndHandler,
 }: Props) {
   const { withModifiers } = useSearchBarCssHandles()
   const intl = useIntl()
@@ -230,6 +237,26 @@ function SearchBar({
 
   const autocompleteContainerRef = useRef<HTMLDivElement>(null)
 
+  const stateReducer = (
+    state: DownshiftState<unknown>,
+    changes: StateChangeOptions<unknown>
+  ): StateChangeOptions<unknown> => {
+    const { type } = changes
+
+    if (
+      (type === Downshift.stateChangeTypes.blurInput ||
+        type === Downshift.stateChangeTypes.touchEnd) &&
+      disableBlurAndTouchEndHandler
+    ) {
+      return {
+        ...changes,
+        isOpen: state.isOpen,
+      }
+    }
+
+    return changes
+  }
+
   return (
     <div
       ref={container}
@@ -241,7 +268,7 @@ function SearchBar({
       }}
     >
       <NoSSR onSSR={fallback}>
-        <Downshift onSelect={onSelect}>
+        <Downshift onSelect={onSelect} stateReducer={stateReducer}>
           {({
             getInputProps,
             getItemProps,

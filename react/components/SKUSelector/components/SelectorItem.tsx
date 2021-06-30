@@ -151,10 +151,13 @@ function SelectorItem({
           })}
         />
         <div
-          className={classNames(handles.valueWrapper, {
-            [`${handles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
-            'h-100': isImage,
-          })}
+          className={classNames(
+            withModifiers('valueWrapper', !isAvailable ? 'unavailable' : ''),
+            {
+              [`${handles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
+              'h-100': isImage,
+            }
+          )}
         >
           {isImage && imageUrl ? (
             <img

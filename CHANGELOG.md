@@ -10,6 +10,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Add `disableUnavailableSelectOptions` prop for `SKUSelector` in order to disable unavailable items for `displayMode` select
+## [3.147.0] - 2021-06-29
+
+### Added
+- `disableBlurAndTouchEndHandler` prop to the `SearchBar` component.
+
+## [3.146.0] - 2021-06-28
+### Added
+- `unavailable` modifier to `valueWrapper` CSS handle.
+
+## [3.145.0] - 2021-06-28
+### Added
+- `showTitle` prop to `ProductDescription` component.
 
 ## [3.144.0] - 2021-05-31
 
