@@ -10,6 +10,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `displayMode` prop useful for displaying the product name in plain text or embedded in the link to the product page.
 
+## [3.147.0] - 2021-06-29
+
+### Added
+- `disableBlurAndTouchEndHandler` prop to the `SearchBar` component.
+
+## [3.146.0] - 2021-06-28
+### Added
+- `unavailable` modifier to `valueWrapper` CSS handle.
+
+## [3.145.0] - 2021-06-28
+### Added
+- `showTitle` prop to `ProductDescription` component.
+
 ## [3.144.0] - 2021-05-31
 
 ### Added

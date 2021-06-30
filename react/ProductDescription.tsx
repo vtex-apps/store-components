@@ -20,6 +20,8 @@ type Props = {
   description?: string
   /** Section title */
   title?: string
+  /** Define whether or not to show the title */
+  showTitle?: boolean
   /** Define if content should start collapsed or not */
   collapseContent?: boolean
   /** Used to override default CSS handles */
@@ -62,19 +64,21 @@ function ProductDescription(props: PropsWithChildren<Props>) {
     return null
   }
 
-  const { collapseContent = true, title } = props
+  const { collapseContent = true, showTitle = true, title } = props
 
   return (
     <div className={handles.productDescriptionContainer}>
-      <FormattedMessage id="store/product-description.title">
-        {txt => (
-          <h2
-            className={`${handles.productDescriptionTitle} t-heading-5 mb5 mt0`}
-          >
-            {title ? formatIOMessage({ id: title, intl }) : txt}
-          </h2>
-        )}
-      </FormattedMessage>
+      {showTitle && (
+        <FormattedMessage id="store/product-description.title">
+          {txt => (
+            <h2
+              className={`${handles.productDescriptionTitle} t-heading-5 mb5 mt0`}
+            >
+              {title ? formatIOMessage({ id: title, intl }) : txt}
+            </h2>
+          )}
+        </FormattedMessage>
+      )}
 
       <div className={`${handles.productDescriptionText} c-muted-1`}>
         {collapseContent ? (
