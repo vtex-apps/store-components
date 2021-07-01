@@ -31,10 +31,10 @@ type Props = {
   /** Define if content should start collapsed or not */
   collapseContent?: boolean
   /** Used to override default CSS handles */
+  classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
   customCollapse?: boolean
   desktopLimitCharacters?: number
   mobileLimitCharacters?: number
-  classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
 }
 
 const allowedTags = [
