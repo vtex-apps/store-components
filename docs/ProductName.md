@@ -43,6 +43,7 @@ The `ProductName` is a block responsible for **displaying the product name** alo
 | `showProductReference` | `Boolean` | Show product reference | `false`| 
 | `showBrandName` | `Boolean` | Show brand name | `false`| 
 | `classes` | `CustomCSSClasses` | Used to override default CSS handles. To better understand how this prop works, we recommend reading about it [here](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only useful if you're using this block as a React component. | `undefined` |
+| `displayMode` | `enum` | Possible values: `linkToProductPage` (show the product link associated with its name) or `plainText` (to show only the product name). | `plainText`| 
 
 ## Customization
 
