@@ -41,7 +41,9 @@ function SelectVariationMode(props: VariationSelectModeProps) {
 
   return (
     <div className={styles.skuSelectorSelectContainer}>
+      {/* Warning: don't change this name property because it's used to check on Slider component, to avoid preventDefault of the event trigger by the dropdown */}
       <Dropdown
+        name="product-summary-sku-selector"
         options={options}
         value={selectedItem}
         onChange={handleClick}
