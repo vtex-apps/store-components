@@ -29,7 +29,7 @@
     "composition": "children"
   },
   "product-images-swiper": {
-    "component": "ProductImageMainSwiper"
+    "component": "MainImageSwiper"
   },
   "product-images.high-quality-image": {
     "component": "HighQualityProductImage"
