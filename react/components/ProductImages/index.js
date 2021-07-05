@@ -32,10 +32,10 @@ const ProductImages = ({
   zoomFactor,
   ModalZoomElement,
   contentType = 'all',
+  children,
   // Deprecated
   zoomProps,
   displayMode,
-  children,
 }) => {
   if (hiddenImages && !Array.isArray(hiddenImages)) {
     hiddenImages = [hiddenImages]
