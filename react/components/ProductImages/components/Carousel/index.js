@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { Component } from 'react'
+import React, { Component, useContext } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { path, equals } from 'ramda'
@@ -40,7 +40,19 @@ const initialState = {
   activeIndex: 0,
 }
 
-export const CarouselContext = React.createContext({})
+export const CarouselContext = React.createContext(undefined)
+
+export function useCarouselContext() {
+  const context = useContext(CarouselContext)
+
+  if (context === undefined) {
+    throw Error(
+      'CarouselContext should be in the react tree. Maybe you are trying to use Carousel component https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-productimages'
+    )
+  }
+
+  return context
+}
 
 class Carousel extends Component {
   state = {

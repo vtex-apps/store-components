@@ -1,10 +1,10 @@
-import React, { Fragment, useContext, useMemo } from 'react'
+import React, { Fragment, useMemo } from 'react'
 import classNames from 'classnames'
 import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { IconCaret } from 'vtex.store-icons'
 
-import { CarouselContext } from './index.js'
+import { useCarouselContext } from './index.js'
 import { THUMB_SIZE } from '../../../module/images'
 import { THUMBS_POSITION_HORIZONTAL } from '../../utils/enums'
 import { imageUrl } from '../../utils/aspectRatioUtil'
@@ -69,7 +69,7 @@ const ThumbnailSwiper = () => {
     thumbnailMaxHeight,
     displayThumbnailsArrows,
     onThumbSwiper,
-  } = useContext(CarouselContext)
+  } = useCarouselContext()
 
   const hasThumbs = slides.length > 1
 

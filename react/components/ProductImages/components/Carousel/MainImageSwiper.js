@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import classNames from 'classnames'
 import { IconCaret } from 'vtex.store-icons'
 import { useCssHandles } from 'vtex.css-handles'
 
-import { CarouselContext } from './index.js'
+import { useCarouselContext } from './index.js'
 import styles from './swiper.scoped.css'
 
 import './swiper.global.css'
@@ -38,7 +38,7 @@ const MainImageSwiper = () => {
     galleryParams,
     showPaginationDots,
     showNavigationArrows,
-  } = useContext(CarouselContext)
+  } = useCarouselContext()
 
   return (
     <Swiper
