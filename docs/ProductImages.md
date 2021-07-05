@@ -112,7 +112,7 @@ The following table shows the props allowed by `product-images.high-quality-imag
 | `imageSizes` | `[number]` | Image size(s) (in `px`) to be used in the image's [`srcset` HTML attribute](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images). If no value is passed to this prop, the `srcset` will use the image original size.  | `undefined` |
 | `maxSize` | `number` | Image maximum size (in `px`) for rendering regardless of the screen size. Notice that this prop only works if you also declare the `imageSizes` prop. | `4096` |
 
-you also can wrap main slider with another layout app, this can be useful when you will pass a float badge over image. Main slider is exported by `product-images.main-swiper`. Here a implementation example:
+You also can wrap the main slider with another layout app, this can be useful when you will pass a floating badge over the image. The main slider is exported by `product-images.main-swiper`. Here an implementation example:
 
 ```jsonc
 {
