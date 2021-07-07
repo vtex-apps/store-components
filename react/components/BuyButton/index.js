@@ -189,7 +189,8 @@ export const BuyButton = ({
           skuItem =>
             !!items.find(
               ({ id, seller }) =>
-                (id === skuItem.skuId || id === skuItem.id) && seller === skuItem.seller
+                (id === skuItem.skuId || id === skuItem.id) &&
+                seller === skuItem.seller
             )
         )
         await orderFormContext.refetch().catch(() => null)
@@ -201,7 +202,8 @@ export const BuyButton = ({
             skuItem =>
               !!linkStateItems.find(
                 ({ id, seller }) =>
-                  (id === skuItem.skuId || id === skuItem.id) && seller === skuItem.seller
+                  (id === skuItem.skuId || id === skuItem.id) &&
+                  seller === skuItem.seller
               )
           )) ||
         success
