@@ -15,7 +15,7 @@ const ProductImagesWrapper = props => {
     showNavigationArrows,
     showPaginationDots,
     contentOrder,
-    placeholder,
+    placeholder
   } = useResponsiveValues(
     pick(
       [
@@ -91,6 +91,7 @@ const ProductImagesWrapper = props => {
       contentOrder={contentOrder}
       ModalZoomElement={props.ModalZoom}
       contentType={props.contentType}
+      productSpecification={props.productSpecification}
       // Deprecated
       zoomProps={props.zoomProps}
       displayMode={props.displayMode}
@@ -176,7 +177,7 @@ ProductImagesWrapper.getSchema = ({ zoomProps: { zoomType } = {} }) => ({
       type: 'boolean',
       default: false,
       isLayout: true,
-    },
+    }
   },
 })
 
