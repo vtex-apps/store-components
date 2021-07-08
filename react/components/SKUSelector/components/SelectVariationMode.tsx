@@ -11,6 +11,12 @@ interface VariationSelectModeProps {
   displayOptions: DisplayOption[]
 }
 
+interface IsDisableParams {
+  disabled: boolean,
+  impossible: boolean,
+  available: boolean
+}
+
 const messages = defineMessages({
   selectPlaceholder: {
     id: 'store/sku-selector.select.placeholder',
@@ -18,16 +24,10 @@ const messages = defineMessages({
   },
 })
 
-function isDisabled(
-  disabled: boolean,
-  impossible: boolean,
-  available: boolean
-) {
+function isDisabled({ disabled, impossible, available }: IsDisableParams) {
   if (disabled) {
     if (impossible) return true
     if (!impossible && !available) return true
-
-    return false
   }
 
   return false
@@ -39,7 +39,7 @@ function SelectVariationMode(props: VariationSelectModeProps) {
   const options = displayOptions.map(op => ({
     label: op.label,
     value: op.label,
-    disabled: isDisabled(op.disabled, op.impossible, op.available),
+    disabled: isDisabled({disabled: op.disabled, impossible: op.impossible, available: op.available}),
   }))
 
   const handleClick = (_: React.MouseEvent, value: string) => {
