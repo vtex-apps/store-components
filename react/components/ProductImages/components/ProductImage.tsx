@@ -119,9 +119,9 @@ const ProductImage: FC<Props> = ({
             sizes="(max-width: 64.1rem) 100vw, 50vw"
           />
         </Zoomable>
-        <div className={styles.containerProdSpecification}>
+        <div className={styles.containerProdSpecification} style={{display: index==positionOfSpecification? 'flex':'none'}}>
           <p>
-            {index == positionOfSpecification ? fieldValue : ''}
+            {fieldValue}
           </p>
         </div>
       </div>

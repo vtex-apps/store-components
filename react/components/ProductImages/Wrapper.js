@@ -177,6 +177,22 @@ ProductImagesWrapper.getSchema = ({ zoomProps: { zoomType } = {} }) => ({
       type: 'boolean',
       default: false,
       isLayout: true,
+    },
+    productSpecification:{
+      title:"Product Specification",
+      type:"object",
+      description:"Allow to show a specific field from product specification",
+      properties:{
+        fieldName:{
+          title:"Field Name",
+          type:"string"
+        },
+        position:{
+          title:"What picture will show the specification",
+          type:"number",
+          default:0
+        }
+      }
     }
   },
 })
