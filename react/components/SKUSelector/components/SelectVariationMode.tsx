@@ -1,9 +1,10 @@
 import React from 'react'
 import { Dropdown } from 'vtex.styleguide'
-import { injectIntl, defineMessages, IntlShape } from 'react-intl'
+import type { IntlShape } from 'react-intl'
+import { injectIntl, defineMessages } from 'react-intl'
 
 import styles from '../styles.css'
-import { DisplayOption } from '../types'
+import type { DisplayOption } from '../types'
 
 interface VariationSelectModeProps {
   intl: IntlShape
@@ -12,8 +13,8 @@ interface VariationSelectModeProps {
 }
 
 interface IsDisableParams {
-  disabled: boolean,
-  impossible: boolean,
+  disabled: boolean
+  impossible: boolean
   available: boolean
 }
 
@@ -39,7 +40,11 @@ function SelectVariationMode(props: VariationSelectModeProps) {
   const options = displayOptions.map(op => ({
     label: op.label,
     value: op.label,
-    disabled: isDisabled({disabled: op.disabled, impossible: op.impossible, available: op.available}),
+    disabled: isDisabled({
+      disabled: op.disabled,
+      impossible: op.impossible,
+      available: op.available,
+    }),
   }))
 
   const handleClick = (_: React.MouseEvent, value: string) => {
