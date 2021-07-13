@@ -58,7 +58,12 @@
 
 ### Advanced configuration
 
-In this section, we teach you how to use modal zoom, a property for when you want to open a popup containing the product image for zooming. To use this feature, configure your `product-images` block using the `zoomMode` and `ModalZoom` props with `open-modal` and `modal-layout` set as its values, respectively.
+In this section, we teach you how:
+- to use modal zoom.
+- to wrap main slider with another layout app.
+
+#### Using modal zoom
+Modal zoom is a property for when you want to open a popup containing the product image for zooming. To use this feature, configure your `product-images` block using the `zoomMode` and `ModalZoom` props with `open-modal` and `modal-layout` set as its values, respectively.
 
 When configured as stated previously, the `zoomMode` prop will allow the trigger of a modal for image zooming. In addition to that, the `MozalZoom` prop will render the block passed in as its value - in this case, mandatorily the `modal-layout`. In such a way, **we become able to configure a modal containing the product image for zooming**.
 
@@ -112,7 +117,9 @@ The following table shows the props allowed by `product-images.high-quality-imag
 | `imageSizes` | `[number]` | Image size(s) (in `px`) to be used in the image's [`srcset` HTML attribute](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images). If no value is passed to this prop, the `srcset` will use the image original size.  | `undefined` |
 | `maxSize` | `number` | Image maximum size (in `px`) for rendering regardless of the screen size. Notice that this prop only works if you also declare the `imageSizes` prop. | `4096` |
 
-You also can wrap the main slider with another layout app, this can be useful when you will pass a floating badge over the image. The main slider is exported by `product-images.main-swiper`. Here an implementation example:
+#### Wrapping the main slider 
+You can wrap main slider with another layout app, which is useful when you pass a float badge over image. 
+Main slider is exported by `product-images.main-swiper`. Here a implementation example:
 
 ```jsonc
 {
