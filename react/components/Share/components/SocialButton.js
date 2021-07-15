@@ -4,6 +4,7 @@ import classNames from 'classnames'
 
 import { SOCIAL_NAME_MAP, SOCIAL_COMPONENT_MAP } from '../constants/social'
 import styles from '../styles.css'
+import { slug } from '../../SKUSelector/utils'
 
 const SOCIAL_WITH_TITLE = new Set([
   SOCIAL_NAME_MAP.whatsapp,
@@ -72,7 +73,10 @@ export default class SocialButton extends Component {
       <SocialIcon
         round
         size={size}
-        className={classNames(styles.shareSocialIcon, iconClass)}
+        className={classNames(
+          styles.shareSocialIcon,
+          `${styles.shareSocialIcon}--${slug(SocialNetworkName)}`,
+          iconClass)}
       />
     )
 
@@ -85,7 +89,10 @@ export default class SocialButton extends Component {
     return (
       <SocialComponent
         url={url}
-        className={classNames(styles.shareSocialButton, buttonClass)}
+        className={classNames(
+          styles.shareSocialButton,
+          `${styles.shareSocialButton}--${slug(SocialNetworkName)}`,
+          buttonClass)}
         media={imageUrl}
         {...additionalProps}
       >
