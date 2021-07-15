@@ -1,6 +1,6 @@
 # VTEX Store Components
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Description
@@ -172,6 +172,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/ovio224"><img src="https://avatars.githubusercontent.com/u/68231117?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ovi</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=oviolion" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/LucasCastroJussi"><img src="https://avatars.githubusercontent.com/u/80407814?v=4?s=100" width="100px;" alt=""/><br /><sub><b>LucasCastroJussi</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=LucasCastroJussi" title="Code">💻</a></td>
+    <td align="center"><a href="https://razvanudrea.com"><img src="https://avatars.githubusercontent.com/u/71461884?v=4?s=100" width="100px;" alt=""/><br /><sub><b>razvanudream</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=razvanudream" title="Code">💻</a></td>
   </tr>
 </table>
 
