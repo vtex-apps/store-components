@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.149.0] - 2021-07-20
+### Added
+- Added social media identifier class to SocialButton
+
 ## [3.148.2] - 2021-07-12
 ### Fixed
 - `BuyButton` when item has no `skuId`.
