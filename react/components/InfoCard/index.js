@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import PropTypes, { bool, string, oneOf } from 'prop-types'
-import React, { memo } from 'react'
+import React, { memo, useRef } from 'react'
 import { values } from 'ramda'
 import { injectIntl } from 'react-intl'
 import {
@@ -9,6 +9,7 @@ import {
 } from 'vtex.render-runtime'
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
+import { useOnView } from 'vtex.on-view'
 import RichText from 'vtex.rich-text/index'
 
 import CallToAction from './CallToAction'
@@ -95,6 +96,10 @@ const InfoCard = ({
   htmlId,
   textMode,
   linkTarget,
+  analyticsProperties = 'none',
+  promotionId,
+  promotionName,
+  promotionPosition,
 }) => {
   const {
     hints: { mobile },
@@ -167,6 +172,31 @@ const InfoCard = ({
   const headlineClasses = `${handles.infoCardHeadline} t-heading-2 mt6 ${alignToken} c-on-base mw-100`
 
   const subheadClasses = `${handles.infoCardSubhead} t-body mt6 c-on-base ${alignToken} mw-100`
+
+  const promotionEventData =
+    analyticsProperties === 'provide'
+      ? {
+          id: promotionId,
+          name: promotionName,
+          creative: formattedSrc,
+          position: promotionPosition,
+        }
+      : undefined
+   
+  const imageRef = useRef(null)
+
+  useOnView({
+    ref: imageRef,
+    onView: () => {
+      if (analyticsProperties === 'none') return
+
+      push({
+        event: 'promoView',
+        promotions: [promotionEventData],
+      })
+    },
+    once: true,
+  })
 
   return (
     <LinkWrapper
@@ -255,6 +285,10 @@ MemoizedInfoCard.propTypes = {
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
   linkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
   callToActionLinkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
+  analyticsProperties: bool,
+  promotionId: string,
+  promotionName: string,
+  promotionPosition: string,
 }
 
 MemoizedInfoCard.defaultProps = {
@@ -271,6 +305,10 @@ MemoizedInfoCard.defaultProps = {
   textMode: textModeTypes.TEXT_MODE_HTML.value,
   linkTarget: '_self',
   callToActionLinkTarget: '_self',
+  analyticsProperties: false,
+  promotionId: '',
+  promotionName: '',
+  promotionPosition: '',
 }
 
 MemoizedInfoCard.schema = {
@@ -327,6 +365,26 @@ MemoizedInfoCard.schema = {
       type: 'string',
       isLayout: true,
     },
+    analyticsProperties: {
+      title: 'admin/editor.analyticsProperties.title',
+      type: 'bool',
+      default: false,
+    },
+    promotionId: {
+      title: 'admin/editor.promotionId.title',
+      type: 'string',
+      default: "",
+    },
+    promotionName: {
+      title: 'admin/editor.promotionName.title',
+      type: 'string',
+      default: "",
+    },
+    promotionPosition: {
+      title: 'admin/editor.promotionPosition.title',
+      type: 'string',
+      default: "",
+    }
   },
 }
 

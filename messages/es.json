@@ -195,5 +195,9 @@
   "admin/editor.toTop.title": "Back to top button",
   "admin/editor.toTop.description": "Al hacer clic, lleva la página a la parte superior",
   "admin/editor.toTop.topPixel.title": "Número de píxeles",
-  "admin/editor.toTop.topPixel.description": "Al exceder el valor de píxel definido, aparecerá el botón para volver a la parte superior."
+  "admin/editor.toTop.topPixel.description": "Al exceder el valor de píxel definido, aparecerá el botón para volver a la parte superior.",
+  "admin/editor.analyticsProperties.title": "Analytics Properties",
+  "admin/editor.promotionId.title": "Promotion ID",
+  "admin/editor.promotionName.title": "Promotion Name",
+  "admin/editor.promotionPosition.title": "Promotion Position"
 }
