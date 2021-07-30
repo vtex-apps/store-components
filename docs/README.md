@@ -92,7 +92,7 @@ Below we have a README for each component of this project that explains how to u
 - [Notification](Notification.md)
 
 
-> :warning: **The following blocks have been deprecated:** `Animation`, `Categories Highlights`, `Collection Badges`, `Container`, `Discount Badge`, `Gradient Collapse`, `Greeting`, `Slide`. 
+> :warning: **The following blocks have been deprecated:** `Animation`, `Categories Highlights`, `Collection Badges`, `Container`, `Discount Badge`, `Gradient Collapse`, `Greeting`, `Slider`. 
 > Despite this, support for them is still granted.
 
 ## Creating a new component
