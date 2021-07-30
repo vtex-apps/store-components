@@ -331,7 +331,7 @@ class Carousel extends Component {
           {isThumbsVertical && <ThumbnailSwiper />}
           <div className={imageClasses}>
             {!this.state.thumbSwiper?.destroyed &&
-              (this.props.children.length > 0 ? (
+              (this.props.children?.length > 0 ? (
                 this.props.children
               ) : (
                 <MainImageSwiper />

@@ -119,7 +119,7 @@ The following table shows the props allowed by `product-images.high-quality-imag
 
 #### Wrapping the main slider 
 You can wrap main slider with another layout app, which is useful when you pass a float badge over image. 
-Main slider is exported by `product-images.main-swiper`. Here a implementation example:
+Main slider is exported by `product-images-swiper`. Here a implementation example:
 
 ```jsonc
 {
