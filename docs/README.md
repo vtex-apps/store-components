@@ -71,16 +71,9 @@ To use this CSS API, you must add the `styles` builder and create an app styling
 
 Below we have a README for each component of this project that explains how to use them.
 
-- [Animation](Animation.md)
 - [Availability Subscriber](AvailabilitySubscriber.md)
 - [Back To Top Button](BackToTopButton.md)
 - [Buy Button](BuyButton.md)
-- [Categories Highlights](CategoriesHighlights.md)
-- [Collection Badges](CollectionBadges.md)
-- [Container](Container.md)
-- [Discount Badge](DiscountBadge.md)
-- [Gradient Collapse](GradientCollapse.md)
-- [Greeting](Greeting.md)
 - [Image](Image.md)
 - [InfoCard](InfoCard.md)
 - [Logo](Logo.md)
@@ -96,8 +89,11 @@ Below we have a README for each component of this project that explains how to u
 - [Search Bar](SearchBar.md)
 - [Share](Share.md)
 - [Shipping Simulator](ShippingSimulator.md)
-- [Slider](Slider.md)
 - [Notification](Notification.md)
+
+
+> :warning: **The following blocks have been deprecated:** `Animation`, `Categories Highlights`, `Collection Badges`, `Container`, `Discount Badge`, `Gradient Collapse`, `Greeting`, `Slide`. 
+> Despite this, support for them is still granted.
 
 ## Creating a new component
 
