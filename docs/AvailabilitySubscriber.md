@@ -48,6 +48,12 @@ When implementing this component as a block, various inner blocks may be availab
   }
 ```
 
+| Prop name            | Type      | Description                                                                      | Default value      |
+| -------------------- | --------- | -------------------------------------------------------------------------------- | ------------------ |
+| `namePlaceholder`      | `string` | text value of the name input placeholder.  |  undefined         |
+| `emailPlaceholder`     | `string` | text value of the email input placeholder. |  undefined         |
+
+
 For now this block does not have any required or optional blocks.
 
 ### Configuration
