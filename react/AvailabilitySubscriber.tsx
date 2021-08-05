@@ -24,6 +24,9 @@ interface Props {
   available?: boolean
   /* SKU id to subscribe to */
   skuId?: string
+
+  namePlaceholder?: string
+  emailPlaceholder?: string
 }
 
 const isAvailable = (commertialOffer?: Seller['commertialOffer']) => {
@@ -160,7 +163,8 @@ function AvailabilitySubscriber(props: Props) {
             <Input
               name="name"
               type="text"
-              placeholder={intl.formatMessage({
+              placeholder={props.namePlaceholder ? props.namePlaceholder :
+                intl.formatMessage({
                 id: 'store/availability-subscriber.name-placeholder',
               })}
               value={name}
@@ -171,7 +175,8 @@ function AvailabilitySubscriber(props: Props) {
             <Input
               name="email"
               type="text"
-              placeholder={intl.formatMessage({
+              placeholder={props.emailPlaceholder ? props.emailPlaceholder :
+                intl.formatMessage({
                 id: 'store/availability-subscriber.email-placeholder',
               })}
               value={email}
