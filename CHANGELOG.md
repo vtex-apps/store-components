@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Highlight deprecated components on `README.md`: `Animation`, `Categories Highlights`, `Collection Badges`, `Container`, `Discount Badge`, `Gradient Collapse`, `Greeting`and `Slider`.
 
 
+## [3.149.1] - 2021-08-03
+### Changed
+- `onClickItem` from SKUSelector to dispatch `SET_LOADING_ITEM` action. 
+
 ## [3.149.0] - 2021-07-15
 ### Added
 - `disableUnavailableSelectOptions` prop to `SKUSelector` in order to disable unavailable items when `displayMode` is set to `select`.
