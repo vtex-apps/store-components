@@ -5434,9 +5434,9 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-"vtex.address-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.7.6/public/@types/vtex.address-form":
-  version "4.7.6"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.7.6/public/@types/vtex.address-form#8ef1f29df0ee2702a42a95d938420fa3e306110a"
+"vtex.address-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.8.0/public/@types/vtex.address-form":
+  version "4.8.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.8.0/public/@types/vtex.address-form#6886733922fd28cdeae3034c5ea7c7bb67a3c838"
 
 "vtex.apps-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.apps-graphql@2.8.0/public/@types/vtex.apps-graphql":
   version "2.8.0"
@@ -5514,9 +5514,9 @@ verror@1.10.0:
   version "0.19.2"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider-layout@0.19.2/public/@types/vtex.slider-layout#f1f0567c478e886d87718502e5cb495eb95c8c1b"
 
-"vtex.store-components@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-components@3.149.0/public/@types/vtex.store-components":
-  version "3.149.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-components@3.149.0/public/@types/vtex.store-components#ac49b5efa460ba7ea7e4a11c532b320dcb4a53d8"
+"vtex.store-components@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-components@3.149.1/public/@types/vtex.store-components":
+  version "3.149.1"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-components@3.149.1/public/@types/vtex.store-components#451a14e436af9611c9f4f9d682a46c56321fc4b2"
 
 "vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.143.0/public/@types/vtex.store-graphql":
   version "2.143.0"

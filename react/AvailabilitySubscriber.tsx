@@ -163,10 +163,13 @@ function AvailabilitySubscriber(props: Props) {
             <Input
               name="name"
               type="text"
-              placeholder={props.namePlaceholder ? props.namePlaceholder :
-                intl.formatMessage({
-                id: 'store/availability-subscriber.name-placeholder',
-              })}
+              placeholder={
+                props.namePlaceholder
+                  ? props.namePlaceholder
+                  : intl.formatMessage({
+                      id: 'store/availability-subscriber.name-placeholder',
+                    })
+              }
               value={name}
               onChange={handleNameChange}
             />
@@ -175,10 +178,13 @@ function AvailabilitySubscriber(props: Props) {
             <Input
               name="email"
               type="text"
-              placeholder={props.emailPlaceholder ? props.emailPlaceholder :
-                intl.formatMessage({
-                id: 'store/availability-subscriber.email-placeholder',
-              })}
+              placeholder={
+                props.emailPlaceholder
+                  ? props.emailPlaceholder
+                  : intl.formatMessage({
+                      id: 'store/availability-subscriber.email-placeholder',
+                    })
+              }
               value={email}
               onChange={handleEmailChange}
               onBlur={() => setDidBlurEmail(true)}
