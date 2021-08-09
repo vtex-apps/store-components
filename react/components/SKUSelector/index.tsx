@@ -197,6 +197,8 @@ const getNewSelectedVariations = (
 ) => {
   const emptyVariations = buildEmptySelectedVariation(variations)
 
+  // console.log(query, skuSelected, variations, initialSelection, emptyVariations)
+
   if (skuSelected == null) {
     return emptyVariations
   }
@@ -291,6 +293,8 @@ const SKUSelectorContainer: FC<Props> = ({
 
   const dispatch = useProductDispatch()
 
+  const getSkuId = () => query?.skuId
+
   const onSelectItem = useCallback(
     ({
       name: variationName,
@@ -299,13 +303,18 @@ const SKUSelectorContainer: FC<Props> = ({
       isMainAndImpossible,
       possibleItems,
     }) => {
-      dispatch({
-        type: 'SET_LOADING_ITEM',
-        args: { loadingItem: true },
-      })
+      const querySkuId = getSkuId()
+
+      if (querySkuId !== skuId) {
+        dispatch({
+          type: 'SET_LOADING_ITEM',
+          args: { loadingItem: true },
+        })
+      }
 
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const isRemoving = selectedVariations![variationName] === variationValue
+
       const newSelectedVariation = !isMainAndImpossible
         ? {
             ...selectedVariations,
