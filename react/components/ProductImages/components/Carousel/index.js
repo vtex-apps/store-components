@@ -235,6 +235,7 @@ class Carousel extends Component {
       showPaginationDots = true,
       showNavigationArrows = true,
       displayThumbnailsArrows = false,
+      slidesPerGroup,
     } = this.props
 
     const hasSlides = slides && slides.length > 0
@@ -305,6 +306,7 @@ class Carousel extends Component {
         thumbnailMaxHeight={thumbnailMaxHeight}
         thumbUrls={this.state.thumbUrl}
         displayThumbnailsArrows={displayThumbnailsArrows}
+        slidesPerGroup={slidesPerGroup}
         slides={slides}
         position={position}
       />

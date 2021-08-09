@@ -16,6 +16,7 @@ const CSS_HANDLES = ['content', 'productImagesContainer']
 const ProductImages = ({
   position,
   displayThumbnailsArrows,
+  slidesPerGroup,
   hiddenImages,
   placeholder,
   images: allImages,
@@ -126,6 +127,7 @@ const ProductImages = ({
         showNavigationArrows={showNavigationArrows}
         thumbnailsOrientation={thumbnailsOrientation}
         displayThumbnailsArrows={displayThumbnailsArrows}
+        slidesPerGroup={slidesPerGroup}
         // Deprecated
         zoomProps={zoomProps}
       />
@@ -175,6 +177,7 @@ ProductImages.propTypes = {
     zoomType: PropTypes.string,
   }),
   displayThumbnailsArrows: PropTypes.bool,
+  slidesPerGroup: PropTypes.number,
   aspectRatio: PropTypes.string,
   maxHeight: PropTypes.number,
   thumbnailAspectRatio: PropTypes.string,
@@ -201,6 +204,7 @@ ProductImages.defaultProps = {
   displayThumbnailsArrows: false,
   hiddenImages: DEFAULT_EXCLUDE_IMAGE_WITH,
   displayMode: DISPLAY_MODE.CAROUSEL,
+  slidesPerGroup: 4,
 }
 
 export default ProductImages
