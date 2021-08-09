@@ -126,6 +126,12 @@
   "admin/editor.info-card.callAction.link": "Name of enum value to make CTA a link",
   "admin/editor.info-card.imageActionUrl.title": "Name of imageActionUrl property",
   "admin/editor.info-card.imageActionUrl.description": "Name of imageActionUrl description",
+  "admin/editor.info-card.analytics.title": "Analytics event",
+  "admin/editor.info-card.analytics.none": "No",
+  "admin/editor.info-card.analytics.provide": "Yes",
+  "admin/editor.info-card.analytics.promotionId": "Promotion ID",
+  "admin/editor.info-card.analytics.promotionName": "Promotion Name",
+  "admin/editor.info-card.analytics.promotionPosition": "Creative position",
   "store/user-address.pickup": "Pickup at <address>",
   "store/user-address.order": "Order to <address>",
   "store/user-address.change": "Change address button label",
@@ -191,9 +197,5 @@
   "admin/editor.product-description.title-prop.title": "Title",
   "admin/editor.search-bar.title": "Search bar",
   "admin/editor.search-bar.placeholder.title": "Placeholder",
-  "store/back-to-top.label": "Back to top",
-  "admin/editor.analyticsProperties.title": "admin/editor.analyticsProperties.title",
-  "admin/editor.promotionId.title": "admin/editor.promotionId.title",
-  "admin/editor.promotionName.title": "admin/editor.promotionName.title",
-  "admin/editor.promotionPosition.title": "admin/editor.promotionPosition.title"
+  "store/back-to-top.label": "Back to top"
 }

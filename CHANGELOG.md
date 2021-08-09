@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `analyticsProperties` prop to `Info-Card` that shows analytics informations about this component when active.
 ## [3.149.0] - 2021-07-15
 ### Added
 - `disableUnavailableSelectOptions` prop to `SKUSelector` in order to disable unavailable items when `displayMode` is set to `select`.

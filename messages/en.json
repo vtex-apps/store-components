@@ -126,6 +126,12 @@
   "admin/editor.info-card.callAction.link": "Link",
   "admin/editor.info-card.imageActionUrl.title": "Image Action URL",
   "admin/editor.info-card.imageActionUrl.description": "Pass URL to make image a link and able to redirect user",
+  "admin/editor.info-card.analytics.title": "Analytics event",
+  "admin/editor.info-card.analytics.none": "No",
+  "admin/editor.info-card.analytics.provide": "Yes",
+  "admin/editor.info-card.analytics.promotionId": "Promotion ID",
+  "admin/editor.info-card.analytics.promotionName": "Promotion Name",
+  "admin/editor.info-card.analytics.promotionPosition": "Creative position",
   "store/user-address.pickup": "Pick up at {name}",
   "store/user-address.order": "Order to",
   "store/user-address.change": "Change",
@@ -195,9 +201,5 @@
   "admin/editor.toTop.title": "Back to top button",
   "admin/editor.toTop.description": "When clicked it takes the page to the top",
   "admin/editor.toTop.topPixel.title": "Number of pixels",
-  "admin/editor.toTop.topPixel.description": "When exceeding the defined pixel value, the button to return to the top will appear",
-  "admin/editor.analyticsProperties.title": "Analytics Properties",
-  "admin/editor.promotionId.title": "Promotion ID",
-  "admin/editor.promotionName.title": "Promotion Name",
-  "admin/editor.promotionPosition.title": "Promotion Position"
+  "admin/editor.toTop.topPixel.description": "When exceeding the defined pixel value, the button to return to the top will appear"
 }

@@ -65,28 +65,13 @@
           "description": "admin/editor.info-card.analytics.description",
           "enum": ["none", "provide"],
           "enumNames": [
-            "admin/editor.image.analytics.none",
-            "admin/editor.image.analytics.provide"
+            "admin/editor.info-card.analytics.none",
+            "admin/editor.info-card.analytics.provide"
           ],
           "widget": {
             "ui:widget": "radio"
           },
           "default": "none"
-        },
-        "promotionId": {
-          "title": "admin/editor.info-card.analytics.promotionId",
-          "type": "string",
-          "default": ""
-        },
-        "promotionName": {
-          "title": "admin/editor.info-card.analytics.promotionName",
-          "type": "string",
-          "default": ""
-        },
-        "promotionPosition": {
-          "title": "admin/editor.info-card.analytics.promotionPosition",
-          "type": "string",
-          "default": ""
         }
       },
       "dependencies": {

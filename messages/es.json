@@ -126,6 +126,12 @@
   "admin/editor.info-card.callAction.link": "Link",
   "admin/editor.info-card.imageActionUrl.title": "URL de acción de la imagen",
   "admin/editor.info-card.imageActionUrl.description": "Pase la URL para hacer de la imagen un enlace y poder redirigir al usuario",
+  "admin/editor.info-card.analytics.title": "Evento do Analytics",
+  "admin/editor.info-card.analytics.none": "No",
+  "admin/editor.info-card.analytics.provide": "Si",
+  "admin/editor.info-card.analytics.promotionId": "ID de promoción",
+  "admin/editor.info-card.analytics.promotionName": "Nombre de la promoción",
+  "admin/editor.info-card.analytics.promotionPosition": "Posición de la creatividad",
   "store/user-address.pickup": "Recoger en {name}",
   "store/user-address.order": "Orden a",
   "store/user-address.change": "Cambiar",
@@ -195,9 +201,5 @@
   "admin/editor.toTop.title": "Back to top button",
   "admin/editor.toTop.description": "Al hacer clic, lleva la página a la parte superior",
   "admin/editor.toTop.topPixel.title": "Número de píxeles",
-  "admin/editor.toTop.topPixel.description": "Al exceder el valor de píxel definido, aparecerá el botón para volver a la parte superior.",
-  "admin/editor.analyticsProperties.title": "Analytics Properties",
-  "admin/editor.promotionId.title": "Promotion ID",
-  "admin/editor.promotionName.title": "Promotion Name",
-  "admin/editor.promotionPosition.title": "Promotion Position"
+  "admin/editor.toTop.topPixel.description": "Al exceder el valor de píxel definido, aparecerá el botón para volver a la parte superior."
 }

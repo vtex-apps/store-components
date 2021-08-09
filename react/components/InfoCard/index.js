@@ -10,7 +10,10 @@ import {
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
 import { useOnView } from 'vtex.on-view'
+
 import RichText from 'vtex.rich-text/index'
+import { usePixel } from 'vtex.pixel-manager'
+
 
 import CallToAction from './CallToAction'
 import LinkWrapper from './LinkWrapper'
@@ -173,20 +176,21 @@ const InfoCard = ({
 
   const subheadClasses = `${handles.infoCardSubhead} t-body mt6 c-on-base ${alignToken} mw-100`
 
+  const infoCardRef = useRef(null)
+  
+  const { push } = usePixel()
+
   const promotionEventData =
     analyticsProperties === 'provide'
       ? {
           id: promotionId,
           name: promotionName,
-          creative: formattedSrc,
           position: promotionPosition,
         }
       : undefined
    
-  const imageRef = useRef(null)
-
   useOnView({
-    ref: imageRef,
+    ref: infoCardRef,
     onView: () => {
       if (analyticsProperties === 'none') return
 
@@ -209,6 +213,7 @@ const InfoCard = ({
         style={containerStyle}
         data-testid="container"
         id={htmlId}
+        ref={infoCardRef}
         {...containerAttributes}
       >
         <div className={textContainerClasses}>
@@ -285,10 +290,6 @@ MemoizedInfoCard.propTypes = {
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
   linkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
   callToActionLinkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
-  analyticsProperties: bool,
-  promotionId: string,
-  promotionName: string,
-  promotionPosition: string,
 }
 
 MemoizedInfoCard.defaultProps = {
@@ -305,10 +306,6 @@ MemoizedInfoCard.defaultProps = {
   textMode: textModeTypes.TEXT_MODE_HTML.value,
   linkTarget: '_self',
   callToActionLinkTarget: '_self',
-  analyticsProperties: false,
-  promotionId: '',
-  promotionName: '',
-  promotionPosition: '',
 }
 
 MemoizedInfoCard.schema = {
@@ -365,26 +362,6 @@ MemoizedInfoCard.schema = {
       type: 'string',
       isLayout: true,
     },
-    analyticsProperties: {
-      title: 'admin/editor.analyticsProperties.title',
-      type: 'bool',
-      default: false,
-    },
-    promotionId: {
-      title: 'admin/editor.promotionId.title',
-      type: 'string',
-      default: "",
-    },
-    promotionName: {
-      title: 'admin/editor.promotionName.title',
-      type: 'string',
-      default: "",
-    },
-    promotionPosition: {
-      title: 'admin/editor.promotionPosition.title',
-      type: 'string',
-      default: "",
-    }
   },
 }
 
