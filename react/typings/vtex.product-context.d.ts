@@ -22,6 +22,8 @@ interface Product {
   brandId: string
   itemMetadata: ItemMetadata
   items: ProductItem[]
+  linkText: string
+  productId: string
   skuSpecifications: SkuSpecification[]
   productName: string
   productReference: string

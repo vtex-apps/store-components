@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { isEmpty } from 'ramda'
 import { useProduct } from 'vtex.product-context'
 import ContentLoader from 'react-content-loader'
 import { useCssHandles } from 'vtex.css-handles'
 import type { CssHandlesTypes } from 'vtex.css-handles'
+import { Link } from 'vtex.render-runtime'
 
 const CSS_HANDLES = [
   'productNameContainer',
@@ -13,6 +14,7 @@ const CSS_HANDLES = [
   'productNameLoader',
   'productNameBrandLoader',
   'productNameSkuLoader',
+  'productNameLink',
 ] as const
 
 type DeprecatedProps = {
@@ -59,7 +61,51 @@ type Props = {
   tag?: 'div' | 'h1' | 'h2' | 'h3'
   /** Used to override default CSS handles */
   classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
+  /** Show product link with the product name */
+  displayMode?: 'plainText' | 'linkToProductPage'
+  /** Product link */
+  productLink?: string
+  /** Product id */
+  productId?: string
 } & DeprecatedProps
+
+type LinkWrapperProps = {
+  /** Show product link with the product name */
+  displayMode: 'plainText' | 'linkToProductPage'
+  /** Props for navigating to the product page */
+  linkProps: LinkProps
+  /** Classes to be applied to root element */
+  className: string
+  /** Component children that will be displayed */
+  children: React.ReactNode
+}
+
+type LinkProps = {
+  /** Page name */
+  page: string
+  /** Navigation params */
+  params: Record<string, unknown>
+}
+
+/**
+ * Shows the link associated with the product name or plain text depending on the displayMode.
+ */
+const LinkWrapper = ({
+  displayMode,
+  linkProps,
+  className,
+  children,
+}: LinkWrapperProps) => {
+  if (displayMode === 'plainText') {
+    return <Fragment>{children}</Fragment>
+  }
+
+  return (
+    <Link className={className} {...linkProps}>
+      {children}
+    </Link>
+  )
+}
 
 function ProductName({
   productReferenceClass,
@@ -76,6 +122,9 @@ function ProductName({
   skuName,
   brandName,
   productReference,
+  displayMode = 'plainText',
+  productLink,
+  productId,
 }: Props) {
   const { handles } = useCssHandles(CSS_HANDLES, { classes })
 
@@ -102,27 +151,41 @@ function ProductName({
     )
   }
 
+  const linkProps = {
+    page: 'store.product',
+    params: {
+      slug: productLink,
+      id: productId,
+    },
+  }
+
   return (
     <Wrapper
       className={`${handles.productNameContainer} mv0 ${className ?? ''}`}
     >
-      <span className={`${handles.productBrand} ${brandNameClass ?? ''}`}>
-        {name} {showBrandName && brandName && `- ${brandName}`}
-      </span>
-      {showSku && skuName && (
-        <span className={`${handles.productBrand} ${skuNameClass ?? ''}`}>
-          {skuName}
+      <LinkWrapper
+        displayMode={displayMode}
+        className={`${handles.productNameLink} pointer c-link hover-c-link active-c-link no-underline underline-hover`}
+        linkProps={linkProps}
+      >
+        <span className={`${handles.productBrand} ${brandNameClass ?? ''}`}>
+          {name} {showBrandName && brandName && `- ${brandName}`}
         </span>
-      )}
-      {showProductReference && productReference && (
-        <span
-          className={`${handles.productReference} ${
-            productReferenceClass ?? ''
-          }`}
-        >
-          {`REF: ${productReference}`}
-        </span>
-      )}
+        {showSku && skuName && (
+          <span className={`${handles.productBrand} ${skuNameClass ?? ''}`}>
+            {skuName}
+          </span>
+        )}
+        {showProductReference && productReference && (
+          <span
+            className={`${handles.productReference} ${
+              productReferenceClass ?? ''
+            }`}
+          >
+            {`REF: ${productReference}`}
+          </span>
+        )}
+      </LinkWrapper>
     </Wrapper>
   )
 }
@@ -148,6 +211,9 @@ function ProductNameWrapper(props: Props) {
       productReference={props.productReference ?? product?.productReference}
       brandName={props.brandName ?? product?.brand}
       className={props.className ?? 't-heading-4'}
+      displayMode={props.displayMode}
+      productLink={product?.linkText}
+      productId={product?.productId}
     />
   )
 }
@@ -174,6 +240,16 @@ ProductNameWrapper.schema = {
       title: 'admin/editor.productName.showProductReference.title',
       default: false,
       isLayout: true,
+    },
+    displayMode: {
+      type: 'string',
+      title: 'admin/editor.productName.displayMode.title',
+      enum: ['plainText', 'linkToProductPage'],
+      enumNames: [
+        'admin/editor.productName.displayMode.plainText',
+        'admin/editor.productName.displayMode.linkToProductPage',
+      ],
+      default: 'plainText',
     },
   },
 }

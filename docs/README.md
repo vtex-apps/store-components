@@ -1,6 +1,6 @@
 # VTEX Store Components
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Description
@@ -71,16 +71,9 @@ To use this CSS API, you must add the `styles` builder and create an app styling
 
 Below we have a README for each component of this project that explains how to use them.
 
-- [Animation](Animation.md)
 - [Availability Subscriber](AvailabilitySubscriber.md)
 - [Back To Top Button](BackToTopButton.md)
 - [Buy Button](BuyButton.md)
-- [Categories Highlights](CategoriesHighlights.md)
-- [Collection Badges](CollectionBadges.md)
-- [Container](Container.md)
-- [Discount Badge](DiscountBadge.md)
-- [Gradient Collapse](GradientCollapse.md)
-- [Greeting](Greeting.md)
 - [Image](Image.md)
 - [InfoCard](InfoCard.md)
 - [Logo](Logo.md)
@@ -96,8 +89,11 @@ Below we have a README for each component of this project that explains how to u
 - [Search Bar](SearchBar.md)
 - [Share](Share.md)
 - [Shipping Simulator](ShippingSimulator.md)
-- [Slider](Slider.md)
 - [Notification](Notification.md)
+
+
+> :warning: **The following blocks have been deprecated:** `Animation`, `Categories Highlights`, `Collection Badges`, `Container`, `Discount Badge`, `Gradient Collapse`, `Greeting`, `Slider`. 
+> Despite this, support for them is still granted.
 
 ## Creating a new component
 
@@ -171,6 +167,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/ovio224"><img src="https://avatars.githubusercontent.com/u/68231117?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ovi</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=oviolion" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/LucasCastroJussi"><img src="https://avatars.githubusercontent.com/u/80407814?v=4?s=100" width="100px;" alt=""/><br /><sub><b>LucasCastroJussi</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=LucasCastroJussi" title="Code">💻</a></td>
+    <td align="center"><a href="https://razvanudrea.com"><img src="https://avatars.githubusercontent.com/u/71461884?v=4?s=100" width="100px;" alt=""/><br /><sub><b>razvanudream</b></sub></a><br /><a href="https://github.com/vtex-apps/store-components/commits?author=razvanudream" title="Code">💻</a></td>
   </tr>
 </table>
 

@@ -173,6 +173,7 @@ interface Props {
   variations: Variations
   skuSelected: ProductItem | null
   hideImpossibleCombinations?: boolean
+  disableUnavailableSelectOptions?: boolean
   showValueForVariation?: ShowValueForVariation
   imageHeight?: number
   imageWidth?: number
@@ -240,6 +241,7 @@ const SKUSelectorContainer: FC<Props> = ({
   showVariationsLabels = 'variation',
   displayMode = 'default',
   hideImpossibleCombinations = true,
+  disableUnavailableSelectOptions = false,
   showVariationsErrorMessage = true,
   showValueForVariation = 'none',
   initialSelection = 'complete',
@@ -297,6 +299,11 @@ const SKUSelectorContainer: FC<Props> = ({
       isMainAndImpossible,
       possibleItems,
     }) => {
+      dispatch({
+        type: 'SET_LOADING_ITEM',
+        args: { loadingItem: true },
+      })
+
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const isRemoving = selectedVariations![variationName] === variationValue
       const newSelectedVariation = !isMainAndImpossible
@@ -395,6 +402,7 @@ const SKUSelectorContainer: FC<Props> = ({
       showVariationsLabels={showVariationsLabels}
       showValueForVariation={showValueForVariation}
       hideImpossibleCombinations={hideImpossibleCombinations}
+      disableUnavailableSelectOptions={disableUnavailableSelectOptions}
       showVariationsErrorMessage={showVariationsErrorMessage}
       sliderDisplayThreshold={sliderDisplayThreshold}
       sliderArrowSize={sliderArrowSize}
