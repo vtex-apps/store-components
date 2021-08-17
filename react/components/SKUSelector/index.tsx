@@ -375,7 +375,7 @@ const SKUSelectorContainer: FC<Props> = ({
       // If its just removing, no need to redirect
       if (!isRemoving && (allSelected || isColor(variationName))) {
         redirectToSku(skuIdToRedirect)
-        if (skuSelected?.itemId !== skuId) {
+        if (skuSelected && skuSelected.itemId !== skuId) {
           dispatch({
             type: 'SET_LOADING_ITEM',
             args: { loadingItem: true },
