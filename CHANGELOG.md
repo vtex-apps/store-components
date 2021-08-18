@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.151.0] - 2021-08-18
 ### Add
 - Add the link to the documentation CReating a product availability form in and add a configuration section for Availability Subscriber.
 
