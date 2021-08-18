@@ -23,7 +23,7 @@ You should follow the usage instruction in the main [README](/README.md#usage).
 
 Then, add `availability-subscriber` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
 
-To collect the emails correctly, this feature needs a special configuration on **Master Data**. Otherwise, the subscriber form won't be properly saved with user emails. For more info, access the recipe on [Creating a product availability form](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-creating-a-product-availability-form).                         |
+To collect the emails correctly, this feature needs a special configuration on **Master Data**. Otherwise, the subscriber form won't be properly saved with user emails. For more info, access the recipe on [Creating a product availability form](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-creating-a-product-availability-form).                  
 
 
 ### Blocks API
