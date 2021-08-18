@@ -4,8 +4,7 @@
 
 `AvailabilitySubscriber` is a VTEX Component that shows the availability subscriber form that is shown when the product isn't available. This Component can be imported and used by any VTEX App.
 
-**Attention:**
-This component only **creates a list** of the users that subscribe to this product. Currently it **doesn't send an automatic email** to these users when the product becomes available. It only collects the emails of the users that show interest on the products.
+>⚠️ This component only **creates a list** of the users that subscribe to this product. Currently it **doesn't send an automatic email** to these users when the product becomes available. It only collects the emails of the users that show interest on the products.
 
 
 :loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
@@ -24,18 +23,7 @@ You should follow the usage instruction in the main [README](/README.md#usage).
 
 Then, add `availability-subscriber` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
 
-In order to collect the emails correctly, this feature needs a special configurantion on **Master Data** as it is detailed below:
-
-The form is submitted to Master Data on the Entity: `AS`
-
-| Prop name | Type | Description|
-| ------| ------ | ------ |
-| `skuId`            | String | The id of the product sku to which will be watched for changes in the product quantity |
-| `name`             | String | The name of the user                                                                   |
-| `email`            | String | The email of the user                                                                 |
-| `notificationSend` | String | If the notification has been sent already, use "true" or "false".                                              |
-| `createdAt`        | String - ISO format | When the document was created  Ex.: ISO (2011-10-05T14:48:00.000Z)                                                     |
-| `sendAt`           | String - ISO format | When the user was notificated  Ex.: ISO (2011-10-05T14:48:00.000Z)                                                        |
+To collect the emails correctly, this feature needs a special configuration on **Master Data**. Otherwise, the subscriber form won't be properly saved with user emails. For more info, access the recipe on [Creating a product availability form](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-creating-a-product-availability-form).                  
 
 
 ### Blocks API
@@ -52,7 +40,31 @@ For now this block does not have any required or optional blocks.
 
 ### Configuration
 
-:construction: :construction: :construction:
+>⚠️ Before configuring the Availability Subscriber block in your theme, make sure you've already configured a **JSON schema in Master Data**, otherwise the subscriber form won't be properly saved with user emails. To more info, access the recipe on [Creating a product availability form](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-creating-a-product-availability-form).
+
+1. Import the  `vtex.store-component` app to your theme's dependencies in the  `manifest.json`;
+
+```json
+  "dependencies": {
+    "vtex.store-components": "3.x"
+  }
+```
+
+2. Add the `availability-subscriber` block to your theme’s product template (`store.product`). For example:
+
+```
+"store.product": {
+    "children": [
+      "availability-subscriber”
+    ]
+}
+
+```
+
+Once the block is added, the component will be rendered without the need for further configurations, since the `availability-subscriber` block does not have any props. 
+
+Note the following: the `availability-subscriber` block simply renders a form component highlighting user interest in a particular product. For the collected emails to actually be stored in the store's Master Data, you’ll need to implement some advanced settings in the  Master Data module.
+
 
 ### Styles API
 
