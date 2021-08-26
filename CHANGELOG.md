@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.151.2] - 2021-08-26
+
 ## [3.151.1] - 2021-08-26 [YANKED]
 ### Fixed
 - `onClickItem` from SKUSelector to dispatch `SET_LOADING_ITEM` if skuid is different. 
