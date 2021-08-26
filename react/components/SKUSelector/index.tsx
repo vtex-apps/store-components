@@ -299,13 +299,9 @@ const SKUSelectorContainer: FC<Props> = ({
       isMainAndImpossible,
       possibleItems,
     }) => {
-      dispatch({
-        type: 'SET_LOADING_ITEM',
-        args: { loadingItem: true },
-      })
-
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const isRemoving = selectedVariations![variationName] === variationValue
+
       const newSelectedVariation = !isMainAndImpossible
         ? {
             ...selectedVariations,
@@ -379,11 +375,17 @@ const SKUSelectorContainer: FC<Props> = ({
       // If its just removing, no need to redirect
       if (!isRemoving && (allSelected || isColor(variationName))) {
         redirectToSku(skuIdToRedirect)
+        if (skuSelected && skuSelected.itemId !== skuId) {
+          dispatch({
+            type: 'SET_LOADING_ITEM',
+            args: { loadingItem: true },
+          })
+        }
       }
     },
     // Adding selectedVariations, variationsCount and onSKUSelected causes an infinite loop
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [selectedVariations, variations, onSKUSelected]
+    [selectedVariations, variations, onSKUSelected, skuSelected?.itemId]
   )
 
   return (
