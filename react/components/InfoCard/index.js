@@ -177,28 +177,32 @@ const InfoCard = ({
   const subheadClasses = `${handles.infoCardSubhead} t-body mt6 c-on-base ${alignToken} mw-100`
 
   const infoCardRef = useRef(null)
-  
+
   const { push } = usePixel()
 
-  const promotionEventData =
-    analyticsProperties === 'provide'
-      ? {
-          id: promotionId,
-          name: promotionName,
-          position: promotionPosition,
-        }
-      : undefined
-   
   useOnView({
     ref: infoCardRef,
-    onView: () => {
-      if (analyticsProperties === 'none') return
 
-      push({
-        event: 'promoView',
-        promotions: [promotionEventData],
-      })
+    onView: () => {
+      const promotionEventData =
+      analyticsProperties === 'provide'
+        ? {
+            id: promotionId,
+            name: promotionName,
+            position: promotionPosition,
+          }
+        : undefined
+
+      if (analyticsProperties === 'none') {
+        return
+      } else {
+        push({
+          event: 'promoView',
+          promotions: [promotionEventData],
+        })
+      }
     },
+
     once: true,
   })
 
