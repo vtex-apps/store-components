@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `isImage` props for SKU color variation.
+
 ## [3.152.0] - 2021-09-20
 ### Added
 - Added social media identifier class to SocialButton
