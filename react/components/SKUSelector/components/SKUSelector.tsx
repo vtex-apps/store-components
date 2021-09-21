@@ -67,6 +67,7 @@ interface Props {
   sliderDisplayThreshold: number
   sliderArrowSize: number
   sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
+  isImage: boolean
 }
 
 function isSkuAvailable(item?: SelectorProductItem) {
@@ -297,6 +298,7 @@ function SKUSelector({
   sliderDisplayThreshold,
   sliderArrowSize,
   sliderItemsPerPage,
+  isImage
 }: Props) {
   const { handles } = useSKUSelectorCssHandles()
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
@@ -382,6 +384,7 @@ function SKUSelector({
             sliderDisplayThreshold={sliderDisplayThreshold}
             sliderArrowSize={sliderArrowSize}
             sliderItemsPerPage={sliderItemsPerPage}
+            isImage={isImage}
           />
         )
       })}

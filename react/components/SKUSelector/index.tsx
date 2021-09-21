@@ -186,6 +186,7 @@ interface Props {
   sliderDisplayThreshold?: number
   sliderArrowSize?: number
   sliderItemsPerPage?: ResponsiveValuesTypes.ResponsiveValue<number>
+  isImage?: boolean
 }
 
 const getNewSelectedVariations = (
@@ -252,6 +253,7 @@ const SKUSelectorContainer: FC<Props> = ({
     tablet: 2,
     phone: 1,
   },
+  isImage = true
 }) => {
   const variationsCount = keyCount(variations)
   const { query } = useRuntime()
@@ -409,6 +411,7 @@ const SKUSelectorContainer: FC<Props> = ({
       sliderDisplayThreshold={sliderDisplayThreshold}
       sliderArrowSize={sliderArrowSize}
       sliderItemsPerPage={sliderItemsPerPage}
+      isImage={isImage}
     />
   )
 }

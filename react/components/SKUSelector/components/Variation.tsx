@@ -1,4 +1,4 @@
-import React, { FC, memo, useState, Fragment, useCallback } from 'react'
+import React, { FC, memo, useState, Fragment, useCallback, useEffect } from 'react'
 import { Button } from 'vtex.styleguide'
 import { IOMessage } from 'vtex.native-types'
 import { SliderLayout } from 'vtex.slider-layout'
@@ -33,6 +33,7 @@ interface Props {
   sliderDisplayThreshold: number
   sliderArrowSize: number
   sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
+  isImage: boolean
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
@@ -60,6 +61,7 @@ const Variation: FC<Props> = ({
   sliderArrowSize,
   sliderDisplayThreshold,
   sliderItemsPerPage,
+  isImage
 }) => {
   const { originalName, name, options } = variation
 
@@ -76,6 +78,16 @@ const Variation: FC<Props> = ({
       clicked: false,
     },
   } = useProduct()
+  
+  const [customDisplayImage, setCustomDisplayImage] = useState(isImage)
+
+  // SKU Color variation accessibility
+  useEffect(() => {
+    setCustomDisplayImage(false)
+    if (isColor(originalName) === true) {  
+      setCustomDisplayImage(isImage)
+    }
+  }, [isImage])
 
   const displayImage = isColor(originalName)
 
@@ -127,7 +139,7 @@ const Variation: FC<Props> = ({
         isAvailable={option.available}
         maxPrice={maxSkuPrice}
         onClick={option.impossible ? noop : option.onSelectItem}
-        isImage={displayImage}
+        isImage={customDisplayImage}
         variationValue={option.label}
         variationValueOriginalName={option.originalName}
         imageHeight={imageHeight}

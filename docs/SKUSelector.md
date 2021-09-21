@@ -55,6 +55,7 @@ The SKU Selector is a product details page block responsible for displaying ever
 | `imageHeight`  | `number` | `object` | Height (in `px`) of the product thumbnail image. You can declare an object as its value in case you want to define a height for each device (`desktop` and `mobile`). | `undefined` |
 | `imageWidth` | `number` | `object` | Width (in `px`) of the product thumbnail image. You can declare an object as its value in case you want to define a width for each device (`desktop` and `mobile`).  | `undefined`  |
 | `initialSelection` | `enum`  | Controls the user initial selection for available variations when product page is fully loaded. Possible values are: `complete` (selects the first available SKU's variation values), `image` (selects the first available image variation) or `empty` (no variations will be selected when the page is loaded).  | `complete` |
+| `isImage` | `boolean`  | Controls the color variation images. Possible values are: `true` (render color variations with Images), `false` (render variations labels)  | `true` |.
 | `classes` | `CustomCSSClasses` | Used to override default CSS handles. To better understand how this prop works, we recommend reading about it [here](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only useful if you're using this block as a React component. | `undefined` |
 
 - **`visibleVariations` array**
