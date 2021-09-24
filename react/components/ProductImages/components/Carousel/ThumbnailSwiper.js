@@ -67,6 +67,7 @@ const ThumbnailSwiper = props => {
     thumbnailAspectRatio,
     thumbnailMaxHeight,
     displayThumbnailsArrows,
+    slidesPerGroup,
     ...swiperProps
   } = props
 
@@ -152,7 +153,7 @@ const ThumbnailSwiper = props => {
         /* Slides are grouped when thumbnails arrows are enabled
          * so that clicking on next/prev will scroll more than
          * one thumbnail */
-        slidesPerGroup={displayThumbnailsArrows ? 4 : 1}
+        slidesPerGroup={displayThumbnailsArrows ? slidesPerGroup : 1}
         freeMode={false}
         mousewheel={false}
         zoom={false}
