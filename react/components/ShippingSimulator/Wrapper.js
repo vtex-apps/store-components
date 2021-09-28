@@ -160,6 +160,7 @@ const ShippingSimulatorWithOrderForm = ({
 
   return (
     <BaseShippingSimulatorWrapper
+      key={seller}
       skuId={skuId}
       seller={seller}
       country={country}
@@ -217,6 +218,7 @@ const ShippingSimulatorWrapper = props => {
   ) {
     return (
       <BaseShippingSimulatorWrapper
+        key={sellerId}
         country={country}
         skuId={skuId}
         seller={sellerId}
