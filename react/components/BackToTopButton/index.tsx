@@ -70,4 +70,18 @@ const BackToTopButton: StorefrontFC<Props> = ({
   )
 }
 
+BackToTopButton.schema = {
+  title: 'admin/editor.toTop.title',
+  description: 'admin/editor.toTop.description',
+  type: 'object',
+  properties: {
+    displayThreshold: {
+      title: 'admin/editor.toTop.topPixel.title',
+      description: 'admin/editor.toTop.topPixel.description',
+      type: 'number',
+      default: 600
+    },
+  }
+}
+
 export default BackToTopButton
