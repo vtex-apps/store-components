@@ -61,6 +61,7 @@ interface Props {
   imageHeight?: number
   imageWidth?: number
   showVariationsLabels: ShowVariationsLabels
+  variationsWithSingleValueAreVisibles?: boolean
   variationsSpacing?: number
   showVariationsErrorMessage: boolean
   displayMode: DisplayMode
@@ -289,6 +290,7 @@ function SKUSelector({
   displayMode,
   selectedVariations,
   showVariationsLabels,
+  variationsWithSingleValueAreVisibles,
   showValueForVariation,
   hideImpossibleCombinations,
   disableUnavailableSelectOptions,
@@ -360,6 +362,8 @@ function SKUSelector({
     >
       {displayVariations.map((variationOption, index) => {
         const selectedItem = selectedVariations[variationOption.name]
+
+        if ( !variationsWithSingleValueAreVisibles && variationOption.options.length === 1 ) return
 
         return (
           <Variation

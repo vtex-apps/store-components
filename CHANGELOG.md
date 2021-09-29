@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `variationsWithSingleValueAreVisibles` prop to `SKUSelector` in order to control whether the SKU variations with only one possible value are displayed or not.
 
 ## [3.159.5] - 2022-06-08
 

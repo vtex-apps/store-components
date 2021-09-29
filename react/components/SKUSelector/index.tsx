@@ -179,6 +179,7 @@ interface Props {
   imageWidth?: number
   thumbnailImage?: string
   showVariationsLabels?: ShowVariationsLabels
+  variationsWithSingleValueAreVisibles?: boolean
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
   initialSelection?: InitialSelectionType
@@ -239,6 +240,7 @@ const SKUSelectorContainer: FC<Props> = ({
   thumbnailImage,
   variationsSpacing,
   showVariationsLabels = 'variation',
+  variationsWithSingleValueAreVisibles = true,
   displayMode = 'default',
   hideImpossibleCombinations = true,
   disableUnavailableSelectOptions = false,
@@ -415,6 +417,7 @@ const SKUSelectorContainer: FC<Props> = ({
       variationsSpacing={variationsSpacing}
       selectedVariations={selectedVariations}
       showVariationsLabels={showVariationsLabels}
+      variationsWithSingleValueAreVisibles={variationsWithSingleValueAreVisibles}
       showValueForVariation={showValueForVariation}
       hideImpossibleCombinations={hideImpossibleCombinations}
       disableUnavailableSelectOptions={disableUnavailableSelectOptions}
