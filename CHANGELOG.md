@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Components broken links on the section Component Specs in README.md
+
 ## [3.154.0] - 2021-10-04
 ### Added
 - Added `first-image` option for the `displayMode` prop of `product-images`.
