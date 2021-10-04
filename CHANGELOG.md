@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.154.1] - 2021-10-04
+
 ### Fixed
 - Components broken links on the section Component Specs in README.md
 
