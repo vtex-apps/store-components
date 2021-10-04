@@ -18,10 +18,22 @@ export const MAX_HEIGHT = 4000
  */
 const baseUrlRegex = new RegExp(/.+ids\/(\d+)/)
 
-export function cleanImageUrl(imageUrl) {
-  const result = baseUrlRegex.exec(imageUrl)
+function getParamFromUrl(url, name) {
+  return (url.split(`${name}=`)[1] || '').split('&')[0]
+}
 
-  if (result.length > 0) return result[0]
+export function cleanImageUrl(imageUrl) {
+  const cleanUrlResult = baseUrlRegex.exec(imageUrl)
+  const vParam = getParamFromUrl(imageUrl, 'v')
+
+  if (cleanUrlResult && cleanUrlResult.length > 0) {
+    return {
+      cleanUrl: cleanUrlResult[0],
+      vParam,
+    }
+  }
+
+  return { cleanUrl: imageUrl }
 }
 
 function replaceLegacyFileManagerUrl(imageUrl, width, height) {
@@ -30,7 +42,11 @@ function replaceLegacyFileManagerUrl(imageUrl, width, height) {
 
   if (!isLegacyUrl) return imageUrl
 
-  return `${cleanImageUrl(imageUrl)}-${width}-${height}`
+  const { vParam, cleanUrl } = cleanImageUrl(imageUrl)
+
+  return vParam
+    ? `${cleanUrl}-${width}-${height}?v=${vParam}`
+    : `${cleanUrl}-${width}-${height}`
 }
 
 export function changeImageUrlSize(
