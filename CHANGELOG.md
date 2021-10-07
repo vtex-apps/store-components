@@ -10,6 +10,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Added key on `BaseShippingSimulatorWrapper` to recreate component and load current shipping address when change seller.
 
+## [3.154.1] - 2021-10-04
+
+### Fixed
+- Components broken links on the section Component Specs in README.md
+
+## [3.154.0] - 2021-10-04
+### Added
+- Added `first-image` option for the `displayMode` prop of `product-images`.
+- Added `thumbnailVisibility` prop to `product-images`. When `dysplayMode` is set to `carousel` (default value), it adds the option to hide the thumbnails.
+
 ## [3.153.0] - 2021-09-24
 
 ### Added
