@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed:
+- Documentation structure in the **Configuration** section - to improve on how the step-by-step is presented.
+### Added:
+- Customization section, listing the component's CSS handles
+- Image with the component rendered on the store.
 
 ## [3.154.1] - 2021-10-04
 
