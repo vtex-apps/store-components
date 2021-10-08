@@ -19,7 +19,7 @@ export const MAX_HEIGHT = 4000
 const baseUrlRegex = new RegExp(/.+ids\/(\d+)/)
 
 function getParamFromUrl(url, name) {
-  return (url.split(`${name}=`)[1] || '').split('&')[0]
+  return (url?.split(`${name}=`)[1] || '')?.split('&')[0]
 }
 
 export function cleanImageUrl(imageUrl) {
