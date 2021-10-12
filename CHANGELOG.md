@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Load current shipping address when change seller.
+## [3.155.1] - 2021-10-08
+
+### Added
+- Version param to images to permit caching it on CDN.
+
+## [3.155.0] - 2021-10-07
+### Changed:
+- Documentation structure in the **Configuration** section - to improve on how the step-by-step is presented.
+### Added:
+- Customization section, listing the component's CSS handles
+- Image with the component rendered on the store.
 
 ## [3.154.1] - 2021-10-04
 
