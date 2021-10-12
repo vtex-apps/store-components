@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Changed
-- Added key on `BaseShippingSimulatorWrapper` to recreate component and load current shipping address when change seller.
+- Load current shipping address when change seller.
 
 ## [3.154.1] - 2021-10-04
 
