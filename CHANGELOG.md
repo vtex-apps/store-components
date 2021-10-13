@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Load current shipping address when change seller.
+
 ## [3.155.1] - 2021-10-08
 
 ### Added
