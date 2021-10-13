@@ -114,6 +114,12 @@ const BaseShippingSimulatorWrapper = ({
 
   useEffect(() => {
     if (isMountedRef.current) {
+      isMountedRef.current = false
+    }
+  }, [seller])
+
+  useEffect(() => {
+    if (isMountedRef.current) {
       return
     }
 
