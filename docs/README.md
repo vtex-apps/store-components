@@ -69,27 +69,27 @@ To use this CSS API, you must add the `styles` builder and create an app styling
 
 ## Components Specs
 
-Below we have a README for each component of this project that explains how to use them.
+Below we have a documentation for each component of this project that explains how to use them.
 
-- [Availability Subscriber](AvailabilitySubscriber.md)
-- [Back To Top Button](BackToTopButton.md)
-- [Buy Button](BuyButton.md)
-- [Image](Image.md)
-- [InfoCard](InfoCard.md)
-- [Logo](Logo.md)
-- [Newsletter](Newsletter.md)
-- [Product Brand](ProductBrand.md)
-- [Product Description](ProductDescription.md)
-- [Product Images](ProductImages.md)
-- [Product Name](ProductName.md)
-- [Product SKU Attributes](ProductSKUAttributes.md)
-- [Product Price](ProductPrice.md)
-- [Product Specifications](ProductSpecifications.md)
-- [SKU Selector](SKUSelector.md)
-- [Search Bar](SearchBar.md)
-- [Share](Share.md)
-- [Shipping Simulator](ShippingSimulator.md)
-- [Notification](Notification.md)
+- [Availability Subscriber](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-availabilitysubscriber)
+- [Back To Top Button](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-backtotopbutton)
+- [Buy Button](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-buybutton)
+- [Image](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-image)
+- [InfoCard](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-infocard)
+- [Logo](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-logo)
+- [Newsletter](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-newsletter)
+- [Product Brand](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-productbrand)
+- [Product Description](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-productdescription)
+- [Product Images](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-productimages)
+- [Product Name](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-productname)
+- [Product SKU Attributes](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-productskuattributes)
+- [Product Price](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-productprice)
+- [Product Specifications](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-productspecifications)
+- [SKU Selector](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-skuselector)
+- [Search Bar](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-searchbar)
+- [Share](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-share)
+- [Shipping Simulator](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-shippingsimulator)
+- [Notification](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-notification)
 
 
 > :warning: **The following blocks have been deprecated:** `Animation`, `Categories Highlights`, `Collection Badges`, `Container`, `Discount Badge`, `Gradient Collapse`, `Greeting`, `Slider`. 

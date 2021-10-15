@@ -58,7 +58,6 @@ const MainImageSwiper = () => {
           {renderSlide(slide, i)}
         </SwiperSlide>
       ))}
-
       <div
         key="pagination"
         className={classNames(styles['swiper-pagination'], {

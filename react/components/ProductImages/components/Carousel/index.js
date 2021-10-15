@@ -14,6 +14,7 @@ import ImagePlaceholder from './ImagePlaceholder'
 import {
   THUMBS_ORIENTATION,
   THUMBS_POSITION_HORIZONTAL,
+  THUMBS_VISIBILITY,
 } from '../../utils/enums'
 import styles from './swiper.scoped.css'
 
@@ -243,6 +244,7 @@ class Carousel extends Component {
       zoomProps: { zoomType },
       showPaginationDots = true,
       showNavigationArrows = true,
+      thumbnailVisibility,
       displayThumbnailsArrows = false,
     } = this.props
 
@@ -265,11 +267,13 @@ class Carousel extends Component {
         'ml-20-ns w-80-ns pl5-ns':
           isThumbsVertical &&
           position === THUMBS_POSITION_HORIZONTAL.LEFT &&
-          (hasThumbs || !hasSlides),
+          ((hasThumbs && thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE) ||
+            !hasSlides),
         'mr-20-ns w-80-ns pr5-ns':
           isThumbsVertical &&
           position === THUMBS_POSITION_HORIZONTAL.RIGHT &&
-          (hasThumbs || !hasSlides),
+          ((hasThumbs && thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE) ||
+            !hasSlides),
       }
     )
 
@@ -298,11 +302,13 @@ class Carousel extends Component {
         'flex-ns justify-end-ns':
           isThumbsVertical &&
           position === THUMBS_POSITION_HORIZONTAL.LEFT &&
-          hasThumbs,
+          hasThumbs &&
+          thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE,
         'flex-ns justify-start-ns':
           isThumbsVertical &&
           position === THUMBS_POSITION_HORIZONTAL.RIGHT &&
-          hasThumbs,
+          hasThumbs &&
+          thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE,
       }
     )
 
@@ -328,6 +334,10 @@ class Carousel extends Component {
     return (
       <CarouselContext.Provider value={contextValues}>
         <div className={containerClasses} aria-hidden="true">
+          {isThumbsVertical &&
+            thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE && (
+              <ThumbnailSwiper />
+            )}
           {isThumbsVertical && <ThumbnailSwiper />}
           <div className={imageClasses}>
             {!this.state.thumbSwiper?.destroyed &&
@@ -336,7 +346,10 @@ class Carousel extends Component {
               ) : (
                 <MainImageSwiper />
               ))}
-            {!isThumbsVertical && <ThumbnailSwiper />}
+            {!isThumbsVertical &&
+              thumbnailVisibility === THUMBS_VISIBILITY.VISIBLE && (
+                <ThumbnailSwiper />
+              )}
           </div>
         </div>
       </CarouselContext.Provider>
@@ -356,6 +369,10 @@ Carousel.propTypes = {
   ),
   ModalZoomElement: PropTypes.any,
   displayThumbnailsArrows: PropTypes.bool,
+  thumbnailVisibility: PropTypes.oneOf([
+    THUMBS_VISIBILITY.VISIBLE,
+    THUMBS_VISIBILITY.HIDDEN,
+  ]),
 }
 
 export default withCssHandles(CSS_HANDLES)(Carousel)
