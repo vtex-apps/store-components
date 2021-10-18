@@ -1,38 +1,44 @@
 # Share
-
-## Description
-
-`Share` is a VTEX component that allows to share a product url via social medias.
-This component can be imported and used by any VTEX app.
-
 :loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
 
-## Table of Contents
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-    - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespaces](#css-namespaces)
+`Share` is a VTEX component that allows to share a product URL via social medias.
+This component can be imported and used by any VTEX app.
 
-## Usage
+![share-component](https://user-images.githubusercontent.com/67270558/134995068-62543fb4-f2fe-4f06-b220-658f4b4c7eb1.png)
 
-You should follow the usage instruction in the main [README](/README.md#usage).
+In the following sections, learn how to configurate the component in your store.
 
-Then, add `share` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
+## Configuration
 
-### Blocks API
+1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json`:
 
-When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `Share` and describes if they are required or optional.
+```json
+  "dependencies": {
+    "vtex.store-components": "3.x"
+  }
+``` 
+2. Add the `share` block to your theme’s product template (`store.product`). For example:
+
+
+```json
+  "store.product": {
+    "children": [
+      "share"
+    ]
+  }
+```
+3. Once you have added the block to your theme’s product template, declare the share component:
 
 ```json
   "share": {
     "component": "Share"
   }
 ```
+> ⚠️ *When implementing this component as a block, various inner blocks may be available. The interface above lists the available blocks within `Share` and describes if they are required or optional.*
 
 For now this block does not have any required or optional blocks.
 
-#### Configuration
+#### Blocks properties
 
 Through the Storefront, you can change the `Share`'s behavior and interface. However, you also can make in your theme app, as Store theme does.
 
@@ -60,16 +66,16 @@ Social:
 | `WhatsApp` | `Boolean` | If whatsApp social media will be shown |
 
 ### Styles API
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+You should follow the Styles API instruction in [Store Components Styles API](https://github.com/vtex-apps/store-components#styles-api).
 
-#### CSS Namespaces
-Below, we describe the namespace that are defined in the `Share`.
+### Customization
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| Class name | Description | Component Source |
-| ---------- | ----------- | ---------------- |
-| `shareContainer` | The main container of `Share` | [index](/react/components/Share/index.js) |
-| `shareLoader` | The share loader | [index](/react/components/Share/index.js) |
-| `shareLabel` | The share label | [index](/react/components/Share/index.js) | 
-| `shareButtons` | The main container of social media buttons | [index](/react/components/Share/index.js) |
-| `shareSocialButton` | The share social media button | [index](/react/components/Share/components/SocialButton.js) | 
-| `shareSocialIcon` | The share social media icon | [index](/react/components/Share/components/SocialButton.js) |
+| CSS Handles 
+| ---------- |
+| `shareContainer` | 
+| `shareLoader` | 
+| `shareLabel` | 
+| `shareButtons` |
+| `shareSocialButton` | 
+| `shareSocialIcon` | 

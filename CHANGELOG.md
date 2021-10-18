@@ -8,6 +8,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 - Add more content to `info-card` schema.
+## [3.155.2] - 2021-10-13
+
+### Changed
+- Load current shipping address when change seller.
+
+## [3.155.1] - 2021-10-08
+
+### Added
+- Version param to images to permit caching it on CDN.
+
+## [3.155.0] - 2021-10-07
+### Changed:
+- Documentation structure in the **Configuration** section - to improve on how the step-by-step is presented.
+### Added:
+- Customization section, listing the component's CSS handles
+- Image with the component rendered on the store.
+
+## [3.154.1] - 2021-10-04
+
+### Fixed
+- Components broken links on the section Component Specs in README.md
+
+## [3.154.0] - 2021-10-04
+### Added
+- Added `first-image` option for the `displayMode` prop of `product-images`.
+- Added `thumbnailVisibility` prop to `product-images`. When `dysplayMode` is set to `carousel` (default value), it adds the option to hide the thumbnails.
+
+## [3.153.0] - 2021-09-24
+
+### Added
+- I18n Bg and Bs (pseudo language to implement In Context tool)
+
+## [3.152.0] - 2021-09-20
+### Added
+- Added social media identifier class to SocialButton
 
 ## [3.151.2] - 2021-08-26
 
