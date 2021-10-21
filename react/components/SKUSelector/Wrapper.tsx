@@ -154,6 +154,7 @@ interface Props {
   visibility?: string
   seeMoreLabel: string
   hideImpossibleCombinations?: boolean
+  possibleToClickOnImpossibleCombination: string[]
   disableUnavailableSelectOptions?: boolean
   showValueNameForImageVariation?: boolean
   showValueForVariation?: ShowValueForVariation
@@ -255,6 +256,7 @@ function SKUSelectorWrapper(props: Props) {
         showValueForVariation={showValueForVariation}
         showVariationsLabels={props.showVariationsLabels}
         hideImpossibleCombinations={props.hideImpossibleCombinations}
+        possibleToClickOnImpossibleCombination={props.possibleToClickOnImpossibleCombination}
         disableUnavailableSelectOptions={props.disableUnavailableSelectOptions}
         showVariationsErrorMessage={props.showVariationsErrorMessage}
         sliderItemsPerPage={props.sliderItemsPerPage}

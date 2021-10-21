@@ -22,6 +22,7 @@ interface Props {
   showBorders?: boolean
   variationLabel: string
   label: string
+  possibleToClickOnImpossibleCombination: boolean
 }
 
 const getDiscount = (maxPrice?: number | null, price?: number | null) => {
@@ -66,6 +67,7 @@ function SelectorItem({
   showBorders = true,
   variationLabel,
   label,
+  possibleToClickOnImpossibleCombination
 }: Props) {
   const discount = getDiscount(maxPrice, price)
   const { handles, withModifiers } = useSKUSelectorCssHandles()
@@ -80,13 +82,14 @@ function SelectorItem({
         'relative di pointer flex items-center outline-0 ma2',
         {
           [`${handles.skuSelectorItemImage}`]: isImage,
-          'o-20': isImpossible,
+          'o-20': isImpossible || possibleToClickOnImpossibleCombination,
         }
       ),
     [
       isImage,
       isSelected,
       isImpossible,
+      possibleToClickOnImpossibleCombination,
       variationValueOriginalName,
       withModifiers,
       handles.skuSelectorItemImage,
