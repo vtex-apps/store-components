@@ -3186,3 +3186,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **slider** Fix infinite attribute of Slider settings.
 - Fix Slider classNames.
 - Fix Slider settings (slidesToScroll, slidesToShow).
+
+### Added
+- Add new props `possibleToClickOnImpossibleCombination` to sku-selector and this functionality
