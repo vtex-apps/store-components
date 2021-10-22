@@ -186,8 +186,8 @@ const parseOptionNameToDisplayOption = ({
   }
 
   if(!hideImpossibleCombinations && possibleToClickOnImpossibleCombination.includes(variationName)){
-    const newObject = new Object()
-    // @ts-ignore
+    const newObject: {[index: string]:string} = {}
+
     newObject[variationName] = variationValue.name
 
     const possibleItemsNew = findListItemsWithSelectedVariations(
@@ -195,6 +195,7 @@ const parseOptionNameToDisplayOption = ({
       newObject as SelectedVariations,
     )
 
+    console.log(newObject, possibleItemsNew)
     if (possibleItemsNew.length > 0) {
       // This is a valid combination option
       const [item] = possibleItemsNew
