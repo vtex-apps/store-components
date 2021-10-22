@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - `textMode`, `isFullModeStyle` properties to `info-card` contentSchema.
-- 
+
 ## [3.155.2] - 2021-10-13
 
 ### Changed
