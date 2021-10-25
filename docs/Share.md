@@ -1,5 +1,5 @@
 # Share
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+>📢 **Disclaimer** Don't fork the [Store Components]() projetc. Use, contribute, or open issue with your feature request.
 
 `Share` is a VTEX component that allows to share a product URL via social medias.
 This component can be imported and used by any VTEX app.
@@ -34,7 +34,10 @@ In the following sections, learn how to configurate the component in your store.
     "component": "Share"
   }
 ```
-> ⚠️ *When implementing this component as a block, various inner blocks may be available. The interface above lists the available blocks within `Share` and describes if they are required or optional.*
+> ⚠️ Warning
+>  
+> When implementing this component as a block, various inner blocks may be available. The interface above lists the available blocks within `Share` and describes if they are required or optional.
+
 
 For now this block does not have any required or optional blocks.
 
@@ -71,7 +74,7 @@ You should follow the Styles API instruction in [Store Components Styles API](ht
 ### Customization
 In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-| CSS Handles 
+| CSS Handles |
 | ---------- |
 | `shareContainer` | 
 | `shareLoader` | 
