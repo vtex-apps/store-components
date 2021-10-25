@@ -1,5 +1,5 @@
 # Share
->📢 **Disclaimer** Don't fork the [Store Components]() project. Use, contribute, or open issue with your feature request.
+>📢 **Disclaimer** Don't fork the [Store Components](https://github.com/vtex-apps/store-components) project. Use, contribute, or open issue with your feature request.
 
 `Share` is a VTEX component that allows to share a product URL via social medias.
 This component can be imported and used by any VTEX app.
