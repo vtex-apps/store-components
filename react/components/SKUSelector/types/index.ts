@@ -35,6 +35,7 @@ export interface DisplayOption {
   available: boolean
   impossible: boolean
   disabled: boolean
+  possibleToClickOnImpossibleCombination: boolean
 }
 
 export interface DisplayVariation {

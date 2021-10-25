@@ -173,6 +173,7 @@ interface Props {
   variations: Variations
   skuSelected: ProductItem | null
   hideImpossibleCombinations?: boolean
+  possibleToClickOnImpossibleCombination?: string[]
   disableUnavailableSelectOptions?: boolean
   showValueForVariation?: ShowValueForVariation
   imageHeight?: number
@@ -241,6 +242,7 @@ const SKUSelectorContainer: FC<Props> = ({
   showVariationsLabels = 'variation',
   displayMode = 'default',
   hideImpossibleCombinations = true,
+  possibleToClickOnImpossibleCombination = [],
   disableUnavailableSelectOptions = false,
   showVariationsErrorMessage = true,
   showValueForVariation = 'none',
@@ -404,6 +406,7 @@ const SKUSelectorContainer: FC<Props> = ({
       showVariationsLabels={showVariationsLabels}
       showValueForVariation={showValueForVariation}
       hideImpossibleCombinations={hideImpossibleCombinations}
+      possibleToClickOnImpossibleCombination={possibleToClickOnImpossibleCombination}
       disableUnavailableSelectOptions={disableUnavailableSelectOptions}
       showVariationsErrorMessage={showVariationsErrorMessage}
       sliderDisplayThreshold={sliderDisplayThreshold}
