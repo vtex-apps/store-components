@@ -121,186 +121,191 @@ interface AvailableVariationParams {
   disableUnavailableSelectOptions: boolean
 }
 
-const parseOptionNameToDisplayOption = ({
-  selectedVariations,
-  variationName,
-  skuItems,
-  onSelectItemMemo,
-  imagesMap,
-  variationCount,
-  hideImpossibleCombinations,
-  possibleToClickOnImpossibleCombination,
-  disableUnavailableSelectOptions,
-}: {
-  selectedVariations: SelectedVariations
-  variationName: string
-  skuItems: SelectorProductItem[]
-  onSelectItemMemo: (callbackItem: CallbackItem) => () => void
-  imagesMap: ImageMap
-  variationCount: number
-  hideImpossibleCombinations: boolean
-  possibleToClickOnImpossibleCombination: string[]
-  disableUnavailableSelectOptions: boolean
-}) => (variationValue: {
-  name: string
-  originalName: string
-}): DisplayOption | null => {
-  const isSelected = selectedVariations[variationName] === variationValue.name
-  const image = imagesMap?.[variationName]?.[variationValue.name]
-
-  const newSelectedVariation = clone(selectedVariations)
-
-  newSelectedVariation[variationName] = isSelected ? null : variationValue.name
-
-  const possibleItems = findListItemsWithSelectedVariations(
+const parseOptionNameToDisplayOption =
+  ({
+    selectedVariations,
+    variationName,
     skuItems,
-    newSelectedVariation
-  )
+    onSelectItemMemo,
+    imagesMap,
+    variationCount,
+    hideImpossibleCombinations,
+    allSpecificationsName,
+    disableUnavailableSelectOptions,
+  }: {
+    selectedVariations: SelectedVariations
+    variationName: string
+    skuItems: SelectorProductItem[]
+    onSelectItemMemo: (callbackItem: CallbackItem) => () => void
+    imagesMap: ImageMap
+    variationCount: number
+    hideImpossibleCombinations: boolean
+    allSpecificationsName: string[]
+    disableUnavailableSelectOptions: boolean
+  }) =>
+  (variationValue: {
+    name: string
+    originalName: string
+  }): DisplayOption | null => {
+    const isSelected = selectedVariations[variationName] === variationValue.name
+    const image = imagesMap?.[variationName]?.[variationValue.name]
 
-  if (possibleItems.length > 0) {
-    // This is a valid combination option
-    const [item] = possibleItems
-    const callbackFn = onSelectItemMemo({
-      name: variationName,
-      value: variationValue.name,
-      skuId: item.itemId,
-      isMainAndImpossible: false,
-      possibleItems,
-    })
+    const newSelectedVariation = clone(selectedVariations)
 
-    return {
-      label: variationValue.name,
-      originalName: variationValue.originalName,
-      onSelectItem: callbackFn,
-      image,
-      available: showItemAsAvailable({
-        possibleItems,
-        selectedVariations,
-        variationCount,
-        isSelected,
-      }),
-      impossible: false,
-      disabled: disableUnavailableSelectOptions,
-      possibleToClickOnImpossibleCombination: false
-    }
-  }
+    newSelectedVariation[variationName] = isSelected
+      ? null
+      : variationValue.name
 
-  if(!hideImpossibleCombinations && possibleToClickOnImpossibleCombination.includes(variationName)){
-    const newObject: {[index: string]:string} = {}
-
-    newObject[variationName] = variationValue.name
-
-    const possibleItemsNew = findListItemsWithSelectedVariations(
+    const possibleItems = findListItemsWithSelectedVariations(
       skuItems,
-      newObject as SelectedVariations,
+      newSelectedVariation
     )
 
-    console.log(newObject, possibleItemsNew)
-    if (possibleItemsNew.length > 0) {
+    if (possibleItems.length > 0) {
       // This is a valid combination option
-      const [item] = possibleItemsNew
+      const [item] = possibleItems
       const callbackFn = onSelectItemMemo({
         name: variationName,
         value: variationValue.name,
         skuId: item.itemId,
-        isMainAndImpossible: true,
+        isMainAndImpossible: false,
         possibleItems,
       })
 
-    return {
-      label: variationValue.name,
-      originalName: variationValue.originalName,
-      onSelectItem: callbackFn,
-      image,
-      available: true,
-      impossible: false,
-      disabled: disableUnavailableSelectOptions,
-      possibleToClickOnImpossibleCombination: true
+      return {
+        label: variationValue.name,
+        originalName: variationValue.originalName,
+        onSelectItem: callbackFn,
+        image,
+        available: showItemAsAvailable({
+          possibleItems,
+          selectedVariations,
+          variationCount,
+          isSelected,
+        }),
+        impossible: false,
+        disabled: disableUnavailableSelectOptions,
+        possibleToClickOnImpossibleCombination: false,
+      }
     }
-  }
 
-  return {
-    label: variationValue.name,
-    originalName: variationValue.originalName,
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    onSelectItem: () => {},
-    image,
-    available: true,
-    impossible: false,
-    disabled: disableUnavailableSelectOptions,
-    possibleToClickOnImpossibleCombination: true
-  }
+    if (
+      !hideImpossibleCombinations &&
+      allSpecificationsName.includes(variationName)
+    ) {
+      const newObject: Record<string, string> = {}
 
-  }
+      newObject[variationName] = variationValue.name
 
-  if (!hideImpossibleCombinations) {
-    // This is a impossible combination and will only appear if the prop allows.
-    return {
-      label: variationValue.name,
-      originalName: variationValue.originalName,
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      onSelectItem: () => {},
-      image,
-      available: true,
-      impossible: true,
-      disabled: disableUnavailableSelectOptions,
-      possibleToClickOnImpossibleCombination: false
-    }
-  }
-
-  // This is a impossible combination and will be hidden.
-  return null
-}
-
-const variationNameToDisplayVariation = ({
-  variations,
-  selectedVariations,
-  skuItems,
-  onSelectItemMemo,
-  imagesMap,
-  variationCount,
-  hideImpossibleCombinations,
-  possibleToClickOnImpossibleCombination,
-  disableUnavailableSelectOptions,
-}: {
-  variations: Variations
-  selectedVariations: SelectedVariations
-  skuItems: SelectorProductItem[]
-  imagesMap: ImageMap
-  onSelectItemMemo: (callbackItem: CallbackItem) => () => void
-  variationCount: number
-  hideImpossibleCombinations: boolean
-  possibleToClickOnImpossibleCombination: string[]
-  disableUnavailableSelectOptions: boolean
-}) => (variationName: string): DisplayVariation => {
-  if(possibleToClickOnImpossibleCombination.includes('all')){
-
-    const allSpecificationsName = Object.keys(variations).map(function(key) {
-     return key
-    })
-
-    possibleToClickOnImpossibleCombination = allSpecificationsName
-  }
-  const name = variationName
-  const { values, originalName } = variations[variationName]
-  const options = values
-    .map(
-      parseOptionNameToDisplayOption({
-        selectedVariations,
-        variationName,
+      const possibleItemsNew = findListItemsWithSelectedVariations(
         skuItems,
-        onSelectItemMemo,
-        imagesMap,
-        variationCount,
-        hideImpossibleCombinations,
-        possibleToClickOnImpossibleCombination,
-        disableUnavailableSelectOptions,
-      })
-    )
-    .filter(Boolean) as DisplayOption[]
+        newObject as SelectedVariations
+      )
 
-  return { name, originalName, options }
-}
+      if (possibleItemsNew.length > 0) {
+        // This is a valid combination option
+        const [item] = possibleItemsNew
+        const callbackFn = onSelectItemMemo({
+          name: variationName,
+          value: variationValue.name,
+          skuId: item.itemId,
+          isMainAndImpossible: true,
+          possibleItems,
+        })
+
+        return {
+          label: variationValue.name,
+          originalName: variationValue.originalName,
+          onSelectItem: callbackFn,
+          image,
+          available: true,
+          impossible: false,
+          disabled: disableUnavailableSelectOptions,
+          possibleToClickOnImpossibleCombination: true,
+        }
+      }
+
+      return {
+        label: variationValue.name,
+        originalName: variationValue.originalName,
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        onSelectItem: () => {},
+        image,
+        available: true,
+        impossible: false,
+        disabled: disableUnavailableSelectOptions,
+        possibleToClickOnImpossibleCombination: true,
+      }
+    }
+
+    if (!hideImpossibleCombinations) {
+      // This is a impossible combination and will only appear if the prop allows.
+      return {
+        label: variationValue.name,
+        originalName: variationValue.originalName,
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        onSelectItem: () => {},
+        image,
+        available: true,
+        impossible: true,
+        disabled: disableUnavailableSelectOptions,
+        possibleToClickOnImpossibleCombination: false,
+      }
+    }
+
+    // This is a impossible combination and will be hidden.
+    return null
+  }
+
+const variationNameToDisplayVariation =
+  ({
+    variations,
+    selectedVariations,
+    skuItems,
+    onSelectItemMemo,
+    imagesMap,
+    variationCount,
+    hideImpossibleCombinations,
+    possibleToClickOnImpossibleCombination,
+    disableUnavailableSelectOptions,
+  }: {
+    variations: Variations
+    selectedVariations: SelectedVariations
+    skuItems: SelectorProductItem[]
+    imagesMap: ImageMap
+    onSelectItemMemo: (callbackItem: CallbackItem) => () => void
+    variationCount: number
+    hideImpossibleCombinations: boolean
+    possibleToClickOnImpossibleCombination: string[]
+    disableUnavailableSelectOptions: boolean
+  }) =>
+  (variationName: string): DisplayVariation => {
+    let allSpecificationsName = clone(possibleToClickOnImpossibleCombination)
+
+    if (possibleToClickOnImpossibleCombination.includes('all')) {
+      allSpecificationsName = Object.keys(variations)
+    }
+
+    const name = variationName
+    const { values, originalName } = variations[variationName]
+    const options = values
+      .map(
+        parseOptionNameToDisplayOption({
+          selectedVariations,
+          variationName,
+          skuItems,
+          onSelectItemMemo,
+          imagesMap,
+          variationCount,
+          hideImpossibleCombinations,
+          allSpecificationsName,
+          disableUnavailableSelectOptions,
+        })
+      )
+      .filter(Boolean) as DisplayOption[]
+
+    return { name, originalName, options }
+  }
 
 // Parameters are explained on PropTypes
 const getAvailableVariations = ({
@@ -370,13 +375,20 @@ function SKUSelector({
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
   const onSelectItemMemo = useCallback(
     ({
-      name,
-      value,
-      skuId,
-      isMainAndImpossible,
-      possibleItems,
-    }: CallbackItem) => () =>
-      onSelectItem({ name, value, skuId, isMainAndImpossible, possibleItems }),
+        name,
+        value,
+        skuId,
+        isMainAndImpossible,
+        possibleItems,
+      }: CallbackItem) =>
+      () =>
+        onSelectItem({
+          name,
+          value,
+          skuId,
+          isMainAndImpossible,
+          possibleItems,
+        }),
     [onSelectItem]
   )
 
