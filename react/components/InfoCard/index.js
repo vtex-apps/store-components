@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import PropTypes, { bool, string, oneOf } from 'prop-types'
-import React, { memo } from 'react'
+import React, { memo, useRef } from 'react'
 import { values } from 'ramda'
 import { injectIntl } from 'react-intl'
 import {
@@ -9,7 +9,11 @@ import {
 } from 'vtex.render-runtime'
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
+import { useOnView } from 'vtex.on-view'
+
 import RichText from 'vtex.rich-text/index'
+import { usePixel } from 'vtex.pixel-manager'
+
 
 import CallToAction from './CallToAction'
 import LinkWrapper from './LinkWrapper'
@@ -95,6 +99,10 @@ const InfoCard = ({
   htmlId,
   textMode,
   linkTarget,
+  analyticsProperties = 'none',
+  promotionId,
+  promotionName,
+  promotionPosition,
 }) => {
   const {
     hints: { mobile },
@@ -168,6 +176,36 @@ const InfoCard = ({
 
   const subheadClasses = `${handles.infoCardSubhead} t-body mt6 c-on-base ${alignToken} mw-100`
 
+  const infoCardRef = useRef(null)
+
+  const { push } = usePixel()
+
+  useOnView({
+    ref: infoCardRef,
+
+    onView: () => {
+      const promotionEventData =
+      analyticsProperties === 'provide'
+        ? {
+            id: promotionId,
+            name: promotionName,
+            position: promotionPosition,
+          }
+        : undefined
+
+      if (analyticsProperties === 'none') {
+        return
+      } else {
+        push({
+          event: 'promoView',
+          promotions: [promotionEventData],
+        })
+      }
+    },
+
+    once: true,
+  })
+
   return (
     <LinkWrapper
       imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
@@ -179,6 +217,7 @@ const InfoCard = ({
         style={containerStyle}
         data-testid="container"
         id={htmlId}
+        ref={infoCardRef}
         {...containerAttributes}
       >
         <div className={textContainerClasses}>

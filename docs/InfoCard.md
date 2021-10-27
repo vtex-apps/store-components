@@ -51,6 +51,7 @@ The `infoCard` block allows you to **display content combining image and text** 
 | `blockClass` | `String` | Adds an extra class name to ease styling. | `null` |
 | `htmlId` | `String` | Adds an ID to the container element. | `null` |
 | `linkTarget` | `LinkTargetEnum` | Where to display the linked URL when `info-card` block is clicked. | `"_self"` |
+| `analyticsProperties` | `String` | An option to show analytics informations in this component when active | `none` |
 
 - Possible values of `TextPositionEnum`:
 

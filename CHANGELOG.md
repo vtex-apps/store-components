@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `analyticsProperties` prop to `Info-Card` that shows analytics informations about this component when active.
 
 ## [3.155.3] - 2021-10-25
 
@@ -61,7 +63,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [3.150.0] - 2021-08-06
 + ### Fixed
 - Highlight deprecated components on `README.md`: `Animation`, `Categories Highlights`, `Collection Badges`, `Container`, `Discount Badge`, `Gradient Collapse`, `Greeting`and `Slider`.
-
 
 ## [3.149.1] - 2021-08-03
 ### Changed

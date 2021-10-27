@@ -59,6 +59,54 @@
           "description": "admin/editor.info-card.imageActionUrl.description",
           "$ref": "app:vtex.native-types#/definitions/url",
           "default": ""
+        },
+        "analyticsProperties": {
+          "title": "admin/editor.info-card.analytics.title",
+          "description": "admin/editor.info-card.analytics.description",
+          "enum": ["none", "provide"],
+          "enumNames": [
+            "admin/editor.info-card.analytics.none",
+            "admin/editor.info-card.analytics.provide"
+          ],
+          "widget": {
+            "ui:widget": "radio"
+          },
+          "default": "none"
+        }
+      },
+      "dependencies": {
+        "analyticsProperties": {
+          "oneOf": [
+            {
+              "properties": {
+                "analyticsProperties": {
+                  "enum": ["provide"]
+                },
+                "promotionId": {
+                  "title": "admin/editor.info-card.analytics.promotionId",
+                  "type": "string",
+                  "default": ""
+                },
+                "promotionName": {
+                  "title": "admin/editor.info-card.analytics.promotionName",
+                  "type": "string",
+                  "default": ""
+                },
+                "promotionPosition": {
+                  "title": "admin/editor.info-card.analytics.promotionPosition",
+                  "type": "string",
+                  "default": ""
+                }
+              }
+            },
+            {
+              "properties": {
+                "analyticsProperties": {
+                  "enum": ["none"]
+                }
+              }
+            }
+          ]
         }
       }
     },
