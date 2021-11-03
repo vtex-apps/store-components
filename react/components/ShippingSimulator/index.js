@@ -26,6 +26,7 @@ const ShippingSimulator = ({
   onCalculateShipping,
   shipping,
   pricingMode,
+  orderByShippingEstimate
   /* eslint-enable react/prop-types */
 }) => {
   const intl = useIntl()
@@ -60,7 +61,7 @@ const ShippingSimulator = ({
           {intl.formatMessage({ id: 'store/shipping.label' })}
         </Button>
       </div>
-      <ShippingTable shipping={shipping} pricingMode={pricingMode} />
+      <ShippingTable shipping={shipping} pricingMode={pricingMode} orderByShippingEstimate={orderByShippingEstimate} />
     </Fragment>
   )
 }
@@ -72,10 +73,12 @@ ShippingSimulator.propTypes = {
   country: PropTypes.string.isRequired,
   /** Component and content loader styles */
   styles: PropTypes.object,
+  orderByShippingEstimate: PropTypes.bool,
 }
 
 ShippingSimulator.defaultProps = {
   pricingMode: 'individualItems',
+  orderByShippingEstimate: false
 }
 
 export default ShippingSimulator

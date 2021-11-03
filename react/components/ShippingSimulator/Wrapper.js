@@ -51,6 +51,7 @@ const BaseShippingSimulatorWrapper = ({
   shouldUpdateOrderForm,
   pricingMode,
   selectedQuantity,
+  orderByShippingEstimate
 }) => {
   const [shipping, setShipping] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -131,7 +132,6 @@ const BaseShippingSimulatorWrapper = ({
 
     handleCalculateShipping()
   }, [handleCalculateShipping, address, isValid])
-
   return (
     <ShippingSimulator
       skuId={skuId}
@@ -146,6 +146,7 @@ const BaseShippingSimulatorWrapper = ({
       selectedQuantity={selectedQuantity}
       onAddressChange={updateAddress}
       onCalculateShipping={handleCalculateShipping}
+      orderByShippingEstimate={orderByShippingEstimate}
     />
   )
 }
@@ -158,6 +159,7 @@ const ShippingSimulatorWithOrderForm = ({
   shouldUpdateOrderForm,
   pricingMode,
   selectedQuantity,
+  orderByShippingEstimate,
 }) => {
   const { updateSelectedAddress } = useOrderShipping()
   const { orderForm } = useOrderForm()
@@ -179,6 +181,7 @@ const ShippingSimulatorWithOrderForm = ({
       shouldUpdateOrderForm={shouldUpdateOrderForm}
       pricingMode={pricingMode}
       selectedQuantity={selectedQuantity}
+      orderByShippingEstimate={orderByShippingEstimate}
     />
   )
 }
@@ -200,6 +203,7 @@ const ShippingSimulatorWrapper = props => {
   const country = props.country || culture.country
   const skuId = props.skuId || productContext?.selectedItem?.itemId
   const selectedQuantity = productContext?.selectedQuantity?.toString()
+  const orderByShippingEstimate = props.orderByShippingEstimate || false;
 
   const { pricingMode } = props
 
@@ -229,6 +233,7 @@ const ShippingSimulatorWrapper = props => {
         pricingMode={pricingMode}
         selectedQuantity={selectedQuantity}
         loaderStyles={props.loaderStyles}
+        orderByShippingEstimate={orderByShippingEstimate}
       />
     )
   }
@@ -244,6 +249,7 @@ const ShippingSimulatorWrapper = props => {
           pricingMode={pricingMode}
           selectedQuantity={selectedQuantity}
           shouldUpdateOrderForm={shouldUpdateOrderForm}
+          orderByShippingEstimate={orderByShippingEstimate}
         />
       </OrderFormLoader>
     </OrderShippingProvider>
