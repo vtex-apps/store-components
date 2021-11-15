@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Allowed displaying color name in sku
+
 ## [3.155.3] - 2021-10-25
 
 ### Added

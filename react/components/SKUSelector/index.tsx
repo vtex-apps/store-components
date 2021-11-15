@@ -186,6 +186,7 @@ interface Props {
   sliderDisplayThreshold?: number
   sliderArrowSize?: number
   sliderItemsPerPage?: ResponsiveValuesTypes.ResponsiveValue<number>
+  showNameOfColor?: boolean
 }
 
 const getNewSelectedVariations = (
@@ -252,6 +253,7 @@ const SKUSelectorContainer: FC<Props> = ({
     tablet: 2,
     phone: 1,
   },
+  showNameOfColor = false,
 }) => {
   const variationsCount = keyCount(variations)
   const { query } = useRuntime()
@@ -263,12 +265,10 @@ const SKUSelectorContainer: FC<Props> = ({
     setQuery({ skuId }, { replace: true })
   }
 
-  const [
-    selectedVariations,
-    setSelectedVariations,
-  ] = useState<SelectedVariations>(() =>
-    getNewSelectedVariations(query, skuSelected, variations, initialSelection)
-  )
+  const [selectedVariations, setSelectedVariations] =
+    useState<SelectedVariations>(() =>
+      getNewSelectedVariations(query, skuSelected, variations, initialSelection)
+    )
 
   useAllSelectedEvent(selectedVariations, variationsCount)
 
@@ -409,6 +409,7 @@ const SKUSelectorContainer: FC<Props> = ({
       sliderDisplayThreshold={sliderDisplayThreshold}
       sliderArrowSize={sliderArrowSize}
       sliderItemsPerPage={sliderItemsPerPage}
+      showNameOfColor={showNameOfColor}
     />
   )
 }
