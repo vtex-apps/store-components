@@ -1,8 +1,8 @@
-import { prop, filter, clone, reject } from 'ramda'
+import { clone, filter, prop, reject } from 'ramda'
 import slugify from 'slugify'
-
 import { getDefaultSeller } from '../../../utils/sellers'
-import { SelectorProductItem, SelectedVariations } from '../types'
+import { SelectedVariations, SelectorProductItem } from '../types'
+
 
 /**
  * Return the maximum sku price
@@ -69,6 +69,8 @@ export const isColor = (variation: string) => {
     'farby',
     'boje',
     'colori',
+    'tsvyat',
+    'Цвят'
   ]
 
   return possibleValues.includes(variation.toLowerCase())
