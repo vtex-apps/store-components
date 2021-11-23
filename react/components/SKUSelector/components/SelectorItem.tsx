@@ -67,7 +67,7 @@ function SelectorItem({
   showBorders = true,
   variationLabel,
   label,
-  possibleToClickOnImpossibleCombination
+  possibleToClickOnImpossibleCombination,
 }: Props) {
   const discount = getDiscount(maxPrice, price)
   const { handles, withModifiers } = useSKUSelectorCssHandles()
@@ -157,7 +157,8 @@ function SelectorItem({
           className={classNames(
             withModifiers('valueWrapper', !isAvailable ? 'unavailable' : ''),
             {
-              [`${handles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]: !isImage,
+              [`${handles.skuSelectorItemTextValue} c-on-base center pl5 pr5 z-1 t-body`]:
+                !isImage,
               'h-100': isImage,
             }
           )}

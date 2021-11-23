@@ -121,6 +121,66 @@ interface AvailableVariationParams {
   disableUnavailableSelectOptions: boolean
 }
 
+// eslint-disable-next-line max-params
+function IncludesSpecificationName(
+  variationName: string,
+  skuItems: SelectorProductItem[],
+  onSelectItemMemo: (callbackItem: CallbackItem) => () => void,
+  disableUnavailableSelectOptions: boolean,
+  imagesMap: ImageMap,
+  possibleItems: SelectorProductItem[],
+  variationValue: {
+    name: string
+    originalName: string
+  }
+) {
+  const image = imagesMap?.[variationName]?.[variationValue.name]
+
+  const newObject: Record<string, string> = {}
+
+  newObject[variationName] = variationValue.name
+
+  const possibleItemsNew = findListItemsWithSelectedVariations(
+    skuItems,
+    newObject as SelectedVariations
+  )
+
+  if (possibleItemsNew.length > 0) {
+    // This is a valid combination option
+    const [item] = possibleItemsNew
+    const callbackFn = onSelectItemMemo({
+      name: variationName,
+      value: variationValue.name,
+      skuId: item.itemId,
+      isMainAndImpossible: true,
+      possibleItems,
+    })
+
+    return {
+      label: variationValue.name,
+      originalName: variationValue.originalName,
+      onSelectItem: callbackFn,
+      image,
+      available: true,
+      impossible: false,
+      disabled: disableUnavailableSelectOptions,
+      possibleToClickOnImpossibleCombination: true,
+    }
+  }
+
+  return {
+    label: variationValue.name,
+    originalName: variationValue.originalName,
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    onSelectItem: () => {},
+    image,
+    available: true,
+    impossible: false,
+    disabled: disableUnavailableSelectOptions,
+    possibleToClickOnImpossibleCombination: true,
+  }
+}
+
 const parseOptionNameToDisplayOption =
   ({
     selectedVariations,
@@ -193,49 +253,15 @@ const parseOptionNameToDisplayOption =
       !hideImpossibleCombinations &&
       allSpecificationsName.includes(variationName)
     ) {
-      const newObject: Record<string, string> = {}
-
-      newObject[variationName] = variationValue.name
-
-      const possibleItemsNew = findListItemsWithSelectedVariations(
+      return IncludesSpecificationName(
+        variationName,
         skuItems,
-        newObject as SelectedVariations
+        onSelectItemMemo,
+        disableUnavailableSelectOptions,
+        imagesMap,
+        possibleItems,
+        variationValue
       )
-
-      if (possibleItemsNew.length > 0) {
-        // This is a valid combination option
-        const [item] = possibleItemsNew
-        const callbackFn = onSelectItemMemo({
-          name: variationName,
-          value: variationValue.name,
-          skuId: item.itemId,
-          isMainAndImpossible: true,
-          possibleItems,
-        })
-
-        return {
-          label: variationValue.name,
-          originalName: variationValue.originalName,
-          onSelectItem: callbackFn,
-          image,
-          available: true,
-          impossible: false,
-          disabled: disableUnavailableSelectOptions,
-          possibleToClickOnImpossibleCombination: true,
-        }
-      }
-
-      return {
-        label: variationValue.name,
-        originalName: variationValue.originalName,
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
-        onSelectItem: () => {},
-        image,
-        available: true,
-        impossible: false,
-        disabled: disableUnavailableSelectOptions,
-        possibleToClickOnImpossibleCombination: true,
-      }
     }
 
     if (!hideImpossibleCombinations) {
@@ -280,11 +306,10 @@ const variationNameToDisplayVariation =
     disableUnavailableSelectOptions: boolean
   }) =>
   (variationName: string): DisplayVariation => {
-    let allSpecificationsName = clone(possibleToClickOnImpossibleCombination)
-
-    if (possibleToClickOnImpossibleCombination.includes('all')) {
-      allSpecificationsName = Object.keys(variations)
-    }
+    const allSpecificationsName =
+      possibleToClickOnImpossibleCombination.includes('all')
+        ? Object.keys(variations)
+        : possibleToClickOnImpossibleCombination.slice()
 
     const name = variationName
     const { values, originalName } = variations[variationName]

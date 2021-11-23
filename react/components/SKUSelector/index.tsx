@@ -265,12 +265,10 @@ const SKUSelectorContainer: FC<Props> = ({
     setQuery({ skuId }, { replace: true })
   }
 
-  const [
-    selectedVariations,
-    setSelectedVariations,
-  ] = useState<SelectedVariations>(() =>
-    getNewSelectedVariations(query, skuSelected, variations, initialSelection)
-  )
+  const [selectedVariations, setSelectedVariations] =
+    useState<SelectedVariations>(() =>
+      getNewSelectedVariations(query, skuSelected, variations, initialSelection)
+    )
 
   useAllSelectedEvent(selectedVariations, variationsCount)
 
@@ -406,7 +404,9 @@ const SKUSelectorContainer: FC<Props> = ({
       showVariationsLabels={showVariationsLabels}
       showValueForVariation={showValueForVariation}
       hideImpossibleCombinations={hideImpossibleCombinations}
-      possibleToClickOnImpossibleCombination={possibleToClickOnImpossibleCombination}
+      possibleToClickOnImpossibleCombination={
+        possibleToClickOnImpossibleCombination
+      }
       disableUnavailableSelectOptions={disableUnavailableSelectOptions}
       showVariationsErrorMessage={showVariationsErrorMessage}
       sliderDisplayThreshold={sliderDisplayThreshold}

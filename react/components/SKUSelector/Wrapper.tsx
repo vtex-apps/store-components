@@ -256,7 +256,9 @@ function SKUSelectorWrapper(props: Props) {
         showValueForVariation={showValueForVariation}
         showVariationsLabels={props.showVariationsLabels}
         hideImpossibleCombinations={props.hideImpossibleCombinations}
-        possibleToClickOnImpossibleCombination={props.possibleToClickOnImpossibleCombination}
+        possibleToClickOnImpossibleCombination={
+          props.possibleToClickOnImpossibleCombination
+        }
         disableUnavailableSelectOptions={props.disableUnavailableSelectOptions}
         showVariationsErrorMessage={props.showVariationsErrorMessage}
         sliderItemsPerPage={props.sliderItemsPerPage}

@@ -139,7 +139,9 @@ const Variation: FC<Props> = ({
         }
         imageLabel={option.image?.imageLabel}
         isImpossible={option.impossible}
-        possibleToClickOnImpossibleCombination={option.possibleToClickOnImpossibleCombination}
+        possibleToClickOnImpossibleCombination={
+          option.possibleToClickOnImpossibleCombination
+        }
         variationLabel={variationLabel}
         label={name}
       />
