@@ -151,7 +151,7 @@ const useAllSelectedEvent = (
   const dispatch = useProductDispatch()
 
   useEffect(() => {
-    if (dispatch && selectedVariations) {    
+    if (dispatch && selectedVariations) { 
       dispatch({
         type: 'SKU_SELECTOR_SET_VARIATIONS_SELECTED',
         args: {
