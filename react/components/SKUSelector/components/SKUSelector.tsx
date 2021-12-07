@@ -121,8 +121,7 @@ interface AvailableVariationParams {
   disableUnavailableSelectOptions: boolean
 }
 
-// eslint-disable-next-line max-params
-function IncludesSpecificationName(
+function includesSpecificationName(
   variationName: string,
   skuItems: SelectorProductItem[],
   onSelectItemMemo: (callbackItem: CallbackItem) => () => void,
@@ -136,13 +135,13 @@ function IncludesSpecificationName(
 ) {
   const image = imagesMap?.[variationName]?.[variationValue.name]
 
-  const newObject: Record<string, string> = {}
+  const variationsValuesName: SelectedVariations = {}
 
-  newObject[variationName] = variationValue.name
+  variationsValuesName[variationName] = variationValue.name
 
   const possibleItemsNew = findListItemsWithSelectedVariations(
     skuItems,
-    newObject as SelectedVariations
+    variationsValuesName
   )
 
   if (possibleItemsNew.length > 0) {
@@ -253,7 +252,7 @@ const parseOptionNameToDisplayOption =
       !hideImpossibleCombinations &&
       allSpecificationsName.includes(variationName)
     ) {
-      return IncludesSpecificationName(
+      return includesSpecificationName(
         variationName,
         skuItems,
         onSelectItemMemo,
