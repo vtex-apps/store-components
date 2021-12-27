@@ -11,6 +11,18 @@ Added:
 - A link to the doc [Configuring custom images for the SKU Selector](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-configuring-custom-images-for-the-sku-selector).
 
 
+## [3.155.4] - 2021-12-22
+
+### Added 
+- French, Italian, Japanese, Korean, Dutch and Romanian translation.
+
+### Fixed 
+- Spanish translation.
+
+### Removed
+- Pseudo language.
+
+
 ## [3.155.3] - 2021-10-25
 
 ### Added
@@ -27,6 +39,7 @@ Added:
 - Version param to images to permit caching it on CDN.
 
 ## [3.155.0] - 2021-10-07
+
 ### Changed:
 - Documentation structure in the **Configuration** section - to improve on how the step-by-step is presented.
 ### Added:
