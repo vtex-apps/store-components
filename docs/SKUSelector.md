@@ -1,4 +1,6 @@
-📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
+> 📢 
+> 
+> Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
 # SKU Selector
 
@@ -51,7 +53,7 @@ The SKU Selector is a product details page block responsible for displaying ever
 | `sliderDisplayThreshold` | `number` | Minimum number of product variation names that should be displayed using `slider` display mode. This prop only properly works when `displayMode` is set as `slider`.  | `3`  |
 | `sliderArrowSize` | `number`  | Controls the size (height and width) in pixels of the navigation arrows rendered when `displayMode` is set as `slider`. | `12` |
 | `sliderItemsPerPage` | `object` | Controls how many slides should be shown on each type of device when `displayMode` is set as `slider`. Check out more information regarding this prop structure below this table. | `{desktop: 3, tablet: 2, phone: 1}` |
-| `thumbnailImage` | `string`  | First image to be displayed. This prop value must be the same text string defined in the desired product image's `imageLabel` field (from the Catalog module). If you use this prop and no image declaring the same text string in its `imageLabel` field is found, any product image will be randomly rendered instead. | `undefined` |
+| `thumbnailImage` | `string`  | First image to be displayed. This prop value must be the same text string defined in the desired product image's `imageLabel` field (from the Catalog module). If you use this prop and no image declaring the same text string in its `imageLabel` field is found, any product image will be randomly rendered instead. To apply the `thumbnailImage` configuration, see the [Configuring custom images for the SKU Selector documentation](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-configuring-custom-images-for-the-sku-selector) | `undefined` |
 | `imageHeight`  | `number` | `object` | Height (in `px`) of the product thumbnail image. You can declare an object as its value in case you want to define a height for each device (`desktop` and `mobile`). | `undefined` |
 | `imageWidth` | `number` | `object` | Width (in `px`) of the product thumbnail image. You can declare an object as its value in case you want to define a width for each device (`desktop` and `mobile`).  | `undefined`  |
 | `initialSelection` | `enum`  | Controls the user initial selection for available variations when product page is fully loaded. Possible values are: `complete` (selects the first available SKU's variation values), `image` (selects the first available image variation) or `empty` (no variations will be selected when the page is loaded).  | `complete` |
