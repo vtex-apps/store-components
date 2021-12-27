@@ -10,6 +10,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - A new table on the documentation to clarify which types of `link`can be used and their description.
 
+## [3.155.4] - 2021-12-22
+
+### Added 
+- French, Italian, Japanese, Korean, Dutch and Romanian translation.
+
+### Fixed 
+- Spanish translation.
+
+### Removed
+- Pseudo language.
+
 ## [3.155.3] - 2021-10-25
 
 ### Added
@@ -26,6 +37,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Version param to images to permit caching it on CDN.
 
 ## [3.155.0] - 2021-10-07
+
 ### Changed:
 - Documentation structure in the **Configuration** section - to improve on how the step-by-step is presented.
 ### Added:
