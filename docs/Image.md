@@ -36,9 +36,9 @@ The `Image` is a VTEX block that allows to **add any image** in the store.
 | `srcset`      | `string`   | Specifies the URL of the image to use in different situations              | - |
 | `sizes`       | `string`   | Specifies image sizes for different page layouts                           | - |
 | `title` | `string` | Title to be shown on hover | - |
-| `link`        | [`Link`](https://github.com/vtex-apps/native-types/blob/f63aeeb8f6e62f4a9aaec052a8be34973be7389b/pages/contentSchemas.json#L52-L71)| Specifies the link the image will redirect when clicked on. | - |
+| `link`        | [`Link`](https://github.com/vtex-apps/native-types/blob/f63aeeb8f6e62f4a9aaec052a8be34973be7389b/pages/contentSchemas.json#L52-L71)| Specifies the link the image will redirect when clicked on. See more details on the props of the `link` on the table below. | - |
 
-- For types of links:
+- For props of the `link`:
 
 | Prop name     | Type       | Description                                                                | Default value | 
 | ------------- | ---------- | -------------------------------------------------------------------------- | - |
