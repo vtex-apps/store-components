@@ -34,6 +34,7 @@ const ProductImages = ({
   zoomFactor,
   ModalZoomElement,
   contentType = 'all',
+  children,
   // Deprecated
   zoomProps,
   displayMode,
@@ -150,7 +151,9 @@ const ProductImages = ({
         thumbnailVisibility={thumbnailVisibility}
         // Deprecated
         zoomProps={zoomProps}
-      />
+      >
+        {children}
+      </Carousel>
     </div>
   )
 }
@@ -220,6 +223,10 @@ ProductImages.propTypes = {
     DISPLAY_MODE.CAROUSEL,
     DISPLAY_MODE.LIST,
     DISPLAY_MODE.FIRST_IMAGE,
+  ]),
+  children: PropTypes.oneOf([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
   ]),
 }
 

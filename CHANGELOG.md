@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- destruct product-images in product-images-swiper to allows you wrap main slider with another layout.
 
 ### Added
 - Callout on the Availability Subscriber doc about the new component [Availability Notify](https://developers.vtex.com/vtex-developer-docs/docs/vtex-availability-notify)

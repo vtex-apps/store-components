@@ -95,7 +95,9 @@ const ProductImagesWrapper = props => {
       // Deprecated
       zoomProps={props.zoomProps}
       displayMode={props.displayMode}
-    />
+    >
+      {props.children}
+    </ProductImages>
   )
 }
 

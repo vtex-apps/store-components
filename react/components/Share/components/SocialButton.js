@@ -51,11 +51,21 @@ export default class SocialButton extends Component {
   }
 
   render() {
-    const { url, message, size, socialEnum, buttonClass, iconClass, imageUrl } =
-      this.props
+    const {
+      url,
+      message,
+      size,
+      socialEnum,
+      buttonClass,
+      iconClass,
+      imageUrl,
+    } = this.props
 
-    const { SocialNetworkName, SocialComponent, SocialIcon } =
-      SOCIAL_COMPONENT_MAP[socialEnum]
+    const {
+      SocialNetworkName,
+      SocialComponent,
+      SocialIcon,
+    } = SOCIAL_COMPONENT_MAP[socialEnum]
 
     const additionalProps = getExtraSocialProps({ message, socialEnum })
 
