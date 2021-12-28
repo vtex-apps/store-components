@@ -1,48 +1,25 @@
 # Availability Subscriber
+:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
 
-## Description
+>⚠️
+>
+> This component only creates a list of users who subscribe to this product and *does not send an automatic email* to them. Another alternative is the [VTEX Availability Notify component](https://developers.vtex.com/vtex-developer-docs/docs/vtex-availability-notify) that shows the form when a product is unavailable and sends an email to the shopper when the requested product is back in stock. Please refer to its [technical documentation](https://developers.vtex.com/vtex-developer-docs/docs/vtex-availability-notify) to learn more about the app and implement it in your store.
+
 
 `AvailabilitySubscriber` is a VTEX Component that shows the availability subscriber form that is shown when the product isn't available. This Component can be imported and used by any VTEX App.
 
->⚠️ This component only **creates a list** of the users that subscribe to this product. Currently it **doesn't send an automatic email** to these users when the product becomes available. It only collects the emails of the users that show interest on the products.
 
+## Before you start
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+Before configuring the Availability Subscriber block in your theme, make sure you've already configured a **JSON schema in Master Data**, otherwise the subscriber form won't be properly saved with user emails. To more info, access the recipe on [Creating a product availability form](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-creating-a-product-availability-form).
 
-## Table of Contents
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-    - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespace](#css-namespaces)
-- [Data](#data)
+>⚠️
+>
+> This component only **creates a list** of the users that subscribe to this product. Currently it **doesn't send an automatic email** to these users when the product becomes available. It only collects the emails of the users that show interest on the products.
 
-## Usage
+## Configuration
 
-You should follow the usage instruction in the main [README](/README.md#usage).
-
-Then, add `availability-subscriber` block into your app theme, as we do in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json). 
-
-To collect the emails correctly, this feature needs a special configuration on **Master Data**. Otherwise, the subscriber form won't be properly saved with user emails. For more info, access the recipe on [Creating a product availability form](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-creating-a-product-availability-form).                  
-
-
-### Blocks API
-
-When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `AvailabilitySubscriber` and describes if they are required or optional.
-
-```json
-  "availability-subscriber": {
-    "component": "AvailabilitySubscriber"
-  }
-```
-
-For now this block does not have any required or optional blocks.
-
-### Configuration
-
->⚠️ Before configuring the Availability Subscriber block in your theme, make sure you've already configured a **JSON schema in Master Data**, otherwise the subscriber form won't be properly saved with user emails. To more info, access the recipe on [Creating a product availability form](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-creating-a-product-availability-form).
-
-1. Import the  `vtex.store-component` app to your theme's dependencies in the  `manifest.json`;
+1. Import the  `vtex.store-component` app to your theme's dependencies in the  `manifest.json`.
 
 ```json
   "dependencies": {
@@ -63,12 +40,45 @@ For now this block does not have any required or optional blocks.
 
 Once the block is added, the component will be rendered without the need for further configurations, since the `availability-subscriber` block does not have any props. 
 
-Note the following: the `availability-subscriber` block simply renders a form component highlighting user interest in a particular product. For the collected emails to actually be stored in the store's Master Data, you’ll need to implement some advanced settings in the  Master Data module.
+>ℹ️ Info
+>
+> To collect the emails correctly, this feature needs a special configuration on **Master Data**. Otherwise, the subscriber form won't be properly saved with user emails. For more info, access the recipe on [Creating a product availability form](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-creating-a-product-availability-form).                  
+
+
+### Blocks API
+
+When implementing this component as a block, various inner blocks may be available. The following interface lists the available blocks within `AvailabilitySubscriber` and describes if they are required or optional.
+
+```json
+  "availability-subscriber": {
+    "component": "AvailabilitySubscriber"
+  }
+```
+
+For now this block does not have any required or optional blocks.
 
 
 ### Styles API
 
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+This app provides some CSS classes as an API for style customization.
+
+To use this CSS API, you must add the `styles` builder and create an app styling CSS file.
+
+1. Add the `styles` builder to your `manifest.json`:
+
+```json
+  "builders": {
+    "styles": "1.x"
+  }
+```
+
+2. Create a file called `vtex.store-components.css` inside the `styles/css` folder. Add your custom styles:
+
+```css
+.container {
+  margin-top: 10px;
+}
+```
 
 #### CSS Namespaces
 
