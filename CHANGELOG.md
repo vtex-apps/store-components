@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- A new table on the documentation to clarify which types of `link`can be used and their description.
+
 ## [3.155.5] - 2021-12-27
 
 Added:
