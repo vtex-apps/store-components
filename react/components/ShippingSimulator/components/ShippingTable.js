@@ -6,12 +6,12 @@ import { GROUPED } from '../constants/PricingMode'
 import ShippingTableRow from './ShippingTableRow'
 import styles from '../shippingSimulator.css'
 
-const ShippingTable = ({ shipping, pricingMode }) => {
+const ShippingTable = ({ shipping, pricingMode, orderByShippingEstimate }) => {
   if ((shipping?.logisticsInfo?.length ?? 0) === 0) {
     return null
   }
 
-  const slaList = shipping.logisticsInfo.reduce(
+  let slaList = shipping.logisticsInfo.reduce(
     (slas, info) => [...slas, ...info.slas],
     []
   )
@@ -41,6 +41,40 @@ const ShippingTable = ({ shipping, pricingMode }) => {
         )}
       </FormattedMessage>
     )
+  }
+
+  //Sort the list by estimated time
+  if(orderByShippingEstimate) {
+    function OrderByShippingEst(a, b, replaceType) {
+      let aInt = 0;
+      let bInt = 0;
+      try {
+        aInt = parseInt(a.shippingEstimate.toString().replace(replaceType, "").replace("bd", ""));
+        bInt = parseInt(b.shippingEstimate.toString().replace(replaceType, "").replace("bd", ""));
+      }
+      catch {
+        return 0;
+      }
+  
+      if (aInt < bInt) {
+        return -1;
+      }
+      if (aInt > bInt ) {
+        return 1;
+      }
+      return 0;
+    }
+
+    const listMin = slaList.filter((x) => x.shippingEstimate.includes("m")).sort(function (a, b) {
+      return OrderByShippingEst(a, b, "m");
+    });
+
+    const listDay = slaList.filter((x) => x.shippingEstimate.includes("bd")).sort(function (a, b) {
+      return OrderByShippingEst(a, b, "bd");
+    });  
+
+    const newList = listMin.concat(listDay);
+    slaList = newList;
   }
 
   return (

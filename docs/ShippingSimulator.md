@@ -36,12 +36,13 @@ The Shipping Simulator block **estimates the shipping fee** based on a zip code 
   },
 ```
 
-| Prop name               | Type      | Description                                                                                   | Default value |
-| ----------------------- | --------- | --------------------------------------------------------------------------------------------- | ------------- |
-| `skuId`                 | `String`  | ID of the current product SKU                                                                 | -             |
-| `seller`                | `String`  | ID of the product seller                                                                      | -             |
-| `pricingMode`           | `enum`    | If the product has gifts or attachments, for example, you can choose whether the shipping information will be grouped (`grouped`) by shipping type or showing the shipping prices for each of the items individually (`individualItems`). | `individualItems`       |
-| `shouldUpdateOrderForm` | `Boolean` | Whether interacting with the simulator should update the shopper's address in their orderForm | `true`        |
+| Prop name                | Type      | Description                                                                                   | Default value |
+| -----------------------  | --------- | --------------------------------------------------------------------------------------------- | ------------- |
+| `skuId`                  | `String`  | ID of the current product SKU                                                                 | -             |
+| `seller`                 | `String`  | ID of the product seller                                                                      | -             |
+| `pricingMode`            | `enum`    | If the product has gifts or attachments, for example, you can choose whether the shipping information will be grouped (`grouped`) by shipping type or showing the shipping prices for each of the items individually (`individualItems`). | `individualItems`       |
+| `shouldUpdateOrderForm`  | `Boolean` | Whether interacting with the simulator should update the shopper's address in their orderForm | `true`        |
+| `orderByShippingEstimate`| `Boolean` | Sorts the presentation of shipping types by the estimated date for a pickup or delivery.      | `false`       |
 
 ## Customization
 
