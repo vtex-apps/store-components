@@ -43,7 +43,6 @@ The `Image` is a VTEX block that allows to **add any image** in the store.
 | Prop name     | Type       | Description                                                                | Default value | 
 | ------------- | ---------- | -------------------------------------------------------------------------- | - |
 | `attributeNofollow`| `boolean`  | Guides the search engine not to track the link of the page indicated by the tag. If `true` sets `rel=noFollow` attribute to the link. |`false` |
-| `attributeTitle`| `string`  | Show a tooltip message when the user moves the mouse over the image.  | - |
 | `newTab`| `boolean`| If `true` opens a new tab when you click on an image.   | `false` |
 | `url`| `string`   |  Sets the URL to which the user will be redirected by clicking on the image.  | - |
 
