@@ -36,16 +36,16 @@ The `Image` is a VTEX block that allows to **add any image** in the store.
 | `srcset`      | `string`   | Specifies the URL of the image to use in different situations              | - |
 | `sizes`       | `string`   | Specifies image sizes for different page layouts                           | - |
 | `title` | `string` | Title to be shown on hover | - |
-| `link`        | [`Link`](https://github.com/vtex-apps/native-types/blob/f63aeeb8f6e62f4a9aaec052a8be34973be7389b/pages/contentSchemas.json#L52-L71)| Specifies the link the image will redirect when clicked on                 | - |
+| `link`        | [`Link`](https://github.com/vtex-apps/native-types/blob/f63aeeb8f6e62f4a9aaec052a8be34973be7389b/pages/contentSchemas.json#L52-L71)| Specifies the link the image will redirect when clicked on. | - |
 
 - For types of links:
 
 | Prop name     | Type       | Description                                                                | Default value | 
 | ------------- | ---------- | -------------------------------------------------------------------------- | - |
-| `attributeNofollow`| `boolean`  | Guides the search engine not to track the link of the page indicated by the tag.| `false` |
-| `attributeTitle`| `string`  | Specifies extra information about an image.                                         | - |
-| `newTab`| `boolean`| Opens a new tab when you click on an image.                                                  | `false` |
-| `url`| `string`   |  Specifies the URL of an image resource.                                                      | - |
+| `attributeNofollow`| `boolean`  | Guides the search engine not to track the link of the page indicated by the tag. If `true` sets `rel=noFollow` attribute to the link. |`false` |
+| `attributeTitle`| `string`  | Show a tooltip message when the user moves the mouse over the image.  | - |
+| `newTab`| `boolean`| If `true` opens a new tab when you click on an image.   | `false` |
+| `url`| `string`   |  Sets the URL to which the user will be redirected by clicking on the image.  | - |
 
 ## Customization
 
