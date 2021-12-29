@@ -4,17 +4,21 @@
 
 ![https://img.shields.io/badge/-Deprecated-red](https://img.shields.io/badge/-Deprecated-red)
 
-> :warning: **The Buy Button block has been deprecated in favor of the [Add To Cart Button app](https://vtex.io/docs/components/all/vtex.add-to-cart-button/).**
-> Although support for this block is still granted, we strongly recommend you to update your store theme with the Add to Cart Button's blocks in order to keep up with the component's evolution.
+> ⚠️ Warning
+> 
+> **The Buy Button block has been deprecated in favor of the [Add To Cart Button app](https://vtex.io/docs/components/all/vtex.add-to-cart-button/).** Although support for this block is still granted, we strongly recommend you to update your store theme with the Add to Cart Button's blocks in order to keep up with the component's evolution.
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The `buy-button` block allows users to add products in the [Minicart](https://vtex.io/docs/components/all/vtex.minicart@2.46.1/) (`minicart.v1`).
 
-:warning: **The Buy Button block only effectively function i.e. only adds products to the Minicart if the store uses the Minicart v1**. When using the Minicart v2, use the [Add To Cart Button](https://vtex.io/docs/components/all/vtex.add-to-cart-button@0.9.0/) instead.
 
 ![image](https://user-images.githubusercontent.com/284515/70233985-69e13700-173e-11ea-91f7-6675a6a0e73b.png)
+
+> ⚠️ Warning
+> 
+> **The Buy Button block only effectively function i.e. only adds products to the Minicart if the store uses the Minicart v1**. When using the Minicart v2, use the [Add To Cart Button](https://vtex.io/docs/components/all/vtex.add-to-cart-button@0.9.0/) instead.
 
 ## Configuration
 
