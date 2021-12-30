@@ -1,11 +1,12 @@
 # Product Description
 
+:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
 ## Description
 
 `ProductDescription` is a VTEX block that displays the description of a product.
 This Component can be imported and used by any VTEX App.
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+![product-description-ui](https://user-images.githubusercontent.com/67270558/147771999-64d529ab-ef49-4cb3-a592-8f54bcbbeac2.png)
 
 ## Configuration
 
