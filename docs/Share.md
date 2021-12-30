@@ -59,7 +59,7 @@ The `Share` component allows shoppers to share a product URL via social media. T
 | `Twitter` | `Boolean` | If Twitter social media will be shown. |
 | `WhatsApp` | `Boolean` | If WhatsApp social media will be shown. |
 
-### Customization
+## Customization
 
 To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-using-css-handles-for-store-customization) guide.
 
