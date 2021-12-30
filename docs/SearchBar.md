@@ -66,7 +66,7 @@ The `search-bar` component shows a search bar with autocomplete options and disp
 | `search-and-clear-buttons`            | `'search-and-clear-buttons'`            | ![search-and-clear-buttons-empty](https://user-images.githubusercontent.com/12702016/74764924-62bbc680-5261-11ea-9f1d-2118274da996.png) | ![search-and-clear-buttons-filled](https://user-images.githubusercontent.com/12702016/74764928-64858a00-5261-11ea-9ed2-42da887e6641.png) |
 | `search-button` | `'search-button'` | ![search-button-empty](https://user-images.githubusercontent.com/12702016/74764929-65b6b700-5261-11ea-815c-ecc9f0c44e0f.png)            | ![search-button-filled](https://user-images.githubusercontent.com/12702016/74764934-66e7e400-5261-11ea-8a86-59da9a1c0faa.png)            |
 
-### Customization
+## Customization
 
 To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-using-css-handles-for-store-customization) guide.
 
