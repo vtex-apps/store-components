@@ -4,7 +4,7 @@
 
 ![https://img.shields.io/badge/-Deprecated-red](https://img.shields.io/badge/-Deprecated-red)
 
-> :warning: **The Product Highlights block has been deprecated in favor of the [Product Specifications app](https://vtex.io/docs/components/all/vtex.product-specifications/).**
+> :warning: **The Product Highlights block has been deprecated in favor of the [Product Specifications app](https://developers.vtex.com/vtex-developer-docs/docs/vtex-product-specifications).**
 > Although support for this block is still granted, we strongly recommend you to update your store theme with the Product Specification's blocks in order to keep up with the component's evolution.
 
 
