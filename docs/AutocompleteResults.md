@@ -4,6 +4,8 @@
 
 `autocomplete-result-list` is a VTEX Component that represents the autocomplete from the search bar. This components serves mostly to ease the creation of custom autocomplete components by search engines.
 
+![autocomplete-gif](https://user-images.githubusercontent.com/67270558/147763822-a47487e7-35d1-4d42-a30e-2b505209b5f2.gif)
+
 ## Configuration
 
 1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json`, for example:
