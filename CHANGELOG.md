@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+#### Fixed:
+
+- Callout position and links in the Buy button doc.
+
 ### Added
 - Callout on the Availability Subscriber doc about the new component [Availability Notify](https://developers.vtex.com/vtex-developer-docs/docs/vtex-availability-notify)
 - Restructured the doc format.
