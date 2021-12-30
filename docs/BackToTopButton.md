@@ -54,7 +54,7 @@ _Back To Top Button rendered as a caret icon_
 | `display`          | `enum`   | Defines the component rendering. Possible values are: `button` to display a button with a `Back To Top` label text or `caret-icon` to display just an icon. | `button`      |
 | `displayThreshold` | `number` | Defines the window Y pixel in which the button will be displayed.                                                                                           | `600`         |
 
-### Customization
+## Customization
 
 To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-using-css-handles-for-store-customization) guide.
 
