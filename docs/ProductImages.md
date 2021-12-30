@@ -119,7 +119,7 @@ The following table shows the props allowed by `product-images.high-quality-imag
 | `zoomFactor` | `number` | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large). | `2` |
 | `zoomMode` | `enum` | Defines the zoom behavior for the `product-images.high-quality-image` block. Possible values are: `disabled` (zoom is disabled), `in-place-click`(zoom will be triggered when the image is clicked on), or `in-place-hover`(zoom will be triggered when the image is hovered on). Different from the `store-images` prop, this one doesn't accept `open-modal` value. | `disabled` |
 
-#### Customization
+## Customization
 
 To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-using-css-handles-for-store-customization) guide.
 
