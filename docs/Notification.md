@@ -1,61 +1,46 @@
+>📢 **Disclaimer** Don't fork this project. Use it, [contribute](https://github.com/vtex-apps/store-components) to it or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion) to help us evolve it.
+
 # Notification
 
-## Description
+The `notification` component displays text content in a bar style (`notification.bar`) or inline (`notification.inline`). This Component can be imported and used by any VTEX app.
 
-`Notification` is a VTEX component allows you to display a text content in a bar style or inline.
-This Component can be imported and used by any VTEX app.
+## Configuration
 
-:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
+1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json` file as in the following example:
 
-## Table of Contents
-- [Notification](#notification)
-  - [Description](#description)
-  - [Table of Contents](#table-of-contents)
-  - [Usage](#usage)
-    - [Blocks API](#blocks-api)
-      - [Configuration](#configuration)
-    - [Styles API](#styles-api)
-      - [CSS Namespaces](#css-namespaces)
-
-## Usage
-
-You should follow the usage instruction in the main [README](/README.md#usage).
-
-`notification.bar` and `notification.inline` is a block allowed in the [store] interface(https://github.com/vtex-apps/store).
-
-You can use it by adding it to the blocks of your store sections, for example:
 ```json
-"store.home": {
-    "blocks": [
-      "notification.bar",
-      "carousel#home",
-      "shelf#home"
-    ]
-  },
+  "dependencies": {
+    "vtex.store-components": "3.x"
+  }
 ```
 
-### Blocks API
+2. Add the `notification` block to any template of your choice. For example:
 
-When implementing this component as a block, various inner blocks may be available.
-For now this block does not have any required or optional blocks.
+```diff
+  "store.home": {
+      "blocks": [
++       "notification.bar",
+        "carousel#home",
+        "shelf#home"
+      ]
+    },
+```
 
-#### Configuration
+3. Then, declare the `notification` block using the props stated in the [Props](#props) table.
 
-Through the Storefront, you can change the `Notification`'s behavior and interface. However, you also can make in your theme app, as Store theme does.
+### Props
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
 | `content` | `String` | Text to be used in the bar. | '' |
-| `classes` | `CustomCSSClasses` | Used to override default CSS handles. To better understand how this prop works, we recommend reading about it [here](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only useful if you're using this block as a React component. | `undefined` |
+| `classes` | `CustomCSSClasses` | Overrides default CSS handles. To better understand how this prop works, check [this document](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only helpful if you're using this block as a React component.| `undefined` |
 
-### Styles API
-You should follow the Styles API instruction in the main [README](/README.md#styles-api).
+## Customization
 
-#### CSS Namespaces
-Below, we describe the namespace that are defined in the `Notification`.
+To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-using-css-handles-for-store-customization) guide.
 
-| Class name | Description | Component Source |
-| ---------- | ----------- | ---------------- |
-| `notificationContent` | The content of `Notification` | [index](/react/components/Notification/notificationContent.js) |
-| `notificationBarContainer` | The main container of `NotificationBar` | [index](/react/components/Notification/notificationBar.js) |
-| `notificationBarInner` | The inner container of `NotificationBar` | [index](/react/components/Notification/notificationBar.js) |
+| CSS Handles                     |
+| ------------------------------- |
+| `notificationBarContainer` | 
+| `notificationBarInner` |
+| `notificationContent` | 
