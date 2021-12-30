@@ -8,6 +8,7 @@
 
 `AvailabilitySubscriber` is a VTEX Component that shows the availability subscriber form that is shown when the product isn't available. This Component can be imported and used by any VTEX App.
 
+![availability-component](https://user-images.githubusercontent.com/67270558/147770983-16f37aea-ea98-476c-a9aa-a01e1fca24f8.png)
 
 ## Before you start
 
