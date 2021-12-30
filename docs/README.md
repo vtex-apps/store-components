@@ -1,30 +1,30 @@
+>📢 **Disclaimer** Don't fork this project. Use it, [contribute](https://github.com/vtex-apps/store-components) to it or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion) to help us evolve it.
+
 # VTEX Store Components
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-## Description
-
 VTEX Store Components is a collection of components that can be used to create/extend others VTEX apps.
 
-:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request.
 
-## Table of Contents
-
-- [Usage](#usage)
+- [VTEX Store Components](#vtex-store-components)
+  - [Usage](#usage)
   - [Styles API](#styles-api)
-- [Components Specs](#components-specs)
-- [Creating a new component](#creating-a-new-component)
-  - [Project structure](#project-structure)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [Tests](#tests)
+  - [Components](#components)
+  - [Creating a new component](#creating-a-new-component)
+    - [Project structure](#project-structure)
+  - [Troubleshooting](#troubleshooting)
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+    - [Travis CI](#travis-ci)
+  - [Contributors](#contributors)
 
 ## Usage
 
-This app uses our store builder with the blocks architecture. To know more about Store Builder [click here.](https://help.vtex.com/en/tutorial/understanding-storebuilder-and-stylesbuilder#structuring-and-configuring-our-store-with-object-object)
+The Store Components collection uses the `store` builder with the blocks architecture. Please refer to our [Builder](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-builders) documentation to learn more about the `store` builder. 
 
-To use this app, you need to import in your dependencies on `manifest.json`.
+To use this app, you must import it as dependency of your project in the `manifest.json` file.
 
 ```json
   "dependencies": {
@@ -32,22 +32,11 @@ To use this app, you need to import in your dependencies on `manifest.json`.
   }
 ```
 
-Then, you can add a component block into your app theme as we do with `product-price` in our [Product Details app](https://github.com/vtex-apps/product-details/blob/master/store/blocks.json).
+Then, you can start adding components to your store theme app.
 
-For example, now you can change the behavior of `product-price` block that is in the product details. See an example of how to configure:
+## Styles API
 
-```json
-"product-price": {
-  "props": {
-    "showListPrice": true,
-    "showLabels": false,
-  }
-}
-```
-
-### Styles API
-
-This app provides some CSS classes as an API for style customization.
+The Store Components collection provides some CSS classes as an API for style customization.
 
 To use this CSS API, you must add the `styles` builder and create an app styling CSS file.
 
@@ -55,7 +44,7 @@ To use this CSS API, you must add the `styles` builder and create an app styling
 
 ```json
   "builders": {
-    "styles": "1.x"
+    "styles": "2.x"
   }
 ```
 
@@ -67,9 +56,9 @@ To use this CSS API, you must add the `styles` builder and create an app styling
 }
 ```
 
-## Components Specs
+## Components
 
-Below we have a documentation for each component of this project that explains how to use them.
+For more information, check the documentation of all components of the Store Components collection.
 
 - [Availability Subscriber](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-availabilitysubscriber)
 - [Back To Top Button](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-backtotopbutton)
@@ -92,8 +81,9 @@ Below we have a documentation for each component of this project that explains h
 - [Notification](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-notification)
 
 
-> :warning: **The following blocks have been deprecated:** `Animation`, `Categories Highlights`, `Collection Badges`, `Container`, `Discount Badge`, `Gradient Collapse`, `Greeting`, `Slider`. 
-> Despite this, support for them is still granted.
+>⚠️ Warning
+>
+>**The following blocks have been deprecated:** `Animation`, `Categories Highlights`, `Collection Badges`, `Container`, `Discount Badge`, `Gradient Collapse`, `Greeting`, `Slider`. Despite this, support for them is still granted.
 
 ## Creating a new component
 

@@ -1,14 +1,14 @@
-📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
+>📢 **Disclaimer** Don't fork this project. Use it, [contribute](https://github.com/vtex-apps/store-components) to it or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion) to help us evolve it.
 
 # Shipping Simulator
 
-The Shipping Simulator block **estimates the shipping fee** based on a zip code input.
+The `shipping-simulator` block estimates the shipping fee based on a zip code input.
 
 ![shipping](https://user-images.githubusercontent.com/52087100/70262606-6ddb7c00-1773-11ea-91af-ededfd27aa95.png)
 
 ## Configuration
 
-1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
+1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json` file as in the following example:
 
 ```json
   "dependencies": {
@@ -16,9 +16,9 @@ The Shipping Simulator block **estimates the shipping fee** based on a zip code 
   }
 ```
 
-2. Add the `shipping-simulator` block to any block below store.product. For example:
+2. Add the `shipping-simulator` block to any child of the `store.product` template (Product Details Page template). For example:
 
-```json
+```diff
   "store.product": {
     "children": [
       "flex-layout.row#product",
@@ -26,9 +26,14 @@ The Shipping Simulator block **estimates the shipping fee** based on a zip code 
   },
   "flex-layout.row#product": {
     "children": [
-      "shipping-simulator"
++     "shipping-simulator"
     ]
   },
+```
+
+3. Then, declare the `shipping-simulator` block using the props stated in the [Props](#props) table. For example:
+
+```json
    "shipping-simulator": {
     "props": {
       "skuID": "342"
@@ -36,16 +41,18 @@ The Shipping Simulator block **estimates the shipping fee** based on a zip code 
   },
 ```
 
+### Props
+
 | Prop name               | Type      | Description                                                                                   | Default value |
 | ----------------------- | --------- | --------------------------------------------------------------------------------------------- | ------------- |
-| `skuId`                 | `String`  | ID of the current product SKU                                                                 | -             |
-| `seller`                | `String`  | ID of the product seller                                                                      | -             |
 | `pricingMode`           | `enum`    | If the product has gifts or attachments, for example, you can choose whether the shipping information will be grouped (`grouped`) by shipping type or showing the shipping prices for each of the items individually (`individualItems`). | `individualItems`       |
-| `shouldUpdateOrderForm` | `Boolean` | Whether interacting with the simulator should update the shopper's address in their orderForm | `true`        |
+| `seller`                | `String`  | ID of the product seller.                                                                      | -             |
+| `shouldUpdateOrderForm` | `Boolean` | Whether interacting with the simulator should update the shopper's address in their `orderForm`. | `true`        |
+| `skuId`                 | `String`  | ID of the current product SKU.                                                                 | -             |
 
 ## Customization
 
-In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
+To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-using-css-handles-for-store-customization) guide.
 
 | CSS Handles                         |
 | ----------------------------------- |

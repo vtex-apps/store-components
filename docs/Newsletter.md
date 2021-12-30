@@ -1,17 +1,18 @@
-📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
+>📢 **Disclaimer** Don't fork this project. Use it, [contribute](https://github.com/vtex-apps/store-components) to it or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion) to help us evolve it.
 
 # Newsletter
 
 ![https://img.shields.io/badge/-Deprecated-red](https://img.shields.io/badge/-Deprecated-red)
 
-> :warning: **The Newsletter block has been deprecated in favor of the [Newsletter app](https://vtex.io/docs/components/all/vtex.store-newsletter/).**
-> Although support for this block is still granted, we strongly recommend you to update your store theme with the Product Specification's blocks in order to keep up with the component's evolution.
+>⚠️ Warning
+>
+>**The Newsletter block has been deprecated in favor of the [Newsletter app](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-newsletter/).** Although support for this block is still granted, we strongly recommend you to update your store theme with the Product Specification's blocks in order to keep up with the component's evolution.
 
-`newsletter` is a block that displays a newsletter form.
+The `newsletter` block displays a newsletter form.
 
 ## Configuration
 
-1. Add the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
+1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json` file as in the following example:
 
 ```json
   "dependencies": {
@@ -19,39 +20,40 @@
   }
 ```
 
-2. Add the `newsletter` block. For example:
+2. Add the `newsletter` block to any template of your choice. For example:
 
-
-```json
-  "store.home": {
-    "children": [
-      "newsletter",
-    ]
-  },
+```diff
+    "store.home": {
+      "children": [
++       "newsletter",
+      ]
+    },
 ```
 
-#### Props
+3. Then, declare the `newsletter` block using the props stated in the [Props](#props) table.
+
+### Props
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| `label` | `String` | Label of the form used by the component | `Subscribe to our newsletter` (translated text) |
-| `placeholder` | `String` | Placeholder of the email input | `Enter your email address` (translated text) |
-| `submit` | `String` | Label of the submit button | `Sign up` (translated text) |
-| `hideLabel` | `Boolean` | Hide label | `false` |
+| `hideLabel` | `Boolean` | Hide label. | `false` |
+| `label` | `String` | Label of the form used by the component. | `Subscribe to our newsletter` (translated text) |
+| `placeholder` | `String` | Placeholder of the email input. | `Enter your email address` (translated text) |
+| `submit` | `String` | Label of the submit button. | `Sign up` (translated text) |
 
 ## Customization
 
-In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
+To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-using-css-handles-for-store-customization) guide.
 
 | CSS Handles                     |
 | ------------------------------- |
-| `newsletter` |
+| `buttonContainer` |
+| `confirmation` |
+| `confirmationText` |
+| `confirmationTitle` |
 | `container` |
+| `error` |
 | `form` |
 | `inputGroup` |
-| `buttonContainer` |
 | `label` |
-| `error` |
-| `confirmation` |
-| `confirmationTitle` |
-| `confirmationText` |
+| `newsletter` |
