@@ -13,7 +13,7 @@ The `buy-button` block allows users to add products in the [Minicart](https://vt
 
 > ⚠️ Warning
 > 
-> **The Buy Button block only effectively function i.e. only adds products to the Minicart if the store uses the Minicart v1**. When using the Minicart v2, use the [Add To Cart Button](https://vtex.io/docs/components/all/vtex.add-to-cart-button@0.9.0/) instead.
+> **The Buy Button block only effectively function i.e. only adds products to the Minicart if the store uses the Minicart v1**. When using the Minicart v2, use the [Add To Cart Button](https://developers.vtex.com/vtex-developer-docs/docs/vtex-add-to-cart-button) instead.
 
 ## Configuration
 
