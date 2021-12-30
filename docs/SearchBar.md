@@ -4,6 +4,7 @@
 
 The `search-bar` component shows a search bar with autocomplete options and displays the matching products as well. This component can be imported and used by any VTEX App.
 
+![search-bar](https://user-images.githubusercontent.com/67270558/147773132-c3e9d1ee-7878-465d-95b3-69903ded5937.png)
 ## Configuration
 
 1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json` file as in the following example:
