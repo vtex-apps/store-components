@@ -30,9 +30,9 @@ The `autocomplete-result-list` component displays the autocomplete functionality
 
 ### Props
 
->ℹ️ Info
+> ℹ️ Info
 >
->The `autocomplete-result-list` block is commonly used with [Downshift](https://github.com/downshift-js/downshift). Hence, some of its props are directly related to it.
+> The `autocomplete-result-list` block is commonly used with [Downshift](https://github.com/downshift-js/downshift). Hence, some of its props are directly related to it.
 
 | Prop name                      | Type               | Description                                                                                                                                                                                                                                              | Default value |
 | ------------------------------ | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |

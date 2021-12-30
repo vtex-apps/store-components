@@ -2,18 +2,17 @@
 
 # Buy Button
 
->⚠️ Warning
+> ⚠️ Warning
 >
->**The Buy Button block has been deprecated in favor of the [Add To Cart Button app](https://developers.vtex.com/vtex-developer-docs/docs/vtex-add-to-cart-button/).**
-> Although support for this block is still granted, we strongly recommend you to update your store theme with the Add to Cart Button's blocks in order to keep up with the component's evolution.
+> **The Buy Button block has been deprecated in favor of the [Add To Cart Button app](https://developers.vtex.com/vtex-developer-docs/docs/vtex-add-to-cart-button/).** Although support for this block is still granted, we strongly recommend you to update your store theme with the Add to Cart Button's blocks in order to keep up with the component's evolution.
 
 ![https://img.shields.io/badge/-Deprecated-red](https://img.shields.io/badge/-Deprecated-red)
 
 The `buy-button` block displays a button that allows users to add products in the [Minicart](https://developers.vtex.com/vtex-developer-docs/docs/vtex-minicart) (`minicart.v1`).
 
->⚠️ Warning
+> ⚠️ Warning
 >
->**The Buy Button block only works for stores using the Minicart v1**. If your store uses the Minicart v2, please refer to the [Add To Cart Button](https://developers.vtex.com/vtex-developer-docs/docs/vtex-add-to-cart-button) instead.
+> **The Buy Button block only works for stores using the Minicart v1**. If your store uses the Minicart v2, please refer to the [Add To Cart Button](https://developers.vtex.com/vtex-developer-docs/docs/vtex-add-to-cart-button) instead.
 
 ![image](https://user-images.githubusercontent.com/284515/70233985-69e13700-173e-11ea-91f7-6675a6a0e73b.png)
 
