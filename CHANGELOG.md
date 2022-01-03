@@ -8,7 +8,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-- Added color definition for Bulgarian 
+- Added color definition for Bulgarian
+
+## [3.155.7] - 2021-12-30
+
+### Fixed
+- General documentation updates.
+
+### Added
+- Callout on the Availability Subscriber doc about the new component [Availability Notify](https://developers.vtex.com/vtex-developer-docs/docs/vtex-availability-notify)
+- Restructured the doc format.
+
+
+## [3.155.6] - 2021-12-28
+
+### Added
+- A new table on the documentation to clarify which types of `link`can be used and their description.
+
+## [3.155.5] - 2021-12-27
+
+Added:
+- A link to the doc [Configuring custom images for the SKU Selector](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-configuring-custom-images-for-the-sku-selector).
+
 ## [3.155.4] - 2021-12-22
 
 ### Added 
@@ -19,6 +40,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Pseudo language.
+
 
 ## [3.155.3] - 2021-10-25
 
