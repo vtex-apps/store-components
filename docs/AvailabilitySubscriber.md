@@ -8,9 +8,9 @@ The `availability-subscriber` component shows the availability subscriber form d
 
 This component only collects the emails of the customers that subscribed to receive updates about a specific out-of-stock product. It does not email shoppers automatically when the product gets back in stock. 
 
->ℹ️ Info
+> ℹ️ Info
 >
->Alternatively, check the [Availability Notify component](https://developers.vtex.com/vtex-developer-docs/docs/vtex-availability-notify), which renders a subscription form when a product is unavailable and also emails the shopper when the requested product is back in stock.
+> Alternatively, check the [Availability Notify component](https://developers.vtex.com/vtex-developer-docs/docs/vtex-availability-notify), which renders a subscription form when a product is unavailable and also emails the shopper when the requested product is back in stock.
 
 ## Before you start
 
