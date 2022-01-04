@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import { path, equals } from 'ramda'
 import { IconCaret } from 'vtex.store-icons'
 import { withCssHandles } from 'vtex.css-handles'
-import SwiperCore, { Thumbs, Navigation, Pagination } from 'swiper'
+import SwiperCore, { Thumbs, Navigation, Pagination, Keyboard } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import Video, { getThumbUrl } from '../Video'
@@ -27,7 +27,7 @@ const CARET_CLASSNAME =
   'pv8 absolute top-50 translate--50y z-2 pointer c-action-primary'
 
 // install Swiper's Thumbs component
-SwiperCore.use([Thumbs, Navigation, Pagination])
+SwiperCore.use([Thumbs, Navigation, Pagination, Keyboard])
 
 const CSS_HANDLES = [
   'carouselContainer',
@@ -190,6 +190,8 @@ class Carousel extends Component {
     const { handles, slides = [], showPaginationDots = true } = this.props
 
     const params = {}
+
+    params.keyboard = { enabled: true }
 
     if (slides.length > 1 && showPaginationDots) {
       params.pagination = {
