@@ -25,10 +25,10 @@ import { SanitizedHTML } from '../SanitizedHTML'
 
 const ALLOWED_TAGS = ['p', 'span', 'a', 'div', 'br']
 const ALLOWED_ATTRS = {
-  a: ['class', 'href', 'title', 'target'],
-  span: ['class'],
-  p: ['class'],
-  div: ['class'],
+  a: ['class', 'href', 'title', 'target', 'style'],
+  span: ['class', 'style'],
+  p: ['class', 'style'],
+  div: ['class', 'style'],
 }
 
 const justifyTokens = {
