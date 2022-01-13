@@ -59,6 +59,19 @@
           "description": "admin/editor.info-card.imageActionUrl.description",
           "$ref": "app:vtex.native-types#/definitions/url",
           "default": ""
+        },
+        "textMode": {
+          "title": "admin/editor.info-card.textMode.title",
+          "description": "admin/editor.info-card.textMode.description",
+          "type": "string",
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": ""
+        },
+        "isFullModeStyle": {
+          "title": "admin/editor.info-card.isFullModeStyle.title",
+          "description": "admin/editor.info-card.isFullModeStyle.description",
+          "type": "boolean",
+          "default": false
         }
       }
     },

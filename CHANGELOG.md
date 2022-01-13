@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `textMode`, `isFullModeStyle` properties to `info-card` contentSchema.
+
 ## [3.155.8] - 2022-01-03
 
 ### Fixed
@@ -42,7 +45,6 @@ Added:
 
 ### Removed
 - Pseudo language.
-
 
 ## [3.155.3] - 2021-10-25
 
