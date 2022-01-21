@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- `srcSet` typo in the Image documentation.
+
 ## [3.155.8] - 2022-01-03
 
 ### Fixed
