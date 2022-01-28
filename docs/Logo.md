@@ -1,36 +1,40 @@
-📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion). 
+>📢 **Disclaimer** Don't fork this project. Use it, [contribute](https://github.com/vtex-apps/store-components) to it or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion) to help us evolve it. 
 
 # Logo
 
-`Logo` is a VTEX block responsible for displaying an image logo for the store header.
+The `logo` block displays a logo in the store header.
 
 ![logo](https://user-images.githubusercontent.com/52087100/70247921-f1d43a80-1758-11ea-853e-065dfed06c73.png)
 
 ## Configuration
 
-1. Import the `vtex.store-component` app to your theme's dependencies in the manifest.json;
+1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json` file as in the following example:
 
 ```json
- "dependencies: {
+ "dependencies": {
     "vtex.store-components": "3.x"
   }
  ```
   
-2. Add the `logo` block into your [Header](https://vtex.io/docs/components/all/vtex.store-header/). For example:
+2. Add the `logo` block into the [`header`](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-header/) component. For example:
+
+```diff
+  "header.full": {
+    "blocks": [
+      "login",
+      "minicart",
++     "logo",
+      "search-bar",
+      "menu-link",
+      "telemarketing",
+      "category-menu"
+    ]
+  },
+```
+
+3. Then, declare the `logo` block using the props stated in the [Props](#props) table. For example:
 
 ```json
-"header.full": {
-  "blocks": [
-    "login",
-    "minicart",
-    "logo",
-    "search-bar",
-    "menu-link",
-    "telemarketing",
-    "category-menu"
-  ]
-},
-
  "logo": {
     "props": {
       "width": 132,
@@ -43,26 +47,27 @@
 
 ```
 
+### Props
 
 | Prop name | Type | Description | Default value |
 | --------- | ---- | ----------- | ------------- |
-| `title` | `String!` | The image alt description | `VTEX logo` |
-| `color` | `String` | The image fill color | `#F71963` |
-| `showLabel` | `Boolean` | Set the label visibility  | `true` |
-| `width` | `Number` | The logo image width | `493` |
-| `height` | `Number` | The logo image height | `177` |
-| `url` | `String` | The image url | `undefined` |
-| `href` | `String` | Image link | `undefined` |
-| `classes` | `CustomCSSClasses` | Used to override default CSS handles. To better understand how this prop works, we recommend reading about it [here](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only useful if you're using this block as a React component. | `undefined` |
+| `classes` | `CustomCSSClasses` | Overrides default CSS handles. To better understand how this prop works, check [this document](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only helpful if you're using this block as a React component.| `undefined` |
+| `color` | `String` | The image fill color. | `#F71963` |
+| `height` | `Number` | The logo image height. | `177` |
+| `href` | `String` | The image hyperlink. | `undefined` |
+| `showLabel` | `Boolean` | The label visibility.  | `true` |
+| `title` | `String!` | The image alt description. | `VTEX logo` |
+| `url` | `String` | The image soure URL. | `undefined` |
+| `width` | `Number` | The logo image width. | `493` |
 
 ## Customization
 
-In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
+To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-using-css-handles-for-store-customization) guide.
 
 | CSS Handles | 
 | ---------- | 
-| `sizeDesktop` | 
-| `sizeMobile` | 
-| `logoLink` | 
 | `logoContainer` | 
 | `logoImage` | 
+| `logoLink` | 
+| `sizeDesktop` | 
+| `sizeMobile` | 

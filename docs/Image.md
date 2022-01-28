@@ -1,14 +1,14 @@
-📢 Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion). 
+>📢 **Disclaimer** Don't fork this project. Use it, [contribute](https://github.com/vtex-apps/store-components) to it or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion) to help us evolve it. 
 
 # Image
 
-The `Image` is a VTEX block that allows to **add any image** in the store. 
+The `image` block renders images in the storefront. 
 
 ![image](https://user-images.githubusercontent.com/284515/70230392-f982e780-1736-11ea-921b-e83208e80620.png)
 
 ## Configuration
 
-1. Import the `vtex.store-component` app to your theme's dependencies in the `manifest.json`;
+1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json` file as in the following example:
 
 ```json
   "dependencies": {
@@ -16,7 +16,8 @@ The `Image` is a VTEX block that allows to **add any image** in the store.
   }
 ```
 
-2. Add the `image` block in any template from your theme. For example:
+2. Add the `image` block to any template of your choice.
+3. Then, declare the `image` block using the props stated in the [Props](#props) table. For example:
 
 ```json
   "image#example": {
@@ -27,20 +28,30 @@ The `Image` is a VTEX block that allows to **add any image** in the store.
   },
 ```
 
+### Props
+
 | Prop name     | Type       | Description                                                                | Default value | 
 | ------------- | ---------- | -------------------------------------------------------------------------- | - |
-| `src`         | `string!`  | Specifies the URL of an image                                              | - |
-| `alt`         | `string`   | Specifies an alternate text for an image                                   | - |
-| `maxWidth`    | `string`   | Specifies the max width of an image                                        | - |
-| `maxHeight`   | `string`   | Specifies the max height of an image                                       | - |
-| `srcset`      | `string`   | Specifies the URL of the image to use in different situations              | - |
-| `sizes`       | `string`   | Specifies image sizes for different page layouts                           | - |
-| `title` | `string` | Title to be shown on hover | - |
-| `link`        | [`Link`](https://github.com/vtex-apps/native-types/blob/f63aeeb8f6e62f4a9aaec052a8be34973be7389b/pages/contentSchemas.json#L52-L74)| Specifies the link the image will redirect when clicked on                 | - |
+| `alt`         | `string`   | Alternate text for the image.                                   | - |
+| `link`        | [`Link`](https://github.com/vtex-apps/native-types/blob/f63aeeb8f6e62f4a9aaec052a8be34973be7389b/pages/contentSchemas.json#L52-L71)| The image hyperlink. For more details on the props of the `link`, please refer to the following table. | - |
+| `maxHeight`   | `string`   | Max height of the image.                                       | - |
+| `maxWidth`    | `string`   | Max width of the image.                                        | - |
+| `sizes`       | `string`   | Different image sizes for each page layout.                           | - |
+| `src`         | `string!`  | Source URL of the image.                                              | - |
+| `srcSet`      | `string`   | URL of the image to use in different situations.              | - |
+| `title` | `string` | Image title displayed on hover | - |
+
+- **`link` props:**
+
+| Prop name     | Type       | Description                                                                | Default value | 
+| ------------- | ---------- | -------------------------------------------------------------------------- | - |
+| `attributeNofollow`| `boolean`  | Guides the search engine not to track the link of the page indicated by the tag. If `true` sets `rel=noFollow` attribute to the link. |`false` |
+| `newTab`| `boolean`| If `true` opens a new tab when you click on the image.   | `false` |
+| `url`| `string`   |  Sets the URL to which the user will be redirected by clicking on the image.  | - |
 
 ## Customization
 
-In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
+To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-using-css-handles-for-store-customization) guide.
 
 | CSS Handles |
 | --- |

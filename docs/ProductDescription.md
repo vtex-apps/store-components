@@ -1,15 +1,13 @@
+📢 **Disclaimer:** Don't fork this project. Use this project, [contribute](https://github.com/vtex-apps/store-components) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
+
 # Product Description
 
-## Description
+The `product-description` block displays the description of a product. This Component can be imported and used by any VTEX App.
 
-`ProductDescription` is a VTEX block that displays the description of a product.
-This Component can be imported and used by any VTEX App.
-
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
-
+![product-description-ui](https://user-images.githubusercontent.com/67270558/147771999-64d529ab-ef49-4cb3-a592-8f54bcbbeac2.png)
 ## Configuration
 
-1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json`, for example:
+1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json` file as in the following example:
 
 ```json
   "dependencies": {
@@ -17,9 +15,9 @@ This Component can be imported and used by any VTEX App.
   }
 ```
 
-2. Add the `product-description` block to any block below `store.product`(Product template). For example:
+2. Add the `product-description` block to any child of the `store.product` template (Product Details Page template). For example:
 
-```json
+```diff
   "store.product": {
     "children": [
       "flex-layout.row#product",
@@ -27,26 +25,28 @@ This Component can be imported and used by any VTEX App.
   },
   "flex-layout.row#product": {
     "children": [
-      "product-description"
++     "product-description"
     ]
   }
 ```
 
-### Configuration
+3. Then, declare the `product-description` block using the props stated in the [Props](#props) table.
+
+### Props
 
 | Prop name         | Type      | Description                                                                                                                                                                          | Default     |
 | ----------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| `collapseContent` | `Boolean` | If true, whenever the product description is too big, it will collapse and show a "Show More" button. When false, it will never collapse and will always show the whole description. | `true` |
-| `title`           | `string`  | Defines a custom title for the description section. | `undefined` |
-| `classes` | `CustomCSSClasses` | Used to override default CSS handles. To better understand how this prop works, we recommend reading about it [here](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only useful if you're using this block as a React component. | `undefined` |
+| `classes` | `CustomCSSClasses` | Overrides default CSS handles. To better understand how this prop works, check [this document](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only helpful if you're using this block as a React component.| `undefined` |
+| `collapseContent` | `Boolean` | If `true`, whenever the product description is too big, it will collapse and show a "Show More" button. When false, it will never collapse and will always show the whole description. | `true` |
 | `showTitle`           | `boolean`  | Define whether or not to show the title. | `true` |
+| `title`           | `string`  | Defines a custom title for the description section. | `undefined` |
 
 ## Customization
 
-In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
+To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-using-css-handles-for-store-customization) guide.
 
 | CSS Handles                   |
 | ----------------------------- |
 | `productDescriptionContainer` |
-| `productDescriptionTitle`     |
 | `productDescriptionText`      |
+| `productDescriptionTitle`     |

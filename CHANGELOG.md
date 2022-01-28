@@ -8,6 +8,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Fixed
+- `srcSet` typo in the Image documentation.
+
+## [3.155.8] - 2022-01-03
+
+### Fixed
+- Fix documentation callouts.
+
+## [3.155.7] - 2021-12-30
+
+### Fixed
+- General documentation updates.
+
+### Added
+- Callout on the Availability Subscriber doc about the new component [Availability Notify](https://developers.vtex.com/vtex-developer-docs/docs/vtex-availability-notify)
+- Restructured the doc format.
+
+
+## [3.155.6] - 2021-12-28
+
+### Added
+- A new table on the documentation to clarify which types of `link`can be used and their description.
+
+## [3.155.5] - 2021-12-27
+
+Added:
+- A link to the doc [Configuring custom images for the SKU Selector](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-configuring-custom-images-for-the-sku-selector).
+
+## [3.155.4] - 2021-12-22
+
+### Added 
+- French, Italian, Japanese, Korean, Dutch and Romanian translation.
+
+### Fixed 
+- Spanish translation.
+
+### Removed
+- Pseudo language.
+
+
+### Fixed
 - Allowed displaying color name in sku
 
 ## [3.155.3] - 2021-10-25
@@ -26,6 +66,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Version param to images to permit caching it on CDN.
 
 ## [3.155.0] - 2021-10-07
+
 ### Changed:
 - Documentation structure in the **Configuration** section - to improve on how the step-by-step is presented.
 ### Added:
