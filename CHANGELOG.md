@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - `srcSet` typo in the Image documentation.
+- Enable 'isFullModeStyle, textMode, textPosition, textAlignment, blockClass' props available in the site Editor for Infocard component.
 
 ## [3.155.8] - 2022-01-03
 
