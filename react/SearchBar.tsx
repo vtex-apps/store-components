@@ -115,7 +115,7 @@ function SearchBarContainer(props: Props) {
   }, [])
 
   const handleGoToSearchPage = useCallback(() => {
-    const search = encodeURIComponent(inputValue)
+    const search = encodeURIComponent(inputValue.trim())
 
     if (attemptPageTypeSearch) {
       window.location.href = `/${search}`
