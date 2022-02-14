@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.155.10] - 2022-02-14
+
 ### Fixed
 - Doc: SKU Selector - info about the `hideImpossibleCombinations` prop when it is set to be `true`.
 
