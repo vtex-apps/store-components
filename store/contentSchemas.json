@@ -80,7 +80,7 @@
           "default": "left",
           "type": "string",
           "title": "admin/editor.info-card.textPosition.title",
-          "enum": ["left", "center","right"],
+          "enum": ["left", "center", "right"],
           "enumNames": [
             "admin/editor.info-card.textPosition.left",
             "admin/editor.info-card.textPosition.center",
@@ -91,7 +91,7 @@
           "default": "left",
           "type": "string",
           "title": "admin/editor.info-card.textAlignment.title",
-          "enum": ["left", "center","right"],
+          "enum": ["left", "center", "right"],
           "enumNames": [
             "admin/editor.info-card.textAlignment.left",
             "admin/editor.info-card.textAlignment.center",
