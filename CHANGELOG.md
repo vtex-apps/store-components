@@ -8,8 +8,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Fixed
-- `srcSet` typo in the Image documentation.
 - Enable 'isFullModeStyle, textMode, textPosition, textAlignment, blockClass' props available in the site Editor for Infocard component.
+
+## [3.155.10] - 2022-02-14
+
+### Fixed
+- Doc: SKU Selector - info about the `hideImpossibleCombinations` prop when it is set to be `true`.
+
+## [3.155.9] - 2022-02-07
+
+### Fixed
+- `srcSet` typo in the Image documentation.
+- `SearchBar`'s `handleGoToPage` when `inputValue` has blank space at the beginning or at the end.
 
 ## [3.155.8] - 2022-01-03
 
