@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.156.0] - 2022-02-24
+
 ### Fixed
 - Enable 'isFullModeStyle, textMode, textPosition, textAlignment, blockClass' props available in the site Editor for Infocard component.
 
