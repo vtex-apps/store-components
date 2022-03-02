@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+###
+Added
+- Added the **Before you start** section to the Product Brand documentation.
 
 ## [3.156.0] - 2022-02-24
 
