@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Arabic, Norwegian and Norwegian variant translation.
+
 ## [3.156.1] - 2022-03-02
 ###
 Added
@@ -55,10 +58,10 @@ Added:
 
 ## [3.155.4] - 2021-12-22
 
-### Added 
+### Added
 - French, Italian, Japanese, Korean, Dutch and Romanian translation.
 
-### Fixed 
+### Fixed
 - Spanish translation.
 
 ### Removed
@@ -111,7 +114,7 @@ Added:
 
 ## [3.151.1] - 2021-08-26 [YANKED]
 ### Fixed
-- `onClickItem` from SKUSelector to dispatch `SET_LOADING_ITEM` if skuid is different. 
+- `onClickItem` from SKUSelector to dispatch `SET_LOADING_ITEM` if skuid is different.
 
 ## [3.151.0] - 2021-08-18
 ### Add
@@ -124,7 +127,7 @@ Added:
 
 ## [3.149.1] - 2021-08-03
 ### Changed
-- `onClickItem` from SKUSelector to dispatch `SET_LOADING_ITEM` action. 
+- `onClickItem` from SKUSelector to dispatch `SET_LOADING_ITEM` action.
 
 ## [3.149.0] - 2021-07-15
 ### Added
@@ -233,7 +236,7 @@ Added:
 ## [3.138.0] - 2020-12-17
 ### Deprecated
 - `buy-button`.
-  
+
 ### Changed
 - Migrate to `vtex.css-handles@1.x`.
 
@@ -312,7 +315,7 @@ Added:
 
 ## [3.131.3] - 2020-11-13
 ### Fixed
-- Navigating between product images using thumbnails was not working 
+- Navigating between product images using thumbnails was not working
 
 ## [3.131.2] - 2020-11-10
 ### Changed
