@@ -103,10 +103,10 @@ const AddressInfo = ({
   const displayAddress = `${showStreet ? displayStreet || '' : ''}${
     showStreet && (showCityAndState || showPostalCode) ? ', ' : ''
   }${showCityAndState ? displayCityAndState : ''}${
-    showCityAndState && showPostalCode
+    showCityAndState && showPostalCode && !postalCode.includes('*')
       ? `${displayCityAndState ? ', ' : ''}`
       : ''
-  }${showPostalCode ? postalCode : ''}`
+  }${showPostalCode && !postalCode.includes('*') ? postalCode : ''}`
 
   const isPickup = addressType === 'pickup'
   const friendlyName = orderForm?.pickupPointCheckedIn?.friendlyName ?? ''
