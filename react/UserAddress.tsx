@@ -28,6 +28,8 @@ type Props = {
   showPrefix?: boolean
   /** Define if component should render if address is empty */
   showIfEmpty?: boolean
+  /** Define if component should render if ZipCode contains asterics */
+  showIfMasked?: boolean
   /** Used to override default CSS handles */
   classes?: CssHandlesTypes.CustomClasses<typeof USER_ADDRESS_CSS_HANDLES>
 }
@@ -39,6 +41,7 @@ function UserAddress({
   showPostalCode = false,
   showPrefix = true,
   showIfEmpty = false,
+  showIfMasked = false,
   classes,
 }: Props) {
   const { handles, withModifiers } = useCssHandles(USER_ADDRESS_CSS_HANDLES, {
@@ -84,6 +87,7 @@ function UserAddress({
           showPostalCode={showPostalCode}
           showPrefix={showPrefix}
           showIfEmpty={showIfEmpty}
+          showIfMasked={showIfMasked}
         />
       </UserAddressCssHandlesProvider>
     )
