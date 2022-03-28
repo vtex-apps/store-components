@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Always trigger the `SET_LOADING_ITEM` action from Product Context when users change the current selected SKU.
 
+### Added
+- New prop to `UserAddress` showIfMasked to remove entire string if asterics are present
+
 ## [3.158.0] - 2022-03-23
 
 ### Added
