@@ -72,15 +72,19 @@ To apply CSS customizations in this and other blocks, follow the [Using CSS hand
 
 | CSS Handles                       | 
 | --------------------------------  | 
+| `autoCompleteOuterContainer`      | 
 | `compactMode`                     | 
 | `externalSearchButtonWrapper`     |
 | `paddingInput`                    |
 | `searchBarContainer`              |
+| `searchBarInnerContainer`         |
 | `searchBarInnerContainer--opened` |
 | `searchBarInnerContainer--filled` | 
 | `searchBarIcon`                   |
+| `searchBarClearIcon`              |
+| `searchBarSearchIcon`             |
 | `searchBarIcon--clear`            | 
 | `searchBarIcon--external-search`  | 
 | `searchBarIcon--prefix`           | 
 | `searchBarIcon--search`           | 
-| `suffixWrapper`                  |
+| `suffixWrapper`                   |
