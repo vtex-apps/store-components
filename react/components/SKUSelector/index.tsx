@@ -316,7 +316,7 @@ const SKUSelectorContainer: FC<Props> = ({
       // Set here for a better response to user
       setSelectedVariations(newSelectedVariation)
 
-      if (selectedItem && selectedItem.itemId !== skuId) {
+      if (selectedItem && selectedItem.itemId !== skuId && !isRemoving) {
         dispatch({
           type: 'SET_LOADING_ITEM',
           args: { loadingItem: true },
