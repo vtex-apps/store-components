@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Prevent `SET_LOADING_ITEM` action from Product Context from being fired when users unselect a certain property in the SKU Selector.
 
 ## [3.159.0] - 2022-03-28
 ### Fixed
