@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Fixed
+- Infinite loading state caused by never sending the `SET_LOADING_ITEM` action with a value of `false` in the SKU Selector.
 
 ## [3.159.1] - 2022-03-31
 ### Fixed
