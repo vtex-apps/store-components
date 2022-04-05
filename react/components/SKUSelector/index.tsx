@@ -321,6 +321,11 @@ const SKUSelectorContainer: FC<Props> = ({
           type: 'SET_LOADING_ITEM',
           args: { loadingItem: true },
         })
+      } else if (selectedItem?.itemId === skuId) {
+        dispatch({
+          type: 'SET_LOADING_ITEM',
+          args: { loadingItem: false },
+        })
       }
 
       const uniqueOptions = isRemoving
@@ -373,6 +378,11 @@ const SKUSelectorContainer: FC<Props> = ({
       // only redirect to a specific sku id if every variation was defined
       if (allSelected === false) {
         skuIdToRedirect = null
+
+        dispatch({
+          type: 'SET_LOADING_ITEM',
+          args: { loadingItem: false },
+        })
       }
 
       if (onSKUSelected) {
