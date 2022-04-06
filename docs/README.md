@@ -81,9 +81,9 @@ For more information, check the documentation of all components of the Store Com
 - [Notification](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-notification)
 
 
->⚠️ Warning
+> ⚠️ Warning
 >
->**The following blocks have been deprecated:** `Animation`, `Categories Highlights`, `Collection Badges`, `Container`, `Discount Badge`, `Gradient Collapse`, `Greeting`, `Slider`. Despite this, support for them is still granted.
+> **The following blocks have been deprecated:** `Animation`, `Categories Highlights`, `Collection Badges`, `Container`, `Discount Badge`, `Gradient Collapse`, `Greeting`, `Slider`. Despite this, support for them is still granted.
 
 ## Creating a new component
 

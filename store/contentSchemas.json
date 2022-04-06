@@ -2,6 +2,22 @@
   "definitions": {
     "InfoCard": {
       "properties": {
+        "isFullModeStyle": {
+          "title": "admin/editor.info-card.isFullModeStyle.title",
+          "description": "admin/editor.info-card.isFullModeStyle.description",
+          "type": "boolean",
+          "default": false
+        },
+        "textMode": {
+          "default": "html",
+          "type": "string",
+          "title": "admin/editor.info-card.textMode.title",
+          "enum": ["html", "rich-text"],
+          "enumNames": [
+            "admin/editor.info-card.textMode.html",
+            "admin/editor.info-card.textMode.rich-text"
+          ]
+        },
         "headline": {
           "title": "admin/editor.info-card.headline.title",
           "description": "admin/editor.info-card.headline.description",
@@ -59,6 +75,33 @@
           "description": "admin/editor.info-card.imageActionUrl.description",
           "$ref": "app:vtex.native-types#/definitions/url",
           "default": ""
+        },
+        "textPosition": {
+          "default": "left",
+          "type": "string",
+          "title": "admin/editor.info-card.textPosition.title",
+          "enum": ["left", "center", "right"],
+          "enumNames": [
+            "admin/editor.info-card.textPosition.left",
+            "admin/editor.info-card.textPosition.center",
+            "admin/editor.info-card.textPosition.right"
+          ]
+        },
+        "textAlignment": {
+          "default": "left",
+          "type": "string",
+          "title": "admin/editor.info-card.textAlignment.title",
+          "enum": ["left", "center", "right"],
+          "enumNames": [
+            "admin/editor.info-card.textAlignment.left",
+            "admin/editor.info-card.textAlignment.center",
+            "admin/editor.info-card.textAlignment.right"
+          ]
+        },
+        "blockClass": {
+          "title": "admin/editor.blockClass.title",
+          "description": "admin/editor.blockClass.description",
+          "type": "string"
         }
       }
     },

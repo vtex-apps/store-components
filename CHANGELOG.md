@@ -7,8 +7,64 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
 ### Added
 - Added color definition for Bulgarian
+
+## [3.159.2] - 2022-04-06
+### Fixed
+- Infinite loading state caused by never sending the `SET_LOADING_ITEM` action with a value of `false` in the SKU Selector.
+
+## [3.159.1] - 2022-03-31
+### Fixed
+- Prevent `SET_LOADING_ITEM` action from Product Context from being fired when users unselect a certain property in the SKU Selector.
+
+## [3.159.0] - 2022-03-28
+### Fixed
+- Always trigger the `SET_LOADING_ITEM` action from Product Context when users change the current selected SKU.
+
+### Added
+- New prop to `UserAddress` showIfMasked to remove entire string if asterics are present
+
+## [3.158.0] - 2022-03-23
+
+### Added
+- Thai translation.
+
+### Fixed
+- Arabic translation.
+
+## [3.157.0] - 2022-03-18
+
+### Added
+- Arabic, Norwegian and Norwegian variant translation.
+
+## [3.156.1] - 2022-03-02
+###
+Added
+- Added the **Before you start** section to the Product Brand documentation.
+
+## [3.156.0] - 2022-02-24
+
+### Fixed
+- Enable 'isFullModeStyle, textMode, textPosition, textAlignment, blockClass' props available in the site Editor for Infocard component.
+
+## [3.155.10] - 2022-02-14
+
+### Fixed
+- Doc: SKU Selector - info about the `hideImpossibleCombinations` prop when it is set to be `true`.
+
+## [3.155.9] - 2022-02-07
+
+### Fixed
+- `srcSet` typo in the Image documentation.
+- `SearchBar`'s `handleGoToPage` when `inputValue` has blank space at the beginning or at the end.
+
+## [3.155.8] - 2022-01-03
+
+### Fixed
+- Fix documentation callouts.
+
 
 ## [3.155.7] - 2021-12-30
 
@@ -32,10 +88,10 @@ Added:
 
 ## [3.155.4] - 2021-12-22
 
-### Added 
+### Added
 - French, Italian, Japanese, Korean, Dutch and Romanian translation.
 
-### Fixed 
+### Fixed
 - Spanish translation.
 
 ### Removed
@@ -88,7 +144,7 @@ Added:
 
 ## [3.151.1] - 2021-08-26 [YANKED]
 ### Fixed
-- `onClickItem` from SKUSelector to dispatch `SET_LOADING_ITEM` if skuid is different. 
+- `onClickItem` from SKUSelector to dispatch `SET_LOADING_ITEM` if skuid is different.
 
 ## [3.151.0] - 2021-08-18
 ### Add
@@ -101,7 +157,7 @@ Added:
 
 ## [3.149.1] - 2021-08-03
 ### Changed
-- `onClickItem` from SKUSelector to dispatch `SET_LOADING_ITEM` action. 
+- `onClickItem` from SKUSelector to dispatch `SET_LOADING_ITEM` action.
 
 ## [3.149.0] - 2021-07-15
 ### Added
@@ -210,7 +266,7 @@ Added:
 ## [3.138.0] - 2020-12-17
 ### Deprecated
 - `buy-button`.
-  
+
 ### Changed
 - Migrate to `vtex.css-handles@1.x`.
 
@@ -289,7 +345,7 @@ Added:
 
 ## [3.131.3] - 2020-11-13
 ### Fixed
-- Navigating between product images using thumbnails was not working 
+- Navigating between product images using thumbnails was not working
 
 ## [3.131.2] - 2020-11-10
 ### Changed

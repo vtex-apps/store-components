@@ -12,7 +12,7 @@ import {
   useResponsiveValue,
   ResponsiveValuesTypes,
 } from 'vtex.responsive-values'
-import { useProductDispatch } from 'vtex.product-context/ProductDispatchContext'
+import { useProduct, useProductDispatch } from 'vtex.product-context'
 
 import SKUSelector, {
   ShowValueForVariation,
@@ -253,6 +253,9 @@ const SKUSelectorContainer: FC<Props> = ({
     phone: 1,
   },
 }) => {
+  const productContext = useProduct()
+  const selectedItem = productContext?.selectedItem
+
   const variationsCount = keyCount(variations)
   const { query } = useRuntime()
   const responsiveDisplayMode = useResponsiveValue(displayMode)
@@ -263,12 +266,10 @@ const SKUSelectorContainer: FC<Props> = ({
     setQuery({ skuId }, { replace: true })
   }
 
-  const [
-    selectedVariations,
-    setSelectedVariations,
-  ] = useState<SelectedVariations>(() =>
-    getNewSelectedVariations(query, skuSelected, variations, initialSelection)
-  )
+  const [selectedVariations, setSelectedVariations] =
+    useState<SelectedVariations>(() =>
+      getNewSelectedVariations(query, skuSelected, variations, initialSelection)
+    )
 
   useAllSelectedEvent(selectedVariations, variationsCount)
 
@@ -314,6 +315,19 @@ const SKUSelectorContainer: FC<Props> = ({
 
       // Set here for a better response to user
       setSelectedVariations(newSelectedVariation)
+
+      if (selectedItem && selectedItem.itemId !== skuId && !isRemoving) {
+        dispatch({
+          type: 'SET_LOADING_ITEM',
+          args: { loadingItem: true },
+        })
+      } else if (selectedItem?.itemId === skuId) {
+        dispatch({
+          type: 'SET_LOADING_ITEM',
+          args: { loadingItem: false },
+        })
+      }
+
       const uniqueOptions = isRemoving
         ? {}
         : uniqueOptionToSelect(
@@ -364,6 +378,11 @@ const SKUSelectorContainer: FC<Props> = ({
       // only redirect to a specific sku id if every variation was defined
       if (allSelected === false) {
         skuIdToRedirect = null
+
+        dispatch({
+          type: 'SET_LOADING_ITEM',
+          args: { loadingItem: false },
+        })
       }
 
       if (onSKUSelected) {
@@ -375,12 +394,6 @@ const SKUSelectorContainer: FC<Props> = ({
       // If its just removing, no need to redirect
       if (!isRemoving && (allSelected || isColor(variationName))) {
         redirectToSku(skuIdToRedirect)
-        if (skuSelected && skuSelected.itemId !== skuId) {
-          dispatch({
-            type: 'SET_LOADING_ITEM',
-            args: { loadingItem: true },
-          })
-        }
       }
     },
     // Adding selectedVariations, variationsCount and onSKUSelected causes an infinite loop

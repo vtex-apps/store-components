@@ -38,7 +38,7 @@ The `image` block renders images in the storefront.
 | `maxWidth`    | `string`   | Max width of the image.                                        | - |
 | `sizes`       | `string`   | Different image sizes for each page layout.                           | - |
 | `src`         | `string!`  | Source URL of the image.                                              | - |
-| `srcset`      | `string`   | URL of the image to use in different situations.              | - |
+| `srcSet`      | `string`   | URL of the image to use in different situations.              | - |
 | `title` | `string` | Image title displayed on hover | - |
 
 - **`link` props:**

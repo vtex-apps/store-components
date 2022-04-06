@@ -13,6 +13,7 @@ type Props = {
   showStreet: boolean
   showCityAndState: boolean
   showPostalCode: boolean
+  showIfMasked: boolean
   showPrefix: boolean
   showIfEmpty: boolean
 }
@@ -33,6 +34,7 @@ const AddressInfo = ({
   showStreet,
   showCityAndState,
   showPostalCode,
+  showIfMasked,
   showPrefix,
   showIfEmpty,
 }: Props) => {
@@ -41,7 +43,11 @@ const AddressInfo = ({
   const { handles } = useUserAddressCssHandles()
   const intl = useIntl()
 
-  if (!shippingData || !shippingData.address) {
+  if (
+    !shippingData ||
+    !shippingData.address ||
+    (!showIfMasked && shippingData.address.postalCode.includes('*'))
+  ) {
     if (!showIfEmpty) {
       return null
     }
@@ -84,15 +90,8 @@ const AddressInfo = ({
     )
   }
 
-  const {
-    street,
-    number,
-    complement,
-    addressType,
-    city,
-    state,
-    postalCode,
-  } = shippingData.address
+  const { street, number, complement, addressType, city, state, postalCode } =
+    shippingData.address
 
   let displayStreet = number ? `${street}, ${number}` : street
 
@@ -103,10 +102,10 @@ const AddressInfo = ({
   const displayAddress = `${showStreet ? displayStreet || '' : ''}${
     showStreet && (showCityAndState || showPostalCode) ? ', ' : ''
   }${showCityAndState ? displayCityAndState : ''}${
-    showCityAndState && showPostalCode
+    showCityAndState && showPostalCode && !postalCode.includes('*')
       ? `${displayCityAndState ? ', ' : ''}`
       : ''
-  }${showPostalCode ? postalCode : ''}`
+  }${showPostalCode && !postalCode.includes('*') ? postalCode : ''}`
 
   const isPickup = addressType === 'pickup'
   const friendlyName = orderForm?.pickupPointCheckedIn?.friendlyName ?? ''
