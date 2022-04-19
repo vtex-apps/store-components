@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- A new section on how to work with IS while using the SearchBar component
 
 ## [3.159.2] - 2022-04-06
 ### Fixed
