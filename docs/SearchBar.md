@@ -5,6 +5,7 @@
 The `search-bar` component shows a search bar with autocomplete options and displays the matching products as well. This component can be imported and used by any VTEX App.
 
 ![search-bar](https://user-images.githubusercontent.com/67270558/147773132-c3e9d1ee-7878-465d-95b3-69903ded5937.png)
+
 ## Configuration
 
 1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json` file as in the following example:
@@ -65,6 +66,13 @@ The `search-bar` component shows a search bar with autocomplete options and disp
 | `clear-button`             | `'clear-button'`             | ![clear-button-empty](https://user-images.githubusercontent.com/12702016/74764904-5cc5e580-5261-11ea-9df8-484cf457c266.png)             | ![clear-button-filled](https://user-images.githubusercontent.com/12702016/74764917-60f20300-5261-11ea-8911-11c8fd9582d9.png)             |
 | `search-and-clear-buttons`            | `'search-and-clear-buttons'`            | ![search-and-clear-buttons-empty](https://user-images.githubusercontent.com/12702016/74764924-62bbc680-5261-11ea-9f1d-2118274da996.png) | ![search-and-clear-buttons-filled](https://user-images.githubusercontent.com/12702016/74764928-64858a00-5261-11ea-9ed2-42da887e6641.png) |
 | `search-button` | `'search-button'` | ![search-button-empty](https://user-images.githubusercontent.com/12702016/74764929-65b6b700-5261-11ea-815c-ecc9f0c44e0f.png)            | ![search-button-filled](https://user-images.githubusercontent.com/12702016/74764934-66e7e400-5261-11ea-8a86-59da9a1c0faa.png)            |
+
+## Using SearchBar with Intelligent Search
+To improve the search experience usign the SearchBar component, such as the autocomplete option, you must use the component within [Search app](https://developers.vtex.com/vtex-developer-docs/docs/vtex-search) responsible for handling the [Intelligent Search (IS)](https://help.vtex.com/tracks/vtex-intelligent-search?_ga=2.220970832.979717665.1650285782-1001456323.1619912759) solution in IO stores.
+
+The IS communicates with the `autocomplete-result-list.v2` block exported by the Search app, and the block displays previous search results based on current and previous searches.
+
+Follow the [Search documentation](https://developers.vtex.com/vtex-developer-docs/docs/vtex-search) to add the Search app to your store.
 
 ## Customization
 
