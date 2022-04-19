@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+- Rewrite the `hideImpossibleCombinations` prop description.
+
 ## [3.159.3] - 2022-04-19
 ### Added
 - A new section on how to work with IS while using the SearchBar component
