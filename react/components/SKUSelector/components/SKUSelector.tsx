@@ -233,7 +233,10 @@ const variationNameToDisplayVariation = ({
       })
     )
     .filter(Boolean) as DisplayOption[]
-
+    
+    options.sort((a,b)=> {
+      return a.label < b.label ? -1 : a.label > b.label ? 1 : 0;
+    })
   return { name, originalName, options }
 }
 
@@ -248,8 +251,8 @@ const getAvailableVariations = ({
   disableUnavailableSelectOptions,
 }: AvailableVariationParams): DisplayVariation[] => {
   const variationCount = Object.keys(variations).length
-
-  return Object.keys(variations).map(
+ 
+  return Object.keys(variations).sort().map(
     variationNameToDisplayVariation({
       variations,
       selectedVariations,
