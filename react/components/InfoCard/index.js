@@ -223,7 +223,7 @@ const InfoCard = ({
                 className={handles.infoCardImage}
                 src={finalImageUrl}
                 style={{ objectFit: 'cover' }}
-                alt=""
+                alt={formatIOMessage({ id: callToActionText, intl })}
                 data-testid="half-image"
               />
             </LinkWrapper>
