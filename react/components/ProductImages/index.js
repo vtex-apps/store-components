@@ -2,7 +2,6 @@ import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { useCssHandles } from 'vtex.css-handles'
 
-import Carousel from './components/Carousel'
 import ProductImage from './components/ProductImage'
 import {
   THUMBS_ORIENTATION,
@@ -129,6 +128,8 @@ const ProductImages = ({
       </div>
     )
   }
+
+  const Carousel = React.lazy(() => import('./components/Carousel'))
 
   return (
     <div className={containerClass}>
