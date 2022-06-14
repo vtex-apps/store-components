@@ -11,6 +11,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Added color definition for Bulgarian
 
+## [3.159.5] - 2022-06-08
+
+### Fixed
+- French translation.
+
+## [3.159.4] - 2022-04-19
+
+### Changed
+- Rewrite the `hideImpossibleCombinations` prop description.
+
+## [3.159.3] - 2022-04-19
+### Added
+- A new section on how to work with IS while using the SearchBar component
+
 ## [3.159.2] - 2022-04-06
 ### Fixed
 - Infinite loading state caused by never sending the `SET_LOADING_ITEM` action with a value of `false` in the SKU Selector.
