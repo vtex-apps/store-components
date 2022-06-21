@@ -25,6 +25,10 @@ import { SanitizedHTML } from '../SanitizedHTML'
 import { usePosition } from '../../hooks/usePosition'
 import GET_IMAGE_PROTOCOL_IMAGES from './graphql/getImgUrl.gql'
 
+import { useQuery } from 'react-apollo'
+import { useRenderSession } from 'vtex.session-client'
+import GET_IMAGE_PROTOCOL_IMAGES from './graphql/getImgUrl.gql'
+
 const ALLOWED_TAGS = ['p', 'span', 'a', 'div', 'br']
 const ALLOWED_ATTRS = {
   a: ['class', 'href', 'title', 'target'],
