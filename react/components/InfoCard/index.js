@@ -23,6 +23,10 @@ import {
 } from './SchemaTypes'
 import { SanitizedHTML } from '../SanitizedHTML'
 
+import { useQuery } from 'react-apollo'
+import { useRenderSession } from 'vtex.session-client'
+import GET_IMAGE_PROTOCOL_IMAGES from './graphql/getImgUrl.gql'
+
 const ALLOWED_TAGS = ['p', 'span', 'a', 'div', 'br']
 const ALLOWED_ATTRS = {
   a: ['class', 'href', 'title', 'target'],
@@ -95,6 +99,7 @@ const InfoCard = ({
   htmlId,
   textMode,
   linkTarget,
+  imageProtocolId,
 }) => {
   const {
     hints: { mobile },
@@ -127,11 +132,41 @@ const InfoCard = ({
     'textPosition'
   )
 
-  const finalImageUrl = getImageUrl(
+  let finalImageUrl = getImageUrl(
     mobile,
     formatIOMessage({ id: imageUrl, intl }),
     formatIOMessage({ id: mobileImageUrl, intl })
   )
+
+  // Start Image Protocol
+  console.log('InfoCard imageProtocolId: ', imageProtocolId)
+  let userId = "";
+  console.log('InfoCard index.js finalImageUrl: ', finalImageUrl)
+  const { session } = useRenderSession()
+  console.log('InfoCard session: ', session)
+  if (session) {
+    const {
+      namespaces: { profile },
+    } = session
+    userId = profile?.id?.value
+  }
+
+  const { loading, error, data } = useQuery(GET_IMAGE_PROTOCOL_IMAGES, {
+    variables: { userId: userId, imageProtocolId: imageProtocolId },
+    skip: !userId || !imageProtocolId,
+    ssr: false
+  })
+
+  try {
+    if (!error && !loading && data && data.getImage.url !== null && data.getImage.urlMobile !== null && imageProtocolId !== '') {
+      if(mobile){
+        finalImageUrl = formatIOMessage({ id: data.getImage.urlMobile, intl })
+      } else {
+        finalImageUrl = formatIOMessage({ id: data.getImage.url, intl })
+      }
+    }
+  } catch(e) {}
+  // End Image Protocol
 
   const containerStyle = isFullModeStyle
     ? {
@@ -256,6 +291,7 @@ MemoizedInfoCard.propTypes = {
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
   linkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
   callToActionLinkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
+  imageProtocolId: string,
 }
 
 MemoizedInfoCard.defaultProps = {
@@ -272,6 +308,7 @@ MemoizedInfoCard.defaultProps = {
   textMode: textModeTypes.TEXT_MODE_HTML.value,
   linkTarget: '_self',
   callToActionLinkTarget: '_self',
+  imageProtocolId: '',
 }
 
 MemoizedInfoCard.schema = {
@@ -325,6 +362,12 @@ MemoizedInfoCard.schema = {
     blockClass: {
       title: 'admin/editor.blockClass.title',
       description: 'admin/editor.blockClass.description',
+      type: 'string',
+      isLayout: true,
+    },
+    imageProtocolId: {
+      title: 'admin/editor.info-card.imageProtocolId.title',
+      description: 'admin/editor.info-card.imageProtocolId.description',
       type: 'string',
       isLayout: true,
     },

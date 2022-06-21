@@ -113,6 +113,12 @@
           "title": "admin/editor.blockClass.title",
           "description": "admin/editor.blockClass.description",
           "type": "string"
+        },
+        "imageProtocolId": {
+          "title": "admin/editor.info-card.imageProtocolId.title",
+          "description": "admin/editor.info-card.imageProtocolId.description",
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": ""
         }
       }
     },
