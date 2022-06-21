@@ -191,5 +191,7 @@
   "admin/editor.product-description.title-prop.title": "Title",
   "admin/editor.search-bar.title": "Search bar",
   "admin/editor.search-bar.placeholder.title": "Placeholder",
-  "store/back-to-top.label": "Back to top"
+  "store/back-to-top.label": "Back to top",
+  "admin/editor.info-card.imageProtocolId.title": "Image Protocol Id",
+  "admin/editor.info-card.imageProtocolId.description": "Image Protocol Id"
 }

@@ -36,7 +36,9 @@
     "vtex.store-icons": "0.x",
     "vtex.store-image": "0.x",
     "vtex.store-resources": "0.x",
-    "vtex.styleguide": "9.x"
+    "vtex.styleguide": "9.x",
+    "vtex.session-client": "1.x",
+    "vtex.image-protocol": "0.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
