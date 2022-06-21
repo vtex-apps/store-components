@@ -157,15 +157,13 @@ const InfoCard = ({
     ssr: false
   })
 
-  try {
-    if (!error && !loading && data && data.getImage.url !== null && data.getImage.urlMobile !== null && imageProtocolId !== '') {
-      if(mobile){
-        finalImageUrl = formatIOMessage({ id: data.getImage.urlMobile, intl })
-      } else {
-        finalImageUrl = formatIOMessage({ id: data.getImage.url, intl })
-      }
+  if (!error && !loading && data && data.getImage && data.getImage.url !== null && data.getImage.urlMobile !== null && imageProtocolId !== '') {
+    if(mobile){
+      finalImageUrl = formatIOMessage({ id: data.getImage.urlMobile, intl })
+    } else {
+      finalImageUrl = formatIOMessage({ id: data.getImage.url, intl })
     }
-  } catch(e) {}
+  }
   // End Image Protocol
 
   const containerStyle = isFullModeStyle
