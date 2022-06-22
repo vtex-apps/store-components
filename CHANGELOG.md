@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.160.0] - 2022-06-21
+
+
+### Added
+- Added color definition for Bulgarian
+
+## [3.159.5] - 2022-06-08
+
+### Fixed
+- French translation.
+
 ## [3.159.4] - 2022-04-19
 
 ### Changed
@@ -69,6 +80,7 @@ Added
 
 ### Fixed
 - Fix documentation callouts.
+
 
 ## [3.155.7] - 2021-12-30
 
