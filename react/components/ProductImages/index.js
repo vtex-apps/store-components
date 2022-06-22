@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import loadable from '@loadable/component'
 import PropTypes from 'prop-types'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -129,7 +130,7 @@ const ProductImages = ({
     )
   }
 
-  const Carousel = React.lazy(() => import('./components/Carousel'))
+  const Carousel = loadable(() => import('./components/Carousel'))
 
   return (
     <div className={containerClass}>
