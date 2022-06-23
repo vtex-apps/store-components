@@ -1,8 +1,8 @@
 import { clone, filter, prop, reject } from 'ramda'
 import slugify from 'slugify'
+
 import { getDefaultSeller } from '../../../utils/sellers'
 import { SelectedVariations, SelectorProductItem } from '../types'
-
 
 /**
  * Return the maximum sku price
@@ -177,7 +177,7 @@ export const uniqueOptionToSelect = (
 
 export function slug(str: string) {
   // eslint-disable-next-line no-useless-escape
-  const replaced = str?.replace(/[*+~.()'"!:@&\[\]]/g, '') || ''
+  const replaced = str?.replace(/[*+~.()'`’"!:@&\[\]]/g, '') || ''
   const slugified = slugify(replaced, { lower: true }) || ''
 
   return slugified
