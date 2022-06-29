@@ -79,6 +79,7 @@ function Logo({
         height={imgHeight}
         alt={title}
         className={handles.logoImage}
+        loading="eager"
       />
     )
   }
