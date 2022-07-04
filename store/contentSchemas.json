@@ -30,6 +30,17 @@
           "$ref": "app:vtex.native-types#/definitions/text",
           "default": ""
         },
+        "callToActionMode": {
+          "default": "button",
+          "type": "string",
+          "title": "admin/editor.info-card.callToActionMode.title",
+          "enum": ["none", "button", "link"],
+          "enumNames": [
+            "admin/editor.info-card.callAction.none",
+            "admin/editor.info-card.callAction.button",
+            "admin/editor.info-card.callAction.link"
+          ]
+        },
         "callToActionText": {
           "title": "admin/editor.info-card.callToActionText.title",
           "description": "admin/editor.info-card.callToActionText.description",
