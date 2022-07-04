@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Added Call To Action mode on contentSchema
+- Call To Action mode on contentSchema
 
 ## [3.160.1] - 2022-06-23
 ### Added
