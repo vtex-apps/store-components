@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import React, { createContext, useContext, useMemo } from 'react'
 
 export const useCssHandles = cssHandles => {
@@ -99,17 +100,18 @@ export const applyModifiers = (handles, modifier) => {
   return splitHandles.concat(modifiedHandles).join(' ').trim()
 }
 
-// eslint-disable-next-line default-param-last
-export const withCssHandles = (handles = [], options) => Component => {
-  const EnhancedComponent = props => {
-    const { handles: cssHandles } = useCssHandles(handles, options)
+export const withCssHandles =
+  (handles = [], options) =>
+  Component => {
+    const EnhancedComponent = props => {
+      const { handles: cssHandles } = useCssHandles(handles, options)
 
-    return <Component handles={cssHandles} {...props} />
+      return <Component handles={cssHandles} {...props} />
+    }
+
+    const displayName = Component.displayName || Component.name || 'Component'
+
+    EnhancedComponent.displayName = `withCssHandles(${displayName})`
+
+    return EnhancedComponent
   }
-
-  const displayName = Component.displayName || Component.name || 'Component'
-
-  EnhancedComponent.displayName = `withCssHandles(${displayName})`
-
-  return EnhancedComponent
-}
