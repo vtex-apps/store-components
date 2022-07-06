@@ -186,17 +186,17 @@ export function slug(str: string) {
 type SelectedVariationsNotNull = Record<string, string>
 
 /** Private functions */
-const isSkuSelected = (selectedNotNull: SelectedVariationsNotNull) => (
-  sku: SelectorProductItem
-) => {
-  const hasAll = Object.keys(selectedNotNull).every(variationName => {
-    const selectedValue = selectedNotNull[variationName]
+const isSkuSelected =
+  (selectedNotNull: SelectedVariationsNotNull) =>
+  (sku: SelectorProductItem) => {
+    const hasAll = Object.keys(selectedNotNull).every(variationName => {
+      const selectedValue = selectedNotNull[variationName]
 
-    return sku.variationValues[variationName] === selectedValue
-  })
+      return sku.variationValues[variationName] === selectedValue
+    })
 
-  return hasAll
-}
+    return hasAll
+  }
 
 const buildAvailableVariations = (
   items: SelectorProductItem[],

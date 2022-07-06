@@ -10,7 +10,9 @@ import { PixelContext } from 'vtex.pixel-manager'
 
 import SUBSCRIBE_NEWSLETTER from './mutations/subscribeNewsletter.graphql'
 
-const EMAIL_REGEX = /^[A-z0-9+_-]+(?:\.[A-z0-9+_-]+)*@(?:[A-z0-9](?:[A-z0-9-]*[A-z0-9])?\.)+[A-z0-9](?:[A-z0-9-]*[A-z0-9])?$/
+const EMAIL_REGEX =
+  /^[A-z0-9+_-]+(?:\.[A-z0-9+_-]+)*@(?:[A-z0-9](?:[A-z0-9-]*[A-z0-9])?\.)+[A-z0-9](?:[A-z0-9-]*[A-z0-9])?$/
+
 const CSS_HANDLES = [
   'newsletter',
   'confirmation',

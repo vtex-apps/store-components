@@ -148,7 +148,8 @@ const InfoCard = ({
   const containerClasses = classNames(
     `${handles.infoCardContainer} items-center`,
     {
-      [`flex-ns ${flexOrderToken} bg-base ph2-ns pb2 justify-between`]: !isFullModeStyle,
+      [`flex-ns ${flexOrderToken} bg-base ph2-ns pb2 justify-between`]:
+        !isFullModeStyle,
       [`bg-center bb b--muted-4 flex ${justifyToken}`]: isFullModeStyle,
       lazyload: lazyLoad,
     }
