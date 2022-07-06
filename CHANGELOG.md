@@ -121,6 +121,9 @@ Added:
 - Pseudo language.
 
 
+### Fixed
+- Allowed displaying color name in sku
+
 ## [3.155.3] - 2021-10-25
 
 ### Added

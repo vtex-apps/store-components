@@ -33,6 +33,7 @@ interface Props {
   sliderDisplayThreshold: number
   sliderArrowSize: number
   sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
+  showNameOfColor: boolean
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
@@ -60,6 +61,7 @@ const Variation: FC<Props> = ({
   sliderArrowSize,
   sliderDisplayThreshold,
   sliderItemsPerPage,
+  showNameOfColor,
 }) => {
   const { originalName, name, options } = variation
 
@@ -77,7 +79,7 @@ const Variation: FC<Props> = ({
     },
   } = useProduct()
 
-  const displayImage = isColor(originalName)
+  const displayImage = isColor(originalName) && !showNameOfColor
 
   const shouldCollapse = !showAll && options.length > maxItems
 
