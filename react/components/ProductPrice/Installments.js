@@ -40,9 +40,10 @@ const Installments = ({
    * - The selected installment will be the one with the highest `NumberOfInstallments`;
    * - If there is no 'interest-free' installments, the normal installments will be analyzed.
    */
-  const installment = (isEmpty(noInterestRateInstallments)
-    ? installments
-    : noInterestRateInstallments
+  const installment = (
+    isEmpty(noInterestRateInstallments)
+      ? installments
+      : noInterestRateInstallments
   ).reduce((previous, current) =>
     previous.NumberOfInstallments > current.NumberOfInstallments
       ? previous
