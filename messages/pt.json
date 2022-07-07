@@ -126,6 +126,8 @@
   "admin/editor.info-card.callAction.link": "Link",
   "admin/editor.info-card.imageActionUrl.title": "URL de Ação da Imagem",
   "admin/editor.info-card.imageActionUrl.description": "Passe a URL para tornar a imagem um link e capaz de redirecionar o usuário",
+  "admin/editor.info-card.imageProtocolId.title": "ID do protocolo de imagem",
+  "admin/editor.info-card.imageProtocolId.description": "Usado para identificar o componente que irá renderizar o conteúdo personalizado",
   "store/user-address.pickup": "Retirar em {name}",
   "store/user-address.order": "Enviar para",
   "store/user-address.change": "Alterar",

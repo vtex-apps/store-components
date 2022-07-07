@@ -126,6 +126,8 @@
   "admin/editor.info-card.callAction.link": "Link",
   "admin/editor.info-card.imageActionUrl.title": "Image Action URL",
   "admin/editor.info-card.imageActionUrl.description": "Pass URL to make image a link and able to redirect user",
+  "admin/editor.info-card.imageProtocolId.title": "Image Protocol Id",
+  "admin/editor.info-card.imageProtocolId.description": "Used to identify the component that will render the personalized content",
   "store/user-address.pickup": "Pick up at {name}",
   "store/user-address.order": "Order to",
   "store/user-address.change": "Change",
@@ -195,7 +197,5 @@
   "admin/editor.toTop.title": "Back to top button",
   "admin/editor.toTop.description": "When clicked it takes the page to the top",
   "admin/editor.toTop.topPixel.title": "Number of pixels",
-  "admin/editor.toTop.topPixel.description": "When exceeding the defined pixel value, the button to return to the top will appear",
-  "admin/editor.info-card.imageProtocolId.title": "Image Protocol Id",
-  "admin/editor.info-card.imageProtocolId.description": "Image Protocol Id"
+  "admin/editor.toTop.topPixel.description": "When exceeding the defined pixel value, the button to return to the top will appear"
 }

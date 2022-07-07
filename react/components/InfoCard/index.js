@@ -138,6 +138,7 @@ const InfoCard = ({
     formatIOMessage({ id: mobileImageUrl, intl })
   )
 
+  let imageHref = formatIOMessage({ id: imageActionUrl, intl })
   // Start Image Protocol
   console.log('InfoCard imageProtocolId: ', imageProtocolId)
   let userId = "";
@@ -158,6 +159,8 @@ const InfoCard = ({
   })
 
   if (!error && !loading && data && data.getImage && data.getImage.url !== null && data.getImage.urlMobile !== null && imageProtocolId !== '') {
+    console.log('getImage InfoCard: ',data.getImage)
+    imageHref = formatIOMessage({ id: data.getImage.hrefImg , intl })
     if(mobile){
       finalImageUrl = formatIOMessage({ id: data.getImage.urlMobile, intl })
     } else {
@@ -203,7 +206,7 @@ const InfoCard = ({
 
   return (
     <LinkWrapper
-      imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
+      imageActionUrl={imageHref}
       extraCondition={!isFullModeStyle}
       linkProps={{ className: linkWrapperClasses, target: linkTarget }}
     >
@@ -249,7 +252,7 @@ const InfoCard = ({
         {!isFullModeStyle && (
           <div className={`${handles.infoCardImageContainer} w-50-ns`}>
             <LinkWrapper
-              imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
+              imageActionUrl={imageHref}
               linkProps={{ target: linkTarget }}
             >
               <img
