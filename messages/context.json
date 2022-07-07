@@ -126,6 +126,8 @@
   "admin/editor.info-card.callAction.link": "Name of enum value to make CTA a link",
   "admin/editor.info-card.imageActionUrl.title": "Name of imageActionUrl property",
   "admin/editor.info-card.imageActionUrl.description": "Name of imageActionUrl description",
+  "admin/editor.info-card.imageProtocolId.title": "Image Protocol Id",
+  "admin/editor.info-card.imageProtocolId.description": "Used to identify the component that will render the personalized content",
   "store/user-address.pickup": "Pickup at <address>",
   "store/user-address.order": "Order to <address>",
   "store/user-address.change": "Change address button label",
@@ -191,7 +193,5 @@
   "admin/editor.product-description.title-prop.title": "Title",
   "admin/editor.search-bar.title": "Search bar",
   "admin/editor.search-bar.placeholder.title": "Placeholder",
-  "store/back-to-top.label": "Back to top",
-  "admin/editor.info-card.imageProtocolId.title": "Image Protocol Id",
-  "admin/editor.info-card.imageProtocolId.description": "Image Protocol Id"
+  "store/back-to-top.label": "Back to top"
 }
