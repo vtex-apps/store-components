@@ -104,7 +104,7 @@ const InfoCard = ({
   const {
     hints: { mobile },
   } = useRuntime()
-
+  console.log('hints mobile: ', mobile)
   const { lazyLoad } = useExperimentalLazyImagesContext()
 
   const { handles } = useCssHandles(CSS_HANDLES)
@@ -139,6 +139,7 @@ const InfoCard = ({
   )
 
   let imageHref = formatIOMessage({ id: imageActionUrl, intl })
+  let actionHref = formatIOMessage({ id: callToActionUrl, intl })
   // Start Image Protocol
   console.log('InfoCard imageProtocolId: ', imageProtocolId)
   let userId = "";
@@ -161,6 +162,7 @@ const InfoCard = ({
   if (!error && !loading && data && data.getImage && data.getImage.url !== null && data.getImage.urlMobile !== null && imageProtocolId !== '') {
     console.log('getImage InfoCard: ',data.getImage)
     imageHref = formatIOMessage({ id: data.getImage.hrefImg , intl })
+    actionHref = formatIOMessage({ id: data.getImage.hrefImg , intl })
     if(mobile){
       finalImageUrl = formatIOMessage({ id: data.getImage.urlMobile, intl })
     } else {
@@ -246,7 +248,7 @@ const InfoCard = ({
           <CallToAction
             mode={callToActionMode}
             text={formatIOMessage({ id: callToActionText, intl })}
-            url={formatIOMessage({ id: callToActionUrl, intl })}
+            url={actionHref}
             linkTarget={callToActionLinkTarget}
           />
         </div>
