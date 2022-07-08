@@ -1,15 +1,15 @@
 import classNames from 'classnames'
 import PropTypes, { bool, string, oneOf } from 'prop-types'
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import { values } from 'ramda'
 import { injectIntl } from 'react-intl'
-import {
-  useRuntime,
-  useExperimentalLazyImagesContext,
-} from 'vtex.render-runtime'
+import { useLazyQuery } from 'react-apollo'
+import { useExperimentalLazyImagesContext } from 'vtex.render-runtime'
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
 import RichText from 'vtex.rich-text/index'
+import { useDevice } from 'vtex.device-detector'
+import { useRenderSession } from 'vtex.session-client'
 
 import CallToAction from './CallToAction'
 import LinkWrapper from './LinkWrapper'
@@ -22,9 +22,7 @@ import {
   textModeTypes,
 } from './SchemaTypes'
 import { SanitizedHTML } from '../SanitizedHTML'
-
-import { useQuery } from 'react-apollo'
-import { useRenderSession } from 'vtex.session-client'
+import { usePosition } from '../../hooks/usePosition'
 import GET_IMAGE_PROTOCOL_IMAGES from './graphql/getImgUrl.gql'
 
 const ALLOWED_TAGS = ['p', 'span', 'a', 'div', 'br']
@@ -101,10 +99,7 @@ const InfoCard = ({
   linkTarget,
   imageProtocolId,
 }) => {
-  const {
-    hints: { mobile },
-  } = useRuntime()
-  console.log('hints mobile: ', mobile)
+  const { isMobile: mobile } = useDevice()
   const { lazyLoad } = useExperimentalLazyImagesContext()
 
   const { handles } = useCssHandles(CSS_HANDLES)
@@ -141,32 +136,40 @@ const InfoCard = ({
   let imageHref = formatIOMessage({ id: imageActionUrl, intl })
   let actionHref = formatIOMessage({ id: callToActionUrl, intl })
   // Start Image Protocol
-  console.log('InfoCard imageProtocolId: ', imageProtocolId)
-  let userId = "";
-  console.log('InfoCard index.js finalImageUrl: ', finalImageUrl)
   const { session } = useRenderSession()
-  console.log('InfoCard session: ', session)
-  if (session) {
-    const {
-      namespaces: { profile },
-    } = session
-    userId = profile?.id?.value
-  }
+  const { latitude, longitude, error: positionError } = usePosition()
 
-  const { loading, error, data } = useQuery(GET_IMAGE_PROTOCOL_IMAGES, {
-    variables: { userId: userId, imageProtocolId: imageProtocolId },
-    skip: !userId || !imageProtocolId,
-    ssr: false
-  })
+  const [getPersonalizedImages, { data: imageData }] = useLazyQuery(
+    GET_IMAGE_PROTOCOL_IMAGES,
+    {
+      ssr: false,
+    }
+  )
 
-  if (!error && !loading && data && data.getImage && data.getImage.url !== null && data.getImage.urlMobile !== null && imageProtocolId !== '') {
-    console.log('getImage InfoCard: ',data.getImage)
-    imageHref = formatIOMessage({ id: data.getImage.hrefImg , intl })
-    actionHref = formatIOMessage({ id: data.getImage.hrefImg , intl })
-    if(mobile){
-      finalImageUrl = formatIOMessage({ id: data.getImage.urlMobile, intl })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (session && imageProtocolId && positionError !== undefined) {
+      getPersonalizedImages({
+        variables: {
+          userId: session?.namespaces?.profile?.id?.value,
+          imageProtocolId,
+          latitude,
+          longitude,
+        },
+      })
+    }
+  }, [positionError, session, imageProtocolId])
+
+  if (imageData?.getImage) {
+    imageHref = formatIOMessage({ id: imageData.getImage.hrefImg, intl })
+    actionHref = formatIOMessage({ id: imageData.getImage.hrefImg, intl })
+    if (mobile) {
+      finalImageUrl = formatIOMessage({
+        id: imageData.getImage.urlMobile,
+        intl,
+      })
     } else {
-      finalImageUrl = formatIOMessage({ id: data.getImage.url, intl })
+      finalImageUrl = formatIOMessage({ id: imageData.getImage.url, intl })
     }
   }
   // End Image Protocol
