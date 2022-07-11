@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react'
 
-interface Coordinate {
+interface LatLong {
   latitude: number | undefined
   longitude: number | undefined
 }
 
-interface Position {
-  coords: Coordinate
+interface LatLongHistory {
+  coords: LatLong
   timestamp: number
 }
 
 export const usePosition = () => {
-  const [position, setPosition] = useState<Coordinate>({
+  const [position, setPosition] = useState<LatLong>({
     latitude: undefined,
     longitude: undefined,
   })
 
   const [error, setError] = useState<boolean | undefined>(undefined)
 
-  const onSuccess = (gelocation: Position) => {
+  const onSuccess = (gelocation: LatLongHistory) => {
     const { coords } = gelocation
 
     setPosition({
