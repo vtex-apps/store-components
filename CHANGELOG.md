@@ -35,6 +35,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Lint issues
 
+## [3.161.1] - 2022-07-12
+### Added
+- inserting text in infocard alt tag
+
 ## [3.161.0] - 2022-07-05
 ### Added
 - Call To Action mode on contentSchema
