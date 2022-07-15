@@ -239,9 +239,9 @@ const variationNameToDisplayVariation = ({
     .filter(Boolean) as DisplayOption[]
 
     if(sortVariationsByLabel) {
-    options.sort((a,b)=> {
-      return a.label < b.label ? -1 : a.label > b.label ? 1 : 0;
-    })
+     options.sort((a,b)=> {
+       return a.label < b.label ? -1 : a.label > b.label ? 1 : 0;
+     })
   }
   return { name, originalName, options }
 }
