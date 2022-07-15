@@ -74,6 +74,9 @@
     "vtex.store-resources": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-resources@0.83.0/public/@types/vtex.store-resources",
     "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.145.0/public/@types/vtex.styleguide"
   },
+  "resolutions": {
+    "json-schema": "^0.4.0"
+  },
   "vtexTestTools": {
     "defaultLocale": "en"
   },
