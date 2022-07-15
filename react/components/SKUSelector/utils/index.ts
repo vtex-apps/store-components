@@ -1,8 +1,8 @@
 import { clone, filter, prop, reject } from 'ramda'
 import slugify from 'slugify'
+
 import { getDefaultSeller } from '../../../utils/sellers'
 import { SelectedVariations, SelectorProductItem } from '../types'
-
 
 /**
  * Return the maximum sku price
@@ -177,7 +177,7 @@ export const uniqueOptionToSelect = (
 
 export function slug(str: string) {
   // eslint-disable-next-line no-useless-escape
-  const replaced = str?.replace(/[*+~.()'"!:@&\[\]]/g, '') || ''
+  const replaced = str?.replace(/[*+~.()'`’"!:@&\[\]]/g, '') || ''
   const slugified = slugify(replaced, { lower: true }) || ''
 
   return slugified
@@ -186,17 +186,17 @@ export function slug(str: string) {
 type SelectedVariationsNotNull = Record<string, string>
 
 /** Private functions */
-const isSkuSelected = (selectedNotNull: SelectedVariationsNotNull) => (
-  sku: SelectorProductItem
-) => {
-  const hasAll = Object.keys(selectedNotNull).every(variationName => {
-    const selectedValue = selectedNotNull[variationName]
+const isSkuSelected =
+  (selectedNotNull: SelectedVariationsNotNull) =>
+  (sku: SelectorProductItem) => {
+    const hasAll = Object.keys(selectedNotNull).every(variationName => {
+      const selectedValue = selectedNotNull[variationName]
 
-    return sku.variationValues[variationName] === selectedValue
-  })
+      return sku.variationValues[variationName] === selectedValue
+    })
 
-  return hasAll
-}
+    return hasAll
+  }
 
 const buildAvailableVariations = (
   items: SelectorProductItem[],

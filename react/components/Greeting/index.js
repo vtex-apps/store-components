@@ -20,11 +20,12 @@ function Wrapper({ children }) {
 }
 
 // eslint-disable-next-line react/display-name
-const withWrapper = Component => props => (
-  <Wrapper>
-    <Component {...props} />
-  </Wrapper>
-)
+const withWrapper = Component => props =>
+  (
+    <Wrapper>
+      <Component {...props} />
+    </Wrapper>
+  )
 
 /**
  * @deprecated This component is deprecated.
