@@ -77,7 +77,8 @@
   "resolutions": {
     "json-schema": "^0.4.0",
     "jsdom": "^16.5.0",
-    "jest-environment-jsdom": "^26.0.0"
+    "jest-environment-jsdom": "^26.0.0",
+    "node-fetch": "^2.6.7"
   },
   "vtexTestTools": {
     "defaultLocale": "en"
