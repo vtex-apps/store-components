@@ -160,7 +160,7 @@ const InfoCard = ({
     }
   }, [positionError, session, imageProtocolId])
 
-  if (imageData?.getImage) {
+  if (imageData?.getImage && imageData.getImage.url !== null && imageData.getImage.urlMobile !== null) {
     imageHref = formatIOMessage({ id: imageData.getImage.hrefImg, intl })
     actionHref = formatIOMessage({ id: imageData.getImage.hrefImg, intl })
     if (mobile) {
