@@ -67,7 +67,7 @@ interface Props {
   sliderDisplayThreshold: number
   sliderArrowSize: number
   sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
-  isSort:boolean
+  sortVariationsByLabel?: boolean
 }
 
 function isSkuAvailable(item?: SelectorProductItem) {
@@ -118,7 +118,7 @@ interface AvailableVariationParams {
   skuItems: SelectorProductItem[]
   hideImpossibleCombinations: boolean
   disableUnavailableSelectOptions: boolean
-  isSort:boolean
+  sortVariationsByLabel: boolean
 }
 
 const parseOptionNameToDisplayOption = ({
@@ -209,7 +209,7 @@ const variationNameToDisplayVariation = ({
   variationCount,
   hideImpossibleCombinations,
   disableUnavailableSelectOptions,
-  isSort
+  sortVariationsByLabel,
 }: {
   variations: Variations
   selectedVariations: SelectedVariations
@@ -219,7 +219,7 @@ const variationNameToDisplayVariation = ({
   variationCount: number
   hideImpossibleCombinations: boolean
   disableUnavailableSelectOptions: boolean
-  isSort:boolean
+  sortVariationsByLabel:boolean
 }) => (variationName: string): DisplayVariation => {
   const name = variationName
   const { values, originalName } = variations[variationName]
@@ -238,7 +238,7 @@ const variationNameToDisplayVariation = ({
     )
     .filter(Boolean) as DisplayOption[]
 
-    if(isSort) {
+    if(sortVariationsByLabel) {
     options.sort((a,b)=> {
       return a.label < b.label ? -1 : a.label > b.label ? 1 : 0;
     })
@@ -255,7 +255,7 @@ const getAvailableVariations = ({
   skuItems,
   hideImpossibleCombinations,
   disableUnavailableSelectOptions,
-  isSort
+  sortVariationsByLabel
 }: AvailableVariationParams): DisplayVariation[] => {
   const variationCount = Object.keys(variations).length
 
@@ -269,7 +269,7 @@ const getAvailableVariations = ({
       variationCount,
       hideImpossibleCombinations,
       disableUnavailableSelectOptions,
-      isSort
+      sortVariationsByLabel
     })
   )
 }
@@ -308,7 +308,7 @@ function SKUSelector({
   sliderDisplayThreshold,
   sliderArrowSize,
   sliderItemsPerPage,
-  isSort = false
+  sortVariationsByLabel = false
 }: Props) {
   const { handles } = useSKUSelectorCssHandles()
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
@@ -333,7 +333,7 @@ function SKUSelector({
       skuItems,
       hideImpossibleCombinations,
       disableUnavailableSelectOptions,
-      isSort
+      sortVariationsByLabel
     }),
     [
       variations,
@@ -343,7 +343,7 @@ function SKUSelector({
       skuItems,
       hideImpossibleCombinations,
       disableUnavailableSelectOptions,
-      isSort
+      sortVariationsByLabel
     ]
   )
 
