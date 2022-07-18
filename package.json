@@ -39,5 +39,8 @@
     "lint-staged": "^10.0.2",
     "prettier": "2.3.2",
     "typescript": "^3.7.5"
+  },
+  "resolutions": {
+    "glob-parent": "^6.0.1"
   }
 }
