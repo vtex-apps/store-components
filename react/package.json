@@ -78,7 +78,8 @@
     "json-schema": "^0.4.0",
     "jsdom": "^16.5.0",
     "jest-environment-jsdom": "^26.0.0",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "node-notifier": "^8.0.1"
   },
   "vtexTestTools": {
     "defaultLocale": "en"
