@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `node-fetch` to resolutions yarn field
+- `glob-parent` to resolutions yarn field
 
 ## [3.161.24] - 2022-07-18
 ### Added
