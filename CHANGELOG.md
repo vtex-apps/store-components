@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Updated `husky` to v8
+- Updated `husky` to v7
 
 ## [3.161.26] - 2022-07-18
 ### Added
