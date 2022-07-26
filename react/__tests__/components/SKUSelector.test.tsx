@@ -1408,4 +1408,55 @@ describe('<SKUSelector />', () => {
 
     expect(queryByText('Yellow')).toBeFalsy()
   })
+  
+  it('must order sku specification to be sorted in alphabetical order', async () => {
+    const defaultSeller =  {sellerDefault: true, commertialOffer: { Price: 1, ListPrice: 1, AvailableQuantity: 2 }}
+   
+    const skuItems = [
+      {
+        itemId: '1',
+        name: 'Gray Shoe',
+        variations: [
+          { name: 'Size', values: ['43'] },
+          { name: 'Color', values: ['Gray'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '4',
+        name: 'Gray Shoe',
+        variations: [
+          {
+            name: 'Size',
+            values: ['42'],
+          },
+          { name: 'Color', values: ['Gray'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+      {
+        itemId: '4',
+        name: 'Gray Shoe',
+        variations: [
+          {
+            name: 'Size',
+            values: ['41'],
+          },
+          { name: 'Color', values: ['Gray'] },
+        ],
+        sellers: [defaultSeller],
+        images: [],
+      },
+    ]
+
+    const {container} =  renderComponent({ sortVariationsByLabel:true,skuSelected:skuItems[0], skuItems:skuItems})
+    
+    const options = container.querySelectorAll('.skuSelectorItemTextValue')
+    expect(options[0]).toHaveTextContent('41')
+    expect(options[1]).toHaveTextContent('42')
+    expect(options[2]).toHaveTextContent('43')
+    })
 })
+
