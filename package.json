@@ -8,12 +8,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json}\"",
     "test": "cd ./react && yarn test",
     "verify": "yarn lint && yarn test",
-    "lint:locales": "intl-equalizer"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "lint:locales": "intl-equalizer",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{ts,js,tsx,jsx}": [
@@ -35,9 +31,12 @@
     "eslint": "^6.8.0",
     "eslint-config-vtex": "^12.8.1",
     "eslint-config-vtex-react": "^6.7.3",
-    "husky": "^4.2.0",
+    "husky": "^7.0.1",
     "lint-staged": "^10.0.2",
     "prettier": "2.3.2",
     "typescript": "^3.7.5"
+  },
+  "resolutions": {
+    "glob-parent": "^6.0.1"
   }
 }
