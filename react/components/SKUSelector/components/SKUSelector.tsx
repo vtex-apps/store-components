@@ -141,68 +141,68 @@ const parseOptionNameToDisplayOption =
     hideImpossibleCombinations: boolean
     disableUnavailableSelectOptions: boolean
   }) =>
-    (variationValue: {
-      name: string
-      originalName: string
-    }): DisplayOption | null => {
-      const isSelected = selectedVariations[variationName] === variationValue.name
-      const image = imagesMap?.[variationName]?.[variationValue.name]
+  (variationValue: {
+    name: string
+    originalName: string
+  }): DisplayOption | null => {
+    const isSelected = selectedVariations[variationName] === variationValue.name
+    const image = imagesMap?.[variationName]?.[variationValue.name]
 
-      const newSelectedVariation = clone(selectedVariations)
+    const newSelectedVariation = clone(selectedVariations)
 
-      newSelectedVariation[variationName] = isSelected
-        ? null
-        : variationValue.name
+    newSelectedVariation[variationName] = isSelected
+      ? null
+      : variationValue.name
 
-      const possibleItems = findListItemsWithSelectedVariations(
-        skuItems,
-        newSelectedVariation
-      )
+    const possibleItems = findListItemsWithSelectedVariations(
+      skuItems,
+      newSelectedVariation
+    )
 
-      if (possibleItems.length > 0) {
-        // This is a valid combination option
-        const [item] = possibleItems
-        const callbackFn = onSelectItemMemo({
-          name: variationName,
-          value: variationValue.name,
-          skuId: item.itemId,
-          isMainAndImpossible: false,
+    if (possibleItems.length > 0) {
+      // This is a valid combination option
+      const [item] = possibleItems
+      const callbackFn = onSelectItemMemo({
+        name: variationName,
+        value: variationValue.name,
+        skuId: item.itemId,
+        isMainAndImpossible: false,
+        possibleItems,
+      })
+
+      return {
+        label: variationValue.name,
+        originalName: variationValue.originalName,
+        onSelectItem: callbackFn,
+        image,
+        available: showItemAsAvailable({
           possibleItems,
-        })
-
-        return {
-          label: variationValue.name,
-          originalName: variationValue.originalName,
-          onSelectItem: callbackFn,
-          image,
-          available: showItemAsAvailable({
-            possibleItems,
-            selectedVariations,
-            variationCount,
-            isSelected,
-          }),
-          impossible: false,
-          disabled: disableUnavailableSelectOptions,
-        }
+          selectedVariations,
+          variationCount,
+          isSelected,
+        }),
+        impossible: false,
+        disabled: disableUnavailableSelectOptions,
       }
-
-      if (!hideImpossibleCombinations) {
-        // This is a impossible combination and will only appear if the prop allows.
-        return {
-          label: variationValue.name,
-          originalName: variationValue.originalName,
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
-          onSelectItem: () => {},
-          image,
-          available: true,
-          impossible: true,
-          disabled: disableUnavailableSelectOptions,
-        }
-      }
-
-      // This is a impossible combination and will be hidden.
-      return null
     }
+
+    if (!hideImpossibleCombinations) {
+      // This is a impossible combination and will only appear if the prop allows.
+      return {
+        label: variationValue.name,
+        originalName: variationValue.originalName,
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
+        onSelectItem: () => {},
+        image,
+        available: true,
+        impossible: true,
+        disabled: disableUnavailableSelectOptions,
+      }
+    }
+
+    // This is a impossible combination and will be hidden.
+    return null
+  }
 
 const variationNameToDisplayVariation =
   ({
@@ -226,31 +226,32 @@ const variationNameToDisplayVariation =
     disableUnavailableSelectOptions: boolean
     sortVariationsByLabel: boolean
   }) =>
-    (variationName: string): DisplayVariation => {
-      const name = variationName
-      const { values, originalName } = variations[variationName]
-      const options = values
-        .map(
-          parseOptionNameToDisplayOption({
-            selectedVariations,
-            variationName,
-            skuItems,
-            onSelectItemMemo,
-            imagesMap,
-            variationCount,
-            hideImpossibleCombinations,
-            disableUnavailableSelectOptions,
-          })
-        )
-        .filter(Boolean) as DisplayOption[]
-
-      if (sortVariationsByLabel) {
-        options.sort((a,b) => {
-          return a.label < b.label ? -1 : a.label > b.label ? 1 : 0;
+  (variationName: string): DisplayVariation => {
+    const name = variationName
+    const { values, originalName } = variations[variationName]
+    const options = values
+      .map(
+        parseOptionNameToDisplayOption({
+          selectedVariations,
+          variationName,
+          skuItems,
+          onSelectItemMemo,
+          imagesMap,
+          variationCount,
+          hideImpossibleCombinations,
+          disableUnavailableSelectOptions,
         })
-      }
-      return { name, originalName, options }
+      )
+      .filter(Boolean) as DisplayOption[]
+
+    if (sortVariationsByLabel) {
+      options.sort((a, b) => {
+        return a.label < b.label ? -1 : a.label > b.label ? 1 : 0
+      })
     }
+
+    return { name, originalName, options }
+  }
 
 // Parameters are explained on PropTypes
 const getAvailableVariations = ({
@@ -261,7 +262,7 @@ const getAvailableVariations = ({
   skuItems,
   hideImpossibleCombinations,
   disableUnavailableSelectOptions,
-  sortVariationsByLabel
+  sortVariationsByLabel,
 }: AvailableVariationParams): DisplayVariation[] => {
   const variationCount = Object.keys(variations).length
 
@@ -275,7 +276,7 @@ const getAvailableVariations = ({
       variationCount,
       hideImpossibleCombinations,
       disableUnavailableSelectOptions,
-      sortVariationsByLabel
+      sortVariationsByLabel,
     })
   )
 }
@@ -314,18 +315,18 @@ function SKUSelector({
   sliderDisplayThreshold,
   sliderArrowSize,
   sliderItemsPerPage,
-  sortVariationsByLabel = false
+  sortVariationsByLabel = false,
 }: Props) {
   const { handles } = useSKUSelectorCssHandles()
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
   const onSelectItemMemo = useCallback(
     ({
-      name,
-      value,
-      skuId,
-      isMainAndImpossible,
-      possibleItems,
-    }: CallbackItem) =>
+        name,
+        value,
+        skuId,
+        isMainAndImpossible,
+        possibleItems,
+      }: CallbackItem) =>
       () =>
         onSelectItem({
           name,
@@ -346,7 +347,7 @@ function SKUSelector({
       skuItems,
       hideImpossibleCombinations,
       disableUnavailableSelectOptions,
-      sortVariationsByLabel
+      sortVariationsByLabel,
     }),
     [
       variations,
@@ -356,7 +357,7 @@ function SKUSelector({
       skuItems,
       hideImpossibleCombinations,
       disableUnavailableSelectOptions,
-      sortVariationsByLabel
+      sortVariationsByLabel,
     ]
   )
 
