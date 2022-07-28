@@ -16,7 +16,7 @@ exports[`<InfoCard /> should insert span with class on headline 1`] = `
         <div
           style="display: contents;"
         >
-          HEADLINE
+          HEADLINE 
           <span
             class="my-custom-class"
           >
@@ -55,7 +55,7 @@ exports[`<InfoCard /> should not render subhead 1`] = `
         <div
           style="display: contents;"
         >
-          HEADLINE
+          HEADLINE 
           <span
             class="my-custom-class"
           >
