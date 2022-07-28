@@ -16,7 +16,7 @@ exports[`<InfoCard /> should insert span with class on headline 1`] = `
         <div
           style="display: contents;"
         >
-          HEADLINE 
+          HEADLINE
           <span
             class="my-custom-class"
           >
@@ -55,7 +55,7 @@ exports[`<InfoCard /> should not render subhead 1`] = `
         <div
           style="display: contents;"
         >
-          HEADLINE 
+          HEADLINE
           <span
             class="my-custom-class"
           >
@@ -173,7 +173,7 @@ exports[`<InfoCard /> should render with image and text side by side 1`] = `
       class="infoCardImageContainer w-50-ns"
     >
       <img
-        alt=""
+        alt="CLIQUE HERE"
         class="infoCardImage"
         data-testid="half-image"
         src="my-image.com/image.png"
@@ -252,7 +252,7 @@ exports[`<InfoCard /> should wrap half image in a link with imageActionUrl 1`] =
         href="dummy"
       >
         <img
-          alt=""
+          alt="CLIQUE HERE"
           class="infoCardImage"
           data-testid="half-image"
           src="my-image.com/image.png"
