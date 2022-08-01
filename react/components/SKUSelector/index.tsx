@@ -186,6 +186,7 @@ interface Props {
   sliderDisplayThreshold?: number
   sliderArrowSize?: number
   sliderItemsPerPage?: ResponsiveValuesTypes.ResponsiveValue<number>
+  sortVariationsByLabel?: boolean
 }
 
 const getNewSelectedVariations = (
@@ -247,6 +248,7 @@ const SKUSelectorContainer: FC<Props> = ({
   initialSelection = 'complete',
   sliderDisplayThreshold = 3,
   sliderArrowSize = 12,
+  sortVariationsByLabel = false,
   sliderItemsPerPage = {
     desktop: 3,
     tablet: 2,
@@ -422,6 +424,7 @@ const SKUSelectorContainer: FC<Props> = ({
       sliderDisplayThreshold={sliderDisplayThreshold}
       sliderArrowSize={sliderArrowSize}
       sliderItemsPerPage={sliderItemsPerPage}
+      sortVariationsByLabel={sortVariationsByLabel}
     />
   )
 }
