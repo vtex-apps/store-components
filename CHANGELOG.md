@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.162.0] - 2022-08-01
+
 ## [3.161.28] - 2022-07-28
 ### Added
 - Including alt tag value in Infocard's image
