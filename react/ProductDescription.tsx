@@ -82,7 +82,7 @@ function ProductDescription(props: PropsWithChildren<Props>) {
 
       <div className={`${handles.productDescriptionText} c-muted-1`}>
         {collapseContent ? (
-          <GradientCollapse collapseHeight={220}>
+          <GradientCollapse collapseHeight={220} product={product}>
             <SanitizedHTML
               content={description}
               allowedTags={allowedTags}

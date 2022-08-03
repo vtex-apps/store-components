@@ -5,6 +5,7 @@ import debounce from 'debounce'
 import { FormattedMessage } from 'react-intl'
 import classNames from 'classnames'
 import { useCssHandles } from 'vtex.css-handles'
+import { usePixel } from 'vtex.pixel-manager'
 
 import styles from './styles.css'
 
@@ -36,8 +37,10 @@ function GradientCollapse(props) {
     collapseHeight,
     onCollapsedChange,
     collapsed: collapsedProp,
+    product
   } = props
 
+  const { push } = usePixel()
   const { handles } = useCssHandles(CSS_HANDLES)
   const [collapsed, setCollapsed] = useState(collapsedProp)
   const [prevCollapsedProp, setPrevCollapsedProp] = useState(collapsedProp)
@@ -65,8 +68,10 @@ function GradientCollapse(props) {
   }
 
   const handleCollapsedChange = (e, newValue) => {
+
     setCollapsed(newValue)
     setPrevCollapsedProp(collapsedProp)
+    push({event: 'productDescription', product, action: newValue ? 'show-less' : 'show-more' })
 
     if (onCollapsedChange) {
       onCollapsedChange(e, newValue)
