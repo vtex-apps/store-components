@@ -186,7 +186,7 @@
   "admin/editor.skuSelector.title": "SKU 選擇器",
   "admin/editor.skuSelector.description": "顯示某個項特定變體以供使用者選擇的組件",
   "admin/editor.skuSelector.seeMoreLabel.title": "查看更多標籤",
-  "admin/editor.skuSelector.seeMoreLabel.description": "「查看更多」按鈕的標籤。該字串必須有一個 {quantity} 預留位置，以顯示適當的剩餘可用項。示例：“See {quantity} more”",
+  "admin/editor.skuSelector.seeMoreLabel.description": "查看更多按鈕的標籤。此字串必須有一個 {quantity} 佔位符，才能顯示適當的剩餘可用商品。例如：「查看 {quantity} 更多」",
   "admin/editor.product-description.title": "產品描述",
   "admin/editor.product-description.title-prop.title": "標題",
   "admin/editor.search-bar.title": "搜索欄",
