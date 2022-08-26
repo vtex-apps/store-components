@@ -107,7 +107,6 @@ class Carousel extends Component {
         ...initialState,
       })
 
-
       return
     }
 
