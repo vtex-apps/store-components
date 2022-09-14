@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- `ProductPrice` considering default seller.
+
 ## [3.162.2] - 2022-08-31
 
 ## [3.162.1] - 2022-08-31
