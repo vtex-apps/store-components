@@ -2,8 +2,6 @@ import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty, has } from 'ramda'
 
-import { getDefaultSeller } from '../../utils/sellers'
-
 import { useCommercialOffer } from '../../utils/useCommercialOffer'
 import ProductPrice from './index'
 
@@ -55,6 +53,8 @@ const ProductPriceWrapper = ({
 
   const commercialOffer = useCommercialOffer(valuesFromContext)
 
+  const commercialOffer = useCommercialOffer(valuesFromContext)
+
   const {
     className,
     listPriceContainerClass,
@@ -90,12 +90,6 @@ const ProductPriceWrapper = ({
         showProductPrice: true,
       }
     }
-
-    const {
-      selectedItem: { sellers },
-    } = valuesFromContext
-
-    const { commertialOffer } = getDefaultSeller(sellers)
 
     return {
       ...props,
