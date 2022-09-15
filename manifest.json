@@ -38,5 +38,16 @@
     "vtex.store-resources": "0.x",
     "vtex.styleguide": "9.x"
   },
+  "settingsSchema": {
+    "title": "vtex.store-components",
+    "type": "object",
+    "properties": {
+      "enableDefaultSeller": {
+        "title": "Use Default Seller",
+        "description": "Should use default seller to get price",
+        "type": "boolean"
+      }
+    }
+  },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

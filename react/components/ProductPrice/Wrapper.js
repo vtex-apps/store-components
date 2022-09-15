@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty, has } from 'ramda'
 
-import { getDefaultSeller } from '../../utils/sellers'
+import { useCommercialOffer } from '../../utils/useCommercialOffer'
 import ProductPrice from './index'
 
 const styles = {
@@ -37,9 +37,9 @@ const styles = {
   },
 }
 
-const isAvailable = commertialOffer =>
-  Number.isNaN(+path(['AvailableQuantity'], commertialOffer)) ||
-  path(['AvailableQuantity'], commertialOffer) > 0
+const isAvailable = commercialOffer =>
+  Number.isNaN(+path(['AvailableQuantity'], commercialOffer)) ||
+  path(['AvailableQuantity'], commercialOffer) > 0
 
 const ProductPriceWrapper = ({
   labelSellingPrice,
@@ -50,6 +50,8 @@ const ProductPriceWrapper = ({
   ...props
 }) => {
   const valuesFromContext = useContext(ProductContext)
+
+  const commercialOffer = useCommercialOffer(valuesFromContext)
 
   const {
     className,
@@ -87,12 +89,6 @@ const ProductPriceWrapper = ({
       }
     }
 
-    const {
-      selectedItem: { sellers },
-    } = valuesFromContext
-
-    const { commertialOffer } = getDefaultSeller(sellers)
-
     return {
       ...props,
       styles: props.styles || styles,
@@ -113,15 +109,15 @@ const ProductPriceWrapper = ({
       savingsContainerClass: savingsContainerClass || 'c-success mt3',
       savingsClass: savingsClass || 'dib t-small',
       loaderClass: loaderClass || 'h4-s mw6-s pt2-s',
-      listPrice: listPrice || path(['ListPrice'], commertialOffer),
-      sellingPrice: sellingPrice || path(['Price'], commertialOffer),
-      installments: installments || path(['Installments'], commertialOffer),
+      listPrice: listPrice || path(['ListPrice'], commercialOffer),
+      sellingPrice: sellingPrice || path(['Price'], commercialOffer),
+      installments: installments || path(['Installments'], commercialOffer),
       labelSellingPrice,
       showLabels,
       showInstallments,
       showListPrice,
       showSavings,
-      showProductPrice: isAvailable(commertialOffer),
+      showProductPrice: isAvailable(commercialOffer),
     }
   }
 
