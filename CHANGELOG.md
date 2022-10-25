@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.163.1] - 2022-10-25
+
 ### Fixed
 - Image documentation: Fix typo.
 
