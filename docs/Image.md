@@ -4,7 +4,7 @@
 
 The `image` block renders images in the storefront. 
 
-![image](https://user-images.githubusercontent.com/284515/70230392-f982e780-1736-11ea-921b-e83208e80620.png)
+<img src="https://user-images.githubusercontent.com/60782333/197802548-bc9940ae-b9c8-47df-9769-e76155b9219b.png" width="400" />
 
 ## Configuration
 
