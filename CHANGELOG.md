@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+- Check if the swiper is not destroyed before changing initial state, which could cause the whole product UI to crash
+
 ## [3.163.2] - 2022-11-03
 ### Fixed
 - Update Info Card doc.
