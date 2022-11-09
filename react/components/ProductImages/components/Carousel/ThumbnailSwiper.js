@@ -108,9 +108,9 @@ const ThumbnailSwiper = props => {
       thumbCaretClassName,
       {
         [`bottom-0 pt7 left-0 justify-center w-100 ${styles.gradientBaseBottom}`]:
-         isThumbsVertical,
+          isThumbsVertical,
         [`right-0 top-0 items-center h-100 pl6 ${styles.gradientBaseRight}`]:
-         !isThumbsVertical,
+          !isThumbsVertical,
       }
     )
 
