@@ -107,10 +107,8 @@ const ThumbnailSwiper = props => {
       'swiper-thumbnails-caret-next',
       thumbCaretClassName,
       {
-        [`bottom-0 pt7 left-0 justify-center w-100 ${styles.gradientBaseBottom}`]:
-          isThumbsVertical,
-        [`right-0 top-0 items-center h-100 pl6 ${styles.gradientBaseRight}`]:
-          !isThumbsVertical,
+        [`bottom-0 pt7 left-0 justify-center w-100 ${styles.gradientBaseBottom}`]: isThumbsVertical,
+        [`right-0 top-0 items-center h-100 pl6 ${styles.gradientBaseRight}`]: !isThumbsVertical,
       }
     )
 
@@ -155,6 +153,7 @@ const ThumbnailSwiper = props => {
          * so that clicking on next/prev will scroll more than
          * one thumbnail */
         slidesPerGroup={displayThumbnailsArrows ? 4 : 1}
+        slidesPerGroupSkip={0}
         freeMode={false}
         mousewheel={false}
         zoom={false}
