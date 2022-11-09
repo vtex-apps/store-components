@@ -153,7 +153,6 @@ const ThumbnailSwiper = props => {
          * so that clicking on next/prev will scroll more than
          * one thumbnail */
         slidesPerGroup={displayThumbnailsArrows ? 4 : 1}
-        slidesPerGroupSkip={0}
         freeMode={false}
         mousewheel={false}
         zoom={false}
