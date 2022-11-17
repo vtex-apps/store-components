@@ -98,13 +98,7 @@ class Carousel extends Component {
     if (!equals(prevProps.slides, this.props.slides)) {
       this.setInitialVariablesState()
 
-      if (
-        !this.props.slides ||
-        this.state.gallerySwiper?.destroyed ||
-        this.state.thumbSwiper?.destroyed
-      ) {
-        return
-      }
+      if (!this.props.slides) return
 
       this.state.gallerySwiper?.slideTo(initialState.activeIndex)
       this.state.thumbSwiper?.slideTo(initialState.activeIndex)
