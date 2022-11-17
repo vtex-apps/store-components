@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.163.3] - 2022-11-17
+
 ### Fixed
 - Check if the swiper is not destroyed before changing initial state, which could cause the whole product UI to crash
 
