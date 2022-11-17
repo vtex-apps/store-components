@@ -134,10 +134,6 @@ const ProductImages = ({
     )
   }
 
-  if (!slides) {
-    return
-  }
-
   return (
     <div className={containerClass}>
       <Carousel
