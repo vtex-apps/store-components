@@ -25,10 +25,6 @@ import { SanitizedHTML } from '../SanitizedHTML'
 import { usePosition } from '../../hooks/usePosition'
 import GET_IMAGE_PROTOCOL_IMAGES from './graphql/getImgUrl.gql'
 
-import { useQuery } from 'react-apollo'
-import { useRenderSession } from 'vtex.session-client'
-import GET_IMAGE_PROTOCOL_IMAGES from './graphql/getImgUrl.gql'
-
 const ALLOWED_TAGS = ['p', 'span', 'a', 'div', 'br']
 const ALLOWED_ATTRS = {
   a: ['class', 'href', 'title', 'target'],
@@ -165,6 +161,7 @@ const InfoCard = ({
   }, [positionError, session, imageProtocolId])
 
   if (imageData?.getImage && imageData.getImage.url !== null && imageData.getImage.urlMobile !== null) {
+    console.info('get image: ', imageData.getImage)
     imageHref = formatIOMessage({ id: imageData.getImage.hrefImg, intl })
     actionHref = formatIOMessage({ id: imageData.getImage.hrefImg, intl })
     if (mobile) {
