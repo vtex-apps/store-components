@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Conditional logic to display specific URLs in a specific image component if the image protocol is being used
+
+- Image Protocol Implementation
+
 ## [3.163.4] - 2022-11-22
 ### Fixed
 - Update Product Name doc.
