@@ -38,7 +38,8 @@
     "vtex.store-resources": "0.x",
     "vtex.styleguide": "9.x",
     "vtex.session-client": "1.x",
-    "vtex.image-protocol": "1.x"
+    "vtex.image-protocol": "1.x",
+    "vtex.image-protocol-example": "0.x"
   },
   "settingsSchema": {
     "title": "vtex.store-components",
