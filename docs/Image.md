@@ -41,6 +41,8 @@ The `image` block renders images in the storefront.
 | `srcSet`      | `string`   | URL of the image to use in different situations.              | - |
 | `title` | `string` | Image title displayed on hover | - |
 
+> All image HTML attributes are also valid props.
+
 - **`link` props:**
 
 | Prop name     | Type       | Description                                                                | Default value | 
