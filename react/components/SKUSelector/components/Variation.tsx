@@ -2,6 +2,7 @@ import React, { FC, memo, useState, Fragment, useCallback } from 'react'
 import { Button } from 'vtex.styleguide'
 import { IOMessage } from 'vtex.native-types'
 import { SliderLayout } from 'vtex.slider-layout'
+import { ListContextProvider } from 'vtex.list-context'
 import { findIndex, propEq } from 'ramda'
 import classnames from 'classnames'
 import { useProduct } from 'vtex.product-context'
@@ -123,7 +124,7 @@ const Variation: FC<Props> = ({
     return (
       <SelectorItem
         isSelected={option.label === selectedItem}
-        key={`${option.label}-${name}`}
+        key={`${option.label}-${name}`}
         isAvailable={option.available}
         maxPrice={maxSkuPrice}
         onClick={option.impossible ? noop : option.onSelectItem}
@@ -183,9 +184,11 @@ const Variation: FC<Props> = ({
               displayOptions={displayOptions}
             />
           ) : shouldUseSlider ? (
-            <SliderLayout {...sliderConfigurationProps}>
-              {selectorItemsArray}
-            </SliderLayout>
+            <ListContextProvider list={[]}>
+              <SliderLayout {...sliderConfigurationProps}>
+                {selectorItemsArray}
+              </SliderLayout>
+            </ListContextProvider>
           ) : (
             selectorItemsArray
           )}
