@@ -5296,9 +5296,9 @@ validate-npm-package-license@^3.0.1:
   version "4.7.6"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.7.6/public/@types/vtex.address-form#8ef1f29df0ee2702a42a95d938420fa3e306110a"
 
-"vtex.apps-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.apps-graphql@2.8.0/public/@types/vtex.apps-graphql":
-  version "2.8.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.apps-graphql@2.8.0/public/@types/vtex.apps-graphql#4fd47b1281c4d36e8abb1cfa4daea83bc739eca1"
+"vtex.apps-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.apps-graphql@3.14.1/public/@types/vtex.apps-graphql":
+  version "3.14.1"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.apps-graphql@3.14.1/public/@types/vtex.apps-graphql#955c2c5a8d5316ec7c50849acbbd2d245894b8dc"
 
 "vtex.checkout-resources@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-resources@0.46.0/public/@types/vtex.checkout-resources":
   version "0.46.0"

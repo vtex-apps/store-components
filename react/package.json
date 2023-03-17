@@ -48,7 +48,7 @@
     "babel-eslint": "^10.1.0",
     "typescript": "3.9.7",
     "vtex.address-form": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.7.6/public/@types/vtex.address-form",
-    "vtex.apps-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.apps-graphql@2.8.0/public/@types/vtex.apps-graphql",
+    "vtex.apps-graphql": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.apps-graphql@3.14.1/public/@types/vtex.apps-graphql",
     "vtex.checkout-resources": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.checkout-resources@0.46.0/public/@types/vtex.checkout-resources",
     "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@1.0.0/public/@types/vtex.css-handles",
     "vtex.device-detector": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.device-detector@0.2.6/public/@types/vtex.device-detector",
