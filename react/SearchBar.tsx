@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { ModalContext } from 'vtex.modal-layout'
 import { useRuntime } from 'vtex.render-runtime'
@@ -91,8 +91,13 @@ function SearchBarContainer(props: Props) {
   } = props
 
   const modalDispatch = useModalDispatch()
-  const [inputValue, setInputValue] = useState('')
-  const { navigate } = useRuntime()
+  const { navigate, query } = useRuntime()
+
+  const [inputValue, setInputValue] = useState(query?._q ?? '')
+
+  useEffect(() => {
+    setInputValue(query?._q ?? '')
+  }, [query?._q])
 
   const { handles, withModifiers } = useCssHandles(SEARCH_BAR_CSS_HANDLES, {
     classes,
@@ -137,7 +142,6 @@ function SearchBarContainer(props: Props) {
     // See: https://support.google.com/analytics/answer/1012264
     const paramForSearchTracking = `&_q=${search}`
 
-    setInputValue('')
     navigate({
       page: 'store.search',
       params: { term: search },

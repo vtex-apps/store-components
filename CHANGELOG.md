@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - German translation.
 
+## [3.166.0] - 2023-03-22
+
 ## [3.165.0] - 2023-03-17
 ### Changed
 - `apps-graphql` version to use the most updated one
@@ -22,12 +24,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - English, Portuguese and Italian translations.
 
+### Added
+- Preserve searched term in the search-bar.
+
 ## [3.163.4] - 2022-11-22
 ### Fixed
 - Update Product Name doc.
 
 ## [3.163.3] - 2022-11-17
-
 ### Fixed
 - Check if the swiper is not destroyed before changing initial state, which could cause the whole product UI to crash
 
