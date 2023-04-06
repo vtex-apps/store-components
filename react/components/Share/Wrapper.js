@@ -3,6 +3,7 @@ import { ProductContext } from 'vtex.product-context'
 import { path, isEmpty } from 'ramda'
 import { injectIntl } from 'react-intl'
 import { useRuntime } from 'vtex.render-runtime'
+import { usePixel } from 'vtex.pixel-manager'
 
 import Share from './index'
 
@@ -11,6 +12,7 @@ const ShareWrapper = props => {
 
   const valuesFromContext = useContext(ProductContext)
   const { account } = useRuntime()
+  const { push } = usePixel()
 
   const shareProps = () => {
     if (!valuesFromContext || isEmpty(valuesFromContext)) {
@@ -37,6 +39,14 @@ const ShareWrapper = props => {
       loading:
         props.loading != null ? props.loading : !path(['name'], selectedItem),
       title: props.title || title,
+      sendShareEvent: (method) => {
+        push({
+          event: 'share',
+          itemId: product.productId,
+          contentType: 'image',
+          method
+        })
+      }
     }
   }
 
