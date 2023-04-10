@@ -43,8 +43,8 @@ export default class SocialButton extends Component {
     iconClass: PropTypes.string,
     /** Image url to share in social medias */
     imageUrl: PropTypes.string,
-    /** Function that sends share event to GA4 */
-    sendShareEvent: PropTypes.func
+    /** Function that sends share event to analytics */
+    sendShareEvent: PropTypes.func,
   }
 
   static defaultProps = {

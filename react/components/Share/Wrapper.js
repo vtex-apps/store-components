@@ -43,8 +43,8 @@ const ShareWrapper = props => {
         push({
           event: 'share',
           itemId: product.productId,
-          contentType: 'image',
-          method
+          contentType: 'product',
+          method,
         })
       }
     }
