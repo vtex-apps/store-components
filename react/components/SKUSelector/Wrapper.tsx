@@ -162,6 +162,7 @@ interface Props {
   thumbnailImage?: string
   visibleVariations?: string[]
   showVariationsLabels?: ShowVariationsLabels
+  variationsWithSingleValueAreVisibles?: boolean
   variationsSpacing?: number
   showVariationsErrorMessage?: boolean
   initialSelection?: InitialSelectionType
@@ -255,6 +256,7 @@ function SKUSelectorWrapper(props: Props) {
         variationsSpacing={props.variationsSpacing}
         showValueForVariation={showValueForVariation}
         showVariationsLabels={props.showVariationsLabels}
+        variationsWithSingleValueAreVisibles={props.variationsWithSingleValueAreVisibles}
         hideImpossibleCombinations={props.hideImpossibleCombinations}
         disableUnavailableSelectOptions={props.disableUnavailableSelectOptions}
         showVariationsErrorMessage={props.showVariationsErrorMessage}
