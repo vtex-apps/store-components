@@ -3,6 +3,16 @@ import { render } from '@vtex/test-tools/react'
 
 import Share from '../../Share'
 
+jest.mock('vtex.pixel-manager', () => {
+  return {
+    usePixel: jest.fn(() => {
+      return {
+        push: jest.fn(() => {})
+      }
+    })
+  }
+})
+
 describe('<Share />', () => {
   const renderComponent = props => {
     return render(<Share imageUrl="" {...props} />)
