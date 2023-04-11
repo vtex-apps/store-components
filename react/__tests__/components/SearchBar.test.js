@@ -4,6 +4,16 @@ import { render } from '@vtex/test-tools/react'
 import SearchBar from '../../SearchBar'
 import autocomplete from '../../graphql/autocomplete.gql'
 
+jest.mock('vtex.pixel-manager', () => {
+  return {
+    usePixel: jest.fn(() => {
+      return {
+        push: jest.fn(() => {}),
+      }
+    }),
+  }
+})
+
 describe('<SearchBar />', () => {
   const mockedResult = {
     request: {

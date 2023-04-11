@@ -259,7 +259,7 @@ function SearchBar({
     return changes
   }
 
-  const sendSearchEvent = (term:string) => {
+  const sendSearchEvent = (term: string) => {
     push({
       event: 'search',
       term,
