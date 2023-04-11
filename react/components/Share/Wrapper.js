@@ -39,14 +39,14 @@ const ShareWrapper = props => {
       loading:
         props.loading != null ? props.loading : !path(['name'], selectedItem),
       title: props.title || title,
-      sendShareEvent: (method) => {
+      sendShareEvent: method => {
         push({
           event: 'share',
           itemId: product.productId,
           contentType: 'product',
           method,
         })
-      }
+      },
     }
   }
 

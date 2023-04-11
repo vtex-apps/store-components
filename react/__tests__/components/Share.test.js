@@ -7,9 +7,9 @@ jest.mock('vtex.pixel-manager', () => {
   return {
     usePixel: jest.fn(() => {
       return {
-        push: jest.fn(() => {})
+        push: jest.fn(() => {}),
       }
-    })
+    }),
   }
 })
 
