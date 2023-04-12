@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 
-- Added event `search` trigger to analytics .
+- Added event `vtex:search` trigger to analytics .
 ## [3.167.0] - 2023-03-28
 
 ### Added
