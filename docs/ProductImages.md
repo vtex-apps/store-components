@@ -50,9 +50,9 @@ The `product-images` block is responsible for rendering a product image or video
 | `contentType` | `enum` | Controls the type of content that will be displayed in the block. Possible values are: `images`, `videos`, or `all`. | `all` |
 | `displayMode` | `enum` | Defines how the product media should be displayed. Possible values are `carousel` (displays the product images and videos in a carousel), `list` (displays only the product images inline, with no extra markup) and `first-image` (displays only the first image available). *Caution*: The `list` and `first-image` values do not display product videos and are only compatible with the `maxHeight`, `hiddenImages`, `zoomFactor`, `aspectRatio`,`ModalZoomElement`, and `zoomMode` props. | `carousel` |
 | `displayThumbnailsArrows` | `boolean` | Displays navigation arrows on the thumbnails media (if there are enough thumbnails for them to scroll)              | `false`       |
-| `hiddenImages`       | `string`  | Hides images whose labels match the values listed in this prop. Intended to be used along with the `product-summary-sku-selector` block. You can have more information at the [SKU Selector](https://developers.vtex.com/vtex-developer-docs/docs/vtex-store-components-skuselector) documentation | `skuvariation` |
+| `hiddenImages`       | `string`  | Hides images whose labels match the values listed in this prop. Intended to be used along with the `product-summary-sku-selector` block. You can have more information at the [SKU Selector](https://developers.vtex.com/docs/apps/vtex.store-components/skuselector) documentation | `skuvariation` |
 | `maxHeight`             | `number`                                   | Maximum height for individual product images (in pixels). | `600`          |
-| `ModalZoom` | `block` | Opens a modal for product image zooming. This prop's value must match the name of the block responsible for triggering the modal containing the product image for zooming (e.g. `modal-layout` from [Modal layout](https://developers.vtex.com/vtex-developer-docs/docs/vtex-modal-layout) app). Notice that the `ModalZoom` prop will work only if the `zoomMode` prop is set as `open-modal`. To learn more, check out the [Advanced Configuration section](#Advanced-Configuration). | `undefined` |
+| `ModalZoom` | `block` | Opens a modal for product image zooming. This prop's value must match the name of the block responsible for triggering the modal containing the product image for zooming (e.g. `modal-layout` from [Modal layout](https://developers.vtex.com/docs/apps/vtex.modal-layout) app). Notice that the `ModalZoom` prop will work only if the `zoomMode` prop is set as `open-modal`. To learn more, check out the [Advanced Configuration section](#Advanced-Configuration). | `undefined` |
 | `placeholder` | `string` | Sets the URL for a placeholder image to be used in case there is no available image or video of the product. | `undefined`       |
 | `position`                | `Enum`    | Set the position of the thumbnails (`left` or `right`). Only used when `thumbnailsOrientation` is `vertical` | `left`        |
 | `showNavigationArrows`             | `boolean`                                   | Controls if the navigation arrows should appear | `true`          |
@@ -106,7 +106,7 @@ Check out the following example:
 }
 ```
 
-Notice that the `product-images.high-quality-image` block must be declared as a child of `modal-layout` and, in addition to that, you can also declare other blocks exported by the [Modal Layout app](https://developers.vtex.com/vtex-developer-docs/docs/vtex-modal-layout) as children.
+Notice that the `product-images.high-quality-image` block must be declared as a child of `modal-layout` and, in addition to that, you can also declare other blocks exported by the [Modal Layout app](https://developers.vtex.com/docs/apps/vtex.modal-layout) as children.
 
 The following table shows the props allowed by `product-images.high-quality-image`:
 
@@ -121,7 +121,7 @@ The following table shows the props allowed by `product-images.high-quality-imag
 
 ## Customization
 
-To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-using-css-handles-for-store-customization) guide.
+To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/docs/guides/vtex-io-documentation-using-css-handles-for-store-customization) guide.
 
 | CSS Handles |
 | --- |
