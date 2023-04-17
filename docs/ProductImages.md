@@ -106,7 +106,7 @@ Check out the following example:
 }
 ```
 
-Notice that the `product-images.high-quality-image` block must be declared as a child of `modal-layout` and, in addition to that, you can also declare other blocks exported by the [Modal Layout app](https://developers.vtex.com/docs/guides/vtex-modal-layout) as children.
+Notice that the `product-images.high-quality-image` block must be declared as a child of `modal-layout` and, in addition to that, you can also declare other blocks exported by the [Modal Layout app](https://developers.vtex.com/docs/apps/vtex.modal-layout) as children.
 
 The following table shows the props allowed by `product-images.high-quality-image`:
 
