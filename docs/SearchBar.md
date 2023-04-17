@@ -68,7 +68,7 @@ The `search-bar` component shows a search bar with autocomplete options and disp
 | `search-button` | `'search-button'` | ![search-button-empty](https://user-images.githubusercontent.com/12702016/74764929-65b6b700-5261-11ea-815c-ecc9f0c44e0f.png)            | ![search-button-filled](https://user-images.githubusercontent.com/12702016/74764934-66e7e400-5261-11ea-8a86-59da9a1c0faa.png)            |
 
 ## Using SearchBar with Intelligent Search
-To improve the search experience usign the SearchBar component, such as the autocomplete option, you must use the component within [Search app](https://developers.vtex.com/docs/guides/vtex-search) responsible for handling the [Intelligent Search (IS)](https://help.vtex.com/tracks/vtex-intelligent-search?_ga=2.220970832.979717665.1650285782-1001456323.1619912759) solution in IO stores.
+To improve the search experience usign the SearchBar component, such as the autocomplete option, you must use the component within [Search app](https://developers.vtex.com/docs/apps/vtex.search) responsible for handling the [Intelligent Search (IS)](https://help.vtex.com/tracks/vtex-intelligent-search?_ga=2.220970832.979717665.1650285782-1001456323.1619912759) solution in IO stores.
 
 The IS communicates with the `autocomplete-result-list.v2` block exported by the Search app, and the block displays previous search results based on current and previous searches.
 
