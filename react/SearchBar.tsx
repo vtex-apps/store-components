@@ -4,6 +4,7 @@ import { ModalContext } from 'vtex.modal-layout'
 import { useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 import type { CssHandlesTypes } from 'vtex.css-handles'
+import { usePixel } from 'vtex.pixel-manager'
 
 import SearchBar, {
   CSS_HANDLES as SearchBarCssHandles,
@@ -92,6 +93,7 @@ function SearchBarContainer(props: Props) {
 
   const modalDispatch = useModalDispatch()
   const { navigate, query } = useRuntime()
+  const { push } = usePixel()
 
   const [inputValue, setInputValue] = useState(query?._q ?? '')
 
@@ -121,7 +123,12 @@ function SearchBarContainer(props: Props) {
 
   const handleGoToSearchPage = useCallback(() => {
     const search = encodeURIComponent(inputValue.trim())
-
+    
+    push({
+      event: 'search',
+      term: search,
+    })
+    
     if (attemptPageTypeSearch) {
       window.location.href = `/${search}`
       closeModal()

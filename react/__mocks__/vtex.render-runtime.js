@@ -8,6 +8,8 @@ const runtime = {
   account: 'account',
   hints: { mobile: false },
   culture: { currency: 'USD' },
+  query: 'foo',
+  navigate: jest.fn()
 }
 
 export const withRuntimeContext = Comp =>

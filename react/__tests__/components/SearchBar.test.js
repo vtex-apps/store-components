@@ -1,20 +1,20 @@
 import React from 'react'
-import { render } from '@vtex/test-tools/react'
+import { render, fireEvent, waitFor, act, screen } from '@vtex/test-tools/react'
 
 import SearchBar from '../../SearchBar'
 import autocomplete from '../../graphql/autocomplete.gql'
 
-jest.mock('vtex.pixel-manager', () => {
-  return {
-    usePixel: jest.fn(() => {
-      return {
-        push: jest.fn(() => {}),
-      }
-    }),
-  }
-})
+const mockedUsePixelPush = jest.fn()
+
+jest.mock('vtex.pixel-manager', () => ({
+  usePixel: () => ({ push: mockedUsePixelPush }),
+}))
 
 describe('<SearchBar />', () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
+
   const mockedResult = {
     request: {
       query: autocomplete,
@@ -88,5 +88,27 @@ describe('<SearchBar />', () => {
     })
 
     expect(container.querySelector('.searchBarIcon--clear')).toBeTruthy()
+  })
+
+  it('should trigger vtex:search when a value is typed', async () => {
+    const { container } = renderComponent({
+      displayMode: 'search-and-clear-buttons',
+      submitOnIconClick: true
+    })
+    const searchButton = container.getElementsByClassName('searchBarIcon')[0]
+    const inputNode = screen.getByPlaceholderText('Search')
+
+    fireEvent.change(inputNode, { target: { value: 'foo' } })
+
+    console.log(inputNode)
+    
+    fireEvent.click(searchButton)
+    
+    const expectedPixelEvent = {
+      event: 'search',
+      term: 'foo',
+    }
+
+    expect(mockedUsePixelPush).toHaveBeenCalledWith(expectedPixelEvent)
   })
 })

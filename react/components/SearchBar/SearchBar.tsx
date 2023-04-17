@@ -21,7 +21,6 @@ import AutocompleteResults from '../../AutocompleteResults'
 import type { Props as AutocompleteResultsProps } from '../../AutocompleteResults'
 import AutocompleteInput from './AutocompleteInput'
 import { useSearchBarCssHandles } from './SearchBarCssHandles'
-import { usePixel } from 'vtex.pixel-manager'
 
 export const CSS_HANDLES = ['searchBarInnerContainer'] as const
 
@@ -119,7 +118,6 @@ function SearchBar({
   const [inputErrorMessage, setInputErrorMessage] = useState<
     string | undefined
   >()
-  const { push } = usePixel()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetSearchTerm = useCallback(
@@ -259,13 +257,6 @@ function SearchBar({
     return changes
   }
 
-  const sendSearchEvent = (term: string) => {
-    push({
-      event: 'search',
-      term,
-    })
-  }
-
   return (
     <div
       ref={container}
@@ -325,7 +316,6 @@ function SearchBar({
 
                       onGoToSearchPage()
                       closeMenu()
-                      sendSearchEvent(event.target.value)
                     } else {
                       hideInputErrorMessage()
                     }
