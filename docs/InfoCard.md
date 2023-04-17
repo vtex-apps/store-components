@@ -6,6 +6,7 @@ The `info-card` component groups information related to a single topic. They oft
 
 ![image](https://user-images.githubusercontent.com/284515/70229574-4239a100-1735-11ea-9e30-00b286e03f7c.png)
 
+
 ## Configuration
 
 1. Import the `vtex.store-components` app to your theme's dependencies in the `manifest.json` file, as in the following example:
@@ -92,7 +93,7 @@ These values are the same ones supported by HTML5 anchor tags. For more informat
 
 ## Customization
 
-To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-using-css-handles-for-store-customization) guide.
+To apply CSS customizations in this and other blocks, follow the [Using CSS handles for store customization](https://developers.vtex.com/docs/guides/vtex-io-documentation-using-css-handles-for-store-customization) guide.
 
 | CSS Handles |
 | ---------- |
