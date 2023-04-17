@@ -5372,10 +5372,6 @@ validate-npm-package-license@^3.0.1:
   version "0.24.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider-layout@0.24.0/public/@types/vtex.slider-layout#1af90ef437dd2b4a030fa778c74e061bd229eec0"
 
-"vtex.store-components@https://natandevuamerge--storecomponents.myvtex.com/_v/private/typings/linked/v1/vtex.store-components@3.167.0+build1680814477/public/@types/vtex.store-components":
-  version "3.167.0"
-  resolved "https://natandevuamerge--storecomponents.myvtex.com/_v/private/typings/linked/v1/vtex.store-components@3.167.0+build1680814477/public/@types/vtex.store-components#f43c15b9d649cff06332812ff8201e5211b38e42"
-
 "vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.161.2/public/@types/vtex.store-graphql":
   version "2.161.2"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.161.2/public/@types/vtex.store-graphql#6348bb2c1fe66a47a2a0f5f600cbf84a4a43d144"
