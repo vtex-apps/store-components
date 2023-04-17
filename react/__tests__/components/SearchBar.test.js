@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, waitFor, act, screen } from '@vtex/test-tools/react'
+import { render, fireEvent, screen } from '@vtex/test-tools/react'
 
 import SearchBar from '../../SearchBar'
 import autocomplete from '../../graphql/autocomplete.gql'
@@ -93,17 +93,16 @@ describe('<SearchBar />', () => {
   it('should trigger vtex:search when a value is typed', async () => {
     const { container } = renderComponent({
       displayMode: 'search-and-clear-buttons',
-      submitOnIconClick: true
+      submitOnIconClick: true,
     })
+
     const searchButton = container.getElementsByClassName('searchBarIcon')[0]
     const inputNode = screen.getByPlaceholderText('Search')
 
     fireEvent.change(inputNode, { target: { value: 'foo' } })
 
-    console.log(inputNode)
-    
     fireEvent.click(searchButton)
-    
+
     const expectedPixelEvent = {
       event: 'search',
       term: 'foo',

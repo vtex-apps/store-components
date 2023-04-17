@@ -123,12 +123,12 @@ function SearchBarContainer(props: Props) {
 
   const handleGoToSearchPage = useCallback(() => {
     const search = encodeURIComponent(inputValue.trim())
-    
+
     push({
       event: 'search',
       term: search,
     })
-    
+
     if (attemptPageTypeSearch) {
       window.location.href = `/${search}`
       closeModal()
@@ -162,6 +162,7 @@ function SearchBarContainer(props: Props) {
     customSearchPageUrl,
     navigate,
     closeModal,
+    push,
   ])
 
   return (
