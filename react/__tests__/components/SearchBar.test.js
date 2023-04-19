@@ -96,7 +96,7 @@ describe('<SearchBar />', () => {
       submitOnIconClick: true,
     })
 
-    const searchButton = container.getElementsByClassName('searchBarIcon')[0]
+    const [searchButton] = container.getElementsByClassName('searchBarIcon')
     const inputNode = screen.getByPlaceholderText('Search')
 
     fireEvent.change(inputNode, { target: { value: 'foo' } })
