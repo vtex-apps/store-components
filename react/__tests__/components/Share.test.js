@@ -1,19 +1,19 @@
 import React from 'react'
-import { render } from '@vtex/test-tools/react'
+import { render, fireEvent, screen } from '@vtex/test-tools/react'
 
 import Share from '../../Share'
 
-jest.mock('vtex.pixel-manager', () => {
-  return {
-    usePixel: jest.fn(() => {
-      return {
-        push: jest.fn(() => {}),
-      }
-    }),
-  }
-})
+const mockedUsePixelPush = jest.fn()
+
+jest.mock('vtex.pixel-manager', () => ({
+  usePixel: () => ({ push: mockedUsePixelPush }),
+}))
 
 describe('<Share />', () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
+
   const renderComponent = props => {
     return render(<Share imageUrl="" {...props} />)
   }
@@ -90,5 +90,115 @@ describe('<Share />', () => {
     const { asFragment } = renderComponent({ loading: true })
 
     expect(asFragment()).toMatchSnapshot()
+  })
+
+  it('should send vtex:share with Facebook method when is clicked', async () => {
+    await renderComponent({
+      social: {
+        Facebook: true,
+      },
+      loading: false,
+    })
+
+    const btn = screen.getByLabelText('facebook')
+
+    fireEvent.click(btn)
+
+    const expectedPixelEvent = {
+      event: 'share',
+      method: 'Facebook',
+      contentType: 'product',
+      itemId: '23087',
+    }
+
+    expect(mockedUsePixelPush).toHaveBeenCalledWith(expectedPixelEvent)
+  })
+
+  it('should send vtex:share with WhatsApp method when is clicked', async () => {
+    await renderComponent({
+      social: {
+        WhatsApp: true,
+      },
+      loading: false,
+    })
+
+    const btn = screen.getByLabelText('whatsapp')
+
+    fireEvent.click(btn)
+
+    const expectedPixelEvent = {
+      event: 'share',
+      method: 'WhatsApp',
+      contentType: 'product',
+      itemId: '23087',
+    }
+
+    expect(mockedUsePixelPush).toHaveBeenCalledWith(expectedPixelEvent)
+  })
+
+  it('should send vtex:share with Twitter method when is clicked', async () => {
+    await renderComponent({
+      social: {
+        Twitter: true,
+      },
+      loading: false,
+    })
+
+    const btn = screen.getByLabelText('twitter')
+
+    fireEvent.click(btn)
+
+    const expectedPixelEvent = {
+      event: 'share',
+      method: 'Twitter',
+      contentType: 'product',
+      itemId: '23087',
+    }
+
+    expect(mockedUsePixelPush).toHaveBeenCalledWith(expectedPixelEvent)
+  })
+
+  it('should send vtex:share with Telegram method when is clicked', async () => {
+    await renderComponent({
+      social: {
+        Telegram: true,
+      },
+      loading: false,
+    })
+
+    const btn = screen.getByLabelText('telegram')
+
+    fireEvent.click(btn)
+
+    const expectedPixelEvent = {
+      event: 'share',
+      method: 'Telegram',
+      contentType: 'product',
+      itemId: '23087',
+    }
+
+    expect(mockedUsePixelPush).toHaveBeenCalledWith(expectedPixelEvent)
+  })
+
+  it('should send vtex:share with E-mail method when is clicked', async () => {
+    await renderComponent({
+      social: {
+        'E-mail': true,
+      },
+      loading: false,
+    })
+
+    const btn = screen.getByLabelText('email')
+
+    fireEvent.click(btn)
+
+    const expectedPixelEvent = {
+      event: 'share',
+      method: 'E-mail',
+      contentType: 'product',
+      itemId: '23087',
+    }
+
+    expect(mockedUsePixelPush).toHaveBeenCalledWith(expectedPixelEvent)
   })
 })
