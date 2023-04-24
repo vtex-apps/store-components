@@ -164,7 +164,8 @@ const InfoCard = ({
     imageProtocolId,
     latitude,
     longitude,
-  ])
+  ]
+  )
 
   if (
     imageData?.getImage &&
