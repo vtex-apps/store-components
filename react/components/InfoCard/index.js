@@ -157,11 +157,11 @@ const InfoCard = ({
         },
       })
     }
-  }, [positionError, session, imageProtocolId, latitude, longitude])
+  }, [positionError, session, getPersonalizedImages, imageProtocolId, latitude, longitude])
 
   if (
     imageData?.getImage &&
-    imageData.getImage.url !== null && 
+    imageData.getImage.url !== null &&
     imageData.getImage.urlMobile !== null
   ) {
     console.info('get image: ', imageData.getImage)
