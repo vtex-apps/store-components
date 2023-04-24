@@ -146,7 +146,6 @@ const InfoCard = ({
     }
   )
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (session && imageProtocolId && positionError !== undefined) {
       getPersonalizedImages({
@@ -158,9 +157,13 @@ const InfoCard = ({
         },
       })
     }
-  }, [positionError, session, imageProtocolId])
+  }, [positionError, session, imageProtocolId, latitude, longitude])
 
-  if (imageData?.getImage && imageData.getImage.url !== null && imageData.getImage.urlMobile !== null) {
+  if (
+    imageData?.getImage &&
+    imageData.getImage.url !== null && 
+    imageData.getImage.urlMobile !== null
+  ) {
     console.info('get image: ', imageData.getImage)
     imageHref = formatIOMessage({ id: imageData.getImage.hrefImg, intl })
     actionHref = formatIOMessage({ id: imageData.getImage.hrefImg, intl })

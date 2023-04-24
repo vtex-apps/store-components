@@ -50,7 +50,7 @@ const ProductPriceWrapper = ({
   ...props
 }) => {
   const valuesFromContext = useContext(ProductContext)
-  
+
   const commercialOffer = useCommercialOffer(valuesFromContext)
 
   const {
