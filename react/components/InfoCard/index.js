@@ -157,7 +157,15 @@ const InfoCard = ({
         },
       })
     }
-  }, [positionError, session, getPersonalizedImages, imageProtocolId, latitude, longitude])
+  }, [
+    positionError,
+    session,
+    getPersonalizedImages,
+    imageProtocolId,
+    latitude,
+    longitude,
+  ]
+  )
 
   if (
     imageData?.getImage &&
