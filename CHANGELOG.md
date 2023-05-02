@@ -7,11 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Trigger vtex:share event to analytics on social button click 
+- Trigger vtex:share event to analytics on social button click
 - Tests to vtex:share for all social buttons case
-
-### Added
-
 - Added event `vtex:search` trigger to analytics .
 
 ## [3.168.0] - 2023-05-02
