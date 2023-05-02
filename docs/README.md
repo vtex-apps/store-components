@@ -124,10 +124,6 @@ Check it out [how to contribute](https://github.com/vtex-apps/awesome-io#contrib
 
 To execute our tests go to `react/` folder and run `yarn test`
 
-## Analytics
-
-The `Share` component fires a `vtex:share` event when clicked. The event contains information about the product being shared and the method. [Pixel Apps can listen to it](https://developers.vtex.com/docs/guides/vtex-io-documentation-6-listeningtostoreevents) and use in third-party integrations.
-
 ### Travis CI
 
 [![Build Status](https://api.travis-ci.org/vtex-apps/store-components.svg?branch=master)](https://travis-ci.org/vtex-apps/store-components)
