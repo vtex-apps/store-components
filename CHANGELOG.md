@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.168.0] - 2023-05-02
+
 ### Added
 - `showImageLabel` prop to `ProductImages` which if set to `true` will result in each image's label text being rendered above the image
 
