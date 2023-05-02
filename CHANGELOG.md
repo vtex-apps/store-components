@@ -7,9 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.168.0] - 2023-05-02
+
 ### Added
+- `showImageLabel` prop to `ProductImages` which if set to `true` will result in each image's label text being rendered above the image
 - Trigger vtex:share event to analytics on social button click 
 - Tests to vtex:share for all social buttons case
+
+## [3.167.2] - 2023-04-20
+### Fixed
+- Updated readme.md according to task LOC-10534.
+
+## [3.167.1] - 2023-04-17
+
+### Fixed
+- Update readme links.
 
 ## [3.167.0] - 2023-03-28
 

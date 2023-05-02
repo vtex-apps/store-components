@@ -16,6 +16,7 @@ interface Props {
   index: number
   src: string
   alt: string
+  imageLabel?: string
   zoomMode: ZoomMode
   zoomFactor: number
   aspectRatio?: AspectRatio
@@ -25,12 +26,13 @@ interface Props {
 
 type AspectRatio = string | number
 
-const CSS_HANDLES = ['productImage', 'productImageTag']
+const CSS_HANDLES = ['productImage', 'productImageTag', 'productImageLabel']
 
 const ProductImage: FC<Props> = ({
   index,
   src,
   alt,
+  imageLabel,
   zoomFactor = 2,
   maxHeight = 600,
   ModalZoomElement,
@@ -59,6 +61,9 @@ const ProductImage: FC<Props> = ({
   return (
     <ProductImageContext.Provider value={imageContext}>
       <div className={handles.productImage}>
+        {imageLabel && (
+          <div className={`tc ${handles.productImageLabel}`}>{imageLabel}</div>
+        )}
         <Zoomable
           mode={zoomMode}
           factor={zoomFactor}
