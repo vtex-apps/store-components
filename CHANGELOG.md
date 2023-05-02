@@ -6,13 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Trigger vtex:share event to analytics on social button click 
+- Tests to vtex:share for all social buttons case
 
 ## [3.168.0] - 2023-05-02
 
 ### Added
 - `showImageLabel` prop to `ProductImages` which if set to `true` will result in each image's label text being rendered above the image
-- Trigger vtex:share event to analytics on social button click 
-- Tests to vtex:share for all social buttons case
 
 ## [3.167.2] - 2023-04-20
 ### Fixed
