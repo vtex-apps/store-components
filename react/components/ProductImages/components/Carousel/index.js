@@ -172,6 +172,7 @@ class Carousel extends Component {
             index={i}
             src={slide.url}
             alt={slide.alt}
+            imageLabel={slide.imageLabel}
             maxHeight={maxHeight}
             zoomFactor={zoomFactor}
             aspectRatio={aspectRatio}
