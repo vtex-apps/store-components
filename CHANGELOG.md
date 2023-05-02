@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+- Passed down `showImageLabel` prop to Product images. 
 
 ### Added
 - `showImageLabel` prop to `ProductImages` which if set to `true` will result in each image's label text being rendered above the image
