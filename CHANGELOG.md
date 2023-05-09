@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- Conditional logic to display specific URLs in a specific image component if the image protocol is being used
+
+- Image Protocol Implementation
+
+### Fixed
+- Update Product Name doc.
+
+## [3.163.3] - 2022-11-17
+
+### Fixed
+- Check if the swiper is not destroyed before changing initial state, which could cause the whole product UI to crash
+
+## [3.163.2] - 2022-11-03
+### Fixed
+- Update Info Card doc.
+
+## [3.163.1] - 2022-10-25
+
+### Fixed
+- Image documentation: Fix typo.
+
+## [3.163.0] - 2022-09-26
+
+### Fixed
+- `ProductPrice` considering default seller.
+
+## [3.162.2] - 2022-08-31
+
+## [3.162.1] - 2022-08-31
+### Fixed
+- Reset selected image on PDP when changing the product.
+
 ## [3.169.0] - 2023-05-02
 
 ### Added

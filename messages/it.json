@@ -195,5 +195,7 @@
   "admin/editor.toTop.title": "Pulsante \"Torna all'inizio\"",
   "admin/editor.toTop.description": "Se cliccato, riporta all'inizio della pagina",
   "admin/editor.toTop.topPixel.title": "Numero di pixel",
-  "admin/editor.toTop.topPixel.description": "Quando si supera il valore di pixel definito, apparirà il pulsante \"Torna all'inizio\""
+  "admin/editor.toTop.topPixel.description": "Quando si supera il valore di pixel definito, apparirà il pulsante \"Torna all'inizio\"",
+  "admin/editor.info-card.imageProtocolId.title": "Image Protocol Id",
+  "admin/editor.info-card.imageProtocolId.description": "Image Protocol Id"
 }

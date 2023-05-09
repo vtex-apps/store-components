@@ -1,15 +1,15 @@
 import classNames from 'classnames'
 import PropTypes, { bool, string, oneOf } from 'prop-types'
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import { values } from 'ramda'
 import { injectIntl } from 'react-intl'
-import {
-  useRuntime,
-  useExperimentalLazyImagesContext,
-} from 'vtex.render-runtime'
+import { useLazyQuery } from 'react-apollo'
+import { useExperimentalLazyImagesContext } from 'vtex.render-runtime'
 import { formatIOMessage } from 'vtex.native-types'
 import { useCssHandles } from 'vtex.css-handles'
 import RichText from 'vtex.rich-text/index'
+import { useDevice } from 'vtex.device-detector'
+import { useRenderSession } from 'vtex.session-client'
 
 import CallToAction from './CallToAction'
 import LinkWrapper from './LinkWrapper'
@@ -22,6 +22,8 @@ import {
   textModeTypes,
 } from './SchemaTypes'
 import { SanitizedHTML } from '../SanitizedHTML'
+import { usePosition } from '../../hooks/usePosition'
+import GET_IMAGE_PROTOCOL_IMAGES from './graphql/getImgUrl.gql'
 
 const ALLOWED_TAGS = ['p', 'span', 'a', 'div', 'br']
 const ALLOWED_ATTRS = {
@@ -95,11 +97,9 @@ const InfoCard = ({
   htmlId,
   textMode,
   linkTarget,
+  imageProtocolId,
 }) => {
-  const {
-    hints: { mobile },
-  } = useRuntime()
-
+  const { isMobile: mobile } = useDevice()
   const { lazyLoad } = useExperimentalLazyImagesContext()
 
   const { handles } = useCssHandles(CSS_HANDLES)
@@ -127,11 +127,63 @@ const InfoCard = ({
     'textPosition'
   )
 
-  const finalImageUrl = getImageUrl(
+  let finalImageUrl = getImageUrl(
     mobile,
     formatIOMessage({ id: imageUrl, intl }),
     formatIOMessage({ id: mobileImageUrl, intl })
   )
+
+  let imageHref = formatIOMessage({ id: imageActionUrl, intl })
+  let actionHref = formatIOMessage({ id: callToActionUrl, intl })
+  // Start Image Protocol
+  const { session } = useRenderSession()
+  const { latitude, longitude, error: positionError } = usePosition()
+
+  const [getPersonalizedImages, { data: imageData }] = useLazyQuery(
+    GET_IMAGE_PROTOCOL_IMAGES,
+    {
+      ssr: false,
+    }
+  )
+
+  useEffect(() => {
+    if (session && imageProtocolId && positionError !== undefined) {
+      getPersonalizedImages({
+        variables: {
+          userId: session?.namespaces?.profile?.id?.value,
+          imageProtocolId,
+          latitude,
+          longitude,
+        },
+      })
+    }
+  }, [
+    positionError,
+    session,
+    getPersonalizedImages,
+    imageProtocolId,
+    latitude,
+    longitude,
+  ])
+
+  if (
+    imageData?.getImage &&
+    imageData.getImage.url !== null &&
+    imageData.getImage.urlMobile !== null
+  ) {
+    console.info('get image: ', imageData.getImage)
+    imageHref = formatIOMessage({ id: imageData.getImage.hrefImg, intl })
+    actionHref = formatIOMessage({ id: imageData.getImage.hrefImg, intl })
+    if (mobile) {
+      finalImageUrl = formatIOMessage({
+        id: imageData.getImage.urlMobile,
+        intl,
+      })
+    } else {
+      finalImageUrl = formatIOMessage({ id: imageData.getImage.url, intl })
+    }
+  }
+  // End Image Protocol
 
   const containerStyle = isFullModeStyle
     ? {
@@ -171,7 +223,7 @@ const InfoCard = ({
 
   return (
     <LinkWrapper
-      imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
+      imageActionUrl={imageHref}
       extraCondition={!isFullModeStyle}
       linkProps={{ className: linkWrapperClasses, target: linkTarget }}
     >
@@ -210,14 +262,14 @@ const InfoCard = ({
           <CallToAction
             mode={callToActionMode}
             text={formatIOMessage({ id: callToActionText, intl })}
-            url={formatIOMessage({ id: callToActionUrl, intl })}
+            url={actionHref}
             linkTarget={callToActionLinkTarget}
           />
         </div>
         {!isFullModeStyle && (
           <div className={`${handles.infoCardImageContainer} w-50-ns`}>
             <LinkWrapper
-              imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
+              imageActionUrl={imageHref}
               linkProps={{ target: linkTarget }}
             >
               <img
@@ -256,6 +308,7 @@ MemoizedInfoCard.propTypes = {
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
   linkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
   callToActionLinkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
+  imageProtocolId: string,
 }
 
 MemoizedInfoCard.defaultProps = {
@@ -272,6 +325,7 @@ MemoizedInfoCard.defaultProps = {
   textMode: textModeTypes.TEXT_MODE_HTML.value,
   linkTarget: '_self',
   callToActionLinkTarget: '_self',
+  imageProtocolId: '',
 }
 
 MemoizedInfoCard.schema = {
@@ -325,6 +379,12 @@ MemoizedInfoCard.schema = {
     blockClass: {
       title: 'admin/editor.blockClass.title',
       description: 'admin/editor.blockClass.description',
+      type: 'string',
+      isLayout: true,
+    },
+    imageProtocolId: {
+      title: 'admin/editor.info-card.imageProtocolId.title',
+      description: 'admin/editor.info-card.imageProtocolId.description',
       type: 'string',
       isLayout: true,
     },
