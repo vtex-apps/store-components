@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Updated readme.md according to task LOC-10534.
+- Fixed SKUSelector.md according to task LOC-10567.
 
 ## [3.169.0] - 2023-05-02
 
