@@ -12,7 +12,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Image Protocol Implementation
 
-## [3.163.4] - 2022-11-22
 ### Fixed
 - Update Product Name doc.
 
