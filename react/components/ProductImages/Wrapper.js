@@ -92,6 +92,7 @@ const ProductImagesWrapper = props => {
       contentOrder={contentOrder}
       ModalZoomElement={props.ModalZoom}
       contentType={props.contentType}
+      showImageLabel={props.showImageLabel}
       // Deprecated
       zoomProps={props.zoomProps}
       displayMode={props.displayMode}

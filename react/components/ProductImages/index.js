@@ -28,6 +28,7 @@ const ProductImages = ({
   thumbnailMaxHeight,
   showNavigationArrows,
   showPaginationDots,
+  showImageLabel = false,
   thumbnailVisibility,
   contentOrder = 'images-first',
   zoomMode,
@@ -66,9 +67,10 @@ const ProductImages = ({
             url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
             alt: image.imageText,
             thumbUrl: image.thumbnailUrl || image.imageUrl,
+            ...(showImageLabel && { imageLabel: image.imageLabel }),
           }))
       : []
-  }, [allImages, contentType, excludeImageRegexes])
+  }, [allImages, contentType, excludeImageRegexes, showImageLabel])
 
   const videos = useMemo(() => {
     const shouldIncludeVideos = contentType !== 'images'
@@ -96,11 +98,12 @@ const ProductImages = ({
   if (displayMode === DISPLAY_MODE.LIST) {
     return (
       <div className={containerClass}>
-        {images.map(({ url, alt }, index) => (
+        {images.map(({ url, alt, imageLabel }, index) => (
           <ProductImage
             key={index}
             src={url}
             alt={alt}
+            imageLabel={imageLabel}
             maxHeight={maxHeight}
             zoomFactor={zoomFactor}
             aspectRatio={aspectRatio}
@@ -113,13 +116,14 @@ const ProductImages = ({
   }
 
   if (displayMode === DISPLAY_MODE.FIRST_IMAGE && images?.length) {
-    const { url, alt } = images?.[0]
+    const { url, alt, imageLabel } = images?.[0] ?? {}
 
     return (
       <div className={containerClass}>
         <ProductImage
           src={url}
           alt={alt}
+          imageLabel={imageLabel}
           maxHeight={maxHeight}
           zoomFactor={zoomFactor}
           aspectRatio={aspectRatio}
@@ -203,6 +207,7 @@ ProductImages.propTypes = {
   thumbnailMaxHeight: PropTypes.number,
   showNavigationArrows: PropTypes.bool,
   showPaginationDots: PropTypes.bool,
+  showImageLabel: PropTypes.bool,
   thumbnailVisibility: PropTypes.oneOf([
     THUMBS_VISIBILITY.VISIBLE,
     THUMBS_VISIBILITY.HIDDEN,
