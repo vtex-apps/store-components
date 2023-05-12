@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [3.169.2] - 2023-05-12
 ### Fixed
 - Fixes of i18n on infoCard.md according to task LOC-10581.
 
