@@ -106,6 +106,7 @@ function AutocompleteInput({
   inputErrorMessage,
   inputType = 'text',
   openAutocompleteOnFocus,
+  onInputChange,
   ...restProps
 }: Props) {
   const { handles, withModifiers } = useSearchBarCssHandles()
@@ -238,6 +239,7 @@ function AutocompleteInput({
             error={Boolean(inputErrorMessage)}
             errorMessage={inputErrorMessage}
             onSubmit={onGoToSearchPage}
+            onChange={onInputChange}
           />
         </div>
       </form>
