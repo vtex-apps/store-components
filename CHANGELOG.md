@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.169.1] - 2023-05-11
 ### Fixed
-- Fixed SKUSelector.md according to task LOC-10567.
+- Fixed ProductImages.md according to task LOC-10621.
 
 ## [3.169.0] - 2023-05-02
 
