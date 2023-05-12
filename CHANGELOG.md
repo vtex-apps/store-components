@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.169.3] - 2023-05-12
+
 ## [3.169.2] - 2023-05-12
 ### Fixed
 - Fixes of i18n on infoCard.md according to task LOC-10581.
