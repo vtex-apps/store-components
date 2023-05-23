@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ## [3.169.3] - 2023-05-23
-### Improved
+### Fixed
 German translation was not sounding "smooth" in some cases, also the wrong word for "save" was picked. Now it's more clear.
 
 ## [3.169.2] - 2023-05-12
