@@ -6,10 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-
-## [3.169.3] - 2023-05-23
 ### Fixed
 German translation was not sounding "smooth" in some cases, also the wrong word for "save" was picked. Now it's more clear.
+
+## [3.169.3] - 2023-05-23
 
 ## [3.169.2] - 2023-05-12
 ### Fixed
