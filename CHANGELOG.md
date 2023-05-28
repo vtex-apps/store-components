@@ -7,6 +7,56 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.169.3] - 2023-05-12
+
+## [3.169.2] - 2023-05-12
+### Fixed
+- Fixes of i18n on infoCard.md according to task LOC-10581.
+
+## [3.169.1] - 2023-05-11
+### Fixed
+- Fixed SKUSelector.md according to task LOC-10567.
+### Fixed
+- Fixed ProductImages.md according to task LOC-10621.
+
+## [3.169.0] - 2023-05-02
+
+### Added
+- Trigger vtex:share event to analytics on social button click
+- Tests to vtex:share for all social buttons case
+
+## [3.168.1] - 2023-05-02
+### Fixed
+- Passed down `showImageLabel` prop to Product images. 
+
+### Added
+- Added event `vtex:search` trigger to analytics .
+
+## [3.168.0] - 2023-05-02
+
+### Added
+- `showImageLabel` prop to `ProductImages` which if set to `true` will result in each image's label text being rendered above the image
+
+## [3.167.2] - 2023-04-20
+### Fixed
+- Updated readme.md according to task LOC-10534.
+
+## [3.167.1] - 2023-04-17
+
+### Fixed
+- Update readme links.
+
+## [3.167.0] - 2023-03-28
+
+### Added
+- German translation.
+
+## [3.166.0] - 2023-03-22
+
+## [3.165.0] - 2023-03-17
+### Changed
+- `apps-graphql` version to use the most updated one
+
 ## [3.164.0] - 2023-01-02
 
 ### Added
@@ -15,12 +65,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - English, Portuguese and Italian translations.
 
+### Added
+- Preserve searched term in the search-bar.
+
 ## [3.163.4] - 2022-11-22
 ### Fixed
 - Update Product Name doc.
 
 ## [3.163.3] - 2022-11-17
-
 ### Fixed
 - Check if the swiper is not destroyed before changing initial state, which could cause the whole product UI to crash
 

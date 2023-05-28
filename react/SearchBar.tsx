@@ -1,9 +1,10 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { ModalContext } from 'vtex.modal-layout'
 import { useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 import type { CssHandlesTypes } from 'vtex.css-handles'
+import { usePixel } from 'vtex.pixel-manager'
 
 import SearchBar, {
   CSS_HANDLES as SearchBarCssHandles,
@@ -91,8 +92,14 @@ function SearchBarContainer(props: Props) {
   } = props
 
   const modalDispatch = useModalDispatch()
-  const [inputValue, setInputValue] = useState('')
-  const { navigate } = useRuntime()
+  const { navigate, query } = useRuntime()
+  const { push } = usePixel()
+
+  const [inputValue, setInputValue] = useState(query?._q ?? '')
+
+  useEffect(() => {
+    setInputValue(query?._q ?? '')
+  }, [query?._q])
 
   const { handles, withModifiers } = useCssHandles(SEARCH_BAR_CSS_HANDLES, {
     classes,
@@ -117,6 +124,11 @@ function SearchBarContainer(props: Props) {
   const handleGoToSearchPage = useCallback(() => {
     const search = encodeURIComponent(inputValue.trim())
 
+    push({
+      event: 'search',
+      term: search,
+    })
+
     if (attemptPageTypeSearch) {
       window.location.href = `/${search}`
       closeModal()
@@ -137,7 +149,6 @@ function SearchBarContainer(props: Props) {
     // See: https://support.google.com/analytics/answer/1012264
     const paramForSearchTracking = `&_q=${search}`
 
-    setInputValue('')
     navigate({
       page: 'store.search',
       params: { term: search },
@@ -151,6 +162,7 @@ function SearchBarContainer(props: Props) {
     customSearchPageUrl,
     navigate,
     closeModal,
+    push,
   ])
 
   return (

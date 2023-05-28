@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "store-components",
-  "version": "3.164.0",
+  "version": "3.169.3",
   "title": "VTEX Store Components",
   "defaultLocale": "pt-BR",
   "description": "The VTEX store components for that render apps can use",
@@ -14,7 +14,7 @@
   "mustUpdateAt": "2019-04-02",
   "dependencies": {
     "vtex.address-form": "4.x",
-    "vtex.apps-graphql": "2.x",
+    "vtex.apps-graphql": "3.x",
     "vtex.checkout-resources": "0.x",
     "vtex.css-handles": "1.x",
     "vtex.device-detector": "0.x",
