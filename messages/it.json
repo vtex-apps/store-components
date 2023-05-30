@@ -109,6 +109,8 @@
   "admin/editor.info-card.imageUrl.description": "Immagine da utilizzare su desktop",
   "admin/editor.info-card.mobileImageUrl.title": "Immagine per dispositivi mobili",
   "admin/editor.info-card.mobileImageUrl.description": "Immagine da usare su dispositivi mobili",
+  "admin/editor.info-card.imageTitle.title": "Attributo titolo all'interno dell'immagine",
+  "admin/editor.info-card.imageTitle.description": "Messaggio che appare quando il cursore passa sopra l'immagine",
   "admin/editor.info-card.textAlignment.title": "Allineamento del testo",
   "admin/editor.info-card.textAlignment.description": "Controlla l'allineamento del testo all'interno del componente",
   "admin/editor.info-card.textPosition.left": "Sinistra",

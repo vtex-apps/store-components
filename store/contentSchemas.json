@@ -87,6 +87,12 @@
           "$ref": "app:vtex.native-types#/definitions/url",
           "default": ""
         },
+        "imageTitle": {
+          "title": "admin/editor.info-card.imageTitle.title",
+          "description": "admin/editor.info-card.imageTitle.description",
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": ""
+        },
         "textPosition": {
           "default": "left",
           "type": "string",
