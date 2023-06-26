@@ -107,6 +107,8 @@
   "admin/editor.info-card.mobileImageUrl.description": "Description of mobileImageUrl property",
   "admin/editor.info-card.imageTitle.title": "Title attribute within the image",
   "admin/editor.info-card.imageTitle.description": "Message that appears when the cursor passes over the image",
+  "admin/editor.info-card.imageAlt.title": "Alt attribute within the image",
+  "admin/editor.info-card.imageAlt.description": "Alternate text if the image is not loaded which is important for accessibility",
   "admin/editor.info-card.textAlignment.title": "Title of textAlignment property",
   "admin/editor.info-card.textAlignment.description": "Description of textAlignment property",
   "admin/editor.info-card.textPosition.left": "Name of enum value to make text at left position",

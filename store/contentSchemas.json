@@ -93,6 +93,12 @@
           "$ref": "app:vtex.native-types#/definitions/text",
           "default": ""
         },
+        "imageAlt": {
+          "title": "admin/editor.info-card.imageAlt.title",
+          "description": "admin/editor.info-card.imageAlt.description",
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": ""
+        },
         "textPosition": {
           "default": "left",
           "type": "string",

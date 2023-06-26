@@ -111,6 +111,8 @@
   "admin/editor.info-card.mobileImageUrl.description": "Image to be used on mobile",
   "admin/editor.info-card.imageTitle.title": "Title attribute within the image",
   "admin/editor.info-card.imageTitle.description": "Message that appears when the cursor passes over the image",
+  "admin/editor.info-card.imageAlt.title": "Alt attribute within the image",
+  "admin/editor.info-card.imageAlt.description": "Alternate text if the image is not loaded which is important for accessibility",
   "admin/editor.info-card.textAlignment.title": "Text alignment",
   "admin/editor.info-card.textAlignment.description": "Controls the text alignment inside component",
   "admin/editor.info-card.textPosition.left": "Left",
