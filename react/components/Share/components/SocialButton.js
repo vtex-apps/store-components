@@ -89,7 +89,7 @@ export default class SocialButton extends Component {
         )}
         media={imageUrl}
         onClick={() => this.props.sendShareEvent(socialEnum)}
-        openShareDialogOnClick={true}
+        openShareDialogOnClick
         {...additionalProps}
       >
         {icon}
