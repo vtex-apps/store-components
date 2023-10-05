@@ -6,7 +6,7 @@ import React, {
   useCallback,
   FC,
 } from 'react'
-import { filter, head, isEmpty, compose, keys, length } from 'ramda'
+import { filter, head, isEmpty, compose, keys, length, equals } from 'ramda'
 import { useRuntime } from 'vtex.render-runtime'
 import {
   useResponsiveValue,
@@ -262,6 +262,7 @@ const SKUSelectorContainer: FC<Props> = ({
   const { query } = useRuntime()
   const responsiveDisplayMode = useResponsiveValue(displayMode)
 
+  const [prevVariations, setPrevVariations] = useState({} as Variations)
   const parsedItems = useMemo(() => skuItems.map(parseSku), [skuItems])
   const { setQuery } = useRuntime()
   const redirectToSku = (skuId: string) => {
@@ -276,9 +277,12 @@ const SKUSelectorContainer: FC<Props> = ({
   useAllSelectedEvent(selectedVariations, variationsCount)
 
   useEffectSkipMount(() => {
-    setSelectedVariations(
-      getNewSelectedVariations(query, skuSelected, variations, initialSelection)
-    )
+    if (!equals(variations, prevVariations)) {
+      setPrevVariations(variations)
+      setSelectedVariations(
+        getNewSelectedVariations(query, skuSelected, variations, initialSelection)
+      )
+    }
   }, [variations])
 
   // This is used to selected an SKU when initialSelection is not 'empty'.
