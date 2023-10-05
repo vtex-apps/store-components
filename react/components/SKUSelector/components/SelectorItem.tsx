@@ -44,6 +44,7 @@ export const CSS_HANDLES = [
   'skuSelectorInternalBox',
   'skuSelectorItemTextValue',
   'skuSelectorItemImageValue',
+  'skuSelectorItemImpossible'
 ] as const
 
 /**
@@ -80,7 +81,7 @@ function SelectorItem({
         'relative di pointer flex items-center outline-0 ma2',
         {
           [`${handles.skuSelectorItemImage}`]: isImage,
-          'o-20': isImpossible,
+          [`o-20 ${handles.skuSelectorItemImpossible}`]: isImpossible,
         }
       ),
     [
