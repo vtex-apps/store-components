@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.169.4] - 2023-10-05
+
 ### Fixed
 - Modal not displaing in email share at `SocialButton`
 ## [3.169.3] - 2023-05-12
