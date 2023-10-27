@@ -37,7 +37,8 @@ The `product-description` block displays the description of a product. This Comp
 | Prop name         | Type      | Description                                                                                                                                                                          | Default     |
 | ----------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
 | `classes` | `CustomCSSClasses` | Overrides default CSS handles. To better understand how this prop works, check [this document](https://github.com/vtex-apps/css-handles#usecustomclasses). Note that this is only helpful if you're using this block as a React component.| `undefined` |
-| `collapseContent` | `Boolean` | If `true`, whenever the product description is too big, it will collapse and show a "Show More" button. When false, it will never collapse and will always show the whole description. | `true` |
+| `collapseContent` | `boolean` | If `true`, whenever the product description is too big, it will collapse and show a "Show More" button. When false, it will never collapse and will always show the whole description. | `true` |
+| `collapseHeight` | `number` | Define the content minimum height in pixels when `collapseContent` prop is `true`. | `200` |
 | `showTitle`           | `boolean`  | Define whether or not to show the title. | `true` |
 | `title`           | `string`  | Defines a custom title for the description section. | `undefined` |
 
