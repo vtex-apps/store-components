@@ -24,7 +24,7 @@ type Props = {
   showTitle?: boolean
   /** Define if content should start collapsed or not */
   collapseContent?: boolean
-  /** Define the content minimum height in pixels when collapseContent is true (default: 200) */
+  /** Define the content minimum height in pixels when collapseContent is true (default: 220) */
   collapseHeight?: number
   /** Used to override default CSS handles */
   classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
@@ -68,7 +68,7 @@ function ProductDescription(props: PropsWithChildren<Props>) {
 
   const {
     collapseContent = true,
-    collapseHeight = 200,
+    collapseHeight = 220,
     showTitle = true,
     title,
   } = props
