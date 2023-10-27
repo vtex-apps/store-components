@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+- `collapseHeight` prop at `ProductDescription` to define the content minimum height in pixels when `collapseContent` prop is `true` (default: 200)
+
 ## [3.169.5] - 2023-10-05
 
 

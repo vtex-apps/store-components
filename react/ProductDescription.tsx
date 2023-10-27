@@ -24,6 +24,8 @@ type Props = {
   showTitle?: boolean
   /** Define if content should start collapsed or not */
   collapseContent?: boolean
+  /** Define the content minimum height in pixels when collapseContent is true (default: 200) */
+  collapseHeight?: number
   /** Used to override default CSS handles */
   classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
 }
@@ -64,7 +66,12 @@ function ProductDescription(props: PropsWithChildren<Props>) {
     return null
   }
 
-  const { collapseContent = true, showTitle = true, title } = props
+  const {
+    collapseContent = true,
+    collapseHeight = 200,
+    showTitle = true,
+    title,
+  } = props
 
   return (
     <div className={handles.productDescriptionContainer}>
@@ -82,7 +89,7 @@ function ProductDescription(props: PropsWithChildren<Props>) {
 
       <div className={`${handles.productDescriptionText} c-muted-1`}>
         {collapseContent ? (
-          <GradientCollapse collapseHeight={220}>
+          <GradientCollapse collapseHeight={collapseHeight}>
             <SanitizedHTML
               content={description}
               allowedTags={allowedTags}
