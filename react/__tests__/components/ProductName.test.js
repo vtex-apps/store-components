@@ -65,6 +65,15 @@ describe('<ProductName />', () => {
     expect(asFragment()).toMatchSnapshot()
   })
 
+  it('should match the snapshot with Name and Sponsored Badge', () => {
+    const { asFragment } = renderComponent({
+      sponsoredBadgeLabel: 'sponsoredBadgeTest',
+      showSponsoredBadge: true,
+    })
+
+    expect(asFragment()).toMatchSnapshot()
+  })
+
   it('should match the snapshot with all options', () => {
     const { asFragment } = renderComponent({
       skuName: 'ProductSkuName',

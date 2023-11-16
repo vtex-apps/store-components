@@ -66,6 +66,25 @@ exports[`<ProductName /> should match the snapshot with Name and SkuName 1`] = `
 </DocumentFragment>
 `;
 
+exports[`<ProductName /> should match the snapshot with Name and Sponsored Badge 1`] = `
+<DocumentFragment>
+  <h1
+    class="productNameContainer mv0 t-heading-4"
+  >
+    <span
+      class="sponsoredBadge db c-muted-1 t-mini-s"
+    >
+      sponsoredBadgeTest
+    </span>
+    <span
+      class="productBrand "
+    >
+      ProductTest 
+    </span>
+  </h1>
+</DocumentFragment>
+`;
+
 exports[`<ProductName /> should match the snapshot with all options 1`] = `
 <DocumentFragment>
   <h1
