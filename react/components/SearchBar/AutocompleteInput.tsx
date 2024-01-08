@@ -165,7 +165,6 @@ function AutocompleteInput({
       style={{
         visibility: hasValue ? 'visible' : 'hidden',
       }}
-      id="closeIcon"
       aria-label={intl.formatMessage({
         id: 'store/search.clear-input',
       })}
