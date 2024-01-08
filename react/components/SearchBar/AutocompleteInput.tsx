@@ -181,7 +181,6 @@ function AutocompleteInput({
         'search'
       )} flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3`}
       onClick={() => hasValue && onGoToSearchPage()}
-      id="searchIcon"
       aria-label={intl.formatMessage({
         id: 'store/search.submit-search',
       })}
@@ -200,7 +199,6 @@ function AutocompleteInput({
           'external-search'
         )}  flex items-center h-100 pointer pv0 nr5 ph5 bn c-link`}
         onClick={onGoToSearchPage}
-        id="searchIcon"
         aria-label={intl.formatMessage({
           id: 'store/search.submit-search',
         })}
