@@ -81,10 +81,13 @@ function SelectorItem({
         {
           [`${handles.skuSelectorItemImage}`]: isImage,
           'o-20': isImpossible,
-        }
+        },
+        'valueWrapper',
+        !isAvailable ? 'unavailable' : 'disableItem'
       ),
     [
       isImage,
+      isAvailable,
       isSelected,
       isImpossible,
       variationValueOriginalName,
