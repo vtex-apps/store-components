@@ -83,7 +83,7 @@ function SelectorItem({
           'o-20': isImpossible,
         },
         'valueWrapper',
-        !isAvailable ? 'unavailable' : 'disableItem'
+        !isAvailable ? 'unavailableSkuSelectorPDP' : 'disableItem'
       ),
     [
       isImage,
