@@ -84,7 +84,7 @@ function SelectorItem({
           'o-20': isImpossible,
         },
         'valueWrapper',
-        !isAvailable ? `${handles.unavailable}` : 'disableItem'
+        !isAvailable ? `${handles.unavailable}` : ''
       ),
     [
       isImage,
