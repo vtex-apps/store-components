@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- CSS Handle for unavailable products. 
+- CSS Handle for unavailable products update. 
 
 
 ## [3.171.0] - 2024-01-09
