@@ -38,6 +38,7 @@ export const CSS_HANDLES = [
   'frameAround',
   'valueWrapper',
   'diagonalCross',
+  'unavailable',
   'skuSelectorItem',
   'skuSelectorBadge',
   'skuSelectorItemImage',
@@ -83,7 +84,7 @@ function SelectorItem({
           'o-20': isImpossible,
         },
         'valueWrapper',
-        !isAvailable ? 'unavailable' : 'disableItem'
+        !isAvailable ? `${handles.unavailable}` : 'disableItem'
       ),
     [
       isImage,
@@ -93,6 +94,7 @@ function SelectorItem({
       variationValueOriginalName,
       withModifiers,
       handles.skuSelectorItemImage,
+      handles.unavailable,
     ]
   )
 
