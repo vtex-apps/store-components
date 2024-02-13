@@ -245,7 +245,7 @@ const variationNameToDisplayVariation =
       .filter(Boolean) as DisplayOption[]
 
     if (sortVariationsByLabel) {
-      const allNumbers = options.every((option: any) => !isNaN(option.label))
+      const allNumbers = options.every((option: any) => !Number.isNaN(option.label))
       options.sort((a: any, b: any) => {
         if (allNumbers) {
           return a.label - b.label
