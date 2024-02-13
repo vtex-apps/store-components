@@ -5372,10 +5372,6 @@ validate-npm-package-license@^3.0.1:
   version "0.24.4"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.slider-layout@0.24.4/public/@types/vtex.slider-layout#81731b60025929589adeea1ffd3e12eb1d9480e1"
 
-"vtex.store-components@https://ebs24--eriksbikeshop.myvtex.com/_v/private/typings/linked/v1/vtex.store-components@3.172.0+build1707849854/public/@types/vtex.store-components":
-  version "3.172.0"
-  resolved "https://ebs24--eriksbikeshop.myvtex.com/_v/private/typings/linked/v1/vtex.store-components@3.172.0+build1707849854/public/@types/vtex.store-components#05348a051a94bb29577cf1eebd08860351f46aac"
-
 "vtex.store-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.170.1/public/@types/vtex.store-graphql":
   version "2.170.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-graphql@2.170.1/public/@types/vtex.store-graphql#7e087ac00c2abf0a2e06ef5551110d0de5b7fe58"
