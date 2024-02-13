@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.172.1] - 2024-02-13
+
 ### Fixed
 - When `sortVariationsByLabel` is `true`, check if the labels are all numbers and sort them as numbers instead of string
 
