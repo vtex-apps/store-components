@@ -245,17 +245,17 @@ const variationNameToDisplayVariation =
       .filter(Boolean) as DisplayOption[]
 
     if (sortVariationsByLabel) {
-      const allNumbers = options.every((option: any) => !isNaN(option.label));
-
+      const allNumbers = options.every((option: any) => !isNaN(option.label))
       options.sort((a: any, b: any) => {
           if (allNumbers) {
-              return a.label - b.label; // Sort as numbers
+             // Sort as numbers
+              return a.label - b.label
           } else {
-              return a.label < b.label ? -1 : a.label > b.label ? 1 : 0; // Sort as strings
+             // Sort as strings
+              return a.label < b.label ? -1 : a.label > b.label ? 1 : 0
           }
-      });
+      })
     }
-
     return { name, originalName, options }
   }
 
