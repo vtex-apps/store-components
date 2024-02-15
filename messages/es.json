@@ -1,4 +1,6 @@
 {
+  "store/search.clear-input": "Borrar campo de búsqueda",
+  "store/search.submit-search": "Buscar Productos",
   "store/search.placeholder": "Buscar",
   "store/search.searchFor": "Buscar por {term}",
   "store/search.search-term-too-short": "El término de búsqueda es demasiado corto",

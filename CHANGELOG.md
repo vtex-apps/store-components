@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.172.1] - 2024-02-13
+
+### Fixed
+- When `sortVariationsByLabel` is `true`, check if the labels are all numbers and sort them as numbers instead of string
+
+## [3.172.0] - 2024-02-09
+
+### Added
+
+- CSS Handle for unavailable products update. 
+
+
+## [3.171.0] - 2024-01-09
+
+## [3.170.0] - 2023-11-28
+
+### Added
+
+- Option to display a "Sponsored" tag above product name
+
+## [3.169.5] - 2023-10-05
+
+
+### Fixed
+- Store name in the social share text instead of account name as default
+
+## [3.169.4] - 2023-10-05
+
+### Fixed
+- Modal not displaing in email share at `SocialButton`
+
 ## [3.169.3] - 2023-05-12
 
 ## [3.169.2] - 2023-05-12

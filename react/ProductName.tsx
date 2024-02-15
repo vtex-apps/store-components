@@ -5,9 +5,11 @@ import ContentLoader from 'react-content-loader'
 import { useCssHandles } from 'vtex.css-handles'
 import type { CssHandlesTypes } from 'vtex.css-handles'
 import { Link } from 'vtex.render-runtime'
+import { IOMessage } from 'vtex.native-types'
 
 const CSS_HANDLES = [
   'productNameContainer',
+  'sponsoredBadge',
   'productBrand',
   'productSku',
   'productReference',
@@ -47,6 +49,10 @@ type Props = {
   showProductReference?: boolean
   /** Show brand name */
   showBrandName?: boolean
+  /** Show sponsored badge */
+  showSponsoredBadge?: boolean
+  /** Label to display in the sponsored badge */
+  sponsoredBadgeLabel?: string
   /** Classes to be applied to root element */
   className?: string
   /** Classes to be applied to brandName element */
@@ -116,6 +122,8 @@ function ProductName({
   showSku = false,
   showBrandName = false,
   showProductReference = false,
+  showSponsoredBadge = false,
+  sponsoredBadgeLabel,
   tag: Wrapper = 'div',
   classes,
   name,
@@ -168,6 +176,11 @@ function ProductName({
         className={`${handles.productNameLink} pointer c-link hover-c-link active-c-link no-underline underline-hover`}
         linkProps={linkProps}
       >
+        {showSponsoredBadge && (
+          <span className={`${handles.sponsoredBadge} db c-muted-1 t-mini-s`}>
+            <IOMessage id={sponsoredBadgeLabel} />
+          </span>
+        )}
         <span className={`${handles.productBrand} ${brandNameClass ?? ''}`}>
           {name} {showBrandName && brandName && `- ${brandName}`}
         </span>

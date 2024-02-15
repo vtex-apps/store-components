@@ -51,6 +51,8 @@ The `product-name` block is responsible for displaying a product name along with
 | `showBrandName` | `boolean` | Displays the brand name. | `false`| 
 | `showProductReference` | `boolean` | Displays the product reference code. | `false`| 
 | `showSku` | `boolean` | Displays the SKU value. | `false` |
+| `showSponsoredBadge` | `boolean` | Displays a sponsored badge above the product's name. | `false` |
+| `sponsoredBadgeLabel` | `string` | Text of the sponsored badge if it's rendered. | `""` |
 | `tag` | `string` | Defines the HTML tag of the product container. Possible values are: `div`, `h1`, `h2`, `h3`.  | `div` |
 
 ## Customization
@@ -66,3 +68,4 @@ To apply CSS customizations in this and other blocks, follow the [Using CSS hand
 | `productNameSkuLoader` |
 | `productReference` |
 | `productSku` |
+| `sponsoredBadge` |

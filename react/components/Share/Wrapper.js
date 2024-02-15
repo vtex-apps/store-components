@@ -11,7 +11,9 @@ const ShareWrapper = props => {
   const { intl } = props
 
   const valuesFromContext = useContext(ProductContext)
-  const { account } = useRuntime()
+  const { getSettings, account } = useRuntime()
+  const settings = getSettings('vtex.store')
+
   const { push } = usePixel()
 
   const shareProps = () => {
@@ -26,7 +28,7 @@ const ShareWrapper = props => {
       {
         product: path(['productName'], product),
         sku: path(['name'], selectedItem),
-        store: account,
+        store: settings.storeName || account,
       }
     )
 

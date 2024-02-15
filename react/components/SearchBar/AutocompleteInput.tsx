@@ -4,6 +4,7 @@ import { Input, InputSearch } from 'vtex.styleguide'
 import { ExtensionPoint, useChildBlock } from 'vtex.render-runtime'
 import { IconSearch, IconClose } from 'vtex.store-icons'
 import type { DownshiftProps } from 'downshift'
+import { useIntl } from 'react-intl'
 
 import { useSearchBarCssHandles } from './SearchBarCssHandles'
 
@@ -111,6 +112,8 @@ function AutocompleteInput({
   const { handles, withModifiers } = useSearchBarCssHandles()
   const inputRef = useRef<HTMLInputElement>(null)
 
+  const intl = useIntl()
+
   let dMode = displayMode
 
   if (DISPLAY_MODES.indexOf(dMode) < 0) {
@@ -162,6 +165,9 @@ function AutocompleteInput({
       style={{
         visibility: hasValue ? 'visible' : 'hidden',
       }}
+      aria-label={intl.formatMessage({
+        id: 'store/search.clear-input',
+      })}
       onClick={() => onClearInput()}
     >
       <CloseIcon />
@@ -175,6 +181,9 @@ function AutocompleteInput({
         'search'
       )} flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3`}
       onClick={() => hasValue && onGoToSearchPage()}
+      aria-label={intl.formatMessage({
+        id: 'store/search.submit-search',
+      })}
     >
       <SearchIcon />
     </button>
@@ -190,6 +199,9 @@ function AutocompleteInput({
           'external-search'
         )}  flex items-center h-100 pointer pv0 nr5 ph5 bn c-link`}
         onClick={onGoToSearchPage}
+        aria-label={intl.formatMessage({
+          id: 'store/search.submit-search',
+        })}
       >
         <SearchIcon />
       </button>
