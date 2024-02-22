@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Performance TBT improvement rendering videos only it's selected  
+
 ## [3.172.1] - 2024-02-13
 
 ### Fixed

@@ -183,12 +183,14 @@ class Carousel extends Component {
 
       case 'video':
         return (
-          <Video
-            url={slide.src}
-            setThumb={this.setVideoThumb(i)}
-            playing={i === this.state.activeIndex}
-            id={i}
-          />
+          i === this.state.activeIndex && (
+            <Video
+              url={slide.src}
+              setThumb={this.setVideoThumb(i)}
+              playing={i === this.state.activeIndex}
+              id={i}
+            />
+          )
         )
 
       default:
