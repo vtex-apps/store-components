@@ -68,6 +68,7 @@ interface Props {
   sliderArrowSize: number
   sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
   sortVariationsByLabel?: boolean
+  displayModeSelectForColorVariation?: boolean
 }
 
 function isSkuAvailable(item?: SelectorProductItem) {
@@ -248,13 +249,16 @@ const variationNameToDisplayVariation =
       const allNumbers = options.every(
         (option: any) => !Number.isNaN(option.label)
       )
+
       options.sort((a: any, b: any) => {
         if (allNumbers) {
           return a.label - b.label
         }
+
         return a.label < b.label ? -1 : a.label > b.label ? 1 : 0
       })
     }
+
     return { name, originalName, options }
   }
 
@@ -321,6 +325,7 @@ function SKUSelector({
   sliderArrowSize,
   sliderItemsPerPage,
   sortVariationsByLabel = false,
+  displayModeSelectForColorVariation,
 }: Props) {
   const { handles } = useSKUSelectorCssHandles()
   const variationsSpacing = getValidMarginBottom(marginBottomProp)
@@ -415,6 +420,9 @@ function SKUSelector({
             sliderDisplayThreshold={sliderDisplayThreshold}
             sliderArrowSize={sliderArrowSize}
             sliderItemsPerPage={sliderItemsPerPage}
+            displayModeSelectForColorVariation={
+              displayModeSelectForColorVariation
+            }
           />
         )
       })}
