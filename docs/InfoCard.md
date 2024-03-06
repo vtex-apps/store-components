@@ -55,6 +55,8 @@ The `info-card` component groups information on a single topic. It often include
 | `textAlignment`          | `TextAlignmentEnum` | Text alignment inside the component: `left`, `center` or `right`. This prop is ignored if `isFullModeStyle` is true.       | `"left"`      |
 | `textMode`               | `TextModeEnum`      | Text mode used to process the text from `headline` and `subhead` props.                                                    | `"html"`      |
 | `textPosition`           | `TextPositionEnum`  | Position of the text component: `left`, `center` or `right`.                                                               | `"left"`      |
+| `imageTitle`             | `string`            | Value for the title attribute of the image.                                                                                | `""`          |
+| `imageAlt`               | `string`            | Value for the alt attribute of the image.                                                                                  | `""`          |
 
 #### `TextPositionEnum` possible values
 

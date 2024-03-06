@@ -95,6 +95,8 @@ const InfoCard = ({
   htmlId,
   textMode,
   linkTarget,
+  imageTitle,
+  imageAlt,
 }) => {
   const {
     hints: { mobile },
@@ -224,8 +226,13 @@ const InfoCard = ({
                 className={handles.infoCardImage}
                 src={finalImageUrl}
                 style={{ objectFit: 'cover' }}
-                alt={formatIOMessage({ id: callToActionText, intl })}
+                alt={
+                  imageAlt
+                    ? imageAlt
+                    : formatIOMessage({ id: callToActionText, intl })
+                }
                 data-testid="half-image"
+                {...(imageTitle && { title: imageTitle })}
               />
             </LinkWrapper>
           </div>
@@ -248,6 +255,8 @@ MemoizedInfoCard.propTypes = {
   callToActionUrl: string,
   imageUrl: string,
   mobileImageUrl: string,
+  imageTitle: string,
+  imageAlt: string,
   textAlignment: oneOf(getEnumValues(textAlignmentTypes)),
   imageActionUrl: string,
   intl: PropTypes.object,
@@ -268,6 +277,8 @@ MemoizedInfoCard.defaultProps = {
   callToActionUrl: '',
   imageUrl: '',
   mobileImageUrl: '',
+  imageTitle: '',
+  imageAlt: '',
   textAlignment: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
   textMode: textModeTypes.TEXT_MODE_HTML.value,
   linkTarget: '_self',
