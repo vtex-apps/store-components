@@ -190,7 +190,7 @@ class Carousel extends Component {
             id={i}
           />
         ) : (
-          <></>
+          <div />
         )
 
       default:
