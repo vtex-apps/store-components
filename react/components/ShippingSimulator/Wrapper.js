@@ -35,7 +35,8 @@ const useAddressState = (country, postalCode) => {
     }
 
     setAddress(updatedAddress)
-    setIsValid(updatedAddress.postalCode.valid)
+    
+    setIsValid(updatedAddress.city.value && updateAddress.state.value ? true : false)
   }
 
   return { address, updateAddress, isValid }
