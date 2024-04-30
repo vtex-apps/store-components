@@ -89,6 +89,8 @@ const InfoCard = ({
   textPosition,
   textAlignment,
   imageUrl,
+  imageWidth,
+  imageHeight,
   mobileImageUrl,
   imageActionUrl,
   intl,
@@ -99,6 +101,7 @@ const InfoCard = ({
   const {
     hints: { mobile },
   } = useRuntime()
+
 
   const { lazyLoad } = useExperimentalLazyImagesContext()
 
@@ -226,6 +229,8 @@ const InfoCard = ({
                 style={{ objectFit: 'cover' }}
                 alt={formatIOMessage({ id: callToActionText, intl })}
                 data-testid="half-image"
+                width={imageWidth}
+                height={imageHeight}
               />
             </LinkWrapper>
           </div>
@@ -247,6 +252,8 @@ MemoizedInfoCard.propTypes = {
   callToActionText: string,
   callToActionUrl: string,
   imageUrl: string,
+  imageWidth: string,
+  imageHeight: string,
   mobileImageUrl: string,
   textAlignment: oneOf(getEnumValues(textAlignmentTypes)),
   imageActionUrl: string,
@@ -268,6 +275,8 @@ MemoizedInfoCard.defaultProps = {
   callToActionUrl: '',
   imageUrl: '',
   mobileImageUrl: '',
+  imageWidth: '',
+  imageHeight: '',
   textAlignment: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
   textMode: textModeTypes.TEXT_MODE_HTML.value,
   linkTarget: '_self',
@@ -325,6 +334,18 @@ MemoizedInfoCard.schema = {
     blockClass: {
       title: 'admin/editor.blockClass.title',
       description: 'admin/editor.blockClass.description',
+      type: 'string',
+      isLayout: true,
+    },
+    imageWidth: {
+      title: 'admin/editor.imageWidth.title',
+      description: 'admin/editor.imageWidth.description',
+      type: 'string',
+      isLayout: true,
+    },
+    imageHeight: {
+      title: 'admin/editor.imageHeight.title',
+      description: 'admin/editor.imageHeight.description',
       type: 'string',
       isLayout: true,
     },

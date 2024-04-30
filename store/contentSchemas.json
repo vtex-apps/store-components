@@ -113,6 +113,18 @@
           "title": "admin/editor.blockClass.title",
           "description": "admin/editor.blockClass.description",
           "type": "string"
+        },
+        "imageWidth": {
+          "title": "admin/editor.imageWidth.title",
+          "description": "admin/editor.imageWidth.description",
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": ""
+        },
+        "imageHeight": {
+          "title": "admin/editor.imageHeight.title",
+          "description": "admin/editor.info-card.imageHeight.description",
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": ""
         }
       }
     },

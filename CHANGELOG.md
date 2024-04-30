@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- add width and height in the images editable via site-editor
+
 ## [3.172.2] - 2024-03-06
 
 ### Fixed
