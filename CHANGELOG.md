@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - add width and height in the images editable via site-editor
 
+### Fixed
+
+- Arabic, Bulgarian, German, English, Spanish, French, Indonesian, Italian, Japanese, Korean, Dutch, Norwegian, Portuguese, Romanian and Thai translations
+
 ## [3.172.2] - 2024-03-06
 
 ### Fixed
