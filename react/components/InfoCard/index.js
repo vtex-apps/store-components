@@ -102,7 +102,6 @@ const InfoCard = ({
     hints: { mobile },
   } = useRuntime()
 
-
   const { lazyLoad } = useExperimentalLazyImagesContext()
 
   const { handles } = useCssHandles(CSS_HANDLES)
