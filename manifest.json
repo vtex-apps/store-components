@@ -36,7 +36,8 @@
     "vtex.store-icons": "0.x",
     "vtex.store-image": "0.x",
     "vtex.store-resources": "0.x",
-    "vtex.styleguide": "9.x"
+    "vtex.styleguide": "9.x",
+    "vtex.list-context": "0.x"
   },
   "settingsSchema": {
     "title": "vtex.store-components",
