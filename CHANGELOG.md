@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Prop `displayModeSelectForColorVariation` to enable `"displayMode": "select"` for color variations in SKU Selector
+
 ## [3.173.0] - 2024-05-28
 
 ### Added
