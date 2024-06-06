@@ -211,7 +211,7 @@ const InfoCard = ({
             ) : (
               <RichText className={subheadClasses} text={subhead} />
             ))}
-            {bodyText &&
+          {bodyText &&
             (textMode === 'html' ? (
               <div className={bodyTextClasses}>
                 <SanitizedHTML
