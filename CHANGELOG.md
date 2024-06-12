@@ -8,7 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Fixed
-update SKU selector in plp after change SKU in quickview
+
+- update SKU selector in plp after change SKU in quickview
+
+## [3.173.0] - 2024-05-28
+
+### Added
+
+- Hungarian translations.
 
 ## [3.172.2] - 2024-03-06
 
