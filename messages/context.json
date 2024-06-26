@@ -95,6 +95,8 @@
   "admin/editor.info-card.headline.description": "Description of headline property",
   "admin/editor.info-card.subhead.title": "Title of subhead property",
   "admin/editor.info-card.subhead.description": "Description of subhead property",
+  "admin/editor.info-card.body-text.title": "Title of body text property",
+  "admin/editor.info-card.body-text.description": "Description of body text property",
   "admin/editor.info-card.callToActionMode.title": "Title of callToActionMode property",
   "admin/editor.info-card.callToActionMode.description": "Description of callToActionMode property",
   "admin/editor.info-card.callToActionText.title": "Title of callToActionText property",

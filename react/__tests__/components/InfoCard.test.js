@@ -109,4 +109,34 @@ describe('<InfoCard />', () => {
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toMatchSnapshot()
   })
+  it('should not render bodyText', () => {
+    const { asFragment } = renderComponent({
+      isFullModeStyle: true,
+      callToActionMode: 'none',
+      textAlignment: 'right',
+      textPosition: 'center',
+      headline:
+        'HEADLINE <span class="my-custom-class">THIS IS BOOOLD AND BLUE</span> HEADLINE STILL',
+      subhead: '',
+      bodyText: '',
+    })
+
+    expect(asFragment()).toBeDefined()
+    expect(asFragment()).toMatchSnapshot()
+  })
+  it("should render bodyText, subhead and headline using the RichText component when textMode is set to 'rich-text'", () => {
+    const { asFragment } = renderComponent({
+      isFullModeStyle: true,
+      callToActionMode: 'none',
+      textAlignment: 'right',
+      textPosition: 'center',
+      textMode: 'rich-text',
+      headline: 'This is a headline, and should be inside a rich-text.',
+      subhead: 'This is a subhead, and should be inside a rich-text.',
+      bodyText: 'This is a bodyText, and should be inside a rich-text.',
+    })
+
+    expect(asFragment()).toBeDefined()
+    expect(asFragment()).toMatchSnapshot()
+  })
 })

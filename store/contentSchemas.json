@@ -30,6 +30,12 @@
           "$ref": "app:vtex.native-types#/definitions/text",
           "default": ""
         },
+        "bodyText": {
+          "title": "admin/editor.info-card.body-text.title",
+          "description": "admin/editor.info-card.body-text.description",
+          "$ref": "app:vtex.native-types#/definitions/text",
+          "default": ""
+        },
         "callToActionMode": {
           "default": "button",
           "type": "string",
