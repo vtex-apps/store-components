@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- `bodyText` property added, this property allows adding a body text below the subtitle.
+- Added `bodyText` property to `info-card` component. This property allows adding a body text below the subtitle.
 
 ## [3.173.0] - 2024-05-28
 
