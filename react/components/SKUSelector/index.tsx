@@ -279,7 +279,7 @@ const SKUSelectorContainer: FC<Props> = ({
     setSelectedVariations(
       getNewSelectedVariations(query, skuSelected, variations, initialSelection)
     )
-  }, [variations])
+  }, [variations, skuSelected])
 
   // This is used to selected an SKU when initialSelection is not 'empty'.
   // Runs only on the first render.
