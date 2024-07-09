@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.173.1] - 2024-07-09
+
 ### Fixed
 
 - Update SKU selector in PLP after changing SKU in Quickview
