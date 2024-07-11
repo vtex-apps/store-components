@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Prop `hideUnavailableVariations` that enables hiding unavailable variations from DOM
+
 ## [3.174.1] - 2024-08-01
 
 ### Added
