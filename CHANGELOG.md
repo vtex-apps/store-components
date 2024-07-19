@@ -11,6 +11,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Adding `blockClass` in the props list.
 
+## [3.174.0] - 2024-07-15
+
+### Added
+
+- Added `bodyText` property to `info-card` component. This property allows adding a body text below the subtitle.
+
+## [3.173.1] - 2024-07-09
+
+### Fixed
+
+- Update SKU selector in PLP after changing SKU in Quickview
+
 ## [3.173.0] - 2024-05-28
 
 ### Added
