@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Adding `blockClass` in the props list.
+
 ## [3.174.0] - 2024-07-15
 
 ### Added
@@ -18,7 +22,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Update SKU selector in PLP after changing SKU in Quickview
-
 
 ## [3.173.0] - 2024-05-28
 
