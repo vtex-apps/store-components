@@ -95,6 +95,8 @@
   "admin/editor.info-card.headline.description": "Текст, който се показва като заглавие в компонента",
   "admin/editor.info-card.subhead.title": "Подзаглавие",
   "admin/editor.info-card.subhead.description": "Текст, който да се показва под заглавието в компонента",
+  "admin/editor.info-card.body-text.title": "Текст на тялото",
+  "admin/editor.info-card.body-text.description": "Текст под подзаглавието вътре в компонента",
   "admin/editor.info-card.callToActionMode.title": "Режим на призив към действие",
   "admin/editor.info-card.callToActionMode.description": "Контролира как се показва призивът ви към действие",
   "admin/editor.info-card.callToActionText.title": "Текст на призива към действие",

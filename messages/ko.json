@@ -95,6 +95,8 @@
   "admin/editor.info-card.headline.description": "구성 요소 내부의 헤드라인으로 표시할 텍스트",
   "admin/editor.info-card.subhead.title": "부제목",
   "admin/editor.info-card.subhead.description": "구성 요소 내부의 헤드라인 아래에 표시할 텍스트",
+  "admin/editor.info-card.body-text.title": "본문 텍스트",
+  "admin/editor.info-card.body-text.description": "구성 요소 내부 하위 헤더 아래의 텍스트",
   "admin/editor.info-card.callToActionMode.title": "콜 투 액션 모드",
   "admin/editor.info-card.callToActionMode.description": "콜 투 액션 디스플레이 조절",
   "admin/editor.info-card.callToActionText.title": "콜 투 액션 텍스트",

@@ -97,6 +97,8 @@
   "admin/editor.info-card.headline.description": "Főcím szöveg a komponensen belül",
   "admin/editor.info-card.subhead.title": "Alcím",
   "admin/editor.info-card.subhead.description": "Szöveg a főcím alatt a komponensen belül",
+  "admin/editor.info-card.body-text.title": "Szövegtörzs",
+  "admin/editor.info-card.body-text.description": "Az alcím belső komponens alatti szöveg",
   "admin/editor.info-card.callToActionMode.title": "Call to action mód",
   "admin/editor.info-card.callToActionMode.description": "Szabályozza a call to action megjelenését",
   "admin/editor.info-card.callToActionText.title": "Call to action szöveg",

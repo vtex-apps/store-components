@@ -95,6 +95,8 @@
   "admin/editor.info-card.headline.description": "Testo da visualizzare come titolo all'interno del componente",
   "admin/editor.info-card.subhead.title": "Sottotitolo",
   "admin/editor.info-card.subhead.description": "Testo da visualizzare sotto al titolo all'interno del componente",
+  "admin/editor.info-card.body-text.title": "Corpo del testo",
+  "admin/editor.info-card.body-text.description": "Testo al di sotto del sottotitolo all'interno del componente",
   "admin/editor.info-card.callToActionMode.title": "Modalità della Call to Action",
   "admin/editor.info-card.callToActionMode.description": "Controlla come viene visualizzato il tuo componente Call to Action",
   "admin/editor.info-card.callToActionText.title": "Testo della Call to Action",
