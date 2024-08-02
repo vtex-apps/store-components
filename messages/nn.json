@@ -95,6 +95,8 @@
   "admin/editor.info-card.headline.description": "Tekst som skal vises som overskrift inne i komponenten",
   "admin/editor.info-card.subhead.title": "Undertittel",
   "admin/editor.info-card.subhead.description": "Tekst som skal vises under overskriften inne i komponenten",
+  "admin/editor.info-card.body-text.title": "Hovedtekst",
+  "admin/editor.info-card.body-text.description": "Tekst under undertittel inne i komponenten",
   "admin/editor.info-card.callToActionMode.title": "Oppfordring til handling-modus",
   "admin/editor.info-card.callToActionMode.description": "Kontrollerer hvordan oppfordring til handling vises",
   "admin/editor.info-card.callToActionText.title": "Oppfordring til handling-tekst",

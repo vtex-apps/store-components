@@ -95,6 +95,8 @@
   "admin/editor.info-card.headline.description": "Texte à afficher sous forme de titre principal à l’intérieur du composant",
   "admin/editor.info-card.subhead.title": "Sous-titre",
   "admin/editor.info-card.subhead.description": "Texte à afficher sous le titre principal à l’intérieur du composant",
+  "admin/editor.info-card.body-text.title": "Corps de texte",
+  "admin/editor.info-card.body-text.description": "Texte sous le sous-titre à l’intérieur du composant",
   "admin/editor.info-card.callToActionMode.title": "Mode d’appel à l’action",
   "admin/editor.info-card.callToActionMode.description": "Contrôle l’affichage de votre appel à l’action",
   "admin/editor.info-card.callToActionText.title": "Texte d’appel à l’action",

@@ -95,6 +95,8 @@
   "admin/editor.info-card.headline.description": "Teks akan ditampilkan sebagai judul di dalam komponen",
   "admin/editor.info-card.subhead.title": "Subjudul",
   "admin/editor.info-card.subhead.description": "Teks akan ditampilkan di bawah judul di dalam komponen",
+  "admin/editor.info-card.body-text.title": "Teks isi",
+  "admin/editor.info-card.body-text.description": "Teks di bawah subheader di dalam komponen",
   "admin/editor.info-card.callToActionMode.title": "Mode Pesan Ajakan",
   "admin/editor.info-card.callToActionMode.description": "Kontrol cara menampilkan pesan ajakan Anda",
   "admin/editor.info-card.callToActionText.title": "Teks Pesan Ajakan",

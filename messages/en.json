@@ -98,7 +98,7 @@
   "admin/editor.info-card.subhead.title": "Subheader",
   "admin/editor.info-card.subhead.description": "Text below headline inside component",
   "admin/editor.info-card.body-text.title": "Body text",
-  "admin/editor.info-card.body-text.description": "Text below subhead inside component",
+  "admin/editor.info-card.body-text.description": "Text under subheader inside component",
   "admin/editor.info-card.callToActionMode.title": "Call to action mode",
   "admin/editor.info-card.callToActionMode.description": "Controls how your call to action is displayed",
   "admin/editor.info-card.callToActionText.title": "Call to action text",

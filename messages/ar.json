@@ -95,6 +95,8 @@
   "admin/editor.info-card.headline.description": "النص الذي سيتم عرضه كعنوان رئيسي داخل المكون",
   "admin/editor.info-card.subhead.title": "عنوان فرعي",
   "admin/editor.info-card.subhead.description": "النص الذي سيتم عرضه كعنوان فرعي داخل المكون",
+  "admin/editor.info-card.body-text.title": "النص الأساسي",
+  "admin/editor.info-card.body-text.description": "نص تحت عنوان فرعي داخل المكون",
   "admin/editor.info-card.callToActionMode.title": "استدعاء إلى وضع العمل",
   "admin/editor.info-card.callToActionMode.description": "للتحكم في كيفية عرض عبارة اتخاذ إجراء",
   "admin/editor.info-card.callToActionText.title": "نص الدعوة إلى الإجراء",
