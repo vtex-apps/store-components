@@ -299,7 +299,7 @@ MemoizedInfoCard.defaultProps = {
   linkTarget: '_self',
   callToActionLinkTarget: '_self',
   fetchpriority: 'auto',
-  preload: ''
+  preload: '',
 }
 
 MemoizedInfoCard.schema = {
