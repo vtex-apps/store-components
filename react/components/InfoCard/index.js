@@ -97,10 +97,14 @@ const InfoCard = ({
   htmlId,
   textMode,
   linkTarget,
+  fetchpriority,
+  preload
 }) => {
   const {
     hints: { mobile },
   } = useRuntime()
+
+  console.log("LOGS LEONE", fetchpriority, preload)
 
   const { lazyLoad } = useExperimentalLazyImagesContext()
 
@@ -242,6 +246,12 @@ const InfoCard = ({
                 style={{ objectFit: 'cover' }}
                 alt={formatIOMessage({ id: callToActionText, intl })}
                 data-testid="half-image"
+                fetchPriority={fetchpriority}
+                {...(preload
+                  ? {
+                      'data-vtex-preload': 'true',
+                    }
+                  : {})}
               />
             </LinkWrapper>
           </div>
@@ -290,6 +300,8 @@ MemoizedInfoCard.defaultProps = {
   textMode: textModeTypes.TEXT_MODE_HTML.value,
   linkTarget: '_self',
   callToActionLinkTarget: '_self',
+  fetchpriority: 'auto',
+  preload: ''
 }
 
 MemoizedInfoCard.schema = {
