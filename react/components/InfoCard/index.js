@@ -104,8 +104,6 @@ const InfoCard = ({
     hints: { mobile },
   } = useRuntime()
 
-  console.log("LOGS LEONE", fetchpriority, preload)
-
   const { lazyLoad } = useExperimentalLazyImagesContext()
 
   const { handles } = useCssHandles(CSS_HANDLES)
