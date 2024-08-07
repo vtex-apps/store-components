@@ -98,7 +98,7 @@ const InfoCard = ({
   textMode,
   linkTarget,
   fetchpriority,
-  preload
+  preload,
 }) => {
   const {
     hints: { mobile },
