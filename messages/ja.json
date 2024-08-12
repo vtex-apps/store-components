@@ -95,6 +95,8 @@
   "admin/editor.info-card.headline.description": "コンポーネント内の見出しに表示されるテキスト",
   "admin/editor.info-card.subhead.title": "副見出し",
   "admin/editor.info-card.subhead.description": "コンポーネント内の見出しの下に表示されるテキスト",
+  "admin/editor.info-card.body-text.title": "本文テキスト",
+  "admin/editor.info-card.body-text.description": "コンポーネント内でサブヘッダーの下に来るテキスト",
   "admin/editor.info-card.callToActionMode.title": "行動喚起モード",
   "admin/editor.info-card.callToActionMode.description": "行動喚起の表示方法をコントロールします",
   "admin/editor.info-card.callToActionText.title": "行動喚起テキスト",

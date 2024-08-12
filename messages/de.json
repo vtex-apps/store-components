@@ -95,6 +95,8 @@
   "admin/editor.info-card.headline.description": "Text, der als Überschrift innerhalb der Komponente angezeigt werden soll",
   "admin/editor.info-card.subhead.title": "Untertitel",
   "admin/editor.info-card.subhead.description": "Text unter der Überschrift innerhalb der Komponente",
+  "admin/editor.info-card.body-text.title": "Haupttext",
+  "admin/editor.info-card.body-text.description": "Text unter dem Untertitel innerhalb der Komponente",
   "admin/editor.info-card.callToActionMode.title": "Modus \"Aufruf zum Handeln\"",
   "admin/editor.info-card.callToActionMode.description": "Steuert, wie Ihre Handlungsaufforderung angezeigt wird",
   "admin/editor.info-card.callToActionText.title": "Text des Aufrufs zum Handeln",

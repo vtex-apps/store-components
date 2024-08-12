@@ -95,6 +95,8 @@
   "admin/editor.info-card.headline.description": "ข้อความจะแสดงเป็นหัวเรื่องภายในคอมโพเนนต์",
   "admin/editor.info-card.subhead.title": "หัวเรื่องย่อย",
   "admin/editor.info-card.subhead.description": "ข้อความจะแสดงใต้หัวเรื่องภายในคอมโพเนนต์",
+  "admin/editor.info-card.body-text.title": "ตัวข้อความ:",
+  "admin/editor.info-card.body-text.description": "ข้อความใต้หัวเรื่องย่อยในรายละเอียด",
   "admin/editor.info-card.callToActionMode.title": "โหมดกระตุ้นให้ดำเนินการ",
   "admin/editor.info-card.callToActionMode.description": "ควบคุมว่าจะให้การกระตุ้นให้ดำเนินการของคุณแสดงอย่างไร",
   "admin/editor.info-card.callToActionText.title": "ข้อความกระตุ้นให้ดำเนินการ",
