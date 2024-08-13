@@ -95,6 +95,8 @@
   "admin/editor.info-card.headline.description": "Tekst die moet worden weergegeven als een kop binnenin component",
   "admin/editor.info-card.subhead.title": "Subkop",
   "admin/editor.info-card.subhead.description": "Tekst die moet worden weergegeven onder de kop binnenin component",
+  "admin/editor.info-card.body-text.title": "Bodytekst",
+  "admin/editor.info-card.body-text.description": "Tekst onder subkop in component",
   "admin/editor.info-card.callToActionMode.title": "Oproep tot actiemodus",
   "admin/editor.info-card.callToActionMode.description": "Controleert hoe uw oproep tot actie wordt weergegeven",
   "admin/editor.info-card.callToActionText.title": "Oproep tot actie-tekst",

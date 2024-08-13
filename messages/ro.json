@@ -95,6 +95,8 @@
   "admin/editor.info-card.headline.description": "Text pentru a fi afișat ca titlu înăuntrul componentei",
   "admin/editor.info-card.subhead.title": "Subtitlu",
   "admin/editor.info-card.subhead.description": "Text pentru a fi afișat sub titlu înăuntrul componentei",
+  "admin/editor.info-card.body-text.title": "Text corp",
+  "admin/editor.info-card.body-text.description": "Text sub subtitlu în interiorul componentei",
   "admin/editor.info-card.callToActionMode.title": "Mod Apel la acțiune",
   "admin/editor.info-card.callToActionMode.description": "Controlează modul în care este afișat apelul la acțiune",
   "admin/editor.info-card.callToActionText.title": "Text Apel la acțiune",

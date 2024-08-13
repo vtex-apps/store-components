@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Adding 'fetchpriority' & 'preload' props to the infoCard component, in order to manage the images it contains.
 
+## [3.174.2] - 2024-08-12
+
+### Fixed
+
+- Arabic, Bulgarian, German, English, Spanish, French, Hungarian, Indonesian, Italian, Japanese, Korean, Dutch, Norwegian, Portuguese, Romanian and Thai translations.
+
 ## [3.174.1] - 2024-08-01
 
 ### Added
