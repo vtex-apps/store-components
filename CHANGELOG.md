@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.175.1] - 2024-09-11
+
 ### Fixed
 
 - Issue with brand link on `ProductBrand` component.
