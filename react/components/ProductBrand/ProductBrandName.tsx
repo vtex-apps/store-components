@@ -14,7 +14,7 @@ function ProductBrandName({ brandName, withLink, slug }: Props) {
   const { handles } = useProductBrandCssHandles()
 
   if (withLink && slug) {
-    const nameLink = `/${slug}/b`
+    const nameLink = `/${slug}`
 
     return (
       <a
