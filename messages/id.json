@@ -22,6 +22,8 @@
   "admin/editor.imageHeight.title": "Tinggi gambar",
   "admin/editor.imageWidth.description": "Menambahkan lebar pada tag <img>",
   "admin/editor.imageWidth.title": "Lebar gambar",
+  "admin/editor.info-card.body-text.title": "Teks isi",
+  "admin/editor.info-card.body-text.description": "Teks di bawah subheader di dalam komponen",
   "admin/editor.info-card.callAction.button": "Tombol",
   "admin/editor.info-card.callAction.link": "Tautan",
   "admin/editor.info-card.callAction.none": "Tidak ada",

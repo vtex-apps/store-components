@@ -22,6 +22,8 @@
   "admin/editor.imageHeight.title": "Image height",
   "admin/editor.imageWidth.description": "Adds width in the <img> tag",
   "admin/editor.imageWidth.title": "Image Width",
+  "admin/editor.info-card.body-text.title": "Body text",
+  "admin/editor.info-card.body-text.description": "Text under subheader inside component",
   "admin/editor.info-card.callAction.button": "Button",
   "admin/editor.info-card.callAction.link": "Link",
   "admin/editor.info-card.callAction.none": "None",

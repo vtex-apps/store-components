@@ -22,6 +22,8 @@
   "admin/editor.imageHeight.title": "Hauteur de l'image",
   "admin/editor.imageWidth.description": "Ajoute une largeur dans la balise <img>",
   "admin/editor.imageWidth.title": "Largeur de l’image",
+  "admin/editor.info-card.body-text.title": "Corps de texte",
+  "admin/editor.info-card.body-text.description": "Texte sous le sous-titre à l’intérieur du composant",
   "admin/editor.info-card.callAction.button": "Bouton",
   "admin/editor.info-card.callAction.link": "Lien",
   "admin/editor.info-card.callAction.none": "Aucun",

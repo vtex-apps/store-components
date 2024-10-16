@@ -22,6 +22,8 @@
   "admin/editor.imageHeight.title": "이미지 높이",
   "admin/editor.imageWidth.description": "<img> 태그에 너비 추가",
   "admin/editor.imageWidth.title": "이미지 너비",
+  "admin/editor.info-card.body-text.title": "본문 텍스트",
+  "admin/editor.info-card.body-text.description": "구성 요소 내부 하위 헤더 아래의 텍스트",
   "admin/editor.info-card.callAction.button": "버튼",
   "admin/editor.info-card.callAction.link": "링크",
   "admin/editor.info-card.callAction.none": "없음",

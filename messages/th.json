@@ -22,6 +22,8 @@
   "admin/editor.imageHeight.title": "ความสูงรูปภาพ",
   "admin/editor.imageWidth.description": "ระบุความกว้างในแท็ก <img>",
   "admin/editor.imageWidth.title": "ความกว้างรูป",
+  "admin/editor.info-card.body-text.title": "ตัวข้อความ:",
+  "admin/editor.info-card.body-text.description": "ข้อความใต้หัวเรื่องย่อยในรายละเอียด",
   "admin/editor.info-card.callAction.button": "ปุ่ม",
   "admin/editor.info-card.callAction.link": "ลิงก์",
   "admin/editor.info-card.callAction.none": "ไม่มี",

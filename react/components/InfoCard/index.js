@@ -74,6 +74,7 @@ const CSS_HANDLES = [
   'infoCardTextContainer',
   'infoCardHeadline',
   'infoCardSubhead',
+  'infoCardBodyText',
   'infoCardImageContainer',
   'infoCardImage',
 ]
@@ -82,6 +83,7 @@ const InfoCard = ({
   isFullModeStyle,
   headline,
   subhead,
+  bodyText,
   callToActionMode,
   callToActionText,
   callToActionUrl,
@@ -97,6 +99,8 @@ const InfoCard = ({
   htmlId,
   textMode,
   linkTarget,
+  fetchpriority,
+  preload,
 }) => {
   const {
     hints: { mobile },
@@ -171,6 +175,8 @@ const InfoCard = ({
 
   const subheadClasses = `${handles.infoCardSubhead} t-body mt6 c-on-base ${alignToken} mw-100`
 
+  const bodyTextClasses = `${handles.infoCardBodyText} t-body mt6 c-on-base ${alignToken} mw-100`
+
   return (
     <LinkWrapper
       imageActionUrl={formatIOMessage({ id: imageActionUrl, intl })}
@@ -209,6 +215,18 @@ const InfoCard = ({
             ) : (
               <RichText className={subheadClasses} text={subhead} />
             ))}
+          {bodyText &&
+            (textMode === 'html' ? (
+              <div className={bodyTextClasses}>
+                <SanitizedHTML
+                  content={formatIOMessage({ id: bodyText, intl })}
+                  allowedTags={ALLOWED_TAGS}
+                  allowedAttributes={ALLOWED_ATTRS}
+                />
+              </div>
+            ) : (
+              <RichText className={bodyTextClasses} text={bodyText} />
+            ))}
           <CallToAction
             mode={callToActionMode}
             text={formatIOMessage({ id: callToActionText, intl })}
@@ -230,6 +248,12 @@ const InfoCard = ({
                 data-testid="half-image"
                 width={imageWidth}
                 height={imageHeight}
+                fetchPriority={fetchpriority}
+                {...(preload
+                  ? {
+                      'data-vtex-preload': 'true',
+                    }
+                  : {})}
               />
             </LinkWrapper>
           </div>
@@ -247,6 +271,7 @@ MemoizedInfoCard.propTypes = {
   textPosition: oneOf(getEnumValues(textPositionTypes)),
   headline: string,
   subhead: string,
+  bodyText: string,
   callToActionMode: oneOf(getEnumValues(callToActionModeTypes)),
   callToActionText: string,
   callToActionUrl: string,
@@ -269,6 +294,7 @@ MemoizedInfoCard.defaultProps = {
   textPosition: textPositionTypes.TEXT_POSITION_LEFT.value,
   headline: '',
   subhead: '',
+  bodyText: '',
   callToActionMode: callToActionModeTypes.CALL_ACTION_BUTTON.value,
   callToActionText: '',
   callToActionUrl: '',
@@ -280,6 +306,8 @@ MemoizedInfoCard.defaultProps = {
   textMode: textModeTypes.TEXT_MODE_HTML.value,
   linkTarget: '_self',
   callToActionLinkTarget: '_self',
+  fetchpriority: 'auto',
+  preload: false,
 }
 
 MemoizedInfoCard.schema = {

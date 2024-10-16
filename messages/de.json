@@ -22,6 +22,8 @@
   "admin/editor.imageHeight.title": "Bildhöhe",
   "admin/editor.imageWidth.description": "Fügt Breite im <img>-Tag hinzu",
   "admin/editor.imageWidth.title": "Bildbreite",
+  "admin/editor.info-card.body-text.title": "Haupttext",
+  "admin/editor.info-card.body-text.description": "Text unter dem Untertitel innerhalb der Komponente",
   "admin/editor.info-card.callAction.button": "Taste",
   "admin/editor.info-card.callAction.link": "Link",
   "admin/editor.info-card.callAction.none": "Keine",

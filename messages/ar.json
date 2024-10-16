@@ -22,6 +22,8 @@
   "admin/editor.imageHeight.title": "ارتفاع الصورة",
   "admin/editor.imageWidth.description": "يضيف العرض في علامة <img>",
   "admin/editor.imageWidth.title": "عرض الصورة",
+  "admin/editor.info-card.body-text.title": "النص الأساسي",
+  "admin/editor.info-card.body-text.description": "نص تحت عنوان فرعي داخل المكون",
   "admin/editor.info-card.callAction.button": "الزر",
   "admin/editor.info-card.callAction.link": "الرابط",
   "admin/editor.info-card.callAction.none": "لا شيء",

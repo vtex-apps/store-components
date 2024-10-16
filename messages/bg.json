@@ -22,6 +22,8 @@
   "admin/editor.imageHeight.title": "Височина на изображението",
   "admin/editor.imageWidth.description": "Добавя широчина в тага <img>",
   "admin/editor.imageWidth.title": "Широчина на изображението",
+  "admin/editor.info-card.body-text.title": "Текст на тялото",
+  "admin/editor.info-card.body-text.description": "Текст под подзаглавието вътре в компонента",
   "admin/editor.info-card.callAction.button": "Бутон",
   "admin/editor.info-card.callAction.link": "Връзка",
   "admin/editor.info-card.callAction.none": "Няма",

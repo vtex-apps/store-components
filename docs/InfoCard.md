@@ -30,7 +30,9 @@ The `info-card` component groups information on a single topic. It often include
       "callToActionText": "DISCOVER",
       "callToActionUrl": "/sale/d",
       "blockClass": "info-card-example",
-      "textAlignment": "center"
+      "textAlignment": "center",
+      "fetchpriority": "auto",
+      "preload": true
     }
   },
 ```
@@ -52,9 +54,14 @@ The `info-card` component groups information on a single topic. It often include
 | `linkTarget`             | `LinkTargetEnum`    | Where to display the linked URL when the Info Card component is clicked.                                                   | `"_self"`     |
 | `mobileImageUrl`         | `string`            | Path to the image used on mobile devices. If empty, the desktop image is used.                                             | `null`        |
 | `subhead`                | `string`            | Text to be displayed underneath the headline. If not provided, it will not be rendered.                                    | `null`        |
+| `bodyText`                | `string`            | Text to be displayed underneath the subhead. If not provided, it will not be rendered.                                    | `null`        |
 | `textAlignment`          | `TextAlignmentEnum` | Text alignment inside the component: `left`, `center` or `right`. This prop is ignored if `isFullModeStyle` is true.       | `"left"`      |
 | `textMode`               | `TextModeEnum`      | Text mode used to process the text from `headline` and `subhead` props.                                                    | `"html"`      |
 | `textPosition`           | `TextPositionEnum`  | Position of the text component: `left`, `center` or `right`.                                                               | `"left"`      |
+| `fetchpriority`          | `string` | The fetch priority hint ('high', 'low' or 'auto').
+  | `auto`        |
+| `preload`          | `boolean` | Preloads the first image in a list, prioritizing the image display over other assets.
+| `false`        |
 
 #### `TextPositionEnum` possible values
 
@@ -104,4 +111,5 @@ To apply CSS customizations to this and other blocks, please see the [Using CSS 
 | `infoCardImageContainer`      |
 | `infoCardImageLinkWrapper`    |
 | `infoCardSubhead`             |
+| `infoCardBodyText`            |
 | `infoCardTextContainer`       |

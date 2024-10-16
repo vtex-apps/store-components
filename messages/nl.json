@@ -22,6 +22,8 @@
   "admin/editor.imageHeight.title": "Beeldhoogte",
   "admin/editor.imageWidth.description": "Voegt breedte toe aan de <img>-tag",
   "admin/editor.imageWidth.title": "Beeldbreedte",
+  "admin/editor.info-card.body-text.title": "Bodytekst",
+  "admin/editor.info-card.body-text.description": "Tekst onder subkop in component",
   "admin/editor.info-card.callAction.button": "Knop",
   "admin/editor.info-card.callAction.link": "Link",
   "admin/editor.info-card.callAction.none": "Geen",

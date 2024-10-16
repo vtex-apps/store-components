@@ -22,6 +22,8 @@
   "admin/editor.imageHeight.title": "Altura da imagem",
   "admin/editor.imageWidth.description": "Adiciona a largura na tag <img>",
   "admin/editor.imageWidth.title": "Largura da imagem",
+  "admin/editor.info-card.body-text.title": "Corpo do texto",
+  "admin/editor.info-card.body-text.description": "Texto abaixo do subtítulo dentro do componente",
   "admin/editor.info-card.callAction.button": "Botão",
   "admin/editor.info-card.callAction.link": "Link",
   "admin/editor.info-card.callAction.none": "Nenhum",

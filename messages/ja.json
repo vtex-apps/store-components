@@ -22,6 +22,8 @@
   "admin/editor.imageHeight.title": "画像の高さ",
   "admin/editor.imageWidth.description": "<img> タグに幅を追加する",
   "admin/editor.imageWidth.title": "画像幅",
+  "admin/editor.info-card.body-text.title": "本文テキスト",
+  "admin/editor.info-card.body-text.description": "コンポーネント内でサブヘッダーの下に来るテキスト",
   "admin/editor.info-card.callAction.button": "ボタン",
   "admin/editor.info-card.callAction.link": "リンク",
   "admin/editor.info-card.callAction.none": "なし",

@@ -22,6 +22,8 @@
   "admin/editor.imageHeight.title": "Înălțime imagine",
   "admin/editor.imageWidth.description": "Adaugă lățime în tag-ul <img>",
   "admin/editor.imageWidth.title": "Lățime imagine",
+  "admin/editor.info-card.body-text.title": "Text corp",
+  "admin/editor.info-card.body-text.description": "Text sub subtitlu în interiorul componentei",
   "admin/editor.info-card.callAction.button": "Buton",
   "admin/editor.info-card.callAction.link": "Link",
   "admin/editor.info-card.callAction.none": "Niciunul",

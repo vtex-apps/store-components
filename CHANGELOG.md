@@ -11,9 +11,47 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - add width and height in the images editable via site-editor
 
+## [3.175.1] - 2024-09-11
+
 ### Fixed
 
-- Arabic, Bulgarian, German, English, Spanish, French, Indonesian, Italian, Japanese, Korean, Dutch, Norwegian, Portuguese, Romanian and Thai translations
+- Issue with brand link on `ProductBrand` component.
+
+## [3.175.0] - 2024-08-15
+
+### Added
+
+- Adding 'fetchpriority' & 'preload' props to the infoCard component, in order to manage the images it contains.
+
+## [3.174.2] - 2024-08-12
+
+### Fixed
+
+- Arabic, Bulgarian, German, English, Spanish, French, Hungarian, Indonesian, Italian, Japanese, Korean, Dutch, Norwegian, Portuguese, Romanian and Thai translations.
+
+## [3.174.1] - 2024-08-01
+
+### Added
+
+- Adding `blockClass` in the props list.
+
+## [3.174.0] - 2024-07-15
+
+### Added
+
+- Added `bodyText` property to `info-card` component. This property allows adding a body text below the subtitle.
+
+## [3.173.1] - 2024-07-09
+
+### Fixed
+
+- Update SKU selector in PLP after changing SKU in Quickview
+
+## [3.173.0] - 2024-05-28
+
+### Added
+
+- Hungarian translations.
 
 ## [3.172.2] - 2024-03-06
 

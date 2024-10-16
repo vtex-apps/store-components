@@ -22,6 +22,8 @@
   "admin/editor.imageHeight.title": "Bildehøyde",
   "admin/editor.imageWidth.description": "Legger til bredde i <img> taggen",
   "admin/editor.imageWidth.title": "Bildebredde",
+  "admin/editor.info-card.body-text.title": "Hovedtekst",
+  "admin/editor.info-card.body-text.description": "Tekst under undertittel inne i komponenten",
   "admin/editor.info-card.callAction.button": "Knapp",
   "admin/editor.info-card.callAction.link": "Lenke",
   "admin/editor.info-card.callAction.none": "Ingen",
