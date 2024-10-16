@@ -128,7 +128,7 @@
         },
         "imageHeight": {
           "title": "admin/editor.imageHeight.title",
-          "description": "admin/editor.info-card.imageHeight.description",
+          "description": "admin/editor.imageHeight.description",
           "$ref": "app:vtex.native-types#/definitions/text",
           "default": ""
         }
