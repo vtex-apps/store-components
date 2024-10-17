@@ -107,6 +107,7 @@ const ProductImage: FC<Props> = ({
             alt={alt}
             title={alt}
             loading={index === 0 ? 'eager' : 'lazy'}
+            {...((index === 0 ? { fetchpriority: 'high' } : {}) as any)}
             // WIP
             // The value of the "sizes" attribute means: if the window has at most 64.1rem of width,
             // the image will be of a width of 100vw. Otherwise, the
