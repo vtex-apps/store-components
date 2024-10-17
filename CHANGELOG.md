@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Added the ability to configure the width and height for product thumbnails in the carousel component. Improved page performance and SEO by ensuring appropriate image sizes are used, reducing unnecessary data load.
+- Added `<link rel="preload" as="image" />` for the main product image in the `ProductImage` component to enhance page loading performance by preloading critical images.
 
 ## [3.175.1] - 2024-09-11
 
