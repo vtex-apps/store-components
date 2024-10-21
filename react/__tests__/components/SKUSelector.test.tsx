@@ -33,7 +33,10 @@ describe('<SKUSelector />', () => {
   })
 
   it('should render the options an select one', async () => {
-    const defaultSeller = { commertialOffer: { Price: 15 } }
+    const defaultSeller = {
+      commertialOffer: { Price: 15, AvailableQuantity: 1 },
+    }
+
     const skuItems = [
       {
         itemId: '1',
@@ -109,7 +112,10 @@ describe('<SKUSelector />', () => {
   })
 
   it('should render only three main variations', async () => {
-    const defaultSeller = { commertialOffer: { Price: 15 } }
+    const defaultSeller = {
+      commertialOffer: { Price: 15, AvailableQuantity: 1 },
+    }
+
     const skuItems = [
       {
         itemId: '1',
@@ -173,7 +179,10 @@ describe('<SKUSelector />', () => {
   })
 
   it('should render show 8 items for variation and see more button', async () => {
-    const defaultSeller = { commertialOffer: { Price: 15 } }
+    const defaultSeller = {
+      commertialOffer: { Price: 15, AvailableQuantity: 1 },
+    }
+
     const skuItems = [
       {
         itemId: '1',
@@ -637,7 +646,10 @@ describe('<SKUSelector />', () => {
   })
 
   it('should show all variations when count is inside threshold', async () => {
-    const defaultSeller = { commertialOffer: { Price: 15 } }
+    const defaultSeller = {
+      commertialOffer: { Price: 15, AvailableQuantity: 1 },
+    }
+
     const skuItems = [
       {
         itemId: '1',
@@ -1410,6 +1422,10 @@ describe('<SKUSelector />', () => {
   })
 
   it('must order sku specification to be sorted in alphabetical order', async () => {
+    const defaultSeller = {
+      commertialOffer: { Price: 15, AvailableQuantity: 1 },
+    }
+
     const skuItems = [
       {
         itemId: '1',
@@ -1419,6 +1435,7 @@ describe('<SKUSelector />', () => {
           { name: 'Color', values: ['Gray'] },
         ],
         images: [],
+        sellers: [defaultSeller],
       },
       {
         itemId: '4',
@@ -1431,6 +1448,7 @@ describe('<SKUSelector />', () => {
           { name: 'Color', values: ['Gray'] },
         ],
         images: [],
+        sellers: [defaultSeller],
       },
       {
         itemId: '4',
@@ -1443,6 +1461,7 @@ describe('<SKUSelector />', () => {
           { name: 'Color', values: ['Gray'] },
         ],
         images: [],
+        sellers: [defaultSeller],
       },
     ]
 

@@ -161,13 +161,15 @@ const parseOptionNameToDisplayOption =
 
     if (possibleItems.length > 0) {
       // This is a valid combination option
-      const [item] = possibleItems
+      const availableItems = possibleItems.filter(isSkuAvailable)
+      const [item] = availableItems || possibleItems
+
       const callbackFn = onSelectItemMemo({
         name: variationName,
         value: variationValue.name,
         skuId: item.itemId,
         isMainAndImpossible: false,
-        possibleItems,
+        possibleItems: availableItems ?? possibleItems,
       })
 
       return {
@@ -176,7 +178,7 @@ const parseOptionNameToDisplayOption =
         onSelectItem: callbackFn,
         image,
         available: showItemAsAvailable({
-          possibleItems,
+          possibleItems: availableItems ?? possibleItems,
           selectedVariations,
           variationCount,
           isSelected,
@@ -248,13 +250,16 @@ const variationNameToDisplayVariation =
       const allNumbers = options.every(
         (option: any) => !Number.isNaN(option.label)
       )
+
       options.sort((a: any, b: any) => {
         if (allNumbers) {
           return a.label - b.label
         }
+
         return a.label < b.label ? -1 : a.label > b.label ? 1 : 0
       })
     }
+
     return { name, originalName, options }
   }
 

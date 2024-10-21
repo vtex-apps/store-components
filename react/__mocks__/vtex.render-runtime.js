@@ -10,6 +10,14 @@ const runtime = {
   culture: { currency: 'USD' },
   query: 'foo',
   navigate: jest.fn(),
+  getSettings: () => ({
+    'vtex.store': {
+      storeName: 'Store Theme - VTEX Base Store',
+      titleTag: 'Store Theme - VTEX Base Store',
+      metaTagDescription: 'Store Theme - VTEX Base Store',
+      metaTagKeywords: 'store theme, vtex, store, vtex io, base store, vtex',
+    },
+  }),
 }
 
 export const withRuntimeContext = Comp =>
