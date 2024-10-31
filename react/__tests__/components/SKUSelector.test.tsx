@@ -129,7 +129,7 @@ describe('<SKUSelector />', () => {
         name: 'Gray Shoe',
         variations: ['Size', 'Color'],
         variationValues: { Size: '41', Color: 'Gray' },
-        sellers: [defaultSeller1], 
+        sellers: [defaultSeller1],
         images: [],
       },
       {
@@ -147,7 +147,6 @@ describe('<SKUSelector />', () => {
     )
 
     expect(possibleItemsOrderedByAvailability[0].itemId).toEqual('2')
-    
   })
 
   it('should render only three main variations', async () => {
