@@ -122,7 +122,9 @@ interface AvailableVariationParams {
 }
 
 export const orderItemsByAvailability = (
-  item1: SelectorProductItem, item2: SelectorProductItem) => {
+  item1: SelectorProductItem, 
+  item2: SelectorProductItem
+) => {
 
   const isAvailableItem1 = isSkuAvailable(item1)
   const isAvailableItem2 = isSkuAvailable(item2)
@@ -138,8 +140,11 @@ export const orderItemsByAvailability = (
   const defaultSellerItem1 = getDefaultSeller(item1.sellers)
   const defaultSellerItem2 = getDefaultSeller(item2.sellers)
 
-  const availabilityItem1 = defaultSellerItem1 ? defaultSellerItem1.commertialOffer.AvailableQuantity : 0
-  const availabilityItem2 = defaultSellerItem2 ? defaultSellerItem2.commertialOffer.AvailableQuantity : 0
+  const availabilityItem1 = defaultSellerItem1 
+    ? defaultSellerItem1.commertialOffer.AvailableQuantity : 0
+
+  const availabilityItem2 = defaultSellerItem2 
+    ? defaultSellerItem2.commertialOffer.AvailableQuantity : 0
 
   return availabilityItem2 - availabilityItem1
 
@@ -186,9 +191,12 @@ const parseOptionNameToDisplayOption =
 
     if (possibleItems.length > 0) {
       // This is a valid combination option
+
       const possibleItemsOrderedByAvailability =
         possibleItems.length > 1 
-        ? possibleItems.sort(orderItemsByAvailability) : possibleItems
+        ? possibleItems.sort(orderItemsByAvailability) 
+        : possibleItems
+
       const [item] = possibleItemsOrderedByAvailability
 
       const callbackFn = onSelectItemMemo({
