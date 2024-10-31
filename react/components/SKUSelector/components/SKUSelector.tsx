@@ -140,11 +140,13 @@ export const orderItemsByAvailability = (
   const defaultSellerItem2 = getDefaultSeller(item2.sellers)
 
   const availabilityItem1 = defaultSellerItem1
-    ? defaultSellerItem1.commertialOffer.AvailableQuantity : 0
+    ? defaultSellerItem1.commertialOffer.AvailableQuantity
+    : 0
 
 
   const availabilityItem2 = defaultSellerItem2
-    ? defaultSellerItem2.commertialOffer.AvailableQuantity : 0
+    ? defaultSellerItem2.commertialOffer.AvailableQuantity
+    : 0
 
 
   return availabilityItem2 - availabilityItem1

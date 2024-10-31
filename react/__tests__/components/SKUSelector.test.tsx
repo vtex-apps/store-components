@@ -128,15 +128,15 @@ describe('<SKUSelector />', () => {
         itemId: '1',
         name: 'Gray Shoe',
         variations: ['Size', 'Color'],
-        variationValues: {Size: '41', Color: 'Gray'},
-        sellers: [defaultSeller1],    
+        variationValues: { Size: '41', Color: 'Gray' },
+        sellers: [defaultSeller1], 
         images: [],
       },
       {
         itemId: '2',
         name: 'Gray Shoe',
         variations: ['Size', 'Color'],
-        variationValues: {Size: '41', Color: 'Gray'},
+        variationValues: { Size: '41', Color: 'Gray' },
         sellers: [defaultSeller2],
         images: [],
       },
@@ -147,7 +147,6 @@ describe('<SKUSelector />', () => {
     )
 
     expect(possibleItemsOrderedByAvailability[0].itemId).toEqual('2')
-
     
   })
 
