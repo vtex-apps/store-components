@@ -142,8 +142,10 @@ export const orderItemsByAvailability = (
   const availabilityItem1 = defaultSellerItem1
     ? defaultSellerItem1.commertialOffer.AvailableQuantity : 0
 
+
   const availabilityItem2 = defaultSellerItem2
     ? defaultSellerItem2.commertialOffer.AvailableQuantity : 0
+
 
   return availabilityItem2 - availabilityItem1
 }
@@ -191,8 +193,8 @@ const parseOptionNameToDisplayOption =
 
       const possibleItemsOrderedByAvailability =
         possibleItems.length > 1
-        ? possibleItems.sort(orderItemsByAvailability)
-        : possibleItems
+          ? possibleItems.sort(orderItemsByAvailability)
+          : possibleItems
 
       const [item] = possibleItemsOrderedByAvailability
 
