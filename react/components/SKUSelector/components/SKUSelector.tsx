@@ -121,6 +121,30 @@ interface AvailableVariationParams {
   sortVariationsByLabel: boolean
 }
 
+export const orderItemsByAvailability = (item1: SelectorProductItem, item2: SelectorProductItem) => {
+
+  const isAvailableItem1 = isSkuAvailable(item1)
+  const isAvailableItem2 = isSkuAvailable(item2)    
+
+  if(isAvailableItem1 && !isAvailableItem2){
+    return -1
+  }
+
+  if(!isAvailableItem1 && isAvailableItem2){
+    return 1
+  }
+
+  const defaultSellerItem1 = getDefaultSeller(item1.sellers)
+  const defaultSellerItem2 = getDefaultSeller(item2.sellers)
+
+  const availabilityItem1 = defaultSellerItem1 ? defaultSellerItem1.commertialOffer.AvailableQuantity : 0
+  const availabilityItem2 = defaultSellerItem2 ? defaultSellerItem2.commertialOffer.AvailableQuantity : 0
+
+  return availabilityItem2 - availabilityItem1
+
+}
+
+
 const parseOptionNameToDisplayOption =
   ({
     selectedVariations,
@@ -157,19 +181,19 @@ const parseOptionNameToDisplayOption =
     const possibleItems = findListItemsWithSelectedVariations(
       skuItems,
       newSelectedVariation
-    )
+    )    
 
     if (possibleItems.length > 0) {
       // This is a valid combination option
-      const availableItems = possibleItems.filter(isSkuAvailable)
-      const [item] = availableItems || possibleItems
+      const possibleItemsOrderedByAvailability = (possibleItems.length > 1) ? possibleItems.sort(orderItemsByAvailability) : possibleItems      
+      const [item] = possibleItemsOrderedByAvailability
 
       const callbackFn = onSelectItemMemo({
         name: variationName,
         value: variationValue.name,
         skuId: item.itemId,
         isMainAndImpossible: false,
-        possibleItems: availableItems ?? possibleItems,
+        possibleItems: possibleItemsOrderedByAvailability,
       })
 
       return {
@@ -178,7 +202,7 @@ const parseOptionNameToDisplayOption =
         onSelectItem: callbackFn,
         image,
         available: showItemAsAvailable({
-          possibleItems: availableItems ?? possibleItems,
+          possibleItems: possibleItemsOrderedByAvailability,
           selectedVariations,
           variationCount,
           isSelected,

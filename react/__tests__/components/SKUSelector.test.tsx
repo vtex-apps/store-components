@@ -4,6 +4,7 @@ import { useProduct, ProductContext } from 'vtex.product-context'
 import { getSKU } from 'sku-helper'
 
 import SKUSelector from '../../components/SKUSelector/Wrapper'
+import { orderItemsByAvailability } from '../../components/SKUSelector/components/SKUSelector'
 
 describe('<SKUSelector />', () => {
   const renderComponent = (customProps = {}) => {
@@ -109,6 +110,44 @@ describe('<SKUSelector />', () => {
 
     expect(onSKUSelected).toBeCalledTimes(2)
     expect(getByText('41')).toBeDefined()
+  })
+
+  it('should be able to order by availability', async () => {
+    const defaultSeller1 = {
+      sellerDefault: true,
+      commertialOffer: { Price: 15, AvailableQuantity: 0, ListPrice: 200 },
+    }
+
+    const defaultSeller2 = {
+      sellerDefault: true,
+      commertialOffer: { Price: 15, AvailableQuantity: 1, ListPrice: 200 },
+    }
+
+    const skuItems = [
+      {
+        itemId: '1',
+        name: 'Gray Shoe',
+        variations: ['Size', 'Color'],
+        variationValues: {"Size": "41", "Color": "Gray"},
+        sellers: [defaultSeller1],      
+        images: [],
+        
+      },
+      {
+        itemId: '2',
+        name: 'Gray Shoe',
+        variations: ['Size', 'Color'],
+        variationValues: {"Size": "41", "Color": "Gray"},
+        sellers: [defaultSeller2],
+        images: [],
+      }
+    ]
+
+    const possibleItemsOrderedByAvailability = skuItems.sort(orderItemsByAvailability)
+
+    expect(possibleItemsOrderedByAvailability[0].itemId).toEqual("2")
+
+    
   })
 
   it('should render only three main variations', async () => {
