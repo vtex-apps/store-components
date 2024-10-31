@@ -185,7 +185,7 @@ const parseOptionNameToDisplayOption =
 
     if (possibleItems.length > 0) {
       // This is a valid combination option
-      const possibleItemsOrderedByAvailability = (possibleItems.length > 1) ? possibleItems.sort(orderItemsByAvailability) : possibleItems      
+      const possibleItemsOrderedByAvailability = (possibleItems.length > 1) ? possibleItems.sort(orderItemsByAvailability) : possibleItems
       const [item] = possibleItemsOrderedByAvailability
 
       const callbackFn = onSelectItemMemo({
