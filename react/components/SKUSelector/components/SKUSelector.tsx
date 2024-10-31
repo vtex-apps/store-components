@@ -121,16 +121,17 @@ interface AvailableVariationParams {
   sortVariationsByLabel: boolean
 }
 
-export const orderItemsByAvailability = (item1: SelectorProductItem, item2: SelectorProductItem) => {
+export const orderItemsByAvailability = (
+  item1: SelectorProductItem, item2: SelectorProductItem) => {
 
   const isAvailableItem1 = isSkuAvailable(item1)
-  const isAvailableItem2 = isSkuAvailable(item2)    
+  const isAvailableItem2 = isSkuAvailable(item2)
 
-  if(isAvailableItem1 && !isAvailableItem2){
+  if (isAvailableItem1 && !isAvailableItem2) {
     return -1
   }
 
-  if(!isAvailableItem1 && isAvailableItem2){
+  if (!isAvailableItem1 && isAvailableItem2) {
     return 1
   }
 
@@ -181,11 +182,13 @@ const parseOptionNameToDisplayOption =
     const possibleItems = findListItemsWithSelectedVariations(
       skuItems,
       newSelectedVariation
-    )    
+    )
 
     if (possibleItems.length > 0) {
       // This is a valid combination option
-      const possibleItemsOrderedByAvailability = (possibleItems.length > 1) ? possibleItems.sort(orderItemsByAvailability) : possibleItems
+      const possibleItemsOrderedByAvailability =
+        possibleItems.length > 1 
+        ? possibleItems.sort(orderItemsByAvailability) : possibleItems
       const [item] = possibleItemsOrderedByAvailability
 
       const callbackFn = onSelectItemMemo({
