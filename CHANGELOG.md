@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.176.0] - 2024-11-06
+
 ### Changed
 
 - Default selection logic in `SKU Selector` component to prioritize available SKUs.
