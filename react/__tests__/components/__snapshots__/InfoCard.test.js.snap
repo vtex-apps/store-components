@@ -236,6 +236,7 @@ exports[`<InfoCard /> should render with image and text side by side 1`] = `
         alt="CLICK HERE"
         class="infoCardImage"
         data-testid="half-image"
+        fetchpriority="auto"
         src="my-image.com/image.png"
         style="object-fit: cover;"
       />
@@ -315,6 +316,7 @@ exports[`<InfoCard /> should wrap half image in a link with imageActionUrl 1`] =
           alt="CLICK HERE"
           class="infoCardImage"
           data-testid="half-image"
+          fetchpriority="auto"
           src="my-image.com/image.png"
           style="object-fit: cover;"
         />

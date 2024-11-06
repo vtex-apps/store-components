@@ -35,6 +35,7 @@ exports[`<SearchBar /> should match snapshot 1`] = `
                 class="suffixWrapper flex h-100"
               >
                 <button
+                  aria-label="Search Products"
                   class=" searchBarIcon searchBarIcon--search flex items-center pointer bn bg-transparent outline-0 pv0 pl0 pr3"
                 >
                   <div
