@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Default selection logic in `SKU Selector` component to prioritize available SKUs.
 
+### Fixed
+
+- Updating the `shouldUpdateOrderForm` prop description.
+
 ## [3.175.1] - 2024-09-11
 
 ### Fixed
