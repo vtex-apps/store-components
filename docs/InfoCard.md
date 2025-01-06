@@ -50,6 +50,8 @@ The `info-card` component groups information on a single topic. It often include
 | `htmlId`                 | `string`            | ID of the container element.                                                                                               | `null`        |
 | `imageUrl`               | `string`            | Path to the image used on desktop devices.                                                                                 | `""`          |
 | `imageActionUrl`         | `string`            | Redirect URL used when the image component is clicked.                                                                     | `""`          |
+| `imageHeight`            | `number`            | Height of the image that is used to improve CLS while the image is loading.                                                | `null`        |
+| `imageWidth`             | `number`            | Width of the image that is used to improve CLS while the image is loading.                                                 | `null`        |
 | `isFullModeStyle`        | `boolean`           | Style of the Info Card component. If `true`, the image component is used as the background, and text is displayed over it. | `false`       |
 | `linkTarget`             | `LinkTargetEnum`    | Where to display the linked URL when the Info Card component is clicked.                                                   | `"_self"`     |
 | `mobileImageUrl`         | `string`            | Path to the image used on mobile devices. If empty, the desktop image is used.                                             | `null`        |

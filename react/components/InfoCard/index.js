@@ -99,6 +99,8 @@ const InfoCard = ({
   linkTarget,
   fetchpriority,
   preload,
+  imageHeight,
+  imageWidth,
 }) => {
   const {
     hints: { mobile },
@@ -241,6 +243,8 @@ const InfoCard = ({
               <img
                 className={handles.infoCardImage}
                 src={finalImageUrl}
+                height={imageHeight ?? undefined}
+                width={imageWidth ?? undefined}
                 style={{ objectFit: 'cover' }}
                 alt={formatIOMessage({ id: callToActionText, intl })}
                 data-testid="half-image"
@@ -348,6 +352,18 @@ MemoizedInfoCard.schema = {
       default: textModeTypes.TEXT_MODE_HTML.value,
       enum: getEnumValues(textModeTypes),
       enumNames: getEnumNames(textModeTypes),
+      isLayout: true,
+    },
+    imageWidth: {
+      type: 'number',
+      title: 'admin/editor.info-card.imageWidth.title',
+      description: 'admin/editor.info-card.imageWidth.description',
+      isLayout: true,
+    },
+    imageHeight: {
+      type: 'number',
+      title: 'admin/editor.info-card.imageHeight.title',
+      description: 'admin/editor.info-card.imageHeight.description',
       isLayout: true,
     },
     blockClass: {
