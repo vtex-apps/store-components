@@ -93,6 +93,16 @@
           "$ref": "app:vtex.native-types#/definitions/url",
           "default": ""
         },
+        "imageWidth": {
+          "title": "admin/editor.info-card.imageWidth.title",
+          "description": "admin/editor.info-card.imageWidth.description",
+          "type": "number"
+        },
+        "imageHeight": {
+          "title": "admin/editor.info-card.imageHeight.title",
+          "description": "admin/editor.info-card.imageHeight.description",
+          "type": "number"
+        },
         "textPosition": {
           "default": "left",
           "type": "string",
