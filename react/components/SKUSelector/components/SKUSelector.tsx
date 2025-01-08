@@ -282,8 +282,8 @@ const variationNameToDisplayVariation =
 
     if (sortVariationsByLabel) {
       const allNumbers = options.every(
-        (option: any) => !Number.isNaN(option.label)
-      )
+        (option: any) => !isNaN(Number(option.label))
+      );
 
       options.sort((a: any, b: any) => {
         if (allNumbers) {
