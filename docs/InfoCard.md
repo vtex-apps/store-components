@@ -49,12 +49,14 @@ The `info-card` component groups information on a single topic. It often include
 | `headline`               | `string`            | Headline of the Info Card.                                                                                                 | `null`        |
 | `htmlId`                 | `string`            | ID of the container element.                                                                                               | `null`        |
 | `imageUrl`               | `string`            | Path to the image used on desktop devices.                                                                                 | `""`          |
+| `imageHeight`            | `number`            | Height of the image that is used to improve [Cumulative Layout Shift (CLS)](https://web.dev/articles/cls) while the image loads.| `null`        |
+| `imageWidth`             | `number`            | Width of the image that is used to improve [Cumulative Layout Shift (CLS)](https://web.dev/articles/cls) while the image loads.| `null`        |
 | `imageActionUrl`         | `string`            | Redirect URL used when the image component is clicked.                                                                     | `""`          |
-| `imageHeight`            | `number`            | Height of the image that is used to improve CLS while the image is loading.                                                | `null`        |
-| `imageWidth`             | `number`            | Width of the image that is used to improve CLS while the image is loading.                                                 | `null`        |
 | `isFullModeStyle`        | `boolean`           | Style of the Info Card component. If `true`, the image component is used as the background, and text is displayed over it. | `false`       |
 | `linkTarget`             | `LinkTargetEnum`    | Where to display the linked URL when the Info Card component is clicked.                                                   | `"_self"`     |
 | `mobileImageUrl`         | `string`            | Path to the image used on mobile devices. If empty, the desktop image is used.                                             | `null`        |
+| `imageMobileHeight`      | `number`            | Height of the mobile image that is used to improve [Cumulative Layout Shift (CLS)](https://web.dev/articles/cls) while the image loads.| `null`        |
+| `imageMobileWidth`       | `number`            | Width of the mobile image that is used to improve [Cumulative Layout Shift (CLS)](https://web.dev/articles/cls) while the image loads.| `null`        |
 | `subhead`                | `string`            | Text to be displayed underneath the headline. If not provided, it will not be rendered.                                    | `null`        |
 | `bodyText`                | `string`            | Text to be displayed underneath the subhead. If not provided, it will not be rendered.                                    | `null`        |
 | `textAlignment`          | `TextAlignmentEnum` | Text alignment inside the component: `left`, `center` or `right`. This prop is ignored if `isFullModeStyle` is true.       | `"left"`      |
