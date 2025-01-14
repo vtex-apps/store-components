@@ -78,6 +78,14 @@
             "ui:widget": "image-uploader"
           }
         },
+        "imageWidth": {
+          "title": "admin/editor.info-card.imageWidth.title",
+          "type": "number"
+        },
+        "imageHeight": {
+          "title": "admin/editor.info-card.imageHeight.title",
+          "type": "number"
+        },
         "mobileImageUrl": {
           "title": "admin/editor.info-card.mobileImageUrl.title",
           "description": "admin/editor.info-card.mobileImageUrl.description",
@@ -87,21 +95,19 @@
             "ui:widget": "image-uploader"
           }
         },
+        "imageMobileWidth": {
+          "title": "admin/editor.info-card.imageMobileWidth.title",
+          "type": "number"
+        },
+        "imageMobileHeight": {
+          "title": "admin/editor.info-card.imageMobileHeight.title",
+          "type": "number"
+        },
         "imageActionUrl": {
           "title": "admin/editor.info-card.imageActionUrl.title",
           "description": "admin/editor.info-card.imageActionUrl.description",
           "$ref": "app:vtex.native-types#/definitions/url",
           "default": ""
-        },
-        "imageWidth": {
-          "title": "admin/editor.info-card.imageWidth.title",
-          "description": "admin/editor.info-card.imageWidth.description",
-          "type": "number"
-        },
-        "imageHeight": {
-          "title": "admin/editor.info-card.imageHeight.title",
-          "description": "admin/editor.info-card.imageHeight.description",
-          "type": "number"
         },
         "textPosition": {
           "default": "left",

@@ -22,6 +22,7 @@ import {
   textModeTypes,
 } from './SchemaTypes'
 import { SanitizedHTML } from '../SanitizedHTML'
+import styles from './styles.css'
 
 const ALLOWED_TAGS = ['p', 'span', 'a', 'div', 'br']
 const ALLOWED_ATTRS = {
@@ -62,6 +63,12 @@ const defaultValues = {
 const getEnumValues = enumObject => values(enumObject).map(({ value }) => value)
 const getEnumNames = enumObject => values(enumObject).map(({ name }) => name)
 
+const getImageWidth = (mobile, imageWidth, imageMobileWidth) =>
+  mobile ? (imageMobileWidth ?? (imageWidth ?? undefined)) : (imageWidth ?? undefined)
+
+const getImageHeight = (mobile, imageHeight, imageMobileHeight) =>
+  mobile ? (imageMobileHeight ?? (imageHeight ?? undefined)) : (imageHeight ?? undefined)
+
 const safelyGetToken = (tokenMap, valueWanted, propName) =>
   tokenMap[valueWanted] || defaultValues[propName]
 
@@ -101,6 +108,8 @@ const InfoCard = ({
   preload,
   imageHeight,
   imageWidth,
+  imageMobileHeight,
+  imageMobileWidth
 }) => {
   const {
     hints: { mobile },
@@ -139,6 +148,9 @@ const InfoCard = ({
     formatIOMessage({ id: mobileImageUrl, intl })
   )
 
+  const finalImageWidth = getImageWidth(mobile, imageWidth, imageMobileWidth)
+  const finalImageHeight = getImageHeight(mobile, imageHeight, imageMobileHeight)
+
   const containerStyle = isFullModeStyle
     ? {
         /* If lazyloaded, the background image comes from the `data-bg` attribute
@@ -176,6 +188,8 @@ const InfoCard = ({
   const subheadClasses = `${handles.infoCardSubhead} t-body mt6 c-on-base ${alignToken} mw-100`
 
   const bodyTextClasses = `${handles.infoCardBodyText} t-body mt6 c-on-base ${alignToken} mw-100`
+
+  const finalImageClasses = `${finalImageHeight ? styles.infoCardImageSizing : ''} ${handles.infoCardImage}`
 
   return (
     <LinkWrapper
@@ -241,10 +255,10 @@ const InfoCard = ({
               linkProps={{ target: linkTarget }}
             >
               <img
-                className={handles.infoCardImage}
+                className={finalImageClasses}
                 src={finalImageUrl}
-                height={imageHeight ?? undefined}
-                width={imageWidth ?? undefined}
+                height={finalImageHeight}
+                width={finalImageWidth}
                 style={{ objectFit: 'cover' }}
                 alt={formatIOMessage({ id: callToActionText, intl })}
                 data-testid="half-image"
@@ -363,7 +377,17 @@ MemoizedInfoCard.schema = {
     imageHeight: {
       type: 'number',
       title: 'admin/editor.info-card.imageHeight.title',
-      description: 'admin/editor.info-card.imageHeight.description',
+      isLayout: true,
+    },
+    imageMobileWidth: {
+      type: 'number',
+      title: 'admin/editor.info-card.imageMobileWidth.title',
+      description: 'admin/editor.info-card.imageMobileWidth.description',
+      isLayout: true,
+    },
+    imageMobileHeight: {
+      type: 'number',
+      title: 'admin/editor.info-card.imageMobileHeight.title',
       isLayout: true,
     },
     blockClass: {
