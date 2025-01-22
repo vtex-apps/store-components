@@ -46,6 +46,7 @@ function getShowValueForVariation(
   )
 }
 
+
 interface Props {
   seeMoreLabel: string
   maxItems: number
@@ -82,6 +83,18 @@ function isSkuAvailable(item?: SelectorProductItem) {
   }
 
   return seller.commertialOffer?.AvailableQuantity > 0
+}
+
+function sortOptionsNumerically(options: DisplayOption[]) {
+  return options.slice().sort((a, b) => parseFloat(a.label) - parseFloat(b.label));
+}
+
+function sortOptionsAlphabetically(options: DisplayOption[]) {
+  return options.slice().sort((a, b) => {
+    if (a.label < b.label) return -1;
+    if (a.label > b.label) return 1;
+    return 0;
+  });
 }
 
 const showItemAsAvailable = ({
@@ -265,7 +278,7 @@ const variationNameToDisplayVariation =
   (variationName: string): DisplayVariation => {
     const name = variationName
     const { values, originalName } = variations[variationName]
-    const options = values
+    let options = values
       .map(
         parseOptionNameToDisplayOption({
           selectedVariations,
@@ -279,19 +292,20 @@ const variationNameToDisplayVariation =
         })
       )
       .filter(Boolean) as DisplayOption[]
+      
 
     if (sortVariationsByLabel) {
-      const allNumbers = options.every(
-        (option: any) => !Number.isNaN(option.label)
+
+      const areAllNumbers = options.every(
+        (option: DisplayOption) => !isNaN(Number(option.label))
       )
 
-      options.sort((a: any, b: any) => {
-        if (allNumbers) {
-          return a.label - b.label
-        }
+      const sortedOptions = areAllNumbers
+      ? sortOptionsNumerically({...options})
+      : sortOptionsAlphabetically({...options});
 
-        return a.label < b.label ? -1 : a.label > b.label ? 1 : 0
-      })
+      options = {...sortedOptions}
+
     }
 
     return { name, originalName, options }
