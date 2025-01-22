@@ -46,7 +46,6 @@ function getShowValueForVariation(
   )
 }
 
-
 interface Props {
   seeMoreLabel: string
   maxItems: number
@@ -86,15 +85,18 @@ function isSkuAvailable(item?: SelectorProductItem) {
 }
 
 function sortOptionsNumerically(options: DisplayOption[]) {
-  return options.slice().sort((a, b) => parseFloat(a.label) - parseFloat(b.label));
+  return options
+    .slice()
+    .sort((a, b) => parseFloat(a.label) - parseFloat(b.label))
 }
 
 function sortOptionsAlphabetically(options: DisplayOption[]) {
   return options.slice().sort((a, b) => {
-    if (a.label < b.label) return -1;
-    if (a.label > b.label) return 1;
-    return 0;
-  });
+    if (a.label < b.label) return -1
+    if (a.label > b.label) return 1
+
+    return 0
+  })
 }
 
 const showItemAsAvailable = ({
@@ -292,20 +294,17 @@ const variationNameToDisplayVariation =
         })
       )
       .filter(Boolean) as DisplayOption[]
-      
 
     if (sortVariationsByLabel) {
-
       const areAllNumbers = options.every(
-        (option: DisplayOption) => !isNaN(Number(option.label))
+        (option: DisplayOption) => !Number.isNaN(Number(option.label))
       )
 
       const sortedOptions = areAllNumbers
-      ? sortOptionsNumerically({...options})
-      : sortOptionsAlphabetically({...options});
+        ? sortOptionsNumerically({ ...options })
+        : sortOptionsAlphabetically({ ...options })
 
-      options = {...sortedOptions}
-
+      options = { ...sortedOptions }
     }
 
     return { name, originalName, options }
