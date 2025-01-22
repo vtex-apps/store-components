@@ -85,13 +85,11 @@ function isSkuAvailable(item?: SelectorProductItem) {
 }
 
 function sortOptionsNumerically(options: DisplayOption[]) {
-  return options
-    .slice()
-    .sort((a, b) => parseFloat(a.label) - parseFloat(b.label))
+  return options.sort((a, b) => parseFloat(a.label) - parseFloat(b.label))
 }
 
 function sortOptionsAlphabetically(options: DisplayOption[]) {
-  return options.slice().sort((a, b) => {
+  return options.sort((a, b) => {
     if (a.label < b.label) return -1
     if (a.label > b.label) return 1
 
