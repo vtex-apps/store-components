@@ -299,10 +299,10 @@ const variationNameToDisplayVariation =
       )
 
       const sortedOptions = areAllNumbers
-        ? sortOptionsNumerically({ ...options })
-        : sortOptionsAlphabetically({ ...options })
+        ? sortOptionsNumerically([...options])
+        : sortOptionsAlphabetically([...options])
 
-      options = { ...sortedOptions }
+      options = [...sortedOptions]
     }
 
     return { name, originalName, options }
