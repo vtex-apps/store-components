@@ -25,7 +25,7 @@ const Thumbnail = props => {
   const { alt, isVideo, thumbUrl, handles, aspectRatio = 'auto' } = props
 
   return (
-    <>
+    <div aria-label='thumbnail-swiper-items'>
       <figure
         className={`${applyModifiers(handles.figure, isVideo ? 'video' : '')}`}
         itemProp="associatedMedia"
@@ -45,7 +45,7 @@ const Thumbnail = props => {
       <div
         className={`absolute absolute--fill b--solid b--muted-2 bw0 ${handles.carouselThumbBorder}`}
       />
-    </>
+    </div>
   )
 }
 
@@ -144,7 +144,7 @@ const ThumbnailSwiper = props => {
   ])
 
   return (
-    <div className={thumbClassName} data-testid="thumbnail-swiper">
+    <div className={thumbClassName} data-testid="thumbnail-swiper" aria-label="thumbnail-swiper">
       <Swiper
         className={`h-100 ${handles.productImagesThumbsSwiperContainer}`}
         slidesPerView="auto"

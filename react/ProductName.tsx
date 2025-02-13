@@ -73,6 +73,8 @@ type Props = {
   productLink?: string
   /** Product id */
   productId?: string
+  /** Arialabel */
+  arialabel:string
 } & DeprecatedProps
 
 type LinkWrapperProps = {
@@ -84,6 +86,8 @@ type LinkWrapperProps = {
   className: string
   /** Component children that will be displayed */
   children: React.ReactNode
+  /** arialabel prop */
+  arialabel?: string 
 }
 
 type LinkProps = {
@@ -101,15 +105,18 @@ const LinkWrapper = ({
   linkProps,
   className,
   children,
+  arialabel  
 }: LinkWrapperProps) => {
   if (displayMode === 'plainText') {
-    return <Fragment>{children}</Fragment>
+    return  <div aria-label={arialabel}><Fragment>{children}</Fragment> </div> 
   }
 
   return (
-    <Link className={className} {...linkProps}>
+    <div aria-label={arialabel}>
+  <Link className={className} {...linkProps}>
       {children}
     </Link>
+    </div>  
   )
 }
 
@@ -133,6 +140,7 @@ function ProductName({
   displayMode = 'plainText',
   productLink,
   productId,
+  arialabel
 }: Props) {
   const { handles } = useCssHandles(CSS_HANDLES, { classes })
 
@@ -175,6 +183,7 @@ function ProductName({
         displayMode={displayMode}
         className={`${handles.productNameLink} pointer c-link hover-c-link active-c-link no-underline underline-hover`}
         linkProps={linkProps}
+        arialabel={arialabel}
       >
         {showSponsoredBadge && (
           <span className={`${handles.sponsoredBadge} db c-muted-1 t-mini-s`}>
