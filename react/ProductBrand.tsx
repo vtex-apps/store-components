@@ -107,7 +107,7 @@ function ProductBrand({
   withLink = 'none',
   brandName: brandNameProp,
   brandId: brandIdProp,
-  classes,
+  classes
 }: ProductBrandProps) {
   const { brandName, brandId } = useBrandInfoProps(brandNameProp, brandIdProp)
   const { handles, withModifiers } = useCssHandles(PRODUCT_BRAND_CSS_HANDLES, {
@@ -145,6 +145,7 @@ function ProductBrand({
         brandName={brandName}
         withLink={nameHasLink}
         slug={data?.brand?.slug}
+
       />
     </ProductBrandCssHandlesProvider>
   )

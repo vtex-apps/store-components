@@ -60,7 +60,7 @@ const ProductImage: FC<Props> = ({
 
   return (
     <ProductImageContext.Provider value={imageContext}>
-      <div className={handles.productImage}>
+      <div className={handles.productImage} aria-label="product-image">
         {imageLabel && (
           <div className={`tc ${handles.productImageLabel}`}>{imageLabel}</div>
         )}

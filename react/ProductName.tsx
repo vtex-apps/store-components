@@ -100,16 +100,18 @@ const LinkWrapper = ({
   displayMode,
   linkProps,
   className,
-  children,
+  children
 }: LinkWrapperProps) => {
   if (displayMode === 'plainText') {
-    return <Fragment>{children}</Fragment>
+    return  <div><Fragment>{children}</Fragment> </div> 
   }
 
   return (
-    <Link className={className} {...linkProps}>
+    <div>
+  <Link className={className} {...linkProps}>
       {children}
     </Link>
+    </div>  
   )
 }
 
@@ -132,7 +134,7 @@ function ProductName({
   productReference,
   displayMode = 'plainText',
   productLink,
-  productId,
+  productId
 }: Props) {
   const { handles } = useCssHandles(CSS_HANDLES, { classes })
 
