@@ -62,7 +62,6 @@ export interface ProductBrandProps {
   /** Used to override default CSS handles */
   classes?: CssHandlesTypes.CustomClasses<typeof PRODUCT_BRAND_CSS_HANDLES>
   blockClass?: string
-  arialabel:string
 }
 
 const shouldExcludeBrand = (
@@ -108,8 +107,7 @@ function ProductBrand({
   withLink = 'none',
   brandName: brandNameProp,
   brandId: brandIdProp,
-  classes,
-  arialabel
+  classes
 }: ProductBrandProps) {
   const { brandName, brandId } = useBrandInfoProps(brandNameProp, brandIdProp)
   const { handles, withModifiers } = useCssHandles(PRODUCT_BRAND_CSS_HANDLES, {
@@ -147,7 +145,7 @@ function ProductBrand({
         brandName={brandName}
         withLink={nameHasLink}
         slug={data?.brand?.slug}
-        arialabel={arialabel}
+
       />
     </ProductBrandCssHandlesProvider>
   )
