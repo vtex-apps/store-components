@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Added aria-label to search-bar input
 - Added alternative text to infocard link 
 - Fully refactor of `sortVariationsByLabel` property
 
