@@ -9,11 +9,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [3.176.3] - 2025-02-28
 
+### Added
+
+- Alternative text to infocard link
+
 ## [3.176.2] - 2025-02-03
 
 ### Changed
 
-- Added alternative text to infocard link 
 - Fully refactor of `sortVariationsByLabel` property
 
 ## [3.176.1] - 2024-11-08
