@@ -38,6 +38,7 @@ const CallToAction = ({ mode, text, url, linkTarget }) => {
       className={`${handles.infoCardCallActionContainer} mt6 mb6`}
       target={linkTarget}
       to={url}
+      alt={text}
     >
       <ActionWrapper text={text} mode={mode} />
     </Link>
