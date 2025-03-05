@@ -199,5 +199,6 @@
   "admin/editor.toTop.title": "Back to top button",
   "admin/editor.toTop.description": "When clicked, it scrolls the page to the top",
   "admin/editor.toTop.topPixel.title": "Number of pixels",
-  "admin/editor.toTop.topPixel.description": "When the defined pixel value is exceeded, the return-to-top button will appear"
+  "admin/editor.toTop.topPixel.description": "When the defined pixel value is exceeded, the return-to-top button will appear",
+  "store/search.input-label": "Search for products"
 }
