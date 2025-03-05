@@ -33,6 +33,7 @@ interface Props {
   sliderDisplayThreshold: number
   sliderArrowSize: number
   sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
+  hideUnavailableVariations?: boolean
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
@@ -60,8 +61,13 @@ const Variation: FC<Props> = ({
   sliderArrowSize,
   sliderDisplayThreshold,
   sliderItemsPerPage,
+  hideUnavailableVariations,
 }) => {
-  const { originalName, name, options } = variation
+  const { originalName, name, options: initialOptions } = variation
+
+  const options = hideUnavailableVariations
+    ? initialOptions.filter(option => option.available)
+    : [...initialOptions]
 
   const visibleItemsWhenCollapsed = maxItems - ITEMS_VISIBLE_THRESHOLD
 
@@ -88,6 +94,11 @@ const Variation: FC<Props> = ({
   )
 
   const showAllAction = useCallback(() => setShowAll(true), [setShowAll])
+
+  if (options.length === 0) {
+    return null
+  }
+
   const containerClasses = classnames(
     'flex flex-column',
     containerClassesProp,
