@@ -1,4 +1,5 @@
 import React from 'react'
+import { useIntl } from 'react-intl'
 
 import { useProductBrandCssHandles } from './ProductBrandCssHandles'
 
@@ -12,6 +13,7 @@ export const CSS_HANDLES = ['productBrandNameLink', 'productBrandName'] as const
 
 function ProductBrandName({ brandName, withLink, slug}: Props) {
   const { handles } = useProductBrandCssHandles()
+  const intl = useIntl()
 
   if (withLink && slug) {
     const nameLink = `/${slug}`
@@ -22,7 +24,8 @@ function ProductBrandName({ brandName, withLink, slug}: Props) {
         className={`${handles.productBrandNameLink}`}
         data-testid="name-redirect"
       >
-        <span className={`${handles.productBrandName}`} aria-label={"Brand " + brandName}>{brandName}</span>
+        <span className={`${handles.productBrandName}`} aria-label={intl.formatMessage(
+        { id: 'store/store-components.brand-name.aria-label' }, { Brand: brandName})}>{brandName}</span>
       </a>
     )
   }
