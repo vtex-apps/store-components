@@ -146,7 +146,7 @@
   "admin/editor.image.title.title": "Título da imagem",
   "admin/editor.image.title.description": "Título a ser mostrado ao passar o mouse pela imagem",
   "admin/editor.image.alt.title": "Texto alternativo",
-  "admin/editor.product-images.title": "Imagems do produto",
+  "admin/editor.product-images.title": "Imagens do produto",
   "admin/editor.product-images.description": "Componente que permite personalizar as propriedades das imagens do produto",
   "admin/editor.product-images.zoomOptions.title": "Opções de zoom",
   "admin/editor.product-images.zoomType.title": "Tipo de zoom",
