@@ -194,5 +194,5 @@
   "admin/editor.search-bar.title": "Search bar",
   "admin/editor.search-bar.placeholder.title": "Placeholder",
   "store/back-to-top.label": "Back to top",
-  "store/search.input-label": "Label of search input"
+  "store/input-search.aria-label": "Search for products"
 }
