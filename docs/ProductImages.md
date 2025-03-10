@@ -1,8 +1,8 @@
-> 📢 **Disclaimer** Don't fork this project. Use it, [contribute](https://github.com/vtex-apps/store-components) to it or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion) to help us evolve it.
+> 📢 **Disclaimer** Don't fork this project. Use it, [contribute](https://github.com/vtex-apps/store-components) to it, or open issues through [Store Discussion](https://github.com/vtex-apps/store-discussion) to help us evolve it.
 
 # Product Images
 
-The `product-images` block renders a product image or video.
+The `product-images` block renders an image or video that has been configured within the SKU settings. To learn which media formats are accepted, see the [Media](https://help.vtex.com/en/tutorial/media-overview--31fhjHTt4TBoo50AmGQ9b2) section within the [Adding or editing SKUs](https://help.vtex.com/en/tutorial/adding-or-editing-skus--4ryZ6J45kwn3jDiQBxGiiN) guide.
 
 ![image](https://cdn.jsdelivr.net/gh/vtexdocs/dev-portal-content@main/images/vtex-store-components-productimages-0.png)
 
