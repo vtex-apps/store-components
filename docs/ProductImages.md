@@ -6,19 +6,6 @@ The `product-images` block renders a product image or video.
 
 ![image](https://cdn.jsdelivr.net/gh/vtexdocs/dev-portal-content@main/images/vtex-store-components-productimages-0.png)
 
-The accepted video formats are the following. Remember to replace `{VIDEO_ID}` according to your scenario.
-
-**Vimeo**
- 
-- `https://vimeo.com/{VIDEO_ID}`
- 
-**Youtube**
- 
-- `https://youtu.be/{VIDEO_ID}`
-- `https://www.youtube.com/watch?v={VIDEO_ID}`
-- `https://www.youtube.com/embed/{VIDEO_ID}`
-- `https://www.youtube.com/v/{VIDEO_ID}`
-
 ## Configuration
 
 1. Import the `vtex.store-components` app to your theme dependencies in the `manifest.json` file, as in the following example:
