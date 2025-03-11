@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.176.4] - 2025-03-11
+
 ### Added
 
 - Youtube shorts as a valid format
