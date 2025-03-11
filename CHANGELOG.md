@@ -9,14 +9,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Added aria-label to search-bar input
+- aria-label to search-bar input
 
 ## [3.176.4] - 2025-03-11
 
 ### Added
 
 - Youtube shorts as a valid format
-- 
+  
 ## [3.176.3] - 2025-02-28
 
 ### Added
