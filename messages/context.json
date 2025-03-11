@@ -2,6 +2,7 @@
   "store/search.placeholder": "search.placeholder",
   "store/search.searchFor": "search.searchFor",
   "store/search.search-term-too-short": "search.search-term-too-short",
+  "store/search.autocompleteInput.aria-label": "store/search.autocompleteInput.aria-label"
   "admin/editor.productName.title": "admin/editor.productName.title",
   "admin/editor.productName.description": "admin/editor.productName.description",
   "admin/editor.productName.showBrandName.title": "admin/editor.productName.showBrandName.title",
@@ -193,6 +194,5 @@
   "admin/editor.product-description.title-prop.title": "Title",
   "admin/editor.search-bar.title": "Search bar",
   "admin/editor.search-bar.placeholder.title": "Placeholder",
-  "store/back-to-top.label": "Back to top",
-  "store/input-search.aria-label": "Search for products"
+  "store/back-to-top.label": "Back to top"
 }
