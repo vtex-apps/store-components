@@ -4,6 +4,7 @@
   "store/search.placeholder": "Search",
   "store/search.searchFor": "Search for {term}",
   "store/search.search-term-too-short": "Search term is too short",
+  "store/search.autocompleteInput.aria-label": "Search for products",
   "admin/editor.productName.title": "Product Name",
   "admin/editor.productName.description": "Product name component",
   "admin/editor.productName.showBrandName.title": "Show brand name",
