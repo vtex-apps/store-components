@@ -144,6 +144,8 @@
   "admin/editor.image.title.title": "Bildetittel",
   "admin/editor.image.title.description": "Tittel som skal vises på pekeren",
   "admin/editor.image.alt.title": "Alternativ tekst",
+  "admin/editor.info-card.imageAltText.title": "Billed alternativ tekst",
+  "admin/editor.info-card.imageAltText.description": "Alternativ tekst til billedet",
   "admin/editor.product-images.title": "Produktbilder",
   "admin/editor.product-images.description": "Produktbildekomponenten lar deg tilpasse produktbildene",
   "admin/editor.product-images.zoomOptions.title": "Zoom-innstillinger",

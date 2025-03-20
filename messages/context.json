@@ -147,6 +147,8 @@
   "admin/editor.image.alt.title": "Alternative text",
   "admin/editor.product-images.title": "ProductImages component title on storefront",
   "admin/editor.product-images.description": "Description of ProductImages component",
+  "admin/editor.info-card.imageAltText.title": "Image alternative text",
+  "admin/editor.info-card.imageAltText.description": "Alternative text for the image",
   "admin/editor.product-images.zoomOptions.title": "Title of the Zoom options provided by the product images app",
   "admin/editor.product-images.zoomType.title": "Title of the zoomType option",
   "admin/editor.product-images.bgopacity.title": "Title of the background opacity of the gallery when zoom is set to in gallery mode",

@@ -145,6 +145,8 @@
   "admin/editor.image.title.description": "Titre à afficher par pointage",
   "admin/editor.image.alt.title": "Texte alternatif",
   "admin/editor.product-images.title": "Images de produit",
+  "admin/editor.info-card.imageAltText.title": "Texte alternatif de l'image",
+  "admin/editor.info-card.imageAltText.description": "Texte alternatif pour l'image",
   "admin/editor.product-images.description": "Le composant « images de produits » vous permet de personnaliser les images de produits",
   "admin/editor.product-images.zoomOptions.title": "Options du zoom",
   "admin/editor.product-images.zoomType.title": "Type de zoom",
