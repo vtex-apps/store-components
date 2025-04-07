@@ -144,6 +144,8 @@
   "admin/editor.image.title.title": "Judul gambar",
   "admin/editor.image.title.description": "Judul akan ditampilkan saat mengambangkan kursor",
   "admin/editor.image.alt.title": "Teks alternatif",
+  "admin/editor.info-card.imageAltText.title": "Teks alternatif gambar",
+  "admin/editor.info-card.imageAltText.description": "Teks alternatif untuk gambar",
   "admin/editor.product-images.title": "Gambar Produk",
   "admin/editor.product-images.description": "Komponen gambar produk memungkinkan Anda untuk menyesuaikan gambar produk",
   "admin/editor.product-images.zoomOptions.title": "Opsi Zoom",

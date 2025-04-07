@@ -144,6 +144,8 @@
   "admin/editor.image.title.title": "Titlu imagine",
   "admin/editor.image.title.description": "Titlul va fi afișat prin trecere",
   "admin/editor.image.alt.title": "Text alternativ",
+  "admin/editor.info-card.imageAltText.title": "Text alternativ al imaginii",
+  "admin/editor.info-card.imageAltText.description": "Text alternativ pentru imagine",
   "admin/editor.product-images.title": "Imagini produs",
   "admin/editor.product-images.description": "Componenta de imagini ale produsului îți permite să personalizezi imaginile produsului",
   "admin/editor.product-images.zoomOptions.title": "Opțiuni zoom",

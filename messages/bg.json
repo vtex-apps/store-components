@@ -144,6 +144,8 @@
   "admin/editor.image.title.title": "Заглавие на изображението",
   "admin/editor.image.title.description": "Заглавието, което се показва при задържане на мишката",
   "admin/editor.image.alt.title": "Алтернативен текст",
+  "admin/editor.info-card.imageAltText.title": "Изображение алтернативен текст",
+  "admin/editor.info-card.imageAltText.description": "Алтернативен текст за изображението",
   "admin/editor.product-images.title": "Изображения на продукта",
   "admin/editor.product-images.description": "Компонентът с изображения на продукта ви позволява да персонализирате изображенията на продукта",
   "admin/editor.product-images.zoomOptions.title": "Опции за увеличение",

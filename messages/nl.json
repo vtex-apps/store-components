@@ -144,6 +144,8 @@
   "admin/editor.image.title.title": "Titel van de afbeelding",
   "admin/editor.image.title.description": "Titel die moet worden weergegeven bij zweven",
   "admin/editor.image.alt.title": "Alternatieve tekst",
+  "admin/editor.info-card.imageAltText.title": "Afbeelding alternatieve tekst",
+  "admin/editor.info-card.imageAltText.description": "Alternatieve tekst voor de afbeelding",
   "admin/editor.product-images.title": "Productafbeeldingen",
   "admin/editor.product-images.description": "Met de component productafbeeldingen kunt u de productafbeeldingen aanpassen",
   "admin/editor.product-images.zoomOptions.title": "Zoomopties",

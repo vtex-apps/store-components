@@ -147,6 +147,8 @@
   "admin/editor.image.title.title": "Image title",
   "admin/editor.image.title.description": "Title shown on hover",
   "admin/editor.image.alt.title": "Alternative text",
+  "admin/editor.info-card.imageAltText.title": "Image alternative text",
+  "admin/editor.info-card.imageAltText.description": "Alternative text for the image",
   "admin/editor.product-images.title": "Product Images",
   "admin/editor.product-images.description": "Component that allows you to customize product images",
   "admin/editor.product-images.zoomOptions.title": "Zoom options",
