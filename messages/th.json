@@ -144,6 +144,8 @@
   "admin/editor.image.title.title": "ชื่อเรื่องของรูปภาพ",
   "admin/editor.image.title.description": "ชื่อเรื่องจะแสดงเมื่อนำเมาส์ไปชี้",
   "admin/editor.image.alt.title": "ข้อความแสดงแทน",
+  "admin/editor.info-card.imageAltText.title": "ข้อความแสดงแทนรูปภาพ",
+  "admin/editor.info-card.imageAltText.description": "ข้อความทางเลือกสำหรับรูปภาพ",
   "admin/editor.product-images.title": "รูปภาพผลิตภัณฑ์",
   "admin/editor.product-images.description": "คอมโพเนนต์รูปภาพผลิตภัณฑ์ทำให้คุณสามารถกำหนดรูปภาพผลิตภัณฑ์ได้เอง",
   "admin/editor.product-images.zoomOptions.title": "ตัวเลือกซูม",

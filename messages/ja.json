@@ -144,6 +144,8 @@
   "admin/editor.image.title.title": "画像のタイトル",
   "admin/editor.image.title.description": "重ねて生じされるタイトル",
   "admin/editor.image.alt.title": "代替テキスト",
+  "admin/editor.info-card.imageAltText.title": "画像の代替テキスト",
+  "admin/editor.info-card.imageAltText.description": "画像の代替テキスト",
   "admin/editor.product-images.title": "製品画像",
   "admin/editor.product-images.description": "製品画像コンポーネントにより、製品画像をカスタマイズできます",
   "admin/editor.product-images.zoomOptions.title": "拡大オプション",

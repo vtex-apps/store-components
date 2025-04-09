@@ -144,6 +144,8 @@
   "admin/editor.image.title.title": "이미지 제목",
   "admin/editor.image.title.description": "가리키면 표시할 제목",
   "admin/editor.image.alt.title": "대체 텍스트",
+  "admin/editor.info-card.imageAltText.title": "이미지 대체 텍스트",
+  "admin/editor.info-card.imageAltText.description": "이미지에 대한 대체 텍스트",
   "admin/editor.product-images.title": "제품 이미지",
   "admin/editor.product-images.description": "제품 이미지 요소로 제품 이미지를 원하는 대로 바꿀 수 있습니다",
   "admin/editor.product-images.zoomOptions.title": "줌 옵션",
