@@ -25,11 +25,11 @@ class Youtube extends Component {
 
   static extractVideoID = url => {
     const regExp =
-      /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/
+      /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?)|(shorts\/))\??v?=?([^#&?]*).*/
 
     const match = url.match(regExp)
 
-    if (match && match[7].length === 11) return match[7]
+    if (match && match[8].length === 11) return match[8]
 
     return null
   }

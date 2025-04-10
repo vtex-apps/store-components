@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.178.0] - 2025-04-07
+
+### Added 
+- SEO Alt text input for info card images
+- Added translation for new admin messages
+
+## [3.177.0] - 2025-03-13
+
+### Added
+
+- aria-label to search-bar input
+
+## [3.176.4] - 2025-03-11
+
+### Added
+
+- Youtube shorts as a valid format
+  
+## [3.176.3] - 2025-02-28
+
+### Added
+
+- Alternative text to infocard link
+
 ### Added
 
 - Updated README.md to add information about the supported media formats.

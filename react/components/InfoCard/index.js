@@ -99,6 +99,7 @@ const InfoCard = ({
   linkTarget,
   fetchpriority,
   preload,
+  imageAltText,
 }) => {
   const {
     hints: { mobile },
@@ -242,7 +243,7 @@ const InfoCard = ({
                 className={handles.infoCardImage}
                 src={finalImageUrl}
                 style={{ objectFit: 'cover' }}
-                alt={formatIOMessage({ id: callToActionText, intl })}
+                alt={imageAltText || formatIOMessage({ id: callToActionText, intl })}
                 data-testid="half-image"
                 fetchPriority={fetchpriority}
                 {...(preload
@@ -275,6 +276,7 @@ MemoizedInfoCard.propTypes = {
   mobileImageUrl: string,
   textAlignment: oneOf(getEnumValues(textAlignmentTypes)),
   imageActionUrl: string,
+  imageAltText: string,
   intl: PropTypes.object,
   htmlId: string,
   textMode: oneOf(getEnumValues(textModeTypes)),
@@ -293,6 +295,7 @@ MemoizedInfoCard.defaultProps = {
   callToActionText: '',
   callToActionUrl: '',
   imageUrl: '',
+  imageAltText: '',
   mobileImageUrl: '',
   textAlignment: textAlignmentTypes.TEXT_ALIGNMENT_LEFT.value,
   textMode: textModeTypes.TEXT_MODE_HTML.value,
@@ -331,6 +334,12 @@ MemoizedInfoCard.schema = {
       enumNames: getEnumNames(callToActionModeTypes),
       default: callToActionModeTypes.CALL_ACTION_BUTTON.value,
       isLayout: true,
+    },
+    imageAltText: {
+      title: 'admin/editor.info-card.imageAltText.title',
+      description: 'admin/editor.info-card.imageAltText.description',
+      type: 'string',
+      default: '',
     },
     textAlignment: {
       title: 'admin/editor.info-card.textAlignment.title',

@@ -143,6 +143,8 @@
   "admin/editor.image.src.title": "الصورة",
   "admin/editor.image.title.title": "عنوان الصورة",
   "admin/editor.image.title.description": "العنوان الذي سيتم عرضه عند المرور بالفأررة",
+  "admin/editor.info-card.imageAltText.title": "صورة النص البديل",
+  "admin/editor.info-card.imageAltText.description": "نص بديل للصورة",
   "admin/editor.image.alt.title": "النص البديل",
   "admin/editor.product-images.title": "صور المنتج",
   "admin/editor.product-images.description": "يسمح لك مكون صور المنتج بتخصيص صور المنتج",

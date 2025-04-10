@@ -146,6 +146,8 @@
   "admin/editor.image.title.title": "Kép címe",
   "admin/editor.image.title.description": "Cím, amely megjelenik a lebegtetéskor",
   "admin/editor.image.alt.title": "Alternatív szöveg",
+  "admin/editor.info-card.imageAltText.title": "Kép alternatív szöveg",
+  "admin/editor.info-card.imageAltText.description": "Alternatív szöveg a képhez",
   "admin/editor.product-images.title": "Termékképek",
   "admin/editor.product-images.description": "Komponens, amely lehetővé teszi a termékképek testreszabását",
   "admin/editor.product-images.zoomOptions.title": "Nagyítási opciók",
