@@ -35,6 +35,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Alternative text to infocard link
 
+### Added
+
+- Updated `docs/ProductImages.md` to add information about the supported media formats.
+
 ## [3.176.2] - 2025-02-03
 
 ### Changed
