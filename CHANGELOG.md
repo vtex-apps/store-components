@@ -7,9 +7,62 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+
+### Added
+- Added the ability to configure the width and height for product thumbnails in the carousel component. Improved page performance.
+
+## [3.178.1] – 2025-04-14
+
+### Changed
+- Update GitHub actions/cache to v4
+
+
+## [3.178.0] - 2025-04-07
+
+### Added 
+- SEO Alt text input for info card images
+- Added translation for new admin messages
+
+## [3.177.0] - 2025-03-13
+
 ### Added
 
-- Added the ability to configure the width and height for product thumbnails in the carousel component. Improved page performance and SEO by ensuring appropriate image sizes are used, reducing unnecessary data load.
+- aria-label to search-bar input
+
+## [3.176.4] - 2025-03-11
+
+### Added
+
+- Youtube shorts as a valid format
+  
+## [3.176.3] - 2025-02-28
+
+### Added
+
+- Alternative text to infocard link
+
+### Added
+
+- Updated `docs/ProductImages.md` to add information about the supported media formats.
+
+## [3.176.2] - 2025-02-03
+
+### Changed
+
+- Fully refactor of `sortVariationsByLabel` property
+
+## [3.176.1] - 2024-11-08
+
+## [3.176.0] - 2024-11-06
+
+### Changed
+
+- Default selection logic in `SKU Selector` component to prioritize available SKUs.
+
+### Fixed
+
+- Updating the `shouldUpdateOrderForm` prop description.
+>>>>>>> master
 
 ## [3.175.1] - 2024-09-11
 
