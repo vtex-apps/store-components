@@ -66,6 +66,22 @@ The `product-images` block renders a product image or video.
 | `zoomFactor`              | `number`                                 | Sets how much the zoom increases the image size (e.g. `2` will make the zoomed-in image twice as large)                                                                                                                                                                                                                                                                                                                                                                                         | 2                |
 | `zoomMode`                | `enum`                                   | Defines the image zoom behavior. Possible values are: `disabled` (zoom is disabled), `in-place-click` (zoom is triggered when the image is clicked), `in-place-hover` (zoom is triggered when the image is hovered on), and `open-modal` (image is zoomed using a modal).                                                                                                                                                                                                                       | `in-place-click` |
 
+
+### Thumbnail configuration options
+
+You can now customize the dimensions of the thumbnails in the product gallery using the following props:
+
+- `thumbnailWidth` (number): Defines the width (in pixels) of the thumbnail images.  
+  **Example:** `thumbnailWidth={80}`
+
+- `thumbnailHeight` (number): Defines the height (in pixels) of the thumbnail images.  
+  **Example:** `thumbnailHeight={80}`
+
+- `thumbnailAspectRatio` (string): Optional. Keeps the aspect ratio by setting values like `'1:1'`, `'4:3'`, `'16:9'`.  
+  **Example:** `thumbnailAspectRatio="1:1"`
+
+These props allow for greater flexibility and consistency in rendering product thumbnails across your storefront.
+
 ### Advanced configuration
 
 In this section, you will learn how to use modal zoom, a property for when you want to open a popup containing a product image for zooming. To use this feature, configure your `product-images` block using the `zoomMode` and `ModalZoom` props with `open-modal` and `modal-layout` set as its values, respectively.
