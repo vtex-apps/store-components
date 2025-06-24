@@ -10,11 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Added the ability to configure the width and height for product thumbnails in the carousel component. Improved page performance.
 
-## [3.178.1] – 2025-04-14
+## [3.178.1] - 2025-04-14
 
 ### Changed
-- Update GitHub actions/cache to v4
 
+- Update GitHub actions/cache to v4 
 
 ## [3.178.0] - 2025-04-07
 
@@ -61,7 +61,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Updating the `shouldUpdateOrderForm` prop description.
->>>>>>> master
 
 ## [3.175.1] - 2024-09-11
 
