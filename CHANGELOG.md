@@ -7,10 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-### Added
-
-- Added `fetchpriority: 'high'` for the first product image to prioritize loading of the main image and improve page load performance.
-
 ## [3.175.1] - 2024-09-11
 
 ### Fixed
