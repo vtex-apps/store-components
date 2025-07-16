@@ -1,5 +1,6 @@
 import React, { FC, useMemo, useRef } from 'react'
 import { Modal } from 'vtex.modal-layout'
+import { Helmet } from 'vtex.render-runtime'
 import { useCssHandles, applyModifiers } from 'vtex.css-handles'
 
 import Zoomable, { ZoomMode } from './Zoomable'
@@ -60,6 +61,11 @@ const ProductImage: FC<Props> = ({
 
   return (
     <ProductImageContext.Provider value={imageContext}>
+      <Helmet>
+        {index === 0 && (
+          <link rel="preload" as="image" href={imageUrl(src, DEFAULT_SIZE, MAX_SIZE, aspectRatio)} />
+        )}
+      </Helmet>
       <div className={handles.productImage}>
         {imageLabel && (
           <div className={`tc ${handles.productImageLabel}`}>{imageLabel}</div>

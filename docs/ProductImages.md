@@ -121,6 +121,13 @@ The following table shows the props allowed by `product-images.high-quality-imag
 | `zoomFactor`  | `number`   | Sets how much the zoom increases the image size (for example, `2` will make the zoomed-in image twice as large).                                                                                                                                                                                                                                                | `2`           |
 | `zoomMode`    | `enum`     | Sets the zoom behavior for the `product-images.high-quality-image` block. Possible values are `disabled` (no zoom), `in-place-click` (zoom on click), and `in-place-hover` (zoom on hover). Unlike the `store-images` prop, this one doesn’t accept the `open-modal` value.   | `disabled`    |
 
+### Image preload for performance
+
+To improve the loading performance of the first product image on the Product Details Page, the `product-images` block includes a `<link rel="preload">` tag using [Helmet](https://www.npmjs.com/package/react-helmet), when the image has `index === 0`.
+
+This automatically adds the following tag to the page `<head>`:
+`in html: <link rel="preload" as="image" href="..." />`
+
 ## Customization
 
 To apply CSS customizations to this and other blocks, see the guide [Using CSS handles for store customization](https://developers.vtex.com/docs/guides/vtex-io-documentation-using-css-handles-for-store-customization).
