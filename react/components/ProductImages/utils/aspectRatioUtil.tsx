@@ -44,30 +44,33 @@ export const imageUrl = (
   src: string,
   size: number,
   maxSize: number,
-  aspectRatio?: AspectRatio
+  aspectRatio?: AspectRatio,
+  customWidth?: number,
+  customHeight?: number
   // eslint-disable-next-line max-params
 ) => {
-  let width = size
-  let height: number | string = 'auto'
+  let width = customWidth || size
+  let height: number | string = customHeight || 'auto'
 
-  if (aspectRatio && aspectRatio !== 'auto') {
-    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-    height = size * (parseAspectRatio(aspectRatio) || 1)
+  if (!customWidth || !customHeight) {
+    if (aspectRatio && aspectRatio !== 'auto') {
+      height = size * (parseAspectRatio(aspectRatio) || 1)
 
-    if (width > maxSize) {
-      height /= width / maxSize
-      width = maxSize
+      if (width > maxSize) {
+        height /= width / maxSize
+        width = maxSize
+      }
+
+      if (height > maxSize) {
+        width /= height / maxSize
+        height = maxSize
+      }
+
+      width = Math.round(width)
+      height = Math.round(height)
+    } else {
+      width = Math.min(maxSize, width)
     }
-
-    if (height > maxSize) {
-      width /= height / maxSize
-      height = maxSize
-    }
-
-    width = Math.round(width)
-    height = Math.round(height)
-  } else {
-    width = Math.min(maxSize, width)
   }
 
   return changeImageUrlSize(src, width, height)
