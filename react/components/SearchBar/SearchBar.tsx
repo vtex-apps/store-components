@@ -273,6 +273,7 @@ function SearchBar({
             getInputProps,
             getItemProps,
             getMenuProps,
+            getLabelProps,
             selectedItem,
             highlightedIndex,
             isOpen,
@@ -285,6 +286,9 @@ function SearchBar({
                 [isOpen ? 'opened' : '', inputValue ? 'filled' : '']
               )}`}
             >
+              <label {...getLabelProps()} className={styles.visuallyHidden}>
+                {formatIOMessage({ id: placeholder, intl }) as string}
+              </label>
               <AutocompleteInput
                 // eslint-disable-next-line jsx-a11y/no-autofocus
                 autoFocus={autoFocus}

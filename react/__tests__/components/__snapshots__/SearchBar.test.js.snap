@@ -15,6 +15,13 @@ exports[`<SearchBar /> should match snapshot 1`] = `
         class="relative-m w-100 searchBarInnerContainer"
         role="combobox"
       >
+        <label
+          class="visuallyHidden"
+          for="downshift-1-input"
+          id="downshift-1-label"
+        >
+          Search
+        </label>
         <div
           class="autoCompleteOuterContainer"
         >
@@ -24,6 +31,7 @@ exports[`<SearchBar /> should match snapshot 1`] = `
             <label>
               <input
                 aria-autocomplete="list"
+                aria-label="Search for products"
                 aria-labelledby="downshift-1-label"
                 autocomplete="off"
                 data-error="false"
