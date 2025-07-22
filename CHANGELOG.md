@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.178.2] - 2025-07-22
+
 ### Added
 
 - Added label to search bar component for accessibility and CSS to hide the label on the screen.
