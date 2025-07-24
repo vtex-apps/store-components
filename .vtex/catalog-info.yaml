@@ -1,0 +1,23 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: store-components
+  description: VTEX Store Components is a collection of components that can be
+    used to create/extend others VTEX apps.
+  tags:
+    - typescript
+    - react:16
+  annotations:
+    vtex.com/janus-acronym: ""
+    vtex.com/o11y-os-index: ""
+    grafana/dashboard-selector: ""
+    github.com/project-slug: vtex-apps/store-components
+    vtex.com/platform-flow-id: ""
+    backstage.io/techdocs-ref: dir:../
+    vtex.com/application-id: DDULY6N1
+spec:
+  system: store-framework-ui-apps
+  lifecycle: stable
+  owner: te-0013
+  type: library
+  dependsOn: []
