@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Added fetchPriority and removed `data-vtex-preload` attribute in the `ProductImage` component.
+
 ## [3.178.2] - 2025-07-22
 
 ### Added
