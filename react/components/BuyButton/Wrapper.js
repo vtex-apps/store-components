@@ -1,257 +1,81 @@
 import React from 'react'
-import useProduct from 'vtex.product-context/useProduct'
-import { path, isEmpty, compose } from 'ramda'
-import { FormattedMessage, injectIntl } from 'react-intl'
-import { withToast } from 'vtex.styleguide'
-import { useOrderForm } from 'vtex.store-resources/OrderFormContext'
-import { graphql } from 'react-apollo'
-import { useCssHandles } from 'vtex.css-handles'
+import { path } from 'ramda'
+import { Link } from 'vtex.render-runtime'
 
-import ProductPrice from '../ProductPrice'
-import { BuyButton } from './index'
-import { transformAssemblyOptions, sumAssembliesPrice } from './assemblyUtils'
-import addToCartMutation from './mutations/addToCart.gql'
-import setOpenMinicartMutation from './mutations/setOpenMinicart.gql'
-import installedApp from './queries/installedApp.gql'
+const BuyButtonWrapper = ({
+  available,
+  disabled,
+  isOneClickBuy,
+  skuItems,
+  onClickBehavior,
+  buyButtonBehavior,
+  customOneClickBuyLink,
+  children,
+  ...props
+}) => {
+  const skuItem = path([0], skuItems)
+  const linkState = skuItem
+    ? {
+        skuId: skuItem.id,
+        seller: skuItem.seller,
+        quantity: skuItem.quantity,
+      }
+    : null
 
-const MESSAGE_CSS_HANDLES = [
-  'buyButtonText',
-  'buttonDataContainer',
-  'buttonItemsPrice',
-]
-
-const CHECKOUT_URL = {
-  V0: '/checkout/#/cart',
-  V1: '/cart',
-}
-
-const BuyButtonMessage = ({ showItemsPrice, skuItems }) => {
-  const { handles } = useCssHandles(MESSAGE_CSS_HANDLES)
-
-  if (!showItemsPrice) {
+  const shouldRenderLink = () => {
+    // Render as link when going to product page or when one-click buy with custom link
     return (
-      <FormattedMessage id="store/buy-button.add-to-cart">
-        {message => <span className={handles.buyButtonText}>{message}</span>}
-      </FormattedMessage>
+      buyButtonBehavior === 'alwaysGoToProduct' ||
+      (isOneClickBuy && customOneClickBuyLink) ||
+      (onClickBehavior === 'go-to-product-page')
     )
   }
 
-  const totalPrice = skuItems.reduce((acc, item) => {
-    const itemPrice =
-      item.sellingPriceWithAssemblies != null
-        ? item.sellingPriceWithAssemblies
-        : item.price
+  const getLinkProps = () => {
+    if (buyButtonBehavior === 'alwaysGoToProduct') {
+      return {
+        page: 'store.product',
+        params: { slug: skuItem?.itemId },
+        query: linkState ? `skuId=${linkState.skuId}` : '',
+      }
+    }
 
-    const itemCost = itemPrice * item.quantity
+    if (isOneClickBuy && customOneClickBuyLink) {
+      return {
+        href: customOneClickBuyLink,
+      }
+    }
 
-    return acc + itemCost
-  }, 0)
+    if (onClickBehavior === 'go-to-product-page') {
+      return {
+        page: 'store.product',
+        params: { slug: skuItem?.itemId },
+        query: linkState ? `skuId=${linkState.skuId}` : '',
+      }
+    }
 
-  return (
-    <div
-      className={`${handles.buttonDataContainer} flex w-100 justify-between items-center`}
-    >
-      <FormattedMessage id="store/buy-button.add-to-cart">
-        {message => <span className={handles.buyButtonText}>{message}</span>}
-      </FormattedMessage>
-      <ProductPrice
-        showLabels={false}
-        showListPrice={false}
-        sellingPrice={totalPrice}
-        className={handles.buttonItemsPrice}
-      />
-    </div>
-  )
+    return {}
+  }
+
+  // If we should render as a link, wrap the button in a Link component
+  if (shouldRenderLink() && !disabled && available) {
+    return (
+      <Link {...getLinkProps()} {...props}>
+        {children}
+      </Link>
+    )
+  }
+
+  // Otherwise, render the button directly
+  return children
 }
 
-const BuyButtonWrapper = ({
-  intl,
-  addToCart,
-  showToast,
-  onAddStart,
-  onAddFinish,
-  children,
-  isOneClickBuy,
-  shouldOpenMinicart,
-  setMinicartOpen,
-  showItemsPrice,
-  available: propAvailable,
-  skuItems: propSkuItems,
-  large: propLarge,
-  disabled: propDisabled,
-  shouldAddToCart,
-  customToastURL,
-  showTooltipOnSkuNotSelected,
-  checkoutVersion,
-  selectedSeller,
-}) => {
-  const orderFormContext = useOrderForm()
-  const valuesFromContext = useProduct()
-
-  const isEmptyContext = !valuesFromContext || isEmpty(valuesFromContext)
-
-  const product = valuesFromContext && valuesFromContext.product
-  const selectedItem = valuesFromContext && valuesFromContext.selectedItem
-  const assemblyOptions = valuesFromContext && valuesFromContext.assemblyOptions
-
-  selectedSeller =
-    selectedSeller || path(['selectedItem', 'sellers', 0], valuesFromContext)
-  const selectedQuantity =
-    valuesFromContext && valuesFromContext.selectedQuantity != null
-      ? valuesFromContext.selectedQuantity
-      : 1
-
-  const skuItems =
-    isEmptyContext || propSkuItems != null
-      ? propSkuItems
-      : // eslint-disable-next-line @typescript-eslint/no-use-before-define
-        EnhancedBuyButton.mapCatalogItemToCart({
-          product,
-          selectedItem,
-          selectedQuantity,
-          selectedSeller,
-          assemblyOptions,
-        })
-
-  const large = isEmptyContext || propLarge != null ? propLarge : true
-
-  const available =
-    isEmptyContext || propAvailable != null
-      ? propAvailable
-      : selectedSeller &&
-        selectedSeller.commertialOffer &&
-        selectedSeller.commertialOffer.AvailableQuantity > 0
-
-  const groupsValidArray =
-    (assemblyOptions &&
-      assemblyOptions.areGroupsValid &&
-      Object.values(assemblyOptions.areGroupsValid)) ||
-    []
-
-  const areAssemblyGroupsValid = groupsValidArray.every(Boolean)
-  const disabled =
-    isEmptyContext || propDisabled != null
-      ? propDisabled
-      : !areAssemblyGroupsValid
-
-  const version =
-    checkoutVersion &&
-    checkoutVersion.installedAppPublic &&
-    checkoutVersion.installedAppPublic.version
-
-  const checkoutUrl =
-    // eslint-disable-next-line radix
-    version && parseInt(version.split('.')[0]) > 0
-      ? CHECKOUT_URL.V1
-      : CHECKOUT_URL.V0
-
-  return (
-    <BuyButton
-      intl={intl}
-      addToCart={addToCart}
-      onAddStart={onAddStart}
-      onAddFinish={onAddFinish}
-      showToast={showToast}
-      orderFormContext={orderFormContext}
-      skuItems={skuItems}
-      large={large}
-      available={available}
-      isOneClickBuy={isOneClickBuy}
-      shouldOpenMinicart={shouldOpenMinicart}
-      setMinicartOpen={setMinicartOpen}
-      disabled={disabled}
-      customToastURL={customToastURL}
-      shouldAddToCart={shouldAddToCart}
-      showTooltipOnSkuNotSelected={showTooltipOnSkuNotSelected}
-      checkoutUrl={checkoutUrl}
-    >
-      {children && children.length > 0 ? (
-        children
-      ) : (
-        <BuyButtonMessage showItemsPrice={showItemsPrice} skuItems={skuItems} />
-      )}
-    </BuyButton>
-  )
+BuyButtonWrapper.defaultProps = {
+  available: true,
+  disabled: false,
+  isOneClickBuy: false,
+  onClickBehavior: 'add-to-cart',
+  buyButtonBehavior: 'default',
 }
 
-const withAddToCart = graphql(addToCartMutation, {
-  name: 'addToCart',
-  props: ({ addToCart }) => ({
-    addToCart: items => addToCart({ variables: { items } }),
-  }),
-})
-
-const withOpenMinicart = graphql(setOpenMinicartMutation, {
-  name: 'setMinicartOpen',
-  props: ({ setMinicartOpen }) => ({
-    setMinicartOpen: isOpen => setMinicartOpen({ variables: { isOpen } }),
-  }),
-})
-
-const withCheckoutVersion = graphql(installedApp, {
-  name: 'checkoutVersion',
-  options: {
-    ssr: false,
-    variables: {
-      slug: 'vtex.checkout',
-    },
-  },
-})
-
-/**
- * @deprecated This component is deprecated. Please use [vtex.add-to-cart-button](https://github.com/vtex-apps/add-to-cart-button) instead.
- */
-const EnhancedBuyButton = compose(
-  withAddToCart,
-  withOpenMinicart,
-  withCheckoutVersion,
-  withToast,
-  injectIntl
-)(BuyButtonWrapper)
-
-// This function is public available to be used only by vtex.product-summary.
-// We do not garantee this API will not change and might happen breaking change anytime.
-EnhancedBuyButton.mapCatalogItemToCart = function mapCatalogItemToCart({
-  product,
-  selectedItem,
-  selectedQuantity,
-  selectedSeller,
-  assemblyOptions,
-}) {
-  return (
-    product &&
-    selectedItem &&
-    selectedSeller &&
-    selectedSeller.commertialOffer && [
-      {
-        index: 0,
-        quantity: selectedQuantity,
-        detailUrl: `/${product.linkText}/p`,
-        name: product.productName,
-        brand: product.brand,
-        category:
-          product.categories && product.categories.length > 0
-            ? product.categories[0]
-            : '',
-        productRefId: product.productReference,
-        seller: selectedSeller.sellerId,
-        price: selectedSeller.commertialOffer.Price,
-        listPrice: selectedSeller.commertialOffer.ListPrice,
-        variant: selectedItem.name,
-        skuId: selectedItem.itemId,
-        imageUrl: path(['images', '0', 'imageUrl'], selectedItem),
-        ...transformAssemblyOptions(
-          path(['items'], assemblyOptions),
-          path(['inputValues'], assemblyOptions),
-          selectedSeller.commertialOffer.Price,
-          selectedQuantity
-        ),
-        sellingPriceWithAssemblies:
-          selectedSeller.commertialOffer.Price +
-          sumAssembliesPrice(path(['items'], assemblyOptions) || {}),
-      },
-    ]
-  )
-}
-
-export default EnhancedBuyButton
+export default BuyButtonWrapper
