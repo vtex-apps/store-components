@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Prop `displayModeSelectForColorVariation` to enable `"displayMode": "select"` for color variations in SKU Selector
+
 ## [3.178.3] - 2025-08-13
 
 ### Fixed
@@ -42,7 +46,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Youtube shorts as a valid format
-  
+
 ## [3.176.3] - 2025-02-28
 
 ### Added
