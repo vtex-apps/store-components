@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Changed alt attribute in `ProductImages` for SEO improvement
 
+## [3.178.3] - 2025-08-13
+
+### Fixed
+
+- Product brand logo link
+
 ## [3.178.2] - 2025-07-22
 
 ### Added
