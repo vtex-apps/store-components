@@ -33,6 +33,7 @@ interface Props {
   sliderDisplayThreshold: number
   sliderArrowSize: number
   sliderItemsPerPage: ResponsiveValuesTypes.ResponsiveValue<number>
+  displayModeSelectForColorVariation?: boolean
 }
 
 const ITEMS_VISIBLE_THRESHOLD = 2
@@ -60,6 +61,7 @@ const Variation: FC<Props> = ({
   sliderArrowSize,
   sliderDisplayThreshold,
   sliderItemsPerPage,
+  displayModeSelectForColorVariation,
 }) => {
   const { originalName, name, options } = variation
 
@@ -177,7 +179,10 @@ const Variation: FC<Props> = ({
         <div
           className={`${styles.skuSelectorOptionsList} w-100 inline-flex flex-wrap ml2 items-center`}
         >
-          {mode === 'select' && !displayImage ? (
+          {(mode === 'select' && !displayImage) ||
+          (mode === 'select' &&
+            displayImage &&
+            displayModeSelectForColorVariation) ? (
             <SelectModeVariation
               selectedItem={selectedItem}
               displayOptions={displayOptions}

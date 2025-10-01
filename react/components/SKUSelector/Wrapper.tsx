@@ -170,6 +170,7 @@ interface Props {
   sliderArrowSize?: number
   sliderItemsPerPage?: ResponsiveValuesTypes.ResponsiveValue<number>
   sortVariationsByLabel?: boolean
+  displayModeSelectForColorVariation?: boolean
   /** Used to override default CSS handles */
   classes?: CssHandlesTypes.CustomClasses<typeof SKU_SELECTOR_CSS_HANDLES>
 }
@@ -262,6 +263,9 @@ function SKUSelectorWrapper(props: Props) {
         sliderArrowSize={props.sliderArrowSize}
         sliderDisplayThreshold={props.sliderDisplayThreshold}
         sortVariationsByLabel={props.sortVariationsByLabel}
+        displayModeSelectForColorVariation={
+          props.displayModeSelectForColorVariation
+        }
       />
     </SKUSelectorCssHandlesProvider>
   )
