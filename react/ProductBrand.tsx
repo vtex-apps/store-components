@@ -214,7 +214,7 @@ function ProductBrand({
   }
 
   const dpi = window?.devicePixelRatio ?? 1
-  const logoLink = `/${slug}/b`
+  const logoLink = `/${slug}`
 
   const logoImageSrc = changeImageUrlSize({
     imageUrl: `/arquivos/ids${imageUrl}`,

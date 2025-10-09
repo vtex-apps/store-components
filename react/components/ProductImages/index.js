@@ -65,7 +65,7 @@ const ProductImages = ({
           .map(image => ({
             type: 'image',
             url: image.imageUrls ? image.imageUrls[0] : image.imageUrl,
-            alt: image.imageText,
+            alt: image.imageLabel,
             thumbUrl: image.thumbnailUrl || image.imageUrl,
             ...(showImageLabel && { imageLabel: image.imageLabel }),
           }))
