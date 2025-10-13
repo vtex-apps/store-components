@@ -22,7 +22,15 @@ const CSS_HANDLES = [
 ]
 
 const Thumbnail = props => {
-  const { alt, isVideo, thumbUrl, handles, aspectRatio = 'auto' } = props
+  const {
+    alt,
+    isVideo,
+    thumbUrl,
+    handles,
+    aspectRatio = 'auto',
+    thumbCustomWidth,
+    thumbCustomHeight,
+  } = props
 
   return (
     <>
@@ -39,7 +47,14 @@ const Thumbnail = props => {
           )} w-100 h-auto db`}
           itemProp="thumbnail"
           alt={alt}
-          src={imageUrl(thumbUrl, THUMB_SIZE, THUMB_MAX_SIZE, aspectRatio)}
+          src={imageUrl(
+            thumbUrl,
+            THUMB_SIZE,
+            THUMB_MAX_SIZE,
+            aspectRatio,
+            thumbCustomWidth,
+            thumbCustomHeight
+          )}
         />
       </figure>
       <div
@@ -67,6 +82,8 @@ const ThumbnailSwiper = props => {
     thumbnailAspectRatio,
     thumbnailMaxHeight,
     displayThumbnailsArrows,
+    thumbCustomWidth,
+    thumbCustomHeight,
     ...swiperProps
   } = props
 
@@ -151,9 +168,6 @@ const ThumbnailSwiper = props => {
         touchRatio={1}
         threshold={8}
         navigation={navigationConfig}
-        /* Slides are grouped when thumbnails arrows are enabled
-         * so that clicking on next/prev will scroll more than
-         * one thumbnail */
         slidesPerGroup={displayThumbnailsArrows ? 4 : 1}
         freeMode={false}
         mousewheel={false}
@@ -183,6 +197,8 @@ const ThumbnailSwiper = props => {
                 alt={slide.alt}
                 thumbUrl={slide.thumbUrl || thumbUrls[i]}
                 aspectRatio={thumbnailAspectRatio}
+                thumbCustomWidth={thumbCustomWidth}
+                thumbCustomHeight={thumbCustomHeight}
               />
             </SwiperSlide>
           )

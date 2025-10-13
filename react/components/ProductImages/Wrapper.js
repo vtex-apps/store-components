@@ -16,6 +16,8 @@ const ProductImagesWrapper = props => {
     showPaginationDots,
     contentOrder,
     placeholder,
+    thumbCustomWidth,
+    thumbCustomHeight,
   } = useResponsiveValues(
     pick(
       [
@@ -25,6 +27,8 @@ const ProductImagesWrapper = props => {
         'showPaginationDots',
         'contentOrder',
         'placeholder',
+        'thumbCustomWidth',
+        'thumbCustomHeight',
       ],
       props
     )
@@ -93,6 +97,8 @@ const ProductImagesWrapper = props => {
       ModalZoomElement={props.ModalZoom}
       contentType={props.contentType}
       showImageLabel={props.showImageLabel}
+      thumbCustomWidth={thumbCustomWidth}
+      thumbCustomHeight={thumbCustomHeight}
       // Deprecated
       zoomProps={props.zoomProps}
       displayMode={props.displayMode}
