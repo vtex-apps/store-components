@@ -243,7 +243,10 @@ const InfoCard = ({
                 className={handles.infoCardImage}
                 src={finalImageUrl}
                 style={{ objectFit: 'cover' }}
-                alt={imageAltText || formatIOMessage({ id: callToActionText, intl })}
+                alt={
+                  imageAltText ||
+                  formatIOMessage({ id: callToActionText, intl })
+                }
                 data-testid="half-image"
                 fetchPriority={fetchpriority}
                 {...(preload

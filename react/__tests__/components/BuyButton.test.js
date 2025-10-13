@@ -1,5 +1,5 @@
 import React from 'react'
-import { fireEvent, wait, render } from '@vtex/test-tools/react'
+import { fireEvent, waitFor, render } from '@vtex/test-tools/react'
 
 import BuyButton from '../../BuyButton'
 import addToCartMutation from '../../components/BuyButton/mutations/addToCart.gql'
@@ -33,7 +33,7 @@ describe('<BuyButton />', () => {
   it('should be rendered', async () => {
     const { asFragment } = renderComponent()
 
-    await wait()
+    await waitFor(() => {})
     expect(asFragment()).toBeDefined()
     expect(asFragment()).toBeTruthy()
   })
@@ -41,21 +41,21 @@ describe('<BuyButton />', () => {
   it('should match snapshot normal', async () => {
     const { asFragment } = renderComponent({ available: true, skuItems: [] })
 
-    await wait()
+    await waitFor(() => {})
     expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot unavailable', async () => {
     const { asFragment } = renderComponent({ available: false, skuItems: [] })
 
-    await wait()
+    await waitFor(() => {})
     expect(asFragment()).toMatchSnapshot()
   })
 
   it('should match snapshot loading', async () => {
     const { asFragment } = renderComponent({ available: false })
 
-    await wait()
+    await waitFor(() => {})
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -75,7 +75,7 @@ describe('<BuyButton />', () => {
       buttonText
     )
 
-    await wait(() => {
+    await waitFor(() => {
       fireEvent.click(getByText(buttonText))
     })
 
@@ -159,7 +159,7 @@ describe('<BuyButton />', () => {
 
     const priceRegex = /230.00/
 
-    await wait()
+    await waitFor(() => {})
     getByText(priceRegex)
   })
 })

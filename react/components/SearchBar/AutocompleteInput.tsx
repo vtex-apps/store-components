@@ -250,7 +250,9 @@ function AutocompleteInput({
             error={Boolean(inputErrorMessage)}
             errorMessage={inputErrorMessage}
             onSubmit={onGoToSearchPage}
-            aria-label={intl.formatMessage({ id: 'store/search.autocompleteInput.aria-label' })}
+            aria-label={intl.formatMessage({
+              id: 'store/search.autocompleteInput.aria-label',
+            })}
           />
         </div>
       </form>
@@ -269,7 +271,9 @@ function AutocompleteInput({
           {...restProps}
           error={Boolean(inputErrorMessage)}
           errorMessage={inputErrorMessage}
-          aria-label={intl.formatMessage({ id: 'store/search.autocompleteInput.aria-label' })}
+          aria-label={intl.formatMessage({
+            id: 'store/search.autocompleteInput.aria-label',
+          })}
         />
       </div>
     </div>

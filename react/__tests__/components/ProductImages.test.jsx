@@ -55,20 +55,22 @@ describe('<ProductImages />', () => {
           thresholds: [1],
           thumbnailUrl: 'url',
           imageText: 'imageText',
+          imageLabel: 'imageLabel',
         },
         {
           imageUrls: ['url2'],
           thresholds: [1],
           thumbnailUrl: 'url2',
           imageText: 'imageText2',
+          imageLabel: 'imageLabel2',
         },
       ],
     }
 
     const { getAllByAltText } = renderComponent(props)
 
-    expect(getAllByAltText('imageText')).toHaveLength(2)
-    expect(getAllByAltText('imageText2')).toHaveLength(2)
+    expect(getAllByAltText('imageLabel')).toHaveLength(2)
+    expect(getAllByAltText('imageLabel2')).toHaveLength(2)
   })
   it('should show thumbs when there is more than one image', () => {
     const props = {
@@ -78,12 +80,14 @@ describe('<ProductImages />', () => {
           thresholds: [1],
           thumbnailUrl: 'url',
           imageText: 'imageText',
+          imageLabel: 'imageLabel',
         },
         {
           imageUrls: ['url2'],
           thresholds: [1],
           thumbnailUrl: 'url2',
           imageText: 'imageText2',
+          imageLabel: 'imageLabel2',
         },
       ],
     }
@@ -92,8 +96,8 @@ describe('<ProductImages />', () => {
     const swiper = queryByTestId('thumbnail-swiper')
 
     expect(swiper.className.includes('db-ns')).toBeTruthy()
-    getAllByAltText('imageText')
-    getAllByAltText('imageText2')
+    getAllByAltText('imageLabel')
+    getAllByAltText('imageLabel2')
   })
   it('should show default placeholder when there is NO image', () => {
     const props = {
@@ -284,9 +288,7 @@ describe('<ProductImages />', () => {
       }))
       const { queryAllByAltText } = renderComponent({})
 
-      expect(queryAllByAltText('potato-imageText')).toHaveLength(2)
-      expect(queryAllByAltText('potato-imageText2')).toHaveLength(2)
-      expect(queryAllByAltText('potato-imageText3')).toHaveLength(2)
+      expect(queryAllByAltText('potato-Color')).toHaveLength(6)
     })
 
     it('gives priority to selected image variation sku', () => {
@@ -300,9 +302,7 @@ describe('<ProductImages />', () => {
       }))
       const { queryAllByAltText } = renderComponent({})
 
-      expect(queryAllByAltText('456-imageText')).toHaveLength(2)
-      expect(queryAllByAltText('456-imageText2')).toHaveLength(2)
-      expect(queryAllByAltText('456-imageText3')).toHaveLength(2)
+      expect(queryAllByAltText('456-Color')).toHaveLength(6)
     })
 
     it('give priority to prop items if product in context', () => {
@@ -316,20 +316,22 @@ describe('<ProductImages />', () => {
             thresholds: [1],
             thumbnailUrl: 'url',
             imageText: 'propImageText',
+            imageLabel: 'propImageLabel',
           },
           {
             imageUrls: ['url2'],
             thresholds: [1],
             thumbnailUrl: 'url2',
             imageText: 'propImageText2',
+            imageLabel: 'propImageLabel2',
           },
         ],
       }
 
       const { queryAllByAltText } = renderComponent(props)
 
-      expect(queryAllByAltText('propImageText')).toHaveLength(2)
-      expect(queryAllByAltText('propImageText2')).toHaveLength(2)
+      expect(queryAllByAltText('propImageLabel')).toHaveLength(2)
+      expect(queryAllByAltText('propImageLabel2')).toHaveLength(2)
     })
   })
 
@@ -344,6 +346,7 @@ describe('<ProductImages />', () => {
             thresholds: [1],
             thumbnailUrl: 'url2',
             imageText: 'imageText2',
+            imageLabel: 'imageLabel2',
           },
         ],
       }
@@ -352,7 +355,7 @@ describe('<ProductImages />', () => {
         <ProductImages {...props} />
       )
 
-      const images = getAllByAltText('imageText2')
+      const images = getAllByAltText('imageLabel2')
 
       // 2 for thumb + main image
       expect(images).toHaveLength(2)
@@ -362,10 +365,10 @@ describe('<ProductImages />', () => {
       })
 
       // 3 for thumb + main image + modal image
-      expect(getAllByAltText('imageText2')).toHaveLength(3)
+      expect(getAllByAltText('imageLabel2')).toHaveLength(3)
     })
 
-    it('should render 2 img[alt="imageText2"] if img2 trigger is clicked', () => {
+    it('should render 2 img[alt="imageLabel2"] if img2 trigger is clicked', () => {
       const props = {
         zoomMode: 'open-modal',
         ModalZoom: ModalLayout,
@@ -375,12 +378,14 @@ describe('<ProductImages />', () => {
             thresholds: [1],
             thumbnailUrl: 'url',
             imageText: 'imageText',
+            imageLabel: 'imageLabel',
           },
           {
             imageUrls: ['url2'],
             thresholds: [1],
             thumbnailUrl: 'url2',
             imageText: 'imageText2',
+            imageLabel: 'imageLabel2',
           },
         ],
       }
@@ -389,7 +394,7 @@ describe('<ProductImages />', () => {
         <ProductImages {...props} />
       )
 
-      const images = getAllByAltText('imageText2')
+      const images = getAllByAltText('imageLabel2')
 
       expect(images).toHaveLength(2)
       fireEvent.click(getAllByTestId('modal-trigger')[1], {
@@ -399,7 +404,7 @@ describe('<ProductImages />', () => {
 
       // 3 images with the alt because is one image of the trigger,
       // one image of the thumbs and the image of HighQualityProductImage
-      expect(getAllByAltText('imageText2')).toHaveLength(3)
+      expect(getAllByAltText('imageLabel2')).toHaveLength(3)
     })
   })
 })
