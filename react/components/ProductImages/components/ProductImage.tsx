@@ -94,7 +94,6 @@ const ProductImage: FC<Props> = ({
         >
           <img
             ref={imageRef}
-            data-vtex-preload={index === 0 ? 'true' : 'false'}
             className={`${applyModifiers(handles.productImageTag, 'main')}`}
             style={{
               width: '100%',
@@ -107,6 +106,7 @@ const ProductImage: FC<Props> = ({
             alt={alt}
             title={alt}
             loading={index === 0 ? 'eager' : 'lazy'}
+            {...(index === 0 && { fetchPriority: 'high' })}
             // WIP
             // The value of the "sizes" attribute means: if the window has at most 64.1rem of width,
             // the image will be of a width of 100vw. Otherwise, the
