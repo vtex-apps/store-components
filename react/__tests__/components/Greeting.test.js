@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, wait } from '@vtex/test-tools/react'
+import { render, waitFor } from '@vtex/test-tools/react'
 
 import orderFormQuery from '../../components/Greeting/queries/orderForm.gql'
 import Greeting from '../../Greeting'
@@ -35,7 +35,7 @@ describe('<Greeting /> component', () => {
   it('should render name in orderForm', async () => {
     const { queryByText } = renderComponent()
 
-    await wait(() => {
+    await waitFor(() => {
       jest.runAllTimers()
     })
 
@@ -46,7 +46,7 @@ describe('<Greeting /> component', () => {
   it('should render name in orderForm', async () => {
     const { queryByTestId } = renderComponent({ loading: true })
 
-    await wait(() => {
+    await waitFor(() => {
       jest.runAllTimers()
     })
 

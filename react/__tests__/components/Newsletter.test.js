@@ -1,5 +1,5 @@
 import React from 'react'
-import { fireEvent, waitForElement, render } from '@vtex/test-tools/react'
+import { fireEvent, render } from '@vtex/test-tools/react'
 
 import Newsletter from '../../components/Newsletter'
 import subscribeNewsletter from '../../components/Newsletter/mutations/subscribeNewsletter.graphql'
@@ -62,7 +62,7 @@ test('should call mutation', async () => {
     },
   ]
 
-  const { getByLabelText, getByText } = render(
+  const { getByLabelText, getByText, findByText } = render(
     <Newsletter
       placeholder={placeholderTextId}
       label={labelTextId}
@@ -79,7 +79,7 @@ test('should call mutation', async () => {
   fireEvent.change(input, { target: { value: email } })
   fireEvent.click(submit)
 
-  const thanks = await waitForElement(() => getByText(thanksTextId))
+  const thanks = await findByText(thanksTextId)
 
   expect(thanks).toBeTruthy()
 })
@@ -96,7 +96,7 @@ test('should handle mutation error', async () => {
     },
   ]
 
-  const { getByLabelText, getByText } = render(
+  const { getByLabelText, getByText, findByText } = render(
     <Newsletter
       placeholder={placeholderTextId}
       label={labelTextId}
@@ -113,7 +113,7 @@ test('should handle mutation error', async () => {
   fireEvent.change(input, { target: { value: email } })
   fireEvent.click(submit)
 
-  const error = await waitForElement(() => getByText(errorTextId))
+  const error = await findByText(errorTextId)
 
   expect(error).toBeTruthy()
 })
