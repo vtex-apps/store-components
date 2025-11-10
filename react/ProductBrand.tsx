@@ -89,7 +89,9 @@ const useBrandInfoProps = (
     return { brandName: normalizeBrandName(brandName), brandId }
   }
 
-  return { brandName: normalizeBrandName(product.brand), brandId: Number(product.brandId) }
+  return { 
+    brandName: normalizeBrandName(product.brand), 
+    brandId: Number(product.brandId) }
 }
 
 /**
