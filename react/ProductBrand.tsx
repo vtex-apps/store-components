@@ -76,6 +76,8 @@ const shouldExcludeBrand = (
   return false
 }
 
+const normalizeBrandName = (name?: string) => name?.replace(/&amp;/g, '&')
+
 const useBrandInfoProps = (
   brandName: string | undefined,
   brandId: number | undefined
@@ -84,10 +86,10 @@ const useBrandInfoProps = (
   const product = productContext?.product
 
   if ((brandName && brandId) || !product) {
-    return { brandName, brandId }
+    return { brandName: normalizeBrandName(brandName), brandId }
   }
 
-  return { brandName: product.brand, brandId: Number(product.brandId) }
+  return { brandName: normalizeBrandName(product.brand), brandId: Number(product.brandId) }
 }
 
 /**
