@@ -16,6 +16,7 @@ metadata:
     backstage.io/techdocs-ref: dir:../
     vtex.com/application-id: DDULY6N1
 spec:
+  referenceId: DDULY6N1
   system: store-framework-ui-apps
   lifecycle: stable
   owner: te-0013
