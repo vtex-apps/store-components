@@ -1,0 +1,16 @@
+- name: store-components
+  referenceId: DDULY6N1
+  pipelines:
+    - name: techdocs-v1
+      parameters:
+        entityReference: default/component/store-components
+        indexFile: README.md
+      when:
+        - event: push
+          source: branch
+          regex: master
+          path:
+            - "docs/**"
+            - ".vtex/deployment.yaml"
+            - ".vtex/deployment.json"
+            - "README.md"
