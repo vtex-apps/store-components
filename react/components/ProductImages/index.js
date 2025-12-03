@@ -35,8 +35,8 @@ const ProductImages = ({
   zoomFactor,
   ModalZoomElement,
   contentType = 'all',
-  thumbCustomWidth,
-  thumbCustomHeight,
+  thumbnailWidth,
+  thumbnailHeight,
   // Deprecated
   zoomProps,
   displayMode,
@@ -154,8 +154,8 @@ const ProductImages = ({
         thumbnailsOrientation={thumbnailsOrientation}
         displayThumbnailsArrows={displayThumbnailsArrows}
         thumbnailVisibility={thumbnailVisibility}
-        thumbCustomWidth={thumbCustomWidth}
-        thumbCustomHeight={thumbCustomHeight}
+        thumbnailWidth={thumbWidth}
+        thumbnailHeight={thumbHeight}
         // Deprecated
         zoomProps={zoomProps}
       />

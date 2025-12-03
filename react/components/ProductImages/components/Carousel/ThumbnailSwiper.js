@@ -28,8 +28,8 @@ const Thumbnail = props => {
     thumbUrl,
     handles,
     aspectRatio = 'auto',
-    thumbCustomWidth,
-    thumbCustomHeight,
+    thumbnailWidth,
+    thumbnailHeight,
   } = props
 
   return (
@@ -52,9 +52,13 @@ const Thumbnail = props => {
             THUMB_SIZE,
             THUMB_MAX_SIZE,
             aspectRatio,
-            thumbCustomWidth,
-            thumbCustomHeight
+            thumbnailWidth,
+            thumbnailHeight
           )}
+          thumbnailHeight && 
+          height={thumbnailHeight}
+          thumbnailWidth && 
+          width={thumbnailWidth}
         />
       </figure>
       <div
@@ -82,8 +86,8 @@ const ThumbnailSwiper = props => {
     thumbnailAspectRatio,
     thumbnailMaxHeight,
     displayThumbnailsArrows,
-    thumbCustomWidth,
-    thumbCustomHeight,
+    thumbnailWidth,
+    thumbnailHeight,
     ...swiperProps
   } = props
 
@@ -197,8 +201,8 @@ const ThumbnailSwiper = props => {
                 alt={slide.alt}
                 thumbUrl={slide.thumbUrl || thumbUrls[i]}
                 aspectRatio={thumbnailAspectRatio}
-                thumbCustomWidth={thumbCustomWidth}
-                thumbCustomHeight={thumbCustomHeight}
+                thumbnailWidth={thumbnailWidth}
+                thumbnailHeight={thumbnailHeight}
               />
             </SwiperSlide>
           )

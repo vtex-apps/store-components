@@ -249,8 +249,8 @@ class Carousel extends Component {
       showNavigationArrows = true,
       thumbnailVisibility,
       displayThumbnailsArrows = false,
-      thumbCustomWidth,
-      thumbCustomHeight,
+      thumbnailWidth,
+      thumbnailHeight,
     } = this.props
 
     const hasSlides = slides && slides.length > 0
@@ -327,8 +327,8 @@ class Carousel extends Component {
         displayThumbnailsArrows={displayThumbnailsArrows}
         slides={slides}
         position={position}
-        thumbCustomWidth={thumbCustomWidth}
-        thumbCustomHeight={thumbCustomHeight}
+        thumbnailWidth={thumbWidth}
+        thumbnailHeight={thumbHeight}
       />
     )
 
@@ -418,8 +418,8 @@ Carousel.propTypes = {
     THUMBS_VISIBILITY.VISIBLE,
     THUMBS_VISIBILITY.HIDDEN,
   ]),
-  thumbCustomWidth: PropTypes.number,
-  thumbCustomHeight: PropTypes.number,
+  thumbnailWidth: PropTypes.number,
+  thumbnailHeight: PropTypes.number,
 }
 
 export default withCssHandles(CSS_HANDLES)(Carousel)

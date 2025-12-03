@@ -52,8 +52,10 @@ export const imageUrl = (
   let width = customWidth || size
   let height: number | string = customHeight || 'auto'
 
-  if (!customWidth || !customHeight) {
-    if (aspectRatio && aspectRatio !== 'auto') {
+  const hasCustomSize = customWidth && customHeight
+  const hasAspectRatio = aspectRatio && aspectRatio !== 'auto'
+  if (!hasCustomSize) {
+    if (hasAspectRatio) {
       height = size * (parseAspectRatio(aspectRatio) || 1)
 
       if (width > maxSize) {
