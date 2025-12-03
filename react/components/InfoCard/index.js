@@ -286,6 +286,8 @@ MemoizedInfoCard.propTypes = {
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
   linkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
   callToActionLinkTarget: oneOf(['_self', '_blank', '_parent', '_top']),
+  fetchpriority: oneOf(['auto', 'high', 'low']),
+  preload: bool,
 }
 
 MemoizedInfoCard.defaultProps = {
@@ -366,6 +368,26 @@ MemoizedInfoCard.schema = {
       title: 'admin/editor.blockClass.title',
       description: 'admin/editor.blockClass.description',
       type: 'string',
+      isLayout: true,
+    },
+    fetchpriority: {
+      title: 'admin/editor.info-card.fetchPriority.title',
+      description: 'admin/editor.info-card.fetchPriority.description',
+      type: 'string',
+      default: 'auto',
+      enum: ['auto', 'high', 'low'],
+      enumNames: [
+        'admin/editor.info-card.fetchPriority.auto',
+        'admin/editor.info-card.fetchPriority.high',
+        'admin/editor.info-card.fetchPriority.low',
+      ],
+      isLayout: true,
+    },
+    preload: {
+      title: 'admin/editor.info-card.preload.title',
+      description: 'admin/editor.info-card.preload.description',
+      type: 'boolean',
+      default: false,
       isLayout: true,
     },
   },

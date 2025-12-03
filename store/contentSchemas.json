@@ -119,6 +119,24 @@
           "title": "admin/editor.blockClass.title",
           "description": "admin/editor.blockClass.description",
           "type": "string"
+        },
+        "fetchpriority": {
+          "title": "admin/editor.info-card.fetchPriority.title",
+          "description": "admin/editor.info-card.fetchPriority.description",
+          "type": "string",
+          "default": "auto",
+          "enum": ["auto", "high", "low"],
+          "enumNames": [
+            "admin/editor.info-card.fetchPriority.auto",
+            "admin/editor.info-card.fetchPriority.high",
+            "admin/editor.info-card.fetchPriority.low"
+          ]
+        },
+        "preload": {
+          "title": "admin/editor.info-card.preload.title",
+          "description": "admin/editor.info-card.preload.description",
+          "type": "boolean",
+          "default": false
         }
       }
     },

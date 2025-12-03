@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `fetchpriority` and `preload` properties of `InfoCard` component to site editor for performance improvement. This is useful especially when used in `InfoCardList`
+
 ### Chore
 
 - lint errors
