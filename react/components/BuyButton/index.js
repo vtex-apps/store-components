@@ -44,6 +44,7 @@ const skuItemToMinicartItem = item => {
     seller: item.seller,
     options: item.options,
     quantity: item.quantity,
+    ...(item.priceToken ? { priceToken: item.priceToken } : {}),
 
     // Fields for optmistic cart
     sellingPrice: item.price,
@@ -177,6 +178,7 @@ export const BuyButton = ({
             seller: item.seller,
             options: item.options,
             quantity: item.quantity,
+            ...(item.priceToken ? { priceToken: item.priceToken } : {}),
           })),
           ...(utmParams ? { utmParams } : {}),
           ...(utmiParams ? { utmiParams } : {}),
@@ -331,6 +333,8 @@ BuyButton.propTypes = {
       name: PropTypes.string.isRequired,
       /* Sku price */
       price: PropTypes.number.isRequired,
+      /* Signed price (Pricing Fallback V2) returned by the search for this offer */
+      priceToken: PropTypes.string,
       /* Sku variant */
       variant: PropTypes.string,
       /* Sku brand */

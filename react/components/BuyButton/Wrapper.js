@@ -237,6 +237,9 @@ EnhancedBuyButton.mapCatalogItemToCart = function mapCatalogItemToCart({
         seller: selectedSeller.sellerId,
         price: selectedSeller.commertialOffer.Price,
         listPrice: selectedSeller.commertialOffer.ListPrice,
+        ...(selectedSeller.commertialOffer.priceToken
+          ? { priceToken: selectedSeller.commertialOffer.priceToken }
+          : {}),
         variant: selectedItem.name,
         skuId: selectedItem.itemId,
         imageUrl: path(['images', '0', 'imageUrl'], selectedItem),
