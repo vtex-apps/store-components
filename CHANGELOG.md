@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed YouTube embed `Error 153` (video player configuration error) by adding `referrerPolicy` and expanding the `allow` attribute on the `Youtube` component's iframe.
+
 ### Changed
 
 - Update DK Catalog platform-flow-id
