@@ -2,12 +2,35 @@ import React from 'react'
 import { render, fireEvent, wait } from '@vtex/test-tools/react'
 import { useProduct, ProductContext } from 'vtex.product-context'
 import { getSKU } from 'sku-helper'
+import { useCssHandles } from 'vtex.css-handles'
 
-import SKUSelector from '../../components/SKUSelector/Wrapper'
+import SKUSelector, {
+  SKU_SELECTOR_CSS_HANDLES,
+} from '../../components/SKUSelector/Wrapper'
+import RawSKUSelectorContainer from '../../components/SKUSelector'
+import { SKUSelectorCssHandlesProvider } from '../../components/SKUSelector/SKUSelectorCssHandles'
 import { orderItemsByAvailability } from '../../components/SKUSelector/components/SKUSelector'
+
+/* `SKUSelectorContainer` (the exported default) expects the css handles
+ * context that `Wrapper` normally provides. Wire it up directly here to
+ * exercise the container with props it wasn't derived from. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const SKUSelectorContainer = (props: any) => {
+  const { handles, withModifiers } = useCssHandles(SKU_SELECTOR_CSS_HANDLES)
+
+  return (
+    <SKUSelectorCssHandlesProvider
+      handles={handles}
+      withModifiers={withModifiers}
+    >
+      <RawSKUSelectorContainer {...props} />
+    </SKUSelectorCssHandlesProvider>
+  )
+}
 
 describe('<SKUSelector />', () => {
   const renderComponent = (customProps = {}) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const props: any = {
       skuSelected: getSKU(),
       skuItems: [getSKU('Black'), getSKU('Blue'), getSKU('Yellow')],
@@ -97,6 +120,159 @@ describe('<SKUSelector />', () => {
     expect(container.querySelector('.skuSelectorItem--black')).toHaveClass(
       'skuSelectorItem--selected'
     )
+  })
+
+  /* Regression: with `initialSelection="empty"`, getNewSelectedVariations
+   * wipes the whole selection unconditionally whenever the resync effect
+   * runs. A caller that keeps `variations` stable but re-sends the same
+   * `skuItems` in a different order (e.g. re-sorted by availability) must
+   * not have that count as a change and trigger that wipe on a colour the
+   * shopper picked but never "cleared". This exercises the exported
+   * container directly, since `Wrapper` derives `variations` from `skuItems`
+   * and would recompute it on any reorder regardless of this fix. */
+  it('should not wipe a picked variation when skuItems is re-sent in a different order (initialSelection=empty)', async () => {
+    const defaultSeller = {
+      sellerDefault: true,
+      commertialOffer: { Price: 15, ListPrice: 20, AvailableQuantity: 1 },
+    }
+
+    const buildItem = (itemId: string, color: string, size: string) => ({
+      itemId,
+      name: `${color} ${size}`,
+      variations: [
+        { name: 'Size', values: [size] },
+        { name: 'Color', values: [color] },
+      ],
+      variationValues: { Size: size, Color: color },
+      sellers: [defaultSeller],
+      images: [],
+    })
+
+    const skuItems = [
+      buildItem('1', 'Gray', '41'),
+      buildItem('2', 'Gray', '42'),
+      buildItem('3', 'Black', '41'),
+      buildItem('4', 'Black', '42'),
+    ]
+
+    const variations = {
+      Size: {
+        originalName: 'Size',
+        values: [
+          { name: '41', originalName: '41' },
+          { name: '42', originalName: '42' },
+        ],
+      },
+      Color: {
+        originalName: 'Color',
+        values: [
+          { name: 'Gray', originalName: 'Gray' },
+          { name: 'Black', originalName: 'Black' },
+        ],
+      },
+    }
+
+    const { container, getByText, rerender } = render(
+      <SKUSelectorContainer
+        skuSelected={skuItems[0]}
+        skuItems={skuItems}
+        variations={variations}
+        seeMoreLabel="seeMoreLabel"
+        initialSelection="empty"
+      />
+    )
+
+    await wait()
+
+    const blackItem = () => container.querySelector('.skuSelectorItem--black')
+
+    await wait(() => {
+      getByText('Black').click()
+    })
+
+    expect(blackItem()).toHaveClass('skuSelectorItem--selected')
+
+    /* Same items, same skuSelected, same `variations` reference, reversed
+     * `skuItems` order: no real change, so the pick above must survive. */
+    rerender(
+      <SKUSelectorContainer
+        skuSelected={skuItems[0]}
+        skuItems={[...skuItems].reverse()}
+        variations={variations}
+        seeMoreLabel="seeMoreLabel"
+        initialSelection="empty"
+      />
+    )
+
+    await wait()
+
+    expect(blackItem()).toHaveClass('skuSelectorItem--selected')
+  })
+
+  /* A clear from one product must not carry over to another when the
+   * component isn't remounted (e.g. carousel/quickview navigation). */
+  it('should not keep a cleared variation across a switch to a different product', async () => {
+    const defaultSeller = {
+      sellerDefault: true,
+      commertialOffer: { Price: 15, ListPrice: 20, AvailableQuantity: 1 },
+    }
+
+    const buildItem = (itemId: string, color: string, size: string) => ({
+      itemId,
+      name: `${color} ${size}`,
+      variations: [
+        { name: 'Size', values: [size] },
+        { name: 'Color', values: [color] },
+      ],
+      sellers: [defaultSeller],
+      images: [],
+    })
+
+    const productAItems = [
+      buildItem('a1', 'Gray', '41'),
+      buildItem('a2', 'Gray', '42'),
+      buildItem('a3', 'Black', '41'),
+      buildItem('a4', 'Black', '42'),
+    ]
+
+    /* A different product, sharing no itemId with product A, that happens to
+     * reuse the "Size" variation name. */
+    const productBItems = [
+      buildItem('b1', 'Blue', '41'),
+      buildItem('b2', 'Blue', '42'),
+    ]
+
+    const { container, getByText, rerender } = render(
+      <SKUSelector
+        skuSelected={productAItems[0]}
+        skuItems={productAItems}
+        seeMoreLabel="seeMoreLabel"
+      />
+    )
+
+    await wait()
+
+    const sizeItem = () => container.querySelector('.skuSelectorItem--41')
+
+    await wait(() => {
+      getByText('41').click()
+    })
+
+    expect(sizeItem()).not.toHaveClass('skuSelectorItem--selected')
+
+    /* Switching to product B without unmounting: no shared itemId, so the
+     * clear from product A must not apply here. */
+    rerender(
+      <SKUSelector
+        skuSelected={productBItems[0]}
+        skuItems={productBItems}
+        seeMoreLabel="seeMoreLabel"
+      />
+    )
+
+    await wait()
+
+    expect(sizeItem()).toHaveClass('skuSelectorItem--selected')
   })
 
   it('should render the options an select one', async () => {

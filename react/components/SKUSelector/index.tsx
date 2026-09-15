@@ -92,6 +92,19 @@ const keepClearedVariations = (
   return result
 }
 
+/* Same itemId appearing in both arrays means this is still the same product
+ * (just a different resolved SKU); no overlap at all means the shopper
+ * navigated to another product without leaving the page, e.g. via a carousel
+ * or quickview, and a clear from the old product must not carry over. */
+const isSameProduct = (
+  previousItems: SelectorProductItem[],
+  currentItems: SelectorProductItem[]
+) => {
+  const previousIds = new Set(previousItems.map(item => item.itemId))
+
+  return currentItems.some(item => previousIds.has(item.itemId))
+}
+
 function filterColorImages(
   items: SelectorProductItem[],
   imageRegexText: string
@@ -282,6 +295,19 @@ const SKUSelectorContainer: FC<Props> = ({
   const responsiveDisplayMode = useResponsiveValue(displayMode)
 
   const parsedItems = useMemo(() => skuItems.map(parseSku), [skuItems])
+  /* Content-derived key, not the array reference: callers that pass a
+   * freshly-built `skuItems` array on every render (e.g. via `.filter()`)
+   * would otherwise make the resync effect below re-run on every render.
+   * Sorted so a mere reordering of the same items (e.g. by availability)
+   * doesn't count as a change either. */
+  const itemsKey = useMemo(
+    () =>
+      [...parsedItems.map(item => item.itemId)]
+        .sort((a, b) => (a > b ? 1 : a < b ? -1 : 0))
+        .join('|'),
+    [parsedItems]
+  )
+
   const { setQuery } = useRuntime()
   const redirectToSku = (skuId: string) => {
     setQuery({ skuId }, { replace: true })
@@ -295,10 +321,21 @@ const SKUSelectorContainer: FC<Props> = ({
   useAllSelectedEvent(selectedVariations, variationsCount)
 
   /* Variations the shopper cleared on purpose, as opposed to ones that were
-   * simply never picked. */
+   * simply never picked. Lives per component instance, so it doesn't survive a
+   * remount: a theme that renders this selector inside a `condition-layout`
+   * whose subject flips with the resolved SKU (e.g. `isProductAvailable`)
+   * swaps block trees and resets this, letting the selection auto-complete
+   * again. See https://github.com/vtex-apps/store-components/pull/1157 */
   const clearedVariations = useRef(new Set<string>())
+  const previousItemsRef = useRef(parsedItems)
 
   useEffectSkipMount(() => {
+    if (!isSameProduct(previousItemsRef.current, parsedItems)) {
+      clearedVariations.current = new Set()
+    }
+
+    previousItemsRef.current = parsedItems
+
     setSelectedVariations(
       keepClearedVariations(
         getNewSelectedVariations(
@@ -310,7 +347,15 @@ const SKUSelectorContainer: FC<Props> = ({
         clearedVariations.current
       )
     )
-  }, [variations, skuSelected])
+    /* `itemsKey` is included so this always re-evaluates when the actual item
+     * set changes, even on a render where `variations` happens not to (e.g.
+     * it's sourced from `skuSpecifications` instead) — otherwise a product
+     * switch landing on such a render would skip the reset above. It's a
+     * content key rather than `parsedItems` itself so an unstable array
+     * reference from the caller doesn't force this to re-run every render.
+     */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [variations, skuSelected, itemsKey])
 
   // This is used to selected an SKU when initialSelection is not 'empty'.
   // Runs only on the first render.
