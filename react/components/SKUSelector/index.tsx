@@ -2,6 +2,7 @@ import React, {
   useState,
   useEffect,
   useMemo,
+  useRef,
   memo,
   useCallback,
   FC,
@@ -68,6 +69,24 @@ const selectedVariationFromItem = (
 
   for (const variationName of variationNames) {
     result[variationName] = item.variationValues[variationName]
+  }
+
+  return result
+}
+
+/* Re-deriving the selection from the resolved SKU would silently re-pick a
+ * variation the shopper had just cleared, which enables add-to-cart for a value
+ * they never chose. Keep those cleared. */
+const keepClearedVariations = (
+  selection: SelectedVariations,
+  cleared: Set<string>
+) => {
+  const result = { ...selection }
+
+  for (const variationName of Object.keys(result)) {
+    if (cleared.has(variationName)) {
+      result[variationName] = null
+    }
   }
 
   return result
@@ -275,9 +294,21 @@ const SKUSelectorContainer: FC<Props> = ({
 
   useAllSelectedEvent(selectedVariations, variationsCount)
 
+  /* Variations the shopper cleared on purpose, as opposed to ones that were
+   * simply never picked. */
+  const clearedVariations = useRef(new Set<string>())
+
   useEffectSkipMount(() => {
     setSelectedVariations(
-      getNewSelectedVariations(query, skuSelected, variations, initialSelection)
+      keepClearedVariations(
+        getNewSelectedVariations(
+          query,
+          skuSelected,
+          variations,
+          initialSelection
+        ),
+        clearedVariations.current
+      )
     )
   }, [variations, skuSelected])
 
@@ -345,6 +376,18 @@ const SKUSelectorContainer: FC<Props> = ({
 
       if (!isEmpty(uniqueOptions)) {
         setSelectedVariations(finalSelected)
+      }
+
+      if (isRemoving) {
+        clearedVariations.current.add(variationName)
+      } else {
+        clearedVariations.current.delete(variationName)
+      }
+
+      for (const [name, value] of Object.entries(finalSelected)) {
+        if (value != null) {
+          clearedVariations.current.delete(name)
+        }
       }
 
       const allSelected = areAllVariationsSelected(

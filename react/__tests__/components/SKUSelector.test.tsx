@@ -33,6 +33,72 @@ describe('<SKUSelector />', () => {
     expect(onSKUSelected).toBeCalledTimes(2)
   })
 
+  /* Regression for https://github.com/vtex-apps/product-context/pull/88: the
+   * resync below used to re-derive the whole selection from the resolved SKU,
+   * silently re-picking a size the shopper had just cleared. */
+  it('should keep a deliberately cleared variation cleared when the resolved sku changes', async () => {
+    const defaultSeller = {
+      sellerDefault: true,
+      commertialOffer: { Price: 15, ListPrice: 20, AvailableQuantity: 1 },
+    }
+
+    const buildItem = (itemId: string, color: string, size: string) => ({
+      itemId,
+      name: `${color} ${size}`,
+      variations: [
+        { name: 'Size', values: [size] },
+        { name: 'Color', values: [color] },
+      ],
+      sellers: [defaultSeller],
+      images: [],
+    })
+
+    /* Every colour has two sizes, so picking a colour can never resolve a
+     * unique size on its own. */
+    const skuItems = [
+      buildItem('1', 'Gray', '41'),
+      buildItem('2', 'Gray', '42'),
+      buildItem('3', 'Black', '41'),
+      buildItem('4', 'Black', '42'),
+    ]
+
+    const { container, getByText, rerender } = render(
+      <SKUSelector
+        skuSelected={skuItems[0]}
+        skuItems={skuItems}
+        seeMoreLabel="seeMoreLabel"
+      />
+    )
+
+    await wait()
+
+    const sizeItem = () => container.querySelector('.skuSelectorItem--41')
+
+    expect(sizeItem()).toHaveClass('skuSelectorItem--selected')
+
+    await wait(() => {
+      getByText('41').click()
+    })
+
+    expect(sizeItem()).not.toHaveClass('skuSelectorItem--selected')
+
+    /* The resolved SKU moving to another item re-runs the resync. */
+    rerender(
+      <SKUSelector
+        skuSelected={skuItems[2]}
+        skuItems={skuItems}
+        seeMoreLabel="seeMoreLabel"
+      />
+    )
+
+    await wait()
+
+    expect(sizeItem()).not.toHaveClass('skuSelectorItem--selected')
+    expect(container.querySelector('.skuSelectorItem--black')).toHaveClass(
+      'skuSelectorItem--selected'
+    )
+  })
+
   it('should render the options an select one', async () => {
     const defaultSeller = {
       commertialOffer: { Price: 15, AvailableQuantity: 1 },
