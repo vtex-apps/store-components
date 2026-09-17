@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- `SKUSelector` no longer re-picks a variation the shopper had just cleared when the resolved SKU changes. Re-deriving the whole selection from that SKU could silently restore a size they never chose, enabling add-to-cart for it.
+- A clear from the above no longer carries over when the shopper switches to a different product without leaving the page (e.g. a carousel or quickview), which could force an unrelated variation of that name to stay unselected instead of following `initialSelection`.
+- The content key used to detect that product switch is now order-independent, so a caller re-sending the same `skuItems` in a different order (e.g. re-sorted by availability) no longer triggers an unnecessary resync, which with `initialSelection="empty"` could wipe a variation the shopper had picked.
+
+  Known limitation: this tracking is per component instance, so it does not survive a remount. A theme that renders `sku-selector` inside a `condition-layout.product` whose subject flips with the resolved SKU (as `store-theme` does with `isProductAvailable`, listing the selector in both the `Then` and `Else` branches) swaps block trees on that flip, resetting the tracking and letting the selection auto-complete again.
+
 ## [3.178.6] - 2026-09-09
 
 ### Fixed
