@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.179.0] - 2026-09-21
+
 ### Added
 
 - `BuyButton`: forward the search-signed `priceToken` (Pricing Fallback V2) from the selected seller's commercial offer to the cart item, on both the optimistic minicart path and the direct `addItem` mutation, so checkout can close the cart with that price while the Pricing system is unavailable.
