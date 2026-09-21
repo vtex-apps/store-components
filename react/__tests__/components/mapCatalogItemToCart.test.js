@@ -21,7 +21,7 @@ const offer = (extra = {}) => ({
   commertialOffer: { Price: 99.9, ListPrice: 129.9, ...extra },
 })
 
-const mapWith = (selectedSeller) =>
+const mapWith = selectedSeller =>
   mapCatalogItemToCart({
     product,
     selectedItem,
