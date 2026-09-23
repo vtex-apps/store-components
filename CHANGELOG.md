@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.179.1] - 2026-09-23
+
 ### Fixed
 
 - `SKUSelector` no longer re-picks a variation the shopper had just cleared when the resolved SKU changes. Re-deriving the whole selection from that SKU could silently restore a size they never chose, enabling add-to-cart for it.
