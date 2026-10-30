@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Revised the `InfoCard` documentation to follow the VTEX Content Style Guide: simplified the configuration steps, added introductions to tables, standardized terminology and capitalization, and sorted props and CSS handles alphabetically.
+
+### Fixed
+
+- Fixed the `InfoCard` documentation: the `html` value of `TextModeEnum` now lists `bodyText`, and the JSON examples no longer include trailing commas.
+
 ## [3.179.1] - 2026-09-23
 
 ### Fixed
