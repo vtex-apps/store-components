@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- `AvailabilitySubscriber` no longer leaves an unhandled promise rejection when saving the request fails. It now shows a specific message for permission errors (403) and for network errors, logs the failure type without personal data, and only fires `message:success` when the save works.
+- `AvailabilitySubscriber` no longer leaves an unhandled promise rejection when saving the request fails. It now shows a specific message for permission errors (403) and for network errors, and only fires `message:success` when the save works.
 
 ## [3.179.1] - 2026-09-23
 

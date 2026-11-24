@@ -1,5 +1,5 @@
 import React from 'react'
-import { fireEvent, render, waitFor } from '@vtex/test-tools/react'
+import { fireEvent, render } from '@vtex/test-tools/react'
 
 import AvailabilitySubscriber from '../../AvailabilitySubscriber'
 import MUTATION from '../../graphql/addToAvailabilitySubscriberMutation.gql'
@@ -58,14 +58,12 @@ function submit(mockResult) {
 }
 
 describe('<AvailabilitySubscriber /> write failures', () => {
-  let consoleError
   let successEvents
 
   const onMessage = e => successEvents.push(e.detail)
 
   beforeEach(() => {
     jest.spyOn(Date.prototype, 'toISOString').mockReturnValue(CREATED_AT)
-    consoleError = jest.spyOn(console, 'error').mockImplementation(() => {})
     successEvents = []
     document.addEventListener('message:success', onMessage)
   })
@@ -93,9 +91,6 @@ describe('<AvailabilitySubscriber /> write failures', () => {
     const { findByText } = submit({ result: { errors: [forbidden] } })
 
     await findByText('Registration is unavailable for this product right now.')
-    expect(consoleError).toHaveBeenCalledWith(
-      expect.stringContaining('AS: permission')
-    )
     expect(successEvents).toHaveLength(0)
   })
 
@@ -103,9 +98,7 @@ describe('<AvailabilitySubscriber /> write failures', () => {
     const { findByText } = submit({ result: { errors: [badInput] } })
 
     await findByText('Failed. Please try again.')
-    expect(consoleError).toHaveBeenCalledWith(
-      expect.stringContaining('AS: configuration')
-    )
+    expect(successEvents).toHaveLength(0)
   })
 
   it('shows the network message on network errors and keeps the typed data', async () => {
@@ -116,19 +109,7 @@ describe('<AvailabilitySubscriber /> write failures', () => {
     await findByText(
       'Connection problem. Please check your internet and try again.'
     )
-    await waitFor(() =>
-      expect(consoleError).toHaveBeenCalledWith(
-        expect.stringContaining('AS: network')
-      )
-    )
     expect(getByPlaceholderText('Email').value).toBe('john@mail.com')
     expect(successEvents).toHaveLength(0)
-  })
-
-  it('never logs personal data', async () => {
-    const { findByText } = submit({ result: { errors: [forbidden] } })
-
-    await findByText('Registration is unavailable for this product right now.')
-    expect(JSON.stringify(consoleError.mock.calls)).not.toMatch(/john/i)
   })
 })

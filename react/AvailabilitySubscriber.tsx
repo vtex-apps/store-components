@@ -127,15 +127,8 @@ function AvailabilitySubscriber(props: Props) {
 
     try {
       await signUp({ variables })
-    } catch (err) {
-      /* No personal data in the log */
-      // eslint-disable-next-line no-console
-      console.error(
-        `[AvailabilitySubscriber] Failed to save in ${
-          variables.acronym
-        }: ${classifyError(err as ApolloError)}`
-      )
-
+    } catch {
+      /* The hook's `error` state already renders the message */
       return
     }
 
