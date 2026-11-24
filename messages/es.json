@@ -58,6 +58,8 @@
   "store/availability-subscriber.invalid-email": "Email inválido",
   "store/availability-subscriber.added-message": "Email registrado con éxito",
   "store/availability-subscriber.error-message": "Se produjo una falla al intentar registrarte. Inténtalo de nuevo",
+  "store/availability-subscriber.permission-error-message": "El registro no está disponible para este producto en este momento.",
+  "store/availability-subscriber.network-error-message": "Problema de conexión. Verifica tu internet e inténtalo de nuevo.",
   "store/newsletter.label": "Suscríbete a nuestro newsletter",
   "store/newsletter.placeholder": "Ingresa tu email",
   "store/newsletter.submit": "Suscribir",

@@ -59,6 +59,8 @@
   "store/availability-subscriber.invalid-email": "Invalid email",
   "store/availability-subscriber.added-message": "Email registered successfully",
   "store/availability-subscriber.error-message": "Failed. Please try again.",
+  "store/availability-subscriber.permission-error-message": "Registration is unavailable for this product right now.",
+  "store/availability-subscriber.network-error-message": "Connection problem. Please check your internet and try again.",
   "store/newsletter.label": "Subscribe to our newsletter",
   "store/newsletter.placeholder": "Enter your email address",
   "store/newsletter.submit": "Sign Up",

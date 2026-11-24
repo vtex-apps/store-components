@@ -58,6 +58,8 @@
   "store/availability-subscriber.invalid-email": "Email inválido",
   "store/availability-subscriber.added-message": "Email cadastrado com sucesso",
   "store/availability-subscriber.error-message": "Erro ao se cadastrar. Tente novamente.",
+  "store/availability-subscriber.permission-error-message": "O cadastro está indisponível para este produto no momento.",
+  "store/availability-subscriber.network-error-message": "Problema de conexão. Verifique sua internet e tente novamente.",
   "store/newsletter.label": "Inscreva-se na nossa newsletter",
   "store/newsletter.placeholder": "Insira seu email",
   "store/newsletter.submit": "Enviar",
