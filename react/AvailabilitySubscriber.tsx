@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import type { FormEvent, ChangeEvent } from 'react'
 import { useIntl } from 'react-intl'
 import { useMutation } from 'react-apollo'
+import type { ApolloError } from 'apollo-client'
 import { Button, Input } from 'vtex.styleguide'
 import { useProduct } from 'vtex.product-context'
 import type { Seller } from 'vtex.product-context'
@@ -24,6 +25,32 @@ interface Props {
   available?: boolean
   /* SKU id to subscribe to */
   skuId?: string
+}
+
+type ErrorKind = 'permission' | 'configuration' | 'network' | 'unknown'
+
+/* store-graphql sends the Master Data status in extensions.exception.code */
+const classifyError = (error: ApolloError): ErrorKind => {
+  const codes = (error.graphQLErrors ?? []).map(
+    e => e.extensions?.exception?.code ?? e.extensions?.code
+  )
+
+  if (codes.some(c => c === 'FORBIDDEN' || c === 'UNAUTHENTICATED')) {
+    return 'permission'
+  }
+
+  if (codes.includes('BAD_USER_INPUT')) {
+    return 'configuration'
+  }
+
+  return error.networkError ? 'network' : 'unknown'
+}
+
+const errorMessageId: Record<ErrorKind, string> = {
+  permission: 'store/availability-subscriber.permission-error-message',
+  network: 'store/availability-subscriber.network-error-message',
+  configuration: 'store/availability-subscriber.error-message',
+  unknown: 'store/availability-subscriber.error-message',
 }
 
 const isAvailable = (commertialOffer?: Seller['commertialOffer']) => {
@@ -98,25 +125,33 @@ function AvailabilitySubscriber(props: Props) {
       },
     }
 
-    const signUpMutationResult = await signUp({
-      variables,
-    })
+    try {
+      await signUp({ variables })
+    } catch (err) {
+      /* No personal data in the log */
+      // eslint-disable-next-line no-console
+      console.error(
+        `[AvailabilitySubscriber] Failed to save in ${
+          variables.acronym
+        }: ${classifyError(err as ApolloError)}`
+      )
 
-    if (!signUpMutationResult.errors) {
-      setName('')
-      setEmail('')
+      return
     }
 
-    const event = new CustomEvent('message:success', {
-      detail: {
-        success: true,
-        message: intl.formatMessage({
-          id: 'store/availability-subscriber.added-message',
-        }),
-      },
-    })
+    setName('')
+    setEmail('')
 
-    document.dispatchEvent(event)
+    document.dispatchEvent(
+      new CustomEvent('message:success', {
+        detail: {
+          success: true,
+          message: intl.formatMessage({
+            id: 'store/availability-subscriber.added-message',
+          }),
+        },
+      })
+    )
   }
 
   const validateEmail = (newEmail: string) => {
@@ -205,9 +240,7 @@ function AvailabilitySubscriber(props: Props) {
         )}
         {error && (
           <div className={`${styles.error} c-danger`}>
-            {intl.formatMessage({
-              id: 'store/availability-subscriber.error-message',
-            })}
+            {intl.formatMessage({ id: errorMessageId[classifyError(error)] })}
           </div>
         )}
       </form>

@@ -57,6 +57,8 @@
   "store/availability-subscriber.invalid-email": "availability-subscriber.invalid-email",
   "store/availability-subscriber.added-message": "availability-subscriber.added-message",
   "store/availability-subscriber.error-message": "availability-subscriber.error-message",
+  "store/availability-subscriber.permission-error-message": "availability-subscriber.permission-error-message",
+  "store/availability-subscriber.network-error-message": "availability-subscriber.network-error-message",
   "store/newsletter.label": "Sign up for exclusive deals",
   "store/newsletter.placeholder": "Email address",
   "store/newsletter.submit": "Sign up",
