@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Docs: `AvailabilitySubscriber` is now documented as deprecated. The docs no longer ask merchants to configure public fields in the Master Data `AS` entity, and now recommend `vtex.availability-notify` or a custom component that writes on the server side.
+
 ## [3.179.1] - 2026-09-23
 
 ### Fixed
